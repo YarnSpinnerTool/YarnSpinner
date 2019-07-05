@@ -1,134 +1,106 @@
-\hypertarget{a00155}{\section{Yarn.\-Virtual\-Machine.\-State Class Reference}
-\label{a00155}\index{Yarn.\-Virtual\-Machine.\-State@{Yarn.\-Virtual\-Machine.\-State}}
+\hypertarget{a00155}{\section{Csv\-Helper.\-Reflection\-Helper Class Reference}
+\label{a00155}\index{Csv\-Helper.\-Reflection\-Helper@{Csv\-Helper.\-Reflection\-Helper}}
 }
 
 
-Collaboration diagram for Yarn.\-Virtual\-Machine.\-State\-:
+Common reflection tasks.  
+
+
+
+
+Collaboration diagram for Csv\-Helper.\-Reflection\-Helper\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=210pt]{a00708}
+\includegraphics[width=218pt]{a00472}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00155_aace44f5b85b9f746fede834becda4a8e}{Push\-Value} (object o)
-\begin{DoxyCompactList}\small\item\em Methods for working with the stack. \end{DoxyCompactList}\item 
-\hyperlink{a00177}{Value} \hyperlink{a00155_a36881a888ea2839d74c3d4e7c199f4ee}{Pop\-Value} ()
-\begin{DoxyCompactList}\small\item\em Pop a value from the stack. \end{DoxyCompactList}\item 
-\hyperlink{a00177}{Value} \hyperlink{a00155_a54fd5b64ec94e937e771846167242dc2}{Peek\-Value} ()
-\begin{DoxyCompactList}\small\item\em Peek at a value from the stack. \end{DoxyCompactList}\item 
-void \hyperlink{a00155_a9c787097fbbbbf1680e4960cda092535}{Clear\-Stack} ()
-\begin{DoxyCompactList}\small\item\em Clear the stack. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+static T \hyperlink{a00155_a45f0f552711f33392f33693a88fb20b3}{Create\-Instance$<$ T $>$} (params object\mbox{[}$\,$\mbox{]} args)
+\begin{DoxyCompactList}\small\item\em Creates an instance of type T. \end{DoxyCompactList}\item 
+static object \hyperlink{a00155_a9b8690ff760f41b0a7ef46626949c777}{Create\-Instance} (Type type, params object\mbox{[}$\,$\mbox{]} args)
+\begin{DoxyCompactList}\small\item\em Creates an instance of the specified type. \end{DoxyCompactList}\item 
+static T \hyperlink{a00155_aadf73df00d450ae49ceb8d78ac254b6d}{Get\-Attribute$<$ T $>$} (Property\-Info property, bool inherit)
+\begin{DoxyCompactList}\small\item\em Gets the first attribute of type T on property. \end{DoxyCompactList}\item 
+static T\mbox{[}$\,$\mbox{]} \hyperlink{a00155_adb0641e341c8468906b175f3f982ab6b}{Get\-Attributes$<$ T $>$} (Property\-Info property, bool inherit)
+\begin{DoxyCompactList}\small\item\em Gets the attributes of type T on property. \end{DoxyCompactList}\item 
+static New\-Expression \hyperlink{a00155_a7f2e39949787d37053702e7ea547ee69}{Get\-Constructor$<$ T $>$} (Expression$<$ Func$<$ T $>$$>$ expression)
+\begin{DoxyCompactList}\small\item\em Gets the constructor New\-Expression from the give Expression. \end{DoxyCompactList}\item 
+static Property\-Info \hyperlink{a00155_afaa6e2741145eabea34c625684fb4636}{Get\-Property$<$ T\-Model $>$} (Expression$<$ Func$<$ T\-Model, object $>$$>$ expression)
+\begin{DoxyCompactList}\small\item\em Gets the property from the expression. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00155_a86f481fad527f719b49f8fee6ff79764}{current\-Node\-Name}
-\begin{DoxyCompactList}\small\item\em The name of the node that we're currently in. \end{DoxyCompactList}\item 
-int \hyperlink{a00155_a2c76546b54b4fb573d7f14d79ce230a3}{program\-Counter} = 0
-\begin{DoxyCompactList}\small\item\em The instruction number in the current node. \end{DoxyCompactList}\item 
-List$<$ Key\-Value\-Pair$<$ string, \\*
-string $>$ $>$ \hyperlink{a00155_ab816dfea32ecda23282700f01454e0a9}{current\-Options} = new List$<$Key\-Value\-Pair$<$string, string$>$$>$()
-\begin{DoxyCompactList}\small\item\em List of options, where each option = $<$string id, destination node$>$ \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-Stack$<$ \hyperlink{a00177}{Value} $>$ \hyperlink{a00155_a0bc84abf38b3ff31cbb47363b851c233}{stack} = new Stack$<$\hyperlink{a00177}{Value}$>$()
-\begin{DoxyCompactList}\small\item\em The value stack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static Member\-Expression \hyperlink{a00155_ab462ff86486973f2eee6785bed535cdc}{Get\-Member\-Expression$<$ T\-Model, T $>$} (Expression$<$ Func$<$ T\-Model, T $>$$>$ expression)
+\begin{DoxyCompactList}\small\item\em Gets the member expression. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Common reflection tasks. 
 
 
-Definition at line 9 of file Virtual\-Machine.\-cs.
+
+Definition at line 19 of file Reflection\-Helper.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00155_a9c787097fbbbbf1680e4960cda092535}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Clear\-Stack@{Clear\-Stack}}
-\index{Clear\-Stack@{Clear\-Stack}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{Clear\-Stack}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Virtual\-Machine.\-State.\-Clear\-Stack (
+\hypertarget{a00155_a9b8690ff760f41b0a7ef46626949c777}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Create\-Instance@{Create\-Instance}}
+\index{Create\-Instance@{Create\-Instance}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
+\subsubsection[{Create\-Instance}]{\setlength{\rightskip}{0pt plus 5cm}static object Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance (
 \begin{DoxyParamCaption}
-{}
+\item[{Type}]{type, }
+\item[{params object\mbox{[}$\,$\mbox{]}}]{args}
 \end{DoxyParamCaption}
-)}}\label{a00155_a9c787097fbbbbf1680e4960cda092535}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00155_a9b8690ff760f41b0a7ef46626949c777}
 
 
-Clear the stack. 
+Creates an instance of the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of instance to create.\\
+\hline
+{\em args} & The constructor arguments.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new instance of the specified type.
+\end{DoxyReturn}
+
+
+Definition at line 42 of file Reflection\-Helper.\-cs.
 
 
 
-Definition at line 43 of file Virtual\-Machine.\-cs.
+Referenced by Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Auto\-Map(), Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Auto\-Map\-Internal(), Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance$<$ T $>$(), Csv\-Helper.\-Configuration.\-Csv\-Class\-Map$<$ T $>$.\-References(), Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Register\-Class\-Map(), and Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Type\-Converter$<$ T $>$().
 
 
 \begin{DoxyCode}
-43                                      \{
-44                 stack.Clear ();
-45             \}
-\end{DoxyCode}
-\hypertarget{a00155_a54fd5b64ec94e937e771846167242dc2}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Peek\-Value@{Peek\-Value}}
-\index{Peek\-Value@{Peek\-Value}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{Peek\-Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Virtual\-Machine.\-State.\-Peek\-Value (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00155_a54fd5b64ec94e937e771846167242dc2}
-
-
-Peek at a value from the stack. 
-
-
-
-Definition at line 38 of file Virtual\-Machine.\-cs.
-
-
-
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
-
-
-\begin{DoxyCode}
-38                                      \{
-39                 \textcolor{keywordflow}{return} stack.Peek ();
-40             \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00155_a54fd5b64ec94e937e771846167242dc2_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00155_a36881a888ea2839d74c3d4e7c199f4ee}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Pop\-Value@{Pop\-Value}}
-\index{Pop\-Value@{Pop\-Value}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{Pop\-Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Virtual\-Machine.\-State.\-Pop\-Value (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00155_a36881a888ea2839d74c3d4e7c199f4ee}
-
-
-Pop a value from the stack. 
-
-
-
-Definition at line 33 of file Virtual\-Machine.\-cs.
-
-
-
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
-
-
-\begin{DoxyCode}
-33                                     \{
-34                 \textcolor{keywordflow}{return} stack.Pop ();
-35             \}
+43         \{
+44 \textcolor{preprocessor}{#if NET\_2\_0}
+45 \textcolor{preprocessor}{}            \textcolor{keywordflow}{return} Activator.CreateInstance( type, args );
+46 \textcolor{preprocessor}{#else}
+47 \textcolor{preprocessor}{}
+48             var argumentTypes = args.Select( a => a.GetType() ).ToArray();
+49             var argumentExpressions = argumentTypes.Select( ( t, i ) => Expression.Parameter( t, \textcolor{stringliteral}{"var"} + i 
+      ) ).ToArray();
+50             var constructorInfo = type.GetConstructor( argumentTypes );
+51             var constructor = Expression.New( constructorInfo, argumentExpressions );
+52             var compiled = Expression.Lambda( constructor, argumentExpressions ).Compile();
+53             \textcolor{keywordflow}{try}
+54             \{
+55                 \textcolor{keywordflow}{return} compiled.DynamicInvoke( args );
+56             \}
+57             \textcolor{keywordflow}{catch}( TargetInvocationException ex )
+58             \{
+59                 \textcolor{keywordflow}{throw} ex.InnerException;
+60             \}
+61 \textcolor{preprocessor}{#endif}
+62 \textcolor{preprocessor}{}        \}
 \end{DoxyCode}
 
 
@@ -137,97 +109,297 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00155_a36881a888ea2839d74c3d4e7c199f4ee_icgraph}
+\includegraphics[width=350pt]{a00155_a9b8690ff760f41b0a7ef46626949c777_icgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{a00155_aace44f5b85b9f746fede834becda4a8e}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Push\-Value@{Push\-Value}}
-\index{Push\-Value@{Push\-Value}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{Push\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Virtual\-Machine.\-State.\-Push\-Value (
+\hypertarget{a00155_a45f0f552711f33392f33693a88fb20b3}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Create\-Instance$<$ T $>$@{Create\-Instance$<$ T $>$}}
+\index{Create\-Instance$<$ T $>$@{Create\-Instance$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
+\subsubsection[{Create\-Instance$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static T {\bf Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance}$<$ T $>$ (
 \begin{DoxyParamCaption}
-\item[{object}]{o}
+\item[{params object\mbox{[}$\,$\mbox{]}}]{args}
 \end{DoxyParamCaption}
-)}}\label{a00155_aace44f5b85b9f746fede834becda4a8e}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00155_a45f0f552711f33392f33693a88fb20b3}
 
 
-Methods for working with the stack. 
+Creates an instance of type T. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of instance to create.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em args} & The constructor arguments.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new instance of type T.
+\end{DoxyReturn}
+
+
+Definition at line 27 of file Reflection\-Helper.\-cs.
 
 
 
-Definition at line 24 of file Virtual\-Machine.\-cs.
+References Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance().
 
 
 \begin{DoxyCode}
-24                                             \{
-25                 \textcolor{keywordflow}{if}( o is Value ) \{
-26                     stack.Push(o as Value);
-27                 \} \textcolor{keywordflow}{else} \{
-28                     stack.Push (\textcolor{keyword}{new} Value(o));
-29                 \}
-30             \}
+28         \{
+29 \textcolor{preprocessor}{#if NET\_2\_0}
+30 \textcolor{preprocessor}{}            \textcolor{keywordflow}{return} Activator.CreateInstance<T>();
+31 \textcolor{preprocessor}{#else}
+32 \textcolor{preprocessor}{}            \textcolor{keywordflow}{return} (T)\hyperlink{a00155_a9b8690ff760f41b0a7ef46626949c777}{CreateInstance}( typeof( T ), args );
+33 \textcolor{preprocessor}{#endif}
+34 \textcolor{preprocessor}{}        \}
 \end{DoxyCode}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00155_a86f481fad527f719b49f8fee6ff79764}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!current\-Node\-Name@{current\-Node\-Name}}
-\index{current\-Node\-Name@{current\-Node\-Name}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{current\-Node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Virtual\-Machine.\-State.\-current\-Node\-Name}}\label{a00155_a86f481fad527f719b49f8fee6ff79764}
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00155_a45f0f552711f33392f33693a88fb20b3_cgraph}
+\end{center}
+\end{figure}
 
 
-The name of the node that we're currently in. 
+\hypertarget{a00155_aadf73df00d450ae49ceb8d78ac254b6d}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Attribute$<$ T $>$@{Get\-Attribute$<$ T $>$}}
+\index{Get\-Attribute$<$ T $>$@{Get\-Attribute$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
+\subsubsection[{Get\-Attribute$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static T Csv\-Helper.\-Reflection\-Helper.\-Get\-Attribute$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{Property\-Info}]{property, }
+\item[{bool}]{inherit}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00155_aadf73df00d450ae49ceb8d78ac254b6d}
 
 
-
-Definition at line 12 of file Virtual\-Machine.\-cs.
-
+Gets the first attribute of type T on property. 
 
 
-Referenced by Yarn.\-Virtual\-Machine.\-Find\-Instruction\-Point\-For\-Label().
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of attribute to get.\\
+\hline
+\end{DoxyTemplParams}
 
-\hypertarget{a00155_ab816dfea32ecda23282700f01454e0a9}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!current\-Options@{current\-Options}}
-\index{current\-Options@{current\-Options}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{current\-Options}]{\setlength{\rightskip}{0pt plus 5cm}List$<$Key\-Value\-Pair$<$string,string$>$ $>$ Yarn.\-Virtual\-Machine.\-State.\-current\-Options = new List$<$Key\-Value\-Pair$<$string, string$>$$>$()}}\label{a00155_ab816dfea32ecda23282700f01454e0a9}
-
-
-List of options, where each option = $<$string id, destination node$>$ 
-
-
-
-Definition at line 18 of file Virtual\-Machine.\-cs.
-
-
-
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
-
-\hypertarget{a00155_a2c76546b54b4fb573d7f14d79ce230a3}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!program\-Counter@{program\-Counter}}
-\index{program\-Counter@{program\-Counter}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{program\-Counter}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Virtual\-Machine.\-State.\-program\-Counter = 0}}\label{a00155_a2c76546b54b4fb573d7f14d79ce230a3}
+\begin{DoxyParams}{Parameters}
+{\em property} & The Property\-Info to get the attribute from.\\
+\hline
+{\em inherit} & True to search inheritance tree, otherwise false.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first attribute of type T, otherwise null.
+\end{DoxyReturn}
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em T} : {\em Attribute}]\end{description}
+\end{Desc}
 
 
-The instruction number in the current node. 
+Definition at line 72 of file Reflection\-Helper.\-cs.
 
 
+\begin{DoxyCode}
+72                                                                                        : Attribute
+73         \{
+74             T attribute = null;
+75             var attributes = property.GetCustomAttributes( typeof( T ), inherit ).ToList();
+76             \textcolor{keywordflow}{if}( attributes.Count > 0 )
+77             \{
+78                 attribute = attributes[0] as T;
+79             \}
+80             \textcolor{keywordflow}{return} attribute;
+81         \}
+\end{DoxyCode}
+\hypertarget{a00155_adb0641e341c8468906b175f3f982ab6b}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Attributes$<$ T $>$@{Get\-Attributes$<$ T $>$}}
+\index{Get\-Attributes$<$ T $>$@{Get\-Attributes$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
+\subsubsection[{Get\-Attributes$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static T \mbox{[}$\,$\mbox{]} Csv\-Helper.\-Reflection\-Helper.\-Get\-Attributes$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{Property\-Info}]{property, }
+\item[{bool}]{inherit}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00155_adb0641e341c8468906b175f3f982ab6b}
 
-Definition at line 15 of file Virtual\-Machine.\-cs.
+
+Gets the attributes of type T on property. 
 
 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of attribute to get.\\
+\hline
+\end{DoxyTemplParams}
 
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Next().
+\begin{DoxyParams}{Parameters}
+{\em property} & The Property\-Info to get the attribute from.\\
+\hline
+{\em inherit} & True to search inheritance tree, otherwise false.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The attributes of type T.
+\end{DoxyReturn}
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em T} : {\em Attribute}]\end{description}
+\end{Desc}
 
-\hypertarget{a00155_a0bc84abf38b3ff31cbb47363b851c233}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!stack@{stack}}
-\index{stack@{stack}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{stack}]{\setlength{\rightskip}{0pt plus 5cm}Stack$<${\bf Value}$>$ Yarn.\-Virtual\-Machine.\-State.\-stack = new Stack$<${\bf Value}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00155_a0bc84abf38b3ff31cbb47363b851c233}
+
+Definition at line 90 of file Reflection\-Helper.\-cs.
 
 
-The value stack. 
+\begin{DoxyCode}
+90                                                                                           : Attribute
+91         \{
+92             var attributes = property.GetCustomAttributes( typeof( T ), inherit );
+93             \textcolor{keywordflow}{return} attributes.Cast<T>().ToArray();
+94         \}
+\end{DoxyCode}
+\hypertarget{a00155_a7f2e39949787d37053702e7ea547ee69}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Constructor$<$ T $>$@{Get\-Constructor$<$ T $>$}}
+\index{Get\-Constructor$<$ T $>$@{Get\-Constructor$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
+\subsubsection[{Get\-Constructor$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static New\-Expression Csv\-Helper.\-Reflection\-Helper.\-Get\-Constructor$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{Expression$<$ Func$<$ T $>$$>$}]{expression}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00155_a7f2e39949787d37053702e7ea547ee69}
 
 
+Gets the constructor New\-Expression from the give Expression. 
 
-Definition at line 21 of file Virtual\-Machine.\-cs.
 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the object that will be constructed.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em expression} & The constructor Expression.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A constructor New\-Expression.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em System.\-Argument\-Exception} & Not a constructor expression.;expression\\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 103 of file Reflection\-Helper.\-cs.
+
+
+\begin{DoxyCode}
+104         \{
+105             var newExpression = expression.Body as NewExpression;
+106             \textcolor{keywordflow}{if}( newExpression == null )
+107             \{
+108                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException( \textcolor{stringliteral}{"Not a constructor expression."}, nameof( expression ) );
+109             \}
+110 
+111             \textcolor{keywordflow}{return} newExpression;
+112         \}
+\end{DoxyCode}
+\hypertarget{a00155_ab462ff86486973f2eee6785bed535cdc}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Member\-Expression$<$ T\-Model, T $>$@{Get\-Member\-Expression$<$ T\-Model, T $>$}}
+\index{Get\-Member\-Expression$<$ T\-Model, T $>$@{Get\-Member\-Expression$<$ T\-Model, T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
+\subsubsection[{Get\-Member\-Expression$<$ T\-Model, T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static Member\-Expression Csv\-Helper.\-Reflection\-Helper.\-Get\-Member\-Expression$<$ T\-Model, T $>$ (
+\begin{DoxyParamCaption}
+\item[{Expression$<$ Func$<$ T\-Model, T $>$$>$}]{expression}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00155_ab462ff86486973f2eee6785bed535cdc}
+
+
+Gets the member expression. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T\-Model} & The type of the model.\\
+\hline
+{\em T} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em expression} & The expression.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 139 of file Reflection\-Helper.\-cs.
+
+
+\begin{DoxyCode}
+140         \{
+141             MemberExpression memberExpression = null;
+142             \textcolor{keywordflow}{if}( expression.Body.NodeType == ExpressionType.Convert )
+143             \{
+144                 var body = (UnaryExpression)expression.Body;
+145                 memberExpression = body.Operand as MemberExpression;
+146             \}
+147             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( expression.Body.NodeType == ExpressionType.MemberAccess )
+148             \{
+149                 memberExpression = expression.Body as MemberExpression;
+150             \}
+151 
+152             \textcolor{keywordflow}{if}( memberExpression == null )
+153             \{
+154                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException( \textcolor{stringliteral}{"Not a member access"}, nameof( expression ) );
+155             \}
+156 
+157             \textcolor{keywordflow}{return} memberExpression;
+158         \}
+\end{DoxyCode}
+\hypertarget{a00155_afaa6e2741145eabea34c625684fb4636}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Property$<$ T\-Model $>$@{Get\-Property$<$ T\-Model $>$}}
+\index{Get\-Property$<$ T\-Model $>$@{Get\-Property$<$ T\-Model $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
+\subsubsection[{Get\-Property$<$ T\-Model $>$}]{\setlength{\rightskip}{0pt plus 5cm}static Property\-Info Csv\-Helper.\-Reflection\-Helper.\-Get\-Property$<$ T\-Model $>$ (
+\begin{DoxyParamCaption}
+\item[{Expression$<$ Func$<$ T\-Model, object $>$$>$}]{expression}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00155_afaa6e2741145eabea34c625684fb4636}
+
+
+Gets the property from the expression. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T\-Model} & The type of the model.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em expression} & The expression.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Property\-Info for the expression.
+\end{DoxyReturn}
+
+
+Definition at line 120 of file Reflection\-Helper.\-cs.
+
+
+\begin{DoxyCode}
+121         \{
+122             var member = GetMemberExpression( expression ).Member;
+123             var \textcolor{keyword}{property} = member as PropertyInfo;
+124             \textcolor{keywordflow}{if}( property == null )
+125             \{
+126                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} \hyperlink{a00064}{CsvConfigurationException}( $\textcolor{stringliteral}{"'\{member.Name\}' is not a
+       property. Did you try to map a field by accident?"} );
+127             \}
+128 
+129             \textcolor{keywordflow}{return} property;
+130         \}
+\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00298}{Virtual\-Machine.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00258}{Reflection\-Helper.\-cs}\end{DoxyCompactItemize}

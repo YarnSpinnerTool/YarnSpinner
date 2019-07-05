@@ -1,49 +1,30 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00164" kind="class" prot="package">
-    <compoundname>Yarn::TokeniserException</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">InvalidOperationException</basecompoundref>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00164_1a54b936d7b4f26f88a07a66c5fc1d1ad1" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.TokeniserException.lineNumber</definition>
-        <argsstring></argsstring>
-        <name>lineNumber</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="35" bodyend="-1"/>
-        <referencedby refid="a00164_1af88cfa5eafdee355e1abb67e358497bd" compoundref="a00292" startline="47" endline="65">Yarn.TokeniserException.ExpectedTokensFromState</referencedby>
-        <referencedby refid="a00164_1aa8674d006a0d29081a7b87bdd8ff2f4f" compoundref="a00292" startline="39" endline="44">Yarn.TokeniserException.TokeniserException</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00164_1aabf2ad38f3984297c1daede9be55e3d6" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.TokeniserException.columnNumber</definition>
-        <argsstring></argsstring>
-        <name>columnNumber</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="36" bodyend="-1"/>
-        <referencedby refid="a00164_1af88cfa5eafdee355e1abb67e358497bd" compoundref="a00292" startline="47" endline="65">Yarn.TokeniserException.ExpectedTokensFromState</referencedby>
-        <referencedby refid="a00164_1aa8674d006a0d29081a7b87bdd8ff2f4f" compoundref="a00292" startline="39" endline="44">Yarn.TokeniserException.TokeniserException</referencedby>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00164" kind="class" prot="private">
+    <compoundname>Yarn::Dialogue::StandardLibrary</compoundname>
+    <basecompoundref refid="a00129" prot="public" virt="non-virtual">Yarn.Library</basecompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00164_1ad00fcf742d2b0d476ce43b27a3f3b6c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00164_1a1bf2ea2b59a842bafffec78667a86b19" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>Yarn.TokeniserException.TokeniserException</definition>
-        <argsstring>(string message)</argsstring>
-        <name>TokeniserException</name>
+        <definition>Yarn.Dialogue.StandardLibrary.StandardLibrary</definition>
+        <argsstring>()</argsstring>
+        <name>StandardLibrary</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="608" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="608" bodyend="681"/>
+      </memberdef>
+      <memberdef kind="function" id="a00129_1aacfb1f00ad8aa3921941b8d8af0960e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00106" kindref="compound">FunctionInfo</ref></type>
+        <definition>FunctionInfo Yarn.Library.GetFunction</definition>
+        <argsstring>(string name)</argsstring>
+        <name>GetFunction</name>
         <param>
           <type>string</type>
-          <declname>message</declname>
+          <declname>name</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -51,25 +32,63 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="38" bodyend="38"/>
-        <referencedby refid="a00164_1af88cfa5eafdee355e1abb67e358497bd" compoundref="a00292" startline="47" endline="65">Yarn.TokeniserException.ExpectedTokensFromState</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="97" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="97" bodyend="103"/>
+        <references refid="a00129_1a2fcc78a63963be5320cf09783b66fab6" compoundref="a00311" startline="93">Yarn.Library.functions</references>
+        <referencedby refid="a00162_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00316" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00164_1aa8674d006a0d29081a7b87bdd8ff2f4f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.TokeniserException.TokeniserException</definition>
-        <argsstring>(int lineNumber, int columnNumber, string message)</argsstring>
-        <name>TokeniserException</name>
+      <memberdef kind="function" id="a00129_1ab42a4fd30a72156cafa685f959deef78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Library.ImportLibrary</definition>
+        <argsstring>(Library otherLibrary)</argsstring>
+        <name>ImportLibrary</name>
         <param>
-          <type>int</type>
-          <declname>lineNumber</declname>
+          <type><ref refid="a00129" kindref="compound">Library</ref></type>
+          <declname>otherLibrary</declname>
         </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="108" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="108" bodyend="112"/>
+        <references refid="a00129_1a2fcc78a63963be5320cf09783b66fab6" compoundref="a00311" startline="93">Yarn.Library.functions</references>
+      </memberdef>
+      <memberdef kind="function" id="a00129_1a001ab29d21fe7db10fc9c250914287f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Library.RegisterFunction</definition>
+        <argsstring>(FunctionInfo function)</argsstring>
+        <name>RegisterFunction</name>
         <param>
-          <type>int</type>
-          <declname>columnNumber</declname>
+          <type><ref refid="a00106" kindref="compound">FunctionInfo</ref></type>
+          <declname>function</declname>
         </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="114" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="114" bodyend="116"/>
+        <references refid="a00129_1a2fcc78a63963be5320cf09783b66fab6" compoundref="a00311" startline="93">Yarn.Library.functions</references>
+        <referencedby refid="a00129_1a2a698de0b528b2bac17bd85f57d45d4b" compoundref="a00311" startline="118" endline="121">Yarn.Library.RegisterFunction</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00129_1a2a698de0b528b2bac17bd85f57d45d4b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Library.RegisterFunction</definition>
+        <argsstring>(string name, int parameterCount, ReturningFunction implementation)</argsstring>
+        <name>RegisterFunction</name>
         <param>
           <type>string</type>
-          <declname>message</declname>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>parameterCount</declname>
+        </param>
+        <param>
+          <type><ref refid="a00051_1a5177bf74fbfe7303fac9d8236c2e514b" kindref="member">ReturningFunction</ref></type>
+          <declname>implementation</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -77,28 +96,25 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="39" bodyend="44"/>
-        <references refid="a00164_1aabf2ad38f3984297c1daede9be55e3d6" compoundref="a00292" startline="36">Yarn.TokeniserException.columnNumber</references>
-        <references refid="a00164_1a54b936d7b4f26f88a07a66c5fc1d1ad1" compoundref="a00292" startline="35">Yarn.TokeniserException.lineNumber</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="118" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="118" bodyend="121"/>
+        <references refid="a00129_1a001ab29d21fe7db10fc9c250914287f9" compoundref="a00311" startline="114" endline="116">Yarn.Library.RegisterFunction</references>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="a00164_1af88cfa5eafdee355e1abb67e358497bd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00164" kindref="compound">TokeniserException</ref></type>
-        <definition>static TokeniserException Yarn.TokeniserException.ExpectedTokensFromState</definition>
-        <argsstring>(int lineNumber, int columnNumber, Lexer.LexerState state)</argsstring>
-        <name>ExpectedTokensFromState</name>
+      <memberdef kind="function" id="a00129_1a6820eaa082077f16496effbc9041b7ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Library.RegisterFunction</definition>
+        <argsstring>(string name, int parameterCount, Function implementation)</argsstring>
+        <name>RegisterFunction</name>
         <param>
-          <type>int</type>
-          <declname>lineNumber</declname>
+          <type>string</type>
+          <declname>name</declname>
         </param>
         <param>
           <type>int</type>
-          <declname>columnNumber</declname>
+          <declname>parameterCount</declname>
         </param>
         <param>
-          <type><ref refid="a00118" kindref="compound">Lexer.LexerState</ref></type>
-          <declname>state</declname>
+          <type><ref refid="a00051_1ae0be2e5cf13d5779816102439e61ff1a" kindref="member">Function</ref></type>
+          <declname>implementation</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -106,45 +122,83 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="47" bodyend="65"/>
-        <references refid="a00164_1aabf2ad38f3984297c1daede9be55e3d6" compoundref="a00292" startline="36">Yarn.TokeniserException.columnNumber</references>
-        <references refid="a00164_1a54b936d7b4f26f88a07a66c5fc1d1ad1" compoundref="a00292" startline="35">Yarn.TokeniserException.lineNumber</references>
-        <references refid="a00164_1ad00fcf742d2b0d476ce43b27a3f3b6c1" compoundref="a00292" startline="38" endline="38">Yarn.TokeniserException.TokeniserException</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="123" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="123" bodyend="126"/>
+        <references refid="a00129_1a001ab29d21fe7db10fc9c250914287f9" compoundref="a00311" startline="114" endline="116">Yarn.Library.RegisterFunction</references>
+      </memberdef>
+      <memberdef kind="function" id="a00129_1a6c9a1cc3e25b6aae25e210d8a0d68c09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Yarn.Library.FunctionExists</definition>
+        <argsstring>(string name)</argsstring>
+        <name>FunctionExists</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="128" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="128" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="a00129_1a47d1b3664733207d5cda15f4a4a7af7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Library.DeregisterFunction</definition>
+        <argsstring>(string name)</argsstring>
+        <name>DeregisterFunction</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="132" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="132" bodyend="135"/>
+        <references refid="a00129_1a2fcc78a63963be5320cf09783b66fab6" compoundref="a00311" startline="93">Yarn.Library.functions</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>The standard, built-in library of functions and operators. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1705">
-        <label>InvalidOperationException</label>
-      </node>
-      <node id="1704">
-        <label>Yarn.TokeniserException</label>
+      <node id="1656">
+        <label>Yarn.Dialogue.StandardLibrary</label>
         <link refid="a00164"/>
-        <childnode refid="1705" relation="public-inheritance">
+        <childnode refid="1657" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="1657">
+        <label>Library</label>
+        <link refid="a00129"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1707">
-        <label>InvalidOperationException</label>
-      </node>
-      <node id="1706">
-        <label>Yarn.TokeniserException</label>
+      <node id="1658">
+        <label>Yarn.Dialogue.StandardLibrary</label>
         <link refid="a00164"/>
-        <childnode refid="1707" relation="public-inheritance">
+        <childnode refid="1659" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="1659">
+        <label>Library</label>
+        <link refid="a00129"/>
+      </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="33" bodyend="66"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="606" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="606" bodyend="682"/>
     <listofallmembers>
-      <member refid="a00164_1aabf2ad38f3984297c1daede9be55e3d6" prot="public" virt="non-virtual"><scope>Yarn::TokeniserException</scope><name>columnNumber</name></member>
-      <member refid="a00164_1af88cfa5eafdee355e1abb67e358497bd" prot="public" virt="non-virtual"><scope>Yarn::TokeniserException</scope><name>ExpectedTokensFromState</name></member>
-      <member refid="a00164_1a54b936d7b4f26f88a07a66c5fc1d1ad1" prot="public" virt="non-virtual"><scope>Yarn::TokeniserException</scope><name>lineNumber</name></member>
-      <member refid="a00164_1ad00fcf742d2b0d476ce43b27a3f3b6c1" prot="public" virt="non-virtual"><scope>Yarn::TokeniserException</scope><name>TokeniserException</name></member>
-      <member refid="a00164_1aa8674d006a0d29081a7b87bdd8ff2f4f" prot="public" virt="non-virtual"><scope>Yarn::TokeniserException</scope><name>TokeniserException</name></member>
+      <member refid="a00129_1a47d1b3664733207d5cda15f4a4a7af7a" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::StandardLibrary</scope><name>DeregisterFunction</name></member>
+      <member refid="a00129_1a6c9a1cc3e25b6aae25e210d8a0d68c09" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::StandardLibrary</scope><name>FunctionExists</name></member>
+      <member refid="a00129_1aacfb1f00ad8aa3921941b8d8af0960e0" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::StandardLibrary</scope><name>GetFunction</name></member>
+      <member refid="a00129_1ab42a4fd30a72156cafa685f959deef78" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::StandardLibrary</scope><name>ImportLibrary</name></member>
+      <member refid="a00129_1a001ab29d21fe7db10fc9c250914287f9" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::StandardLibrary</scope><name>RegisterFunction</name></member>
+      <member refid="a00129_1a2a698de0b528b2bac17bd85f57d45d4b" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::StandardLibrary</scope><name>RegisterFunction</name></member>
+      <member refid="a00129_1a6820eaa082077f16496effbc9041b7ad" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::StandardLibrary</scope><name>RegisterFunction</name></member>
+      <member refid="a00164_1a1bf2ea2b59a842bafffec78667a86b19" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::StandardLibrary</scope><name>StandardLibrary</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

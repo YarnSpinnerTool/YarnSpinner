@@ -1,453 +1,145 @@
-\hypertarget{a00108}{\section{Yarn.\-Parser.\-If\-Statement Class Reference}
-\label{a00108}\index{Yarn.\-Parser.\-If\-Statement@{Yarn.\-Parser.\-If\-Statement}}
+\hypertarget{a00108}{\section{Yarn.\-Graph Class Reference}
+\label{a00108}\index{Yarn.\-Graph@{Yarn.\-Graph}}
 }
 
 
-Inheritance diagram for Yarn.\-Parser.\-If\-Statement\-:
+Collaboration diagram for Yarn.\-Graph\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=202pt]{a00663}
+\includegraphics[width=156pt]{a00597}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Parser.\-If\-Statement\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=256pt]{a00664}
-\end{center}
-\end{figure}
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{a00040}{Clause}
-\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00138_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
+void \hyperlink{a00108_aeb75730e40484ccdf56e805e6dea22a1}{edge} (\hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} source, \hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} target)
 \item 
-override string \hyperlink{a00138_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
+\hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} \hyperlink{a00108_aa1f89fd1a2dd058002251dfd6411b905}{to\-Dot} ()
 \end{DoxyCompactItemize}
-\subsection*{Package Functions}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00108_ae534078389e8663edf7660403acf3cbc}{If\-Statement} (\hyperlink{a00138}{Parse\-Node} \hyperlink{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00139}{Parser} p)
+Array\-List$<$ \hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} $>$ \hyperlink{a00108_a506df6f737a41748c01239bdea5d82b1}{nodes} = new Array\-List$<$\hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String}$>$()
 \item 
-override string \hyperlink{a00108_a5494c1daef8e0f3ac3ab68f91db4f332}{Print\-Tree} (int indent\-Level)
+Multi\-Map$<$ \hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String}, \hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} $>$ \hyperlink{a00108_a8adf7c937ab5c584b49698283e3da150}{edges} = new Multi\-Map$<$\hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String}, \hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String}$>$()
 \item 
-\hyperlink{a00128}{Node} \hyperlink{a00138_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
-\end{DoxyCompactItemize}
-\subsection*{Static Package Functions}
-\begin{DoxyCompactItemize}
-\item 
-static bool \hyperlink{a00108_afd6b96e1a27872701c4e6832f17fc3ce}{Can\-Parse} (\hyperlink{a00139}{Parser} p)
-\end{DoxyCompactItemize}
-\subsection*{Package Attributes}
-\begin{DoxyCompactItemize}
-\item 
-List$<$ \hyperlink{a00040}{Clause} $>$ \hyperlink{a00108_a679b1a21582c78ed06df36bccc9c3cbc}{clauses} = new List$<$\hyperlink{a00040}{Clause}$>$()
-\item 
-\hyperlink{a00138}{Parse\-Node} \hyperlink{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
-\item 
-int \hyperlink{a00138_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
-\item 
-string\mbox{[}$\,$\mbox{]} \hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
+string \hyperlink{a00108_a8605f1ec5a4e9cfd07d3ac2be042dac6}{graph\-Name} = \char`\"{}G\char`\"{}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 536 of file Parser.\-cs.
-
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00108_ae534078389e8663edf7660403acf3cbc}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!If\-Statement@{If\-Statement}}
-\index{If\-Statement@{If\-Statement}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
-\subsubsection[{If\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-If\-Statement.\-If\-Statement (
-\begin{DoxyParamCaption}
-\item[{{\bf Parse\-Node}}]{parent, }
-\item[{{\bf Parser}}]{p}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00108_ae534078389e8663edf7660403acf3cbc}
-
-
-Definition at line 564 of file Parser.\-cs.
-
-
-
-References Yarn.\-Parser.\-Next\-Symbol\-Is(), and Yarn.\-Parser.\-Next\-Symbols\-Are().
-
-
-\begin{DoxyCode}
-564                                                              : base(\hyperlink{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
-565 
-566                 \textcolor{comment}{// All if statements begin with "<<if EXPRESSION>>", so parse that}
-567                 Clause primaryClause = \textcolor{keyword}{new} Clause();
-568 
-569                 p.ExpectSymbol(TokenType.BeginCommand);
-570                 p.ExpectSymbol(TokenType.If);
-571                 primaryClause.expression = Expression.Parse(\textcolor{keyword}{this}, p);
-572                 p.ExpectSymbol(TokenType.EndCommand);
-573 
-574                 \textcolor{comment}{// Read the statements for this clause until  we hit an <<endif or <<else}
-575                 \textcolor{comment}{// (which could be an "<<else>>" or an "<<else if"}
-576                 var statements = \textcolor{keyword}{new} List<Statement>();
-577                 \textcolor{keywordflow}{while} (p.NextSymbolsAre(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, 
-      \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EndIf) == \textcolor{keyword}{false} &&
-578                     p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == \textcolor{keyword}{false} &&
-579                     p.NextSymbolsAre(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.ElseIf) == \textcolor{keyword}{false}) 
-      \{
-580                     statements.Add(\textcolor{keyword}{new} Statement(\textcolor{keyword}{this}, p));
-581 
-582                     \textcolor{comment}{// Ignore any dedents}
-583                     \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Dedent)) \{
-584                         p.ExpectSymbol(TokenType.Dedent);
-585                     \}
-586                 \}
-587                 primaryClause.statements = statements;
-588 
-589                 clauses.Add(primaryClause);
-590 
-591                 \textcolor{comment}{// Handle as many <<elseif clauses as we find}
-592                 \textcolor{keywordflow}{while} (p.NextSymbolsAre(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, 
-      \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.ElseIf)) \{
-593                     var elseIfClause = \textcolor{keyword}{new} Clause();
-594 
-595                     \textcolor{comment}{// Parse the syntax for this clause's condition}
-596                     p.ExpectSymbol(TokenType.BeginCommand);
-597                     p.ExpectSymbol(TokenType.ElseIf);
-598                     elseIfClause.expression = Expression.Parse(\textcolor{keyword}{this}, p);
-599                     p.ExpectSymbol(TokenType.EndCommand);
-600 
-601                     \textcolor{comment}{// Read statements until we hit an <<endif, <<else or another <<elseif}
-602                     var clauseStatements = \textcolor{keyword}{new} List<Statement>();
-603                     \textcolor{keywordflow}{while} (p.NextSymbolsAre(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, 
-      \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EndIf) == \textcolor{keyword}{false} &&
-604                         p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == \textcolor{keyword}{false} &&
-605                         p.NextSymbolsAre(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, 
-      \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.ElseIf) == \textcolor{keyword}{false}) \{
-606                         clauseStatements.Add(\textcolor{keyword}{new} Statement(\textcolor{keyword}{this}, p));
-607 
-608                         \textcolor{comment}{// Ignore any dedents}
-609                         \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Dedent)) \{
-610                             p.ExpectSymbol(TokenType.Dedent);
-611                         \}
-612 
-613                     \}
-614 
-615                     elseIfClause.statements = clauseStatements;
-616 
-617                     clauses.Add(elseIfClause);
-618                 \}
-619 
-620                 \textcolor{comment}{// Handle <<else>> if we have it}
-621                 \textcolor{keywordflow}{if} (p.NextSymbolsAre(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Else, 
-      \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EndCommand)) \{
-622 
-623                     \textcolor{comment}{// parse the syntax (no expression this time, just "<<else>>"}
-624                     p.ExpectSymbol(TokenType.BeginCommand);
-625                     p.ExpectSymbol(TokenType.Else);
-626                     p.ExpectSymbol(TokenType.EndCommand);
-627 
-628                     \textcolor{comment}{// and parse statements until we hit "<<endif"}
-629                     var elseClause = \textcolor{keyword}{new} Clause();
-630                     var clauseStatements = \textcolor{keyword}{new} List<Statement>();
-631                     \textcolor{keywordflow}{while} (p.NextSymbolsAre(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, 
-      \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EndIf) == \textcolor{keyword}{false}) \{
-632                         clauseStatements.Add(\textcolor{keyword}{new} Statement(\textcolor{keyword}{this}, p));
-633                     \}
-634                     elseClause.statements = clauseStatements;
-635 
-636                     this.clauses.Add(elseClause);
-637 
-638                     \textcolor{comment}{// Ignore any dedents}
-639                     \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Dedent)) \{
-640                         p.ExpectSymbol(TokenType.Dedent);
-641                     \}
-642 
-643                 \}
-644 
-645                 \textcolor{comment}{// Finish up by reading the <<endif>>}
-646                 p.ExpectSymbol(TokenType.BeginCommand);
-647                 p.ExpectSymbol(TokenType.EndIf);
-648                 p.ExpectSymbol(TokenType.EndCommand);
-649             \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00108_ae534078389e8663edf7660403acf3cbc_cgraph}
-\end{center}
-\end{figure}
-
+Definition at line 797 of file Antlr\-Compiler.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00108_afd6b96e1a27872701c4e6832f17fc3ce}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!Can\-Parse@{Can\-Parse}}
-\index{Can\-Parse@{Can\-Parse}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
-\subsubsection[{Can\-Parse}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Parser.\-If\-Statement.\-Can\-Parse (
+\hypertarget{a00108_aeb75730e40484ccdf56e805e6dea22a1}{\index{Yarn\-::\-Graph@{Yarn\-::\-Graph}!edge@{edge}}
+\index{edge@{edge}!Yarn::Graph@{Yarn\-::\-Graph}}
+\subsubsection[{edge}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Graph.\-edge (
 \begin{DoxyParamCaption}
-\item[{{\bf Parser}}]{p}
+\item[{{\bf String}}]{source, }
+\item[{{\bf String}}]{target}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00108_afd6b96e1a27872701c4e6832f17fc3ce}
+)}}\label{a00108_aeb75730e40484ccdf56e805e6dea22a1}
 
 
-Definition at line 537 of file Parser.\-cs.
-
-
-
-Referenced by Yarn.\-Parser.\-Statement.\-Statement().
+Definition at line 803 of file Antlr\-Compiler.\-cs.
 
 
 \begin{DoxyCode}
-538             \{
-539                 \textcolor{keywordflow}{return} p.NextSymbolsAre (TokenType.BeginCommand, TokenType.If);
-540             \}
+804         \{
+805             edges.Map(source, target);
+806         \}
 \end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00108_afd6b96e1a27872701c4e6832f17fc3ce_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00138_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!Node\-Parent@{Node\-Parent}}
-\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
-\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
+\hypertarget{a00108_aa1f89fd1a2dd058002251dfd6411b905}{\index{Yarn\-::\-Graph@{Yarn\-::\-Graph}!to\-Dot@{to\-Dot}}
+\index{to\-Dot@{to\-Dot}!Yarn::Graph@{Yarn\-::\-Graph}}
+\subsubsection[{to\-Dot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Yarn.\-Graph.\-to\-Dot (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_a580e520a29444fc23ac3660cbe514a09}
+)}}\label{a00108_aa1f89fd1a2dd058002251dfd6411b905}
 
 
-Definition at line 100 of file Parser.\-cs.
-
-
-
-Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option().
-
-
-\begin{DoxyCode}
-100                                        \{
-101                 var node = \textcolor{keyword}{this};
-102 
-103                 \textcolor{keywordflow}{do} \{
-104                     \textcolor{keywordflow}{if} (node is Node) \{
-105                         \textcolor{keywordflow}{return} node as Node;
-106                     \}
-107                     node = node.parent;
-108                 \} \textcolor{keywordflow}{while} (node
-109                     != null);
-110 
-111                 \textcolor{keywordflow}{return} null;
-112             \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00138_a580e520a29444fc23ac3660cbe514a09_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00108_a5494c1daef8e0f3ac3ab68f91db4f332}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!Print\-Tree@{Print\-Tree}}
-\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
-\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-If\-Statement.\-Print\-Tree (
-\begin{DoxyParamCaption}
-\item[{int}]{indent\-Level}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00108_a5494c1daef8e0f3ac3ab68f91db4f332}
-
-
-Implements \hyperlink{a00138_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
+Definition at line 807 of file Antlr\-Compiler.\-cs.
 
 
 
-Definition at line 651 of file Parser.\-cs.
-
-
-
-References Yarn.\-Parser.\-If\-Statement.\-clauses, and Yarn.\-Parser.\-Tab().
+References Yarn.\-Graph.\-edges, Yarn.\-Graph.\-graph\-Name, Yarn.\-Graph.\-nodes, preprocessor.\-output, and Yarn.\-String.
 
 
 \begin{DoxyCode}
-652             \{
-653                 var sb = \textcolor{keyword}{new} StringBuilder ();
-654                 var first = \textcolor{keyword}{true};
-655                 \textcolor{keywordflow}{foreach} (var clause \textcolor{keywordflow}{in} \hyperlink{a00108_a679b1a21582c78ed06df36bccc9c3cbc}{clauses}) \{
-656                     \textcolor{keywordflow}{if} (first) \{
-657                         sb.Append (\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"If:"}));
-658                         first = \textcolor{keyword}{false};
-659                     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (clause.expression != null) \{
-660                         sb.Append (\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Else If:"}));
-661                     \} \textcolor{keywordflow}{else} \{
-662                         sb.Append (\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Else:"}));
-663                     \}
-664                     sb.Append (clause.PrintTree (indentLevel + 1));
-665                 \}
-666 
-667                 \textcolor{keywordflow}{return} sb.ToString ();
-668             \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=330pt]{a00108_a5494c1daef8e0f3ac3ab68f91db4f332_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00138_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!Tags\-To\-String@{Tags\-To\-String}}
-\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
-\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
-\begin{DoxyParamCaption}
-\item[{int}]{indent\-Level}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00138_a054f36c80d5eeacd569a8859f599af67}
-
-
-Definition at line 78 of file Parser.\-cs.
-
-
-
-References Yarn.\-Parser.\-Tab(), and Yarn.\-Parser.\-Parse\-Node.\-tags.
-
-
-
-Referenced by Yarn.\-Parser.\-Statement.\-Print\-Tree(), and Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree().
-
-
-\begin{DoxyCode}
-79             \{
-80                 \textcolor{keywordflow}{if} (\hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
-81                     var s = \textcolor{keyword}{new} StringBuilder ();
-82 
-83                     s.Append (\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
-84                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
-85                         s.Append(\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
-86                     \}
-87                     \textcolor{keywordflow}{return} s.ToString ();
-88                 \} \textcolor{keywordflow}{else} \{
-89                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
-90                 \}
-91 
-92             \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00138_a054f36c80d5eeacd569a8859f599af67_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00138_a054f36c80d5eeacd569a8859f599af67_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00138_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00138_a18c67cb16090d0889bb9d6c8c6c565f8}
-
-
-Definition at line 94 of file Parser.\-cs.
-
-
-\begin{DoxyCode}
-95             \{
-96                 \textcolor{keywordflow}{return} this.GetType ().Name;
-97             \}
+808         \{
+809             StringBuilder buf = \textcolor{keyword}{new} StringBuilder();
+810             buf.AppendFormat(\textcolor{stringliteral}{"digraph \{0\} "},\hyperlink{a00108_a8605f1ec5a4e9cfd07d3ac2be042dac6}{graphName});
+811             buf.Append(\textcolor{stringliteral}{"\{\(\backslash\)n"});
+812             buf.Append(\textcolor{stringliteral}{"  "});
+813             \textcolor{keywordflow}{foreach} (\hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} node \textcolor{keywordflow}{in} \hyperlink{a00108_a506df6f737a41748c01239bdea5d82b1}{nodes})
+814             \{ \textcolor{comment}{// print all nodes first}
+815                 buf.Append(node);
+816                 buf.Append(\textcolor{stringliteral}{"; "});
+817             \}
+818             buf.Append(\textcolor{stringliteral}{"\(\backslash\)n"});
+819             \textcolor{keywordflow}{foreach} (\hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} src \textcolor{keywordflow}{in} \hyperlink{a00108_a8adf7c937ab5c584b49698283e3da150}{edges}.Keys)
+820             \{
+821                 IList<string> \hyperlink{a00348_a3da6d48778c7b08a040bf24377f67792}{output};
+822                 \textcolor{keywordflow}{if} (\hyperlink{a00108_a8adf7c937ab5c584b49698283e3da150}{edges}.TryGetValue(src, out output))
+823                 \{
+824                     \textcolor{keywordflow}{foreach} (\hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} trg \textcolor{keywordflow}{in} output)
+825                     \{
+826                         buf.Append(\textcolor{stringliteral}{"  "});
+827                         buf.Append(src);
+828                         buf.Append(\textcolor{stringliteral}{" -> "});
+829                         buf.Append(trg);
+830                         buf.Append(\textcolor{stringliteral}{";\(\backslash\)n"});
+831                     \}
+832                 \}
+833             \}
+834             buf.Append(\textcolor{stringliteral}{"\}\(\backslash\)n"});
+835             \textcolor{keywordflow}{return} buf.ToString();
+836         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00108_a679b1a21582c78ed06df36bccc9c3cbc}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!clauses@{clauses}}
-\index{clauses@{clauses}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
-\subsubsection[{clauses}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Clause}$>$ Yarn.\-Parser.\-If\-Statement.\-clauses = new List$<${\bf Clause}$>$()\hspace{0.3cm}{\ttfamily [package]}}}\label{a00108_a679b1a21582c78ed06df36bccc9c3cbc}
+\hypertarget{a00108_a8adf7c937ab5c584b49698283e3da150}{\index{Yarn\-::\-Graph@{Yarn\-::\-Graph}!edges@{edges}}
+\index{edges@{edges}!Yarn::Graph@{Yarn\-::\-Graph}}
+\subsubsection[{edges}]{\setlength{\rightskip}{0pt plus 5cm}Multi\-Map$<${\bf String}, {\bf String}$>$ Yarn.\-Graph.\-edges = new Multi\-Map$<${\bf String}, {\bf String}$>$()}}\label{a00108_a8adf7c937ab5c584b49698283e3da150}
 
 
-Definition at line 562 of file Parser.\-cs.
-
-
-
-Referenced by Yarn.\-Parser.\-If\-Statement.\-Print\-Tree().
-
-\hypertarget{a00138_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!line\-Number@{line\-Number}}
-\index{line\-Number@{line\-Number}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
-\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_a18b493382de0fde5b4299c1bd2250075}
-
-
-Definition at line 61 of file Parser.\-cs.
+Definition at line 800 of file Antlr\-Compiler.\-cs.
 
 
 
-Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
+Referenced by Yarn.\-Graph.\-to\-Dot().
 
-\hypertarget{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!parent@{parent}}
-\index{parent@{parent}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
-\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_af313a82103fcc2ff5a177dbb06b92f7b}
-
-
-Definition at line 58 of file Parser.\-cs.
+\hypertarget{a00108_a8605f1ec5a4e9cfd07d3ac2be042dac6}{\index{Yarn\-::\-Graph@{Yarn\-::\-Graph}!graph\-Name@{graph\-Name}}
+\index{graph\-Name@{graph\-Name}!Yarn::Graph@{Yarn\-::\-Graph}}
+\subsubsection[{graph\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Graph.\-graph\-Name = \char`\"{}G\char`\"{}}}\label{a00108_a8605f1ec5a4e9cfd07d3ac2be042dac6}
 
 
-
-Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
-
-\hypertarget{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!tags@{tags}}
-\index{tags@{tags}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
-\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_a58b3a15788fd2d4127d73619dc6d04ae}
-
-
-Definition at line 76 of file Parser.\-cs.
+Definition at line 801 of file Antlr\-Compiler.\-cs.
 
 
 
-Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option(), Yarn.\-Parser.\-Statement.\-Statement(), and Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String().
+Referenced by Yarn.\-Graph.\-to\-Dot().
+
+\hypertarget{a00108_a506df6f737a41748c01239bdea5d82b1}{\index{Yarn\-::\-Graph@{Yarn\-::\-Graph}!nodes@{nodes}}
+\index{nodes@{nodes}!Yarn::Graph@{Yarn\-::\-Graph}}
+\subsubsection[{nodes}]{\setlength{\rightskip}{0pt plus 5cm}Array\-List$<${\bf String}$>$ Yarn.\-Graph.\-nodes = new Array\-List$<${\bf String}$>$()}}\label{a00108_a506df6f737a41748c01239bdea5d82b1}
+
+
+Definition at line 799 of file Antlr\-Compiler.\-cs.
+
+
+
+Referenced by Yarn.\-Graph.\-to\-Dot().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00295}{Parser.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00303}{Antlr\-Compiler.\-cs}\end{DoxyCompactItemize}

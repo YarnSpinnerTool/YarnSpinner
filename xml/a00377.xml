@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00377" kind="struct" prot="public">
+    <compoundname>Yarn::Line</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00377_1a81d1f04bbb4cf6642d2bd685bda1da20" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Line.text</definition>
+        <argsstring></argsstring>
+        <name>text</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="59" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Information about stuff that the client should handle. </para>    </briefdescription>
+    <detaileddescription>
+<para>(Currently this just wraps a single field, but doing it like this gives us the option to add more stuff later without breaking the API.) </para>    </detaileddescription>
+    <collaborationgraph>
+      <node id="1493">
+        <label>Yarn.Line</label>
+        <link refid="a00377"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="59" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="59" bodyend="59"/>
+    <listofallmembers>
+      <member refid="a00377_1a81d1f04bbb4cf6642d2bd685bda1da20" prot="public" virt="non-virtual"><scope>Yarn::Line</scope><name>text</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

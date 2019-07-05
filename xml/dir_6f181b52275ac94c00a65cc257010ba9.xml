@@ -3,11 +3,12 @@
   <compounddef id="dir_6f181b52275ac94c00a65cc257010ba9" kind="dir">
     <compoundname>YarnSpinnerConsole</compoundname>
     <innerdir refid="dir_c5b5245a8d866663393107841a0eecb5">YarnSpinnerConsole/Properties</innerdir>
-    <innerfile refid="a00305">FileFormatConverter.cs</innerfile>
-    <innerfile refid="a00306">LineAdder.cs</innerfile>
-    <innerfile refid="a00307">Main.cs</innerfile>
-    <innerfile refid="a00308">ProgramExporter.cs</innerfile>
-    <innerfile refid="a00309">TableGenerator.cs</innerfile>
+    <innerfile refid="a00323">FileFormatConverter.cs</innerfile>
+    <innerfile refid="a00308">GlobalSuppressions.cs</innerfile>
+    <innerfile refid="a00324">LineAdder.cs</innerfile>
+    <innerfile refid="a00325">Main.cs</innerfile>
+    <innerfile refid="a00326">ProgramExporter.cs</innerfile>
+    <innerfile refid="a00327">TableGenerator.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

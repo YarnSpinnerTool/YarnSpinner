@@ -1,186 +1,161 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00095" kind="class" prot="public">
-    <compoundname>Yarn::FileFormatConverter</compoundname>
-      <sectiondef kind="package-static-func">
-      <memberdef kind="function" id="a00095_1aa4db4ccac799c5f047a8b1a9efbe109d" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>int</type>
-        <definition>static int Yarn.FileFormatConverter.ConvertFormat</definition>
-        <argsstring>(ConvertFormatOptions options)</argsstring>
-        <name>ConvertFormat</name>
-        <param>
-          <type><ref refid="a00048" kindref="compound">ConvertFormatOptions</ref></type>
-          <declname>options</declname>
-        </param>
+  <compounddef id="a00095" kind="class" prot="public" abstract="yes">
+    <compoundname>Yarn::Unity::DialogueUIBehaviour</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <derivedcompoundref refid="a00171" prot="public" virt="non-virtual">TestDialogueUIBehaviour</derivedcompoundref>
+    <derivedcompoundref refid="a00101" prot="public" virt="non-virtual">Yarn.Unity.Example.ExampleDialogueUI</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00095_1af9d88ca81ac536d43046ca6572e3ff54" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>IEnumerator</type>
+        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueStarted</definition>
+        <argsstring>()</argsstring>
+        <name>DialogueStarted</name>
+        <reimplementedby refid="a00101_1a313283f6c53354b54f25898eb436eba0">DialogueStarted</reimplementedby>
         <briefdescription>
-        </briefdescription>
+<para>A conversation has started. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="10" bodyend="28"/>
-        <references refid="a00185_1a0979de7ea02c8c0375b8220a12e6575e" compoundref="a00307" startline="270">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</references>
-        <references refid="a00095_1a28a086a7b44ecea7430af40436f38df6" compoundref="a00305" startline="30" endline="45">Yarn.FileFormatConverter.ConvertToJSON</references>
-        <references refid="a00048_1a6a650914fcde92ba06fb5f140af27f11" compoundref="a00307" startline="130">Yarn.ConvertFormatOptions.convertToJSON</references>
-        <references refid="a00095_1a1e6cd39b0c813f21da278367dcff76d2" compoundref="a00305" startline="47" endline="60">Yarn.FileFormatConverter.ConvertToYarn</references>
-        <references refid="a00048_1a052d6f00647c503adc5a79a1ff92cdf4" compoundref="a00307" startline="133">Yarn.ConvertFormatOptions.convertToYarn</references>
-        <referencedby refid="a00185_1a1d71ff2eb190449ea1d42ce86f44489f" compoundref="a00307" startline="241" endline="268">Yarn.YarnSpinnerConsole.Main</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="432" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="432" bodyend="435"/>
       </memberdef>
-      <memberdef kind="function" id="a00095_1a85596df924468279b2dc44a9f31d8bad" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
-        <definition>static string Yarn.FileFormatConverter.ConvertNodes</definition>
-        <argsstring>(IEnumerable&lt; Loader.NodeInfo &gt; nodes, NodeFormat format)</argsstring>
-        <name>ConvertNodes</name>
+      <memberdef kind="function" id="a00095_1a754c6dd0bc67895d11f878fe4477d698" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract IEnumerator</type>
+        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunLine</definition>
+        <argsstring>(Yarn.Line line)</argsstring>
+        <name>RunLine</name>
+        <reimplementedby refid="a00101_1a109aeedc5206dcbc4f629638b7830030">RunLine</reimplementedby>
         <param>
-          <type>IEnumerable&lt; <ref refid="a00130" kindref="compound">Loader.NodeInfo</ref> &gt;</type>
-          <declname>nodes</declname>
-        </param>
-        <param>
-          <type><ref refid="a00041_1ad7ebb46e7309ead8767383a672b3272f" kindref="member">NodeFormat</ref></type>
-          <declname>format</declname>
+          <type><ref refid="a00377" kindref="compound">Yarn.Line</ref></type>
+          <declname>line</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Display a line. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="62" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="62" bodyend="72"/>
-        <references refid="a00095_1a282f283f02c9b1d3e53d813ec2f35233" compoundref="a00305" startline="74" endline="138">Yarn.FileFormatConverter.ConvertNodesToYarnText</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="438" column="1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-static-func">
-      <memberdef kind="function" id="a00095_1a28a086a7b44ecea7430af40436f38df6" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>int</type>
-        <definition>static int Yarn.FileFormatConverter.ConvertToJSON</definition>
-        <argsstring>(ConvertFormatOptions options)</argsstring>
-        <name>ConvertToJSON</name>
+      <memberdef kind="function" id="a00095_1ac5b29079f638f2ceb078627ef1e60004" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract IEnumerator</type>
+        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunOptions</definition>
+        <argsstring>(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser)</argsstring>
+        <name>RunOptions</name>
+        <reimplementedby refid="a00101_1aaa93672700a456e66c694636460a58f4">RunOptions</reimplementedby>
         <param>
-          <type><ref refid="a00048" kindref="compound">ConvertFormatOptions</ref></type>
-          <declname>options</declname>
+          <type><ref refid="a00380" kindref="compound">Yarn.Options</ref></type>
+          <declname>optionsCollection</declname>
+        </param>
+        <param>
+          <type><ref refid="a00051_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">Yarn.OptionChooser</ref></type>
+          <declname>optionChooser</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Display the options, and call the optionChooser when done. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="30" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="30" bodyend="45"/>
-        <references refid="a00095_1aa72838be584177b5592c31d73c0febdb" compoundref="a00305" startline="143" endline="184">Yarn.FileFormatConverter.ConvertNodesInFile</references>
-        <references refid="a00123_1a080b2d6b7553c178007c04297d50e9da" compoundref="a00294" startline="391" endline="411">Yarn.Loader.GetFormatFromFileName</references>
-        <referencedby refid="a00095_1aa4db4ccac799c5f047a8b1a9efbe109d" compoundref="a00305" startline="10" endline="28">Yarn.FileFormatConverter.ConvertFormat</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="441" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="a00095_1a1e6cd39b0c813f21da278367dcff76d2" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>int</type>
-        <definition>static int Yarn.FileFormatConverter.ConvertToYarn</definition>
-        <argsstring>(ConvertFormatOptions options)</argsstring>
-        <name>ConvertToYarn</name>
+      <memberdef kind="function" id="a00095_1a3dffe84b9e7a10fdec6749baf697d111" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract IEnumerator</type>
+        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunCommand</definition>
+        <argsstring>(Yarn.Command command)</argsstring>
+        <name>RunCommand</name>
+        <reimplementedby refid="a00101_1a7f84b1e7d3c9c1f7507d143e11ba8075">RunCommand</reimplementedby>
         <param>
-          <type><ref refid="a00048" kindref="compound">ConvertFormatOptions</ref></type>
-          <declname>options</declname>
+          <type><ref refid="a00373" kindref="compound">Yarn.Command</ref></type>
+          <declname>command</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Perform some game-specific command. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="47" bodyend="60"/>
-        <references refid="a00095_1aa72838be584177b5592c31d73c0febdb" compoundref="a00305" startline="143" endline="184">Yarn.FileFormatConverter.ConvertNodesInFile</references>
-        <references refid="a00095_1a282f283f02c9b1d3e53d813ec2f35233" compoundref="a00305" startline="74" endline="138">Yarn.FileFormatConverter.ConvertNodesToYarnText</references>
-        <references refid="a00123_1a080b2d6b7553c178007c04297d50e9da" compoundref="a00294" startline="391" endline="411">Yarn.Loader.GetFormatFromFileName</references>
-        <referencedby refid="a00095_1aa4db4ccac799c5f047a8b1a9efbe109d" compoundref="a00305" startline="10" endline="28">Yarn.FileFormatConverter.ConvertFormat</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="445" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="a00095_1a282f283f02c9b1d3e53d813ec2f35233" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
-        <definition>static string Yarn.FileFormatConverter.ConvertNodesToYarnText</definition>
-        <argsstring>(IEnumerable&lt; Loader.NodeInfo &gt; nodes)</argsstring>
-        <name>ConvertNodesToYarnText</name>
-        <param>
-          <type>IEnumerable&lt; <ref refid="a00130" kindref="compound">Loader.NodeInfo</ref> &gt;</type>
-          <declname>nodes</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="74" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="74" bodyend="138"/>
-        <referencedby refid="a00095_1a85596df924468279b2dc44a9f31d8bad" compoundref="a00305" startline="62" endline="72">Yarn.FileFormatConverter.ConvertNodes</referencedby>
-        <referencedby refid="a00095_1a1e6cd39b0c813f21da278367dcff76d2" compoundref="a00305" startline="47" endline="60">Yarn.FileFormatConverter.ConvertToYarn</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00095_1aa72838be584177b5592c31d73c0febdb" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void Yarn.FileFormatConverter.ConvertNodesInFile</definition>
-        <argsstring>(ConvertFormatOptions options, string file, string fileExtension, ConvertNodesToText convert)</argsstring>
-        <name>ConvertNodesInFile</name>
-        <param>
-          <type><ref refid="a00048" kindref="compound">ConvertFormatOptions</ref></type>
-          <declname>options</declname>
-        </param>
+      <memberdef kind="function" id="a00095_1a2900548a0704d39d4502a153945f4bef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>IEnumerator</type>
+        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.NodeComplete</definition>
+        <argsstring>(string nextNode)</argsstring>
+        <name>NodeComplete</name>
         <param>
           <type>string</type>
-          <declname>file</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>fileExtension</declname>
-        </param>
-        <param>
-          <type><ref refid="a00095_1af9bd5d832fdd2bcbdc626d9f8632e05c" kindref="member">ConvertNodesToText</ref></type>
-          <declname>convert</declname>
+          <declname>nextNode</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>The node has ended. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="143" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="143" bodyend="184"/>
-        <references refid="a00031_1ada4d83d1756918f362d55f6649b82b17" compoundref="a00307" startline="44">Yarn.BaseOptions.verbose</references>
-        <referencedby refid="a00095_1a28a086a7b44ecea7430af40436f38df6" compoundref="a00305" startline="30" endline="45">Yarn.FileFormatConverter.ConvertToJSON</referencedby>
-        <referencedby refid="a00095_1a1e6cd39b0c813f21da278367dcff76d2" compoundref="a00305" startline="47" endline="60">Yarn.FileFormatConverter.ConvertToYarn</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="448" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="448" bodyend="451"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="a00095_1af9bd5d832fdd2bcbdc626d9f8632e05c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>delegate string</type>
-        <definition>delegate string Yarn.FileFormatConverter.ConvertNodesToText</definition>
-        <argsstring>(IEnumerable&lt; Loader.NodeInfo &gt; nodes)</argsstring>
-        <name>ConvertNodesToText</name>
-        <param>
-          <type>IEnumerable&lt; <ref refid="a00130" kindref="compound">Loader.NodeInfo</ref> &gt;</type>
-          <declname>nodes</declname>
-        </param>
+      <memberdef kind="function" id="a00095_1aecc60aee9e9386da1f71fb183f43c52d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>IEnumerator</type>
+        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueComplete</definition>
+        <argsstring>()</argsstring>
+        <name>DialogueComplete</name>
+        <reimplementedby refid="a00101_1a1f2a08baacc25aea09af8e60eb5d3eb1">DialogueComplete</reimplementedby>
         <briefdescription>
-        </briefdescription>
+<para>The conversation has ended. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="141" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="454" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="454" bodyend="457"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Scripts that can act as the UI for the conversation should subclass this. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1355">
-        <label>Yarn.FileFormatConverter</label>
+    <inheritancegraph>
+      <node id="1293">
+        <label>Yarn.Unity.Example.ExampleDialogueUI</label>
+        <link refid="a00101"/>
+        <childnode refid="1290" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1290">
+        <label>Yarn.Unity.DialogueUIBehaviour</label>
         <link refid="a00095"/>
+        <childnode refid="1291" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1291">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1292">
+        <label>TestDialogueUIBehaviour</label>
+        <link refid="a00171"/>
+        <childnode refid="1290" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1294">
+        <label>Yarn.Unity.DialogueUIBehaviour</label>
+        <link refid="a00095"/>
+        <childnode refid="1295" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1295">
+        <label>MonoBehaviour</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="8" bodyend="187"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="430" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="429" bodyend="458"/>
     <listofallmembers>
-      <member refid="a00095_1aa4db4ccac799c5f047a8b1a9efbe109d" prot="package" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertFormat</name></member>
-      <member refid="a00095_1a85596df924468279b2dc44a9f31d8bad" prot="package" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodes</name></member>
-      <member refid="a00095_1aa72838be584177b5592c31d73c0febdb" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodesInFile</name></member>
-      <member refid="a00095_1af9bd5d832fdd2bcbdc626d9f8632e05c" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodesToText</name></member>
-      <member refid="a00095_1a282f283f02c9b1d3e53d813ec2f35233" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodesToYarnText</name></member>
-      <member refid="a00095_1a28a086a7b44ecea7430af40436f38df6" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertToJSON</name></member>
-      <member refid="a00095_1a1e6cd39b0c813f21da278367dcff76d2" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertToYarn</name></member>
+      <member refid="a00095_1aecc60aee9e9386da1f71fb183f43c52d" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>DialogueComplete</name></member>
+      <member refid="a00095_1af9d88ca81ac536d43046ca6572e3ff54" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>DialogueStarted</name></member>
+      <member refid="a00095_1a2900548a0704d39d4502a153945f4bef" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>NodeComplete</name></member>
+      <member refid="a00095_1a3dffe84b9e7a10fdec6749baf697d111" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunCommand</name></member>
+      <member refid="a00095_1a754c6dd0bc67895d11f878fe4477d698" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunLine</name></member>
+      <member refid="a00095_1ac5b29079f638f2ceb078627ef1e60004" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunOptions</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

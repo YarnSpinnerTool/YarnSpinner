@@ -1,33 +1,23 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00042" kind="class" prot="public">
-    <compoundname>Yarn::Dialogue::CommandResult</compoundname>
-    <basecompoundref refid="a00146" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00042_1a420ca0984d6e5c33bb761654305c592e" prot="public" static="no" mutable="no">
-        <type><ref refid="a00355" kindref="compound">Command</ref></type>
-        <definition>Command Yarn.Dialogue.CommandResult.command</definition>
-        <argsstring></argsstring>
-        <name>command</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="149" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="149" bodyend="-1"/>
-        <referencedby refid="a00042_1a1a553422394fb0c854d1184985f993bb" compoundref="a00290" startline="151" endline="155">Yarn.Dialogue.CommandResult.CommandResult</referencedby>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00042" kind="class" prot="public" abstract="yes">
+    <compoundname>Yarn::BaseVariableStorage</compoundname>
+    <basecompoundref refid="a00190" prot="public" virt="non-virtual">Yarn.VariableStorage</basecompoundref>
+    <derivedcompoundref refid="a00136" prot="public" virt="non-virtual">Yarn.MemoryVariableStore</derivedcompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00042_1a1a553422394fb0c854d1184985f993bb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Dialogue.CommandResult.CommandResult</definition>
-        <argsstring>(string text)</argsstring>
-        <name>CommandResult</name>
+      <memberdef kind="function" id="a00042_1a48b93de9cd7ae61d0cd9583c8330d3ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.BaseVariableStorage.SetNumber</definition>
+        <argsstring>(string variableName, float number)</argsstring>
+        <name>SetNumber</name>
+        <reimplements refid="a00190_1aa28c3694f985cf73489efc301b9d41dd">SetNumber</reimplements>
         <param>
           <type>string</type>
-          <declname>text</declname>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>number</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -35,49 +25,125 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="151" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="151" bodyend="155"/>
-        <references refid="a00042_1a420ca0984d6e5c33bb761654305c592e" compoundref="a00290" startline="149">Yarn.Dialogue.CommandResult.command</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="76" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="76" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="a00042_1a1b7f7f4468b2463e7b47986d99362279" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float Yarn.BaseVariableStorage.GetNumber</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetNumber</name>
+        <reimplements refid="a00190_1a04b061c52d8ac814ce559da5286fbc71">GetNumber</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="81" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="81" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="a00042_1a1c57d6d208b78abec0a670396771448e" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Yarn.BaseVariableStorage.SetValue</definition>
+        <argsstring>(string variableName, Value value)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00190_1aa90ff61224432c5ed3ce72199c55f440">SetValue</reimplements>
+        <reimplementedby refid="a00136_1a653a459811e5c19549f4b31269093ef5">SetValue</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type><ref refid="a00187" kindref="compound">Value</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="85" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00042_1a13b142df804d9842e97e628e252928e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract <ref refid="a00187" kindref="compound">Value</ref></type>
+        <definition>abstract Value Yarn.BaseVariableStorage.GetValue</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetValue</name>
+        <reimplements refid="a00190_1accab1fc5c8fc353dbfc53ca0f4029576">GetValue</reimplements>
+        <reimplementedby refid="a00136_1a0ce77e8245c504a777540e359704aa2a">GetValue</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="86" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00042_1a7e45c37f3662ce9f2643e306bb2b3adc" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Yarn.BaseVariableStorage.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <reimplements refid="a00190_1af98c1e41f351cb96e13f668ca2fd9d92">Clear</reimplements>
+        <reimplementedby refid="a00136_1aa6d243e7ef02b91f793a221f509dae69">Clear</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="87" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>The client should run a command (it&apos;s up to them to parse the string) </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1018">
-        <label>Yarn.Dialogue.CommandResult</label>
-        <link refid="a00042"/>
-        <childnode refid="1019" relation="public-inheritance">
+      <node id="958">
+        <label>VariableStorage</label>
+        <link refid="a00190"/>
+      </node>
+      <node id="959">
+        <label>Yarn.MemoryVariableStore</label>
+        <link refid="a00136"/>
+        <childnode refid="957" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1019">
-        <label>RunnerResult</label>
-        <link refid="a00146"/>
+      <node id="957">
+        <label>Yarn.BaseVariableStorage</label>
+        <link refid="a00042"/>
+        <childnode refid="958" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1020">
-        <label>Yarn.Dialogue.CommandResult</label>
+      <node id="961">
+        <label>VariableStorage</label>
+        <link refid="a00190"/>
+      </node>
+      <node id="960">
+        <label>Yarn.BaseVariableStorage</label>
         <link refid="a00042"/>
-        <childnode refid="1021" relation="public-inheritance">
+        <childnode refid="961" relation="public-inheritance">
         </childnode>
-        <childnode refid="1022" relation="usage">
-          <edgelabel>+command</edgelabel>
-        </childnode>
-      </node>
-      <node id="1021">
-        <label>RunnerResult</label>
-        <link refid="a00146"/>
-      </node>
-      <node id="1022">
-        <label>Yarn.Command</label>
-        <link refid="a00355"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="148" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="148" bodyend="157"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="74" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="74" bodyend="88"/>
     <listofallmembers>
-      <member refid="a00042_1a420ca0984d6e5c33bb761654305c592e" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::CommandResult</scope><name>command</name></member>
-      <member refid="a00042_1a1a553422394fb0c854d1184985f993bb" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::CommandResult</scope><name>CommandResult</name></member>
+      <member refid="a00042_1a7e45c37f3662ce9f2643e306bb2b3adc" prot="public" virt="pure-virtual"><scope>Yarn::BaseVariableStorage</scope><name>Clear</name></member>
+      <member refid="a00042_1a1b7f7f4468b2463e7b47986d99362279" prot="public" virt="non-virtual"><scope>Yarn::BaseVariableStorage</scope><name>GetNumber</name></member>
+      <member refid="a00042_1a13b142df804d9842e97e628e252928e8" prot="public" virt="pure-virtual"><scope>Yarn::BaseVariableStorage</scope><name>GetValue</name></member>
+      <member refid="a00042_1a48b93de9cd7ae61d0cd9583c8330d3ee" prot="public" virt="non-virtual"><scope>Yarn::BaseVariableStorage</scope><name>SetNumber</name></member>
+      <member refid="a00042_1a1c57d6d208b78abec0a670396771448e" prot="public" virt="pure-virtual"><scope>Yarn::BaseVariableStorage</scope><name>SetValue</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

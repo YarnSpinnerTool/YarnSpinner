@@ -1,0 +1,15 @@
+<map id="CsvHelper.CsvWriter.WriteRecords" name="CsvHelper.CsvWriter.WriteRecords">
+<area shape="rect" id="node2" href="$a00081.html#a15e26ec8c5c935030677bee9a36d7c16" title="Checks if the instance has been disposed of. " alt="" coords="729,65,919,106"/>
+<area shape="rect" id="node3" href="$a00081.html#a1ab2b602b050ceb6f0a0874504ddf3f3" title="Gets the action delegate used to write the custom class object to the writer. " alt="" coords="237,301,440,342"/>
+<area shape="rect" id="node11" href="$a00081.html#a397af8c87002d3b9c2b5152c6981d4d2" title="Ends writing of the current record and starts a new record. This is used when manually writing record..." alt="" coords="495,130,673,171"/>
+<area shape="rect" id="node12" href="$a00081.html#aa07bcdeb70bf35895fdc51e46afde120" title="Write the Excel seperator record. " alt="" coords="247,67,430,109"/>
+<area shape="rect" id="node14" href="$a00081.html#af2298dcd2934550fd9dd592921f18541" title="Writes the header record from the given properties. " alt="" coords="247,189,430,230"/>
+<area shape="rect" id="node4" href="$a00081.html#a8b53d64ff945b053570fba7f13301268" title="Creates the write record action for the given type if it doesn&#39;t already exist. " alt="" coords="489,349,679,390"/>
+<area shape="rect" id="node5" href="$a00081.html#ab5d9f0001c9a24ba6542b2332007c8e1" title="Creates the action for an object. " alt="" coords="729,349,919,390"/>
+<area shape="rect" id="node10" href="$a00081.html#aa1284ea73f69638633a33592beb0b784" title="Creates the action for a primitive. " alt="" coords="729,414,919,455"/>
+<area shape="rect" id="node6" href="$a00081.html#ac913b615ee170ad2b84137c4d5c7eda2" title="Adds the properties from the mapping. This will recursively traverse the mapping tree and add all pro..." alt="" coords="969,247,1202,273"/>
+<area shape="rect" id="node7" href="$a00081.html#a6085ddfd5e9c626d1d9f575ff21a0599" title="Checks if the property can be written. " alt="" coords="982,297,1189,324"/>
+<area shape="rect" id="node8" href="$a00081.html#ab6cbf58f5e59e5d6091a89e4e778f11b" title="Combines the delegates into a single multicast delegate. This is needed because Silverlight doesn&#39;t h..." alt="" coords="984,414,1187,455"/>
+<area shape="rect" id="node9" href="$a00081.html#aada073c07b3fd07dba434855ffb18b75" title="Creates a property expression for the given property on the record. This will recursively traverse th..." alt="" coords="990,349,1181,390"/>
+<area shape="rect" id="node13" href="$a00081.html#a994d9b339c4cda8bf83d5665b5c4ff1a" title="Writes the field to the CSV file. The field may get quotes added to it. When all fields are written f..." alt="" coords="493,65,675,106"/>
+</map>

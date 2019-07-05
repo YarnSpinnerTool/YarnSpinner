@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: YarnSpinner/Value.cs Source File</title>
+<title>YarnSpinner: Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,394 +105,171 @@ $(document).ready(function(){initNavTree('a00297_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Value.cs</div>  </div>
+<div class="title">ExampleVariableStorage.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00297.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using</span> System;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">namespace </span>Yarn</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="comment">// A value from inside Yarn.</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="a00177.html">    7</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00177.html">Value</a> : IComparable, IComparable&lt;Value&gt; {</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="a00177.html#a1ed2964965baca8621c45efa23f37660">    8</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> readonly <a class="code" href="a00177.html">Value</a> <a class="code" href="a00177.html#a1ed2964965baca8621c45efa23f37660">NULL</a> = <span class="keyword">new</span> <a class="code" href="a00177.html#a7d2db75682c57463bf43c13499991ad4">Value</a>();</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">   10</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">enum</span> <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a> {</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f">Number</a>,  <span class="comment">// a constant number</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884a27118326006d3829667a400ad23d5d98">String</a>,  <span class="comment">// a string</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034">Bool</a>,    <span class="comment">// a boolean value</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884a47c14840d8e15331fa420b9b2f757cd9">Variable</a>, <span class="comment">// the name of a variable; will be expanded at runtime</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94">Null</a>,    <span class="comment">// the null value</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        }</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">   18</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Value.Type</a> <a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> { <span class="keyword">get</span>; <span class="keyword">internal</span> set; }</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="comment">// The underlying values for this object</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="a00177.html#ae1892c1c7a8177537d1caa39a2e51da6">   21</a></span>&#160;        <span class="keyword">internal</span> <span class="keywordtype">float</span> <a class="code" href="a00177.html#ae1892c1c7a8177537d1caa39a2e51da6">numberValue</a> {<span class="keyword">get</span>; <span class="keyword">private</span> set;}</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="a00177.html#a8ee2b09b7d28eaf97bf63c74d0023bfd">   22</a></span>&#160;        <span class="keyword">internal</span> <span class="keywordtype">string</span> <a class="code" href="a00177.html#a8ee2b09b7d28eaf97bf63c74d0023bfd">variableName</a> {<span class="keyword">get</span>; set;}</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="a00177.html#add1b07146f1a9e4b655b33c93d07dff9">   23</a></span>&#160;        <span class="keyword">internal</span> <span class="keywordtype">string</span> <a class="code" href="a00177.html#add1b07146f1a9e4b655b33c93d07dff9">stringValue</a> {<span class="keyword">get</span>; <span class="keyword">private</span> set;}</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="a00177.html#acb140e3466e132528409d4c441fd67da">   24</a></span>&#160;        <span class="keyword">internal</span> <span class="keywordtype">bool</span> <a class="code" href="a00177.html#acb140e3466e132528409d4c441fd67da">boolValue</a> {<span class="keyword">get</span>; <span class="keyword">private</span> set;}</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="a00177.html#a051dd30c6cb184f1fe941a95be8781ab">   26</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">object</span> <a class="code" href="a00177.html#a051dd30c6cb184f1fe941a95be8781ab">backingValue</a> {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keyword">get</span> {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordflow">switch</span>( this.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> ) {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                    <span class="keywordflow">case</span> Type.Null: <span class="keywordflow">return</span> null;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                    <span class="keywordflow">case</span> Type.String: <span class="keywordflow">return</span> this.stringValue;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                    <span class="keywordflow">case</span> Type.Number: <span class="keywordflow">return</span> this.numberValue;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                    <span class="keywordflow">case</span> Type.Bool: <span class="keywordflow">return</span> this.boolValue;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                    <span class="keywordtype">string</span>.Format(<span class="stringliteral">&quot;Can&#39;t get good backing type for {0}&quot;</span>, this.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>)</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                );</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        }</div>
+<a href="a00297.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">The MIT License (MIT)</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">in the Software without restriction, including without limitation the rights</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">copies of the Software, and to permit persons to whom the Software is</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">furnished to do so, subject to the following conditions:</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">The above copyright notice and this permission notice shall be included in all</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">copies or substantial portions of the Software.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">SOFTWARE.</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">using</span> UnityEngine;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">using</span> System.Collections;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">using</span> Yarn.Unity;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="a00089.html">   34</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00089.html">ExampleVariableStorage</a> : <a class="code" href="a00191.html">VariableStorageBehaviour</a></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="a00089.html#a4a4fec7b4ad707cd0603393dd57de96c">   38</a></span>&#160;    Dictionary&lt;string, <a class="code" href="a00187.html">Yarn.Value</a>&gt; <a class="code" href="a00089.html#a4a4fec7b4ad707cd0603393dd57de96c">variables</a> = <span class="keyword">new</span> Dictionary&lt;string, <a class="code" href="a00187.html">Yarn.Value</a>&gt; ();</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="a00177.html#a751419743761562bf902246d6e6a3c0a">   40</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">float</span> <a class="code" href="a00177.html#a751419743761562bf902246d6e6a3c0a">AsNumber</a> {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keyword">get</span> {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="keywordflow">switch</span> (<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>) {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="keywordflow">case</span> Type.Number:</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                    <span class="keywordflow">return</span> <a class="code" href="a00177.html#ae1892c1c7a8177537d1caa39a2e51da6">numberValue</a>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <span class="keywordflow">case</span> Type.String:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                    <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                        <span class="keywordflow">return</span> float.Parse (<a class="code" href="a00177.html#add1b07146f1a9e4b655b33c93d07dff9">stringValue</a>);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                    }  <span class="keywordflow">catch</span> (FormatException) {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                        <span class="keywordflow">return</span> 0.0f;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                    }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                <span class="keywordflow">case</span> Type.Bool:</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                    <span class="keywordflow">return</span> <a class="code" href="a00177.html#acb140e3466e132528409d4c441fd67da">boolValue</a> ? 1.0f : 0.0f;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="keywordflow">case</span> Type.Null:</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                    <span class="keywordflow">return</span> 0.0f;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException (<span class="stringliteral">&quot;Cannot cast to number from &quot;</span> + <a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>.<a class="code" href="a00177.html#a70460d2f12485c8b980d75ad178e180b">ToString</a>());</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="a00177.html#a5805faef3b3d376090ff096d6dd6c064">   61</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code" href="a00177.html#a5805faef3b3d376090ff096d6dd6c064">AsBool</a> {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keyword">get</span> {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                <span class="keywordflow">switch</span> (<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>) {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                <span class="keywordflow">case</span> Type.Number:</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                    <span class="keywordflow">return</span> !float.IsNaN(<a class="code" href="a00177.html#ae1892c1c7a8177537d1caa39a2e51da6">numberValue</a>) &amp;&amp; <a class="code" href="a00177.html#ae1892c1c7a8177537d1caa39a2e51da6">numberValue</a> != 0.0f;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="keywordflow">case</span> Type.String:</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                    <span class="keywordflow">return</span> !String.IsNullOrEmpty(<a class="code" href="a00177.html#add1b07146f1a9e4b655b33c93d07dff9">stringValue</a>);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                <span class="keywordflow">case</span> Type.Bool:</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                    <span class="keywordflow">return</span> <a class="code" href="a00177.html#acb140e3466e132528409d4c441fd67da">boolValue</a>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                <span class="keywordflow">case</span> Type.Null:</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException (<span class="stringliteral">&quot;Cannot cast to bool from &quot;</span> + <a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>.<a class="code" href="a00177.html#a70460d2f12485c8b980d75ad178e180b">ToString</a>());</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="a00177.html#a2d5d0ec41c50c642c1d0eeeb6bb2b1c0">   78</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code" href="a00177.html#a2d5d0ec41c50c642c1d0eeeb6bb2b1c0">AsString</a> {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keyword">get</span> {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <span class="keywordflow">switch</span> (<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>) {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                <span class="keywordflow">case</span> Type.Number:</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                    <span class="keywordflow">if</span> (<span class="keywordtype">float</span>.IsNaN(<a class="code" href="a00177.html#ae1892c1c7a8177537d1caa39a2e51da6">numberValue</a>) ) {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                        <span class="keywordflow">return</span> <span class="stringliteral">&quot;NaN&quot;</span>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                    }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                    <span class="keywordflow">return</span> numberValue.ToString ();</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                <span class="keywordflow">case</span> Type.String:</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                    <span class="keywordflow">return</span> <a class="code" href="a00177.html#add1b07146f1a9e4b655b33c93d07dff9">stringValue</a>;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                <span class="keywordflow">case</span> Type.Bool:</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                    <span class="keywordflow">return</span> boolValue.ToString ();</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="keywordflow">case</span> Type.Null:</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                    <span class="keywordflow">return</span> <span class="stringliteral">&quot;null&quot;</span>;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentOutOfRangeException ();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="comment">// Create a null value</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="a00177.html#a7d2db75682c57463bf43c13499991ad4">   99</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00177.html#a7d2db75682c57463bf43c13499991ad4">Value</a> () : this(null) { }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="comment">// Create a value with a C# object</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="a00177.html#a960a015e35ea66270fe2713f39490e09">  102</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00177.html#a960a015e35ea66270fe2713f39490e09">Value</a> (<span class="keywordtype">object</span> value)</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        {</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <span class="comment">// Copy an existing value</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="keywordflow">if</span> (typeof(<a class="code" href="a00177.html">Value</a>).IsInstanceOfType(value)) {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                var otherValue = value as <a class="code" href="a00177.html#a7d2db75682c57463bf43c13499991ad4">Value</a>;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                <a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> = otherValue.type;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                <span class="keywordflow">switch</span> (<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>) {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                <span class="keywordflow">case</span> Type.Number:</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                    <a class="code" href="a00177.html#ae1892c1c7a8177537d1caa39a2e51da6">numberValue</a> = otherValue.numberValue;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                <span class="keywordflow">case</span> Type.String:</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                    <a class="code" href="a00177.html#add1b07146f1a9e4b655b33c93d07dff9">stringValue</a> = otherValue.stringValue;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                <span class="keywordflow">case</span> Type.Bool:</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                    <a class="code" href="a00177.html#acb140e3466e132528409d4c441fd67da">boolValue</a> = otherValue.boolValue;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                <span class="keywordflow">case</span> Type.Variable:</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                    <a class="code" href="a00177.html#a8ee2b09b7d28eaf97bf63c74d0023bfd">variableName</a> = otherValue.variableName;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                <span class="keywordflow">case</span> Type.Null:</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentOutOfRangeException ();</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                }</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            }</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            <span class="keywordflow">if</span> (value == null) {</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                <a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> = Type.Null;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            <span class="keywordflow">if</span> (value.GetType() == typeof(<span class="keywordtype">string</span>) ) {</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                <a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> = Type.String;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                <a class="code" href="a00177.html#add1b07146f1a9e4b655b33c93d07dff9">stringValue</a> = System.Convert.ToString(value);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            }</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            <span class="keywordflow">if</span> (value.GetType() == typeof(<span class="keywordtype">int</span>) ||</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                value.GetType() == typeof(<span class="keywordtype">float</span>) ||</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                value.GetType() == typeof(<span class="keywordtype">double</span>)) {</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                <a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> = Type.Number;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                <a class="code" href="a00177.html#ae1892c1c7a8177537d1caa39a2e51da6">numberValue</a> = System.Convert.ToSingle(value);</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            }</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            <span class="keywordflow">if</span> (value.GetType() == typeof(<span class="keywordtype">bool</span>) ) {</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                <a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> = Type.Bool;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                <a class="code" href="a00177.html#acb140e3466e132528409d4c441fd67da">boolValue</a> = System.Convert.ToBoolean(value);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    [System.Serializable]</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="a00089.html">   43</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00089.html#a00376">DefaultVariable</a></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="a00089.html#a609feaa53936e7dc42248ff2ba68454a">   46</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code" href="a00089.html#a609feaa53936e7dc42248ff2ba68454a">name</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="a00089.html#a0f00ecb21b58aa754a4bbb61edf62818">   48</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code" href="a00089.html#a0f00ecb21b58aa754a4bbb61edf62818">value</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="a00089.html#a904347efdca12f40243c7dedb646153d">   50</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Yarn.Value.Type</a> <a class="code" href="a00089.html#a904347efdca12f40243c7dedb646153d">type</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="a00089.html#a464c8a4ff6a3c624602d0adc55dfc59a">   54</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="a00089.html#a00376">DefaultVariable</a>[] <a class="code" href="a00089.html#a464c8a4ff6a3c624602d0adc55dfc59a">defaultVariables</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    [Header(<span class="stringliteral">&quot;Optional debugging tools&quot;</span>)]</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="a00089.html#a9893656e3683711eb78441b30c52a600">   58</a></span>&#160;    <span class="keyword">public</span> UnityEngine.UI.Text <a class="code" href="a00089.html#a9893656e3683711eb78441b30c52a600">debugTextView</a>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="a00089.html#ab6a56afc687455f360876eff67891163">   61</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="a00089.html#ab6a56afc687455f360876eff67891163">Awake</a> ()</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="a00089.html#a3a05d66cdacadb2e9b618cd0aef45f84">ResetToDefaults</a> ();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="a00089.html#a3a05d66cdacadb2e9b618cd0aef45f84">   67</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">void</span> <a class="code" href="a00089.html#a3a05d66cdacadb2e9b618cd0aef45f84">ResetToDefaults</a> ()</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <a class="code" href="a00089.html#a0ce614bee8d5b220500fb765390b4ca3">Clear</a> ();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="comment">// For each default variable that&#39;s been defined, parse the string</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment">// that the user typed in in Unity and store the variable</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">foreach</span> (var variable <span class="keywordflow">in</span> <a class="code" href="a00089.html#a464c8a4ff6a3c624602d0adc55dfc59a">defaultVariables</a>) {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordtype">object</span> value;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keywordflow">switch</span> (variable.type) {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordflow">case</span> Yarn.Value.Type.Number:</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                <span class="keywordtype">float</span> f = 0.0f;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                float.TryParse(variable.value, out f);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                value = f;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordflow">case</span> Yarn.Value.Type.String:</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                value = variable.value;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="keywordflow">case</span> Yarn.Value.Type.Bool:</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                <span class="keywordtype">bool</span> b = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                bool.TryParse(variable.value, out b);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                value = b;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keywordflow">case</span> Yarn.Value.Type.Variable:</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                <span class="comment">// We don&#39;t support assigning default variables from other variables</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                <span class="comment">// yet</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                Debug.LogErrorFormat(<span class="stringliteral">&quot;Can&#39;t set variable {0} to {1}: You can&#39;t &quot;</span> +</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                    <span class="stringliteral">&quot;set a default variable to be another variable, because it &quot;</span> +</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                    <span class="stringliteral">&quot;may not have been initialised yet.&quot;</span>, variable.name, variable.value);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keywordflow">case</span> Yarn.Value.Type.Null:</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                value = null;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> System.ArgumentOutOfRangeException ();</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            var v = <span class="keyword">new</span> <a class="code" href="a00187.html">Yarn.Value</a>(value);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            <a class="code" href="a00089.html#ac4265c1c9da485f13a6b05784b0f668d">SetValue</a> (<span class="stringliteral">&quot;$&quot;</span> + variable.name, v);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="a00089.html#ac4265c1c9da485f13a6b05784b0f668d">  118</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">void</span> <a class="code" href="a00089.html#ac4265c1c9da485f13a6b05784b0f668d">SetValue</a> (<span class="keywordtype">string</span> variableName, Yarn.Value value)</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="comment">// Copy this value into our list</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <a class="code" href="a00089.html#a4a4fec7b4ad707cd0603393dd57de96c">variables</a>[variableName] = <span class="keyword">new</span> <a class="code" href="a00187.html">Yarn.Value</a>(value);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="a00089.html#a741593be1a299dcc2136f05b9b4a995a">  125</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">override</span> <a class="code" href="a00187.html">Yarn.Value</a> <a class="code" href="a00089.html#a741593be1a299dcc2136f05b9b4a995a">GetValue</a> (<span class="keywordtype">string</span> variableName)</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="comment">// If we don&#39;t have a variable with this name, return the null value</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="a00089.html#a4a4fec7b4ad707cd0603393dd57de96c">variables</a>.ContainsKey(variableName) == <span class="keyword">false</span>)</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            <span class="keywordflow">return</span> Yarn.Value.NULL;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="a00089.html#a4a4fec7b4ad707cd0603393dd57de96c">variables</a> [variableName];</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="a00089.html#a0ce614bee8d5b220500fb765390b4ca3">  135</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">void</span> <a class="code" href="a00089.html#a0ce614bee8d5b220500fb765390b4ca3">Clear</a> ()</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    {</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        variables.Clear ();</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    }</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="a00089.html#af646a17cfd63039a25149f8fc0776dcb">  141</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="a00089.html#af646a17cfd63039a25149f8fc0776dcb">Update</a> ()</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    {</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="a00089.html#a9893656e3683711eb78441b30c52a600">debugTextView</a> != null) {</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            var stringBuilder = <span class="keyword">new</span> System.Text.StringBuilder ();</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            <span class="keywordflow">foreach</span> (KeyValuePair&lt;string,Yarn.Value&gt; item <span class="keywordflow">in</span> <a class="code" href="a00089.html#a4a4fec7b4ad707cd0603393dd57de96c">variables</a>) {</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                stringBuilder.AppendLine (string.Format (<span class="stringliteral">&quot;{0} = {1}&quot;</span>,</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                                                         item.Key,</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                                                         item.Value));</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            }</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            var error = string.Format(<span class="stringliteral">&quot;Attempted to create a Value using a {0}; currently, &quot;</span> +</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                <span class="stringliteral">&quot;Values can only be numbers, strings, bools or null.&quot;</span>, value.GetType().Name);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="a00184.html">YarnException</a>(error);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        }</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
-<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="a00177.html#abf4dccca577017dff90912c01024ff6a">  155</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="a00177.html#abf4dccca577017dff90912c01024ff6a">CompareTo</a>(<span class="keywordtype">object</span> obj) {</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            <span class="keywordflow">if</span> (obj == null) <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            <span class="comment">// soft, fast coercion</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            var other = obj as <a class="code" href="a00177.html#a7d2db75682c57463bf43c13499991ad4">Value</a>;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            <span class="comment">// not a value</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <span class="keywordflow">if</span>( other == null ) <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentException(<span class="stringliteral">&quot;Object is not a Value&quot;</span>);</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <span class="comment">// it is a value!</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            <span class="keywordflow">return</span> this.CompareTo(other);</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        }</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
-<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="a00177.html#a66de8cb38561c6589f01ca667267f4c6">  168</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="a00177.html#a66de8cb38561c6589f01ca667267f4c6">CompareTo</a>(<a class="code" href="a00177.html">Value</a> other) {</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            <span class="keywordflow">if</span> (other == null) {</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            }</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            <span class="keywordflow">if</span> (other.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <span class="keyword">this</span>.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>) {</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                <span class="keywordflow">switch</span> (this.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>) {</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                <span class="keywordflow">case</span> Type.Null:</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                <span class="keywordflow">case</span> Type.String:</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                    <span class="keywordflow">return</span> this.stringValue.CompareTo (other.stringValue);</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                <span class="keywordflow">case</span> Type.Number:</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                    <span class="keywordflow">return</span> this.numberValue.CompareTo (other.numberValue);</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                <span class="keywordflow">case</span> Type.Bool:</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                    <span class="keywordflow">return</span> this.boolValue.CompareTo (other.boolValue);</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                }</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            }</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            <span class="comment">// try to do a string test at that point!</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            <span class="keywordflow">return</span> this.AsString.CompareTo(other.AsString);</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        }</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
-<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="a00177.html#a5f4e343c2a82ddca84008ac7d155071d">  190</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">bool</span> <a class="code" href="a00177.html#a5f4e343c2a82ddca84008ac7d155071d">Equals</a> (<span class="keywordtype">object</span> obj)</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        {</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            <span class="keywordflow">if</span> (obj == null || GetType() != obj.GetType()) {</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            }</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            var other = (<a class="code" href="a00177.html#a7d2db75682c57463bf43c13499991ad4">Value</a>)obj;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="keywordflow">switch</span> (this.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>) {</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            <span class="keywordflow">case</span> Type.Number:</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                <span class="keywordflow">return</span> this.AsNumber == other.AsNumber;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            <span class="keywordflow">case</span> Type.String:</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                <span class="keywordflow">return</span> this.AsString == other.AsString;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            <span class="keywordflow">case</span> Type.Bool:</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                <span class="keywordflow">return</span> this.AsBool == other.AsBool;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            <span class="keywordflow">case</span> Type.Null:</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                <span class="keywordflow">return</span> other.type == Type.Null || other.AsNumber == 0 || other.AsBool == <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentOutOfRangeException ();</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            }</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        }</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        <span class="comment">// override object.GetHashCode</span></div>
-<div class="line"><a name="l00214"></a><span class="lineno"><a class="line" href="a00177.html#a4c8412105c2ed3058bddac30ecf49916">  214</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">int</span> <a class="code" href="a00177.html#a4c8412105c2ed3058bddac30ecf49916">GetHashCode</a>()</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        {</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            var backing = this.backingValue;</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            <span class="comment">// TODO: yeah hay maybe fix this</span></div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            <span class="keywordflow">if</span>( backing != null ) {</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                <span class="keywordflow">return</span> backing.GetHashCode();</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            }</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        }</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
-<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="a00177.html#a70460d2f12485c8b980d75ad178e180b">  226</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">string</span> <a class="code" href="a00177.html#a70460d2f12485c8b980d75ad178e180b">ToString</a> ()</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        {</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            <span class="keywordflow">return</span> string.Format (<span class="stringliteral">&quot;[Value: type={0}, AsNumber={1}, AsBool={2}, AsString={3}]&quot;</span>, <a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>, <a class="code" href="a00177.html#a751419743761562bf902246d6e6a3c0a">AsNumber</a>, <a class="code" href="a00177.html#a5805faef3b3d376090ff096d6dd6c064">AsBool</a>, <a class="code" href="a00177.html#a2d5d0ec41c50c642c1d0eeeb6bb2b1c0">AsString</a>);</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        }</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
-<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="a00177.html#abfd48481b0ac28ff5485a850a8271dfd">  231</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="a00177.html">Value</a> <a class="code" href="a00177.html#abfd48481b0ac28ff5485a850a8271dfd">operator+ </a>(<a class="code" href="a00177.html">Value</a> a, <a class="code" href="a00177.html">Value</a> b) {</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            <span class="comment">// catches:</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            <span class="comment">// undefined + string</span></div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            <span class="comment">// number + string</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            <span class="comment">// string + string</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            <span class="comment">// bool + string</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            <span class="comment">// null + string</span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            <span class="keywordflow">if</span> (a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.String || b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.String ) {</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                <span class="comment">// we&#39;re headed for string town!</span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00177.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( a.<a class="code" href="a00177.html#a2d5d0ec41c50c642c1d0eeeb6bb2b1c0">AsString</a> + b.<a class="code" href="a00177.html#a2d5d0ec41c50c642c1d0eeeb6bb2b1c0">AsString</a> );</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            }</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            <span class="comment">// catches:</span></div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            <span class="comment">// number + number</span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;            <span class="comment">// bool (=&gt; 0 or 1) + number</span></div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            <span class="comment">// null (=&gt; 0) + number</span></div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;            <span class="comment">// bool (=&gt; 0 or 1) + bool (=&gt; 0 or 1)</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            <span class="comment">// null (=&gt; 0) + null (=&gt; 0)</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            <span class="keywordflow">if</span> ((a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number) ||</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                (a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Bool &amp;&amp; b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Bool) ||</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                (a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null &amp;&amp; b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null)</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;            ) {</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00177.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( a.<a class="code" href="a00177.html#a751419743761562bf902246d6e6a3c0a">AsNumber</a> + b.<a class="code" href="a00177.html#a751419743761562bf902246d6e6a3c0a">AsNumber</a> );</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;            }</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> System.ArgumentException(</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                string.Format(<span class="stringliteral">&quot;Cannot add types {0} and {1}.&quot;</span>, a.type, b.type )</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            );</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        }</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;</div>
-<div class="line"><a name="l00261"></a><span class="lineno"><a class="line" href="a00177.html#aef1135f5d3e8925fa2c1b4c66cc8bd0c">  261</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="a00177.html">Value</a> <a class="code" href="a00177.html#aef1135f5d3e8925fa2c1b4c66cc8bd0c">operator- </a>(<a class="code" href="a00177.html">Value</a> a, <a class="code" href="a00177.html">Value</a> b) {</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;            <span class="keywordflow">if</span> (a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null) ||</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null)</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;            ) {</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00177.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( a.<a class="code" href="a00177.html#a751419743761562bf902246d6e6a3c0a">AsNumber</a> - b.<a class="code" href="a00177.html#a751419743761562bf902246d6e6a3c0a">AsNumber</a> );</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            }</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> System.ArgumentException(</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                string.Format(<span class="stringliteral">&quot;Cannot subtract types {0} and {1}.&quot;</span>, a.type, b.type )</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            );</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        }</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;</div>
-<div class="line"><a name="l00273"></a><span class="lineno"><a class="line" href="a00177.html#a946a02ecefe18d7c82cad0e2632d19c8">  273</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="a00177.html">Value</a> <a class="code" href="a00177.html#a946a02ecefe18d7c82cad0e2632d19c8">operator* </a>(<a class="code" href="a00177.html">Value</a> a, <a class="code" href="a00177.html">Value</a> b) {</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            <span class="keywordflow">if</span> (a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null) ||</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null)</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            ) {</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00177.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( a.<a class="code" href="a00177.html#a751419743761562bf902246d6e6a3c0a">AsNumber</a> * b.<a class="code" href="a00177.html#a751419743761562bf902246d6e6a3c0a">AsNumber</a> );</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            }</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> System.ArgumentException(</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                string.Format(<span class="stringliteral">&quot;Cannot multiply types {0} and {1}.&quot;</span>, a.type, b.type )</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            );</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        }</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
-<div class="line"><a name="l00285"></a><span class="lineno"><a class="line" href="a00177.html#afe3559ae2e0f3db33a23a640ee7832d4">  285</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="a00177.html">Value</a> <a class="code" href="a00177.html#afe3559ae2e0f3db33a23a640ee7832d4">operator/ </a>(<a class="code" href="a00177.html">Value</a> a, <a class="code" href="a00177.html">Value</a> b) {</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            <span class="keywordflow">if</span> (a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null) ||</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null)</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;            ) {</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00177.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( a.<a class="code" href="a00177.html#a751419743761562bf902246d6e6a3c0a">AsNumber</a> / b.<a class="code" href="a00177.html#a751419743761562bf902246d6e6a3c0a">AsNumber</a> );</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            }</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> System.ArgumentException(</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                string.Format(<span class="stringliteral">&quot;Cannot divide types {0} and {1}.&quot;</span>, a.type, b.type )</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            );</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        }</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
-<div class="line"><a name="l00297"></a><span class="lineno"><a class="line" href="a00177.html#a00875685b4619a7bcf0d1a77e529657c">  297</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="a00177.html">Value</a> <a class="code" href="a00177.html#a00875685b4619a7bcf0d1a77e529657c">operator %</a>(<a class="code" href="a00177.html">Value</a> a, <a class="code" href="a00177.html">Value</a> b) {</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            <span class="keywordflow">if</span> (a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null) ||</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                b.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null)) {</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00177.html#a7d2db75682c57463bf43c13499991ad4">Value</a> (a.<a class="code" href="a00177.html#a751419743761562bf902246d6e6a3c0a">AsNumber</a> % b.<a class="code" href="a00177.html#a751419743761562bf902246d6e6a3c0a">AsNumber</a>);</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;            }</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> System.ArgumentException(</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                string.Format(<span class="stringliteral">&quot;Cannot modulo types {0} and {1}.&quot;</span>, a.type, b.type )</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;            );</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        }</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;</div>
-<div class="line"><a name="l00307"></a><span class="lineno"><a class="line" href="a00177.html#aeaf119fa2885dbd1685d1efcd9594316">  307</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="a00177.html">Value</a> <a class="code" href="a00177.html#aef1135f5d3e8925fa2c1b4c66cc8bd0c">operator- </a>(<a class="code" href="a00177.html">Value</a> a) {</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;            <span class="keywordflow">if</span>( a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number ) {</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00177.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( -a.<a class="code" href="a00177.html#a751419743761562bf902246d6e6a3c0a">AsNumber</a> );</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            }</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            <span class="keywordflow">if</span> (a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null &amp;&amp;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                a.<a class="code" href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> == <a class="code" href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.String &amp;&amp;</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;               (a.<a class="code" href="a00177.html#a2d5d0ec41c50c642c1d0eeeb6bb2b1c0">AsString</a> == null || a.<a class="code" href="a00177.html#a2d5d0ec41c50c642c1d0eeeb6bb2b1c0">AsString</a>.Trim() == <span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            ) {</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00177.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( -0 );</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            }</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00177.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( <span class="keywordtype">float</span>.NaN );</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        }</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        <span class="comment">// Define the is greater than operator.</span></div>
-<div class="line"><a name="l00321"></a><span class="lineno"><a class="line" href="a00177.html#a02509b7c4eb702d86c1ffb7be99f7aeb">  321</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="a00177.html#a02509b7c4eb702d86c1ffb7be99f7aeb">operator &gt;  </a>(<a class="code" href="a00177.html">Value</a> operand1, <a class="code" href="a00177.html">Value</a> operand2)</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        {</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            <span class="keywordflow">return</span> operand1.CompareTo(operand2) == 1;</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        }</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;        <span class="comment">// Define the is less than operator.</span></div>
-<div class="line"><a name="l00327"></a><span class="lineno"><a class="line" href="a00177.html#a0d1d9c4ee3fd55ad97d30279db525e4b">  327</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="a00177.html#a0d1d9c4ee3fd55ad97d30279db525e4b">operator &lt;  </a>(<a class="code" href="a00177.html">Value</a> operand1, <a class="code" href="a00177.html">Value</a> operand2)</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        {</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            <span class="keywordflow">return</span> operand1.CompareTo(operand2) == -1;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;        }</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        <span class="comment">// Define the is greater than or equal to operator.</span></div>
-<div class="line"><a name="l00333"></a><span class="lineno"><a class="line" href="a00177.html#ac7680e8a5ef93dc1d1266a06c0a29dbf">  333</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="a00177.html#ac7680e8a5ef93dc1d1266a06c0a29dbf">operator &gt;=  </a>(<a class="code" href="a00177.html">Value</a> operand1, <a class="code" href="a00177.html">Value</a> operand2)</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        {</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;            <span class="keywordflow">return</span> operand1.CompareTo(operand2) &gt;= 0;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;        }</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;        <span class="comment">// Define the is less than or equal to operator.</span></div>
-<div class="line"><a name="l00339"></a><span class="lineno"><a class="line" href="a00177.html#a4822bad5d6dc0fa6f7b9bd71b71855aa">  339</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="a00177.html#a4822bad5d6dc0fa6f7b9bd71b71855aa">operator &lt;=  </a>(<a class="code" href="a00177.html">Value</a> operand1, <a class="code" href="a00177.html">Value</a> operand2)</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        {</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;            <span class="keywordflow">return</span> operand1.CompareTo(operand2) &lt;= 0;</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;        }</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    }</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;}</div>
-<div class="ttc" id="a00177_html_a946a02ecefe18d7c82cad0e2632d19c8"><div class="ttname"><a href="a00177.html#a946a02ecefe18d7c82cad0e2632d19c8">Yarn.Value.operator*</a></div><div class="ttdeci">static Value operator*(Value a, Value b)</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00273">Value.cs:273</a></div></div>
-<div class="ttc" id="a00177_html_aef1135f5d3e8925fa2c1b4c66cc8bd0c"><div class="ttname"><a href="a00177.html#aef1135f5d3e8925fa2c1b4c66cc8bd0c">Yarn.Value.operator-</a></div><div class="ttdeci">static Value operator-(Value a, Value b)</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00261">Value.cs:261</a></div></div>
-<div class="ttc" id="a00177_html_ad5aaf60ee4504608fcc2ffadefa14884"><div class="ttname"><a href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884">Yarn.Value.Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00010">Value.cs:10</a></div></div>
-<div class="ttc" id="a00177_html_add1b07146f1a9e4b655b33c93d07dff9"><div class="ttname"><a href="a00177.html#add1b07146f1a9e4b655b33c93d07dff9">Yarn.Value.stringValue</a></div><div class="ttdeci">string stringValue</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00023">Value.cs:23</a></div></div>
-<div class="ttc" id="a00177_html_ad5aaf60ee4504608fcc2ffadefa14884a27118326006d3829667a400ad23d5d98"><div class="ttname"><a href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884a27118326006d3829667a400ad23d5d98">Yarn.Value.String</a></div></div>
-<div class="ttc" id="a00177_html_a2d5d0ec41c50c642c1d0eeeb6bb2b1c0"><div class="ttname"><a href="a00177.html#a2d5d0ec41c50c642c1d0eeeb6bb2b1c0">Yarn.Value.AsString</a></div><div class="ttdeci">string AsString</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00078">Value.cs:78</a></div></div>
-<div class="ttc" id="a00177_html_a6d5820fafa766911b9da84d1ed33e51a"><div class="ttname"><a href="a00177.html#a6d5820fafa766911b9da84d1ed33e51a">Yarn.Value.type</a></div><div class="ttdeci">Value.Type type</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00018">Value.cs:18</a></div></div>
-<div class="ttc" id="a00177_html_ac7680e8a5ef93dc1d1266a06c0a29dbf"><div class="ttname"><a href="a00177.html#ac7680e8a5ef93dc1d1266a06c0a29dbf">Yarn.Value.operator&gt;=</a></div><div class="ttdeci">static bool operator&gt;=(Value operand1, Value operand2)</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00333">Value.cs:333</a></div></div>
-<div class="ttc" id="a00177_html_a4c8412105c2ed3058bddac30ecf49916"><div class="ttname"><a href="a00177.html#a4c8412105c2ed3058bddac30ecf49916">Yarn.Value.GetHashCode</a></div><div class="ttdeci">override int GetHashCode()</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00214">Value.cs:214</a></div></div>
-<div class="ttc" id="a00184_html"><div class="ttname"><a href="a00184.html">Yarn.YarnException</a></div><div class="ttdoc">Represents things that can go wrong while loading or running a dialogue. </div><div class="ttdef"><b>Definition:</b> <a href="a00290_source.html#l00034">Dialogue.cs:34</a></div></div>
-<div class="ttc" id="a00177_html_ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f"><div class="ttname"><a href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f">Yarn.Value.Number</a></div></div>
-<div class="ttc" id="a00177_html_a5805faef3b3d376090ff096d6dd6c064"><div class="ttname"><a href="a00177.html#a5805faef3b3d376090ff096d6dd6c064">Yarn.Value.AsBool</a></div><div class="ttdeci">bool AsBool</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00061">Value.cs:61</a></div></div>
-<div class="ttc" id="a00177_html_a0d1d9c4ee3fd55ad97d30279db525e4b"><div class="ttname"><a href="a00177.html#a0d1d9c4ee3fd55ad97d30279db525e4b">Yarn.Value.operator&lt;</a></div><div class="ttdeci">static bool operator&lt;(Value operand1, Value operand2)</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00327">Value.cs:327</a></div></div>
-<div class="ttc" id="a00177_html_a70460d2f12485c8b980d75ad178e180b"><div class="ttname"><a href="a00177.html#a70460d2f12485c8b980d75ad178e180b">Yarn.Value.ToString</a></div><div class="ttdeci">override string ToString()</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00226">Value.cs:226</a></div></div>
-<div class="ttc" id="a00177_html_a051dd30c6cb184f1fe941a95be8781ab"><div class="ttname"><a href="a00177.html#a051dd30c6cb184f1fe941a95be8781ab">Yarn.Value.backingValue</a></div><div class="ttdeci">object backingValue</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00026">Value.cs:26</a></div></div>
-<div class="ttc" id="a00177_html_acb140e3466e132528409d4c441fd67da"><div class="ttname"><a href="a00177.html#acb140e3466e132528409d4c441fd67da">Yarn.Value.boolValue</a></div><div class="ttdeci">bool boolValue</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00024">Value.cs:24</a></div></div>
-<div class="ttc" id="a00177_html_a02509b7c4eb702d86c1ffb7be99f7aeb"><div class="ttname"><a href="a00177.html#a02509b7c4eb702d86c1ffb7be99f7aeb">Yarn.Value.operator&gt;</a></div><div class="ttdeci">static bool operator&gt;(Value operand1, Value operand2)</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00321">Value.cs:321</a></div></div>
-<div class="ttc" id="a00177_html_a8ee2b09b7d28eaf97bf63c74d0023bfd"><div class="ttname"><a href="a00177.html#a8ee2b09b7d28eaf97bf63c74d0023bfd">Yarn.Value.variableName</a></div><div class="ttdeci">string variableName</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00022">Value.cs:22</a></div></div>
-<div class="ttc" id="a00177_html_abf4dccca577017dff90912c01024ff6a"><div class="ttname"><a href="a00177.html#abf4dccca577017dff90912c01024ff6a">Yarn.Value.CompareTo</a></div><div class="ttdeci">virtual int CompareTo(object obj)</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00155">Value.cs:155</a></div></div>
-<div class="ttc" id="a00177_html_a4822bad5d6dc0fa6f7b9bd71b71855aa"><div class="ttname"><a href="a00177.html#a4822bad5d6dc0fa6f7b9bd71b71855aa">Yarn.Value.operator&lt;=</a></div><div class="ttdeci">static bool operator&lt;=(Value operand1, Value operand2)</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00339">Value.cs:339</a></div></div>
-<div class="ttc" id="a00177_html_a1ed2964965baca8621c45efa23f37660"><div class="ttname"><a href="a00177.html#a1ed2964965baca8621c45efa23f37660">Yarn.Value.NULL</a></div><div class="ttdeci">static readonly Value NULL</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00008">Value.cs:8</a></div></div>
-<div class="ttc" id="a00177_html_afe3559ae2e0f3db33a23a640ee7832d4"><div class="ttname"><a href="a00177.html#afe3559ae2e0f3db33a23a640ee7832d4">Yarn.Value.operator/</a></div><div class="ttdeci">static Value operator/(Value a, Value b)</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00285">Value.cs:285</a></div></div>
-<div class="ttc" id="a00177_html_a00875685b4619a7bcf0d1a77e529657c"><div class="ttname"><a href="a00177.html#a00875685b4619a7bcf0d1a77e529657c">Yarn.Value.operator%</a></div><div class="ttdeci">static Value operator%(Value a, Value b)</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00297">Value.cs:297</a></div></div>
-<div class="ttc" id="a00177_html_ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94"><div class="ttname"><a href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94">Yarn.Value.Null</a></div></div>
-<div class="ttc" id="a00177_html_ad5aaf60ee4504608fcc2ffadefa14884a47c14840d8e15331fa420b9b2f757cd9"><div class="ttname"><a href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884a47c14840d8e15331fa420b9b2f757cd9">Yarn.Value.Variable</a></div></div>
-<div class="ttc" id="a00177_html_a7d2db75682c57463bf43c13499991ad4"><div class="ttname"><a href="a00177.html#a7d2db75682c57463bf43c13499991ad4">Yarn.Value.Value</a></div><div class="ttdeci">Value()</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00099">Value.cs:99</a></div></div>
-<div class="ttc" id="a00177_html_abfd48481b0ac28ff5485a850a8271dfd"><div class="ttname"><a href="a00177.html#abfd48481b0ac28ff5485a850a8271dfd">Yarn.Value.operator+</a></div><div class="ttdeci">static Value operator+(Value a, Value b)</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00231">Value.cs:231</a></div></div>
-<div class="ttc" id="a00177_html_a751419743761562bf902246d6e6a3c0a"><div class="ttname"><a href="a00177.html#a751419743761562bf902246d6e6a3c0a">Yarn.Value.AsNumber</a></div><div class="ttdeci">float AsNumber</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00040">Value.cs:40</a></div></div>
-<div class="ttc" id="a00177_html"><div class="ttname"><a href="a00177.html">Yarn.Value</a></div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00007">Value.cs:7</a></div></div>
-<div class="ttc" id="a00177_html_ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034"><div class="ttname"><a href="a00177.html#ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034">Yarn.Value.Bool</a></div></div>
-<div class="ttc" id="a00177_html_a5f4e343c2a82ddca84008ac7d155071d"><div class="ttname"><a href="a00177.html#a5f4e343c2a82ddca84008ac7d155071d">Yarn.Value.Equals</a></div><div class="ttdeci">override bool Equals(object obj)</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00190">Value.cs:190</a></div></div>
-<div class="ttc" id="a00177_html_a960a015e35ea66270fe2713f39490e09"><div class="ttname"><a href="a00177.html#a960a015e35ea66270fe2713f39490e09">Yarn.Value.Value</a></div><div class="ttdeci">Value(object value)</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00102">Value.cs:102</a></div></div>
-<div class="ttc" id="a00177_html_ae1892c1c7a8177537d1caa39a2e51da6"><div class="ttname"><a href="a00177.html#ae1892c1c7a8177537d1caa39a2e51da6">Yarn.Value.numberValue</a></div><div class="ttdeci">float numberValue</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00021">Value.cs:21</a></div></div>
-<div class="ttc" id="a00177_html_a66de8cb38561c6589f01ca667267f4c6"><div class="ttname"><a href="a00177.html#a66de8cb38561c6589f01ca667267f4c6">Yarn.Value.CompareTo</a></div><div class="ttdeci">virtual int CompareTo(Value other)</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00168">Value.cs:168</a></div></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            debugTextView.text = stringBuilder.ToString ();</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        }</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    }</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;}</div>
+<div class="ttc" id="a00089_html_a741593be1a299dcc2136f05b9b4a995a"><div class="ttname"><a href="a00089.html#a741593be1a299dcc2136f05b9b4a995a">ExampleVariableStorage.GetValue</a></div><div class="ttdeci">override Yarn.Value GetValue(string variableName)</div><div class="ttdoc">Get a variable&#39;s value. </div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00125">ExampleVariableStorage.cs:125</a></div></div>
+<div class="ttc" id="a00191_html"><div class="ttname"><a href="a00191.html">Yarn.Unity.VariableStorageBehaviour</a></div><div class="ttdoc">Scripts that can act as a variable storage should subclass this. </div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00461">DialogueRunner.cs:461</a></div></div>
+<div class="ttc" id="a00089_html_a609feaa53936e7dc42248ff2ba68454a"><div class="ttname"><a href="a00089.html#a609feaa53936e7dc42248ff2ba68454a">ExampleVariableStorage.DefaultVariable.name</a></div><div class="ttdeci">string name</div><div class="ttdoc">Name of the variable. </div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00046">ExampleVariableStorage.cs:46</a></div></div>
+<div class="ttc" id="a00089_html_ab6a56afc687455f360876eff67891163"><div class="ttname"><a href="a00089.html#ab6a56afc687455f360876eff67891163">ExampleVariableStorage.Awake</a></div><div class="ttdeci">void Awake()</div><div class="ttdoc">Reset to our default values when the game starts. </div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00061">ExampleVariableStorage.cs:61</a></div></div>
+<div class="ttc" id="a00089_html_a4a4fec7b4ad707cd0603393dd57de96c"><div class="ttname"><a href="a00089.html#a4a4fec7b4ad707cd0603393dd57de96c">ExampleVariableStorage.variables</a></div><div class="ttdeci">Dictionary&lt; string, Yarn.Value &gt; variables</div><div class="ttdoc">Where we actually keeping our variables. </div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00038">ExampleVariableStorage.cs:38</a></div></div>
+<div class="ttc" id="a00089_html_ac4265c1c9da485f13a6b05784b0f668d"><div class="ttname"><a href="a00089.html#ac4265c1c9da485f13a6b05784b0f668d">ExampleVariableStorage.SetValue</a></div><div class="ttdeci">override void SetValue(string variableName, Yarn.Value value)</div><div class="ttdoc">Set a variable&#39;s value. </div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00118">ExampleVariableStorage.cs:118</a></div></div>
+<div class="ttc" id="a00187_html"><div class="ttname"><a href="a00187.html">Yarn.Value</a></div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00008">Value.cs:8</a></div></div>
+<div class="ttc" id="a00089_html_a9893656e3683711eb78441b30c52a600"><div class="ttname"><a href="a00089.html#a9893656e3683711eb78441b30c52a600">ExampleVariableStorage.debugTextView</a></div><div class="ttdeci">UnityEngine.UI.Text debugTextView</div><div class="ttdoc">A UI.Text that can show the current list of all variables. Optional. </div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00058">ExampleVariableStorage.cs:58</a></div></div>
+<div class="ttc" id="a00089_html_a0ce614bee8d5b220500fb765390b4ca3"><div class="ttname"><a href="a00089.html#a0ce614bee8d5b220500fb765390b4ca3">ExampleVariableStorage.Clear</a></div><div class="ttdeci">override void Clear()</div><div class="ttdoc">Erase all variables. </div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00135">ExampleVariableStorage.cs:135</a></div></div>
+<div class="ttc" id="a00089_html_a0f00ecb21b58aa754a4bbb61edf62818"><div class="ttname"><a href="a00089.html#a0f00ecb21b58aa754a4bbb61edf62818">ExampleVariableStorage.DefaultVariable.value</a></div><div class="ttdeci">string value</div><div class="ttdoc">Value of the variable. </div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00048">ExampleVariableStorage.cs:48</a></div></div>
+<div class="ttc" id="a00089_html_a00376"><div class="ttname"><a href="a00089.html#a00376">ExampleVariableStorage.DefaultVariable</a></div><div class="ttdoc">A default value to apply when the object wakes up, or when ResetToDefaults is called. </div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00043">ExampleVariableStorage.cs:43</a></div></div>
+<div class="ttc" id="a00089_html_a3a05d66cdacadb2e9b618cd0aef45f84"><div class="ttname"><a href="a00089.html#a3a05d66cdacadb2e9b618cd0aef45f84">ExampleVariableStorage.ResetToDefaults</a></div><div class="ttdeci">override void ResetToDefaults()</div><div class="ttdoc">Erase all variables and reset to default values. </div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00067">ExampleVariableStorage.cs:67</a></div></div>
+<div class="ttc" id="a00089_html_a464c8a4ff6a3c624602d0adc55dfc59a"><div class="ttname"><a href="a00089.html#a464c8a4ff6a3c624602d0adc55dfc59a">ExampleVariableStorage.defaultVariables</a></div><div class="ttdeci">DefaultVariable[] defaultVariables</div><div class="ttdoc">Our list of default variables, for debugging. </div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00054">ExampleVariableStorage.cs:54</a></div></div>
+<div class="ttc" id="a00187_html_ad5aaf60ee4504608fcc2ffadefa14884"><div class="ttname"><a href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Yarn.Value.Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00011">Value.cs:11</a></div></div>
+<div class="ttc" id="a00089_html"><div class="ttname"><a href="a00089.html">ExampleVariableStorage</a></div><div class="ttdoc">An extremely simple implementation of DialogueUnityVariableStorage, which just stores everything in a...</div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00034">ExampleVariableStorage.cs:34</a></div></div>
+<div class="ttc" id="a00089_html_a904347efdca12f40243c7dedb646153d"><div class="ttname"><a href="a00089.html#a904347efdca12f40243c7dedb646153d">ExampleVariableStorage.DefaultVariable.type</a></div><div class="ttdeci">Yarn.Value.Type type</div><div class="ttdoc">Type of the variable. </div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00050">ExampleVariableStorage.cs:50</a></div></div>
+<div class="ttc" id="a00089_html_af646a17cfd63039a25149f8fc0776dcb"><div class="ttname"><a href="a00089.html#af646a17cfd63039a25149f8fc0776dcb">ExampleVariableStorage.Update</a></div><div class="ttdeci">void Update()</div><div class="ttdoc">If we have a debug view, show the list of all variables in it. </div><div class="ttdef"><b>Definition:</b> <a href="a00297_source.html#l00141">ExampleVariableStorage.cs:141</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00297.html">Value.cs</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:36 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_3d328b3dca154a477d99beb656992be2.html">Unity</a></li><li class="navelem"><a class="el" href="dir_3b33dffaa21a2ac6f7978a949ffd4e41.html">Assets</a></li><li class="navelem"><a class="el" href="dir_534ffb376c3707ccb35d3c2c883b31fc.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="dir_cb74ec5eb9eec574588e588dd5bf23e1.html">Examples</a></li><li class="navelem"><a class="el" href="dir_a23f776b0598015baa200eafeed2b13c.html">DemoScripts</a></li><li class="navelem"><a class="el" href="a00297.html">ExampleVariableStorage.cs</a></li>
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:04 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -1,53 +1,50 @@
-\hypertarget{a00319}{\section{Package Csv\-Helper}
-\label{a00319}\index{Csv\-Helper@{Csv\-Helper}}
+\hypertarget{a00319}{\section{Yarn\-Spinner/\-Yarn\-Spinner\-Parser\-Base\-Listener.cs File Reference}
+\label{a00319}\index{Yarn\-Spinner/\-Yarn\-Spinner\-Parser\-Base\-Listener.\-cs@{Yarn\-Spinner/\-Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}}
 }
-\subsection*{Namespaces}
-\begin{DoxyCompactItemize}
-\item 
-package \hyperlink{a00320}{Configuration}
-\item 
-package \hyperlink{a00321}{Type\-Conversion}
-\end{DoxyCompactItemize}
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00049}{Csv\-Bad\-Data\-Exception}
-\begin{DoxyCompactList}\small\item\em Represents errors that occur due to bad data. \end{DoxyCompactList}\item 
-class \hyperlink{a00055}{Csv\-Factory}
-\begin{DoxyCompactList}\small\item\em Creates \hyperlink{a00319}{Csv\-Helper} classes. \end{DoxyCompactList}\item 
-class \hyperlink{a00056}{Csv\-Helper\-Exception}
-\begin{DoxyCompactList}\small\item\em Represents errors that occur in \hyperlink{a00319}{Csv\-Helper}. \end{DoxyCompactList}\item 
-class \hyperlink{a00057}{Csv\-Missing\-Field\-Exception}
-\begin{DoxyCompactList}\small\item\em Represents an error caused because a field is missing in the header while reading a C\-S\-V file. \end{DoxyCompactList}\item 
-class \hyperlink{a00058}{Csv\-Parser}
-\begin{DoxyCompactList}\small\item\em Parses a C\-S\-V file. \end{DoxyCompactList}\item 
-class \hyperlink{a00059}{Csv\-Parser\-Exception}
-\begin{DoxyCompactList}\small\item\em Represents errors that occur while parsing a C\-S\-V file. \end{DoxyCompactList}\item 
-class \hyperlink{a00067}{Csv\-Reader}
-\begin{DoxyCompactList}\small\item\em Reads data that was parsed from \hyperlink{a00103}{I\-Csv\-Parser}. \end{DoxyCompactList}\item 
-class \hyperlink{a00068}{Csv\-Reader\-Exception}
-\begin{DoxyCompactList}\small\item\em Represents errors that occur while reading a C\-S\-V file. \end{DoxyCompactList}\item 
-class \hyperlink{a00069}{Csv\-Serializer}
-\begin{DoxyCompactList}\small\item\em Defines methods used to serialize data into a C\-S\-V file. \end{DoxyCompactList}\item 
-class \hyperlink{a00071}{Csv\-Writer}
-\begin{DoxyCompactList}\small\item\em Used to write C\-S\-V files. \end{DoxyCompactList}\item 
-class \hyperlink{a00072}{Csv\-Writer\-Exception}
-\begin{DoxyCompactList}\small\item\em Represents errors that occur while writing a C\-S\-V file. \end{DoxyCompactList}\item 
-class \hyperlink{a00092}{Exception\-Helper}
-\begin{DoxyCompactList}\small\item\em Common exception tasks. \end{DoxyCompactList}\item 
-interface \hyperlink{a00102}{I\-Csv\-Factory}
-\begin{DoxyCompactList}\small\item\em Defines methods used to create \hyperlink{a00319}{Csv\-Helper} classes. \end{DoxyCompactList}\item 
-interface \hyperlink{a00103}{I\-Csv\-Parser}
-\begin{DoxyCompactList}\small\item\em Defines methods used the parse a C\-S\-V file. \end{DoxyCompactList}\item 
-interface \hyperlink{a00104}{I\-Csv\-Reader}
-\begin{DoxyCompactList}\small\item\em Defines methods used to read parsed data from a C\-S\-V file. \end{DoxyCompactList}\item 
-interface \hyperlink{a00105}{I\-Csv\-Reader\-Row}
-\begin{DoxyCompactList}\small\item\em Defines methods used to read parsed data from a C\-S\-V file row. \end{DoxyCompactList}\item 
-interface \hyperlink{a00106}{I\-Csv\-Serializer}
-\begin{DoxyCompactList}\small\item\em Defines methods used to serialize data into a C\-S\-V file. \end{DoxyCompactList}\item 
-interface \hyperlink{a00107}{I\-Csv\-Writer}
-\begin{DoxyCompactList}\small\item\em Defines methods used to write to a C\-S\-V file. \end{DoxyCompactList}\item 
-class \hyperlink{a00145}{Reflection\-Helper}
-\begin{DoxyCompactList}\small\item\em Common reflection tasks. \end{DoxyCompactList}\item 
-class \hyperlink{a00158}{String\-Helper}
-\begin{DoxyCompactList}\small\item\em Common string tasks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+class \hyperlink{a00196}{Yarn\-Spinner\-Parser\-Base\-Listener}
+\begin{DoxyCompactList}\small\item\em This class provides an empty implementation of \hyperlink{a00124}{I\-Yarn\-Spinner\-Parser\-Listener}, which can be extended to create a listener which only needs to handle a subset of the available methods. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{a00319_af5d51a3c18761c8348444279f29c7007}{I\-Error\-Node} = Antlr4.\-Runtime.\-Tree.\-I\-Error\-Node
+\item 
+using \hyperlink{a00319_a72f9ef657b5686a84acec94a9d7302d1}{I\-Terminal\-Node} = Antlr4.\-Runtime.\-Tree.\-I\-Terminal\-Node
+\item 
+using \hyperlink{a00319_ae3d87b0b748ea892bff48f60862e182d}{I\-Token} = Antlr4.\-Runtime.\-I\-Token
+\item 
+using \hyperlink{a00319_a7e45f8222713cb764832fd3c69d0268f}{Parser\-Rule\-Context} = Antlr4.\-Runtime.\-Parser\-Rule\-Context
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{a00319_af5d51a3c18761c8348444279f29c7007}{\index{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}!I\-Error\-Node@{I\-Error\-Node}}
+\index{I\-Error\-Node@{I\-Error\-Node}!YarnSpinnerParserBaseListener.cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}}
+\subsubsection[{I\-Error\-Node}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf I\-Error\-Node} =  Antlr4.\-Runtime.\-Tree.\-I\-Error\-Node}}\label{a00319_af5d51a3c18761c8348444279f29c7007}
+
+
+Definition at line 24 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+\hypertarget{a00319_a72f9ef657b5686a84acec94a9d7302d1}{\index{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}!I\-Terminal\-Node@{I\-Terminal\-Node}}
+\index{I\-Terminal\-Node@{I\-Terminal\-Node}!YarnSpinnerParserBaseListener.cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}}
+\subsubsection[{I\-Terminal\-Node}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf I\-Terminal\-Node} =  Antlr4.\-Runtime.\-Tree.\-I\-Terminal\-Node}}\label{a00319_a72f9ef657b5686a84acec94a9d7302d1}
+
+
+Definition at line 25 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+\hypertarget{a00319_ae3d87b0b748ea892bff48f60862e182d}{\index{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}!I\-Token@{I\-Token}}
+\index{I\-Token@{I\-Token}!YarnSpinnerParserBaseListener.cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}}
+\subsubsection[{I\-Token}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf I\-Token} =  Antlr4.\-Runtime.\-I\-Token}}\label{a00319_ae3d87b0b748ea892bff48f60862e182d}
+
+
+Definition at line 26 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+\hypertarget{a00319_a7e45f8222713cb764832fd3c69d0268f}{\index{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}!Parser\-Rule\-Context@{Parser\-Rule\-Context}}
+\index{Parser\-Rule\-Context@{Parser\-Rule\-Context}!YarnSpinnerParserBaseListener.cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}}
+\subsubsection[{Parser\-Rule\-Context}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf Parser\-Rule\-Context} =  Antlr4.\-Runtime.\-Parser\-Rule\-Context}}\label{a00319_a7e45f8222713cb764832fd3c69d0268f}
+
+
+Definition at line 27 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+

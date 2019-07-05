@@ -1,232 +1,212 @@
-\hypertarget{a00102}{\section{Csv\-Helper.\-I\-Csv\-Factory Interface Reference}
-\label{a00102}\index{Csv\-Helper.\-I\-Csv\-Factory@{Csv\-Helper.\-I\-Csv\-Factory}}
+\hypertarget{a00102}{\section{Csv\-Helper.\-Exception\-Helper Class Reference}
+\label{a00102}\index{Csv\-Helper.\-Exception\-Helper@{Csv\-Helper.\-Exception\-Helper}}
 }
 
 
-Defines methods used to create \hyperlink{a00319}{Csv\-Helper} classes.  
+Common exception tasks.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-I\-Csv\-Factory\-:
+Collaboration diagram for Csv\-Helper.\-Exception\-Helper\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=198pt]{a00436}
+\includegraphics[width=232pt]{a00452}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-I\-Csv\-Factory\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=198pt]{a00437}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00103}{I\-Csv\-Parser} \hyperlink{a00102_a9b68cbd7292c76037959d51ecc7c374d}{Create\-Parser} (Text\-Reader reader, \hyperlink{a00053}{Csv\-Configuration} configuration)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00103}{I\-Csv\-Parser}. \end{DoxyCompactList}\item 
-\hyperlink{a00103}{I\-Csv\-Parser} \hyperlink{a00102_ab085a057f1b80ebf03ed2247d8759314}{Create\-Parser} (Text\-Reader reader)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00103}{I\-Csv\-Parser}. \end{DoxyCompactList}\item 
-\hyperlink{a00104}{I\-Csv\-Reader} \hyperlink{a00102_ade2a6e776fad6aa36c201901d6427058}{Create\-Reader} (Text\-Reader reader, \hyperlink{a00053}{Csv\-Configuration} configuration)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00104}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
-\hyperlink{a00104}{I\-Csv\-Reader} \hyperlink{a00102_ae1ebb61244b36ddecb986d047ac9c217}{Create\-Reader} (Text\-Reader reader)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00104}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
-\hyperlink{a00104}{I\-Csv\-Reader} \hyperlink{a00102_af5b755ba2825f781d501402f1d765b33}{Create\-Reader} (\hyperlink{a00103}{I\-Csv\-Parser} parser)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00104}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
-\hyperlink{a00107}{I\-Csv\-Writer} \hyperlink{a00102_ae77852d2702bc2caad76c045a538933e}{Create\-Writer} (Text\-Writer writer, \hyperlink{a00053}{Csv\-Configuration} configuration)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00107}{I\-Csv\-Writer}. \end{DoxyCompactList}\item 
-\hyperlink{a00107}{I\-Csv\-Writer} \hyperlink{a00102_ab6df59078b6245e653c06c00358b402a}{Create\-Writer} (Text\-Writer writer)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00107}{I\-Csv\-Writer}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static void \hyperlink{a00102_a7415ea84b6d462b9d61ecf2128282837}{Add\-Exception\-Data\-Message} (Exception exception, \hyperlink{a00113}{I\-Csv\-Parser} parser, Type type, Dictionary$<$ string, List$<$ int $>$$>$ named\-Indexes, int?current\-Index, string\mbox{[}$\,$\mbox{]} current\-Record)
+\begin{DoxyCompactList}\small\item\em Adds \hyperlink{a00337}{Csv\-Helper} specific information to Exception.\-Data. \end{DoxyCompactList}\item 
+static string \hyperlink{a00102_a11e421dc9f9fdb2b72d060a24471b5be}{Get\-Error\-Message} (\hyperlink{a00113}{I\-Csv\-Parser} parser, Type type, Dictionary$<$ string, List$<$ int $>$$>$ named\-Indexes, int?current\-Index, string\mbox{[}$\,$\mbox{]} current\-Record)
+\begin{DoxyCompactList}\small\item\em Gets \hyperlink{a00337}{Csv\-Helper} information to be added to an exception. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Defines methods used to create \hyperlink{a00319}{Csv\-Helper} classes. 
+Common exception tasks. 
 
 
 
-Definition at line 14 of file I\-Csv\-Factory.\-cs.
+Definition at line 17 of file Exception\-Helper.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00102_a9b68cbd7292c76037959d51ecc7c374d}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Parser@{Create\-Parser}}
-\index{Create\-Parser@{Create\-Parser}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Parser} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Parser (
+\hypertarget{a00102_a7415ea84b6d462b9d61ecf2128282837}{\index{Csv\-Helper\-::\-Exception\-Helper@{Csv\-Helper\-::\-Exception\-Helper}!Add\-Exception\-Data\-Message@{Add\-Exception\-Data\-Message}}
+\index{Add\-Exception\-Data\-Message@{Add\-Exception\-Data\-Message}!CsvHelper::ExceptionHelper@{Csv\-Helper\-::\-Exception\-Helper}}
+\subsubsection[{Add\-Exception\-Data\-Message}]{\setlength{\rightskip}{0pt plus 5cm}static void Csv\-Helper.\-Exception\-Helper.\-Add\-Exception\-Data\-Message (
 \begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader, }
-\item[{{\bf Csv\-Configuration}}]{configuration}
+\item[{Exception}]{exception, }
+\item[{{\bf I\-Csv\-Parser}}]{parser, }
+\item[{Type}]{type, }
+\item[{Dictionary$<$ string, List$<$ int $>$$>$}]{named\-Indexes, }
+\item[{int?}]{current\-Index, }
+\item[{string\mbox{[}$\,$\mbox{]}}]{current\-Record}
 \end{DoxyParamCaption}
-)}}\label{a00102_a9b68cbd7292c76037959d51ecc7c374d}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00102_a7415ea84b6d462b9d61ecf2128282837}
 
 
-Creates an \hyperlink{a00103}{I\-Csv\-Parser}. 
+Adds \hyperlink{a00337}{Csv\-Helper} specific information to Exception.\-Data. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv parser.\\
+{\em exception} & The exception to add the info to.\\
 \hline
-{\em configuration} & The configuration to use for the csv parser.\\
+{\em parser} & The parser.\\
+\hline
+{\em type} & The type of object that was being created in the \hyperlink{a00077}{Csv\-Reader}.\\
+\hline
+{\em named\-Indexes} & The named indexes in the \hyperlink{a00077}{Csv\-Reader}.\\
+\hline
+{\em current\-Index} & The current index of the \hyperlink{a00077}{Csv\-Reader}.\\
+\hline
+{\em current\-Record} & The current record of the \hyperlink{a00077}{Csv\-Reader}.\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created parser.
-\end{DoxyReturn}
 
 
-Implemented in \hyperlink{a00055_a741fb4a1622778af65bfa27606bf6f25}{Csv\-Helper.\-Csv\-Factory}.
+Definition at line 28 of file Exception\-Helper.\-cs.
 
-\hypertarget{a00102_ab085a057f1b80ebf03ed2247d8759314}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Parser@{Create\-Parser}}
-\index{Create\-Parser@{Create\-Parser}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Parser} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Parser (
+
+
+References Csv\-Helper.\-Exception\-Helper.\-Get\-Error\-Message().
+
+
+\begin{DoxyCode}
+29         \{
+30             \textcolor{comment}{// An error could occur in the parser and get this message set on it, then occur in the}
+31             \textcolor{comment}{// reader and have it set again. This is ok because when the reader calls this method,}
+32             \textcolor{comment}{// it will have extra info to be added.}
+33 
+34             \textcolor{keywordflow}{try}
+35             \{
+36                 exception.Data[\textcolor{stringliteral}{"CsvHelper"}] = \hyperlink{a00102_a11e421dc9f9fdb2b72d060a24471b5be}{GetErrorMessage}( parser, type, namedIndexes, 
+      currentIndex, currentRecord );
+37             \}
+38             \textcolor{keywordflow}{catch}( Exception ex )
+39             \{
+40                 var exString = \textcolor{keyword}{new} StringBuilder();
+41                 exString.AppendLine( \textcolor{stringliteral}{"An error occurred while creating exception details."} );
+42                 exString.AppendLine();
+43                 exString.AppendLine( ex.ToString() );
+44                 exception.Data[\textcolor{stringliteral}{"CsvHelper"}] = exString.ToString();
+45             \}
+46         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00102_a7415ea84b6d462b9d61ecf2128282837_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00102_a11e421dc9f9fdb2b72d060a24471b5be}{\index{Csv\-Helper\-::\-Exception\-Helper@{Csv\-Helper\-::\-Exception\-Helper}!Get\-Error\-Message@{Get\-Error\-Message}}
+\index{Get\-Error\-Message@{Get\-Error\-Message}!CsvHelper::ExceptionHelper@{Csv\-Helper\-::\-Exception\-Helper}}
+\subsubsection[{Get\-Error\-Message}]{\setlength{\rightskip}{0pt plus 5cm}static string Csv\-Helper.\-Exception\-Helper.\-Get\-Error\-Message (
 \begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader}
+\item[{{\bf I\-Csv\-Parser}}]{parser, }
+\item[{Type}]{type, }
+\item[{Dictionary$<$ string, List$<$ int $>$$>$}]{named\-Indexes, }
+\item[{int?}]{current\-Index, }
+\item[{string\mbox{[}$\,$\mbox{]}}]{current\-Record}
 \end{DoxyParamCaption}
-)}}\label{a00102_ab085a057f1b80ebf03ed2247d8759314}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00102_a11e421dc9f9fdb2b72d060a24471b5be}
 
 
-Creates an \hyperlink{a00103}{I\-Csv\-Parser}. 
+Gets \hyperlink{a00337}{Csv\-Helper} information to be added to an exception. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv parser.\\
+{\em parser} & The parser.\\
+\hline
+{\em type} & The type of object that was being created in the \hyperlink{a00077}{Csv\-Reader}.\\
+\hline
+{\em named\-Indexes} & The named indexes in the \hyperlink{a00077}{Csv\-Reader}.\\
+\hline
+{\em current\-Index} & The current index of the \hyperlink{a00077}{Csv\-Reader}.\\
+\hline
+{\em current\-Record} & The current record of the \hyperlink{a00077}{Csv\-Reader}.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The created parser.
+The \hyperlink{a00337}{Csv\-Helper} information.
 \end{DoxyReturn}
 
 
-Implemented in \hyperlink{a00055_a07665ae71961a161552189877d11a5be}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00102_ade2a6e776fad6aa36c201901d6427058}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
-\index{Create\-Reader@{Create\-Reader}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Reader} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Reader (
-\begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader, }
-\item[{{\bf Csv\-Configuration}}]{configuration}
-\end{DoxyParamCaption}
-)}}\label{a00102_ade2a6e776fad6aa36c201901d6427058}
-
-
-Creates an \hyperlink{a00104}{I\-Csv\-Reader}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv reader.\\
-\hline
-{\em configuration} & The configuration to use for the reader.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created reader.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00055_a12b1358fc847e407519a76b7fe003a34}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00102_ae1ebb61244b36ddecb986d047ac9c217}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
-\index{Create\-Reader@{Create\-Reader}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Reader} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Reader (
-\begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader}
-\end{DoxyParamCaption}
-)}}\label{a00102_ae1ebb61244b36ddecb986d047ac9c217}
-
-
-Creates an \hyperlink{a00104}{I\-Csv\-Reader}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv reader.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created reader.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00055_a77bcca4ad5023f5628c519c2914da5bb}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00102_af5b755ba2825f781d501402f1d765b33}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
-\index{Create\-Reader@{Create\-Reader}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Reader} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Reader (
-\begin{DoxyParamCaption}
-\item[{{\bf I\-Csv\-Parser}}]{parser}
-\end{DoxyParamCaption}
-)}}\label{a00102_af5b755ba2825f781d501402f1d765b33}
-
-
-Creates an \hyperlink{a00104}{I\-Csv\-Reader}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em parser} & The parser used to create the reader.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created reader.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00055_a4e7e06df9265cbd53219c964424cec1e}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00102_ae77852d2702bc2caad76c045a538933e}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Writer@{Create\-Writer}}
-\index{Create\-Writer@{Create\-Writer}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Writer} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Writer (
-\begin{DoxyParamCaption}
-\item[{Text\-Writer}]{writer, }
-\item[{{\bf Csv\-Configuration}}]{configuration}
-\end{DoxyParamCaption}
-)}}\label{a00102_ae77852d2702bc2caad76c045a538933e}
-
-
-Creates an \hyperlink{a00107}{I\-Csv\-Writer}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em writer} & The text writer to use for the csv writer.\\
-\hline
-{\em configuration} & The configuration to use for the writer.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created writer.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00055_a6bfe534b70ff92ea3809f1a372d160cc}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00102_ab6df59078b6245e653c06c00358b402a}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Writer@{Create\-Writer}}
-\index{Create\-Writer@{Create\-Writer}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Writer} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Writer (
-\begin{DoxyParamCaption}
-\item[{Text\-Writer}]{writer}
-\end{DoxyParamCaption}
-)}}\label{a00102_ab6df59078b6245e653c06c00358b402a}
-
-
-Creates an \hyperlink{a00107}{I\-Csv\-Writer}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em writer} & The text writer to use for the csv writer.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created writer.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00055_a0cec3a639b206f2d88debdc50413202a}{Csv\-Helper.\-Csv\-Factory}.
+Definition at line 57 of file Exception\-Helper.\-cs.
 
 
 
-The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
+Referenced by Csv\-Helper.\-Exception\-Helper.\-Add\-Exception\-Data\-Message().
+
+
+\begin{DoxyCode}
+58         \{
+59             var messageInfo = \textcolor{keyword}{new} StringBuilder();
+60 
+61             \textcolor{keywordflow}{if}( parser != null )
+62             \{
+63                 messageInfo.AppendFormat( \textcolor{stringliteral}{"Row: '\{0\}' (1 based)"}, parser.Row ).AppendLine();
+64             \}
+65 
+66             \textcolor{keywordflow}{if}( type != null )
+67             \{
+68                 messageInfo.AppendFormat( \textcolor{stringliteral}{"Type: '\{0\}'"}, type.FullName ).AppendLine();
+69             \}
+70 
+71             \textcolor{keywordflow}{if}( currentIndex.HasValue )
+72             \{
+73                 messageInfo.AppendFormat( \textcolor{stringliteral}{"Field Index: '\{0\}' (0 based)"}, currentIndex ).AppendLine();
+74             \}
+75 
+76 \textcolor{preprocessor}{#if !NET\_2\_0}
+77 \textcolor{preprocessor}{}            \textcolor{keywordflow}{if}( namedIndexes != null )
+78             \{
+79                 var fieldName = ( from pair in namedIndexes
+80                                   from index in pair.Value
+81                                   where index == currentIndex
+82                                   select pair.Key ).SingleOrDefault();
+83                 \textcolor{keywordflow}{if}( fieldName != null )
+84                 \{
+85                     messageInfo.AppendFormat( \textcolor{stringliteral}{"Field Name: '\{0\}'"}, fieldName ).AppendLine();
+86                 \}
+87             \}
+88 \textcolor{preprocessor}{#endif}
+89 \textcolor{preprocessor}{}
+90             \textcolor{keywordflow}{if}( currentRecord != null && currentIndex > -1 && currentIndex < currentRecord.Length )
+91             \{
+92                 \textcolor{keywordflow}{if}( currentIndex.Value < currentRecord.Length )
+93                 \{
+94                     var fieldValue = currentRecord[currentIndex.Value];
+95                     messageInfo.AppendFormat( \textcolor{stringliteral}{"Field Value: '\{0\}'"}, fieldValue ).AppendLine();
+96                 \}
+97             \}
+98 
+99             \textcolor{keywordflow}{return} messageInfo.ToString();
+100         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00102_a11e421dc9f9fdb2b72d060a24471b5be_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00235}{I\-Csv\-Factory.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00244}{Exception\-Helper.\-cs}\end{DoxyCompactItemize}

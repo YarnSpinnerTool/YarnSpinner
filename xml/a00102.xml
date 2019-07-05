@@ -1,263 +1,175 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00102" kind="interface" prot="public">
-    <compoundname>CsvHelper::ICsvFactory</compoundname>
-    <derivedcompoundref refid="a00055" prot="public" virt="non-virtual">CsvHelper.CsvFactory</derivedcompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00102_1a9b68cbd7292c76037959d51ecc7c374d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="a00103" kindref="compound">ICsvParser</ref></type>
-        <definition>ICsvParser CsvHelper.ICsvFactory.CreateParser</definition>
-        <argsstring>(TextReader reader, CsvConfiguration configuration)</argsstring>
-        <name>CreateParser</name>
-        <reimplementedby refid="a00055_1a741fb4a1622778af65bfa27606bf6f25">CreateParser</reimplementedby>
+  <compounddef id="a00102" kind="class" prot="package">
+    <compoundname>CsvHelper::ExceptionHelper</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="a00102_1a7415ea84b6d462b9d61ecf2128282837" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CsvHelper.ExceptionHelper.AddExceptionDataMessage</definition>
+        <argsstring>(Exception exception, ICsvParser parser, Type type, Dictionary&lt; string, List&lt; int &gt;&gt; namedIndexes, int?currentIndex, string[] currentRecord)</argsstring>
+        <name>AddExceptionDataMessage</name>
         <param>
-          <type>TextReader</type>
-          <declname>reader</declname>
+          <type>Exception</type>
+          <declname>exception</declname>
         </param>
         <param>
-          <type><ref refid="a00053" kindref="compound">CsvConfiguration</ref></type>
-          <declname>configuration</declname>
-        </param>
-        <briefdescription>
-<para>Creates an <ref refid="a00103" kindref="compound">ICsvParser</ref>. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>reader</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The text reader to use for the csv parser.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>configuration</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The configuration to use for the csv parser.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The created parser.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="22" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="a00102_1ab085a057f1b80ebf03ed2247d8759314" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="a00103" kindref="compound">ICsvParser</ref></type>
-        <definition>ICsvParser CsvHelper.ICsvFactory.CreateParser</definition>
-        <argsstring>(TextReader reader)</argsstring>
-        <name>CreateParser</name>
-        <reimplementedby refid="a00055_1a07665ae71961a161552189877d11a5be">CreateParser</reimplementedby>
-        <param>
-          <type>TextReader</type>
-          <declname>reader</declname>
-        </param>
-        <briefdescription>
-<para>Creates an <ref refid="a00103" kindref="compound">ICsvParser</ref>. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>reader</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The text reader to use for the csv parser.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The created parser.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="29" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="a00102_1ade2a6e776fad6aa36c201901d6427058" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="a00104" kindref="compound">ICsvReader</ref></type>
-        <definition>ICsvReader CsvHelper.ICsvFactory.CreateReader</definition>
-        <argsstring>(TextReader reader, CsvConfiguration configuration)</argsstring>
-        <name>CreateReader</name>
-        <reimplementedby refid="a00055_1a12b1358fc847e407519a76b7fe003a34">CreateReader</reimplementedby>
-        <param>
-          <type>TextReader</type>
-          <declname>reader</declname>
-        </param>
-        <param>
-          <type><ref refid="a00053" kindref="compound">CsvConfiguration</ref></type>
-          <declname>configuration</declname>
-        </param>
-        <briefdescription>
-<para>Creates an <ref refid="a00104" kindref="compound">ICsvReader</ref>. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>reader</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The text reader to use for the csv reader.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>configuration</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The configuration to use for the reader.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The created reader.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="37" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="a00102_1ae1ebb61244b36ddecb986d047ac9c217" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="a00104" kindref="compound">ICsvReader</ref></type>
-        <definition>ICsvReader CsvHelper.ICsvFactory.CreateReader</definition>
-        <argsstring>(TextReader reader)</argsstring>
-        <name>CreateReader</name>
-        <reimplementedby refid="a00055_1a77bcca4ad5023f5628c519c2914da5bb">CreateReader</reimplementedby>
-        <param>
-          <type>TextReader</type>
-          <declname>reader</declname>
-        </param>
-        <briefdescription>
-<para>Creates an <ref refid="a00104" kindref="compound">ICsvReader</ref>. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>reader</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The text reader to use for the csv reader.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The created reader.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="44" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="a00102_1af5b755ba2825f781d501402f1d765b33" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="a00104" kindref="compound">ICsvReader</ref></type>
-        <definition>ICsvReader CsvHelper.ICsvFactory.CreateReader</definition>
-        <argsstring>(ICsvParser parser)</argsstring>
-        <name>CreateReader</name>
-        <reimplementedby refid="a00055_1a4e7e06df9265cbd53219c964424cec1e">CreateReader</reimplementedby>
-        <param>
-          <type><ref refid="a00103" kindref="compound">ICsvParser</ref></type>
+          <type><ref refid="a00113" kindref="compound">ICsvParser</ref></type>
           <declname>parser</declname>
         </param>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>Dictionary&lt; string, List&lt; int &gt;&gt;</type>
+          <declname>namedIndexes</declname>
+        </param>
+        <param>
+          <type>int?</type>
+          <declname>currentIndex</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>currentRecord</declname>
+        </param>
         <briefdescription>
-<para>Creates an <ref refid="a00104" kindref="compound">ICsvReader</ref>. </para>        </briefdescription>
+<para>Adds <ref refid="a00337" kindref="compound">CsvHelper</ref> specific information to Exception.Data. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>exception</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exception to add the info to.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>parser</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parser.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of object that was being created in the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>namedIndexes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named indexes in the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current index of the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentRecord</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current record of the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" bodystart="28" bodyend="46"/>
+        <references refid="a00102_1a11e421dc9f9fdb2b72d060a24471b5be" compoundref="a00244" startline="57" endline="100">CsvHelper.ExceptionHelper.GetErrorMessage</references>
+      </memberdef>
+      <memberdef kind="function" id="a00102_1a11e421dc9f9fdb2b72d060a24471b5be" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string CsvHelper.ExceptionHelper.GetErrorMessage</definition>
+        <argsstring>(ICsvParser parser, Type type, Dictionary&lt; string, List&lt; int &gt;&gt; namedIndexes, int?currentIndex, string[] currentRecord)</argsstring>
+        <name>GetErrorMessage</name>
+        <param>
+          <type><ref refid="a00113" kindref="compound">ICsvParser</ref></type>
+          <declname>parser</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>Dictionary&lt; string, List&lt; int &gt;&gt;</type>
+          <declname>namedIndexes</declname>
+        </param>
+        <param>
+          <type>int?</type>
+          <declname>currentIndex</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>currentRecord</declname>
+        </param>
+        <briefdescription>
+<para>Gets <ref refid="a00337" kindref="compound">CsvHelper</ref> information to be added to an exception. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>parser</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The parser used to create the reader.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The created reader.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="51" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="a00102_1ae77852d2702bc2caad76c045a538933e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="a00107" kindref="compound">ICsvWriter</ref></type>
-        <definition>ICsvWriter CsvHelper.ICsvFactory.CreateWriter</definition>
-        <argsstring>(TextWriter writer, CsvConfiguration configuration)</argsstring>
-        <name>CreateWriter</name>
-        <reimplementedby refid="a00055_1a6bfe534b70ff92ea3809f1a372d160cc">CreateWriter</reimplementedby>
-        <param>
-          <type>TextWriter</type>
-          <declname>writer</declname>
-        </param>
-        <param>
-          <type><ref refid="a00053" kindref="compound">CsvConfiguration</ref></type>
-          <declname>configuration</declname>
-        </param>
-        <briefdescription>
-<para>Creates an <ref refid="a00107" kindref="compound">ICsvWriter</ref>. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>writer</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The text writer to use for the csv writer.</para></parameterdescription>
+<para>The parser.</para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>configuration</parametername>
+<parametername>type</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The configuration to use for the writer.</para></parameterdescription>
+<para>The type of object that was being created in the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
 </parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The created writer.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="59" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="a00102_1ab6df59078b6245e653c06c00358b402a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="a00107" kindref="compound">ICsvWriter</ref></type>
-        <definition>ICsvWriter CsvHelper.ICsvFactory.CreateWriter</definition>
-        <argsstring>(TextWriter writer)</argsstring>
-        <name>CreateWriter</name>
-        <reimplementedby refid="a00055_1a0cec3a639b206f2d88debdc50413202a">CreateWriter</reimplementedby>
-        <param>
-          <type>TextWriter</type>
-          <declname>writer</declname>
-        </param>
-        <briefdescription>
-<para>Creates an <ref refid="a00107" kindref="compound">ICsvWriter</ref>. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
+<parameteritem>
 <parameternamelist>
-<parametername>writer</parametername>
+<parametername>namedIndexes</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The text writer to use for the csv writer.</para></parameterdescription>
+<para>The named indexes in the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current index of the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentRecord</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current record of the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The created writer.</para></simplesect>
+<simplesect kind="return"><para>The <ref refid="a00337" kindref="compound">CsvHelper</ref> information.</para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="66" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" line="57" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" bodystart="57" bodyend="100"/>
+        <referencedby refid="a00102_1a7415ea84b6d462b9d61ecf2128282837" compoundref="a00244" startline="28" endline="46">CsvHelper.ExceptionHelper.AddExceptionDataMessage</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Defines methods used to create <ref refid="a00319" kindref="compound">CsvHelper</ref> classes. </para>    </briefdescription>
+<para>Common exception tasks. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1381">
-        <label>CsvHelper.ICsvFactory</label>
-        <link refid="a00102"/>
-      </node>
-      <node id="1382">
-        <label>CsvHelper.CsvFactory</label>
-        <link refid="a00055"/>
-        <childnode refid="1381" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1383">
-        <label>CsvHelper.ICsvFactory</label>
+      <node id="1340">
+        <label>CsvHelper.ExceptionHelper</label>
         <link refid="a00102"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" bodystart="14" bodyend="67"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" bodystart="17" bodyend="101"/>
     <listofallmembers>
-      <member refid="a00102_1a9b68cbd7292c76037959d51ecc7c374d" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvFactory</scope><name>CreateParser</name></member>
-      <member refid="a00102_1ab085a057f1b80ebf03ed2247d8759314" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvFactory</scope><name>CreateParser</name></member>
-      <member refid="a00102_1ade2a6e776fad6aa36c201901d6427058" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvFactory</scope><name>CreateReader</name></member>
-      <member refid="a00102_1ae1ebb61244b36ddecb986d047ac9c217" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvFactory</scope><name>CreateReader</name></member>
-      <member refid="a00102_1af5b755ba2825f781d501402f1d765b33" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvFactory</scope><name>CreateReader</name></member>
-      <member refid="a00102_1ae77852d2702bc2caad76c045a538933e" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvFactory</scope><name>CreateWriter</name></member>
-      <member refid="a00102_1ab6df59078b6245e653c06c00358b402a" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvFactory</scope><name>CreateWriter</name></member>
+      <member refid="a00102_1a7415ea84b6d462b9d61ecf2128282837" prot="public" virt="non-virtual"><scope>CsvHelper::ExceptionHelper</scope><name>AddExceptionDataMessage</name></member>
+      <member refid="a00102_1a11e421dc9f9fdb2b72d060a24471b5be" prot="public" virt="non-virtual"><scope>CsvHelper::ExceptionHelper</scope><name>GetErrorMessage</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

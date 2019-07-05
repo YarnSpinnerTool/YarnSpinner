@@ -1,190 +1,24 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00036" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::ByteConverter</compoundname>
-    <basecompoundref refid="a00078" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00036_1a6176d20d761abfc0af4e840553ffae47" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.ByteConverter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplements refid="a00078_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
-        <param>
-          <type><ref refid="a00168" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>text</declname>
-        </param>
-        <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" bodystart="21" bodyend="32"/>
-        <references refid="a00168_1af6bc545680b477abf9178eb4755572b1" compoundref="a00272" startline="23">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</references>
-      </memberdef>
-      <memberdef kind="function" id="a00036_1a74a66b405f6c18e69b9fd23a1dea91b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.ByteConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplements refid="a00078_1a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</reimplements>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" line="41" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" bodystart="41" bodyend="45"/>
-      </memberdef>
-      <memberdef kind="function" id="a00078_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>string</type>
-        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplements refid="a00113_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
-        <reimplementedby refid="a00089_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="a00132_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
-        <param>
-          <type><ref refid="a00168" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>object</type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
-      </memberdef>
-      <memberdef kind="function" id="a00078_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplements refid="a00113_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="a00089_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
-      </memberdef>
-      </sectiondef>
-    <briefdescription>
-<para>Converts a Byte to and from a string. </para>    </briefdescription>
+  <compounddef id="a00036" kind="page">
+    <compoundname>md_packages_Microsoft.NetFramework.Analyzers.2.9.1_documentation_Microsoft.NetFramework.Analyzers</compoundname>
+    <title>Microsoft</title>
     <detaileddescription>
-    </detaileddescription>
-    <inheritancegraph>
-      <node id="990">
-        <label>CsvHelper.TypeConversion.ByteConverter</label>
-        <link refid="a00036"/>
-        <childnode refid="991" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="992">
-        <label>ITypeConverter</label>
-        <link refid="a00113"/>
-      </node>
-      <node id="991">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00078"/>
-        <childnode refid="992" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="993">
-        <label>CsvHelper.TypeConversion.ByteConverter</label>
-        <link refid="a00036"/>
-        <childnode refid="994" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="995">
-        <label>ITypeConverter</label>
-        <link refid="a00113"/>
-      </node>
-      <node id="994">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00078"/>
-        <childnode refid="995" relation="public-inheritance">
-        </childnode>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" bodystart="13" bodyend="46"/>
-    <listofallmembers>
-      <member refid="a00036_1a74a66b405f6c18e69b9fd23a1dea91b0" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::ByteConverter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00078_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::ByteConverter</scope><name>CanConvertTo</name></member>
-      <member refid="a00036_1a6176d20d761abfc0af4e840553ffae47" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::ByteConverter</scope><name>ConvertFromString</name></member>
-      <member refid="a00078_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::ByteConverter</scope><name>ConvertToString</name></member>
-    </listofallmembers>
+<para><table rows="7" cols="7"><row>
+<entry thead="yes"><para>Sr. No. </para></entry><entry thead="yes"><para>Rule ID </para></entry><entry thead="yes"><para>Title </para></entry><entry thead="yes"><para>Category </para></entry><entry thead="yes"><para>Enabled </para></entry><entry thead="yes"><para>CodeFix </para></entry><entry thead="yes"><para>Description  </para></entry></row>
+<row>
+<entry thead="no"><para>1 </para></entry><entry thead="no"><para><ulink url="https://docs.microsoft.com/visualstudio/code-quality/ca1058-types-should-not-extend-certain-base-types">CA1058</ulink> </para></entry><entry thead="no"><para>Types should not extend certain base types </para></entry><entry thead="no"><para>Design </para></entry><entry thead="no"><para>True </para></entry><entry thead="no"><para>True </para></entry><entry thead="no"><para>An externally visible type extends certain base types. Use one of the alternatives. </para></entry></row>
+<row>
+<entry thead="no"><para>2 </para></entry><entry thead="no"><para><ulink url="https://docs.microsoft.com/visualstudio/code-quality/ca2153-avoid-handling-corrupted-state-exceptions">CA2153</ulink> </para></entry><entry thead="no"><para>Do Not Catch Corrupted State Exceptions </para></entry><entry thead="no"><para>Security </para></entry><entry thead="no"><para>True </para></entry><entry thead="no"><para>False </para></entry><entry thead="no"><para>Catching corrupted state exceptions could mask errors (such as access violations), resulting in inconsistent state of execution or making it easier for attackers to compromise system. Instead, catch and handle a more specific set of exception type(s) or re-throw the exception </para></entry></row>
+<row>
+<entry thead="no"><para>3 </para></entry><entry thead="no"><para><ulink url="https://docs.microsoft.com/visualstudio/code-quality/ca3075-insecure-dtd-processing">CA3075</ulink> </para></entry><entry thead="no"><para>Insecure DTD processing in XML </para></entry><entry thead="no"><para>Security </para></entry><entry thead="no"><para>True </para></entry><entry thead="no"><para>False </para></entry><entry thead="no"><para>Using XmlTextReader.Load(), creating an insecure XmlReaderSettings instance when invoking XmlReader.Create(), setting the InnerXml property of the XmlDocument and enabling DTD processing using XmlUrlResolver insecurely can lead to information disclosure. Replace it with a call to the Load() method overload that takes an XmlReader instance, use XmlReader.Create() to accept XmlReaderSettings arguments or consider explicitly setting secure values. The DataViewSettingCollectionString property of DataViewManager should always be assigned from a trusted source, the DtdProcessing property should be set to false, and the XmlResolver property should be changed to XmlSecureResolver or null.  </para></entry></row>
+<row>
+<entry thead="no"><para>4 </para></entry><entry thead="no"><para><ulink url="https://docs.microsoft.com/visualstudio/code-quality/ca3076-insecure-xslt-script-execution">CA3076</ulink> </para></entry><entry thead="no"><para>Insecure XSLT script processing. </para></entry><entry thead="no"><para>Security </para></entry><entry thead="no"><para>True </para></entry><entry thead="no"><para>False </para></entry><entry thead="no"><para>Providing an insecure XsltSettings instance and an insecure XmlResolver instance to XslCompiledTransform.Load method is potentially unsafe as it allows processing script within XSL, which on an untrusted XSL input may lead to malicious code execution. Either replace the insecure XsltSettings argument with XsltSettings.Default or an instance that has disabled document function and script execution, or replace the XmlResolver argurment with null or an XmlSecureResolver instance. This message may be suppressed if the input is known to be from a trusted source and external resource resolution from locations that are not known in advance must be supported. </para></entry></row>
+<row>
+<entry thead="no"><para>5 </para></entry><entry thead="no"><para><ulink url="https://docs.microsoft.com/visualstudio/code-quality/ca3077-insecure-processing-in-api-design-xml-document-and-xml-text-reader">CA3077</ulink> </para></entry><entry thead="no"><para>Insecure Processing in API Design, XmlDocument and XmlTextReader </para></entry><entry thead="no"><para>Security </para></entry><entry thead="no"><para>True </para></entry><entry thead="no"><para>False </para></entry><entry thead="no"><para>Enabling DTD processing on all instances derived from XmlTextReader or  XmlDocument and using XmlUrlResolver for resolving external XML entities may lead to information disclosure. Ensure to set the XmlResolver property to null, create an instance of XmlSecureResolver when processing untrusted input, or use XmlReader.Create method with a secure XmlReaderSettings argument. Unless you need to enable it, ensure the DtdProcessing property is set to false.  </para></entry></row>
+<row>
+<entry thead="no"><para>6 </para></entry><entry thead="no"><para><ulink url="https://docs.microsoft.com/visualstudio/code-quality/ca3147-mark-verb-handlers-with-validateantiforgerytoken">CA3147</ulink> </para></entry><entry thead="no"><para>Mark Verb Handlers With Validate Antiforgery Token </para></entry><entry thead="no"><para>Security </para></entry><entry thead="no"><para>True </para></entry><entry thead="no"><para>False </para></entry><entry thead="no"><para>Missing ValidateAntiForgeryTokenAttribute on controller action {0}. </para></entry></row>
+</table>
+</para>    </detaileddescription>
   </compounddef>
 </doxygen>

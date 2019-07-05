@@ -1,24 +1,4 @@
-<map id="CsvHelper.TypeConversion.DefaultTypeConverter" name="CsvHelper.TypeConversion.DefaultTypeConverter">
-<area shape="rect" id="node3" href="$a00035.html" title="Converts a Boolean to and from a string. " alt="" coords="5,389,192,496"/>
-<area shape="rect" id="node4" href="$a00036.html" title="Converts a Byte to and from a string. " alt="" coords="216,389,403,496"/>
-<area shape="rect" id="node5" href="$a00038.html" title="Converts a Char to and from a string. " alt="" coords="427,389,613,496"/>
-<area shape="rect" id="node6" href="$a00074.html" title="Converts a DateTime to and from a string. " alt="" coords="637,389,824,496"/>
-<area shape="rect" id="node7" href="$a00075.html" title="Converts a DateTimeOffset to and from a string. " alt="" coords="848,389,1035,496"/>
-<area shape="rect" id="node8" href="$a00076.html" title="Converts a Decimal to and from a string. " alt="" coords="1059,389,1245,496"/>
-<area shape="rect" id="node9" href="$a00086.html" title="Converts a Double to and from a string. " alt="" coords="1269,389,1456,496"/>
-<area shape="rect" id="node10" href="$a00088.html" title="Converts an Enum to and from a string. " alt="" coords="1480,382,1667,503"/>
-<area shape="rect" id="node11" href="$a00089.html" title="Throws an exception when used. This is here so that it&#39;s apparent that there is no support for IEnume..." alt="" coords="1691,375,1877,511"/>
-<area shape="rect" id="node12" href="$a00100.html" title="Converts a Guid to and from a string. " alt="" coords="1901,389,2088,496"/>
-<area shape="rect" id="node13" href="$a00110.html" title="Converts an Int16 to and from a string. " alt="" coords="2112,389,2299,496"/>
-<area shape="rect" id="node14" href="$a00111.html" title="Converts an Int32 to and from a string. " alt="" coords="2323,389,2509,496"/>
-<area shape="rect" id="node15" href="$a00112.html" title="Converts an Int64 to and from a string. " alt="" coords="2533,389,2720,496"/>
-<area shape="rect" id="node16" href="$a00132.html" title="Converts a Nullable to and from a string. " alt="" coords="2744,360,2931,525"/>
-<area shape="rect" id="node17" href="$a00148.html" title="Converts a SByte to and from a string. " alt="" coords="2955,389,3141,496"/>
-<area shape="rect" id="node18" href="$a00151.html" title="Converts a Float to and from a string. " alt="" coords="3165,389,3352,496"/>
-<area shape="rect" id="node19" href="$a00157.html" title="Converts a string to and from a string. " alt="" coords="3376,389,3563,496"/>
-<area shape="rect" id="node20" href="$a00162.html" title="Converts a TimeSpan to and from a string. " alt="" coords="3587,389,3773,496"/>
-<area shape="rect" id="node21" href="$a00172.html" title="Converts a UInt16 to and from a string. " alt="" coords="3797,389,3984,496"/>
-<area shape="rect" id="node22" href="$a00173.html" title="Converts a UInt32 to and from a string. " alt="" coords="4008,389,4195,496"/>
-<area shape="rect" id="node23" href="$a00174.html" title="Converts a UInt64 to and from a string. " alt="" coords="4219,389,4405,496"/>
-<area shape="rect" id="node2" href="$a00113.html" title="Converts objects to and from strings. " alt="" coords="2129,6,2281,127"/>
+<map id="CsvHelper.TypeConversion.ByteConverter" name="CsvHelper.TypeConversion.ByteConverter">
+<area shape="rect" id="node2" href="$a00088.html" title="Converts an object to and from a string. " alt="" coords="23,177,175,298"/>
+<area shape="rect" id="node3" href="$a00123.html" title="Converts objects to and from strings. " alt="" coords="23,6,175,127"/>
 </map>

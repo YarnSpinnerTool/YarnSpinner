@@ -1,159 +1,61 @@
-\hypertarget{a00175}{\section{Yarn.\-Analysis.\-Unused\-Variable\-Checker Class Reference}
-\label{a00175}\index{Yarn.\-Analysis.\-Unused\-Variable\-Checker@{Yarn.\-Analysis.\-Unused\-Variable\-Checker}}
+\hypertarget{a00175}{\section{Yarn.\-Token\-List Class Reference}
+\label{a00175}\index{Yarn.\-Token\-List@{Yarn.\-Token\-List}}
 }
 
 
-Inheritance diagram for Yarn.\-Analysis.\-Unused\-Variable\-Checker\-:
+Inheritance diagram for Yarn.\-Token\-List\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=228pt]{a00759}
+\includegraphics[width=162pt]{a00643}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Analysis.\-Unused\-Variable\-Checker\-:
+Collaboration diagram for Yarn.\-Token\-List\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=228pt]{a00760}
+\includegraphics[width=162pt]{a00644}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override void \hyperlink{a00175_aeac8f333d4dcc85f4d4a716bf8fea01f}{Diagnose} (\hyperlink{a00142}{Program} program)
-\item 
-override I\-Enumerable$<$ \hyperlink{a00081}{Diagnosis} $>$ \hyperlink{a00175_a107aecf707b130c4b733930a95f9154e}{Gather\-Diagnoses} ()
-\item 
-abstract void \hyperlink{a00043_aba4a36cb823b11ee491074e26477d084}{Diagnose} (\hyperlink{a00142}{Yarn.\-Program} program)
-\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-Hash\-Set$<$ string $>$ \hyperlink{a00175_a6b542092ddce1b92c9455d60899518a9}{read\-Variables} = new Hash\-Set$<$string$>$ ()
-\item 
-Hash\-Set$<$ string $>$ \hyperlink{a00175_a0c2fe6eded1b10b135ca2469f5980a39}{written\-Variables} = new Hash\-Set$<$string$>$ ()
+\hyperlink{a00175_a9b7cf7c495a19faa91a1b5991d7748ef}{Token\-List} (params \hyperlink{a00173}{Token}\mbox{[}$\,$\mbox{]} tokens)
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 194 of file Analyser.\-cs.
+Definition at line 70 of file Lexer.\-cs.
 
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00043_aba4a36cb823b11ee491074e26477d084}{\index{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}!Diagnose@{Diagnose}}
-\index{Diagnose@{Diagnose}!Yarn::Analysis::UnusedVariableChecker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}}
-\subsubsection[{Diagnose}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Analysis.\-Compiled\-Program\-Analyser.\-Diagnose (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00175_a9b7cf7c495a19faa91a1b5991d7748ef}{\index{Yarn\-::\-Token\-List@{Yarn\-::\-Token\-List}!Token\-List@{Token\-List}}
+\index{Token\-List@{Token\-List}!Yarn::TokenList@{Yarn\-::\-Token\-List}}
+\subsubsection[{Token\-List}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Token\-List.\-Token\-List (
 \begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Program}}]{program}
+\item[{params {\bf Token}\mbox{[}$\,$\mbox{]}}]{tokens}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [inherited]}}}\label{a00043_aba4a36cb823b11ee491074e26477d084}
-\hypertarget{a00175_aeac8f333d4dcc85f4d4a716bf8fea01f}{\index{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}!Diagnose@{Diagnose}}
-\index{Diagnose@{Diagnose}!Yarn::Analysis::UnusedVariableChecker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}}
-\subsubsection[{Diagnose}]{\setlength{\rightskip}{0pt plus 5cm}override void Yarn.\-Analysis.\-Unused\-Variable\-Checker.\-Diagnose (
-\begin{DoxyParamCaption}
-\item[{{\bf Program}}]{program}
-\end{DoxyParamCaption}
-)}}\label{a00175_aeac8f333d4dcc85f4d4a716bf8fea01f}
+)}}\label{a00175_a9b7cf7c495a19faa91a1b5991d7748ef}
 
 
-Definition at line 199 of file Analyser.\-cs.
+Definition at line 73 of file Lexer.\-cs.
 
 
 \begin{DoxyCode}
-200         \{
-201 
-202             \textcolor{comment}{// In each node, find all reads and writes to variables}
-203             \textcolor{keywordflow}{foreach} (var nodeInfo \textcolor{keywordflow}{in} program.nodes) \{
-204 
-205                 var nodeName = nodeInfo.Key;
-206                 var theNode = nodeInfo.Value;
-207 
-208                 \textcolor{keywordflow}{foreach} (var instruction \textcolor{keywordflow}{in} theNode.instructions) \{
-209 
-210                     \textcolor{keywordflow}{switch} (instruction.operation) \{
-211                     \textcolor{keywordflow}{case} ByteCode.PushVariable:
-212                         readVariables.Add ((string)instruction.operandA);
-213                         \textcolor{keywordflow}{break};
-214                     \textcolor{keywordflow}{case} ByteCode.StoreVariable:
-215                         writtenVariables.Add ((string)instruction.operandA);
-216                         \textcolor{keywordflow}{break};
-217                     \}
-218                 \}
-219             \}
-220 
-221         \}
+73                                                  : base()
+74         \{
+75             AddRange(tokens);
+76         \}
 \end{DoxyCode}
-\hypertarget{a00175_a107aecf707b130c4b733930a95f9154e}{\index{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}!Gather\-Diagnoses@{Gather\-Diagnoses}}
-\index{Gather\-Diagnoses@{Gather\-Diagnoses}!Yarn::Analysis::UnusedVariableChecker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}}
-\subsubsection[{Gather\-Diagnoses}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerable$<${\bf Diagnosis}$>$ Yarn.\-Analysis.\-Unused\-Variable\-Checker.\-Gather\-Diagnoses (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00175_a107aecf707b130c4b733930a95f9154e}
-
-
-Implements \hyperlink{a00043_afe059a2ceeabe50380b000420e512bd6}{Yarn.\-Analysis.\-Compiled\-Program\-Analyser}.
-
-
-
-Definition at line 223 of file Analyser.\-cs.
-
-
-\begin{DoxyCode}
-224         \{
-225 
-226             \textcolor{comment}{// Exclude read variables that are also written}
-227             var readOnlyVariables = \textcolor{keyword}{new} HashSet<string> (\hyperlink{a00175_a6b542092ddce1b92c9455d60899518a9}{readVariables});
-228             readOnlyVariables.ExceptWith (\hyperlink{a00175_a0c2fe6eded1b10b135ca2469f5980a39}{writtenVariables});
-229 
-230             \textcolor{comment}{// Exclude written variables that are also read}
-231             var writeOnlyVariables = \textcolor{keyword}{new} HashSet<string> (\hyperlink{a00175_a0c2fe6eded1b10b135ca2469f5980a39}{writtenVariables});
-232             writeOnlyVariables.ExceptWith (\hyperlink{a00175_a6b542092ddce1b92c9455d60899518a9}{readVariables});
-233 
-234             \textcolor{comment}{// Generate diagnoses}
-235             var diagnoses = \textcolor{keyword}{new} List<Diagnosis>();
-236 
-237             \textcolor{keywordflow}{foreach} (var readOnlyVariable \textcolor{keywordflow}{in} readOnlyVariables) \{
-238                 var message = string.Format (\textcolor{stringliteral}{"Variable \{0\} is read from, but never assigned"}, 
-      readOnlyVariable);
-239                 diagnoses.Add(\textcolor{keyword}{new} Diagnosis (message, Diagnosis.Severity.Warning));
-240             \}
-241 
-242             \textcolor{keywordflow}{foreach} (var writeOnlyVariable \textcolor{keywordflow}{in} writeOnlyVariables) \{
-243                 var message = string.Format (\textcolor{stringliteral}{"Variable \{0\} is assigned, but never read from"}, 
-      writeOnlyVariable);
-244                 diagnoses.Add(\textcolor{keyword}{new} Diagnosis (message, Diagnosis.Severity.Warning));
-245             \}
-246 
-247             \textcolor{keywordflow}{return} diagnoses;
-248         \}
-\end{DoxyCode}
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00175_a6b542092ddce1b92c9455d60899518a9}{\index{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}!read\-Variables@{read\-Variables}}
-\index{read\-Variables@{read\-Variables}!Yarn::Analysis::UnusedVariableChecker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}}
-\subsubsection[{read\-Variables}]{\setlength{\rightskip}{0pt plus 5cm}Hash\-Set$<$string$>$ Yarn.\-Analysis.\-Unused\-Variable\-Checker.\-read\-Variables = new Hash\-Set$<$string$>$ ()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00175_a6b542092ddce1b92c9455d60899518a9}
-
-
-Definition at line 196 of file Analyser.\-cs.
-
-\hypertarget{a00175_a0c2fe6eded1b10b135ca2469f5980a39}{\index{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}!written\-Variables@{written\-Variables}}
-\index{written\-Variables@{written\-Variables}!Yarn::Analysis::UnusedVariableChecker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}}
-\subsubsection[{written\-Variables}]{\setlength{\rightskip}{0pt plus 5cm}Hash\-Set$<$string$>$ Yarn.\-Analysis.\-Unused\-Variable\-Checker.\-written\-Variables = new Hash\-Set$<$string$>$ ()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00175_a0c2fe6eded1b10b135ca2469f5980a39}
-
-
-Definition at line 197 of file Analyser.\-cs.
-
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00287}{Analyser.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00310}{Lexer.\-cs}\end{DoxyCompactItemize}

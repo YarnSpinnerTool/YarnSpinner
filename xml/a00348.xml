@@ -1,11 +1,206 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00348" kind="namespace">
-    <compoundname>UnityEngine</compoundname>
+    <compoundname>preprocessor</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="a00348_1a3766d6a1d728423223fa0743ba62011f" prot="public" static="no" mutable="no">
+        <type>list</type>
+        <definition>list preprocessor.output_lines</definition>
+        <argsstring></argsstring>
+        <name>output_lines</name>
+        <initializer>= []</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00348_1a00fba9ee9674b2513dbe28eab795b734" prot="public" static="no" mutable="no">
+        <type>list</type>
+        <definition>list preprocessor.indents</definition>
+        <argsstring></argsstring>
+        <name>indents</name>
+        <initializer>= [(0,False)]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" bodystart="20" bodyend="-1"/>
+        <referencedby refid="a00133_1a0b09a29edd2ed13d52203f1b71a47081" compoundref="a00312" startline="106" endline="212">Yarn.Loader.preprocessor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00348_1afa485f45ab87bc0f06c1dfc46737c057" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>preprocessor.shouldTrackNextIndentation</definition>
+        <argsstring></argsstring>
+        <name>shouldTrackNextIndentation</name>
+        <initializer>= False</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" bodystart="22" bodyend="-1"/>
+        <referencedby refid="a00133_1a0b09a29edd2ed13d52203f1b71a47081" compoundref="a00312" startline="106" endline="212">Yarn.Loader.preprocessor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00348_1ae3f2190a793ab77428838e58e0e83676" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string preprocessor::INDENT</definition>
+        <argsstring></argsstring>
+        <name>INDENT</name>
+        <initializer>= &apos;\a&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" line="27" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" bodystart="27" bodyend="-1"/>
+        <referencedby refid="a00133_1a0b09a29edd2ed13d52203f1b71a47081" compoundref="a00312" startline="106" endline="212">Yarn.Loader.preprocessor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00348_1a83653c3e52fa74614e655a91ad2b7181" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string preprocessor::DEDENT</definition>
+        <argsstring></argsstring>
+        <name>DEDENT</name>
+        <initializer>= &apos;\v&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" bodystart="28" bodyend="-1"/>
+        <referencedby refid="a00133_1a0b09a29edd2ed13d52203f1b71a47081" compoundref="a00312" startline="106" endline="212">Yarn.Loader.preprocessor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00348_1a7ca2dc5371587b21476669a45af013cd" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string preprocessor.OPTION</definition>
+        <argsstring></argsstring>
+        <name>OPTION</name>
+        <initializer>= &quot;-&gt;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" bodystart="35" bodyend="-1"/>
+        <referencedby refid="a00133_1a0b09a29edd2ed13d52203f1b71a47081" compoundref="a00312" startline="106" endline="212">Yarn.Loader.preprocessor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00348_1ac7b4a28b6670884cd095cd684a452c94" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int preprocessor.line_count</definition>
+        <argsstring></argsstring>
+        <name>line_count</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00348_1acab50490b6d7a9dc2bb935ad4ffe2eff" prot="public" static="no" mutable="no">
+        <type>tuple</type>
+        <definition>tuple preprocessor::tweaked_line</definition>
+        <argsstring></argsstring>
+        <name>tweaked_line</name>
+        <initializer>= line.replace(&apos;\t&apos;,&apos;    &apos;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00348_1a0e59365a4aa5811f6495b92a51e23573" prot="public" static="no" mutable="no">
+        <type>tuple</type>
+        <definition>tuple preprocessor.thisIndentation</definition>
+        <argsstring></argsstring>
+        <name>thisIndentation</name>
+        <initializer>= len(<ref refid="a00348_1acab50490b6d7a9dc2bb935ad4ffe2eff" kindref="member">tweaked_line</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" bodystart="47" bodyend="-1"/>
+        <referencedby refid="a00127_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00310" startline="497" endline="659">Yarn.Lexer.TokeniseLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00348_1abf34284b1c9a00275810e5c13a4dcea2" prot="public" static="no" mutable="no">
+        <type>tuple</type>
+        <definition>tuple preprocessor.is_option</definition>
+        <argsstring></argsstring>
+        <name>is_option</name>
+        <initializer>= tweaked_line.strip()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" line="50" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00348_1ade44b858578c3eab7b6f90030a0e3ea1" prot="public" static="no" mutable="no">
+        <type>list</type>
+        <definition>list preprocessor.previousIndentation</definition>
+        <argsstring></argsstring>
+        <name>previousIndentation</name>
+        <initializer>= <ref refid="a00348_1a00fba9ee9674b2513dbe28eab795b734" kindref="member">indents</ref>[-1]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" line="52" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" bodystart="52" bodyend="-1"/>
+        <referencedby refid="a00127_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00310" startline="497" endline="659">Yarn.Lexer.TokeniseLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00348_1a8b7e5c0b2c6870eaa8f9454b4f33678b" prot="public" static="no" mutable="no">
+        <type>tuple</type>
+        <definition>tuple preprocessor.topLevel</definition>
+        <argsstring></argsstring>
+        <name>topLevel</name>
+        <initializer>= indents.pop()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" line="70" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" bodystart="70" bodyend="-1"/>
+        <referencedby refid="a00133_1a0b09a29edd2ed13d52203f1b71a47081" compoundref="a00312" startline="106" endline="212">Yarn.Loader.preprocessor</referencedby>
+        <referencedby refid="a00127_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00310" startline="497" endline="659">Yarn.Lexer.TokeniseLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00348_1a3da6d48778c7b08a040bf24377f67792" prot="public" static="no" mutable="no">
+        <type>tuple</type>
+        <definition>tuple preprocessor.output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <initializer>= open(&apos;processed.yarn&apos;, &apos;w&apos;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" line="92" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" bodystart="92" bodyend="-1"/>
+        <referencedby refid="a00108_1aa1f89fd1a2dd058002251dfd6411b905" compoundref="a00303" startline="807" endline="836">Yarn.Graph.toDot</referencedby>
+        <referencedby refid="a00044_1aa30d181ed0c8b5ea56912db147b35091" compoundref="a00303" startline="380" endline="394">Yarn.BodyVisitor.VisitFunction_statement</referencedby>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="27" column="1"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/ANTLR/preprocessor.py" line="1" column="1"/>
   </compounddef>
 </doxygen>

@@ -1,49 +1,116 @@
-\hypertarget{a00141}{\section{Yarn.\-Loader.\-Node\-Info.\-Position Struct Reference}
-\label{a00141}\index{Yarn.\-Loader.\-Node\-Info.\-Position@{Yarn.\-Loader.\-Node\-Info.\-Position}}
+\hypertarget{a00141}{\section{Yarn.\-Unity.\-Example.\-N\-P\-C Class Reference}
+\label{a00141}\index{Yarn.\-Unity.\-Example.\-N\-P\-C@{Yarn.\-Unity.\-Example.\-N\-P\-C}}
 }
 
 
-Collaboration diagram for Yarn.\-Loader.\-Node\-Info.\-Position\-:
+Inheritance diagram for Yarn.\-Unity.\-Example.\-N\-P\-C\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=228pt]{a00647}
+\includegraphics[width=208pt]{a00807}
 \end{center}
 \end{figure}
-\subsection*{Properties}
+
+
+Collaboration diagram for Yarn.\-Unity.\-Example.\-N\-P\-C\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{a00808}
+\end{center}
+\end{figure}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{a00141_a6b40110781090293fbcd2d6f7695ae4d}{x}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+string \hyperlink{a00141_a418ea7095bd8201559ed392f07905ca3}{character\-Name} = \char`\"{}\char`\"{}
 \item 
-int \hyperlink{a00141_a390d560bd9faa3a32d8a0489c69be9e0}{y}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+string \hyperlink{a00141_a64f4f1fb66b2046a674e3ebf3b9fdb56}{talk\-To\-Node} = \char`\"{}\char`\"{}
+\item 
+Text\-Asset \hyperlink{a00141_a63145fb6ddf357e604d71bac04ca8a60}{script\-To\-Load}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00141_a0bf37075312ea87c2e329cc363a328a6}{Start} ()
+\item 
+void \hyperlink{a00141_ab1bea5afabd1c2e1e991063b1579d062}{Update} ()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 359 of file Loader.\-cs.
+Definition at line 33 of file N\-P\-C.\-cs.
 
 
 
-\subsection{Property Documentation}
-\hypertarget{a00141_a6b40110781090293fbcd2d6f7695ae4d}{\index{Yarn\-::\-Loader\-::\-Node\-Info\-::\-Position@{Yarn\-::\-Loader\-::\-Node\-Info\-::\-Position}!x@{x}}
-\index{x@{x}!Yarn::Loader::NodeInfo::Position@{Yarn\-::\-Loader\-::\-Node\-Info\-::\-Position}}
-\subsubsection[{x}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Loader.\-Node\-Info.\-Position.\-x\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00141_a6b40110781090293fbcd2d6f7695ae4d}
+\subsection{Member Function Documentation}
+\hypertarget{a00141_a0bf37075312ea87c2e329cc363a328a6}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!Start@{Start}}
+\index{Start@{Start}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
+\subsubsection[{Start}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-N\-P\-C.\-Start (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00141_a0bf37075312ea87c2e329cc363a328a6}
 
 
-Definition at line 360 of file Loader.\-cs.
-
-\hypertarget{a00141_a390d560bd9faa3a32d8a0489c69be9e0}{\index{Yarn\-::\-Loader\-::\-Node\-Info\-::\-Position@{Yarn\-::\-Loader\-::\-Node\-Info\-::\-Position}!y@{y}}
-\index{y@{y}!Yarn::Loader::NodeInfo::Position@{Yarn\-::\-Loader\-::\-Node\-Info\-::\-Position}}
-\subsubsection[{y}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Loader.\-Node\-Info.\-Position.\-y\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00141_a390d560bd9faa3a32d8a0489c69be9e0}
+Definition at line 44 of file N\-P\-C.\-cs.
 
 
-Definition at line 361 of file Loader.\-cs.
+\begin{DoxyCode}
+44                       \{
+45             \textcolor{keywordflow}{if} (\hyperlink{a00141_a63145fb6ddf357e604d71bac04ca8a60}{scriptToLoad} != null) \{
+46                 FindObjectOfType<\hyperlink{a00093}{Yarn.Unity.DialogueRunner}>().AddScript(
+      \hyperlink{a00141_a63145fb6ddf357e604d71bac04ca8a60}{scriptToLoad});
+47             \}
+48 
+49         \}
+\end{DoxyCode}
+\hypertarget{a00141_ab1bea5afabd1c2e1e991063b1579d062}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!Update@{Update}}
+\index{Update@{Update}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-N\-P\-C.\-Update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00141_ab1bea5afabd1c2e1e991063b1579d062}
+
+
+Definition at line 52 of file N\-P\-C.\-cs.
+
+
+\begin{DoxyCode}
+52                        \{
+53 
+54         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00141_a418ea7095bd8201559ed392f07905ca3}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!character\-Name@{character\-Name}}
+\index{character\-Name@{character\-Name}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
+\subsubsection[{character\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Example.\-N\-P\-C.\-character\-Name = \char`\"{}\char`\"{}}}\label{a00141_a418ea7095bd8201559ed392f07905ca3}
+
+
+Definition at line 35 of file N\-P\-C.\-cs.
+
+\hypertarget{a00141_a63145fb6ddf357e604d71bac04ca8a60}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!script\-To\-Load@{script\-To\-Load}}
+\index{script\-To\-Load@{script\-To\-Load}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
+\subsubsection[{script\-To\-Load}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Asset Yarn.\-Unity.\-Example.\-N\-P\-C.\-script\-To\-Load}}\label{a00141_a63145fb6ddf357e604d71bac04ca8a60}
+
+
+Definition at line 41 of file N\-P\-C.\-cs.
+
+\hypertarget{a00141_a64f4f1fb66b2046a674e3ebf3b9fdb56}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!talk\-To\-Node@{talk\-To\-Node}}
+\index{talk\-To\-Node@{talk\-To\-Node}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
+\subsubsection[{talk\-To\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Example.\-N\-P\-C.\-talk\-To\-Node = \char`\"{}\char`\"{}}}\label{a00141_a64f4f1fb66b2046a674e3ebf3b9fdb56}
+
+
+Definition at line 38 of file N\-P\-C.\-cs.
 
 
 
-The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00294}{Loader.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00299}{N\-P\-C.\-cs}\end{DoxyCompactItemize}

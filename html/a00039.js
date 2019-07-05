@@ -1,14 +1,16 @@
 var a00039 =
 [
-    [ "State", "a00039.html#ab24848d7951ce44eb3c7768c6ee10385", [
-      [ "NotTested", "a00039.html#ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5", null ],
-      [ "Passed", "a00039.html#ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15", null ],
-      [ "Failed", "a00039.html#ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca", null ]
-    ] ],
-    [ "CheckerResult", "a00039.html#af1c9b3d1757d33ad2141c639c3827c97", null ],
-    [ "Equals", "a00039.html#a1e653caad5ab99847c26ff8f67da8f45", null ],
-    [ "GetHashCode", "a00039.html#a85d50993390cdd8ba30ac44043b18de7", null ],
-    [ "messages", "a00039.html#a808a039e280cf875cb3c9e9385148498", null ],
-    [ "script", "a00039.html#a6c852f7521c0a91b519aa3d391f63e6b", null ],
-    [ "state", "a00039.html#a7202b24bd068da24d7e28bec5668b13a", null ]
+    [ "AssignmentStatement", "a00039.html#a34d41e545770d5f41542253d0bb4f8b3", null ],
+    [ "CanParse", "a00039.html#a4f021e4c835e429ed5b5bb504a5acf39", null ],
+    [ "NodeParent", "a00039.html#a580e520a29444fc23ac3660cbe514a09", null ],
+    [ "PrintTree", "a00039.html#accb9ddcb472eb035a65188c857b8efd8", null ],
+    [ "TagsToString", "a00039.html#a054f36c80d5eeacd569a8859f599af67", null ],
+    [ "ToString", "a00039.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
+    [ "lineNumber", "a00039.html#a18b493382de0fde5b4299c1bd2250075", null ],
+    [ "parent", "a00039.html#af313a82103fcc2ff5a177dbb06b92f7b", null ],
+    [ "tags", "a00039.html#a58b3a15788fd2d4127d73619dc6d04ae", null ],
+    [ "validOperators", "a00039.html#af3d393da2f684272251805d3471b6c7a", null ],
+    [ "destinationVariableName", "a00039.html#a4e764622b716a4138d1fd9e005c41336", null ],
+    [ "operation", "a00039.html#a896df0f23b44e9f20036150b3527d9e5", null ],
+    [ "valueExpression", "a00039.html#a7ada366012cacd98436db80227ee65f5", null ]
 ];

@@ -1,159 +1,67 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00108" kind="class" prot="package">
-    <compoundname>Yarn::Parser::IfStatement</compoundname>
-    <basecompoundref refid="a00138" prot="public" virt="non-virtual">Yarn.Parser.ParseNode</basecompoundref>
-    <innerclass refid="a00040" prot="package">Yarn::Parser::IfStatement::Clause</innerclass>
-      <sectiondef kind="package-attrib">
-      <memberdef kind="variable" id="a00108_1a679b1a21582c78ed06df36bccc9c3cbc" prot="package" static="no" mutable="no">
-        <type>List&lt; <ref refid="a00040" kindref="compound">Clause</ref> &gt;</type>
-        <definition>List&lt;Clause&gt; Yarn.Parser.IfStatement.clauses</definition>
+  <compounddef id="a00108" kind="class" prot="public">
+    <compoundname>Yarn::Graph</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00108_1a506df6f737a41748c01239bdea5d82b1" prot="public" static="no" mutable="no">
+        <type>ArrayList&lt; <ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref> &gt;</type>
+        <definition>ArrayList&lt;String&gt; Yarn.Graph.nodes</definition>
         <argsstring></argsstring>
-        <name>clauses</name>
-        <initializer>= new List&lt;<ref refid="a00040" kindref="compound">Clause</ref>&gt;()</initializer>
+        <name>nodes</name>
+        <initializer>= new ArrayList&lt;<ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="562" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="562" bodyend="-1"/>
-        <referencedby refid="a00108_1a5494c1daef8e0f3ac3ab68f91db4f332" compoundref="a00295" startline="651" endline="668">Yarn.Parser.IfStatement.PrintTree</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="799" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="799" bodyend="-1"/>
+        <referencedby refid="a00108_1aa1f89fd1a2dd058002251dfd6411b905" compoundref="a00303" startline="807" endline="836">Yarn.Graph.toDot</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="a00138_1af313a82103fcc2ff5a177dbb06b92f7b" prot="package" static="no" mutable="no">
-        <type><ref refid="a00138" kindref="compound">ParseNode</ref></type>
-        <definition>ParseNode Yarn.Parser.ParseNode.parent</definition>
+      <memberdef kind="variable" id="a00108_1a8adf7c937ab5c584b49698283e3da150" prot="public" static="no" mutable="no">
+        <type>MultiMap&lt; <ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref>, <ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref> &gt;</type>
+        <definition>MultiMap&lt;String, String&gt; Yarn.Graph.edges</definition>
         <argsstring></argsstring>
-        <name>parent</name>
+        <name>edges</name>
+        <initializer>= new MultiMap&lt;<ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref>, <ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="58" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="58" bodyend="-1"/>
-        <referencedby refid="a00138_1a9e7e90bbaed268529230512e4b5a2f77" compoundref="a00295" startline="65" endline="71">Yarn.Parser.ParseNode.ParseNode</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="800" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="800" bodyend="-1"/>
+        <referencedby refid="a00108_1aa1f89fd1a2dd058002251dfd6411b905" compoundref="a00303" startline="807" endline="836">Yarn.Graph.toDot</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="a00138_1a18b493382de0fde5b4299c1bd2250075" prot="package" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Parser.ParseNode.lineNumber</definition>
+      <memberdef kind="variable" id="a00108_1a8605f1ec5a4e9cfd07d3ac2be042dac6" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Graph.graphName</definition>
         <argsstring></argsstring>
-        <name>lineNumber</name>
+        <name>graphName</name>
+        <initializer>= &quot;G&quot;</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="61" bodyend="-1"/>
-        <referencedby refid="a00138_1a9e7e90bbaed268529230512e4b5a2f77" compoundref="a00295" startline="65" endline="71">Yarn.Parser.ParseNode.ParseNode</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00138_1a58b3a15788fd2d4127d73619dc6d04ae" prot="package" static="no" mutable="no">
-        <type>string[]</type>
-        <definition>string [] Yarn.Parser.ParseNode.tags</definition>
-        <argsstring></argsstring>
-        <name>tags</name>
-        <initializer>= {}</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="76" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="76" bodyend="-1"/>
-        <referencedby refid="a00149_1a2c80b137d65f31b24533987233074605" compoundref="a00295" startline="373" endline="407">Yarn.Parser.ShortcutOption.ShortcutOption</referencedby>
-        <referencedby refid="a00156_1acba736ffbcc0f8bf5cee2b23f7733dff" compoundref="a00295" startline="186" endline="224">Yarn.Parser.Statement.Statement</referencedby>
-        <referencedby refid="a00138_1a054f36c80d5eeacd569a8859f599af67" compoundref="a00295" startline="78" endline="92">Yarn.Parser.ParseNode.TagsToString</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-static-func">
-      <memberdef kind="function" id="a00108_1afd6b96e1a27872701c4e6832f17fc3ce" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>static bool Yarn.Parser.IfStatement.CanParse</definition>
-        <argsstring>(Parser p)</argsstring>
-        <name>CanParse</name>
-        <param>
-          <type><ref refid="a00139" kindref="compound">Parser</ref></type>
-          <declname>p</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="537" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="537" bodyend="540"/>
-        <referencedby refid="a00156_1acba736ffbcc0f8bf5cee2b23f7733dff" compoundref="a00295" startline="186" endline="224">Yarn.Parser.Statement.Statement</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00108_1ae534078389e8663edf7660403acf3cbc" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Parser.IfStatement.IfStatement</definition>
-        <argsstring>(ParseNode parent, Parser p)</argsstring>
-        <name>IfStatement</name>
-        <param>
-          <type><ref refid="a00138" kindref="compound">ParseNode</ref></type>
-          <declname>parent</declname>
-        </param>
-        <param>
-          <type><ref refid="a00139" kindref="compound">Parser</ref></type>
-          <declname>p</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="564" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="564" bodyend="649"/>
-        <references refid="a00139_1a666a945da1a7845b02b92592fccac291" compoundref="a00295" startline="1276" endline="1285">Yarn.Parser.NextSymbolIs</references>
-        <references refid="a00139_1afaa7e96d4cdaf6b1fde9ecd273c00c34" compoundref="a00295" startline="1290" endline="1297">Yarn.Parser.NextSymbolsAre</references>
-      </memberdef>
-      <memberdef kind="function" id="a00108_1a5494c1daef8e0f3ac3ab68f91db4f332" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override string</type>
-        <definition>override string Yarn.Parser.IfStatement.PrintTree</definition>
-        <argsstring>(int indentLevel)</argsstring>
-        <name>PrintTree</name>
-        <reimplements refid="a00138_1a0d6611653f20c2e4d90a97a96c657137">PrintTree</reimplements>
-        <param>
-          <type>int</type>
-          <declname>indentLevel</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="651" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="651" bodyend="668"/>
-        <references refid="a00108_1a679b1a21582c78ed06df36bccc9c3cbc" compoundref="a00295" startline="562">Yarn.Parser.IfStatement.clauses</references>
-        <references refid="a00139_1aa8fa36b46de12a1c561d77b99c4b9ae3" compoundref="a00295" startline="40" endline="52">Yarn.Parser.Tab</references>
-      </memberdef>
-      <memberdef kind="function" id="a00138_1a580e520a29444fc23ac3660cbe514a09" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00128" kindref="compound">Node</ref></type>
-        <definition>Node Yarn.Parser.ParseNode.NodeParent</definition>
-        <argsstring>()</argsstring>
-        <name>NodeParent</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="100" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="100" bodyend="112"/>
-        <referencedby refid="a00149_1a2c80b137d65f31b24533987233074605" compoundref="a00295" startline="373" endline="407">Yarn.Parser.ShortcutOption.ShortcutOption</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="801" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="801" bodyend="-1"/>
+        <referencedby refid="a00108_1aa1f89fd1a2dd058002251dfd6411b905" compoundref="a00303" startline="807" endline="836">Yarn.Graph.toDot</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00138_1a054f36c80d5eeacd569a8859f599af67" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
-        <definition>string Yarn.Parser.ParseNode.TagsToString</definition>
-        <argsstring>(int indentLevel)</argsstring>
-        <name>TagsToString</name>
+      <memberdef kind="function" id="a00108_1aeb75730e40484ccdf56e805e6dea22a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Graph.edge</definition>
+        <argsstring>(String source, String target)</argsstring>
+        <name>edge</name>
         <param>
-          <type>int</type>
-          <declname>indentLevel</declname>
+          <type><ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref></type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type><ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref></type>
+          <declname>target</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -161,77 +69,44 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="78" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="78" bodyend="92"/>
-        <references refid="a00139_1aa8fa36b46de12a1c561d77b99c4b9ae3" compoundref="a00295" startline="40" endline="52">Yarn.Parser.Tab</references>
-        <references refid="a00138_1a58b3a15788fd2d4127d73619dc6d04ae" compoundref="a00295" startline="76">Yarn.Parser.ParseNode.tags</references>
-        <referencedby refid="a00156_1aaac6d1e0c3b31f33e1c6f964c205153e" compoundref="a00295" startline="226" endline="258">Yarn.Parser.Statement.PrintTree</referencedby>
-        <referencedby refid="a00149_1a529a2ef1aa6d7226db4ea7f3ea92b8c2" compoundref="a00295" startline="409" endline="429">Yarn.Parser.ShortcutOption.PrintTree</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="803" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="803" bodyend="806"/>
       </memberdef>
-      <memberdef kind="function" id="a00138_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override string</type>
-        <definition>override string Yarn.Parser.ParseNode.ToString</definition>
+      <memberdef kind="function" id="a00108_1aa1f89fd1a2dd058002251dfd6411b905" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref></type>
+        <definition>String Yarn.Graph.toDot</definition>
         <argsstring>()</argsstring>
-        <name>ToString</name>
+        <name>toDot</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="94" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="94" bodyend="97"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="807" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="807" bodyend="836"/>
+        <references refid="a00108_1a8adf7c937ab5c584b49698283e3da150" compoundref="a00303" startline="800">Yarn.Graph.edges</references>
+        <references refid="a00108_1a8605f1ec5a4e9cfd07d3ac2be042dac6" compoundref="a00303" startline="801">Yarn.Graph.graphName</references>
+        <references refid="a00108_1a506df6f737a41748c01239bdea5d82b1" compoundref="a00303" startline="799">Yarn.Graph.nodes</references>
+        <references refid="a00348_1a3da6d48778c7b08a040bf24377f67792" compoundref="a00200" startline="92">preprocessor.output</references>
+        <references refid="a00051_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">Yarn.String</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1410">
-        <label>Yarn.Parser.IfStatement</label>
-        <link refid="a00108"/>
-        <childnode refid="1411" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1411">
-        <label>ParseNode</label>
-        <link refid="a00138"/>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1414">
-        <label>Yarn.Parser.ParseNode</label>
-        <link refid="a00138"/>
-        <childnode refid="1414" relation="usage">
-          <edgelabel>~parent</edgelabel>
-        </childnode>
-      </node>
-      <node id="1412">
-        <label>Yarn.Parser.IfStatement</label>
+      <node id="1363">
+        <label>Yarn.Graph</label>
         <link refid="a00108"/>
-        <childnode refid="1413" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1413">
-        <label>ParseNode</label>
-        <link refid="a00138"/>
-        <childnode refid="1414" relation="usage">
-          <edgelabel>~parent</edgelabel>
-        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="536" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="536" bodyend="669"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="798" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="797" bodyend="837"/>
     <listofallmembers>
-      <member refid="a00108_1afd6b96e1a27872701c4e6832f17fc3ce" prot="package" virt="non-virtual"><scope>Yarn::Parser::IfStatement</scope><name>CanParse</name></member>
-      <member refid="a00108_1a679b1a21582c78ed06df36bccc9c3cbc" prot="package" virt="non-virtual"><scope>Yarn::Parser::IfStatement</scope><name>clauses</name></member>
-      <member refid="a00108_1ae534078389e8663edf7660403acf3cbc" prot="package" virt="non-virtual"><scope>Yarn::Parser::IfStatement</scope><name>IfStatement</name></member>
-      <member refid="a00138_1a18b493382de0fde5b4299c1bd2250075" prot="package" virt="non-virtual"><scope>Yarn::Parser::IfStatement</scope><name>lineNumber</name></member>
-      <member refid="a00138_1a580e520a29444fc23ac3660cbe514a09" prot="package" virt="non-virtual"><scope>Yarn::Parser::IfStatement</scope><name>NodeParent</name></member>
-      <member refid="a00138_1af313a82103fcc2ff5a177dbb06b92f7b" prot="package" virt="non-virtual"><scope>Yarn::Parser::IfStatement</scope><name>parent</name></member>
-      <member refid="a00138_1a9e7e90bbaed268529230512e4b5a2f77" prot="package" virt="non-virtual"><scope>Yarn::Parser::IfStatement</scope><name>ParseNode</name></member>
-      <member refid="a00108_1a5494c1daef8e0f3ac3ab68f91db4f332" prot="package" virt="virtual"><scope>Yarn::Parser::IfStatement</scope><name>PrintTree</name></member>
-      <member refid="a00138_1a58b3a15788fd2d4127d73619dc6d04ae" prot="package" virt="non-virtual"><scope>Yarn::Parser::IfStatement</scope><name>tags</name></member>
-      <member refid="a00138_1a054f36c80d5eeacd569a8859f599af67" prot="public" virt="non-virtual"><scope>Yarn::Parser::IfStatement</scope><name>TagsToString</name></member>
-      <member refid="a00138_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" virt="non-virtual"><scope>Yarn::Parser::IfStatement</scope><name>ToString</name></member>
+      <member refid="a00108_1aeb75730e40484ccdf56e805e6dea22a1" prot="public" virt="non-virtual"><scope>Yarn::Graph</scope><name>edge</name></member>
+      <member refid="a00108_1a8adf7c937ab5c584b49698283e3da150" prot="public" virt="non-virtual"><scope>Yarn::Graph</scope><name>edges</name></member>
+      <member refid="a00108_1a8605f1ec5a4e9cfd07d3ac2be042dac6" prot="public" virt="non-virtual"><scope>Yarn::Graph</scope><name>graphName</name></member>
+      <member refid="a00108_1a506df6f737a41748c01239bdea5d82b1" prot="public" virt="non-virtual"><scope>Yarn::Graph</scope><name>nodes</name></member>
+      <member refid="a00108_1aa1f89fd1a2dd058002251dfd6411b905" prot="public" virt="non-virtual"><scope>Yarn::Graph</scope><name>toDot</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

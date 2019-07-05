@@ -1,3 +1,2 @@
-<map id="Yarn.Parser.CustomCommand" name="Yarn.Parser.CustomCommand">
-<area shape="rect" id="node2" href="$a00138.html" title="{ParseNode\n|~ parent\l~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="45,5,165,171"/>
+<map id="Yarn.Library" name="Yarn.Library">
 </map>

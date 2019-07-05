@@ -1,153 +1,169 @@
-\hypertarget{a00057}{\section{Csv\-Helper.\-Csv\-Missing\-Field\-Exception Class Reference}
-\label{a00057}\index{Csv\-Helper.\-Csv\-Missing\-Field\-Exception@{Csv\-Helper.\-Csv\-Missing\-Field\-Exception}}
+\hypertarget{a00057}{\section{Yarn.\-Analysis.\-Context Class Reference}
+\label{a00057}\index{Yarn.\-Analysis.\-Context@{Yarn.\-Analysis.\-Context}}
 }
 
 
-Represents an error caused because a field is missing in the header while reading a C\-S\-V file.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Csv\-Missing\-Field\-Exception\-:
+Collaboration diagram for Yarn.\-Analysis.\-Context\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=228pt]{a00410}
-\end{center}
-\end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-Csv\-Missing\-Field\-Exception\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=228pt]{a00411}
+\includegraphics[width=214pt]{a00767}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00057_ac65429fd7aadcadd7d362722f7a3cab7}{Csv\-Missing\-Field\-Exception} ()
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00057}{Csv\-Missing\-Field\-Exception} class. \end{DoxyCompactList}\item 
-\hyperlink{a00057_aa0b611d59d2c9c47047de427b35cf6a7}{Csv\-Missing\-Field\-Exception} (string message)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00057}{Csv\-Missing\-Field\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
-\hyperlink{a00057_a1a6eb7ea392bc14d0da95e447ac001dc}{Csv\-Missing\-Field\-Exception} (string message, Exception inner\-Exception)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00057}{Csv\-Missing\-Field\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
-\hyperlink{a00057_a867cc21f971ca654865f2cce8e1b971d}{Csv\-Missing\-Field\-Exception} (Serialization\-Info info, Streaming\-Context context)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00057}{Csv\-Missing\-Field\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00057_a8e2c56843e8d374b0f90e23326d8d14a}{Context} ()
+\item 
+\hyperlink{a00057_ad5f41fb64637c4938bce811153492731}{Context} (params Type\mbox{[}$\,$\mbox{]} types)
+\item 
+I\-Enumerable$<$ \hyperlink{a00091}{Diagnosis} $>$ \hyperlink{a00057_a1eadea062a5899a64d00ea0172cbbb43}{Finish\-Analysis} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00057_a60255a6d54f296d199507acef251244c}{Add\-Program\-To\-Analysis} (\hyperlink{a00152}{Program} program)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+I\-Enumerable$<$ Type $>$ \hyperlink{a00057_afdf24f2512251c2203ba1bde8f4a0f90}{default\-Analyser\-Classes}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+I\-Enumerable$<$ Type $>$ \hyperlink{a00057_ad06829cf848a5936db5724ebced758ec}{\-\_\-default\-Analyser\-Classes}
+\item 
+List$<$ \hyperlink{a00053}{Compiled\-Program\-Analyser} $>$ \hyperlink{a00057_aa5c7eaa90ad9c47969a3b336080d8991}{analysers}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Represents an error caused because a field is missing in the header while reading a C\-S\-V file. 
 
 
-
-Definition at line 19 of file Csv\-Missing\-Field\-Exception.\-cs.
+Definition at line 82 of file Analyser.\-cs.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00057_ac65429fd7aadcadd7d362722f7a3cab7}{\index{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}!Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}}
-\index{Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}!CsvHelper::CsvMissingFieldException@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}}
-\subsubsection[{Csv\-Missing\-Field\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Missing\-Field\-Exception.\-Csv\-Missing\-Field\-Exception (
+\hypertarget{a00057_a8e2c56843e8d374b0f90e23326d8d14a}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!Context@{Context}}
+\index{Context@{Context}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{Context}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Analysis.\-Context.\-Context (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00057_ac65429fd7aadcadd7d362722f7a3cab7}
+)}}\label{a00057_a8e2c56843e8d374b0f90e23326d8d14a}
 
 
-Initializes a new instance of the \hyperlink{a00057}{Csv\-Missing\-Field\-Exception} class. 
-
-
-
-Definition at line 24 of file Csv\-Missing\-Field\-Exception.\-cs.
+Definition at line 111 of file Analyser.\-cs.
 
 
 \begin{DoxyCode}
-24 \{\}
+112         \{
+113             \hyperlink{a00057_aa5c7eaa90ad9c47969a3b336080d8991}{analysers} = \textcolor{keyword}{new} List<CompiledProgramAnalyser> ();
+114 
+115             \textcolor{keywordflow}{foreach} (var analyserType \textcolor{keywordflow}{in} \hyperlink{a00057_afdf24f2512251c2203ba1bde8f4a0f90}{defaultAnalyserClasses}) \{
+116                 analysers.Add((CompiledProgramAnalyser)Activator.CreateInstance (analyserType));
+117             \}
+118 
+119         \}
 \end{DoxyCode}
-\hypertarget{a00057_aa0b611d59d2c9c47047de427b35cf6a7}{\index{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}!Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}}
-\index{Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}!CsvHelper::CsvMissingFieldException@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}}
-\subsubsection[{Csv\-Missing\-Field\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Missing\-Field\-Exception.\-Csv\-Missing\-Field\-Exception (
+\hypertarget{a00057_ad5f41fb64637c4938bce811153492731}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!Context@{Context}}
+\index{Context@{Context}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{Context}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Analysis.\-Context.\-Context (
 \begin{DoxyParamCaption}
-\item[{string}]{message}
+\item[{params Type\mbox{[}$\,$\mbox{]}}]{types}
 \end{DoxyParamCaption}
-)}}\label{a00057_aa0b611d59d2c9c47047de427b35cf6a7}
+)}}\label{a00057_ad5f41fb64637c4938bce811153492731}
 
 
-Initializes a new instance of the \hyperlink{a00057}{Csv\-Missing\-Field\-Exception} class with a specified error message. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em message} & The message that describes the error.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 31 of file Csv\-Missing\-Field\-Exception.\-cs.
+Definition at line 121 of file Analyser.\-cs.
 
 
 \begin{DoxyCode}
-31 : base( message ) \{\}
+121                                             \{
+122             \hyperlink{a00057_aa5c7eaa90ad9c47969a3b336080d8991}{analysers} = \textcolor{keyword}{new} List<CompiledProgramAnalyser> ();
+123 
+124             \textcolor{keywordflow}{foreach} (var analyserType \textcolor{keywordflow}{in} types) \{
+125                 analysers.Add((CompiledProgramAnalyser)Activator.CreateInstance (analyserType));
+126             \}
+127         \}
 \end{DoxyCode}
-\hypertarget{a00057_a1a6eb7ea392bc14d0da95e447ac001dc}{\index{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}!Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}}
-\index{Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}!CsvHelper::CsvMissingFieldException@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}}
-\subsubsection[{Csv\-Missing\-Field\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Missing\-Field\-Exception.\-Csv\-Missing\-Field\-Exception (
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00057_a60255a6d54f296d199507acef251244c}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!Add\-Program\-To\-Analysis@{Add\-Program\-To\-Analysis}}
+\index{Add\-Program\-To\-Analysis@{Add\-Program\-To\-Analysis}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{Add\-Program\-To\-Analysis}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Analysis.\-Context.\-Add\-Program\-To\-Analysis (
 \begin{DoxyParamCaption}
-\item[{string}]{message, }
-\item[{Exception}]{inner\-Exception}
+\item[{{\bf Program}}]{program}
 \end{DoxyParamCaption}
-)}}\label{a00057_a1a6eb7ea392bc14d0da95e447ac001dc}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00057_a60255a6d54f296d199507acef251244c}
 
 
-Initializes a new instance of the \hyperlink{a00057}{Csv\-Missing\-Field\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em message} & The error message that explains the reason for the exception.\\
-\hline
-{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 40 of file Csv\-Missing\-Field\-Exception.\-cs.
+Definition at line 129 of file Analyser.\-cs.
 
 
 \begin{DoxyCode}
-40 : base( message, innerException ) \{ \}
+129                                                             \{
+130             \textcolor{keywordflow}{foreach} (var analyser \textcolor{keywordflow}{in} \hyperlink{a00057_aa5c7eaa90ad9c47969a3b336080d8991}{analysers}) \{
+131                 analyser.Diagnose (program);
+132             \}
+133         \}
 \end{DoxyCode}
-\hypertarget{a00057_a867cc21f971ca654865f2cce8e1b971d}{\index{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}!Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}}
-\index{Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}!CsvHelper::CsvMissingFieldException@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}}
-\subsubsection[{Csv\-Missing\-Field\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Missing\-Field\-Exception.\-Csv\-Missing\-Field\-Exception (
+\hypertarget{a00057_a1eadea062a5899a64d00ea0172cbbb43}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!Finish\-Analysis@{Finish\-Analysis}}
+\index{Finish\-Analysis@{Finish\-Analysis}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{Finish\-Analysis}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Diagnosis}$>$ Yarn.\-Analysis.\-Context.\-Finish\-Analysis (
 \begin{DoxyParamCaption}
-\item[{Serialization\-Info}]{info, }
-\item[{Streaming\-Context}]{context}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00057_a867cc21f971ca654865f2cce8e1b971d}
+)}}\label{a00057_a1eadea062a5899a64d00ea0172cbbb43}
 
 
-Initializes a new instance of the \hyperlink{a00057}{Csv\-Missing\-Field\-Exception} class with serialized data. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
-\hline
-{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 49 of file Csv\-Missing\-Field\-Exception.\-cs.
+Definition at line 135 of file Analyser.\-cs.
 
 
 \begin{DoxyCode}
-49 : base( info, context ) \{ \}
+135                                                        \{
+136             List<Diagnosis> diagnoses = \textcolor{keyword}{new} List<Diagnosis> ();
+137 
+138             \textcolor{keywordflow}{foreach} (var analyser \textcolor{keywordflow}{in} \hyperlink{a00057_aa5c7eaa90ad9c47969a3b336080d8991}{analysers}) \{
+139                 diagnoses.AddRange (analyser.GatherDiagnoses ());
+140             \}
+141 
+142             \textcolor{keywordflow}{return} diagnoses;
+143         \}
 \end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00057_ad06829cf848a5936db5724ebced758ec}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!\-\_\-default\-Analyser\-Classes@{\-\_\-default\-Analyser\-Classes}}
+\index{\-\_\-default\-Analyser\-Classes@{\-\_\-default\-Analyser\-Classes}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{\-\_\-default\-Analyser\-Classes}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<$Type$>$ Yarn.\-Analysis.\-Context.\-\_\-default\-Analyser\-Classes\hspace{0.3cm}{\ttfamily [private]}}}\label{a00057_ad06829cf848a5936db5724ebced758ec}
+
+
+Definition at line 84 of file Analyser.\-cs.
+
+\hypertarget{a00057_aa5c7eaa90ad9c47969a3b336080d8991}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!analysers@{analysers}}
+\index{analysers@{analysers}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{analysers}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Compiled\-Program\-Analyser}$>$ Yarn.\-Analysis.\-Context.\-analysers\hspace{0.3cm}{\ttfamily [private]}}}\label{a00057_aa5c7eaa90ad9c47969a3b336080d8991}
+
+
+Definition at line 109 of file Analyser.\-cs.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{a00057_afdf24f2512251c2203ba1bde8f4a0f90}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!default\-Analyser\-Classes@{default\-Analyser\-Classes}}
+\index{default\-Analyser\-Classes@{default\-Analyser\-Classes}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{default\-Analyser\-Classes}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<$Type$>$ Yarn.\-Analysis.\-Context.\-default\-Analyser\-Classes\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [package]}}}\label{a00057_afdf24f2512251c2203ba1bde8f4a0f90}
+
+
+Definition at line 85 of file Analyser.\-cs.
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00226}{Csv\-Missing\-Field\-Exception.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00302}{Analyser.\-cs}\end{DoxyCompactItemize}

@@ -1,168 +1,159 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00049" kind="class" prot="public">
-    <compoundname>CsvHelper::CsvBadDataException</compoundname>
-    <basecompoundref refid="a00056" prot="public" virt="non-virtual">CsvHelper.CsvHelperException</basecompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00049_1a337ebca212c62127ba837ae726a0cc3a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvBadDataException.CsvBadDataException</definition>
-        <argsstring>()</argsstring>
-        <name>CsvBadDataException</name>
+  <compounddef id="a00049" kind="class" prot="private">
+    <compoundname>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</compoundname>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="a00049_1ab24848d7951ce44eb3c7768c6ee10385" prot="public" static="no">
+        <name>State</name>
+        <enumvalue id="a00049_1ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5" prot="public">
+          <name>NotTested</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00049_1ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15" prot="public">
+          <name>Passed</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00049_1ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca" prot="public">
+          <name>Failed</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="a00049" kindref="compound">CsvBadDataException</ref> class. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" bodystart="23" bodyend="23"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="36" bodyend="40"/>
       </memberdef>
-      <memberdef kind="function" id="a00049_1a31da9e807053a75e8bd252aa792269eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvBadDataException.CsvBadDataException</definition>
-        <argsstring>(string message)</argsstring>
-        <name>CsvBadDataException</name>
-        <param>
-          <type>string</type>
-          <declname>message</declname>
-        </param>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00049_1a7202b24bd068da24d7e28bec5668b13a" prot="public" static="no" mutable="no">
+        <type><ref refid="a00049_1ab24848d7951ce44eb3c7768c6ee10385" kindref="member">State</ref></type>
+        <definition>State Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.state</definition>
+        <argsstring></argsstring>
+        <name>state</name>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="a00049" kindref="compound">CsvBadDataException</ref> class with a specified error message. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>message</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The message that describes the error.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" line="30" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" bodystart="30" bodyend="30"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="42" bodyend="-1"/>
+        <referencedby refid="a00186_1a1a7e1a855bb2a9549eb1c0eb292c9b85" compoundref="a00293" startline="314" endline="353">Yarn.Unity.YarnSpinnerEditorWindow.DrawScriptGUI</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00049_1a2c210cf80604e58ffecc177f6f7c2547" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvBadDataException.CsvBadDataException</definition>
-        <argsstring>(string message, Exception innerException)</argsstring>
-        <name>CsvBadDataException</name>
-        <param>
-          <type>string</type>
-          <declname>message</declname>
-        </param>
-        <param>
-          <type>Exception</type>
-          <declname>innerException</declname>
-        </param>
+      <memberdef kind="variable" id="a00049_1a6c852f7521c0a91b519aa3d391f63e6b" prot="public" static="no" mutable="no">
+        <type>TextAsset</type>
+        <definition>TextAsset Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.script</definition>
+        <argsstring></argsstring>
+        <name>script</name>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="a00049" kindref="compound">CsvBadDataException</ref> class with a specified error message and a reference to the inner exception that is the cause of this exception. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>message</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The error message that explains the reason for the exception.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>innerException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" bodystart="39" bodyend="39"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="43" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="43" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="a00049_1abe956c9c100374953fd899bef2f2489f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvBadDataException.CsvBadDataException</definition>
-        <argsstring>(SerializationInfo info, StreamingContext context)</argsstring>
-        <name>CsvBadDataException</name>
-        <param>
-          <type>SerializationInfo</type>
-          <declname>info</declname>
-        </param>
-        <param>
-          <type>StreamingContext</type>
-          <declname>context</declname>
-        </param>
+      <memberdef kind="variable" id="a00049_1a808a039e280cf875cb3c9e9385148498" prot="public" static="no" mutable="no">
+        <type><ref refid="a00383" kindref="compound">ValidationMessage</ref>[]</type>
+        <definition>ValidationMessage [] Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.messages</definition>
+        <argsstring></argsstring>
+        <name>messages</name>
+        <initializer>= new <ref refid="a00383" kindref="compound">ValidationMessage</ref>[0]</initializer>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="a00056" kindref="compound">CsvHelperException</ref> class with serialized data. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>info</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The SerializationInfo that holds the serialized object data about the exception being thrown.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>context</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The StreamingContext that contains contextual information about the source or destination.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" bodystart="48" bodyend="48"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="45" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="45" bodyend="-1"/>
+        <referencedby refid="a00186_1a1a7e1a855bb2a9549eb1c0eb292c9b85" compoundref="a00293" startline="314" endline="353">Yarn.Unity.YarnSpinnerEditorWindow.DrawScriptGUI</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00049_1a1e653caad5ab99847c26ff8f67da8f45" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override bool</type>
+        <definition>override bool Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.Equals</definition>
+        <argsstring>(object obj)</argsstring>
+        <name>Equals</name>
+        <param>
+          <type>object</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="47" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="a00049_1a85d50993390cdd8ba30ac44043b18de7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override int</type>
+        <definition>override int Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.GetHashCode</definition>
+        <argsstring>()</argsstring>
+        <name>GetHashCode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="55" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="a00049_1af1c9b3d1757d33ad2141c639c3827c97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.CheckerResult</definition>
+        <argsstring>(TextAsset script)</argsstring>
+        <name>CheckerResult</name>
+        <param>
+          <type>TextAsset</type>
+          <declname>script</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="60" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="60" bodyend="63"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Represents errors that occur due to bad data. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1051">
-        <label>Exception</label>
-      </node>
-      <node id="1049">
-        <label>CsvHelper.CsvBadDataException</label>
-        <link refid="a00049"/>
-        <childnode refid="1050" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1050">
-        <label>CsvHelperException</label>
-        <link refid="a00056"/>
-        <childnode refid="1051" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1054">
-        <label>Exception</label>
-      </node>
-      <node id="1052">
-        <label>CsvHelper.CsvBadDataException</label>
+      <node id="1007">
+        <label>Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult</label>
         <link refid="a00049"/>
-        <childnode refid="1053" relation="public-inheritance">
+        <childnode refid="1008" relation="usage">
+          <edgelabel>+messages</edgelabel>
         </childnode>
       </node>
-      <node id="1053">
-        <label>CsvHelperException</label>
-        <link refid="a00056"/>
-        <childnode refid="1054" relation="public-inheritance">
-        </childnode>
+      <node id="1008">
+        <label>Yarn.Unity.YarnSpinnerEditorWindow.ValidationMessage</label>
+        <link refid="a00383"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" bodystart="18" bodyend="50"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="35" bodyend="64"/>
     <listofallmembers>
-      <member refid="a00049_1a337ebca212c62127ba837ae726a0cc3a" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvBadDataException</name></member>
-      <member refid="a00049_1a31da9e807053a75e8bd252aa792269eb" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvBadDataException</name></member>
-      <member refid="a00049_1a2c210cf80604e58ffecc177f6f7c2547" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvBadDataException</name></member>
-      <member refid="a00049_1abe956c9c100374953fd899bef2f2489f" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvBadDataException</name></member>
-      <member refid="a00056_1a83571967535529f42bb42b33684e4631" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvHelperException</name></member>
-      <member refid="a00056_1a47cbed4fb25c42fd548282b3f8652290" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvHelperException</name></member>
-      <member refid="a00056_1ac97c52774cb49f7e5d855b7586cdfa1d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvHelperException</name></member>
-      <member refid="a00056_1a1194d6917d1b52a8e15e3701a6e8264d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvHelperException</name></member>
+      <member refid="a00049_1af1c9b3d1757d33ad2141c639c3827c97" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>CheckerResult</name></member>
+      <member refid="a00049_1a1e653caad5ab99847c26ff8f67da8f45" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>Equals</name></member>
+      <member refid="a00049_1a85d50993390cdd8ba30ac44043b18de7" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>GetHashCode</name></member>
+      <member refid="a00049_1a808a039e280cf875cb3c9e9385148498" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>messages</name></member>
+      <member refid="a00049_1a6c852f7521c0a91b519aa3d391f63e6b" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>script</name></member>
+      <member refid="a00049_1ab24848d7951ce44eb3c7768c6ee10385" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>State</name></member>
+      <member refid="a00049_1a7202b24bd068da24d7e28bec5668b13a" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>state</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

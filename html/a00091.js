@@ -1,18 +1,16 @@
 var a00091 =
 [
-    [ "Awake", "a00091.html#a6e57983db349b0d9e4526ecb7aa6fed2", null ],
-    [ "DialogueComplete", "a00091.html#a1f2a08baacc25aea09af8e60eb5d3eb1", null ],
-    [ "DialogueStarted", "a00091.html#a313283f6c53354b54f25898eb436eba0", null ],
-    [ "NodeComplete", "a00091.html#a2900548a0704d39d4502a153945f4bef", null ],
-    [ "RunCommand", "a00091.html#a7f84b1e7d3c9c1f7507d143e11ba8075", null ],
-    [ "RunLine", "a00091.html#a109aeedc5206dcbc4f629638b7830030", null ],
-    [ "RunOptions", "a00091.html#aaa93672700a456e66c694636460a58f4", null ],
-    [ "SetOption", "a00091.html#ad1ac5781ded20d2950d8dd3af506df37", null ],
-    [ "continuePrompt", "a00091.html#a74367b77a6a5218fa47dbe1d6266e4c6", null ],
-    [ "dialogueContainer", "a00091.html#a2eaebc844d2ca982ec078708d070dbd3", null ],
-    [ "gameControlsContainer", "a00091.html#a8344106eb22a0ad00e2400c2941b3e5f", null ],
-    [ "lineText", "a00091.html#a791f15a67a97fbe06ffc0bdf518edd04", null ],
-    [ "optionButtons", "a00091.html#a090b7693e7ec6ec43c8c8e2b6b20b015", null ],
-    [ "SetSelectedOption", "a00091.html#a558f60ef9a7bcf887f015ba0d27aa6ef", null ],
-    [ "textSpeed", "a00091.html#a6053aa65534195d626031413ef3a0828", null ]
+    [ "Severity", "a00091.html#a227813cbc8fa03c3448a612ffc909d1c", [
+      [ "Error", "a00091.html#a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd", null ],
+      [ "Warning", "a00091.html#a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa", null ],
+      [ "Note", "a00091.html#a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec", null ]
+    ] ],
+    [ "Diagnosis", "a00091.html#ad3fd818f1be98dc803e5bec959153824", null ],
+    [ "ToString", "a00091.html#a4475eb5890c340da5c0012e25c2c86ae", null ],
+    [ "ToString", "a00091.html#a985dee7ca27aa896332590133606b6a9", null ],
+    [ "columnNumber", "a00091.html#a658e7fb05555c0f9ab5f80057bdc1408", null ],
+    [ "lineNumber", "a00091.html#a0bd73f1c684bfd66ae7b6bef8f2972d0", null ],
+    [ "message", "a00091.html#ac7ed070dddd2613c08e7874ea5afb3af", null ],
+    [ "nodeName", "a00091.html#a662aca4ad2af5116c2cf6773daf1a847", null ],
+    [ "severity", "a00091.html#ad90ffa839ce0f568a099bb37b4a6c4da", null ]
 ];

@@ -1,7 +1,0 @@
-<map id="Yarn.Loader.Load" name="Yarn.Loader.Load">
-<area shape="rect" id="node2" href="$a00123.html#a080b2d6b7553c178007c04297d50e9da" title="Yarn.Loader.GetFormatFrom\lFileName" alt="" coords="190,5,378,46"/>
-<area shape="rect" id="node3" href="$a00123.html#a0aa76ba9366b44bf78198a78ea958c9c" title="Yarn.Loader.GetNodesFromText" alt="" coords="179,71,389,97"/>
-<area shape="rect" id="node4" href="$a00123.html#a0b09a29edd2ed13d52203f1b71a47081" title="Yarn.Loader.preprocessor" alt="" coords="199,121,369,148"/>
-<area shape="rect" id="node5" href="$a00123.html#aa105ea8e5d65a420d1089616523feecc" title="Yarn.Loader.PrintParseTree" alt="" coords="193,172,375,199"/>
-<area shape="rect" id="node6" href="$a00123.html#a9321fce224021841ce6f70ca7fbe531b" title="Yarn.Loader.PrintTokenList" alt="" coords="194,223,374,249"/>
-</map>

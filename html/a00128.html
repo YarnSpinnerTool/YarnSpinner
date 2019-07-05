@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.Parser.Node Class Reference</title>
+<title>YarnSpinner: Yarn.Lexer.LexerState Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -108,103 +108,96 @@ $(document).ready(function(){initNavTree('a00128.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pac-methods">Package Functions</a> &#124;
-<a href="#pac-attribs">Package Attributes</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="a00667.html">List of all members</a>  </div>
+<a href="a00649.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Parser.Node Class Reference</div>  </div>
+<div class="title">Yarn.Lexer.LexerState Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.Parser.Node:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Lexer.LexerState:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00668.png" border="0" usemap="#_yarn_8_parser_8_node_inherit__map" alt="Inheritance graph"/></div>
-<map name="_yarn_8_parser_8_node_inherit__map" id="_yarn_8_parser_8_node_inherit__map">
-<area shape="rect" id="node2" href="a00138.html" title="{ParseNode\n|~ parent\l~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="8,5,128,171"/></map>
-</div>
-<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Parser.Node:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00669.png" border="0" usemap="#_yarn_8_parser_8_node_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_parser_8_node_coll__map" id="_yarn_8_parser_8_node_coll__map">
-<area shape="rect" id="node2" href="a00138.html" title="{ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="24,222,144,373"/><area shape="rect" id="node3" href="a00138.html" title="{Yarn.Parser.ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="4,6,163,157"/></map>
+<div class="center"><img src="a00650.png" border="0" usemap="#_yarn_8_lexer_8_lexer_state_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_lexer_8_lexer_state_coll__map" id="_yarn_8_lexer_8_lexer_state_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a054f36c80d5eeacd569a8859f599af67"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#a054f36c80d5eeacd569a8859f599af67">TagsToString</a> (int indentLevel)</td></tr>
-<tr class="separator:a054f36c80d5eeacd569a8859f599af67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18c67cb16090d0889bb9d6c8c6c565f8"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#a18c67cb16090d0889bb9d6c8c6c565f8">ToString</a> ()</td></tr>
-<tr class="separator:a18c67cb16090d0889bb9d6c8c6c565f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac67a7c0e09d7b4350f75b105723a4f6c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html#ac67a7c0e09d7b4350f75b105723a4f6c">LexerState</a> (Dictionary&lt; <a class="el" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>, string &gt; <a class="el" href="a00128.html#a951f91e9522ffe84851f2e25e9445106">patterns</a>)</td></tr>
+<tr class="separator:ac67a7c0e09d7b4350f75b105723a4f6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71ba52744e853ff142de19e97cf5daed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00176.html">TokenRule</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html#a71ba52744e853ff142de19e97cf5daed">AddTransition</a> (<a class="el" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> type, string entersState=null, bool delimitsText=false)</td></tr>
+<tr class="separator:a71ba52744e853ff142de19e97cf5daed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af183111863c651ae5681665a2c379830"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00176.html">TokenRule</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html#af183111863c651ae5681665a2c379830">AddTextRule</a> (<a class="el" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> type, string entersState=null)</td></tr>
+<tr class="separator:af183111863c651ae5681665a2c379830"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-methods"></a>
-Package Functions</h2></td></tr>
-<tr class="memitem:ae0562dc06ca747307b66039ef2f28772"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html#ae0562dc06ca747307b66039ef2f28772">Node</a> (string <a class="el" href="a00128.html#a3cfa07840da3a7a92c820788e902aefb">name</a>, <a class="el" href="a00138.html">ParseNode</a> <a class="el" href="a00138.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a>, <a class="el" href="a00139.html">Parser</a> p)</td></tr>
-<tr class="separator:ae0562dc06ca747307b66039ef2f28772"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab11501ebf251fdaa7cfe44edfa993068"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html#ab11501ebf251fdaa7cfe44edfa993068">PrintTree</a> (int indentLevel)</td></tr>
-<tr class="separator:ab11501ebf251fdaa7cfe44edfa993068"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a580e520a29444fc23ac3660cbe514a09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00128.html">Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#a580e520a29444fc23ac3660cbe514a09">NodeParent</a> ()</td></tr>
-<tr class="separator:a580e520a29444fc23ac3660cbe514a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-attribs"></a>
-Package Attributes</h2></td></tr>
-<tr class="memitem:af313a82103fcc2ff5a177dbb06b92f7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00138.html">ParseNode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a></td></tr>
-<tr class="separator:af313a82103fcc2ff5a177dbb06b92f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18b493382de0fde5b4299c1bd2250075"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#a18b493382de0fde5b4299c1bd2250075">lineNumber</a></td></tr>
-<tr class="separator:a18b493382de0fde5b4299c1bd2250075"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58b3a15788fd2d4127d73619dc6d04ae"><td class="memItemLeft" align="right" valign="top">string[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#a58b3a15788fd2d4127d73619dc6d04ae">tags</a> = {}</td></tr>
-<tr class="separator:a58b3a15788fd2d4127d73619dc6d04ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:aeb8debd0d81a76e90f083f0bf407573e"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html#aeb8debd0d81a76e90f083f0bf407573e">name</a></td></tr>
+<tr class="separator:aeb8debd0d81a76e90f083f0bf407573e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf6563b1dc6f3ef80ed13c2b15b7be03"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="a00176.html">TokenRule</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html#adf6563b1dc6f3ef80ed13c2b15b7be03">tokenRules</a> = new List&lt;<a class="el" href="a00176.html">TokenRule</a>&gt;()</td></tr>
+<tr class="separator:adf6563b1dc6f3ef80ed13c2b15b7be03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8b6ccac53bedd9dc202ffe6ac5698b2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html#ad8b6ccac53bedd9dc202ffe6ac5698b2">setTrackNextIndentation</a> = false</td></tr>
+<tr class="separator:ad8b6ccac53bedd9dc202ffe6ac5698b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a3cfa07840da3a7a92c820788e902aefb"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html#a3cfa07840da3a7a92c820788e902aefb">name</a><code> [get, set]</code></td></tr>
-<tr class="separator:a3cfa07840da3a7a92c820788e902aefb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a005a6b0f614beb77708fc5ce8fea66e1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html#a005a6b0f614beb77708fc5ce8fea66e1">source</a><code> [get, set]</code></td></tr>
-<tr class="separator:a005a6b0f614beb77708fc5ce8fea66e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b1e55929dd7c9b1b0349a70d1787f2a"><td class="memItemLeft" align="right" valign="top">List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html#a7b1e55929dd7c9b1b0349a70d1787f2a">nodeTags</a><code> [get, set]</code></td></tr>
-<tr class="separator:a7b1e55929dd7c9b1b0349a70d1787f2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdae3fb1c6927b38ce29b1b71a00cb12"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="a00156.html">Statement</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html#abdae3fb1c6927b38ce29b1b71a00cb12">statements</a><code> [get]</code></td></tr>
-<tr class="separator:abdae3fb1c6927b38ce29b1b71a00cb12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69948f05c35eeae9cb8448c849a053e6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html#a69948f05c35eeae9cb8448c849a053e6">containsTextRule</a> \G((?!{0}).)*&quot;<code> [get]</code></td></tr>
+<tr class="separator:a69948f05c35eeae9cb8448c849a053e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:ae910a20906be9b1964499efaefa48274"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="a00156.html">Statement</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html#ae910a20906be9b1964499efaefa48274">_statements</a> = new List&lt;<a class="el" href="a00156.html">Statement</a>&gt; ()</td></tr>
-<tr class="separator:ae910a20906be9b1964499efaefa48274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a951f91e9522ffe84851f2e25e9445106"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; <a class="el" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html#a951f91e9522ffe84851f2e25e9445106">patterns</a></td></tr>
+<tr class="separator:a951f91e9522ffe84851f2e25e9445106"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="a00295_source.html#l00117">117</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00310_source.html#l00214">214</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ae0562dc06ca747307b66039ef2f28772"></a>
+<a class="anchor" id="ac67a7c0e09d7b4350f75b105723a4f6c"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Yarn.Parser.Node.Node </td>
+          <td class="memname">Yarn.Lexer.LexerState.LexerState </td>
           <td>(</td>
+          <td class="paramtype">Dictionary&lt; <a class="el" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>, string &gt;&#160;</td>
+          <td class="paramname"><em>patterns</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00310_source.html#l00220">220</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
+
+<p>References <a class="el" href="a00310_source.html#l00218">Yarn.Lexer.LexerState.patterns</a>.</p>
+<div class="fragment"><div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            {</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                this.patterns = <a class="code" href="a00128.html#a951f91e9522ffe84851f2e25e9445106">patterns</a>;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            }</div>
+<div class="ttc" id="a00128_html_a951f91e9522ffe84851f2e25e9445106"><div class="ttname"><a href="a00128.html#a951f91e9522ffe84851f2e25e9445106">Yarn.Lexer.LexerState.patterns</a></div><div class="ttdeci">Dictionary&lt; TokenType, string &gt; patterns</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00218">Lexer.cs:218</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="af183111863c651ae5681665a2c379830"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00176.html">TokenRule</a> Yarn.Lexer.LexerState.AddTextRule </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00138.html">ParseNode</a>&#160;</td>
-          <td class="paramname"><em>parent</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00139.html">Parser</a>&#160;</td>
-          <td class="paramname"><em>p</em>&#160;</td>
+          <td class="paramname"><em>entersState</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -212,244 +205,128 @@ Private Attributes</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00295_source.html#l00132">132</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00310_source.html#l00240">240</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
 
-<p>References <a class="el" href="a00295_source.html#l00119">Yarn.Parser.Node.name</a>, <a class="el" href="a00295_source.html#l01276">Yarn.Parser.NextSymbolIs()</a>, and <a class="el" href="a00295_source.html#l01257">Yarn.Parser.tokens</a>.</p>
-<div class="fragment"><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                                                                   : base(<a class="code" href="a00138.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a>, p) {</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                this.name = <a class="code" href="a00128.html#a3cfa07840da3a7a92c820788e902aefb">name</a>;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                <span class="comment">// Consume statements until we run out of input or we hit a dedent</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                <span class="keywordflow">while</span> (p.tokens.Count &gt; 0 &amp;&amp; p.NextSymbolIs(<a class="code" href="a00041.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>.Dedent,<a class="code" href="a00041.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>.EndOfInput) == <span class="keyword">false</span>) {</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                    _statements.Add(<span class="keyword">new</span> Statement(<span class="keyword">this</span>, p));</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                }</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            }</div>
-<div class="ttc" id="a00138_html_af313a82103fcc2ff5a177dbb06b92f7b"><div class="ttname"><a href="a00138.html#af313a82103fcc2ff5a177dbb06b92f7b">Yarn.Parser.ParseNode.parent</a></div><div class="ttdeci">ParseNode parent</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00058">Parser.cs:58</a></div></div>
-<div class="ttc" id="a00041_html_a301aa7c866593a5b625a8fc158bbeace"><div class="ttname"><a href="a00041.html#a301aa7c866593a5b625a8fc158bbeace">Yarn.TokenType</a></div><div class="ttdeci">TokenType</div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00079">Lexer.cs:79</a></div></div>
-<div class="ttc" id="a00128_html_a3cfa07840da3a7a92c820788e902aefb"><div class="ttname"><a href="a00128.html#a3cfa07840da3a7a92c820788e902aefb">Yarn.Parser.Node.name</a></div><div class="ttdeci">string name</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00119">Parser.cs:119</a></div></div>
+<p>References <a class="el" href="a00310_source.html#l00227">Yarn.Lexer.LexerState.AddTransition()</a>, <a class="el" href="a00310_source.html#l00266">Yarn.Lexer.LexerState.containsTextRule</a>, and <a class="el" href="a00310_source.html#l00225">Yarn.Lexer.LexerState.tokenRules</a>.</p>
+<div class="fragment"><div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            {</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00128.html#a69948f05c35eeae9cb8448c849a053e6">containsTextRule</a>) {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException (<span class="stringliteral">&quot;State already contains a text rule&quot;</span>);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                }</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                var delimiterRules = <span class="keyword">new</span> List&lt;string&gt;();</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                <span class="keywordflow">foreach</span> (var otherRule <span class="keywordflow">in</span> <a class="code" href="a00128.html#adf6563b1dc6f3ef80ed13c2b15b7be03">tokenRules</a>) {</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                    <span class="keywordflow">if</span> (otherRule.delimitsText == <span class="keyword">true</span>)</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                        delimiterRules.Add (string.Format (CultureInfo.InvariantCulture, <span class="stringliteral">&quot;({0})&quot;</span>, otherRule.regex.ToString().Substring(2)));</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                }</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                <span class="comment">// Create a regex that matches all text up to but not including</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                <span class="comment">// any of the delimiter rules</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                var pattern = string.Format (CultureInfo.InvariantCulture, <span class="stringliteral">@&quot;\G((?!{0}).)*&quot;</span>,</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                    string.Join (<span class="stringliteral">&quot;|&quot;</span>, delimiterRules.ToArray()));</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                var rule = <a class="code" href="a00128.html#a71ba52744e853ff142de19e97cf5daed">AddTransition</a>(type, entersState);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                rule.regex = <span class="keyword">new</span> Regex (pattern);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                rule.isTextRule = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                <span class="keywordflow">return</span> rule;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;            }</div>
+<div class="ttc" id="a00128_html_adf6563b1dc6f3ef80ed13c2b15b7be03"><div class="ttname"><a href="a00128.html#adf6563b1dc6f3ef80ed13c2b15b7be03">Yarn.Lexer.LexerState.tokenRules</a></div><div class="ttdeci">List&lt; TokenRule &gt; tokenRules</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00225">Lexer.cs:225</a></div></div>
+<div class="ttc" id="a00128_html_a71ba52744e853ff142de19e97cf5daed"><div class="ttname"><a href="a00128.html#a71ba52744e853ff142de19e97cf5daed">Yarn.Lexer.LexerState.AddTransition</a></div><div class="ttdeci">TokenRule AddTransition(TokenType type, string entersState=null, bool delimitsText=false)</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00227">Lexer.cs:227</a></div></div>
+<div class="ttc" id="a00128_html_a69948f05c35eeae9cb8448c849a053e6"><div class="ttname"><a href="a00128.html#a69948f05c35eeae9cb8448c849a053e6">Yarn.Lexer.LexerState.containsTextRule</a></div><div class="ttdeci">bool containsTextRule</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00266">Lexer.cs:266</a></div></div>
+</div><!-- fragment -->
+<p><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00128_af183111863c651ae5681665a2c379830_cgraph.png" border="0" usemap="#a00128_af183111863c651ae5681665a2c379830_cgraph" alt=""/></div>
+<map name="a00128_af183111863c651ae5681665a2c379830_cgraph" id="a00128_af183111863c651ae5681665a2c379830_cgraph">
+<area shape="rect" id="node2" href="a00128.html#a71ba52744e853ff142de19e97cf5daed" title="Yarn.Lexer.LexerState.Add\lTransition" alt="" coords="232,5,411,46"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a71ba52744e853ff142de19e97cf5daed"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00176.html">TokenRule</a> Yarn.Lexer.LexerState.AddTransition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>entersState</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>delimitsText</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00310_source.html#l00227">227</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
+
+<p>References <a class="el" href="a00310_source.html#l00218">Yarn.Lexer.LexerState.patterns</a>.</p>
+
+<p>Referenced by <a class="el" href="a00310_source.html#l00240">Yarn.Lexer.LexerState.AddTextRule()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                                                                                                                 {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                var pattern = string.Format (CultureInfo.InvariantCulture, <span class="stringliteral">@&quot;\G{0}&quot;</span>, <a class="code" href="a00128.html#a951f91e9522ffe84851f2e25e9445106">patterns</a> [type]);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                var rule = <span class="keyword">new</span> TokenRule (type, <span class="keyword">new</span> Regex(pattern), entersState, delimitsText);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                tokenRules.Add(rule);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                <span class="keywordflow">return</span> rule;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            }</div>
+<div class="ttc" id="a00128_html_a951f91e9522ffe84851f2e25e9445106"><div class="ttname"><a href="a00128.html#a951f91e9522ffe84851f2e25e9445106">Yarn.Lexer.LexerState.patterns</a></div><div class="ttdeci">Dictionary&lt; TokenType, string &gt; patterns</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00218">Lexer.cs:218</a></div></div>
 </div><!-- fragment -->
 <p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00128_ae0562dc06ca747307b66039ef2f28772_cgraph.png" border="0" usemap="#a00128_ae0562dc06ca747307b66039ef2f28772_cgraph" alt=""/></div>
-<map name="a00128_ae0562dc06ca747307b66039ef2f28772_cgraph" id="a00128_ae0562dc06ca747307b66039ef2f28772_cgraph">
-<area shape="rect" id="node2" href="a00139.html#a666a945da1a7845b02b92592fccac291" title="Yarn.Parser.NextSymbolIs" alt="" coords="216,5,395,32"/></map>
+<div class="center"><img src="a00128_a71ba52744e853ff142de19e97cf5daed_icgraph.png" border="0" usemap="#a00128_a71ba52744e853ff142de19e97cf5daed_icgraph" alt=""/></div>
+<map name="a00128_a71ba52744e853ff142de19e97cf5daed_icgraph" id="a00128_a71ba52744e853ff142de19e97cf5daed_icgraph">
+<area shape="rect" id="node2" href="a00128.html#af183111863c651ae5681665a2c379830" title="Yarn.Lexer.LexerState.Add\lTextRule" alt="" coords="232,5,411,46"/></map>
 </div>
 </p>
 
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a580e520a29444fc23ac3660cbe514a09"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00128.html">Node</a> Yarn.Parser.ParseNode.NodeParent </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00295_source.html#l00100">100</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00295_source.html#l00373">Yarn.Parser.ShortcutOption.ShortcutOption()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                                       {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                var node = <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                <span class="keywordflow">do</span> {</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                    <span class="keywordflow">if</span> (node is Node) {</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                        <span class="keywordflow">return</span> node as Node;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                    }</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                    node = node.parent;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                } <span class="keywordflow">while</span> (node</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                    != null);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                <span class="keywordflow">return</span> null;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            }</div>
-</div><!-- fragment -->
-<p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00138_a580e520a29444fc23ac3660cbe514a09_icgraph.png" border="0" usemap="#a00138_a580e520a29444fc23ac3660cbe514a09_icgraph" alt=""/></div>
-<map name="a00138_a580e520a29444fc23ac3660cbe514a09_icgraph" id="a00138_a580e520a29444fc23ac3660cbe514a09_icgraph">
-<area shape="rect" id="node2" href="a00149.html#a2c80b137d65f31b24533987233074605" title="Yarn.Parser.ShortcutOption.\lShortcutOption" alt="" coords="248,5,435,46"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="ab11501ebf251fdaa7cfe44edfa993068"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">override string Yarn.Parser.Node.PrintTree </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>indentLevel</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements <a class="el" href="a00138.html#a0d6611653f20c2e4d90a97a96c657137">Yarn.Parser.ParseNode</a>.</p>
-
-<p>Definition at line <a class="el" href="a00295_source.html#l00142">142</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
-
-<p>References <a class="el" href="a00295_source.html#l00130">Yarn.Parser.Node._statements</a>, <a class="el" href="a00295_source.html#l00119">Yarn.Parser.Node.name</a>, and <a class="el" href="a00295_source.html#l00040">Yarn.Parser.Tab()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            {</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                var sb = <span class="keyword">new</span> StringBuilder ();</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                sb.Append (<a class="code" href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel, <span class="stringliteral">&quot;Node &quot;</span>+<a class="code" href="a00128.html#a3cfa07840da3a7a92c820788e902aefb">name</a>+<span class="stringliteral">&quot; {&quot;</span>));</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                <span class="keywordflow">foreach</span> (var statement <span class="keywordflow">in</span> <a class="code" href="a00128.html#ae910a20906be9b1964499efaefa48274">_statements</a>) {</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                    sb.Append( statement.PrintTree (indentLevel + 1));</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                }</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                sb.Append (<a class="code" href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel, <span class="stringliteral">&quot;}&quot;</span>));</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                <span class="keywordflow">return</span> sb.ToString();</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            }</div>
-<div class="ttc" id="a00128_html_ae910a20906be9b1964499efaefa48274"><div class="ttname"><a href="a00128.html#ae910a20906be9b1964499efaefa48274">Yarn.Parser.Node._statements</a></div><div class="ttdeci">List&lt; Statement &gt; _statements</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00130">Parser.cs:130</a></div></div>
-<div class="ttc" id="a00128_html_a3cfa07840da3a7a92c820788e902aefb"><div class="ttname"><a href="a00128.html#a3cfa07840da3a7a92c820788e902aefb">Yarn.Parser.Node.name</a></div><div class="ttdeci">string name</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00119">Parser.cs:119</a></div></div>
-<div class="ttc" id="a00139_html_aa8fa36b46de12a1c561d77b99c4b9ae3"><div class="ttname"><a href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Yarn.Parser.Tab</a></div><div class="ttdeci">static string Tab(int indentLevel, string input, bool newLine=true)</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00040">Parser.cs:40</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00128_ab11501ebf251fdaa7cfe44edfa993068_cgraph.png" border="0" usemap="#a00128_ab11501ebf251fdaa7cfe44edfa993068_cgraph" alt=""/></div>
-<map name="a00128_ab11501ebf251fdaa7cfe44edfa993068_cgraph" id="a00128_ab11501ebf251fdaa7cfe44edfa993068_cgraph">
-<area shape="rect" id="node2" href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3" title="Yarn.Parser.Tab" alt="" coords="237,5,355,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a054f36c80d5eeacd569a8859f599af67"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string Yarn.Parser.ParseNode.TagsToString </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>indentLevel</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00295_source.html#l00078">78</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
-
-<p>References <a class="el" href="a00295_source.html#l00040">Yarn.Parser.Tab()</a>, and <a class="el" href="a00295_source.html#l00076">Yarn.Parser.ParseNode.tags</a>.</p>
-
-<p>Referenced by <a class="el" href="a00295_source.html#l00226">Yarn.Parser.Statement.PrintTree()</a>, and <a class="el" href="a00295_source.html#l00409">Yarn.Parser.ShortcutOption.PrintTree()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00138.html#a58b3a15788fd2d4127d73619dc6d04ae">tags</a>.Length &gt; 0) {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    var s = <span class="keyword">new</span> StringBuilder ();</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                    s.Append (<a class="code" href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel + 1, <span class="stringliteral">&quot;Tags:&quot;</span>));</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                    <span class="keywordflow">foreach</span> (var tag <span class="keywordflow">in</span> this.<a class="code" href="a00138.html#a58b3a15788fd2d4127d73619dc6d04ae">tags</a>) {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                        s.Append(<a class="code" href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel + 2, <span class="stringliteral">&quot;#&quot;</span> + tag));</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                    }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                    <span class="keywordflow">return</span> s.ToString ();</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                    <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            }</div>
-<div class="ttc" id="a00138_html_a58b3a15788fd2d4127d73619dc6d04ae"><div class="ttname"><a href="a00138.html#a58b3a15788fd2d4127d73619dc6d04ae">Yarn.Parser.ParseNode.tags</a></div><div class="ttdeci">string[] tags</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00076">Parser.cs:76</a></div></div>
-<div class="ttc" id="a00139_html_aa8fa36b46de12a1c561d77b99c4b9ae3"><div class="ttname"><a href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Yarn.Parser.Tab</a></div><div class="ttdeci">static string Tab(int indentLevel, string input, bool newLine=true)</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00040">Parser.cs:40</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00138_a054f36c80d5eeacd569a8859f599af67_cgraph.png" border="0" usemap="#a00138_a054f36c80d5eeacd569a8859f599af67_cgraph" alt=""/></div>
-<map name="a00138_a054f36c80d5eeacd569a8859f599af67_cgraph" id="a00138_a054f36c80d5eeacd569a8859f599af67_cgraph">
-<area shape="rect" id="node2" href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3" title="Yarn.Parser.Tab" alt="" coords="248,12,365,39"/></map>
-</div>
-</p>
-
-<p><div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00138_a054f36c80d5eeacd569a8859f599af67_icgraph.png" border="0" usemap="#a00138_a054f36c80d5eeacd569a8859f599af67_icgraph" alt=""/></div>
-<map name="a00138_a054f36c80d5eeacd569a8859f599af67_icgraph" id="a00138_a054f36c80d5eeacd569a8859f599af67_icgraph">
-<area shape="rect" id="node2" href="a00156.html#aaac6d1e0c3b31f33e1c6f964c205153e" title="Yarn.Parser.Statement.PrintTree" alt="" coords="249,5,461,32"/><area shape="rect" id="node3" href="a00149.html#a529a2ef1aa6d7226db4ea7f3ea92b8c2" title="Yarn.Parser.ShortcutOption.\lPrintTree" alt="" coords="261,57,448,98"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a18c67cb16090d0889bb9d6c8c6c565f8"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">override string Yarn.Parser.ParseNode.ToString </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00295_source.html#l00094">94</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            {</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                <span class="keywordflow">return</span> this.GetType ().Name;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            }</div>
-</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="ae910a20906be9b1964499efaefa48274"></a>
+<a class="anchor" id="aeb8debd0d81a76e90f083f0bf407573e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Yarn.Lexer.LexerState.name</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00310_source.html#l00216">216</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a951f91e9522ffe84851f2e25e9445106"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -457,7 +334,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">List&lt;<a class="el" href="a00156.html">Statement</a>&gt; Yarn.Parser.Node._statements = new List&lt;<a class="el" href="a00156.html">Statement</a>&gt; ()</td>
+          <td class="memname">Dictionary&lt;<a class="el" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>, string&gt; Yarn.Lexer.LexerState.patterns</td>
         </tr>
       </table>
   </td>
@@ -467,86 +344,46 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00295_source.html#l00130">130</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00310_source.html#l00218">218</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00295_source.html#l00142">Yarn.Parser.Node.PrintTree()</a>.</p>
+<p>Referenced by <a class="el" href="a00310_source.html#l00227">Yarn.Lexer.LexerState.AddTransition()</a>, and <a class="el" href="a00310_source.html#l00220">Yarn.Lexer.LexerState.LexerState()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a18b493382de0fde5b4299c1bd2250075"></a>
+<a class="anchor" id="ad8b6ccac53bedd9dc202ffe6ac5698b2"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Yarn.Parser.ParseNode.lineNumber</td>
+          <td class="memname">bool Yarn.Lexer.LexerState.setTrackNextIndentation = false</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00295_source.html#l00061">61</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00310_source.html#l00276">276</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00295_source.html#l00065">Yarn.Parser.ParseNode.ParseNode()</a>.</p>
+<p>Referenced by <a class="el" href="a00310_source.html#l00673">Yarn.Lexer.EnterState()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af313a82103fcc2ff5a177dbb06b92f7b"></a>
+<a class="anchor" id="adf6563b1dc6f3ef80ed13c2b15b7be03"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00138.html">ParseNode</a> Yarn.Parser.ParseNode.parent</td>
+          <td class="memname">List&lt;<a class="el" href="a00176.html">TokenRule</a>&gt; Yarn.Lexer.LexerState.tokenRules = new List&lt;<a class="el" href="a00176.html">TokenRule</a>&gt;()</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00295_source.html#l00058">58</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00310_source.html#l00225">225</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00295_source.html#l00065">Yarn.Parser.ParseNode.ParseNode()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a58b3a15788fd2d4127d73619dc6d04ae"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string [] Yarn.Parser.ParseNode.tags = {}</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00295_source.html#l00076">76</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00295_source.html#l00373">Yarn.Parser.ShortcutOption.ShortcutOption()</a>, <a class="el" href="a00295_source.html#l00186">Yarn.Parser.Statement.Statement()</a>, and <a class="el" href="a00295_source.html#l00078">Yarn.Parser.ParseNode.TagsToString()</a>.</p>
+<p>Referenced by <a class="el" href="a00310_source.html#l00240">Yarn.Lexer.LexerState.AddTextRule()</a>, and <a class="el" href="a00310_source.html#l00497">Yarn.Lexer.TokeniseLine()</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
-<a class="anchor" id="a3cfa07840da3a7a92c820788e902aefb"></a>
+<a class="anchor" id="a69948f05c35eeae9cb8448c849a053e6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -554,98 +391,32 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string Yarn.Parser.Node.name</td>
+          <td class="memname">bool Yarn.Lexer.LexerState.containsTextRule \G((?!{0}).)*&quot;</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">package</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00295_source.html#l00119">119</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00310_source.html#l00266">266</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00295_source.html#l00132">Yarn.Parser.Node.Node()</a>, and <a class="el" href="a00295_source.html#l00142">Yarn.Parser.Node.PrintTree()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7b1e55929dd7c9b1b0349a70d1787f2a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">List&lt;string&gt; Yarn.Parser.Node.nodeTags</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">package</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00295_source.html#l00124">124</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a005a6b0f614beb77708fc5ce8fea66e1"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string Yarn.Parser.Node.source</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">package</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00295_source.html#l00121">121</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abdae3fb1c6927b38ce29b1b71a00cb12"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">IEnumerable&lt;<a class="el" href="a00156.html">Statement</a>&gt; Yarn.Parser.Node.statements</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">package</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00295_source.html#l00127">127</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+<p>Referenced by <a class="el" href="a00310_source.html#l00240">Yarn.Lexer.LexerState.AddTextRule()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="a00295_source.html">Parser.cs</a></li>
+<li>YarnSpinner/<a class="el" href="a00310_source.html">Lexer.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00041.html">Yarn</a></li><li class="navelem"><a class="el" href="a00139.html">Parser</a></li><li class="navelem"><a class="el" href="a00128.html">Node</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:38 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00051.html">Yarn</a></li><li class="navelem"><a class="el" href="a00127.html">Lexer</a></li><li class="navelem"><a class="el" href="a00128.html">LexerState</a></li>
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:07 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

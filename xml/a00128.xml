@@ -1,12 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00128" kind="class" prot="package">
-    <compoundname>Yarn::Parser::Node</compoundname>
-    <basecompoundref refid="a00138" prot="public" virt="non-virtual">Yarn.Parser.ParseNode</basecompoundref>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00128_1a3cfa07840da3a7a92c820788e902aefb" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+    <compoundname>Yarn::Lexer::LexerState</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00128_1aeb8debd0d81a76e90f083f0bf407573e" prot="public" static="no" mutable="no">
         <type>string</type>
-        <definition>string Yarn.Parser.Node.name</definition>
+        <definition>string Yarn.Lexer.LexerState.name</definition>
         <argsstring></argsstring>
         <name>name</name>
         <briefdescription>
@@ -15,188 +14,83 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="119" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="119" bodyend="-1"/>
-        <referencedby refid="a00128_1ae0562dc06ca747307b66039ef2f28772" compoundref="a00295" startline="132" endline="139">Yarn.Parser.Node.Node</referencedby>
-        <referencedby refid="a00128_1ab11501ebf251fdaa7cfe44edfa993068" compoundref="a00295" startline="142" endline="151">Yarn.Parser.Node.PrintTree</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="216" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="216" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="a00128_1a005a6b0f614beb77708fc5ce8fea66e1" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.Parser.Node.source</definition>
+      <memberdef kind="variable" id="a00128_1adf6563b1dc6f3ef80ed13c2b15b7be03" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="a00176" kindref="compound">TokenRule</ref> &gt;</type>
+        <definition>List&lt;TokenRule&gt; Yarn.Lexer.LexerState.tokenRules</definition>
         <argsstring></argsstring>
-        <name>source</name>
+        <name>tokenRules</name>
+        <initializer>= new List&lt;<ref refid="a00176" kindref="compound">TokenRule</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="121" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="121" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="225" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="225" bodyend="-1"/>
+        <referencedby refid="a00128_1af183111863c651ae5681665a2c379830" compoundref="a00310" startline="240" endline="264">Yarn.Lexer.LexerState.AddTextRule</referencedby>
+        <referencedby refid="a00127_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00310" startline="497" endline="659">Yarn.Lexer.TokeniseLine</referencedby>
       </memberdef>
-      <memberdef kind="property" id="a00128_1a7b1e55929dd7c9b1b0349a70d1787f2a" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>List&lt; string &gt;</type>
-        <definition>List&lt;string&gt; Yarn.Parser.Node.nodeTags</definition>
+      <memberdef kind="variable" id="a00128_1ad8b6ccac53bedd9dc202ffe6ac5698b2" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Lexer.LexerState.setTrackNextIndentation</definition>
         <argsstring></argsstring>
-        <name>nodeTags</name>
+        <name>setTrackNextIndentation</name>
+        <initializer>= false</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="124" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="124" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00128_1abdae3fb1c6927b38ce29b1b71a00cb12" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>IEnumerable&lt; <ref refid="a00156" kindref="compound">Statement</ref> &gt;</type>
-        <definition>IEnumerable&lt;Statement&gt; Yarn.Parser.Node.statements</definition>
-        <argsstring></argsstring>
-        <name>statements</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="127" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="127" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="276" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="276" bodyend="-1"/>
+        <referencedby refid="a00127_1ad3ef08f822b310d9864774b057b96995" compoundref="a00310" startline="673" endline="678">Yarn.Lexer.EnterState</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00128_1ae910a20906be9b1964499efaefa48274" prot="private" static="no" mutable="no">
-        <type>List&lt; <ref refid="a00156" kindref="compound">Statement</ref> &gt;</type>
-        <definition>List&lt;Statement&gt; Yarn.Parser.Node._statements</definition>
+      <memberdef kind="variable" id="a00128_1a951f91e9522ffe84851f2e25e9445106" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; <ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>, string &gt;</type>
+        <definition>Dictionary&lt;TokenType, string&gt; Yarn.Lexer.LexerState.patterns</definition>
         <argsstring></argsstring>
-        <name>_statements</name>
-        <initializer>= new List&lt;<ref refid="a00156" kindref="compound">Statement</ref>&gt; ()</initializer>
+        <name>patterns</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="130" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="130" bodyend="-1"/>
-        <referencedby refid="a00128_1ab11501ebf251fdaa7cfe44edfa993068" compoundref="a00295" startline="142" endline="151">Yarn.Parser.Node.PrintTree</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="218" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="218" bodyend="-1"/>
+        <referencedby refid="a00128_1a71ba52744e853ff142de19e97cf5daed" compoundref="a00310" startline="227" endline="236">Yarn.Lexer.LexerState.AddTransition</referencedby>
+        <referencedby refid="a00128_1ac67a7c0e09d7b4350f75b105723a4f6c" compoundref="a00310" startline="220" endline="223">Yarn.Lexer.LexerState.LexerState</referencedby>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00128_1ae0562dc06ca747307b66039ef2f28772" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Parser.Node.Node</definition>
-        <argsstring>(string name, ParseNode parent, Parser p)</argsstring>
-        <name>Node</name>
-        <param>
-          <type>string</type>
-          <declname>name</declname>
-        </param>
-        <param>
-          <type><ref refid="a00138" kindref="compound">ParseNode</ref></type>
-          <declname>parent</declname>
-        </param>
-        <param>
-          <type><ref refid="a00139" kindref="compound">Parser</ref></type>
-          <declname>p</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="132" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="132" bodyend="139"/>
-        <references refid="a00128_1a3cfa07840da3a7a92c820788e902aefb" compoundref="a00295" startline="119">Yarn.Parser.Node.name</references>
-        <references refid="a00139_1a666a945da1a7845b02b92592fccac291" compoundref="a00295" startline="1276" endline="1285">Yarn.Parser.NextSymbolIs</references>
-        <references refid="a00139_1a1a4de646937057988b59d2ff8035eae3" compoundref="a00295" startline="1257">Yarn.Parser.tokens</references>
-      </memberdef>
-      <memberdef kind="function" id="a00128_1ab11501ebf251fdaa7cfe44edfa993068" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override string</type>
-        <definition>override string Yarn.Parser.Node.PrintTree</definition>
-        <argsstring>(int indentLevel)</argsstring>
-        <name>PrintTree</name>
-        <reimplements refid="a00138_1a0d6611653f20c2e4d90a97a96c657137">PrintTree</reimplements>
-        <param>
-          <type>int</type>
-          <declname>indentLevel</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="142" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="142" bodyend="151"/>
-        <references refid="a00128_1ae910a20906be9b1964499efaefa48274" compoundref="a00295" startline="130">Yarn.Parser.Node._statements</references>
-        <references refid="a00128_1a3cfa07840da3a7a92c820788e902aefb" compoundref="a00295" startline="119">Yarn.Parser.Node.name</references>
-        <references refid="a00139_1aa8fa36b46de12a1c561d77b99c4b9ae3" compoundref="a00295" startline="40" endline="52">Yarn.Parser.Tab</references>
-      </memberdef>
-      <memberdef kind="function" id="a00138_1a580e520a29444fc23ac3660cbe514a09" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00128" kindref="compound">Node</ref></type>
-        <definition>Node Yarn.Parser.ParseNode.NodeParent</definition>
-        <argsstring>()</argsstring>
-        <name>NodeParent</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="100" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="100" bodyend="112"/>
-        <referencedby refid="a00149_1a2c80b137d65f31b24533987233074605" compoundref="a00295" startline="373" endline="407">Yarn.Parser.ShortcutOption.ShortcutOption</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-attrib">
-      <memberdef kind="variable" id="a00138_1af313a82103fcc2ff5a177dbb06b92f7b" prot="package" static="no" mutable="no">
-        <type><ref refid="a00138" kindref="compound">ParseNode</ref></type>
-        <definition>ParseNode Yarn.Parser.ParseNode.parent</definition>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00128_1a69948f05c35eeae9cb8448c849a053e6" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Lexer.LexerState.containsTextRule</definition>
         <argsstring></argsstring>
-        <name>parent</name>
+        <name>containsTextRule</name>
+        <initializer>\G((?!{0}).)*&quot;</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="58" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="58" bodyend="-1"/>
-        <referencedby refid="a00138_1a9e7e90bbaed268529230512e4b5a2f77" compoundref="a00295" startline="65" endline="71">Yarn.Parser.ParseNode.ParseNode</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00138_1a18b493382de0fde5b4299c1bd2250075" prot="package" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Parser.ParseNode.lineNumber</definition>
-        <argsstring></argsstring>
-        <name>lineNumber</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="61" bodyend="-1"/>
-        <referencedby refid="a00138_1a9e7e90bbaed268529230512e4b5a2f77" compoundref="a00295" startline="65" endline="71">Yarn.Parser.ParseNode.ParseNode</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00138_1a58b3a15788fd2d4127d73619dc6d04ae" prot="package" static="no" mutable="no">
-        <type>string[]</type>
-        <definition>string [] Yarn.Parser.ParseNode.tags</definition>
-        <argsstring></argsstring>
-        <name>tags</name>
-        <initializer>= {}</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="76" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="76" bodyend="-1"/>
-        <referencedby refid="a00149_1a2c80b137d65f31b24533987233074605" compoundref="a00295" startline="373" endline="407">Yarn.Parser.ShortcutOption.ShortcutOption</referencedby>
-        <referencedby refid="a00156_1acba736ffbcc0f8bf5cee2b23f7733dff" compoundref="a00295" startline="186" endline="224">Yarn.Parser.Statement.Statement</referencedby>
-        <referencedby refid="a00138_1a054f36c80d5eeacd569a8859f599af67" compoundref="a00295" startline="78" endline="92">Yarn.Parser.ParseNode.TagsToString</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="266" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="266" bodyend="-1"/>
+        <referencedby refid="a00128_1af183111863c651ae5681665a2c379830" compoundref="a00310" startline="240" endline="264">Yarn.Lexer.LexerState.AddTextRule</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00138_1a054f36c80d5eeacd569a8859f599af67" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
-        <definition>string Yarn.Parser.ParseNode.TagsToString</definition>
-        <argsstring>(int indentLevel)</argsstring>
-        <name>TagsToString</name>
+      <memberdef kind="function" id="a00128_1ac67a7c0e09d7b4350f75b105723a4f6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Lexer.LexerState.LexerState</definition>
+        <argsstring>(Dictionary&lt; TokenType, string &gt; patterns)</argsstring>
+        <name>LexerState</name>
         <param>
-          <type>int</type>
-          <declname>indentLevel</declname>
+          <type>Dictionary&lt; <ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>, string &gt;</type>
+          <declname>patterns</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -204,80 +98,84 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="78" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="78" bodyend="92"/>
-        <references refid="a00139_1aa8fa36b46de12a1c561d77b99c4b9ae3" compoundref="a00295" startline="40" endline="52">Yarn.Parser.Tab</references>
-        <references refid="a00138_1a58b3a15788fd2d4127d73619dc6d04ae" compoundref="a00295" startline="76">Yarn.Parser.ParseNode.tags</references>
-        <referencedby refid="a00156_1aaac6d1e0c3b31f33e1c6f964c205153e" compoundref="a00295" startline="226" endline="258">Yarn.Parser.Statement.PrintTree</referencedby>
-        <referencedby refid="a00149_1a529a2ef1aa6d7226db4ea7f3ea92b8c2" compoundref="a00295" startline="409" endline="429">Yarn.Parser.ShortcutOption.PrintTree</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="220" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="220" bodyend="223"/>
+        <references refid="a00128_1a951f91e9522ffe84851f2e25e9445106" compoundref="a00310" startline="218">Yarn.Lexer.LexerState.patterns</references>
       </memberdef>
-      <memberdef kind="function" id="a00138_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override string</type>
-        <definition>override string Yarn.Parser.ParseNode.ToString</definition>
-        <argsstring>()</argsstring>
-        <name>ToString</name>
+      <memberdef kind="function" id="a00128_1a71ba52744e853ff142de19e97cf5daed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00176" kindref="compound">TokenRule</ref></type>
+        <definition>TokenRule Yarn.Lexer.LexerState.AddTransition</definition>
+        <argsstring>(TokenType type, string entersState=null, bool delimitsText=false)</argsstring>
+        <name>AddTransition</name>
+        <param>
+          <type><ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>entersState</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>delimitsText</declname>
+          <defval>false</defval>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="94" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="94" bodyend="97"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="227" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="227" bodyend="236"/>
+        <references refid="a00128_1a951f91e9522ffe84851f2e25e9445106" compoundref="a00310" startline="218">Yarn.Lexer.LexerState.patterns</references>
+        <referencedby refid="a00128_1af183111863c651ae5681665a2c379830" compoundref="a00310" startline="240" endline="264">Yarn.Lexer.LexerState.AddTextRule</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00128_1af183111863c651ae5681665a2c379830" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00176" kindref="compound">TokenRule</ref></type>
+        <definition>TokenRule Yarn.Lexer.LexerState.AddTextRule</definition>
+        <argsstring>(TokenType type, string entersState=null)</argsstring>
+        <name>AddTextRule</name>
+        <param>
+          <type><ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>entersState</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="240" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="240" bodyend="264"/>
+        <references refid="a00128_1a71ba52744e853ff142de19e97cf5daed" compoundref="a00310" startline="227" endline="236">Yarn.Lexer.LexerState.AddTransition</references>
+        <references refid="a00128_1a69948f05c35eeae9cb8448c849a053e6" compoundref="a00310" startline="266">Yarn.Lexer.LexerState.containsTextRule</references>
+        <references refid="a00128_1adf6563b1dc6f3ef80ed13c2b15b7be03" compoundref="a00310" startline="225">Yarn.Lexer.LexerState.tokenRules</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1526">
-        <label>Yarn.Parser.Node</label>
-        <link refid="a00128"/>
-        <childnode refid="1527" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1527">
-        <label>ParseNode</label>
-        <link refid="a00138"/>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1530">
-        <label>Yarn.Parser.ParseNode</label>
-        <link refid="a00138"/>
-        <childnode refid="1530" relation="usage">
-          <edgelabel>~parent</edgelabel>
-        </childnode>
-      </node>
-      <node id="1528">
-        <label>Yarn.Parser.Node</label>
+      <node id="1488">
+        <label>Yarn.Lexer.LexerState</label>
         <link refid="a00128"/>
-        <childnode refid="1529" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1529">
-        <label>ParseNode</label>
-        <link refid="a00138"/>
-        <childnode refid="1530" relation="usage">
-          <edgelabel>~parent</edgelabel>
-        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="117" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="117" bodyend="153"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="214" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="214" bodyend="279"/>
     <listofallmembers>
-      <member refid="a00128_1ae910a20906be9b1964499efaefa48274" prot="private" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>_statements</name></member>
-      <member refid="a00138_1a18b493382de0fde5b4299c1bd2250075" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>lineNumber</name></member>
-      <member refid="a00128_1a3cfa07840da3a7a92c820788e902aefb" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>name</name></member>
-      <member refid="a00128_1ae0562dc06ca747307b66039ef2f28772" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>Node</name></member>
-      <member refid="a00138_1a580e520a29444fc23ac3660cbe514a09" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>NodeParent</name></member>
-      <member refid="a00128_1a7b1e55929dd7c9b1b0349a70d1787f2a" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>nodeTags</name></member>
-      <member refid="a00138_1af313a82103fcc2ff5a177dbb06b92f7b" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>parent</name></member>
-      <member refid="a00138_1a9e7e90bbaed268529230512e4b5a2f77" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>ParseNode</name></member>
-      <member refid="a00128_1ab11501ebf251fdaa7cfe44edfa993068" prot="package" virt="virtual"><scope>Yarn::Parser::Node</scope><name>PrintTree</name></member>
-      <member refid="a00128_1a005a6b0f614beb77708fc5ce8fea66e1" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>source</name></member>
-      <member refid="a00128_1abdae3fb1c6927b38ce29b1b71a00cb12" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>statements</name></member>
-      <member refid="a00138_1a58b3a15788fd2d4127d73619dc6d04ae" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>tags</name></member>
-      <member refid="a00138_1a054f36c80d5eeacd569a8859f599af67" prot="public" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>TagsToString</name></member>
-      <member refid="a00138_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>ToString</name></member>
+      <member refid="a00128_1af183111863c651ae5681665a2c379830" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>AddTextRule</name></member>
+      <member refid="a00128_1a71ba52744e853ff142de19e97cf5daed" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>AddTransition</name></member>
+      <member refid="a00128_1a69948f05c35eeae9cb8448c849a053e6" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>containsTextRule</name></member>
+      <member refid="a00128_1ac67a7c0e09d7b4350f75b105723a4f6c" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>LexerState</name></member>
+      <member refid="a00128_1aeb8debd0d81a76e90f083f0bf407573e" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>name</name></member>
+      <member refid="a00128_1a951f91e9522ffe84851f2e25e9445106" prot="private" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>patterns</name></member>
+      <member refid="a00128_1ad8b6ccac53bedd9dc202ffe6ac5698b2" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>setTrackNextIndentation</name></member>
+      <member refid="a00128_1adf6563b1dc6f3ef80ed13c2b15b7be03" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>tokenRules</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

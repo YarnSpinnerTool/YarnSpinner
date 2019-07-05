@@ -1,466 +1,93 @@
-\hypertarget{a00107}{\section{Csv\-Helper.\-I\-Csv\-Writer Interface Reference}
-\label{a00107}\index{Csv\-Helper.\-I\-Csv\-Writer@{Csv\-Helper.\-I\-Csv\-Writer}}
+\hypertarget{a00107}{\section{Yarn.\-Generate\-Table\-Options Class Reference}
+\label{a00107}\index{Yarn.\-Generate\-Table\-Options@{Yarn.\-Generate\-Table\-Options}}
 }
 
 
-Defines methods used to write to a C\-S\-V file.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-I\-Csv\-Writer\-:
+Inheritance diagram for Yarn.\-Generate\-Table\-Options\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{a00451}
+\includegraphics[width=216pt]{a00747}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-I\-Csv\-Writer\-:
+Collaboration diagram for Yarn.\-Generate\-Table\-Options\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=234pt]{a00452}
+\includegraphics[width=216pt]{a00748}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-void \hyperlink{a00107_ace91a528ee7422203cf28ddb0c6cab93}{Write\-Field} (string field)
-\begin{DoxyCompactList}\small\item\em Writes the field to the C\-S\-V file. The field may get quotes added to it. When all fields are written for a record, \hyperlink{a00107_a6bb1687959808ea1219fa68e7f3060fa}{Next\-Record()} must be called to complete writing of the current record. \end{DoxyCompactList}\item 
-void \hyperlink{a00107_aa8b1e17777e22de131fc759f59ebf4a0}{Write\-Field} (string field, bool should\-Quote)
-\begin{DoxyCompactList}\small\item\em Writes the field to the C\-S\-V file. This will ignore any need to quote and ignore the Csv\-Configuration.\-Quote\-All\-Fields and just quote based on the should\-Quote parameter. When all fields are written for a record, \hyperlink{a00107_a6bb1687959808ea1219fa68e7f3060fa}{Next\-Record()} must be called to complete writing of the current record. \end{DoxyCompactList}\item 
-void \hyperlink{a00107_ae9b669ef98e0c3ac3b2eb2345b9f095e}{Write\-Field$<$ T $>$} (T field)
-\begin{DoxyCompactList}\small\item\em Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00107_a6bb1687959808ea1219fa68e7f3060fa}{Next\-Record()} must be called to complete writing of the current record. \end{DoxyCompactList}\item 
-void \hyperlink{a00107_ab2be677f2c7ff5a482f5b406388e8a90}{Write\-Field$<$ T $>$} (T field, \hyperlink{a00113}{I\-Type\-Converter} converter)
-\begin{DoxyCompactList}\small\item\em Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00107_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. \end{DoxyCompactList}\item 
-void \hyperlink{a00107_a7b465dbc52a5ed040da625c93fbfb1fa}{Write\-Field$<$ T, T\-Converter $>$} (T field)
-\begin{DoxyCompactList}\small\item\em Writes the field to the C\-S\-V file using the given I\-Type\-Converter. When all fields are written for a record, \hyperlink{a00107_a6bb1687959808ea1219fa68e7f3060fa}{Next\-Record()} must be called to complete writing of the current record. \end{DoxyCompactList}\item 
-void \hyperlink{a00107_a1a0564acb2e20c1792bb27d3ed303d5f}{Write\-Field} (Type type, object field)
-\begin{DoxyCompactList}\small\item\em Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00107_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. \end{DoxyCompactList}\item 
-void \hyperlink{a00107_a0fc0ce39655b94dd519af7aeecc4e9a3}{Write\-Field} (Type type, object field, \hyperlink{a00113}{I\-Type\-Converter} converter)
-\begin{DoxyCompactList}\small\item\em Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00107_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. \end{DoxyCompactList}\item 
-void \hyperlink{a00107_a6bb1687959808ea1219fa68e7f3060fa}{Next\-Record} ()
-\begin{DoxyCompactList}\small\item\em Ends writing of the current record and starts a new record. This is used when manually writing records with Write\-Field\{\-T\}( T ) \end{DoxyCompactList}\item 
-void \hyperlink{a00107_a0b6bf45e56de8f5125c07f0143e74d19}{Write\-Excel\-Separator} ()
-\begin{DoxyCompactList}\small\item\em Write the Excel seperator record. \end{DoxyCompactList}\item 
-void \hyperlink{a00107_a1355ab3a112318c05b96606a9682264f}{Write\-Header$<$ T $>$} ()
-\begin{DoxyCompactList}\small\item\em Writes the header record from the given properties. \end{DoxyCompactList}\item 
-void \hyperlink{a00107_a51b990d9a9615159631494390d8b53b6}{Write\-Header} (Type type)
-\begin{DoxyCompactList}\small\item\em Writes the header record from the given properties. \end{DoxyCompactList}\item 
-void \hyperlink{a00107_a9620a114ee9e858760f74013cf341f3a}{Write\-Record$<$ T $>$} (T record)
-\begin{DoxyCompactList}\small\item\em Writes the record to the C\-S\-V file. \end{DoxyCompactList}\item 
-void \hyperlink{a00107_a6d492491db7fccb8831e782f01b820f0}{Write\-Record} (Type type, object record)
-\begin{DoxyCompactList}\small\item\em Writes the record to the C\-S\-V file. \end{DoxyCompactList}\item 
-void \hyperlink{a00107_a3aaa524ef8e6a1f9a0af10a38e2e9406}{Write\-Records} (I\-Enumerable records)
-\begin{DoxyCompactList}\small\item\em Writes the list of records to the C\-S\-V file. \end{DoxyCompactList}\item 
-void \hyperlink{a00107_a25ea9b1de249748a2e3e73942ad9f583}{Clear\-Record\-Cache$<$ T $>$} ()
-\begin{DoxyCompactList}\small\item\em Clears the record cache for the given type. After Write\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, Clear\-Record\-Cache\{\-T\} needs to be called to update the record cache. \end{DoxyCompactList}\item 
-void \hyperlink{a00107_aeaa617bc92344678ad45ba34ab2a248d}{Clear\-Record\-Cache} (Type type)
-\begin{DoxyCompactList}\small\item\em Clears the record cache for the given type. After Write\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, \hyperlink{a00107_aeaa617bc92344678ad45ba34ab2a248d}{Clear\-Record\-Cache( Type )} needs to be called to update the record cache. \end{DoxyCompactList}\item 
-void \hyperlink{a00107_ab56edba6195d8d1f7976d7f28928c43b}{Clear\-Record\-Cache} ()
-\begin{DoxyCompactList}\small\item\em Clears the record cache for all types. After Write\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, \hyperlink{a00107_ab56edba6195d8d1f7976d7f28928c43b}{Clear\-Record\-Cache()} needs to be called to update the record cache. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00053}{Csv\-Configuration} \hyperlink{a00107_a9eff0fa510dda6664274510dd4b025e5}{Configuration}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+string \hyperlink{a00107_a8b30c1b7fb1b74eae455a568c1024b3d}{only\-Use\-Tag}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{a00041_a89964ea17bd19caf00cb5bff563ed01c}{show\-Debugging\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{a00041_ada4d83d1756918f362d55f6649b82b17}{verbose}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+I\-List$<$ string $>$ \hyperlink{a00041_aa93cbb1bc1d5328e0a417012621e92d2}{files}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Defines methods used to write to a C\-S\-V file. 
 
 
-
-Definition at line 15 of file I\-Csv\-Writer.\-cs.
-
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00107_aeaa617bc92344678ad45ba34ab2a248d}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Clear\-Record\-Cache@{Clear\-Record\-Cache}}
-\index{Clear\-Record\-Cache@{Clear\-Record\-Cache}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Clear\-Record\-Cache}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Writer.\-Clear\-Record\-Cache (
-\begin{DoxyParamCaption}
-\item[{Type}]{type}
-\end{DoxyParamCaption}
-)}}\label{a00107_aeaa617bc92344678ad45ba34ab2a248d}
-
-
-Clears the record cache for the given type. After Write\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, \hyperlink{a00107_aeaa617bc92344678ad45ba34ab2a248d}{Clear\-Record\-Cache( Type )} needs to be called to update the record cache. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The record type.\\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \hyperlink{a00071_a439d9918f23faa938820a792c57aa090}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_ab56edba6195d8d1f7976d7f28928c43b}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Clear\-Record\-Cache@{Clear\-Record\-Cache}}
-\index{Clear\-Record\-Cache@{Clear\-Record\-Cache}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Clear\-Record\-Cache}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Writer.\-Clear\-Record\-Cache (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00107_ab56edba6195d8d1f7976d7f28928c43b}
-
-
-Clears the record cache for all types. After Write\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, \hyperlink{a00107_ab56edba6195d8d1f7976d7f28928c43b}{Clear\-Record\-Cache()} needs to be called to update the record cache. 
-
-
-
-Implemented in \hyperlink{a00071_a16aa1591d1c89062b6af26bf1989415d}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_a25ea9b1de249748a2e3e73942ad9f583}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Clear\-Record\-Cache$<$ T $>$@{Clear\-Record\-Cache$<$ T $>$}}
-\index{Clear\-Record\-Cache$<$ T $>$@{Clear\-Record\-Cache$<$ T $>$}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Clear\-Record\-Cache$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf Csv\-Helper.\-I\-Csv\-Writer.\-Clear\-Record\-Cache}$<$ T $>$ (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00107_a25ea9b1de249748a2e3e73942ad9f583}
-
-
-Clears the record cache for the given type. After Write\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, Clear\-Record\-Cache\{\-T\} needs to be called to update the record cache. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The record type.\\
-\hline
-\end{DoxyTemplParams}
-
-
-Implemented in \hyperlink{a00071_a11eb73c5fcd65642b4b4959a7200ba96}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_a6bb1687959808ea1219fa68e7f3060fa}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Next\-Record@{Next\-Record}}
-\index{Next\-Record@{Next\-Record}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Next\-Record}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Writer.\-Next\-Record (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00107_a6bb1687959808ea1219fa68e7f3060fa}
-
-
-Ends writing of the current record and starts a new record. This is used when manually writing records with Write\-Field\{\-T\}( T ) 
-
-
-
-Implemented in \hyperlink{a00071_a397af8c87002d3b9c2b5152c6981d4d2}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_a0b6bf45e56de8f5125c07f0143e74d19}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Write\-Excel\-Separator@{Write\-Excel\-Separator}}
-\index{Write\-Excel\-Separator@{Write\-Excel\-Separator}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Write\-Excel\-Separator}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Writer.\-Write\-Excel\-Separator (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00107_a0b6bf45e56de8f5125c07f0143e74d19}
-
-
-Write the Excel seperator record. 
-
-
-
-Implemented in \hyperlink{a00071_aa07bcdeb70bf35895fdc51e46afde120}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_ace91a528ee7422203cf28ddb0c6cab93}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Write\-Field@{Write\-Field}}
-\index{Write\-Field@{Write\-Field}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Write\-Field}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Writer.\-Write\-Field (
-\begin{DoxyParamCaption}
-\item[{string}]{field}
-\end{DoxyParamCaption}
-)}}\label{a00107_ace91a528ee7422203cf28ddb0c6cab93}
-
-
-Writes the field to the C\-S\-V file. The field may get quotes added to it. When all fields are written for a record, \hyperlink{a00107_a6bb1687959808ea1219fa68e7f3060fa}{Next\-Record()} must be called to complete writing of the current record. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em field} & The field to write.\\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \hyperlink{a00071_a994d9b339c4cda8bf83d5665b5c4ff1a}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_aa8b1e17777e22de131fc759f59ebf4a0}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Write\-Field@{Write\-Field}}
-\index{Write\-Field@{Write\-Field}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Write\-Field}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Writer.\-Write\-Field (
-\begin{DoxyParamCaption}
-\item[{string}]{field, }
-\item[{bool}]{should\-Quote}
-\end{DoxyParamCaption}
-)}}\label{a00107_aa8b1e17777e22de131fc759f59ebf4a0}
-
-
-Writes the field to the C\-S\-V file. This will ignore any need to quote and ignore the Csv\-Configuration.\-Quote\-All\-Fields and just quote based on the should\-Quote parameter. When all fields are written for a record, \hyperlink{a00107_a6bb1687959808ea1219fa68e7f3060fa}{Next\-Record()} must be called to complete writing of the current record. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em field} & The field to write.\\
-\hline
-{\em should\-Quote} & True to quote the field, otherwise false.\\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \hyperlink{a00071_a8acd81f4b1e7e725f6c741313ce14a47}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_a1a0564acb2e20c1792bb27d3ed303d5f}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Write\-Field@{Write\-Field}}
-\index{Write\-Field@{Write\-Field}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Write\-Field}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Writer.\-Write\-Field (
-\begin{DoxyParamCaption}
-\item[{Type}]{type, }
-\item[{object}]{field}
-\end{DoxyParamCaption}
-)}}\label{a00107_a1a0564acb2e20c1792bb27d3ed303d5f}
-
-
-Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00107_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type of the field.\\
-\hline
-{\em field} & The field to write.\\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \hyperlink{a00071_aaac679b85a63076fd2f106cd36acbc40}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_a0fc0ce39655b94dd519af7aeecc4e9a3}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Write\-Field@{Write\-Field}}
-\index{Write\-Field@{Write\-Field}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Write\-Field}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Writer.\-Write\-Field (
-\begin{DoxyParamCaption}
-\item[{Type}]{type, }
-\item[{object}]{field, }
-\item[{{\bf I\-Type\-Converter}}]{converter}
-\end{DoxyParamCaption}
-)}}\label{a00107_a0fc0ce39655b94dd519af7aeecc4e9a3}
-
-
-Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00107_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type of the field.\\
-\hline
-{\em field} & The field to write.\\
-\hline
-{\em converter} & The converter used to convert the field into a string.\\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \hyperlink{a00071_aecf8d120ccbffce3c5cd56bcea754225}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_ae9b669ef98e0c3ac3b2eb2345b9f095e}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Write\-Field$<$ T $>$@{Write\-Field$<$ T $>$}}
-\index{Write\-Field$<$ T $>$@{Write\-Field$<$ T $>$}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Write\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf Csv\-Helper.\-I\-Csv\-Writer.\-Write\-Field}$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{T}]{field}
-\end{DoxyParamCaption}
-)}}\label{a00107_ae9b669ef98e0c3ac3b2eb2345b9f095e}
-
-
-Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00107_a6bb1687959808ea1219fa68e7f3060fa}{Next\-Record()} must be called to complete writing of the current record. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type of the field.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em field} & The field to write.\\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \hyperlink{a00071_a7ec3e527a5346503adae03731804bd78}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_ab2be677f2c7ff5a482f5b406388e8a90}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Write\-Field$<$ T $>$@{Write\-Field$<$ T $>$}}
-\index{Write\-Field$<$ T $>$@{Write\-Field$<$ T $>$}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Write\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf Csv\-Helper.\-I\-Csv\-Writer.\-Write\-Field}$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{T}]{field, }
-\item[{{\bf I\-Type\-Converter}}]{converter}
-\end{DoxyParamCaption}
-)}}\label{a00107_ab2be677f2c7ff5a482f5b406388e8a90}
-
-
-Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00107_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type of the field.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em field} & The field to write.\\
-\hline
-{\em converter} & The converter used to convert the field into a string.\\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \hyperlink{a00071_a8fb44629353e3198293b93d94e1b8c87}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_a7b465dbc52a5ed040da625c93fbfb1fa}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Write\-Field$<$ T, T\-Converter $>$@{Write\-Field$<$ T, T\-Converter $>$}}
-\index{Write\-Field$<$ T, T\-Converter $>$@{Write\-Field$<$ T, T\-Converter $>$}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Write\-Field$<$ T, T\-Converter $>$}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf Csv\-Helper.\-I\-Csv\-Writer.\-Write\-Field}$<$ T, T\-Converter $>$ (
-\begin{DoxyParamCaption}
-\item[{T}]{field}
-\end{DoxyParamCaption}
-)}}\label{a00107_a7b465dbc52a5ed040da625c93fbfb1fa}
-
-
-Writes the field to the C\-S\-V file using the given I\-Type\-Converter. When all fields are written for a record, \hyperlink{a00107_a6bb1687959808ea1219fa68e7f3060fa}{Next\-Record()} must be called to complete writing of the current record. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type of the field.\\
-\hline
-{\em T\-Converter} & The type of the converter.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em field} & The field to write.\\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \hyperlink{a00071_a8879b818c7318f77e230f33a3dcec9c3}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_a51b990d9a9615159631494390d8b53b6}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Write\-Header@{Write\-Header}}
-\index{Write\-Header@{Write\-Header}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Write\-Header}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Writer.\-Write\-Header (
-\begin{DoxyParamCaption}
-\item[{Type}]{type}
-\end{DoxyParamCaption}
-)}}\label{a00107_a51b990d9a9615159631494390d8b53b6}
-
-
-Writes the header record from the given properties. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type of the record.\\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \hyperlink{a00071_af2298dcd2934550fd9dd592921f18541}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_a1355ab3a112318c05b96606a9682264f}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Write\-Header$<$ T $>$@{Write\-Header$<$ T $>$}}
-\index{Write\-Header$<$ T $>$@{Write\-Header$<$ T $>$}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Write\-Header$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf Csv\-Helper.\-I\-Csv\-Writer.\-Write\-Header}$<$ T $>$ (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00107_a1355ab3a112318c05b96606a9682264f}
-
-
-Writes the header record from the given properties. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type of the record.\\
-\hline
-\end{DoxyTemplParams}
-
-
-Implemented in \hyperlink{a00071_a3585991c17c8708d238600fa9093faa2}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_a6d492491db7fccb8831e782f01b820f0}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Write\-Record@{Write\-Record}}
-\index{Write\-Record@{Write\-Record}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Write\-Record}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Writer.\-Write\-Record (
-\begin{DoxyParamCaption}
-\item[{Type}]{type, }
-\item[{object}]{record}
-\end{DoxyParamCaption}
-)}}\label{a00107_a6d492491db7fccb8831e782f01b820f0}
-
-
-Writes the record to the C\-S\-V file. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type of the record.\\
-\hline
-{\em record} & The record to write.\\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \hyperlink{a00071_ab1bc88015b53d21f6f5746a65180b0ac}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_a9620a114ee9e858760f74013cf341f3a}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Write\-Record$<$ T $>$@{Write\-Record$<$ T $>$}}
-\index{Write\-Record$<$ T $>$@{Write\-Record$<$ T $>$}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Write\-Record$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf Csv\-Helper.\-I\-Csv\-Writer.\-Write\-Record}$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{T}]{record}
-\end{DoxyParamCaption}
-)}}\label{a00107_a9620a114ee9e858760f74013cf341f3a}
-
-
-Writes the record to the C\-S\-V file. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type of the record.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em record} & The record to write.\\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \hyperlink{a00071_aec261c2dfe23d6ed84534934e916d8ca}{Csv\-Helper.\-Csv\-Writer}.
-
-\hypertarget{a00107_a3aaa524ef8e6a1f9a0af10a38e2e9406}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Write\-Records@{Write\-Records}}
-\index{Write\-Records@{Write\-Records}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Write\-Records}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Writer.\-Write\-Records (
-\begin{DoxyParamCaption}
-\item[{I\-Enumerable}]{records}
-\end{DoxyParamCaption}
-)}}\label{a00107_a3aaa524ef8e6a1f9a0af10a38e2e9406}
-
-
-Writes the list of records to the C\-S\-V file. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em records} & The list of records to write.\\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \hyperlink{a00071_ab92f8ddaaa2650eafbd9d16b3813d14e}{Csv\-Helper.\-Csv\-Writer}.
+Definition at line 111 of file Main.\-cs.
 
 
 
 \subsection{Property Documentation}
-\hypertarget{a00107_a9eff0fa510dda6664274510dd4b025e5}{\index{Csv\-Helper\-::\-I\-Csv\-Writer@{Csv\-Helper\-::\-I\-Csv\-Writer}!Configuration@{Configuration}}
-\index{Configuration@{Configuration}!CsvHelper::ICsvWriter@{Csv\-Helper\-::\-I\-Csv\-Writer}}
-\subsubsection[{Configuration}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Configuration} Csv\-Helper.\-I\-Csv\-Writer.\-Configuration\hspace{0.3cm}{\ttfamily [get]}}}\label{a00107_a9eff0fa510dda6664274510dd4b025e5}
+\hypertarget{a00041_aa93cbb1bc1d5328e0a417012621e92d2}{\index{Yarn\-::\-Generate\-Table\-Options@{Yarn\-::\-Generate\-Table\-Options}!files@{files}}
+\index{files@{files}!Yarn::GenerateTableOptions@{Yarn\-::\-Generate\-Table\-Options}}
+\subsubsection[{files}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Base\-Options.\-files\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00041_aa93cbb1bc1d5328e0a417012621e92d2}
 
 
-Gets or sets the configuration. 
-
-
-
-Definition at line 20 of file I\-Csv\-Writer.\-cs.
+Definition at line 49 of file Main.\-cs.
 
 
 
-The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run(), and Yarn.\-Yarn\-Spinner\-Console.\-Verify().
+
+\hypertarget{a00107_a8b30c1b7fb1b74eae455a568c1024b3d}{\index{Yarn\-::\-Generate\-Table\-Options@{Yarn\-::\-Generate\-Table\-Options}!only\-Use\-Tag@{only\-Use\-Tag}}
+\index{only\-Use\-Tag@{only\-Use\-Tag}!Yarn::GenerateTableOptions@{Yarn\-::\-Generate\-Table\-Options}}
+\subsubsection[{only\-Use\-Tag}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Generate\-Table\-Options.\-only\-Use\-Tag\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00107_a8b30c1b7fb1b74eae455a568c1024b3d}
+
+
+Definition at line 114 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-Table\-Generator.\-Generate\-Tables().
+
+\hypertarget{a00041_a89964ea17bd19caf00cb5bff563ed01c}{\index{Yarn\-::\-Generate\-Table\-Options@{Yarn\-::\-Generate\-Table\-Options}!show\-Debugging\-Info@{show\-Debugging\-Info}}
+\index{show\-Debugging\-Info@{show\-Debugging\-Info}!Yarn::GenerateTableOptions@{Yarn\-::\-Generate\-Table\-Options}}
+\subsubsection[{show\-Debugging\-Info}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-show\-Debugging\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00041_a89964ea17bd19caf00cb5bff563ed01c}
+
+
+Definition at line 42 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
+
+\hypertarget{a00041_ada4d83d1756918f362d55f6649b82b17}{\index{Yarn\-::\-Generate\-Table\-Options@{Yarn\-::\-Generate\-Table\-Options}!verbose@{verbose}}
+\index{verbose@{verbose}!Yarn::GenerateTableOptions@{Yarn\-::\-Generate\-Table\-Options}}
+\subsubsection[{verbose}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-verbose\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00041_ada4d83d1756918f362d55f6649b82b17}
+
+
+Definition at line 46 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Table\-Generator.\-Generate\-Tables().
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00240}{I\-Csv\-Writer.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner\-Console/\hyperlink{a00325}{Main.\-cs}\end{DoxyCompactItemize}

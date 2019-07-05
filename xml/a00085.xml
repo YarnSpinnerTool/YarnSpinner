@@ -1,161 +1,190 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00085" kind="class" prot="public" abstract="yes">
-    <compoundname>Yarn::Unity::DialogueUIBehaviour</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
-    <derivedcompoundref refid="a00161" prot="public" virt="non-virtual">TestDialogueUIBehaviour</derivedcompoundref>
-    <derivedcompoundref refid="a00091" prot="public" virt="non-virtual">Yarn.Unity.Example.ExampleDialogueUI</derivedcompoundref>
+  <compounddef id="a00085" kind="class" prot="public">
+    <compoundname>CsvHelper::TypeConversion::DateTimeOffsetConverter</compoundname>
+    <basecompoundref refid="a00088" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00085_1af9d88ca81ac536d43046ca6572e3ff54" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>IEnumerator</type>
-        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueStarted</definition>
-        <argsstring>()</argsstring>
-        <name>DialogueStarted</name>
-        <reimplementedby refid="a00091_1a313283f6c53354b54f25898eb436eba0">DialogueStarted</reimplementedby>
-        <briefdescription>
-<para>A conversation has started. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="432" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="432" bodyend="435"/>
-      </memberdef>
-      <memberdef kind="function" id="a00085_1a754c6dd0bc67895d11f878fe4477d698" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract IEnumerator</type>
-        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunLine</definition>
-        <argsstring>(Yarn.Line line)</argsstring>
-        <name>RunLine</name>
-        <reimplementedby refid="a00091_1a109aeedc5206dcbc4f629638b7830030">RunLine</reimplementedby>
+      <memberdef kind="function" id="a00085_1aa69835fc086d80a8eabe7ac50cb92f47" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override object</type>
+        <definition>override object CsvHelper.TypeConversion.DateTimeOffsetConverter.ConvertFromString</definition>
+        <argsstring>(TypeConverterOptions options, string text)</argsstring>
+        <name>ConvertFromString</name>
+        <reimplements refid="a00088_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
         <param>
-          <type><ref refid="a00359" kindref="compound">Yarn.Line</ref></type>
-          <declname>line</declname>
+          <type><ref refid="a00178" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
         </param>
-        <briefdescription>
-<para>Display a line. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="438" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="a00085_1ac5b29079f638f2ceb078627ef1e60004" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract IEnumerator</type>
-        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunOptions</definition>
-        <argsstring>(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser)</argsstring>
-        <name>RunOptions</name>
-        <reimplementedby refid="a00091_1aaa93672700a456e66c694636460a58f4">RunOptions</reimplementedby>
-        <param>
-          <type><ref refid="a00362" kindref="compound">Yarn.Options</ref></type>
-          <declname>optionsCollection</declname>
-        </param>
-        <param>
-          <type><ref refid="a00041_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">Yarn.OptionChooser</ref></type>
-          <declname>optionChooser</declname>
-        </param>
-        <briefdescription>
-<para>Display the options, and call the optionChooser when done. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="441" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="a00085_1a3dffe84b9e7a10fdec6749baf697d111" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract IEnumerator</type>
-        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunCommand</definition>
-        <argsstring>(Yarn.Command command)</argsstring>
-        <name>RunCommand</name>
-        <reimplementedby refid="a00091_1a7f84b1e7d3c9c1f7507d143e11ba8075">RunCommand</reimplementedby>
-        <param>
-          <type><ref refid="a00355" kindref="compound">Yarn.Command</ref></type>
-          <declname>command</declname>
-        </param>
-        <briefdescription>
-<para>Perform some game-specific command. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="445" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="a00085_1a2900548a0704d39d4502a153945f4bef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>IEnumerator</type>
-        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.NodeComplete</definition>
-        <argsstring>(string nextNode)</argsstring>
-        <name>NodeComplete</name>
         <param>
           <type>string</type>
-          <declname>nextNode</declname>
+          <declname>text</declname>
         </param>
         <briefdescription>
-<para>The node has ended. </para>        </briefdescription>
+<para>Converts the string to an object. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string to convert to an object.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The object created from the string.</para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="448" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="448" bodyend="451"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" bodystart="22" bodyend="40"/>
+        <references refid="a00178_1af6bc545680b477abf9178eb4755572b1" compoundref="a00282" startline="23">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</references>
       </memberdef>
-      <memberdef kind="function" id="a00085_1aecc60aee9e9386da1f71fb183f43c52d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>IEnumerator</type>
-        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueComplete</definition>
-        <argsstring>()</argsstring>
-        <name>DialogueComplete</name>
-        <reimplementedby refid="a00091_1a1f2a08baacc25aea09af8e60eb5d3eb1">DialogueComplete</reimplementedby>
+      <memberdef kind="function" id="a00085_1a82a8cf4b77600ef49da60deb0c24a708" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override bool</type>
+        <definition>override bool CsvHelper.TypeConversion.DateTimeOffsetConverter.CanConvertFrom</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertFrom</name>
+        <reimplements refid="a00088_1a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</reimplements>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
         <briefdescription>
-<para>The conversation has ended. </para>        </briefdescription>
+<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="454" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="454" bodyend="457"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" bodystart="49" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="a00088_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>string</type>
+        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
+        <argsstring>(TypeConverterOptions options, object value)</argsstring>
+        <name>ConvertToString</name>
+        <reimplements refid="a00123_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
+        <reimplementedby refid="a00099_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
+        <reimplementedby refid="a00142_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
+        <param>
+          <type><ref refid="a00178" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Converts the object to a string. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object to convert to a string.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="a00088_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertTo</name>
+        <reimplements refid="a00123_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
+        <reimplementedby refid="a00099_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Scripts that can act as the UI for the conversation should subclass this. </para>    </briefdescription>
+<para>Converts a DateTimeOffset to and from a string. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1293">
-        <label>Yarn.Unity.Example.ExampleDialogueUI</label>
-        <link refid="a00091"/>
-        <childnode refid="1290" relation="public-inheritance">
+      <node id="1204">
+        <label>ITypeConverter</label>
+        <link refid="a00123"/>
+      </node>
+      <node id="1203">
+        <label>DefaultTypeConverter</label>
+        <link refid="a00088"/>
+        <childnode refid="1204" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1290">
-        <label>Yarn.Unity.DialogueUIBehaviour</label>
+      <node id="1202">
+        <label>CsvHelper.TypeConversion.DateTimeOffsetConverter</label>
         <link refid="a00085"/>
-        <childnode refid="1291" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1291">
-        <label>MonoBehaviour</label>
-      </node>
-      <node id="1292">
-        <label>TestDialogueUIBehaviour</label>
-        <link refid="a00161"/>
-        <childnode refid="1290" relation="public-inheritance">
+        <childnode refid="1203" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1294">
-        <label>Yarn.Unity.DialogueUIBehaviour</label>
-        <link refid="a00085"/>
-        <childnode refid="1295" relation="public-inheritance">
+      <node id="1207">
+        <label>ITypeConverter</label>
+        <link refid="a00123"/>
+      </node>
+      <node id="1206">
+        <label>DefaultTypeConverter</label>
+        <link refid="a00088"/>
+        <childnode refid="1207" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1295">
-        <label>MonoBehaviour</label>
+      <node id="1205">
+        <label>CsvHelper.TypeConversion.DateTimeOffsetConverter</label>
+        <link refid="a00085"/>
+        <childnode refid="1206" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="430" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="429" bodyend="458"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" bodystart="14" bodyend="54"/>
     <listofallmembers>
-      <member refid="a00085_1aecc60aee9e9386da1f71fb183f43c52d" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>DialogueComplete</name></member>
-      <member refid="a00085_1af9d88ca81ac536d43046ca6572e3ff54" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>DialogueStarted</name></member>
-      <member refid="a00085_1a2900548a0704d39d4502a153945f4bef" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>NodeComplete</name></member>
-      <member refid="a00085_1a3dffe84b9e7a10fdec6749baf697d111" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunCommand</name></member>
-      <member refid="a00085_1a754c6dd0bc67895d11f878fe4477d698" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunLine</name></member>
-      <member refid="a00085_1ac5b29079f638f2ceb078627ef1e60004" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunOptions</name></member>
+      <member refid="a00085_1a82a8cf4b77600ef49da60deb0c24a708" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DateTimeOffsetConverter</scope><name>CanConvertFrom</name></member>
+      <member refid="a00088_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DateTimeOffsetConverter</scope><name>CanConvertTo</name></member>
+      <member refid="a00085_1aa69835fc086d80a8eabe7ac50cb92f47" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DateTimeOffsetConverter</scope><name>ConvertFromString</name></member>
+      <member refid="a00088_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DateTimeOffsetConverter</scope><name>ConvertToString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

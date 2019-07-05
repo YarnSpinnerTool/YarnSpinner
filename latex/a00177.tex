@@ -1,904 +1,372 @@
-\hypertarget{a00177}{\section{Yarn.\-Value Class Reference}
-\label{a00177}\index{Yarn.\-Value@{Yarn.\-Value}}
+\hypertarget{a00177}{\section{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory Class Reference}
+\label{a00177}\index{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory@{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory}}
 }
 
 
-Inheritance diagram for Yarn.\-Value\-:
+Creates \hyperlink{a00123}{I\-Type\-Converter}s.  
+
+
+
+
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=285pt]{a00703}
+\includegraphics[width=220pt]{a00572}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Value\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=285pt]{a00704}
-\end{center}
-\end{figure}
-\subsection*{Public Types}
-\begin{DoxyCompactItemize}
-\item 
-enum \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type} \{ \\*
-\hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f}{Type.\-Number}, 
-\hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884a27118326006d3829667a400ad23d5d98}{Type.\-String}, 
-\hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034}{Type.\-Bool}, 
-\hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884a47c14840d8e15331fa420b9b2f757cd9}{Type.\-Variable}, 
-\\*
-\hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94}{Type.\-Null}
- \}
-\end{DoxyCompactItemize}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00177_a7d2db75682c57463bf43c13499991ad4}{Value} ()
-\item 
-\hyperlink{a00177_a960a015e35ea66270fe2713f39490e09}{Value} (object value)
-\item 
-virtual int \hyperlink{a00177_abf4dccca577017dff90912c01024ff6a}{Compare\-To} (object obj)
-\item 
-virtual int \hyperlink{a00177_a66de8cb38561c6589f01ca667267f4c6}{Compare\-To} (\hyperlink{a00177}{Value} other)
-\item 
-override bool \hyperlink{a00177_a5f4e343c2a82ddca84008ac7d155071d}{Equals} (object obj)
-\item 
-override int \hyperlink{a00177_a4c8412105c2ed3058bddac30ecf49916}{Get\-Hash\-Code} ()
-\item 
-override string \hyperlink{a00177_a70460d2f12485c8b980d75ad178e180b}{To\-String} ()
-\end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{a00177}{Value} \hyperlink{a00177_abfd48481b0ac28ff5485a850a8271dfd}{operator+} (\hyperlink{a00177}{Value} a, \hyperlink{a00177}{Value} b)
-\item 
-static \hyperlink{a00177}{Value} \hyperlink{a00177_aef1135f5d3e8925fa2c1b4c66cc8bd0c}{operator-\/} (\hyperlink{a00177}{Value} a, \hyperlink{a00177}{Value} b)
-\item 
-static \hyperlink{a00177}{Value} \hyperlink{a00177_a946a02ecefe18d7c82cad0e2632d19c8}{operator$\ast$} (\hyperlink{a00177}{Value} a, \hyperlink{a00177}{Value} b)
-\item 
-static \hyperlink{a00177}{Value} \hyperlink{a00177_afe3559ae2e0f3db33a23a640ee7832d4}{operator/} (\hyperlink{a00177}{Value} a, \hyperlink{a00177}{Value} b)
-\item 
-static \hyperlink{a00177}{Value} \hyperlink{a00177_a00875685b4619a7bcf0d1a77e529657c}{operator\%} (\hyperlink{a00177}{Value} a, \hyperlink{a00177}{Value} b)
-\item 
-static \hyperlink{a00177}{Value} \hyperlink{a00177_aeaf119fa2885dbd1685d1efcd9594316}{operator-\/} (\hyperlink{a00177}{Value} a)
-\item 
-static bool \hyperlink{a00177_a02509b7c4eb702d86c1ffb7be99f7aeb}{operator$>$} (\hyperlink{a00177}{Value} operand1, \hyperlink{a00177}{Value} operand2)
-\item 
-static bool \hyperlink{a00177_a0d1d9c4ee3fd55ad97d30279db525e4b}{operator$<$} (\hyperlink{a00177}{Value} operand1, \hyperlink{a00177}{Value} operand2)
-\item 
-static bool \hyperlink{a00177_ac7680e8a5ef93dc1d1266a06c0a29dbf}{operator$>$=} (\hyperlink{a00177}{Value} operand1, \hyperlink{a00177}{Value} operand2)
-\item 
-static bool \hyperlink{a00177_a4822bad5d6dc0fa6f7b9bd71b71855aa}{operator$<$=} (\hyperlink{a00177}{Value} operand1, \hyperlink{a00177}{Value} operand2)
-\end{DoxyCompactItemize}
-\subsection*{Static Public Attributes}
+static void \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{Add\-Converter} (Type type, \hyperlink{a00123}{I\-Type\-Converter} type\-Converter)
+\begin{DoxyCompactList}\small\item\em Adds the \hyperlink{a00123}{I\-Type\-Converter} for the given Type. \end{DoxyCompactList}\item 
+static void \hyperlink{a00177_a744e7c3cf7515bb75c21d8b3c3fcff0a}{Add\-Converter$<$ T $>$} (\hyperlink{a00123}{I\-Type\-Converter} type\-Converter)
+\begin{DoxyCompactList}\small\item\em Adds the \hyperlink{a00123}{I\-Type\-Converter} for the given Type. \end{DoxyCompactList}\item 
+static void \hyperlink{a00177_a1044dbab9820df273baea7ee68e6a813}{Remove\-Converter} (Type type)
+\begin{DoxyCompactList}\small\item\em Removes the \hyperlink{a00123}{I\-Type\-Converter} for the given Type. \end{DoxyCompactList}\item 
+static void \hyperlink{a00177_ad2d287cebc4bc88d2a6e1423059f05ae}{Remove\-Converter$<$ T $>$} ()
+\begin{DoxyCompactList}\small\item\em Removes the \hyperlink{a00123}{I\-Type\-Converter} for the given Type. \end{DoxyCompactList}\item 
+static \hyperlink{a00123}{I\-Type\-Converter} \hyperlink{a00177_a17b3c37c648e5f760a7724e1445ce7ae}{Get\-Converter} (Type type)
+\begin{DoxyCompactList}\small\item\em Gets the converter for the given Type. \end{DoxyCompactList}\item 
+static \hyperlink{a00123}{I\-Type\-Converter} \hyperlink{a00177_a0674e190f4bcf27b0bdbc7da7e8f3d0f}{Get\-Converter$<$ T $>$} ()
+\begin{DoxyCompactList}\small\item\em Gets the converter for the given Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static readonly \hyperlink{a00177}{Value} \hyperlink{a00177_a1ed2964965baca8621c45efa23f37660}{N\-U\-L\-L} = new \hyperlink{a00177}{Value}()
+static \hyperlink{a00177_aec2f01e01f95ff8c7a69ccaf991b6fa6}{Type\-Converter\-Factory} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{a00177}{Type\-Converter\-Factory} class. \end{DoxyCompactList}\item 
+static void \hyperlink{a00177_af698f94f4d69a2d9a4f4fa8ad0e21619}{Create\-Default\-Converters} ()
 \end{DoxyCompactItemize}
-\subsection*{Properties}
+\subsection*{Static Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Value.\-Type} \hyperlink{a00177_a6d5820fafa766911b9da84d1ed33e51a}{type}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+static readonly Dictionary\\*
+$<$ Type, \hyperlink{a00123}{I\-Type\-Converter} $>$ \hyperlink{a00177_a5229fe94e2acf6302b733c3d114f187e}{type\-Converters} = new Dictionary$<$Type, \hyperlink{a00123}{I\-Type\-Converter}$>$()
 \item 
-float \hyperlink{a00177_ae1892c1c7a8177537d1caa39a2e51da6}{number\-Value}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-string \hyperlink{a00177_a8ee2b09b7d28eaf97bf63c74d0023bfd}{variable\-Name}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-string \hyperlink{a00177_add1b07146f1a9e4b655b33c93d07dff9}{string\-Value}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00177_acb140e3466e132528409d4c441fd67da}{bool\-Value}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-object \hyperlink{a00177_a051dd30c6cb184f1fe941a95be8781ab}{backing\-Value}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
-float \hyperlink{a00177_a751419743761562bf902246d6e6a3c0a}{As\-Number}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
-bool \hyperlink{a00177_a5805faef3b3d376090ff096d6dd6c064}{As\-Bool}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
-string \hyperlink{a00177_a2d5d0ec41c50c642c1d0eeeb6bb2b1c0}{As\-String}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+static readonly object \hyperlink{a00177_aae823641d64f44cf1a79573bb55a5090}{locker} = new object()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-
-
-Definition at line 7 of file Value.\-cs.
+Creates \hyperlink{a00123}{I\-Type\-Converter}s. 
 
 
 
-\subsection{Member Enumeration Documentation}
-\hypertarget{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!Type@{Type}}
-\index{Type@{Type}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Value.\-Type}}}\label{a00177_ad5aaf60ee4504608fcc2ffadefa14884}
-\begin{Desc}
-\item[Enumerator]\par
-\begin{description}
-\index{Number@{Number}!Yarn\-::\-Value@{Yarn\-::\-Value}}\index{Yarn\-::\-Value@{Yarn\-::\-Value}!Number@{Number}}\item[{\em 
-\hypertarget{a00177_ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f}{Number}\label{a00177_ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f}
-}]\index{String@{String}!Yarn\-::\-Value@{Yarn\-::\-Value}}\index{Yarn\-::\-Value@{Yarn\-::\-Value}!String@{String}}\item[{\em 
-\hypertarget{a00177_ad5aaf60ee4504608fcc2ffadefa14884a27118326006d3829667a400ad23d5d98}{String}\label{a00177_ad5aaf60ee4504608fcc2ffadefa14884a27118326006d3829667a400ad23d5d98}
-}]\index{Bool@{Bool}!Yarn\-::\-Value@{Yarn\-::\-Value}}\index{Yarn\-::\-Value@{Yarn\-::\-Value}!Bool@{Bool}}\item[{\em 
-\hypertarget{a00177_ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034}{Bool}\label{a00177_ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034}
-}]\index{Variable@{Variable}!Yarn\-::\-Value@{Yarn\-::\-Value}}\index{Yarn\-::\-Value@{Yarn\-::\-Value}!Variable@{Variable}}\item[{\em 
-\hypertarget{a00177_ad5aaf60ee4504608fcc2ffadefa14884a47c14840d8e15331fa420b9b2f757cd9}{Variable}\label{a00177_ad5aaf60ee4504608fcc2ffadefa14884a47c14840d8e15331fa420b9b2f757cd9}
-}]\index{Null@{Null}!Yarn\-::\-Value@{Yarn\-::\-Value}}\index{Yarn\-::\-Value@{Yarn\-::\-Value}!Null@{Null}}\item[{\em 
-\hypertarget{a00177_ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94}{Null}\label{a00177_ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94}
-}]\end{description}
-\end{Desc}
+Definition at line 15 of file Type\-Converter\-Factory.\-cs.
 
-
-Definition at line 10 of file Value.\-cs.
-
-
-\begin{DoxyCode}
-10                          \{
-11             \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f}{Number},  \textcolor{comment}{// a constant number}
-12             \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884a27118326006d3829667a400ad23d5d98}{String},  \textcolor{comment}{// a string}
-13             \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034}{Bool},    \textcolor{comment}{// a boolean value}
-14             \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884a47c14840d8e15331fa420b9b2f757cd9}{Variable}, \textcolor{comment}{// the name of a variable; will be expanded at runtime}
-15             \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94}{Null},    \textcolor{comment}{// the null value}
-16         \}
-\end{DoxyCode}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00177_a7d2db75682c57463bf43c13499991ad4}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!Value@{Value}}
-\index{Value@{Value}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{Value}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Value.\-Value (
+\hypertarget{a00177_aec2f01e01f95ff8c7a69ccaf991b6fa6}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Type\-Converter\-Factory@{Type\-Converter\-Factory}}
+\index{Type\-Converter\-Factory@{Type\-Converter\-Factory}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Type\-Converter\-Factory}]{\setlength{\rightskip}{0pt plus 5cm}static Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Type\-Converter\-Factory (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00177_a7d2db75682c57463bf43c13499991ad4}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00177_aec2f01e01f95ff8c7a69ccaf991b6fa6}
 
 
-Definition at line 99 of file Value.\-cs.
-
-
-
-Referenced by Yarn.\-Value.\-Compare\-To(), Yarn.\-Value.\-Equals(), Yarn.\-Value.\-operator\%(), Yarn.\-Value.\-operator$\ast$(), Yarn.\-Value.\-operator+(), Yarn.\-Value.\-operator-\/(), Yarn.\-Value.\-operator/(), and Yarn.\-Value.\-Value().
-
-
-\begin{DoxyCode}
-99 : \textcolor{keyword}{this}(null) \{ \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=328pt]{a00177_a7d2db75682c57463bf43c13499991ad4_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00177_a960a015e35ea66270fe2713f39490e09}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!Value@{Value}}
-\index{Value@{Value}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{Value}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Value.\-Value (
-\begin{DoxyParamCaption}
-\item[{object}]{value}
-\end{DoxyParamCaption}
-)}}\label{a00177_a960a015e35ea66270fe2713f39490e09}
-
-
-Definition at line 102 of file Value.\-cs.
+Initializes the \hyperlink{a00177}{Type\-Converter\-Factory} class. 
 
 
 
-References Yarn.\-Value.\-bool\-Value, Yarn.\-Value.\-number\-Value, Yarn.\-Value.\-string\-Value, Yarn.\-Value.\-type, Yarn.\-Value.\-Value(), and Yarn.\-Value.\-variable\-Name.
+Definition at line 23 of file Type\-Converter\-Factory.\-cs.
 
 
 \begin{DoxyCode}
-103         \{
-104             \textcolor{comment}{// Copy an existing value}
-105             \textcolor{keywordflow}{if} (typeof(\hyperlink{a00177_a7d2db75682c57463bf43c13499991ad4}{Value}).IsInstanceOfType(value)) \{
-106                 var otherValue = value as \hyperlink{a00177_a7d2db75682c57463bf43c13499991ad4}{Value};
-107                 \hyperlink{a00177_a6d5820fafa766911b9da84d1ed33e51a}{type} = otherValue.type;
-108                 \textcolor{keywordflow}{switch} (\hyperlink{a00177_a6d5820fafa766911b9da84d1ed33e51a}{type}) \{
-109                 \textcolor{keywordflow}{case} Type.Number:
-110                     \hyperlink{a00177_ae1892c1c7a8177537d1caa39a2e51da6}{numberValue} = otherValue.numberValue;
-111                     \textcolor{keywordflow}{break};
-112                 \textcolor{keywordflow}{case} Type.String:
-113                     \hyperlink{a00177_add1b07146f1a9e4b655b33c93d07dff9}{stringValue} = otherValue.stringValue;
-114                     \textcolor{keywordflow}{break};
-115                 \textcolor{keywordflow}{case} Type.Bool:
-116                     \hyperlink{a00177_acb140e3466e132528409d4c441fd67da}{boolValue} = otherValue.boolValue;
-117                     \textcolor{keywordflow}{break};
-118                 \textcolor{keywordflow}{case} Type.Variable:
-119                     \hyperlink{a00177_a8ee2b09b7d28eaf97bf63c74d0023bfd}{variableName} = otherValue.variableName;
-120                     \textcolor{keywordflow}{break};
-121                 \textcolor{keywordflow}{case} Type.Null:
-122                     \textcolor{keywordflow}{break};
-123                 \textcolor{keywordflow}{default}:
-124                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException ();
-125                 \}
-126                 \textcolor{keywordflow}{return};
-127             \}
-128             \textcolor{keywordflow}{if} (value == null) \{
-129                 \hyperlink{a00177_a6d5820fafa766911b9da84d1ed33e51a}{type} = Type.Null;
-130                 \textcolor{keywordflow}{return};
-131             \}
-132             \textcolor{keywordflow}{if} (value.GetType() == typeof(\textcolor{keywordtype}{string}) ) \{
-133                 \hyperlink{a00177_a6d5820fafa766911b9da84d1ed33e51a}{type} = Type.String;
-134                 \hyperlink{a00177_add1b07146f1a9e4b655b33c93d07dff9}{stringValue} = System.Convert.ToString(value);
-135                 \textcolor{keywordflow}{return};
-136             \}
-137             \textcolor{keywordflow}{if} (value.GetType() == typeof(\textcolor{keywordtype}{int}) ||
-138                 value.GetType() == typeof(\textcolor{keywordtype}{float}) ||
-139                 value.GetType() == typeof(\textcolor{keywordtype}{double})) \{
-140                 \hyperlink{a00177_a6d5820fafa766911b9da84d1ed33e51a}{type} = Type.Number;
-141                 \hyperlink{a00177_ae1892c1c7a8177537d1caa39a2e51da6}{numberValue} = System.Convert.ToSingle(value);
-142 
-143                 \textcolor{keywordflow}{return};
-144             \}
-145             \textcolor{keywordflow}{if} (value.GetType() == typeof(\textcolor{keywordtype}{bool}) ) \{
-146                 \hyperlink{a00177_a6d5820fafa766911b9da84d1ed33e51a}{type} = Type.Bool;
-147                 \hyperlink{a00177_acb140e3466e132528409d4c441fd67da}{boolValue} = System.Convert.ToBoolean(value);
-148                 \textcolor{keywordflow}{return};
-149             \}
-150             var error = string.Format(\textcolor{stringliteral}{"Attempted to create a Value using a \{0\}; currently, "} +
-151                 \textcolor{stringliteral}{"Values can only be numbers, strings, bools or null."}, value.GetType().Name);
-152             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} YarnException(error);
-153         \}
+24         \{
+25             \hyperlink{a00177_af698f94f4d69a2d9a4f4fa8ad0e21619}{CreateDefaultConverters}();
+26         \}
 \end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=300pt]{a00177_a960a015e35ea66270fe2713f39490e09_cgraph}
-\end{center}
-\end{figure}
-
-
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00177_abf4dccca577017dff90912c01024ff6a}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!Compare\-To@{Compare\-To}}
-\index{Compare\-To@{Compare\-To}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{Compare\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Yarn.\-Value.\-Compare\-To (
+\hypertarget{a00177_aea523d100f0064672767dfe2c912cfca}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Add\-Converter@{Add\-Converter}}
+\index{Add\-Converter@{Add\-Converter}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Add\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}static void Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Add\-Converter (
 \begin{DoxyParamCaption}
-\item[{object}]{obj}
+\item[{Type}]{type, }
+\item[{{\bf I\-Type\-Converter}}]{type\-Converter}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00177_abf4dccca577017dff90912c01024ff6a}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_aea523d100f0064672767dfe2c912cfca}
 
 
-Definition at line 155 of file Value.\-cs.
+Adds the \hyperlink{a00123}{I\-Type\-Converter} for the given Type. 
 
 
+\begin{DoxyParams}{Parameters}
+{\em type} & The type the converter converts.\\
+\hline
+{\em type\-Converter} & The type converter that converts the type.\\
+\hline
+\end{DoxyParams}
 
-References Yarn.\-Value.\-Value().
+
+Definition at line 33 of file Type\-Converter\-Factory.\-cs.
 
 
 \begin{DoxyCode}
-155                                                  \{
-156             \textcolor{keywordflow}{if} (obj == null) \textcolor{keywordflow}{return} 1;
-157 
-158             \textcolor{comment}{// soft, fast coercion}
-159             var other = obj as \hyperlink{a00177_a7d2db75682c57463bf43c13499991ad4}{Value};
-160 
-161             \textcolor{comment}{// not a value}
-162             \textcolor{keywordflow}{if}( other == null ) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException(\textcolor{stringliteral}{"Object is not a Value"});
-163 
-164             \textcolor{comment}{// it is a value!}
-165             \textcolor{keywordflow}{return} this.CompareTo(other);
-166         \}
+34         \{
+35             \textcolor{keywordflow}{if}( type == null )
+36             \{
+37                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( nameof( type ) );
+38             \}
+39 
+40             \textcolor{keywordflow}{if}( typeConverter == null )
+41             \{
+42                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( nameof( typeConverter ) );
+43             \}
+44 
+45             lock( \hyperlink{a00177_aae823641d64f44cf1a79573bb55a5090}{locker} )
+46             \{
+47                 \hyperlink{a00177_a5229fe94e2acf6302b733c3d114f187e}{typeConverters}[type] = typeConverter;
+48             \}
+49         \}
 \end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=328pt]{a00177_abf4dccca577017dff90912c01024ff6a_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00177_a66de8cb38561c6589f01ca667267f4c6}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!Compare\-To@{Compare\-To}}
-\index{Compare\-To@{Compare\-To}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{Compare\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Yarn.\-Value.\-Compare\-To (
+\hypertarget{a00177_a744e7c3cf7515bb75c21d8b3c3fcff0a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Add\-Converter$<$ T $>$@{Add\-Converter$<$ T $>$}}
+\index{Add\-Converter$<$ T $>$@{Add\-Converter$<$ T $>$}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Add\-Converter$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Add\-Converter}$<$ T $>$ (
 \begin{DoxyParamCaption}
-\item[{{\bf Value}}]{other}
+\item[{{\bf I\-Type\-Converter}}]{type\-Converter}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00177_a66de8cb38561c6589f01ca667267f4c6}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_a744e7c3cf7515bb75c21d8b3c3fcff0a}
 
 
-Definition at line 168 of file Value.\-cs.
+Adds the \hyperlink{a00123}{I\-Type\-Converter} for the given Type. 
 
 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type the converter converts.\\
+\hline
+\end{DoxyTemplParams}
 
-References Yarn.\-Value.\-type.
+\begin{DoxyParams}{Parameters}
+{\em type\-Converter} & The type converter that converts the type.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 56 of file Type\-Converter\-Factory.\-cs.
 
 
 \begin{DoxyCode}
-168                                                   \{
-169             \textcolor{keywordflow}{if} (other == null) \{
-170                 \textcolor{keywordflow}{return} 1;
-171             \}
-172 
-173             \textcolor{keywordflow}{if} (other.type == \textcolor{keyword}{this}.type) \{
-174                 \textcolor{keywordflow}{switch} (this.\hyperlink{a00177_a6d5820fafa766911b9da84d1ed33e51a}{type}) \{
-175                 \textcolor{keywordflow}{case} Type.Null:
-176                     \textcolor{keywordflow}{return} 0;
-177                 \textcolor{keywordflow}{case} Type.String:
-178                     \textcolor{keywordflow}{return} this.stringValue.CompareTo (other.stringValue);
-179                 \textcolor{keywordflow}{case} Type.Number:
-180                     \textcolor{keywordflow}{return} this.numberValue.CompareTo (other.numberValue);
-181                 \textcolor{keywordflow}{case} Type.Bool:
-182                     \textcolor{keywordflow}{return} this.boolValue.CompareTo (other.boolValue);
-183                 \}
-184             \}
-185 
-186             \textcolor{comment}{// try to do a string test at that point!}
-187             \textcolor{keywordflow}{return} this.AsString.CompareTo(other.AsString);
-188         \}
+57         \{
+58             \textcolor{keywordflow}{if}( typeConverter == null )
+59             \{
+60                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( nameof( typeConverter ) );
+61             \}
+62 
+63             lock( \hyperlink{a00177_aae823641d64f44cf1a79573bb55a5090}{locker} )
+64             \{
+65                 \hyperlink{a00177_a5229fe94e2acf6302b733c3d114f187e}{typeConverters}[typeof( T )] = typeConverter;
+66             \}
+67         \}
 \end{DoxyCode}
-\hypertarget{a00177_a5f4e343c2a82ddca84008ac7d155071d}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!Equals@{Equals}}
-\index{Equals@{Equals}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{Equals}]{\setlength{\rightskip}{0pt plus 5cm}override bool Yarn.\-Value.\-Equals (
-\begin{DoxyParamCaption}
-\item[{object}]{obj}
-\end{DoxyParamCaption}
-)}}\label{a00177_a5f4e343c2a82ddca84008ac7d155071d}
-
-
-Definition at line 190 of file Value.\-cs.
-
-
-
-References Yarn.\-Value.\-type, and Yarn.\-Value.\-Value().
-
-
-\begin{DoxyCode}
-191         \{
-192             \textcolor{keywordflow}{if} (obj == null || GetType() != obj.GetType()) \{
-193                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-194             \}
-195 
-196             var other = (\hyperlink{a00177_a7d2db75682c57463bf43c13499991ad4}{Value})obj;
-197 
-198             \textcolor{keywordflow}{switch} (this.\hyperlink{a00177_a6d5820fafa766911b9da84d1ed33e51a}{type}) \{
-199             \textcolor{keywordflow}{case} Type.Number:
-200                 \textcolor{keywordflow}{return} this.AsNumber == other.AsNumber;
-201             \textcolor{keywordflow}{case} Type.String:
-202                 \textcolor{keywordflow}{return} this.AsString == other.AsString;
-203             \textcolor{keywordflow}{case} Type.Bool:
-204                 \textcolor{keywordflow}{return} this.AsBool == other.AsBool;
-205             \textcolor{keywordflow}{case} Type.Null:
-206                 \textcolor{keywordflow}{return} other.type == Type.Null || other.AsNumber == 0 || other.AsBool == \textcolor{keyword}{false};
-207             \textcolor{keywordflow}{default}:
-208                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException ();
-209             \}
-210 
-211         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=306pt]{a00177_a5f4e343c2a82ddca84008ac7d155071d_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00177_a4c8412105c2ed3058bddac30ecf49916}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!Get\-Hash\-Code@{Get\-Hash\-Code}}
-\index{Get\-Hash\-Code@{Get\-Hash\-Code}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{Get\-Hash\-Code}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Value.\-Get\-Hash\-Code (
+\hypertarget{a00177_af698f94f4d69a2d9a4f4fa8ad0e21619}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Create\-Default\-Converters@{Create\-Default\-Converters}}
+\index{Create\-Default\-Converters@{Create\-Default\-Converters}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Create\-Default\-Converters}]{\setlength{\rightskip}{0pt plus 5cm}static void Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Create\-Default\-Converters (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00177_a4c8412105c2ed3058bddac30ecf49916}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00177_af698f94f4d69a2d9a4f4fa8ad0e21619}
 
 
-Definition at line 214 of file Value.\-cs.
+Definition at line 146 of file Type\-Converter\-Factory.\-cs.
 
 
 \begin{DoxyCode}
-215         \{
-216             var backing = this.backingValue;
-217 
-218             \textcolor{comment}{// TODO: yeah hay maybe fix this}
-219             \textcolor{keywordflow}{if}( backing != null ) \{
-220                 \textcolor{keywordflow}{return} backing.GetHashCode();
-221             \}
-222 
-223             \textcolor{keywordflow}{return} 0;
-224         \}
+147         \{
+148             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{bool} ), \textcolor{keyword}{new} BooleanConverter() );
+149             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( byte ), \textcolor{keyword}{new} ByteConverter() );
+150             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{char} ), \textcolor{keyword}{new} CharConverter() );
+151             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( DateTime ), \textcolor{keyword}{new} DateTimeConverter() );
+152             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( DateTimeOffset ), \textcolor{keyword}{new} DateTimeOffsetConverter() );
+153             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( decimal ), \textcolor{keyword}{new} DecimalConverter() );
+154             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{double} ), \textcolor{keyword}{new} DoubleConverter() );
+155             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{float} ), \textcolor{keyword}{new} SingleConverter() );
+156             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( Guid ), \textcolor{keyword}{new} GuidConverter() );
+157             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{short} ), \textcolor{keyword}{new} Int16Converter() );
+158             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{int} ), \textcolor{keyword}{new} Int32Converter() );
+159             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{long} ), \textcolor{keyword}{new} Int64Converter() );
+160             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( sbyte ), \textcolor{keyword}{new} SByteConverter() );
+161             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{string} ), \textcolor{keyword}{new} StringConverter() );
+162             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( TimeSpan ), \textcolor{keyword}{new} TimeSpanConverter() );
+163             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( ushort ), \textcolor{keyword}{new} UInt16Converter() );
+164             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( uint ), \textcolor{keyword}{new} UInt32Converter() );
+165             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( ulong ), \textcolor{keyword}{new} UInt64Converter() );
+166             \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( IEnumerable ), \textcolor{keyword}{new} EnumerableConverter() );
+167         \} 
 \end{DoxyCode}
-\hypertarget{a00177_a00875685b4619a7bcf0d1a77e529657c}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!operator\%@{operator\%}}
-\index{operator\%@{operator\%}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{operator\%}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Value} Yarn.\-Value.\-operator\% (
+\hypertarget{a00177_a17b3c37c648e5f760a7724e1445ce7ae}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Get\-Converter@{Get\-Converter}}
+\index{Get\-Converter@{Get\-Converter}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Get\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf I\-Type\-Converter} Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Get\-Converter (
 \begin{DoxyParamCaption}
-\item[{{\bf Value}}]{a, }
-\item[{{\bf Value}}]{b}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_a00875685b4619a7bcf0d1a77e529657c}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_a17b3c37c648e5f760a7724e1445ce7ae}
 
 
-Definition at line 297 of file Value.\-cs.
+Gets the converter for the given Type. 
 
 
+\begin{DoxyParams}{Parameters}
+{\em type} & The type to get the converter for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{a00123}{I\-Type\-Converter} for the given Type.
+\end{DoxyReturn}
 
-References Yarn.\-Value.\-As\-Number, Yarn.\-Value.\-type, and Yarn.\-Value.\-Value().
+
+Definition at line 100 of file Type\-Converter\-Factory.\-cs.
 
 
 \begin{DoxyCode}
-297                                                          \{
-298             \textcolor{keywordflow}{if} (a.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number && (b.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number || b.type == 
-      \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Null) ||
-299                 b.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number && (a.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number || a.type == 
-      \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Null)) \{
-300                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00177_a7d2db75682c57463bf43c13499991ad4}{Value} (a.AsNumber % b.AsNumber);
-301             \}
-302             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.ArgumentException(
-303                 string.Format(\textcolor{stringliteral}{"Cannot modulo types \{0\} and \{1\}."}, a.type, b.type )
-304             );
-305         \}
+101         \{
+102             \textcolor{keywordflow}{if}( type == null )
+103             \{
+104                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( nameof( type ) );
+105             \}
+106 
+107             lock( \hyperlink{a00177_aae823641d64f44cf1a79573bb55a5090}{locker} )
+108             \{
+109                 ITypeConverter typeConverter;
+110                 \textcolor{keywordflow}{if}( \hyperlink{a00177_a5229fe94e2acf6302b733c3d114f187e}{typeConverters}.TryGetValue( type, out typeConverter ) )
+111                 \{
+112                     \textcolor{keywordflow}{return} typeConverter;
+113                 \}
+114             \}
+115 
+116             \textcolor{keywordflow}{if}( typeof( IEnumerable ).IsAssignableFrom( type ) )
+117             \{
+118                 \textcolor{keywordflow}{return} \hyperlink{a00177_a17b3c37c648e5f760a7724e1445ce7ae}{GetConverter}( typeof( IEnumerable ) );
+119             \}
+120 
+121             \textcolor{keywordflow}{if}( typeof( Enum ).IsAssignableFrom( type ) )
+122             \{
+123                 \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( type, \textcolor{keyword}{new} EnumConverter( type ) );
+124                 \textcolor{keywordflow}{return} \hyperlink{a00177_a17b3c37c648e5f760a7724e1445ce7ae}{GetConverter}( type );
+125             \}
+126 
+127             \textcolor{keywordflow}{if}( type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof( Nullable<> )
+       )
+128             \{
+129                 \hyperlink{a00177_aea523d100f0064672767dfe2c912cfca}{AddConverter}( type, \textcolor{keyword}{new} NullableConverter( type ) );
+130                 \textcolor{keywordflow}{return} \hyperlink{a00177_a17b3c37c648e5f760a7724e1445ce7ae}{GetConverter}( type );
+131             \}
+132 
+133             \textcolor{keywordflow}{return} \textcolor{keyword}{new} DefaultTypeConverter();
+134         \}
 \end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=320pt]{a00177_a00875685b4619a7bcf0d1a77e529657c_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00177_a946a02ecefe18d7c82cad0e2632d19c8}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!operator$\ast$@{operator$\ast$}}
-\index{operator$\ast$@{operator$\ast$}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Value} Yarn.\-Value.\-operator$\ast$ (
-\begin{DoxyParamCaption}
-\item[{{\bf Value}}]{a, }
-\item[{{\bf Value}}]{b}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_a946a02ecefe18d7c82cad0e2632d19c8}
-
-
-Definition at line 273 of file Value.\-cs.
-
-
-
-References Yarn.\-Value.\-As\-Number, Yarn.\-Value.\-type, and Yarn.\-Value.\-Value().
-
-
-\begin{DoxyCode}
-273                                                          \{
-274             \textcolor{keywordflow}{if} (a.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number && (b.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number || b.type == 
-      \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Null) ||
-275                 b.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number && (a.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number || a.type == 
-      \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Null)
-276             ) \{
-277                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00177_a7d2db75682c57463bf43c13499991ad4}{Value}( a.AsNumber * b.AsNumber );
-278             \}
-279 
-280             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.ArgumentException(
-281                 string.Format(\textcolor{stringliteral}{"Cannot multiply types \{0\} and \{1\}."}, a.type, b.type )
-282             );
-283         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=316pt]{a00177_a946a02ecefe18d7c82cad0e2632d19c8_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00177_abfd48481b0ac28ff5485a850a8271dfd}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!operator+@{operator+}}
-\index{operator+@{operator+}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Value} Yarn.\-Value.\-operator+ (
-\begin{DoxyParamCaption}
-\item[{{\bf Value}}]{a, }
-\item[{{\bf Value}}]{b}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_abfd48481b0ac28ff5485a850a8271dfd}
-
-
-Definition at line 231 of file Value.\-cs.
-
-
-
-References Yarn.\-Value.\-As\-Number, Yarn.\-Value.\-As\-String, Yarn.\-Value.\-type, and Yarn.\-Value.\-Value().
-
-
-\begin{DoxyCode}
-231                                                          \{
-232             \textcolor{comment}{// catches:}
-233             \textcolor{comment}{// undefined + string}
-234             \textcolor{comment}{// number + string}
-235             \textcolor{comment}{// string + string}
-236             \textcolor{comment}{// bool + string}
-237             \textcolor{comment}{// null + string}
-238             \textcolor{keywordflow}{if} (a.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.String || b.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.String ) \{
-239                 \textcolor{comment}{// we're headed for string town!}
-240                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00177_a7d2db75682c57463bf43c13499991ad4}{Value}( a.AsString + b.AsString );
-241             \}
-242 
-243             \textcolor{comment}{// catches:}
-244             \textcolor{comment}{// number + number}
-245             \textcolor{comment}{// bool (=> 0 or 1) + number}
-246             \textcolor{comment}{// null (=> 0) + number}
-247             \textcolor{comment}{// bool (=> 0 or 1) + bool (=> 0 or 1)}
-248             \textcolor{comment}{// null (=> 0) + null (=> 0)}
-249             \textcolor{keywordflow}{if} ((a.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number || b.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number) ||
-250                 (a.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Bool && b.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Bool) ||
-251                 (a.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Null && b.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Null)
-252             ) \{
-253                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00177_a7d2db75682c57463bf43c13499991ad4}{Value}( a.AsNumber + b.AsNumber );
-254             \}
-255 
-256             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.ArgumentException(
-257                 string.Format(\textcolor{stringliteral}{"Cannot add types \{0\} and \{1\}."}, a.type, b.type )
-258             );
-259         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=318pt]{a00177_abfd48481b0ac28ff5485a850a8271dfd_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00177_aef1135f5d3e8925fa2c1b4c66cc8bd0c}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!operator-\/@{operator-\/}}
-\index{operator-\/@{operator-\/}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Value} Yarn.\-Value.\-operator-\/ (
-\begin{DoxyParamCaption}
-\item[{{\bf Value}}]{a, }
-\item[{{\bf Value}}]{b}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_aef1135f5d3e8925fa2c1b4c66cc8bd0c}
-
-
-Definition at line 261 of file Value.\-cs.
-
-
-
-References Yarn.\-Value.\-As\-Number, Yarn.\-Value.\-type, and Yarn.\-Value.\-Value().
-
-
-\begin{DoxyCode}
-261                                                          \{
-262             \textcolor{keywordflow}{if} (a.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number && (b.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number || b.type == 
-      \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Null) ||
-263                 b.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number && (a.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number || a.type == 
-      \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Null)
-264             ) \{
-265                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00177_a7d2db75682c57463bf43c13499991ad4}{Value}( a.AsNumber - b.AsNumber );
-266             \}
-267 
-268             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.ArgumentException(
-269                 string.Format(\textcolor{stringliteral}{"Cannot subtract types \{0\} and \{1\}."}, a.type, b.type )
-270             );
-271         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=314pt]{a00177_aef1135f5d3e8925fa2c1b4c66cc8bd0c_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00177_aeaf119fa2885dbd1685d1efcd9594316}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!operator-\/@{operator-\/}}
-\index{operator-\/@{operator-\/}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Value} Yarn.\-Value.\-operator-\/ (
-\begin{DoxyParamCaption}
-\item[{{\bf Value}}]{a}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_aeaf119fa2885dbd1685d1efcd9594316}
-
-
-Definition at line 307 of file Value.\-cs.
-
-
-
-References Yarn.\-Value.\-As\-Number, Yarn.\-Value.\-As\-String, Yarn.\-Value.\-type, and Yarn.\-Value.\-Value().
-
-
-\begin{DoxyCode}
-307                                                 \{
-308             \textcolor{keywordflow}{if}( a.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number ) \{
-309                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00177_a7d2db75682c57463bf43c13499991ad4}{Value}( -a.AsNumber );
-310             \}
-311             \textcolor{keywordflow}{if} (a.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Null &&
-312                 a.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.String &&
-313                (a.AsString == null || a.AsString.Trim() == \textcolor{stringliteral}{""})
-314             ) \{
-315                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00177_a7d2db75682c57463bf43c13499991ad4}{Value}( -0 );
-316             \}
-317             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00177_a7d2db75682c57463bf43c13499991ad4}{Value}( \textcolor{keywordtype}{float}.NaN );
-318         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=314pt]{a00177_aeaf119fa2885dbd1685d1efcd9594316_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00177_afe3559ae2e0f3db33a23a640ee7832d4}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!operator/@{operator/}}
-\index{operator/@{operator/}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Value} Yarn.\-Value.\-operator/ (
-\begin{DoxyParamCaption}
-\item[{{\bf Value}}]{a, }
-\item[{{\bf Value}}]{b}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_afe3559ae2e0f3db33a23a640ee7832d4}
-
-
-Definition at line 285 of file Value.\-cs.
-
-
-
-References Yarn.\-Value.\-As\-Number, Yarn.\-Value.\-type, and Yarn.\-Value.\-Value().
-
-
-\begin{DoxyCode}
-285                                                          \{
-286             \textcolor{keywordflow}{if} (a.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number && (b.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number || b.type == 
-      \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Null) ||
-287                 b.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number && (a.type == \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Number || a.type == 
-      \hyperlink{a00177_ad5aaf60ee4504608fcc2ffadefa14884}{Type}.Null)
-288             ) \{
-289                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00177_a7d2db75682c57463bf43c13499991ad4}{Value}( a.AsNumber / b.AsNumber );
-290             \}
-291 
-292             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.ArgumentException(
-293                 string.Format(\textcolor{stringliteral}{"Cannot divide types \{0\} and \{1\}."}, a.type, b.type )
-294             );
-295         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=314pt]{a00177_afe3559ae2e0f3db33a23a640ee7832d4_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00177_a0d1d9c4ee3fd55ad97d30279db525e4b}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!operator$<$@{operator$<$}}
-\index{operator$<$@{operator$<$}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Value.\-operator$<$ (
-\begin{DoxyParamCaption}
-\item[{{\bf Value}}]{operand1, }
-\item[{{\bf Value}}]{operand2}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_a0d1d9c4ee3fd55ad97d30279db525e4b}
-
-
-Definition at line 327 of file Value.\-cs.
-
-
-\begin{DoxyCode}
-328         \{
-329             \textcolor{keywordflow}{return} operand1.CompareTo(operand2) == -1;
-330         \}
-\end{DoxyCode}
-\hypertarget{a00177_a4822bad5d6dc0fa6f7b9bd71b71855aa}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!operator$<$=@{operator$<$=}}
-\index{operator$<$=@{operator$<$=}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{operator$<$=}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Value.\-operator$<$= (
-\begin{DoxyParamCaption}
-\item[{{\bf Value}}]{operand1, }
-\item[{{\bf Value}}]{operand2}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_a4822bad5d6dc0fa6f7b9bd71b71855aa}
-
-
-Definition at line 339 of file Value.\-cs.
-
-
-\begin{DoxyCode}
-340         \{
-341             \textcolor{keywordflow}{return} operand1.CompareTo(operand2) <= 0;
-342         \}
-\end{DoxyCode}
-\hypertarget{a00177_a02509b7c4eb702d86c1ffb7be99f7aeb}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!operator$>$@{operator$>$}}
-\index{operator$>$@{operator$>$}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Value.\-operator$>$ (
-\begin{DoxyParamCaption}
-\item[{{\bf Value}}]{operand1, }
-\item[{{\bf Value}}]{operand2}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_a02509b7c4eb702d86c1ffb7be99f7aeb}
-
-
-Definition at line 321 of file Value.\-cs.
-
-
-\begin{DoxyCode}
-322         \{
-323             \textcolor{keywordflow}{return} operand1.CompareTo(operand2) == 1;
-324         \}
-\end{DoxyCode}
-\hypertarget{a00177_ac7680e8a5ef93dc1d1266a06c0a29dbf}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!operator$>$=@{operator$>$=}}
-\index{operator$>$=@{operator$>$=}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{operator$>$=}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Value.\-operator$>$= (
-\begin{DoxyParamCaption}
-\item[{{\bf Value}}]{operand1, }
-\item[{{\bf Value}}]{operand2}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_ac7680e8a5ef93dc1d1266a06c0a29dbf}
-
-
-Definition at line 333 of file Value.\-cs.
-
-
-\begin{DoxyCode}
-334         \{
-335             \textcolor{keywordflow}{return} operand1.CompareTo(operand2) >= 0;
-336         \}
-\end{DoxyCode}
-\hypertarget{a00177_a70460d2f12485c8b980d75ad178e180b}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Value.\-To\-String (
+\hypertarget{a00177_a0674e190f4bcf27b0bdbc7da7e8f3d0f}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Get\-Converter$<$ T $>$@{Get\-Converter$<$ T $>$}}
+\index{Get\-Converter$<$ T $>$@{Get\-Converter$<$ T $>$}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Get\-Converter$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf I\-Type\-Converter} {\bf Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Get\-Converter}$<$ T $>$ (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00177_a70460d2f12485c8b980d75ad178e180b}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_a0674e190f4bcf27b0bdbc7da7e8f3d0f}
 
 
-Definition at line 226 of file Value.\-cs.
+Gets the converter for the given Type. 
 
 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type to get the converter for.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{a00123}{I\-Type\-Converter} for the given Type.
+\end{DoxyReturn}
 
-References Yarn.\-Value.\-As\-Bool, Yarn.\-Value.\-As\-Number, Yarn.\-Value.\-As\-String, and Yarn.\-Value.\-type.
+
+Definition at line 141 of file Type\-Converter\-Factory.\-cs.
 
 
 \begin{DoxyCode}
-227         \{
-228             \textcolor{keywordflow}{return} string.Format (\textcolor{stringliteral}{"[Value: type=\{0\}, AsNumber=\{1\}, AsBool=\{2\}, AsString=\{3\}]"}, 
-      \hyperlink{a00177_a6d5820fafa766911b9da84d1ed33e51a}{type}, \hyperlink{a00177_a751419743761562bf902246d6e6a3c0a}{AsNumber}, \hyperlink{a00177_a5805faef3b3d376090ff096d6dd6c064}{AsBool}, \hyperlink{a00177_a2d5d0ec41c50c642c1d0eeeb6bb2b1c0}{AsString});
-229         \}
+142         \{
+143             \textcolor{keywordflow}{return} \hyperlink{a00177_a17b3c37c648e5f760a7724e1445ce7ae}{GetConverter}( typeof( T ) );
+144         \}
+\end{DoxyCode}
+\hypertarget{a00177_a1044dbab9820df273baea7ee68e6a813}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Remove\-Converter@{Remove\-Converter}}
+\index{Remove\-Converter@{Remove\-Converter}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Remove\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}static void Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Remove\-Converter (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_a1044dbab9820df273baea7ee68e6a813}
+
+
+Removes the \hyperlink{a00123}{I\-Type\-Converter} for the given Type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type to remove the converter for.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 73 of file Type\-Converter\-Factory.\-cs.
+
+
+\begin{DoxyCode}
+74         \{
+75             \textcolor{keywordflow}{if}( type == null )
+76             \{
+77                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( nameof( type ) );
+78             \}
+79 
+80             lock( \hyperlink{a00177_aae823641d64f44cf1a79573bb55a5090}{locker} )
+81             \{
+82                 typeConverters.Remove( type );
+83             \}
+84         \}
+\end{DoxyCode}
+\hypertarget{a00177_ad2d287cebc4bc88d2a6e1423059f05ae}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Remove\-Converter$<$ T $>$@{Remove\-Converter$<$ T $>$}}
+\index{Remove\-Converter$<$ T $>$@{Remove\-Converter$<$ T $>$}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Remove\-Converter$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Remove\-Converter}$<$ T $>$ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_ad2d287cebc4bc88d2a6e1423059f05ae}
+
+
+Removes the \hyperlink{a00123}{I\-Type\-Converter} for the given Type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type to remove the converter for.\\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line 90 of file Type\-Converter\-Factory.\-cs.
+
+
+\begin{DoxyCode}
+91         \{
+92             \hyperlink{a00177_a1044dbab9820df273baea7ee68e6a813}{RemoveConverter}( typeof( T ) );
+93         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00177_a1ed2964965baca8621c45efa23f37660}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!N\-U\-L\-L@{N\-U\-L\-L}}
-\index{N\-U\-L\-L@{N\-U\-L\-L}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{N\-U\-L\-L}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Value} Yarn.\-Value.\-N\-U\-L\-L = new {\bf Value}()\hspace{0.3cm}{\ttfamily [static]}}}\label{a00177_a1ed2964965baca8621c45efa23f37660}
+\hypertarget{a00177_aae823641d64f44cf1a79573bb55a5090}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!locker@{locker}}
+\index{locker@{locker}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{locker}]{\setlength{\rightskip}{0pt plus 5cm}readonly object Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-locker = new object()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00177_aae823641d64f44cf1a79573bb55a5090}
 
 
-Definition at line 8 of file Value.\-cs.
+Definition at line 18 of file Type\-Converter\-Factory.\-cs.
+
+\hypertarget{a00177_a5229fe94e2acf6302b733c3d114f187e}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!type\-Converters@{type\-Converters}}
+\index{type\-Converters@{type\-Converters}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{type\-Converters}]{\setlength{\rightskip}{0pt plus 5cm}readonly Dictionary$<$Type, {\bf I\-Type\-Converter}$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-type\-Converters = new Dictionary$<$Type, {\bf I\-Type\-Converter}$>$()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00177_a5229fe94e2acf6302b733c3d114f187e}
 
 
-
-Referenced by Yarn.\-Memory\-Variable\-Store.\-Get\-Value(), Yarn.\-Function\-Info.\-Invoke\-With\-Array(), Yarn.\-Virtual\-Machine.\-Run\-Instruction(), and Yarn.\-Parser.\-Value\-Node.\-Use\-Token().
-
-
-
-\subsection{Property Documentation}
-\hypertarget{a00177_a5805faef3b3d376090ff096d6dd6c064}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!As\-Bool@{As\-Bool}}
-\index{As\-Bool@{As\-Bool}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{As\-Bool}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Value.\-As\-Bool\hspace{0.3cm}{\ttfamily [get]}}}\label{a00177_a5805faef3b3d376090ff096d6dd6c064}
-
-
-Definition at line 61 of file Value.\-cs.
-
-
-
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue(), and Yarn.\-Value.\-To\-String().
-
-\hypertarget{a00177_a751419743761562bf902246d6e6a3c0a}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!As\-Number@{As\-Number}}
-\index{As\-Number@{As\-Number}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{As\-Number}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Value.\-As\-Number\hspace{0.3cm}{\ttfamily [get]}}}\label{a00177_a751419743761562bf902246d6e6a3c0a}
-
-
-Definition at line 40 of file Value.\-cs.
-
-
-
-Referenced by Yarn.\-Value.\-operator\%(), Yarn.\-Value.\-operator$\ast$(), Yarn.\-Value.\-operator+(), Yarn.\-Value.\-operator-\/(), Yarn.\-Value.\-operator/(), and Yarn.\-Value.\-To\-String().
-
-\hypertarget{a00177_a2d5d0ec41c50c642c1d0eeeb6bb2b1c0}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!As\-String@{As\-String}}
-\index{As\-String@{As\-String}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{As\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Value.\-As\-String\hspace{0.3cm}{\ttfamily [get]}}}\label{a00177_a2d5d0ec41c50c642c1d0eeeb6bb2b1c0}
-
-
-Definition at line 78 of file Value.\-cs.
-
-
-
-Referenced by Yarn.\-Value.\-operator+(), Yarn.\-Value.\-operator-\/(), and Yarn.\-Value.\-To\-String().
-
-\hypertarget{a00177_a051dd30c6cb184f1fe941a95be8781ab}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!backing\-Value@{backing\-Value}}
-\index{backing\-Value@{backing\-Value}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{backing\-Value}]{\setlength{\rightskip}{0pt plus 5cm}object Yarn.\-Value.\-backing\-Value\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private]}}}\label{a00177_a051dd30c6cb184f1fe941a95be8781ab}
-
-
-Definition at line 26 of file Value.\-cs.
-
-\hypertarget{a00177_acb140e3466e132528409d4c441fd67da}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!bool\-Value@{bool\-Value}}
-\index{bool\-Value@{bool\-Value}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{bool\-Value}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Value.\-bool\-Value\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00177_acb140e3466e132528409d4c441fd67da}
-
-
-Definition at line 24 of file Value.\-cs.
-
-
-
-Referenced by Yarn.\-Parser.\-Value\-Node.\-Print\-Tree(), and Yarn.\-Value.\-Value().
-
-\hypertarget{a00177_ae1892c1c7a8177537d1caa39a2e51da6}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!number\-Value@{number\-Value}}
-\index{number\-Value@{number\-Value}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{number\-Value}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Value.\-number\-Value\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00177_ae1892c1c7a8177537d1caa39a2e51da6}
-
-
-Definition at line 21 of file Value.\-cs.
-
-
-
-Referenced by Yarn.\-Parser.\-Value\-Node.\-Print\-Tree(), and Yarn.\-Value.\-Value().
-
-\hypertarget{a00177_add1b07146f1a9e4b655b33c93d07dff9}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!string\-Value@{string\-Value}}
-\index{string\-Value@{string\-Value}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{string\-Value}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Value.\-string\-Value\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00177_add1b07146f1a9e4b655b33c93d07dff9}
-
-
-Definition at line 23 of file Value.\-cs.
-
-
-
-Referenced by Yarn.\-Parser.\-Value\-Node.\-Print\-Tree(), and Yarn.\-Value.\-Value().
-
-\hypertarget{a00177_a6d5820fafa766911b9da84d1ed33e51a}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!type@{type}}
-\index{type@{type}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value.\-Type} Yarn.\-Value.\-type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00177_a6d5820fafa766911b9da84d1ed33e51a}
-
-
-Definition at line 18 of file Value.\-cs.
-
-
-
-Referenced by Yarn.\-Value.\-Compare\-To(), Yarn.\-Value.\-Equals(), Yarn.\-Value.\-operator\%(), Yarn.\-Value.\-operator$\ast$(), Yarn.\-Value.\-operator+(), Yarn.\-Value.\-operator-\/(), Yarn.\-Value.\-operator/(), Yarn.\-Parser.\-Value\-Node.\-Print\-Tree(), Yarn.\-Value.\-To\-String(), and Yarn.\-Value.\-Value().
-
-\hypertarget{a00177_a8ee2b09b7d28eaf97bf63c74d0023bfd}{\index{Yarn\-::\-Value@{Yarn\-::\-Value}!variable\-Name@{variable\-Name}}
-\index{variable\-Name@{variable\-Name}!Yarn::Value@{Yarn\-::\-Value}}
-\subsubsection[{variable\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Value.\-variable\-Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00177_a8ee2b09b7d28eaf97bf63c74d0023bfd}
-
-
-Definition at line 22 of file Value.\-cs.
-
-
-
-Referenced by Yarn.\-Parser.\-Value\-Node.\-Print\-Tree(), and Yarn.\-Value.\-Value().
+Definition at line 17 of file Type\-Converter\-Factory.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00297}{Value.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00281}{Type\-Converter\-Factory.\-cs}\end{DoxyCompactItemize}

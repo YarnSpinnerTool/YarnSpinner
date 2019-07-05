@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,589 +105,83 @@ $(document).ready(function(){initNavTree('a00227_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">CsvParser.cs</div>  </div>
+<div class="title">CsvPropertyNameCollection.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00227.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">using</span> System.IO;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">using</span> CsvHelper.Configuration;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">using</span> System.Linq;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span>CsvHelper</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="a00058.html">   16</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00058.html">CsvParser</a> : <a class="code" href="a00103.html">ICsvParser</a></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    {</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00058.html#abeead9997a4c1ec20866458a2e0928bb">   18</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">bool</span> <a class="code" href="a00058.html#abeead9997a4c1ec20866458a2e0928bb">disposed</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="a00058.html#a6ab23daf45e84a211b4010c213504f7e">   19</a></span>&#160;        <span class="keyword">private</span> TextReader <a class="code" href="a00058.html#a6ab23daf45e84a211b4010c213504f7e">reader</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00058.html#ad8b27f20be101a15ef390fcc37f8631b">   20</a></span>&#160;        <span class="keyword">private</span> readonly <span class="keywordtype">char</span>[] <a class="code" href="a00058.html#ad8b27f20be101a15ef390fcc37f8631b">readerBuffer</a>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">   21</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">int</span> <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="a00058.html#a9300effd525a71c2a377bde2586da9ae">   22</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">int</span> <a class="code" href="a00058.html#a9300effd525a71c2a377bde2586da9ae">charsRead</a>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="a00058.html#a4c748c464a59715ecf7e21b21d0a26bb">   23</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">string</span>[] <a class="code" href="a00058.html#a4c748c464a59715ecf7e21b21d0a26bb">record</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="a00058.html#abf91f9e65b160b9e835a2991ddced457">   24</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">int</span> <a class="code" href="a00058.html#abf91f9e65b160b9e835a2991ddced457">currentRow</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="a00058.html#abea7b56f7571998c07fbf18043852835">   25</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">int</span> <a class="code" href="a00058.html#abea7b56f7571998c07fbf18043852835">currentRawRow</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">   26</a></span>&#160;        <span class="keyword">private</span> readonly <a class="code" href="a00053.html">CsvConfiguration</a> <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">   27</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">char</span>? <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="a00058.html#ae56cb79868b308d55a44c4c4b7cd22d1">   28</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">char</span> <a class="code" href="a00058.html#ae56cb79868b308d55a44c4c4b7cd22d1">c</a> = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="a00058.html#aad0c78d3f0233589a8657e2aa22677c2">   29</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">bool</span> <a class="code" href="a00058.html#aad0c78d3f0233589a8657e2aa22677c2">read</a>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="a00058.html#abcc5896fa941dd33377a660909940589">   30</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">bool</span> <a class="code" href="a00058.html#abcc5896fa941dd33377a660909940589">hasExcelSeparatorBeenRead</a>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00053.html">CsvConfiguration</a> <a class="code" href="a00058.html#a417fc0dca5536811d7a8571ccdf0d46e">Configuration</a></div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="a00058.html#a417fc0dca5536811d7a8571ccdf0d46e">   36</a></span>&#160;        {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>; }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        }</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="a00058.html#aa9cb95463f5328b8c85884f434975249">   43</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="a00058.html#aa9cb95463f5328b8c85884f434975249">FieldCount</a> { <span class="keyword">get</span>; <span class="keyword">protected</span> set; }</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="a00058.html#a1e9b4aa434c3095d383e0c20b0c0b64c">   48</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">long</span> <a class="code" href="a00058.html#a1e9b4aa434c3095d383e0c20b0c0b64c">CharPosition</a> { <span class="keyword">get</span>; <span class="keyword">protected</span> set; }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="a00058.html#a6fd7255ce9ae33029aafcaab07205047">   53</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">long</span> <a class="code" href="a00058.html#a6fd7255ce9ae33029aafcaab07205047">BytePosition</a> { <span class="keyword">get</span>; <span class="keyword">protected</span> set; }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="a00058.html#aae6f5e516189e2b2f9e80c33d235c7b4">   59</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="a00058.html#aae6f5e516189e2b2f9e80c33d235c7b4">Row</a> { <span class="keyword">get</span> { <span class="keywordflow">return</span> <a class="code" href="a00058.html#abf91f9e65b160b9e835a2991ddced457">currentRow</a>; } }</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#if !NET_2_0</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System.Collections;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>CsvHelper.Configuration</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="a00074.html">   14</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00074.html">CsvPropertyNameCollection</a> : IEnumerable&lt;string&gt;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="a00074.html#a41eb6804d8afe8d674e64d71f66962ce">   16</a></span>&#160;        <span class="keyword">private</span> readonly List&lt;string&gt; names = <span class="keyword">new</span> List&lt;string&gt;();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">public</span> <span class="keywordtype">string</span> <span class="keyword">this</span>[<span class="keywordtype">int</span> index]</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="a00074.html#acdce91a755be3bec6218e3d82f4dfe82">   25</a></span>&#160;        {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> Prefix + names[index]; }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            set { names[index] = value; }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="a00074.html#ab8f3256d8435a1c93f0280064aa3ff06">   33</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">string</span> Prefix { <span class="keyword">get</span>; set; }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">public</span> List&lt;string&gt; Names</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="a00074.html#a1aa06a47337f6ab576b23fe63854dcbe">   40</a></span>&#160;        {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> names; }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">public</span> <span class="keywordtype">int</span> Count</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="a00074.html#a4b7b56286ad80183e1a33554a49eefa1">   48</a></span>&#160;        {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> names.Count; }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="a00074.html#ad7b7d11d5814bcce5ed38e054ef71b4e">   56</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00074.html#ad7b7d11d5814bcce5ed38e054ef71b4e">Add</a>( <span class="keywordtype">string</span> name )</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            names.Add( name );</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="a00058.html#a87a7563b2835f1ccd09dbf0185b1b66c">   65</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="a00058.html#a87a7563b2835f1ccd09dbf0185b1b66c">RawRow</a> { <span class="keyword">get</span> { <span class="keywordflow">return</span> <a class="code" href="a00058.html#abea7b56f7571998c07fbf18043852835">currentRawRow</a>; } }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="a00058.html#ae2c14a3790234029587b817784bdd158">   70</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">string</span> <a class="code" href="a00058.html#ae2c14a3790234029587b817784bdd158">RawRecord</a> { <span class="keyword">get</span>; <span class="keyword">private</span> set; }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="a00058.html#a28afb6761bc195a6f20c284c46811b76">   76</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00058.html#a28afb6761bc195a6f20c284c46811b76">CsvParser</a>( TextReader <a class="code" href="a00058.html#a6ab23daf45e84a211b4010c213504f7e">reader</a> ) : this( reader, new <a class="code" href="a00053.html">CsvConfiguration</a>() ) {}</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="a00074.html#abec990435c8dccfb4553602b89f93201">   64</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00074.html#abec990435c8dccfb4553602b89f93201">Clear</a>()</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            names.Clear();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="a00074.html#ac568746273968080890abca50b882802">   73</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00074.html#ac568746273968080890abca50b882802">AddRange</a>( IEnumerable&lt;string&gt; names )</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            this.names.AddRange( names );</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="a00058.html#a94820d35d587215da53e0a5f2bf229d0">   84</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00058.html#a94820d35d587215da53e0a5f2bf229d0">CsvParser</a>( TextReader <a class="code" href="a00058.html#a6ab23daf45e84a211b4010c213504f7e">reader</a>, <a class="code" href="a00053.html">CsvConfiguration</a> <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a> )</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">if</span>( reader == null )</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;reader&quot;</span> );</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            }</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="keywordflow">if</span>( configuration == null )</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;configuration&quot;</span> );</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            this.reader = <a class="code" href="a00058.html#a6ab23daf45e84a211b4010c213504f7e">reader</a>;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            this.configuration = <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <a class="code" href="a00058.html#ad8b27f20be101a15ef390fcc37f8631b">readerBuffer</a> = <span class="keyword">new</span> <span class="keywordtype">char</span>[configuration.BufferSize];</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="a00058.html#a8e938842c6267343128babd111df9710">  107</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">string</span>[] <a class="code" href="a00058.html#a8e938842c6267343128babd111df9710">Read</a>()</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <a class="code" href="a00058.html#a294664b81d5e4e61289785fa2c1c5820">CheckDisposed</a>();</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <span class="keywordflow">if</span>( <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#a1ec30ebdadc1050686b22d1f518df042">HasExcelSeparator</a> &amp;&amp; !<a class="code" href="a00058.html#abcc5896fa941dd33377a660909940589">hasExcelSeparatorBeenRead</a> )</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                {</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                    <a class="code" href="a00058.html#a47414bb437abd9918ff4501beaa9ff1c">ReadExcelSeparator</a>();</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                }</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                var row = <a class="code" href="a00058.html#a5420fbd5e54c6ed9a856f2d92e610957">ReadLine</a>();</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                <span class="keywordflow">if</span>( <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#a615120d2e42818bc37d87181b72d4ad3">DetectColumnCountChanges</a> &amp;&amp; row != null )</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                {</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                    <span class="keywordflow">if</span>( <a class="code" href="a00058.html#aa9cb95463f5328b8c85884f434975249">FieldCount</a> &gt; 0 &amp;&amp; ( <a class="code" href="a00058.html#aa9cb95463f5328b8c85884f434975249">FieldCount</a> != row.Length || row.Any( field =&gt; field == null ) ) )</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                    {</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                        <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="a00049.html">CsvBadDataException</a>( <span class="stringliteral">&quot;An inconsistent number of columns has been detected.&quot;</span> );</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                    }</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                }</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                <span class="keywordflow">return</span> row;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            }</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keywordflow">catch</span>( Exception ex )</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            {</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                ExceptionHelper.AddExceptionDataMessage( ex, <span class="keyword">this</span>, null, null, null, null );</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                <span class="keywordflow">throw</span>;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            }</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        }</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="a00058.html#aa13f93a198206179cd19cdc12332d842">  141</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00058.html#aa13f93a198206179cd19cdc12332d842">Dispose</a>()</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        {</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            <a class="code" href="a00058.html#aa13f93a198206179cd19cdc12332d842">Dispose</a>( <span class="keyword">true</span> );</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            GC.SuppressFinalize( this );</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        }</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
-<div class="line"><a name="l00151"></a><span class="lineno"><a class="line" href="a00058.html#a67eb636585d4e43642b0ad795413f2a2">  151</a></span>&#160;        <span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="a00058.html#a67eb636585d4e43642b0ad795413f2a2">Dispose</a>( <span class="keywordtype">bool</span> disposing )</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        {</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            <span class="keywordflow">if</span>( <a class="code" href="a00058.html#abeead9997a4c1ec20866458a2e0928bb">disposed</a> )</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            {</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            }</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            <span class="keywordflow">if</span>( disposing )</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            {</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                <span class="keywordflow">if</span>( <a class="code" href="a00058.html#a6ab23daf45e84a211b4010c213504f7e">reader</a> != null )</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                {</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                    reader.Dispose();</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                }</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            }</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            <a class="code" href="a00058.html#abeead9997a4c1ec20866458a2e0928bb">disposed</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            <a class="code" href="a00058.html#a6ab23daf45e84a211b4010c213504f7e">reader</a> = null;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        }</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
-<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="a00058.html#a294664b81d5e4e61289785fa2c1c5820">  174</a></span>&#160;        <span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="a00058.html#a294664b81d5e4e61289785fa2c1c5820">CheckDisposed</a>()</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        {</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            <span class="keywordflow">if</span>( <a class="code" href="a00058.html#abeead9997a4c1ec20866458a2e0928bb">disposed</a> )</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            {</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ObjectDisposedException( GetType().ToString() );</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            }</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        }</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
-<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="a00058.html#a5ccc63fca7b292e0a313ccf81c5ac48c">  187</a></span>&#160;        <span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="a00058.html#a5ccc63fca7b292e0a313ccf81c5ac48c">AddFieldToRecord</a>( ref <span class="keywordtype">int</span> recordPosition, <span class="keywordtype">string</span> field, ref <span class="keywordtype">bool</span> fieldIsBad )</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        {</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            <span class="keywordflow">if</span>( <a class="code" href="a00058.html#a4c748c464a59715ecf7e21b21d0a26bb">record</a>.Length &lt; recordPosition + 1 )</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            {</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                <span class="comment">// Resize record if it&#39;s too small.</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                Array.Resize( ref <a class="code" href="a00058.html#a4c748c464a59715ecf7e21b21d0a26bb">record</a>, recordPosition + 1 );</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                <span class="comment">// Set the field count. If there is a header</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                <span class="comment">// record, then we can go by the number of</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                <span class="comment">// headers there is. If there is no header</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                <span class="comment">// record, then we can go by the first row.</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                <span class="comment">// Either way, we&#39;re using the first row.</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                <span class="keywordflow">if</span>( <a class="code" href="a00058.html#abf91f9e65b160b9e835a2991ddced457">currentRow</a> == 1 )</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                {</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                    <a class="code" href="a00058.html#aa9cb95463f5328b8c85884f434975249">FieldCount</a> = record.Length;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                }</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            }</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            <span class="keywordflow">if</span>( fieldIsBad &amp;&amp; <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#ac20c0f1cc282f4b13ce15b6a91305c10">ThrowOnBadData</a> )</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            {</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="a00049.html">CsvBadDataException</a>( <span class="keywordtype">string</span>.Format( <span class="stringliteral">&quot;Field: &#39;{0}&#39;&quot;</span>, field ) );</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            }</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            <span class="keywordflow">if</span>( fieldIsBad &amp;&amp; <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#a1a59e8f40f9629658d47a6f163dda8ed">BadDataCallback</a> != null )</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            {</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                configuration.BadDataCallback( field );</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            }</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            fieldIsBad = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <a class="code" href="a00058.html#a4c748c464a59715ecf7e21b21d0a26bb">record</a>[recordPosition] = field;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            recordPosition++;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        }</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
-<div class="line"><a name="l00227"></a><span class="lineno"><a class="line" href="a00058.html#a699a73656cc4d6b06df34b37460a0963">  227</a></span>&#160;        <span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="a00058.html#a699a73656cc4d6b06df34b37460a0963">AppendField</a>( ref <span class="keywordtype">string</span> field, <span class="keywordtype">int</span> fieldStartPosition, <span class="keywordtype">int</span> length )</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        {</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            field += <span class="keyword">new</span> string( <a class="code" href="a00058.html#ad8b27f20be101a15ef390fcc37f8631b">readerBuffer</a>, fieldStartPosition, length );</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        }</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
-<div class="line"><a name="l00237"></a><span class="lineno"><a class="line" href="a00058.html#a80b65e1df274bb8ef11d8bc5ba142982">  237</a></span>&#160;        <span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="a00058.html#a80b65e1df274bb8ef11d8bc5ba142982">UpdateBytePosition</a>( <span class="keywordtype">int</span> fieldStartPosition, <span class="keywordtype">int</span> length )</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        {</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            <span class="keywordflow">if</span>( <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#af774e3cb6d18788006deec71879f54a1">CountBytes</a> )</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            {</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;                <a class="code" href="a00058.html#a6fd7255ce9ae33029aafcaab07205047">BytePosition</a> += configuration.Encoding.GetByteCount( <a class="code" href="a00058.html#ad8b27f20be101a15ef390fcc37f8631b">readerBuffer</a>, fieldStartPosition, length );</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            }</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        }</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div>
-<div class="line"><a name="l00249"></a><span class="lineno"><a class="line" href="a00058.html#a5420fbd5e54c6ed9a856f2d92e610957">  249</a></span>&#160;        <span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keywordtype">string</span>[] <a class="code" href="a00058.html#a5420fbd5e54c6ed9a856f2d92e610957">ReadLine</a>()</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        {</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;            <span class="keywordtype">string</span> field = null;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;            var fieldStartPosition = <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a>;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;            var rawFieldStartPosition = <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a>;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;            var inQuotes = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;            var fieldIsEscaped = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            var fieldIsBad = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;            var inComment = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            var inDelimiter = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;            var inExcelLeadingZerosFormat = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            var delimiterPosition = 0;</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            var prevCharWasDelimiter = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;            var recordPosition = 0;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            <a class="code" href="a00058.html#a4c748c464a59715ecf7e21b21d0a26bb">record</a> = <span class="keyword">new</span> <span class="keywordtype">string</span>[<a class="code" href="a00058.html#aa9cb95463f5328b8c85884f434975249">FieldCount</a>];</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;            <a class="code" href="a00058.html#ae2c14a3790234029587b817784bdd158">RawRecord</a> = string.Empty;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;            <a class="code" href="a00058.html#abf91f9e65b160b9e835a2991ddced457">currentRow</a>++;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            <a class="code" href="a00058.html#abea7b56f7571998c07fbf18043852835">currentRawRow</a>++;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;            <span class="keywordflow">while</span>( <span class="keyword">true</span> )</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            {</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                <span class="keywordflow">if</span>( <a class="code" href="a00058.html#aad0c78d3f0233589a8657e2aa22677c2">read</a> )</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                {</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                    <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> = <a class="code" href="a00058.html#ae56cb79868b308d55a44c4c4b7cd22d1">c</a>;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                }</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                var fieldLength = <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - fieldStartPosition;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                <a class="code" href="a00058.html#aad0c78d3f0233589a8657e2aa22677c2">read</a> = <a class="code" href="a00058.html#ac425b45e53d095d825f0fa8a52041a69">GetChar</a>( out <a class="code" href="a00058.html#ae56cb79868b308d55a44c4c4b7cd22d1">c</a>, ref fieldStartPosition, ref rawFieldStartPosition, ref field, ref fieldIsBad, </div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                    prevCharWasDelimiter, ref recordPosition, ref fieldLength, inComment, inDelimiter, inQuotes, <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                <span class="keywordflow">if</span>( !<a class="code" href="a00058.html#aad0c78d3f0233589a8657e2aa22677c2">read</a> )</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;                {</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                }</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a>++;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                <a class="code" href="a00058.html#a1e9b4aa434c3095d383e0c20b0c0b64c">CharPosition</a>++;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="preprocessor">                #region Use Excel Leading Zeros Format for Numerics</span></div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="preprocessor"></span>                <span class="comment">// This needs to get in the way and parse things completely different</span></div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                <span class="comment">// from how a normal CSV field works. This horribly ugly.</span></div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                <span class="keywordflow">if</span>( <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#a5d2eed13b8836f0397f8c39a709de1cc">UseExcelLeadingZerosFormatForNumerics</a> )</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                {</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                    <span class="keywordflow">if</span>( c == <span class="charliteral">&#39;=&#39;</span> &amp;&amp; !inExcelLeadingZerosFormat &amp;&amp; ( prevCharWasDelimiter || <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> == <span class="charliteral">&#39;\r&#39;</span> || <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> == <span class="charliteral">&#39;\n&#39;</span> || <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> == null ) )</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                    {</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                        <span class="comment">// The start of the leading zeros format has been hit.</span></div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                        fieldLength = <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - fieldStartPosition;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                        <span class="keywordtype">char</span> cNext;</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                        <a class="code" href="a00058.html#ac425b45e53d095d825f0fa8a52041a69">GetChar</a>( out cNext, ref fieldStartPosition, ref rawFieldStartPosition, ref field, ref fieldIsBad, </div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                            prevCharWasDelimiter, ref recordPosition, ref fieldLength, inComment, inDelimiter, inQuotes, <span class="keyword">true</span> );</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                        <span class="keywordflow">if</span>( cNext == <span class="charliteral">&#39;&quot;&#39;</span> )</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                        {</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                            inExcelLeadingZerosFormat = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                        }</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                    }</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span>( inExcelLeadingZerosFormat )</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;                    {</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                        <span class="keywordflow">if</span>( c == <span class="charliteral">&#39;&quot;&#39;</span> &amp;&amp; <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> == <span class="charliteral">&#39;=&#39;</span> || <span class="keywordtype">char</span>.IsDigit( c ) )</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                        {</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;                            <span class="comment">// Inside of the field.</span></div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;                        }</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                        <span class="keywordflow">else</span> <span class="keywordflow">if</span>( c == <span class="charliteral">&#39;&quot;&#39;</span> )</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                        {</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                            <span class="comment">// The end of the field has been hit.</span></div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                            <span class="keywordtype">char</span> cNext;</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                            var peekRead = <a class="code" href="a00058.html#ac425b45e53d095d825f0fa8a52041a69">GetChar</a>( out cNext, ref fieldStartPosition, ref rawFieldStartPosition, ref field, ref fieldIsBad, prevCharWasDelimiter, ref recordPosition, ref fieldLength, inComment, inDelimiter, inQuotes, <span class="keyword">true</span> );</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                            <span class="keywordflow">if</span>( cNext == <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#a611063826803f98b7cfc275247c1d883">Delimiter</a>[0] || cNext == <span class="charliteral">&#39;\r&#39;</span> || cNext == <span class="charliteral">&#39;\n&#39;</span> || cNext == <span class="charliteral">&#39;\0&#39;</span> )</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                            {</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                                <a class="code" href="a00058.html#a699a73656cc4d6b06df34b37460a0963">AppendField</a>( ref field, fieldStartPosition, <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - fieldStartPosition );</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                                <a class="code" href="a00058.html#a80b65e1df274bb8ef11d8bc5ba142982">UpdateBytePosition</a>( fieldStartPosition, <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - fieldStartPosition );</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                                field = field.Trim( <span class="charliteral">&#39;=&#39;</span>, <span class="charliteral">&#39;&quot;&#39;</span> );</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                                fieldStartPosition = <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a>;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                                <span class="keywordflow">if</span>( !peekRead )</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                                {</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                                    <a class="code" href="a00058.html#a5ccc63fca7b292e0a313ccf81c5ac48c">AddFieldToRecord</a>( ref recordPosition, field, ref fieldIsBad );</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                                }</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                                inExcelLeadingZerosFormat = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                            }</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                        }</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                        {</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                            inExcelLeadingZerosFormat = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                        }</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                        <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                    }</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                }</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;<span class="preprocessor">                #endregion</span></div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                <span class="keywordflow">if</span>( c == <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#a2a8217dbd09f7d7e4c2895893743e25f">Quote</a> &amp;&amp; !<a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#abb9b54f3fb2aefa066598d74f01d00d8">IgnoreQuotes</a> )</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                {</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;                    <span class="keywordflow">if</span>( !fieldIsEscaped &amp;&amp; ( prevCharWasDelimiter || <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> == <span class="charliteral">&#39;\r&#39;</span> || <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> == <span class="charliteral">&#39;\n&#39;</span> || <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> == null ) )</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                    {</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                        <span class="comment">// The field is escaped only if the first char of</span></div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                        <span class="comment">// the field is a quote.</span></div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;                        fieldIsEscaped = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                    }</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                    <span class="keywordflow">if</span>( !fieldIsEscaped )</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                    {</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                        fieldIsBad = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;                        <span class="comment">// If the field isn&#39;t escaped, the quote</span></div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                        <span class="comment">// is like any other char and we should</span></div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;                        <span class="comment">// just ignore it.</span></div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;                        <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;                    }</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;                    inQuotes = !inQuotes;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;                    <span class="keywordflow">if</span>( fieldStartPosition != <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - 1 )</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                    {</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                        <span class="comment">// Grab all the field chars before the</span></div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                        <span class="comment">// quote if there are any.</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                        <a class="code" href="a00058.html#a699a73656cc4d6b06df34b37460a0963">AppendField</a>( ref field, fieldStartPosition, <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - fieldStartPosition - 1 );</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                        <span class="comment">// Include the quote in the byte count.</span></div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;                        <a class="code" href="a00058.html#a80b65e1df274bb8ef11d8bc5ba142982">UpdateBytePosition</a>( fieldStartPosition, <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - fieldStartPosition );</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;                    }</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                    <span class="keywordflow">if</span>( <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> != <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#a2a8217dbd09f7d7e4c2895893743e25f">Quote</a> || !inQuotes )</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                    {</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                        <span class="keywordflow">if</span>( inQuotes || <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> == <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#a2a8217dbd09f7d7e4c2895893743e25f">Quote</a> || <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> == 1 )</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                        {</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                            <span class="comment">// The quote will be uncounted and needs to be catered for if:</span></div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                            <span class="comment">// 1. It&#39;s the opening quote</span></div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                            <span class="comment">// 2. It&#39;s the closing quote on an empty field (&quot;&quot;)</span></div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                            <span class="comment">// 3. It&#39;s the closing quote and has appeared as the first character in the buffer</span></div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                            <a class="code" href="a00058.html#a80b65e1df274bb8ef11d8bc5ba142982">UpdateBytePosition</a>( fieldStartPosition, <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - fieldStartPosition );</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                        }</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                        <span class="comment">// Set the new field start position to</span></div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;                        <span class="comment">// the char after the quote.</span></div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                        fieldStartPosition = <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a>;</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                    }</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                    prevCharWasDelimiter = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                    <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                }</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;                prevCharWasDelimiter = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;                <span class="keywordflow">if</span>( fieldIsEscaped &amp;&amp; inQuotes )</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;                {</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;                    <span class="keywordflow">if</span>( c == <span class="charliteral">&#39;\r&#39;</span> || ( c == <span class="charliteral">&#39;\n&#39;</span> &amp;&amp; <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> != <span class="charliteral">&#39;\r&#39;</span> ) )</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;                    {</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                        <a class="code" href="a00058.html#abea7b56f7571998c07fbf18043852835">currentRawRow</a>++;</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;                    }</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;                    <span class="comment">// While inside an escaped field,</span></div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                    <span class="comment">// all chars are ignored.</span></div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;                    <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;                }</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;                <span class="keywordflow">if</span>( <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> == <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#a2a8217dbd09f7d7e4c2895893743e25f">Quote</a> &amp;&amp; !<a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#abb9b54f3fb2aefa066598d74f01d00d8">IgnoreQuotes</a> )</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;                {</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                    <span class="keywordflow">if</span>( c != <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#a611063826803f98b7cfc275247c1d883">Delimiter</a>[0] &amp;&amp; c != <span class="charliteral">&#39;\r&#39;</span> &amp;&amp; c != <span class="charliteral">&#39;\n&#39;</span> )</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;                    {</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;                        fieldIsBad = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                    }</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;                    <span class="comment">// If we&#39;re not in quotes and the</span></div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;                    <span class="comment">// previous char was a quote, the</span></div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;                    <span class="comment">// field is no longer escaped.</span></div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;                    fieldIsEscaped = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;                }</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;                <span class="keywordflow">if</span>( inComment &amp;&amp; c != <span class="charliteral">&#39;\r&#39;</span> &amp;&amp; c != <span class="charliteral">&#39;\n&#39;</span> )</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;                {</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;                    <span class="comment">// We are on a commented line.</span></div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;                    <span class="comment">// Ignore the character.</span></div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;                }</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span>( c == <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#a611063826803f98b7cfc275247c1d883">Delimiter</a>[0] || inDelimiter )</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;                {</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;                    <span class="keywordflow">if</span>( !inDelimiter )</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;                    {</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;                        <span class="comment">// If we hit the delimiter, we are</span></div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;                        <span class="comment">// done reading the field and can</span></div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;                        <span class="comment">// add it to the record.</span></div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;                        delimiterPosition = 0;</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;                        <a class="code" href="a00058.html#a699a73656cc4d6b06df34b37460a0963">AppendField</a>( ref field, fieldStartPosition, <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - fieldStartPosition - 1 );</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;                        <span class="comment">// Include the comma in the byte count.</span></div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;                        <a class="code" href="a00058.html#a80b65e1df274bb8ef11d8bc5ba142982">UpdateBytePosition</a>( fieldStartPosition, <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - fieldStartPosition );</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;                        <a class="code" href="a00058.html#a5ccc63fca7b292e0a313ccf81c5ac48c">AddFieldToRecord</a>( ref recordPosition, field, ref fieldIsBad );</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;                        fieldStartPosition = <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a>;</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;                        field = null;</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;                        inDelimiter = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;                    }</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;                    </div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;                    <span class="keywordflow">if</span>( delimiterPosition == <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#a611063826803f98b7cfc275247c1d883">Delimiter</a>.Length - 1 )</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;                    {</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;                        <span class="comment">// We are done reading the delimeter.</span></div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;                        <span class="comment">// Include the delimiter in the byte count.</span></div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;                        <a class="code" href="a00058.html#a80b65e1df274bb8ef11d8bc5ba142982">UpdateBytePosition</a>( fieldStartPosition, <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - fieldStartPosition );</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;                        inDelimiter = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;                        prevCharWasDelimiter = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;                        fieldStartPosition = <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a>;</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;                    }</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#a611063826803f98b7cfc275247c1d883">Delimiter</a>[delimiterPosition] != c )</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;                    {</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;                        <span class="comment">// We&#39;re not actually in a delimiter. Reset things back</span></div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;                        <span class="comment">// to the previous field.</span></div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;                        recordPosition--;</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;                        fieldStartPosition -= ( delimiterPosition + 1 );</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;                        inDelimiter = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;                    }</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;                    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;                    {</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;                        delimiterPosition++;</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;                    }</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;                }</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span>( c == <span class="charliteral">&#39;\r&#39;</span> || c == <span class="charliteral">&#39;\n&#39;</span> )</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;                {</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;                    fieldLength = <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - fieldStartPosition - 1;</div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;                    <span class="keywordflow">if</span>( c == <span class="charliteral">&#39;\r&#39;</span> )</div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;                    {</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;                        <span class="keywordtype">char</span> cNext;</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;                        <a class="code" href="a00058.html#ac425b45e53d095d825f0fa8a52041a69">GetChar</a>( out cNext, ref fieldStartPosition, ref rawFieldStartPosition, ref field, ref fieldIsBad, prevCharWasDelimiter, ref recordPosition, ref fieldLength, inComment, inDelimiter, inQuotes, <span class="keyword">true</span> );</div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;                        <span class="keywordflow">if</span>( cNext == <span class="charliteral">&#39;\n&#39;</span> )</div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;                        {</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;                            <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a>++;</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;                            <a class="code" href="a00058.html#a1e9b4aa434c3095d383e0c20b0c0b64c">CharPosition</a>++;</div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;                        }</div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;                    }</div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;                    <span class="keywordflow">if</span>( <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> == <span class="charliteral">&#39;\r&#39;</span> || <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> == <span class="charliteral">&#39;\n&#39;</span> || inComment || <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> == null )</div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;                    {</div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;                        <span class="comment">// We have hit a blank line. Ignore it.</span></div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;</div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;                        <a class="code" href="a00058.html#a80b65e1df274bb8ef11d8bc5ba142982">UpdateBytePosition</a>( fieldStartPosition, <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - fieldStartPosition );</div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;                        fieldStartPosition = <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a>;</div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;                        inComment = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;</div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;                        <span class="keywordflow">if</span>( !<a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#abec66869c9418966fe5bbf74e32b46a2">IgnoreBlankLines</a> )</div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;                        {</div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;                        }</div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;</div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;                        <span class="comment">// If blank lines are being ignored, we need to add</span></div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;                        <span class="comment">// to the row count because we&#39;re skipping the row</span></div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;                        <span class="comment">// and it won&#39;t get added normally.</span></div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;                        <a class="code" href="a00058.html#abf91f9e65b160b9e835a2991ddced457">currentRow</a>++;</div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;                        <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;                    }</div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;</div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;                    <span class="comment">// If we hit the end of the record, add </span></div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;                    <span class="comment">// the current field and return the record.</span></div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;                    <a class="code" href="a00058.html#a699a73656cc4d6b06df34b37460a0963">AppendField</a>( ref field, fieldStartPosition, fieldLength );</div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;                    <span class="comment">// Include the \r or \n in the byte count.</span></div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;                    <a class="code" href="a00058.html#a80b65e1df274bb8ef11d8bc5ba142982">UpdateBytePosition</a>( fieldStartPosition, <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - fieldStartPosition );</div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;                    <a class="code" href="a00058.html#a5ccc63fca7b292e0a313ccf81c5ac48c">AddFieldToRecord</a>( ref recordPosition, field, ref fieldIsBad );</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;                }</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#a0799eaadd40d70a70cb2d50a3f6f5836">AllowComments</a> &amp;&amp; c == <a class="code" href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">configuration</a>.<a class="code" href="a00053.html#a7df1aa9462eff1da4a271cb3a53feb95">Comment</a> &amp;&amp; ( <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> == <span class="charliteral">&#39;\r&#39;</span> || <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> == <span class="charliteral">&#39;\n&#39;</span> || <a class="code" href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">cPrev</a> == null ) )</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;                {</div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;                    inComment = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;                }</div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;            }</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;</div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;            <span class="keywordflow">if</span>( <a class="code" href="a00058.html#a4c748c464a59715ecf7e21b21d0a26bb">record</a> != null )</div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;            {</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;                <a class="code" href="a00058.html#ae2c14a3790234029587b817784bdd158">RawRecord</a> += <span class="keyword">new</span> string( <a class="code" href="a00058.html#ad8b27f20be101a15ef390fcc37f8631b">readerBuffer</a>, rawFieldStartPosition, <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - rawFieldStartPosition );</div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;            }</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;</div>
-<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="a00058.html#a4c748c464a59715ecf7e21b21d0a26bb">record</a>;</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;        }</div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;</div>
-<div class="line"><a name="l00538"></a><span class="lineno"><a class="line" href="a00058.html#ac425b45e53d095d825f0fa8a52041a69">  538</a></span>&#160;        <span class="keyword">protected</span> <span class="keywordtype">bool</span> <a class="code" href="a00058.html#ac425b45e53d095d825f0fa8a52041a69">GetChar</a>( out <span class="keywordtype">char</span> ch, ref <span class="keywordtype">int</span> fieldStartPosition, ref <span class="keywordtype">int</span> rawFieldStartPosition, ref <span class="keywordtype">string</span> field, ref <span class="keywordtype">bool</span> fieldIsBad, <span class="keywordtype">bool</span> prevCharWasDelimiter, ref <span class="keywordtype">int</span> recordPosition, ref <span class="keywordtype">int</span> fieldLength, <span class="keywordtype">bool</span> inComment, <span class="keywordtype">bool</span> inDelimiter, <span class="keywordtype">bool</span> inQuotes, <span class="keywordtype">bool</span> isPeek )</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;        {</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;            <span class="keywordflow">if</span>( <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> == <a class="code" href="a00058.html#a9300effd525a71c2a377bde2586da9ae">charsRead</a> )</div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;            {</div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;                <span class="comment">// We need to read more of the stream.</span></div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;</div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;                <span class="keywordflow">if</span>( !inDelimiter &amp;&amp; !inComment )</div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;                {</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;                    <span class="comment">// The buffer ran out. Take the current</span></div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;                    <span class="comment">// text and add it to the field.</span></div>
-<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;                    <a class="code" href="a00058.html#a699a73656cc4d6b06df34b37460a0963">AppendField</a>( ref field, fieldStartPosition, fieldLength );</div>
-<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;                }</div>
-<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;</div>
-<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;                <a class="code" href="a00058.html#a80b65e1df274bb8ef11d8bc5ba142982">UpdateBytePosition</a>( fieldStartPosition, <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - fieldStartPosition );</div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;                fieldLength = 0;</div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;</div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;                <a class="code" href="a00058.html#ae2c14a3790234029587b817784bdd158">RawRecord</a> += <span class="keyword">new</span> string( <a class="code" href="a00058.html#ad8b27f20be101a15ef390fcc37f8631b">readerBuffer</a>, rawFieldStartPosition, <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> - rawFieldStartPosition );</div>
-<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;</div>
-<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;                <a class="code" href="a00058.html#a9300effd525a71c2a377bde2586da9ae">charsRead</a> = reader.Read( <a class="code" href="a00058.html#ad8b27f20be101a15ef390fcc37f8631b">readerBuffer</a>, 0, readerBuffer.Length );</div>
-<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;                <a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a> = 0;</div>
-<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;                fieldStartPosition = 0;</div>
-<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;                rawFieldStartPosition = 0;</div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;</div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;                <span class="keywordflow">if</span>( <a class="code" href="a00058.html#a9300effd525a71c2a377bde2586da9ae">charsRead</a> == 0 )</div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;                {</div>
-<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;                    <span class="comment">// The end of the stream has been reached.</span></div>
-<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;</div>
-<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;                    <span class="keywordflow">if</span>( isPeek )</div>
-<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;                    {</div>
-<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;                        <span class="comment">// Don&#39;t do any record handling because we&#39;re just looking ahead</span></div>
-<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;                        <span class="comment">// and not actually getting the next char to use.</span></div>
-<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;                        ch = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;                        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;                    }</div>
-<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;</div>
-<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;                    <span class="keywordflow">if</span>( ( <a class="code" href="a00058.html#ae56cb79868b308d55a44c4c4b7cd22d1">c</a> != <span class="charliteral">&#39;\r&#39;</span> &amp;&amp; <a class="code" href="a00058.html#ae56cb79868b308d55a44c4c4b7cd22d1">c</a> != <span class="charliteral">&#39;\n&#39;</span> &amp;&amp; <a class="code" href="a00058.html#ae56cb79868b308d55a44c4c4b7cd22d1">c</a> != <span class="charliteral">&#39;\0&#39;</span> &amp;&amp; !inComment ) || inQuotes )</div>
-<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;                    {</div>
-<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;                        <span class="comment">// If we&#39;re in quotes and have reached the end of the file, record the</span></div>
-<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;                        <span class="comment">// rest of the record and field.</span></div>
-<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;</div>
-<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;                        <span class="keywordflow">if</span>( prevCharWasDelimiter )</div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;                        {</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;                            <span class="comment">// Handle an empty field at the end of the row.</span></div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;                            field = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;                        }</div>
-<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;</div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;                        <a class="code" href="a00058.html#a5ccc63fca7b292e0a313ccf81c5ac48c">AddFieldToRecord</a>( ref recordPosition, field, ref fieldIsBad );</div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;                    }</div>
-<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;                    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;                    {</div>
-<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;                        <a class="code" href="a00058.html#ae2c14a3790234029587b817784bdd158">RawRecord</a> = null;</div>
-<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;                        <a class="code" href="a00058.html#a4c748c464a59715ecf7e21b21d0a26bb">record</a> = null;</div>
-<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;                    }</div>
-<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;</div>
-<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;                    ch = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;                }</div>
-<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;            }</div>
-<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;</div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;            ch = <a class="code" href="a00058.html#ad8b27f20be101a15ef390fcc37f8631b">readerBuffer</a>[<a class="code" href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">readerBufferPosition</a>];</div>
-<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;        }</div>
-<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;</div>
-<div class="line"><a name="l00604"></a><span class="lineno"><a class="line" href="a00058.html#a47414bb437abd9918ff4501beaa9ff1c">  604</a></span>&#160;        <span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="a00058.html#a47414bb437abd9918ff4501beaa9ff1c">ReadExcelSeparator</a>()</div>
-<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;        {</div>
-<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;            <span class="comment">// sep=delimiter</span></div>
-<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;            var sepLine = reader.ReadLine();</div>
-<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;            <span class="keywordflow">if</span>( sepLine != null )</div>
-<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;            {</div>
-<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;                configuration.Delimiter = sepLine.Substring( 4 );</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;            }</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;</div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;            <a class="code" href="a00058.html#abcc5896fa941dd33377a660909940589">hasExcelSeparatorBeenRead</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;        }</div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;    }</div>
-<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;}</div>
-<div class="ttc" id="a00053_html_a611063826803f98b7cfc275247c1d883"><div class="ttname"><a href="a00053.html#a611063826803f98b7cfc275247c1d883">CsvHelper.Configuration.CsvConfiguration.Delimiter</a></div><div class="ttdeci">virtual string Delimiter</div><div class="ttdoc">Gets or sets the delimiter used to separate fields. Default is &#39;,&#39;; </div><div class="ttdef"><b>Definition:</b> <a href="a00211_source.html#l00146">CsvConfiguration.cs:146</a></div></div>
-<div class="ttc" id="a00058_html_ad8b27f20be101a15ef390fcc37f8631b"><div class="ttname"><a href="a00058.html#ad8b27f20be101a15ef390fcc37f8631b">CsvHelper.CsvParser.readerBuffer</a></div><div class="ttdeci">readonly char[] readerBuffer</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00020">CsvParser.cs:20</a></div></div>
-<div class="ttc" id="a00053_html_a2a8217dbd09f7d7e4c2895893743e25f"><div class="ttname"><a href="a00053.html#a2a8217dbd09f7d7e4c2895893743e25f">CsvHelper.Configuration.CsvConfiguration.Quote</a></div><div class="ttdeci">virtual char Quote</div><div class="ttdoc">Gets or sets the character used to quote fields. Default is &#39;&quot;&#39;. </div><div class="ttdef"><b>Definition:</b> <a href="a00211_source.html#l00181">CsvConfiguration.cs:181</a></div></div>
-<div class="ttc" id="a00058_html_a67eb636585d4e43642b0ad795413f2a2"><div class="ttname"><a href="a00058.html#a67eb636585d4e43642b0ad795413f2a2">CsvHelper.CsvParser.Dispose</a></div><div class="ttdeci">virtual void Dispose(bool disposing)</div><div class="ttdoc">Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resourc...</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00151">CsvParser.cs:151</a></div></div>
-<div class="ttc" id="a00058_html_a80b65e1df274bb8ef11d8bc5ba142982"><div class="ttname"><a href="a00058.html#a80b65e1df274bb8ef11d8bc5ba142982">CsvHelper.CsvParser.UpdateBytePosition</a></div><div class="ttdeci">virtual void UpdateBytePosition(int fieldStartPosition, int length)</div><div class="ttdoc">Updates the byte position using the data from the reader buffer. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00237">CsvParser.cs:237</a></div></div>
-<div class="ttc" id="a00058_html_abf91f9e65b160b9e835a2991ddced457"><div class="ttname"><a href="a00058.html#abf91f9e65b160b9e835a2991ddced457">CsvHelper.CsvParser.currentRow</a></div><div class="ttdeci">int currentRow</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00024">CsvParser.cs:24</a></div></div>
-<div class="ttc" id="a00058_html_a8e938842c6267343128babd111df9710"><div class="ttname"><a href="a00058.html#a8e938842c6267343128babd111df9710">CsvHelper.CsvParser.Read</a></div><div class="ttdeci">virtual string[] Read()</div><div class="ttdoc">Reads a record from the CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00107">CsvParser.cs:107</a></div></div>
-<div class="ttc" id="a00058_html_a4c748c464a59715ecf7e21b21d0a26bb"><div class="ttname"><a href="a00058.html#a4c748c464a59715ecf7e21b21d0a26bb">CsvHelper.CsvParser.record</a></div><div class="ttdeci">string[] record</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00023">CsvParser.cs:23</a></div></div>
-<div class="ttc" id="a00103_html"><div class="ttname"><a href="a00103.html">CsvHelper.ICsvParser</a></div><div class="ttdoc">Defines methods used the parse a CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00236_source.html#l00013">ICsvParser.cs:13</a></div></div>
-<div class="ttc" id="a00058_html_aae6f5e516189e2b2f9e80c33d235c7b4"><div class="ttname"><a href="a00058.html#aae6f5e516189e2b2f9e80c33d235c7b4">CsvHelper.CsvParser.Row</a></div><div class="ttdeci">virtual int Row</div><div class="ttdoc">Gets the row of the CSV file that the parser is currently on. This is the logical CSV row...</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00059">CsvParser.cs:59</a></div></div>
-<div class="ttc" id="a00058_html_a76b0cbb3c14e0397d2ca1144e538a33c"><div class="ttname"><a href="a00058.html#a76b0cbb3c14e0397d2ca1144e538a33c">CsvHelper.CsvParser.readerBufferPosition</a></div><div class="ttdeci">int readerBufferPosition</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00021">CsvParser.cs:21</a></div></div>
-<div class="ttc" id="a00053_html_a7df1aa9462eff1da4a271cb3a53feb95"><div class="ttname"><a href="a00053.html#a7df1aa9462eff1da4a271cb3a53feb95">CsvHelper.Configuration.CsvConfiguration.Comment</a></div><div class="ttdeci">virtual char Comment</div><div class="ttdoc">Gets or sets the character used to denote a line that is commented out. Default is &#39;#&#39;...</div><div class="ttdef"><b>Definition:</b> <a href="a00211_source.html#l00248">CsvConfiguration.cs:248</a></div></div>
-<div class="ttc" id="a00058_html_aeb171813d1526839ccd41d60ab6483b2"><div class="ttname"><a href="a00058.html#aeb171813d1526839ccd41d60ab6483b2">CsvHelper.CsvParser.configuration</a></div><div class="ttdeci">readonly CsvConfiguration configuration</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00026">CsvParser.cs:26</a></div></div>
-<div class="ttc" id="a00053_html_a0799eaadd40d70a70cb2d50a3f6f5836"><div class="ttname"><a href="a00053.html#a0799eaadd40d70a70cb2d50a3f6f5836">CsvHelper.Configuration.CsvConfiguration.AllowComments</a></div><div class="ttdeci">virtual bool AllowComments</div><div class="ttdoc">Gets or sets a value indicating if comments are allowed. True to allow commented out lines...</div><div class="ttdef"><b>Definition:</b> <a href="a00211_source.html#l00257">CsvConfiguration.cs:257</a></div></div>
-<div class="ttc" id="a00058_html_a417fc0dca5536811d7a8571ccdf0d46e"><div class="ttname"><a href="a00058.html#a417fc0dca5536811d7a8571ccdf0d46e">CsvHelper.CsvParser.Configuration</a></div><div class="ttdeci">virtual CsvConfiguration Configuration</div><div class="ttdoc">Gets the configuration. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00036">CsvParser.cs:36</a></div></div>
-<div class="ttc" id="a00053_html_abec66869c9418966fe5bbf74e32b46a2"><div class="ttname"><a href="a00053.html#abec66869c9418966fe5bbf74e32b46a2">CsvHelper.Configuration.CsvConfiguration.IgnoreBlankLines</a></div><div class="ttdeci">virtual bool IgnoreBlankLines</div><div class="ttdoc">Gets or sets a value indicating if blank lines should be ignored when reading. True to ignore...</div><div class="ttdef"><b>Definition:</b> <a href="a00211_source.html#l00377">CsvConfiguration.cs:377</a></div></div>
-<div class="ttc" id="a00058_html_a6fd7255ce9ae33029aafcaab07205047"><div class="ttname"><a href="a00058.html#a6fd7255ce9ae33029aafcaab07205047">CsvHelper.CsvParser.BytePosition</a></div><div class="ttdeci">virtual long BytePosition</div><div class="ttdoc">Gets the byte position that the parser is currently on. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00053">CsvParser.cs:53</a></div></div>
-<div class="ttc" id="a00058_html_ac425b45e53d095d825f0fa8a52041a69"><div class="ttname"><a href="a00058.html#ac425b45e53d095d825f0fa8a52041a69">CsvHelper.CsvParser.GetChar</a></div><div class="ttdeci">bool GetChar(out char ch, ref int fieldStartPosition, ref int rawFieldStartPosition, ref string field, ref bool fieldIsBad, bool prevCharWasDelimiter, ref int recordPosition, ref int fieldLength, bool inComment, bool inDelimiter, bool inQuotes, bool isPeek)</div><div class="ttdoc">Gets the current character from the buffer while advancing the buffer if it ran out. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00538">CsvParser.cs:538</a></div></div>
-<div class="ttc" id="a00053_html_a5d2eed13b8836f0397f8c39a709de1cc"><div class="ttname"><a href="a00053.html#a5d2eed13b8836f0397f8c39a709de1cc">CsvHelper.Configuration.CsvConfiguration.UseExcelLeadingZerosFormatForNumerics</a></div><div class="ttdeci">virtual bool UseExcelLeadingZerosFormatForNumerics</div><div class="ttdoc">Gets or sets a value indicating if an Excel specific format should be used when writing fields contai...</div><div class="ttdef"><b>Definition:</b> <a href="a00211_source.html#l00387">CsvConfiguration.cs:387</a></div></div>
-<div class="ttc" id="a00058_html_a294664b81d5e4e61289785fa2c1c5820"><div class="ttname"><a href="a00058.html#a294664b81d5e4e61289785fa2c1c5820">CsvHelper.CsvParser.CheckDisposed</a></div><div class="ttdeci">virtual void CheckDisposed()</div><div class="ttdoc">Checks if the instance has been disposed of. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00174">CsvParser.cs:174</a></div></div>
-<div class="ttc" id="a00058_html_abeead9997a4c1ec20866458a2e0928bb"><div class="ttname"><a href="a00058.html#abeead9997a4c1ec20866458a2e0928bb">CsvHelper.CsvParser.disposed</a></div><div class="ttdeci">bool disposed</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00018">CsvParser.cs:18</a></div></div>
-<div class="ttc" id="a00058_html_abea7b56f7571998c07fbf18043852835"><div class="ttname"><a href="a00058.html#abea7b56f7571998c07fbf18043852835">CsvHelper.CsvParser.currentRawRow</a></div><div class="ttdeci">int currentRawRow</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00025">CsvParser.cs:25</a></div></div>
-<div class="ttc" id="a00058_html"><div class="ttname"><a href="a00058.html">CsvHelper.CsvParser</a></div><div class="ttdoc">Parses a CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00016">CsvParser.cs:16</a></div></div>
-<div class="ttc" id="a00058_html_a1e9b4aa434c3095d383e0c20b0c0b64c"><div class="ttname"><a href="a00058.html#a1e9b4aa434c3095d383e0c20b0c0b64c">CsvHelper.CsvParser.CharPosition</a></div><div class="ttdeci">virtual long CharPosition</div><div class="ttdoc">Gets the character position that the parser is currently on. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00048">CsvParser.cs:48</a></div></div>
-<div class="ttc" id="a00058_html_aa9cb95463f5328b8c85884f434975249"><div class="ttname"><a href="a00058.html#aa9cb95463f5328b8c85884f434975249">CsvHelper.CsvParser.FieldCount</a></div><div class="ttdeci">virtual int FieldCount</div><div class="ttdoc">Gets the field count. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00043">CsvParser.cs:43</a></div></div>
-<div class="ttc" id="a00058_html_ae56cb79868b308d55a44c4c4b7cd22d1"><div class="ttname"><a href="a00058.html#ae56cb79868b308d55a44c4c4b7cd22d1">CsvHelper.CsvParser.c</a></div><div class="ttdeci">char c</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00028">CsvParser.cs:28</a></div></div>
-<div class="ttc" id="a00058_html_a5420fbd5e54c6ed9a856f2d92e610957"><div class="ttname"><a href="a00058.html#a5420fbd5e54c6ed9a856f2d92e610957">CsvHelper.CsvParser.ReadLine</a></div><div class="ttdeci">virtual string[] ReadLine()</div><div class="ttdoc">Reads the next line. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00249">CsvParser.cs:249</a></div></div>
-<div class="ttc" id="a00058_html_a699a73656cc4d6b06df34b37460a0963"><div class="ttname"><a href="a00058.html#a699a73656cc4d6b06df34b37460a0963">CsvHelper.CsvParser.AppendField</a></div><div class="ttdeci">virtual void AppendField(ref string field, int fieldStartPosition, int length)</div><div class="ttdoc">Appends the current buffer data to the field. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00227">CsvParser.cs:227</a></div></div>
-<div class="ttc" id="a00053_html_af774e3cb6d18788006deec71879f54a1"><div class="ttname"><a href="a00053.html#af774e3cb6d18788006deec71879f54a1">CsvHelper.Configuration.CsvConfiguration.CountBytes</a></div><div class="ttdeci">virtual bool CountBytes</div><div class="ttdoc">Gets or sets a value indicating whether the number of bytes should be counted while parsing...</div><div class="ttdef"><b>Definition:</b> <a href="a00211_source.html#l00321">CsvConfiguration.cs:321</a></div></div>
-<div class="ttc" id="a00053_html_a1ec30ebdadc1050686b22d1f518df042"><div class="ttname"><a href="a00053.html#a1ec30ebdadc1050686b22d1f518df042">CsvHelper.Configuration.CsvConfiguration.HasExcelSeparator</a></div><div class="ttdeci">virtual bool HasExcelSeparator</div><div class="ttdoc">Gets or sets a value indicating the if the CSV file contains the Excel &quot;sep=delimeter&quot; config option ...</div><div class="ttdef"><b>Definition:</b> <a href="a00211_source.html#l00078">CsvConfiguration.cs:78</a></div></div>
-<div class="ttc" id="a00058_html_a5ccc63fca7b292e0a313ccf81c5ac48c"><div class="ttname"><a href="a00058.html#a5ccc63fca7b292e0a313ccf81c5ac48c">CsvHelper.CsvParser.AddFieldToRecord</a></div><div class="ttdeci">virtual void AddFieldToRecord(ref int recordPosition, string field, ref bool fieldIsBad)</div><div class="ttdoc">Adds the field to the current record. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00187">CsvParser.cs:187</a></div></div>
-<div class="ttc" id="a00053_html_a615120d2e42818bc37d87181b72d4ad3"><div class="ttname"><a href="a00053.html#a615120d2e42818bc37d87181b72d4ad3">CsvHelper.Configuration.CsvConfiguration.DetectColumnCountChanges</a></div><div class="ttdeci">virtual bool DetectColumnCountChanges</div><div class="ttdoc">Gets or sets a value indicating whether changes in the column count should be detected. If true, a CsvBadDataException will be thrown if a different column count is detected. </div><div class="ttdef"><b>Definition:</b> <a href="a00211_source.html#l00100">CsvConfiguration.cs:100</a></div></div>
-<div class="ttc" id="a00058_html_a55bb91346d092b3c8dc74b48f6c87bdc"><div class="ttname"><a href="a00058.html#a55bb91346d092b3c8dc74b48f6c87bdc">CsvHelper.CsvParser.cPrev</a></div><div class="ttdeci">char cPrev</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00027">CsvParser.cs:27</a></div></div>
-<div class="ttc" id="a00058_html_abcc5896fa941dd33377a660909940589"><div class="ttname"><a href="a00058.html#abcc5896fa941dd33377a660909940589">CsvHelper.CsvParser.hasExcelSeparatorBeenRead</a></div><div class="ttdeci">bool hasExcelSeparatorBeenRead</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00030">CsvParser.cs:30</a></div></div>
-<div class="ttc" id="a00049_html"><div class="ttname"><a href="a00049.html">CsvHelper.CsvBadDataException</a></div><div class="ttdoc">Represents errors that occur due to bad data. </div><div class="ttdef"><b>Definition:</b> <a href="a00223_source.html#l00018">CsvBadDataException.cs:18</a></div></div>
-<div class="ttc" id="a00058_html_a87a7563b2835f1ccd09dbf0185b1b66c"><div class="ttname"><a href="a00058.html#a87a7563b2835f1ccd09dbf0185b1b66c">CsvHelper.CsvParser.RawRow</a></div><div class="ttdeci">virtual int RawRow</div><div class="ttdoc">Gets the row of the CSV file that the parser is currently on. This is the actual file row...</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00065">CsvParser.cs:65</a></div></div>
-<div class="ttc" id="a00053_html_a1a59e8f40f9629658d47a6f163dda8ed"><div class="ttname"><a href="a00053.html#a1a59e8f40f9629658d47a6f163dda8ed">CsvHelper.Configuration.CsvConfiguration.BadDataCallback</a></div><div class="ttdeci">virtual Action&lt; string &gt; BadDataCallback</div><div class="ttdoc">Gets or sets a method that gets called when bad data is detected. </div><div class="ttdef"><b>Definition:</b> <a href="a00211_source.html#l00408">CsvConfiguration.cs:408</a></div></div>
-<div class="ttc" id="a00058_html_a94820d35d587215da53e0a5f2bf229d0"><div class="ttname"><a href="a00058.html#a94820d35d587215da53e0a5f2bf229d0">CsvHelper.CsvParser.CsvParser</a></div><div class="ttdeci">CsvParser(TextReader reader, CsvConfiguration configuration)</div><div class="ttdoc">Creates a new parser using the given TextReader and CsvConfiguration. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00084">CsvParser.cs:84</a></div></div>
-<div class="ttc" id="a00053_html_ac20c0f1cc282f4b13ce15b6a91305c10"><div class="ttname"><a href="a00053.html#ac20c0f1cc282f4b13ce15b6a91305c10">CsvHelper.Configuration.CsvConfiguration.ThrowOnBadData</a></div><div class="ttdeci">virtual bool ThrowOnBadData</div><div class="ttdoc">Gets or sets a value indicating if an exception should be thrown when bad field data is detected...</div><div class="ttdef"><b>Definition:</b> <a href="a00211_source.html#l00402">CsvConfiguration.cs:402</a></div></div>
-<div class="ttc" id="a00058_html_aad0c78d3f0233589a8657e2aa22677c2"><div class="ttname"><a href="a00058.html#aad0c78d3f0233589a8657e2aa22677c2">CsvHelper.CsvParser.read</a></div><div class="ttdeci">bool read</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00029">CsvParser.cs:29</a></div></div>
-<div class="ttc" id="a00058_html_a47414bb437abd9918ff4501beaa9ff1c"><div class="ttname"><a href="a00058.html#a47414bb437abd9918ff4501beaa9ff1c">CsvHelper.CsvParser.ReadExcelSeparator</a></div><div class="ttdeci">virtual void ReadExcelSeparator()</div><div class="ttdoc">Reads the Excel seperator and sets it to the delimiter. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00604">CsvParser.cs:604</a></div></div>
-<div class="ttc" id="a00058_html_a9300effd525a71c2a377bde2586da9ae"><div class="ttname"><a href="a00058.html#a9300effd525a71c2a377bde2586da9ae">CsvHelper.CsvParser.charsRead</a></div><div class="ttdeci">int charsRead</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00022">CsvParser.cs:22</a></div></div>
-<div class="ttc" id="a00058_html_aa13f93a198206179cd19cdc12332d842"><div class="ttname"><a href="a00058.html#aa13f93a198206179cd19cdc12332d842">CsvHelper.CsvParser.Dispose</a></div><div class="ttdeci">void Dispose()</div><div class="ttdoc">Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resourc...</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00141">CsvParser.cs:141</a></div></div>
-<div class="ttc" id="a00058_html_a28afb6761bc195a6f20c284c46811b76"><div class="ttname"><a href="a00058.html#a28afb6761bc195a6f20c284c46811b76">CsvHelper.CsvParser.CsvParser</a></div><div class="ttdeci">CsvParser(TextReader reader)</div><div class="ttdoc">Creates a new parser using the given TextReader. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00076">CsvParser.cs:76</a></div></div>
-<div class="ttc" id="a00053_html"><div class="ttname"><a href="a00053.html">CsvHelper.Configuration.CsvConfiguration</a></div><div class="ttdoc">Configuration used for reading and writing CSV data. </div><div class="ttdef"><b>Definition:</b> <a href="a00211_source.html#l00018">CsvConfiguration.cs:18</a></div></div>
-<div class="ttc" id="a00058_html_a6ab23daf45e84a211b4010c213504f7e"><div class="ttname"><a href="a00058.html#a6ab23daf45e84a211b4010c213504f7e">CsvHelper.CsvParser.reader</a></div><div class="ttdeci">TextReader reader</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00019">CsvParser.cs:19</a></div></div>
-<div class="ttc" id="a00058_html_ae2c14a3790234029587b817784bdd158"><div class="ttname"><a href="a00058.html#ae2c14a3790234029587b817784bdd158">CsvHelper.CsvParser.RawRecord</a></div><div class="ttdeci">virtual string RawRecord</div><div class="ttdoc">Gets the raw row for the current record that was parsed. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00070">CsvParser.cs:70</a></div></div>
-<div class="ttc" id="a00053_html_abb9b54f3fb2aefa066598d74f01d00d8"><div class="ttname"><a href="a00053.html#abb9b54f3fb2aefa066598d74f01d00d8">CsvHelper.Configuration.CsvConfiguration.IgnoreQuotes</a></div><div class="ttdeci">virtual bool IgnoreQuotes</div><div class="ttdoc">Gets or sets a value indicating if quotes should be ingored when parsing and treated like any other c...</div><div class="ttdef"><b>Definition:</b> <a href="a00211_source.html#l00361">CsvConfiguration.cs:361</a></div></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="a00074.html#a61b6a80e51d06f17d0043ec6aef89f1b">   85</a></span>&#160;        <span class="keyword">public</span> IEnumerator&lt;string&gt; <a class="code" href="a00074.html#a61b6a80e51d06f17d0043ec6aef89f1b">GetEnumerator</a>()</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keywordflow">for</span>( var i = 0; i &lt; names.Count; i++ )</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                yield <span class="keywordflow">return</span> <span class="keyword">this</span>[i];</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="a00074.html#a76b5c67fcecf55dbdd4b680cde1a78f7">  100</a></span>&#160;        IEnumerator IEnumerable.GetEnumerator()</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keywordflow">return</span> names.GetEnumerator();</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif // !NET_2_0</span></div>
+<div class="ttc" id="a00074_html_ad7b7d11d5814bcce5ed38e054ef71b4e"><div class="ttname"><a href="a00074.html#ad7b7d11d5814bcce5ed38e054ef71b4e">CsvHelper.Configuration.CsvPropertyNameCollection.Add</a></div><div class="ttdeci">void Add(string name)</div><div class="ttdoc">Adds the given name to the collection. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00056">CsvPropertyNameCollection.cs:56</a></div></div>
+<div class="ttc" id="a00074_html"><div class="ttname"><a href="a00074.html">CsvHelper.Configuration.CsvPropertyNameCollection</a></div><div class="ttdoc">A collection that holds property names. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00014">CsvPropertyNameCollection.cs:14</a></div></div>
+<div class="ttc" id="a00074_html_abec990435c8dccfb4553602b89f93201"><div class="ttname"><a href="a00074.html#abec990435c8dccfb4553602b89f93201">CsvHelper.Configuration.CsvPropertyNameCollection.Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdoc">Clears all names from the collection. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00064">CsvPropertyNameCollection.cs:64</a></div></div>
+<div class="ttc" id="a00074_html_ac568746273968080890abca50b882802"><div class="ttname"><a href="a00074.html#ac568746273968080890abca50b882802">CsvHelper.Configuration.CsvPropertyNameCollection.AddRange</a></div><div class="ttdeci">void AddRange(IEnumerable&lt; string &gt; names)</div><div class="ttdoc">Adds a range of names to the collection. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00073">CsvPropertyNameCollection.cs:73</a></div></div>
+<div class="ttc" id="a00074_html_a61b6a80e51d06f17d0043ec6aef89f1b"><div class="ttname"><a href="a00074.html#a61b6a80e51d06f17d0043ec6aef89f1b">CsvHelper.Configuration.CsvPropertyNameCollection.GetEnumerator</a></div><div class="ttdeci">IEnumerator&lt; string &gt; GetEnumerator()</div><div class="ttdoc">Returns an enumerator that iterates through the collection. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00085">CsvPropertyNameCollection.cs:85</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00227.html">CsvParser.cs</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:35 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_3401b88f0a1c00c4409faa11193eadf6.html">Configuration</a></li><li class="navelem"><a class="el" href="a00227.html">CsvPropertyNameCollection.cs</a></li>
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:04 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

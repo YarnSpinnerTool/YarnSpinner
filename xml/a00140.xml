@@ -1,160 +1,108 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00140" kind="class" prot="public">
-    <compoundname>Yarn::Unity::Example::PlayerCharacter</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00140_1ac025d4f4afaf854f8256e0d2d03e5b52" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.PlayerCharacter.minPosition</definition>
-        <argsstring></argsstring>
-        <name>minPosition</name>
-        <initializer>= -5.3f</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" bodystart="34" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00140_1ada9dd748a1d89a7f9b12ac8967a07ae6" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.PlayerCharacter.maxPosition</definition>
-        <argsstring></argsstring>
-        <name>maxPosition</name>
-        <initializer>= 5.3f</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" bodystart="35" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00140_1adc602a4b2c7e44e4b15a11f1ffcf07e4" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.PlayerCharacter.moveSpeed</definition>
-        <argsstring></argsstring>
-        <name>moveSpeed</name>
-        <initializer>= 1.0f</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" bodystart="37" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00140_1af89807d2195915ee9a0c42317e110fc6" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.PlayerCharacter.interactionRadius</definition>
-        <argsstring></argsstring>
-        <name>interactionRadius</name>
-        <initializer>= 2.0f</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" bodystart="39" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00140" kind="struct" prot="public">
+    <compoundname>Yarn::Loader::NodeInfo</compoundname>
+    <innerclass refid="a00151" prot="public">Yarn::Loader::NodeInfo::Position</innerclass>
       <sectiondef kind="property">
-      <memberdef kind="property" id="a00140_1a7bcde19f080bfd09bbc833b8fb555cf7" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.PlayerCharacter.movementFromButtons</definition>
+      <memberdef kind="property" id="a00140_1aafc45bbc86a9acb9bdbcf7877695a96c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.Loader.NodeInfo.title</definition>
         <argsstring></argsstring>
-        <name>movementFromButtons</name>
+        <name>title</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" line="41" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" bodystart="41" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="365" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="365" bodyend="-1"/>
+        <referencedby refid="a00133_1aa79ba1a47653bfc06ce3ccaf87551ad3" compoundref="a00312" startline="218" endline="354">Yarn.Loader.Load</referencedby>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="a00140_1a9e83ec3c6e45ee4dd17215e3030f6403" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.Example.PlayerCharacter.OnDrawGizmosSelected</definition>
-        <argsstring>()</argsstring>
-        <name>OnDrawGizmosSelected</name>
+      <memberdef kind="property" id="a00140_1a18a8b97f2173fbcf8f3077582cc6e96e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.Loader.NodeInfo.body</definition>
+        <argsstring></argsstring>
+        <name>body</name>
         <briefdescription>
-<para>Draw the range at which we&apos;ll start talking to people. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" bodystart="44" bodyend="52"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="366" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="366" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="a00140_1a8e78b2dc1cd221fb9d05b89e70155df4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.Example.PlayerCharacter.Update</definition>
-        <argsstring>()</argsstring>
-        <name>Update</name>
+      <memberdef kind="property" id="a00140_1acd4d4915f6cc14f8b0f1f92d27da8b36" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.Loader.NodeInfo.tags</definition>
+        <argsstring></argsstring>
+        <name>tags</name>
         <briefdescription>
-<para>Update is called once per frame. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" bodystart="55" bodyend="78"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="370" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="370" bodyend="-1"/>
+        <referencedby refid="a00133_1aa79ba1a47653bfc06ce3ccaf87551ad3" compoundref="a00312" startline="218" endline="354">Yarn.Loader.Load</referencedby>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00140_1a574b6d984b8671c7a780d3d10e040a9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.Example.PlayerCharacter.CheckForNearbyNPC</definition>
-        <argsstring>()</argsstring>
-        <name>CheckForNearbyNPC</name>
+      <memberdef kind="property" id="a00140_1a65f686e0170a9c50b97c4e4eedd1a093" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>int</type>
+        <definition>int Yarn.Loader.NodeInfo.colorID</definition>
+        <argsstring></argsstring>
+        <name>colorID</name>
         <briefdescription>
-<para>Find all DialogueParticipants. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para>Filter them to those that have a <ref refid="a00041" kindref="compound">Yarn</ref> start node and are in range; then start a conversation with the first one </para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" line="84" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" bodystart="84" bodyend="96"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="372" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="372" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00140_1ac368ed021558af21c4abed88042c1aa8" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="a00151" kindref="compound">Position</ref></type>
+        <definition>Position Yarn.Loader.NodeInfo.position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="373" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="373" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00140_1ab5010cc4c731e0da871e6002e5fb99a1" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; Yarn.Loader.NodeInfo.tagsList</definition>
+        <argsstring></argsstring>
+        <name>tagsList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="377" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="378" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1590">
-        <label>MonoBehaviour</label>
-      </node>
-      <node id="1589">
-        <label>Yarn.Unity.Example.PlayerCharacter</label>
-        <link refid="a00140"/>
-        <childnode refid="1590" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1592">
-        <label>MonoBehaviour</label>
-      </node>
-      <node id="1591">
-        <label>Yarn.Unity.Example.PlayerCharacter</label>
+      <node id="1538">
+        <label>Yarn.Loader.NodeInfo</label>
         <link refid="a00140"/>
-        <childnode refid="1592" relation="public-inheritance">
-        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" line="32" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs" bodystart="32" bodyend="97"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="359" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="359" bodyend="390"/>
     <listofallmembers>
-      <member refid="a00140_1a574b6d984b8671c7a780d3d10e040a9b" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>CheckForNearbyNPC</name></member>
-      <member refid="a00140_1af89807d2195915ee9a0c42317e110fc6" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>interactionRadius</name></member>
-      <member refid="a00140_1ada9dd748a1d89a7f9b12ac8967a07ae6" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>maxPosition</name></member>
-      <member refid="a00140_1ac025d4f4afaf854f8256e0d2d03e5b52" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>minPosition</name></member>
-      <member refid="a00140_1a7bcde19f080bfd09bbc833b8fb555cf7" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>movementFromButtons</name></member>
-      <member refid="a00140_1adc602a4b2c7e44e4b15a11f1ffcf07e4" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>moveSpeed</name></member>
-      <member refid="a00140_1a9e83ec3c6e45ee4dd17215e3030f6403" prot="private" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>OnDrawGizmosSelected</name></member>
-      <member refid="a00140_1a8e78b2dc1cd221fb9d05b89e70155df4" prot="private" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>Update</name></member>
+      <member refid="a00140_1a18a8b97f2173fbcf8f3077582cc6e96e" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>body</name></member>
+      <member refid="a00140_1a65f686e0170a9c50b97c4e4eedd1a093" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>colorID</name></member>
+      <member refid="a00140_1ac368ed021558af21c4abed88042c1aa8" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>position</name></member>
+      <member refid="a00140_1acd4d4915f6cc14f8b0f1f92d27da8b36" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>tags</name></member>
+      <member refid="a00140_1ab5010cc4c731e0da871e6002e5fb99a1" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>tagsList</name></member>
+      <member refid="a00140_1aafc45bbc86a9acb9bdbcf7877695a96c" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>title</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

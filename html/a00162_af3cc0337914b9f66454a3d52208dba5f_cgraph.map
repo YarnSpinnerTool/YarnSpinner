@@ -1,0 +1,11 @@
+<map id="Yarn.VirtualMachine.RunNext" name="Yarn.VirtualMachine.RunNext">
+<area shape="rect" id="node2" href="$a00162.html#ad2caf9ca4f00cdcbd58983be7c106971" title="Yarn.VirtualMachine.RunInstruction" alt="" coords="249,195,477,221"/>
+<area shape="rect" id="node3" href="$a00162.html#af613c8b2d098678b6ea05b509c0a0cb6" title="Looks up the instruction number for a named label in the current node. " alt="" coords="539,5,707,46"/>
+<area shape="rect" id="node4" href="$a00129.html#aacfb1f00ad8aa3921941b8d8af0960e0" title="Yarn.Library.GetFunction" alt="" coords="539,71,706,97"/>
+<area shape="rect" id="node5" href="$a00190.html#accab1fc5c8fc353dbfc53ca0f4029576" title="Yarn.VariableStorage.Get\lValue" alt="" coords="537,122,708,163"/>
+<area shape="rect" id="node6" href="$a00165.html#a54fd5b64ec94e937e771846167242dc2" title="Peek at a value from the stack. " alt="" coords="533,187,712,229"/>
+<area shape="rect" id="node7" href="$a00165.html#a36881a888ea2839d74c3d4e7c199f4ee" title="Pop a value from the stack. " alt="" coords="533,253,712,294"/>
+<area shape="rect" id="node8" href="$a00162.html#a6364593ea1115d65e34b343422cfbbbd" title="Yarn.VirtualMachine.SetNode" alt="" coords="525,319,720,345"/>
+<area shape="rect" id="node10" href="$a00190.html#aa90ff61224432c5ed3ce72199c55f440" title="Yarn.VariableStorage.Set\lValue" alt="" coords="538,370,707,411"/>
+<area shape="rect" id="node9" href="$a00162.html#a3ba945c66cb8ba031357a1771453f82b" title="Reset the state of the VM. " alt="" coords="768,311,947,353"/>
+</map>

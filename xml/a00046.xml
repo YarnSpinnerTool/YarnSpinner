@@ -1,401 +1,190 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00046" kind="class" prot="package">
-    <compoundname>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</compoundname>
-    <basecompoundref refid="a00180" prot="public" virt="non-virtual">Yarn.VariableStorage</basecompoundref>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00046_1a90b0c755ea1d2f3ffaffa6cf18266709" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.waitForLines</definition>
-        <argsstring></argsstring>
-        <name>waitForLines</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="509" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="509" bodyend="-1"/>
-        <referencedby refid="a00046_1a8a2687bbff3f09203c14fa505b06f505" compoundref="a00307" startline="527" endline="531">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.ConsoleRunnerImplementation</referencedby>
-        <referencedby refid="a00046_1a13bc6c3a8ba43223a20befae50dbbcb4" compoundref="a00307" startline="533" endline="551">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunLine</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00046_1a9907b805775d5837a900ddbd0a1739b7" prot="private" static="no" mutable="no">
-        <type><ref refid="a00126" kindref="compound">Yarn.MemoryVariableStore</ref></type>
-        <definition>Yarn.MemoryVariableStore Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.variableStore</definition>
-        <argsstring></argsstring>
-        <name>variableStore</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="511" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="511" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00046_1a2e17937195ecd64d5d867d958c45d2c3" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.numberOfExpectedOptions</definition>
-        <argsstring></argsstring>
-        <name>numberOfExpectedOptions</name>
-        <initializer>= -1</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="515" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="515" bodyend="-1"/>
-        <referencedby refid="a00046_1a62674694fa65e5ae8c0c0da4fbceda51" compoundref="a00307" startline="553" endline="629">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunOptions</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00046_1a34886671e91a1bf3fc225eeb67baced1" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.autoSelectOptionNumber</definition>
-        <argsstring></argsstring>
-        <name>autoSelectOptionNumber</name>
-        <initializer>= -1</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="519" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="519" bodyend="-1"/>
-        <referencedby refid="a00046_1a62674694fa65e5ae8c0c0da4fbceda51" compoundref="a00307" startline="553" endline="629">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunOptions</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00046_1a33a44e39f2d90850cee234dfad50f2c5" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.expectedNextLine</definition>
-        <argsstring></argsstring>
-        <name>expectedNextLine</name>
-        <initializer>= null</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="521" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="521" bodyend="-1"/>
-        <referencedby refid="a00046_1a13bc6c3a8ba43223a20befae50dbbcb4" compoundref="a00307" startline="533" endline="551">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunLine</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00046_1a3c7133c65dc7cf293f49b61426a0c4aa" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.expectedNextCommand</definition>
-        <argsstring></argsstring>
-        <name>expectedNextCommand</name>
-        <initializer>= null</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="523" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="523" bodyend="-1"/>
-        <referencedby refid="a00046_1aef048f9dbd90258eacc2886aa48ef6af" compoundref="a00307" startline="631" endline="644">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunCommand</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00046_1a09a552ee9ff58cb3c995f8ecba1592b6" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.autoSelectFirstOption</definition>
-        <argsstring></argsstring>
-        <name>autoSelectFirstOption</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="525" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="525" bodyend="-1"/>
-        <referencedby refid="a00046_1a62674694fa65e5ae8c0c0da4fbceda51" compoundref="a00307" startline="553" endline="629">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunOptions</referencedby>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00046" kind="class" prot="public">
+    <compoundname>CsvHelper::TypeConversion::ByteConverter</compoundname>
+    <basecompoundref refid="a00088" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00046_1a8a2687bbff3f09203c14fa505b06f505" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.ConsoleRunnerImplementation</definition>
-        <argsstring>(bool waitForLines=false)</argsstring>
-        <name>ConsoleRunnerImplementation</name>
+      <memberdef kind="function" id="a00046_1a6176d20d761abfc0af4e840553ffae47" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override object</type>
+        <definition>override object CsvHelper.TypeConversion.ByteConverter.ConvertFromString</definition>
+        <argsstring>(TypeConverterOptions options, string text)</argsstring>
+        <name>ConvertFromString</name>
+        <reimplements refid="a00088_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
         <param>
-          <type>bool</type>
-          <declname>waitForLines</declname>
-          <defval>false</defval>
+          <type><ref refid="a00178" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
         </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="527" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="527" bodyend="531"/>
-        <references refid="a00046_1a90b0c755ea1d2f3ffaffa6cf18266709" compoundref="a00307" startline="509">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.waitForLines</references>
-      </memberdef>
-      <memberdef kind="function" id="a00046_1a13bc6c3a8ba43223a20befae50dbbcb4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunLine</definition>
-        <argsstring>(Yarn.Line lineText)</argsstring>
-        <name>RunLine</name>
-        <param>
-          <type><ref refid="a00359" kindref="compound">Yarn.Line</ref></type>
-          <declname>lineText</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="533" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="533" bodyend="551"/>
-        <references refid="a00185_1a2f63f9f5b7634cb50ee75ff2eb18b137" compoundref="a00307" startline="164" endline="176">Yarn.YarnSpinnerConsole.Error</references>
-        <references refid="a00046_1a33a44e39f2d90850cee234dfad50f2c5" compoundref="a00307" startline="521">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.expectedNextLine</references>
-        <references refid="a00046_1a90b0c755ea1d2f3ffaffa6cf18266709" compoundref="a00307" startline="509">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.waitForLines</references>
-      </memberdef>
-      <memberdef kind="function" id="a00046_1a62674694fa65e5ae8c0c0da4fbceda51" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunOptions</definition>
-        <argsstring>(Options optionsGroup, OptionChooser optionChooser)</argsstring>
-        <name>RunOptions</name>
-        <param>
-          <type><ref refid="a00362" kindref="compound">Options</ref></type>
-          <declname>optionsGroup</declname>
-        </param>
-        <param>
-          <type><ref refid="a00041_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">OptionChooser</ref></type>
-          <declname>optionChooser</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="553" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="553" bodyend="629"/>
-        <references refid="a00046_1a09a552ee9ff58cb3c995f8ecba1592b6" compoundref="a00307" startline="525">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.autoSelectFirstOption</references>
-        <references refid="a00046_1a34886671e91a1bf3fc225eeb67baced1" compoundref="a00307" startline="519">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.autoSelectOptionNumber</references>
-        <references refid="a00185_1a2f63f9f5b7634cb50ee75ff2eb18b137" compoundref="a00307" startline="164" endline="176">Yarn.YarnSpinnerConsole.Error</references>
-        <references refid="a00185_1a939cc9e943c574b36c6af93e9c772702" compoundref="a00307" startline="178" endline="190">Yarn.YarnSpinnerConsole.Note</references>
-        <references refid="a00046_1a2e17937195ecd64d5d867d958c45d2c3" compoundref="a00307" startline="515">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.numberOfExpectedOptions</references>
-        <references refid="a00362_1ae8c616d923ceeeed192a9436c55d9917" compoundref="a00290" startline="53">Yarn.Options.options</references>
-      </memberdef>
-      <memberdef kind="function" id="a00046_1aef048f9dbd90258eacc2886aa48ef6af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunCommand</definition>
-        <argsstring>(string command)</argsstring>
-        <name>RunCommand</name>
         <param>
           <type>string</type>
-          <declname>command</declname>
+          <declname>text</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Converts the string to an object. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string to convert to an object.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The object created from the string.</para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="631" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="631" bodyend="644"/>
-        <references refid="a00185_1a2f63f9f5b7634cb50ee75ff2eb18b137" compoundref="a00307" startline="164" endline="176">Yarn.YarnSpinnerConsole.Error</references>
-        <references refid="a00046_1a3c7133c65dc7cf293f49b61426a0c4aa" compoundref="a00307" startline="523">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.expectedNextCommand</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" bodystart="21" bodyend="32"/>
+        <references refid="a00178_1af6bc545680b477abf9178eb4755572b1" compoundref="a00282" startline="23">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</references>
       </memberdef>
-      <memberdef kind="function" id="a00046_1ad6299fd476e53164d9f97d324d8c5936" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.DialogueComplete</definition>
-        <argsstring>()</argsstring>
-        <name>DialogueComplete</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="646" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="646" bodyend="649"/>
-      </memberdef>
-      <memberdef kind="function" id="a00046_1a925ecf432875c3831adc1a9959db8b46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.HandleErrorMessage</definition>
-        <argsstring>(string error)</argsstring>
-        <name>HandleErrorMessage</name>
+      <memberdef kind="function" id="a00046_1a74a66b405f6c18e69b9fd23a1dea91b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override bool</type>
+        <definition>override bool CsvHelper.TypeConversion.ByteConverter.CanConvertFrom</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertFrom</name>
+        <reimplements refid="a00088_1a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</reimplements>
         <param>
-          <type>string</type>
-          <declname>error</declname>
+          <type>Type</type>
+          <declname>type</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="651" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="651" bodyend="654"/>
-        <references refid="a00185_1a2f63f9f5b7634cb50ee75ff2eb18b137" compoundref="a00307" startline="164" endline="176">Yarn.YarnSpinnerConsole.Error</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" line="41" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" bodystart="41" bodyend="45"/>
       </memberdef>
-      <memberdef kind="function" id="a00046_1ab656ffe1f6e66f2e6d2cb3e970f54b90" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.HandleDebugMessage</definition>
-        <argsstring>(string message)</argsstring>
-        <name>HandleDebugMessage</name>
+      <memberdef kind="function" id="a00088_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>string</type>
+        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
+        <argsstring>(TypeConverterOptions options, object value)</argsstring>
+        <name>ConvertToString</name>
+        <reimplements refid="a00123_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
+        <reimplementedby refid="a00099_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
+        <reimplementedby refid="a00142_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
         <param>
-          <type>string</type>
-          <declname>message</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="656" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="656" bodyend="659"/>
-        <references refid="a00185_1a939cc9e943c574b36c6af93e9c772702" compoundref="a00307" startline="178" endline="190">Yarn.YarnSpinnerConsole.Note</references>
-      </memberdef>
-      <memberdef kind="function" id="a00046_1adc9bfad13d8ae2f147deeddbc5c38ea3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.SetNumber</definition>
-        <argsstring>(string variableName, float number)</argsstring>
-        <name>SetNumber</name>
-        <reimplements refid="a00180_1aa28c3694f985cf73489efc301b9d41dd">SetNumber</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
+          <type><ref refid="a00178" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
         </param>
         <param>
-          <type>float</type>
-          <declname>number</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="661" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="661" bodyend="664"/>
-      </memberdef>
-      <memberdef kind="function" id="a00046_1adf34fa27235fc0fd5fe35c32023220c4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>float</type>
-        <definition>virtual float Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.GetNumber</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetNumber</name>
-        <reimplements refid="a00180_1a04b061c52d8ac814ce559da5286fbc71">GetNumber</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="666" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="666" bodyend="669"/>
-      </memberdef>
-      <memberdef kind="function" id="a00046_1ab6312d89b626ca803a74a9181286d608" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.SetValue</definition>
-        <argsstring>(string variableName, Value value)</argsstring>
-        <name>SetValue</name>
-        <reimplements refid="a00180_1aa90ff61224432c5ed3ce72199c55f440">SetValue</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type><ref refid="a00177" kindref="compound">Value</ref></type>
+          <type>object</type>
           <declname>value</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Converts the object to a string. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object to convert to a string.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="671" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="671" bodyend="674"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
       </memberdef>
-      <memberdef kind="function" id="a00046_1a66fc86080cd452079f5adf15e97c8e41" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00177" kindref="compound">Value</ref></type>
-        <definition>virtual Value Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.GetValue</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetValue</name>
-        <reimplements refid="a00180_1accab1fc5c8fc353dbfc53ca0f4029576">GetValue</reimplements>
+      <memberdef kind="function" id="a00088_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertTo</name>
+        <reimplements refid="a00123_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
+        <reimplementedby refid="a00099_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
         <param>
-          <type>string</type>
-          <declname>variableName</declname>
+          <type>Type</type>
+          <declname>type</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="676" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="676" bodyend="679"/>
-      </memberdef>
-      <memberdef kind="function" id="a00046_1a082617cf099d13cb4338935020ced764" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.Clear</definition>
-        <argsstring>()</argsstring>
-        <name>Clear</name>
-        <reimplements refid="a00180_1af98c1e41f351cb96e13f668ca2fd9d92">Clear</reimplements>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="681" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="681" bodyend="684"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Converts a Byte to and from a string. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1039">
-        <label>Yarn::VariableStorage</label>
-        <link refid="a00180"/>
-      </node>
-      <node id="1038">
-        <label>Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</label>
+      <node id="990">
+        <label>CsvHelper.TypeConversion.ByteConverter</label>
         <link refid="a00046"/>
-        <childnode refid="1039" relation="public-inheritance">
+        <childnode refid="991" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="992">
+        <label>ITypeConverter</label>
+        <link refid="a00123"/>
+      </node>
+      <node id="991">
+        <label>DefaultTypeConverter</label>
+        <link refid="a00088"/>
+        <childnode refid="992" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1041">
-        <label>Yarn::VariableStorage</label>
-        <link refid="a00180"/>
-      </node>
-      <node id="1040">
-        <label>Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</label>
+      <node id="993">
+        <label>CsvHelper.TypeConversion.ByteConverter</label>
         <link refid="a00046"/>
-        <childnode refid="1041" relation="public-inheritance">
-        </childnode>
-        <childnode refid="1042" relation="usage">
-          <edgelabel>-variableStore</edgelabel>
+        <childnode refid="994" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1042">
-        <label>Yarn</label>
+      <node id="995">
+        <label>ITypeConverter</label>
+        <link refid="a00123"/>
+      </node>
+      <node id="994">
+        <label>DefaultTypeConverter</label>
+        <link refid="a00088"/>
+        <childnode refid="995" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="507" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="506" bodyend="685"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" bodystart="13" bodyend="46"/>
     <listofallmembers>
-      <member refid="a00046_1a09a552ee9ff58cb3c995f8ecba1592b6" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>autoSelectFirstOption</name></member>
-      <member refid="a00046_1a34886671e91a1bf3fc225eeb67baced1" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>autoSelectOptionNumber</name></member>
-      <member refid="a00046_1a082617cf099d13cb4338935020ced764" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>Clear</name></member>
-      <member refid="a00046_1a8a2687bbff3f09203c14fa505b06f505" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>ConsoleRunnerImplementation</name></member>
-      <member refid="a00046_1ad6299fd476e53164d9f97d324d8c5936" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>DialogueComplete</name></member>
-      <member refid="a00046_1a3c7133c65dc7cf293f49b61426a0c4aa" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>expectedNextCommand</name></member>
-      <member refid="a00046_1a33a44e39f2d90850cee234dfad50f2c5" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>expectedNextLine</name></member>
-      <member refid="a00046_1adf34fa27235fc0fd5fe35c32023220c4" prot="public" virt="virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>GetNumber</name></member>
-      <member refid="a00046_1a66fc86080cd452079f5adf15e97c8e41" prot="public" virt="virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>GetValue</name></member>
-      <member refid="a00046_1ab656ffe1f6e66f2e6d2cb3e970f54b90" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>HandleDebugMessage</name></member>
-      <member refid="a00046_1a925ecf432875c3831adc1a9959db8b46" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>HandleErrorMessage</name></member>
-      <member refid="a00046_1a2e17937195ecd64d5d867d958c45d2c3" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>numberOfExpectedOptions</name></member>
-      <member refid="a00046_1aef048f9dbd90258eacc2886aa48ef6af" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>RunCommand</name></member>
-      <member refid="a00046_1a13bc6c3a8ba43223a20befae50dbbcb4" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>RunLine</name></member>
-      <member refid="a00046_1a62674694fa65e5ae8c0c0da4fbceda51" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>RunOptions</name></member>
-      <member refid="a00046_1adc9bfad13d8ae2f147deeddbc5c38ea3" prot="public" virt="virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>SetNumber</name></member>
-      <member refid="a00046_1ab6312d89b626ca803a74a9181286d608" prot="public" virt="virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>SetValue</name></member>
-      <member refid="a00046_1a9907b805775d5837a900ddbd0a1739b7" prot="private" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>variableStore</name></member>
-      <member refid="a00046_1a90b0c755ea1d2f3ffaffa6cf18266709" prot="private" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>waitForLines</name></member>
+      <member refid="a00046_1a74a66b405f6c18e69b9fd23a1dea91b0" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::ByteConverter</scope><name>CanConvertFrom</name></member>
+      <member refid="a00088_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::ByteConverter</scope><name>CanConvertTo</name></member>
+      <member refid="a00046_1a6176d20d761abfc0af4e840553ffae47" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::ByteConverter</scope><name>ConvertFromString</name></member>
+      <member refid="a00088_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::ByteConverter</scope><name>ConvertToString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

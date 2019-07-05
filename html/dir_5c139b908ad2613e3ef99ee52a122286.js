@@ -1,84 +1,84 @@
 var dir_5c139b908ad2613e3ef99ee52a122286 =
 [
-    [ "BooleanConverter.cs", "a00250.html", [
-      [ "BooleanConverter", "a00035.html", "a00035" ]
+    [ "BooleanConverter.cs", "a00260.html", [
+      [ "BooleanConverter", "a00045.html", "a00045" ]
     ] ],
-    [ "ByteConverter.cs", "a00251.html", [
-      [ "ByteConverter", "a00036.html", "a00036" ]
+    [ "ByteConverter.cs", "a00261.html", [
+      [ "ByteConverter", "a00046.html", "a00046" ]
     ] ],
-    [ "CharConverter.cs", "a00252.html", [
-      [ "CharConverter", "a00038.html", "a00038" ]
+    [ "CharConverter.cs", "a00262.html", [
+      [ "CharConverter", "a00048.html", "a00048" ]
     ] ],
-    [ "CsvTypeConverterException.cs", "a00253.html", [
-      [ "CsvTypeConverterException", "a00070.html", "a00070" ]
+    [ "CsvTypeConverterException.cs", "a00263.html", [
+      [ "CsvTypeConverterException", "a00080.html", "a00080" ]
     ] ],
-    [ "DateTimeConverter.cs", "a00254.html", [
-      [ "DateTimeConverter", "a00074.html", "a00074" ]
+    [ "DateTimeConverter.cs", "a00264.html", [
+      [ "DateTimeConverter", "a00084.html", "a00084" ]
     ] ],
-    [ "DateTimeOffsetConverter.cs", "a00255.html", [
-      [ "DateTimeOffsetConverter", "a00075.html", "a00075" ]
+    [ "DateTimeOffsetConverter.cs", "a00265.html", [
+      [ "DateTimeOffsetConverter", "a00085.html", "a00085" ]
     ] ],
-    [ "DecimalConverter.cs", "a00256.html", [
-      [ "DecimalConverter", "a00076.html", "a00076" ]
+    [ "DecimalConverter.cs", "a00266.html", [
+      [ "DecimalConverter", "a00086.html", "a00086" ]
     ] ],
-    [ "DefaultTypeConverter.cs", "a00257.html", [
-      [ "DefaultTypeConverter", "a00078.html", "a00078" ]
+    [ "DefaultTypeConverter.cs", "a00267.html", [
+      [ "DefaultTypeConverter", "a00088.html", "a00088" ]
     ] ],
-    [ "DoubleConverter.cs", "a00258.html", [
-      [ "DoubleConverter", "a00086.html", "a00086" ]
+    [ "DoubleConverter.cs", "a00268.html", [
+      [ "DoubleConverter", "a00096.html", "a00096" ]
     ] ],
-    [ "EnumConverter.cs", "a00259.html", [
-      [ "EnumConverter", "a00088.html", "a00088" ]
+    [ "EnumConverter.cs", "a00269.html", [
+      [ "EnumConverter", "a00098.html", "a00098" ]
     ] ],
-    [ "EnumerableConverter.cs", "a00260.html", [
-      [ "EnumerableConverter", "a00089.html", "a00089" ]
+    [ "EnumerableConverter.cs", "a00270.html", [
+      [ "EnumerableConverter", "a00099.html", "a00099" ]
     ] ],
-    [ "GuidConverter.cs", "a00261.html", [
-      [ "GuidConverter", "a00100.html", "a00100" ]
+    [ "GuidConverter.cs", "a00271.html", [
+      [ "GuidConverter", "a00110.html", "a00110" ]
     ] ],
-    [ "Int16Converter.cs", "a00262.html", [
-      [ "Int16Converter", "a00110.html", "a00110" ]
+    [ "Int16Converter.cs", "a00272.html", [
+      [ "Int16Converter", "a00120.html", "a00120" ]
     ] ],
-    [ "Int32Converter.cs", "a00263.html", [
-      [ "Int32Converter", "a00111.html", "a00111" ]
+    [ "Int32Converter.cs", "a00273.html", [
+      [ "Int32Converter", "a00121.html", "a00121" ]
     ] ],
-    [ "Int64Converter.cs", "a00264.html", [
-      [ "Int64Converter", "a00112.html", "a00112" ]
+    [ "Int64Converter.cs", "a00274.html", [
+      [ "Int64Converter", "a00122.html", "a00122" ]
     ] ],
-    [ "ITypeConverter.cs", "a00265.html", [
-      [ "ITypeConverter", "a00113.html", "a00113" ]
+    [ "ITypeConverter.cs", "a00275.html", [
+      [ "ITypeConverter", "a00123.html", "a00123" ]
     ] ],
-    [ "NullableConverter.cs", "a00266.html", [
-      [ "NullableConverter", "a00132.html", "a00132" ]
+    [ "NullableConverter.cs", "a00276.html", [
+      [ "NullableConverter", "a00142.html", "a00142" ]
     ] ],
-    [ "SByteConverter.cs", "a00267.html", [
-      [ "SByteConverter", "a00148.html", "a00148" ]
+    [ "SByteConverter.cs", "a00277.html", [
+      [ "SByteConverter", "a00158.html", "a00158" ]
     ] ],
-    [ "SingleConverter.cs", "a00268.html", [
-      [ "SingleConverter", "a00151.html", "a00151" ]
+    [ "SingleConverter.cs", "a00278.html", [
+      [ "SingleConverter", "a00161.html", "a00161" ]
     ] ],
-    [ "StringConverter.cs", "a00269.html", [
-      [ "StringConverter", "a00157.html", "a00157" ]
+    [ "StringConverter.cs", "a00279.html", [
+      [ "StringConverter", "a00167.html", "a00167" ]
     ] ],
-    [ "TimeSpanConverter.cs", "a00270.html", [
-      [ "TimeSpanConverter", "a00162.html", "a00162" ]
+    [ "TimeSpanConverter.cs", "a00280.html", [
+      [ "TimeSpanConverter", "a00172.html", "a00172" ]
     ] ],
-    [ "TypeConverterFactory.cs", "a00271.html", [
-      [ "TypeConverterFactory", "a00167.html", "a00167" ]
+    [ "TypeConverterFactory.cs", "a00281.html", [
+      [ "TypeConverterFactory", "a00177.html", "a00177" ]
     ] ],
-    [ "TypeConverterOptions.cs", "a00272.html", [
-      [ "TypeConverterOptions", "a00168.html", "a00168" ]
+    [ "TypeConverterOptions.cs", "a00282.html", [
+      [ "TypeConverterOptions", "a00178.html", "a00178" ]
     ] ],
-    [ "TypeConverterOptionsFactory.cs", "a00273.html", [
-      [ "TypeConverterOptionsFactory", "a00169.html", "a00169" ]
+    [ "TypeConverterOptionsFactory.cs", "a00283.html", [
+      [ "TypeConverterOptionsFactory", "a00179.html", "a00179" ]
     ] ],
-    [ "UInt16Converter.cs", "a00274.html", [
-      [ "UInt16Converter", "a00172.html", "a00172" ]
+    [ "UInt16Converter.cs", "a00284.html", [
+      [ "UInt16Converter", "a00182.html", "a00182" ]
     ] ],
-    [ "UInt32Converter.cs", "a00275.html", [
-      [ "UInt32Converter", "a00173.html", "a00173" ]
+    [ "UInt32Converter.cs", "a00285.html", [
+      [ "UInt32Converter", "a00183.html", "a00183" ]
     ] ],
-    [ "UInt64Converter.cs", "a00276.html", [
-      [ "UInt64Converter", "a00174.html", "a00174" ]
+    [ "UInt64Converter.cs", "a00286.html", [
+      [ "UInt64Converter", "a00184.html", "a00184" ]
     ] ]
 ];

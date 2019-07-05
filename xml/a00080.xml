@@ -1,97 +1,168 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00080" kind="struct" prot="private">
-    <compoundname>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</compoundname>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00080_1a750904df254223bf3131c39017f90a0b" prot="public" static="no" mutable="no">
-        <type>System.Type</type>
-        <definition>System.Type Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.type</definition>
-        <argsstring></argsstring>
-        <name>type</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="488" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="488" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00080_1a61605b2d0a17dfdf9c62952270d44fbd" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.methodName</definition>
-        <argsstring></argsstring>
-        <name>methodName</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="489" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="489" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00080_1ac23509be7ae6b43a3e2154dd430954a7" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.usageNotes</definition>
-        <argsstring></argsstring>
-        <name>usageNotes</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="490" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="490" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00080" kind="class" prot="public">
+    <compoundname>CsvHelper::TypeConversion::CsvTypeConverterException</compoundname>
+    <basecompoundref refid="a00066" prot="public" virt="non-virtual">CsvHelper.CsvHelperException</basecompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00080_1ae80171841e97a48611c51a9a574a2fc0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00080_1af2278af1cb915e9b8485c005148c430b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.Deprecation</definition>
-        <argsstring>(System.Type type, string methodName, string usageNotes)</argsstring>
-        <name>Deprecation</name>
-        <param>
-          <type>System.Type</type>
-          <declname>type</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>methodName</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>usageNotes</declname>
-        </param>
+        <definition>CsvHelper.TypeConversion.CsvTypeConverterException.CsvTypeConverterException</definition>
+        <argsstring>()</argsstring>
+        <name>CsvTypeConverterException</name>
         <briefdescription>
-        </briefdescription>
+<para>Initializes a new instance of the <ref refid="a00080" kindref="compound">CsvTypeConverterException</ref> class. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="492" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="492" bodyend="497"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="a00080_1a4e4e9bdf9280d14be37fc42d887b7360" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.TypeConversion.CsvTypeConverterException.CsvTypeConverterException</definition>
+        <argsstring>(string message)</argsstring>
+        <name>CsvTypeConverterException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="a00080" kindref="compound">CsvTypeConverterException</ref> class with a specified error message. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The message that describes the error.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" line="27" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="a00080_1afbea8720637f53c27ef4a9ca99c41955" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.TypeConversion.CsvTypeConverterException.CsvTypeConverterException</definition>
+        <argsstring>(string message, Exception innerException)</argsstring>
+        <name>CsvTypeConverterException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>Exception</type>
+          <declname>innerException</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="a00080" kindref="compound">CsvTypeConverterException</ref> class with a specified error message and a reference to the inner exception that is the cause of this exception. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The error message that explains the reason for the exception.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>innerException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="a00080_1a118ca20beb2ce0c2b4591502a52b0163" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.TypeConversion.CsvTypeConverterException.CsvTypeConverterException</definition>
+        <argsstring>(SerializationInfo info, StreamingContext context)</argsstring>
+        <name>CsvTypeConverterException</name>
+        <param>
+          <type>SerializationInfo</type>
+          <declname>info</declname>
+        </param>
+        <param>
+          <type>StreamingContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="a00080" kindref="compound">CsvTypeConverterException</ref> class with serialized data. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>info</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The SerializationInfo that holds the serialized object data about the exception being thrown.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The StreamingContext that contains contextual information about the source or destination.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" line="45" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" bodystart="45" bodyend="45"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Represents errors that occur while reading a CSV file. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1251">
-        <label>Yarn.Unity.YarnSpinnerEditorWindow.Deprecation</label>
+    <inheritancegraph>
+      <node id="1170">
+        <label>CsvHelper.TypeConversion.CsvTypeConverterException</label>
         <link refid="a00080"/>
-        <childnode refid="1252" relation="usage">
-          <edgelabel>+type</edgelabel>
+        <childnode refid="1171" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1252">
-        <label>System</label>
+      <node id="1172">
+        <label>Exception</label>
+      </node>
+      <node id="1171">
+        <label>CsvHelperException</label>
+        <link refid="a00066"/>
+        <childnode refid="1172" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1173">
+        <label>CsvHelper.TypeConversion.CsvTypeConverterException</label>
+        <link refid="a00080"/>
+        <childnode refid="1174" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1175">
+        <label>Exception</label>
+      </node>
+      <node id="1174">
+        <label>CsvHelperException</label>
+        <link refid="a00066"/>
+        <childnode refid="1175" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="487" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="487" bodyend="499"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" bodystart="15" bodyend="47"/>
     <listofallmembers>
-      <member refid="a00080_1ae80171841e97a48611c51a9a574a2fc0" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>Deprecation</name></member>
-      <member refid="a00080_1a61605b2d0a17dfdf9c62952270d44fbd" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>methodName</name></member>
-      <member refid="a00080_1a750904df254223bf3131c39017f90a0b" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>type</name></member>
-      <member refid="a00080_1ac23509be7ae6b43a3e2154dd430954a7" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>usageNotes</name></member>
+      <member refid="a00066_1a83571967535529f42bb42b33684e4631" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00066_1a47cbed4fb25c42fd548282b3f8652290" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00066_1ac97c52774cb49f7e5d855b7586cdfa1d" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00066_1a1194d6917d1b52a8e15e3701a6e8264d" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00080_1af2278af1cb915e9b8485c005148c430b" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvTypeConverterException</name></member>
+      <member refid="a00080_1a4e4e9bdf9280d14be37fc42d887b7360" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvTypeConverterException</name></member>
+      <member refid="a00080_1afbea8720637f53c27ef4a9ca99c41955" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvTypeConverterException</name></member>
+      <member refid="a00080_1a118ca20beb2ce0c2b4591502a52b0163" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvTypeConverterException</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -1,16 +1,190 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00170" kind="class" prot="public">
-    <compoundname>System::Reflection::TypeExtensions</compoundname>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="a00170_1acbfc3dfbd616c1a87fe0158092215639" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00171" kindref="compound">TypeInfo</ref></type>
-        <definition>static TypeInfo System.Reflection.TypeExtensions.GetTypeInfo</definition>
-        <argsstring>(this Type type)</argsstring>
-        <name>GetTypeInfo</name>
+    <compoundname>YarnSpinner::Tests::TestBase</compoundname>
+    <derivedcompoundref refid="a00094" prot="public" virt="non-virtual">YarnSpinner.Tests.DialogueTests</derivedcompoundref>
+    <derivedcompoundref refid="a00126" prot="public" virt="non-virtual">YarnSpinner.Tests.LanguageTests</derivedcompoundref>
+    <derivedcompoundref refid="a00154" prot="public" virt="non-virtual">YarnSpinner.Tests.ProjectTests</derivedcompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00170_1a3651ffb5425ab15bd1e42749347c1ee7" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string YarnSpinner.Tests.TestBase.nextExpectedLine</definition>
+        <argsstring></argsstring>
+        <name>nextExpectedLine</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00170_1aaabaf15249efe42f3d857129bdbc2864" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int YarnSpinner.Tests.TestBase.nextExpectedOptionCount</definition>
+        <argsstring></argsstring>
+        <name>nextExpectedOptionCount</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00170_1a343055fa693e9d5dfc1bdbfcd0f02676" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int YarnSpinner.Tests.TestBase.nextOptionToSelect</definition>
+        <argsstring></argsstring>
+        <name>nextOptionToSelect</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00170_1a26fae5694fc06c3cdb12d3108dbc34de" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string YarnSpinner.Tests.TestBase.nextExpectedCommand</definition>
+        <argsstring></argsstring>
+        <name>nextExpectedCommand</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="a00170_1a23d59ace1516ca72924c6fe3feafd3f7" prot="protected" static="no" mutable="no">
+        <type><ref refid="a00190" kindref="compound">VariableStorage</ref></type>
+        <definition>VariableStorage YarnSpinner.Tests.TestBase.storage</definition>
+        <argsstring></argsstring>
+        <name>storage</name>
+        <initializer>= new <ref refid="a00136" kindref="compound">MemoryVariableStore</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00170_1a4cff5de56c4b8a91c76b6eb2d622a795" prot="protected" static="no" mutable="no">
+        <type><ref refid="a00092" kindref="compound">Dialogue</ref></type>
+        <definition>Dialogue YarnSpinner.Tests.TestBase.dialogue</definition>
+        <argsstring></argsstring>
+        <name>dialogue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="24" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00170_1ac978fe85db843c51411f5517bdbe0eb8" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool YarnSpinner.Tests.TestBase.errorsCauseFailures</definition>
+        <argsstring></argsstring>
+        <name>errorsCauseFailures</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="26" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00170_1ab1ad614f465a49447da31c4000ec6b3e" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
+        <type>string</type>
+        <definition>string YarnSpinner.Tests.TestBase.ProjectRootPath</definition>
+        <argsstring></argsstring>
+        <name>ProjectRootPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="30" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00170_1aa9b4d902d61adad7165154a265f69aa4" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
+        <type>string</type>
+        <definition>string YarnSpinner.Tests.TestBase.TestDataPath</definition>
+        <argsstring></argsstring>
+        <name>TestDataPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="50" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00170_1a39922286f6255e4fd0e433a4fc7521c4" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
+        <type>string</type>
+        <definition>string YarnSpinner.Tests.TestBase.UnityDemoScriptsPath</definition>
+        <argsstring></argsstring>
+        <name>UnityDemoScriptsPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="58" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00170_1a47f35b8e8123ed9471883d02b8bc9f3e" prot="protected" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool YarnSpinner.Tests.TestBase.isExpectingLine</definition>
+        <argsstring></argsstring>
+        <name>isExpectingLine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="174" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00170_1a357a0dab579f9e45666c10779683dc27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void YarnSpinner.Tests.TestBase.Init</definition>
+        <argsstring>()</argsstring>
+        <name>Init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="68" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="68" bodyend="113"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="a00170_1abffa134d40d72b21e6b35c3bf05fc53f" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void YarnSpinner.Tests.TestBase.RunStandardTestcase</definition>
+        <argsstring>(string nodeName=&quot;Start&quot;)</argsstring>
+        <name>RunStandardTestcase</name>
         <param>
-          <type>this Type</type>
-          <declname>type</declname>
+          <type>string</type>
+          <declname>nodeName</declname>
+          <defval>&quot;Start&quot;</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -18,22 +192,162 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" line="8" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" bodystart="8" bodyend="11"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="116" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="116" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="a00170_1a7b525f85a26d7c942e1cbfa5d6453893" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void YarnSpinner.Tests.TestBase.HandleResult</definition>
+        <argsstring>(Yarn.Dialogue.RunnerResult result)</argsstring>
+        <name>HandleResult</name>
+        <param>
+          <type><ref refid="a00156" kindref="compound">Yarn.Dialogue.RunnerResult</ref></type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="122" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="122" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="a00170_1ac21a5082ddac1da9db17ae54038df44e" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void YarnSpinner.Tests.TestBase.ExpectLine</definition>
+        <argsstring>(string line)</argsstring>
+        <name>ExpectLine</name>
+        <param>
+          <type>string</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="170" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="170" bodyend="172"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1721">
-        <label>System.Reflection.TypeExtensions</label>
+    <inheritancegraph>
+      <node id="1677">
+        <label>YarnSpinner.Tests.TestBase</label>
         <link refid="a00170"/>
       </node>
+      <node id="1678">
+        <label>YarnSpinner.Tests.DialogueTests</label>
+        <link refid="a00094"/>
+        <childnode refid="1677" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1680">
+        <label>YarnSpinner.Tests.ProjectTests</label>
+        <link refid="a00154"/>
+        <childnode refid="1677" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1679">
+        <label>YarnSpinner.Tests.LanguageTests</label>
+        <link refid="a00126"/>
+        <childnode refid="1677" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1685">
+        <label>Yarn.Program</label>
+        <link refid="a00152"/>
+      </node>
+      <node id="1682">
+        <label>Yarn.Dialogue</label>
+        <link refid="a00092"/>
+        <childnode refid="1683" relation="usage">
+          <edgelabel>-vm</edgelabel>
+        </childnode>
+        <childnode refid="1687" relation="usage">
+          <edgelabel>+library</edgelabel>
+        </childnode>
+        <childnode refid="1685" relation="usage">
+          <edgelabel>~program</edgelabel>
+        </childnode>
+        <childnode refid="1688" relation="usage">
+          <edgelabel>~loader</edgelabel>
+        </childnode>
+        <childnode refid="1689" relation="usage">
+          <edgelabel>~continuity</edgelabel>
+        </childnode>
+      </node>
+      <node id="1687">
+        <label>Yarn.Library</label>
+        <link refid="a00129"/>
+      </node>
+      <node id="1686">
+        <label>Yarn.VirtualMachine.State</label>
+        <link refid="a00165"/>
+      </node>
+      <node id="1681">
+        <label>YarnSpinner.Tests.TestBase</label>
+        <link refid="a00170"/>
+        <childnode refid="1682" relation="usage">
+          <edgelabel>#dialogue</edgelabel>
+        </childnode>
+        <childnode refid="1689" relation="usage">
+          <edgelabel>#storage</edgelabel>
+        </childnode>
+      </node>
+      <node id="1688">
+        <label>Yarn.Loader</label>
+        <link refid="a00133"/>
+        <childnode refid="1682" relation="usage">
+          <edgelabel>-dialogue</edgelabel>
+        </childnode>
+      </node>
+      <node id="1689">
+        <label>Yarn.VariableStorage</label>
+        <link refid="a00190"/>
+      </node>
+      <node id="1684">
+        <label>Yarn.Node</label>
+        <link refid="a00379"/>
+      </node>
+      <node id="1683">
+        <label>Yarn.VirtualMachine</label>
+        <link refid="a00162"/>
+        <childnode refid="1682" relation="usage">
+          <edgelabel>-dialogue</edgelabel>
+        </childnode>
+        <childnode refid="1684" relation="usage">
+          <edgelabel>-currentNode</edgelabel>
+        </childnode>
+        <childnode refid="1685" relation="usage">
+          <edgelabel>-program</edgelabel>
+        </childnode>
+        <childnode refid="1686" relation="usage">
+          <edgelabel>-state</edgelabel>
+        </childnode>
+      </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" line="7" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" bodystart="6" bodyend="12"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="14" bodyend="179"/>
     <listofallmembers>
-      <member refid="a00170_1acbfc3dfbd616c1a87fe0158092215639" prot="public" virt="non-virtual"><scope>System::Reflection::TypeExtensions</scope><name>GetTypeInfo</name></member>
+      <member refid="a00170_1a4cff5de56c4b8a91c76b6eb2d622a795" prot="protected" virt="non-virtual"><scope>YarnSpinner::Tests::TestBase</scope><name>dialogue</name></member>
+      <member refid="a00170_1ac978fe85db843c51411f5517bdbe0eb8" prot="protected" virt="non-virtual"><scope>YarnSpinner::Tests::TestBase</scope><name>errorsCauseFailures</name></member>
+      <member refid="a00170_1ac21a5082ddac1da9db17ae54038df44e" prot="protected" virt="non-virtual"><scope>YarnSpinner::Tests::TestBase</scope><name>ExpectLine</name></member>
+      <member refid="a00170_1a7b525f85a26d7c942e1cbfa5d6453893" prot="protected" virt="non-virtual"><scope>YarnSpinner::Tests::TestBase</scope><name>HandleResult</name></member>
+      <member refid="a00170_1a357a0dab579f9e45666c10779683dc27" prot="public" virt="non-virtual"><scope>YarnSpinner::Tests::TestBase</scope><name>Init</name></member>
+      <member refid="a00170_1a47f35b8e8123ed9471883d02b8bc9f3e" prot="protected" virt="non-virtual"><scope>YarnSpinner::Tests::TestBase</scope><name>isExpectingLine</name></member>
+      <member refid="a00170_1a26fae5694fc06c3cdb12d3108dbc34de" prot="private" virt="non-virtual"><scope>YarnSpinner::Tests::TestBase</scope><name>nextExpectedCommand</name></member>
+      <member refid="a00170_1a3651ffb5425ab15bd1e42749347c1ee7" prot="private" virt="non-virtual"><scope>YarnSpinner::Tests::TestBase</scope><name>nextExpectedLine</name></member>
+      <member refid="a00170_1aaabaf15249efe42f3d857129bdbc2864" prot="private" virt="non-virtual"><scope>YarnSpinner::Tests::TestBase</scope><name>nextExpectedOptionCount</name></member>
+      <member refid="a00170_1a343055fa693e9d5dfc1bdbfcd0f02676" prot="private" virt="non-virtual"><scope>YarnSpinner::Tests::TestBase</scope><name>nextOptionToSelect</name></member>
+      <member refid="a00170_1ab1ad614f465a49447da31c4000ec6b3e" prot="public" virt="non-virtual"><scope>YarnSpinner::Tests::TestBase</scope><name>ProjectRootPath</name></member>
+      <member refid="a00170_1abffa134d40d72b21e6b35c3bf05fc53f" prot="protected" virt="non-virtual"><scope>YarnSpinner::Tests::TestBase</scope><name>RunStandardTestcase</name></member>
+      <member refid="a00170_1a23d59ace1516ca72924c6fe3feafd3f7" prot="protected" virt="non-virtual"><scope>YarnSpinner::Tests::TestBase</scope><name>storage</name></member>
+      <member refid="a00170_1aa9b4d902d61adad7165154a265f69aa4" prot="public" virt="non-virtual"><scope>YarnSpinner::Tests::TestBase</scope><name>TestDataPath</name></member>
+      <member refid="a00170_1a39922286f6255e4fd0e433a4fc7521c4" prot="public" virt="non-virtual"><scope>YarnSpinner::Tests::TestBase</scope><name>UnityDemoScriptsPath</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

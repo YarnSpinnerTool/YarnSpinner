@@ -1,4 +1,2 @@
-<map id="Yarn.Parser.AssignmentStatement" name="Yarn.Parser.AssignmentStatement">
-<area shape="rect" id="node2" href="$a00138.html" title="{ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="56,222,176,373"/>
-<area shape="rect" id="node3" href="$a00138.html" title="{Yarn.Parser.ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="36,6,195,157"/>
+<map id="Yarn.Lexer.TokenRule" name="Yarn.Lexer.TokenRule">
 </map>

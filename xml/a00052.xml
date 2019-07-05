@@ -1,183 +1,83 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00052" kind="class" prot="public">
-    <compoundname>CsvHelper::Configuration::CsvClassMapCollection</compoundname>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00052_1a6402d0986ae539363780f34eefd5fa99" prot="private" static="no" mutable="no">
-        <type>readonly Dictionary&lt; Type, <ref refid="a00050" kindref="compound">CsvClassMap</ref> &gt;</type>
-        <definition>readonly Dictionary&lt;Type, CsvClassMap&gt; CsvHelper.Configuration.CsvClassMapCollection.data</definition>
+    <compoundname>Yarn::Dialogue::CommandResult</compoundname>
+    <basecompoundref refid="a00156" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00052_1a420ca0984d6e5c33bb761654305c592e" prot="public" static="no" mutable="no">
+        <type><ref refid="a00373" kindref="compound">Command</ref></type>
+        <definition>Command Yarn.Dialogue.CommandResult.command</definition>
         <argsstring></argsstring>
-        <name>data</name>
-        <initializer>= new Dictionary&lt;Type, <ref refid="a00050" kindref="compound">CsvClassMap</ref>&gt;()</initializer>
+        <name>command</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" bodystart="18" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00052_1a58c95d5126b396fcf3f58d7daa59646e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type><ref refid="a00050" kindref="compound">CsvClassMap</ref></type>
-        <definition>virtual CsvClassMap CsvHelper.Configuration.CsvClassMapCollection.this[Type type]</definition>
-        <argsstring></argsstring>
-        <name>this[Type type]</name>
-        <briefdescription>
-<para>Gets the <ref refid="a00050" kindref="compound">CsvClassMap</ref> for the specified record type. </para>        </briefdescription>
-        <detaileddescription>
-<para>The <ref refid="a00050" kindref="compound">CsvClassMap</ref>. </para><para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The record type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The <ref refid="a00050" kindref="compound">CsvClassMap</ref> for the specified record type.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" bodystart="29" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="157" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="157" bodyend="-1"/>
+        <referencedby refid="a00052_1a1a553422394fb0c854d1184985f993bb" compoundref="a00305" startline="159" endline="163">Yarn.Dialogue.CommandResult.CommandResult</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00052_1ac75513617b6c256c3d693adf4482e1ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00050" kindref="compound">CsvClassMap</ref>&lt; T &gt;</type>
-        <definition>virtual CsvClassMap&lt;T&gt; CsvHelper.Configuration.CsvClassMapCollection.Find&lt; T &gt;</definition>
-        <argsstring>()</argsstring>
-        <name>Find&lt; T &gt;</name>
-        <briefdescription>
-<para>Finds the <ref refid="a00050" kindref="compound">CsvClassMap</ref> for the specified record type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The record type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The <ref refid="a00050" kindref="compound">CsvClassMap</ref> for the specified record type.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" line="45" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" bodystart="45" bodyend="48"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00052_1aab6a14a4c1a614fac511ddd6af2c9e40" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void CsvHelper.Configuration.CsvClassMapCollection.Add</definition>
-        <argsstring>(CsvClassMap map)</argsstring>
-        <name>Add</name>
+      <memberdef kind="function" id="a00052_1a1a553422394fb0c854d1184985f993bb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Dialogue.CommandResult.CommandResult</definition>
+        <argsstring>(string text)</argsstring>
+        <name>CommandResult</name>
         <param>
-          <type><ref refid="a00050" kindref="compound">CsvClassMap</ref></type>
-          <declname>map</declname>
+          <type>string</type>
+          <declname>text</declname>
         </param>
         <briefdescription>
-<para>Adds the specified map for it&apos;s record type. If a map already exists for the record type, the specified map will replace it. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>map</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The map.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" line="56" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" bodystart="56" bodyend="68"/>
-      </memberdef>
-      <memberdef kind="function" id="a00052_1a0b18f7ab62839aa354021986e5a2ef96" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void CsvHelper.Configuration.CsvClassMapCollection.Remove</definition>
-        <argsstring>(Type classMapType)</argsstring>
-        <name>Remove</name>
-        <param>
-          <type>Type</type>
-          <declname>classMapType</declname>
-        </param>
-        <briefdescription>
-<para>Removes the class map. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>classMapType</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The class map type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" line="74" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" bodystart="74" bodyend="84"/>
-      </memberdef>
-      <memberdef kind="function" id="a00052_1a91718f9b6527a7f833393d24587716cc" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void CsvHelper.Configuration.CsvClassMapCollection.Clear</definition>
-        <argsstring>()</argsstring>
-        <name>Clear</name>
-        <briefdescription>
-<para>Removes all maps. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" line="89" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" bodystart="89" bodyend="92"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="a00052_1a73e02f782a0c35347d7d035bec5deb99" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>Type</type>
-        <definition>Type CsvHelper.Configuration.CsvClassMapCollection.GetGenericCsvClassMapType</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>GetGenericCsvClassMapType</name>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Goes up the inheritance tree to find the type instance of <ref refid="a00050" kindref="compound">CsvClassMap</ref>{}. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type to traverse.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The type that is <ref refid="a00050" kindref="compound">CsvClassMap</ref>{}.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" line="99" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" bodystart="99" bodyend="107"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="159" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="159" bodyend="163"/>
+        <references refid="a00052_1a420ca0984d6e5c33bb761654305c592e" compoundref="a00305" startline="157">Yarn.Dialogue.CommandResult.command</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Collection that holds CsvClassMaps for record types. </para>    </briefdescription>
+<para>The client should run a command (it&apos;s up to them to parse the string) </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1069">
-        <label>CsvHelper.Configuration.CsvClassMapCollection</label>
+    <inheritancegraph>
+      <node id="1018">
+        <label>Yarn.Dialogue.CommandResult</label>
         <link refid="a00052"/>
+        <childnode refid="1019" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1019">
+        <label>RunnerResult</label>
+        <link refid="a00156"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1020">
+        <label>Yarn.Dialogue.CommandResult</label>
+        <link refid="a00052"/>
+        <childnode refid="1021" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1022" relation="usage">
+          <edgelabel>+command</edgelabel>
+        </childnode>
+      </node>
+      <node id="1021">
+        <label>RunnerResult</label>
+        <link refid="a00156"/>
+      </node>
+      <node id="1022">
+        <label>Yarn.Command</label>
+        <link refid="a00373"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs" bodystart="16" bodyend="108"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="156" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="156" bodyend="165"/>
     <listofallmembers>
-      <member refid="a00052_1aab6a14a4c1a614fac511ddd6af2c9e40" prot="package" virt="virtual"><scope>CsvHelper::Configuration::CsvClassMapCollection</scope><name>Add</name></member>
-      <member refid="a00052_1a91718f9b6527a7f833393d24587716cc" prot="package" virt="virtual"><scope>CsvHelper::Configuration::CsvClassMapCollection</scope><name>Clear</name></member>
-      <member refid="a00052_1a6402d0986ae539363780f34eefd5fa99" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvClassMapCollection</scope><name>data</name></member>
-      <member refid="a00052_1ac75513617b6c256c3d693adf4482e1ed" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvClassMapCollection</scope><name>Find&lt; T &gt;</name></member>
-      <member refid="a00052_1a73e02f782a0c35347d7d035bec5deb99" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvClassMapCollection</scope><name>GetGenericCsvClassMapType</name></member>
-      <member refid="a00052_1a0b18f7ab62839aa354021986e5a2ef96" prot="package" virt="virtual"><scope>CsvHelper::Configuration::CsvClassMapCollection</scope><name>Remove</name></member>
-      <member refid="a00052_1a58c95d5126b396fcf3f58d7daa59646e" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvClassMapCollection</scope><name>this[Type type]</name></member>
+      <member refid="a00052_1a420ca0984d6e5c33bb761654305c592e" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::CommandResult</scope><name>command</name></member>
+      <member refid="a00052_1a1a553422394fb0c854d1184985f993bb" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::CommandResult</scope><name>CommandResult</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

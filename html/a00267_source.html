@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/SByteConverter.cs Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,52 +105,70 @@ $(document).ready(function(){initNavTree('a00267_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">SByteConverter.cs</div>  </div>
+<div class="title">DefaultTypeConverter.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00267.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System.Globalization;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>CsvHelper.TypeConversion</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="a00148.html">   12</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00148.html">SByteConverter</a> : <a class="code" href="a00078.html">DefaultTypeConverter</a></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00148.html#ad16aeb03f418c89b3f78e95b46a46b40">   20</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">object</span> <a class="code" href="a00148.html#ad16aeb03f418c89b3f78e95b46a46b40">ConvertFromString</a>( <a class="code" href="a00168.html">TypeConverterOptions</a> options, <span class="keywordtype">string</span> text )</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            var numberStyle = options.NumberStyle ?? NumberStyles.Integer;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            sbyte sb;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">if</span>( sbyte.TryParse( text, numberStyle, options.<a class="code" href="a00168.html#af6bc545680b477abf9178eb4755572b1">CultureInfo</a>, out sb ) )</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordflow">return</span> sb;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            }</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordflow">return</span> base.ConvertFromString( options, text );</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="a00148.html#a8f6d23460e0ddfe883cc06ded76bf633">   40</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">bool</span> <a class="code" href="a00148.html#a8f6d23460e0ddfe883cc06ded76bf633">CanConvertFrom</a>( System.Type type )</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="comment">// We only care about strings.</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keywordflow">return</span> type == typeof( <span class="keywordtype">string</span> );</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
-<div class="ttc" id="a00168_html"><div class="ttname"><a href="a00168.html">CsvHelper.TypeConversion.TypeConverterOptions</a></div><div class="ttdoc">Options used when doing type conversion. </div><div class="ttdef"><b>Definition:</b> <a href="a00272_source.html#l00015">TypeConverterOptions.cs:15</a></div></div>
-<div class="ttc" id="a00148_html_a8f6d23460e0ddfe883cc06ded76bf633"><div class="ttname"><a href="a00148.html#a8f6d23460e0ddfe883cc06ded76bf633">CsvHelper.TypeConversion.SByteConverter.CanConvertFrom</a></div><div class="ttdeci">override bool CanConvertFrom(System.Type type)</div><div class="ttdoc">Determines whether this instance [can convert from] the specified type. </div><div class="ttdef"><b>Definition:</b> <a href="a00267_source.html#l00040">SByteConverter.cs:40</a></div></div>
-<div class="ttc" id="a00078_html"><div class="ttname"><a href="a00078.html">CsvHelper.TypeConversion.DefaultTypeConverter</a></div><div class="ttdoc">Converts an object to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00257_source.html#l00013">DefaultTypeConverter.cs:13</a></div></div>
-<div class="ttc" id="a00168_html_af6bc545680b477abf9178eb4755572b1"><div class="ttname"><a href="a00168.html#af6bc545680b477abf9178eb4755572b1">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</a></div><div class="ttdeci">CultureInfo CultureInfo</div><div class="ttdoc">Gets or sets the culture info. </div><div class="ttdef"><b>Definition:</b> <a href="a00272_source.html#l00023">TypeConverterOptions.cs:23</a></div></div>
-<div class="ttc" id="a00148_html_ad16aeb03f418c89b3f78e95b46a46b40"><div class="ttname"><a href="a00148.html#ad16aeb03f418c89b3f78e95b46a46b40">CsvHelper.TypeConversion.SByteConverter.ConvertFromString</a></div><div class="ttdeci">override object ConvertFromString(TypeConverterOptions options, string text)</div><div class="ttdoc">Converts the string to an object. </div><div class="ttdef"><b>Definition:</b> <a href="a00267_source.html#l00020">SByteConverter.cs:20</a></div></div>
-<div class="ttc" id="a00148_html"><div class="ttname"><a href="a00148.html">CsvHelper.TypeConversion.SByteConverter</a></div><div class="ttdoc">Converts a SByte to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00267_source.html#l00012">SByteConverter.cs:12</a></div></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using</span> System.Globalization;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>CsvHelper.TypeConversion</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="a00088.html">   13</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00088.html">DefaultTypeConverter</a> : <a class="code" href="a00123.html">ITypeConverter</a></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="a00088.html#a36cb2f9b24f15a671293f3a722324c27">   21</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">string</span> <a class="code" href="a00088.html#a36cb2f9b24f15a671293f3a722324c27">ConvertToString</a>( <a class="code" href="a00178.html">TypeConverterOptions</a> options, <span class="keywordtype">object</span> value )</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">if</span>( value == null )</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <span class="keywordflow">return</span> string.Empty;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            var formattable = value as IFormattable;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="keywordflow">if</span>( formattable != null )</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                <span class="keywordflow">return</span> formattable.ToString( options.Format, options.CultureInfo );</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordflow">return</span> value.ToString();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="a00088.html#a804ea00060e1de70e5151f90d3bfce9b">   43</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">object</span> <a class="code" href="a00088.html#a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</a>( <a class="code" href="a00178.html">TypeConverterOptions</a> options, <span class="keywordtype">string</span> text )</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="a00080.html">CsvTypeConverterException</a>( <span class="stringliteral">&quot;The conversion cannot be performed.&quot;</span> );</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="a00088.html#a470d21adaa704eb281250dbd112ff91a">   55</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="a00088.html#a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</a>( Type type )</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="comment">// The default convert doesn&#39;t know how to</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="comment">// convert from any type.</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="a00088.html#acb65bd8c8199d88d5b1629ae35d18514">   69</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="a00088.html#acb65bd8c8199d88d5b1629ae35d18514">CanConvertTo</a>( Type type )</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="comment">// We only care about strings.</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">return</span> type == typeof( <span class="keywordtype">string</span> );</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
+<div class="ttc" id="a00088_html_a470d21adaa704eb281250dbd112ff91a"><div class="ttname"><a href="a00088.html#a470d21adaa704eb281250dbd112ff91a">CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertFrom</a></div><div class="ttdeci">virtual bool CanConvertFrom(Type type)</div><div class="ttdoc">Determines whether this instance [can convert from] the specified type. </div><div class="ttdef"><b>Definition:</b> <a href="a00267_source.html#l00055">DefaultTypeConverter.cs:55</a></div></div>
+<div class="ttc" id="a00088_html"><div class="ttname"><a href="a00088.html">CsvHelper.TypeConversion.DefaultTypeConverter</a></div><div class="ttdoc">Converts an object to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00267_source.html#l00013">DefaultTypeConverter.cs:13</a></div></div>
+<div class="ttc" id="a00123_html"><div class="ttname"><a href="a00123.html">CsvHelper.TypeConversion.ITypeConverter</a></div><div class="ttdoc">Converts objects to and from strings. </div><div class="ttdef"><b>Definition:</b> <a href="a00275_source.html#l00013">ITypeConverter.cs:13</a></div></div>
+<div class="ttc" id="a00088_html_a804ea00060e1de70e5151f90d3bfce9b"><div class="ttname"><a href="a00088.html#a804ea00060e1de70e5151f90d3bfce9b">CsvHelper.TypeConversion.DefaultTypeConverter.ConvertFromString</a></div><div class="ttdeci">virtual object ConvertFromString(TypeConverterOptions options, string text)</div><div class="ttdoc">Converts the string to an object. </div><div class="ttdef"><b>Definition:</b> <a href="a00267_source.html#l00043">DefaultTypeConverter.cs:43</a></div></div>
+<div class="ttc" id="a00088_html_acb65bd8c8199d88d5b1629ae35d18514"><div class="ttname"><a href="a00088.html#acb65bd8c8199d88d5b1629ae35d18514">CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</a></div><div class="ttdeci">virtual bool CanConvertTo(Type type)</div><div class="ttdoc">Determines whether this instance [can convert to] the specified type. </div><div class="ttdef"><b>Definition:</b> <a href="a00267_source.html#l00069">DefaultTypeConverter.cs:69</a></div></div>
+<div class="ttc" id="a00088_html_a36cb2f9b24f15a671293f3a722324c27"><div class="ttname"><a href="a00088.html#a36cb2f9b24f15a671293f3a722324c27">CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</a></div><div class="ttdeci">virtual string ConvertToString(TypeConverterOptions options, object value)</div><div class="ttdoc">Converts the object to a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00267_source.html#l00021">DefaultTypeConverter.cs:21</a></div></div>
+<div class="ttc" id="a00178_html"><div class="ttname"><a href="a00178.html">CsvHelper.TypeConversion.TypeConverterOptions</a></div><div class="ttdoc">Options used when doing type conversion. </div><div class="ttdef"><b>Definition:</b> <a href="a00282_source.html#l00015">TypeConverterOptions.cs:15</a></div></div>
+<div class="ttc" id="a00080_html"><div class="ttname"><a href="a00080.html">CsvHelper.TypeConversion.CsvTypeConverterException</a></div><div class="ttdoc">Represents errors that occur while reading a CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00263_source.html#l00015">CsvTypeConverterException.cs:15</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_5c139b908ad2613e3ef99ee52a122286.html">TypeConversion</a></li><li class="navelem"><a class="el" href="a00267.html">SByteConverter.cs</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:35 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_5c139b908ad2613e3ef99ee52a122286.html">TypeConversion</a></li><li class="navelem"><a class="el" href="a00267.html">DefaultTypeConverter.cs</a></li>
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:04 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

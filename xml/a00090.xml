@@ -1,88 +1,65 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00090" kind="class" prot="public">
-    <compoundname>Yarn::ErrorListener</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">BaseErrorListener</basecompoundref>
-      <sectiondef kind="private-static-attrib">
-      <memberdef kind="variable" id="a00090_1a9421873edea84c51d5905f5a24c62479" prot="private" static="yes" mutable="no">
-        <type>readonly <ref refid="a00090" kindref="compound">ErrorListener</ref></type>
-        <definition>readonly ErrorListener Yarn.ErrorListener.instance</definition>
+  <compounddef id="a00090" kind="struct" prot="private">
+    <compoundname>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00090_1a750904df254223bf3131c39017f90a0b" prot="public" static="no" mutable="no">
+        <type>System.Type</type>
+        <definition>System.Type Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.type</definition>
         <argsstring></argsstring>
-        <name>instance</name>
-        <initializer>= new <ref refid="a00090" kindref="compound">ErrorListener</ref>()</initializer>
+        <name>type</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" bodystart="10" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="488" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="488" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00090_1a47b8f4f1d414afa1ea6067218c7ee34d" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
-        <type><ref refid="a00090" kindref="compound">ErrorListener</ref></type>
-        <definition>ErrorListener Yarn.ErrorListener.Instance</definition>
+      <memberdef kind="variable" id="a00090_1a61605b2d0a17dfdf9c62952270d44fbd" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.methodName</definition>
         <argsstring></argsstring>
-        <name>Instance</name>
+        <name>methodName</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" line="12" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" bodystart="13" bodyend="-1"/>
-        <referencedby refid="a00123_1aa79ba1a47653bfc06ce3ccaf87551ad3" compoundref="a00294" startline="217" endline="353">Yarn.Loader.Load</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="489" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="489" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="a00090_1a1f0cc41aac10bd8a2402355534c1123c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.ErrorListener.ErrorListener</definition>
-        <argsstring>()</argsstring>
-        <name>ErrorListener</name>
+      <memberdef kind="variable" id="a00090_1ac23509be7ae6b43a3e2154dd430954a7" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.usageNotes</definition>
+        <argsstring></argsstring>
+        <name>usageNotes</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" line="11" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" bodystart="11" bodyend="11"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="490" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="490" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00090_1a47fb9f6d50aa6a4e4796dea10b237fe4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override void</type>
-        <definition>override void Yarn.ErrorListener.SyntaxError</definition>
-        <argsstring>(System.IO.TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)</argsstring>
-        <name>SyntaxError</name>
+      <memberdef kind="function" id="a00090_1ae80171841e97a48611c51a9a574a2fc0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.Deprecation</definition>
+        <argsstring>(System.Type type, string methodName, string usageNotes)</argsstring>
+        <name>Deprecation</name>
         <param>
-          <type>System.IO.TextWriter</type>
-          <declname>output</declname>
-        </param>
-        <param>
-          <type>IRecognizer</type>
-          <declname>recognizer</declname>
-        </param>
-        <param>
-          <type><ref refid="a00301_1ae3d87b0b748ea892bff48f60862e182d" kindref="member">IToken</ref></type>
-          <declname>offendingSymbol</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>line</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>charPositionInLine</declname>
+          <type>System.Type</type>
+          <declname>type</declname>
         </param>
         <param>
           <type>string</type>
-          <declname>msg</declname>
+          <declname>methodName</declname>
         </param>
         <param>
-          <type>RecognitionException</type>
-          <declname>e</declname>
+          <type>string</type>
+          <declname>usageNotes</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -90,44 +67,31 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" bodystart="20" bodyend="57"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="492" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="492" bodyend="497"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1317">
-        <label>BaseErrorListener</label>
-      </node>
-      <node id="1316">
-        <label>Yarn.ErrorListener</label>
-        <link refid="a00090"/>
-        <childnode refid="1317" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1319">
-        <label>BaseErrorListener</label>
-      </node>
-      <node id="1318">
-        <label>Yarn.ErrorListener</label>
+      <node id="1251">
+        <label>Yarn.Unity.YarnSpinnerEditorWindow.Deprecation</label>
         <link refid="a00090"/>
-        <childnode refid="1319" relation="public-inheritance">
+        <childnode refid="1252" relation="usage">
+          <edgelabel>+type</edgelabel>
         </childnode>
-        <childnode refid="1318" relation="usage">
-          <edgelabel>-instance</edgelabel>
-        </childnode>
+      </node>
+      <node id="1252">
+        <label>System</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" bodystart="8" bodyend="58"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="487" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="487" bodyend="499"/>
     <listofallmembers>
-      <member refid="a00090_1a1f0cc41aac10bd8a2402355534c1123c" prot="private" virt="non-virtual"><scope>Yarn::ErrorListener</scope><name>ErrorListener</name></member>
-      <member refid="a00090_1a47b8f4f1d414afa1ea6067218c7ee34d" prot="public" virt="non-virtual"><scope>Yarn::ErrorListener</scope><name>Instance</name></member>
-      <member refid="a00090_1a9421873edea84c51d5905f5a24c62479" prot="private" virt="non-virtual"><scope>Yarn::ErrorListener</scope><name>instance</name></member>
-      <member refid="a00090_1a47fb9f6d50aa6a4e4796dea10b237fe4" prot="public" virt="non-virtual"><scope>Yarn::ErrorListener</scope><name>SyntaxError</name></member>
+      <member refid="a00090_1ae80171841e97a48611c51a9a574a2fc0" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>Deprecation</name></member>
+      <member refid="a00090_1a61605b2d0a17dfdf9c62952270d44fbd" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>methodName</name></member>
+      <member refid="a00090_1a750904df254223bf3131c39017f90a0b" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>type</name></member>
+      <member refid="a00090_1ac23509be7ae6b43a3e2154dd430954a7" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>usageNotes</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

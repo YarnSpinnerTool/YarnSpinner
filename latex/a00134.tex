@@ -1,103 +1,65 @@
-\hypertarget{a00134}{\section{Yarn.\-Parser.\-Operator.\-Operator\-Info Struct Reference}
-\label{a00134}\index{Yarn.\-Parser.\-Operator.\-Operator\-Info@{Yarn.\-Parser.\-Operator.\-Operator\-Info}}
+\hypertarget{a00134}{\section{Yarn.\-Localised\-Line Class Reference}
+\label{a00134}\index{Yarn.\-Localised\-Line@{Yarn.\-Localised\-Line}}
 }
 
 
-Collaboration diagram for Yarn.\-Parser.\-Operator.\-Operator\-Info\-:
+A line, localised into the current locale.  
+
+
+
+
+Collaboration diagram for Yarn.\-Localised\-Line\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=246pt]{a00674}
+\includegraphics[width=178pt]{a00613}
 \end{center}
 \end{figure}
-\subsection*{Package Functions}
+\subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00134_a25faca62235c9f8542e4a071ba8ebc0b}{Operator\-Info} (\hyperlink{a00133_a83fa1b8db0e6678006920812b6f33f62}{Associativity} \hyperlink{a00134_accba40a72d9709ca3c18810b8661afe3}{associativity}, int \hyperlink{a00134_a0b2921d7b863e268d33aa15213395093}{precedence}, int \hyperlink{a00134_a0758c6f7dac4b205f616b43b1af95b95}{arguments})
-\end{DoxyCompactItemize}
-\subsection*{Package Attributes}
-\begin{DoxyCompactItemize}
+string \hyperlink{a00134_aad88f588cbbe2df9bb83da59eeff3d3c}{Line\-Code}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-\hyperlink{a00133_a83fa1b8db0e6678006920812b6f33f62}{Associativity} \hyperlink{a00134_accba40a72d9709ca3c18810b8661afe3}{associativity}
+string \hyperlink{a00134_ab0b4fa82cfa7693ff3c96fe5c3837fff}{Line\-Text}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-int \hyperlink{a00134_a0b2921d7b863e268d33aa15213395093}{precedence}
-\item 
-int \hyperlink{a00134_a0758c6f7dac4b205f616b43b1af95b95}{arguments}
+string \hyperlink{a00134_afbfb834bb1623653fa73945c221c4b9d}{Comment}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+A line, localised into the current locale. 
 
+Localised\-Lines are used in both lines, options, and shortcut options -\/ basically, anything user-\/facing. 
 
-Definition at line 1154 of file Parser.\-cs.
-
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00134_a25faca62235c9f8542e4a071ba8ebc0b}{\index{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}!Operator\-Info@{Operator\-Info}}
-\index{Operator\-Info@{Operator\-Info}!Yarn::Parser::Operator::OperatorInfo@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}}
-\subsubsection[{Operator\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Operator.\-Operator\-Info.\-Operator\-Info (
-\begin{DoxyParamCaption}
-\item[{{\bf Associativity}}]{associativity, }
-\item[{int}]{precedence, }
-\item[{int}]{arguments}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00134_a25faca62235c9f8542e4a071ba8ebc0b}
-
-
-Definition at line 1158 of file Parser.\-cs.
+Definition at line 94 of file Dialogue.\-cs.
 
 
 
-References Yarn.\-Parser.\-Operator.\-Operator\-Info.\-arguments, Yarn.\-Parser.\-Operator.\-Operator\-Info.\-associativity, and Yarn.\-Parser.\-Operator.\-Operator\-Info.\-precedence.
+\subsection{Property Documentation}
+\hypertarget{a00134_afbfb834bb1623653fa73945c221c4b9d}{\index{Yarn\-::\-Localised\-Line@{Yarn\-::\-Localised\-Line}!Comment@{Comment}}
+\index{Comment@{Comment}!Yarn::LocalisedLine@{Yarn\-::\-Localised\-Line}}
+\subsubsection[{Comment}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Localised\-Line.\-Comment\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00134_afbfb834bb1623653fa73945c221c4b9d}
 
 
-\begin{DoxyCode}
-1158                                                                                                   \{
-1159                     this.associativity = \hyperlink{a00134_accba40a72d9709ca3c18810b8661afe3}{associativity};
-1160                     this.precedence = \hyperlink{a00134_a0b2921d7b863e268d33aa15213395093}{precedence};
-1161                     this.arguments = \hyperlink{a00134_a0758c6f7dac4b205f616b43b1af95b95}{arguments};
-1162                 \}
-\end{DoxyCode}
+Definition at line 98 of file Dialogue.\-cs.
+
+\hypertarget{a00134_aad88f588cbbe2df9bb83da59eeff3d3c}{\index{Yarn\-::\-Localised\-Line@{Yarn\-::\-Localised\-Line}!Line\-Code@{Line\-Code}}
+\index{Line\-Code@{Line\-Code}!Yarn::LocalisedLine@{Yarn\-::\-Localised\-Line}}
+\subsubsection[{Line\-Code}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Localised\-Line.\-Line\-Code\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00134_aad88f588cbbe2df9bb83da59eeff3d3c}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00134_a0758c6f7dac4b205f616b43b1af95b95}{\index{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}!arguments@{arguments}}
-\index{arguments@{arguments}!Yarn::Parser::Operator::OperatorInfo@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}}
-\subsubsection[{arguments}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Operator.\-Operator\-Info.\-arguments\hspace{0.3cm}{\ttfamily [package]}}}\label{a00134_a0758c6f7dac4b205f616b43b1af95b95}
+Definition at line 96 of file Dialogue.\-cs.
+
+\hypertarget{a00134_ab0b4fa82cfa7693ff3c96fe5c3837fff}{\index{Yarn\-::\-Localised\-Line@{Yarn\-::\-Localised\-Line}!Line\-Text@{Line\-Text}}
+\index{Line\-Text@{Line\-Text}!Yarn::LocalisedLine@{Yarn\-::\-Localised\-Line}}
+\subsubsection[{Line\-Text}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Localised\-Line.\-Line\-Text\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00134_ab0b4fa82cfa7693ff3c96fe5c3837fff}
 
 
-Definition at line 1157 of file Parser.\-cs.
-
-
-
-Referenced by Yarn.\-Parser.\-Operator.\-Operator\-Info.\-Operator\-Info().
-
-\hypertarget{a00134_accba40a72d9709ca3c18810b8661afe3}{\index{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}!associativity@{associativity}}
-\index{associativity@{associativity}!Yarn::Parser::Operator::OperatorInfo@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}}
-\subsubsection[{associativity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Associativity} Yarn.\-Parser.\-Operator.\-Operator\-Info.\-associativity\hspace{0.3cm}{\ttfamily [package]}}}\label{a00134_accba40a72d9709ca3c18810b8661afe3}
-
-
-Definition at line 1155 of file Parser.\-cs.
+Definition at line 97 of file Dialogue.\-cs.
 
 
 
-Referenced by Yarn.\-Parser.\-Operator.\-Operator\-Info.\-Operator\-Info().
-
-\hypertarget{a00134_a0b2921d7b863e268d33aa15213395093}{\index{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}!precedence@{precedence}}
-\index{precedence@{precedence}!Yarn::Parser::Operator::OperatorInfo@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}}
-\subsubsection[{precedence}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Operator.\-Operator\-Info.\-precedence\hspace{0.3cm}{\ttfamily [package]}}}\label{a00134_a0b2921d7b863e268d33aa15213395093}
-
-
-Definition at line 1156 of file Parser.\-cs.
-
-
-
-Referenced by Yarn.\-Parser.\-Operator.\-Operator\-Info.\-Operator\-Info().
-
-
-
-The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00295}{Parser.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00305}{Dialogue.\-cs}\end{DoxyCompactItemize}

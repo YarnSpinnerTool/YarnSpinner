@@ -1,7 +1,0 @@
-<map id="CsvHelper.CsvWriter.WriteHeader" name="CsvHelper.CsvWriter.WriteHeader">
-<area shape="rect" id="node2" href="$a00071.html#ac913b615ee170ad2b84137c4d5c7eda2" title="Adds the properties from the mapping. This will recursively traverse the mapping tree and add all pro..." alt="" coords="238,5,471,32"/>
-<area shape="rect" id="node3" href="$a00071.html#a6085ddfd5e9c626d1d9f575ff21a0599" title="Checks if the property can be written. " alt="" coords="251,56,458,83"/>
-<area shape="rect" id="node4" href="$a00071.html#a15e26ec8c5c935030677bee9a36d7c16" title="Checks if the instance has been disposed of. " alt="" coords="520,158,709,199"/>
-<area shape="rect" id="node5" href="$a00071.html#a397af8c87002d3b9c2b5152c6981d4d2" title="Ends writing of the current record and starts a new record. This is used when manually writing record..." alt="" coords="265,158,444,199"/>
-<area shape="rect" id="node6" href="$a00071.html#a994d9b339c4cda8bf83d5665b5c4ff1a" title="Writes the field to the CSV file. The field may get quotes added to it. When all fields are written f..." alt="" coords="263,223,446,265"/>
-</map>

@@ -1,305 +1,326 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00123" kind="class" prot="package">
-    <compoundname>Yarn::Loader</compoundname>
-    <innerclass refid="a00087" prot="private">Yarn::Loader::EmissionTuple</innerclass>
-    <innerclass refid="a00130" prot="public">Yarn::Loader::NodeInfo</innerclass>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00123_1a89d1f29eba1c52c96c62a4cfe7859a1d" prot="private" static="no" mutable="no">
-        <type><ref refid="a00082" kindref="compound">Dialogue</ref></type>
-        <definition>Dialogue Yarn.Loader.dialogue</definition>
-        <argsstring></argsstring>
-        <name>dialogue</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="56" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="56" bodyend="-1"/>
-        <referencedby refid="a00123_1a1972fc413e1679ecbe91eef536ca8479" compoundref="a00294" startline="82" endline="88">Yarn.Loader.Loader</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00123_1a6d8296076823c0c082df9024367f4860" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type><ref refid="a00142" kindref="compound">Program</ref></type>
-        <definition>Program Yarn.Loader.program</definition>
-        <argsstring></argsstring>
-        <name>program</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="58" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="58" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="a00123_1a9321fce224021841ce6f70ca7fbe531b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Loader.PrintTokenList</definition>
-        <argsstring>(IEnumerable&lt; Token &gt; tokenList)</argsstring>
-        <name>PrintTokenList</name>
-        <param>
-          <type>IEnumerable&lt; <ref refid="a00163" kindref="compound">Token</ref> &gt;</type>
-          <declname>tokenList</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="61" bodyend="72"/>
-        <referencedby refid="a00123_1aa79ba1a47653bfc06ce3ccaf87551ad3" compoundref="a00294" startline="217" endline="353">Yarn.Loader.Load</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00123_1aa105ea8e5d65a420d1089616523feecc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Loader.PrintParseTree</definition>
-        <argsstring>(Yarn.Parser.ParseNode rootNode)</argsstring>
-        <name>PrintParseTree</name>
-        <param>
-          <type><ref refid="a00138" kindref="compound">Yarn.Parser.ParseNode</ref></type>
-          <declname>rootNode</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="75" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="75" bodyend="79"/>
-        <referencedby refid="a00123_1aa79ba1a47653bfc06ce3ccaf87551ad3" compoundref="a00294" startline="217" endline="353">Yarn.Loader.Load</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00123_1a0b09a29edd2ed13d52203f1b71a47081" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
-        <definition>string Yarn.Loader.preprocessor</definition>
-        <argsstring>(string nodeText)</argsstring>
-        <name>preprocessor</name>
-        <param>
-          <type>string</type>
-          <declname>nodeText</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="105" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="105" bodyend="211"/>
-        <references refid="a00330_1a83653c3e52fa74614e655a91ad2b7181" compoundref="a00190" startline="28">preprocessor.DEDENT</references>
-        <references refid="a00330_1ae3f2190a793ab77428838e58e0e83676" compoundref="a00190" startline="27">preprocessor.INDENT</references>
-        <references refid="a00330_1a00fba9ee9674b2513dbe28eab795b734" compoundref="a00190" startline="20">preprocessor.indents</references>
-        <references refid="a00330_1a7ca2dc5371587b21476669a45af013cd" compoundref="a00190" startline="35">preprocessor.OPTION</references>
-        <references refid="a00330_1afa485f45ab87bc0f06c1dfc46737c057" compoundref="a00190" startline="22">preprocessor.shouldTrackNextIndentation</references>
-        <references refid="a00330_1a8b7e5c0b2c6870eaa8f9454b4f33678b" compoundref="a00190" startline="70">preprocessor.topLevel</references>
-        <referencedby refid="a00123_1aa79ba1a47653bfc06ce3ccaf87551ad3" compoundref="a00294" startline="217" endline="353">Yarn.Loader.Load</referencedby>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00123" kind="interface" prot="public">
+    <compoundname>CsvHelper::TypeConversion::ITypeConverter</compoundname>
+    <derivedcompoundref refid="a00088" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</derivedcompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00123_1a1972fc413e1679ecbe91eef536ca8479" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Loader.Loader</definition>
-        <argsstring>(Dialogue dialogue)</argsstring>
-        <name>Loader</name>
+      <memberdef kind="function" id="a00123_1a90c465c63dbcf913f38aa878f35e77c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string CsvHelper.TypeConversion.ITypeConverter.ConvertToString</definition>
+        <argsstring>(TypeConverterOptions options, object value)</argsstring>
+        <name>ConvertToString</name>
+        <reimplementedby refid="a00088_1a36cb2f9b24f15a671293f3a722324c27">ConvertToString</reimplementedby>
+        <reimplementedby refid="a00099_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
+        <reimplementedby refid="a00142_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
         <param>
-          <type><ref refid="a00082" kindref="compound">Dialogue</ref></type>
-          <declname>dialogue</declname>
+          <type><ref refid="a00178" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Converts the object to a string. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object to convert to a string.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="82" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="82" bodyend="88"/>
-        <references refid="a00123_1a89d1f29eba1c52c96c62a4cfe7859a1d" compoundref="a00294" startline="56">Yarn.Loader.dialogue</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ITypeConverter.cs" line="21" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="a00123_1aa79ba1a47653bfc06ce3ccaf87551ad3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00142" kindref="compound">Program</ref></type>
-        <definition>Program Yarn.Loader.Load</definition>
-        <argsstring>(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode, NodeFormat format, bool experimentalMode=false)</argsstring>
-        <name>Load</name>
+      <memberdef kind="function" id="a00123_1ab598e04c22e5a7890b6d21011492283e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>object</type>
+        <definition>object CsvHelper.TypeConversion.ITypeConverter.ConvertFromString</definition>
+        <argsstring>(TypeConverterOptions options, string text)</argsstring>
+        <name>ConvertFromString</name>
+        <reimplementedby refid="a00184_1a1d3e86ea3d34de0d47a365c9b8622eb7">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00183_1a15686325b6bfa7648b65f201ecf50cd2">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00182_1a796e0b7b57d69abee122947166b45a9a">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00167_1a50bf35ff93e01df630a9c5e3c7b7569f">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00161_1a5c8a692325c19551246a589e9ca4a1e1">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00158_1ad16aeb03f418c89b3f78e95b46a46b40">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00122_1a9080b7b6a5abc7d8271ffb6924c31b7c">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00121_1a392314cc9b5f5b4ad176d0f1a99af32f">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00120_1aff576c6ca9bb1942fb17e385befb0197">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00086_1a07444e6f2bb1e49288f9de3b2407dc4f">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00048_1a7cf201b75714eccdc084b6cc3161bf29">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00110_1ad00786c329498785bbb77407ea023877">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00084_1a6b1b54cb2d1b200beb8fa3c63e4c064a">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00046_1a6176d20d761abfc0af4e840553ffae47">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00045_1abc77c631974272fd1dfe3fe4fcc3bf28">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00096_1a0c93a63f9f954646172a65b432c40c69">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00085_1aa69835fc086d80a8eabe7ac50cb92f47">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00099_1a692617638507cd1033728d7f718fcd2a">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00172_1a0f2536c88227a94822d0b7730eedf3eb">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00098_1abbbd7ece803a97b4714445c745918dc9">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00088_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplementedby>
+        <reimplementedby refid="a00142_1addb6dc12d4927204cd2349202db63e74">ConvertFromString</reimplementedby>
+        <param>
+          <type><ref refid="a00178" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
+        </param>
         <param>
           <type>string</type>
           <declname>text</declname>
         </param>
-        <param>
-          <type><ref refid="a00119" kindref="compound">Library</ref></type>
-          <declname>library</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>fileName</declname>
-        </param>
-        <param>
-          <type><ref refid="a00142" kindref="compound">Program</ref></type>
-          <declname>includeProgram</declname>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>showTokens</declname>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>showParseTree</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>onlyConsiderNode</declname>
-        </param>
-        <param>
-          <type><ref refid="a00041_1ad7ebb46e7309ead8767383a672b3272f" kindref="member">NodeFormat</ref></type>
-          <declname>format</declname>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>experimentalMode</declname>
-          <defval>false</defval>
-        </param>
         <briefdescription>
-        </briefdescription>
+<para>Converts the string to an object. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string to convert to an object.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The object created from the string.</para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="217" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="217" bodyend="353"/>
-        <references refid="a00123_1a080b2d6b7553c178007c04297d50e9da" compoundref="a00294" startline="391" endline="411">Yarn.Loader.GetFormatFromFileName</references>
-        <references refid="a00123_1a0aa76ba9366b44bf78198a78ea958c9c" compoundref="a00294" startline="415" endline="581">Yarn.Loader.GetNodesFromText</references>
-        <references refid="a00090_1a47b8f4f1d414afa1ea6067218c7ee34d" compoundref="a00291" startline="13">Yarn.ErrorListener.Instance</references>
-        <references refid="a00123_1a0b09a29edd2ed13d52203f1b71a47081" compoundref="a00294" startline="105" endline="211">Yarn.Loader.preprocessor</references>
-        <references refid="a00123_1aa105ea8e5d65a420d1089616523feecc" compoundref="a00294" startline="75" endline="79">Yarn.Loader.PrintParseTree</references>
-        <references refid="a00123_1a9321fce224021841ce6f70ca7fbe531b" compoundref="a00294" startline="61" endline="72">Yarn.Loader.PrintTokenList</references>
-        <references refid="a00130_1acd4d4915f6cc14f8b0f1f92d27da8b36" compoundref="a00294" startline="369">Yarn.Loader.NodeInfo.tags</references>
-        <references refid="a00130_1aafc45bbc86a9acb9bdbcf7877695a96c" compoundref="a00294" startline="364">Yarn.Loader.NodeInfo.title</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ITypeConverter.cs" line="29" column="1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-static-func">
-      <memberdef kind="function" id="a00123_1a080b2d6b7553c178007c04297d50e9da" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00041_1ad7ebb46e7309ead8767383a672b3272f" kindref="member">NodeFormat</ref></type>
-        <definition>static NodeFormat Yarn.Loader.GetFormatFromFileName</definition>
-        <argsstring>(string fileName)</argsstring>
-        <name>GetFormatFromFileName</name>
+      <memberdef kind="function" id="a00123_1ae1ad863656f4fa96bd846a41344c9349" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CsvHelper.TypeConversion.ITypeConverter.CanConvertFrom</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertFrom</name>
+        <reimplementedby refid="a00172_1ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00046_1a74a66b405f6c18e69b9fd23a1dea91b0">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00084_1af44239d3bd014b1423fa80f7440bbd25">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00085_1a82a8cf4b77600ef49da60deb0c24a708">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00099_1af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00088_1a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00098_1a31af8209aad64ed11d949586075c244a">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00045_1a0be20573af4ee53409bb437125a64268">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00142_1ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</reimplementedby>
         <param>
-          <type>string</type>
-          <declname>fileName</declname>
+          <type>Type</type>
+          <declname>type</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="391" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="391" bodyend="411"/>
-        <referencedby refid="a00095_1a28a086a7b44ecea7430af40436f38df6" compoundref="a00305" startline="30" endline="45">Yarn.FileFormatConverter.ConvertToJSON</referencedby>
-        <referencedby refid="a00095_1a1e6cd39b0c813f21da278367dcff76d2" compoundref="a00305" startline="47" endline="60">Yarn.FileFormatConverter.ConvertToYarn</referencedby>
-        <referencedby refid="a00123_1aa79ba1a47653bfc06ce3ccaf87551ad3" compoundref="a00294" startline="217" endline="353">Yarn.Loader.Load</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ITypeConverter.cs" line="38" column="1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00123_1a0aa76ba9366b44bf78198a78ea958c9c" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00130" kindref="compound">NodeInfo</ref>[]</type>
-        <definition>NodeInfo [] Yarn.Loader.GetNodesFromText</definition>
-        <argsstring>(string text, NodeFormat format)</argsstring>
-        <name>GetNodesFromText</name>
+      <memberdef kind="function" id="a00123_1a168b03dad37fcb6882101c93deac8111" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CsvHelper.TypeConversion.ITypeConverter.CanConvertTo</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertTo</name>
+        <reimplementedby refid="a00099_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
+        <reimplementedby refid="a00088_1acb65bd8c8199d88d5b1629ae35d18514">CanConvertTo</reimplementedby>
         <param>
-          <type>string</type>
-          <declname>text</declname>
-        </param>
-        <param>
-          <type><ref refid="a00041_1ad7ebb46e7309ead8767383a672b3272f" kindref="member">NodeFormat</ref></type>
-          <declname>format</declname>
+          <type>Type</type>
+          <declname>type</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="415" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="415" bodyend="581"/>
-        <referencedby refid="a00123_1aa79ba1a47653bfc06ce3ccaf87551ad3" compoundref="a00294" startline="217" endline="353">Yarn.Loader.Load</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ITypeConverter.cs" line="47" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Converts objects to and from strings. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1508">
-        <label>Yarn.Program</label>
-        <link refid="a00142"/>
-      </node>
-      <node id="1505">
-        <label>Yarn.Dialogue</label>
-        <link refid="a00082"/>
-        <childnode refid="1506" relation="usage">
-          <edgelabel>-vm</edgelabel>
-        </childnode>
-        <childnode refid="1510" relation="usage">
-          <edgelabel>+library</edgelabel>
-        </childnode>
-        <childnode refid="1508" relation="usage">
-          <edgelabel>~program</edgelabel>
-        </childnode>
-        <childnode refid="1504" relation="usage">
-          <edgelabel>~loader</edgelabel>
-        </childnode>
-        <childnode refid="1511" relation="usage">
-          <edgelabel>~continuity</edgelabel>
+    <inheritancegraph>
+      <node id="1438">
+        <label>CsvHelper.TypeConversion.ByteConverter</label>
+        <link refid="a00046"/>
+        <childnode refid="1436" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1510">
-        <label>Yarn.Library</label>
-        <link refid="a00119"/>
+      <node id="1444">
+        <label>CsvHelper.TypeConversion.EnumConverter</label>
+        <link refid="a00098"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
       </node>
-      <node id="1509">
-        <label>Yarn.VirtualMachine.State</label>
-        <link refid="a00155"/>
+      <node id="1456">
+        <label>CsvHelper.TypeConversion.UInt32Converter</label>
+        <link refid="a00183"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
       </node>
-      <node id="1504">
-        <label>Yarn.Loader</label>
+      <node id="1448">
+        <label>CsvHelper.TypeConversion.Int32Converter</label>
+        <link refid="a00121"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1445">
+        <label>CsvHelper.TypeConversion.EnumerableConverter</label>
+        <link refid="a00099"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1443">
+        <label>CsvHelper.TypeConversion.DoubleConverter</label>
+        <link refid="a00096"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1449">
+        <label>CsvHelper.TypeConversion.Int64Converter</label>
+        <link refid="a00122"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1437">
+        <label>CsvHelper.TypeConversion.BooleanConverter</label>
+        <link refid="a00045"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1442">
+        <label>CsvHelper.TypeConversion.DecimalConverter</label>
+        <link refid="a00086"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1457">
+        <label>CsvHelper.TypeConversion.UInt64Converter</label>
+        <link refid="a00184"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1453">
+        <label>CsvHelper.TypeConversion.StringConverter</label>
+        <link refid="a00167"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1436">
+        <label>CsvHelper.TypeConversion.DefaultTypeConverter</label>
+        <link refid="a00088"/>
+        <childnode refid="1435" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1451">
+        <label>CsvHelper.TypeConversion.SByteConverter</label>
+        <link refid="a00158"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1435">
+        <label>CsvHelper.TypeConversion.ITypeConverter</label>
         <link refid="a00123"/>
-        <childnode refid="1505" relation="usage">
-          <edgelabel>-dialogue</edgelabel>
+      </node>
+      <node id="1454">
+        <label>CsvHelper.TypeConversion.TimeSpanConverter</label>
+        <link refid="a00172"/>
+        <childnode refid="1436" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1511">
-        <label>Yarn.VariableStorage</label>
-        <link refid="a00180"/>
+      <node id="1439">
+        <label>CsvHelper.TypeConversion.CharConverter</label>
+        <link refid="a00048"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
       </node>
-      <node id="1507">
-        <label>Yarn.Node</label>
-        <link refid="a00361"/>
+      <node id="1450">
+        <label>CsvHelper.TypeConversion.NullableConverter</label>
+        <link refid="a00142"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
       </node>
-      <node id="1506">
-        <label>Yarn.VirtualMachine</label>
-        <link refid="a00152"/>
-        <childnode refid="1505" relation="usage">
-          <edgelabel>-dialogue</edgelabel>
+      <node id="1440">
+        <label>CsvHelper.TypeConversion.DateTimeConverter</label>
+        <link refid="a00084"/>
+        <childnode refid="1436" relation="public-inheritance">
         </childnode>
-        <childnode refid="1507" relation="usage">
-          <edgelabel>-currentNode</edgelabel>
+      </node>
+      <node id="1447">
+        <label>CsvHelper.TypeConversion.Int16Converter</label>
+        <link refid="a00120"/>
+        <childnode refid="1436" relation="public-inheritance">
         </childnode>
-        <childnode refid="1508" relation="usage">
-          <edgelabel>-program</edgelabel>
+      </node>
+      <node id="1441">
+        <label>CsvHelper.TypeConversion.DateTimeOffsetConverter</label>
+        <link refid="a00085"/>
+        <childnode refid="1436" relation="public-inheritance">
         </childnode>
-        <childnode refid="1509" relation="usage">
-          <edgelabel>-state</edgelabel>
+      </node>
+      <node id="1446">
+        <label>CsvHelper.TypeConversion.GuidConverter</label>
+        <link refid="a00110"/>
+        <childnode refid="1436" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="1455">
+        <label>CsvHelper.TypeConversion.UInt16Converter</label>
+        <link refid="a00182"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1452">
+        <label>CsvHelper.TypeConversion.SingleConverter</label>
+        <link refid="a00161"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1458">
+        <label>CsvHelper.TypeConversion.ITypeConverter</label>
+        <link refid="a00123"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="54" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="54" bodyend="583"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ITypeConverter.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ITypeConverter.cs" bodystart="13" bodyend="48"/>
     <listofallmembers>
-      <member refid="a00123_1a89d1f29eba1c52c96c62a4cfe7859a1d" prot="private" virt="non-virtual"><scope>Yarn::Loader</scope><name>dialogue</name></member>
-      <member refid="a00123_1a080b2d6b7553c178007c04297d50e9da" prot="package" virt="non-virtual"><scope>Yarn::Loader</scope><name>GetFormatFromFileName</name></member>
-      <member refid="a00123_1a0aa76ba9366b44bf78198a78ea958c9c" prot="package" virt="non-virtual"><scope>Yarn::Loader</scope><name>GetNodesFromText</name></member>
-      <member refid="a00123_1aa79ba1a47653bfc06ce3ccaf87551ad3" prot="public" virt="non-virtual"><scope>Yarn::Loader</scope><name>Load</name></member>
-      <member refid="a00123_1a1972fc413e1679ecbe91eef536ca8479" prot="public" virt="non-virtual"><scope>Yarn::Loader</scope><name>Loader</name></member>
-      <member refid="a00123_1a0b09a29edd2ed13d52203f1b71a47081" prot="private" virt="non-virtual"><scope>Yarn::Loader</scope><name>preprocessor</name></member>
-      <member refid="a00123_1aa105ea8e5d65a420d1089616523feecc" prot="private" virt="non-virtual"><scope>Yarn::Loader</scope><name>PrintParseTree</name></member>
-      <member refid="a00123_1a9321fce224021841ce6f70ca7fbe531b" prot="private" virt="non-virtual"><scope>Yarn::Loader</scope><name>PrintTokenList</name></member>
-      <member refid="a00123_1a6d8296076823c0c082df9024367f4860" prot="public" virt="non-virtual"><scope>Yarn::Loader</scope><name>program</name></member>
+      <member refid="a00123_1ae1ad863656f4fa96bd846a41344c9349" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::ITypeConverter</scope><name>CanConvertFrom</name></member>
+      <member refid="a00123_1a168b03dad37fcb6882101c93deac8111" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::ITypeConverter</scope><name>CanConvertTo</name></member>
+      <member refid="a00123_1ab598e04c22e5a7890b6d21011492283e" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::ITypeConverter</scope><name>ConvertFromString</name></member>
+      <member refid="a00123_1a90c465c63dbcf913f38aa878f35e77c7" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::ITypeConverter</scope><name>ConvertToString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

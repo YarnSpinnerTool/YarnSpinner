@@ -1,204 +1,514 @@
-\hypertarget{a00089}{\section{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter Class Reference}
-\label{a00089}\index{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}}
+\hypertarget{a00089}{\section{Example\-Variable\-Storage Class Reference}
+\label{a00089}\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}}
 }
 
 
-Throws an exception when used. This is here so that it's apparent that there is no support for I\-Enumerable type coversion. A custom converter will need to be created to have a field convert to and from an I\-Enumerable.  
+An extremely simple implementation of Dialogue\-Unity\-Variable\-Storage, which just stores everything in a Dictionary.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter\-:
+Inheritance diagram for Example\-Variable\-Storage\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00521}
+\includegraphics[width=294pt]{a00396}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter\-:
+Collaboration diagram for Example\-Variable\-Storage\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00522}
+\includegraphics[width=350pt]{a00397}
 \end{center}
 \end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{a00089_a00376}{Default\-Variable}
+\begin{DoxyCompactList}\small\item\em A default value to apply when the object wakes up, or when Reset\-To\-Defaults is called.  \hyperlink{a00089_a00376}{More...}\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override object \hyperlink{a00089_a692617638507cd1033728d7f718fcd2a}{Convert\-From\-String} (\hyperlink{a00168}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Throws an exception. \end{DoxyCompactList}\item 
-override string \hyperlink{a00089_a7e07e9532857d748654d37db590a0e11}{Convert\-To\-String} (\hyperlink{a00168}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Throws an exception. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00089_af66a7c67041f4c8061aa66e9e36359cf}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00089_a44d625b44f770b945a29cd89e399f90f}{Can\-Convert\-To} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+override void \hyperlink{a00089_a3a05d66cdacadb2e9b618cd0aef45f84}{Reset\-To\-Defaults} ()
+\begin{DoxyCompactList}\small\item\em Erase all variables and reset to default values. \end{DoxyCompactList}\item 
+override void \hyperlink{a00089_ac4265c1c9da485f13a6b05784b0f668d}{Set\-Value} (string variable\-Name, \hyperlink{a00187}{Yarn.\-Value} value)
+\begin{DoxyCompactList}\small\item\em Set a variable's value. \end{DoxyCompactList}\item 
+override \hyperlink{a00187}{Yarn.\-Value} \hyperlink{a00089_a741593be1a299dcc2136f05b9b4a995a}{Get\-Value} (string variable\-Name)
+\begin{DoxyCompactList}\small\item\em Get a variable's value. \end{DoxyCompactList}\item 
+override void \hyperlink{a00089_a0ce614bee8d5b220500fb765390b4ca3}{Clear} ()
+\begin{DoxyCompactList}\small\item\em Erase all variables. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00191_ac0d2f2e081944ad197992a26ad1a833c}{Set\-Number} (string variable\-Name, float number)
+\begin{DoxyCompactList}\small\item\em Not implemented here. \end{DoxyCompactList}\item 
+virtual float \hyperlink{a00191_add85a45dd65a5d4bd41c9d5ce5f77d19}{Get\-Number} (string variable\-Name)
+\begin{DoxyCompactList}\small\item\em Not implemented here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00089_a00376}{Default\-Variable}\mbox{[}$\,$\mbox{]} \hyperlink{a00089_a464c8a4ff6a3c624602d0adc55dfc59a}{default\-Variables}
+\begin{DoxyCompactList}\small\item\em Our list of default variables, for debugging. \end{DoxyCompactList}\item 
+Unity\-Engine.\-U\-I.\-Text \hyperlink{a00089_a9893656e3683711eb78441b30c52a600}{debug\-Text\-View}
+\begin{DoxyCompactList}\small\item\em A U\-I.\-Text that can show the current list of all variables. Optional. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00089_ab6a56afc687455f360876eff67891163}{Awake} ()
+\begin{DoxyCompactList}\small\item\em Reset to our default values when the game starts. \end{DoxyCompactList}\item 
+void \hyperlink{a00089_af646a17cfd63039a25149f8fc0776dcb}{Update} ()
+\begin{DoxyCompactList}\small\item\em If we have a debug view, show the list of all variables in it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Dictionary$<$ string, \hyperlink{a00187}{Yarn.\-Value} $>$ \hyperlink{a00089_a4a4fec7b4ad707cd0603393dd57de96c}{variables} = new Dictionary$<$string, \hyperlink{a00187}{Yarn.\-Value}$>$ ()
+\begin{DoxyCompactList}\small\item\em Where we actually keeping our variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Throws an exception when used. This is here so that it's apparent that there is no support for I\-Enumerable type coversion. A custom converter will need to be created to have a field convert to and from an I\-Enumerable. 
+An extremely simple implementation of Dialogue\-Unity\-Variable\-Storage, which just stores everything in a Dictionary. 
+
+Definition at line 34 of file Example\-Variable\-Storage.\-cs.
 
 
 
-Definition at line 16 of file Enumerable\-Converter.\-cs.
+\subsection{Class Documentation}
+\index{Example\-Variable\-Storage\-::\-Default\-Variable@{Example\-Variable\-Storage\-::\-Default\-Variable}}\label{a00376}
+\hypertarget{a00089_a00376}{}
+\subsubsection{class Example\-Variable\-Storage\-:\-:Default\-Variable}
+A default value to apply when the object wakes up, or when Reset\-To\-Defaults is called. 
 
+Definition at line 43 of file Example\-Variable\-Storage.\-cs.
+
+
+
+Collaboration diagram for Example\-Variable\-Storage.\-Default\-Variable\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{a00386}
+\end{center}
+\end{figure}
+\begin{DoxyFields}{Class Members}
+\hypertarget{a00089_a609feaa53936e7dc42248ff2ba68454a}{string}\label{a00089_a609feaa53936e7dc42248ff2ba68454a}
+&
+name&
+Name of the variable. \\
+\hline
+
+\hypertarget{a00089_a904347efdca12f40243c7dedb646153d}{Value}\label{a00089_a904347efdca12f40243c7dedb646153d}
+&
+type&
+Type of the variable. \\
+\hline
+
+\hypertarget{a00089_a0f00ecb21b58aa754a4bbb61edf62818}{string}\label{a00089_a0f00ecb21b58aa754a4bbb61edf62818}
+&
+value&
+Value of the variable. \\
+\hline
+
+\end{DoxyFields}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00089_af66a7c67041f4c8061aa66e9e36359cf}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00089_ab6a56afc687455f360876eff67891163}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Awake@{Awake}}
+\index{Awake@{Awake}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Awake}]{\setlength{\rightskip}{0pt plus 5cm}void Example\-Variable\-Storage.\-Awake (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_af66a7c67041f4c8061aa66e9e36359cf}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00089_ab6a56afc687455f360876eff67891163}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00078_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Reset to our default values when the game starts. 
 
 
 
-Definition at line 51 of file Enumerable\-Converter.\-cs.
+Definition at line 61 of file Example\-Variable\-Storage.\-cs.
+
+
+
+References Reset\-To\-Defaults().
 
 
 \begin{DoxyCode}
-52         \{
-53             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-54         \}
+62     \{
+63         \hyperlink{a00089_a3a05d66cdacadb2e9b618cd0aef45f84}{ResetToDefaults} ();
+64     \}
 \end{DoxyCode}
-\hypertarget{a00089_a44d625b44f770b945a29cd89e399f90f}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Can\-Convert\-To (
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00089_ab6a56afc687455f360876eff67891163_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00089_a0ce614bee8d5b220500fb765390b4ca3}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Clear@{Clear}}
+\index{Clear@{Clear}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}override void Example\-Variable\-Storage.\-Clear (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_a44d625b44f770b945a29cd89e399f90f}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_a0ce614bee8d5b220500fb765390b4ca3}
 
 
-Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00078_acb65bd8c8199d88d5b1629ae35d18514}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Erase all variables. 
 
 
 
-Definition at line 63 of file Enumerable\-Converter.\-cs.
+Reimplemented from \hyperlink{a00191_a587fe10b367ace190e10f3bcb590a53c}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}.
+
+
+
+Definition at line 135 of file Example\-Variable\-Storage.\-cs.
+
+
+
+Referenced by Reset\-To\-Defaults().
 
 
 \begin{DoxyCode}
-64         \{
-65             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-66         \}
+136     \{
+137         variables.Clear ();
+138     \}
 \end{DoxyCode}
-\hypertarget{a00089_a692617638507cd1033728d7f718fcd2a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Convert\-From\-String (
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00089_a0ce614bee8d5b220500fb765390b4ca3_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00191_add85a45dd65a5d4bd41c9d5ce5f77d19}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Get\-Number@{Get\-Number}}
+\index{Get\-Number@{Get\-Number}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}virtual float Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Get\-Number (
 \begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{string}]{text}
+\item[{string}]{variable\-Name}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_a692617638507cd1033728d7f718fcd2a}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00191_add85a45dd65a5d4bd41c9d5ce5f77d19}
 
 
-Throws an exception. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em text} & The string to convert to an object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The object created from the string.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00078_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Not implemented here. 
 
 
 
-Definition at line 24 of file Enumerable\-Converter.\-cs.
+Implements \hyperlink{a00190_a04b061c52d8ac814ce559da5286fbc71}{Yarn.\-Variable\-Storage}.
+
+
+
+Definition at line 471 of file Dialogue\-Runner.\-cs.
 
 
 \begin{DoxyCode}
-25         \{
-26             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvTypeConverterException( \textcolor{stringliteral}{"Converting IEnumerable types is not supported for a
-       single field. "} +
-27                                                  \textcolor{stringliteral}{"If you want to do this, create your own ITypeConverter
-       and register "} +
-28                                                  \textcolor{stringliteral}{"it in the TypeConverterFactory by calling AddConverter."} 
-      );
-29         \}
+472         \{
+473             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.NotImplementedException ();
+474         \}
 \end{DoxyCode}
-\hypertarget{a00089_a7e07e9532857d748654d37db590a0e11}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Convert\-To\-String (
+\hypertarget{a00089_a741593be1a299dcc2136f05b9b4a995a}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Get\-Value@{Get\-Value}}
+\index{Get\-Value@{Get\-Value}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}override {\bf Yarn.\-Value} Example\-Variable\-Storage.\-Get\-Value (
 \begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{object}]{value}
+\item[{string}]{variable\-Name}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_a7e07e9532857d748654d37db590a0e11}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_a741593be1a299dcc2136f05b9b4a995a}
 
 
-Throws an exception. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em value} & The object to convert to a string.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The string representation of the object.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00078_a36cb2f9b24f15a671293f3a722324c27}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Get a variable's value. 
 
 
 
-Definition at line 37 of file Enumerable\-Converter.\-cs.
+Reimplemented from \hyperlink{a00191_ac6ebafcbebc2b2d71eba8562490a2f1e}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}.
+
+
+
+Definition at line 125 of file Example\-Variable\-Storage.\-cs.
+
+
+
+References variables.
 
 
 \begin{DoxyCode}
-38         \{
-39             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvTypeConverterException( \textcolor{stringliteral}{"Converting IEnumerable types is not supported for a
-       single field. "} +
-40                                                  \textcolor{stringliteral}{"If you want to do this, create your own ITypeConverter
-       and register "} +
-41                                                  \textcolor{stringliteral}{"it in the TypeConverterFactory by calling AddConverter."} 
-      );
-42         \}
+126     \{
+127         \textcolor{comment}{// If we don't have a variable with this name, return the null value}
+128         \textcolor{keywordflow}{if} (\hyperlink{a00089_a4a4fec7b4ad707cd0603393dd57de96c}{variables}.ContainsKey(variableName) == \textcolor{keyword}{false})
+129             \textcolor{keywordflow}{return} Yarn.Value.NULL;
+130         
+131         \textcolor{keywordflow}{return} \hyperlink{a00089_a4a4fec7b4ad707cd0603393dd57de96c}{variables} [variableName];
+132     \}
 \end{DoxyCode}
+\hypertarget{a00089_a3a05d66cdacadb2e9b618cd0aef45f84}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Reset\-To\-Defaults@{Reset\-To\-Defaults}}
+\index{Reset\-To\-Defaults@{Reset\-To\-Defaults}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Reset\-To\-Defaults}]{\setlength{\rightskip}{0pt plus 5cm}override void Example\-Variable\-Storage.\-Reset\-To\-Defaults (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_a3a05d66cdacadb2e9b618cd0aef45f84}
+
+
+Erase all variables and reset to default values. 
+
+
+
+Implements \hyperlink{a00191_a33fcbff56561e53e0a70b59c56f0c3af}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}.
+
+
+
+Definition at line 67 of file Example\-Variable\-Storage.\-cs.
+
+
+
+References Clear(), default\-Variables, and Set\-Value().
+
+
+
+Referenced by Awake().
+
+
+\begin{DoxyCode}
+68     \{
+69         \hyperlink{a00089_a0ce614bee8d5b220500fb765390b4ca3}{Clear} ();
+70 
+71         \textcolor{comment}{// For each default variable that's been defined, parse the string}
+72         \textcolor{comment}{// that the user typed in in Unity and store the variable}
+73         \textcolor{keywordflow}{foreach} (var variable \textcolor{keywordflow}{in} \hyperlink{a00089_a464c8a4ff6a3c624602d0adc55dfc59a}{defaultVariables}) \{
+74             
+75             \textcolor{keywordtype}{object} value;
+76 
+77             \textcolor{keywordflow}{switch} (variable.type) \{
+78             \textcolor{keywordflow}{case} Yarn.Value.Type.Number:
+79                 \textcolor{keywordtype}{float} f = 0.0f;
+80                 float.TryParse(variable.value, out f);
+81                 value = f;
+82                 \textcolor{keywordflow}{break};
+83 
+84             \textcolor{keywordflow}{case} Yarn.Value.Type.String:
+85                 value = variable.value;
+86                 \textcolor{keywordflow}{break};
+87 
+88             \textcolor{keywordflow}{case} Yarn.Value.Type.Bool:
+89                 \textcolor{keywordtype}{bool} b = \textcolor{keyword}{false};
+90                 bool.TryParse(variable.value, out b);
+91                 value = b;
+92                 \textcolor{keywordflow}{break};
+93 
+94             \textcolor{keywordflow}{case} Yarn.Value.Type.Variable:
+95                 \textcolor{comment}{// We don't support assigning default variables from other variables}
+96                 \textcolor{comment}{// yet}
+97                 Debug.LogErrorFormat(\textcolor{stringliteral}{"Can't set variable \{0\} to \{1\}: You can't "} +
+98                     \textcolor{stringliteral}{"set a default variable to be another variable, because it "} +
+99                     \textcolor{stringliteral}{"may not have been initialised yet."}, variable.name, variable.value);
+100                 \textcolor{keywordflow}{continue};
+101 
+102             \textcolor{keywordflow}{case} Yarn.Value.Type.Null:
+103                 value = null;
+104                 \textcolor{keywordflow}{break};
+105 
+106             \textcolor{keywordflow}{default}:
+107                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.ArgumentOutOfRangeException ();
+108 
+109             \}
+110 
+111             var v = \textcolor{keyword}{new} \hyperlink{a00187}{Yarn.Value}(value);
+112 
+113             \hyperlink{a00089_ac4265c1c9da485f13a6b05784b0f668d}{SetValue} (\textcolor{stringliteral}{"$"} + variable.name, v);
+114         \}
+115     \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00089_a3a05d66cdacadb2e9b618cd0aef45f84_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00089_a3a05d66cdacadb2e9b618cd0aef45f84_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00191_ac0d2f2e081944ad197992a26ad1a833c}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Set\-Number@{Set\-Number}}
+\index{Set\-Number@{Set\-Number}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Set\-Number}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Set\-Number (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{float}]{number}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00191_ac0d2f2e081944ad197992a26ad1a833c}
+
+
+Not implemented here. 
+
+
+
+Implements \hyperlink{a00190_aa28c3694f985cf73489efc301b9d41dd}{Yarn.\-Variable\-Storage}.
+
+
+
+Definition at line 465 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+466         \{
+467             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.NotImplementedException ();
+468         \}
+\end{DoxyCode}
+\hypertarget{a00089_ac4265c1c9da485f13a6b05784b0f668d}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Set\-Value@{Set\-Value}}
+\index{Set\-Value@{Set\-Value}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}override void Example\-Variable\-Storage.\-Set\-Value (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{{\bf Yarn.\-Value}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_ac4265c1c9da485f13a6b05784b0f668d}
+
+
+Set a variable's value. 
+
+
+
+Reimplemented from \hyperlink{a00191_a25f979b062d63c9e886fe7070ce4561b}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}.
+
+
+
+Definition at line 118 of file Example\-Variable\-Storage.\-cs.
+
+
+
+References variables.
+
+
+
+Referenced by Reset\-To\-Defaults().
+
+
+\begin{DoxyCode}
+119     \{
+120         \textcolor{comment}{// Copy this value into our list}
+121         \hyperlink{a00089_a4a4fec7b4ad707cd0603393dd57de96c}{variables}[variableName] = \textcolor{keyword}{new} \hyperlink{a00187}{Yarn.Value}(value);
+122     \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00089_ac4265c1c9da485f13a6b05784b0f668d_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00089_af646a17cfd63039a25149f8fc0776dcb}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Update@{Update}}
+\index{Update@{Update}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Example\-Variable\-Storage.\-Update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00089_af646a17cfd63039a25149f8fc0776dcb}
+
+
+If we have a debug view, show the list of all variables in it. 
+
+
+
+Definition at line 141 of file Example\-Variable\-Storage.\-cs.
+
+
+
+References debug\-Text\-View, and variables.
+
+
+\begin{DoxyCode}
+142     \{
+143         \textcolor{keywordflow}{if} (\hyperlink{a00089_a9893656e3683711eb78441b30c52a600}{debugTextView} != null) \{
+144             var stringBuilder = \textcolor{keyword}{new} System.Text.StringBuilder ();
+145             \textcolor{keywordflow}{foreach} (KeyValuePair<string,Yarn.Value> item \textcolor{keywordflow}{in} \hyperlink{a00089_a4a4fec7b4ad707cd0603393dd57de96c}{variables}) \{
+146                 stringBuilder.AppendLine (string.Format (\textcolor{stringliteral}{"\{0\} = \{1\}"},
+147                                                          item.Key,
+148                                                          item.Value));
+149             \}
+150             debugTextView.text = stringBuilder.ToString ();
+151         \}
+152     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00089_a9893656e3683711eb78441b30c52a600}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!debug\-Text\-View@{debug\-Text\-View}}
+\index{debug\-Text\-View@{debug\-Text\-View}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{debug\-Text\-View}]{\setlength{\rightskip}{0pt plus 5cm}Unity\-Engine.\-U\-I.\-Text Example\-Variable\-Storage.\-debug\-Text\-View}}\label{a00089_a9893656e3683711eb78441b30c52a600}
+
+
+A U\-I.\-Text that can show the current list of all variables. Optional. 
+
+
+
+Definition at line 58 of file Example\-Variable\-Storage.\-cs.
+
+
+
+Referenced by Update().
+
+\hypertarget{a00089_a464c8a4ff6a3c624602d0adc55dfc59a}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!default\-Variables@{default\-Variables}}
+\index{default\-Variables@{default\-Variables}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{default\-Variables}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Default\-Variable} \mbox{[}$\,$\mbox{]} Example\-Variable\-Storage.\-default\-Variables}}\label{a00089_a464c8a4ff6a3c624602d0adc55dfc59a}
+
+
+Our list of default variables, for debugging. 
+
+
+
+Definition at line 54 of file Example\-Variable\-Storage.\-cs.
+
+
+
+Referenced by Reset\-To\-Defaults().
+
+\hypertarget{a00089_a4a4fec7b4ad707cd0603393dd57de96c}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!variables@{variables}}
+\index{variables@{variables}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{variables}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Yarn.\-Value}$>$ Example\-Variable\-Storage.\-variables = new Dictionary$<$string, {\bf Yarn.\-Value}$>$ ()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00089_a4a4fec7b4ad707cd0603393dd57de96c}
+
+
+Where we actually keeping our variables. 
+
+
+
+Definition at line 38 of file Example\-Variable\-Storage.\-cs.
+
+
+
+Referenced by Get\-Value(), Set\-Value(), and Update().
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00260}{Enumerable\-Converter.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00297}{Example\-Variable\-Storage.\-cs}\end{DoxyCompactItemize}

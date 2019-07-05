@@ -1,226 +1,2223 @@
-\hypertarget{a00081}{\section{Yarn.\-Analysis.\-Diagnosis Class Reference}
-\label{a00081}\index{Yarn.\-Analysis.\-Diagnosis@{Yarn.\-Analysis.\-Diagnosis}}
+\hypertarget{a00081}{\section{Csv\-Helper.\-Csv\-Writer Class Reference}
+\label{a00081}\index{Csv\-Helper.\-Csv\-Writer@{Csv\-Helper.\-Csv\-Writer}}
 }
 
 
-Collaboration diagram for Yarn.\-Analysis.\-Diagnosis\-:
+Used to write C\-S\-V files.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-Csv\-Writer\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=202pt]{a00747}
+\includegraphics[height=550pt]{a00446}
 \end{center}
 \end{figure}
-\subsection*{Public Types}
-\begin{DoxyCompactItemize}
-\item 
-enum \hyperlink{a00081_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \{ \hyperlink{a00081_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Severity.\-Error}, 
-\hyperlink{a00081_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Severity.\-Warning}, 
-\hyperlink{a00081_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Severity.\-Note}
- \}
-\end{DoxyCompactItemize}
+
+
+Collaboration diagram for Csv\-Helper.\-Csv\-Writer\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{a00447}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00081_ad3fd818f1be98dc803e5bec959153824}{Diagnosis} (string \hyperlink{a00081_ac7ed070dddd2613c08e7874ea5afb3af}{message}, \hyperlink{a00081_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \hyperlink{a00081_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}, string \hyperlink{a00081_a662aca4ad2af5116c2cf6773daf1a847}{node\-Name}=null, int \hyperlink{a00081_a0bd73f1c684bfd66ae7b6bef8f2972d0}{line\-Number}=-\/1, int \hyperlink{a00081_a658e7fb05555c0f9ab5f80057bdc1408}{column\-Number}=-\/1)
-\item 
-override string \hyperlink{a00081_a4475eb5890c340da5c0012e25c2c86ae}{To\-String} ()
-\item 
-string \hyperlink{a00081_a985dee7ca27aa896332590133606b6a9}{To\-String} (bool show\-Severity)
-\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\hyperlink{a00081_a94b945dc1ffcb334728ccd76a79fb589}{Csv\-Writer} (Text\-Writer writer)
+\begin{DoxyCompactList}\small\item\em Creates a new C\-S\-V writer using the given Text\-Writer, a default Csv\-Configuration and \hyperlink{a00079}{Csv\-Serializer} as the default serializer. \end{DoxyCompactList}\item 
+\hyperlink{a00081_ab1eed4b4094602bb9ff5b99fb492513c}{Csv\-Writer} (Text\-Writer writer, \hyperlink{a00063}{Csv\-Configuration} \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration})
+\begin{DoxyCompactList}\small\item\em Creates a new C\-S\-V writer using the given Text\-Writer and Csv\-Configuration and \hyperlink{a00079}{Csv\-Serializer} as the default serializer. \end{DoxyCompactList}\item 
+\hyperlink{a00081_a7f0a2275eca1400653e40d729be6d474}{Csv\-Writer} (\hyperlink{a00116}{I\-Csv\-Serializer} \hyperlink{a00081_a18110f1a49db005542fae3b94487de8e}{serializer})
+\begin{DoxyCompactList}\small\item\em Creates a new C\-S\-V writer using the given \hyperlink{a00116}{I\-Csv\-Serializer}. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_a994d9b339c4cda8bf83d5665b5c4ff1a}{Write\-Field} (string field)
+\begin{DoxyCompactList}\small\item\em Writes the field to the C\-S\-V file. The field may get quotes added to it. When all fields are written for a record, \hyperlink{a00117_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_a8acd81f4b1e7e725f6c741313ce14a47}{Write\-Field} (string field, bool should\-Quote)
+\begin{DoxyCompactList}\small\item\em Writes the field to the C\-S\-V file. This will ignore any need to quote and ignore the Csv\-Configuration.\-Quote\-All\-Fields and just quote based on the should\-Quote parameter. When all fields are written for a record, \hyperlink{a00117_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_a7ec3e527a5346503adae03731804bd78}{Write\-Field$<$ T $>$} (T field)
+\begin{DoxyCompactList}\small\item\em Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00117_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_a8fb44629353e3198293b93d94e1b8c87}{Write\-Field$<$ T $>$} (T field, \hyperlink{a00123}{I\-Type\-Converter} converter)
+\begin{DoxyCompactList}\small\item\em Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00117_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_a8879b818c7318f77e230f33a3dcec9c3}{Write\-Field$<$ T, T\-Converter $>$} (T field)
+\begin{DoxyCompactList}\small\item\em Writes the field to the C\-S\-V file using the given I\-Type\-Converter. When all fields are written for a record, \hyperlink{a00117_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_aaac679b85a63076fd2f106cd36acbc40}{Write\-Field} (Type type, object field)
+\begin{DoxyCompactList}\small\item\em Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00117_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_aecf8d120ccbffce3c5cd56bcea754225}{Write\-Field} (Type type, object field, \hyperlink{a00123}{I\-Type\-Converter} converter)
+\begin{DoxyCompactList}\small\item\em Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00117_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_a397af8c87002d3b9c2b5152c6981d4d2}{Next\-Record} ()
+\begin{DoxyCompactList}\small\item\em Ends writing of the current record and starts a new record. This is used when manually writing records with Write\-Field. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_aa07bcdeb70bf35895fdc51e46afde120}{Write\-Excel\-Separator} ()
+\begin{DoxyCompactList}\small\item\em Write the Excel seperator record. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_a3585991c17c8708d238600fa9093faa2}{Write\-Header$<$ T $>$} ()
+\begin{DoxyCompactList}\small\item\em Writes the header record from the given properties. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_af2298dcd2934550fd9dd592921f18541}{Write\-Header} (Type type)
+\begin{DoxyCompactList}\small\item\em Writes the header record from the given properties. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_aec261c2dfe23d6ed84534934e916d8ca}{Write\-Record$<$ T $>$} (T record)
+\begin{DoxyCompactList}\small\item\em Writes the record to the C\-S\-V file. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_ab1bc88015b53d21f6f5746a65180b0ac}{Write\-Record} (Type type, object record)
+\begin{DoxyCompactList}\small\item\em Writes the record to the C\-S\-V file. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_ab92f8ddaaa2650eafbd9d16b3813d14e}{Write\-Records} (I\-Enumerable records)
+\begin{DoxyCompactList}\small\item\em Writes the list of records to the C\-S\-V file. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_a11eb73c5fcd65642b4b4959a7200ba96}{Clear\-Record\-Cache$<$ T $>$} ()
+\begin{DoxyCompactList}\small\item\em Clears the record cache for the given type. After I\-Csv\-Writer.\-Write\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, I\-Csv\-Writer.\-Clear\-Record\-Cache\{\-T\} needs to be called to update the record cache. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_a439d9918f23faa938820a792c57aa090}{Clear\-Record\-Cache} (Type type)
+\begin{DoxyCompactList}\small\item\em Clears the record cache for the given type. After I\-Csv\-Writer.\-Write\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, I\-Csv\-Writer.\-Clear\-Record\-Cache(\-System.\-Type) needs to be called to update the record cache. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_a16aa1591d1c89062b6af26bf1989415d}{Clear\-Record\-Cache} ()
+\begin{DoxyCompactList}\small\item\em Clears the record cache for all types. After I\-Csv\-Writer.\-Write\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, \hyperlink{a00117_ab56edba6195d8d1f7976d7f28928c43b}{I\-Csv\-Writer.\-Clear\-Record\-Cache()} needs to be called to update the record cache. \end{DoxyCompactList}\item 
+void \hyperlink{a00081_ac5d67820ab8b2a484f86993d475e11ac}{Dispose} ()
+\begin{DoxyCompactList}\small\item\em Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00081_ac7ed070dddd2613c08e7874ea5afb3af}{message}
+virtual void \hyperlink{a00081_ac913b615ee170ad2b84137c4d5c7eda2}{Add\-Properties} (\hyperlink{a00071}{Csv\-Property\-Map\-Collection} properties, \hyperlink{a00060}{Csv\-Class\-Map} mapping)
+\begin{DoxyCompactList}\small\item\em Adds the properties from the mapping. This will recursively traverse the mapping tree and add all properties for reference maps. \end{DoxyCompactList}\item 
+virtual Expression \hyperlink{a00081_aada073c07b3fd07dba434855ffb18b75}{Create\-Property\-Expression} (Expression record\-Expression, \hyperlink{a00060}{Csv\-Class\-Map} mapping, \hyperlink{a00070}{Csv\-Property\-Map} property\-Map)
+\begin{DoxyCompactList}\small\item\em Creates a property expression for the given property on the record. This will recursively traverse the mapping to find the property and create a safe property accessor for each level as it goes. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_ac3c412ad3e972fb79a8bb5b54167cf4a}{Dispose} (bool disposing)
+\begin{DoxyCompactList}\small\item\em Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{Check\-Disposed} ()
+\begin{DoxyCompactList}\small\item\em Checks if the instance has been disposed of. \end{DoxyCompactList}\item 
+virtual Action$<$ T $>$ \hyperlink{a00081_a147c7b5888823fdf81fb021db706181c}{Get\-Write\-Record\-Action$<$ T $>$} ()
+\begin{DoxyCompactList}\small\item\em Gets the action delegate used to write the custom class object to the writer. \end{DoxyCompactList}\item 
+virtual Delegate \hyperlink{a00081_a1ab2b602b050ceb6f0a0874504ddf3f3}{Get\-Write\-Record\-Action} (Type type)
+\begin{DoxyCompactList}\small\item\em Gets the action delegate used to write the custom class object to the writer. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_a8b53d64ff945b053570fba7f13301268}{Create\-Write\-Record\-Action} (Type type)
+\begin{DoxyCompactList}\small\item\em Creates the write record action for the given type if it doesn't already exist. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_ab5d9f0001c9a24ba6542b2332007c8e1}{Create\-Action\-For\-Object} (Type type)
+\begin{DoxyCompactList}\small\item\em Creates the action for an object. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00081_aa1284ea73f69638633a33592beb0b784}{Create\-Action\-For\-Primitive} (Type type)
+\begin{DoxyCompactList}\small\item\em Creates the action for a primitive. \end{DoxyCompactList}\item 
+virtual Delegate \hyperlink{a00081_ab6cbf58f5e59e5d6091a89e4e778f11b}{Combine\-Delegates} (I\-Enumerable$<$ Delegate $>$ delegates)
+\begin{DoxyCompactList}\small\item\em Combines the delegates into a single multicast delegate. This is needed because Silverlight doesn't have the Delegate.\-Combine( params Delegate\mbox{[}$\,$\mbox{]} ) overload. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00081_a6085ddfd5e9c626d1d9f575ff21a0599}{Can\-Write} (\hyperlink{a00070}{Csv\-Property\-Map} property\-Map)
+\begin{DoxyCompactList}\small\item\em Checks if the property can be written. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00081_a662aca4ad2af5116c2cf6773daf1a847}{node\-Name}
+virtual \hyperlink{a00063}{Csv\-Configuration} \hyperlink{a00081_a5124d88929643a9a9fc95f5a0630fce8}{Configuration}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
 \item 
-int \hyperlink{a00081_a0bd73f1c684bfd66ae7b6bef8f2972d0}{line\-Number}
+bool \hyperlink{a00081_aae86e2e359261e81ddc2ed22b9517b35}{disposed}
 \item 
-int \hyperlink{a00081_a658e7fb05555c0f9ab5f80057bdc1408}{column\-Number}
+readonly List$<$ string $>$ \hyperlink{a00081_a6ccc7b189d49ae898d1aefcb72c97431}{current\-Record} = new List$<$string$>$()
 \item 
-\hyperlink{a00081_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \hyperlink{a00081_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}
+\hyperlink{a00116}{I\-Csv\-Serializer} \hyperlink{a00081_a18110f1a49db005542fae3b94487de8e}{serializer}
+\item 
+bool \hyperlink{a00081_a48b53b7f4428286805b1eaac1055b2bf}{has\-Header\-Been\-Written}
+\item 
+bool \hyperlink{a00081_a0c31cd2b7d4eea93db887a46c33344fb}{has\-Record\-Been\-Written}
+\item 
+readonly Dictionary$<$ Type, \\*
+Delegate $>$ \hyperlink{a00081_a93af56d83ee3a76d1d3ce39f9c344d15}{type\-Actions} = new Dictionary$<$Type, Delegate$>$()
+\item 
+readonly \hyperlink{a00063}{Csv\-Configuration} \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}
+\item 
+bool \hyperlink{a00081_a69aed6976efa4911f843e726b91aae80}{has\-Excel\-Seperator\-Been\-Read}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-
-
-Definition at line 6 of file Analyser.\-cs.
+Used to write C\-S\-V files. 
 
 
 
-\subsection{Member Enumeration Documentation}
-\hypertarget{a00081_a227813cbc8fa03c3448a612ffc909d1c}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Severity@{Severity}}
-\index{Severity@{Severity}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{Severity}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Analysis.\-Diagnosis.\-Severity}}}\label{a00081_a227813cbc8fa03c3448a612ffc909d1c}
-\begin{Desc}
-\item[Enumerator]\par
-\begin{description}
-\index{Error@{Error}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Error@{Error}}\item[{\em 
-\hypertarget{a00081_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Error}\label{a00081_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}
-}]\index{Warning@{Warning}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Warning@{Warning}}\item[{\em 
-\hypertarget{a00081_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning}\label{a00081_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}
-}]\index{Note@{Note}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Note@{Note}}\item[{\em 
-\hypertarget{a00081_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Note}\label{a00081_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}
-}]\end{description}
-\end{Desc}
+Definition at line 24 of file Csv\-Writer.\-cs.
 
-
-Definition at line 13 of file Analyser.\-cs.
-
-
-\begin{DoxyCode}
-13                              \{
-14             \hyperlink{a00081_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Error},
-15             \hyperlink{a00081_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning},
-16             \hyperlink{a00081_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Note}
-17         \}
-\end{DoxyCode}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00081_ad3fd818f1be98dc803e5bec959153824}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Diagnosis@{Diagnosis}}
-\index{Diagnosis@{Diagnosis}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{Diagnosis}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Analysis.\-Diagnosis.\-Diagnosis (
+\hypertarget{a00081_a94b945dc1ffcb334728ccd76a79fb589}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Csv\-Writer@{Csv\-Writer}}
+\index{Csv\-Writer@{Csv\-Writer}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Csv\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Writer.\-Csv\-Writer (
 \begin{DoxyParamCaption}
-\item[{string}]{message, }
-\item[{{\bf Severity}}]{severity, }
-\item[{string}]{node\-Name = {\ttfamily null}, }
-\item[{int}]{line\-Number = {\ttfamily -\/1}, }
-\item[{int}]{column\-Number = {\ttfamily -\/1}}
+\item[{Text\-Writer}]{writer}
 \end{DoxyParamCaption}
-)}}\label{a00081_ad3fd818f1be98dc803e5bec959153824}
+)}}\label{a00081_a94b945dc1ffcb334728ccd76a79fb589}
 
 
-Definition at line 20 of file Analyser.\-cs.
+Creates a new C\-S\-V writer using the given Text\-Writer, a default Csv\-Configuration and \hyperlink{a00079}{Csv\-Serializer} as the default serializer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & The writer used to write the C\-S\-V file.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 51 of file Csv\-Writer.\-cs.
 
 
 \begin{DoxyCode}
-21         \{
-22             this.message = \hyperlink{a00081_ac7ed070dddd2613c08e7874ea5afb3af}{message};
-23             this.nodeName = \hyperlink{a00081_a662aca4ad2af5116c2cf6773daf1a847}{nodeName};
-24             this.lineNumber = \hyperlink{a00081_a0bd73f1c684bfd66ae7b6bef8f2972d0}{lineNumber};
-25             this.columnNumber = \hyperlink{a00081_a658e7fb05555c0f9ab5f80057bdc1408}{columnNumber};
-26             this.severity = \hyperlink{a00081_ad90ffa839ce0f568a099bb37b4a6c4da}{severity};
-27         \}
+51 : \textcolor{keyword}{this}( writer, \textcolor{keyword}{new} \hyperlink{a00063}{CsvConfiguration}() ) \{\}
+\end{DoxyCode}
+\hypertarget{a00081_ab1eed4b4094602bb9ff5b99fb492513c}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Csv\-Writer@{Csv\-Writer}}
+\index{Csv\-Writer@{Csv\-Writer}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Csv\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Writer.\-Csv\-Writer (
+\begin{DoxyParamCaption}
+\item[{Text\-Writer}]{writer, }
+\item[{{\bf Csv\-Configuration}}]{configuration}
+\end{DoxyParamCaption}
+)}}\label{a00081_ab1eed4b4094602bb9ff5b99fb492513c}
+
+
+Creates a new C\-S\-V writer using the given Text\-Writer and Csv\-Configuration and \hyperlink{a00079}{Csv\-Serializer} as the default serializer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & The Stream\-Writer use to write the C\-S\-V file.\\
+\hline
+{\em configuration} & The configuration.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 60 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-configuration, and Csv\-Helper.\-Csv\-Writer.\-serializer.
+
+
+\begin{DoxyCode}
+61         \{
+62             \textcolor{keywordflow}{if}( writer == null )
+63             \{
+64                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"writer"} );
+65             \}
+66 
+67             \textcolor{keywordflow}{if}( configuration == null )
+68             \{
+69                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"configuration"} );
+70             \}
+71 
+72             this.configuration = \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration};
+73             \hyperlink{a00081_a18110f1a49db005542fae3b94487de8e}{serializer} = \textcolor{keyword}{new} CsvSerializer( writer, configuration );
+74         \}
+\end{DoxyCode}
+\hypertarget{a00081_a7f0a2275eca1400653e40d729be6d474}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Csv\-Writer@{Csv\-Writer}}
+\index{Csv\-Writer@{Csv\-Writer}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Csv\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Writer.\-Csv\-Writer (
+\begin{DoxyParamCaption}
+\item[{{\bf I\-Csv\-Serializer}}]{serializer}
+\end{DoxyParamCaption}
+)}}\label{a00081_a7f0a2275eca1400653e40d729be6d474}
+
+
+Creates a new C\-S\-V writer using the given \hyperlink{a00116}{I\-Csv\-Serializer}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serializer} & The serializer.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 80 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-I\-Csv\-Serializer.\-Configuration, Csv\-Helper.\-Csv\-Writer.\-configuration, and Csv\-Helper.\-Csv\-Writer.\-serializer.
+
+
+\begin{DoxyCode}
+81         \{
+82             \textcolor{keywordflow}{if}( \hyperlink{a00081_a18110f1a49db005542fae3b94487de8e}{serializer} == null )
+83             \{
+84                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"serializer"} );
+85             \}
+86 
+87             \textcolor{keywordflow}{if}( \hyperlink{a00081_a18110f1a49db005542fae3b94487de8e}{serializer}.\hyperlink{a00116_a54d241fe87517707b6f85c30fe8b3a95}{Configuration} == null )
+88             \{
+89                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} \hyperlink{a00064}{CsvConfigurationException}( \textcolor{stringliteral}{"The given serializer has no
+       configuration."} );
+90             \}
+91 
+92             this.serializer = \hyperlink{a00081_a18110f1a49db005542fae3b94487de8e}{serializer};
+93             \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration} = serializer.Configuration;
+94         \}
 \end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00081_a4475eb5890c340da5c0012e25c2c86ae}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Analysis.\-Diagnosis.\-To\-String (
+\hypertarget{a00081_ac913b615ee170ad2b84137c4d5c7eda2}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Add\-Properties@{Add\-Properties}}
+\index{Add\-Properties@{Add\-Properties}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Add\-Properties}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Add\-Properties (
+\begin{DoxyParamCaption}
+\item[{{\bf Csv\-Property\-Map\-Collection}}]{properties, }
+\item[{{\bf Csv\-Class\-Map}}]{mapping}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00081_ac913b615ee170ad2b84137c4d5c7eda2}
+
+
+Adds the properties from the mapping. This will recursively traverse the mapping tree and add all properties for reference maps. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em properties} & The properties to be added to.\\
+\hline
+{\em mapping} & The mapping where the properties are added from.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 545 of file Csv\-Writer.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Create\-Action\-For\-Object(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Header().
+
+
+\begin{DoxyCode}
+546         \{
+547             properties.AddRange( mapping.PropertyMaps );
+548             \textcolor{keywordflow}{foreach}( var refMap \textcolor{keywordflow}{in} mapping.\hyperlink{a00060_a6dfbf8f743b16d2ec83edef865ea2d9e}{ReferenceMaps} )
+549             \{
+550                 \hyperlink{a00081_ac913b615ee170ad2b84137c4d5c7eda2}{AddProperties}( properties, refMap.Data.Mapping );
+551             \}
+552         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_ac913b615ee170ad2b84137c4d5c7eda2_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_a6085ddfd5e9c626d1d9f575ff21a0599}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Can\-Write@{Can\-Write}}
+\index{Can\-Write@{Can\-Write}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Can\-Write}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Csv\-Writer.\-Can\-Write (
+\begin{DoxyParamCaption}
+\item[{{\bf Csv\-Property\-Map}}]{property\-Map}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00081_a6085ddfd5e9c626d1d9f575ff21a0599}
+
+
+Checks if the property can be written. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em property\-Map} & The property map that we are checking.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value indicating if the property can be written. True if the property can be written, otherwise false.
+\end{DoxyReturn}
+
+
+Definition at line 823 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-configuration, Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Data, Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Ignore\-Private\-Accessor, and Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Property.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Create\-Action\-For\-Object(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Header().
+
+
+\begin{DoxyCode}
+824         \{
+825             var cantWrite =
+826                 \textcolor{comment}{// Ignored properties.}
+827                 propertyMap.Data.Ignore ||
+828                 \textcolor{comment}{// Properties that don't have a public getter}
+829                 \textcolor{comment}{// and we are honoring the accessor modifier.}
+830                 propertyMap.Data.Property.GetGetMethod() == null && !
+      \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.\hyperlink{a00063_a21b79b0f10ef0a156bd5993300d26b4d}{IgnorePrivateAccessor} ||
+831                 \textcolor{comment}{// Properties that don't have a getter at all.}
+832                 propertyMap.\hyperlink{a00070_a207637fa121612b618ed1131cb28b8bb}{Data}.\hyperlink{a00073_ad8f34e4f5081de744efc703640e3b7d2}{Property}.GetGetMethod( \textcolor{keyword}{true} ) == null;
+833             \textcolor{keywordflow}{return} !cantWrite;
+834         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a6085ddfd5e9c626d1d9f575ff21a0599_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_a15e26ec8c5c935030677bee9a36d7c16}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Check\-Disposed@{Check\-Disposed}}
+\index{Check\-Disposed@{Check\-Disposed}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Check\-Disposed}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00081_a4475eb5890c340da5c0012e25c2c86ae}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00081_a15e26ec8c5c935030677bee9a36d7c16}
 
 
-Definition at line 29 of file Analyser.\-cs.
+Checks if the instance has been disposed of. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Object\-Disposed\-Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 650 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-disposed.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Clear\-Record\-Cache(), Csv\-Helper.\-Csv\-Writer.\-Clear\-Record\-Cache$<$ T $>$(), Csv\-Helper.\-Csv\-Writer.\-Next\-Record(), Csv\-Helper.\-Csv\-Writer.\-Write\-Excel\-Separator(), Csv\-Helper.\-Csv\-Writer.\-Write\-Field(), Csv\-Helper.\-Csv\-Writer.\-Write\-Field$<$ T $>$(), Csv\-Helper.\-Csv\-Writer.\-Write\-Field$<$ T, T\-Converter $>$(), Csv\-Helper.\-Csv\-Writer.\-Write\-Header(), Csv\-Helper.\-Csv\-Writer.\-Write\-Record(), Csv\-Helper.\-Csv\-Writer.\-Write\-Record$<$ T $>$(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Records().
 
 
 \begin{DoxyCode}
-30         \{
-31             \textcolor{keywordflow}{return} \hyperlink{a00081_a4475eb5890c340da5c0012e25c2c86ae}{ToString} (showSeverity: \textcolor{keyword}{false});
-32         \}
+651         \{
+652             \textcolor{keywordflow}{if}( \hyperlink{a00081_aae86e2e359261e81ddc2ed22b9517b35}{disposed} )
+653             \{
+654                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ObjectDisposedException( GetType().ToString() );
+655             \}
+656         \}
 \end{DoxyCode}
-\hypertarget{a00081_a985dee7ca27aa896332590133606b6a9}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-To\-String (
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a15e26ec8c5c935030677bee9a36d7c16_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_a439d9918f23faa938820a792c57aa090}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Clear\-Record\-Cache@{Clear\-Record\-Cache}}
+\index{Clear\-Record\-Cache@{Clear\-Record\-Cache}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Clear\-Record\-Cache}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Clear\-Record\-Cache (
 \begin{DoxyParamCaption}
-\item[{bool}]{show\-Severity}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)}}\label{a00081_a985dee7ca27aa896332590133606b6a9}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_a439d9918f23faa938820a792c57aa090}
 
 
-Definition at line 34 of file Analyser.\-cs.
+Clears the record cache for the given type. After I\-Csv\-Writer.\-Write\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, I\-Csv\-Writer.\-Clear\-Record\-Cache(\-System.\-Type) needs to be called to update the record cache. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The record type.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00117_aeaa617bc92344678ad45ba34ab2a248d}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 517 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed().
 
 
 \begin{DoxyCode}
-35         \{
-36 
-37             \textcolor{keywordtype}{string} contextLabel = \textcolor{stringliteral}{""};
-38 
-39             \textcolor{keywordflow}{if} (showSeverity) \{
-40                 \textcolor{keywordflow}{switch} (\hyperlink{a00081_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}) \{
-41                 \textcolor{keywordflow}{case} Severity.Error:
-42                     contextLabel = \textcolor{stringliteral}{"ERROR: "};
-43                     \textcolor{keywordflow}{break};
-44                 \textcolor{keywordflow}{case} Severity.Warning:
-45                     contextLabel = \textcolor{stringliteral}{"WARNING: "};
-46                     \textcolor{keywordflow}{break};
-47                 \textcolor{keywordflow}{case} Severity.Note:
-48                     contextLabel = \textcolor{stringliteral}{"Note: "};
-49                     \textcolor{keywordflow}{break};
-50                 \textcolor{keywordflow}{default}:
-51                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException ();
-52                 \}
-53             \}
-54 
-55             \textcolor{keywordflow}{if} (this.\hyperlink{a00081_a662aca4ad2af5116c2cf6773daf1a847}{nodeName} != null) \{
-56 
-57                 contextLabel += this.nodeName;
-58                 \textcolor{keywordflow}{if} (this.\hyperlink{a00081_a0bd73f1c684bfd66ae7b6bef8f2972d0}{lineNumber} != -1) \{
-59                     contextLabel += string.Format (\textcolor{stringliteral}{": \{0\}"}, this.lineNumber);
-60 
-61                     \textcolor{keywordflow}{if} (this.\hyperlink{a00081_a658e7fb05555c0f9ab5f80057bdc1408}{columnNumber} != -1) \{
-62                         contextLabel += string.Format (\textcolor{stringliteral}{":\{0\}"}, this.columnNumber);
-63                     \}
-64                 \}
-65             \}
-66 
-67             \textcolor{keywordtype}{string} \hyperlink{a00081_ac7ed070dddd2613c08e7874ea5afb3af}{message};
-68 
-69             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{string}.IsNullOrEmpty(contextLabel)) \{
-70                 message = this.message;
-71             \} \textcolor{keywordflow}{else} \{
-72                 message = string.Format (\textcolor{stringliteral}{"\{0\}: \{1\}"}, contextLabel, this.message);
-73             \}
-74 
-75             \textcolor{keywordflow}{return} \hyperlink{a00081_ac7ed070dddd2613c08e7874ea5afb3af}{message};
-76         \}
+518         \{
+519             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+520 
+521             typeActions.Remove( type );
+522         \}
 \end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a439d9918f23faa938820a792c57aa090_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_a16aa1591d1c89062b6af26bf1989415d}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Clear\-Record\-Cache@{Clear\-Record\-Cache}}
+\index{Clear\-Record\-Cache@{Clear\-Record\-Cache}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Clear\-Record\-Cache}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Clear\-Record\-Cache (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_a16aa1591d1c89062b6af26bf1989415d}
+
+
+Clears the record cache for all types. After I\-Csv\-Writer.\-Write\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, \hyperlink{a00117_ab56edba6195d8d1f7976d7f28928c43b}{I\-Csv\-Writer.\-Clear\-Record\-Cache()} needs to be called to update the record cache. 
+
+
+
+Implements \hyperlink{a00117_ab56edba6195d8d1f7976d7f28928c43b}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 531 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed().
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Clear\-Record\-Cache$<$ T $>$().
+
+
+\begin{DoxyCode}
+532         \{
+533             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+534 
+535             typeActions.Clear();
+536         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a16aa1591d1c89062b6af26bf1989415d_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a16aa1591d1c89062b6af26bf1989415d_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_a11eb73c5fcd65642b4b4959a7200ba96}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Clear\-Record\-Cache$<$ T $>$@{Clear\-Record\-Cache$<$ T $>$}}
+\index{Clear\-Record\-Cache$<$ T $>$@{Clear\-Record\-Cache$<$ T $>$}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Clear\-Record\-Cache$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}virtual void {\bf Csv\-Helper.\-Csv\-Writer.\-Clear\-Record\-Cache}$<$ T $>$ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_a11eb73c5fcd65642b4b4959a7200ba96}
+
+
+Clears the record cache for the given type. After I\-Csv\-Writer.\-Write\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, I\-Csv\-Writer.\-Clear\-Record\-Cache\{\-T\} needs to be called to update the record cache. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The record type.\\
+\hline
+\end{DoxyTemplParams}
+
+
+Implements \hyperlink{a00117_a25ea9b1de249748a2e3e73942ad9f583}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 502 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed(), and Csv\-Helper.\-Csv\-Writer.\-Clear\-Record\-Cache().
+
+
+\begin{DoxyCode}
+503         \{
+504             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+505 
+506             \hyperlink{a00081_a16aa1591d1c89062b6af26bf1989415d}{ClearRecordCache}( typeof( T ) );
+507         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a11eb73c5fcd65642b4b4959a7200ba96_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_ab6cbf58f5e59e5d6091a89e4e778f11b}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Combine\-Delegates@{Combine\-Delegates}}
+\index{Combine\-Delegates@{Combine\-Delegates}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Combine\-Delegates}]{\setlength{\rightskip}{0pt plus 5cm}virtual Delegate Csv\-Helper.\-Csv\-Writer.\-Combine\-Delegates (
+\begin{DoxyParamCaption}
+\item[{I\-Enumerable$<$ Delegate $>$}]{delegates}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00081_ab6cbf58f5e59e5d6091a89e4e778f11b}
+
+
+Combines the delegates into a single multicast delegate. This is needed because Silverlight doesn't have the Delegate.\-Combine( params Delegate\mbox{[}$\,$\mbox{]} ) overload. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delegates} & The delegates to combine.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A multicast delegate combined from the given delegates.
+\end{DoxyReturn}
+
+
+Definition at line 812 of file Csv\-Writer.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Create\-Action\-For\-Object().
+
+
+\begin{DoxyCode}
+813         \{
+814             \textcolor{keywordflow}{return} delegates.Aggregate<Delegate, Delegate>( null, Delegate.Combine );
+815         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_ab6cbf58f5e59e5d6091a89e4e778f11b_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_ab5d9f0001c9a24ba6542b2332007c8e1}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Create\-Action\-For\-Object@{Create\-Action\-For\-Object}}
+\index{Create\-Action\-For\-Object@{Create\-Action\-For\-Object}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Create\-Action\-For\-Object}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Create\-Action\-For\-Object (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00081_ab5d9f0001c9a24ba6542b2332007c8e1}
+
+
+Creates the action for an object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of object to create the action for.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 718 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Add\-Properties(), Csv\-Helper.\-Csv\-Writer.\-Can\-Write(), Csv\-Helper.\-Csv\-Writer.\-Combine\-Delegates(), Csv\-Helper.\-Csv\-Writer.\-configuration, Csv\-Helper.\-Csv\-Writer.\-Create\-Property\-Expression(), Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Maps, and Csv\-Helper.\-Csv\-Writer.\-type\-Actions.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Create\-Write\-Record\-Action().
+
+
+\begin{DoxyCode}
+719         \{
+720             var recordParameter = Expression.Parameter( type, \textcolor{stringliteral}{"record"} );
+721 
+722             \textcolor{comment}{// Get a list of all the properties so they will}
+723             \textcolor{comment}{// be sorted properly.}
+724             var properties = \textcolor{keyword}{new} \hyperlink{a00071}{CsvPropertyMapCollection}();
+725             \hyperlink{a00081_ac913b615ee170ad2b84137c4d5c7eda2}{AddProperties}( properties, \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.
+      \hyperlink{a00063_a9119c99f5dafba985718f631f7bfa16a}{Maps}[type] );
+726 
+727             \textcolor{keywordflow}{if}( properties.Count == 0 )
+728             \{
+729                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvWriterException( \textcolor{keywordtype}{string}.Format( \textcolor{stringliteral}{"No properties are mapped for type '\{0\}'."}, 
+      type.FullName ) );
+730             \}
+731 
+732             var delegates = \textcolor{keyword}{new} List<Delegate>();
+733 
+734             \textcolor{keywordflow}{foreach}( var propertyMap \textcolor{keywordflow}{in} properties )
+735             \{
+736                 \textcolor{keywordflow}{if}( !\hyperlink{a00081_a6085ddfd5e9c626d1d9f575ff21a0599}{CanWrite}( propertyMap ) )
+737                 \{
+738                     \textcolor{keywordflow}{continue};
+739                 \}
+740 
+741                 \textcolor{keywordflow}{if}( propertyMap.Data.TypeConverter == null || !propertyMap.Data.TypeConverter.CanConvertTo(
+       typeof( \textcolor{keywordtype}{string} ) ) )
+742                 \{
+743                     \textcolor{comment}{// Skip if the type isn't convertible.}
+744                     \textcolor{keywordflow}{continue};
+745                 \}
+746 
+747                 var fieldExpression = \hyperlink{a00081_aada073c07b3fd07dba434855ffb18b75}{CreatePropertyExpression}( recordParameter, 
+      \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.\hyperlink{a00063_a9119c99f5dafba985718f631f7bfa16a}{Maps}[type], propertyMap );
+748 
+749                 var typeConverterExpression = Expression.Constant( propertyMap.Data.TypeConverter );
+750                 \textcolor{keywordflow}{if}( propertyMap.Data.TypeConverterOptions.CultureInfo == null )
+751                 \{
+752                     propertyMap.Data.TypeConverterOptions.CultureInfo = configuration.CultureInfo;
+753                 \}
+754 
+755                 var typeConverterOptions = TypeConverterOptions.Merge( 
+      TypeConverterOptionsFactory.GetOptions( propertyMap.Data.Property.PropertyType ), propertyMap.Data.TypeConverterOptions );
+756                 var typeConverterOptionsExpression = Expression.Constant( typeConverterOptions );
+757 
+758                 var method = propertyMap.Data.TypeConverter.GetType().GetMethod( \textcolor{stringliteral}{"ConvertToString"} );
+759                 fieldExpression = Expression.Convert( fieldExpression, typeof( \textcolor{keywordtype}{object} ) );
+760                 fieldExpression = Expression.Call( typeConverterExpression, method, 
+      typeConverterOptionsExpression, fieldExpression );
+761 
+762                 \textcolor{keywordflow}{if}( type.GetTypeInfo().IsClass )
+763                 \{
+764                     var areEqualExpression = Expression.Equal( recordParameter, Expression.Constant( null )
+       );
+765                     fieldExpression = Expression.Condition( areEqualExpression, Expression.Constant( 
+      string.Empty ), fieldExpression );
+766                 \}
+767 
+768                 var writeFieldMethodCall = Expression.Call( Expression.Constant( this ), \textcolor{stringliteral}{"WriteField"}, \textcolor{keyword}{new}[
+      ] \{ typeof( \textcolor{keywordtype}{string} ) \}, fieldExpression );
+769 
+770                 var actionType = typeof( Action<> ).MakeGenericType( type );
+771                 delegates.Add( Expression.Lambda( actionType, writeFieldMethodCall, recordParameter ).
+      Compile() );
+772             \}
+773 
+774             \hyperlink{a00081_a93af56d83ee3a76d1d3ce39f9c344d15}{typeActions}[type] = \hyperlink{a00081_ab6cbf58f5e59e5d6091a89e4e778f11b}{CombineDelegates}( delegates );
+775         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_ab5d9f0001c9a24ba6542b2332007c8e1_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_ab5d9f0001c9a24ba6542b2332007c8e1_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_aa1284ea73f69638633a33592beb0b784}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Create\-Action\-For\-Primitive@{Create\-Action\-For\-Primitive}}
+\index{Create\-Action\-For\-Primitive@{Create\-Action\-For\-Primitive}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Create\-Action\-For\-Primitive}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Create\-Action\-For\-Primitive (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00081_aa1284ea73f69638633a33592beb0b784}
+
+
+Creates the action for a primitive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of primitive to create the action for.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 781 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-type\-Actions.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Create\-Write\-Record\-Action().
+
+
+\begin{DoxyCode}
+782         \{
+783             var recordParameter = Expression.Parameter( type, \textcolor{stringliteral}{"record"} );
+784 
+785             Expression fieldExpression = Expression.Convert( recordParameter, typeof( \textcolor{keywordtype}{object} ) );
+786 
+787             var typeConverter = TypeConverterFactory.GetConverter( type );
+788             var typeConverterExpression = Expression.Constant( typeConverter );
+789             var method = typeConverter.GetType().GetMethod( \textcolor{stringliteral}{"ConvertToString"} );
+790 
+791             var typeConverterOptions = TypeConverterOptionsFactory.GetOptions( type );
+792             \textcolor{keywordflow}{if}( typeConverterOptions.CultureInfo == null )
+793             \{
+794                 typeConverterOptions.CultureInfo = configuration.CultureInfo;
+795             \}
+796 
+797             fieldExpression = Expression.Call( typeConverterExpression, method, Expression.Constant( 
+      typeConverterOptions ), fieldExpression );
+798 
+799             fieldExpression = Expression.Call( Expression.Constant( this ), \textcolor{stringliteral}{"WriteField"}, \textcolor{keyword}{new}[] \{ typeof( \textcolor{keywordtype}{
+      string} ) \}, fieldExpression );
+800 
+801             var actionType = typeof( Action<> ).MakeGenericType( type );
+802             \hyperlink{a00081_a93af56d83ee3a76d1d3ce39f9c344d15}{typeActions}[type] = Expression.Lambda( actionType, fieldExpression, recordParameter 
+      ).Compile();
+803         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_aa1284ea73f69638633a33592beb0b784_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_aada073c07b3fd07dba434855ffb18b75}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Create\-Property\-Expression@{Create\-Property\-Expression}}
+\index{Create\-Property\-Expression@{Create\-Property\-Expression}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Create\-Property\-Expression}]{\setlength{\rightskip}{0pt plus 5cm}virtual Expression Csv\-Helper.\-Csv\-Writer.\-Create\-Property\-Expression (
+\begin{DoxyParamCaption}
+\item[{Expression}]{record\-Expression, }
+\item[{{\bf Csv\-Class\-Map}}]{mapping, }
+\item[{{\bf Csv\-Property\-Map}}]{property\-Map}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00081_aada073c07b3fd07dba434855ffb18b75}
+
+
+Creates a property expression for the given property on the record. This will recursively traverse the mapping to find the property and create a safe property accessor for each level as it goes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em record\-Expression} & The current property expression.\\
+\hline
+{\em mapping} & The mapping to look for the property to map on.\\
+\hline
+{\em property\-Map} & The property map to look for on the mapping.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An Expression to access the given property.
+\end{DoxyReturn}
+
+
+Definition at line 563 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-configuration, Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Property\-Maps, and Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Use\-New\-Object\-For\-Null\-Reference\-Properties.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Create\-Action\-For\-Object().
+
+
+\begin{DoxyCode}
+564         \{
+565             \textcolor{keywordflow}{if}( mapping.\hyperlink{a00060_a9580e897abcba144f3101eb983348e25}{PropertyMaps}.Any( pm => pm == propertyMap ) )
+566             \{
+567                 \textcolor{comment}{// The property is on this level.}
+568                 \textcolor{keywordflow}{return} Expression.Property( recordExpression, propertyMap.Data.Property );
+569             \}
+570 
+571             \textcolor{comment}{// The property isn't on this level of the mapping.}
+572             \textcolor{comment}{// We need to search down through the reference maps.}
+573             \textcolor{keywordflow}{foreach}( var refMap \textcolor{keywordflow}{in} mapping.\hyperlink{a00060_a6dfbf8f743b16d2ec83edef865ea2d9e}{ReferenceMaps} )
+574             \{
+575                 var wrapped = Expression.Property( recordExpression, refMap.Data.Property );
+576                 var propertyExpression = \hyperlink{a00081_aada073c07b3fd07dba434855ffb18b75}{CreatePropertyExpression}( wrapped, refMap.
+      Data.Mapping, propertyMap );
+577                 \textcolor{keywordflow}{if}( propertyExpression == null )
+578                 \{
+579                     \textcolor{keywordflow}{continue};
+580                 \}
+581 
+582                 \textcolor{keywordflow}{if}( refMap.Data.Property.PropertyType.GetTypeInfo().IsValueType )
+583                 \{
+584                     \textcolor{keywordflow}{return} propertyExpression;
+585                 \}
+586 
+587                 var nullCheckExpression = Expression.Equal( wrapped, Expression.Constant( null ) );
+588 
+589                 var isValueType = propertyMap.Data.Property.PropertyType.GetTypeInfo().IsValueType;
+590                 var isGenericType = isValueType && propertyMap.Data.Property.PropertyType.GetTypeInfo().
+      IsGenericType;
+591                 Type propertyType;
+592                 \textcolor{keywordflow}{if}( isValueType && !isGenericType && !\hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.
+      \hyperlink{a00063_a87c533a0dbaf65dca68233356310cab0}{UseNewObjectForNullReferenceProperties} )
+593                 \{
+594                     propertyType = typeof( Nullable<> ).MakeGenericType( 
+      propertyMap.Data.Property.PropertyType );
+595                     propertyExpression = Expression.Convert( propertyExpression, propertyType );
+596                 \}
+597                 \textcolor{keywordflow}{else}
+598                 \{
+599                     propertyType = propertyMap.Data.Property.PropertyType;
+600                 \}
+601 
+602                 var defaultValueExpression = isValueType && !isGenericType
+603                     ? (Expression)Expression.New( propertyType )
+604                     : Expression.Constant( null, propertyType );
+605                 var conditionExpression = Expression.Condition( nullCheckExpression, defaultValueExpression
+      , propertyExpression );
+606                 \textcolor{keywordflow}{return} conditionExpression;
+607             \}
+608 
+609             \textcolor{keywordflow}{return} null;
+610         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_aada073c07b3fd07dba434855ffb18b75_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_a8b53d64ff945b053570fba7f13301268}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Create\-Write\-Record\-Action@{Create\-Write\-Record\-Action}}
+\index{Create\-Write\-Record\-Action@{Create\-Write\-Record\-Action}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Create\-Write\-Record\-Action}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Create\-Write\-Record\-Action (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00081_a8b53d64ff945b053570fba7f13301268}
+
+
+Creates the write record action for the given type if it doesn't already exist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the custom class being written.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 691 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-configuration, Csv\-Helper.\-Csv\-Writer.\-Create\-Action\-For\-Object(), Csv\-Helper.\-Csv\-Writer.\-Create\-Action\-For\-Primitive(), Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Maps, and Csv\-Helper.\-Csv\-Writer.\-type\-Actions.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Get\-Write\-Record\-Action().
+
+
+\begin{DoxyCode}
+692         \{
+693             \textcolor{keywordflow}{if}( \hyperlink{a00081_a93af56d83ee3a76d1d3ce39f9c344d15}{typeActions}.ContainsKey( type ) )
+694             \{
+695                 \textcolor{keywordflow}{return};
+696             \}
+697 
+698             \textcolor{keywordflow}{if}( \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.\hyperlink{a00063_a9119c99f5dafba985718f631f7bfa16a}{Maps}[type] == null )
+699             \{
+700                 \textcolor{comment}{// We need to check again in case the header was not written.}
+701                 configuration.Maps.Add( configuration.AutoMap( type ) );
+702             \}
+703 
+704             \textcolor{keywordflow}{if}( type.GetTypeInfo().IsPrimitive )
+705             \{
+706                 \hyperlink{a00081_aa1284ea73f69638633a33592beb0b784}{CreateActionForPrimitive}( type );
+707             \}
+708             \textcolor{keywordflow}{else}
+709             \{
+710                 \hyperlink{a00081_ab5d9f0001c9a24ba6542b2332007c8e1}{CreateActionForObject}( type );
+711             \}
+712         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a8b53d64ff945b053570fba7f13301268_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a8b53d64ff945b053570fba7f13301268_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_ac5d67820ab8b2a484f86993d475e11ac}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Csv\-Writer.\-Dispose (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00081_ac5d67820ab8b2a484f86993d475e11ac}
+
+
+Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. 
+
+$<$filterpriority$>$2$<$/filterpriority$>$ 
+
+Definition at line 617 of file Csv\-Writer.\-cs.
+
+
+\begin{DoxyCode}
+618         \{
+619             \hyperlink{a00081_ac5d67820ab8b2a484f86993d475e11ac}{Dispose}( \textcolor{keyword}{true} );
+620             GC.SuppressFinalize( this );
+621         \}
+\end{DoxyCode}
+\hypertarget{a00081_ac3c412ad3e972fb79a8bb5b54167cf4a}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Dispose (
+\begin{DoxyParamCaption}
+\item[{bool}]{disposing}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00081_ac3c412ad3e972fb79a8bb5b54167cf4a}
+
+
+Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disposing} & True if the instance needs to be disposed of.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 627 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-disposed, and Csv\-Helper.\-Csv\-Writer.\-serializer.
+
+
+\begin{DoxyCode}
+628         \{
+629             \textcolor{keywordflow}{if}( \hyperlink{a00081_aae86e2e359261e81ddc2ed22b9517b35}{disposed} )
+630             \{
+631                 \textcolor{keywordflow}{return};
+632             \}
+633 
+634             \textcolor{keywordflow}{if}( disposing )
+635             \{
+636                 \textcolor{keywordflow}{if}( \hyperlink{a00081_a18110f1a49db005542fae3b94487de8e}{serializer} != null )
+637                 \{
+638                     serializer.Dispose();
+639                 \}
+640             \}
+641 
+642             \hyperlink{a00081_aae86e2e359261e81ddc2ed22b9517b35}{disposed} = \textcolor{keyword}{true};
+643             \hyperlink{a00081_a18110f1a49db005542fae3b94487de8e}{serializer} = null;
+644         \}
+\end{DoxyCode}
+\hypertarget{a00081_a1ab2b602b050ceb6f0a0874504ddf3f3}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Get\-Write\-Record\-Action@{Get\-Write\-Record\-Action}}
+\index{Get\-Write\-Record\-Action@{Get\-Write\-Record\-Action}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Get\-Write\-Record\-Action}]{\setlength{\rightskip}{0pt plus 5cm}virtual Delegate Csv\-Helper.\-Csv\-Writer.\-Get\-Write\-Record\-Action (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00081_a1ab2b602b050ceb6f0a0874504ddf3f3}
+
+
+Gets the action delegate used to write the custom class object to the writer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the custom class being written.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The action delegate.
+\end{DoxyReturn}
+
+
+Definition at line 679 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Create\-Write\-Record\-Action(), and Csv\-Helper.\-Csv\-Writer.\-type\-Actions.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Write\-Record(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Records().
+
+
+\begin{DoxyCode}
+680         \{
+681             \hyperlink{a00081_a8b53d64ff945b053570fba7f13301268}{CreateWriteRecordAction}( type );
+682 
+683             \textcolor{keywordflow}{return} \hyperlink{a00081_a93af56d83ee3a76d1d3ce39f9c344d15}{typeActions}[type];
+684         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a1ab2b602b050ceb6f0a0874504ddf3f3_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a1ab2b602b050ceb6f0a0874504ddf3f3_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_a147c7b5888823fdf81fb021db706181c}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Get\-Write\-Record\-Action$<$ T $>$@{Get\-Write\-Record\-Action$<$ T $>$}}
+\index{Get\-Write\-Record\-Action$<$ T $>$@{Get\-Write\-Record\-Action$<$ T $>$}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Get\-Write\-Record\-Action$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}virtual Action$<$T$>$ {\bf Csv\-Helper.\-Csv\-Writer.\-Get\-Write\-Record\-Action}$<$ T $>$ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00081_a147c7b5888823fdf81fb021db706181c}
+
+
+Gets the action delegate used to write the custom class object to the writer. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the custom class being written.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The action delegate.
+\end{DoxyReturn}
+
+
+Definition at line 665 of file Csv\-Writer.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Write\-Record$<$ T $>$().
+
+
+\begin{DoxyCode}
+666         \{
+667             var type = typeof( T );
+668             \hyperlink{a00081_a8b53d64ff945b053570fba7f13301268}{CreateWriteRecordAction}( type );
+669 
+670             \textcolor{keywordflow}{return} (Action<T>)\hyperlink{a00081_a93af56d83ee3a76d1d3ce39f9c344d15}{typeActions}[type];
+671         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a147c7b5888823fdf81fb021db706181c_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_a397af8c87002d3b9c2b5152c6981d4d2}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Next\-Record@{Next\-Record}}
+\index{Next\-Record@{Next\-Record}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Next\-Record}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Next\-Record (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_a397af8c87002d3b9c2b5152c6981d4d2}
+
+
+Ends writing of the current record and starts a new record. This is used when manually writing records with Write\-Field. 
+
+
+
+Implements \hyperlink{a00117_a6bb1687959808ea1219fa68e7f3060fa}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 285 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed().
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Write\-Excel\-Separator(), Csv\-Helper.\-Csv\-Writer.\-Write\-Header(), Csv\-Helper.\-Csv\-Writer.\-Write\-Record(), Csv\-Helper.\-Csv\-Writer.\-Write\-Record$<$ T $>$(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Records().
+
+
+\begin{DoxyCode}
+286         \{
+287             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+288 
+289             serializer.Write( currentRecord.ToArray() );
+290             currentRecord.Clear();
+291         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a397af8c87002d3b9c2b5152c6981d4d2_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a397af8c87002d3b9c2b5152c6981d4d2_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_aa07bcdeb70bf35895fdc51e46afde120}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Write\-Excel\-Separator@{Write\-Excel\-Separator}}
+\index{Write\-Excel\-Separator@{Write\-Excel\-Separator}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Write\-Excel\-Separator}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Write\-Excel\-Separator (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_aa07bcdeb70bf35895fdc51e46afde120}
+
+
+Write the Excel seperator record. 
+
+
+
+Implements \hyperlink{a00117_a0b6bf45e56de8f5125c07f0143e74d19}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 296 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed(), Csv\-Helper.\-Csv\-Writer.\-configuration, Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Delimiter, Csv\-Helper.\-Csv\-Writer.\-has\-Header\-Been\-Written, Csv\-Helper.\-Csv\-Writer.\-has\-Record\-Been\-Written, Csv\-Helper.\-Csv\-Writer.\-Next\-Record(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Field().
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Write\-Records().
+
+
+\begin{DoxyCode}
+297         \{
+298             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+299 
+300             \textcolor{keywordflow}{if}( \hyperlink{a00081_a48b53b7f4428286805b1eaac1055b2bf}{hasHeaderBeenWritten} )
+301             \{
+302                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvWriterException( \textcolor{stringliteral}{"The Excel seperator record must be the first record written
+       in the file."} );
+303             \}
+304 
+305             \textcolor{keywordflow}{if}( \hyperlink{a00081_a0c31cd2b7d4eea93db887a46c33344fb}{hasRecordBeenWritten} )
+306             \{
+307                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvWriterException( \textcolor{stringliteral}{"The Excel seperator record must be the first record written
+       in the file."} );
+308             \}
+309 
+310             \hyperlink{a00081_a994d9b339c4cda8bf83d5665b5c4ff1a}{WriteField}( \textcolor{stringliteral}{"sep="} + \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.\hyperlink{a00063_a611063826803f98b7cfc275247c1d883}{Delimiter}, \textcolor{keyword}{false} );
+311 
+312             \hyperlink{a00081_a397af8c87002d3b9c2b5152c6981d4d2}{NextRecord}();
+313         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_aa07bcdeb70bf35895fdc51e46afde120_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_aa07bcdeb70bf35895fdc51e46afde120_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_a994d9b339c4cda8bf83d5665b5c4ff1a}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Write\-Field@{Write\-Field}}
+\index{Write\-Field@{Write\-Field}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Write\-Field}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Write\-Field (
+\begin{DoxyParamCaption}
+\item[{string}]{field}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_a994d9b339c4cda8bf83d5665b5c4ff1a}
+
+
+Writes the field to the C\-S\-V file. The field may get quotes added to it. When all fields are written for a record, \hyperlink{a00117_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em field} & The field to write.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00117_ace91a528ee7422203cf28ddb0c6cab93}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 104 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed(), Csv\-Helper.\-Csv\-Writer.\-configuration, Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Quote\-No\-Fields, Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Quote\-Required\-Chars, and Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Trim\-Fields.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Write\-Excel\-Separator(), Csv\-Helper.\-Csv\-Writer.\-Write\-Field(), Csv\-Helper.\-Csv\-Writer.\-Write\-Field$<$ T $>$(), Csv\-Helper.\-Csv\-Writer.\-Write\-Field$<$ T, T\-Converter $>$(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Header().
+
+
+\begin{DoxyCode}
+105         \{
+106             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+107 
+108             var shouldQuote = configuration.QuoteAllFields;
+109 
+110             \textcolor{keywordflow}{if}( \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.\hyperlink{a00063_a100f3a2268218bfba3088f4ca1d6a7ad}{TrimFields} )
+111             \{
+112                 field = field.Trim();
+113             \}
+114 
+115             \textcolor{keywordflow}{if}( !\hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.\hyperlink{a00063_aa9d54725d696095030d1f4c94825f438}{QuoteNoFields} && !\textcolor{keywordtype}{string}.IsNullOrEmpty( field ) )
+116             \{
+117                 var hasQuote = field.Contains( configuration.QuoteString );
+118                 
+119                 \textcolor{keywordflow}{if}( shouldQuote
+120                     || hasQuote
+121                     || field[0] == \textcolor{charliteral}{' '}
+122                     || field[field.Length - 1] == \textcolor{charliteral}{' '}
+123                     || field.IndexOfAny( \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.
+      \hyperlink{a00063_a6a01a3fdad14994f306530cdce2db6f6}{QuoteRequiredChars} ) > -1
+124                     || ( configuration.Delimiter.Length > 1 && field.Contains( configuration.Delimiter ) ) 
+      )
+125                 \{
+126                     shouldQuote = \textcolor{keyword}{true};
+127                 \}
+128             \}
+129 
+130             \hyperlink{a00081_a994d9b339c4cda8bf83d5665b5c4ff1a}{WriteField}( field, shouldQuote );
+131         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a994d9b339c4cda8bf83d5665b5c4ff1a_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a994d9b339c4cda8bf83d5665b5c4ff1a_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_a8acd81f4b1e7e725f6c741313ce14a47}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Write\-Field@{Write\-Field}}
+\index{Write\-Field@{Write\-Field}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Write\-Field}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Write\-Field (
+\begin{DoxyParamCaption}
+\item[{string}]{field, }
+\item[{bool}]{should\-Quote}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_a8acd81f4b1e7e725f6c741313ce14a47}
+
+
+Writes the field to the C\-S\-V file. This will ignore any need to quote and ignore the Csv\-Configuration.\-Quote\-All\-Fields and just quote based on the should\-Quote parameter. When all fields are written for a record, \hyperlink{a00117_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em field} & The field to write.\\
+\hline
+{\em should\-Quote} & True to quote the field, otherwise false.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00117_aa8b1e17777e22de131fc759f59ebf4a0}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 145 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed(), Csv\-Helper.\-Csv\-Writer.\-configuration, and Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Use\-Excel\-Leading\-Zeros\-Format\-For\-Numerics.
+
+
+\begin{DoxyCode}
+146         \{
+147             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+148 
+149             \textcolor{comment}{// All quotes must be doubled.       }
+150             \textcolor{keywordflow}{if}( shouldQuote && !\textcolor{keywordtype}{string}.IsNullOrEmpty( field ) )
+151             \{
+152                 field = field.Replace( configuration.QuoteString, configuration.DoubleQuoteString );
+153             \}
+154 
+155             \textcolor{keywordflow}{if}( \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.\hyperlink{a00063_a5d2eed13b8836f0397f8c39a709de1cc}{UseExcelLeadingZerosFormatForNumerics}
+       && !\textcolor{keywordtype}{string}.IsNullOrEmpty( field ) && field[0] == \textcolor{charliteral}{'0'} && field.All( Char.IsDigit ) )
+156             \{
+157                 field = \textcolor{stringliteral}{"="} + configuration.Quote + field + configuration.Quote;
+158             \}
+159             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (shouldQuote)
+160             \{
+161                 field = configuration.Quote + field + configuration.Quote;
+162             \}
+163 
+164             currentRecord.Add( field );
+165         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a8acd81f4b1e7e725f6c741313ce14a47_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_aaac679b85a63076fd2f106cd36acbc40}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Write\-Field@{Write\-Field}}
+\index{Write\-Field@{Write\-Field}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Write\-Field}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Write\-Field (
+\begin{DoxyParamCaption}
+\item[{Type}]{type, }
+\item[{object}]{field}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_aaac679b85a63076fd2f106cd36acbc40}
+
+
+Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00117_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the field.\\
+\hline
+{\em field} & The field to write.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00117_a1a0564acb2e20c1792bb27d3ed303d5f}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 241 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Field().
+
+
+\begin{DoxyCode}
+242         \{
+243             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+244 
+245             \textcolor{keywordflow}{if}( type == typeof( \textcolor{keywordtype}{string} ) )
+246             \{
+247                 \hyperlink{a00081_a994d9b339c4cda8bf83d5665b5c4ff1a}{WriteField}( field as \textcolor{keywordtype}{string} );
+248             \}
+249             \textcolor{keywordflow}{else}
+250             \{
+251                 var converter = TypeConverterFactory.GetConverter( type );
+252                 \hyperlink{a00081_a994d9b339c4cda8bf83d5665b5c4ff1a}{WriteField}( type, field, converter );
+253             \}
+254         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_aaac679b85a63076fd2f106cd36acbc40_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_aecf8d120ccbffce3c5cd56bcea754225}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Write\-Field@{Write\-Field}}
+\index{Write\-Field@{Write\-Field}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Write\-Field}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Write\-Field (
+\begin{DoxyParamCaption}
+\item[{Type}]{type, }
+\item[{object}]{field, }
+\item[{{\bf I\-Type\-Converter}}]{converter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_aecf8d120ccbffce3c5cd56bcea754225}
+
+
+Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00117_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the field.\\
+\hline
+{\em field} & The field to write.\\
+\hline
+{\em converter} & The converter used to convert the field into a string.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00117_a0fc0ce39655b94dd519af7aeecc4e9a3}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 266 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Field().
+
+
+\begin{DoxyCode}
+267         \{
+268             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+269 
+270             var typeConverterOptions = TypeConverterOptionsFactory.GetOptions( type );
+271             \textcolor{keywordflow}{if}( typeConverterOptions.CultureInfo == null )
+272             \{
+273                 typeConverterOptions.CultureInfo = configuration.CultureInfo;
+274             \}
+275 
+276             var fieldString = converter.ConvertToString( typeConverterOptions, field );
+277             \hyperlink{a00081_a994d9b339c4cda8bf83d5665b5c4ff1a}{WriteField}( fieldString );
+278         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_aecf8d120ccbffce3c5cd56bcea754225_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_a7ec3e527a5346503adae03731804bd78}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Write\-Field$<$ T $>$@{Write\-Field$<$ T $>$}}
+\index{Write\-Field$<$ T $>$@{Write\-Field$<$ T $>$}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Write\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}virtual void {\bf Csv\-Helper.\-Csv\-Writer.\-Write\-Field}$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{T}]{field}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_a7ec3e527a5346503adae03731804bd78}
+
+
+Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00117_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the field.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em field} & The field to write.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00117_ae9b669ef98e0c3ac3b2eb2345b9f095e}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 175 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Field().
+
+
+\begin{DoxyCode}
+176         \{
+177             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+178 
+179             var type = field.GetType();
+180             \textcolor{keywordflow}{if}( type == typeof( \textcolor{keywordtype}{string} ) )
+181             \{
+182                 \hyperlink{a00081_a994d9b339c4cda8bf83d5665b5c4ff1a}{WriteField}( field as \textcolor{keywordtype}{string} );
+183             \}
+184             \textcolor{keywordflow}{else}
+185             \{
+186                 var converter = TypeConverterFactory.GetConverter( type );
+187                 \hyperlink{a00081_a994d9b339c4cda8bf83d5665b5c4ff1a}{WriteField}( field, converter );
+188             \}
+189         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a7ec3e527a5346503adae03731804bd78_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_a8fb44629353e3198293b93d94e1b8c87}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Write\-Field$<$ T $>$@{Write\-Field$<$ T $>$}}
+\index{Write\-Field$<$ T $>$@{Write\-Field$<$ T $>$}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Write\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}virtual void {\bf Csv\-Helper.\-Csv\-Writer.\-Write\-Field}$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{T}]{field, }
+\item[{{\bf I\-Type\-Converter}}]{converter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_a8fb44629353e3198293b93d94e1b8c87}
+
+
+Writes the field to the C\-S\-V file. When all fields are written for a record, \hyperlink{a00117_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the field.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em field} & The field to write.\\
+\hline
+{\em converter} & The converter used to convert the field into a string.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00117_ab2be677f2c7ff5a482f5b406388e8a90}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 200 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Field().
+
+
+\begin{DoxyCode}
+201         \{
+202             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+203 
+204             var typeConverterOptions = TypeConverterOptionsFactory.GetOptions( field.GetType() );
+205             \textcolor{keywordflow}{if}( typeConverterOptions.CultureInfo == null )
+206             \{
+207                 typeConverterOptions.CultureInfo = configuration.CultureInfo;
+208             \}
+209 
+210             var fieldString = converter.ConvertToString( typeConverterOptions, field );
+211             \hyperlink{a00081_a994d9b339c4cda8bf83d5665b5c4ff1a}{WriteField}( fieldString );
+212         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a8fb44629353e3198293b93d94e1b8c87_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_a8879b818c7318f77e230f33a3dcec9c3}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Write\-Field$<$ T, T\-Converter $>$@{Write\-Field$<$ T, T\-Converter $>$}}
+\index{Write\-Field$<$ T, T\-Converter $>$@{Write\-Field$<$ T, T\-Converter $>$}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Write\-Field$<$ T, T\-Converter $>$}]{\setlength{\rightskip}{0pt plus 5cm}virtual void {\bf Csv\-Helper.\-Csv\-Writer.\-Write\-Field}$<$ T, T\-Converter $>$ (
+\begin{DoxyParamCaption}
+\item[{T}]{field}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_a8879b818c7318f77e230f33a3dcec9c3}
+
+
+Writes the field to the C\-S\-V file using the given I\-Type\-Converter. When all fields are written for a record, \hyperlink{a00117_a6bb1687959808ea1219fa68e7f3060fa}{I\-Csv\-Writer.\-Next\-Record} must be called to complete writing of the current record. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the field.\\
+\hline
+{\em T\-Converter} & The type of the converter.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em field} & The field to write.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00117_a7b465dbc52a5ed040da625c93fbfb1fa}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 224 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Field().
+
+
+\begin{DoxyCode}
+225         \{
+226             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+227 
+228             var converter = TypeConverterFactory.GetConverter<TConverter>();
+229             \hyperlink{a00081_a994d9b339c4cda8bf83d5665b5c4ff1a}{WriteField}( field, converter );
+230         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_a8879b818c7318f77e230f33a3dcec9c3_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_af2298dcd2934550fd9dd592921f18541}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Write\-Header@{Write\-Header}}
+\index{Write\-Header@{Write\-Header}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Write\-Header}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Write\-Header (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_af2298dcd2934550fd9dd592921f18541}
+
+
+Writes the header record from the given properties. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the record.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00117_a51b990d9a9615159631494390d8b53b6}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 331 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Add\-Properties(), Csv\-Helper.\-Csv\-Writer.\-Can\-Write(), Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed(), Csv\-Helper.\-Csv\-Writer.\-configuration, Csv\-Helper.\-Csv\-Writer.\-has\-Header\-Been\-Written, Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Has\-Header\-Record, Csv\-Helper.\-Csv\-Writer.\-has\-Record\-Been\-Written, Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Maps, Csv\-Helper.\-Csv\-Writer.\-Next\-Record(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Field().
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Write\-Records().
+
+
+\begin{DoxyCode}
+332         \{
+333             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+334 
+335             \textcolor{keywordflow}{if}( type == null )
+336             \{
+337                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"type"} );
+338             \}
+339 
+340             \textcolor{keywordflow}{if}( !\hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.\hyperlink{a00063_a9e439f90bfac500d24d6e2e731240439}{HasHeaderRecord} )
+341             \{
+342                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvWriterException( \textcolor{stringliteral}{"Configuration.HasHeaderRecord is false. This will need to be
+       enabled to write the header."} );
+343             \}
+344 
+345             \textcolor{keywordflow}{if}( \hyperlink{a00081_a48b53b7f4428286805b1eaac1055b2bf}{hasHeaderBeenWritten} )
+346             \{
+347                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvWriterException( \textcolor{stringliteral}{"The header record has already been written. You can't write
+       it more than once."} );
+348             \}
+349 
+350             \textcolor{keywordflow}{if}( \hyperlink{a00081_a0c31cd2b7d4eea93db887a46c33344fb}{hasRecordBeenWritten} )
+351             \{
+352                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvWriterException( \textcolor{stringliteral}{"Records have already been written. You can't write the
+       header after writing records has started."} );
+353             \}
+354 
+355             \textcolor{keywordflow}{if}( type == typeof( Object ) )
+356             \{
+357                 \textcolor{keywordflow}{return};
+358             \}
+359 
+360             \textcolor{keywordflow}{if}( \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.\hyperlink{a00063_a9119c99f5dafba985718f631f7bfa16a}{Maps}[type] == null )
+361             \{
+362                 configuration.Maps.Add( configuration.AutoMap( type ) );
+363             \}
+364 
+365             var properties = \textcolor{keyword}{new} \hyperlink{a00071}{CsvPropertyMapCollection}();
+366             \hyperlink{a00081_ac913b615ee170ad2b84137c4d5c7eda2}{AddProperties}( properties, \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.
+      \hyperlink{a00063_a9119c99f5dafba985718f631f7bfa16a}{Maps}[type] );
+367 
+368             \textcolor{keywordflow}{foreach}( var property \textcolor{keywordflow}{in} properties )
+369             \{
+370                 \textcolor{keywordflow}{if}( \hyperlink{a00081_a6085ddfd5e9c626d1d9f575ff21a0599}{CanWrite}( property ) )
+371                 \{
+372                     \hyperlink{a00081_a994d9b339c4cda8bf83d5665b5c4ff1a}{WriteField}( property.Data.Names.FirstOrDefault() );
+373                 \}
+374             \}
+375 
+376             \hyperlink{a00081_a397af8c87002d3b9c2b5152c6981d4d2}{NextRecord}();
+377 
+378             \hyperlink{a00081_a48b53b7f4428286805b1eaac1055b2bf}{hasHeaderBeenWritten} = \textcolor{keyword}{true};
+379         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_af2298dcd2934550fd9dd592921f18541_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_af2298dcd2934550fd9dd592921f18541_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_a3585991c17c8708d238600fa9093faa2}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Write\-Header$<$ T $>$@{Write\-Header$<$ T $>$}}
+\index{Write\-Header$<$ T $>$@{Write\-Header$<$ T $>$}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Write\-Header$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}virtual void {\bf Csv\-Helper.\-Csv\-Writer.\-Write\-Header}$<$ T $>$ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_a3585991c17c8708d238600fa9093faa2}
+
+
+Writes the header record from the given properties. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the record.\\
+\hline
+\end{DoxyTemplParams}
+
+
+Implements \hyperlink{a00117_a1355ab3a112318c05b96606a9682264f}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 320 of file Csv\-Writer.\-cs.
+
+
+\begin{DoxyCode}
+321         \{
+322             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+323 
+324             \hyperlink{a00081_af2298dcd2934550fd9dd592921f18541}{WriteHeader}( typeof( T ) );
+325         \}
+\end{DoxyCode}
+\hypertarget{a00081_ab1bc88015b53d21f6f5746a65180b0ac}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Write\-Record@{Write\-Record}}
+\index{Write\-Record@{Write\-Record}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Write\-Record}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Write\-Record (
+\begin{DoxyParamCaption}
+\item[{Type}]{type, }
+\item[{object}]{record}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_ab1bc88015b53d21f6f5746a65180b0ac}
+
+
+Writes the record to the C\-S\-V file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the record.\\
+\hline
+{\em record} & The record to write.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00117_a6d492491db7fccb8831e782f01b820f0}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 409 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed(), Csv\-Helper.\-Csv\-Writer.\-Get\-Write\-Record\-Action(), Csv\-Helper.\-Csv\-Writer.\-has\-Record\-Been\-Written, and Csv\-Helper.\-Csv\-Writer.\-Next\-Record().
+
+
+\begin{DoxyCode}
+410         \{
+411             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+412 
+413             \textcolor{keywordflow}{try}
+414             \{
+415                 \textcolor{keywordflow}{try}
+416                 \{
+417                     \hyperlink{a00081_a1ab2b602b050ceb6f0a0874504ddf3f3}{GetWriteRecordAction}( type ).DynamicInvoke( record );
+418                 \}
+419                 \textcolor{keywordflow}{catch}( TargetInvocationException ex )
+420                 \{
+421                     \textcolor{keywordflow}{throw} ex.InnerException;
+422                 \}
+423 
+424                 \hyperlink{a00081_a0c31cd2b7d4eea93db887a46c33344fb}{hasRecordBeenWritten} = \textcolor{keyword}{true};
+425                 \hyperlink{a00081_a397af8c87002d3b9c2b5152c6981d4d2}{NextRecord}();
+426             \}
+427             \textcolor{keywordflow}{catch}( Exception ex )
+428             \{
+429                 ExceptionHelper.AddExceptionDataMessage( ex, null, type, null, null, null );
+430                 \textcolor{keywordflow}{throw};
+431             \}
+432         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_ab1bc88015b53d21f6f5746a65180b0ac_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_aec261c2dfe23d6ed84534934e916d8ca}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Write\-Record$<$ T $>$@{Write\-Record$<$ T $>$}}
+\index{Write\-Record$<$ T $>$@{Write\-Record$<$ T $>$}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Write\-Record$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}virtual void {\bf Csv\-Helper.\-Csv\-Writer.\-Write\-Record}$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{T}]{record}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_aec261c2dfe23d6ed84534934e916d8ca}
+
+
+Writes the record to the C\-S\-V file. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the record.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em record} & The record to write.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00117_a9620a114ee9e858760f74013cf341f3a}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 386 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed(), Csv\-Helper.\-Csv\-Writer.\-Get\-Write\-Record\-Action$<$ T $>$(), Csv\-Helper.\-Csv\-Writer.\-has\-Record\-Been\-Written, and Csv\-Helper.\-Csv\-Writer.\-Next\-Record().
+
+
+\begin{DoxyCode}
+387         \{
+388             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+389 
+390             \textcolor{keywordflow}{try}
+391             \{
+392                 \hyperlink{a00081_a147c7b5888823fdf81fb021db706181c}{GetWriteRecordAction<T>}()( record );
+393                 \hyperlink{a00081_a0c31cd2b7d4eea93db887a46c33344fb}{hasRecordBeenWritten} = \textcolor{keyword}{true};
+394                 \hyperlink{a00081_a397af8c87002d3b9c2b5152c6981d4d2}{NextRecord}();
+395             \}
+396             \textcolor{keywordflow}{catch}( Exception ex )
+397             \{
+398                 ExceptionHelper.AddExceptionDataMessage( ex, null, record.GetType(), null, null, null );
+399                 \textcolor{keywordflow}{throw};
+400             \}
+401         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_aec261c2dfe23d6ed84534934e916d8ca_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00081_ab92f8ddaaa2650eafbd9d16b3813d14e}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Write\-Records@{Write\-Records}}
+\index{Write\-Records@{Write\-Records}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Write\-Records}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Writer.\-Write\-Records (
+\begin{DoxyParamCaption}
+\item[{I\-Enumerable}]{records}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_ab92f8ddaaa2650eafbd9d16b3813d14e}
+
+
+Writes the list of records to the C\-S\-V file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em records} & The list of records to write.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00117_a3aaa524ef8e6a1f9a0af10a38e2e9406}{Csv\-Helper.\-I\-Csv\-Writer}.
+
+
+
+Definition at line 438 of file Csv\-Writer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed(), Csv\-Helper.\-Csv\-Writer.\-configuration, Csv\-Helper.\-Csv\-Writer.\-Get\-Write\-Record\-Action(), Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Has\-Excel\-Separator, Csv\-Helper.\-Csv\-Writer.\-has\-Excel\-Seperator\-Been\-Read, Csv\-Helper.\-Csv\-Writer.\-has\-Header\-Been\-Written, Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Has\-Header\-Record, Csv\-Helper.\-Csv\-Writer.\-Next\-Record(), Csv\-Helper.\-Csv\-Writer.\-Write\-Excel\-Separator(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Header().
+
+
+\begin{DoxyCode}
+439         \{
+440             \hyperlink{a00081_a15e26ec8c5c935030677bee9a36d7c16}{CheckDisposed}();
+441 
+442             Type recordType = null;
+443             \textcolor{keywordflow}{try}
+444             \{
+445                 \textcolor{keywordflow}{if}( \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.\hyperlink{a00063_a1ec30ebdadc1050686b22d1f518df042}{HasExcelSeparator} && !
+      \hyperlink{a00081_a69aed6976efa4911f843e726b91aae80}{hasExcelSeperatorBeenRead} )
+446                 \{
+447                     \hyperlink{a00081_aa07bcdeb70bf35895fdc51e46afde120}{WriteExcelSeparator}();
+448                     \hyperlink{a00081_a69aed6976efa4911f843e726b91aae80}{hasExcelSeperatorBeenRead} = \textcolor{keyword}{true};
+449                 \}
+450 
+451                 \textcolor{comment}{// Write the header. If records is a List<dynamic>, the header won't be written.}
+452                 \textcolor{comment}{// This is because typeof( T ) = Object.}
+453                 var genericEnumerable = records.GetType().GetInterfaces().FirstOrDefault( t => 
+      t.GetTypeInfo().IsGenericType && t.GetGenericTypeDefinition() == typeof( IEnumerable<> ) );
+454                 \textcolor{keywordflow}{if}( genericEnumerable != null )
+455                 \{
+456                     recordType = genericEnumerable.GetGenericArguments().Single();
+457                     var isPrimitive = recordType.GetTypeInfo().IsPrimitive;
+458                     \textcolor{keywordflow}{if}( \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.\hyperlink{a00063_a9e439f90bfac500d24d6e2e731240439}{HasHeaderRecord} && !
+      \hyperlink{a00081_a48b53b7f4428286805b1eaac1055b2bf}{hasHeaderBeenWritten} && !isPrimitive )
+459                     \{
+460                         \hyperlink{a00081_af2298dcd2934550fd9dd592921f18541}{WriteHeader}( recordType );
+461                     \}
+462                 \}
+463 
+464                 \textcolor{keywordflow}{foreach}( var record \textcolor{keywordflow}{in} records )
+465                 \{
+466                     \textcolor{comment}{// If records is a List<dynamic>, the header hasn't been written yet.}
+467                     \textcolor{comment}{// Write the header based on the record type.}
+468                     recordType = record.GetType();
+469                     var isPrimitive = recordType.GetTypeInfo().IsPrimitive;
+470                     \textcolor{keywordflow}{if}( \hyperlink{a00081_a0711748c9a399cfbcbad93857304fc67}{configuration}.\hyperlink{a00063_a9e439f90bfac500d24d6e2e731240439}{HasHeaderRecord} && !
+      \hyperlink{a00081_a48b53b7f4428286805b1eaac1055b2bf}{hasHeaderBeenWritten} && !isPrimitive )
+471                     \{
+472                         \hyperlink{a00081_af2298dcd2934550fd9dd592921f18541}{WriteHeader}( recordType );
+473                     \}
+474 
+475                     \textcolor{keywordflow}{try}
+476                     \{
+477                         \hyperlink{a00081_a1ab2b602b050ceb6f0a0874504ddf3f3}{GetWriteRecordAction}( record.GetType() ).DynamicInvoke( record 
+      );
+478                     \}
+479                     \textcolor{keywordflow}{catch}( TargetInvocationException ex )
+480                     \{
+481                         \textcolor{keywordflow}{throw} ex.InnerException;
+482                     \}
+483 
+484                     \hyperlink{a00081_a397af8c87002d3b9c2b5152c6981d4d2}{NextRecord}();
+485                 \}
+486             \}
+487             \textcolor{keywordflow}{catch}( Exception ex )
+488             \{
+489                 ExceptionHelper.AddExceptionDataMessage( ex, null, recordType, null, null, null );
+490                 \textcolor{keywordflow}{throw};
+491             \}
+492         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00081_ab92f8ddaaa2650eafbd9d16b3813d14e_cgraph}
+\end{center}
+\end{figure}
+
+
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00081_a658e7fb05555c0f9ab5f80057bdc1408}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!column\-Number@{column\-Number}}
-\index{column\-Number@{column\-Number}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{column\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Analysis.\-Diagnosis.\-column\-Number}}\label{a00081_a658e7fb05555c0f9ab5f80057bdc1408}
+\hypertarget{a00081_a0711748c9a399cfbcbad93857304fc67}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!configuration@{configuration}}
+\index{configuration@{configuration}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{configuration}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Csv\-Configuration} Csv\-Helper.\-Csv\-Writer.\-configuration\hspace{0.3cm}{\ttfamily [private]}}}\label{a00081_a0711748c9a399cfbcbad93857304fc67}
 
 
-Definition at line 11 of file Analyser.\-cs.
-
-\hypertarget{a00081_a0bd73f1c684bfd66ae7b6bef8f2972d0}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!line\-Number@{line\-Number}}
-\index{line\-Number@{line\-Number}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Analysis.\-Diagnosis.\-line\-Number}}\label{a00081_a0bd73f1c684bfd66ae7b6bef8f2972d0}
+Definition at line 34 of file Csv\-Writer.\-cs.
 
 
-Definition at line 10 of file Analyser.\-cs.
 
-\hypertarget{a00081_ac7ed070dddd2613c08e7874ea5afb3af}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!message@{message}}
-\index{message@{message}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{message}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-message}}\label{a00081_ac7ed070dddd2613c08e7874ea5afb3af}
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Can\-Write(), Csv\-Helper.\-Csv\-Writer.\-Create\-Action\-For\-Object(), Csv\-Helper.\-Csv\-Writer.\-Create\-Property\-Expression(), Csv\-Helper.\-Csv\-Writer.\-Create\-Write\-Record\-Action(), Csv\-Helper.\-Csv\-Writer.\-Csv\-Writer(), Csv\-Helper.\-Csv\-Writer.\-Write\-Excel\-Separator(), Csv\-Helper.\-Csv\-Writer.\-Write\-Field(), Csv\-Helper.\-Csv\-Writer.\-Write\-Header(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Records().
 
-
-Definition at line 8 of file Analyser.\-cs.
-
-\hypertarget{a00081_a662aca4ad2af5116c2cf6773daf1a847}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!node\-Name@{node\-Name}}
-\index{node\-Name@{node\-Name}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-node\-Name}}\label{a00081_a662aca4ad2af5116c2cf6773daf1a847}
+\hypertarget{a00081_a6ccc7b189d49ae898d1aefcb72c97431}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!current\-Record@{current\-Record}}
+\index{current\-Record@{current\-Record}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{current\-Record}]{\setlength{\rightskip}{0pt plus 5cm}readonly List$<$string$>$ Csv\-Helper.\-Csv\-Writer.\-current\-Record = new List$<$string$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00081_a6ccc7b189d49ae898d1aefcb72c97431}
 
 
-Definition at line 9 of file Analyser.\-cs.
+Definition at line 27 of file Csv\-Writer.\-cs.
 
-\hypertarget{a00081_ad90ffa839ce0f568a099bb37b4a6c4da}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!severity@{severity}}
-\index{severity@{severity}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{severity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Severity} Yarn.\-Analysis.\-Diagnosis.\-severity}}\label{a00081_ad90ffa839ce0f568a099bb37b4a6c4da}
+\hypertarget{a00081_aae86e2e359261e81ddc2ed22b9517b35}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!disposed@{disposed}}
+\index{disposed@{disposed}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{disposed}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-Csv\-Writer.\-disposed\hspace{0.3cm}{\ttfamily [private]}}}\label{a00081_aae86e2e359261e81ddc2ed22b9517b35}
 
 
-Definition at line 18 of file Analyser.\-cs.
+Definition at line 26 of file Csv\-Writer.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Check\-Disposed(), and Csv\-Helper.\-Csv\-Writer.\-Dispose().
+
+\hypertarget{a00081_a69aed6976efa4911f843e726b91aae80}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!has\-Excel\-Seperator\-Been\-Read@{has\-Excel\-Seperator\-Been\-Read}}
+\index{has\-Excel\-Seperator\-Been\-Read@{has\-Excel\-Seperator\-Been\-Read}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{has\-Excel\-Seperator\-Been\-Read}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-Csv\-Writer.\-has\-Excel\-Seperator\-Been\-Read\hspace{0.3cm}{\ttfamily [private]}}}\label{a00081_a69aed6976efa4911f843e726b91aae80}
+
+
+Definition at line 35 of file Csv\-Writer.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Write\-Records().
+
+\hypertarget{a00081_a48b53b7f4428286805b1eaac1055b2bf}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!has\-Header\-Been\-Written@{has\-Header\-Been\-Written}}
+\index{has\-Header\-Been\-Written@{has\-Header\-Been\-Written}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{has\-Header\-Been\-Written}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-Csv\-Writer.\-has\-Header\-Been\-Written\hspace{0.3cm}{\ttfamily [private]}}}\label{a00081_a48b53b7f4428286805b1eaac1055b2bf}
+
+
+Definition at line 29 of file Csv\-Writer.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Write\-Excel\-Separator(), Csv\-Helper.\-Csv\-Writer.\-Write\-Header(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Records().
+
+\hypertarget{a00081_a0c31cd2b7d4eea93db887a46c33344fb}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!has\-Record\-Been\-Written@{has\-Record\-Been\-Written}}
+\index{has\-Record\-Been\-Written@{has\-Record\-Been\-Written}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{has\-Record\-Been\-Written}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-Csv\-Writer.\-has\-Record\-Been\-Written\hspace{0.3cm}{\ttfamily [private]}}}\label{a00081_a0c31cd2b7d4eea93db887a46c33344fb}
+
+
+Definition at line 30 of file Csv\-Writer.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Write\-Excel\-Separator(), Csv\-Helper.\-Csv\-Writer.\-Write\-Header(), Csv\-Helper.\-Csv\-Writer.\-Write\-Record(), and Csv\-Helper.\-Csv\-Writer.\-Write\-Record$<$ T $>$().
+
+\hypertarget{a00081_a18110f1a49db005542fae3b94487de8e}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!serializer@{serializer}}
+\index{serializer@{serializer}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{serializer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Serializer} Csv\-Helper.\-Csv\-Writer.\-serializer\hspace{0.3cm}{\ttfamily [private]}}}\label{a00081_a18110f1a49db005542fae3b94487de8e}
+
+
+Definition at line 28 of file Csv\-Writer.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Csv\-Writer(), and Csv\-Helper.\-Csv\-Writer.\-Dispose().
+
+\hypertarget{a00081_a93af56d83ee3a76d1d3ce39f9c344d15}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!type\-Actions@{type\-Actions}}
+\index{type\-Actions@{type\-Actions}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{type\-Actions}]{\setlength{\rightskip}{0pt plus 5cm}readonly Dictionary$<$Type, Delegate$>$ Csv\-Helper.\-Csv\-Writer.\-type\-Actions = new Dictionary$<$Type, Delegate$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00081_a93af56d83ee3a76d1d3ce39f9c344d15}
+
+
+Definition at line 32 of file Csv\-Writer.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Create\-Action\-For\-Object(), Csv\-Helper.\-Csv\-Writer.\-Create\-Action\-For\-Primitive(), Csv\-Helper.\-Csv\-Writer.\-Create\-Write\-Record\-Action(), and Csv\-Helper.\-Csv\-Writer.\-Get\-Write\-Record\-Action().
+
+
+
+\subsection{Property Documentation}
+\hypertarget{a00081_a5124d88929643a9a9fc95f5a0630fce8}{\index{Csv\-Helper\-::\-Csv\-Writer@{Csv\-Helper\-::\-Csv\-Writer}!Configuration@{Configuration}}
+\index{Configuration@{Configuration}!CsvHelper::CsvWriter@{Csv\-Helper\-::\-Csv\-Writer}}
+\subsubsection[{Configuration}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Configuration} Csv\-Helper.\-Csv\-Writer.\-Configuration\hspace{0.3cm}{\ttfamily [get]}}}\label{a00081_a5124d88929643a9a9fc95f5a0630fce8}
+
+
+Gets the configuration. 
+
+
+
+Definition at line 41 of file Csv\-Writer.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00287}{Analyser.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00242}{Csv\-Writer.\-cs}\end{DoxyCompactItemize}

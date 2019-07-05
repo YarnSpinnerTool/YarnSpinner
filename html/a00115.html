@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: IYarnSpinnerParserVisitor&lt; Result &gt; Interface Template Reference</title>
+<title>YarnSpinner: CsvHelper.ICsvReaderRow Interface Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -108,1377 +108,1708 @@ $(document).ready(function(){initNavTree('a00115.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="a00383.html">List of all members</a>  </div>
+<a href="#properties">Properties</a> &#124;
+<a href="a00462.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">IYarnSpinnerParserVisitor&lt; Result &gt; Interface Template Reference</div>  </div>
+<div class="title">CsvHelper.ICsvReaderRow Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>This interface defines a complete generic visitor for a parse tree produced by YarnSpinnerParser.  
+<p>Defines methods used to read parsed data from a CSV file row.  
  <a href="a00115.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for IYarnSpinnerParserVisitor&lt; Result &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for CsvHelper.ICsvReaderRow:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00384.png" border="0" usemap="#_i_yarn_spinner_parser_visitor_3_01_result_01_4_inherit__map" alt="Inheritance graph"/></div>
-<map name="_i_yarn_spinner_parser_visitor_3_01_result_01_4_inherit__map" id="_i_yarn_spinner_parser_visitor_3_01_result_01_4_inherit__map">
-<area shape="rect" id="node3" href="a00187.html" title="This class provides an empty implementation of IYarnSpinnerParserVisitor{Result}, which can be extend..." alt="" coords="5,435,203,674"/><area shape="rect" id="node4" href="a00034.html" title="{Yarn.BodyVisitor\n|~ compiler\l&#45; tokens\l|+ BodyVisitor()\l+ VisitLine_statement()\l+ VisitOption_statement()\l+ VisitSet_statement()\l+ VisitAction_statement()\l+ VisitFunction_statement()\l+ VisitFunction()\l+ VisitIf_statement()\l+ VisitShortcut_statement()\l+ VisitExpParens()\land 18 more...\l~ generateClause()\l~ genericExpVisitor()\l~ opEquals()\l&#45; HandleFunction()\l&#45; ShortcutText()\l&#45; loadOperators()\l}" alt="" coords="13,723,195,1050"/></map>
+<div class="center"><img src="a00463.png" border="0" usemap="#_csv_helper_8_i_csv_reader_row_inherit__map" alt="Inheritance graph"/></div>
+<map name="_csv_helper_8_i_csv_reader_row_inherit__map" id="_csv_helper_8_i_csv_reader_row_inherit__map">
+<area shape="rect" id="node2" href="a00114.html" title="Defines methods used to read parsed data from a CSV file. " alt="" coords="35,353,193,474"/><area shape="rect" id="node3" href="a00077.html" title="Reads data that was parsed from ICsvParser. " alt="" coords="5,523,224,1187"/></map>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for IYarnSpinnerParserVisitor&lt; Result &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for CsvHelper.ICsvReaderRow:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00385.png" border="0" usemap="#_i_yarn_spinner_parser_visitor_3_01_result_01_4_coll__map" alt="Collaboration graph"/></div>
-<map name="_i_yarn_spinner_parser_visitor_3_01_result_01_4_coll__map" id="_i_yarn_spinner_parser_visitor_3_01_result_01_4_coll__map">
+<div class="center"><img src="a00464.png" border="0" usemap="#_csv_helper_8_i_csv_reader_row_coll__map" alt="Collaboration graph"/></div>
+<map name="_csv_helper_8_i_csv_reader_row_coll__map" id="_csv_helper_8_i_csv_reader_row_coll__map">
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac2d13d69995b3a8bf8c0733341d0c72e"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ac2d13d69995b3a8bf8c0733341d0c72e">VisitDialogue</a> ([NotNull] YarnSpinnerParser.DialogueContext context)</td></tr>
-<tr class="memdesc:ac2d13d69995b3a8bf8c0733341d0c72e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.dialogue.  <a href="#ac2d13d69995b3a8bf8c0733341d0c72e">More...</a><br/></td></tr>
-<tr class="separator:ac2d13d69995b3a8bf8c0733341d0c72e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59c84bd2dbaab540b8db77eb20e67be6"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a59c84bd2dbaab540b8db77eb20e67be6">VisitNode</a> ([NotNull] YarnSpinnerParser.NodeContext context)</td></tr>
-<tr class="memdesc:a59c84bd2dbaab540b8db77eb20e67be6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.node.  <a href="#a59c84bd2dbaab540b8db77eb20e67be6">More...</a><br/></td></tr>
-<tr class="separator:a59c84bd2dbaab540b8db77eb20e67be6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24b0bc51bfd9d2fbdd2a4f0211b92e72"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a24b0bc51bfd9d2fbdd2a4f0211b92e72">VisitHeader</a> ([NotNull] YarnSpinnerParser.HeaderContext context)</td></tr>
-<tr class="memdesc:a24b0bc51bfd9d2fbdd2a4f0211b92e72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.header.  <a href="#a24b0bc51bfd9d2fbdd2a4f0211b92e72">More...</a><br/></td></tr>
-<tr class="separator:a24b0bc51bfd9d2fbdd2a4f0211b92e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f554200966a70217bcb285ad4176d03"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a2f554200966a70217bcb285ad4176d03">VisitHeader_title</a> ([NotNull] YarnSpinnerParser.Header_titleContext context)</td></tr>
-<tr class="memdesc:a2f554200966a70217bcb285ad4176d03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.header_title.  <a href="#a2f554200966a70217bcb285ad4176d03">More...</a><br/></td></tr>
-<tr class="separator:a2f554200966a70217bcb285ad4176d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a1489c13aa25b6d92dcc064298e618e"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a0a1489c13aa25b6d92dcc064298e618e">VisitHeader_tag</a> ([NotNull] YarnSpinnerParser.Header_tagContext context)</td></tr>
-<tr class="memdesc:a0a1489c13aa25b6d92dcc064298e618e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.header_tag.  <a href="#a0a1489c13aa25b6d92dcc064298e618e">More...</a><br/></td></tr>
-<tr class="separator:a0a1489c13aa25b6d92dcc064298e618e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a51687aef1d08ea7230e6a41d7cf61a"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a1a51687aef1d08ea7230e6a41d7cf61a">VisitHeader_line</a> ([NotNull] YarnSpinnerParser.Header_lineContext context)</td></tr>
-<tr class="memdesc:a1a51687aef1d08ea7230e6a41d7cf61a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.header_line.  <a href="#a1a51687aef1d08ea7230e6a41d7cf61a">More...</a><br/></td></tr>
-<tr class="separator:a1a51687aef1d08ea7230e6a41d7cf61a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab308423e3e80579ec8bac951788f988b"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ab308423e3e80579ec8bac951788f988b">VisitBody</a> ([NotNull] YarnSpinnerParser.BodyContext context)</td></tr>
-<tr class="memdesc:ab308423e3e80579ec8bac951788f988b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.body.  <a href="#ab308423e3e80579ec8bac951788f988b">More...</a><br/></td></tr>
-<tr class="separator:ab308423e3e80579ec8bac951788f988b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2122e68c51db45bb8cb757cfd2af7683"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a2122e68c51db45bb8cb757cfd2af7683">VisitStatement</a> ([NotNull] YarnSpinnerParser.StatementContext context)</td></tr>
-<tr class="memdesc:a2122e68c51db45bb8cb757cfd2af7683"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.statement.  <a href="#a2122e68c51db45bb8cb757cfd2af7683">More...</a><br/></td></tr>
-<tr class="separator:a2122e68c51db45bb8cb757cfd2af7683"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a3cc5ecfc9bb6ee595d4b7ef9e59162"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a8a3cc5ecfc9bb6ee595d4b7ef9e59162">VisitShortcut_statement</a> ([NotNull] YarnSpinnerParser.Shortcut_statementContext context)</td></tr>
-<tr class="memdesc:a8a3cc5ecfc9bb6ee595d4b7ef9e59162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.shortcut_statement.  <a href="#a8a3cc5ecfc9bb6ee595d4b7ef9e59162">More...</a><br/></td></tr>
-<tr class="separator:a8a3cc5ecfc9bb6ee595d4b7ef9e59162"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b5a47e26ccf33cd524062dbb98a0830"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a7b5a47e26ccf33cd524062dbb98a0830">VisitShortcut</a> ([NotNull] YarnSpinnerParser.ShortcutContext context)</td></tr>
-<tr class="memdesc:a7b5a47e26ccf33cd524062dbb98a0830"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.shortcut.  <a href="#a7b5a47e26ccf33cd524062dbb98a0830">More...</a><br/></td></tr>
-<tr class="separator:a7b5a47e26ccf33cd524062dbb98a0830"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d05d4bf6c088ca182a3017e1431be72"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a2d05d4bf6c088ca182a3017e1431be72">VisitShortcut_conditional</a> ([NotNull] YarnSpinnerParser.Shortcut_conditionalContext context)</td></tr>
-<tr class="memdesc:a2d05d4bf6c088ca182a3017e1431be72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.shortcut_conditional.  <a href="#a2d05d4bf6c088ca182a3017e1431be72">More...</a><br/></td></tr>
-<tr class="separator:a2d05d4bf6c088ca182a3017e1431be72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb7363aa1905c378122a785a4f1a8475"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#adb7363aa1905c378122a785a4f1a8475">VisitShortcut_text</a> ([NotNull] YarnSpinnerParser.Shortcut_textContext context)</td></tr>
-<tr class="memdesc:adb7363aa1905c378122a785a4f1a8475"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.shortcut_text.  <a href="#adb7363aa1905c378122a785a4f1a8475">More...</a><br/></td></tr>
-<tr class="separator:adb7363aa1905c378122a785a4f1a8475"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfcb940e3a772f45dcd973da249ab5b9"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#acfcb940e3a772f45dcd973da249ab5b9">VisitIf_statement</a> ([NotNull] YarnSpinnerParser.If_statementContext context)</td></tr>
-<tr class="memdesc:acfcb940e3a772f45dcd973da249ab5b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.if_statement.  <a href="#acfcb940e3a772f45dcd973da249ab5b9">More...</a><br/></td></tr>
-<tr class="separator:acfcb940e3a772f45dcd973da249ab5b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3069b103a0f46e9d5353822d5042ecc5"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a3069b103a0f46e9d5353822d5042ecc5">VisitIf_clause</a> ([NotNull] YarnSpinnerParser.If_clauseContext context)</td></tr>
-<tr class="memdesc:a3069b103a0f46e9d5353822d5042ecc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.if_clause.  <a href="#a3069b103a0f46e9d5353822d5042ecc5">More...</a><br/></td></tr>
-<tr class="separator:a3069b103a0f46e9d5353822d5042ecc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03d1e78faa25780e97fe6e643c0ffe8b"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a03d1e78faa25780e97fe6e643c0ffe8b">VisitElse_if_clause</a> ([NotNull] YarnSpinnerParser.Else_if_clauseContext context)</td></tr>
-<tr class="memdesc:a03d1e78faa25780e97fe6e643c0ffe8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.else_if_clause.  <a href="#a03d1e78faa25780e97fe6e643c0ffe8b">More...</a><br/></td></tr>
-<tr class="separator:a03d1e78faa25780e97fe6e643c0ffe8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e4ddbac78cfa60c490d8a85f39093fd"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a0e4ddbac78cfa60c490d8a85f39093fd">VisitElse_clause</a> ([NotNull] YarnSpinnerParser.Else_clauseContext context)</td></tr>
-<tr class="memdesc:a0e4ddbac78cfa60c490d8a85f39093fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.else_clause.  <a href="#a0e4ddbac78cfa60c490d8a85f39093fd">More...</a><br/></td></tr>
-<tr class="separator:a0e4ddbac78cfa60c490d8a85f39093fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51c0c7cf6e9a284e6764690756fad283"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a51c0c7cf6e9a284e6764690756fad283">VisitSet_statement</a> ([NotNull] YarnSpinnerParser.Set_statementContext context)</td></tr>
-<tr class="memdesc:a51c0c7cf6e9a284e6764690756fad283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.set_statement.  <a href="#a51c0c7cf6e9a284e6764690756fad283">More...</a><br/></td></tr>
-<tr class="separator:a51c0c7cf6e9a284e6764690756fad283"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f384f2fa7825221a8a78dc8b8b94aae"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a3f384f2fa7825221a8a78dc8b8b94aae">VisitOption_statement</a> ([NotNull] YarnSpinnerParser.Option_statementContext context)</td></tr>
-<tr class="memdesc:a3f384f2fa7825221a8a78dc8b8b94aae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.option_statement.  <a href="#a3f384f2fa7825221a8a78dc8b8b94aae">More...</a><br/></td></tr>
-<tr class="separator:a3f384f2fa7825221a8a78dc8b8b94aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae9b15d1b49c2beaef63929b45bee36d"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#aae9b15d1b49c2beaef63929b45bee36d">VisitFunction</a> ([NotNull] YarnSpinnerParser.FunctionContext context)</td></tr>
-<tr class="memdesc:aae9b15d1b49c2beaef63929b45bee36d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.function.  <a href="#aae9b15d1b49c2beaef63929b45bee36d">More...</a><br/></td></tr>
-<tr class="separator:aae9b15d1b49c2beaef63929b45bee36d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e9f060bd7d1c1c9bd1001815959d085"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a7e9f060bd7d1c1c9bd1001815959d085">VisitFunction_statement</a> ([NotNull] YarnSpinnerParser.Function_statementContext context)</td></tr>
-<tr class="memdesc:a7e9f060bd7d1c1c9bd1001815959d085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.function_statement.  <a href="#a7e9f060bd7d1c1c9bd1001815959d085">More...</a><br/></td></tr>
-<tr class="separator:a7e9f060bd7d1c1c9bd1001815959d085"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15d9881bebe28f077c5061af2f021d01"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a15d9881bebe28f077c5061af2f021d01">VisitAction_statement</a> ([NotNull] YarnSpinnerParser.Action_statementContext context)</td></tr>
-<tr class="memdesc:a15d9881bebe28f077c5061af2f021d01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.action_statement.  <a href="#a15d9881bebe28f077c5061af2f021d01">More...</a><br/></td></tr>
-<tr class="separator:a15d9881bebe28f077c5061af2f021d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd505d5a1c6c6ac264f44d23f0684ffa"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#acd505d5a1c6c6ac264f44d23f0684ffa">VisitText</a> ([NotNull] YarnSpinnerParser.TextContext context)</td></tr>
-<tr class="memdesc:acd505d5a1c6c6ac264f44d23f0684ffa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.text.  <a href="#acd505d5a1c6c6ac264f44d23f0684ffa">More...</a><br/></td></tr>
-<tr class="separator:acd505d5a1c6c6ac264f44d23f0684ffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d976bc67282e8a1a127a7332c8e5c6d"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a5d976bc67282e8a1a127a7332c8e5c6d">VisitLine_statement</a> ([NotNull] YarnSpinnerParser.Line_statementContext context)</td></tr>
-<tr class="memdesc:a5d976bc67282e8a1a127a7332c8e5c6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.line_statement.  <a href="#a5d976bc67282e8a1a127a7332c8e5c6d">More...</a><br/></td></tr>
-<tr class="separator:a5d976bc67282e8a1a127a7332c8e5c6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a899c6a6b0bf44607a125f5b34cc25263"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a899c6a6b0bf44607a125f5b34cc25263">VisitHashtag_block</a> ([NotNull] YarnSpinnerParser.Hashtag_blockContext context)</td></tr>
-<tr class="memdesc:a899c6a6b0bf44607a125f5b34cc25263"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.hashtag_block.  <a href="#a899c6a6b0bf44607a125f5b34cc25263">More...</a><br/></td></tr>
-<tr class="separator:a899c6a6b0bf44607a125f5b34cc25263"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a9eb068239ecf7a9f22efcbab257c26"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a5a9eb068239ecf7a9f22efcbab257c26">VisitHashtag</a> ([NotNull] YarnSpinnerParser.HashtagContext context)</td></tr>
-<tr class="memdesc:a5a9eb068239ecf7a9f22efcbab257c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.hashtag.  <a href="#a5a9eb068239ecf7a9f22efcbab257c26">More...</a><br/></td></tr>
-<tr class="separator:a5a9eb068239ecf7a9f22efcbab257c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a013aa5250f60ca4c93643f89efae2477"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a013aa5250f60ca4c93643f89efae2477">VisitExpParens</a> ([NotNull] YarnSpinnerParser.ExpParensContext context)</td></tr>
-<tr class="memdesc:a013aa5250f60ca4c93643f89efae2477"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expParens</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#a013aa5250f60ca4c93643f89efae2477">More...</a><br/></td></tr>
-<tr class="separator:a013aa5250f60ca4c93643f89efae2477"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe2ca29018070dc26e6c6ccd9e278993"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#abe2ca29018070dc26e6c6ccd9e278993">VisitExpMultDivMod</a> ([NotNull] YarnSpinnerParser.ExpMultDivModContext context)</td></tr>
-<tr class="memdesc:abe2ca29018070dc26e6c6ccd9e278993"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expMultDivMod</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#abe2ca29018070dc26e6c6ccd9e278993">More...</a><br/></td></tr>
-<tr class="separator:abe2ca29018070dc26e6c6ccd9e278993"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7bbdc8c63543a785416870e72ef6e82"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#aa7bbdc8c63543a785416870e72ef6e82">VisitExpMultDivModEquals</a> ([NotNull] YarnSpinnerParser.ExpMultDivModEqualsContext context)</td></tr>
-<tr class="memdesc:aa7bbdc8c63543a785416870e72ef6e82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expMultDivModEquals</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#aa7bbdc8c63543a785416870e72ef6e82">More...</a><br/></td></tr>
-<tr class="separator:aa7bbdc8c63543a785416870e72ef6e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64d1e4be6cdd7ad2bcff2b268d3909df"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a64d1e4be6cdd7ad2bcff2b268d3909df">VisitExpComparison</a> ([NotNull] YarnSpinnerParser.ExpComparisonContext context)</td></tr>
-<tr class="memdesc:a64d1e4be6cdd7ad2bcff2b268d3909df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expComparison</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#a64d1e4be6cdd7ad2bcff2b268d3909df">More...</a><br/></td></tr>
-<tr class="separator:a64d1e4be6cdd7ad2bcff2b268d3909df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13bd33ef64f92e9d8d51cd6ed1ac2943"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a13bd33ef64f92e9d8d51cd6ed1ac2943">VisitExpNegative</a> ([NotNull] YarnSpinnerParser.ExpNegativeContext context)</td></tr>
-<tr class="memdesc:a13bd33ef64f92e9d8d51cd6ed1ac2943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expNegative</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#a13bd33ef64f92e9d8d51cd6ed1ac2943">More...</a><br/></td></tr>
-<tr class="separator:a13bd33ef64f92e9d8d51cd6ed1ac2943"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea2594497afe741de8c8ccd3e4378842"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#aea2594497afe741de8c8ccd3e4378842">VisitExpAndOrXor</a> ([NotNull] YarnSpinnerParser.ExpAndOrXorContext context)</td></tr>
-<tr class="memdesc:aea2594497afe741de8c8ccd3e4378842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expAndOrXor</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#aea2594497afe741de8c8ccd3e4378842">More...</a><br/></td></tr>
-<tr class="separator:aea2594497afe741de8c8ccd3e4378842"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0174004a39264c245bfc326ee2cf84c9"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a0174004a39264c245bfc326ee2cf84c9">VisitExpPlusMinusEquals</a> ([NotNull] YarnSpinnerParser.ExpPlusMinusEqualsContext context)</td></tr>
-<tr class="memdesc:a0174004a39264c245bfc326ee2cf84c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expPlusMinusEquals</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#a0174004a39264c245bfc326ee2cf84c9">More...</a><br/></td></tr>
-<tr class="separator:a0174004a39264c245bfc326ee2cf84c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a618a7fac4c00e587e3576ac230688896"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a618a7fac4c00e587e3576ac230688896">VisitExpAddSub</a> ([NotNull] YarnSpinnerParser.ExpAddSubContext context)</td></tr>
-<tr class="memdesc:a618a7fac4c00e587e3576ac230688896"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expAddSub</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#a618a7fac4c00e587e3576ac230688896">More...</a><br/></td></tr>
-<tr class="separator:a618a7fac4c00e587e3576ac230688896"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6ff9851ca2313ac155711cdce83f617"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ab6ff9851ca2313ac155711cdce83f617">VisitExpNot</a> ([NotNull] YarnSpinnerParser.ExpNotContext context)</td></tr>
-<tr class="memdesc:ab6ff9851ca2313ac155711cdce83f617"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expNot</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#ab6ff9851ca2313ac155711cdce83f617">More...</a><br/></td></tr>
-<tr class="separator:ab6ff9851ca2313ac155711cdce83f617"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac89121dfc7a63b034449654b5aebbbb3"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ac89121dfc7a63b034449654b5aebbbb3">VisitExpValue</a> ([NotNull] YarnSpinnerParser.ExpValueContext context)</td></tr>
-<tr class="memdesc:ac89121dfc7a63b034449654b5aebbbb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expValue</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#ac89121dfc7a63b034449654b5aebbbb3">More...</a><br/></td></tr>
-<tr class="separator:ac89121dfc7a63b034449654b5aebbbb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe38c3f9d0c5b2e7addd31e0b5a97db8"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#abe38c3f9d0c5b2e7addd31e0b5a97db8">VisitExpEquality</a> ([NotNull] YarnSpinnerParser.ExpEqualityContext context)</td></tr>
-<tr class="memdesc:abe38c3f9d0c5b2e7addd31e0b5a97db8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expEquality</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#abe38c3f9d0c5b2e7addd31e0b5a97db8">More...</a><br/></td></tr>
-<tr class="separator:abe38c3f9d0c5b2e7addd31e0b5a97db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fe03a0db2907655b545a46a1df3fd55"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a7fe03a0db2907655b545a46a1df3fd55">VisitValueNumber</a> ([NotNull] YarnSpinnerParser.ValueNumberContext context)</td></tr>
-<tr class="memdesc:a7fe03a0db2907655b545a46a1df3fd55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>valueNumber</code> labeled alternative in YarnSpinnerParser.value.  <a href="#a7fe03a0db2907655b545a46a1df3fd55">More...</a><br/></td></tr>
-<tr class="separator:a7fe03a0db2907655b545a46a1df3fd55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74925dab55e607597ea5b6f0917b5779"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a74925dab55e607597ea5b6f0917b5779">VisitValueTrue</a> ([NotNull] YarnSpinnerParser.ValueTrueContext context)</td></tr>
-<tr class="memdesc:a74925dab55e607597ea5b6f0917b5779"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>valueTrue</code> labeled alternative in YarnSpinnerParser.value.  <a href="#a74925dab55e607597ea5b6f0917b5779">More...</a><br/></td></tr>
-<tr class="separator:a74925dab55e607597ea5b6f0917b5779"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8f01ef410d14f0dbc1cdd1931eea7ab"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ac8f01ef410d14f0dbc1cdd1931eea7ab">VisitValueFalse</a> ([NotNull] YarnSpinnerParser.ValueFalseContext context)</td></tr>
-<tr class="memdesc:ac8f01ef410d14f0dbc1cdd1931eea7ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>valueFalse</code> labeled alternative in YarnSpinnerParser.value.  <a href="#ac8f01ef410d14f0dbc1cdd1931eea7ab">More...</a><br/></td></tr>
-<tr class="separator:ac8f01ef410d14f0dbc1cdd1931eea7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14da4b931a15282d4b2634d9265fcffe"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a14da4b931a15282d4b2634d9265fcffe">VisitValueVar</a> ([NotNull] YarnSpinnerParser.ValueVarContext context)</td></tr>
-<tr class="memdesc:a14da4b931a15282d4b2634d9265fcffe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>valueVar</code> labeled alternative in YarnSpinnerParser.value.  <a href="#a14da4b931a15282d4b2634d9265fcffe">More...</a><br/></td></tr>
-<tr class="separator:a14da4b931a15282d4b2634d9265fcffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e535c2b63583902b3517895be63123b"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a2e535c2b63583902b3517895be63123b">VisitValueString</a> ([NotNull] YarnSpinnerParser.ValueStringContext context)</td></tr>
-<tr class="memdesc:a2e535c2b63583902b3517895be63123b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>valueString</code> labeled alternative in YarnSpinnerParser.value.  <a href="#a2e535c2b63583902b3517895be63123b">More...</a><br/></td></tr>
-<tr class="separator:a2e535c2b63583902b3517895be63123b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89486f7b19cc9485eeb85c0a712ce4da"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a89486f7b19cc9485eeb85c0a712ce4da">VisitValueFunc</a> ([NotNull] YarnSpinnerParser.ValueFuncContext context)</td></tr>
-<tr class="memdesc:a89486f7b19cc9485eeb85c0a712ce4da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>valueFunc</code> labeled alternative in YarnSpinnerParser.value.  <a href="#a89486f7b19cc9485eeb85c0a712ce4da">More...</a><br/></td></tr>
-<tr class="separator:a89486f7b19cc9485eeb85c0a712ce4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99862f42b27b2bb1474ecbd55ab0aac2"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a99862f42b27b2bb1474ecbd55ab0aac2">VisitValueNull</a> ([NotNull] YarnSpinnerParser.ValueNullContext context)</td></tr>
-<tr class="memdesc:a99862f42b27b2bb1474ecbd55ab0aac2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>valueNull</code> labeled alternative in YarnSpinnerParser.value.  <a href="#a99862f42b27b2bb1474ecbd55ab0aac2">More...</a><br/></td></tr>
-<tr class="separator:a99862f42b27b2bb1474ecbd55ab0aac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5f6cb6458c58c7af89a75abcbec0348"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ad5f6cb6458c58c7af89a75abcbec0348">VisitVariable</a> ([NotNull] YarnSpinnerParser.VariableContext context)</td></tr>
-<tr class="memdesc:ad5f6cb6458c58c7af89a75abcbec0348"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.variable.  <a href="#ad5f6cb6458c58c7af89a75abcbec0348">More...</a><br/></td></tr>
-<tr class="separator:ad5f6cb6458c58c7af89a75abcbec0348"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3051b174bf5018e7480e6c4e53fbeeb5"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">GetField</a> (int index)</td></tr>
+<tr class="memdesc:a3051b174bf5018e7480e6c4e53fbeeb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw field at position (column) index.  <a href="#a3051b174bf5018e7480e6c4e53fbeeb5">More...</a><br/></td></tr>
+<tr class="separator:a3051b174bf5018e7480e6c4e53fbeeb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef0f82a96420210343b447e7709400ae"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#aef0f82a96420210343b447e7709400ae">GetField</a> (string name)</td></tr>
+<tr class="memdesc:aef0f82a96420210343b447e7709400ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw field at position (column) name.  <a href="#aef0f82a96420210343b447e7709400ae">More...</a><br/></td></tr>
+<tr class="separator:aef0f82a96420210343b447e7709400ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89d1e21e131f988e0959c5edff4f982f"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a89d1e21e131f988e0959c5edff4f982f">GetField</a> (string name, int index)</td></tr>
+<tr class="memdesc:a89d1e21e131f988e0959c5edff4f982f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw field at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name.  <a href="#a89d1e21e131f988e0959c5edff4f982f">More...</a><br/></td></tr>
+<tr class="separator:a89d1e21e131f988e0959c5edff4f982f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a139fd51e035dc42bfc820371209b9782"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a139fd51e035dc42bfc820371209b9782">GetField</a> (Type type, int index)</td></tr>
+<tr class="memdesc:a139fd51e035dc42bfc820371209b9782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Object using the specified ITypeConverter.  <a href="#a139fd51e035dc42bfc820371209b9782">More...</a><br/></td></tr>
+<tr class="separator:a139fd51e035dc42bfc820371209b9782"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c">GetField</a> (Type type, string name)</td></tr>
+<tr class="memdesc:a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Object using the specified ITypeConverter.  <a href="#a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c">More...</a><br/></td></tr>
+<tr class="separator:a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0128a2e48bd24db451e64b17b4631ae"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ae0128a2e48bd24db451e64b17b4631ae">GetField</a> (Type type, string name, int index)</td></tr>
+<tr class="memdesc:ae0128a2e48bd24db451e64b17b4631ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Object using the specified ITypeConverter.  <a href="#ae0128a2e48bd24db451e64b17b4631ae">More...</a><br/></td></tr>
+<tr class="separator:ae0128a2e48bd24db451e64b17b4631ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc16f1e7d5c552c8adb86087c8774b43"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#acc16f1e7d5c552c8adb86087c8774b43">GetField</a> (Type type, int index, <a class="el" href="a00123.html">ITypeConverter</a> converter)</td></tr>
+<tr class="memdesc:acc16f1e7d5c552c8adb86087c8774b43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Object using the specified ITypeConverter.  <a href="#acc16f1e7d5c552c8adb86087c8774b43">More...</a><br/></td></tr>
+<tr class="separator:acc16f1e7d5c552c8adb86087c8774b43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3fce0bfa735dc92844d51d756396892"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ad3fce0bfa735dc92844d51d756396892">GetField</a> (Type type, string name, <a class="el" href="a00123.html">ITypeConverter</a> converter)</td></tr>
+<tr class="memdesc:ad3fce0bfa735dc92844d51d756396892"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Object using the specified ITypeConverter.  <a href="#ad3fce0bfa735dc92844d51d756396892">More...</a><br/></td></tr>
+<tr class="separator:ad3fce0bfa735dc92844d51d756396892"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04389e3edb60cc2ab9760668e7781518"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a04389e3edb60cc2ab9760668e7781518">GetField</a> (Type type, string name, int index, <a class="el" href="a00123.html">ITypeConverter</a> converter)</td></tr>
+<tr class="memdesc:a04389e3edb60cc2ab9760668e7781518"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Object using the specified ITypeConverter.  <a href="#a04389e3edb60cc2ab9760668e7781518">More...</a><br/></td></tr>
+<tr class="separator:a04389e3edb60cc2ab9760668e7781518"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5282bab4799899c6c986fa4189eea0a"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#af5282bab4799899c6c986fa4189eea0a">GetField&lt; T &gt;</a> (int index)</td></tr>
+<tr class="memdesc:af5282bab4799899c6c986fa4189eea0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) index.  <a href="#af5282bab4799899c6c986fa4189eea0a">More...</a><br/></td></tr>
+<tr class="separator:af5282bab4799899c6c986fa4189eea0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3b292ed7d991a8e975f67fb8ddde859"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#af3b292ed7d991a8e975f67fb8ddde859">GetField&lt; T &gt;</a> (string name)</td></tr>
+<tr class="memdesc:af3b292ed7d991a8e975f67fb8ddde859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name.  <a href="#af3b292ed7d991a8e975f67fb8ddde859">More...</a><br/></td></tr>
+<tr class="separator:af3b292ed7d991a8e975f67fb8ddde859"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8c349da18823eb8c30911d891b3e3bc"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#aa8c349da18823eb8c30911d891b3e3bc">GetField&lt; T &gt;</a> (string name, int index)</td></tr>
+<tr class="memdesc:aa8c349da18823eb8c30911d891b3e3bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name.  <a href="#aa8c349da18823eb8c30911d891b3e3bc">More...</a><br/></td></tr>
+<tr class="separator:aa8c349da18823eb8c30911d891b3e3bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ae4f95a7b9bbbbf2ef19009da81dd18"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a8ae4f95a7b9bbbbf2ef19009da81dd18">GetField&lt; T &gt;</a> (int index, <a class="el" href="a00123.html">ITypeConverter</a> converter)</td></tr>
+<tr class="memdesc:a8ae4f95a7b9bbbbf2ef19009da81dd18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) index using the given ITypeConverter.  <a href="#a8ae4f95a7b9bbbbf2ef19009da81dd18">More...</a><br/></td></tr>
+<tr class="separator:a8ae4f95a7b9bbbbf2ef19009da81dd18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a640689c76826aafd8c79ff71d4f0992d"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a640689c76826aafd8c79ff71d4f0992d">GetField&lt; T &gt;</a> (string name, <a class="el" href="a00123.html">ITypeConverter</a> converter)</td></tr>
+<tr class="memdesc:a640689c76826aafd8c79ff71d4f0992d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name using the given ITypeConverter.  <a href="#a640689c76826aafd8c79ff71d4f0992d">More...</a><br/></td></tr>
+<tr class="separator:a640689c76826aafd8c79ff71d4f0992d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8851c2bc99ee403fc003f62ae96b090c"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a8851c2bc99ee403fc003f62ae96b090c">GetField&lt; T &gt;</a> (string name, int index, <a class="el" href="a00123.html">ITypeConverter</a> converter)</td></tr>
+<tr class="memdesc:a8851c2bc99ee403fc003f62ae96b090c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name.  <a href="#a8851c2bc99ee403fc003f62ae96b090c">More...</a><br/></td></tr>
+<tr class="separator:a8851c2bc99ee403fc003f62ae96b090c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a787094f29179fcf06cec6db42fa59de3"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a787094f29179fcf06cec6db42fa59de3">GetField&lt; T, TConverter &gt;</a> (int index)</td></tr>
+<tr class="memdesc:a787094f29179fcf06cec6db42fa59de3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) index using the given ITypeConverter.  <a href="#a787094f29179fcf06cec6db42fa59de3">More...</a><br/></td></tr>
+<tr class="separator:a787094f29179fcf06cec6db42fa59de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7ea281792a1e0e8f64991062a3acffb"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ae7ea281792a1e0e8f64991062a3acffb">GetField&lt; T, TConverter &gt;</a> (string name)</td></tr>
+<tr class="memdesc:ae7ea281792a1e0e8f64991062a3acffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name using the given ITypeConverter.  <a href="#ae7ea281792a1e0e8f64991062a3acffb">More...</a><br/></td></tr>
+<tr class="separator:ae7ea281792a1e0e8f64991062a3acffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a55c1b2fc98eb7ef4bdb73e80f4b093"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a6a55c1b2fc98eb7ef4bdb73e80f4b093">GetField&lt; T, TConverter &gt;</a> (string name, int index)</td></tr>
+<tr class="memdesc:a6a55c1b2fc98eb7ef4bdb73e80f4b093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name.  <a href="#a6a55c1b2fc98eb7ef4bdb73e80f4b093">More...</a><br/></td></tr>
+<tr class="separator:a6a55c1b2fc98eb7ef4bdb73e80f4b093"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a476c426866e69a8c1b81f40956e0b538"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a476c426866e69a8c1b81f40956e0b538">TryGetField&lt; T &gt;</a> (int index, out T field)</td></tr>
+<tr class="memdesc:a476c426866e69a8c1b81f40956e0b538"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) index.  <a href="#a476c426866e69a8c1b81f40956e0b538">More...</a><br/></td></tr>
+<tr class="separator:a476c426866e69a8c1b81f40956e0b538"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ac55ecd014a239d9b0b62345637b745"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a1ac55ecd014a239d9b0b62345637b745">TryGetField&lt; T &gt;</a> (string name, out T field)</td></tr>
+<tr class="memdesc:a1ac55ecd014a239d9b0b62345637b745"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name.  <a href="#a1ac55ecd014a239d9b0b62345637b745">More...</a><br/></td></tr>
+<tr class="separator:a1ac55ecd014a239d9b0b62345637b745"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c2667e997378fa984f44d7d5e62492b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a4c2667e997378fa984f44d7d5e62492b">TryGetField&lt; T &gt;</a> (string name, int index, out T field)</td></tr>
+<tr class="memdesc:a4c2667e997378fa984f44d7d5e62492b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name.  <a href="#a4c2667e997378fa984f44d7d5e62492b">More...</a><br/></td></tr>
+<tr class="separator:a4c2667e997378fa984f44d7d5e62492b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8aaa34c75b213e3774394b3f912842f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#aa8aaa34c75b213e3774394b3f912842f">TryGetField&lt; T &gt;</a> (int index, <a class="el" href="a00123.html">ITypeConverter</a> converter, out T field)</td></tr>
+<tr class="memdesc:aa8aaa34c75b213e3774394b3f912842f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) index using the specified ITypeConverter.  <a href="#aa8aaa34c75b213e3774394b3f912842f">More...</a><br/></td></tr>
+<tr class="separator:aa8aaa34c75b213e3774394b3f912842f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33e4e39bf2395a79a90cb02554c84d22"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a33e4e39bf2395a79a90cb02554c84d22">TryGetField&lt; T &gt;</a> (string name, <a class="el" href="a00123.html">ITypeConverter</a> converter, out T field)</td></tr>
+<tr class="memdesc:a33e4e39bf2395a79a90cb02554c84d22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name using the specified ITypeConverter.  <a href="#a33e4e39bf2395a79a90cb02554c84d22">More...</a><br/></td></tr>
+<tr class="separator:a33e4e39bf2395a79a90cb02554c84d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d001b5e65d063db9f102b720da0edf2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a2d001b5e65d063db9f102b720da0edf2">TryGetField&lt; T &gt;</a> (string name, int index, <a class="el" href="a00123.html">ITypeConverter</a> converter, out T field)</td></tr>
+<tr class="memdesc:a2d001b5e65d063db9f102b720da0edf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name using the specified ITypeConverter.  <a href="#a2d001b5e65d063db9f102b720da0edf2">More...</a><br/></td></tr>
+<tr class="separator:a2d001b5e65d063db9f102b720da0edf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5df5f7bc974ec541c25bf63b29ebf618"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a5df5f7bc974ec541c25bf63b29ebf618">TryGetField&lt; T, TConverter &gt;</a> (int index, out T field)</td></tr>
+<tr class="memdesc:a5df5f7bc974ec541c25bf63b29ebf618"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) index using the specified ITypeConverter.  <a href="#a5df5f7bc974ec541c25bf63b29ebf618">More...</a><br/></td></tr>
+<tr class="separator:a5df5f7bc974ec541c25bf63b29ebf618"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bd7b721a7b4acbc21050817aca71f21"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a9bd7b721a7b4acbc21050817aca71f21">TryGetField&lt; T, TConverter &gt;</a> (string name, out T field)</td></tr>
+<tr class="memdesc:a9bd7b721a7b4acbc21050817aca71f21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name using the specified ITypeConverter.  <a href="#a9bd7b721a7b4acbc21050817aca71f21">More...</a><br/></td></tr>
+<tr class="separator:a9bd7b721a7b4acbc21050817aca71f21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ecc5b03e5e818163aca86b979b01158"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a8ecc5b03e5e818163aca86b979b01158">TryGetField&lt; T, TConverter &gt;</a> (string name, int index, out T field)</td></tr>
+<tr class="memdesc:a8ecc5b03e5e818163aca86b979b01158"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name using the specified ITypeConverter.  <a href="#a8ecc5b03e5e818163aca86b979b01158">More...</a><br/></td></tr>
+<tr class="separator:a8ecc5b03e5e818163aca86b979b01158"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49ad028b358d5a0642d8108b3bb87ff7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a49ad028b358d5a0642d8108b3bb87ff7">IsRecordEmpty</a> ()</td></tr>
+<tr class="memdesc:a49ad028b358d5a0642d8108b3bb87ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether the current record is empty. A record is considered empty if all fields are empty.  <a href="#a49ad028b358d5a0642d8108b3bb87ff7">More...</a><br/></td></tr>
+<tr class="separator:a49ad028b358d5a0642d8108b3bb87ff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae82d451b6e26742a685d652c84c0b807"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ae82d451b6e26742a685d652c84c0b807">GetRecord&lt; T &gt;</a> ()</td></tr>
+<tr class="memdesc:ae82d451b6e26742a685d652c84c0b807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the record converted into Type T.  <a href="#ae82d451b6e26742a685d652c84c0b807">More...</a><br/></td></tr>
+<tr class="separator:ae82d451b6e26742a685d652c84c0b807"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a911748932ed897a2e7086c0c49bdceea"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a911748932ed897a2e7086c0c49bdceea">GetRecord</a> (Type type)</td></tr>
+<tr class="memdesc:a911748932ed897a2e7086c0c49bdceea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the record.  <a href="#a911748932ed897a2e7086c0c49bdceea">More...</a><br/></td></tr>
+<tr class="separator:a911748932ed897a2e7086c0c49bdceea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a880d3ee25c0b55bd9a193c61cd116e21"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a880d3ee25c0b55bd9a193c61cd116e21">GetRecords&lt; T &gt;</a> ()</td></tr>
+<tr class="memdesc:a880d3ee25c0b55bd9a193c61cd116e21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the records in the CSV file and converts each to Type T. The Read method should not be used when using this.  <a href="#a880d3ee25c0b55bd9a193c61cd116e21">More...</a><br/></td></tr>
+<tr class="separator:a880d3ee25c0b55bd9a193c61cd116e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f1187e434201dc22036f2f48cc4d050"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a8f1187e434201dc22036f2f48cc4d050">GetRecords</a> (Type type)</td></tr>
+<tr class="memdesc:a8f1187e434201dc22036f2f48cc4d050"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the records in the CSV file and converts each to Type T. The Read method should not be used when using this.  <a href="#a8f1187e434201dc22036f2f48cc4d050">More...</a><br/></td></tr>
+<tr class="separator:a8f1187e434201dc22036f2f48cc4d050"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae903a343efdafa8b22236184dfcf7a97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ae903a343efdafa8b22236184dfcf7a97">ClearRecordCache&lt; T &gt;</a> ()</td></tr>
+<tr class="memdesc:ae903a343efdafa8b22236184dfcf7a97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the record cache for the given type. After GetRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, ClearRecordCache{T} needs to be called to update the record cache.  <a href="#ae903a343efdafa8b22236184dfcf7a97">More...</a><br/></td></tr>
+<tr class="separator:ae903a343efdafa8b22236184dfcf7a97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa035080da331f40071b29c17b1f8c228"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#aa035080da331f40071b29c17b1f8c228">ClearRecordCache</a> (Type type)</td></tr>
+<tr class="memdesc:aa035080da331f40071b29c17b1f8c228"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the record cache for the given type. After ICsvReaderRow.GetRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <a class="el" href="a00115.html#aa035080da331f40071b29c17b1f8c228" title="Clears the record cache for the given type. After ICsvReaderRow.GetRecord{T} is called the first time...">ClearRecordCache( Type )</a> needs to be called to update the record cache.  <a href="#aa035080da331f40071b29c17b1f8c228">More...</a><br/></td></tr>
+<tr class="separator:aa035080da331f40071b29c17b1f8c228"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87251d0ff95c599cf3f6bd1cbb8204d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a87251d0ff95c599cf3f6bd1cbb8204d8">ClearRecordCache</a> ()</td></tr>
+<tr class="memdesc:a87251d0ff95c599cf3f6bd1cbb8204d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the record cache for all types. After ICsvReaderRow.GetRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <a class="el" href="a00115.html#a87251d0ff95c599cf3f6bd1cbb8204d8" title="Clears the record cache for all types. After ICsvReaderRow.GetRecord{T} is called the first time...">ClearRecordCache()</a> needs to be called to update the record cache.  <a href="#a87251d0ff95c599cf3f6bd1cbb8204d8">More...</a><br/></td></tr>
+<tr class="separator:a87251d0ff95c599cf3f6bd1cbb8204d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a4e8958e51331591b1d9e811e32bd92d0"><td class="memItemLeft" align="right" valign="top">string[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a4e8958e51331591b1d9e811e32bd92d0">CurrentRecord</a><code> [get]</code></td></tr>
+<tr class="memdesc:a4e8958e51331591b1d9e811e32bd92d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current record;  <a href="#a4e8958e51331591b1d9e811e32bd92d0">More...</a><br/></td></tr>
+<tr class="separator:a4e8958e51331591b1d9e811e32bd92d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1bd960358282c70f0b85de90f00b446"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ac1bd960358282c70f0b85de90f00b446">Row</a><code> [get]</code></td></tr>
+<tr class="memdesc:ac1bd960358282c70f0b85de90f00b446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current row.  <a href="#ac1bd960358282c70f0b85de90f00b446">More...</a><br/></td></tr>
+<tr class="separator:ac1bd960358282c70f0b85de90f00b446"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45d5b14c7382418d90b4c085c2bdc7dc"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a45d5b14c7382418d90b4c085c2bdc7dc">this[int index]</a><code> [get]</code></td></tr>
+<tr class="memdesc:a45d5b14c7382418d90b4c085c2bdc7dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw field at position (column) index.  <a href="#a45d5b14c7382418d90b4c085c2bdc7dc">More...</a><br/></td></tr>
+<tr class="separator:a45d5b14c7382418d90b4c085c2bdc7dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a999cf88bd8eb0b59c65b235cfe0e2835"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a999cf88bd8eb0b59c65b235cfe0e2835">this[string name]</a><code> [get]</code></td></tr>
+<tr class="memdesc:a999cf88bd8eb0b59c65b235cfe0e2835"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw field at position (column) name.  <a href="#a999cf88bd8eb0b59c65b235cfe0e2835">More...</a><br/></td></tr>
+<tr class="separator:a999cf88bd8eb0b59c65b235cfe0e2835"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe611a2c471e6f11da579297bb876fb1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#abe611a2c471e6f11da579297bb876fb1">this[string name, int index]</a><code> [get]</code></td></tr>
+<tr class="memdesc:abe611a2c471e6f11da579297bb876fb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw field at position (column) name.  <a href="#abe611a2c471e6f11da579297bb876fb1">More...</a><br/></td></tr>
+<tr class="separator:abe611a2c471e6f11da579297bb876fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This interface defines a complete generic visitor for a parse tree produced by YarnSpinnerParser. </p>
+<div class="textblock"><p>Defines methods used to read parsed data from a CSV file row. </p>
+
+<p>Definition at line <a class="el" href="a00248_source.html#l00016">16</a> of file <a class="el" href="a00248_source.html">ICsvReaderRow.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aa035080da331f40071b29c17b1f8c228"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CsvHelper.ICsvReaderRow.ClearRecordCache </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clears the record cache for the given type. After ICsvReaderRow.GetRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <a class="el" href="a00115.html#aa035080da331f40071b29c17b1f8c228" title="Clears the record cache for the given type. After ICsvReaderRow.GetRecord{T} is called the first time...">ClearRecordCache( Type )</a> needs to be called to update the record cache. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type to invalidate.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="a00077.html#a669ecad48ad94b03a06131e78faa767a">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a87251d0ff95c599cf3f6bd1cbb8204d8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CsvHelper.ICsvReaderRow.ClearRecordCache </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clears the record cache for all types. After ICsvReaderRow.GetRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <a class="el" href="a00115.html#a87251d0ff95c599cf3f6bd1cbb8204d8" title="Clears the record cache for all types. After ICsvReaderRow.GetRecord{T} is called the first time...">ClearRecordCache()</a> needs to be called to update the record cache. </p>
+
+<p>Implemented in <a class="el" href="a00077.html#a1e115e1f379009b2b1cb91e7c24fdd02">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae903a343efdafa8b22236184dfcf7a97"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00115.html#aa035080da331f40071b29c17b1f8c228">CsvHelper.ICsvReaderRow.ClearRecordCache</a>&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clears the record cache for the given type. After GetRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, ClearRecordCache{T} needs to be called to update the record cache. </p>
+
+<p>Implemented in <a class="el" href="a00077.html#abc2052d47de1fc745579881daeae8806">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3051b174bf5018e7480e6c4e53fbeeb5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string CsvHelper.ICsvReaderRow.GetField </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the raw field at position (column) index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The raw field.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00077.html#ac1500fd628ea947c3ae05a7ce3fbd01a">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aef0f82a96420210343b447e7709400ae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string CsvHelper.ICsvReaderRow.GetField </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the raw field at position (column) name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The raw field.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00077.html#a2dea592c2879215b86a4e49280492930">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a89d1e21e131f988e0959c5edff4f982f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string CsvHelper.ICsvReaderRow.GetField </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the raw field at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The raw field.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00077.html#aa1d5909bc0bb20045ece92b3448a5297">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a139fd51e035dc42bfc820371209b9782"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object CsvHelper.ICsvReaderRow.GetField </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the field converted to Object using the specified ITypeConverter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type of the field.</td></tr>
+    <tr><td class="paramname">index</td><td>The index of the field.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The field converted to Object.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00077.html#a35724e33388ac5772ccfa0526ca812fc">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object CsvHelper.ICsvReaderRow.GetField </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the field converted to Object using the specified ITypeConverter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type of the field.</td></tr>
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The field converted to Object.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00077.html#a5e255cb4bfa8d7a9dc364660cb079415">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae0128a2e48bd24db451e64b17b4631ae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object CsvHelper.ICsvReaderRow.GetField </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the field converted to Object using the specified ITypeConverter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type of the field.</td></tr>
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The field converted to Object.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00077.html#a3fb351f9f77bb39bddc05c76691e830f">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acc16f1e7d5c552c8adb86087c8774b43"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object CsvHelper.ICsvReaderRow.GetField </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
+          <td class="paramname"><em>converter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the field converted to Object using the specified ITypeConverter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type of the field.</td></tr>
+    <tr><td class="paramname">index</td><td>The index of the field.</td></tr>
+    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The field converted to Object.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00077.html#ae574612025171f2169e3e3683067d326">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad3fce0bfa735dc92844d51d756396892"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object CsvHelper.ICsvReaderRow.GetField </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
+          <td class="paramname"><em>converter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the field converted to Object using the specified ITypeConverter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type of the field.</td></tr>
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The field converted to Object.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00077.html#a29d9cc37e0a7fd6a08cba9626ebdfe69">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a04389e3edb60cc2ab9760668e7781518"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object CsvHelper.ICsvReaderRow.GetField </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
+          <td class="paramname"><em>converter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the field converted to Object using the specified ITypeConverter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type of the field.</td></tr>
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
+    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The field converted to Object.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00077.html#a08ff19d0e0b2c10b644e14621966f2fa">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af5282bab4799899c6c986fa4189eea0a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the field converted to Type T at position (column) index. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">Result</td><td>The return type of the visit operation.</td></tr>
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
 
-<p>Definition at line <a class="el" href="a00304_source.html#l00033">33</a> of file <a class="el" href="a00304_source.html">YarnSpinnerParserVisitor.cs</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a15d9881bebe28f077c5061af2f021d01"></a>
+<p>Implemented in <a class="el" href="a00077.html#a6a43cfaf39caea93ecd87e506be7b404">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af3b292ed7d991a8e975f67fb8ddde859"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitAction_statement </td>
+          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T &gt; </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Action_statementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.action_statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+<p>Gets the field converted to Type T at position (column) name. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00034.html#a1974944d85b5250c60a4ffc07f958cd0">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a2007b8ca6078d351b39ad4df496dd00d">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#a8ebe0d6e7644eebbbbddef3c9d2922be">CsvHelper.CsvReader</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab308423e3e80579ec8bac951788f988b"></a>
+<a class="anchor" id="aa8c349da18823eb8c30911d891b3e3bc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitBody </td>
+          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T &gt; </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.BodyContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Implemented in <a class="el" href="a00077.html#afd2c85d724fdc84220a15e5f576cb673">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8ae4f95a7b9bbbbf2ef19009da81dd18"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
+          <td class="paramname"><em>converter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the field converted to Type T at position (column) index using the given ITypeConverter. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
+    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00077.html#a2b593a60de4dc4d776abde5c29232d0d">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a640689c76826aafd8c79ff71d4f0992d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
+          <td class="paramname"><em>converter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the field converted to Type T at position (column) name using the given ITypeConverter. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00077.html#aadec530254222a2c6fb0e25774a7498b">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8851c2bc99ee403fc003f62ae96b090c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
+          <td class="paramname"><em>converter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
+    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00077.html#a607c6c23ce887b6de60f81c1ea2a8348">CsvHelper.CsvReader</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a787094f29179fcf06cec6db42fa59de3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T, TConverter &gt; </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.body. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+<p>Gets the field converted to Type T at position (column) index using the given ITypeConverter. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
+    <tr><td class="paramname">TConverter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00187.html#a3b84a7518f955a935b1ac327e568f29d">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#ac989008aec99a6462d9980a1d8a87072">CsvHelper.CsvReader</a>.</p>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>TConverter</em></td><td>&#160;:</td><td valign="top"><em>ITypeConverter</em></td><td>&#160;</td></tr>
+</table>
+</dl>
+</div>
 
 </div>
 </div>
-<a class="anchor" id="ac2d13d69995b3a8bf8c0733341d0c72e"></a>
+<a class="anchor" id="ae7ea281792a1e0e8f64991062a3acffb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitDialogue </td>
+          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T, TConverter &gt; </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.DialogueContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.dialogue. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+<p>Gets the field converted to Type T at position (column) name using the given ITypeConverter. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
+    <tr><td class="paramname">TConverter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00187.html#ad2daefa4c88b72128606682d094e2485">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#ac76d4fabc62e9ac896c1b2e6e861ed11">CsvHelper.CsvReader</a>.</p>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>TConverter</em></td><td>&#160;:</td><td valign="top"><em>ITypeConverter</em></td><td>&#160;</td></tr>
+</table>
+</dl>
+</div>
 
 </div>
 </div>
-<a class="anchor" id="a0e4ddbac78cfa60c490d8a85f39093fd"></a>
+<a class="anchor" id="a6a55c1b2fc98eb7ef4bdb73e80f4b093"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitElse_clause </td>
+          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T, TConverter &gt; </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Else_clauseContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
+    <tr><td class="paramname">TConverter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00077.html#a6b77ca85326f76d006935275b46342f0">CsvHelper.CsvReader</a>.</p>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>TConverter</em></td><td>&#160;:</td><td valign="top"><em>ITypeConverter</em></td><td>&#160;</td></tr>
+</table>
+</dl>
+</div>
+
+</div>
+</div>
+<a class="anchor" id="a911748932ed897a2e7086c0c49bdceea"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object CsvHelper.ICsvReaderRow.GetRecord </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.else_clause. </p>
+<p>Gets the record. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+    <tr><td class="paramname">type</td><td>The Type of the record.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="section return"><dt>Returns</dt><dd>The record.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00187.html#acb4799ad5491a7c3f35b8851dc4745e3">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#a10680de48d9c21ef1792661947f9f601">CsvHelper.CsvReader</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a03d1e78faa25780e97fe6e643c0ffe8b"></a>
+<a class="anchor" id="ae82d451b6e26742a685d652c84c0b807"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitElse_if_clause </td>
+          <td class="memname">T <a class="el" href="a00115.html#a911748932ed897a2e7086c0c49bdceea">CsvHelper.ICsvReaderRow.GetRecord</a>&lt; T &gt; </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Else_if_clauseContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.else_if_clause. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+<p>Gets the record converted into Type T. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the record.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="section return"><dt>Returns</dt><dd>The record converted to Type T.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00187.html#aa646fda5f6cd91b1e8e6be24e686a25a">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#ac607c1182168a5f9c7fa1642670ad320">CsvHelper.CsvReader</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a618a7fac4c00e587e3576ac230688896"></a>
+<a class="anchor" id="a8f1187e434201dc22036f2f48cc4d050"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpAddSub </td>
+          <td class="memname">IEnumerable&lt;object&gt; CsvHelper.ICsvReaderRow.GetRecords </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpAddSubContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by the <code>expAddSub</code> labeled alternative in YarnSpinnerParser.expression. </p>
+<p>Gets all the records in the CSV file and converts each to Type T. The Read method should not be used when using this. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+    <tr><td class="paramname">type</td><td>The Type of the record.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="section return"><dt>Returns</dt><dd>An IList{Object} of records.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00034.html#a5eb6df63b55c3ba8e8568d8b0ebd0369">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#ab13841b276eed71099a86898cccacd99">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#aaa94b8f27e410194fbaadd75f38b030e">CsvHelper.CsvReader</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aea2594497afe741de8c8ccd3e4378842"></a>
+<a class="anchor" id="a880d3ee25c0b55bd9a193c61cd116e21"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpAndOrXor </td>
+          <td class="memname">IEnumerable&lt;T&gt; <a class="el" href="a00115.html#a8f1187e434201dc22036f2f48cc4d050">CsvHelper.ICsvReaderRow.GetRecords</a>&lt; T &gt; </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpAndOrXorContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by the <code>expAndOrXor</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+<p>Gets all the records in the CSV file and converts each to Type T. The Read method should not be used when using this. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the record.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="section return"><dt>Returns</dt><dd>An IList{T} of records.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00034.html#a19491adb347becea5f216e805763f582">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a39ca6a0cef25c14575a6e28e8e9e8745">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#afed61bbcd2a120487498acd36e6ae2f2">CsvHelper.CsvReader</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a64d1e4be6cdd7ad2bcff2b268d3909df"></a>
+<a class="anchor" id="a49ad028b358d5a0642d8108b3bb87ff7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpComparison </td>
+          <td class="memname">bool CsvHelper.ICsvReaderRow.IsRecordEmpty </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpComparisonContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by the <code>expComparison</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<p>Determines whether the current record is empty. A record is considered empty if all fields are empty. </p>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if [is record empty]; otherwise, <code>false</code>. </dd></dl>
 
-<p>Implemented in <a class="el" href="a00034.html#a3e2bd74ec27b6e603b075e0468db3fb5">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#aa3e8b61abdf6737bb2f2ebbb302f10dc">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#a9f3f7336e8ceebafbfe0959508a2a9f0">CsvHelper.CsvReader</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="abe38c3f9d0c5b2e7addd31e0b5a97db8"></a>
+<a class="anchor" id="a476c426866e69a8c1b81f40956e0b538"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpEquality </td>
+          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt; </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpEqualityContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>field</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by the <code>expEquality</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+<p>Gets the field converted to Type T at position (column) index. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
+    <tr><td class="paramname">field</td><td>The field converted to type T.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00034.html#ae5da558219f42b518a5483f7f794ed0a">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#ae1ab6fcbc8f14f578dc3e9f2f16be450">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#ae5531b6fa3247cf038ca6a9c20ca43dd">CsvHelper.CsvReader</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="abe2ca29018070dc26e6c6ccd9e278993"></a>
+<a class="anchor" id="a1ac55ecd014a239d9b0b62345637b745"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpMultDivMod </td>
+          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt; </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpMultDivModContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>field</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by the <code>expMultDivMod</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+<p>Gets the field converted to Type T at position (column) name. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00034.html#a305e4197937bc3b6336592b61ba01eca">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#ae585d346692cb437d1fc433cb3e2070f">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#aab6eff4536568c7c0268616aa2b9a674">CsvHelper.CsvReader</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa7bbdc8c63543a785416870e72ef6e82"></a>
+<a class="anchor" id="a4c2667e997378fa984f44d7d5e62492b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpMultDivModEquals </td>
+          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt; </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpMultDivModEqualsContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>field</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by the <code>expMultDivModEquals</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+<p>Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
+    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00034.html#ab073a73cd379ee0130e2588c08573345">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a288f0fef2f1dde71faacfceddee9b954">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#a6b32f9207db53d8d09598ee2d743d06b">CsvHelper.CsvReader</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a13bd33ef64f92e9d8d51cd6ed1ac2943"></a>
+<a class="anchor" id="aa8aaa34c75b213e3774394b3f912842f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpNegative </td>
+          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt; </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpNegativeContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
+          <td class="paramname"><em>converter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>field</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by the <code>expNegative</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+<p>Gets the field converted to Type T at position (column) index using the specified ITypeConverter. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
+    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
+    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00034.html#aa6e290a205fcacca64071255c1901161">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a6992d2e7a09d1e9e6c3f6f1ebfa686a6">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#aa8622306f74940386663fa4020eb8971">CsvHelper.CsvReader</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab6ff9851ca2313ac155711cdce83f617"></a>
+<a class="anchor" id="a33e4e39bf2395a79a90cb02554c84d22"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpNot </td>
+          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt; </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpNotContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
+          <td class="paramname"><em>converter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>field</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by the <code>expNot</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+<p>Gets the field converted to Type T at position (column) name using the specified ITypeConverter. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
+    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00034.html#af5870b979203df0e9bc78dd3d8c41b27">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a2b3a3e9b5395b0311e644146a896a21a">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#ade47afe2ea6cdd4439265e9364626c6b">CsvHelper.CsvReader</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a013aa5250f60ca4c93643f89efae2477"></a>
+<a class="anchor" id="a2d001b5e65d063db9f102b720da0edf2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpParens </td>
+          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt; </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpParensContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
+          <td class="paramname"><em>converter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>field</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by the <code>expParens</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+<p>Gets the field converted to Type T at position (column) name using the specified ITypeConverter. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
+    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
+    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00034.html#a51f5522367e1b35dbe15abd3363a7c4b">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a55fe0021b48203160ea72d53e2f97dd8">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#a152975903578da620893d21cba2f8afa">CsvHelper.CsvReader</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0174004a39264c245bfc326ee2cf84c9"></a>
+<a class="anchor" id="a5df5f7bc974ec541c25bf63b29ebf618"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpPlusMinusEquals </td>
+          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T, TConverter &gt; </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpPlusMinusEqualsContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>field</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by the <code>expPlusMinusEquals</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+<p>Gets the field converted to Type T at position (column) index using the specified ITypeConverter. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
+    <tr><td class="paramname">TConverter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
+    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00034.html#a573f37ce6260e0f112d3c6210fadf638">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a824ff62e60e13295f2fae5e96c573f0e">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#a58c361c230abb87ae13f97646748be61">CsvHelper.CsvReader</a>.</p>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>TConverter</em></td><td>&#160;:</td><td valign="top"><em>ITypeConverter</em></td><td>&#160;</td></tr>
+</table>
+</dl>
+</div>
 
 </div>
 </div>
-<a class="anchor" id="ac89121dfc7a63b034449654b5aebbbb3"></a>
+<a class="anchor" id="a9bd7b721a7b4acbc21050817aca71f21"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpValue </td>
+          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T, TConverter &gt; </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpValueContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>field</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by the <code>expValue</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+<p>Gets the field converted to Type T at position (column) name using the specified ITypeConverter. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
+    <tr><td class="paramname">TConverter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00034.html#ac820130b8eb85146442f4124d5212877">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a54fd207b9821555dbbd9f41d82ccab00">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#a1ad85089ce2a6eae15c48e21d5da6c47">CsvHelper.CsvReader</a>.</p>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>TConverter</em></td><td>&#160;:</td><td valign="top"><em>ITypeConverter</em></td><td>&#160;</td></tr>
+</table>
+</dl>
+</div>
 
 </div>
 </div>
-<a class="anchor" id="aae9b15d1b49c2beaef63929b45bee36d"></a>
+<a class="anchor" id="a8ecc5b03e5e818163aca86b979b01158"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitFunction </td>
+          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T, TConverter &gt; </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.FunctionContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>field</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.function. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+<p>Gets the field converted to Type T at position (column) name using the specified ITypeConverter. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
+    <tr><td class="paramname">TConverter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
+    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00034.html#adaf7ebcc18546fc41a78928606fae5cb">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#aa7cf0de1076cfa2e859cbd0ba92226ab">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Implemented in <a class="el" href="a00077.html#a6665d63535ab6ca768ffbc76c1347e58">CsvHelper.CsvReader</a>.</p>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>TConverter</em></td><td>&#160;:</td><td valign="top"><em>ITypeConverter</em></td><td>&#160;</td></tr>
+</table>
+</dl>
+</div>
 
 </div>
 </div>
-<a class="anchor" id="a7e9f060bd7d1c1c9bd1001815959d085"></a>
+<h2 class="groupheader">Property Documentation</h2>
+<a class="anchor" id="a4e8958e51331591b1d9e811e32bd92d0"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitFunction_statement </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Function_statementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
+          <td class="memname">string [] CsvHelper.ICsvReaderRow.CurrentRecord</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.function_statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<p>Get the current record; </p>
 
-<p>Implemented in <a class="el" href="a00034.html#aa30d181ed0c8b5ea56912db147b35091">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a41ebea13c8b494629f3854ac3b02acb1">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Definition at line <a class="el" href="a00248_source.html#l00021">21</a> of file <a class="el" href="a00248_source.html">ICsvReaderRow.cs</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5a9eb068239ecf7a9f22efcbab257c26"></a>
+<a class="anchor" id="ac1bd960358282c70f0b85de90f00b446"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitHashtag </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.HashtagContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
+          <td class="memname">int CsvHelper.ICsvReaderRow.Row</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.hashtag. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<p>Gets the current row. </p>
 
-<p>Implemented in <a class="el" href="a00187.html#a36bcc3e07dedf9354a2c9967cde577d2">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Definition at line <a class="el" href="a00248_source.html#l00026">26</a> of file <a class="el" href="a00248_source.html">ICsvReaderRow.cs</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a899c6a6b0bf44607a125f5b34cc25263"></a>
+<a class="anchor" id="a45d5b14c7382418d90b4c085c2bdc7dc"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitHashtag_block </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Hashtag_blockContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
+          <td class="memname">string CsvHelper.ICsvReaderRow.this[int index]</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.hashtag_block. </p>
+<p>Gets the raw field at position (column) index. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="section return"><dt>Returns</dt><dd>The raw field.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00187.html#a9400d1b4e26fb2b640320da88ba787d6">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Definition at line <a class="el" href="a00248_source.html#l00033">33</a> of file <a class="el" href="a00248_source.html">ICsvReaderRow.cs</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a24b0bc51bfd9d2fbdd2a4f0211b92e72"></a>
+<a class="anchor" id="abe611a2c471e6f11da579297bb876fb1"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitHeader </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.HeaderContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
+          <td class="memname">string CsvHelper.ICsvReaderRow.this[string name, int index]</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.header. </p>
+<p>Gets the raw field at position (column) name. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="section return"><dt>Returns</dt><dd>The raw field.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00187.html#a08145c313b49a2c5e1a9d4a607f1a57c">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Definition at line <a class="el" href="a00248_source.html#l00048">48</a> of file <a class="el" href="a00248_source.html">ICsvReaderRow.cs</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1a51687aef1d08ea7230e6a41d7cf61a"></a>
+<a class="anchor" id="a999cf88bd8eb0b59c65b235cfe0e2835"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitHeader_line </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Header_lineContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
+          <td class="memname">string CsvHelper.ICsvReaderRow.this[string name]</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.header_line. </p>
+<p>Gets the raw field at position (column) name. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
+    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<dl class="section return"><dt>Returns</dt><dd>The raw field.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00187.html#aa553a267b8ce2984ed2a80a1d28aae9c">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0a1489c13aa25b6d92dcc064298e618e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitHeader_tag </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Header_tagContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.header_tag. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00187.html#a0b88799d0a6f7c51d51403bc6f60c01e">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2f554200966a70217bcb285ad4176d03"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitHeader_title </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Header_titleContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.header_title. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00187.html#a3c54ba6115ce150b2303f3bd37754269">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3069b103a0f46e9d5353822d5042ecc5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitIf_clause </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.If_clauseContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.if_clause. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00187.html#a6b9c14146ced835495bb48bc5c63ebb5">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acfcb940e3a772f45dcd973da249ab5b9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitIf_statement </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.If_statementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.if_statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00034.html#ae2d46c57ab716ded9d7f66cfb7a20a03">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a005f9655da52de2581762a4b61912ecd">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5d976bc67282e8a1a127a7332c8e5c6d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitLine_statement </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Line_statementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.line_statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00187.html#a8439dc653550b8522eaf97298b54c0c4">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>, and <a class="el" href="a00034.html#a0469d0cd00e8737385144157d7dbc436">Yarn.BodyVisitor</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a59c84bd2dbaab540b8db77eb20e67be6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitNode </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.NodeContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.node. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00187.html#a45882fee8dd45b1a7a04d000be825dce">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3f384f2fa7825221a8a78dc8b8b94aae"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitOption_statement </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Option_statementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.option_statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00034.html#abf95a48291ee85c0f9327f0c3ed3dc3c">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a2d06e22c32b7bb86030fe40224f8a3f2">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a51c0c7cf6e9a284e6764690756fad283"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitSet_statement </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Set_statementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.set_statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00034.html#a8d47becbb77d7c75a2d9e6aa777fd5df">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a8d1aa112df14a3492905930adcb664b5">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7b5a47e26ccf33cd524062dbb98a0830"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitShortcut </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ShortcutContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.shortcut. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00187.html#a167e9a44ea7d404370390528fdd70115">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2d05d4bf6c088ca182a3017e1431be72"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitShortcut_conditional </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Shortcut_conditionalContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.shortcut_conditional. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00187.html#a4a4adcbdf2ba70878b015aa47d54b398">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8a3cc5ecfc9bb6ee595d4b7ef9e59162"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitShortcut_statement </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Shortcut_statementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.shortcut_statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00034.html#ad1576a22d74304c3155a0c2fa91be5b9">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a8299d25bc796f9c126635cf72aa3ea12">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adb7363aa1905c378122a785a4f1a8475"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitShortcut_text </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Shortcut_textContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.shortcut_text. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00187.html#a34e4b7e3d1c1c78dab3d017632cdca1f">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2122e68c51db45bb8cb757cfd2af7683"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitStatement </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.StatementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00187.html#a6856fdb64dfc47bb9f1650683a1ccf97">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acd505d5a1c6c6ac264f44d23f0684ffa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitText </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.TextContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.text. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00187.html#ac8a0d095d59f4ef49178ba70353fe9a6">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac8f01ef410d14f0dbc1cdd1931eea7ab"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitValueFalse </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ValueFalseContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>valueFalse</code> labeled alternative in YarnSpinnerParser.value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00034.html#a35ff313be01c2bb671f4d20917a27aae">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#aec30451186238928bd135298139b94e9">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a89486f7b19cc9485eeb85c0a712ce4da"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitValueFunc </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ValueFuncContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>valueFunc</code> labeled alternative in YarnSpinnerParser.value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00034.html#aa2c789583bec673fa64cbf141eae19aa">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a48cbb1894a0d0232f8961361344a6728">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a99862f42b27b2bb1474ecbd55ab0aac2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitValueNull </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ValueNullContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>valueNull</code> labeled alternative in YarnSpinnerParser.value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00034.html#a888533459a53d98ff4891ca5aa21763c">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#adc657b05087e7cdeff4b38fe7bd440f5">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7fe03a0db2907655b545a46a1df3fd55"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitValueNumber </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ValueNumberContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>valueNumber</code> labeled alternative in YarnSpinnerParser.value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00034.html#a2acb075ab60f6aca5319dce40074880f">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#abf395acc2fa3c6eab664d211c8afa8fd">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2e535c2b63583902b3517895be63123b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitValueString </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ValueStringContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>valueString</code> labeled alternative in YarnSpinnerParser.value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00034.html#a33229651713a1b788e8841added0e2db">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a190b9ce38685ffe5b2ce451f9afed24b">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a74925dab55e607597ea5b6f0917b5779"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitValueTrue </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ValueTrueContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>valueTrue</code> labeled alternative in YarnSpinnerParser.value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00034.html#ab627c2664656eedcefd9c2be4231cc51">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#ad42a85096cd1000bac437166c879f0ec">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a14da4b931a15282d4b2634d9265fcffe"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitValueVar </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ValueVarContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>valueVar</code> labeled alternative in YarnSpinnerParser.value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00034.html#aa9e7f9f7310448cb44d0acb88512bc71">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a206d2a25cd566e2209fd4cedfae312c9">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad5f6cb6458c58c7af89a75abcbec0348"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitVariable </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.VariableContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.variable. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00034.html#a884faf4566a71978ca12e671988c740b">Yarn.BodyVisitor</a>, and <a class="el" href="a00187.html#a51d3d21fc833b5b4676ac84a46cdef87">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Definition at line <a class="el" href="a00248_source.html#l00040">40</a> of file <a class="el" href="a00248_source.html">ICsvReaderRow.cs</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this interface was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="a00304_source.html">YarnSpinnerParserVisitor.cs</a></li>
+<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/<a class="el" href="a00248_source.html">ICsvReaderRow.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00115.html">IYarnSpinnerParserVisitor< Result ></a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:36 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00337.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00115.html">ICsvReaderRow</a></li>
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:06 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -1,10 +1,9 @@
 var a00103 =
 [
-    [ "Read", "a00103.html#a411461b4cd33dce0b42c81715359f687", null ],
-    [ "BytePosition", "a00103.html#a23dee37412eeb387df1d336e7bf07cc2", null ],
-    [ "CharPosition", "a00103.html#aa47c7ce6c764dddc78bb4d3ee83714eb", null ],
-    [ "Configuration", "a00103.html#af1303d18a827bf46a56f9cb6ba05ed64", null ],
-    [ "FieldCount", "a00103.html#a50c0428defc2ada782c6863d72a990e4", null ],
-    [ "RawRecord", "a00103.html#a1b238e3bb053f2f6c122ee0d77bb48d7", null ],
-    [ "Row", "a00103.html#a0ec83f976594f51a002448fa2fe2e392", null ]
+    [ "experimental", "a00103.html#ad97950e47ce2aaeb598295b7c3c44b13", null ],
+    [ "files", "a00103.html#aa93cbb1bc1d5328e0a417012621e92d2", null ],
+    [ "onlyConsiderNode", "a00103.html#af4c0062a1d46281d377f87084fde374e", null ],
+    [ "showDebuggingInfo", "a00103.html#a89964ea17bd19caf00cb5bff563ed01c", null ],
+    [ "stringTable", "a00103.html#a7e43c3b73722956cb0f5d507e4eef527", null ],
+    [ "verbose", "a00103.html#ada4d83d1756918f362d55f6649b82b17", null ]
 ];

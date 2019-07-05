@@ -1,33 +1,37 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00129" kind="class" prot="public">
-    <compoundname>Yarn::Dialogue::NodeCompleteResult</compoundname>
-    <basecompoundref refid="a00146" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00129_1ad48b37b51066b94cd48c58626ac0e774" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Dialogue.NodeCompleteResult.nextNode</definition>
+    <compoundname>Yarn::Library</compoundname>
+    <derivedcompoundref refid="a00164" prot="public" virt="non-virtual">Yarn.Dialogue.StandardLibrary</derivedcompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00129_1a2fcc78a63963be5320cf09783b66fab6" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="a00106" kindref="compound">FunctionInfo</ref> &gt;</type>
+        <definition>Dictionary&lt;string, FunctionInfo&gt; Yarn.Library.functions</definition>
         <argsstring></argsstring>
-        <name>nextNode</name>
+        <name>functions</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="a00106" kindref="compound">FunctionInfo</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="177" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="177" bodyend="-1"/>
-        <referencedby refid="a00129_1a88c81469a69987c05aa92780c5a5c1f9" compoundref="a00290" startline="179" endline="181">Yarn.Dialogue.NodeCompleteResult.NodeCompleteResult</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="93" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="93" bodyend="-1"/>
+        <referencedby refid="a00129_1a47d1b3664733207d5cda15f4a4a7af7a" compoundref="a00311" startline="132" endline="135">Yarn.Library.DeregisterFunction</referencedby>
+        <referencedby refid="a00129_1aacfb1f00ad8aa3921941b8d8af0960e0" compoundref="a00311" startline="97" endline="103">Yarn.Library.GetFunction</referencedby>
+        <referencedby refid="a00129_1ab42a4fd30a72156cafa685f959deef78" compoundref="a00311" startline="108" endline="112">Yarn.Library.ImportLibrary</referencedby>
+        <referencedby refid="a00129_1a001ab29d21fe7db10fc9c250914287f9" compoundref="a00311" startline="114" endline="116">Yarn.Library.RegisterFunction</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00129_1a88c81469a69987c05aa92780c5a5c1f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Dialogue.NodeCompleteResult.NodeCompleteResult</definition>
-        <argsstring>(string nextNode)</argsstring>
-        <name>NodeCompleteResult</name>
+      <memberdef kind="function" id="a00129_1aacfb1f00ad8aa3921941b8d8af0960e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00106" kindref="compound">FunctionInfo</ref></type>
+        <definition>FunctionInfo Yarn.Library.GetFunction</definition>
+        <argsstring>(string name)</argsstring>
+        <name>GetFunction</name>
         <param>
           <type>string</type>
-          <declname>nextNode</declname>
+          <declname>name</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -35,42 +39,167 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="179" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="179" bodyend="181"/>
-        <references refid="a00129_1ad48b37b51066b94cd48c58626ac0e774" compoundref="a00290" startline="177">Yarn.Dialogue.NodeCompleteResult.nextNode</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="97" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="97" bodyend="103"/>
+        <references refid="a00129_1a2fcc78a63963be5320cf09783b66fab6" compoundref="a00311" startline="93">Yarn.Library.functions</references>
+        <referencedby refid="a00162_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00316" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00129_1ab42a4fd30a72156cafa685f959deef78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Library.ImportLibrary</definition>
+        <argsstring>(Library otherLibrary)</argsstring>
+        <name>ImportLibrary</name>
+        <param>
+          <type><ref refid="a00129" kindref="compound">Library</ref></type>
+          <declname>otherLibrary</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="108" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="108" bodyend="112"/>
+        <references refid="a00129_1a2fcc78a63963be5320cf09783b66fab6" compoundref="a00311" startline="93">Yarn.Library.functions</references>
+      </memberdef>
+      <memberdef kind="function" id="a00129_1a001ab29d21fe7db10fc9c250914287f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Library.RegisterFunction</definition>
+        <argsstring>(FunctionInfo function)</argsstring>
+        <name>RegisterFunction</name>
+        <param>
+          <type><ref refid="a00106" kindref="compound">FunctionInfo</ref></type>
+          <declname>function</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="114" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="114" bodyend="116"/>
+        <references refid="a00129_1a2fcc78a63963be5320cf09783b66fab6" compoundref="a00311" startline="93">Yarn.Library.functions</references>
+        <referencedby refid="a00129_1a2a698de0b528b2bac17bd85f57d45d4b" compoundref="a00311" startline="118" endline="121">Yarn.Library.RegisterFunction</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00129_1a2a698de0b528b2bac17bd85f57d45d4b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Library.RegisterFunction</definition>
+        <argsstring>(string name, int parameterCount, ReturningFunction implementation)</argsstring>
+        <name>RegisterFunction</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>parameterCount</declname>
+        </param>
+        <param>
+          <type><ref refid="a00051_1a5177bf74fbfe7303fac9d8236c2e514b" kindref="member">ReturningFunction</ref></type>
+          <declname>implementation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="118" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="118" bodyend="121"/>
+        <references refid="a00129_1a001ab29d21fe7db10fc9c250914287f9" compoundref="a00311" startline="114" endline="116">Yarn.Library.RegisterFunction</references>
+      </memberdef>
+      <memberdef kind="function" id="a00129_1a6820eaa082077f16496effbc9041b7ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Library.RegisterFunction</definition>
+        <argsstring>(string name, int parameterCount, Function implementation)</argsstring>
+        <name>RegisterFunction</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>parameterCount</declname>
+        </param>
+        <param>
+          <type><ref refid="a00051_1ae0be2e5cf13d5779816102439e61ff1a" kindref="member">Function</ref></type>
+          <declname>implementation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="123" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="123" bodyend="126"/>
+        <references refid="a00129_1a001ab29d21fe7db10fc9c250914287f9" compoundref="a00311" startline="114" endline="116">Yarn.Library.RegisterFunction</references>
+      </memberdef>
+      <memberdef kind="function" id="a00129_1a6c9a1cc3e25b6aae25e210d8a0d68c09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Yarn.Library.FunctionExists</definition>
+        <argsstring>(string name)</argsstring>
+        <name>FunctionExists</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="128" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="128" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="a00129_1a47d1b3664733207d5cda15f4a4a7af7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Library.DeregisterFunction</definition>
+        <argsstring>(string name)</argsstring>
+        <name>DeregisterFunction</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="132" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="132" bodyend="135"/>
+        <references refid="a00129_1a2fcc78a63963be5320cf09783b66fab6" compoundref="a00311" startline="93">Yarn.Library.functions</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>We&apos;ve reached the end of this node. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1533">
-        <label>Yarn.Dialogue.NodeCompleteResult</label>
-        <link refid="a00129"/>
-        <childnode refid="1534" relation="public-inheritance">
+      <node id="1490">
+        <label>Yarn.Dialogue.StandardLibrary</label>
+        <link refid="a00164"/>
+        <childnode refid="1489" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1534">
-        <label>RunnerResult</label>
-        <link refid="a00146"/>
+      <node id="1489">
+        <label>Yarn.Library</label>
+        <link refid="a00129"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1535">
-        <label>Yarn.Dialogue.NodeCompleteResult</label>
+      <node id="1491">
+        <label>Yarn.Library</label>
         <link refid="a00129"/>
-        <childnode refid="1536" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1536">
-        <label>RunnerResult</label>
-        <link refid="a00146"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="176" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="176" bodyend="182"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="91" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="90" bodyend="137"/>
     <listofallmembers>
-      <member refid="a00129_1ad48b37b51066b94cd48c58626ac0e774" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::NodeCompleteResult</scope><name>nextNode</name></member>
-      <member refid="a00129_1a88c81469a69987c05aa92780c5a5c1f9" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::NodeCompleteResult</scope><name>NodeCompleteResult</name></member>
+      <member refid="a00129_1a47d1b3664733207d5cda15f4a4a7af7a" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>DeregisterFunction</name></member>
+      <member refid="a00129_1a6c9a1cc3e25b6aae25e210d8a0d68c09" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>FunctionExists</name></member>
+      <member refid="a00129_1a2fcc78a63963be5320cf09783b66fab6" prot="private" virt="non-virtual"><scope>Yarn::Library</scope><name>functions</name></member>
+      <member refid="a00129_1aacfb1f00ad8aa3921941b8d8af0960e0" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>GetFunction</name></member>
+      <member refid="a00129_1ab42a4fd30a72156cafa685f959deef78" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>ImportLibrary</name></member>
+      <member refid="a00129_1a001ab29d21fe7db10fc9c250914287f9" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>RegisterFunction</name></member>
+      <member refid="a00129_1a2a698de0b528b2bac17bd85f57d45d4b" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>RegisterFunction</name></member>
+      <member refid="a00129_1a6820eaa082077f16496effbc9041b7ad" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>RegisterFunction</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

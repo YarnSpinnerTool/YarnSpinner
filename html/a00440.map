@@ -1,2 +1,4 @@
-<map id="CsvHelper.ICsvParser" name="CsvHelper.ICsvParser">
+<map id="CsvHelper.CsvReaderException" name="CsvHelper.CsvReaderException">
+<area shape="rect" id="node4" href="$a00067.html" title="Represents an error caused because a field is missing in the header while reading a CSV file..." alt="" coords="12,472,209,608"/>
+<area shape="rect" id="node2" href="$a00066.html" title="Represents errors that occur in CsvHelper. " alt="" coords="29,131,192,253"/>
 </map>

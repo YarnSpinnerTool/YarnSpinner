@@ -1,4 +1,0 @@
-<map id="ExampleVariableStorage" name="ExampleVariableStorage">
-<area shape="rect" id="node2" href="$a00181.html" title="Scripts that can act as a variable storage should subclass this. " alt="" coords="53,190,224,341"/>
-<area shape="rect" id="node4" href="$a00180.html" title="Where we turn to for storing and loading variable data. " alt="" coords="141,5,289,141"/>
-</map>

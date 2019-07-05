@@ -1,1021 +1,1221 @@
-\hypertarget{a00115}{\section{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$ Interface Template Reference}
-\label{a00115}\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
+\hypertarget{a00115}{\section{Csv\-Helper.\-I\-Csv\-Reader\-Row Interface Reference}
+\label{a00115}\index{Csv\-Helper.\-I\-Csv\-Reader\-Row@{Csv\-Helper.\-I\-Csv\-Reader\-Row}}
 }
 
 
-This interface defines a complete generic visitor for a parse tree produced by Yarn\-Spinner\-Parser.  
+Defines methods used to read parsed data from a C\-S\-V file row.  
 
 
 
 
-Inheritance diagram for I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$\-:
+Inheritance diagram for Csv\-Helper.\-I\-Csv\-Reader\-Row\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{a00384}
+\includegraphics[height=550pt]{a00463}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$\-:
+Collaboration diagram for Csv\-Helper.\-I\-Csv\-Reader\-Row\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=216pt]{a00385}
+\includegraphics[width=218pt]{a00464}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-Result \hyperlink{a00115_ac2d13d69995b3a8bf8c0733341d0c72e}{Visit\-Dialogue} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Dialogue\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-dialogue. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a59c84bd2dbaab540b8db77eb20e67be6}{Visit\-Node} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Node\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-node. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a24b0bc51bfd9d2fbdd2a4f0211b92e72}{Visit\-Header} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a2f554200966a70217bcb285ad4176d03}{Visit\-Header\-\_\-title} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-title\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-title. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a0a1489c13aa25b6d92dcc064298e618e}{Visit\-Header\-\_\-tag} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-tag\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-tag. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a1a51687aef1d08ea7230e6a41d7cf61a}{Visit\-Header\-\_\-line} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-line\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-line. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_ab308423e3e80579ec8bac951788f988b}{Visit\-Body} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Body\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-body. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a2122e68c51db45bb8cb757cfd2af7683}{Visit\-Statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Statement\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-statement. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a8a3cc5ecfc9bb6ee595d4b7ef9e59162}{Visit\-Shortcut\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-statement\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-statement. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a7b5a47e26ccf33cd524062dbb98a0830}{Visit\-Shortcut} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a2d05d4bf6c088ca182a3017e1431be72}{Visit\-Shortcut\-\_\-conditional} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-conditional\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-conditional. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_adb7363aa1905c378122a785a4f1a8475}{Visit\-Shortcut\-\_\-text} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-text\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-text. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_acfcb940e3a772f45dcd973da249ab5b9}{Visit\-If\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-If\-\_\-statement\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-statement. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a3069b103a0f46e9d5353822d5042ecc5}{Visit\-If\-\_\-clause} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-If\-\_\-clause\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-clause. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a03d1e78faa25780e97fe6e643c0ffe8b}{Visit\-Else\-\_\-if\-\_\-clause} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-if\-\_\-clause\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-if\-\_\-clause. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a0e4ddbac78cfa60c490d8a85f39093fd}{Visit\-Else\-\_\-clause} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-clause\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-clause. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a51c0c7cf6e9a284e6764690756fad283}{Visit\-Set\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Set\-\_\-statement\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-set\-\_\-statement. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a3f384f2fa7825221a8a78dc8b8b94aae}{Visit\-Option\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Option\-\_\-statement\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-option\-\_\-statement. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_aae9b15d1b49c2beaef63929b45bee36d}{Visit\-Function} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Function\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-function. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a7e9f060bd7d1c1c9bd1001815959d085}{Visit\-Function\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Function\-\_\-statement\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-function\-\_\-statement. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a15d9881bebe28f077c5061af2f021d01}{Visit\-Action\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Action\-\_\-statement\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-action\-\_\-statement. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_acd505d5a1c6c6ac264f44d23f0684ffa}{Visit\-Text} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Text\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-text. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a5d976bc67282e8a1a127a7332c8e5c6d}{Visit\-Line\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Line\-\_\-statement\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-line\-\_\-statement. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a899c6a6b0bf44607a125f5b34cc25263}{Visit\-Hashtag\-\_\-block} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-\_\-block\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag\-\_\-block. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a5a9eb068239ecf7a9f22efcbab257c26}{Visit\-Hashtag} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a013aa5250f60ca4c93643f89efae2477}{Visit\-Exp\-Parens} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Parens\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Parens} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_abe2ca29018070dc26e6c6ccd9e278993}{Visit\-Exp\-Mult\-Div\-Mod} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_aa7bbdc8c63543a785416870e72ef6e82}{Visit\-Exp\-Mult\-Div\-Mod\-Equals} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Equals\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a64d1e4be6cdd7ad2bcff2b268d3909df}{Visit\-Exp\-Comparison} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Comparison\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Comparison} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a13bd33ef64f92e9d8d51cd6ed1ac2943}{Visit\-Exp\-Negative} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Negative\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Negative} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_aea2594497afe741de8c8ccd3e4378842}{Visit\-Exp\-And\-Or\-Xor} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-And\-Or\-Xor\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-And\-Or\-Xor} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a0174004a39264c245bfc326ee2cf84c9}{Visit\-Exp\-Plus\-Minus\-Equals} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Plus\-Minus\-Equals\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Plus\-Minus\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a618a7fac4c00e587e3576ac230688896}{Visit\-Exp\-Add\-Sub} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Add\-Sub\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Add\-Sub} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_ab6ff9851ca2313ac155711cdce83f617}{Visit\-Exp\-Not} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Not\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Not} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_ac89121dfc7a63b034449654b5aebbbb3}{Visit\-Exp\-Value} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Value\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Value} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_abe38c3f9d0c5b2e7addd31e0b5a97db8}{Visit\-Exp\-Equality} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Equality\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Equality} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a7fe03a0db2907655b545a46a1df3fd55}{Visit\-Value\-Number} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Number\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily value\-Number} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a74925dab55e607597ea5b6f0917b5779}{Visit\-Value\-True} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-True\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily value\-True} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_ac8f01ef410d14f0dbc1cdd1931eea7ab}{Visit\-Value\-False} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-False\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily value\-False} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a14da4b931a15282d4b2634d9265fcffe}{Visit\-Value\-Var} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Var\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily value\-Var} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a2e535c2b63583902b3517895be63123b}{Visit\-Value\-String} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-String\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily value\-String} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a89486f7b19cc9485eeb85c0a712ce4da}{Visit\-Value\-Func} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Func\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily value\-Func} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_a99862f42b27b2bb1474ecbd55ab0aac2}{Visit\-Value\-Null} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Null\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily value\-Null} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
-Result \hyperlink{a00115_ad5f6cb6458c58c7af89a75abcbec0348}{Visit\-Variable} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Variable\-Context context)
-\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+string \hyperlink{a00115_a3051b174bf5018e7480e6c4e53fbeeb5}{Get\-Field} (int index)
+\begin{DoxyCompactList}\small\item\em Gets the raw field at position (column) index. \end{DoxyCompactList}\item 
+string \hyperlink{a00115_aef0f82a96420210343b447e7709400ae}{Get\-Field} (string name)
+\begin{DoxyCompactList}\small\item\em Gets the raw field at position (column) name. \end{DoxyCompactList}\item 
+string \hyperlink{a00115_a89d1e21e131f988e0959c5edff4f982f}{Get\-Field} (string name, int index)
+\begin{DoxyCompactList}\small\item\em Gets the raw field at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. \end{DoxyCompactList}\item 
+object \hyperlink{a00115_a139fd51e035dc42bfc820371209b9782}{Get\-Field} (Type type, int index)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Object using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
+object \hyperlink{a00115_a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c}{Get\-Field} (Type type, string name)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Object using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
+object \hyperlink{a00115_ae0128a2e48bd24db451e64b17b4631ae}{Get\-Field} (Type type, string name, int index)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Object using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
+object \hyperlink{a00115_acc16f1e7d5c552c8adb86087c8774b43}{Get\-Field} (Type type, int index, \hyperlink{a00123}{I\-Type\-Converter} converter)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Object using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
+object \hyperlink{a00115_ad3fce0bfa735dc92844d51d756396892}{Get\-Field} (Type type, string name, \hyperlink{a00123}{I\-Type\-Converter} converter)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Object using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
+object \hyperlink{a00115_a04389e3edb60cc2ab9760668e7781518}{Get\-Field} (Type type, string name, int index, \hyperlink{a00123}{I\-Type\-Converter} converter)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Object using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
+T \hyperlink{a00115_af5282bab4799899c6c986fa4189eea0a}{Get\-Field$<$ T $>$} (int index)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) index. \end{DoxyCompactList}\item 
+T \hyperlink{a00115_af3b292ed7d991a8e975f67fb8ddde859}{Get\-Field$<$ T $>$} (string name)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name. \end{DoxyCompactList}\item 
+T \hyperlink{a00115_aa8c349da18823eb8c30911d891b3e3bc}{Get\-Field$<$ T $>$} (string name, int index)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. \end{DoxyCompactList}\item 
+T \hyperlink{a00115_a8ae4f95a7b9bbbbf2ef19009da81dd18}{Get\-Field$<$ T $>$} (int index, \hyperlink{a00123}{I\-Type\-Converter} converter)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) index using the given I\-Type\-Converter. \end{DoxyCompactList}\item 
+T \hyperlink{a00115_a640689c76826aafd8c79ff71d4f0992d}{Get\-Field$<$ T $>$} (string name, \hyperlink{a00123}{I\-Type\-Converter} converter)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name using the given I\-Type\-Converter. \end{DoxyCompactList}\item 
+T \hyperlink{a00115_a8851c2bc99ee403fc003f62ae96b090c}{Get\-Field$<$ T $>$} (string name, int index, \hyperlink{a00123}{I\-Type\-Converter} converter)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. \end{DoxyCompactList}\item 
+T \hyperlink{a00115_a787094f29179fcf06cec6db42fa59de3}{Get\-Field$<$ T, T\-Converter $>$} (int index)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) index using the given I\-Type\-Converter. \end{DoxyCompactList}\item 
+T \hyperlink{a00115_ae7ea281792a1e0e8f64991062a3acffb}{Get\-Field$<$ T, T\-Converter $>$} (string name)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name using the given I\-Type\-Converter. \end{DoxyCompactList}\item 
+T \hyperlink{a00115_a6a55c1b2fc98eb7ef4bdb73e80f4b093}{Get\-Field$<$ T, T\-Converter $>$} (string name, int index)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. \end{DoxyCompactList}\item 
+bool \hyperlink{a00115_a476c426866e69a8c1b81f40956e0b538}{Try\-Get\-Field$<$ T $>$} (int index, out T field)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) index. \end{DoxyCompactList}\item 
+bool \hyperlink{a00115_a1ac55ecd014a239d9b0b62345637b745}{Try\-Get\-Field$<$ T $>$} (string name, out T field)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name. \end{DoxyCompactList}\item 
+bool \hyperlink{a00115_a4c2667e997378fa984f44d7d5e62492b}{Try\-Get\-Field$<$ T $>$} (string name, int index, out T field)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. \end{DoxyCompactList}\item 
+bool \hyperlink{a00115_aa8aaa34c75b213e3774394b3f912842f}{Try\-Get\-Field$<$ T $>$} (int index, \hyperlink{a00123}{I\-Type\-Converter} converter, out T field)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) index using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
+bool \hyperlink{a00115_a33e4e39bf2395a79a90cb02554c84d22}{Try\-Get\-Field$<$ T $>$} (string name, \hyperlink{a00123}{I\-Type\-Converter} converter, out T field)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
+bool \hyperlink{a00115_a2d001b5e65d063db9f102b720da0edf2}{Try\-Get\-Field$<$ T $>$} (string name, int index, \hyperlink{a00123}{I\-Type\-Converter} converter, out T field)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
+bool \hyperlink{a00115_a5df5f7bc974ec541c25bf63b29ebf618}{Try\-Get\-Field$<$ T, T\-Converter $>$} (int index, out T field)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) index using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
+bool \hyperlink{a00115_a9bd7b721a7b4acbc21050817aca71f21}{Try\-Get\-Field$<$ T, T\-Converter $>$} (string name, out T field)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
+bool \hyperlink{a00115_a8ecc5b03e5e818163aca86b979b01158}{Try\-Get\-Field$<$ T, T\-Converter $>$} (string name, int index, out T field)
+\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
+bool \hyperlink{a00115_a49ad028b358d5a0642d8108b3bb87ff7}{Is\-Record\-Empty} ()
+\begin{DoxyCompactList}\small\item\em Determines whether the current record is empty. A record is considered empty if all fields are empty. \end{DoxyCompactList}\item 
+T \hyperlink{a00115_ae82d451b6e26742a685d652c84c0b807}{Get\-Record$<$ T $>$} ()
+\begin{DoxyCompactList}\small\item\em Gets the record converted into Type T. \end{DoxyCompactList}\item 
+object \hyperlink{a00115_a911748932ed897a2e7086c0c49bdceea}{Get\-Record} (Type type)
+\begin{DoxyCompactList}\small\item\em Gets the record. \end{DoxyCompactList}\item 
+I\-Enumerable$<$ T $>$ \hyperlink{a00115_a880d3ee25c0b55bd9a193c61cd116e21}{Get\-Records$<$ T $>$} ()
+\begin{DoxyCompactList}\small\item\em Gets all the records in the C\-S\-V file and converts each to Type T. The Read method should not be used when using this. \end{DoxyCompactList}\item 
+I\-Enumerable$<$ object $>$ \hyperlink{a00115_a8f1187e434201dc22036f2f48cc4d050}{Get\-Records} (Type type)
+\begin{DoxyCompactList}\small\item\em Gets all the records in the C\-S\-V file and converts each to Type T. The Read method should not be used when using this. \end{DoxyCompactList}\item 
+void \hyperlink{a00115_ae903a343efdafa8b22236184dfcf7a97}{Clear\-Record\-Cache$<$ T $>$} ()
+\begin{DoxyCompactList}\small\item\em Clears the record cache for the given type. After Get\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, Clear\-Record\-Cache\{\-T\} needs to be called to update the record cache. \end{DoxyCompactList}\item 
+void \hyperlink{a00115_aa035080da331f40071b29c17b1f8c228}{Clear\-Record\-Cache} (Type type)
+\begin{DoxyCompactList}\small\item\em Clears the record cache for the given type. After I\-Csv\-Reader\-Row.\-Get\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, \hyperlink{a00115_aa035080da331f40071b29c17b1f8c228}{Clear\-Record\-Cache( Type )} needs to be called to update the record cache. \end{DoxyCompactList}\item 
+void \hyperlink{a00115_a87251d0ff95c599cf3f6bd1cbb8204d8}{Clear\-Record\-Cache} ()
+\begin{DoxyCompactList}\small\item\em Clears the record cache for all types. After I\-Csv\-Reader\-Row.\-Get\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, \hyperlink{a00115_a87251d0ff95c599cf3f6bd1cbb8204d8}{Clear\-Record\-Cache()} needs to be called to update the record cache. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{a00115_a4e8958e51331591b1d9e811e32bd92d0}{Current\-Record}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the current record; \end{DoxyCompactList}\item 
+int \hyperlink{a00115_ac1bd960358282c70f0b85de90f00b446}{Row}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the current row. \end{DoxyCompactList}\item 
+string \hyperlink{a00115_a45d5b14c7382418d90b4c085c2bdc7dc}{this\mbox{[}int index\mbox{]}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the raw field at position (column) index. \end{DoxyCompactList}\item 
+string \hyperlink{a00115_a999cf88bd8eb0b59c65b235cfe0e2835}{this\mbox{[}string name\mbox{]}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the raw field at position (column) name. \end{DoxyCompactList}\item 
+string \hyperlink{a00115_abe611a2c471e6f11da579297bb876fb1}{this\mbox{[}string name, int index\mbox{]}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the raw field at position (column) name. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-This interface defines a complete generic visitor for a parse tree produced by Yarn\-Spinner\-Parser. 
+Defines methods used to read parsed data from a C\-S\-V file row. 
 
 
-\begin{DoxyTemplParams}{Template Parameters}
-{\em Result} & The return type of the visit operation.\\
-\hline
-\end{DoxyTemplParams}
 
-
-Definition at line 33 of file Yarn\-Spinner\-Parser\-Visitor.\-cs.
+Definition at line 16 of file I\-Csv\-Reader\-Row.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00115_a15d9881bebe28f077c5061af2f021d01}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Action\-\_\-statement@{Visit\-Action\-\_\-statement}}
-\index{Visit\-Action\-\_\-statement@{Visit\-Action\-\_\-statement}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Action\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Action\-\_\-statement (
+\hypertarget{a00115_aa035080da331f40071b29c17b1f8c228}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Clear\-Record\-Cache@{Clear\-Record\-Cache}}
+\index{Clear\-Record\-Cache@{Clear\-Record\-Cache}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Clear\-Record\-Cache}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Clear\-Record\-Cache (
 \begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Action\-\_\-statement\-Context}]{context}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)}}\label{a00115_a15d9881bebe28f077c5061af2f021d01}
+)}}\label{a00115_aa035080da331f40071b29c17b1f8c228}
 
 
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-action\-\_\-statement. 
+Clears the record cache for the given type. After I\-Csv\-Reader\-Row.\-Get\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, \hyperlink{a00115_aa035080da331f40071b29c17b1f8c228}{Clear\-Record\-Cache( Type )} needs to be called to update the record cache. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
+{\em type} & The type to invalidate.\\
 \hline
 \end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
 
-Implemented in \hyperlink{a00034_a1974944d85b5250c60a4ffc07f958cd0}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a2007b8ca6078d351b39ad4df496dd00d}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
 
-\hypertarget{a00115_ab308423e3e80579ec8bac951788f988b}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Body@{Visit\-Body}}
-\index{Visit\-Body@{Visit\-Body}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Body}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Body (
+Implemented in \hyperlink{a00077_a669ecad48ad94b03a06131e78faa767a}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a87251d0ff95c599cf3f6bd1cbb8204d8}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Clear\-Record\-Cache@{Clear\-Record\-Cache}}
+\index{Clear\-Record\-Cache@{Clear\-Record\-Cache}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Clear\-Record\-Cache}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Clear\-Record\-Cache (
 \begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Body\-Context}]{context}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00115_ab308423e3e80579ec8bac951788f988b}
+)}}\label{a00115_a87251d0ff95c599cf3f6bd1cbb8204d8}
 
 
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-body. 
+Clears the record cache for all types. After I\-Csv\-Reader\-Row.\-Get\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, \hyperlink{a00115_a87251d0ff95c599cf3f6bd1cbb8204d8}{Clear\-Record\-Cache()} needs to be called to update the record cache. 
+
+
+
+Implemented in \hyperlink{a00077_a1e115e1f379009b2b1cb91e7c24fdd02}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_ae903a343efdafa8b22236184dfcf7a97}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Clear\-Record\-Cache$<$ T $>$@{Clear\-Record\-Cache$<$ T $>$}}
+\index{Clear\-Record\-Cache$<$ T $>$@{Clear\-Record\-Cache$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Clear\-Record\-Cache$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Clear\-Record\-Cache}$<$ T $>$ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00115_ae903a343efdafa8b22236184dfcf7a97}
+
+
+Clears the record cache for the given type. After Get\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, Clear\-Record\-Cache\{\-T\} needs to be called to update the record cache. 
+
+
+
+Implemented in \hyperlink{a00077_abc2052d47de1fc745579881daeae8806}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a3051b174bf5018e7480e6c4e53fbeeb5}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
+\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{a00115_a3051b174bf5018e7480e6c4e53fbeeb5}
+
+
+Gets the raw field at position (column) index. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
+{\em index} & The zero based index of the field.\\
 \hline
 \end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
+\begin{DoxyReturn}{Returns}
+The raw field.
+\end{DoxyReturn}
 
-Implemented in \hyperlink{a00187_a3b84a7518f955a935b1ac327e568f29d}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
 
-\hypertarget{a00115_ac2d13d69995b3a8bf8c0733341d0c72e}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Dialogue@{Visit\-Dialogue}}
-\index{Visit\-Dialogue@{Visit\-Dialogue}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Dialogue (
+Implemented in \hyperlink{a00077_ac1500fd628ea947c3ae05a7ce3fbd01a}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_aef0f82a96420210343b447e7709400ae}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
+\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
 \begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Dialogue\-Context}]{context}
+\item[{string}]{name}
 \end{DoxyParamCaption}
-)}}\label{a00115_ac2d13d69995b3a8bf8c0733341d0c72e}
+)}}\label{a00115_aef0f82a96420210343b447e7709400ae}
 
 
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-dialogue. 
+Gets the raw field at position (column) name. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
+{\em name} & The named index of the field.\\
 \hline
 \end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
+\begin{DoxyReturn}{Returns}
+The raw field.
+\end{DoxyReturn}
 
-Implemented in \hyperlink{a00187_ad2daefa4c88b72128606682d094e2485}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
 
-\hypertarget{a00115_a0e4ddbac78cfa60c490d8a85f39093fd}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Else\-\_\-clause@{Visit\-Else\-\_\-clause}}
-\index{Visit\-Else\-\_\-clause@{Visit\-Else\-\_\-clause}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Else\-\_\-clause}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Else\-\_\-clause (
+Implemented in \hyperlink{a00077_a2dea592c2879215b86a4e49280492930}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a89d1e21e131f988e0959c5edff4f982f}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
+\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
 \begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-clause\-Context}]{context}
+\item[{string}]{name, }
+\item[{int}]{index}
 \end{DoxyParamCaption}
-)}}\label{a00115_a0e4ddbac78cfa60c490d8a85f39093fd}
+)}}\label{a00115_a89d1e21e131f988e0959c5edff4f982f}
 
 
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-clause. 
+Gets the raw field at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
+{\em name} & The named index of the field.\\
+\hline
+{\em index} & The zero based index of the instance of the field.\\
 \hline
 \end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
+\begin{DoxyReturn}{Returns}
+The raw field.
+\end{DoxyReturn}
 
-Implemented in \hyperlink{a00187_acb4799ad5491a7c3f35b8851dc4745e3}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
 
-\hypertarget{a00115_a03d1e78faa25780e97fe6e643c0ffe8b}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Else\-\_\-if\-\_\-clause@{Visit\-Else\-\_\-if\-\_\-clause}}
-\index{Visit\-Else\-\_\-if\-\_\-clause@{Visit\-Else\-\_\-if\-\_\-clause}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Else\-\_\-if\-\_\-clause}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Else\-\_\-if\-\_\-clause (
+Implemented in \hyperlink{a00077_aa1d5909bc0bb20045ece92b3448a5297}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a139fd51e035dc42bfc820371209b9782}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
+\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
 \begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-if\-\_\-clause\-Context}]{context}
+\item[{Type}]{type, }
+\item[{int}]{index}
 \end{DoxyParamCaption}
-)}}\label{a00115_a03d1e78faa25780e97fe6e643c0ffe8b}
+)}}\label{a00115_a139fd51e035dc42bfc820371209b9782}
 
 
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-if\-\_\-clause. 
+Gets the field converted to Object using the specified I\-Type\-Converter. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
+{\em type} & The type of the field.\\
+\hline
+{\em index} & The index of the field.\\
 \hline
 \end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
+\begin{DoxyReturn}{Returns}
+The field converted to Object.
+\end{DoxyReturn}
 
-Implemented in \hyperlink{a00187_aa646fda5f6cd91b1e8e6be24e686a25a}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
 
-\hypertarget{a00115_a618a7fac4c00e587e3576ac230688896}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Exp\-Add\-Sub@{Visit\-Exp\-Add\-Sub}}
-\index{Visit\-Exp\-Add\-Sub@{Visit\-Exp\-Add\-Sub}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Exp\-Add\-Sub}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Exp\-Add\-Sub (
+Implemented in \hyperlink{a00077_a35724e33388ac5772ccfa0526ca812fc}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
+\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
 \begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Add\-Sub\-Context}]{context}
+\item[{Type}]{type, }
+\item[{string}]{name}
 \end{DoxyParamCaption}
-)}}\label{a00115_a618a7fac4c00e587e3576ac230688896}
+)}}\label{a00115_a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c}
 
 
-Visit a parse tree produced by the {\ttfamily exp\-Add\-Sub} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+Gets the field converted to Object using the specified I\-Type\-Converter. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
+{\em type} & The type of the field.\\
+\hline
+{\em name} & The named index of the field.\\
 \hline
 \end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
+\begin{DoxyReturn}{Returns}
+The field converted to Object.
+\end{DoxyReturn}
 
-Implemented in \hyperlink{a00034_a5eb6df63b55c3ba8e8568d8b0ebd0369}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_ab13841b276eed71099a86898cccacd99}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
 
-\hypertarget{a00115_aea2594497afe741de8c8ccd3e4378842}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Exp\-And\-Or\-Xor@{Visit\-Exp\-And\-Or\-Xor}}
-\index{Visit\-Exp\-And\-Or\-Xor@{Visit\-Exp\-And\-Or\-Xor}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Exp\-And\-Or\-Xor}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Exp\-And\-Or\-Xor (
+Implemented in \hyperlink{a00077_a5e255cb4bfa8d7a9dc364660cb079415}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_ae0128a2e48bd24db451e64b17b4631ae}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
+\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
 \begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-And\-Or\-Xor\-Context}]{context}
+\item[{Type}]{type, }
+\item[{string}]{name, }
+\item[{int}]{index}
 \end{DoxyParamCaption}
-)}}\label{a00115_aea2594497afe741de8c8ccd3e4378842}
+)}}\label{a00115_ae0128a2e48bd24db451e64b17b4631ae}
 
 
-Visit a parse tree produced by the {\ttfamily exp\-And\-Or\-Xor} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+Gets the field converted to Object using the specified I\-Type\-Converter. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
+{\em type} & The type of the field.\\
+\hline
+{\em name} & The named index of the field.\\
+\hline
+{\em index} & The zero based index of the instance of the field.\\
 \hline
 \end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
+\begin{DoxyReturn}{Returns}
+The field converted to Object.
+\end{DoxyReturn}
 
-Implemented in \hyperlink{a00034_a19491adb347becea5f216e805763f582}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a39ca6a0cef25c14575a6e28e8e9e8745}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
 
-\hypertarget{a00115_a64d1e4be6cdd7ad2bcff2b268d3909df}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Exp\-Comparison@{Visit\-Exp\-Comparison}}
-\index{Visit\-Exp\-Comparison@{Visit\-Exp\-Comparison}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Exp\-Comparison}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Exp\-Comparison (
+Implemented in \hyperlink{a00077_a3fb351f9f77bb39bddc05c76691e830f}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_acc16f1e7d5c552c8adb86087c8774b43}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
+\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
 \begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Comparison\-Context}]{context}
+\item[{Type}]{type, }
+\item[{int}]{index, }
+\item[{{\bf I\-Type\-Converter}}]{converter}
 \end{DoxyParamCaption}
-)}}\label{a00115_a64d1e4be6cdd7ad2bcff2b268d3909df}
+)}}\label{a00115_acc16f1e7d5c552c8adb86087c8774b43}
 
 
-Visit a parse tree produced by the {\ttfamily exp\-Comparison} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+Gets the field converted to Object using the specified I\-Type\-Converter. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
+{\em type} & The type of the field.\\
+\hline
+{\em index} & The index of the field.\\
+\hline
+{\em converter} & The I\-Type\-Converter used to convert the field to Object.\\
 \hline
 \end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
+\begin{DoxyReturn}{Returns}
+The field converted to Object.
+\end{DoxyReturn}
 
-Implemented in \hyperlink{a00034_a3e2bd74ec27b6e603b075e0468db3fb5}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_aa3e8b61abdf6737bb2f2ebbb302f10dc}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
 
-\hypertarget{a00115_abe38c3f9d0c5b2e7addd31e0b5a97db8}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Exp\-Equality@{Visit\-Exp\-Equality}}
-\index{Visit\-Exp\-Equality@{Visit\-Exp\-Equality}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Exp\-Equality}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Exp\-Equality (
+Implemented in \hyperlink{a00077_ae574612025171f2169e3e3683067d326}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_ad3fce0bfa735dc92844d51d756396892}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
+\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
 \begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Equality\-Context}]{context}
+\item[{Type}]{type, }
+\item[{string}]{name, }
+\item[{{\bf I\-Type\-Converter}}]{converter}
 \end{DoxyParamCaption}
-)}}\label{a00115_abe38c3f9d0c5b2e7addd31e0b5a97db8}
+)}}\label{a00115_ad3fce0bfa735dc92844d51d756396892}
 
 
-Visit a parse tree produced by the {\ttfamily exp\-Equality} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+Gets the field converted to Object using the specified I\-Type\-Converter. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
+{\em type} & The type of the field.\\
+\hline
+{\em name} & The named index of the field.\\
+\hline
+{\em converter} & The I\-Type\-Converter used to convert the field to Object.\\
 \hline
 \end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
+\begin{DoxyReturn}{Returns}
+The field converted to Object.
+\end{DoxyReturn}
 
-Implemented in \hyperlink{a00034_ae5da558219f42b518a5483f7f794ed0a}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_ae1ab6fcbc8f14f578dc3e9f2f16be450}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
 
-\hypertarget{a00115_abe2ca29018070dc26e6c6ccd9e278993}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Exp\-Mult\-Div\-Mod@{Visit\-Exp\-Mult\-Div\-Mod}}
-\index{Visit\-Exp\-Mult\-Div\-Mod@{Visit\-Exp\-Mult\-Div\-Mod}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Exp\-Mult\-Div\-Mod}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Exp\-Mult\-Div\-Mod (
+Implemented in \hyperlink{a00077_a29d9cc37e0a7fd6a08cba9626ebdfe69}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a04389e3edb60cc2ab9760668e7781518}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
+\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
 \begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Context}]{context}
+\item[{Type}]{type, }
+\item[{string}]{name, }
+\item[{int}]{index, }
+\item[{{\bf I\-Type\-Converter}}]{converter}
 \end{DoxyParamCaption}
-)}}\label{a00115_abe2ca29018070dc26e6c6ccd9e278993}
+)}}\label{a00115_a04389e3edb60cc2ab9760668e7781518}
 
 
-Visit a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+Gets the field converted to Object using the specified I\-Type\-Converter. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
+{\em type} & The type of the field.\\
+\hline
+{\em name} & The named index of the field.\\
+\hline
+{\em index} & The zero based index of the instance of the field.\\
+\hline
+{\em converter} & The I\-Type\-Converter used to convert the field to Object.\\
 \hline
 \end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
+\begin{DoxyReturn}{Returns}
+The field converted to Object.
+\end{DoxyReturn}
 
-Implemented in \hyperlink{a00034_a305e4197937bc3b6336592b61ba01eca}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_ae585d346692cb437d1fc433cb3e2070f}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
 
-\hypertarget{a00115_aa7bbdc8c63543a785416870e72ef6e82}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Exp\-Mult\-Div\-Mod\-Equals@{Visit\-Exp\-Mult\-Div\-Mod\-Equals}}
-\index{Visit\-Exp\-Mult\-Div\-Mod\-Equals@{Visit\-Exp\-Mult\-Div\-Mod\-Equals}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Exp\-Mult\-Div\-Mod\-Equals}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Exp\-Mult\-Div\-Mod\-Equals (
+Implemented in \hyperlink{a00077_a08ff19d0e0b2c10b644e14621966f2fa}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_af5282bab4799899c6c986fa4189eea0a}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}}
+\index{Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T $>$ (
 \begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Equals\-Context}]{context}
+\item[{int}]{index}
 \end{DoxyParamCaption}
-)}}\label{a00115_aa7bbdc8c63543a785416870e72ef6e82}
+)}}\label{a00115_af5282bab4799899c6c986fa4189eea0a}
 
 
-Visit a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+Gets the field converted to Type T at position (column) index. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The zero based index of the field.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The field converted to Type T.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_a6a43cfaf39caea93ecd87e506be7b404}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_af3b292ed7d991a8e975f67fb8ddde859}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}}
+\index{Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)}}\label{a00115_af3b292ed7d991a8e975f67fb8ddde859}
+
+
+Gets the field converted to Type T at position (column) name. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The named index of the field.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The field converted to Type T.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_a8ebe0d6e7644eebbbbddef3c9d2922be}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_aa8c349da18823eb8c30911d891b3e3bc}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}}
+\index{Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{a00115_aa8c349da18823eb8c30911d891b3e3bc}
+
+
+Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The named index of the field.\\
+\hline
+{\em index} & The zero based index of the instance of the field.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_afd2c85d724fdc84220a15e5f576cb673}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a8ae4f95a7b9bbbbf2ef19009da81dd18}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}}
+\index{Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{{\bf I\-Type\-Converter}}]{converter}
+\end{DoxyParamCaption}
+)}}\label{a00115_a8ae4f95a7b9bbbbf2ef19009da81dd18}
+
+
+Gets the field converted to Type T at position (column) index using the given I\-Type\-Converter. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The zero based index of the field.\\
+\hline
+{\em converter} & The I\-Type\-Converter used to convert the field to Type T.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The field converted to Type T.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_a2b593a60de4dc4d776abde5c29232d0d}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a640689c76826aafd8c79ff71d4f0992d}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}}
+\index{Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{{\bf I\-Type\-Converter}}]{converter}
+\end{DoxyParamCaption}
+)}}\label{a00115_a640689c76826aafd8c79ff71d4f0992d}
+
+
+Gets the field converted to Type T at position (column) name using the given I\-Type\-Converter. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The named index of the field.\\
+\hline
+{\em converter} & The I\-Type\-Converter used to convert the field to Type T.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The field converted to Type T.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_aadec530254222a2c6fb0e25774a7498b}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a8851c2bc99ee403fc003f62ae96b090c}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}}
+\index{Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{index, }
+\item[{{\bf I\-Type\-Converter}}]{converter}
+\end{DoxyParamCaption}
+)}}\label{a00115_a8851c2bc99ee403fc003f62ae96b090c}
+
+
+Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The named index of the field.\\
+\hline
+{\em index} & The zero based index of the instance of the field.\\
+\hline
+{\em converter} & The I\-Type\-Converter used to convert the field to Type T.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The field converted to Type T.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_a607c6c23ce887b6de60f81c1ea2a8348}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a787094f29179fcf06cec6db42fa59de3}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T, T\-Converter $>$@{Get\-Field$<$ T, T\-Converter $>$}}
+\index{Get\-Field$<$ T, T\-Converter $>$@{Get\-Field$<$ T, T\-Converter $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field$<$ T, T\-Converter $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T, T\-Converter $>$ (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{a00115_a787094f29179fcf06cec6db42fa59de3}
+
+
+Gets the field converted to Type T at position (column) index using the given I\-Type\-Converter. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+{\em T\-Converter} & The I\-Type\-Converter used to convert the field to Type T.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The zero based index of the field.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The field converted to Type T.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_ac989008aec99a6462d9980a1d8a87072}{Csv\-Helper.\-Csv\-Reader}.
+
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em T\-Converter} : {\em I\-Type\-Converter}]\end{description}
+\end{Desc}
+\hypertarget{a00115_ae7ea281792a1e0e8f64991062a3acffb}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T, T\-Converter $>$@{Get\-Field$<$ T, T\-Converter $>$}}
+\index{Get\-Field$<$ T, T\-Converter $>$@{Get\-Field$<$ T, T\-Converter $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field$<$ T, T\-Converter $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T, T\-Converter $>$ (
+\begin{DoxyParamCaption}
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)}}\label{a00115_ae7ea281792a1e0e8f64991062a3acffb}
+
+
+Gets the field converted to Type T at position (column) name using the given I\-Type\-Converter. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+{\em T\-Converter} & The I\-Type\-Converter used to convert the field to Type T.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The named index of the field.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The field converted to Type T.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_ac76d4fabc62e9ac896c1b2e6e861ed11}{Csv\-Helper.\-Csv\-Reader}.
+
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em T\-Converter} : {\em I\-Type\-Converter}]\end{description}
+\end{Desc}
+\hypertarget{a00115_a6a55c1b2fc98eb7ef4bdb73e80f4b093}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T, T\-Converter $>$@{Get\-Field$<$ T, T\-Converter $>$}}
+\index{Get\-Field$<$ T, T\-Converter $>$@{Get\-Field$<$ T, T\-Converter $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Field$<$ T, T\-Converter $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T, T\-Converter $>$ (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{a00115_a6a55c1b2fc98eb7ef4bdb73e80f4b093}
+
+
+Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+{\em T\-Converter} & The I\-Type\-Converter used to convert the field to Type T.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The named index of the field.\\
+\hline
+{\em index} & The zero based index of the instance of the field.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The field converted to Type T.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_a6b77ca85326f76d006935275b46342f0}{Csv\-Helper.\-Csv\-Reader}.
+
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em T\-Converter} : {\em I\-Type\-Converter}]\end{description}
+\end{Desc}
+\hypertarget{a00115_a911748932ed897a2e7086c0c49bdceea}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Record@{Get\-Record}}
+\index{Get\-Record@{Get\-Record}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Record}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Record (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)}}\label{a00115_a911748932ed897a2e7086c0c49bdceea}
+
+
+Gets the record. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
+{\em type} & The Type of the record.\\
 \hline
 \end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
+\begin{DoxyReturn}{Returns}
+The record.
+\end{DoxyReturn}
 
-Implemented in \hyperlink{a00034_ab073a73cd379ee0130e2588c08573345}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a288f0fef2f1dde71faacfceddee9b954}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
 
-\hypertarget{a00115_a13bd33ef64f92e9d8d51cd6ed1ac2943}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Exp\-Negative@{Visit\-Exp\-Negative}}
-\index{Visit\-Exp\-Negative@{Visit\-Exp\-Negative}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Exp\-Negative}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Exp\-Negative (
+Implemented in \hyperlink{a00077_a10680de48d9c21ef1792661947f9f601}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_ae82d451b6e26742a685d652c84c0b807}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Record$<$ T $>$@{Get\-Record$<$ T $>$}}
+\index{Get\-Record$<$ T $>$@{Get\-Record$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Record$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Record}$<$ T $>$ (
 \begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Negative\-Context}]{context}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00115_a13bd33ef64f92e9d8d51cd6ed1ac2943}
+)}}\label{a00115_ae82d451b6e26742a685d652c84c0b807}
 
 
-Visit a parse tree produced by the {\ttfamily exp\-Negative} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+Gets the record converted into Type T. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the record.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The record converted to Type T.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_ac607c1182168a5f9c7fa1642670ad320}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a8f1187e434201dc22036f2f48cc4d050}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Records@{Get\-Records}}
+\index{Get\-Records@{Get\-Records}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Records}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<$object$>$ Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Records (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)}}\label{a00115_a8f1187e434201dc22036f2f48cc4d050}
+
+
+Gets all the records in the C\-S\-V file and converts each to Type T. The Read method should not be used when using this. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
+{\em type} & The Type of the record.\\
 \hline
 \end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
+\begin{DoxyReturn}{Returns}
+An I\-List\{\-Object\} of records.
+\end{DoxyReturn}
 
-Implemented in \hyperlink{a00034_aa6e290a205fcacca64071255c1901161}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a6992d2e7a09d1e9e6c3f6f1ebfa686a6}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
 
-\hypertarget{a00115_ab6ff9851ca2313ac155711cdce83f617}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Exp\-Not@{Visit\-Exp\-Not}}
-\index{Visit\-Exp\-Not@{Visit\-Exp\-Not}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Exp\-Not}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Exp\-Not (
+Implemented in \hyperlink{a00077_aaa94b8f27e410194fbaadd75f38b030e}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a880d3ee25c0b55bd9a193c61cd116e21}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Records$<$ T $>$@{Get\-Records$<$ T $>$}}
+\index{Get\-Records$<$ T $>$@{Get\-Records$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Get\-Records$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<$T$>$ {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Records}$<$ T $>$ (
 \begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Not\-Context}]{context}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00115_ab6ff9851ca2313ac155711cdce83f617}
+)}}\label{a00115_a880d3ee25c0b55bd9a193c61cd116e21}
 
 
-Visit a parse tree produced by the {\ttfamily exp\-Not} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+Gets all the records in the C\-S\-V file and converts each to Type T. The Read method should not be used when using this. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the record.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+An I\-List\{\-T\} of records.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_afed61bbcd2a120487498acd36e6ae2f2}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a49ad028b358d5a0642d8108b3bb87ff7}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Is\-Record\-Empty@{Is\-Record\-Empty}}
+\index{Is\-Record\-Empty@{Is\-Record\-Empty}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Is\-Record\-Empty}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Is\-Record\-Empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00115_a49ad028b358d5a0642d8108b3bb87ff7}
+
+
+Determines whether the current record is empty. A record is considered empty if all fields are empty. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if \mbox{[}is record empty\mbox{]}; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_a9f3f7336e8ceebafbfe0959508a2a9f0}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a476c426866e69a8c1b81f40956e0b538}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}}
+\index{Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Try\-Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{out T}]{field}
+\end{DoxyParamCaption}
+)}}\label{a00115_a476c426866e69a8c1b81f40956e0b538}
+
+
+Gets the field converted to Type T at position (column) index. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The zero based index of the field.\\
+\hline
+{\em field} & The field converted to type T.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value indicating if the get was successful.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_ae5531b6fa3247cf038ca6a9c20ca43dd}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a1ac55ecd014a239d9b0b62345637b745}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}}
+\index{Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Try\-Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{out T}]{field}
+\end{DoxyParamCaption}
+)}}\label{a00115_a1ac55ecd014a239d9b0b62345637b745}
+
+
+Gets the field converted to Type T at position (column) name. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The named index of the field.\\
+\hline
+{\em field} & The field converted to Type T.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value indicating if the get was successful.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_aab6eff4536568c7c0268616aa2b9a674}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a4c2667e997378fa984f44d7d5e62492b}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}}
+\index{Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Try\-Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{index, }
+\item[{out T}]{field}
+\end{DoxyParamCaption}
+)}}\label{a00115_a4c2667e997378fa984f44d7d5e62492b}
+
+
+Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The named index of the field.\\
+\hline
+{\em index} & The zero based index of the instance of the field.\\
+\hline
+{\em field} & The field converted to Type T.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value indicating if the get was successful.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_a6b32f9207db53d8d09598ee2d743d06b}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_aa8aaa34c75b213e3774394b3f912842f}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}}
+\index{Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Try\-Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{{\bf I\-Type\-Converter}}]{converter, }
+\item[{out T}]{field}
+\end{DoxyParamCaption}
+)}}\label{a00115_aa8aaa34c75b213e3774394b3f912842f}
+
+
+Gets the field converted to Type T at position (column) index using the specified I\-Type\-Converter. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The zero based index of the field.\\
+\hline
+{\em converter} & The I\-Type\-Converter used to convert the field to Type T.\\
+\hline
+{\em field} & The field converted to Type T.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value indicating if the get was successful.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_aa8622306f74940386663fa4020eb8971}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a33e4e39bf2395a79a90cb02554c84d22}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}}
+\index{Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Try\-Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{{\bf I\-Type\-Converter}}]{converter, }
+\item[{out T}]{field}
+\end{DoxyParamCaption}
+)}}\label{a00115_a33e4e39bf2395a79a90cb02554c84d22}
+
+
+Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The named index of the field.\\
+\hline
+{\em converter} & The I\-Type\-Converter used to convert the field to Type T.\\
+\hline
+{\em field} & The field converted to Type T.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value indicating if the get was successful.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_ade47afe2ea6cdd4439265e9364626c6b}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a2d001b5e65d063db9f102b720da0edf2}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}}
+\index{Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Try\-Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{index, }
+\item[{{\bf I\-Type\-Converter}}]{converter, }
+\item[{out T}]{field}
+\end{DoxyParamCaption}
+)}}\label{a00115_a2d001b5e65d063db9f102b720da0edf2}
+
+
+Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The named index of the field.\\
+\hline
+{\em index} & The zero based index of the instance of the field.\\
+\hline
+{\em converter} & The I\-Type\-Converter used to convert the field to Type T.\\
+\hline
+{\em field} & The field converted to Type T.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value indicating if the get was successful.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_a152975903578da620893d21cba2f8afa}{Csv\-Helper.\-Csv\-Reader}.
+
+\hypertarget{a00115_a5df5f7bc974ec541c25bf63b29ebf618}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T, T\-Converter $>$@{Try\-Get\-Field$<$ T, T\-Converter $>$}}
+\index{Try\-Get\-Field$<$ T, T\-Converter $>$@{Try\-Get\-Field$<$ T, T\-Converter $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Try\-Get\-Field$<$ T, T\-Converter $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T, T\-Converter $>$ (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{out T}]{field}
+\end{DoxyParamCaption}
+)}}\label{a00115_a5df5f7bc974ec541c25bf63b29ebf618}
+
+
+Gets the field converted to Type T at position (column) index using the specified I\-Type\-Converter. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+{\em T\-Converter} & The I\-Type\-Converter used to convert the field to Type T.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The zero based index of the field.\\
+\hline
+{\em field} & The field converted to Type T.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value indicating if the get was successful.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_a58c361c230abb87ae13f97646748be61}{Csv\-Helper.\-Csv\-Reader}.
+
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em T\-Converter} : {\em I\-Type\-Converter}]\end{description}
+\end{Desc}
+\hypertarget{a00115_a9bd7b721a7b4acbc21050817aca71f21}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T, T\-Converter $>$@{Try\-Get\-Field$<$ T, T\-Converter $>$}}
+\index{Try\-Get\-Field$<$ T, T\-Converter $>$@{Try\-Get\-Field$<$ T, T\-Converter $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Try\-Get\-Field$<$ T, T\-Converter $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T, T\-Converter $>$ (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{out T}]{field}
+\end{DoxyParamCaption}
+)}}\label{a00115_a9bd7b721a7b4acbc21050817aca71f21}
+
+
+Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+{\em T\-Converter} & The I\-Type\-Converter used to convert the field to Type T.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The named index of the field.\\
+\hline
+{\em field} & The field converted to Type T.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value indicating if the get was successful.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_a1ad85089ce2a6eae15c48e21d5da6c47}{Csv\-Helper.\-Csv\-Reader}.
+
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em T\-Converter} : {\em I\-Type\-Converter}]\end{description}
+\end{Desc}
+\hypertarget{a00115_a8ecc5b03e5e818163aca86b979b01158}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T, T\-Converter $>$@{Try\-Get\-Field$<$ T, T\-Converter $>$}}
+\index{Try\-Get\-Field$<$ T, T\-Converter $>$@{Try\-Get\-Field$<$ T, T\-Converter $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Try\-Get\-Field$<$ T, T\-Converter $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T, T\-Converter $>$ (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{index, }
+\item[{out T}]{field}
+\end{DoxyParamCaption}
+)}}\label{a00115_a8ecc5b03e5e818163aca86b979b01158}
+
+
+Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the field.\\
+\hline
+{\em T\-Converter} & The I\-Type\-Converter used to convert the field to Type T.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The named index of the field.\\
+\hline
+{\em index} & The zero based index of the instance of the field.\\
+\hline
+{\em field} & The field converted to Type T.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value indicating if the get was successful.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00077_a6665d63535ab6ca768ffbc76c1347e58}{Csv\-Helper.\-Csv\-Reader}.
+
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em T\-Converter} : {\em I\-Type\-Converter}]\end{description}
+\end{Desc}
+
+
+\subsection{Property Documentation}
+\hypertarget{a00115_a4e8958e51331591b1d9e811e32bd92d0}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Current\-Record@{Current\-Record}}
+\index{Current\-Record@{Current\-Record}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Current\-Record}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Current\-Record\hspace{0.3cm}{\ttfamily [get]}}}\label{a00115_a4e8958e51331591b1d9e811e32bd92d0}
+
+
+Get the current record; 
+
+
+
+Definition at line 21 of file I\-Csv\-Reader\-Row.\-cs.
+
+\hypertarget{a00115_ac1bd960358282c70f0b85de90f00b446}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Row@{Row}}
+\index{Row@{Row}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{Row}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Row\hspace{0.3cm}{\ttfamily [get]}}}\label{a00115_ac1bd960358282c70f0b85de90f00b446}
+
+
+Gets the current row. 
+
+
+
+Definition at line 26 of file I\-Csv\-Reader\-Row.\-cs.
+
+\hypertarget{a00115_a45d5b14c7382418d90b4c085c2bdc7dc}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!this\mbox{[}int index\mbox{]}@{this[int index]}}
+\index{this\mbox{[}int index\mbox{]}@{this[int index]}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{this[int index]}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-I\-Csv\-Reader\-Row.\-this\mbox{[}int index\mbox{]}\hspace{0.3cm}{\ttfamily [get]}}}\label{a00115_a45d5b14c7382418d90b4c085c2bdc7dc}
+
+
+Gets the raw field at position (column) index. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
+{\em index} & The zero based index of the field.\\
 \hline
 \end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_af5870b979203df0e9bc78dd3d8c41b27}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a2b3a3e9b5395b0311e644146a896a21a}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a013aa5250f60ca4c93643f89efae2477}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Exp\-Parens@{Visit\-Exp\-Parens}}
-\index{Visit\-Exp\-Parens@{Visit\-Exp\-Parens}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Exp\-Parens}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Exp\-Parens (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Parens\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a013aa5250f60ca4c93643f89efae2477}
+\begin{DoxyReturn}{Returns}
+The raw field.
+\end{DoxyReturn}
 
 
-Visit a parse tree produced by the {\ttfamily exp\-Parens} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+Definition at line 33 of file I\-Csv\-Reader\-Row.\-cs.
+
+\hypertarget{a00115_abe611a2c471e6f11da579297bb876fb1}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!this\mbox{[}string name, int index\mbox{]}@{this[string name, int index]}}
+\index{this\mbox{[}string name, int index\mbox{]}@{this[string name, int index]}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{this[string name, int index]}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-I\-Csv\-Reader\-Row.\-this\mbox{[}string name, int index\mbox{]}\hspace{0.3cm}{\ttfamily [get]}}}\label{a00115_abe611a2c471e6f11da579297bb876fb1}
+
+
+Gets the raw field at position (column) name. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
+{\em name} & The named index of the field.\\
+\hline
+{\em index} & The zero based index of the field.\\
 \hline
 \end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_a51f5522367e1b35dbe15abd3363a7c4b}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a55fe0021b48203160ea72d53e2f97dd8}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a0174004a39264c245bfc326ee2cf84c9}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Exp\-Plus\-Minus\-Equals@{Visit\-Exp\-Plus\-Minus\-Equals}}
-\index{Visit\-Exp\-Plus\-Minus\-Equals@{Visit\-Exp\-Plus\-Minus\-Equals}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Exp\-Plus\-Minus\-Equals}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Exp\-Plus\-Minus\-Equals (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Plus\-Minus\-Equals\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a0174004a39264c245bfc326ee2cf84c9}
+\begin{DoxyReturn}{Returns}
+The raw field.
+\end{DoxyReturn}
 
 
-Visit a parse tree produced by the {\ttfamily exp\-Plus\-Minus\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+Definition at line 48 of file I\-Csv\-Reader\-Row.\-cs.
+
+\hypertarget{a00115_a999cf88bd8eb0b59c65b235cfe0e2835}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!this\mbox{[}string name\mbox{]}@{this[string name]}}
+\index{this\mbox{[}string name\mbox{]}@{this[string name]}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
+\subsubsection[{this[string name]}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-I\-Csv\-Reader\-Row.\-this\mbox{[}string name\mbox{]}\hspace{0.3cm}{\ttfamily [get]}}}\label{a00115_a999cf88bd8eb0b59c65b235cfe0e2835}
+
+
+Gets the raw field at position (column) name. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
+{\em name} & The named index of the field.\\
 \hline
 \end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
+\begin{DoxyReturn}{Returns}
+The raw field.
+\end{DoxyReturn}
 
-Implemented in \hyperlink{a00034_a573f37ce6260e0f112d3c6210fadf638}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a824ff62e60e13295f2fae5e96c573f0e}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
 
-\hypertarget{a00115_ac89121dfc7a63b034449654b5aebbbb3}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Exp\-Value@{Visit\-Exp\-Value}}
-\index{Visit\-Exp\-Value@{Visit\-Exp\-Value}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Exp\-Value}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Exp\-Value (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Value\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_ac89121dfc7a63b034449654b5aebbbb3}
-
-
-Visit a parse tree produced by the {\ttfamily exp\-Value} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_ac820130b8eb85146442f4124d5212877}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a54fd207b9821555dbbd9f41d82ccab00}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_aae9b15d1b49c2beaef63929b45bee36d}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Function@{Visit\-Function}}
-\index{Visit\-Function@{Visit\-Function}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Function}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Function (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Function\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_aae9b15d1b49c2beaef63929b45bee36d}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-function. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_adaf7ebcc18546fc41a78928606fae5cb}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_aa7cf0de1076cfa2e859cbd0ba92226ab}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a7e9f060bd7d1c1c9bd1001815959d085}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Function\-\_\-statement@{Visit\-Function\-\_\-statement}}
-\index{Visit\-Function\-\_\-statement@{Visit\-Function\-\_\-statement}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Function\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Function\-\_\-statement (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Function\-\_\-statement\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a7e9f060bd7d1c1c9bd1001815959d085}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-function\-\_\-statement. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_aa30d181ed0c8b5ea56912db147b35091}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a41ebea13c8b494629f3854ac3b02acb1}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a5a9eb068239ecf7a9f22efcbab257c26}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Hashtag@{Visit\-Hashtag}}
-\index{Visit\-Hashtag@{Visit\-Hashtag}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Hashtag}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Hashtag (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a5a9eb068239ecf7a9f22efcbab257c26}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00187_a36bcc3e07dedf9354a2c9967cde577d2}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a899c6a6b0bf44607a125f5b34cc25263}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Hashtag\-\_\-block@{Visit\-Hashtag\-\_\-block}}
-\index{Visit\-Hashtag\-\_\-block@{Visit\-Hashtag\-\_\-block}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Hashtag\-\_\-block}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Hashtag\-\_\-block (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-\_\-block\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a899c6a6b0bf44607a125f5b34cc25263}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag\-\_\-block. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00187_a9400d1b4e26fb2b640320da88ba787d6}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a24b0bc51bfd9d2fbdd2a4f0211b92e72}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Header@{Visit\-Header}}
-\index{Visit\-Header@{Visit\-Header}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Header}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Header (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a24b0bc51bfd9d2fbdd2a4f0211b92e72}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00187_a08145c313b49a2c5e1a9d4a607f1a57c}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a1a51687aef1d08ea7230e6a41d7cf61a}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Header\-\_\-line@{Visit\-Header\-\_\-line}}
-\index{Visit\-Header\-\_\-line@{Visit\-Header\-\_\-line}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Header\-\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Header\-\_\-line (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-line\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a1a51687aef1d08ea7230e6a41d7cf61a}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-line. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00187_aa553a267b8ce2984ed2a80a1d28aae9c}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a0a1489c13aa25b6d92dcc064298e618e}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Header\-\_\-tag@{Visit\-Header\-\_\-tag}}
-\index{Visit\-Header\-\_\-tag@{Visit\-Header\-\_\-tag}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Header\-\_\-tag}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Header\-\_\-tag (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-tag\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a0a1489c13aa25b6d92dcc064298e618e}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-tag. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00187_a0b88799d0a6f7c51d51403bc6f60c01e}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a2f554200966a70217bcb285ad4176d03}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Header\-\_\-title@{Visit\-Header\-\_\-title}}
-\index{Visit\-Header\-\_\-title@{Visit\-Header\-\_\-title}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Header\-\_\-title}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Header\-\_\-title (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-title\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a2f554200966a70217bcb285ad4176d03}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-title. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00187_a3c54ba6115ce150b2303f3bd37754269}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a3069b103a0f46e9d5353822d5042ecc5}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-If\-\_\-clause@{Visit\-If\-\_\-clause}}
-\index{Visit\-If\-\_\-clause@{Visit\-If\-\_\-clause}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-If\-\_\-clause}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-If\-\_\-clause (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-If\-\_\-clause\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a3069b103a0f46e9d5353822d5042ecc5}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-clause. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00187_a6b9c14146ced835495bb48bc5c63ebb5}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_acfcb940e3a772f45dcd973da249ab5b9}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-If\-\_\-statement@{Visit\-If\-\_\-statement}}
-\index{Visit\-If\-\_\-statement@{Visit\-If\-\_\-statement}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-If\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-If\-\_\-statement (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-If\-\_\-statement\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_acfcb940e3a772f45dcd973da249ab5b9}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-statement. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_ae2d46c57ab716ded9d7f66cfb7a20a03}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a005f9655da52de2581762a4b61912ecd}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a5d976bc67282e8a1a127a7332c8e5c6d}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Line\-\_\-statement@{Visit\-Line\-\_\-statement}}
-\index{Visit\-Line\-\_\-statement@{Visit\-Line\-\_\-statement}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Line\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Line\-\_\-statement (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Line\-\_\-statement\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a5d976bc67282e8a1a127a7332c8e5c6d}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-line\-\_\-statement. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00187_a8439dc653550b8522eaf97298b54c0c4}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}, and \hyperlink{a00034_a0469d0cd00e8737385144157d7dbc436}{Yarn.\-Body\-Visitor}.
-
-\hypertarget{a00115_a59c84bd2dbaab540b8db77eb20e67be6}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Node@{Visit\-Node}}
-\index{Visit\-Node@{Visit\-Node}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Node}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Node (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Node\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a59c84bd2dbaab540b8db77eb20e67be6}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-node. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00187_a45882fee8dd45b1a7a04d000be825dce}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a3f384f2fa7825221a8a78dc8b8b94aae}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Option\-\_\-statement@{Visit\-Option\-\_\-statement}}
-\index{Visit\-Option\-\_\-statement@{Visit\-Option\-\_\-statement}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Option\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Option\-\_\-statement (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Option\-\_\-statement\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a3f384f2fa7825221a8a78dc8b8b94aae}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-option\-\_\-statement. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_abf95a48291ee85c0f9327f0c3ed3dc3c}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a2d06e22c32b7bb86030fe40224f8a3f2}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a51c0c7cf6e9a284e6764690756fad283}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Set\-\_\-statement@{Visit\-Set\-\_\-statement}}
-\index{Visit\-Set\-\_\-statement@{Visit\-Set\-\_\-statement}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Set\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Set\-\_\-statement (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Set\-\_\-statement\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a51c0c7cf6e9a284e6764690756fad283}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-set\-\_\-statement. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_a8d47becbb77d7c75a2d9e6aa777fd5df}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a8d1aa112df14a3492905930adcb664b5}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a7b5a47e26ccf33cd524062dbb98a0830}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Shortcut@{Visit\-Shortcut}}
-\index{Visit\-Shortcut@{Visit\-Shortcut}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Shortcut}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Shortcut (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a7b5a47e26ccf33cd524062dbb98a0830}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00187_a167e9a44ea7d404370390528fdd70115}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a2d05d4bf6c088ca182a3017e1431be72}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Shortcut\-\_\-conditional@{Visit\-Shortcut\-\_\-conditional}}
-\index{Visit\-Shortcut\-\_\-conditional@{Visit\-Shortcut\-\_\-conditional}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Shortcut\-\_\-conditional}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Shortcut\-\_\-conditional (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-conditional\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a2d05d4bf6c088ca182a3017e1431be72}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-conditional. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00187_a4a4adcbdf2ba70878b015aa47d54b398}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a8a3cc5ecfc9bb6ee595d4b7ef9e59162}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Shortcut\-\_\-statement@{Visit\-Shortcut\-\_\-statement}}
-\index{Visit\-Shortcut\-\_\-statement@{Visit\-Shortcut\-\_\-statement}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Shortcut\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Shortcut\-\_\-statement (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-statement\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a8a3cc5ecfc9bb6ee595d4b7ef9e59162}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-statement. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_ad1576a22d74304c3155a0c2fa91be5b9}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a8299d25bc796f9c126635cf72aa3ea12}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_adb7363aa1905c378122a785a4f1a8475}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Shortcut\-\_\-text@{Visit\-Shortcut\-\_\-text}}
-\index{Visit\-Shortcut\-\_\-text@{Visit\-Shortcut\-\_\-text}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Shortcut\-\_\-text}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Shortcut\-\_\-text (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-text\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_adb7363aa1905c378122a785a4f1a8475}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-text. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00187_a34e4b7e3d1c1c78dab3d017632cdca1f}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a2122e68c51db45bb8cb757cfd2af7683}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Statement@{Visit\-Statement}}
-\index{Visit\-Statement@{Visit\-Statement}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Statement (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Statement\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a2122e68c51db45bb8cb757cfd2af7683}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-statement. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00187_a6856fdb64dfc47bb9f1650683a1ccf97}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_acd505d5a1c6c6ac264f44d23f0684ffa}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Text@{Visit\-Text}}
-\index{Visit\-Text@{Visit\-Text}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Text}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Text (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Text\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_acd505d5a1c6c6ac264f44d23f0684ffa}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-text. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00187_ac8a0d095d59f4ef49178ba70353fe9a6}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_ac8f01ef410d14f0dbc1cdd1931eea7ab}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Value\-False@{Visit\-Value\-False}}
-\index{Visit\-Value\-False@{Visit\-Value\-False}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Value\-False}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Value\-False (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-False\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_ac8f01ef410d14f0dbc1cdd1931eea7ab}
-
-
-Visit a parse tree produced by the {\ttfamily value\-False} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_a35ff313be01c2bb671f4d20917a27aae}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_aec30451186238928bd135298139b94e9}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a89486f7b19cc9485eeb85c0a712ce4da}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Value\-Func@{Visit\-Value\-Func}}
-\index{Visit\-Value\-Func@{Visit\-Value\-Func}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Value\-Func}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Value\-Func (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Func\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a89486f7b19cc9485eeb85c0a712ce4da}
-
-
-Visit a parse tree produced by the {\ttfamily value\-Func} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_aa2c789583bec673fa64cbf141eae19aa}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a48cbb1894a0d0232f8961361344a6728}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a99862f42b27b2bb1474ecbd55ab0aac2}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Value\-Null@{Visit\-Value\-Null}}
-\index{Visit\-Value\-Null@{Visit\-Value\-Null}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Value\-Null}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Value\-Null (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Null\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a99862f42b27b2bb1474ecbd55ab0aac2}
-
-
-Visit a parse tree produced by the {\ttfamily value\-Null} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_a888533459a53d98ff4891ca5aa21763c}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_adc657b05087e7cdeff4b38fe7bd440f5}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a7fe03a0db2907655b545a46a1df3fd55}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Value\-Number@{Visit\-Value\-Number}}
-\index{Visit\-Value\-Number@{Visit\-Value\-Number}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Value\-Number}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Value\-Number (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Number\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a7fe03a0db2907655b545a46a1df3fd55}
-
-
-Visit a parse tree produced by the {\ttfamily value\-Number} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_a2acb075ab60f6aca5319dce40074880f}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_abf395acc2fa3c6eab664d211c8afa8fd}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a2e535c2b63583902b3517895be63123b}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Value\-String@{Visit\-Value\-String}}
-\index{Visit\-Value\-String@{Visit\-Value\-String}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Value\-String}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Value\-String (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-String\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a2e535c2b63583902b3517895be63123b}
-
-
-Visit a parse tree produced by the {\ttfamily value\-String} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_a33229651713a1b788e8841added0e2db}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a190b9ce38685ffe5b2ce451f9afed24b}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a74925dab55e607597ea5b6f0917b5779}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Value\-True@{Visit\-Value\-True}}
-\index{Visit\-Value\-True@{Visit\-Value\-True}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Value\-True}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Value\-True (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-True\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a74925dab55e607597ea5b6f0917b5779}
-
-
-Visit a parse tree produced by the {\ttfamily value\-True} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_ab627c2664656eedcefd9c2be4231cc51}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_ad42a85096cd1000bac437166c879f0ec}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_a14da4b931a15282d4b2634d9265fcffe}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Value\-Var@{Visit\-Value\-Var}}
-\index{Visit\-Value\-Var@{Visit\-Value\-Var}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Value\-Var}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Value\-Var (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Var\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_a14da4b931a15282d4b2634d9265fcffe}
-
-
-Visit a parse tree produced by the {\ttfamily value\-Var} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_aa9e7f9f7310448cb44d0acb88512bc71}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a206d2a25cd566e2209fd4cedfae312c9}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
-
-\hypertarget{a00115_ad5f6cb6458c58c7af89a75abcbec0348}{\index{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}!Visit\-Variable@{Visit\-Variable}}
-\index{Visit\-Variable@{Visit\-Variable}!IYarnSpinnerParserVisitor< Result >@{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}}
-\subsubsection[{Visit\-Variable}]{\setlength{\rightskip}{0pt plus 5cm}Result I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$.Visit\-Variable (
-\begin{DoxyParamCaption}
-\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Variable\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00115_ad5f6cb6458c58c7af89a75abcbec0348}
-
-
-Visit a parse tree produced by Yarn\-Spinner\-Parser.\-variable. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em context} & The parse tree.\\
-\hline
-\end{DoxyParams}
-$<$return$>$The visitor result.$<$/return$>$ 
-
-Implemented in \hyperlink{a00034_a884faf4566a71978ca12e671988c740b}{Yarn.\-Body\-Visitor}, and \hyperlink{a00187_a51d3d21fc833b5b4676ac84a46cdef87}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+Definition at line 40 of file I\-Csv\-Reader\-Row.\-cs.
 
 
 
 The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00304}{Yarn\-Spinner\-Parser\-Visitor.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00248}{I\-Csv\-Reader\-Row.\-cs}\end{DoxyCompactItemize}

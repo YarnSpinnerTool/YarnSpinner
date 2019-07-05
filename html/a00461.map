@@ -1,4 +1,3 @@
-<map id="CsvHelper.Configuration.CsvClassMap&lt; T &gt;" name="CsvHelper.Configuration.CsvClassMap&lt; T &gt;">
-<area shape="rect" id="node3" href="$a00077.html" title="A default CsvClassMap{T} that can be used to create a class map dynamically. " alt="" coords="17,478,196,570"/>
-<area shape="rect" id="node2" href="$a00050.html" title="Maps class properties to CSV fields. " alt="" coords="5,6,208,245"/>
+<map id="CsvHelper.ICsvReader" name="CsvHelper.ICsvReader">
+<area shape="rect" id="node2" href="$a00115.html" title="Defines methods used to read parsed data from a CSV file row. " alt="" coords="5,6,153,303"/>
 </map>

@@ -99,47 +99,47 @@ $(document).ready(function(){initNavTree('a00012.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title"><a class="el" href="a00041.html">Yarn</a> Dialogue - General Usage Guide </div>  </div>
+<div class="title"><a class="el" href="a00051.html">Yarn</a> Dialogue - General Usage Guide </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This document talks about how to use <a class="el" href="a00041.html">Yarn</a> if you're using it to write content. It doesn't talk about how to integrate <a class="el" href="a00041.html">Yarn</a> Spinner into your project; for that, see <a href="../YarnSpinner-Unity">"Using Yarn Spinner in your Unity game"</a>.</p>
+<div class="textblock"><p>This document talks about how to use <a class="el" href="a00051.html">Yarn</a> if you're using it to write content. It doesn't talk about how to integrate <a class="el" href="a00051.html">Yarn</a> Spinner into your project; for that, see <a href="../YarnSpinner-Unity">"Using Yarn Spinner in your Unity game"</a>.</p>
 <h2>Lines</h2>
-<p><a class="el" href="a00041.html">Yarn</a> lets you define multiple chunks of dialogue that are linked together. Each chunk is called a <em>node</em>.</p>
+<p><a class="el" href="a00051.html">Yarn</a> lets you define multiple chunks of dialogue that are linked together. Each chunk is called a <em>node</em>.</p>
 <p>Nodes are filled with different kinds of text. The simplest is lines of dialogue, which look like this: ``` Alice: Hey, I'm a character speaking in a dialogue! Bob: Wild! ``` Each line is delivered to your game one at a time.</p>
 <h2>Options</h2>
 <p>To link a node to another node, you provide <em>options</em>. Options look like this: ``` [[Go to the woods|GoToWoods]] [[Go back to the city|GoToCity]] ``<code> Options have two parts: the label, which is shown to the user, and the name of the node that we should link to when the user selects the option. The label and the node name are separated by a vertical bar (</code>|`).</p>
-<p>You don't have to provide the label. Instead, you can just provide the node name, like so: ``` [[GoToCity]] ``` If an option has no label, <a class="el" href="a00041.html">Yarn</a> will automatically jump to that node when that line is run, and it won't show options to the player.</p>
+<p>You don't have to provide the label. Instead, you can just provide the node name, like so: ``` [[GoToCity]] ``` If an option has no label, <a class="el" href="a00051.html">Yarn</a> will automatically jump to that node when that line is run, and it won't show options to the player.</p>
 <p>When all of the lines in a node have been displayed, the dialogue system gives your game the list of available options. You then let the user choose an option, and then continue loading lines of dialogue, one at a time.</p>
-<p>If there are no options when we reach the end of a node, then we've reached the end of a conversation, and <a class="el" href="a00041.html">Yarn</a> Spinner will let your game know.</p>
+<p>If there are no options when we reach the end of a node, then we've reached the end of a conversation, and <a class="el" href="a00051.html">Yarn</a> Spinner will let your game know.</p>
 <h2>Shortcut Options</h2>
-<p>Sometimes, you'll want to add little branches to your conversation, but you don't want to create separate nodes for them. Instead, you can use <em>shortcut options</em>: ``` Mae: What did you say to her? -&gt; Nothing. Mae: Oh, man. Maybe you should have. -&gt; That she was an idiot. Mae: Hah! I bet that pissed her off. Mae: Anyway, I'd better get going. ``` When this is run, <a class="el" href="a00041.html">Yarn</a> Spinner will behave just as if you'd broken all of this up into multiple nodes.</p>
+<p>Sometimes, you'll want to add little branches to your conversation, but you don't want to create separate nodes for them. Instead, you can use <em>shortcut options</em>: ``` Mae: What did you say to her? -&gt; Nothing. Mae: Oh, man. Maybe you should have. -&gt; That she was an idiot. Mae: Hah! I bet that pissed her off. Mae: Anyway, I'd better get going. ``` When this is run, <a class="el" href="a00051.html">Yarn</a> Spinner will behave just as if you'd broken all of this up into multiple nodes.</p>
 <p>You can also attach conditions to shortcut options, which will make them only appear if a certain condition passes: ``` Bob: What would you like? -&gt; A burger. &lt;&lt;if $money &gt;= 5&gt;&gt; Bob: Nice. Enjoy! -&gt; A soda. &lt;&lt;if $money &gt;= 2&gt;&gt; Bob: Yum! -&gt; Nothing. Bob: Thanks for coming! ``` Note that in the last example, there wasn't any attached text. If the player selected the last option ("Nothing."), then the next line to appear would be "Bob: Thanks for coming!"</p>
 <p>You can also nest these shortcut options, if you like. Be careful, though - too much nested options can make your text difficult to read.</p>
 <h2>Commands</h2>
 <p>In addition to showing lines of dialogue, your game will probably want to run actions - things like "move the camera to position X", or "make character start smiling". You can use commands for this.</p>
 <p>Commands look like this: ``` &lt;&lt;move alice="" to="" under_bridge&gt;=""&gt;&gt; ``` Any text inside the double-chevrons will be sent directly to your game as a string. It's up to you to decide what to do with that string.</p>
-<p><a class="el" href="a00041.html">Yarn</a> has a special command, called <code>stop</code>. If you include <code>&lt;&lt;stop&gt;&gt;</code> in your node, <a class="el" href="a00041.html">Yarn</a> will stop the entire conversation when it reaches it.</p>
+<p><a class="el" href="a00051.html">Yarn</a> has a special command, called <code>stop</code>. If you include <code>&lt;&lt;stop&gt;&gt;</code> in your node, <a class="el" href="a00051.html">Yarn</a> will stop the entire conversation when it reaches it.</p>
 <h2>Variables and If statements</h2>
 <p>You can store numbers in variables. To do this, use the <code>set</code> command: ``` &lt;&lt;set $door_unlocked to 1&gt;&gt; ``<code> You can check the value of a variable using the</code>if<code>command: </code>`` &lt;&lt;if $door_unlocked is 1&gt;&gt; The door is unlocked! (This will only appear if $door_unlocked is equal to 1.) &lt;&lt;endif&gt;&gt; ``` </p>
 <h2>Expressions</h2>
-<p>Maths is easy in <a class="el" href="a00041.html">Yarn</a>. ``` &lt;&lt; set $number_of_stars_collected = 1 &gt;&gt; &lt;&lt; set $number_of_stars_collected = $number_of_stars_collected + 1 &gt;&gt; ``` </p>
+<p>Maths is easy in <a class="el" href="a00051.html">Yarn</a>. ``` &lt;&lt; set $number_of_stars_collected = 1 &gt;&gt; &lt;&lt; set $number_of_stars_collected = $number_of_stars_collected + 1 &gt;&gt; ``` </p>
 <blockquote class="doxtable">
 <p>***Note:*** <code>to</code> and <code>=</code> are synonyms. It is up to you which you use. However it is strongly recommended to maintain consistency through your Dialogue for readability purposes. At the end of this document, you will find a <a href="#operator-synonyms">list of operator synonyms</a>.</p>
 <p></p>
 </blockquote>
 <p><a href="https://en.wikipedia.org/wiki/Order_of_operations">Order of operations</a> is as expected, but usage of brackets is encouraged for readability purposes. ``` &lt;&lt; set $globular_clusters_collected = 2 &gt;&gt; &lt;&lt; set $number_of_stars_collected = $number_of_stars_collected + ( $globular_clusters_collected * 1000 ) &gt;&gt; ``<code> You can also do maths inside an</code>if<code>command. For example: </code>`` &lt;&lt;if $number_of_stars_collected &gt; 5&gt;&gt; You have more than 5 stars! &lt;&lt;endif&gt;&gt; ``` You can also get fancier, and do stuff like this: ``` &lt;&lt;if $hostages_saved == $number_of_hostages and $time_remaining &gt; 0&gt;&gt; You win the game! &lt;&lt;elseif $hostages_saved &lt; $number_of_hostages and $time_remaining &gt; 0&gt;&gt; You need to rescue more hostages! &lt;&lt;elseif $bomb_has_exploded == 0&gt;&gt; You failed to rescue the hostages before time ran out! &lt;&lt;endif&gt;&gt; ``` </p>
 <h2>Types</h2>
-<p>There are four different types of value in <a class="el" href="a00041.html">Yarn</a>: strings, numbers, <a href="http://eesemi.com/boolean.htm">booleans</a>, and <code>null</code>.</p>
+<p>There are four different types of value in <a class="el" href="a00051.html">Yarn</a>: strings, numbers, <a href="http://eesemi.com/boolean.htm">booleans</a>, and <code>null</code>.</p>
 <ul>
 <li>Strings contain text.</li>
 <li>Numbers are floating-point numbers.</li>
 <li>Booleans are either true or false.</li>
 <li><code>null</code> means no value.</li>
 </ul>
-<p><a class="el" href="a00041.html">Yarn</a> will automatically convert between types for you. For example: ``` &lt;&lt;if "hi" == "hi"&gt;&gt; The two strings are the same! &lt;&lt;endif&gt;&gt;</p>
+<p><a class="el" href="a00051.html">Yarn</a> will automatically convert between types for you. For example: ``` &lt;&lt;if "hi" == "hi"&gt;&gt; The two strings are the same! &lt;&lt;endif&gt;&gt;</p>
 <p>&lt;&lt;if 1+1+"hi" == "2hi"&gt;&gt; Strings get joined together with other values! &lt;&lt;endif&gt;&gt; ```</p>
 <h2>Functions</h2>
-<p>You can call functions in your <code>if</code> commands. For example, <a class="el" href="a00041.html">Yarn</a> Spinner provides a function called <code>visited</code>, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. ``` &lt;&lt;if visited("GoToCity")&gt;&gt; We have gone to the city before! &lt;&lt;endif&gt;&gt; ``` You can't define your own functions inside <a class="el" href="a00041.html">Yarn</a> itself, but they can be added at run-time. See ../YarnSpinner-Programming/Extending.md ""Extending <a class="el" href="a00041.html">Yarn</a> Spinner"" for more info.</p>
+<p>You can call functions in your <code>if</code> commands. For example, <a class="el" href="a00051.html">Yarn</a> Spinner provides a function called <code>visited</code>, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. ``` &lt;&lt;if visited("GoToCity")&gt;&gt; We have gone to the city before! &lt;&lt;endif&gt;&gt; ``` You can't define your own functions inside <a class="el" href="a00051.html">Yarn</a> itself, but they can be added at run-time. See ../YarnSpinner-Programming/Extending.md ""Extending <a class="el" href="a00051.html">Yarn</a> Spinner"" for more info.</p>
 <h2>Operator synonyms</h2>
 <h3>Assignment</h3>
 <table class="doxtable">
@@ -178,7 +178,7 @@ $(document).ready(function(){initNavTree('a00012.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:36 for YarnSpinner by
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:05 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

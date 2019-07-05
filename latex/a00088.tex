@@ -1,104 +1,61 @@
-\hypertarget{a00088}{\section{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter Class Reference}
-\label{a00088}\index{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}}
+\hypertarget{a00088}{\section{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter Class Reference}
+\label{a00088}\index{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}}
 }
 
 
-Converts an Enum to and from a string.  
+Converts an object to and from a string.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter\-:
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00518}
+\includegraphics[width=350pt]{a00530}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter\-:
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00519}
+\includegraphics[width=220pt]{a00531}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00088_adda8e6bff0d7635c0de15d36d49495da}{Enum\-Converter} (Type \hyperlink{a00088_a3c144b5c7e2720e66dc957aaed671e9a}{type})
-\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{a00088}{Enum\-Converter} for the given Enum Type. \end{DoxyCompactList}\item 
-override object \hyperlink{a00088_abbbd7ece803a97b4714445c745918dc9}{Convert\-From\-String} (\hyperlink{a00168}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00088_a31af8209aad64ed11d949586075c244a}{Can\-Convert\-From} (Type \hyperlink{a00088_a3c144b5c7e2720e66dc957aaed671e9a}{type})
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual string \hyperlink{a00078_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00168}{Type\-Converter\-Options} options, object value)
+virtual string \hyperlink{a00088_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00178}{Type\-Converter\-Options} options, object value)
 \begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00078_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type \hyperlink{a00088_a3c144b5c7e2720e66dc957aaed671e9a}{type})
+virtual object \hyperlink{a00088_a804ea00060e1de70e5151f90d3bfce9b}{Convert\-From\-String} (\hyperlink{a00178}{Type\-Converter\-Options} options, string text)
+\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00088_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00088_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
 \begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-readonly Type \hyperlink{a00088_a3c144b5c7e2720e66dc957aaed671e9a}{type}
-\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Converts an Enum to and from a string. 
+Converts an object to and from a string. 
 
 
 
-Definition at line 13 of file Enum\-Converter.\-cs.
+Definition at line 13 of file Default\-Type\-Converter.\-cs.
 
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00088_adda8e6bff0d7635c0de15d36d49495da}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}!Enum\-Converter@{Enum\-Converter}}
-\index{Enum\-Converter@{Enum\-Converter}!CsvHelper::TypeConversion::EnumConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}}
-\subsubsection[{Enum\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter.\-Enum\-Converter (
-\begin{DoxyParamCaption}
-\item[{Type}]{type}
-\end{DoxyParamCaption}
-)}}\label{a00088_adda8e6bff0d7635c0de15d36d49495da}
-
-
-Creates a new \hyperlink{a00088}{Enum\-Converter} for the given Enum Type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type of the Enum.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 21 of file Enum\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-22         \{
-23             var isAssignableFrom = typeof( Enum ).GetTypeInfo().IsAssignableFrom( 
-      \hyperlink{a00088_a3c144b5c7e2720e66dc957aaed671e9a}{type}.GetTypeInfo() );
-24             \textcolor{keywordflow}{if}( !typeof( Enum ).IsAssignableFrom( \hyperlink{a00088_a3c144b5c7e2720e66dc957aaed671e9a}{type} ) )
-25             \{
-26                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException( $\textcolor{stringliteral}{"'\{type.FullName\}' is not an Enum."} );
-27             \}
-28 
-29             this.type = \hyperlink{a00088_a3c144b5c7e2720e66dc957aaed671e9a}{type};
-30         \}
-\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00088_a31af8209aad64ed11d949586075c244a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::EnumConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00088_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Default\-Type\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Default\-Type\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::DefaultTypeConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Default\-Type\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
 \begin{DoxyParamCaption}
 \item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00088_a31af8209aad64ed11d949586075c244a}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00088_a470d21adaa704eb281250dbd112ff91a}
 
 
 Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
@@ -113,26 +70,31 @@ Determines whether this instance \mbox{[}can convert from\mbox{]} the specified 
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{a00078_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Implements \hyperlink{a00123_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-Definition at line 57 of file Enum\-Converter.\-cs.
+Reimplemented in \hyperlink{a00142_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00045_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00098_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00099_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00085_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00084_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00046_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00172_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
+
+
+
+Definition at line 55 of file Default\-Type\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-58         \{
-59             \textcolor{comment}{// We only care about strings.}
-60             \textcolor{keywordflow}{return} \hyperlink{a00088_a3c144b5c7e2720e66dc957aaed671e9a}{type} == typeof( \textcolor{keywordtype}{string} );
-61         \}
+56         \{
+57             \textcolor{comment}{// The default convert doesn't know how to}
+58             \textcolor{comment}{// convert from any type.}
+59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+60         \}
 \end{DoxyCode}
-\hypertarget{a00078_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::EnumConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}}
+\hypertarget{a00088_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Default\-Type\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Default\-Type\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
+\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::DefaultTypeConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Default\-Type\-Converter}}
 \subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
 \begin{DoxyParamCaption}
 \item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00078_acb65bd8c8199d88d5b1629ae35d18514}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00088_acb65bd8c8199d88d5b1629ae35d18514}
 
 
 Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
@@ -147,11 +109,11 @@ Determines whether this instance \mbox{[}can convert to\mbox{]} the specified ty
 \end{DoxyReturn}
 
 
-Implements \hyperlink{a00113_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Implements \hyperlink{a00123_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-Reimplemented in \hyperlink{a00089_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+Reimplemented in \hyperlink{a00099_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
 
 
 
@@ -164,14 +126,14 @@ Definition at line 69 of file Default\-Type\-Converter.\-cs.
 72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
 73         \}
 \end{DoxyCode}
-\hypertarget{a00088_abbbd7ece803a97b4714445c745918dc9}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::EnumConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter.\-Convert\-From\-String (
+\hypertarget{a00088_a804ea00060e1de70e5151f90d3bfce9b}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Default\-Type\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Default\-Type\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
+\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::DefaultTypeConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Default\-Type\-Converter}}
+\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual object Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-From\-String (
 \begin{DoxyParamCaption}
 \item[{{\bf Type\-Converter\-Options}}]{options, }
 \item[{string}]{text}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00088_abbbd7ece803a97b4714445c745918dc9}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00088_a804ea00060e1de70e5151f90d3bfce9b}
 
 
 Converts the string to an object. 
@@ -188,33 +150,30 @@ The object created from the string.
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{a00078_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Implements \hyperlink{a00123_ab598e04c22e5a7890b6d21011492283e}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-Definition at line 38 of file Enum\-Converter.\-cs.
+Reimplemented in \hyperlink{a00142_addb6dc12d4927204cd2349202db63e74}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00098_abbbd7ece803a97b4714445c745918dc9}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00172_a0f2536c88227a94822d0b7730eedf3eb}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}, \hyperlink{a00099_a692617638507cd1033728d7f718fcd2a}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00085_aa69835fc086d80a8eabe7ac50cb92f47}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00096_a0c93a63f9f954646172a65b432c40c69}{Csv\-Helper.\-Type\-Conversion.\-Double\-Converter}, \hyperlink{a00045_abc77c631974272fd1dfe3fe4fcc3bf28}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00046_a6176d20d761abfc0af4e840553ffae47}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, \hyperlink{a00084_a6b1b54cb2d1b200beb8fa3c63e4c064a}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00110_ad00786c329498785bbb77407ea023877}{Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter}, \hyperlink{a00048_a7cf201b75714eccdc084b6cc3161bf29}{Csv\-Helper.\-Type\-Conversion.\-Char\-Converter}, \hyperlink{a00086_a07444e6f2bb1e49288f9de3b2407dc4f}{Csv\-Helper.\-Type\-Conversion.\-Decimal\-Converter}, \hyperlink{a00120_aff576c6ca9bb1942fb17e385befb0197}{Csv\-Helper.\-Type\-Conversion.\-Int16\-Converter}, \hyperlink{a00121_a392314cc9b5f5b4ad176d0f1a99af32f}{Csv\-Helper.\-Type\-Conversion.\-Int32\-Converter}, \hyperlink{a00122_a9080b7b6a5abc7d8271ffb6924c31b7c}{Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter}, \hyperlink{a00158_ad16aeb03f418c89b3f78e95b46a46b40}{Csv\-Helper.\-Type\-Conversion.\-S\-Byte\-Converter}, \hyperlink{a00161_a5c8a692325c19551246a589e9ca4a1e1}{Csv\-Helper.\-Type\-Conversion.\-Single\-Converter}, \hyperlink{a00167_a50bf35ff93e01df630a9c5e3c7b7569f}{Csv\-Helper.\-Type\-Conversion.\-String\-Converter}, \hyperlink{a00182_a796e0b7b57d69abee122947166b45a9a}{Csv\-Helper.\-Type\-Conversion.\-U\-Int16\-Converter}, \hyperlink{a00183_a15686325b6bfa7648b65f201ecf50cd2}{Csv\-Helper.\-Type\-Conversion.\-U\-Int32\-Converter}, and \hyperlink{a00184_a1d3e86ea3d34de0d47a365c9b8622eb7}{Csv\-Helper.\-Type\-Conversion.\-U\-Int64\-Converter}.
+
+
+
+Definition at line 43 of file Default\-Type\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-39         \{
-40             \textcolor{keywordflow}{try}
-41             \{
-42                 \textcolor{keywordflow}{return} Enum.Parse( \hyperlink{a00088_a3c144b5c7e2720e66dc957aaed671e9a}{type}, text, true );
-43             \}
-44             \textcolor{keywordflow}{catch}
-45             \{
-46                 \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
-47             \}
-48         \}
+44         \{
+45             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvTypeConverterException( \textcolor{stringliteral}{"The conversion cannot be performed."} );
+46         \}
 \end{DoxyCode}
-\hypertarget{a00078_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::EnumConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}}
+\hypertarget{a00088_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Default\-Type\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Default\-Type\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
+\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::DefaultTypeConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Default\-Type\-Converter}}
 \subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
 \begin{DoxyParamCaption}
 \item[{{\bf Type\-Converter\-Options}}]{options, }
 \item[{object}]{value}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00078_a36cb2f9b24f15a671293f3a722324c27}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00088_a36cb2f9b24f15a671293f3a722324c27}
 
 
 Converts the object to a string. 
@@ -231,11 +190,11 @@ The string representation of the object.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{a00113_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Implements \hyperlink{a00123_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-Reimplemented in \hyperlink{a00132_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00089_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+Reimplemented in \hyperlink{a00142_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00099_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
 
 
 
@@ -260,16 +219,6 @@ Definition at line 21 of file Default\-Type\-Converter.\-cs.
 \end{DoxyCode}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00088_a3c144b5c7e2720e66dc957aaed671e9a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}!type@{type}}
-\index{type@{type}!CsvHelper::TypeConversion::EnumConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}}
-\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}readonly Type Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter.\-type\hspace{0.3cm}{\ttfamily [private]}}}\label{a00088_a3c144b5c7e2720e66dc957aaed671e9a}
-
-
-Definition at line 15 of file Enum\-Converter.\-cs.
-
-
-
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00259}{Enum\-Converter.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00267}{Default\-Type\-Converter.\-cs}\end{DoxyCompactItemize}

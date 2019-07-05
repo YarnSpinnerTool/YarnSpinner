@@ -1,7 +1,7 @@
 var a00090 =
 [
-    [ "ErrorListener", "a00090.html#a1f0cc41aac10bd8a2402355534c1123c", null ],
-    [ "SyntaxError", "a00090.html#a47fb9f6d50aa6a4e4796dea10b237fe4", null ],
-    [ "instance", "a00090.html#a9421873edea84c51d5905f5a24c62479", null ],
-    [ "Instance", "a00090.html#a47b8f4f1d414afa1ea6067218c7ee34d", null ]
+    [ "Deprecation", "a00090.html#ae80171841e97a48611c51a9a574a2fc0", null ],
+    [ "methodName", "a00090.html#a61605b2d0a17dfdf9c62952270d44fbd", null ],
+    [ "type", "a00090.html#a750904df254223bf3131c39017f90a0b", null ],
+    [ "usageNotes", "a00090.html#ac23509be7ae6b43a3e2154dd430954a7", null ]
 ];

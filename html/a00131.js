@@ -1,8 +1,6 @@
 var a00131 =
 [
-    [ "Start", "a00131.html#a0bf37075312ea87c2e329cc363a328a6", null ],
-    [ "Update", "a00131.html#ab1bea5afabd1c2e1e991063b1579d062", null ],
-    [ "characterName", "a00131.html#a418ea7095bd8201559ed392f07905ca3", null ],
-    [ "scriptToLoad", "a00131.html#a63145fb6ddf357e604d71bac04ca8a60", null ],
-    [ "talkToNode", "a00131.html#a64f4f1fb66b2046a674e3ebf3b9fdb56", null ]
+    [ "LineInfo", "a00131.html#a15924fb79c648f2089ff0db955679dd9", null ],
+    [ "lineNumber", "a00131.html#a7165cafce64a3deafc41b2090ddf8d0e", null ],
+    [ "nodeName", "a00131.html#a5a91331fb123e29d71d69e096f943c2f", null ]
 ];

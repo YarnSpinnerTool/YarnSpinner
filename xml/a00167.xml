@@ -1,252 +1,224 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00167" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::TypeConverterFactory</compoundname>
-      <sectiondef kind="private-static-attrib">
-      <memberdef kind="variable" id="a00167_1a5229fe94e2acf6302b733c3d114f187e" prot="private" static="yes" mutable="no">
-        <type>readonly Dictionary&lt; Type, <ref refid="a00113" kindref="compound">ITypeConverter</ref> &gt;</type>
-        <definition>readonly Dictionary&lt;Type, ITypeConverter&gt; CsvHelper.TypeConversion.TypeConverterFactory.typeConverters</definition>
-        <argsstring></argsstring>
-        <name>typeConverters</name>
-        <initializer>= new Dictionary&lt;Type, <ref refid="a00113" kindref="compound">ITypeConverter</ref>&gt;()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" bodystart="17" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00167_1aae823641d64f44cf1a79573bb55a5090" prot="private" static="yes" mutable="no">
-        <type>readonly object</type>
-        <definition>readonly object CsvHelper.TypeConversion.TypeConverterFactory.locker</definition>
-        <argsstring></argsstring>
-        <name>locker</name>
-        <initializer>= new object()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" bodystart="18" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-static-func">
-      <memberdef kind="function" id="a00167_1aec2f01e01f95ff8c7a69ccaf991b6fa6" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>static</type>
-        <definition>static CsvHelper.TypeConversion.TypeConverterFactory.TypeConverterFactory</definition>
-        <argsstring>()</argsstring>
-        <name>TypeConverterFactory</name>
-        <briefdescription>
-<para>Initializes the <ref refid="a00167" kindref="compound">TypeConverterFactory</ref> class. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" bodystart="23" bodyend="26"/>
-      </memberdef>
-      <memberdef kind="function" id="a00167_1af698f94f4d69a2d9a4f4fa8ad0e21619" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void CsvHelper.TypeConversion.TypeConverterFactory.CreateDefaultConverters</definition>
-        <argsstring>()</argsstring>
-        <name>CreateDefaultConverters</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" line="146" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" bodystart="146" bodyend="167"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="a00167_1aea523d100f0064672767dfe2c912cfca" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void CsvHelper.TypeConversion.TypeConverterFactory.AddConverter</definition>
-        <argsstring>(Type type, ITypeConverter typeConverter)</argsstring>
-        <name>AddConverter</name>
+    <compoundname>CsvHelper::TypeConversion::StringConverter</compoundname>
+    <basecompoundref refid="a00088" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00167_1a50bf35ff93e01df630a9c5e3c7b7569f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override object</type>
+        <definition>override object CsvHelper.TypeConversion.StringConverter.ConvertFromString</definition>
+        <argsstring>(TypeConverterOptions options, string text)</argsstring>
+        <name>ConvertFromString</name>
+        <reimplements refid="a00088_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
         <param>
-          <type>Type</type>
-          <declname>type</declname>
+          <type><ref refid="a00178" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
         </param>
         <param>
-          <type><ref refid="a00113" kindref="compound">ITypeConverter</ref></type>
-          <declname>typeConverter</declname>
+          <type>string</type>
+          <declname>text</declname>
         </param>
         <briefdescription>
-<para>Adds the <ref refid="a00113" kindref="compound">ITypeConverter</ref> for the given Type. </para>        </briefdescription>
+<para>Converts the string to an object. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>type</parametername>
+<parametername>options</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The type the converter converts.</para></parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>typeConverter</parametername>
+<parametername>text</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The type converter that converts the type.</para></parameterdescription>
+<para>The string to convert to an object.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
+<simplesect kind="return"><para>The object created from the string.</para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" bodystart="33" bodyend="49"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/StringConverter.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/StringConverter.cs" bodystart="20" bodyend="28"/>
       </memberdef>
-      <memberdef kind="function" id="a00167_1a744e7c3cf7515bb75c21d8b3c3fcff0a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void CsvHelper.TypeConversion.TypeConverterFactory.AddConverter&lt; T &gt;</definition>
-        <argsstring>(ITypeConverter typeConverter)</argsstring>
-        <name>AddConverter&lt; T &gt;</name>
+      <memberdef kind="function" id="a00167_1a3e7f3959693638756bb98951fe8791f3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override bool</type>
+        <definition>override bool CsvHelper.TypeConversion.StringConverter.CanConvertFrom</definition>
+        <argsstring>(System.Type type)</argsstring>
+        <name>CanConvertFrom</name>
         <param>
-          <type><ref refid="a00113" kindref="compound">ITypeConverter</ref></type>
-          <declname>typeConverter</declname>
-        </param>
-        <briefdescription>
-<para>Adds the <ref refid="a00113" kindref="compound">ITypeConverter</ref> for the given Type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type the converter converts.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>typeConverter</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type converter that converts the type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" line="56" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" bodystart="56" bodyend="67"/>
-      </memberdef>
-      <memberdef kind="function" id="a00167_1a1044dbab9820df273baea7ee68e6a813" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void CsvHelper.TypeConversion.TypeConverterFactory.RemoveConverter</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>RemoveConverter</name>
-        <param>
-          <type>Type</type>
+          <type>System.Type</type>
           <declname>type</declname>
         </param>
         <briefdescription>
-<para>Removes the <ref refid="a00113" kindref="compound">ITypeConverter</ref> for the given Type. </para>        </briefdescription>
+<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>type</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The type to remove the converter for.</para></parameterdescription>
+<para>The type.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" line="73" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" bodystart="73" bodyend="84"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/StringConverter.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/StringConverter.cs" bodystart="37" bodyend="41"/>
       </memberdef>
-      <memberdef kind="function" id="a00167_1ad2d287cebc4bc88d2a6e1423059f05ae" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void CsvHelper.TypeConversion.TypeConverterFactory.RemoveConverter&lt; T &gt;</definition>
-        <argsstring>()</argsstring>
-        <name>RemoveConverter&lt; T &gt;</name>
+      <memberdef kind="function" id="a00088_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>string</type>
+        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
+        <argsstring>(TypeConverterOptions options, object value)</argsstring>
+        <name>ConvertToString</name>
+        <reimplements refid="a00123_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
+        <reimplementedby refid="a00099_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
+        <reimplementedby refid="a00142_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
+        <param>
+          <type><ref refid="a00178" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
         <briefdescription>
-<para>Removes the <ref refid="a00113" kindref="compound">ITypeConverter</ref> for the given Type. </para>        </briefdescription>
+<para>Converts the object to a string. </para>        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
+<para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>T</parametername>
+<parametername>options</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The type to remove the converter for.</para></parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object to convert to a string.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
+<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" line="90" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" bodystart="90" bodyend="93"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
       </memberdef>
-      <memberdef kind="function" id="a00167_1a17b3c37c648e5f760a7724e1445ce7ae" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00113" kindref="compound">ITypeConverter</ref></type>
-        <definition>static ITypeConverter CsvHelper.TypeConversion.TypeConverterFactory.GetConverter</definition>
+      <memberdef kind="function" id="a00088_1a470d21adaa704eb281250dbd112ff91a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertFrom</definition>
         <argsstring>(Type type)</argsstring>
-        <name>GetConverter</name>
+        <name>CanConvertFrom</name>
+        <reimplements refid="a00123_1ae1ad863656f4fa96bd846a41344c9349">CanConvertFrom</reimplements>
+        <reimplementedby refid="a00172_1ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00046_1a74a66b405f6c18e69b9fd23a1dea91b0">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00084_1af44239d3bd014b1423fa80f7440bbd25">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00085_1a82a8cf4b77600ef49da60deb0c24a708">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00099_1af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00098_1a31af8209aad64ed11d949586075c244a">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00045_1a0be20573af4ee53409bb437125a64268">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00142_1ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</reimplementedby>
         <param>
           <type>Type</type>
           <declname>type</declname>
         </param>
         <briefdescription>
-<para>Gets the converter for the given Type. </para>        </briefdescription>
+<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>type</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The type to get the converter for.</para></parameterdescription>
+<para>The type.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The <ref refid="a00113" kindref="compound">ITypeConverter</ref> for the given Type.</para></simplesect>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" line="100" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" bodystart="100" bodyend="134"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="55" bodyend="60"/>
       </memberdef>
-      <memberdef kind="function" id="a00167_1a0674e190f4bcf27b0bdbc7da7e8f3d0f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00113" kindref="compound">ITypeConverter</ref></type>
-        <definition>static ITypeConverter CsvHelper.TypeConversion.TypeConverterFactory.GetConverter&lt; T &gt;</definition>
-        <argsstring>()</argsstring>
-        <name>GetConverter&lt; T &gt;</name>
+      <memberdef kind="function" id="a00088_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertTo</name>
+        <reimplements refid="a00123_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
+        <reimplementedby refid="a00099_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
         <briefdescription>
-<para>Gets the converter for the given Type. </para>        </briefdescription>
+<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
+<para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>T</parametername>
+<parametername>type</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The type to get the converter for.</para></parameterdescription>
+<para>The type.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The <ref refid="a00113" kindref="compound">ITypeConverter</ref> for the given Type.</para></simplesect>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" line="141" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" bodystart="141" bodyend="144"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Creates <ref refid="a00113" kindref="compound">ITypeConverter</ref>s. </para>    </briefdescription>
+<para>Converts a string to and from a string. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1715">
-        <label>CsvHelper.TypeConversion.TypeConverterFactory</label>
+    <inheritancegraph>
+      <node id="1669">
+        <label>ITypeConverter</label>
+        <link refid="a00123"/>
+      </node>
+      <node id="1668">
+        <label>DefaultTypeConverter</label>
+        <link refid="a00088"/>
+        <childnode refid="1669" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1667">
+        <label>CsvHelper.TypeConversion.StringConverter</label>
         <link refid="a00167"/>
+        <childnode refid="1668" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1672">
+        <label>ITypeConverter</label>
+        <link refid="a00123"/>
+      </node>
+      <node id="1671">
+        <label>DefaultTypeConverter</label>
+        <link refid="a00088"/>
+        <childnode refid="1672" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1670">
+        <label>CsvHelper.TypeConversion.StringConverter</label>
+        <link refid="a00167"/>
+        <childnode refid="1671" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterFactory.cs" bodystart="15" bodyend="168"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/StringConverter.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/StringConverter.cs" bodystart="12" bodyend="42"/>
     <listofallmembers>
-      <member refid="a00167_1aea523d100f0064672767dfe2c912cfca" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterFactory</scope><name>AddConverter</name></member>
-      <member refid="a00167_1a744e7c3cf7515bb75c21d8b3c3fcff0a" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterFactory</scope><name>AddConverter&lt; T &gt;</name></member>
-      <member refid="a00167_1af698f94f4d69a2d9a4f4fa8ad0e21619" prot="private" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterFactory</scope><name>CreateDefaultConverters</name></member>
-      <member refid="a00167_1a17b3c37c648e5f760a7724e1445ce7ae" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterFactory</scope><name>GetConverter</name></member>
-      <member refid="a00167_1a0674e190f4bcf27b0bdbc7da7e8f3d0f" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterFactory</scope><name>GetConverter&lt; T &gt;</name></member>
-      <member refid="a00167_1aae823641d64f44cf1a79573bb55a5090" prot="private" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterFactory</scope><name>locker</name></member>
-      <member refid="a00167_1a1044dbab9820df273baea7ee68e6a813" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterFactory</scope><name>RemoveConverter</name></member>
-      <member refid="a00167_1ad2d287cebc4bc88d2a6e1423059f05ae" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterFactory</scope><name>RemoveConverter&lt; T &gt;</name></member>
-      <member refid="a00167_1aec2f01e01f95ff8c7a69ccaf991b6fa6" prot="private" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterFactory</scope><name>TypeConverterFactory</name></member>
-      <member refid="a00167_1a5229fe94e2acf6302b733c3d114f187e" prot="private" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterFactory</scope><name>typeConverters</name></member>
+      <member refid="a00167_1a3e7f3959693638756bb98951fe8791f3" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::StringConverter</scope><name>CanConvertFrom</name></member>
+      <member refid="a00088_1a470d21adaa704eb281250dbd112ff91a" prot="public" virt="virtual" ambiguityscope="CsvHelper::TypeConversion::DefaultTypeConverter."><scope>CsvHelper::TypeConversion::StringConverter</scope><name>CanConvertFrom</name></member>
+      <member refid="a00088_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::StringConverter</scope><name>CanConvertTo</name></member>
+      <member refid="a00167_1a50bf35ff93e01df630a9c5e3c7b7569f" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::StringConverter</scope><name>ConvertFromString</name></member>
+      <member refid="a00088_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::StringConverter</scope><name>ConvertToString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

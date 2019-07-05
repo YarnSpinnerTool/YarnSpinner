@@ -1,101 +1,19 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00135" kind="class" prot="public">
-    <compoundname>Yarn::Dialogue::OptionSetResult</compoundname>
-    <basecompoundref refid="a00146" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00135_1abda9c3047ff9d3c3ec5540566a239315" prot="public" static="no" mutable="no">
-        <type><ref refid="a00362" kindref="compound">Options</ref></type>
-        <definition>Options Yarn.Dialogue.OptionSetResult.options</definition>
-        <argsstring></argsstring>
-        <name>options</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="163" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="163" bodyend="-1"/>
-        <referencedby refid="a00135_1a934c02fb1047ffd05b2b5a9c6fcd7acb" compoundref="a00290" startline="166" endline="171">Yarn.Dialogue.OptionSetResult.OptionSetResult</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00135_1a6f2683598cf0f62b76bb864640cc79dd" prot="public" static="no" mutable="no">
-        <type><ref refid="a00041_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">OptionChooser</ref></type>
-        <definition>OptionChooser Yarn.Dialogue.OptionSetResult.setSelectedOptionDelegate</definition>
-        <argsstring></argsstring>
-        <name>setSelectedOptionDelegate</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="164" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="164" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00135_1a934c02fb1047ffd05b2b5a9c6fcd7acb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Dialogue.OptionSetResult.OptionSetResult</definition>
-        <argsstring>(IList&lt; string &gt; optionStrings, OptionChooser setSelectedOption)</argsstring>
-        <name>OptionSetResult</name>
-        <param>
-          <type>IList&lt; string &gt;</type>
-          <declname>optionStrings</declname>
-        </param>
-        <param>
-          <type><ref refid="a00041_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">OptionChooser</ref></type>
-          <declname>setSelectedOption</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="166" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="166" bodyend="171"/>
-        <references refid="a00135_1abda9c3047ff9d3c3ec5540566a239315" compoundref="a00290" startline="163">Yarn.Dialogue.OptionSetResult.options</references>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00135" kind="namespace">
+    <compoundname>Yarn::Unity</compoundname>
+    <innerclass refid="a00378" prot="public">Yarn::Unity::LocalisedStringGroup</innerclass>
+    <innerclass refid="a00093" prot="public">Yarn::Unity::DialogueRunner</innerclass>
+    <innerclass refid="a00193" prot="public">Yarn::Unity::YarnCommandAttribute</innerclass>
+    <innerclass refid="a00095" prot="public">Yarn::Unity::DialogueUIBehaviour</innerclass>
+    <innerclass refid="a00191" prot="public">Yarn::Unity::VariableStorageBehaviour</innerclass>
+    <innerclass refid="a00186" prot="public">Yarn::Unity::YarnSpinnerEditorWindow</innerclass>
+    <innerclass refid="a00111" prot="package">Yarn::Unity::Icons</innerclass>
+    <innernamespace refid="a00370">Yarn::Unity::Example</innernamespace>
     <briefdescription>
-<para>The client should show a list of options, and call setSelectedOptionDelegate before asking for the next line. It&apos;s an error if you don&apos;t. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1559">
-        <label>RunnerResult</label>
-        <link refid="a00146"/>
-      </node>
-      <node id="1558">
-        <label>Yarn.Dialogue.OptionSetResult</label>
-        <link refid="a00135"/>
-        <childnode refid="1559" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="1562">
-        <label>Yarn.Options</label>
-        <link refid="a00362"/>
-      </node>
-      <node id="1561">
-        <label>RunnerResult</label>
-        <link refid="a00146"/>
-      </node>
-      <node id="1560">
-        <label>Yarn.Dialogue.OptionSetResult</label>
-        <link refid="a00135"/>
-        <childnode refid="1561" relation="public-inheritance">
-        </childnode>
-        <childnode refid="1562" relation="usage">
-          <edgelabel>+options</edgelabel>
-        </childnode>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="162" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="162" bodyend="173"/>
-    <listofallmembers>
-      <member refid="a00135_1abda9c3047ff9d3c3ec5540566a239315" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::OptionSetResult</scope><name>options</name></member>
-      <member refid="a00135_1a934c02fb1047ffd05b2b5a9c6fcd7acb" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::OptionSetResult</scope><name>OptionSetResult</name></member>
-      <member refid="a00135_1a6f2683598cf0f62b76bb864640cc79dd" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::OptionSetResult</scope><name>setSelectedOptionDelegate</name></member>
-    </listofallmembers>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="34" column="1"/>
   </compounddef>
 </doxygen>

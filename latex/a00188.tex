@@ -1,150 +1,455 @@
-\hypertarget{a00188}{\section{Yarn\-Spinner\-Tests Class Reference}
-\label{a00188}\index{Yarn\-Spinner\-Tests@{Yarn\-Spinner\-Tests}}
+\hypertarget{a00188}{\section{Yarn.\-Parser.\-Value\-Node Class Reference}
+\label{a00188}\index{Yarn.\-Parser.\-Value\-Node@{Yarn.\-Parser.\-Value\-Node}}
 }
 
 
-Collaboration diagram for Yarn\-Spinner\-Tests\-:
+Inheritance diagram for Yarn.\-Parser.\-Value\-Node\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{a00399}
+\includegraphics[width=198pt]{a00709}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Parser.\-Value\-Node\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{a00710}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00188_ad6e4c6a92bb5ed6187949264df6aaf1b}{Set\-Up} ()
+string \hyperlink{a00148_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
 \item 
-void \hyperlink{a00188_a60ab8ed8dc30ec30e74baa1916d47324}{Editor\-Test} ()
+override string \hyperlink{a00148_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
 \end{DoxyCompactItemize}
-\subsection*{Private Attributes}
+\subsection*{Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00083}{Yarn.\-Unity.\-Dialogue\-Runner} \hyperlink{a00188_a9791840e0b5987e5bd09bce83ce2d8d9}{dialogue\-Runner}
+\hyperlink{a00188_afeaea21eee1c8360a76a202a419d3912}{Value\-Node} (\hyperlink{a00148}{Parse\-Node} \hyperlink{a00148_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00173}{Token} t, \hyperlink{a00149}{Parser} p)
 \item 
-\hyperlink{a00181}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour} \hyperlink{a00188_a27dbc8c3f7f23ce142d1d5d1fd3df8bc}{variable\-Storage}
+\hyperlink{a00188_ac63fbe99131dc3b42af16a2d087c0655}{Value\-Node} (\hyperlink{a00148}{Parse\-Node} \hyperlink{a00148_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00149}{Parser} p)
 \item 
-\hyperlink{a00161}{Test\-Dialogue\-U\-I\-Behaviour} \hyperlink{a00188_aace025d2a9a703154a1989c47b0a0737}{dialogue\-U\-I}
+override string \hyperlink{a00188_ae4659e4431e9846a45e0d048c960781a}{Print\-Tree} (int indent\-Level)
+\item 
+\hyperlink{a00138}{Node} \hyperlink{a00148_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00148}{Parse\-Node} \hyperlink{a00148_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
+\item 
+int \hyperlink{a00148_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{a00148_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00187}{Value} \hyperlink{a00188_a51ab5939344f9bfa21181c02cf0e341d}{value}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00188_a7be6a979ee21b2d07ce541fb9c5b52df}{Use\-Token} (\hyperlink{a00173}{Token} t)
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 66 of file Yarn\-Spinner\-Tests.\-cs.
+Definition at line 673 of file Parser.\-cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00188_afeaea21eee1c8360a76a202a419d3912}{\index{Yarn\-::\-Parser\-::\-Value\-Node@{Yarn\-::\-Parser\-::\-Value\-Node}!Value\-Node@{Value\-Node}}
+\index{Value\-Node@{Value\-Node}!Yarn::Parser::ValueNode@{Yarn\-::\-Parser\-::\-Value\-Node}}
+\subsubsection[{Value\-Node}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Value\-Node.\-Value\-Node (
+\begin{DoxyParamCaption}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Token}}]{t, }
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00188_afeaea21eee1c8360a76a202a419d3912}
+
+
+Definition at line 714 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Value\-Node.\-Use\-Token().
+
+
+\begin{DoxyCode}
+714                                                                     : base (
+      \hyperlink{a00148_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
+715                 \hyperlink{a00188_a7be6a979ee21b2d07ce541fb9c5b52df}{UseToken}(t);
+716             \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00188_afeaea21eee1c8360a76a202a419d3912_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00188_ac63fbe99131dc3b42af16a2d087c0655}{\index{Yarn\-::\-Parser\-::\-Value\-Node@{Yarn\-::\-Parser\-::\-Value\-Node}!Value\-Node@{Value\-Node}}
+\index{Value\-Node@{Value\-Node}!Yarn::Parser::ValueNode@{Yarn\-::\-Parser\-::\-Value\-Node}}
+\subsubsection[{Value\-Node}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Value\-Node.\-Value\-Node (
+\begin{DoxyParamCaption}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00188_ac63fbe99131dc3b42af16a2d087c0655}
+
+
+Definition at line 719 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Value\-Node.\-Use\-Token().
+
+
+\begin{DoxyCode}
+719                                                            : base(\hyperlink{a00148_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
+720 
+721                 Token t = p.ExpectSymbol(TokenType.Number, TokenType.Variable, TokenType.String);
+722 
+723                 \hyperlink{a00188_a7be6a979ee21b2d07ce541fb9c5b52df}{UseToken}(t);
+724             \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00188_ac63fbe99131dc3b42af16a2d087c0655_cgraph}
+\end{center}
+\end{figure}
+
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00188_a60ab8ed8dc30ec30e74baa1916d47324}{\index{Yarn\-Spinner\-Tests@{Yarn\-Spinner\-Tests}!Editor\-Test@{Editor\-Test}}
-\index{Editor\-Test@{Editor\-Test}!YarnSpinnerTests@{Yarn\-Spinner\-Tests}}
-\subsubsection[{Editor\-Test}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner\-Tests.\-Editor\-Test (
+\hypertarget{a00148_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Value\-Node@{Yarn\-::\-Parser\-::\-Value\-Node}!Node\-Parent@{Node\-Parent}}
+\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::ValueNode@{Yarn\-::\-Parser\-::\-Value\-Node}}
+\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00188_a60ab8ed8dc30ec30e74baa1916d47324}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00148_a580e520a29444fc23ac3660cbe514a09}
 
 
-Definition at line 94 of file Yarn\-Spinner\-Tests.\-cs.
+Definition at line 101 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option().
 
 
 \begin{DoxyCode}
-95     \{
-96 
-97         dialogueUI.ExpectLine(\textcolor{stringliteral}{"Player: Hey, Sally."});
-98         dialogueUI.ExpectLine(\textcolor{stringliteral}{"Sally: Oh! Hi."});
-99         dialogueUI.ExpectLine(\textcolor{stringliteral}{"Sally: You snuck up on me."});
-100         dialogueUI.ExpectLine(\textcolor{stringliteral}{"Sally: Don't do that."});
-101         dialogueUI.SelectOption(\textcolor{stringliteral}{"Anything exciting happen on your watch?"});
-102 
-103         dialogueRunner.StartDialogue(\textcolor{stringliteral}{"Sally"});
-104 
-105         \textcolor{comment}{// Talking to Sally a second time should result in a different dialogue}
-106 
-107 
-108 
-109 
-110         \textcolor{comment}{//Act}
-111         \textcolor{comment}{//Try to rename the GameObject}
-112 
-113         \textcolor{comment}{//Assert}
-114         \textcolor{comment}{//The object has a new name}
-115         \textcolor{comment}{//Assert.AreEqual(newGameObjectName, gameObject.name);}
-116     \}
+101                                        \{
+102                 var node = \textcolor{keyword}{this};
+103 
+104                 \textcolor{keywordflow}{do} \{
+105                     \textcolor{keywordflow}{if} (node is Node) \{
+106                         \textcolor{keywordflow}{return} node as Node;
+107                     \}
+108                     node = node.parent;
+109                 \} \textcolor{keywordflow}{while} (node
+110                     != null);
+111 
+112                 \textcolor{keywordflow}{return} null;
+113             \}
 \end{DoxyCode}
-\hypertarget{a00188_ad6e4c6a92bb5ed6187949264df6aaf1b}{\index{Yarn\-Spinner\-Tests@{Yarn\-Spinner\-Tests}!Set\-Up@{Set\-Up}}
-\index{Set\-Up@{Set\-Up}!YarnSpinnerTests@{Yarn\-Spinner\-Tests}}
-\subsubsection[{Set\-Up}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner\-Tests.\-Set\-Up (
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00148_a580e520a29444fc23ac3660cbe514a09_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00188_ae4659e4431e9846a45e0d048c960781a}{\index{Yarn\-::\-Parser\-::\-Value\-Node@{Yarn\-::\-Parser\-::\-Value\-Node}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::ValueNode@{Yarn\-::\-Parser\-::\-Value\-Node}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Value\-Node.\-Print\-Tree (
 \begin{DoxyParamCaption}
-{}
+\item[{int}]{indent\-Level}
 \end{DoxyParamCaption}
-)}}\label{a00188_ad6e4c6a92bb5ed6187949264df6aaf1b}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00188_ae4659e4431e9846a45e0d048c960781a}
 
 
-Definition at line 73 of file Yarn\-Spinner\-Tests.\-cs.
+Implements \hyperlink{a00148_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
 
 
 
-References dialogue\-Runner, and dialogue\-U\-I.
+Definition at line 726 of file Parser.\-cs.
+
+
+
+References Yarn.\-Value.\-bool\-Value, Yarn.\-Value.\-number\-Value, Yarn.\-Value.\-string\-Value, Yarn.\-Parser.\-Tab(), Yarn.\-Value.\-type, Yarn.\-Parser.\-Value\-Node.\-value, and Yarn.\-Value.\-variable\-Name.
 
 
 \begin{DoxyCode}
-74     \{
-75         \textcolor{comment}{//Arrange}
-76 
-77         \textcolor{comment}{// Create the dialogue runner}
-78         var dialogueHost = \textcolor{keyword}{new} GameObject();
-79         \hyperlink{a00188_a9791840e0b5987e5bd09bce83ce2d8d9}{dialogueRunner} = dialogueHost.AddComponent<
-      \hyperlink{a00083}{Yarn.Unity.DialogueRunner}>();
-80 
-81         \textcolor{comment}{// Create the variable storage}
-82         \textcolor{comment}{//variableStorage = dialogueHost.AddComponent<ExampleVariableStorage>();}
+727             \{
+728                 \textcolor{keywordflow}{switch} (\hyperlink{a00188_a51ab5939344f9bfa21181c02cf0e341d}{value}.\hyperlink{a00187_a6d5820fafa766911b9da84d1ed33e51a}{type}) \{
+729                 \textcolor{keywordflow}{case} Value.Type.Number:
+730                     \textcolor{keywordflow}{return} \hyperlink{a00149_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \hyperlink{a00188_a51ab5939344f9bfa21181c02cf0e341d}{value}.\hyperlink{a00187_ae1892c1c7a8177537d1caa39a2e51da6}{numberValue}.ToString(CultureInfo.
+      CurrentCulture));
+731                 \textcolor{keywordflow}{case} Value.Type.String:
+732                     \textcolor{keywordflow}{return} \hyperlink{a00149_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab}(indentLevel, \textcolor{keywordtype}{string}.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"\(\backslash\)"\{0\}\(\backslash\)""}, 
+      \hyperlink{a00188_a51ab5939344f9bfa21181c02cf0e341d}{value}.\hyperlink{a00187_add1b07146f1a9e4b655b33c93d07dff9}{stringValue}));
+733                 \textcolor{keywordflow}{case} Value.Type.Bool:
+734                     \textcolor{keywordflow}{return} \hyperlink{a00149_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \hyperlink{a00188_a51ab5939344f9bfa21181c02cf0e341d}{value}.\hyperlink{a00187_acb140e3466e132528409d4c441fd67da}{boolValue}.ToString(CultureInfo.
+      CurrentCulture));
+735                 \textcolor{keywordflow}{case} Value.Type.Variable:
+736                     \textcolor{keywordflow}{return} \hyperlink{a00149_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \hyperlink{a00188_a51ab5939344f9bfa21181c02cf0e341d}{value}.\hyperlink{a00187_a8ee2b09b7d28eaf97bf63c74d0023bfd}{variableName});
+737                 \textcolor{keywordflow}{case} Value.Type.Null:
+738                     \textcolor{keywordflow}{return} \hyperlink{a00149_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"(null)"});
+739                 \}
+740                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException ();
+741             \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00188_ae4659e4431e9846a45e0d048c960781a_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00148_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-Value\-Node@{Yarn\-::\-Parser\-::\-Value\-Node}!Tags\-To\-String@{Tags\-To\-String}}
+\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::ValueNode@{Yarn\-::\-Parser\-::\-Value\-Node}}
+\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00148_a054f36c80d5eeacd569a8859f599af67}
+
+
+Definition at line 79 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Tab(), and Yarn.\-Parser.\-Parse\-Node.\-tags.
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Print\-Tree(), and Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree().
+
+
+\begin{DoxyCode}
+80             \{
+81                 \textcolor{keywordflow}{if} (\hyperlink{a00148_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
+82                     var s = \textcolor{keyword}{new} StringBuilder ();
 83 
-84         \textcolor{comment}{// Load the test script}
-85         var text = AssetDatabase.LoadAssetAtPath<TextAsset>(\textcolor{stringliteral}{"Assets/Yarn Spinner/Examples/Demo
-       Assets/Space.json"});
-86         dialogueRunner.AddScript(text);
-87 
-88         \hyperlink{a00188_aace025d2a9a703154a1989c47b0a0737}{dialogueUI} = dialogueHost.AddComponent<\hyperlink{a00161}{TestDialogueUIBehaviour}>();
-89         dialogueRunner.dialogueUI = \hyperlink{a00188_aace025d2a9a703154a1989c47b0a0737}{dialogueUI};
-90 
-91     \}
+84                     s.Append (\hyperlink{a00149_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
+85                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00148_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
+86                         s.Append(\hyperlink{a00149_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
+87                     \}
+88                     \textcolor{keywordflow}{return} s.ToString ();
+89                 \} \textcolor{keywordflow}{else} \{
+90                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+91                 \}
+92 
+93             \}
 \end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00148_a054f36c80d5eeacd569a8859f599af67_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00148_a054f36c80d5eeacd569a8859f599af67_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00148_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Value\-Node@{Yarn\-::\-Parser\-::\-Value\-Node}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Parser::ValueNode@{Yarn\-::\-Parser\-::\-Value\-Node}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00148_a18c67cb16090d0889bb9d6c8c6c565f8}
+
+
+Definition at line 95 of file Parser.\-cs.
+
+
+\begin{DoxyCode}
+96             \{
+97                 \textcolor{keywordflow}{return} this.GetType ().Name;
+98             \}
+\end{DoxyCode}
+\hypertarget{a00188_a7be6a979ee21b2d07ce541fb9c5b52df}{\index{Yarn\-::\-Parser\-::\-Value\-Node@{Yarn\-::\-Parser\-::\-Value\-Node}!Use\-Token@{Use\-Token}}
+\index{Use\-Token@{Use\-Token}!Yarn::Parser::ValueNode@{Yarn\-::\-Parser\-::\-Value\-Node}}
+\subsubsection[{Use\-Token}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Parser.\-Value\-Node.\-Use\-Token (
+\begin{DoxyParamCaption}
+\item[{{\bf Token}}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00188_a7be6a979ee21b2d07ce541fb9c5b52df}
+
+
+Definition at line 677 of file Parser.\-cs.
+
+
+
+References Yarn.\-Value.\-N\-U\-L\-L, Yarn.\-Parser.\-Parse(), Yarn.\-String, Yarn.\-Token.\-type, Yarn.\-Token.\-value, and Yarn.\-Parser.\-Value\-Node.\-value.
+
+
+
+Referenced by Yarn.\-Parser.\-Value\-Node.\-Value\-Node().
+
+
+\begin{DoxyCode}
+677                                            \{
+678                 \textcolor{comment}{// Store the value depending on token's type}
+679                 \textcolor{keywordflow}{switch} (t.type) \{
+680                 \textcolor{keywordflow}{case} TokenType.Number:
+681 
+682                     \hyperlink{a00188_a51ab5939344f9bfa21181c02cf0e341d}{value} = \textcolor{keyword}{new} Value (\textcolor{keywordtype}{float}.\hyperlink{a00149_a811cc7226f4f4a2f3440cdb67ad14468}{Parse} (t.value as \textcolor{keywordtype}{string}, CultureInfo.
+      InvariantCulture));
+683 
+684                     \textcolor{keywordflow}{break};
+685                 \textcolor{keywordflow}{case} TokenType.String:
+686 
+687                     \hyperlink{a00188_a51ab5939344f9bfa21181c02cf0e341d}{value} = \textcolor{keyword}{new} Value (t.value as \hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String});
+688                     \textcolor{keywordflow}{break};
+689 
+690                 \textcolor{keywordflow}{case} TokenType.False:
+691 
+692                     \hyperlink{a00188_a51ab5939344f9bfa21181c02cf0e341d}{value} = \textcolor{keyword}{new} Value (\textcolor{keyword}{false});
+693 
+694                     \textcolor{keywordflow}{break};
+695                 \textcolor{keywordflow}{case} TokenType.True:
+696 
+697                     \hyperlink{a00188_a51ab5939344f9bfa21181c02cf0e341d}{value} = \textcolor{keyword}{new} Value (\textcolor{keyword}{true});
+698 
+699                     \textcolor{keywordflow}{break};
+700                 \textcolor{keywordflow}{case} TokenType.Variable:
+701                     \hyperlink{a00188_a51ab5939344f9bfa21181c02cf0e341d}{value} = \textcolor{keyword}{new} Value ();
+702                     value.type = Value.Type.Variable;
+703                     value.variableName = t.value as \hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String};
+704                     \textcolor{keywordflow}{break};
+705                 \textcolor{keywordflow}{case} TokenType.Null:
+706                     \hyperlink{a00188_a51ab5939344f9bfa21181c02cf0e341d}{value} = \hyperlink{a00187_a1ed2964965baca8621c45efa23f37660}{Value.NULL};
+707                     \textcolor{keywordflow}{break};
+708                 \textcolor{keywordflow}{default}:
+709                     \textcolor{keywordflow}{throw} ParseException.Make (t, \textcolor{stringliteral}{"Invalid token type "} + t.ToString ());
+710                 \}
+711             \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00188_a7be6a979ee21b2d07ce541fb9c5b52df_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00188_a7be6a979ee21b2d07ce541fb9c5b52df_icgraph}
+\end{center}
+\end{figure}
+
+
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00188_a9791840e0b5987e5bd09bce83ce2d8d9}{\index{Yarn\-Spinner\-Tests@{Yarn\-Spinner\-Tests}!dialogue\-Runner@{dialogue\-Runner}}
-\index{dialogue\-Runner@{dialogue\-Runner}!YarnSpinnerTests@{Yarn\-Spinner\-Tests}}
-\subsubsection[{dialogue\-Runner}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Unity.\-Dialogue\-Runner} Yarn\-Spinner\-Tests.\-dialogue\-Runner\hspace{0.3cm}{\ttfamily [private]}}}\label{a00188_a9791840e0b5987e5bd09bce83ce2d8d9}
+\hypertarget{a00148_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-Value\-Node@{Yarn\-::\-Parser\-::\-Value\-Node}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Parser::ValueNode@{Yarn\-::\-Parser\-::\-Value\-Node}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00148_a18b493382de0fde5b4299c1bd2250075}
 
 
-Definition at line 68 of file Yarn\-Spinner\-Tests.\-cs.
-
-
-
-Referenced by Set\-Up().
-
-\hypertarget{a00188_aace025d2a9a703154a1989c47b0a0737}{\index{Yarn\-Spinner\-Tests@{Yarn\-Spinner\-Tests}!dialogue\-U\-I@{dialogue\-U\-I}}
-\index{dialogue\-U\-I@{dialogue\-U\-I}!YarnSpinnerTests@{Yarn\-Spinner\-Tests}}
-\subsubsection[{dialogue\-U\-I}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Test\-Dialogue\-U\-I\-Behaviour} Yarn\-Spinner\-Tests.\-dialogue\-U\-I\hspace{0.3cm}{\ttfamily [private]}}}\label{a00188_aace025d2a9a703154a1989c47b0a0737}
-
-
-Definition at line 70 of file Yarn\-Spinner\-Tests.\-cs.
+Definition at line 62 of file Parser.\-cs.
 
 
 
-Referenced by Set\-Up().
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
 
-\hypertarget{a00188_a27dbc8c3f7f23ce142d1d5d1fd3df8bc}{\index{Yarn\-Spinner\-Tests@{Yarn\-Spinner\-Tests}!variable\-Storage@{variable\-Storage}}
-\index{variable\-Storage@{variable\-Storage}!YarnSpinnerTests@{Yarn\-Spinner\-Tests}}
-\subsubsection[{variable\-Storage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Unity.\-Variable\-Storage\-Behaviour} Yarn\-Spinner\-Tests.\-variable\-Storage\hspace{0.3cm}{\ttfamily [private]}}}\label{a00188_a27dbc8c3f7f23ce142d1d5d1fd3df8bc}
+\hypertarget{a00148_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-Value\-Node@{Yarn\-::\-Parser\-::\-Value\-Node}!parent@{parent}}
+\index{parent@{parent}!Yarn::Parser::ValueNode@{Yarn\-::\-Parser\-::\-Value\-Node}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00148_af313a82103fcc2ff5a177dbb06b92f7b}
 
 
-Definition at line 69 of file Yarn\-Spinner\-Tests.\-cs.
+Definition at line 59 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
+
+\hypertarget{a00148_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-Value\-Node@{Yarn\-::\-Parser\-::\-Value\-Node}!tags@{tags}}
+\index{tags@{tags}!Yarn::Parser::ValueNode@{Yarn\-::\-Parser\-::\-Value\-Node}}
+\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00148_a58b3a15788fd2d4127d73619dc6d04ae}
+
+
+Definition at line 77 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option(), Yarn.\-Parser.\-Statement.\-Statement(), and Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String().
+
+
+
+\subsection{Property Documentation}
+\hypertarget{a00188_a51ab5939344f9bfa21181c02cf0e341d}{\index{Yarn\-::\-Parser\-::\-Value\-Node@{Yarn\-::\-Parser\-::\-Value\-Node}!value@{value}}
+\index{value@{value}!Yarn::Parser::ValueNode@{Yarn\-::\-Parser\-::\-Value\-Node}}
+\subsubsection[{value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Parser.\-Value\-Node.\-value\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00188_a51ab5939344f9bfa21181c02cf0e341d}
+
+
+Definition at line 675 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Value\-Node.\-Print\-Tree(), and Yarn.\-Parser.\-Value\-Node.\-Use\-Token().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn\-Spinner/\-Code/\-Editor/\hyperlink{a00279}{Yarn\-Spinner\-Tests.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00313}{Parser.\-cs}\end{DoxyCompactItemize}

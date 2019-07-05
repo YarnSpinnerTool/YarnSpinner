@@ -1,265 +1,83 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00132" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::NullableConverter</compoundname>
-    <basecompoundref refid="a00078" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00132_1add17b913ac5a45cc33ca0fbf10b6603d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>Type</type>
-        <definition>Type CsvHelper.TypeConversion.NullableConverter.NullableType</definition>
+    <compoundname>Yarn::Dialogue::LineResult</compoundname>
+    <basecompoundref refid="a00156" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00132_1abfbb0ea840b02acd0ecdc72c5b120257" prot="public" static="no" mutable="no">
+        <type><ref refid="a00377" kindref="compound">Line</ref></type>
+        <definition>Line Yarn.Dialogue.LineResult.line</definition>
         <argsstring></argsstring>
-        <name>NullableType</name>
+        <name>line</name>
         <briefdescription>
-<para>Gets the type of the nullable. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para>The type of the nullable. </para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" bodystart="21" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00132_1ae6f7f4c0eb8447c7440f01b118e884cf" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>Type</type>
-        <definition>Type CsvHelper.TypeConversion.NullableConverter.UnderlyingType</definition>
-        <argsstring></argsstring>
-        <name>UnderlyingType</name>
-        <briefdescription>
-<para>Gets the underlying type of the nullable. </para>        </briefdescription>
-        <detaileddescription>
-<para>The underlying type. </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" line="29" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" bodystart="29" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00132_1aed8934af11e74459f7d37fcf577480a1" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type><ref refid="a00113" kindref="compound">ITypeConverter</ref></type>
-        <definition>ITypeConverter CsvHelper.TypeConversion.NullableConverter.UnderlyingTypeConverter</definition>
-        <argsstring></argsstring>
-        <name>UnderlyingTypeConverter</name>
-        <briefdescription>
-<para>Gets the type converter for the underlying type. </para>        </briefdescription>
-        <detaileddescription>
-<para>The type converter. </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" bodystart="37" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="145" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="145" bodyend="-1"/>
+        <referencedby refid="a00132_1ad91ff667246e8c4ac0492cedea34b524" compoundref="a00305" startline="147" endline="151">Yarn.Dialogue.LineResult.LineResult</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00132_1af18c9435dee98900eb8ade933c62951d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00132_1ad91ff667246e8c4ac0492cedea34b524" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>CsvHelper.TypeConversion.NullableConverter.NullableConverter</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>NullableConverter</name>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Creates a new <ref refid="a00132" kindref="compound">NullableConverter</ref> for the given Nullable{T} Type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The nullable type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="exception"><parameteritem>
-<parameternamelist>
-<parametername>System.ArgumentException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>type is not a nullable type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" bodystart="44" bodyend="54"/>
-      </memberdef>
-      <memberdef kind="function" id="a00132_1addb6dc12d4927204cd2349202db63e74" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.NullableConverter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplements refid="a00078_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
-        <param>
-          <type><ref refid="a00168" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
+        <definition>Yarn.Dialogue.LineResult.LineResult</definition>
+        <argsstring>(string text)</argsstring>
+        <name>LineResult</name>
         <param>
           <type>string</type>
           <declname>text</declname>
         </param>
         <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" line="62" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" bodystart="62" bodyend="70"/>
-      </memberdef>
-      <memberdef kind="function" id="a00132_1a7205cdb61d2d119582958232b3e63109" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override string</type>
-        <definition>override string CsvHelper.TypeConversion.NullableConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplements refid="a00078_1a36cb2f9b24f15a671293f3a722324c27">ConvertToString</reimplements>
-        <param>
-          <type><ref refid="a00168" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>object</type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" line="78" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" bodystart="78" bodyend="81"/>
-      </memberdef>
-      <memberdef kind="function" id="a00132_1ab9761a9f96be2b41103bb1313611d6f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.NullableConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplements refid="a00078_1a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</reimplements>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" line="90" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" bodystart="90" bodyend="94"/>
-      </memberdef>
-      <memberdef kind="function" id="a00078_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplements refid="a00113_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="a00089_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="147" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="147" bodyend="151"/>
+        <references refid="a00132_1abfbb0ea840b02acd0ecdc72c5b120257" compoundref="a00305" startline="145">Yarn.Dialogue.LineResult.line</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Converts a Nullable to and from a string. </para>    </briefdescription>
+<para>The client should run a line of dialogue. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1545">
-        <label>ITypeConverter</label>
-        <link refid="a00113"/>
-      </node>
-      <node id="1544">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00078"/>
-        <childnode refid="1545" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1543">
-        <label>CsvHelper.TypeConversion.NullableConverter</label>
+      <node id="1498">
+        <label>Yarn.Dialogue.LineResult</label>
         <link refid="a00132"/>
-        <childnode refid="1544" relation="public-inheritance">
+        <childnode refid="1499" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="1499">
+        <label>RunnerResult</label>
+        <link refid="a00156"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1548">
-        <label>ITypeConverter</label>
-        <link refid="a00113"/>
-      </node>
-      <node id="1547">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00078"/>
-        <childnode refid="1548" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1546">
-        <label>CsvHelper.TypeConversion.NullableConverter</label>
+      <node id="1500">
+        <label>Yarn.Dialogue.LineResult</label>
         <link refid="a00132"/>
-        <childnode refid="1547" relation="public-inheritance">
+        <childnode refid="1501" relation="public-inheritance">
         </childnode>
+        <childnode refid="1502" relation="usage">
+          <edgelabel>+line</edgelabel>
+        </childnode>
+      </node>
+      <node id="1502">
+        <label>Yarn.Line</label>
+        <link refid="a00377"/>
+      </node>
+      <node id="1501">
+        <label>RunnerResult</label>
+        <link refid="a00156"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs" bodystart="13" bodyend="95"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="143" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="143" bodyend="153"/>
     <listofallmembers>
-      <member refid="a00132_1ab9761a9f96be2b41103bb1313611d6f9" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::NullableConverter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00078_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::NullableConverter</scope><name>CanConvertTo</name></member>
-      <member refid="a00132_1addb6dc12d4927204cd2349202db63e74" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::NullableConverter</scope><name>ConvertFromString</name></member>
-      <member refid="a00132_1a7205cdb61d2d119582958232b3e63109" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::NullableConverter</scope><name>ConvertToString</name></member>
-      <member refid="a00132_1af18c9435dee98900eb8ade933c62951d" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::NullableConverter</scope><name>NullableConverter</name></member>
-      <member refid="a00132_1add17b913ac5a45cc33ca0fbf10b6603d" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::NullableConverter</scope><name>NullableType</name></member>
-      <member refid="a00132_1ae6f7f4c0eb8447c7440f01b118e884cf" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::NullableConverter</scope><name>UnderlyingType</name></member>
-      <member refid="a00132_1aed8934af11e74459f7d37fcf577480a1" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::NullableConverter</scope><name>UnderlyingTypeConverter</name></member>
+      <member refid="a00132_1abfbb0ea840b02acd0ecdc72c5b120257" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::LineResult</scope><name>line</name></member>
+      <member refid="a00132_1ad91ff667246e8c4ac0492cedea34b524" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::LineResult</scope><name>LineResult</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

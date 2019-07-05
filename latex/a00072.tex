@@ -1,153 +1,132 @@
-\hypertarget{a00072}{\section{Csv\-Helper.\-Csv\-Writer\-Exception Class Reference}
-\label{a00072}\index{Csv\-Helper.\-Csv\-Writer\-Exception@{Csv\-Helper.\-Csv\-Writer\-Exception}}
+\hypertarget{a00072}{\section{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Comparer Class Reference}
+\label{a00072}\index{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Comparer@{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Comparer}}
 }
 
 
-Represents errors that occur while writing a C\-S\-V file.  
+Used to compare \hyperlink{a00070}{Csv\-Property\-Map}s. The order is by field index ascending. Any fields that don't have an index are pushed to the bottom.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Csv\-Writer\-Exception\-:
+Inheritance diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Comparer\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=234pt]{a00431}
+\includegraphics[width=234pt]{a00494}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Csv\-Writer\-Exception\-:
+Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Comparer\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=234pt]{a00432}
+\includegraphics[width=234pt]{a00495}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00072_a4e5030012e1258c3db3da1725c0d9332}{Csv\-Writer\-Exception} ()
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00072}{Csv\-Writer\-Exception} class. \end{DoxyCompactList}\item 
-\hyperlink{a00072_a6d01cb3854a95d77cd1f9e2d8b1aa304}{Csv\-Writer\-Exception} (string message)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00072}{Csv\-Writer\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
-\hyperlink{a00072_aedacd3e9a9161a62991cc1d388298a14}{Csv\-Writer\-Exception} (string message, Exception inner\-Exception)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00072}{Csv\-Writer\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
-\hyperlink{a00072_ac4ae90ce8433632c2047d4de364effa6}{Csv\-Writer\-Exception} (Serialization\-Info info, Streaming\-Context context)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00072}{Csv\-Writer\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual int \hyperlink{a00072_a41ab777503459b3984a2e2826a14d52a}{Compare} (object x, object y)
+\begin{DoxyCompactList}\small\item\em Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other. \end{DoxyCompactList}\item 
+virtual int \hyperlink{a00072_ab9c855cf5389c8f1ae1b476d508ade5d}{Compare} (\hyperlink{a00070}{Csv\-Property\-Map} x, \hyperlink{a00070}{Csv\-Property\-Map} y)
+\begin{DoxyCompactList}\small\item\em Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Represents errors that occur while writing a C\-S\-V file. 
+Used to compare \hyperlink{a00070}{Csv\-Property\-Map}s. The order is by field index ascending. Any fields that don't have an index are pushed to the bottom. 
 
 
 
-Definition at line 18 of file Csv\-Writer\-Exception.\-cs.
+Definition at line 17 of file Csv\-Property\-Map\-Comparer.\-cs.
 
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00072_a4e5030012e1258c3db3da1725c0d9332}{\index{Csv\-Helper\-::\-Csv\-Writer\-Exception@{Csv\-Helper\-::\-Csv\-Writer\-Exception}!Csv\-Writer\-Exception@{Csv\-Writer\-Exception}}
-\index{Csv\-Writer\-Exception@{Csv\-Writer\-Exception}!CsvHelper::CsvWriterException@{Csv\-Helper\-::\-Csv\-Writer\-Exception}}
-\subsubsection[{Csv\-Writer\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Writer\-Exception.\-Csv\-Writer\-Exception (
+\subsection{Member Function Documentation}
+\hypertarget{a00072_a41ab777503459b3984a2e2826a14d52a}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Comparer@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Comparer}!Compare@{Compare}}
+\index{Compare@{Compare}!CsvHelper::Configuration::CsvPropertyMapComparer@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Comparer}}
+\subsubsection[{Compare}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Comparer.\-Compare (
 \begin{DoxyParamCaption}
-{}
+\item[{object}]{x, }
+\item[{object}]{y}
 \end{DoxyParamCaption}
-)}}\label{a00072_a4e5030012e1258c3db3da1725c0d9332}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00072_a41ab777503459b3984a2e2826a14d52a}
 
 
-Initializes a new instance of the \hyperlink{a00072}{Csv\-Writer\-Exception} class. 
+Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other. 
 
+\begin{DoxyReturn}{Returns}
+Value Condition Less than zero {\itshape x}  is less than {\itshape y} . Zero {\itshape x}  equals {\itshape y} . Greater than zero {\itshape x}  is greater than {\itshape y} . 
+\end{DoxyReturn}
 
+\begin{DoxyParams}{Parameters}
+{\em x} & The first object to compare. \\
+\hline
+{\em y} & The second object to compare. \\
+\hline
+\end{DoxyParams}
 
-Definition at line 23 of file Csv\-Writer\-Exception.\-cs.
+\begin{DoxyExceptions}{Exceptions}
+{\em T\-:\-System.\-Argument\-Exception} & Neither {\itshape x}  nor {\itshape y}  implements the T\-:\-System.\-I\-Comparable interface. -\/or-\/ {\itshape x}  and {\itshape y}  are of different types and neither one can handle comparisons with the other. \\
+\hline
+\end{DoxyExceptions}
+$<$filterpriority$>$2$<$/filterpriority$>$ 
+
+Definition at line 38 of file Csv\-Property\-Map\-Comparer.\-cs.
 
 
 \begin{DoxyCode}
-23 \{\}
+39         \{
+40             var xProperty = x as CsvPropertyMap;
+41             var yProperty = y as CsvPropertyMap;
+42             \textcolor{keywordflow}{return} \hyperlink{a00072_a41ab777503459b3984a2e2826a14d52a}{Compare}( xProperty, yProperty );
+43         \}
 \end{DoxyCode}
-\hypertarget{a00072_a6d01cb3854a95d77cd1f9e2d8b1aa304}{\index{Csv\-Helper\-::\-Csv\-Writer\-Exception@{Csv\-Helper\-::\-Csv\-Writer\-Exception}!Csv\-Writer\-Exception@{Csv\-Writer\-Exception}}
-\index{Csv\-Writer\-Exception@{Csv\-Writer\-Exception}!CsvHelper::CsvWriterException@{Csv\-Helper\-::\-Csv\-Writer\-Exception}}
-\subsubsection[{Csv\-Writer\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Writer\-Exception.\-Csv\-Writer\-Exception (
+\hypertarget{a00072_ab9c855cf5389c8f1ae1b476d508ade5d}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Comparer@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Comparer}!Compare@{Compare}}
+\index{Compare@{Compare}!CsvHelper::Configuration::CsvPropertyMapComparer@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Comparer}}
+\subsubsection[{Compare}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Comparer.\-Compare (
 \begin{DoxyParamCaption}
-\item[{string}]{message}
+\item[{{\bf Csv\-Property\-Map}}]{x, }
+\item[{{\bf Csv\-Property\-Map}}]{y}
 \end{DoxyParamCaption}
-)}}\label{a00072_a6d01cb3854a95d77cd1f9e2d8b1aa304}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00072_ab9c855cf5389c8f1ae1b476d508ade5d}
 
 
-Initializes a new instance of the \hyperlink{a00072}{Csv\-Writer\-Exception} class with a specified error message. 
+Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other. 
 
+\begin{DoxyReturn}{Returns}
+Value Condition Less than zero {\itshape x}  is less than {\itshape y} . Zero {\itshape x}  equals {\itshape y} . Greater than zero {\itshape x}  is greater than {\itshape y} . 
+\end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
-{\em message} & The message that describes the error.\\
+{\em x} & The first object to compare. \\
+\hline
+{\em y} & The second object to compare. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 30 of file Csv\-Writer\-Exception.\-cs.
+Definition at line 61 of file Csv\-Property\-Map\-Comparer.\-cs.
 
 
 \begin{DoxyCode}
-30 : base( message ) \{\}
-\end{DoxyCode}
-\hypertarget{a00072_aedacd3e9a9161a62991cc1d388298a14}{\index{Csv\-Helper\-::\-Csv\-Writer\-Exception@{Csv\-Helper\-::\-Csv\-Writer\-Exception}!Csv\-Writer\-Exception@{Csv\-Writer\-Exception}}
-\index{Csv\-Writer\-Exception@{Csv\-Writer\-Exception}!CsvHelper::CsvWriterException@{Csv\-Helper\-::\-Csv\-Writer\-Exception}}
-\subsubsection[{Csv\-Writer\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Writer\-Exception.\-Csv\-Writer\-Exception (
-\begin{DoxyParamCaption}
-\item[{string}]{message, }
-\item[{Exception}]{inner\-Exception}
-\end{DoxyParamCaption}
-)}}\label{a00072_aedacd3e9a9161a62991cc1d388298a14}
-
-
-Initializes a new instance of the \hyperlink{a00072}{Csv\-Writer\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em message} & The error message that explains the reason for the exception.\\
-\hline
-{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 39 of file Csv\-Writer\-Exception.\-cs.
-
-
-\begin{DoxyCode}
-39 : base( message, innerException ) \{ \}
-\end{DoxyCode}
-\hypertarget{a00072_ac4ae90ce8433632c2047d4de364effa6}{\index{Csv\-Helper\-::\-Csv\-Writer\-Exception@{Csv\-Helper\-::\-Csv\-Writer\-Exception}!Csv\-Writer\-Exception@{Csv\-Writer\-Exception}}
-\index{Csv\-Writer\-Exception@{Csv\-Writer\-Exception}!CsvHelper::CsvWriterException@{Csv\-Helper\-::\-Csv\-Writer\-Exception}}
-\subsubsection[{Csv\-Writer\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Writer\-Exception.\-Csv\-Writer\-Exception (
-\begin{DoxyParamCaption}
-\item[{Serialization\-Info}]{info, }
-\item[{Streaming\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00072_ac4ae90ce8433632c2047d4de364effa6}
-
-
-Initializes a new instance of the \hyperlink{a00072}{Csv\-Writer\-Exception} class with serialized data. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
-\hline
-{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 48 of file Csv\-Writer\-Exception.\-cs.
-
-
-\begin{DoxyCode}
-48 : base( info, context ) \{ \}
+62         \{
+63             \textcolor{keywordflow}{if}( x == null )
+64             \{
+65                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"x"} );
+66             \}
+67             \textcolor{keywordflow}{if}( y == null )
+68             \{
+69                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"y"} );
+70             \}
+71 
+72             \textcolor{keywordflow}{return} x.Data.Index.CompareTo( y.Data.Index );
+73         \}
 \end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00233}{Csv\-Writer\-Exception.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00225}{Csv\-Property\-Map\-Comparer.\-cs}\end{DoxyCompactItemize}

@@ -1,10 +1,9 @@
 var a00095 =
 [
-    [ "ConvertFormat", "a00095.html#aa4db4ccac799c5f047a8b1a9efbe109d", null ],
-    [ "ConvertNodes", "a00095.html#a85596df924468279b2dc44a9f31d8bad", null ],
-    [ "ConvertNodesInFile", "a00095.html#aa72838be584177b5592c31d73c0febdb", null ],
-    [ "ConvertNodesToText", "a00095.html#af9bd5d832fdd2bcbdc626d9f8632e05c", null ],
-    [ "ConvertNodesToYarnText", "a00095.html#a282f283f02c9b1d3e53d813ec2f35233", null ],
-    [ "ConvertToJSON", "a00095.html#a28a086a7b44ecea7430af40436f38df6", null ],
-    [ "ConvertToYarn", "a00095.html#a1e6cd39b0c813f21da278367dcff76d2", null ]
+    [ "DialogueComplete", "a00095.html#aecc60aee9e9386da1f71fb183f43c52d", null ],
+    [ "DialogueStarted", "a00095.html#af9d88ca81ac536d43046ca6572e3ff54", null ],
+    [ "NodeComplete", "a00095.html#a2900548a0704d39d4502a153945f4bef", null ],
+    [ "RunCommand", "a00095.html#a3dffe84b9e7a10fdec6749baf697d111", null ],
+    [ "RunLine", "a00095.html#a754c6dd0bc67895d11f878fe4477d698", null ],
+    [ "RunOptions", "a00095.html#ac5b29079f638f2ceb078627ef1e60004", null ]
 ];

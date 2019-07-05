@@ -1,101 +1,13 @@
-\hypertarget{a00296}{\section{Yarn\-Spinner/\-Program.cs File Reference}
-\label{a00296}\index{Yarn\-Spinner/\-Program.\-cs@{Yarn\-Spinner/\-Program.\-cs}}
+\hypertarget{a00296}{\section{Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\-Example\-Dialogue\-U\-I.cs File Reference}
+\label{a00296}\index{Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\-Example\-Dialogue\-U\-I.\-cs@{Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\-Example\-Dialogue\-U\-I.\-cs}}
 }
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00137}{Yarn.\-Parse\-Exception}
-\item 
-struct \hyperlink{a00121}{Yarn.\-Line\-Info}
-\item 
-class \hyperlink{a00142}{Yarn.\-Program}
-\item 
-class \hyperlink{a00041_a00361}{Yarn.\-Node}
-\item 
-struct \hyperlink{a00109}{Yarn.\-Instruction}
-\end{DoxyCompactItemize}
+class \hyperlink{a00101}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}
+\begin{DoxyCompactList}\small\item\em Displays dialogue lines to the player, and sends user choices back to the dialogue system. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
-package \hyperlink{a00041}{Yarn}
-\end{DoxyCompactItemize}
-\subsection*{Enumerations}
-\begin{DoxyCompactItemize}
-\item 
-enum \hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894}{Yarn.\-Byte\-Code} \{ \\*
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894ab021df6aac4654c454f46c77646e745f}{Yarn.\-Byte\-Code.\-Label}, 
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894acd664ebca0b52a8f2ece7d0767bacb49}{Yarn.\-Byte\-Code.\-Jump\-To}, 
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894a101f693f72287a2819a364f64ca1c0ed}{Yarn.\-Byte\-Code.\-Jump}, 
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894a005c6df9c6edea5516e29d96571fbbbc}{Yarn.\-Byte\-Code.\-Run\-Line}, 
-\\*
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894a64d231d79e9f7640a4572f7ae75aa226}{Yarn.\-Byte\-Code.\-Run\-Command}, 
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894a0e6a6b9eb32a4d55f277d45eff74250d}{Yarn.\-Byte\-Code.\-Add\-Option}, 
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894a658963e1a47a5018fd1e6fbc2af804f7}{Yarn.\-Byte\-Code.\-Show\-Options}, 
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894a3e7800d36ccb7bfe6c463bbe7db7e41a}{Yarn.\-Byte\-Code.\-Push\-String}, 
-\\*
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894a29c8f5d9d5088ada190ccd9c21c31f33}{Yarn.\-Byte\-Code.\-Push\-Number}, 
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894af698d0b66ccf00f7d362c039949d1b80}{Yarn.\-Byte\-Code.\-Push\-Bool}, 
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894acf728db6b8e47e735666156aec7ae755}{Yarn.\-Byte\-Code.\-Push\-Null}, 
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894af8bbf32f00c942d974ade428e24b021f}{Yarn.\-Byte\-Code.\-Jump\-If\-False}, 
-\\*
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894a0ae61bd0474e04c9f1195d4baa0213a0}{Yarn.\-Byte\-Code.\-Pop}, 
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894a3b5e7e8300dc6e4b78cb865c5b10f01a}{Yarn.\-Byte\-Code.\-Call\-Func}, 
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894ab8c46f65015a178516fadbb5ad6c2038}{Yarn.\-Byte\-Code.\-Push\-Variable}, 
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894a872dc050abaff4beb46e70dadd4088c2}{Yarn.\-Byte\-Code.\-Store\-Variable}, 
-\\*
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894a11a755d598c0c417f9a36758c3da7481}{Yarn.\-Byte\-Code.\-Stop}, 
-\hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894ae956bcf888278c168ee9b106927ff6ac}{Yarn.\-Byte\-Code.\-Run\-Node}
- \}
-\end{DoxyCompactItemize}
-
-
-\subsection{Class Documentation}
-\index{Yarn\-::\-Node@{Yarn\-::\-Node}}\label{a00361}
-\hypertarget{a00041_a00361}{}
-\subsubsection{class Yarn\-:\-:Node}
-
-
-Definition at line 246 of file Program.\-cs.
-
-
-
-Collaboration diagram for Yarn.\-Node\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=190pt]{a00375}
-\end{center}
-\end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00041_a156723a9252b62d288ddf611939ea7c3}{List$<$ \hyperlink{a00109}{Instruction} $>$}\label{a00041_a156723a9252b62d288ddf611939ea7c3}
-&
-instructions&
-\\
-\hline
-
-\hypertarget{a00041_a9afa49f4fbc72e806a0210cb4198f12e}{Dictionary$<$ string, int $>$}\label{a00041_a9afa49f4fbc72e806a0210cb4198f12e}
-&
-labels&
-\\
-\hline
-
-\hypertarget{a00041_a107b0de3fcfc65e99913edc01b5ce9db}{string}\label{a00041_a107b0de3fcfc65e99913edc01b5ce9db}
-&
-name&
-\\
-\hline
-
-\hypertarget{a00041_a09c6af5b50925d0876283b84281b3ed4}{string}\label{a00041_a09c6af5b50925d0876283b84281b3ed4}
-&
-source\-Text\-String\-I\-D&
-the entry in the program's string table that contains the original text of this node; null if this is not available \\
-\hline
-
-\hypertarget{a00041_a811086feceebbe79a74eba071c1d516b}{List$<$ string $>$}\label{a00041_a811086feceebbe79a74eba071c1d516b}
-&
-tags&
-\\
-\hline
-
-\end{DoxyFields}
+package \hyperlink{a00370}{Yarn.\-Unity.\-Example}
+\begin{DoxyCompactList}\small\item\em attached to the non-\/player characters, and stores the name of the \hyperlink{a00051}{Yarn} node that should be run when you talk to them. \end{DoxyCompactList}\end{DoxyCompactItemize}

@@ -1,13 +1,9 @@
 var a00163 =
 [
-    [ "Token", "a00163.html#ab8531150354ef148b8929a727f29ae39", null ],
-    [ "ToString", "a00163.html#abf676a737679ec2fb1dffd75dc4d7976", null ],
-    [ "columnNumber", "a00163.html#a9a0f0a8a7ab1e90ab48f15192323ffca", null ],
-    [ "context", "a00163.html#a089d248c904a6e8366b81c2c47ff5af8", null ],
-    [ "delimitsText", "a00163.html#af15d26fa4e6f276ab58ff66d3c4203da", null ],
-    [ "lexerState", "a00163.html#a710099e7abe84f30864a320cc7464214", null ],
-    [ "lineNumber", "a00163.html#a80fe710713201bb793a41452e314a721", null ],
-    [ "parameterCount", "a00163.html#adf11c0d29b66935a8d8109d6308d0488", null ],
-    [ "type", "a00163.html#a471a25da67fda0524f2375f9a882aafa", null ],
-    [ "value", "a00163.html#a3df6b32d6190a639619a3f064c2154e2", null ]
+    [ "SpriteInfo", "a00163.html#a00382", [
+      [ "name", "a00163.html#a3f5bca2fff413dfe075c1fcf7e58369c", null ],
+      [ "sprite", "a00163.html#adc58df011dc2841837b6cf775b372061", null ]
+    ] ],
+    [ "UseSprite", "a00163.html#ac26718b713f342f3de8f3e569c5b62da", null ],
+    [ "sprites", "a00163.html#a1e85d9f4f6b33ca7ae638cce2eb704aa", null ]
 ];

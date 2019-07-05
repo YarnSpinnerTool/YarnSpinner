@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/NullableConverter.cs Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DecimalConverter.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,75 +105,52 @@ $(document).ready(function(){initNavTree('a00266_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">NullableConverter.cs</div>  </div>
+<div class="title">DecimalConverter.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00266.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using</span> System.Globalization;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>CsvHelper.TypeConversion</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="a00132.html">   13</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00132.html">NullableConverter</a> : <a class="code" href="a00078.html">DefaultTypeConverter</a></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="a00132.html#add17b913ac5a45cc33ca0fbf10b6603d">   21</a></span>&#160;        <span class="keyword">public</span> Type NullableType { <span class="keyword">get</span>; <span class="keyword">private</span> set; }</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="a00132.html#ae6f7f4c0eb8447c7440f01b118e884cf">   29</a></span>&#160;        <span class="keyword">public</span> Type UnderlyingType { <span class="keyword">get</span>; <span class="keyword">private</span> set; }</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="a00132.html#aed8934af11e74459f7d37fcf577480a1">   37</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00113.html">ITypeConverter</a> UnderlyingTypeConverter { <span class="keyword">get</span>; <span class="keyword">private</span> set; }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="a00132.html#af18c9435dee98900eb8ade933c62951d">   44</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00132.html#af18c9435dee98900eb8ade933c62951d">NullableConverter</a>( Type type )</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            NullableType = type;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            UnderlyingType = Nullable.GetUnderlyingType( type );</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keywordflow">if</span>( UnderlyingType == null )</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentException( <span class="stringliteral">&quot;type is not a nullable type.&quot;</span> );</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            }</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            UnderlyingTypeConverter = TypeConverterFactory.GetConverter( UnderlyingType );</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="a00132.html#addb6dc12d4927204cd2349202db63e74">   62</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">object</span> <a class="code" href="a00132.html#addb6dc12d4927204cd2349202db63e74">ConvertFromString</a>( <a class="code" href="a00168.html">TypeConverterOptions</a> options, <span class="keywordtype">string</span> text )</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">if</span>( <span class="keywordtype">string</span>.IsNullOrEmpty( text ) )</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="keywordflow">return</span> null;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">return</span> UnderlyingTypeConverter.ConvertFromString( options, text );</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="a00132.html#a7205cdb61d2d119582958232b3e63109">   78</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">string</span> <a class="code" href="a00132.html#a7205cdb61d2d119582958232b3e63109">ConvertToString</a>( <a class="code" href="a00168.html">TypeConverterOptions</a> options, <span class="keywordtype">object</span> value )</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keywordflow">return</span> UnderlyingTypeConverter.ConvertToString( options, value );</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="a00132.html#ab9761a9f96be2b41103bb1313611d6f9">   90</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">bool</span> <a class="code" href="a00132.html#ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</a>( Type type )</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="comment">// We only care about strings.</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            <span class="keywordflow">return</span> type == typeof( <span class="keywordtype">string</span> );</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
-<div class="ttc" id="a00168_html"><div class="ttname"><a href="a00168.html">CsvHelper.TypeConversion.TypeConverterOptions</a></div><div class="ttdoc">Options used when doing type conversion. </div><div class="ttdef"><b>Definition:</b> <a href="a00272_source.html#l00015">TypeConverterOptions.cs:15</a></div></div>
-<div class="ttc" id="a00132_html_ab9761a9f96be2b41103bb1313611d6f9"><div class="ttname"><a href="a00132.html#ab9761a9f96be2b41103bb1313611d6f9">CsvHelper.TypeConversion.NullableConverter.CanConvertFrom</a></div><div class="ttdeci">override bool CanConvertFrom(Type type)</div><div class="ttdoc">Determines whether this instance [can convert from] the specified type. </div><div class="ttdef"><b>Definition:</b> <a href="a00266_source.html#l00090">NullableConverter.cs:90</a></div></div>
-<div class="ttc" id="a00132_html_a7205cdb61d2d119582958232b3e63109"><div class="ttname"><a href="a00132.html#a7205cdb61d2d119582958232b3e63109">CsvHelper.TypeConversion.NullableConverter.ConvertToString</a></div><div class="ttdeci">override string ConvertToString(TypeConverterOptions options, object value)</div><div class="ttdoc">Converts the object to a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00266_source.html#l00078">NullableConverter.cs:78</a></div></div>
-<div class="ttc" id="a00132_html"><div class="ttname"><a href="a00132.html">CsvHelper.TypeConversion.NullableConverter</a></div><div class="ttdoc">Converts a Nullable to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00266_source.html#l00013">NullableConverter.cs:13</a></div></div>
-<div class="ttc" id="a00078_html"><div class="ttname"><a href="a00078.html">CsvHelper.TypeConversion.DefaultTypeConverter</a></div><div class="ttdoc">Converts an object to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00257_source.html#l00013">DefaultTypeConverter.cs:13</a></div></div>
-<div class="ttc" id="a00132_html_addb6dc12d4927204cd2349202db63e74"><div class="ttname"><a href="a00132.html#addb6dc12d4927204cd2349202db63e74">CsvHelper.TypeConversion.NullableConverter.ConvertFromString</a></div><div class="ttdeci">override object ConvertFromString(TypeConverterOptions options, string text)</div><div class="ttdoc">Converts the string to an object. </div><div class="ttdef"><b>Definition:</b> <a href="a00266_source.html#l00062">NullableConverter.cs:62</a></div></div>
-<div class="ttc" id="a00113_html"><div class="ttname"><a href="a00113.html">CsvHelper.TypeConversion.ITypeConverter</a></div><div class="ttdoc">Converts objects to and from strings. </div><div class="ttdef"><b>Definition:</b> <a href="a00265_source.html#l00013">ITypeConverter.cs:13</a></div></div>
-<div class="ttc" id="a00132_html_af18c9435dee98900eb8ade933c62951d"><div class="ttname"><a href="a00132.html#af18c9435dee98900eb8ade933c62951d">CsvHelper.TypeConversion.NullableConverter.NullableConverter</a></div><div class="ttdeci">NullableConverter(Type type)</div><div class="ttdoc">Creates a new NullableConverter for the given Nullable{T} Type. </div><div class="ttdef"><b>Definition:</b> <a href="a00266_source.html#l00044">NullableConverter.cs:44</a></div></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System.Globalization;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>CsvHelper.TypeConversion</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="a00086.html">   12</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00086.html">DecimalConverter</a> : <a class="code" href="a00088.html">DefaultTypeConverter</a></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00086.html#a07444e6f2bb1e49288f9de3b2407dc4f">   20</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">object</span> <a class="code" href="a00086.html#a07444e6f2bb1e49288f9de3b2407dc4f">ConvertFromString</a>( <a class="code" href="a00178.html">TypeConverterOptions</a> options, <span class="keywordtype">string</span> text )</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            var numberStyle = options.NumberStyle ?? NumberStyles.Float;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            decimal d;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">if</span>( decimal.TryParse( text, numberStyle, options.<a class="code" href="a00178.html#af6bc545680b477abf9178eb4755572b1">CultureInfo</a>, out d ) )</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordflow">return</span> d;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordflow">return</span> base.ConvertFromString( options, text );</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="a00086.html#aba0f1c085a1c33779ea791bb814b6aa5">   40</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">bool</span> <a class="code" href="a00086.html#aba0f1c085a1c33779ea791bb814b6aa5">CanConvertFrom</a>( System.Type type )</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="comment">// We only care about strings.</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keywordflow">return</span> type == typeof( <span class="keywordtype">string</span> );</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
+<div class="ttc" id="a00088_html"><div class="ttname"><a href="a00088.html">CsvHelper.TypeConversion.DefaultTypeConverter</a></div><div class="ttdoc">Converts an object to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00267_source.html#l00013">DefaultTypeConverter.cs:13</a></div></div>
+<div class="ttc" id="a00086_html_aba0f1c085a1c33779ea791bb814b6aa5"><div class="ttname"><a href="a00086.html#aba0f1c085a1c33779ea791bb814b6aa5">CsvHelper.TypeConversion.DecimalConverter.CanConvertFrom</a></div><div class="ttdeci">override bool CanConvertFrom(System.Type type)</div><div class="ttdoc">Determines whether this instance [can convert from] the specified type. </div><div class="ttdef"><b>Definition:</b> <a href="a00266_source.html#l00040">DecimalConverter.cs:40</a></div></div>
+<div class="ttc" id="a00086_html_a07444e6f2bb1e49288f9de3b2407dc4f"><div class="ttname"><a href="a00086.html#a07444e6f2bb1e49288f9de3b2407dc4f">CsvHelper.TypeConversion.DecimalConverter.ConvertFromString</a></div><div class="ttdeci">override object ConvertFromString(TypeConverterOptions options, string text)</div><div class="ttdoc">Converts the string to an object. </div><div class="ttdef"><b>Definition:</b> <a href="a00266_source.html#l00020">DecimalConverter.cs:20</a></div></div>
+<div class="ttc" id="a00178_html"><div class="ttname"><a href="a00178.html">CsvHelper.TypeConversion.TypeConverterOptions</a></div><div class="ttdoc">Options used when doing type conversion. </div><div class="ttdef"><b>Definition:</b> <a href="a00282_source.html#l00015">TypeConverterOptions.cs:15</a></div></div>
+<div class="ttc" id="a00178_html_af6bc545680b477abf9178eb4755572b1"><div class="ttname"><a href="a00178.html#af6bc545680b477abf9178eb4755572b1">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</a></div><div class="ttdeci">CultureInfo CultureInfo</div><div class="ttdoc">Gets or sets the culture info. </div><div class="ttdef"><b>Definition:</b> <a href="a00282_source.html#l00023">TypeConverterOptions.cs:23</a></div></div>
+<div class="ttc" id="a00086_html"><div class="ttname"><a href="a00086.html">CsvHelper.TypeConversion.DecimalConverter</a></div><div class="ttdoc">Converts a Decimal to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00266_source.html#l00012">DecimalConverter.cs:12</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_5c139b908ad2613e3ef99ee52a122286.html">TypeConversion</a></li><li class="navelem"><a class="el" href="a00266.html">NullableConverter.cs</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:35 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_5c139b908ad2613e3ef99ee52a122286.html">TypeConversion</a></li><li class="navelem"><a class="el" href="a00266.html">DecimalConverter.cs</a></li>
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:04 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

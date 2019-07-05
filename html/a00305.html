@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: YarnSpinnerConsole/FileFormatConverter.cs File Reference</title>
+<title>YarnSpinner: YarnSpinner/Dialogue.cs File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -106,9 +106,10 @@ $(document).ready(function(){initNavTree('a00305.html','');});
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">FileFormatConverter.cs File Reference</div>  </div>
+<div class="title">Dialogue.cs File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -116,21 +117,169 @@ $(document).ready(function(){initNavTree('a00305.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00095.html">Yarn.FileFormatConverter</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00194.html">Yarn.YarnException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents things that can go wrong while loading or running a dialogue.  <a href="a00194.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00377"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00051.html#a00377">Yarn.Line</a></td></tr>
+<tr class="memdesc:a00377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information about stuff that the client should handle.  <a href="a00051.html#a00377">More...</a><br/></td></tr>
+<tr class="separator:a00377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00380"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00051.html#a00380">Yarn.Options</a></td></tr>
+<tr class="separator:a00380"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00373"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00051.html#a00373">Yarn.Command</a></td></tr>
+<tr class="separator:a00373"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00190.html">Yarn.VariableStorage</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Where we turn to for storing and loading variable data.  <a href="a00190.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042.html">Yarn.BaseVariableStorage</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00134.html">Yarn.LocalisedLine</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A line, localised into the current locale.  <a href="a00134.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00136.html">Yarn.MemoryVariableStore</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Very simple continuity class that keeps all variables in memory.  <a href="a00136.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092.html">Yarn.Dialogue</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="a00092.html" title="The Dialogue class is the main thing that clients will use. ">Dialogue</a> class is the main thing that clients will use.  <a href="a00092.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00156.html">Yarn.Dialogue.RunnerResult</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents something for the end user ("client") of the <a class="el" href="a00092.html" title="The Dialogue class is the main thing that clients will use. ">Dialogue</a> class to do.  <a href="a00156.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00132.html">Yarn.Dialogue.LineResult</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The client should run a line of dialogue.  <a href="a00132.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00052.html">Yarn.Dialogue.CommandResult</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The client should run a command (it's up to them to parse the string)  <a href="a00052.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html">Yarn.Dialogue.OptionSetResult</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The client should show a list of options, and call setSelectedOptionDelegate before asking for the next line. It's an error if you don't.  <a href="a00145.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00139.html">Yarn.Dialogue.NodeCompleteResult</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">We've reached the end of this node.  <a href="a00139.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00164.html">Yarn.Dialogue.StandardLibrary</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The standard, built-in library of functions and operators.  <a href="a00164.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:a00041"><td class="memItemLeft" align="right" valign="top">package &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041.html">Yarn</a></td></tr>
+<tr class="memitem:a00051"><td class="memItemLeft" align="right" valign="top">package &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00051.html">Yarn</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a39866cbb03c03a35805d598b5d4ad553"><td class="memItemLeft" align="right" valign="top">delegate void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00051.html#a39866cbb03c03a35805d598b5d4ad553">Yarn.OptionChooser</a> (int selectedOptionIndex)</td></tr>
+<tr class="memdesc:a39866cbb03c03a35805d598b5d4ad553"><td class="mdescLeft">&#160;</td><td class="mdescRight">OptionChoosers let the client tell the <a class="el" href="a00092.html" title="The Dialogue class is the main thing that clients will use. ">Dialogue</a> about what response option the user selected.  <a href="#a39866cbb03c03a35805d598b5d4ad553">More...</a><br/></td></tr>
+<tr class="separator:a39866cbb03c03a35805d598b5d4ad553"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e50031b945a3a2afafee6f590730568"><td class="memItemLeft" align="right" valign="top">delegate void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00051.html#a1e50031b945a3a2afafee6f590730568">Yarn.Logger</a> (string message)</td></tr>
+<tr class="memdesc:a1e50031b945a3a2afafee6f590730568"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loggers let the client send output to a console, for both debugging and error logging.  <a href="#a1e50031b945a3a2afafee6f590730568">More...</a><br/></td></tr>
+<tr class="separator:a1e50031b945a3a2afafee6f590730568"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="a00377" id="a00377"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct Yarn::Line</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>Information about stuff that the client should handle. </p>
+<p>(Currently this just wraps a single field, but doing it like this gives us the option to add more stuff later without breaking the API.) </p>
+
+<p>Definition at line <a class="el" href="a00305_source.html#l00059">59</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+</div><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Line:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00390.png" border="0" usemap="#_yarn_8_line_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_line_coll__map" id="_yarn_8_line_coll__map">
+</map>
+</div>
+<table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a81d1f04bbb4cf6642d2bd685bda1da20"></a>string</td>
+<td class="fieldname">
+text</td>
+<td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="a00380" id="a00380"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct Yarn::Options</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock">
+<p>Definition at line <a class="el" href="a00305_source.html#l00060">60</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+</div><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Options:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00391.png" border="0" usemap="#_yarn_8_options_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_options_coll__map" id="_yarn_8_options_coll__map">
+</map>
+</div>
+<table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="ae8c616d923ceeeed192a9436c55d9917"></a>IList&lt; string &gt;</td>
+<td class="fieldname">
+options</td>
+<td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="a00373" id="a00373"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct Yarn::Command</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock">
+<p>Definition at line <a class="el" href="a00305_source.html#l00061">61</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+</div><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Command:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00392.png" border="0" usemap="#_yarn_8_command_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_command_coll__map" id="_yarn_8_command_coll__map">
+</map>
+</div>
+<table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a8564e5104566e145f5d917ec846444d9"></a>string</td>
+<td class="fieldname">
+text</td>
+<td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_6f181b52275ac94c00a65cc257010ba9.html">YarnSpinnerConsole</a></li><li class="navelem"><a class="el" href="a00305.html">FileFormatConverter.cs</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:36 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00305.html">Dialogue.cs</a></li>
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:05 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

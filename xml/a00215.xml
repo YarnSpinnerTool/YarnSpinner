@@ -1,50 +1,44 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00215" kind="file">
-    <compoundname>CsvPropertyMapComparer.cs</compoundname>
-    <innerclass refid="a00062" prot="package">CsvHelper::Configuration::CsvPropertyMapComparer</innerclass>
-    <innernamespace refid="a00320">CsvHelper::Configuration</innernamespace>
+    <compoundname>YarnSpinner-with-Unity-QuickStart.md</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="comment">//<sp/>Copyright<sp/>2009-2015<sp/>Josh<sp/>Close<sp/>and<sp/>Contributors</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>a<sp/>part<sp/>of<sp/>CsvHelper<sp/>and<sp/>is<sp/>dual<sp/>licensed<sp/>under<sp/>MS-PL<sp/>and<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>LICENSE.txt<sp/>for<sp/>details<sp/>or<sp/>visit<sp/>http://www.opensource.org/licenses/ms-pl.html<sp/>for<sp/>MS-PL<sp/>and<sp/>http://opensource.org/licenses/Apache-2.0<sp/>for<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>http://csvhelper.com</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!NET_2_0</highlight></codeline>
-<codeline lineno="6"><highlight class="preprocessor"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections.Generic;</highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Quickstart<sp/>to<sp/>Using<sp/>Yarn<sp/>Spinner<sp/>in<sp/>your<sp/>Unity<sp/>game</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Style<sp/>Guide</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">`Inline<sp/>Code`<sp/>contain<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>snippets<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>Code<sp/>Blocks<sp/>contain<sp/>segments<sp/>or<sp/>chunks<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">CsvHelper.Configuration</highlight></codeline>
-<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="17" refid="a00062" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">internal</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="a00062" kindref="compound">CsvPropertyMapComparer</ref><sp/>:<sp/>IComparer&lt;CsvPropertyMap&gt;</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="38" refid="a00062_1a41ab777503459b3984a2e2826a14d52a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="a00062_1a41ab777503459b3984a2e2826a14d52a" kindref="member">Compare</ref>(<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/>y<sp/>)</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>xProperty<sp/>=<sp/>x<sp/>as<sp/><ref refid="a00060" kindref="compound">CsvPropertyMap</ref>;</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>yProperty<sp/>=<sp/>y<sp/>as<sp/>CsvPropertyMap;</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Compare(<sp/>xProperty,<sp/>yProperty<sp/>);</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61" refid="a00062_1ab9c855cf5389c8f1ae1b476d508ade5d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="a00062_1ab9c855cf5389c8f1ae1b476d508ade5d" kindref="member">Compare</ref>(<sp/><ref refid="a00060" kindref="compound">CsvPropertyMap</ref><sp/>x,<sp/><ref refid="a00060" kindref="compound">CsvPropertyMap</ref><sp/>y<sp/>)</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>x<sp/>==<sp/>null<sp/>)</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>ArgumentNullException(<sp/></highlight><highlight class="stringliteral">&quot;x&quot;</highlight><highlight class="normal"><sp/>);</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>y<sp/>==<sp/>null<sp/>)</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>ArgumentNullException(<sp/></highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal"><sp/>);</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>x.Data.Index.CompareTo(<sp/>y.Data.Index<sp/>);</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>!NET_2_0</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">**Bold<sp/>indicate<sp/>actions<sp/>(Select<sp/>menu<sp/>item,<sp/>copying<sp/>file,<sp/>etc.)**</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">***Bold<sp/>italic<sp/>text<sp/>indicates<sp/>emphasis***</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">&gt;<sp/>Blockquotes<sp/>contain<sp/>essential<sp/>information</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Tutorial</highlight></codeline>
+<codeline lineno="16"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">&gt;<sp/>***Note:***<sp/>This<sp/>tutorial<sp/>assumes<sp/>that<sp/>you<sp/>know<sp/>a<sp/>little<sp/>bit<sp/>about<sp/>[Unity](http:</highlight><highlight class="comment">//www.unity3d.com).<sp/>In<sp/>particular,<sp/>it<sp/>is<sp/>helpful<sp/>that<sp/>you<sp/>know<sp/>how<sp/>to<sp/>get<sp/>around<sp/>the<sp/>Unity<sp/>editor,<sp/>how<sp/>to<sp/>work<sp/>with<sp/>game<sp/>objects,<sp/>and<sp/>how<sp/>to<sp/>write<sp/>scripts<sp/>in<sp/>C#.<sp/>If<sp/>you<sp/>don&apos;t<sp/>know<sp/>these<sp/>things,<sp/>please<sp/>refer<sp/>to<sp/>[Unity&apos;s<sp/>documentation](http://unity3d.com/learn).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Yarn<sp/>Spinner<sp/>Quick<sp/>Start</highlight></codeline>
+<codeline lineno="20"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">Here</highlight><highlight class="stringliteral">&apos;s<sp/>how<sp/>to<sp/>quickly<sp/>jump<sp/>in<sp/>to<sp/>Yarn<sp/>Spinner<sp/>if<sp/>you&apos;</highlight><highlight class="normal">re<sp/>already<sp/>familiar<sp/>with<sp/>Unity.</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">*<sp/>**Download**<sp/>[the<sp/>YarnSpinner<sp/>package](https:</highlight><highlight class="comment">//github.com/thesecretlab/YarnSpinner/releases)<sp/>into<sp/>your<sp/>Unity<sp/>project.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">*<sp/>**Import**<sp/>the<sp/></highlight><highlight class="keyword">package<sp/></highlight><highlight class="normal">into<sp/>your<sp/>project.</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">*<sp/>Inside<sp/>the<sp/>YarnSpinner<sp/>folder,<sp/>**open<sp/>the<sp/>`Examples/Yarn<sp/>Spinner<sp/>Basic<sp/>Example`<sp/>scene.**</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">*<sp/>**Start<sp/>the<sp/>game.**</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">*<sp/>**Play<sp/>through<sp/>the<sp/>dialogue.**</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">Once<sp/>you&apos;ve<sp/>played<sp/>with<sp/>it,<sp/>open<sp/>the<sp/>Example<sp/>Script<sp/>file<sp/>in<sp/>the<sp/>[Yarn<sp/>Editor](http:</highlight><highlight class="comment">//github.com/infiniteammoinc/Yarn),<sp/>(it&apos;s<sp/>in<sp/>the<sp/>`Examples/Demo<sp/>Assets`<sp/>folder),<sp/>and<sp/>make<sp/>some<sp/>changes<sp/>to<sp/>the<sp/>script.<sp/>Once<sp/>you&apos;ve<sp/>done<sp/>that,<sp/>take<sp/>a<sp/>look<sp/>at<sp/>how<sp/>`Code/DialogueRunner.cs`,<sp/>`Examples/Demo<sp/>Scripts/ExampleDialogueUI.cs`<sp/>and<sp/>`Examples/Demo<sp/>Scripts/ExampleVariableStorage.cs`<sp/>work.<sp/>You<sp/>can<sp/>also<sp/>[add<sp/>your<sp/>own<sp/>functions<sp/>to<sp/>Yarn](../YarnSpinner-Programming/Extending.md).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapComparer.cs"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-QuickStart.md"/>
   </compounddef>
 </doxygen>

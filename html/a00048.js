@@ -1,9 +1,8 @@
 var a00048 =
 [
-    [ "convertToJSON", "a00048.html#a6a650914fcde92ba06fb5f140af27f11", null ],
-    [ "convertToYarn", "a00048.html#a052d6f00647c503adc5a79a1ff92cdf4", null ],
-    [ "files", "a00048.html#aa93cbb1bc1d5328e0a417012621e92d2", null ],
-    [ "outputDirectory", "a00048.html#ab636bde93c2204b2af1a9306560d9749", null ],
-    [ "showDebuggingInfo", "a00048.html#a89964ea17bd19caf00cb5bff563ed01c", null ],
-    [ "verbose", "a00048.html#ada4d83d1756918f362d55f6649b82b17", null ]
+    [ "CanConvertFrom", "a00048.html#ab0ccecf34e8ba3710cc61ad643028a34", null ],
+    [ "CanConvertFrom", "a00048.html#a470d21adaa704eb281250dbd112ff91a", null ],
+    [ "CanConvertTo", "a00048.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
+    [ "ConvertFromString", "a00048.html#a7cf201b75714eccdc084b6cc3161bf29", null ],
+    [ "ConvertToString", "a00048.html#a36cb2f9b24f15a671293f3a722324c27", null ]
 ];

@@ -1,5 +1,2 @@
-<map id="YarnSpinner.Tests.TestBase" name="YarnSpinner.Tests.TestBase">
-<area shape="rect" id="node2" href="$a00084.html" title="{YarnSpinner.Tests.Dialogue\lTests\n|&#45; experimentalMode\l|+ DialogueTests()\l+ Init()\l+ TestNodeExists()\l+ TestAnalysis()\l+ TestDumpingCode()\l+ TestMissingNode()\l+ TestGettingCurrentNodeName()\l+ TestGettingRawSource()\l+ TestNodeVistation()\l}" alt="" coords="5,323,224,533"/>
-<area shape="rect" id="node3" href="$a00116.html" title="{YarnSpinner.Tests.Language\lTests\n|&#45; experimentalMode\l|+ LanguageTests()\l+ Init()\l+ TestExampleScript()\l+ TestMergingNodes()\l+ TestEndOfNotesWithOptions\lNotAdded()\l+ TestSources()\l+ FileSources()\l&#45; GetFilesInDirectory()\l}" alt="" coords="249,323,452,533"/>
-<area shape="rect" id="node4" href="$a00144.html" title="{YarnSpinner.Tests.Project\lTests\n|&#45; experimentalMode\l|+ ProjectTests()\l+ Init()\l+ TestLoadingSingleFile()\l}" alt="" coords="477,367,651,489"/>
+<map id="Yarn.Unity.Example.NPC" name="Yarn.Unity.Example.NPC">
 </map>

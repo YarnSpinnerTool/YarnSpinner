@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.Analysis.ASTAnalyser Class Reference</title>
+<title>YarnSpinner: Microsoft</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -46,9 +46,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -66,14 +66,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
           </span>
         </div>
       </li>
-    </ul>
-  </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -106,66 +98,22 @@ $(document).ready(function(){initNavTree('a00030.html','');});
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="a00750.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Analysis.ASTAnalyser Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">Microsoft </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Analysis.ASTAnalyser:</div>
-<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00751.png" border="0" usemap="#_yarn_8_analysis_8_a_s_t_analyser_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_analysis_8_a_s_t_analyser_coll__map" id="_yarn_8_analysis_8_a_s_t_analyser_coll__map">
-</map>
-</div>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a07bb220dead44ed12c8842de706ecdf7"><td class="memItemLeft" align="right" valign="top">abstract IEnumerable&lt; <a class="el" href="a00081.html">Diagnosis</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00030.html#a07bb220dead44ed12c8842de706ecdf7">Diagnose</a> (<a class="el" href="a00128.html">Yarn.Parser.Node</a> node)</td></tr>
-<tr class="separator:a07bb220dead44ed12c8842de706ecdf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<div class="textblock"><table class="doxtable">
+<tr>
+<th>Sr. No. </th><th>Rule ID </th><th>Title </th><th>Category </th><th>Enabled </th><th>CodeFix </th><th>Description  </th></tr>
+<tr>
+<td>1 </td><td>CA9999 </td><td>Analyzer version mismatch </td><td>Reliability </td><td>True </td><td>False </td><td>Analyzers in this package require a certain minimum version of Microsoft.CodeAnalysis to execute correctly. Refer to <a href="https://docs.microsoft.com/en-us/visualstudio/code-quality/install-fxcop-analyzers?view=vs-2017#fxcopanalyzers-package-versions">https://docs.microsoft.com/en-us/visualstudio/code-quality/install-fxcop-analyzers?view=vs-2017#fxcopanalyzers-package-versions</a> to install the correct analyzer version. </td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="a00287_source.html#l00146">146</a> of file <a class="el" href="a00287_source.html">Analyser.cs</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a07bb220dead44ed12c8842de706ecdf7"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">abstract IEnumerable&lt;<a class="el" href="a00081.html">Diagnosis</a>&gt; Yarn.Analysis.ASTAnalyser.Diagnose </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00128.html">Yarn.Parser.Node</a>&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="a00287_source.html">Analyser.cs</a></li>
-</ul>
-</div><!-- contents -->
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00041.html">Yarn</a></li><li class="navelem"><a class="el" href="a00351.html">Analysis</a></li><li class="navelem"><a class="el" href="a00030.html">ASTAnalyser</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:38 for YarnSpinner by
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:05 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

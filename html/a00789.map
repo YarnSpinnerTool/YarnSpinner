@@ -1,2 +1,4 @@
-<map id="Yarn.Unity.Example.NPC" name="Yarn.Unity.Example.NPC">
+<map id="Yarn.Unity.VariableStorageBehaviour" name="Yarn.Unity.VariableStorageBehaviour">
+<area shape="rect" id="node4" href="$a00089.html" title="An extremely simple implementation of DialogueUnityVariableStorage, which just stores everything in a..." alt="" coords="56,403,220,583"/>
+<area shape="rect" id="node3" href="$a00190.html" title="Where we turn to for storing and loading variable data. " alt="" coords="141,5,289,141"/>
 </map>

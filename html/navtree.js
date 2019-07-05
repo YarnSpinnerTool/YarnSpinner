@@ -14,6 +14,11 @@ var NAVTREE =
     [ "Quickstart to Using Yarn Spinner in your Unity game", "a00022.html", null ],
     [ "Step by Step to Using Yarn Spinner in your Unity game", "a00024.html", null ],
     [ "LICENSE", "a00026.html", null ],
+    [ "Microsoft", "a00028.html", null ],
+    [ "Microsoft", "a00030.html", null ],
+    [ "Microsoft", "a00032.html", null ],
+    [ "Microsoft", "a00034.html", null ],
+    [ "Microsoft", "a00036.html", null ],
     [ "Packages", null, [
       [ "Packages", "namespaces.html", "namespaces" ],
       [ "Package Functions", "namespacemembers.html", [
@@ -51,16 +56,16 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "a00002.html",
-"a00039.html#af1c9b3d1757d33ad2141c639c3827c97",
-"a00059.html#a3ce8a09ae6e88787d47f47a108d33f21",
-"a00073.html#a4250d192d5b58e2404a14c68eb616f16",
-"a00095.html#af9bd5d832fdd2bcbdc626d9f8632e05c",
-"a00107.html#a6d492491db7fccb8831e782f01b820f0",
-"a00123.html#a6d8296076823c0c082df9024367f4860",
-"a00152.html#add28fa9c8a45ca579e84d05920bbc42da74a2a0b3a4597e7a50714f9cea34772b",
-"a00177.html#ae1892c1c7a8177537d1caa39a2e51da6",
-"a00223.html",
-"a00303.html#ae3d87b0b748ea892bff48f60862e182d"
+"a00049.html#a85d50993390cdd8ba30ac44043b18de7",
+"a00068.html#ad8b27f20be101a15ef390fcc37f8631b",
+"a00083.html#a18c67cb16090d0889bb9d6c8c6c565f8",
+"a00105.html#a282f283f02c9b1d3e53d813ec2f35233",
+"a00117.html#a1a0564acb2e20c1792bb27d3ed303d5f",
+"a00133.html",
+"a00162.html#acd25fe2e3aa90dc87ba25d9af904465b",
+"a00187.html#ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f",
+"a00230_source.html",
+"a00319.html#a72f9ef657b5686a84acec94a9d7302d1"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

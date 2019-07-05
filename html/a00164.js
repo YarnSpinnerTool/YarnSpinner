@@ -1,8 +1,11 @@
 var a00164 =
 [
-    [ "TokeniserException", "a00164.html#ad00fcf742d2b0d476ce43b27a3f3b6c1", null ],
-    [ "TokeniserException", "a00164.html#aa8674d006a0d29081a7b87bdd8ff2f4f", null ],
-    [ "ExpectedTokensFromState", "a00164.html#af88cfa5eafdee355e1abb67e358497bd", null ],
-    [ "columnNumber", "a00164.html#aabf2ad38f3984297c1daede9be55e3d6", null ],
-    [ "lineNumber", "a00164.html#a54b936d7b4f26f88a07a66c5fc1d1ad1", null ]
+    [ "StandardLibrary", "a00164.html#a1bf2ea2b59a842bafffec78667a86b19", null ],
+    [ "DeregisterFunction", "a00164.html#a47d1b3664733207d5cda15f4a4a7af7a", null ],
+    [ "FunctionExists", "a00164.html#a6c9a1cc3e25b6aae25e210d8a0d68c09", null ],
+    [ "GetFunction", "a00164.html#aacfb1f00ad8aa3921941b8d8af0960e0", null ],
+    [ "ImportLibrary", "a00164.html#ab42a4fd30a72156cafa685f959deef78", null ],
+    [ "RegisterFunction", "a00164.html#a001ab29d21fe7db10fc9c250914287f9", null ],
+    [ "RegisterFunction", "a00164.html#a2a698de0b528b2bac17bd85f57d45d4b", null ],
+    [ "RegisterFunction", "a00164.html#a6820eaa082077f16496effbc9041b7ad", null ]
 ];

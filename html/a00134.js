@@ -1,7 +1,6 @@
 var a00134 =
 [
-    [ "OperatorInfo", "a00134.html#a25faca62235c9f8542e4a071ba8ebc0b", null ],
-    [ "arguments", "a00134.html#a0758c6f7dac4b205f616b43b1af95b95", null ],
-    [ "associativity", "a00134.html#accba40a72d9709ca3c18810b8661afe3", null ],
-    [ "precedence", "a00134.html#a0b2921d7b863e268d33aa15213395093", null ]
+    [ "Comment", "a00134.html#afbfb834bb1623653fa73945c221c4b9d", null ],
+    [ "LineCode", "a00134.html#aad88f588cbbe2df9bb83da59eeff3d3c", null ],
+    [ "LineText", "a00134.html#ab0b4fa82cfa7693ff3c96fe5c3837fff", null ]
 ];

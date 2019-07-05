@@ -1,148 +1,52 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00137" kind="class" prot="package">
-    <compoundname>Yarn::ParseException</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">Exception</basecompoundref>
-      <sectiondef kind="package-attrib">
-      <memberdef kind="variable" id="a00137_1ab335169367e64fd6d89d58b3ac573751" prot="package" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.ParseException.lineNumber</definition>
-        <argsstring></argsstring>
-        <name>lineNumber</name>
-        <initializer>= 0</initializer>
+  <compounddef id="a00137" kind="class" prot="public">
+    <compoundname>MobileOnly</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00137_1acfb1b3a9c8f62b30300331fb84752022" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MobileOnly.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="13" bodyend="-1"/>
-        <referencedby refid="a00137_1a511a51bb42dc5bb107eb68f7e5cf5ff1" compoundref="a00296" startline="15" endline="36">Yarn.ParseException.Make</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-static-func">
-      <memberdef kind="function" id="a00137_1a511a51bb42dc5bb107eb68f7e5cf5ff1" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00137" kindref="compound">ParseException</ref></type>
-        <definition>static ParseException Yarn.ParseException.Make</definition>
-        <argsstring>(Token foundToken, params TokenType[] expectedTypes)</argsstring>
-        <name>Make</name>
-        <param>
-          <type><ref refid="a00163" kindref="compound">Token</ref></type>
-          <declname>foundToken</declname>
-        </param>
-        <param>
-          <type>params <ref refid="a00041_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>[]</type>
-          <declname>expectedTypes</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="15" bodyend="36"/>
-        <references refid="a00137_1ab335169367e64fd6d89d58b3ac573751" compoundref="a00296" startline="13">Yarn.ParseException.lineNumber</references>
-        <references refid="a00137_1aa3c4f5c8b0ae86097bbc46044df9f317" compoundref="a00296" startline="66" endline="66">Yarn.ParseException.ParseException</references>
-      </memberdef>
-      <memberdef kind="function" id="a00137_1a173f3cabc4741d9d9e016310e90c1c9f" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00137" kindref="compound">ParseException</ref></type>
-        <definition>static ParseException Yarn.ParseException.Make</definition>
-        <argsstring>(Token mostRecentToken, string message)</argsstring>
-        <name>Make</name>
-        <param>
-          <type><ref refid="a00163" kindref="compound">Token</ref></type>
-          <declname>mostRecentToken</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>message</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="38" bodyend="48"/>
-        <references refid="a00137_1ab335169367e64fd6d89d58b3ac573751" compoundref="a00296" startline="13">Yarn.ParseException.lineNumber</references>
-        <references refid="a00137_1aa3c4f5c8b0ae86097bbc46044df9f317" compoundref="a00296" startline="66" endline="66">Yarn.ParseException.ParseException</references>
-      </memberdef>
-      <memberdef kind="function" id="a00137_1a0265905b09fbd675d40c452d9fc61207" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00137" kindref="compound">ParseException</ref></type>
-        <definition>static ParseException Yarn.ParseException.Make</definition>
-        <argsstring>(Antlr4.Runtime.ParserRuleContext context, string message)</argsstring>
-        <name>Make</name>
-        <param>
-          <type><ref refid="a00302_1a7e45f8222713cb764832fd3c69d0268f" kindref="member">Antlr4.Runtime.ParserRuleContext</ref></type>
-          <declname>context</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>message</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="50" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="50" bodyend="64"/>
-        <references refid="a00137_1aa3c4f5c8b0ae86097bbc46044df9f317" compoundref="a00296" startline="66" endline="66">Yarn.ParseException.ParseException</references>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00137_1aa3c4f5c8b0ae86097bbc46044df9f317" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.ParseException.ParseException</definition>
-        <argsstring>(string message)</argsstring>
-        <name>ParseException</name>
-        <param>
-          <type>string</type>
-          <declname>message</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="66" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="66" bodyend="66"/>
-        <referencedby refid="a00137_1a511a51bb42dc5bb107eb68f7e5cf5ff1" compoundref="a00296" startline="15" endline="36">Yarn.ParseException.Make</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" bodystart="10" bodyend="18"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Removes an object from the scene when the game is running on a non-mobile platform. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1568">
-        <label>Yarn.ParseException</label>
+      <node id="1522">
+        <label>MobileOnly</label>
         <link refid="a00137"/>
-        <childnode refid="1569" relation="public-inheritance">
+        <childnode refid="1523" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1569">
-        <label>Exception</label>
+      <node id="1523">
+        <label>MonoBehaviour</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1570">
-        <label>Yarn.ParseException</label>
+      <node id="1524">
+        <label>MobileOnly</label>
         <link refid="a00137"/>
-        <childnode refid="1571" relation="public-inheritance">
+        <childnode refid="1525" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1571">
-        <label>Exception</label>
+      <node id="1525">
+        <label>MonoBehaviour</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="11" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="10" bodyend="68"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" line="7" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" bodystart="7" bodyend="20"/>
     <listofallmembers>
-      <member refid="a00137_1ab335169367e64fd6d89d58b3ac573751" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>lineNumber</name></member>
-      <member refid="a00137_1a511a51bb42dc5bb107eb68f7e5cf5ff1" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>Make</name></member>
-      <member refid="a00137_1a173f3cabc4741d9d9e016310e90c1c9f" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>Make</name></member>
-      <member refid="a00137_1a0265905b09fbd675d40c452d9fc61207" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>Make</name></member>
-      <member refid="a00137_1aa3c4f5c8b0ae86097bbc46044df9f317" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>ParseException</name></member>
+      <member refid="a00137_1acfb1b3a9c8f62b30300331fb84752022" prot="private" virt="non-virtual"><scope>MobileOnly</scope><name>Awake</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

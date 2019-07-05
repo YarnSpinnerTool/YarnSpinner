@@ -1,7 +1,10 @@
 var a00075 =
 [
-    [ "CanConvertFrom", "a00075.html#a82a8cf4b77600ef49da60deb0c24a708", null ],
-    [ "CanConvertTo", "a00075.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
-    [ "ConvertFromString", "a00075.html#aa69835fc086d80a8eabe7ac50cb92f47", null ],
-    [ "ConvertToString", "a00075.html#a36cb2f9b24f15a671293f3a722324c27", null ]
+    [ "CsvPropertyReferenceMap", "a00075.html#a02823d2439667bca75233abbe81651ff", null ],
+    [ "GetMaxIndex", "a00075.html#a1e879f9a6ed84415ac52c44f1f086606", null ],
+    [ "Prefix", "a00075.html#a0ed653de99ec2251fd99837740693789", null ],
+    [ "data", "a00075.html#aa6926229eec915aa6a71c9ee603064f5", null ],
+    [ "Data", "a00075.html#aa83ef91c4eb293a9d035013c8b4af016", null ],
+    [ "Mapping", "a00075.html#a555d8d59960792aa556002a1a1b942f9", null ],
+    [ "Property", "a00075.html#a1bf8b55373206c0dc378c8f7247bf149", null ]
 ];

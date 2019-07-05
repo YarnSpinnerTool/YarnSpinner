@@ -1,4 +1,2 @@
-<map id="IYarnSpinnerParserVisitor&lt; Result &gt;" name="IYarnSpinnerParserVisitor&lt; Result &gt;">
-<area shape="rect" id="node3" href="$a00187.html" title="This class provides an empty implementation of IYarnSpinnerParserVisitor{Result}, which can be extend..." alt="" coords="5,435,203,674"/>
-<area shape="rect" id="node4" href="$a00034.html" title="{Yarn.BodyVisitor\n|~ compiler\l&#45; tokens\l|+ BodyVisitor()\l+ VisitLine_statement()\l+ VisitOption_statement()\l+ VisitSet_statement()\l+ VisitAction_statement()\l+ VisitFunction_statement()\l+ VisitFunction()\l+ VisitIf_statement()\l+ VisitShortcut_statement()\l+ VisitExpParens()\land 18 more...\l~ generateClause()\l~ genericExpVisitor()\l~ opEquals()\l&#45; HandleFunction()\l&#45; ShortcutText()\l&#45; loadOperators()\l}" alt="" coords="13,723,195,1050"/>
+<map id="Yarn.Unity.LocalisedStringGroup" name="Yarn.Unity.LocalisedStringGroup">
 </map>

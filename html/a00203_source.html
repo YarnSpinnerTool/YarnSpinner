@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Documentation/YarnSpinner-Programming/Building.md Source File</title>
+<title>YarnSpinner: Documentation/README.md Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,51 +105,40 @@ $(document).ready(function(){initNavTree('a00203.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Documentation/YarnSpinner-Programming/Building.md</div>  </div>
+<div class="title">Documentation/README.md</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00203.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Building Yarn Spinner</span></div>
+<a href="a00203.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Yarn Spinner Documentation</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;&gt; ***Important:*** This document only matters to you <span class="keywordflow">if</span> you want to build Yarn Spinner from source. In almost all cases, you<span class="stringliteral">&#39;ll be totally fine with [downloading a build](https://github.com/thesecretlab/YarnSpinner/releases), and using that in your project.</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="stringliteral">## Windows and Mac using MonoDevelop</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="stringliteral">To build Yarn Spinner on Windows or Mac, you&#39;</span>ll need MonoDevelop. You can [download MonoDevelop <span class="keywordflow">for</span> your OS from the MonoDevelop site](http:<span class="comment">//www.monodevelop.com/download/).</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">## Yarn Documentation</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;Documentation <span class="keywordflow">for</span> Yarn Spinner is under active development. Please submit any suggestions you may have.</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;Yarn Spinner API documentation is generated automatically by the [Doxygen](http:<span class="comment">//www.doxygen.org) system.</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">## Linux</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"></span>To build Yarn Spinner on Linux, you can either</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;* use [xbuild](http:<span class="comment">//www.mono-project.com/docs/tools+libraries/tools/xbuild/) and [nuget](http://www.nuget.org).</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;* Then ensure you have the correct packages installed by nuget, `nuget restore YarnSpinner.sln`.</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;* See the [build.sh](../../build.sh) script <span class="keywordflow">for</span> further information on how <span class="keyword">using</span> mono to build.</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;or</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;* use [Flatpak](http:<span class="comment">//flatpak.org/getting.html), you can [download MonoDevelop from the MonoDevelop site](http://www.monodevelop.com/download/linux/).</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;## Using MonoDevelop</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;* Open **YarnSpinner.sln**.</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;* Open the **Build menu**, and choose **Build All**.</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;* Open the **Unity/Assets/Yarn Spinner** folder. You<span class="stringliteral">&#39;ll find a copy of **YarnSpinner.dll** there.</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="stringliteral">* Copy that DLL file wherever you need it.</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="stringliteral">## Building Documentation</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="stringliteral">Yarn Spinner uses [Doxygen](https://www.stack.nl/~dimitri/doxygen) to generate [DocBook](http://docbook.org/), [HTML](https://en.wikipedia.org/wiki/HTML), [LaTeX](https://www.latex-project.org/help/documentation/), [RTF](https://en.wikipedia.org/wiki/Rich_Text_Format), and [XML](https://en.wikipedia.org/wiki/XML) documentation. [GNU GLOBAL](https://www.gnu.org/software/global/) is also used.</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="stringliteral">Basic steps to clean out existing documentation, generate new documentation and check the new documentation for generation errors. Note that some ocurrences of the word &#39;</span>error<span class="stringliteral">&#39; will be due to classes/methods etc. of YarnSpinner itself and not an actual error in the documentation.</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="stringliteral">```</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="stringliteral">rm -fr Documentation/{docbook,html,latex,rtf,xml}</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="stringliteral">doxygen Documentation/Doxyfile &gt; doxyoutput.txt 2&gt;&amp;1</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="stringliteral">grep -i error doxyoutput.txt</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="stringliteral">```</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="stringliteral">[MarkDown](https://daringfireball.net/projects/markdown/) documentation is available via conversion of the XML output to Markdown using third party tools such as [Pandoc](http://pandoc.org) or [doxygen2md](https://github.com/pferdinand/doxygen2md)</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;The documentation is currently automatically generated every time a commit is made to the Master branch on GitHub. The documentation is availabe on our GitHub Page in [HTML](http:<span class="comment">//thesecretlab.github.io/YarnSpinner/html/) and in our Github Repository in [Latex](https://github.com/thesecretlab/YarnSpinner/tree/gh-pages/latex), PDF, [RTF](https://github.com/thesecretlab/YarnSpinner/tree/gh-pages/rtf), and [XML](https://github.com/thesecretlab/YarnSpinner/tree/gh-pages/xml) formats.</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">If</a> you are working on the [Development branch](https:<span class="comment">//github.com/thesecretlab/YarnSpinner/tree/development), the [build.sh](../build.sh) script is capable of generating documents for you locally by utilising the -d switch.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">## Building Yarn Spinner</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span>Yarn Spinner is automatically built by [Travis Continual Integration](https:<span class="comment">//travis-ci.org/thesecretlab/YarnSpinner) system. For information on how to build it yourself, please refer to the [Building](YarnSpinner-Programming/Building.md) document.</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">## Creating Yarn Dialogue for Yarn Spinner</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"></span>For information on how to write dialogue <span class="keywordflow">for</span> Yarn Spinner, refer to the [Usage](YarnSpinner-Dialogue/General-Usage.md) document, as well as the [Syntax Reference](YarnSpinner-Dialogue/Yarn-Syntax.md). <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">If</a> you<span class="stringliteral">&#39;re after a more guided experience, take a look at our [Simple](YarnSpinner-Dialogue/Simple-Dialogue-Tutorial.md) and [Complex](YarnSpinner-Dialogue/Complex-Dialogue-Tutorial.md) tutorials.</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="stringliteral">## Using Unity</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral">At this point in time, only examples for the [Unity](http://www.unity3d.com) game engine are available. We hope to include a more generic example in the future. Please refer to the [Yarn Spinner Unity](YarnSpinner-Unity/) documents for more information.</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="stringliteral">## Extending Yarn Spinner</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="stringliteral">For information on how to extend Yarn Spinner&#39;</span>s functionality, please refer to the [Extending Yarn Spinner](YarnSpinner-Programming/Extending.md) document.</div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">Yarn.If</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00203.html">Building.md</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:35 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00203.html">README.md</a></li>
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:04 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

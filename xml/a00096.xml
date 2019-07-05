@@ -1,220 +1,225 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00096" kind="class" prot="public">
-    <compoundname>Yarn::FunctionInfo</compoundname>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00096_1adb38e83e3c1597b553aeff14bef5bfcb" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.FunctionInfo.name</definition>
-        <argsstring></argsstring>
-        <name>name</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="12" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="12" bodyend="-1"/>
-        <referencedby refid="a00096_1a93457cd0e838cb2ef59cc2a3a46ce758" compoundref="a00293" startline="65" endline="70">Yarn.FunctionInfo.FunctionInfo</referencedby>
-      </memberdef>
-      <memberdef kind="property" id="a00096_1aa8527de9e4f153b05164ccaf167c3186" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>int</type>
-        <definition>int Yarn.FunctionInfo.paramCount</definition>
-        <argsstring></argsstring>
-        <name>paramCount</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="16" bodyend="-1"/>
-        <referencedby refid="a00096_1a93457cd0e838cb2ef59cc2a3a46ce758" compoundref="a00293" startline="65" endline="70">Yarn.FunctionInfo.FunctionInfo</referencedby>
-        <referencedby refid="a00034_1a88cf0e74393aa67719a08e1332c6e62e" compoundref="a00288" startline="396" endline="428">Yarn.BodyVisitor.HandleFunction</referencedby>
-        <referencedby refid="a00096_1a1ed09ff8aafa230a0d2bbc23cd6cd763" compoundref="a00293" startline="79" endline="82">Yarn.FunctionInfo.IsParameterCountCorrect</referencedby>
-      </memberdef>
-      <memberdef kind="property" id="a00096_1a1dd2f9d11614a2fce170b3f3eecdb5f9" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type><ref refid="a00041_1ae0be2e5cf13d5779816102439e61ff1a" kindref="member">Function</ref></type>
-        <definition>Function Yarn.FunctionInfo.function</definition>
-        <argsstring></argsstring>
-        <name>function</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="22" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00096_1a8b6e0e5a875c427a1d947f3c52c308ca" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type><ref refid="a00041_1a5177bf74fbfe7303fac9d8236c2e514b" kindref="member">ReturningFunction</ref></type>
-        <definition>ReturningFunction Yarn.FunctionInfo.returningFunction</definition>
-        <argsstring></argsstring>
-        <name>returningFunction</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="23" bodyend="-1"/>
-        <referencedby refid="a00096_1a3ce11058d35232907a738de4bb094c67" compoundref="a00293" startline="36" endline="61">Yarn.FunctionInfo.InvokeWithArray</referencedby>
-      </memberdef>
-      <memberdef kind="property" id="a00096_1acaff044276aa230de7c0b27dd5267bc7" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>bool</type>
-        <definition>bool Yarn.FunctionInfo.returnsValue</definition>
-        <argsstring></argsstring>
-        <name>returnsValue</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="26" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="26" bodyend="-1"/>
-        <referencedby refid="a00096_1a3ce11058d35232907a738de4bb094c67" compoundref="a00293" startline="36" endline="61">Yarn.FunctionInfo.InvokeWithArray</referencedby>
-      </memberdef>
-      </sectiondef>
+    <compoundname>CsvHelper::TypeConversion::DoubleConverter</compoundname>
+    <basecompoundref refid="a00088" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00096_1ab400ac66785d7df2e3fc0f3ce3796044" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00177" kindref="compound">Value</ref></type>
-        <definition>Value Yarn.FunctionInfo.Invoke</definition>
-        <argsstring>(params Value[] parameters)</argsstring>
-        <name>Invoke</name>
+      <memberdef kind="function" id="a00096_1a0c93a63f9f954646172a65b432c40c69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override object</type>
+        <definition>override object CsvHelper.TypeConversion.DoubleConverter.ConvertFromString</definition>
+        <argsstring>(TypeConverterOptions options, string text)</argsstring>
+        <name>ConvertFromString</name>
+        <reimplements refid="a00088_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
         <param>
-          <type>params <ref refid="a00177" kindref="compound">Value</ref>[]</type>
-          <declname>parameters</declname>
+          <type><ref refid="a00178" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
         </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="32" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="32" bodyend="34"/>
-        <references refid="a00096_1a3ce11058d35232907a738de4bb094c67" compoundref="a00293" startline="36" endline="61">Yarn.FunctionInfo.InvokeWithArray</references>
-      </memberdef>
-      <memberdef kind="function" id="a00096_1a3ce11058d35232907a738de4bb094c67" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00177" kindref="compound">Value</ref></type>
-        <definition>Value Yarn.FunctionInfo.InvokeWithArray</definition>
-        <argsstring>(Value[] parameters)</argsstring>
-        <name>InvokeWithArray</name>
-        <param>
-          <type><ref refid="a00177" kindref="compound">Value</ref>[]</type>
-          <declname>parameters</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="36" bodyend="61"/>
-        <references refid="a00096_1a1ed09ff8aafa230a0d2bbc23cd6cd763" compoundref="a00293" startline="79" endline="82">Yarn.FunctionInfo.IsParameterCountCorrect</references>
-        <references refid="a00177_1a1ed2964965baca8621c45efa23f37660" compoundref="a00297" startline="8">Yarn.Value.NULL</references>
-        <references refid="a00096_1a8b6e0e5a875c427a1d947f3c52c308ca" compoundref="a00293" startline="23">Yarn.FunctionInfo.returningFunction</references>
-        <references refid="a00096_1acaff044276aa230de7c0b27dd5267bc7" compoundref="a00293" startline="26">Yarn.FunctionInfo.returnsValue</references>
-        <referencedby refid="a00096_1ab400ac66785d7df2e3fc0f3ce3796044" compoundref="a00293" startline="32" endline="34">Yarn.FunctionInfo.Invoke</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00096_1a93457cd0e838cb2ef59cc2a3a46ce758" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.FunctionInfo.FunctionInfo</definition>
-        <argsstring>(string name, int paramCount, Function implementation)</argsstring>
-        <name>FunctionInfo</name>
         <param>
           <type>string</type>
-          <declname>name</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>paramCount</declname>
-        </param>
-        <param>
-          <type><ref refid="a00041_1ae0be2e5cf13d5779816102439e61ff1a" kindref="member">Function</ref></type>
-          <declname>implementation</declname>
+          <declname>text</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Converts the string to an object. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string to convert to an object.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The object created from the string. </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="65" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="65" bodyend="70"/>
-        <references refid="a00096_1adb38e83e3c1597b553aeff14bef5bfcb" compoundref="a00293" startline="12">Yarn.FunctionInfo.name</references>
-        <references refid="a00096_1aa8527de9e4f153b05164ccaf167c3186" compoundref="a00293" startline="16">Yarn.FunctionInfo.paramCount</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DoubleConverter.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DoubleConverter.cs" bodystart="22" bodyend="33"/>
+        <references refid="a00178_1af6bc545680b477abf9178eb4755572b1" compoundref="a00282" startline="23">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</references>
       </memberdef>
-      <memberdef kind="function" id="a00096_1a41d97c09da25caede70cb734d18113b9" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.FunctionInfo.FunctionInfo</definition>
-        <argsstring>(string name, int paramCount, ReturningFunction implementation)</argsstring>
-        <name>FunctionInfo</name>
+      <memberdef kind="function" id="a00096_1ad67475daa90cdb00cf626429e925e732" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override bool</type>
+        <definition>override bool CsvHelper.TypeConversion.DoubleConverter.CanConvertFrom</definition>
+        <argsstring>(System.Type type)</argsstring>
+        <name>CanConvertFrom</name>
         <param>
-          <type>string</type>
-          <declname>name</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>paramCount</declname>
-        </param>
-        <param>
-          <type><ref refid="a00041_1a5177bf74fbfe7303fac9d8236c2e514b" kindref="member">ReturningFunction</ref></type>
-          <declname>implementation</declname>
+          <type>System.Type</type>
+          <declname>type</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="72" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="72" bodyend="77"/>
-        <references refid="a00096_1adb38e83e3c1597b553aeff14bef5bfcb" compoundref="a00293" startline="12">Yarn.FunctionInfo.name</references>
-        <references refid="a00096_1aa8527de9e4f153b05164ccaf167c3186" compoundref="a00293" startline="16">Yarn.FunctionInfo.paramCount</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DoubleConverter.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DoubleConverter.cs" bodystart="42" bodyend="46"/>
       </memberdef>
-      <memberdef kind="function" id="a00096_1a1ed09ff8aafa230a0d2bbc23cd6cd763" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00088_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>string</type>
+        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
+        <argsstring>(TypeConverterOptions options, object value)</argsstring>
+        <name>ConvertToString</name>
+        <reimplements refid="a00123_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
+        <reimplementedby refid="a00099_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
+        <reimplementedby refid="a00142_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
+        <param>
+          <type><ref refid="a00178" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Converts the object to a string. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object to convert to a string.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="a00088_1a470d21adaa704eb281250dbd112ff91a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>bool</type>
-        <definition>bool Yarn.FunctionInfo.IsParameterCountCorrect</definition>
-        <argsstring>(int parameterCount)</argsstring>
-        <name>IsParameterCountCorrect</name>
+        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertFrom</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertFrom</name>
+        <reimplements refid="a00123_1ae1ad863656f4fa96bd846a41344c9349">CanConvertFrom</reimplements>
+        <reimplementedby refid="a00172_1ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00046_1a74a66b405f6c18e69b9fd23a1dea91b0">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00084_1af44239d3bd014b1423fa80f7440bbd25">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00085_1a82a8cf4b77600ef49da60deb0c24a708">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00099_1af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00098_1a31af8209aad64ed11d949586075c244a">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00045_1a0be20573af4ee53409bb437125a64268">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00142_1ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</reimplementedby>
         <param>
-          <type>int</type>
-          <declname>parameterCount</declname>
+          <type>Type</type>
+          <declname>type</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="79" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="79" bodyend="82"/>
-        <references refid="a00096_1aa8527de9e4f153b05164ccaf167c3186" compoundref="a00293" startline="16">Yarn.FunctionInfo.paramCount</references>
-        <referencedby refid="a00096_1a3ce11058d35232907a738de4bb094c67" compoundref="a00293" startline="36" endline="61">Yarn.FunctionInfo.InvokeWithArray</referencedby>
-        <referencedby refid="a00094_1a686da57aaf67d50d2832f9ee0028a979" compoundref="a00295" startline="772" endline="1042">Yarn.Parser.Expression.Parse</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="55" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="a00088_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertTo</name>
+        <reimplements refid="a00123_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
+        <reimplementedby refid="a00099_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Converts a Double to and from a string. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1357">
-        <label>Yarn.FunctionInfo</label>
+    <inheritancegraph>
+      <node id="1296">
+        <label>CsvHelper.TypeConversion.DoubleConverter</label>
         <link refid="a00096"/>
+        <childnode refid="1297" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1298">
+        <label>ITypeConverter</label>
+        <link refid="a00123"/>
+      </node>
+      <node id="1297">
+        <label>DefaultTypeConverter</label>
+        <link refid="a00088"/>
+        <childnode refid="1298" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1299">
+        <label>CsvHelper.TypeConversion.DoubleConverter</label>
+        <link refid="a00096"/>
+        <childnode refid="1300" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1301">
+        <label>ITypeConverter</label>
+        <link refid="a00123"/>
+      </node>
+      <node id="1300">
+        <label>DefaultTypeConverter</label>
+        <link refid="a00088"/>
+        <childnode refid="1301" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="9" bodyend="84"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DoubleConverter.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DoubleConverter.cs" bodystart="12" bodyend="47"/>
     <listofallmembers>
-      <member refid="a00096_1a1dd2f9d11614a2fce170b3f3eecdb5f9" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>function</name></member>
-      <member refid="a00096_1a93457cd0e838cb2ef59cc2a3a46ce758" prot="package" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>FunctionInfo</name></member>
-      <member refid="a00096_1a41d97c09da25caede70cb734d18113b9" prot="package" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>FunctionInfo</name></member>
-      <member refid="a00096_1ab400ac66785d7df2e3fc0f3ce3796044" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>Invoke</name></member>
-      <member refid="a00096_1a3ce11058d35232907a738de4bb094c67" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>InvokeWithArray</name></member>
-      <member refid="a00096_1a1ed09ff8aafa230a0d2bbc23cd6cd763" prot="package" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>IsParameterCountCorrect</name></member>
-      <member refid="a00096_1adb38e83e3c1597b553aeff14bef5bfcb" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>name</name></member>
-      <member refid="a00096_1aa8527de9e4f153b05164ccaf167c3186" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>paramCount</name></member>
-      <member refid="a00096_1a8b6e0e5a875c427a1d947f3c52c308ca" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>returningFunction</name></member>
-      <member refid="a00096_1acaff044276aa230de7c0b27dd5267bc7" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>returnsValue</name></member>
+      <member refid="a00096_1ad67475daa90cdb00cf626429e925e732" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::DoubleConverter</scope><name>CanConvertFrom</name></member>
+      <member refid="a00088_1a470d21adaa704eb281250dbd112ff91a" prot="public" virt="virtual" ambiguityscope="CsvHelper::TypeConversion::DefaultTypeConverter."><scope>CsvHelper::TypeConversion::DoubleConverter</scope><name>CanConvertFrom</name></member>
+      <member refid="a00088_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DoubleConverter</scope><name>CanConvertTo</name></member>
+      <member refid="a00096_1a0c93a63f9f954646172a65b432c40c69" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DoubleConverter</scope><name>ConvertFromString</name></member>
+      <member refid="a00088_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DoubleConverter</scope><name>ConvertToString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

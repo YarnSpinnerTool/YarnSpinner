@@ -1,133 +1,113 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00047" kind="class" prot="public">
-    <compoundname>Yarn::Analysis::Context</compoundname>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00047_1ad06829cf848a5936db5724ebced758ec" prot="private" static="no" mutable="no">
-        <type>IEnumerable&lt; Type &gt;</type>
-        <definition>IEnumerable&lt;Type&gt; Yarn.Analysis.Context._defaultAnalyserClasses</definition>
+    <compoundname>Yarn::Unity::Example::CameraFollow</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00047_1aa5d6958fb14a14ebb74e21c372fcca8b" prot="public" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform Yarn.Unity.Example.CameraFollow.target</definition>
         <argsstring></argsstring>
-        <name>_defaultAnalyserClasses</name>
+        <name>target</name>
         <briefdescription>
-        </briefdescription>
+<para>Target of the camera. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="83" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="83" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" bodystart="40" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="a00047_1aa5c7eaa90ad9c47969a3b336080d8991" prot="private" static="no" mutable="no">
-        <type>List&lt; <ref refid="a00043" kindref="compound">CompiledProgramAnalyser</ref> &gt;</type>
-        <definition>List&lt;CompiledProgramAnalyser&gt; Yarn.Analysis.Context.analysers</definition>
+      <memberdef kind="variable" id="a00047_1a08c6f6c0ea423c21af99e4b5467d3c9b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Yarn.Unity.Example.CameraFollow.minPosition</definition>
         <argsstring></argsstring>
-        <name>analysers</name>
+        <name>minPosition</name>
+        <initializer>= -5.3f</initializer>
         <briefdescription>
-        </briefdescription>
+<para>Minimum position of camera. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="108" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="108" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" line="43" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00047_1abb0154dcbc2a7d43795beacd61a56de4" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Yarn.Unity.Example.CameraFollow.maxPosition</definition>
+        <argsstring></argsstring>
+        <name>maxPosition</name>
+        <initializer>= 5.3f</initializer>
+        <briefdescription>
+<para>Maximum position of camera. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00047_1a3d4f2efe9c2cee8c7ff797cac03f27ec" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Yarn.Unity.Example.CameraFollow.moveSpeed</definition>
+        <argsstring></argsstring>
+        <name>moveSpeed</name>
+        <initializer>= 1.0f</initializer>
+        <briefdescription>
+<para>Movement speed of camera. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" bodystart="49" bodyend="-1"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00047_1afdf24f2512251c2203ba1bde8f4a0f90" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>IEnumerable&lt; Type &gt;</type>
-        <definition>IEnumerable&lt;Type&gt; Yarn.Analysis.Context.defaultAnalyserClasses</definition>
-        <argsstring></argsstring>
-        <name>defaultAnalyserClasses</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="84" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="84" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00047_1a8e2c56843e8d374b0f90e23326d8d14a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Analysis.Context.Context</definition>
-        <argsstring>()</argsstring>
-        <name>Context</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="110" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="110" bodyend="118"/>
-      </memberdef>
-      <memberdef kind="function" id="a00047_1ad5f41fb64637c4938bce811153492731" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Analysis.Context.Context</definition>
-        <argsstring>(params Type[] types)</argsstring>
-        <name>Context</name>
-        <param>
-          <type>params Type[]</type>
-          <declname>types</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="120" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="120" bodyend="126"/>
-      </memberdef>
-      <memberdef kind="function" id="a00047_1a1eadea062a5899a64d00ea0172cbbb43" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>IEnumerable&lt; <ref refid="a00081" kindref="compound">Diagnosis</ref> &gt;</type>
-        <definition>IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.Context.FinishAnalysis</definition>
-        <argsstring>()</argsstring>
-        <name>FinishAnalysis</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="134" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="134" bodyend="142"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00047_1a60255a6d54f296d199507acef251244c" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00047_1a592ddbf8e493bde0a6536c0234869217" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>void Yarn.Analysis.Context.AddProgramToAnalysis</definition>
-        <argsstring>(Program program)</argsstring>
-        <name>AddProgramToAnalysis</name>
-        <param>
-          <type><ref refid="a00142" kindref="compound">Program</ref></type>
-          <declname>program</declname>
-        </param>
+        <definition>void Yarn.Unity.Example.CameraFollow.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="128" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="128" bodyend="132"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" line="52" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" bodystart="52" bodyend="63"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Control the position of the camera and its behaviour. </para>    </briefdescription>
     <detaileddescription>
-    </detaileddescription>
-    <collaborationgraph>
-      <node id="1044">
-        <label>Yarn.Analysis.Context</label>
+<para>Camera should have minPosition and maxPosition of the same because we&apos;re dealing with 2D. The movement speed shouldn&apos;t be too fast nor too slow </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="997">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="996">
+        <label>Yarn.Unity.Example.CameraFollow</label>
         <link refid="a00047"/>
+        <childnode refid="997" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="999">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="998">
+        <label>Yarn.Unity.Example.CameraFollow</label>
+        <link refid="a00047"/>
+        <childnode refid="999" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="81" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="81" bodyend="144"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" bodystart="37" bodyend="64"/>
     <listofallmembers>
-      <member refid="a00047_1ad06829cf848a5936db5724ebced758ec" prot="private" virt="non-virtual"><scope>Yarn::Analysis::Context</scope><name>_defaultAnalyserClasses</name></member>
-      <member refid="a00047_1a60255a6d54f296d199507acef251244c" prot="package" virt="non-virtual"><scope>Yarn::Analysis::Context</scope><name>AddProgramToAnalysis</name></member>
-      <member refid="a00047_1aa5c7eaa90ad9c47969a3b336080d8991" prot="private" virt="non-virtual"><scope>Yarn::Analysis::Context</scope><name>analysers</name></member>
-      <member refid="a00047_1a8e2c56843e8d374b0f90e23326d8d14a" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Context</scope><name>Context</name></member>
-      <member refid="a00047_1ad5f41fb64637c4938bce811153492731" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Context</scope><name>Context</name></member>
-      <member refid="a00047_1afdf24f2512251c2203ba1bde8f4a0f90" prot="package" virt="non-virtual"><scope>Yarn::Analysis::Context</scope><name>defaultAnalyserClasses</name></member>
-      <member refid="a00047_1a1eadea062a5899a64d00ea0172cbbb43" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Context</scope><name>FinishAnalysis</name></member>
+      <member refid="a00047_1abb0154dcbc2a7d43795beacd61a56de4" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>maxPosition</name></member>
+      <member refid="a00047_1a08c6f6c0ea423c21af99e4b5467d3c9b" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>minPosition</name></member>
+      <member refid="a00047_1a3d4f2efe9c2cee8c7ff797cac03f27ec" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>moveSpeed</name></member>
+      <member refid="a00047_1aa5d6958fb14a14ebb74e21c372fcca8b" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>target</name></member>
+      <member refid="a00047_1a592ddbf8e493bde0a6536c0234869217" prot="private" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>Update</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -102,17 +102,17 @@ $(document).ready(function(){initNavTree('a00010.html','');});
 <div class="title">Localization </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="el" href="a00041.html">Yarn</a> Spinner provides tools to help convert your game in to any language you like. This is achieved by usage of the <a href="../YarnSpinnerConsole">YarnSpinnerConsole</a> tool. At the moment, this tool is not available standalone and needs to be ../YarnSpinner-Programming/Building.md "built from source".</p>
+<div class="textblock"><p><a class="el" href="a00051.html">Yarn</a> Spinner provides tools to help convert your game in to any language you like. This is achieved by usage of the <a href="../YarnSpinnerConsole">YarnSpinnerConsole</a> tool. At the moment, this tool is not available standalone and needs to be ../YarnSpinner-Programming/Building.md "built from source".</p>
 <h2>Localisation procedure</h2>
 <ol type="1">
 <li>We first use the tool to place unique <b>taglines</b> on each line of text that the end user will see. To do this, we execute the tool with the <b>taglines</b> command, eg: <code>YarnSpinnerConsole.exe taglines MyYarnFile.yarn.txt</code>.</li>
 <li>Next, we use the tool to generate a file of strings (<b>genstrings</b>) in '<a href="https://en.wikipedia.org/wiki/Comma-separated_values">comma separated value</a>' (csv) format. <code>YarnSpinnerConsole.exe genstrings MyYarnFile.yarn.txt</code> will generate a file, (in this example MyYarnFIle.yarn_lines.csv), that can then distributed to translators. It is recommended that this file first be renamed using a language identifier before distribution, eg ``` MyYarnFIle.yarn_lines.enAU.csv MyYarnFIle.yarn_lines.ptTL.csv ```</li>
-<li>When the file is returned from translators, we then use <a class="el" href="a00041.html">Yarn</a> Spinner's DialogueRunner inside Unity to set String Groups for the required language.</li>
+<li>When the file is returned from translators, we then use <a class="el" href="a00051.html">Yarn</a> Spinner's DialogueRunner inside Unity to set String Groups for the required language.</li>
 </ol>
 <h2>Footnotes</h2>
 <ul>
 <li>While not essential that all files follow a standard, but highly recommended that consistency of format be used across all localisation files within a project eg <a href="https://www.iso.org/obp/ui/#iso:std:iso-iec:15897:ed-2:v1:en">ISO-15897</a></li>
-<li>Originally, <a class="el" href="a00041.html">Yarn</a> Spinner used .json format. The <a class="el" href="a00041.html">Yarn</a> Spinner Console can convert this json format to the new improved text format: <code>YarnSpinnerConsole.exe convert --yarn Ship.json</code></li>
+<li>Originally, <a class="el" href="a00051.html">Yarn</a> Spinner used .json format. The <a class="el" href="a00051.html">Yarn</a> Spinner Console can convert this json format to the new improved text format: <code>YarnSpinnerConsole.exe convert --yarn Ship.json</code></li>
 <li>Command reference is available for YarnSpinnerConsole.exe by either running it with no arguments or by utilising the help command (<code>YarnSpinnerConsole.exe help</code>). Help for each command is available by using 'help command' (eg <code>YarnSpinnderConsole.exe help compile</code>) </li>
 </ul>
 </div></div><!-- contents -->
@@ -120,7 +120,7 @@ $(document).ready(function(){initNavTree('a00010.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:36 for YarnSpinner by
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:05 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

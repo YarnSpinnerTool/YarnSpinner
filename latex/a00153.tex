@@ -1,136 +1,110 @@
-\hypertarget{a00153}{\section{Yarn.\-Unity.\-Example.\-Sprite\-Switcher Class Reference}
-\label{a00153}\index{Yarn.\-Unity.\-Example.\-Sprite\-Switcher@{Yarn.\-Unity.\-Example.\-Sprite\-Switcher}}
+\hypertarget{a00153}{\section{Yarn.\-Program\-Exporter Class Reference}
+\label{a00153}\index{Yarn.\-Program\-Exporter@{Yarn.\-Program\-Exporter}}
 }
 
 
-Attach \hyperlink{a00153}{Sprite\-Switcher} to game object.  
-
-
-
-
-Inheritance diagram for Yarn.\-Unity.\-Example.\-Sprite\-Switcher\-:
+Collaboration diagram for Yarn.\-Program\-Exporter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=212pt]{a00795}
+\includegraphics[width=192pt]{a00761}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Unity.\-Example.\-Sprite\-Switcher\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=315pt]{a00796}
-\end{center}
-\end{figure}
-\subsection*{Classes}
+\subsection*{Static Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{a00153_a00364}{Sprite\-Info}
-\end{DoxyCompactItemize}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-void \hyperlink{a00153_ac26718b713f342f3de8f3e569c5b62da}{Use\-Sprite} (string sprite\-Name)
-\begin{DoxyCompactList}\small\item\em Create a command to use on a sprite. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00153_a00364}{Sprite\-Info}\mbox{[}$\,$\mbox{]} \hyperlink{a00153_a1e85d9f4f6b33ca7ae638cce2eb704aa}{sprites}
+static int \hyperlink{a00153_a3679a1f144471ea411fed34f6a79a18d}{Export} (\hyperlink{a00055}{Compile\-Options} options)
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Attach \hyperlink{a00153}{Sprite\-Switcher} to game object. 
-
-Definition at line 34 of file Sprite\-Switcher.\-cs.
 
 
-
-\subsection{Class Documentation}
-\index{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher\-::\-Sprite\-Info@{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher\-::\-Sprite\-Info}}\label{a00364}
-\hypertarget{a00153_a00364}{}
-\subsubsection{struct Yarn\-:\-:Unity\-:\-:Example\-:\-:Sprite\-Switcher\-:\-:Sprite\-Info}
-
-
-Definition at line 37 of file Sprite\-Switcher.\-cs.
+Definition at line 7 of file Program\-Exporter.\-cs.
 
 
 
-Collaboration diagram for Yarn.\-Unity.\-Example.\-Sprite\-Switcher.\-Sprite\-Info\-:
+\subsection{Member Function Documentation}
+\hypertarget{a00153_a3679a1f144471ea411fed34f6a79a18d}{\index{Yarn\-::\-Program\-Exporter@{Yarn\-::\-Program\-Exporter}!Export@{Export}}
+\index{Export@{Export}!Yarn::ProgramExporter@{Yarn\-::\-Program\-Exporter}}
+\subsubsection[{Export}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-Program\-Exporter.\-Export (
+\begin{DoxyParamCaption}
+\item[{{\bf Compile\-Options}}]{options}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00153_a3679a1f144471ea411fed34f6a79a18d}
+
+
+Definition at line 10 of file Program\-Exporter.\-cs.
+
+
+
+References Yarn.\-Yarn\-Spinner\-Console.\-A\-L\-L\-O\-W\-E\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N\-S.
+
+
+
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Main().
+
+
+\begin{DoxyCode}
+11         \{
+12             YarnSpinnerConsole.CheckFileList(options.files, 
+      \hyperlink{a00195_a0979de7ea02c8c0375b8220a12e6575e}{YarnSpinnerConsole.ALLOWED\_EXTENSIONS});
+13 
+14             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.files) \{
+15 
+16                 var dialogue = YarnSpinnerConsole.CreateDialogueForUtilities();
+17 
+18                 \textcolor{comment}{// Load and compile the program}
+19                 \textcolor{keywordflow}{try}
+20                 \{
+21                     \textcolor{comment}{// First, we need to ensure that this file compiles.}
+22                     dialogue.LoadFile(file);
+23                 \}
+24 \textcolor{preprocessor}{#pragma warning disable CA1031 // Do not catch general exception types}
+25 \textcolor{preprocessor}{}                \textcolor{keywordflow}{catch}
+26                 \{
+27                     YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Skipping file \{0\}
+       due to compilation errors."}, file));
+28                     \textcolor{keywordflow}{continue};
+29                 \}
+30 \textcolor{preprocessor}{#pragma warning restore CA1031 // Do not catch general exception types}
+31 \textcolor{preprocessor}{}
+32                 \textcolor{comment}{// Convert the program into BSON}
+33                 var compiledProgram = dialogue.GetCompiledProgram(options.format);
+34 
+35                 var outputPath = System.IO.Path.ChangeExtension(file, \textcolor{stringliteral}{"yarn.bytes"});
+36 
+37                 \textcolor{keywordflow}{try} \{
+38                     System.IO.File.WriteAllBytes(outputPath, compiledProgram);
+39 \textcolor{preprocessor}{#pragma warning disable CA1031 // Do not catch general exception types}
+40 \textcolor{preprocessor}{}                \} \textcolor{keywordflow}{catch} (Exception e) \{
+41                     YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Error writing \{0\}:
+       \{1\}"}, outputPath, e.Message));
+42                 \}
+43 \textcolor{preprocessor}{#pragma warning restore CA1031 // Do not catch general exception types}
+44 \textcolor{preprocessor}{}
+45 
+46 
+47             \}
+48 
+49             \textcolor{keywordflow}{return} 0;
+50         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=212pt]{a00369}
+\includegraphics[width=350pt]{a00153_a3679a1f144471ea411fed34f6a79a18d_icgraph}
 \end{center}
 \end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00153_a3f5bca2fff413dfe075c1fcf7e58369c}{string}\label{a00153_a3f5bca2fff413dfe075c1fcf7e58369c}
-&
-name&
-\\
-\hline
 
-\hypertarget{a00153_adc58df011dc2841837b6cf775b372061}{Sprite}\label{a00153_adc58df011dc2841837b6cf775b372061}
-&
-sprite&
-\\
-\hline
-
-\end{DoxyFields}
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00153_ac26718b713f342f3de8f3e569c5b62da}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher@{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher}!Use\-Sprite@{Use\-Sprite}}
-\index{Use\-Sprite@{Use\-Sprite}!Yarn::Unity::Example::SpriteSwitcher@{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher}}
-\subsubsection[{Use\-Sprite}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Sprite\-Switcher.\-Use\-Sprite (
-\begin{DoxyParamCaption}
-\item[{string}]{sprite\-Name}
-\end{DoxyParamCaption}
-)}}\label{a00153_ac26718b713f342f3de8f3e569c5b62da}
-
-
-Create a command to use on a sprite. 
-
-
-
-Definition at line 46 of file Sprite\-Switcher.\-cs.
-
-
-\begin{DoxyCode}
-46                                                  \{
-47 
-48             Sprite s = null;
-49             \textcolor{keywordflow}{foreach}(var info \textcolor{keywordflow}{in} \hyperlink{a00153_a1e85d9f4f6b33ca7ae638cce2eb704aa}{sprites}) \{
-50                 \textcolor{keywordflow}{if} (info.name == spriteName) \{
-51                     s = info.sprite;
-52                     \textcolor{keywordflow}{break};
-53                 \}
-54              \}
-55             \textcolor{keywordflow}{if} (s == null) \{
-56                 Debug.LogErrorFormat(\textcolor{stringliteral}{"Can't find sprite named \{0\}!"}, spriteName);
-57                 \textcolor{keywordflow}{return};
-58             \}
-59 
-60             GetComponent<SpriteRenderer>().sprite = s;
-61         \}
-\end{DoxyCode}
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00153_a1e85d9f4f6b33ca7ae638cce2eb704aa}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher@{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher}!sprites@{sprites}}
-\index{sprites@{sprites}!Yarn::Unity::Example::SpriteSwitcher@{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher}}
-\subsubsection[{sprites}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Sprite\-Info} \mbox{[}$\,$\mbox{]} Yarn.\-Unity.\-Example.\-Sprite\-Switcher.\-sprites}}\label{a00153_a1e85d9f4f6b33ca7ae638cce2eb704aa}
-
-
-Definition at line 42 of file Sprite\-Switcher.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00286}{Sprite\-Switcher.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner\-Console/\hyperlink{a00326}{Program\-Exporter.\-cs}\end{DoxyCompactItemize}

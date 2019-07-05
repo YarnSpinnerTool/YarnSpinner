@@ -1,344 +1,294 @@
-\hypertarget{a00142}{\section{Yarn.\-Program Class Reference}
-\label{a00142}\index{Yarn.\-Program@{Yarn.\-Program}}
+\hypertarget{a00142}{\section{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter Class Reference}
+\label{a00142}\index{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}}
 }
 
 
-Collaboration diagram for Yarn.\-Program\-:
+Converts a Nullable to and from a string.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=184pt]{a00699}
+\includegraphics[width=220pt]{a00557}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{a00558}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00142_a977d1ed02e3f6f39d30dfea1663e7927}{Load\-Strings} (Dictionary$<$ string, string $>$ new\-Strings)
-\begin{DoxyCompactList}\small\item\em Loads a new string table into the program. \end{DoxyCompactList}\item 
-string \hyperlink{a00142_a9baf491479375aa8c3aa2b0c31cf0932}{Register\-String} (string the\-String, string node\-Name, string line\-I\-D, int line\-Number, bool localisable)
-\item 
-string \hyperlink{a00142_a14737b93594c4aab25c59cb0a3c918f7}{Get\-String} (string key)
-\item 
-string \hyperlink{a00142_a2f5bb468ce53eb7bbe647e3c11ddbb61}{Dump\-Code} (\hyperlink{a00119}{Library} l)
-\item 
-string \hyperlink{a00142_aad8029f37832ff1985fad6a31e51afd8}{Get\-Text\-For\-Node} (string node\-Name)
-\item 
-void \hyperlink{a00142_afd3385ca1f7589b3b9dae3646e4fee84}{Include} (\hyperlink{a00142}{Program} other\-Program)
-\end{DoxyCompactItemize}
-\subsection*{Package Attributes}
-\begin{DoxyCompactItemize}
-\item 
-Dictionary$<$ string, string $>$ \hyperlink{a00142_a59263e00cecfe36d9881b4c30b048f09}{strings} = new Dictionary$<$string, string$>$()
-\item 
-Dictionary$<$ string, \hyperlink{a00121}{Line\-Info} $>$ \hyperlink{a00142_a0d4da395947767b4a1eaaff8a9842adc}{line\-Info} = new Dictionary$<$string, \hyperlink{a00121}{Line\-Info}$>$()
-\item 
-Dictionary$<$ string, \hyperlink{a00041_a00361}{Node} $>$ \hyperlink{a00142_a3f4928a577c88263ad016be259b175c4}{nodes} = new Dictionary$<$string, \hyperlink{a00041_a00361}{Node}$>$()
-\end{DoxyCompactItemize}
+\hyperlink{a00142_af18c9435dee98900eb8ade933c62951d}{Nullable\-Converter} (Type type)
+\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{a00142}{Nullable\-Converter} for the given Nullable\{\-T\} Type. \end{DoxyCompactList}\item 
+override object \hyperlink{a00142_addb6dc12d4927204cd2349202db63e74}{Convert\-From\-String} (\hyperlink{a00178}{Type\-Converter\-Options} options, string text)
+\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
+override string \hyperlink{a00142_a7205cdb61d2d119582958232b3e63109}{Convert\-To\-String} (\hyperlink{a00178}{Type\-Converter\-Options} options, object value)
+\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
+override bool \hyperlink{a00142_ab9761a9f96be2b41103bb1313611d6f9}{Can\-Convert\-From} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00088_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-Dictionary$<$ string, string $>$ \hyperlink{a00142_aa8fedbfceaf931d1da3f600eaab6ae87}{untagged\-Strings}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-int \hyperlink{a00142_a8ef1d10094ef00311aade6715ba78ec7}{string\-Count} = 0
-\end{DoxyCompactItemize}
+Type \hyperlink{a00142_add17b913ac5a45cc33ca0fbf10b6603d}{Nullable\-Type}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the type of the nullable. \end{DoxyCompactList}\item 
+Type \hyperlink{a00142_ae6f7f4c0eb8447c7440f01b118e884cf}{Underlying\-Type}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the underlying type of the nullable. \end{DoxyCompactList}\item 
+\hyperlink{a00123}{I\-Type\-Converter} \hyperlink{a00142_aed8934af11e74459f7d37fcf577480a1}{Underlying\-Type\-Converter}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the type converter for the underlying type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Converts a Nullable to and from a string. 
 
 
-Definition at line 83 of file Program.\-cs.
 
+Definition at line 13 of file Nullable\-Converter.\-cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00142_af18c9435dee98900eb8ade933c62951d}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Nullable\-Converter@{Nullable\-Converter}}
+\index{Nullable\-Converter@{Nullable\-Converter}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
+\subsubsection[{Nullable\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Nullable\-Converter (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)}}\label{a00142_af18c9435dee98900eb8ade933c62951d}
+
+
+Creates a new \hyperlink{a00142}{Nullable\-Converter} for the given Nullable\{\-T\} Type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The nullable type.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em System.\-Argument\-Exception} & type is not a nullable type.\\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 44 of file Nullable\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+45         \{
+46             \hyperlink{a00142_add17b913ac5a45cc33ca0fbf10b6603d}{NullableType} = type;
+47             \hyperlink{a00142_ae6f7f4c0eb8447c7440f01b118e884cf}{UnderlyingType} = Nullable.GetUnderlyingType( type );
+48             \textcolor{keywordflow}{if}( \hyperlink{a00142_ae6f7f4c0eb8447c7440f01b118e884cf}{UnderlyingType} == null )
+49             \{
+50                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException( \textcolor{stringliteral}{"type is not a nullable type."} );
+51             \}
+52 
+53             \hyperlink{a00142_aed8934af11e74459f7d37fcf577480a1}{UnderlyingTypeConverter} = TypeConverterFactory.GetConverter( 
+      \hyperlink{a00142_ae6f7f4c0eb8447c7440f01b118e884cf}{UnderlyingType} );
+54         \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00142_a2f5bb468ce53eb7bbe647e3c11ddbb61}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Dump\-Code@{Dump\-Code}}
-\index{Dump\-Code@{Dump\-Code}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Dump\-Code}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Program.\-Dump\-Code (
+\hypertarget{a00142_ab9761a9f96be2b41103bb1313611d6f9}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Can\-Convert\-From (
 \begin{DoxyParamCaption}
-\item[{{\bf Library}}]{l}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)}}\label{a00142_a2f5bb468ce53eb7bbe647e3c11ddbb61}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00142_ab9761a9f96be2b41103bb1313611d6f9}
 
 
-Definition at line 161 of file Program.\-cs.
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{a00088_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
 
 
 
-References Yarn.\-Program.\-line\-Info, Yarn.\-Program.\-nodes, and Yarn.\-Program.\-strings.
+Definition at line 90 of file Nullable\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-162         \{
-163 
-164             var sb = \textcolor{keyword}{new} System.Text.StringBuilder();
-165 
-166             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} \hyperlink{a00142_a3f4928a577c88263ad016be259b175c4}{nodes})
-167             \{
-168                 sb.AppendLine(\textcolor{stringliteral}{"Node "} + entry.Key + \textcolor{stringliteral}{":"});
-169 
-170                 \textcolor{keywordtype}{int} instructionCount = 0;
-171                 \textcolor{keywordflow}{foreach} (var instruction \textcolor{keywordflow}{in} entry.Value.instructions)
-172                 \{
-173                     \textcolor{keywordtype}{string} instructionText;
-174 
-175                     \textcolor{keywordflow}{if} (instruction.operation == \hyperlink{a00041_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label)
-176                     \{
-177                         instructionText = instruction.ToString(\textcolor{keyword}{this}, l);
-178                     \}
-179                     \textcolor{keywordflow}{else}
-180                     \{
-181                         instructionText = \textcolor{stringliteral}{"    "} + instruction.ToString(\textcolor{keyword}{this}, l);
-182                     \}
-183 
-184                     \textcolor{keywordtype}{string} preface;
-185 
-186                     \textcolor{keywordflow}{if} (instructionCount % 5 == 0 || instructionCount == entry.Value.instructions.Count - 1
-      )
-187                     \{
-188                         preface = string.Format(\textcolor{stringliteral}{"\{0,6\}   "}, instructionCount);
-189                     \}
-190                     \textcolor{keywordflow}{else}
-191                     \{
-192                         preface = string.Format(\textcolor{stringliteral}{"\{0,6\}   "}, \textcolor{stringliteral}{" "});
-193                     \}
-194 
-195                     sb.AppendLine(preface + instructionText);
-196 
-197                     instructionCount++;
-198                 \}
-199 
-200                 sb.AppendLine();
-201             \}
-202 
-203             sb.AppendLine(\textcolor{stringliteral}{"String table:"});
-204 
-205             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} \hyperlink{a00142_a59263e00cecfe36d9881b4c30b048f09}{strings})
-206             \{
-207                 var \hyperlink{a00142_a0d4da395947767b4a1eaaff8a9842adc}{lineInfo} = this.lineInfo[entry.Key];
-208 
-209                 sb.AppendLine(string.Format(\textcolor{stringliteral}{"\{0\}: \{1\} (\{2\}:\{3\})"}, entry.Key, entry.Value, lineInfo.nodeName
-      , lineInfo.lineNumber));
-210             \}
-211 
-212             \textcolor{keywordflow}{return} sb.ToString();
-213         \}
+91         \{
+92             \textcolor{comment}{// We only care about strings.}
+93             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+94         \}
 \end{DoxyCode}
-\hypertarget{a00142_a14737b93594c4aab25c59cb0a3c918f7}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Get\-String@{Get\-String}}
-\index{Get\-String@{Get\-String}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Get\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Program.\-Get\-String (
+\hypertarget{a00088_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
+\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
+\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
 \begin{DoxyParamCaption}
-\item[{string}]{key}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)}}\label{a00142_a14737b93594c4aab25c59cb0a3c918f7}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00088_acb65bd8c8199d88d5b1629ae35d18514}
 
 
-Definition at line 154 of file Program.\-cs.
+Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00123_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00099_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+
+
+Definition at line 69 of file Default\-Type\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-155         \{
-156             \textcolor{keywordtype}{string} value = null;
-157             strings.TryGetValue(key, out value);
-158             \textcolor{keywordflow}{return} value;
-159         \}
+70         \{
+71             \textcolor{comment}{// We only care about strings.}
+72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+73         \}
 \end{DoxyCode}
-\hypertarget{a00142_aad8029f37832ff1985fad6a31e51afd8}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Get\-Text\-For\-Node@{Get\-Text\-For\-Node}}
-\index{Get\-Text\-For\-Node@{Get\-Text\-For\-Node}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Get\-Text\-For\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Program.\-Get\-Text\-For\-Node (
+\hypertarget{a00142_addb6dc12d4927204cd2349202db63e74}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
+\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
+\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Convert\-From\-String (
 \begin{DoxyParamCaption}
-\item[{string}]{node\-Name}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{string}]{text}
 \end{DoxyParamCaption}
-)}}\label{a00142_aad8029f37832ff1985fad6a31e51afd8}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00142_addb6dc12d4927204cd2349202db63e74}
 
 
-Definition at line 215 of file Program.\-cs.
+Converts the string to an object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em text} & The string to convert to an object.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The object created from the string.
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{a00088_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
 
 
 
-References Yarn.\-Program.\-nodes.
+Definition at line 62 of file Nullable\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-216         \{
-217             \textcolor{keywordflow}{return} this.GetString(\hyperlink{a00142_a3f4928a577c88263ad016be259b175c4}{nodes}[nodeName].sourceTextStringID);
-218         \}
+63         \{
+64             \textcolor{keywordflow}{if}( \textcolor{keywordtype}{string}.IsNullOrEmpty( text ) )
+65             \{
+66                 \textcolor{keywordflow}{return} null;
+67             \}
+68 
+69             \textcolor{keywordflow}{return} UnderlyingTypeConverter.ConvertFromString( options, text );
+70         \}
 \end{DoxyCode}
-\hypertarget{a00142_afd3385ca1f7589b3b9dae3646e4fee84}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Include@{Include}}
-\index{Include@{Include}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Include}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Program.\-Include (
+\hypertarget{a00142_a7205cdb61d2d119582958232b3e63109}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
+\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
+\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Convert\-To\-String (
 \begin{DoxyParamCaption}
-\item[{{\bf Program}}]{other\-Program}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{object}]{value}
 \end{DoxyParamCaption}
-)}}\label{a00142_afd3385ca1f7589b3b9dae3646e4fee84}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00142_a7205cdb61d2d119582958232b3e63109}
 
 
-Definition at line 220 of file Program.\-cs.
+Converts the object to a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em value} & The object to convert to a string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the object.
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{a00088_a36cb2f9b24f15a671293f3a722324c27}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
 
 
 
-References Yarn.\-Program.\-nodes, and Yarn.\-Program.\-strings.
+Definition at line 78 of file Nullable\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-221         \{
-222             \textcolor{keywordflow}{foreach} (var otherNodeName \textcolor{keywordflow}{in} otherProgram.nodes)
-223             \{
-224 
-225                 \textcolor{keywordflow}{if} (\hyperlink{a00142_a3f4928a577c88263ad016be259b175c4}{nodes}.ContainsKey(otherNodeName.Key))
-226                 \{
-227                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException(\textcolor{keywordtype}{string}.Format(\textcolor{stringliteral}{"This program already contains a node
-       named \{0\}"}, otherNodeName.Key));
-228                 \}
-229 
-230                 \hyperlink{a00142_a3f4928a577c88263ad016be259b175c4}{nodes}[otherNodeName.Key] = otherNodeName.Value;
-231             \}
-232 
-233             \textcolor{keywordflow}{foreach} (var otherString \textcolor{keywordflow}{in} otherProgram.strings)
-234             \{
-235 
-236                 \textcolor{keywordflow}{if} (\hyperlink{a00142_a3f4928a577c88263ad016be259b175c4}{nodes}.ContainsKey(otherString.Key))
-237                 \{
-238                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException(\textcolor{keywordtype}{string}.Format(\textcolor{stringliteral}{"This program already contains a
-       string with key \{0\}"}, otherString.Key));
-239                 \}
-240 
-241                 \hyperlink{a00142_a59263e00cecfe36d9881b4c30b048f09}{strings}[otherString.Key] = otherString.Value;
-242             \}
-243         \}
+79         \{
+80             \textcolor{keywordflow}{return} UnderlyingTypeConverter.ConvertToString( options, value );
+81         \}
 \end{DoxyCode}
-\hypertarget{a00142_a977d1ed02e3f6f39d30dfea1663e7927}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Load\-Strings@{Load\-Strings}}
-\index{Load\-Strings@{Load\-Strings}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Load\-Strings}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Program.\-Load\-Strings (
-\begin{DoxyParamCaption}
-\item[{Dictionary$<$ string, string $>$}]{new\-Strings}
-\end{DoxyParamCaption}
-)}}\label{a00142_a977d1ed02e3f6f39d30dfea1663e7927}
-
-
-Loads a new string table into the program. 
-
-The string table is merged with any existing strings, with the new table taking precedence over the old. 
-
-Definition at line 124 of file Program.\-cs.
-
-
-
-References Yarn.\-Program.\-strings.
-
-
-\begin{DoxyCode}
-125         \{
-126             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} newStrings)
-127             \{
-128                 \hyperlink{a00142_a59263e00cecfe36d9881b4c30b048f09}{strings}[entry.Key] = entry.Value;
-129             \}
-130         \}
-\end{DoxyCode}
-\hypertarget{a00142_a9baf491479375aa8c3aa2b0c31cf0932}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Register\-String@{Register\-String}}
-\index{Register\-String@{Register\-String}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Register\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Program.\-Register\-String (
-\begin{DoxyParamCaption}
-\item[{string}]{the\-String, }
-\item[{string}]{node\-Name, }
-\item[{string}]{line\-I\-D, }
-\item[{int}]{line\-Number, }
-\item[{bool}]{localisable}
-\end{DoxyParamCaption}
-)}}\label{a00142_a9baf491479375aa8c3aa2b0c31cf0932}
-
-
-Definition at line 132 of file Program.\-cs.
-
-
-
-References Yarn.\-Program.\-string\-Count.
-
-
-\begin{DoxyCode}
-133         \{
-134 
-135             \textcolor{keywordtype}{string} key;
-136 
-137             \textcolor{keywordflow}{if} (lineID == null)
-138                 key = string.Format(\textcolor{stringliteral}{"\{0\}-\{1\}"}, nodeName, \hyperlink{a00142_a8ef1d10094ef00311aade6715ba78ec7}{stringCount}++);
-139             \textcolor{keywordflow}{else}
-140                 key = lineID;
-141 
-142             \textcolor{comment}{// It's not in the list; append it}
-143             strings.Add(key, theString);
-144 
-145             \textcolor{keywordflow}{if} (localisable)
-146             \{
-147                 \textcolor{comment}{// Additionally, keep info about this string around}
-148                 lineInfo.Add(key, \textcolor{keyword}{new} LineInfo(nodeName, lineNumber));
-149             \}
-150 
-151             \textcolor{keywordflow}{return} key;
-152         \}
-\end{DoxyCode}
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00142_a0d4da395947767b4a1eaaff8a9842adc}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!line\-Info@{line\-Info}}
-\index{line\-Info@{line\-Info}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{line\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Line\-Info}$>$ Yarn.\-Program.\-line\-Info = new Dictionary$<$string, {\bf Line\-Info}$>$()\hspace{0.3cm}{\ttfamily [package]}}}\label{a00142_a0d4da395947767b4a1eaaff8a9842adc}
-
-
-Definition at line 87 of file Program.\-cs.
-
-
-
-Referenced by Yarn.\-Program.\-Dump\-Code().
-
-\hypertarget{a00142_a3f4928a577c88263ad016be259b175c4}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!nodes@{nodes}}
-\index{nodes@{nodes}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{nodes}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Node}$>$ Yarn.\-Program.\-nodes = new Dictionary$<$string, {\bf Node}$>$()\hspace{0.3cm}{\ttfamily [package]}}}\label{a00142_a3f4928a577c88263ad016be259b175c4}
-
-
-Definition at line 90 of file Program.\-cs.
-
-
-
-Referenced by Yarn.\-Compiler.\-Compile\-Node(), Yarn.\-Program.\-Dump\-Code(), Yarn.\-Dialogue.\-Get\-Text\-For\-All\-Nodes(), Yarn.\-Program.\-Get\-Text\-For\-Node(), Yarn.\-Dialogue.\-Get\-Text\-For\-Node(), Yarn.\-Program.\-Include(), Yarn.\-Dialogue.\-Node\-Exists(), and Yarn.\-Virtual\-Machine.\-Set\-Node().
-
-\hypertarget{a00142_a8ef1d10094ef00311aade6715ba78ec7}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!string\-Count@{string\-Count}}
-\index{string\-Count@{string\-Count}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{string\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Program.\-string\-Count = 0\hspace{0.3cm}{\ttfamily [private]}}}\label{a00142_a8ef1d10094ef00311aade6715ba78ec7}
-
-
-Definition at line 118 of file Program.\-cs.
-
-
-
-Referenced by Yarn.\-Program.\-Register\-String().
-
-\hypertarget{a00142_a59263e00cecfe36d9881b4c30b048f09}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!strings@{strings}}
-\index{strings@{strings}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{strings}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, string$>$ Yarn.\-Program.\-strings = new Dictionary$<$string, string$>$()\hspace{0.3cm}{\ttfamily [package]}}}\label{a00142_a59263e00cecfe36d9881b4c30b048f09}
-
-
-Definition at line 86 of file Program.\-cs.
-
-
-
-Referenced by Yarn.\-Program.\-Dump\-Code(), Yarn.\-Program.\-Include(), and Yarn.\-Program.\-Load\-Strings().
-
 
 
 \subsection{Property Documentation}
-\hypertarget{a00142_aa8fedbfceaf931d1da3f600eaab6ae87}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!untagged\-Strings@{untagged\-Strings}}
-\index{untagged\-Strings@{untagged\-Strings}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{untagged\-Strings}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, string$>$ Yarn.\-Program.\-untagged\-Strings\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [package]}}}\label{a00142_aa8fedbfceaf931d1da3f600eaab6ae87}
+\hypertarget{a00142_add17b913ac5a45cc33ca0fbf10b6603d}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Nullable\-Type@{Nullable\-Type}}
+\index{Nullable\-Type@{Nullable\-Type}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
+\subsubsection[{Nullable\-Type}]{\setlength{\rightskip}{0pt plus 5cm}Type Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Nullable\-Type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00142_add17b913ac5a45cc33ca0fbf10b6603d}
 
 
-Definition at line 102 of file Program.\-cs.
+Gets the type of the nullable. 
+
+The type of the nullable. 
+
+Definition at line 21 of file Nullable\-Converter.\-cs.
+
+\hypertarget{a00142_ae6f7f4c0eb8447c7440f01b118e884cf}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Underlying\-Type@{Underlying\-Type}}
+\index{Underlying\-Type@{Underlying\-Type}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
+\subsubsection[{Underlying\-Type}]{\setlength{\rightskip}{0pt plus 5cm}Type Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Underlying\-Type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00142_ae6f7f4c0eb8447c7440f01b118e884cf}
+
+
+Gets the underlying type of the nullable. 
+
+The underlying type. 
+
+Definition at line 29 of file Nullable\-Converter.\-cs.
+
+\hypertarget{a00142_aed8934af11e74459f7d37fcf577480a1}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Underlying\-Type\-Converter@{Underlying\-Type\-Converter}}
+\index{Underlying\-Type\-Converter@{Underlying\-Type\-Converter}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
+\subsubsection[{Underlying\-Type\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Type\-Converter} Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Underlying\-Type\-Converter\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00142_aed8934af11e74459f7d37fcf577480a1}
+
+
+Gets the type converter for the underlying type. 
+
+The type converter. 
+
+Definition at line 37 of file Nullable\-Converter.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00296}{Program.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00276}{Nullable\-Converter.\-cs}\end{DoxyCompactItemize}

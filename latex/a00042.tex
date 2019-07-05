@@ -1,90 +1,140 @@
-\hypertarget{a00042}{\section{Yarn.\-Dialogue.\-Command\-Result Class Reference}
-\label{a00042}\index{Yarn.\-Dialogue.\-Command\-Result@{Yarn.\-Dialogue.\-Command\-Result}}
+\hypertarget{a00042}{\section{Yarn.\-Base\-Variable\-Storage Class Reference}
+\label{a00042}\index{Yarn.\-Base\-Variable\-Storage@{Yarn.\-Base\-Variable\-Storage}}
 }
 
 
-The client should run a command (it's up to them to parse the string)  
-
-
-
-
-Inheritance diagram for Yarn.\-Dialogue.\-Command\-Result\-:
+Inheritance diagram for Yarn.\-Base\-Variable\-Storage\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=234pt]{a00602}
+\includegraphics[width=214pt]{a00610}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Dialogue.\-Command\-Result\-:
+Collaboration diagram for Yarn.\-Base\-Variable\-Storage\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=259pt]{a00603}
+\includegraphics[width=210pt]{a00611}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00042_a1a553422394fb0c854d1184985f993bb}{Command\-Result} (string text)
-\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
+void \hyperlink{a00042_a48b93de9cd7ae61d0cd9583c8330d3ee}{Set\-Number} (string variable\-Name, float number)
 \item 
-\hyperlink{a00041_a00355}{Command} \hyperlink{a00042_a420ca0984d6e5c33bb761654305c592e}{command}
+float \hyperlink{a00042_a1b7f7f4468b2463e7b47986d99362279}{Get\-Number} (string variable\-Name)
+\item 
+abstract void \hyperlink{a00042_a1c57d6d208b78abec0a670396771448e}{Set\-Value} (string variable\-Name, \hyperlink{a00187}{Value} value)
+\item 
+abstract \hyperlink{a00187}{Value} \hyperlink{a00042_a13b142df804d9842e97e628e252928e8}{Get\-Value} (string variable\-Name)
+\item 
+abstract void \hyperlink{a00042_a7e45c37f3662ce9f2643e306bb2b3adc}{Clear} ()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The client should run a command (it's up to them to parse the string) 
-
-Definition at line 148 of file Dialogue.\-cs.
 
 
+Definition at line 74 of file Dialogue.\-cs.
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00042_a1a553422394fb0c854d1184985f993bb}{\index{Yarn\-::\-Dialogue\-::\-Command\-Result@{Yarn\-::\-Dialogue\-::\-Command\-Result}!Command\-Result@{Command\-Result}}
-\index{Command\-Result@{Command\-Result}!Yarn::Dialogue::CommandResult@{Yarn\-::\-Dialogue\-::\-Command\-Result}}
-\subsubsection[{Command\-Result}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Dialogue.\-Command\-Result.\-Command\-Result (
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00042_a7e45c37f3662ce9f2643e306bb2b3adc}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Clear@{Clear}}
+\index{Clear@{Clear}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Base\-Variable\-Storage.\-Clear (
 \begin{DoxyParamCaption}
-\item[{string}]{text}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00042_a1a553422394fb0c854d1184985f993bb}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00042_a7e45c37f3662ce9f2643e306bb2b3adc}
 
 
-Definition at line 151 of file Dialogue.\-cs.
+Implements \hyperlink{a00190_af98c1e41f351cb96e13f668ca2fd9d92}{Yarn.\-Variable\-Storage}.
 
 
 
-References Yarn.\-Dialogue.\-Command\-Result.\-command.
+Implemented in \hyperlink{a00136_aa6d243e7ef02b91f793a221f509dae69}{Yarn.\-Memory\-Variable\-Store}.
+
+\hypertarget{a00042_a1b7f7f4468b2463e7b47986d99362279}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Get\-Number@{Get\-Number}}
+\index{Get\-Number@{Get\-Number}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
+\subsubsection[{Get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Base\-Variable\-Storage.\-Get\-Number (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name}
+\end{DoxyParamCaption}
+)}}\label{a00042_a1b7f7f4468b2463e7b47986d99362279}
+
+
+Implements \hyperlink{a00190_a04b061c52d8ac814ce559da5286fbc71}{Yarn.\-Variable\-Storage}.
+
+
+
+Definition at line 81 of file Dialogue.\-cs.
 
 
 \begin{DoxyCode}
-151                                                \{
-152                 var \hyperlink{a00042_a420ca0984d6e5c33bb761654305c592e}{command} = \textcolor{keyword}{new} Command();
-153                 command.text = text;
-154                 this.command = \hyperlink{a00042_a420ca0984d6e5c33bb761654305c592e}{command};
-155             \}
+81                                                     \{
+82             \textcolor{keywordflow}{return} this.GetValue(variableName).AsNumber;
+83         \}
 \end{DoxyCode}
+\hypertarget{a00042_a13b142df804d9842e97e628e252928e8}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Get\-Value@{Get\-Value}}
+\index{Get\-Value@{Get\-Value}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
+\subsubsection[{Get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}abstract {\bf Value} Yarn.\-Base\-Variable\-Storage.\-Get\-Value (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00042_a13b142df804d9842e97e628e252928e8}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00042_a420ca0984d6e5c33bb761654305c592e}{\index{Yarn\-::\-Dialogue\-::\-Command\-Result@{Yarn\-::\-Dialogue\-::\-Command\-Result}!command@{command}}
-\index{command@{command}!Yarn::Dialogue::CommandResult@{Yarn\-::\-Dialogue\-::\-Command\-Result}}
-\subsubsection[{command}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Command} Yarn.\-Dialogue.\-Command\-Result.\-command}}\label{a00042_a420ca0984d6e5c33bb761654305c592e}
-
-
-Definition at line 149 of file Dialogue.\-cs.
+Implements \hyperlink{a00190_accab1fc5c8fc353dbfc53ca0f4029576}{Yarn.\-Variable\-Storage}.
 
 
 
-Referenced by Yarn.\-Dialogue.\-Command\-Result.\-Command\-Result().
+Implemented in \hyperlink{a00136_a0ce77e8245c504a777540e359704aa2a}{Yarn.\-Memory\-Variable\-Store}.
+
+\hypertarget{a00042_a48b93de9cd7ae61d0cd9583c8330d3ee}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Set\-Number@{Set\-Number}}
+\index{Set\-Number@{Set\-Number}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
+\subsubsection[{Set\-Number}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Base\-Variable\-Storage.\-Set\-Number (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{float}]{number}
+\end{DoxyParamCaption}
+)}}\label{a00042_a48b93de9cd7ae61d0cd9583c8330d3ee}
+
+
+Implements \hyperlink{a00190_aa28c3694f985cf73489efc301b9d41dd}{Yarn.\-Variable\-Storage}.
+
+
+
+Definition at line 76 of file Dialogue.\-cs.
+
+
+\begin{DoxyCode}
+76                                                                  \{
+77             this.SetValue(variableName, \textcolor{keyword}{new} Value(number));
+78         \}
+\end{DoxyCode}
+\hypertarget{a00042_a1c57d6d208b78abec0a670396771448e}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Set\-Value@{Set\-Value}}
+\index{Set\-Value@{Set\-Value}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
+\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Base\-Variable\-Storage.\-Set\-Value (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{{\bf Value}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00042_a1c57d6d208b78abec0a670396771448e}
+
+
+Implements \hyperlink{a00190_aa90ff61224432c5ed3ce72199c55f440}{Yarn.\-Variable\-Storage}.
+
+
+
+Implemented in \hyperlink{a00136_a653a459811e5c19549f4b31269093ef5}{Yarn.\-Memory\-Variable\-Store}.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00290}{Dialogue.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00305}{Dialogue.\-cs}\end{DoxyCompactItemize}

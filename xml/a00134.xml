@@ -1,97 +1,63 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00134" kind="struct" prot="package">
-    <compoundname>Yarn::Parser::Operator::OperatorInfo</compoundname>
-      <sectiondef kind="package-attrib">
-      <memberdef kind="variable" id="a00134_1accba40a72d9709ca3c18810b8661afe3" prot="package" static="no" mutable="no">
-        <type><ref refid="a00133_1a83fa1b8db0e6678006920812b6f33f62" kindref="member">Associativity</ref></type>
-        <definition>Associativity Yarn.Parser.Operator.OperatorInfo.associativity</definition>
+  <compounddef id="a00134" kind="class" prot="public">
+    <compoundname>Yarn::LocalisedLine</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00134_1aad88f588cbbe2df9bb83da59eeff3d3c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.LocalisedLine.LineCode</definition>
         <argsstring></argsstring>
-        <name>associativity</name>
+        <name>LineCode</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1155" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1155" bodyend="-1"/>
-        <referencedby refid="a00134_1a25faca62235c9f8542e4a071ba8ebc0b" compoundref="a00295" startline="1158" endline="1162">Yarn.Parser.Operator.OperatorInfo.OperatorInfo</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="96" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="96" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="a00134_1a0b2921d7b863e268d33aa15213395093" prot="package" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Parser.Operator.OperatorInfo.precedence</definition>
+      <memberdef kind="property" id="a00134_1ab0b4fa82cfa7693ff3c96fe5c3837fff" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.LocalisedLine.LineText</definition>
         <argsstring></argsstring>
-        <name>precedence</name>
+        <name>LineText</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1156" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1156" bodyend="-1"/>
-        <referencedby refid="a00134_1a25faca62235c9f8542e4a071ba8ebc0b" compoundref="a00295" startline="1158" endline="1162">Yarn.Parser.Operator.OperatorInfo.OperatorInfo</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="97" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="97" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="a00134_1a0758c6f7dac4b205f616b43b1af95b95" prot="package" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Parser.Operator.OperatorInfo.arguments</definition>
+      <memberdef kind="property" id="a00134_1afbfb834bb1623653fa73945c221c4b9d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.LocalisedLine.Comment</definition>
         <argsstring></argsstring>
-        <name>arguments</name>
+        <name>Comment</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1157" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1157" bodyend="-1"/>
-        <referencedby refid="a00134_1a25faca62235c9f8542e4a071ba8ebc0b" compoundref="a00295" startline="1158" endline="1162">Yarn.Parser.Operator.OperatorInfo.OperatorInfo</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00134_1a25faca62235c9f8542e4a071ba8ebc0b" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Parser.Operator.OperatorInfo.OperatorInfo</definition>
-        <argsstring>(Associativity associativity, int precedence, int arguments)</argsstring>
-        <name>OperatorInfo</name>
-        <param>
-          <type><ref refid="a00133_1a83fa1b8db0e6678006920812b6f33f62" kindref="member">Associativity</ref></type>
-          <declname>associativity</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>precedence</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>arguments</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1158" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1158" bodyend="1162"/>
-        <references refid="a00134_1a0758c6f7dac4b205f616b43b1af95b95" compoundref="a00295" startline="1157">Yarn.Parser.Operator.OperatorInfo.arguments</references>
-        <references refid="a00134_1accba40a72d9709ca3c18810b8661afe3" compoundref="a00295" startline="1155">Yarn.Parser.Operator.OperatorInfo.associativity</references>
-        <references refid="a00134_1a0b2921d7b863e268d33aa15213395093" compoundref="a00295" startline="1156">Yarn.Parser.Operator.OperatorInfo.precedence</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="98" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="98" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>A line, localised into the current locale. </para>    </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para>LocalisedLines are used in both lines, options, and shortcut options - basically, anything user-facing. </para>    </detaileddescription>
     <collaborationgraph>
-      <node id="1555">
-        <label>Yarn.Parser.Operator.OperatorInfo</label>
+      <node id="1513">
+        <label>Yarn.LocalisedLine</label>
         <link refid="a00134"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1154" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1154" bodyend="1163"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="95" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="94" bodyend="99"/>
     <listofallmembers>
-      <member refid="a00134_1a0758c6f7dac4b205f616b43b1af95b95" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>arguments</name></member>
-      <member refid="a00134_1accba40a72d9709ca3c18810b8661afe3" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>associativity</name></member>
-      <member refid="a00134_1a25faca62235c9f8542e4a071ba8ebc0b" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>OperatorInfo</name></member>
-      <member refid="a00134_1a0b2921d7b863e268d33aa15213395093" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>precedence</name></member>
+      <member refid="a00134_1afbfb834bb1623653fa73945c221c4b9d" prot="public" virt="non-virtual"><scope>Yarn::LocalisedLine</scope><name>Comment</name></member>
+      <member refid="a00134_1aad88f588cbbe2df9bb83da59eeff3d3c" prot="public" virt="non-virtual"><scope>Yarn::LocalisedLine</scope><name>LineCode</name></member>
+      <member refid="a00134_1ab0b4fa82cfa7693ff3c96fe5c3837fff" prot="public" virt="non-virtual"><scope>Yarn::LocalisedLine</scope><name>LineText</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

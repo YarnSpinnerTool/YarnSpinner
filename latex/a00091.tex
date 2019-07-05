@@ -1,459 +1,228 @@
-\hypertarget{a00091}{\section{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I Class Reference}
-\label{a00091}\index{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I@{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}}
+\hypertarget{a00091}{\section{Yarn.\-Analysis.\-Diagnosis Class Reference}
+\label{a00091}\index{Yarn.\-Analysis.\-Diagnosis@{Yarn.\-Analysis.\-Diagnosis}}
 }
 
 
-Displays dialogue lines to the player, and sends user choices back to the dialogue system.  
-
-
-
-
-Inheritance diagram for Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I\-:
+Collaboration diagram for Yarn.\-Analysis.\-Diagnosis\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=244pt]{a00786}
+\includegraphics[width=202pt]{a00765}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00787}
-\end{center}
-\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{a00091_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \{ \hyperlink{a00091_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Severity.\-Error}, 
+\hyperlink{a00091_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Severity.\-Warning}, 
+\hyperlink{a00091_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Severity.\-Note}
+ \}
+\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override I\-Enumerator \hyperlink{a00091_a109aeedc5206dcbc4f629638b7830030}{Run\-Line} (\hyperlink{a00041_a00359}{Yarn.\-Line} line)
-\begin{DoxyCompactList}\small\item\em Show a line of dialogue, gradually. \end{DoxyCompactList}\item 
-override I\-Enumerator \hyperlink{a00091_aaa93672700a456e66c694636460a58f4}{Run\-Options} (\hyperlink{a00041_a00362}{Yarn.\-Options} options\-Collection, \hyperlink{a00041_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} option\-Chooser)
-\begin{DoxyCompactList}\small\item\em Show a list of options, and wait for the player to make a selection. \end{DoxyCompactList}\item 
-void \hyperlink{a00091_ad1ac5781ded20d2950d8dd3af506df37}{Set\-Option} (int selected\-Option)
-\begin{DoxyCompactList}\small\item\em Called by buttons to make a selection. \end{DoxyCompactList}\item 
-override I\-Enumerator \hyperlink{a00091_a7f84b1e7d3c9c1f7507d143e11ba8075}{Run\-Command} (\hyperlink{a00041_a00355}{Yarn.\-Command} command)
-\begin{DoxyCompactList}\small\item\em Run an internal command. \end{DoxyCompactList}\item 
-override I\-Enumerator \hyperlink{a00091_a313283f6c53354b54f25898eb436eba0}{Dialogue\-Started} ()
-\begin{DoxyCompactList}\small\item\em Called when the dialogue system has started running. \end{DoxyCompactList}\item 
-override I\-Enumerator \hyperlink{a00091_a1f2a08baacc25aea09af8e60eb5d3eb1}{Dialogue\-Complete} ()
-\begin{DoxyCompactList}\small\item\em Called when the dialogue system has finished running. \end{DoxyCompactList}\item 
-virtual I\-Enumerator \hyperlink{a00085_a2900548a0704d39d4502a153945f4bef}{Node\-Complete} (string next\-Node)
-\begin{DoxyCompactList}\small\item\em The node has ended. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00091_ad3fd818f1be98dc803e5bec959153824}{Diagnosis} (string \hyperlink{a00091_ac7ed070dddd2613c08e7874ea5afb3af}{message}, \hyperlink{a00091_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \hyperlink{a00091_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}, string \hyperlink{a00091_a662aca4ad2af5116c2cf6773daf1a847}{node\-Name}=null, int \hyperlink{a00091_a0bd73f1c684bfd66ae7b6bef8f2972d0}{line\-Number}=-\/1, int \hyperlink{a00091_a658e7fb05555c0f9ab5f80057bdc1408}{column\-Number}=-\/1)
+\item 
+override string \hyperlink{a00091_a4475eb5890c340da5c0012e25c2c86ae}{To\-String} ()
+\item 
+string \hyperlink{a00091_a985dee7ca27aa896332590133606b6a9}{To\-String} (bool show\-Severity)
+\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-Game\-Object \hyperlink{a00091_a2eaebc844d2ca982ec078708d070dbd3}{dialogue\-Container}
-\begin{DoxyCompactList}\small\item\em The object that contains the dialogue and the options. \end{DoxyCompactList}\item 
-\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675}{Text} \hyperlink{a00091_a791f15a67a97fbe06ffc0bdf518edd04}{line\-Text}
-\begin{DoxyCompactList}\small\item\em The U\-I element that displays lines. \end{DoxyCompactList}\item 
-Game\-Object \hyperlink{a00091_a74367b77a6a5218fa47dbe1d6266e4c6}{continue\-Prompt}
-\begin{DoxyCompactList}\small\item\em A U\-I element that appears after lines have finished appearing. \end{DoxyCompactList}\item 
-float \hyperlink{a00091_a6053aa65534195d626031413ef3a0828}{text\-Speed} = 0.\-025f
-\begin{DoxyCompactList}\small\item\em How quickly to show the text, in seconds per character. \end{DoxyCompactList}\item 
-List$<$ Button $>$ \hyperlink{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}{option\-Buttons}
-\begin{DoxyCompactList}\small\item\em The buttons that let the user choose an option. \end{DoxyCompactList}\item 
-Rect\-Transform \hyperlink{a00091_a8344106eb22a0ad00e2400c2941b3e5f}{game\-Controls\-Container}
-\begin{DoxyCompactList}\small\item\em Make it possible to temporarily disable the controls when dialogue is active and to restore them when dialogue ends. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
+string \hyperlink{a00091_ac7ed070dddd2613c08e7874ea5afb3af}{message}
 \item 
-void \hyperlink{a00091_a6e57983db349b0d9e4526ecb7aa6fed2}{Awake} ()
+string \hyperlink{a00091_a662aca4ad2af5116c2cf6773daf1a847}{node\-Name}
+\item 
+int \hyperlink{a00091_a0bd73f1c684bfd66ae7b6bef8f2972d0}{line\-Number}
+\item 
+int \hyperlink{a00091_a658e7fb05555c0f9ab5f80057bdc1408}{column\-Number}
+\item 
+\hyperlink{a00091_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \hyperlink{a00091_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}
 \end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00041_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} \hyperlink{a00091_a558f60ef9a7bcf887f015ba0d27aa6ef}{Set\-Selected\-Option}
-\begin{DoxyCompactList}\small\item\em A delegate (ie a function-\/stored-\/in-\/a-\/variable) that we call to tell the dialogue system about what option the user selected. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Displays dialogue lines to the player, and sends user choices back to the dialogue system. 
 
-Note that this is just one way of presenting the dialogue to the user. The only hard requirement is that you provide the Run\-Line, \hyperlink{a00147}{Run\-Options}, Run\-Command and Dialogue\-Complete coroutines; what they do is up to you. 
 
-Definition at line 42 of file Example\-Dialogue\-U\-I.\-cs.
+Definition at line 7 of file Analyser.\-cs.
 
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{a00091_a227813cbc8fa03c3448a612ffc909d1c}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Severity@{Severity}}
+\index{Severity@{Severity}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{Severity}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Analysis.\-Diagnosis.\-Severity}}}\label{a00091_a227813cbc8fa03c3448a612ffc909d1c}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Error@{Error}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Error@{Error}}\item[{\em 
+\hypertarget{a00091_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Error}\label{a00091_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}
+}]\index{Warning@{Warning}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Warning@{Warning}}\item[{\em 
+\hypertarget{a00091_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning}\label{a00091_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}
+}]\index{Note@{Note}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Note@{Note}}\item[{\em 
+\hypertarget{a00091_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Note}\label{a00091_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 14 of file Analyser.\-cs.
+
+
+\begin{DoxyCode}
+14                              \{
+15             \hyperlink{a00091_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Error},
+16             \hyperlink{a00091_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning},
+17             \hyperlink{a00091_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Note}
+18         \}
+\end{DoxyCode}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00091_ad3fd818f1be98dc803e5bec959153824}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Diagnosis@{Diagnosis}}
+\index{Diagnosis@{Diagnosis}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{Diagnosis}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Analysis.\-Diagnosis.\-Diagnosis (
+\begin{DoxyParamCaption}
+\item[{string}]{message, }
+\item[{{\bf Severity}}]{severity, }
+\item[{string}]{node\-Name = {\ttfamily null}, }
+\item[{int}]{line\-Number = {\ttfamily -\/1}, }
+\item[{int}]{column\-Number = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}}\label{a00091_ad3fd818f1be98dc803e5bec959153824}
+
+
+Definition at line 21 of file Analyser.\-cs.
+
+
+\begin{DoxyCode}
+22         \{
+23             this.message = \hyperlink{a00091_ac7ed070dddd2613c08e7874ea5afb3af}{message};
+24             this.nodeName = \hyperlink{a00091_a662aca4ad2af5116c2cf6773daf1a847}{nodeName};
+25             this.lineNumber = \hyperlink{a00091_a0bd73f1c684bfd66ae7b6bef8f2972d0}{lineNumber};
+26             this.columnNumber = \hyperlink{a00091_a658e7fb05555c0f9ab5f80057bdc1408}{columnNumber};
+27             this.severity = \hyperlink{a00091_ad90ffa839ce0f568a099bb37b4a6c4da}{severity};
+28         \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00091_a6e57983db349b0d9e4526ecb7aa6fed2}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Awake@{Awake}}
-\index{Awake@{Awake}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Awake}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Awake (
+\hypertarget{a00091_a4475eb5890c340da5c0012e25c2c86ae}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Analysis.\-Diagnosis.\-To\-String (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00091_a6e57983db349b0d9e4526ecb7aa6fed2}
+)}}\label{a00091_a4475eb5890c340da5c0012e25c2c86ae}
 
 
-Definition at line 73 of file Example\-Dialogue\-U\-I.\-cs.
+Definition at line 30 of file Analyser.\-cs.
 
 
 \begin{DoxyCode}
-74         \{
-75             \textcolor{comment}{// Start by hiding the container, line and option buttons}
-76             \textcolor{keywordflow}{if} (\hyperlink{a00091_a2eaebc844d2ca982ec078708d070dbd3}{dialogueContainer} != null)
-77                 dialogueContainer.SetActive(\textcolor{keyword}{false});
-78 
-79             lineText.gameObject.SetActive (\textcolor{keyword}{false});
-80 
-81             \textcolor{keywordflow}{foreach} (var button \textcolor{keywordflow}{in} \hyperlink{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons}) \{
-82                 button.gameObject.SetActive (\textcolor{keyword}{false});
-83             \}
-84 
-85             \textcolor{comment}{// Hide the continue prompt if it exists}
-86             \textcolor{keywordflow}{if} (\hyperlink{a00091_a74367b77a6a5218fa47dbe1d6266e4c6}{continuePrompt} != null)
-87                 continuePrompt.SetActive (\textcolor{keyword}{false});
-88         \}
+31         \{
+32             \textcolor{keywordflow}{return} \hyperlink{a00091_a4475eb5890c340da5c0012e25c2c86ae}{ToString} (showSeverity: \textcolor{keyword}{false});
+33         \}
 \end{DoxyCode}
-\hypertarget{a00091_a1f2a08baacc25aea09af8e60eb5d3eb1}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Dialogue\-Complete@{Dialogue\-Complete}}
-\index{Dialogue\-Complete@{Dialogue\-Complete}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Dialogue\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerator Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Dialogue\-Complete (
+\hypertarget{a00091_a985dee7ca27aa896332590133606b6a9}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-To\-String (
 \begin{DoxyParamCaption}
-{}
+\item[{bool}]{show\-Severity}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00091_a1f2a08baacc25aea09af8e60eb5d3eb1}
+)}}\label{a00091_a985dee7ca27aa896332590133606b6a9}
 
 
-Called when the dialogue system has finished running. 
-
-
-
-Reimplemented from \hyperlink{a00085_aecc60aee9e9386da1f71fb183f43c52d}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}.
-
-
-
-Definition at line 201 of file Example\-Dialogue\-U\-I.\-cs.
+Definition at line 35 of file Analyser.\-cs.
 
 
 \begin{DoxyCode}
-202         \{
-203             Debug.Log (\textcolor{stringliteral}{"Complete!"});
-204 
-205             \textcolor{comment}{// Hide the dialogue interface.}
-206             \textcolor{keywordflow}{if} (\hyperlink{a00091_a2eaebc844d2ca982ec078708d070dbd3}{dialogueContainer} != null)
-207                 dialogueContainer.SetActive(\textcolor{keyword}{false});
-208 
-209             \textcolor{comment}{// Show the game controls.}
-210             \textcolor{keywordflow}{if} (\hyperlink{a00091_a8344106eb22a0ad00e2400c2941b3e5f}{gameControlsContainer} != null) \{
-211                 gameControlsContainer.gameObject.SetActive(\textcolor{keyword}{true});
-212             \}
-213 
-214             yield \textcolor{keywordflow}{break};
-215         \}
-\end{DoxyCode}
-\hypertarget{a00091_a313283f6c53354b54f25898eb436eba0}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Dialogue\-Started@{Dialogue\-Started}}
-\index{Dialogue\-Started@{Dialogue\-Started}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Dialogue\-Started}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerator Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Dialogue\-Started (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00091_a313283f6c53354b54f25898eb436eba0}
-
-
-Called when the dialogue system has started running. 
-
-
-
-Reimplemented from \hyperlink{a00085_af9d88ca81ac536d43046ca6572e3ff54}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}.
-
-
-
-Definition at line 184 of file Example\-Dialogue\-U\-I.\-cs.
-
-
-\begin{DoxyCode}
-185         \{
-186             Debug.Log (\textcolor{stringliteral}{"Dialogue starting!"});
-187 
-188             \textcolor{comment}{// Enable the dialogue controls.}
-189             \textcolor{keywordflow}{if} (\hyperlink{a00091_a2eaebc844d2ca982ec078708d070dbd3}{dialogueContainer} != null)
-190                 dialogueContainer.SetActive(\textcolor{keyword}{true});
-191 
-192             \textcolor{comment}{// Hide the game controls.}
-193             \textcolor{keywordflow}{if} (\hyperlink{a00091_a8344106eb22a0ad00e2400c2941b3e5f}{gameControlsContainer} != null) \{
-194                 gameControlsContainer.gameObject.SetActive(\textcolor{keyword}{false});
-195             \}
-196 
-197             yield \textcolor{keywordflow}{break};
-198         \}
-\end{DoxyCode}
-\hypertarget{a00085_a2900548a0704d39d4502a153945f4bef}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Node\-Complete@{Node\-Complete}}
-\index{Node\-Complete@{Node\-Complete}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Node\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Node\-Complete (
-\begin{DoxyParamCaption}
-\item[{string}]{next\-Node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00085_a2900548a0704d39d4502a153945f4bef}
-
-
-The node has ended. 
-
-
-
-Definition at line 448 of file Dialogue\-Runner.\-cs.
-
-
-\begin{DoxyCode}
-448                                                                  \{
-449             \textcolor{comment}{// Default implementation does nothing.}
-450             yield \textcolor{keywordflow}{break};
-451         \}
-\end{DoxyCode}
-\hypertarget{a00091_a7f84b1e7d3c9c1f7507d143e11ba8075}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Run\-Command@{Run\-Command}}
-\index{Run\-Command@{Run\-Command}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Run\-Command}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerator Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Run\-Command (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Command}}]{command}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00091_a7f84b1e7d3c9c1f7507d143e11ba8075}
-
-
-Run an internal command. 
-
-
-
-Implements \hyperlink{a00085_a3dffe84b9e7a10fdec6749baf697d111}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}.
-
-
-
-Definition at line 175 of file Example\-Dialogue\-U\-I.\-cs.
-
-
-\begin{DoxyCode}
-176         \{
-177             \textcolor{comment}{// "Perform" the command}
-178             Debug.Log (\textcolor{stringliteral}{"Command: "} + command.text);
-179 
-180             yield \textcolor{keywordflow}{break};
-181         \}
-\end{DoxyCode}
-\hypertarget{a00091_a109aeedc5206dcbc4f629638b7830030}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Run\-Line@{Run\-Line}}
-\index{Run\-Line@{Run\-Line}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Run\-Line}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerator Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Run\-Line (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Line}}]{line}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00091_a109aeedc5206dcbc4f629638b7830030}
-
-
-Show a line of dialogue, gradually. 
-
-
-
-Implements \hyperlink{a00085_a754c6dd0bc67895d11f878fe4477d698}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}.
-
-
-
-Definition at line 91 of file Example\-Dialogue\-U\-I.\-cs.
-
-
-\begin{DoxyCode}
-92         \{
-93             \textcolor{comment}{// Show the text}
-94             lineText.gameObject.SetActive (\textcolor{keyword}{true});
-95 
-96             \textcolor{keywordflow}{if} (\hyperlink{a00091_a6053aa65534195d626031413ef3a0828}{textSpeed} > 0.0f) \{
-97                 \textcolor{comment}{// Display the line one character at a time}
-98                 var stringBuilder = \textcolor{keyword}{new} StringBuilder ();
-99 
-100                 \textcolor{keywordflow}{foreach} (\textcolor{keywordtype}{char} c \textcolor{keywordflow}{in} line.text) \{
-101                     stringBuilder.Append (c);
-102                     lineText.text = stringBuilder.ToString ();
-103                     yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} WaitForSeconds (\hyperlink{a00091_a6053aa65534195d626031413ef3a0828}{textSpeed});
-104                 \}
-105             \} \textcolor{keywordflow}{else} \{
-106                 \textcolor{comment}{// Display the line immediately if textSpeed == 0}
-107                 lineText.text = line.text;
-108             \}
-109 
-110             \textcolor{comment}{// Show the 'press any key' prompt when done, if we have one}
-111             \textcolor{keywordflow}{if} (\hyperlink{a00091_a74367b77a6a5218fa47dbe1d6266e4c6}{continuePrompt} != null)
-112                 continuePrompt.SetActive (\textcolor{keyword}{true});
-113 
-114             \textcolor{comment}{// Wait for any user input}
-115             \textcolor{keywordflow}{while} (Input.anyKeyDown == \textcolor{keyword}{false}) \{
-116                 yield \textcolor{keywordflow}{return} null;
-117             \}
-118 
-119             \textcolor{comment}{// Avoid skipping lines if textSpeed == 0}
-120             yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} WaitForEndOfFrame();
-121 
-122             \textcolor{comment}{// Hide the text and prompt}
-123             lineText.gameObject.SetActive (\textcolor{keyword}{false});
-124 
-125             \textcolor{keywordflow}{if} (\hyperlink{a00091_a74367b77a6a5218fa47dbe1d6266e4c6}{continuePrompt} != null)
-126                 continuePrompt.SetActive (\textcolor{keyword}{false});
-127 
-128         \}
-\end{DoxyCode}
-\hypertarget{a00091_aaa93672700a456e66c694636460a58f4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Run\-Options@{Run\-Options}}
-\index{Run\-Options@{Run\-Options}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Run\-Options}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerator Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Run\-Options (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Options}}]{options\-Collection, }
-\item[{{\bf Yarn.\-Option\-Chooser}}]{option\-Chooser}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00091_aaa93672700a456e66c694636460a58f4}
-
-
-Show a list of options, and wait for the player to make a selection. 
-
-
-
-Implements \hyperlink{a00085_ac5b29079f638f2ceb078627ef1e60004}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}.
-
-
-
-Definition at line 131 of file Example\-Dialogue\-U\-I.\-cs.
-
-
-
-References Yarn.\-Text.
-
-
-\begin{DoxyCode}
-133         \{
-134             \textcolor{comment}{// Do a little bit of safety checking}
-135             \textcolor{keywordflow}{if} (optionsCollection.options.Count > \hyperlink{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons}.Count) \{
-136                 Debug.LogWarning(\textcolor{stringliteral}{"There are more options to present than there are"} +
-137                                  \textcolor{stringliteral}{"buttons to present them in. This will cause problems."});
-138             \}
-139 
-140             \textcolor{comment}{// Display each option in a button, and make it visible}
-141             \textcolor{keywordtype}{int} i = 0;
-142             \textcolor{keywordflow}{foreach} (var optionString \textcolor{keywordflow}{in} optionsCollection.options) \{
-143                 \hyperlink{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons} [i].gameObject.SetActive (\textcolor{keyword}{true});
-144                 \hyperlink{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons} [i].GetComponentInChildren<\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675}{Text}> ().text = optionString;
-145                 i++;
-146             \}
-147 
-148             \textcolor{comment}{// Record that we're using it}
-149             \hyperlink{a00091_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} = optionChooser;
-150 
-151             \textcolor{comment}{// Wait until the chooser has been used and then removed (see SetOption below)}
-152             \textcolor{keywordflow}{while} (\hyperlink{a00091_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} != null) \{
-153                 yield \textcolor{keywordflow}{return} null;
-154             \}
-155 
-156             \textcolor{comment}{// Hide all the buttons}
-157             \textcolor{keywordflow}{foreach} (var button \textcolor{keywordflow}{in} \hyperlink{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons}) \{
-158                 button.gameObject.SetActive (\textcolor{keyword}{false});
-159             \}
-160         \}
-\end{DoxyCode}
-\hypertarget{a00091_ad1ac5781ded20d2950d8dd3af506df37}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Set\-Option@{Set\-Option}}
-\index{Set\-Option@{Set\-Option}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Set\-Option}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Set\-Option (
-\begin{DoxyParamCaption}
-\item[{int}]{selected\-Option}
-\end{DoxyParamCaption}
-)}}\label{a00091_ad1ac5781ded20d2950d8dd3af506df37}
-
-
-Called by buttons to make a selection. 
-
-
-
-Definition at line 163 of file Example\-Dialogue\-U\-I.\-cs.
-
-
-\begin{DoxyCode}
-164         \{
-165 
-166             \textcolor{comment}{// Call the delegate to tell the dialogue system that we've}
-167             \textcolor{comment}{// selected an option.}
-168             \hyperlink{a00091_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} (selectedOption);
-169 
-170             \textcolor{comment}{// Now remove the delegate so that the loop in RunOptions will exit}
-171             \hyperlink{a00091_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} = null; 
-172         \}
+36         \{
+37 
+38             \textcolor{keywordtype}{string} contextLabel = \textcolor{stringliteral}{""};
+39 
+40             \textcolor{keywordflow}{if} (showSeverity) \{
+41                 \textcolor{keywordflow}{switch} (\hyperlink{a00091_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}) \{
+42                 \textcolor{keywordflow}{case} Severity.Error:
+43                     contextLabel = \textcolor{stringliteral}{"ERROR: "};
+44                     \textcolor{keywordflow}{break};
+45                 \textcolor{keywordflow}{case} Severity.Warning:
+46                     contextLabel = \textcolor{stringliteral}{"WARNING: "};
+47                     \textcolor{keywordflow}{break};
+48                 \textcolor{keywordflow}{case} Severity.Note:
+49                     contextLabel = \textcolor{stringliteral}{"Note: "};
+50                     \textcolor{keywordflow}{break};
+51                 \textcolor{keywordflow}{default}:
+52                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException ();
+53                 \}
+54             \}
+55 
+56             \textcolor{keywordflow}{if} (this.\hyperlink{a00091_a662aca4ad2af5116c2cf6773daf1a847}{nodeName} != null) \{
+57 
+58                 contextLabel += this.nodeName;
+59                 \textcolor{keywordflow}{if} (this.\hyperlink{a00091_a0bd73f1c684bfd66ae7b6bef8f2972d0}{lineNumber} != -1) \{
+60                     contextLabel += string.Format (CultureInfo.CurrentCulture, \textcolor{stringliteral}{": \{0\}"}, this.lineNumber);
+61 
+62                     \textcolor{keywordflow}{if} (this.\hyperlink{a00091_a658e7fb05555c0f9ab5f80057bdc1408}{columnNumber} != -1) \{
+63                         contextLabel += string.Format (CultureInfo.CurrentCulture, \textcolor{stringliteral}{":\{0\}"}, 
+      this.columnNumber);
+64                     \}
+65                 \}
+66             \}
+67 
+68             \textcolor{keywordtype}{string} \hyperlink{a00091_ac7ed070dddd2613c08e7874ea5afb3af}{message};
+69 
+70             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{string}.IsNullOrEmpty(contextLabel)) \{
+71                 message = this.message;
+72             \} \textcolor{keywordflow}{else} \{
+73                 message = string.Format (CultureInfo.CurrentCulture, \textcolor{stringliteral}{"\{0\}: \{1\}"}, contextLabel, this.message
+      );
+74             \}
+75 
+76             \textcolor{keywordflow}{return} \hyperlink{a00091_ac7ed070dddd2613c08e7874ea5afb3af}{message};
+77         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00091_a74367b77a6a5218fa47dbe1d6266e4c6}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!continue\-Prompt@{continue\-Prompt}}
-\index{continue\-Prompt@{continue\-Prompt}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{continue\-Prompt}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Object Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-continue\-Prompt}}\label{a00091_a74367b77a6a5218fa47dbe1d6266e4c6}
+\hypertarget{a00091_a658e7fb05555c0f9ab5f80057bdc1408}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!column\-Number@{column\-Number}}
+\index{column\-Number@{column\-Number}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{column\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Analysis.\-Diagnosis.\-column\-Number}}\label{a00091_a658e7fb05555c0f9ab5f80057bdc1408}
 
 
-A U\-I element that appears after lines have finished appearing. 
+Definition at line 12 of file Analyser.\-cs.
+
+\hypertarget{a00091_a0bd73f1c684bfd66ae7b6bef8f2972d0}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Analysis.\-Diagnosis.\-line\-Number}}\label{a00091_a0bd73f1c684bfd66ae7b6bef8f2972d0}
 
 
+Definition at line 11 of file Analyser.\-cs.
 
-Definition at line 55 of file Example\-Dialogue\-U\-I.\-cs.
-
-\hypertarget{a00091_a2eaebc844d2ca982ec078708d070dbd3}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!dialogue\-Container@{dialogue\-Container}}
-\index{dialogue\-Container@{dialogue\-Container}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{dialogue\-Container}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Object Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-dialogue\-Container}}\label{a00091_a2eaebc844d2ca982ec078708d070dbd3}
-
-
-The object that contains the dialogue and the options. 
-
-This object will be enabled when conversation starts, and disabled when it ends. 
-
-Definition at line 49 of file Example\-Dialogue\-U\-I.\-cs.
-
-\hypertarget{a00091_a8344106eb22a0ad00e2400c2941b3e5f}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!game\-Controls\-Container@{game\-Controls\-Container}}
-\index{game\-Controls\-Container@{game\-Controls\-Container}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{game\-Controls\-Container}]{\setlength{\rightskip}{0pt plus 5cm}Rect\-Transform Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-game\-Controls\-Container}}\label{a00091_a8344106eb22a0ad00e2400c2941b3e5f}
+\hypertarget{a00091_ac7ed070dddd2613c08e7874ea5afb3af}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!message@{message}}
+\index{message@{message}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{message}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-message}}\label{a00091_ac7ed070dddd2613c08e7874ea5afb3af}
 
 
-Make it possible to temporarily disable the controls when dialogue is active and to restore them when dialogue ends. 
+Definition at line 9 of file Analyser.\-cs.
+
+\hypertarget{a00091_a662aca4ad2af5116c2cf6773daf1a847}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!node\-Name@{node\-Name}}
+\index{node\-Name@{node\-Name}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-node\-Name}}\label{a00091_a662aca4ad2af5116c2cf6773daf1a847}
 
 
+Definition at line 10 of file Analyser.\-cs.
 
-Definition at line 71 of file Example\-Dialogue\-U\-I.\-cs.
-
-\hypertarget{a00091_a791f15a67a97fbe06ffc0bdf518edd04}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!line\-Text@{line\-Text}}
-\index{line\-Text@{line\-Text}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{line\-Text}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Text} Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-line\-Text}}\label{a00091_a791f15a67a97fbe06ffc0bdf518edd04}
-
-
-The U\-I element that displays lines. 
+\hypertarget{a00091_ad90ffa839ce0f568a099bb37b4a6c4da}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!severity@{severity}}
+\index{severity@{severity}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{severity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Severity} Yarn.\-Analysis.\-Diagnosis.\-severity}}\label{a00091_ad90ffa839ce0f568a099bb37b4a6c4da}
 
 
-
-Definition at line 52 of file Example\-Dialogue\-U\-I.\-cs.
-
-\hypertarget{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!option\-Buttons@{option\-Buttons}}
-\index{option\-Buttons@{option\-Buttons}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{option\-Buttons}]{\setlength{\rightskip}{0pt plus 5cm}List$<$Button$>$ Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-option\-Buttons}}\label{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}
-
-
-The buttons that let the user choose an option. 
-
-
-
-Definition at line 67 of file Example\-Dialogue\-U\-I.\-cs.
-
-\hypertarget{a00091_a558f60ef9a7bcf887f015ba0d27aa6ef}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Set\-Selected\-Option@{Set\-Selected\-Option}}
-\index{Set\-Selected\-Option@{Set\-Selected\-Option}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Set\-Selected\-Option}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Option\-Chooser} Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Set\-Selected\-Option\hspace{0.3cm}{\ttfamily [private]}}}\label{a00091_a558f60ef9a7bcf887f015ba0d27aa6ef}
-
-
-A delegate (ie a function-\/stored-\/in-\/a-\/variable) that we call to tell the dialogue system about what option the user selected. 
-
-
-
-Definition at line 60 of file Example\-Dialogue\-U\-I.\-cs.
-
-\hypertarget{a00091_a6053aa65534195d626031413ef3a0828}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!text\-Speed@{text\-Speed}}
-\index{text\-Speed@{text\-Speed}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{text\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-text\-Speed = 0.\-025f}}\label{a00091_a6053aa65534195d626031413ef3a0828}
-
-
-How quickly to show the text, in seconds per character. 
-
-
-
-Definition at line 64 of file Example\-Dialogue\-U\-I.\-cs.
+Definition at line 19 of file Analyser.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00281}{Example\-Dialogue\-U\-I.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00302}{Analyser.\-cs}\end{DoxyCompactItemize}

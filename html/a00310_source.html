@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: YarnSpinnerTests/DialogueTests.cs Source File</title>
+<title>YarnSpinner: YarnSpinner/Lexer.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,192 +105,801 @@ $(document).ready(function(){initNavTree('a00310_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">DialogueTests.cs</div>  </div>
+<div class="title">Lexer.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00310.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">using</span> NUnit.Framework;</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using</span> System;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">using</span> System.Collections;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> Yarn;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using</span> System.IO;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">using</span> System.Linq;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="a00354.html">    9</a></span>&#160;<span class="keyword">namespace </span>YarnSpinner.Tests</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    [TestFixture(<span class="keyword">true</span>)]</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    [TestFixture(<span class="keyword">false</span>)]</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="a00084.html">   15</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00084.html">DialogueTests</a> : <a class="code" href="a00160.html">TestBase</a></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    {</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="a00084.html#a5c830001442a7fe18fdc06452682477e">   17</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">bool</span> <a class="code" href="a00084.html#a5c830001442a7fe18fdc06452682477e">experimentalMode</a>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00084.html#a4c826102af9c6b062138d72b24e7a37b">   18</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00084.html#a4c826102af9c6b062138d72b24e7a37b">DialogueTests</a>(<span class="keywordtype">bool</span> experimental)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            this.experimentalMode = experimental;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        }</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        [SetUp]</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="a00084.html#a49813a64c710540348c15365a672e675">   24</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">new</span> <span class="keywordtype">void</span> <a class="code" href="a00084.html#a49813a64c710540348c15365a672e675">Init</a>()</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            base.Init();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            dialogue.experimentalMode = this.experimentalMode;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        }</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<a href="a00310.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">The MIT License (MIT)</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">in the Software without restriction, including without limitation the rights</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">copies of the Software, and to permit persons to whom the Software is</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">furnished to do so, subject to the following conditions:</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">The above copyright notice and this permission notice shall be included in all</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">copies or substantial portions of the Software.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">SOFTWARE.</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">using</span> System;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">using</span> System.Text.RegularExpressions;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">using</span> System.Globalization;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        [Test]</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="a00084.html#a9d4171827bf3eba4c6ae52760a475f45">   33</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00084.html#a9d4171827bf3eba4c6ae52760a475f45">TestNodeExists</a> ()</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            var path = Path.Combine(UnityDemoScriptsPath, <span class="stringliteral">&quot;Sally.yarn.txt&quot;</span>);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            dialogue.LoadFile (path);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">namespace </span>Yarn {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="a00174.html">   34</a></span>&#160;    <span class="keyword">internal</span> <span class="keyword">class </span><a class="code" href="a00174.html">TokeniserException</a> : InvalidOperationException  {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="a00174.html#a54b936d7b4f26f88a07a66c5fc1d1ad1">   36</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="a00174.html#a54b936d7b4f26f88a07a66c5fc1d1ad1">lineNumber</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="a00174.html#aabf2ad38f3984297c1daede9be55e3d6">   37</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="a00174.html#aabf2ad38f3984297c1daede9be55e3d6">columnNumber</a>;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            Assert.True (dialogue.NodeExists (<span class="stringliteral">&quot;Sally&quot;</span>));</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="comment">// Test clearing everything</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            dialogue.UnloadAll ();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <span class="comment">// Load an empty node</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            dialogue.LoadString(<span class="stringliteral">&quot;// Test, this is empty&quot;</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="a00174.html#ad00fcf742d2b0d476ce43b27a3f3b6c1">   39</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00174.html#ad00fcf742d2b0d476ce43b27a3f3b6c1">TokeniserException</a> (<span class="keywordtype">string</span> message) : base (message) {}</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="a00174.html#aa8674d006a0d29081a7b87bdd8ff2f4f">   40</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00174.html#aa8674d006a0d29081a7b87bdd8ff2f4f">TokeniserException</a> (<span class="keywordtype">int</span> <a class="code" href="a00174.html#a54b936d7b4f26f88a07a66c5fc1d1ad1">lineNumber</a>, <span class="keywordtype">int</span> <a class="code" href="a00174.html#aabf2ad38f3984297c1daede9be55e3d6">columnNumber</a>, <span class="keywordtype">string</span> message)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            : base(string.Format (CultureInfo.CurrentCulture, <span class="stringliteral">&quot;{0}:{1}: {2}&quot;</span>, lineNumber, columnNumber, message))</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            this.lineNumber = <a class="code" href="a00174.html#a54b936d7b4f26f88a07a66c5fc1d1ad1">lineNumber</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            this.columnNumber = <a class="code" href="a00174.html#aabf2ad38f3984297c1daede9be55e3d6">columnNumber</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        }</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            Assert.False (dialogue.NodeExists (<span class="stringliteral">&quot;Sally&quot;</span>));</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        [Test]</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="a00084.html#a40b0efb3cac1715b44640c29988139f1">   52</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00084.html#a40b0efb3cac1715b44640c29988139f1">TestAnalysis</a>() </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="a00174.html#af88cfa5eafdee355e1abb67e358497bd">   48</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="a00174.html">TokeniserException</a> <a class="code" href="a00174.html#af88cfa5eafdee355e1abb67e358497bd">ExpectedTokensFromState</a> (<span class="keywordtype">int</span> <a class="code" href="a00174.html#a54b936d7b4f26f88a07a66c5fc1d1ad1">lineNumber</a>, <span class="keywordtype">int</span> <a class="code" href="a00174.html#aabf2ad38f3984297c1daede9be55e3d6">columnNumber</a>, <a class="code" href="a00127.html">Lexer</a>.LexerState state) {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            var names = <span class="keyword">new</span> List&lt;string&gt; ();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordflow">foreach</span> (var tokenRule <span class="keywordflow">in</span> state.tokenRules) {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                names.Add (tokenRule.type.ToString ());</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            }</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            ICollection&lt;<a class="code" href="a00081.html">Yarn.Analysis.Diagnosis</a>&gt; diagnoses;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <a class="code" href="a00047.html">Yarn.Analysis.Context</a> context;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="comment">// this script has the following variables:</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="comment">// $foo is read from and written to</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="comment">// $bar is written to but never read</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="comment">// $bas is read from but never written to</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="comment">// this means that there should be two diagnosis results</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            var script = <span class="stringliteral">&quot;// testing\n&lt;&lt;set $foo to 1&gt;&gt;&lt;&lt;set $bar to $foo&gt;&gt;&lt;&lt;set $bar to $bas&gt;&gt;&quot;</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordtype">string</span> nameList;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">if</span> (names.Count &gt; 1) {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                nameList = String.Join (<span class="stringliteral">&quot;, &quot;</span>, names.ToArray (), 0, names.Count - 1);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                nameList += <span class="stringliteral">&quot;, or &quot;</span> + names [names.Count - 1];</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                nameList = names [0];</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            var message = string.Format (CultureInfo.CurrentCulture, <span class="stringliteral">&quot;Expected {0}&quot;</span>, nameList);</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            context = <span class="keyword">new</span> <a class="code" href="a00047.html">Yarn.Analysis.Context</a> (typeof(Yarn.Analysis.UnusedVariableChecker));</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            dialogue.LoadString (script);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            dialogue.Analyse (context);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            diagnoses = <span class="keyword">new</span> List&lt;<a class="code" href="a00081.html">Yarn.Analysis.Diagnosis</a>&gt;(context.FinishAnalysis ());</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            Assert.AreEqual (2, diagnoses.Count);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            dialogue.UnloadAll ();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            context = <span class="keyword">new</span> <a class="code" href="a00047.html">Yarn.Analysis.Context</a> (typeof(Yarn.Analysis.UnusedVariableChecker));</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, <span class="stringliteral">&quot;Ship.yarn.txt&quot;</span>));</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, <span class="stringliteral">&quot;Sally.yarn.txt&quot;</span>));</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            dialogue.Analyse (context);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            diagnoses = <span class="keyword">new</span> List&lt;<a class="code" href="a00081.html">Yarn.Analysis.Diagnosis</a>&gt;(context.FinishAnalysis ());</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <span class="comment">// This script should contain no unused variables</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            Assert.IsEmpty (diagnoses);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        }</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        [Test]</div>
-<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="a00084.html#a111f0f8418baaeaf83cfb422c90210e0">   86</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00084.html#a111f0f8418baaeaf83cfb422c90210e0">TestDumpingCode</a>()</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            var path = Path.Combine(TestDataPath, <span class="stringliteral">&quot;Example.yarn.txt&quot;</span>);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            dialogue.LoadFile (path);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            var byteCode = dialogue.GetByteCode ();</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            Assert.NotNull (byteCode);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        [Test]</div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="a00084.html#a013d5e3847b9d716b39aa925d70b99fd">   98</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00084.html#a013d5e3847b9d716b39aa925d70b99fd">TestMissingNode</a>()</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        {</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            var path = Path.Combine (TestDataPath, <span class="stringliteral">&quot;TestCases&quot;</span>, <span class="stringliteral">&quot;Smileys.node&quot;</span>);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            dialogue.LoadFile (path);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00174.html#ad00fcf742d2b0d476ce43b27a3f3b6c1">TokeniserException</a> (<a class="code" href="a00174.html#a54b936d7b4f26f88a07a66c5fc1d1ad1">lineNumber</a>, <a class="code" href="a00174.html#aabf2ad38f3984297c1daede9be55e3d6">columnNumber</a>, message);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">// save some typing, we deal with lists of tokens a LOT</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="a00175.html">   70</a></span>&#160;    <span class="keyword">internal</span> <span class="keyword">class </span><a class="code" href="a00175.html">TokenList</a> : List&lt;Token&gt; {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="comment">// quick constructor to make it easier to create</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment">// TokenLists with a list of tokens</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="a00175.html#a9b7cf7c495a19faa91a1b5991d7748ef">   73</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00175.html#a9b7cf7c495a19faa91a1b5991d7748ef">TokenList</a> (params <a class="code" href="a00173.html">Token</a>[] tokens) : base()</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            AddRange(tokens);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">   80</a></span>&#160;    <span class="keyword">internal</span> <span class="keyword">enum</span> <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="comment">// Special tokens</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceace9a733c2ae3f8b704aec91f551b2bcc">Whitespace</a>,</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea497470e76a40fc53e14c0df9b4e4ec9f">Indent</a>,</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea675b39ecba872a6cf58d578781bf5216">Dedent</a>,</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea5d8c95ca9e91a87bd9c90b0f309fd740">EndOfLine</a>,</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea571dd25ea11480e6fe93f07a27059fbd">EndOfInput</a>,</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="comment">// Numbers. Everybody loves a number</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceab2ee912b91d69b435159c7c3f6df7f5f">Number</a>,</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="comment">// Strings. Everybody also loves a string</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>,</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="comment">// &#39;#&#39;</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea9979cf260fa3a9c811b668e217a37e21">TagMarker</a>,</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="comment">// Command syntax (&quot;&lt;&lt;foo&gt;&gt;&quot;)</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea2fb334b031e5462b88186810b5dba5ee">BeginCommand</a>,</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea6d879fc3833a8dc8742400a3c76b56fd">EndCommand</a>,</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            errorsCauseFailures = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="keywordflow">foreach</span> (var result <span class="keywordflow">in</span> dialogue.Run(<span class="stringliteral">&quot;THIS NODE DOES NOT EXIST&quot;</span>)) {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            }</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        }</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        [Test]</div>
-<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="a00084.html#afbb342ea64e33ee19d42a6a2c949592a">  111</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00084.html#afbb342ea64e33ee19d42a6a2c949592a">TestGettingCurrentNodeName</a>()  {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, <span class="stringliteral">&quot;Sally.yarn.txt&quot;</span>));</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="comment">// dialogue should not be running yet</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            Assert.IsNull (dialogue.currentNode);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            <span class="keywordflow">foreach</span> (var result <span class="keywordflow">in</span> dialogue.Run(<span class="stringliteral">&quot;Sally&quot;</span>)) {</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                <span class="comment">// Should now be in the node we requested</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                Assert.AreEqual (dialogue.currentNode, <span class="stringliteral">&quot;Sally&quot;</span>);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                <span class="comment">// Stop immediately</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                dialogue.Stop ();</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="comment">// Variables (&quot;$foo&quot;)</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9">Variable</a>,</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="comment">// Shortcut syntax (&quot;-&gt;&quot;)</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea07001155edc33437d76742b7ac124529">ShortcutOption</a>,</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="comment">// Option syntax (&quot;[[Let&#39;s go here|Destination]]&quot;)</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaf6500edfd37e45de2894dc48866dca81">OptionStart</a>, <span class="comment">// [[</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceabbf373bbaabc962ed2d5f5cec1ebd49b">OptionDelimit</a>, <span class="comment">// |</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea2c617506a5bd9d900fd650a4bee0e626">OptionEnd</a>, <span class="comment">// ]]</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="comment">// Command types (specially recognised command word)</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">If</a>,</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaea5b66107aeb6829d789adefcfaac6eb">ElseIf</a>,</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea6a0053231db40a4539b8f783a719a54a">Else</a>,</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceade360e1624063d8b9de7d2c411a960d8">EndIf</a>,</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea5d5b78699e57104f2fa03bbdf7b9197b">Set</a>,</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="comment">// Boolean values</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaf827cf462f62848df37c5e1e94a4da74">True</a>,</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaf8320b26d30ab433c5a54546d21f414c">False</a>,</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            <span class="comment">// Current node should now be null</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            Assert.IsNull (dialogue.currentNode);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        }</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        [Test]</div>
-<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="a00084.html#a16ed34de323da529e1a17670f556791c">  130</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00084.html#a16ed34de323da529e1a17670f556791c">TestGettingRawSource</a>() {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="comment">// The null value</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceabbb93ef26e3c101ff11cdd21cab08a94">Null</a>,</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="comment">// Parentheses</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaf02071a8b56c676adabcad98429fa14e">LeftParen</a>,</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea2d7e137ea20e2c01ce105573d47ce525">RightParen</a>,</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            dialogue.LoadFile (Path.Combine(TestDataPath, <span class="stringliteral">&quot;Example.yarn.txt&quot;</span>));</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            var source = dialogue.GetTextForNode (<span class="stringliteral">&quot;LearnMore&quot;</span>);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            Assert.IsNotNull (source);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            Assert.AreEqual (source, <span class="stringliteral">&quot;A: HAHAHA&quot;</span>);</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        }</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        [Test]</div>
-<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="a00084.html#a9c0d2732044b273929dbce35358a1906">  142</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00084.html#a9c0d2732044b273929dbce35358a1906">TestNodeVistation</a>() {</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            dialogue.LoadFile(Path.Combine(TestDataPath, <span class="stringliteral">&quot;Example.yarn.txt&quot;</span>));</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            <span class="keywordflow">foreach</span> (var result <span class="keywordflow">in</span> dialogue.Run(<span class="stringliteral">&quot;Leave&quot;</span>)) {</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                HandleResult (result);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            }</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            Assert.Contains(<span class="stringliteral">&quot;Leave&quot;</span>, dialogue.visitedNodes.ToList());</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="comment">// Override the visitedNodes list</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            dialogue.visitedNodes = <span class="keyword">new</span> <span class="keywordtype">string</span>[]{ <span class="stringliteral">&quot;LearnMore&quot;</span> };</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            Assert.Contains(<span class="stringliteral">&quot;LearnMore&quot;</span>, dialogue.visitedNodes.ToList());</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        }</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    }</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;}</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
-<div class="ttc" id="a00047_html"><div class="ttname"><a href="a00047.html">Yarn.Analysis.Context</a></div><div class="ttdef"><b>Definition:</b> <a href="a00287_source.html#l00081">Analyser.cs:81</a></div></div>
-<div class="ttc" id="a00084_html_a4c826102af9c6b062138d72b24e7a37b"><div class="ttname"><a href="a00084.html#a4c826102af9c6b062138d72b24e7a37b">YarnSpinner.Tests.DialogueTests.DialogueTests</a></div><div class="ttdeci">DialogueTests(bool experimental)</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00018">DialogueTests.cs:18</a></div></div>
-<div class="ttc" id="a00084_html_a111f0f8418baaeaf83cfb422c90210e0"><div class="ttname"><a href="a00084.html#a111f0f8418baaeaf83cfb422c90210e0">YarnSpinner.Tests.DialogueTests.TestDumpingCode</a></div><div class="ttdeci">void TestDumpingCode()</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00086">DialogueTests.cs:86</a></div></div>
-<div class="ttc" id="a00084_html"><div class="ttname"><a href="a00084.html">YarnSpinner.Tests.DialogueTests</a></div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00015">DialogueTests.cs:15</a></div></div>
-<div class="ttc" id="a00084_html_a40b0efb3cac1715b44640c29988139f1"><div class="ttname"><a href="a00084.html#a40b0efb3cac1715b44640c29988139f1">YarnSpinner.Tests.DialogueTests.TestAnalysis</a></div><div class="ttdeci">void TestAnalysis()</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00052">DialogueTests.cs:52</a></div></div>
-<div class="ttc" id="a00084_html_a5c830001442a7fe18fdc06452682477e"><div class="ttname"><a href="a00084.html#a5c830001442a7fe18fdc06452682477e">YarnSpinner.Tests.DialogueTests.experimentalMode</a></div><div class="ttdeci">bool experimentalMode</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00017">DialogueTests.cs:17</a></div></div>
-<div class="ttc" id="a00081_html"><div class="ttname"><a href="a00081.html">Yarn.Analysis.Diagnosis</a></div><div class="ttdef"><b>Definition:</b> <a href="a00287_source.html#l00006">Analyser.cs:6</a></div></div>
-<div class="ttc" id="a00084_html_a013d5e3847b9d716b39aa925d70b99fd"><div class="ttname"><a href="a00084.html#a013d5e3847b9d716b39aa925d70b99fd">YarnSpinner.Tests.DialogueTests.TestMissingNode</a></div><div class="ttdeci">void TestMissingNode()</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00098">DialogueTests.cs:98</a></div></div>
-<div class="ttc" id="a00084_html_a9c0d2732044b273929dbce35358a1906"><div class="ttname"><a href="a00084.html#a9c0d2732044b273929dbce35358a1906">YarnSpinner.Tests.DialogueTests.TestNodeVistation</a></div><div class="ttdeci">void TestNodeVistation()</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00142">DialogueTests.cs:142</a></div></div>
-<div class="ttc" id="a00084_html_a16ed34de323da529e1a17670f556791c"><div class="ttname"><a href="a00084.html#a16ed34de323da529e1a17670f556791c">YarnSpinner.Tests.DialogueTests.TestGettingRawSource</a></div><div class="ttdeci">void TestGettingRawSource()</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00130">DialogueTests.cs:130</a></div></div>
-<div class="ttc" id="a00160_html"><div class="ttname"><a href="a00160.html">YarnSpinner.Tests.TestBase</a></div><div class="ttdef"><b>Definition:</b> <a href="a00313_source.html#l00013">TestBase.cs:13</a></div></div>
-<div class="ttc" id="a00084_html_afbb342ea64e33ee19d42a6a2c949592a"><div class="ttname"><a href="a00084.html#afbb342ea64e33ee19d42a6a2c949592a">YarnSpinner.Tests.DialogueTests.TestGettingCurrentNodeName</a></div><div class="ttdeci">void TestGettingCurrentNodeName()</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00111">DialogueTests.cs:111</a></div></div>
-<div class="ttc" id="a00084_html_a9d4171827bf3eba4c6ae52760a475f45"><div class="ttname"><a href="a00084.html#a9d4171827bf3eba4c6ae52760a475f45">YarnSpinner.Tests.DialogueTests.TestNodeExists</a></div><div class="ttdeci">void TestNodeExists()</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00033">DialogueTests.cs:33</a></div></div>
-<div class="ttc" id="a00084_html_a49813a64c710540348c15365a672e675"><div class="ttname"><a href="a00084.html#a49813a64c710540348c15365a672e675">YarnSpinner.Tests.DialogueTests.Init</a></div><div class="ttdeci">new void Init()</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00024">DialogueTests.cs:24</a></div></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="comment">// Parameter delimiters</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea58be47db9455679e6a44df2eff9c9fa6">Comma</a>,</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="comment">// Operators</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea0242c502bd906e05171e64bad31c7c21">EqualTo</a>, <span class="comment">// ==, eq, is</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaf6d044fe1f01fb0c956b80099e2a3072">GreaterThan</a>, <span class="comment">// &gt;, gt</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea96b5d5dce523a30ceae47db080d8af48">GreaterThanOrEqualTo</a>, <span class="comment">// &gt;=, gte</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceac6d9d7bb9939f62f01c80f8b1251501c">LessThan</a>, <span class="comment">// &lt;, lt</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea67827f79b05c979b2378e9514bb7e741">LessThanOrEqualTo</a>, <span class="comment">// &lt;=, lte</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea0961129d84d9d8f6aa4138a3e5022a1d">NotEqualTo</a>, <span class="comment">// !=, neq</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="comment">// Logical operators</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea3a2d5fe857d8f9541136a124c2edec6c">Or</a>, <span class="comment">// ||, or</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceac33315685a0cba3ce53be378b3c7874b">And</a>, <span class="comment">// &amp;&amp;, and</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea76feb79109026728a20736a8c6504548">Xor</a>, <span class="comment">// ^, xor</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaa74c05d080620f087c4e523977230666">Not</a>, <span class="comment">// !, not</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <span class="comment">// this guy&#39;s special because &#39;=&#39; can mean either &#39;equal to&#39;</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="comment">// or &#39;becomes&#39; depending on context</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea9f086f3b58f1b290002de301d3a7ab24">EqualToOrAssign</a>, <span class="comment">// =, to</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea87c80963dae5cd099e3a377e4d314b20">UnaryMinus</a>, <span class="comment">// -; this is differentiated from Minus</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                    <span class="comment">// when parsing expressions</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9">Add</a>, <span class="comment">// +</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea453fb623e752c5993f65bc410fd74fe5">Minus</a>, <span class="comment">// -</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceae257376d913f3b53cbb4a9b19d770648">Multiply</a>, <span class="comment">// *</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea0b914e196182d02615487e9793ecff3d">Divide</a>, <span class="comment">// /</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea4cde2424cf960a70b7fc5fda1119143d">Modulo</a>, <span class="comment">// %</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceab055bb9ca4c2fabe4be4aa6e9e3278c6">AddAssign</a>, <span class="comment">// +=</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceab05d460746c046306a3b74039a9977ba">MinusAssign</a>, <span class="comment">// -=</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea7c3dfbd9bd6620d1cde7bbad4750a9c4">MultiplyAssign</a>, <span class="comment">// *=</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea60776f3f45a828ebfd062b8ad8118b38">DivideAssign</a>, <span class="comment">// /=</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea0be8406951cdfda82f00f79328cf4efc">Comment</a>, <span class="comment">// a run of text that we ignore</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea29ee5d1ebcc033234938a5234f1f2075">Identifier</a>, <span class="comment">// a single word (used for functions)</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675">Text</a> <span class="comment">// a run of text until we hit other syntax</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    }</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="comment">// A parsed token.</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno"><a class="line" href="a00173.html">  175</a></span>&#160;    <span class="keyword">internal</span> <span class="keyword">class </span><a class="code" href="a00173.html">Token</a> {</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="comment">// The token itself</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno"><a class="line" href="a00173.html#a471a25da67fda0524f2375f9a882aafa">  178</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> <a class="code" href="a00173.html#a471a25da67fda0524f2375f9a882aafa">type</a>;</div>
+<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="a00173.html#a3df6b32d6190a639619a3f064c2154e2">  179</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code" href="a00173.html#a3df6b32d6190a639619a3f064c2154e2">value</a>; <span class="comment">// optional</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="comment">// Where we found this token</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="a00173.html#a80fe710713201bb793a41452e314a721">  182</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="a00173.html#a80fe710713201bb793a41452e314a721">lineNumber</a>;</div>
+<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="a00173.html#a9a0f0a8a7ab1e90ab48f15192323ffca">  183</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="a00173.html#a9a0f0a8a7ab1e90ab48f15192323ffca">columnNumber</a>;</div>
+<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="a00173.html#a089d248c904a6e8366b81c2c47ff5af8">  184</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code" href="a00173.html#a089d248c904a6e8366b81c2c47ff5af8">context</a>;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
+<div class="line"><a name="l00186"></a><span class="lineno"><a class="line" href="a00173.html#af15d26fa4e6f276ab58ff66d3c4203da">  186</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code" href="a00173.html#af15d26fa4e6f276ab58ff66d3c4203da">delimitsText</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <span class="comment">// If this is a function in an expression, this is the number</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="comment">// of parameters that were encountered</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="a00173.html#adf11c0d29b66935a8d8109d6308d0488">  190</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="a00173.html#adf11c0d29b66935a8d8109d6308d0488">parameterCount</a>;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="comment">// The state that the lexer was in when this token was emitted</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="a00173.html#a710099e7abe84f30864a320cc7464214">  193</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code" href="a00173.html#a710099e7abe84f30864a320cc7464214">lexerState</a>;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
+<div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="a00173.html#ab8531150354ef148b8929a727f29ae39">  195</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00173.html#ab8531150354ef148b8929a727f29ae39">Token</a>(<a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> <a class="code" href="a00173.html#a471a25da67fda0524f2375f9a882aafa">type</a>, <a class="code" href="a00127.html">Lexer</a>.LexerState <a class="code" href="a00173.html#a710099e7abe84f30864a320cc7464214">lexerState</a>, <span class="keywordtype">int</span> <a class="code" href="a00173.html#a80fe710713201bb793a41452e314a721">lineNumber</a> = -1, <span class="keywordtype">int</span> <a class="code" href="a00173.html#a9a0f0a8a7ab1e90ab48f15192323ffca">columnNumber</a> = -1, <span class="keywordtype">string</span> <a class="code" href="a00173.html#a3df6b32d6190a639619a3f064c2154e2">value</a>=null) {</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            this.type = <a class="code" href="a00173.html#a471a25da67fda0524f2375f9a882aafa">type</a>;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            this.value = <a class="code" href="a00173.html#a3df6b32d6190a639619a3f064c2154e2">value</a>;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            this.lineNumber = <a class="code" href="a00173.html#a80fe710713201bb793a41452e314a721">lineNumber</a>;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            this.columnNumber = <a class="code" href="a00173.html#a9a0f0a8a7ab1e90ab48f15192323ffca">columnNumber</a>;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            this.lexerState = lexerState.name;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        }</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
+<div class="line"><a name="l00203"></a><span class="lineno"><a class="line" href="a00173.html#abf676a737679ec2fb1dffd75dc4d7976">  203</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">string</span> <a class="code" href="a00173.html#abf676a737679ec2fb1dffd75dc4d7976">ToString</a>() {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <span class="keywordflow">if</span> (this.<a class="code" href="a00173.html#a3df6b32d6190a639619a3f064c2154e2">value</a> != null) {</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                <span class="keywordflow">return</span> string.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;{0} ({1}) at {2}:{3} (state: {4})&quot;</span>, type.ToString(), <a class="code" href="a00173.html#a3df6b32d6190a639619a3f064c2154e2">value</a>, <a class="code" href="a00173.html#a80fe710713201bb793a41452e314a721">lineNumber</a>, <a class="code" href="a00173.html#a9a0f0a8a7ab1e90ab48f15192323ffca">columnNumber</a>, <a class="code" href="a00173.html#a710099e7abe84f30864a320cc7464214">lexerState</a>);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                <span class="keywordflow">return</span> string.Format (CultureInfo.CurrentCulture, <span class="stringliteral">&quot;{0} at {1}:{2} (state: {3})&quot;</span>, <a class="code" href="a00173.html#a471a25da67fda0524f2375f9a882aafa">type</a>, <a class="code" href="a00173.html#a80fe710713201bb793a41452e314a721">lineNumber</a>, <a class="code" href="a00173.html#a9a0f0a8a7ab1e90ab48f15192323ffca">columnNumber</a>, <a class="code" href="a00173.html#a710099e7abe84f30864a320cc7464214">lexerState</a>);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            }</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        }</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    }</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
+<div class="line"><a name="l00212"></a><span class="lineno"><a class="line" href="a00127.html">  212</a></span>&#160;    <span class="keyword">internal</span> <span class="keyword">class </span><a class="code" href="a00127.html">Lexer</a> {</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
+<div class="line"><a name="l00214"></a><span class="lineno"><a class="line" href="a00128.html">  214</a></span>&#160;        <span class="keyword">internal</span> <span class="keyword">class </span><a class="code" href="a00128.html">LexerState</a> {</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
+<div class="line"><a name="l00216"></a><span class="lineno"><a class="line" href="a00128.html#aeb8debd0d81a76e90f083f0bf407573e">  216</a></span>&#160;            <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code" href="a00128.html#aeb8debd0d81a76e90f083f0bf407573e">name</a>;</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
+<div class="line"><a name="l00218"></a><span class="lineno"><a class="line" href="a00128.html#a951f91e9522ffe84851f2e25e9445106">  218</a></span>&#160;            <span class="keyword">private</span> Dictionary&lt;TokenType, string&gt; <a class="code" href="a00128.html#a951f91e9522ffe84851f2e25e9445106">patterns</a>;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
+<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="a00128.html#ac67a7c0e09d7b4350f75b105723a4f6c">  220</a></span>&#160;            <span class="keyword">public</span> <a class="code" href="a00128.html#ac67a7c0e09d7b4350f75b105723a4f6c">LexerState</a> (Dictionary&lt;TokenType, string&gt; <a class="code" href="a00128.html#a951f91e9522ffe84851f2e25e9445106">patterns</a>)</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            {</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                this.patterns = <a class="code" href="a00128.html#a951f91e9522ffe84851f2e25e9445106">patterns</a>;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            }</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
+<div class="line"><a name="l00225"></a><span class="lineno"><a class="line" href="a00128.html#adf6563b1dc6f3ef80ed13c2b15b7be03">  225</a></span>&#160;            <span class="keyword">public</span> List&lt;TokenRule&gt; <a class="code" href="a00128.html#adf6563b1dc6f3ef80ed13c2b15b7be03">tokenRules</a> = <span class="keyword">new</span> List&lt;TokenRule&gt;();</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
+<div class="line"><a name="l00227"></a><span class="lineno"><a class="line" href="a00128.html#a71ba52744e853ff142de19e97cf5daed">  227</a></span>&#160;            <span class="keyword">public</span> <a class="code" href="a00176.html">TokenRule</a> <a class="code" href="a00128.html#a71ba52744e853ff142de19e97cf5daed">AddTransition</a>(<a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> type, <span class="keywordtype">string</span> entersState = null, <span class="keywordtype">bool</span> delimitsText = <span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                var pattern = string.Format (CultureInfo.InvariantCulture, <span class="stringliteral">@&quot;\G{0}&quot;</span>, <a class="code" href="a00128.html#a951f91e9522ffe84851f2e25e9445106">patterns</a> [type]);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                var rule = <span class="keyword">new</span> <a class="code" href="a00176.html">TokenRule</a> (type, <span class="keyword">new</span> Regex(pattern), entersState, delimitsText);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                tokenRules.Add(rule);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                <span class="keywordflow">return</span> rule;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            }</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            <span class="comment">// A &quot;text&quot; rule matches everything that it possibly can, up to ANY of</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            <span class="comment">// the rules that already exist.</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno"><a class="line" href="a00128.html#af183111863c651ae5681665a2c379830">  240</a></span>&#160;            <span class="keyword">public</span> <a class="code" href="a00176.html">TokenRule</a> <a class="code" href="a00128.html#af183111863c651ae5681665a2c379830">AddTextRule</a> (<a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> type, <span class="keywordtype">string</span> entersState = null)</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            {</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00128.html#a69948f05c35eeae9cb8448c849a053e6">containsTextRule</a>) {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException (<span class="stringliteral">&quot;State already contains a text rule&quot;</span>);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                }</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                var delimiterRules = <span class="keyword">new</span> List&lt;string&gt;();</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                <span class="keywordflow">foreach</span> (var otherRule <span class="keywordflow">in</span> <a class="code" href="a00128.html#adf6563b1dc6f3ef80ed13c2b15b7be03">tokenRules</a>) {</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                    <span class="keywordflow">if</span> (otherRule.delimitsText == <span class="keyword">true</span>)</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                        delimiterRules.Add (string.Format (CultureInfo.InvariantCulture, <span class="stringliteral">&quot;({0})&quot;</span>, otherRule.regex.ToString().Substring(2)));</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                }</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                <span class="comment">// Create a regex that matches all text up to but not including</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                <span class="comment">// any of the delimiter rules</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                var pattern = string.Format (CultureInfo.InvariantCulture, <span class="stringliteral">@&quot;\G((?!{0}).)*&quot;</span>,</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                    string.Join (<span class="stringliteral">&quot;|&quot;</span>, delimiterRules.ToArray()));</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                var rule = <a class="code" href="a00128.html#a71ba52744e853ff142de19e97cf5daed">AddTransition</a>(type, entersState);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                rule.regex = <span class="keyword">new</span> Regex (pattern);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                rule.isTextRule = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                <span class="keywordflow">return</span> rule;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;            }</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
+<div class="line"><a name="l00266"></a><span class="lineno"><a class="line" href="a00128.html#a69948f05c35eeae9cb8448c849a053e6">  266</a></span>&#160;            <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code" href="a00128.html#a69948f05c35eeae9cb8448c849a053e6">containsTextRule</a> {</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                <span class="keyword">get</span> {</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                    <span class="keywordflow">foreach</span> (var rule <span class="keywordflow">in</span> <a class="code" href="a00128.html#adf6563b1dc6f3ef80ed13c2b15b7be03">tokenRules</a>) {</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                        <span class="keywordflow">if</span> (rule.isTextRule)</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                    }</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                }</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            }</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
+<div class="line"><a name="l00276"></a><span class="lineno"><a class="line" href="a00128.html#ad8b6ccac53bedd9dc202ffe6ac5698b2">  276</a></span>&#160;            <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code" href="a00128.html#ad8b6ccac53bedd9dc202ffe6ac5698b2">setTrackNextIndentation</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        }</div>
+<div class="line"><a name="l00280"></a><span class="lineno"><a class="line" href="a00176.html">  280</a></span>&#160;        <span class="keyword">internal</span> <span class="keyword">class </span><a class="code" href="a00176.html">TokenRule</a> {</div>
+<div class="line"><a name="l00281"></a><span class="lineno"><a class="line" href="a00176.html#a47a404d6637fae489c3c77729a01cc69">  281</a></span>&#160;            <span class="keyword">public</span> Regex <a class="code" href="a00176.html#a47a404d6637fae489c3c77729a01cc69">regex</a> = null;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            <span class="comment">// set to null if it should stay in the same state</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno"><a class="line" href="a00176.html#af6a4bd3416c4e1b8e56f9db461d52d18">  284</a></span>&#160;            <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code" href="a00176.html#af6a4bd3416c4e1b8e56f9db461d52d18">entersState</a>;</div>
+<div class="line"><a name="l00285"></a><span class="lineno"><a class="line" href="a00176.html#a0de6fac3b55cf0c61e07cea53ce67caa">  285</a></span>&#160;            <span class="keyword">public</span> <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> <a class="code" href="a00176.html#a0de6fac3b55cf0c61e07cea53ce67caa">type</a>;</div>
+<div class="line"><a name="l00286"></a><span class="lineno"><a class="line" href="a00176.html#a09f49e6edf9ace38a92d723998181f8f">  286</a></span>&#160;            <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code" href="a00176.html#a09f49e6edf9ace38a92d723998181f8f">isTextRule</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00287"></a><span class="lineno"><a class="line" href="a00176.html#ab0849136a1f27b4d13cb7a45e2fe7130">  287</a></span>&#160;            <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code" href="a00176.html#ab0849136a1f27b4d13cb7a45e2fe7130">delimitsText</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
+<div class="line"><a name="l00289"></a><span class="lineno"><a class="line" href="a00176.html#a3d171ae7c4870659d2d1d977a216bdd7">  289</a></span>&#160;            <span class="keyword">public</span> <a class="code" href="a00176.html#a3d171ae7c4870659d2d1d977a216bdd7">TokenRule</a> (<a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> <a class="code" href="a00176.html#a0de6fac3b55cf0c61e07cea53ce67caa">type</a>, Regex <a class="code" href="a00176.html#a47a404d6637fae489c3c77729a01cc69">regex</a>, <span class="keywordtype">string</span> <a class="code" href="a00176.html#af6a4bd3416c4e1b8e56f9db461d52d18">entersState</a> = null, <span class="keywordtype">bool</span> <a class="code" href="a00176.html#ab0849136a1f27b4d13cb7a45e2fe7130">delimitsText</a> = <span class="keyword">false</span>)</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            {</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                this.regex = <a class="code" href="a00176.html#a47a404d6637fae489c3c77729a01cc69">regex</a>;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                this.entersState = <a class="code" href="a00176.html#af6a4bd3416c4e1b8e56f9db461d52d18">entersState</a>;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                this.type = <a class="code" href="a00176.html#a0de6fac3b55cf0c61e07cea53ce67caa">type</a>;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                this.delimitsText = <a class="code" href="a00176.html#ab0849136a1f27b4d13cb7a45e2fe7130">delimitsText</a>;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            }</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
+<div class="line"><a name="l00297"></a><span class="lineno"><a class="line" href="a00176.html#a1ed23ad16b116ecb06dd75b157bf752f">  297</a></span>&#160;            <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">string</span> <a class="code" href="a00176.html#a1ed23ad16b116ecb06dd75b157bf752f">ToString</a> ()</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            {</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                <span class="keywordflow">return</span> string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;[TokenRule: {0} - {1}]&quot;</span>, <a class="code" href="a00176.html#a0de6fac3b55cf0c61e07cea53ce67caa">type</a>, this.regex);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;            }</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        }</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        <span class="comment">// Single-line comments. If this is encountered at any point, the rest of the line is skipped.</span></div>
+<div class="line"><a name="l00305"></a><span class="lineno"><a class="line" href="a00127.html#a29c457125cc4876f8571f5d9afa372e2">  305</a></span>&#160;        <span class="keyword">const</span> <span class="keywordtype">string</span> <a class="code" href="a00127.html#a29c457125cc4876f8571f5d9afa372e2">LINE_COMMENT</a> = <span class="stringliteral">&quot;//&quot;</span>;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;</div>
+<div class="line"><a name="l00307"></a><span class="lineno"><a class="line" href="a00127.html#a2c65c0ba90f973e459583badefef216a">  307</a></span>&#160;        Dictionary&lt;string, LexerState&gt; <a class="code" href="a00127.html#a2c65c0ba90f973e459583badefef216a">states</a>;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;</div>
+<div class="line"><a name="l00309"></a><span class="lineno"><a class="line" href="a00127.html#a16b5dbf27a377cde5e8ba0eaa05b5710">  309</a></span>&#160;        <a class="code" href="a00128.html">LexerState</a> <a class="code" href="a00127.html#a16b5dbf27a377cde5e8ba0eaa05b5710">defaultState</a>;</div>
+<div class="line"><a name="l00310"></a><span class="lineno"><a class="line" href="a00127.html#ac90b7dce8103425a148f9e8588f14137">  310</a></span>&#160;        <a class="code" href="a00128.html">LexerState</a> <a class="code" href="a00127.html#ac90b7dce8103425a148f9e8588f14137">currentState</a>;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        <span class="comment">// tracks indentation levels, and whether an</span></div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        <span class="comment">// indent token was emitted for each level</span></div>
+<div class="line"><a name="l00314"></a><span class="lineno"><a class="line" href="a00127.html#a6631a1b1a9109258ab18927e7587ff9b">  314</a></span>&#160;        Stack&lt;KeyValuePair&lt;int,bool&gt;&gt; <a class="code" href="a00127.html#a6631a1b1a9109258ab18927e7587ff9b">indentationStack</a>;</div>
+<div class="line"><a name="l00315"></a><span class="lineno"><a class="line" href="a00127.html#ac670aac2245cbd4694dfbd5b69313218">  315</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="a00127.html#ac670aac2245cbd4694dfbd5b69313218">shouldTrackNextIndentation</a>;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;</div>
+<div class="line"><a name="l00317"></a><span class="lineno"><a class="line" href="a00127.html#a4bf394bcf675142f33c90541be7dd571">  317</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00127.html#a4bf394bcf675142f33c90541be7dd571">Lexer</a> ()</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        {</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;            <a class="code" href="a00127.html#a646081a52b241abaafe5e0cfaeafd751">CreateStates</a> ();</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        }</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
+<div class="line"><a name="l00322"></a><span class="lineno"><a class="line" href="a00127.html#a646081a52b241abaafe5e0cfaeafd751">  322</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="a00127.html#a646081a52b241abaafe5e0cfaeafd751">CreateStates</a> ()</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        {</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;            var patterns = <span class="keyword">new</span> Dictionary&lt;TokenType, string&gt; ();</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;            patterns[TokenType.Text] = <span class="stringliteral">&quot;.*&quot;</span>;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            patterns[TokenType.Number] = <span class="stringliteral">@&quot;\-?[0-9]+(\.[0-9+])?&quot;</span>;</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            patterns[TokenType.String] = <span class="stringliteral">@&quot;&quot;&quot;([^&quot;&quot;\\]*(?:\\.[^&quot;&quot;\\]*)*)&quot;&quot;&quot;</span>;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;            patterns[TokenType.TagMarker] = <span class="stringliteral">@&quot;\#&quot;</span>;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;            patterns[TokenType.LeftParen] = <span class="stringliteral">@&quot;\(&quot;</span>;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;            patterns[TokenType.RightParen] = <span class="stringliteral">@&quot;\)&quot;</span>;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;            patterns[TokenType.EqualTo] = <span class="stringliteral">@&quot;(==|is(?!\w)|eq(?!\w))&quot;</span>;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;            patterns[TokenType.EqualToOrAssign] = <span class="stringliteral">@&quot;(=|to(?!\w))&quot;</span>;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            patterns[TokenType.NotEqualTo] = <span class="stringliteral">@&quot;(\!=|neq(?!\w))&quot;</span>;</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;            patterns[TokenType.GreaterThanOrEqualTo] = <span class="stringliteral">@&quot;(&gt;=|gte(?!\w))&quot;</span>;</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;            patterns[TokenType.GreaterThan] = <span class="stringliteral">@&quot;(&gt;|gt(?!\w))&quot;</span>;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;            patterns[TokenType.LessThanOrEqualTo] = <span class="stringliteral">@&quot;(&lt;=|lte(?!\w))&quot;</span>;</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;            patterns[TokenType.LessThan] = <span class="stringliteral">@&quot;(&lt;|lt(?!\w))&quot;</span>;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;            patterns[TokenType.AddAssign] = <span class="stringliteral">@&quot;\+=&quot;</span>;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;            patterns[TokenType.MinusAssign] = <span class="stringliteral">@&quot;\-=&quot;</span>;</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;            patterns[TokenType.MultiplyAssign] = <span class="stringliteral">@&quot;\*=&quot;</span>;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            patterns[TokenType.DivideAssign] = <span class="stringliteral">@&quot;\/=&quot;</span>;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            patterns[TokenType.Add] = <span class="stringliteral">@&quot;\+&quot;</span>;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;            patterns[TokenType.Minus] = <span class="stringliteral">@&quot;\-&quot;</span>;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;            patterns[TokenType.Multiply] = <span class="stringliteral">@&quot;\*&quot;</span>;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;            patterns[TokenType.Divide] = <span class="stringliteral">@&quot;\/&quot;</span>;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;            patterns[TokenType.Modulo] = <span class="stringliteral">@&quot;\%&quot;</span>;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;            patterns[TokenType.And] = <span class="stringliteral">@&quot;(\&amp;\&amp;|and(?!\w))&quot;</span>;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;            patterns[TokenType.Or] = <span class="stringliteral">@&quot;(\|\||or(?!\w))&quot;</span>;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;            patterns[TokenType.Xor] = <span class="stringliteral">@&quot;(\^|xor(?!\w))&quot;</span>;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;            patterns[TokenType.Not] = <span class="stringliteral">@&quot;(\!|not(?!\w))&quot;</span>;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            patterns[TokenType.Variable] = <span class="stringliteral">@&quot;\$([A-Za-z0-9_\.])+&quot;</span>;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;            patterns[TokenType.Comma] = <span class="stringliteral">@&quot;,&quot;</span>;</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;            patterns[TokenType.True] = <span class="stringliteral">@&quot;true(?!\w)&quot;</span>;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;            patterns[TokenType.False] = <span class="stringliteral">@&quot;false(?!\w)&quot;</span>;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;            patterns[TokenType.Null] = <span class="stringliteral">@&quot;null(?!\w)&quot;</span>;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;            patterns[TokenType.BeginCommand] = <span class="stringliteral">@&quot;&lt;&lt;&quot;</span>;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;            patterns[TokenType.EndCommand] = <span class="stringliteral">@&quot;&gt;&gt;&quot;</span>;</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;            patterns[TokenType.OptionStart] = <span class="stringliteral">@&quot;\[\[&quot;</span>;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;            patterns[TokenType.OptionEnd] = <span class="stringliteral">@&quot;\]\]&quot;</span>;</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;            patterns[TokenType.OptionDelimit] = <span class="stringliteral">@&quot;\|&quot;</span>;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;            patterns[TokenType.Identifier] = <span class="stringliteral">@&quot;[a-zA-Z0-9_:\.]+&quot;</span>;</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;            patterns[TokenType.If] = <span class="stringliteral">@&quot;if(?!\w)&quot;</span>;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;            patterns[TokenType.Else] = <span class="stringliteral">@&quot;else(?!\w)&quot;</span>;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;            patterns[TokenType.ElseIf] = <span class="stringliteral">@&quot;elseif(?!\w)&quot;</span>;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;            patterns[TokenType.EndIf] = <span class="stringliteral">@&quot;endif(?!\w)&quot;</span>;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;            patterns[TokenType.Set] = <span class="stringliteral">@&quot;set(?!\w)&quot;</span>;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;            patterns[TokenType.ShortcutOption] = <span class="stringliteral">@&quot;\-&gt;&quot;</span>;</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;            <a class="code" href="a00127.html#a2c65c0ba90f973e459583badefef216a">states</a> = <span class="keyword">new</span> Dictionary&lt;string, LexerState&gt; ();</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;            <a class="code" href="a00127.html#a2c65c0ba90f973e459583badefef216a">states</a> [<span class="stringliteral">&quot;base&quot;</span>] = <span class="keyword">new</span> <a class="code" href="a00128.html">LexerState</a> (patterns);</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;            states [<span class="stringliteral">&quot;base&quot;</span>].AddTransition(TokenType.BeginCommand, <span class="stringliteral">&quot;command&quot;</span>, delimitsText:<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;            states [<span class="stringliteral">&quot;base&quot;</span>].AddTransition(TokenType.OptionStart, <span class="stringliteral">&quot;link&quot;</span>, delimitsText:<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;            states [<span class="stringliteral">&quot;base&quot;</span>].AddTransition(TokenType.ShortcutOption, <span class="stringliteral">&quot;shortcut-option&quot;</span>);</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;            states [<span class="stringliteral">&quot;base&quot;</span>].AddTransition (TokenType.TagMarker, <span class="stringliteral">&quot;tag&quot;</span>, delimitsText: <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;            states [<span class="stringliteral">&quot;base&quot;</span>].AddTextRule (TokenType.Text);</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;            states [<span class="stringliteral">&quot;tag&quot;</span>] = <span class="keyword">new</span> <a class="code" href="a00128.html">LexerState</a> (patterns);</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;            states [<span class="stringliteral">&quot;tag&quot;</span>].AddTransition (TokenType.Identifier, <span class="stringliteral">&quot;base&quot;</span>);</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;            states [<span class="stringliteral">&quot;shortcut-option&quot;</span>] = <span class="keyword">new</span> <a class="code" href="a00128.html">LexerState</a> (patterns);</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;            states [<span class="stringliteral">&quot;shortcut-option&quot;</span>].setTrackNextIndentation = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;            states [<span class="stringliteral">&quot;shortcut-option&quot;</span>].AddTransition (TokenType.BeginCommand, <span class="stringliteral">&quot;expression&quot;</span>, delimitsText: <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;            states [<span class="stringliteral">&quot;shortcut-option&quot;</span>].AddTransition (TokenType.TagMarker, <span class="stringliteral">&quot;shortcut-option-tag&quot;</span>, delimitsText: <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;            states [<span class="stringliteral">&quot;shortcut-option&quot;</span>].AddTextRule (TokenType.Text, <span class="stringliteral">&quot;base&quot;</span>);</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;            states [<span class="stringliteral">&quot;shortcut-option-tag&quot;</span>] = <span class="keyword">new</span> <a class="code" href="a00128.html">LexerState</a> (patterns);</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;            states [<span class="stringliteral">&quot;shortcut-option-tag&quot;</span>].AddTransition (TokenType.Identifier, <span class="stringliteral">&quot;shortcut-option&quot;</span>);</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;            states [<span class="stringliteral">&quot;command&quot;</span>] = <span class="keyword">new</span> <a class="code" href="a00128.html">LexerState</a> (patterns);</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;            states [<span class="stringliteral">&quot;command&quot;</span>].AddTransition (TokenType.If, <span class="stringliteral">&quot;expression&quot;</span>);</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;            states [<span class="stringliteral">&quot;command&quot;</span>].AddTransition (TokenType.Else);</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;            states [<span class="stringliteral">&quot;command&quot;</span>].AddTransition (TokenType.ElseIf, <span class="stringliteral">&quot;expression&quot;</span>);</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;            states [<span class="stringliteral">&quot;command&quot;</span>].AddTransition (TokenType.EndIf);</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            states [<span class="stringliteral">&quot;command&quot;</span>].AddTransition (TokenType.Set, <span class="stringliteral">&quot;assignment&quot;</span>);</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;            states [<span class="stringliteral">&quot;command&quot;</span>].AddTransition (TokenType.EndCommand,  <span class="stringliteral">&quot;base&quot;</span>, delimitsText: <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;            states [<span class="stringliteral">&quot;command&quot;</span>].AddTransition (TokenType.Identifier, <span class="stringliteral">&quot;command-or-expression&quot;</span>);</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;            states [<span class="stringliteral">&quot;command&quot;</span>].AddTextRule (TokenType.Text);</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;            states [<span class="stringliteral">&quot;command-or-expression&quot;</span>] = <span class="keyword">new</span> <a class="code" href="a00128.html">LexerState</a> (patterns);</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;            states [<span class="stringliteral">&quot;command-or-expression&quot;</span>].AddTransition (TokenType.LeftParen, <span class="stringliteral">&quot;expression&quot;</span>);</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;            states [<span class="stringliteral">&quot;command-or-expression&quot;</span>].AddTransition (TokenType.EndCommand, <span class="stringliteral">&quot;base&quot;</span>, delimitsText:<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;            states [<span class="stringliteral">&quot;command-or-expression&quot;</span>].AddTextRule (TokenType.Text);</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            states [<span class="stringliteral">&quot;assignment&quot;</span>] = <span class="keyword">new</span> <a class="code" href="a00128.html">LexerState</a> (patterns);</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;            states [<span class="stringliteral">&quot;assignment&quot;</span>].AddTransition(TokenType.Variable);</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;            states [<span class="stringliteral">&quot;assignment&quot;</span>].AddTransition(TokenType.EqualToOrAssign, <span class="stringliteral">&quot;expression&quot;</span>);</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;            states [<span class="stringliteral">&quot;assignment&quot;</span>].AddTransition(TokenType.AddAssign, <span class="stringliteral">&quot;expression&quot;</span>);</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;            states [<span class="stringliteral">&quot;assignment&quot;</span>].AddTransition(TokenType.MinusAssign, <span class="stringliteral">&quot;expression&quot;</span>);</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;            states [<span class="stringliteral">&quot;assignment&quot;</span>].AddTransition(TokenType.MultiplyAssign, <span class="stringliteral">&quot;expression&quot;</span>);</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;            states [<span class="stringliteral">&quot;assignment&quot;</span>].AddTransition(TokenType.DivideAssign, <span class="stringliteral">&quot;expression&quot;</span>);</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>] = <span class="keyword">new</span> <a class="code" href="a00128.html">LexerState</a> (patterns);</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.EndCommand, <span class="stringliteral">&quot;base&quot;</span>);</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.Number);</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.String);</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.LeftParen);</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.RightParen);</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.EqualTo);</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.EqualToOrAssign);</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.NotEqualTo);</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.GreaterThanOrEqualTo);</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.GreaterThan);</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.LessThanOrEqualTo);</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.LessThan);</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.Add);</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.Minus);</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.Multiply);</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.Divide);</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition (TokenType.Modulo);</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.And);</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.Or);</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.Xor);</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.Not);</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.Variable);</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.Comma);</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.True);</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.False);</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.Null);</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;            states [<span class="stringliteral">&quot;expression&quot;</span>].AddTransition(TokenType.Identifier);</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;            states [<span class="stringliteral">&quot;link&quot;</span>] = <span class="keyword">new</span> <a class="code" href="a00128.html">LexerState</a> (patterns);</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;            states [<span class="stringliteral">&quot;link&quot;</span>].AddTransition (TokenType.OptionEnd, <span class="stringliteral">&quot;base&quot;</span>, delimitsText:<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;            states [<span class="stringliteral">&quot;link&quot;</span>].AddTransition (TokenType.OptionDelimit, <span class="stringliteral">&quot;link-destination&quot;</span>, delimitsText:<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;            states [<span class="stringliteral">&quot;link&quot;</span>].AddTextRule (TokenType.Text);</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;            states [<span class="stringliteral">&quot;link-destination&quot;</span>] = <span class="keyword">new</span> <a class="code" href="a00128.html">LexerState</a> (patterns);</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;            states [<span class="stringliteral">&quot;link-destination&quot;</span>].AddTransition (TokenType.Identifier);</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;            states [<span class="stringliteral">&quot;link-destination&quot;</span>].AddTransition (TokenType.OptionEnd, <span class="stringliteral">&quot;base&quot;</span>);</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;            <a class="code" href="a00127.html#a16b5dbf27a377cde5e8ba0eaa05b5710">defaultState</a> = states [<span class="stringliteral">&quot;base&quot;</span>];</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;            <span class="comment">// Make all states aware of their names</span></div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;            <span class="keywordflow">foreach</span> (KeyValuePair&lt;string, LexerState&gt; entry <span class="keywordflow">in</span> <a class="code" href="a00127.html#a2c65c0ba90f973e459583badefef216a">states</a>) {</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;                entry.Value.name = entry.Key;</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;            }</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;        }</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;</div>
+<div class="line"><a name="l00467"></a><span class="lineno"><a class="line" href="a00127.html#a6a09f1bb13f28acd95fd081954b45437">  467</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00175.html">TokenList</a> <a class="code" href="a00127.html#a6a09f1bb13f28acd95fd081954b45437">Tokenise</a> (<span class="keywordtype">string</span> title, <span class="keywordtype">string</span> text)</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;        {</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;            <span class="comment">// Do some initial setup</span></div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;            <a class="code" href="a00127.html#a6631a1b1a9109258ab18927e7587ff9b">indentationStack</a> = <span class="keyword">new</span> Stack&lt;KeyValuePair&lt;int,bool&gt;&gt; ();</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;            indentationStack.Push (<span class="keyword">new</span> KeyValuePair&lt;int, bool&gt;(0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;            <a class="code" href="a00127.html#ac670aac2245cbd4694dfbd5b69313218">shouldTrackNextIndentation</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;            var tokens = <span class="keyword">new</span> <a class="code" href="a00175.html">TokenList</a>();</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;            <a class="code" href="a00127.html#ac90b7dce8103425a148f9e8588f14137">currentState</a> = <a class="code" href="a00127.html#a16b5dbf27a377cde5e8ba0eaa05b5710">defaultState</a>;</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;            <span class="comment">// Parse each line</span></div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;            var lines = <span class="keyword">new</span> List&lt;string&gt;(text.Split (<span class="charliteral">&#39;\n&#39;</span>));</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;            <span class="comment">// Add a blank line to ensure that we end with zero indentation</span></div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;            lines.Add(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;            <span class="keywordtype">int</span> lineNumber = 1;</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;</div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;            <span class="keywordflow">foreach</span> (var line <span class="keywordflow">in</span> lines) {</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;                tokens.AddRange (this.TokeniseLine (line, lineNumber));</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;                lineNumber++;</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;            }</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;            var endOfInput = <span class="keyword">new</span> <a class="code" href="a00173.html">Token</a> (<a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>.EndOfInput, <a class="code" href="a00127.html#ac90b7dce8103425a148f9e8588f14137">currentState</a>, lineNumber, 0);</div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;            tokens.Add (endOfInput);</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;            <span class="keywordflow">return</span> tokens;</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;        }</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;</div>
+<div class="line"><a name="l00497"></a><span class="lineno"><a class="line" href="a00127.html#a20b63f6ef434f6a40fd388f262f03fa8">  497</a></span>&#160;        <a class="code" href="a00175.html">TokenList</a> <a class="code" href="a00127.html#a20b63f6ef434f6a40fd388f262f03fa8">TokeniseLine</a> (<span class="keywordtype">string</span> line, <span class="keywordtype">int</span> lineNumber)</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;        {</div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;            var lineTokens = <span class="keyword">new</span> Stack&lt;Token&gt; ();</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;</div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;            <span class="comment">// Replace tabs with four spaces</span></div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;            line = line.Replace (<span class="stringliteral">&quot;\t&quot;</span>, <span class="stringliteral">&quot;    &quot;</span>);</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;            <span class="comment">// Strip out \r&#39;s</span></div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;            line = line.Replace(<span class="stringliteral">&quot;\r&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;            <span class="comment">// Record the indentation level if the previous state wants us to</span></div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;            var <a class="code" href="a00348.html#a0e59365a4aa5811f6495b92a51e23573">thisIndentation</a> = <a class="code" href="a00127.html#a4079b10b099e5d85f5482f9e7eac4179">LineIndentation</a> (line);</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;            var <a class="code" href="a00348.html#ade44b858578c3eab7b6f90030a0e3ea1">previousIndentation</a> = indentationStack.Peek ();</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;</div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00127.html#ac670aac2245cbd4694dfbd5b69313218">shouldTrackNextIndentation</a> &amp;&amp; thisIndentation &gt; previousIndentation.Key) {</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;                <span class="comment">// If we are more indented than before, emit an</span></div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;                <span class="comment">// indent token and record this new indent level</span></div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;                indentationStack.Push (<span class="keyword">new</span> KeyValuePair&lt;int, bool&gt;(<a class="code" href="a00348.html#a0e59365a4aa5811f6495b92a51e23573">thisIndentation</a>, <span class="keyword">true</span>));</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;                var indent = <span class="keyword">new</span> <a class="code" href="a00173.html">Token</a> (<a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>.Indent, <a class="code" href="a00127.html#ac90b7dce8103425a148f9e8588f14137">currentState</a>, lineNumber, previousIndentation.Key);</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;                indent.value = <span class="stringliteral">&quot;&quot;</span>.PadLeft (thisIndentation - previousIndentation.Key);</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;                <a class="code" href="a00127.html#ac670aac2245cbd4694dfbd5b69313218">shouldTrackNextIndentation</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;</div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;                lineTokens.Push (indent);</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;</div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (thisIndentation &lt; previousIndentation.Key) {</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;                <span class="comment">// If we are less indented, emit a dedent for every</span></div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;                <span class="comment">// indentation level that we passed on the way back to 0 that also</span></div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;                <span class="comment">// emitted an indentation token.</span></div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;                <span class="comment">// at the same time, remove those indent levels from the stack</span></div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;                <span class="keywordflow">while</span> (thisIndentation &lt; <a class="code" href="a00127.html#a6631a1b1a9109258ab18927e7587ff9b">indentationStack</a>.Peek ().Key) {</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;                    var <a class="code" href="a00348.html#a8b7e5c0b2c6870eaa8f9454b4f33678b">topLevel</a> = indentationStack.Pop ();</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;                    <span class="keywordflow">if</span> (topLevel.Value) {</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;                        var dedent = <span class="keyword">new</span> <a class="code" href="a00173.html">Token</a> (<a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>.Dedent, <a class="code" href="a00127.html#ac90b7dce8103425a148f9e8588f14137">currentState</a>, lineNumber, 0);</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;                        lineTokens.Push (dedent);</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;                    }</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;                }</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;            }</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;            <span class="comment">// Now that we&#39;re past any initial indentation, start</span></div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;            <span class="comment">// finding tokens.</span></div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;            <span class="keywordtype">int</span> columnNumber = <a class="code" href="a00348.html#a0e59365a4aa5811f6495b92a51e23573">thisIndentation</a>;</div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;</div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;            var whitespace = <span class="keyword">new</span> Regex (<span class="stringliteral">@&quot;\s*&quot;</span>);</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;            <span class="keywordflow">while</span> (columnNumber &lt; line.Length) {</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;                <span class="comment">// If we&#39;re about to hit a line comment, abort processing line</span></div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;                <span class="comment">// immediately</span></div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;                <span class="keywordflow">if</span> (line.Substring(columnNumber).StartsWith(<a class="code" href="a00127.html#a29c457125cc4876f8571f5d9afa372e2">LINE_COMMENT</a>, StringComparison.InvariantCulture)) {</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;                }</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;</div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;                var matched = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;</div>
+<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;                <span class="keywordflow">foreach</span> (var rule <span class="keywordflow">in</span> <a class="code" href="a00127.html#ac90b7dce8103425a148f9e8588f14137">currentState</a>.<a class="code" href="a00128.html#adf6563b1dc6f3ef80ed13c2b15b7be03">tokenRules</a>) {</div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;</div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;                    var match = rule.regex.Match (line, columnNumber);</div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;</div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;                    <span class="keywordflow">if</span> (match.Success == <span class="keyword">false</span> || match.Length == 0)</div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;                        <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;</div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;                    <span class="keywordtype">string</span> tokenText;</div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;</div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;                    <span class="keywordflow">if</span> (rule.type == <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>.Text) {</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;                        <span class="comment">// if this is text, then back up to the most recent text</span></div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;                        <span class="comment">// delimiting token, and treat everything from there as</span></div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;                        <span class="comment">// the text.</span></div>
+<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;                        <span class="comment">// we do this because we don&#39;t want this:</span></div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;                        <span class="comment">//    &lt;&lt;flip Harley3 +1&gt;&gt;</span></div>
+<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;                        <span class="comment">// to get matched as this:</span></div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;                        <span class="comment">//    BeginCommand Identifier(&quot;flip&quot;) Text(&quot;Harley3 +1&quot;) EndCommand</span></div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;                        <span class="comment">// instead, we want to match it as this:</span></div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;                        <span class="comment">//    BeginCommand Text(&quot;flip Harley3 +1&quot;) EndCommand</span></div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;                        <span class="keywordtype">int</span> textStartIndex = <a class="code" href="a00348.html#a0e59365a4aa5811f6495b92a51e23573">thisIndentation</a>;</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;</div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;                        <span class="keywordflow">if</span> (lineTokens.Count &gt; 0) {</div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;                            <span class="keywordflow">while</span> (lineTokens.Peek().type == TokenType.Identifier) {</div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;                                lineTokens.Pop ();</div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;                            }</div>
+<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;</div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;                            var startDelimiterToken = lineTokens.Peek ();</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;                            textStartIndex = startDelimiterToken.columnNumber;</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;                            <span class="keywordflow">if</span> (startDelimiterToken.type == <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>.Indent)</div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;                                textStartIndex += startDelimiterToken.value.Length;</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;                            <span class="keywordflow">if</span> (startDelimiterToken.type == <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>.Dedent)</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;                                textStartIndex = <a class="code" href="a00348.html#a0e59365a4aa5811f6495b92a51e23573">thisIndentation</a>;</div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;                        }</div>
+<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;</div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;                        columnNumber = textStartIndex;</div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;</div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;                        var textEndIndex = match.Index + match.Length;</div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;</div>
+<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;                        tokenText = line.Substring (textStartIndex, textEndIndex-textStartIndex);</div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;</div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;                        tokenText = match.Value;</div>
+<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;                    }</div>
+<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;                    columnNumber += tokenText.Length;</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;                    <span class="comment">// If this was a string, lop off the quotes at the start and</span></div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;                    <span class="comment">// end, and un-escape the quotes and slashes</span></div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;                    <span class="keywordflow">if</span> (rule.type == <a class="code" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>.String) {</div>
+<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;                        tokenText = tokenText.Substring (1, tokenText.Length - 2);</div>
+<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;</div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;                        tokenText = tokenText.Replace (<span class="stringliteral">@&quot;\\&quot;</span>, <span class="stringliteral">@&quot;\&quot;</span>);</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;                        tokenText = tokenText.Replace (<span class="stringliteral">@&quot;\&quot;&quot;&quot;</span>, <span class="stringliteral">@&quot;&quot;&quot;&quot;</span>);</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;                    }</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;                    var token = <span class="keyword">new</span> <a class="code" href="a00173.html">Token</a> (rule.type, <a class="code" href="a00127.html#ac90b7dce8103425a148f9e8588f14137">currentState</a>, lineNumber, columnNumber, tokenText);</div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;</div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;                    token.delimitsText = rule.delimitsText;</div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;</div>
+<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;                    lineTokens.Push (token);</div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;</div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;                    <span class="keywordflow">if</span> (rule.entersState != null) {</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;                        <span class="keywordflow">if</span> (<a class="code" href="a00127.html#a2c65c0ba90f973e459583badefef216a">states</a>.ContainsKey(rule.entersState) == <span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;                            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="a00174.html">TokeniserException</a> (lineNumber, columnNumber, <span class="stringliteral">&quot;Unknown tokeniser state &quot;</span> + rule.entersState);</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;                        }</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;</div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;                        <a class="code" href="a00127.html#ad3ef08f822b310d9864774b057b96995">EnterState</a> (<a class="code" href="a00127.html#a2c65c0ba90f973e459583badefef216a">states</a> [rule.entersState]);</div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;</div>
+<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;                        <span class="keywordflow">if</span> (<a class="code" href="a00127.html#ac670aac2245cbd4694dfbd5b69313218">shouldTrackNextIndentation</a> == <span class="keyword">true</span>) {</div>
+<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;                            <span class="keywordflow">if</span> (<a class="code" href="a00127.html#a6631a1b1a9109258ab18927e7587ff9b">indentationStack</a>.Peek().Key &lt; <a class="code" href="a00348.html#a0e59365a4aa5811f6495b92a51e23573">thisIndentation</a>) {</div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;                                indentationStack.Push (<span class="keyword">new</span> KeyValuePair&lt;int, bool&gt;(<a class="code" href="a00348.html#a0e59365a4aa5811f6495b92a51e23573">thisIndentation</a>, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;                            }</div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;</div>
+<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;                        }</div>
+<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;                    }</div>
+<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;</div>
+<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;                    matched = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;</div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;                }</div>
+<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;</div>
+<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;                <span class="keywordflow">if</span> (matched == <span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;</div>
+<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;                    <span class="keywordflow">throw</span> TokeniserException.ExpectedTokensFromState (lineNumber, columnNumber, <a class="code" href="a00127.html#ac90b7dce8103425a148f9e8588f14137">currentState</a>);</div>
+<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;                }</div>
+<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;</div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;                <span class="comment">// consume any lingering whitespace before the next token</span></div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;                var lastWhitespace = whitespace.Match(line, columnNumber);</div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;                <span class="keywordflow">if</span> (lastWhitespace != null) {</div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;                    columnNumber += lastWhitespace.Length;</div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;                }</div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;</div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;            }</div>
+<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;</div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;            var listToReturn = <span class="keyword">new</span> <a class="code" href="a00175.html">TokenList</a> (lineTokens.ToArray ());</div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;            listToReturn.Reverse ();</div>
+<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;</div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;            <span class="keywordflow">return</span> listToReturn;</div>
+<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;</div>
+<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;        }</div>
+<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;</div>
+<div class="line"><a name="l00661"></a><span class="lineno"><a class="line" href="a00127.html#a4079b10b099e5d85f5482f9e7eac4179">  661</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="a00127.html#a4079b10b099e5d85f5482f9e7eac4179">LineIndentation</a>(<span class="keywordtype">string</span> line)</div>
+<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;        {</div>
+<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;            var initialIndentRegex = <span class="keyword">new</span> Regex (<span class="stringliteral">@&quot;^(\s*)&quot;</span>);</div>
+<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;            var match = initialIndentRegex.Match (line);</div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;            <span class="keywordflow">if</span> (match == null || match.Groups [0] == null) {</div>
+<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;                <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;            }</div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;</div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;            <span class="keywordflow">return</span> match.Groups [0].Length;</div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;        }</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;</div>
+<div class="line"><a name="l00673"></a><span class="lineno"><a class="line" href="a00127.html#ad3ef08f822b310d9864774b057b96995">  673</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="a00127.html#ad3ef08f822b310d9864774b057b96995">EnterState</a>(<a class="code" href="a00128.html">LexerState</a> state) {</div>
+<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;            <a class="code" href="a00127.html#ac90b7dce8103425a148f9e8588f14137">currentState</a> = state;</div>
+<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;</div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00127.html#ac90b7dce8103425a148f9e8588f14137">currentState</a>.<a class="code" href="a00128.html#ad8b6ccac53bedd9dc202ffe6ac5698b2">setTrackNextIndentation</a>)</div>
+<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;                <a class="code" href="a00127.html#ac670aac2245cbd4694dfbd5b69313218">shouldTrackNextIndentation</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;        }</div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;    }</div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;}</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;</div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceabbb93ef26e3c101ff11cdd21cab08a94"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceabbb93ef26e3c101ff11cdd21cab08a94">Yarn.Null</a></div></div>
+<div class="ttc" id="a00173_html_adf11c0d29b66935a8d8109d6308d0488"><div class="ttname"><a href="a00173.html#adf11c0d29b66935a8d8109d6308d0488">Yarn.Token.parameterCount</a></div><div class="ttdeci">int parameterCount</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00190">Lexer.cs:190</a></div></div>
+<div class="ttc" id="a00174_html_aa8674d006a0d29081a7b87bdd8ff2f4f"><div class="ttname"><a href="a00174.html#aa8674d006a0d29081a7b87bdd8ff2f4f">Yarn.TokeniserException.TokeniserException</a></div><div class="ttdeci">TokeniserException(int lineNumber, int columnNumber, string message)</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00040">Lexer.cs:40</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea87c80963dae5cd099e3a377e4d314b20"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea87c80963dae5cd099e3a377e4d314b20">Yarn.UnaryMinus</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea9979cf260fa3a9c811b668e217a37e21"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea9979cf260fa3a9c811b668e217a37e21">Yarn.TagMarker</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea5d8c95ca9e91a87bd9c90b0f309fd740"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea5d8c95ca9e91a87bd9c90b0f309fd740">Yarn.EndOfLine</a></div></div>
+<div class="ttc" id="a00127_html"><div class="ttname"><a href="a00127.html">Yarn.Lexer</a></div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00212">Lexer.cs:212</a></div></div>
+<div class="ttc" id="a00174_html_a54b936d7b4f26f88a07a66c5fc1d1ad1"><div class="ttname"><a href="a00174.html#a54b936d7b4f26f88a07a66c5fc1d1ad1">Yarn.TokeniserException.lineNumber</a></div><div class="ttdeci">int lineNumber</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00036">Lexer.cs:36</a></div></div>
+<div class="ttc" id="a00128_html_af183111863c651ae5681665a2c379830"><div class="ttname"><a href="a00128.html#af183111863c651ae5681665a2c379830">Yarn.Lexer.LexerState.AddTextRule</a></div><div class="ttdeci">TokenRule AddTextRule(TokenType type, string entersState=null)</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00240">Lexer.cs:240</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea0242c502bd906e05171e64bad31c7c21"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea0242c502bd906e05171e64bad31c7c21">Yarn.EqualTo</a></div></div>
+<div class="ttc" id="a00176_html_a0de6fac3b55cf0c61e07cea53ce67caa"><div class="ttname"><a href="a00176.html#a0de6fac3b55cf0c61e07cea53ce67caa">Yarn.Lexer.TokenRule.type</a></div><div class="ttdeci">TokenType type</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00285">Lexer.cs:285</a></div></div>
+<div class="ttc" id="a00128_html_adf6563b1dc6f3ef80ed13c2b15b7be03"><div class="ttname"><a href="a00128.html#adf6563b1dc6f3ef80ed13c2b15b7be03">Yarn.Lexer.LexerState.tokenRules</a></div><div class="ttdeci">List&lt; TokenRule &gt; tokenRules</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00225">Lexer.cs:225</a></div></div>
+<div class="ttc" id="a00348_html_a8b7e5c0b2c6870eaa8f9454b4f33678b"><div class="ttname"><a href="a00348.html#a8b7e5c0b2c6870eaa8f9454b4f33678b">preprocessor.topLevel</a></div><div class="ttdeci">tuple topLevel</div><div class="ttdef"><b>Definition:</b> <a href="a00200_source.html#l00070">preprocessor.py:70</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea58be47db9455679e6a44df2eff9c9fa6"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea58be47db9455679e6a44df2eff9c9fa6">Yarn.Comma</a></div></div>
+<div class="ttc" id="a00127_html_a16b5dbf27a377cde5e8ba0eaa05b5710"><div class="ttname"><a href="a00127.html#a16b5dbf27a377cde5e8ba0eaa05b5710">Yarn.Lexer.defaultState</a></div><div class="ttdeci">LexerState defaultState</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00309">Lexer.cs:309</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceaf6d044fe1f01fb0c956b80099e2a3072"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaf6d044fe1f01fb0c956b80099e2a3072">Yarn.GreaterThan</a></div></div>
+<div class="ttc" id="a00173_html_a80fe710713201bb793a41452e314a721"><div class="ttname"><a href="a00173.html#a80fe710713201bb793a41452e314a721">Yarn.Token.lineNumber</a></div><div class="ttdeci">int lineNumber</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00182">Lexer.cs:182</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceab055bb9ca4c2fabe4be4aa6e9e3278c6"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceab055bb9ca4c2fabe4be4aa6e9e3278c6">Yarn.AddAssign</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceaf8320b26d30ab433c5a54546d21f414c"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaf8320b26d30ab433c5a54546d21f414c">Yarn.False</a></div></div>
+<div class="ttc" id="a00176_html"><div class="ttname"><a href="a00176.html">Yarn.Lexer.TokenRule</a></div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00280">Lexer.cs:280</a></div></div>
+<div class="ttc" id="a00128_html_a71ba52744e853ff142de19e97cf5daed"><div class="ttname"><a href="a00128.html#a71ba52744e853ff142de19e97cf5daed">Yarn.Lexer.LexerState.AddTransition</a></div><div class="ttdeci">TokenRule AddTransition(TokenType type, string entersState=null, bool delimitsText=false)</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00227">Lexer.cs:227</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceabbf373bbaabc962ed2d5f5cec1ebd49b"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceabbf373bbaabc962ed2d5f5cec1ebd49b">Yarn.OptionDelimit</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceaa74c05d080620f087c4e523977230666"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaa74c05d080620f087c4e523977230666">Yarn.Not</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea571dd25ea11480e6fe93f07a27059fbd"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea571dd25ea11480e6fe93f07a27059fbd">Yarn.EndOfInput</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea3a2d5fe857d8f9541136a124c2edec6c"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea3a2d5fe857d8f9541136a124c2edec6c">Yarn.Or</a></div></div>
+<div class="ttc" id="a00174_html_ad00fcf742d2b0d476ce43b27a3f3b6c1"><div class="ttname"><a href="a00174.html#ad00fcf742d2b0d476ce43b27a3f3b6c1">Yarn.TokeniserException.TokeniserException</a></div><div class="ttdeci">TokeniserException(string message)</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00039">Lexer.cs:39</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea2d7e137ea20e2c01ce105573d47ce525"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea2d7e137ea20e2c01ce105573d47ce525">Yarn.RightParen</a></div></div>
+<div class="ttc" id="a00173_html_ab8531150354ef148b8929a727f29ae39"><div class="ttname"><a href="a00173.html#ab8531150354ef148b8929a727f29ae39">Yarn.Token.Token</a></div><div class="ttdeci">Token(TokenType type, Lexer.LexerState lexerState, int lineNumber=-1, int columnNumber=-1, string value=null)</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00195">Lexer.cs:195</a></div></div>
+<div class="ttc" id="a00176_html_ab0849136a1f27b4d13cb7a45e2fe7130"><div class="ttname"><a href="a00176.html#ab0849136a1f27b4d13cb7a45e2fe7130">Yarn.Lexer.TokenRule.delimitsText</a></div><div class="ttdeci">bool delimitsText</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00287">Lexer.cs:287</a></div></div>
+<div class="ttc" id="a00128_html_a951f91e9522ffe84851f2e25e9445106"><div class="ttname"><a href="a00128.html#a951f91e9522ffe84851f2e25e9445106">Yarn.Lexer.LexerState.patterns</a></div><div class="ttdeci">Dictionary&lt; TokenType, string &gt; patterns</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00218">Lexer.cs:218</a></div></div>
+<div class="ttc" id="a00174_html_aabf2ad38f3984297c1daede9be55e3d6"><div class="ttname"><a href="a00174.html#aabf2ad38f3984297c1daede9be55e3d6">Yarn.TokeniserException.columnNumber</a></div><div class="ttdeci">int columnNumber</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00037">Lexer.cs:37</a></div></div>
+<div class="ttc" id="a00173_html_af15d26fa4e6f276ab58ff66d3c4203da"><div class="ttname"><a href="a00173.html#af15d26fa4e6f276ab58ff66d3c4203da">Yarn.Token.delimitsText</a></div><div class="ttdeci">bool delimitsText</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00186">Lexer.cs:186</a></div></div>
+<div class="ttc" id="a00127_html_a2c65c0ba90f973e459583badefef216a"><div class="ttname"><a href="a00127.html#a2c65c0ba90f973e459583badefef216a">Yarn.Lexer.states</a></div><div class="ttdeci">Dictionary&lt; string, LexerState &gt; states</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00307">Lexer.cs:307</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea0b914e196182d02615487e9793ecff3d"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea0b914e196182d02615487e9793ecff3d">Yarn.Divide</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea6d879fc3833a8dc8742400a3c76b56fd"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea6d879fc3833a8dc8742400a3c76b56fd">Yarn.EndCommand</a></div></div>
+<div class="ttc" id="a00173_html_a3df6b32d6190a639619a3f064c2154e2"><div class="ttname"><a href="a00173.html#a3df6b32d6190a639619a3f064c2154e2">Yarn.Token.value</a></div><div class="ttdeci">string value</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00179">Lexer.cs:179</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceae257376d913f3b53cbb4a9b19d770648"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceae257376d913f3b53cbb4a9b19d770648">Yarn.Multiply</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9">Yarn.Add</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">Yarn.If</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceab2ee912b91d69b435159c7c3f6df7f5f"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceab2ee912b91d69b435159c7c3f6df7f5f">Yarn.Number</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea0be8406951cdfda82f00f79328cf4efc"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea0be8406951cdfda82f00f79328cf4efc">Yarn.Comment</a></div></div>
+<div class="ttc" id="a00175_html"><div class="ttname"><a href="a00175.html">Yarn.TokenList</a></div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00070">Lexer.cs:70</a></div></div>
+<div class="ttc" id="a00175_html_a9b7cf7c495a19faa91a1b5991d7748ef"><div class="ttname"><a href="a00175.html#a9b7cf7c495a19faa91a1b5991d7748ef">Yarn.TokenList.TokenList</a></div><div class="ttdeci">TokenList(params Token[] tokens)</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00073">Lexer.cs:73</a></div></div>
+<div class="ttc" id="a00128_html_ad8b6ccac53bedd9dc202ffe6ac5698b2"><div class="ttname"><a href="a00128.html#ad8b6ccac53bedd9dc202ffe6ac5698b2">Yarn.Lexer.LexerState.setTrackNextIndentation</a></div><div class="ttdeci">bool setTrackNextIndentation</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00276">Lexer.cs:276</a></div></div>
+<div class="ttc" id="a00348_html_ade44b858578c3eab7b6f90030a0e3ea1"><div class="ttname"><a href="a00348.html#ade44b858578c3eab7b6f90030a0e3ea1">preprocessor.previousIndentation</a></div><div class="ttdeci">list previousIndentation</div><div class="ttdef"><b>Definition:</b> <a href="a00200_source.html#l00052">preprocessor.py:52</a></div></div>
+<div class="ttc" id="a00127_html_a4079b10b099e5d85f5482f9e7eac4179"><div class="ttname"><a href="a00127.html#a4079b10b099e5d85f5482f9e7eac4179">Yarn.Lexer.LineIndentation</a></div><div class="ttdeci">int LineIndentation(string line)</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00661">Lexer.cs:661</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea5d5b78699e57104f2fa03bbdf7b9197b"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea5d5b78699e57104f2fa03bbdf7b9197b">Yarn.Set</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceaf02071a8b56c676adabcad98429fa14e"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaf02071a8b56c676adabcad98429fa14e">Yarn.LeftParen</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675">Yarn.Text</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea76feb79109026728a20736a8c6504548"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea76feb79109026728a20736a8c6504548">Yarn.Xor</a></div></div>
+<div class="ttc" id="a00127_html_ac670aac2245cbd4694dfbd5b69313218"><div class="ttname"><a href="a00127.html#ac670aac2245cbd4694dfbd5b69313218">Yarn.Lexer.shouldTrackNextIndentation</a></div><div class="ttdeci">bool shouldTrackNextIndentation</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00315">Lexer.cs:315</a></div></div>
+<div class="ttc" id="a00174_html_af88cfa5eafdee355e1abb67e358497bd"><div class="ttname"><a href="a00174.html#af88cfa5eafdee355e1abb67e358497bd">Yarn.TokeniserException.ExpectedTokensFromState</a></div><div class="ttdeci">static TokeniserException ExpectedTokensFromState(int lineNumber, int columnNumber, Lexer.LexerState state)</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00048">Lexer.cs:48</a></div></div>
+<div class="ttc" id="a00176_html_a3d171ae7c4870659d2d1d977a216bdd7"><div class="ttname"><a href="a00176.html#a3d171ae7c4870659d2d1d977a216bdd7">Yarn.Lexer.TokenRule.TokenRule</a></div><div class="ttdeci">TokenRule(TokenType type, Regex regex, string entersState=null, bool delimitsText=false)</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00289">Lexer.cs:289</a></div></div>
+<div class="ttc" id="a00173_html_a089d248c904a6e8366b81c2c47ff5af8"><div class="ttname"><a href="a00173.html#a089d248c904a6e8366b81c2c47ff5af8">Yarn.Token.context</a></div><div class="ttdeci">string context</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00184">Lexer.cs:184</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea67827f79b05c979b2378e9514bb7e741"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea67827f79b05c979b2378e9514bb7e741">Yarn.LessThanOrEqualTo</a></div></div>
+<div class="ttc" id="a00173_html_abf676a737679ec2fb1dffd75dc4d7976"><div class="ttname"><a href="a00173.html#abf676a737679ec2fb1dffd75dc4d7976">Yarn.Token.ToString</a></div><div class="ttdeci">override string ToString()</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00203">Lexer.cs:203</a></div></div>
+<div class="ttc" id="a00348_html_a0e59365a4aa5811f6495b92a51e23573"><div class="ttname"><a href="a00348.html#a0e59365a4aa5811f6495b92a51e23573">preprocessor.thisIndentation</a></div><div class="ttdeci">tuple thisIndentation</div><div class="ttdef"><b>Definition:</b> <a href="a00200_source.html#l00047">preprocessor.py:47</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea675b39ecba872a6cf58d578781bf5216"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea675b39ecba872a6cf58d578781bf5216">Yarn.Dedent</a></div></div>
+<div class="ttc" id="a00127_html_a29c457125cc4876f8571f5d9afa372e2"><div class="ttname"><a href="a00127.html#a29c457125cc4876f8571f5d9afa372e2">Yarn.Lexer.LINE_COMMENT</a></div><div class="ttdeci">const string LINE_COMMENT</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00305">Lexer.cs:305</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea6a0053231db40a4539b8f783a719a54a"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea6a0053231db40a4539b8f783a719a54a">Yarn.Else</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea2fb334b031e5462b88186810b5dba5ee"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea2fb334b031e5462b88186810b5dba5ee">Yarn.BeginCommand</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea497470e76a40fc53e14c0df9b4e4ec9f"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea497470e76a40fc53e14c0df9b4e4ec9f">Yarn.Indent</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceade360e1624063d8b9de7d2c411a960d8"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceade360e1624063d8b9de7d2c411a960d8">Yarn.EndIf</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea07001155edc33437d76742b7ac124529"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea07001155edc33437d76742b7ac124529">Yarn.ShortcutOption</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceac6d9d7bb9939f62f01c80f8b1251501c"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceac6d9d7bb9939f62f01c80f8b1251501c">Yarn.LessThan</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea4cde2424cf960a70b7fc5fda1119143d"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea4cde2424cf960a70b7fc5fda1119143d">Yarn.Modulo</a></div></div>
+<div class="ttc" id="a00128_html_aeb8debd0d81a76e90f083f0bf407573e"><div class="ttname"><a href="a00128.html#aeb8debd0d81a76e90f083f0bf407573e">Yarn.Lexer.LexerState.name</a></div><div class="ttdeci">string name</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00216">Lexer.cs:216</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceaf827cf462f62848df37c5e1e94a4da74"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaf827cf462f62848df37c5e1e94a4da74">Yarn.True</a></div></div>
+<div class="ttc" id="a00127_html_a4bf394bcf675142f33c90541be7dd571"><div class="ttname"><a href="a00127.html#a4bf394bcf675142f33c90541be7dd571">Yarn.Lexer.Lexer</a></div><div class="ttdeci">Lexer()</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00317">Lexer.cs:317</a></div></div>
+<div class="ttc" id="a00176_html_af6a4bd3416c4e1b8e56f9db461d52d18"><div class="ttname"><a href="a00176.html#af6a4bd3416c4e1b8e56f9db461d52d18">Yarn.Lexer.TokenRule.entersState</a></div><div class="ttdeci">string entersState</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00284">Lexer.cs:284</a></div></div>
+<div class="ttc" id="a00176_html_a47a404d6637fae489c3c77729a01cc69"><div class="ttname"><a href="a00176.html#a47a404d6637fae489c3c77729a01cc69">Yarn.Lexer.TokenRule.regex</a></div><div class="ttdeci">Regex regex</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00281">Lexer.cs:281</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea96b5d5dce523a30ceae47db080d8af48"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea96b5d5dce523a30ceae47db080d8af48">Yarn.GreaterThanOrEqualTo</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea0961129d84d9d8f6aa4138a3e5022a1d"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea0961129d84d9d8f6aa4138a3e5022a1d">Yarn.NotEqualTo</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">Yarn.String</a></div></div>
+<div class="ttc" id="a00176_html_a09f49e6edf9ace38a92d723998181f8f"><div class="ttname"><a href="a00176.html#a09f49e6edf9ace38a92d723998181f8f">Yarn.Lexer.TokenRule.isTextRule</a></div><div class="ttdeci">bool isTextRule</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00286">Lexer.cs:286</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea9f086f3b58f1b290002de301d3a7ab24"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea9f086f3b58f1b290002de301d3a7ab24">Yarn.EqualToOrAssign</a></div></div>
+<div class="ttc" id="a00127_html_ac90b7dce8103425a148f9e8588f14137"><div class="ttname"><a href="a00127.html#ac90b7dce8103425a148f9e8588f14137">Yarn.Lexer.currentState</a></div><div class="ttdeci">LexerState currentState</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00310">Lexer.cs:310</a></div></div>
+<div class="ttc" id="a00174_html"><div class="ttname"><a href="a00174.html">Yarn.TokeniserException</a></div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00034">Lexer.cs:34</a></div></div>
+<div class="ttc" id="a00176_html_a1ed23ad16b116ecb06dd75b157bf752f"><div class="ttname"><a href="a00176.html#a1ed23ad16b116ecb06dd75b157bf752f">Yarn.Lexer.TokenRule.ToString</a></div><div class="ttdeci">override string ToString()</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00297">Lexer.cs:297</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea7c3dfbd9bd6620d1cde7bbad4750a9c4"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea7c3dfbd9bd6620d1cde7bbad4750a9c4">Yarn.MultiplyAssign</a></div></div>
+<div class="ttc" id="a00127_html_a20b63f6ef434f6a40fd388f262f03fa8"><div class="ttname"><a href="a00127.html#a20b63f6ef434f6a40fd388f262f03fa8">Yarn.Lexer.TokeniseLine</a></div><div class="ttdeci">TokenList TokeniseLine(string line, int lineNumber)</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00497">Lexer.cs:497</a></div></div>
+<div class="ttc" id="a00127_html_a646081a52b241abaafe5e0cfaeafd751"><div class="ttname"><a href="a00127.html#a646081a52b241abaafe5e0cfaeafd751">Yarn.Lexer.CreateStates</a></div><div class="ttdeci">void CreateStates()</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00322">Lexer.cs:322</a></div></div>
+<div class="ttc" id="a00127_html_a6631a1b1a9109258ab18927e7587ff9b"><div class="ttname"><a href="a00127.html#a6631a1b1a9109258ab18927e7587ff9b">Yarn.Lexer.indentationStack</a></div><div class="ttdeci">Stack&lt; KeyValuePair&lt; int, bool &gt; &gt; indentationStack</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00314">Lexer.cs:314</a></div></div>
+<div class="ttc" id="a00128_html_ac67a7c0e09d7b4350f75b105723a4f6c"><div class="ttname"><a href="a00128.html#ac67a7c0e09d7b4350f75b105723a4f6c">Yarn.Lexer.LexerState.LexerState</a></div><div class="ttdeci">LexerState(Dictionary&lt; TokenType, string &gt; patterns)</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00220">Lexer.cs:220</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea60776f3f45a828ebfd062b8ad8118b38"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea60776f3f45a828ebfd062b8ad8118b38">Yarn.DivideAssign</a></div></div>
+<div class="ttc" id="a00127_html_a6a09f1bb13f28acd95fd081954b45437"><div class="ttname"><a href="a00127.html#a6a09f1bb13f28acd95fd081954b45437">Yarn.Lexer.Tokenise</a></div><div class="ttdeci">TokenList Tokenise(string title, string text)</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00467">Lexer.cs:467</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeace"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">Yarn.TokenType</a></div><div class="ttdeci">TokenType</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00080">Lexer.cs:80</a></div></div>
+<div class="ttc" id="a00128_html"><div class="ttname"><a href="a00128.html">Yarn.Lexer.LexerState</a></div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00214">Lexer.cs:214</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceaea5b66107aeb6829d789adefcfaac6eb"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaea5b66107aeb6829d789adefcfaac6eb">Yarn.ElseIf</a></div></div>
+<div class="ttc" id="a00173_html_a471a25da67fda0524f2375f9a882aafa"><div class="ttname"><a href="a00173.html#a471a25da67fda0524f2375f9a882aafa">Yarn.Token.type</a></div><div class="ttdeci">TokenType type</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00178">Lexer.cs:178</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9">Yarn.Variable</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea453fb623e752c5993f65bc410fd74fe5"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea453fb623e752c5993f65bc410fd74fe5">Yarn.Minus</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceab05d460746c046306a3b74039a9977ba"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceab05d460746c046306a3b74039a9977ba">Yarn.MinusAssign</a></div></div>
+<div class="ttc" id="a00173_html_a9a0f0a8a7ab1e90ab48f15192323ffca"><div class="ttname"><a href="a00173.html#a9a0f0a8a7ab1e90ab48f15192323ffca">Yarn.Token.columnNumber</a></div><div class="ttdeci">int columnNumber</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00183">Lexer.cs:183</a></div></div>
+<div class="ttc" id="a00127_html_ad3ef08f822b310d9864774b057b96995"><div class="ttname"><a href="a00127.html#ad3ef08f822b310d9864774b057b96995">Yarn.Lexer.EnterState</a></div><div class="ttdeci">void EnterState(LexerState state)</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00673">Lexer.cs:673</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea2c617506a5bd9d900fd650a4bee0e626"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea2c617506a5bd9d900fd650a4bee0e626">Yarn.OptionEnd</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceaf6500edfd37e45de2894dc48866dca81"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceaf6500edfd37e45de2894dc48866dca81">Yarn.OptionStart</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceace9a733c2ae3f8b704aec91f551b2bcc"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceace9a733c2ae3f8b704aec91f551b2bcc">Yarn.Whitespace</a></div></div>
+<div class="ttc" id="a00128_html_a69948f05c35eeae9cb8448c849a053e6"><div class="ttname"><a href="a00128.html#a69948f05c35eeae9cb8448c849a053e6">Yarn.Lexer.LexerState.containsTextRule</a></div><div class="ttdeci">bool containsTextRule</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00266">Lexer.cs:266</a></div></div>
+<div class="ttc" id="a00173_html_a710099e7abe84f30864a320cc7464214"><div class="ttname"><a href="a00173.html#a710099e7abe84f30864a320cc7464214">Yarn.Token.lexerState</a></div><div class="ttdeci">string lexerState</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00193">Lexer.cs:193</a></div></div>
+<div class="ttc" id="a00173_html"><div class="ttname"><a href="a00173.html">Yarn.Token</a></div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00175">Lexer.cs:175</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeacea29ee5d1ebcc033234938a5234f1f2075"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeacea29ee5d1ebcc033234938a5234f1f2075">Yarn.Identifier</a></div></div>
+<div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeaceac33315685a0cba3ce53be378b3c7874b"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeaceac33315685a0cba3ce53be378b3c7874b">Yarn.And</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_2870522f32e1cc12c0615fa0200eb498.html">YarnSpinnerTests</a></li><li class="navelem"><a class="el" href="a00310.html">DialogueTests.cs</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:36 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00310.html">Lexer.cs</a></li>
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:04 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

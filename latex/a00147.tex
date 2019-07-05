@@ -1,160 +1,245 @@
-\hypertarget{a00147}{\section{Yarn.\-Run\-Options Class Reference}
-\label{a00147}\index{Yarn.\-Run\-Options@{Yarn.\-Run\-Options}}
+\hypertarget{a00147}{\section{Yarn.\-Parse\-Exception Class Reference}
+\label{a00147}\index{Yarn.\-Parse\-Exception@{Yarn.\-Parse\-Exception}}
 }
 
 
-Inheritance diagram for Yarn.\-Run\-Options\-:
+Inheritance diagram for Yarn.\-Parse\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=210pt]{a00723}
+\includegraphics[width=188pt]{a00712}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Run\-Options\-:
+Collaboration diagram for Yarn.\-Parse\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=210pt]{a00724}
+\includegraphics[width=188pt]{a00713}
 \end{center}
 \end{figure}
-\subsection*{Properties}
+\subsection*{Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{a00147_a4b385e83338d14947c4d840d2d1ee266}{wait\-For\-Input}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\hyperlink{a00147_aa3c4f5c8b0ae86097bbc46044df9f317}{Parse\-Exception} (string message)
+\end{DoxyCompactItemize}
+\subsection*{Static Package Functions}
+\begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00147_a785bd0f1c8b6674e7a1cfbe38c29b961}{start\-Node}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+static \hyperlink{a00147}{Parse\-Exception} \hyperlink{a00147_a511a51bb42dc5bb107eb68f7e5cf5ff1}{Make} (\hyperlink{a00173}{Token} found\-Token, params \hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} expected\-Types)
 \item 
-I\-List$<$ string $>$ \hyperlink{a00147_a2222c73ce5366b02490c6123b711f596}{variables}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+static \hyperlink{a00147}{Parse\-Exception} \hyperlink{a00147_a173f3cabc4741d9d9e016310e90c1c9f}{Make} (\hyperlink{a00173}{Token} most\-Recent\-Token, string message)
 \item 
-int \hyperlink{a00147_a525bb1890b29f86002c2f163ace4a3d8}{run\-Times}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+static \hyperlink{a00147}{Parse\-Exception} \hyperlink{a00147_a0265905b09fbd675d40c452d9fc61207}{Make} (\hyperlink{a00320_a7e45f8222713cb764832fd3c69d0268f}{Antlr4.\-Runtime.\-Parser\-Rule\-Context} context, string message)
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{a00147_ae21d271c37dabee023771a951f6e774e}{automatically\-Select\-First\-Option}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-string \hyperlink{a00093_a7e43c3b73722956cb0f5d507e4eef527}{string\-Table}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-string \hyperlink{a00093_af4c0062a1d46281d377f87084fde374e}{only\-Consider\-Node}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00093_ad97950e47ce2aaeb598295b7c3c44b13}{experimental}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00031_a89964ea17bd19caf00cb5bff563ed01c}{show\-Debugging\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00031_ada4d83d1756918f362d55f6649b82b17}{verbose}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-I\-List$<$ string $>$ \hyperlink{a00031_aa93cbb1bc1d5328e0a417012621e92d2}{files}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+int \hyperlink{a00147_ab335169367e64fd6d89d58b3ac573751}{line\-Number} = 0
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 81 of file Main.\-cs.
+Definition at line 11 of file Program.\-cs.
 
 
 
-\subsection{Property Documentation}
-\hypertarget{a00147_ae21d271c37dabee023771a951f6e774e}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!automatically\-Select\-First\-Option@{automatically\-Select\-First\-Option}}
-\index{automatically\-Select\-First\-Option@{automatically\-Select\-First\-Option}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{automatically\-Select\-First\-Option}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Run\-Options.\-automatically\-Select\-First\-Option\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00147_ae21d271c37dabee023771a951f6e774e}
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00147_aa3c4f5c8b0ae86097bbc46044df9f317}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Parse\-Exception@{Parse\-Exception}}
+\index{Parse\-Exception@{Parse\-Exception}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
+\subsubsection[{Parse\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parse\-Exception.\-Parse\-Exception (
+\begin{DoxyParamCaption}
+\item[{string}]{message}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00147_aa3c4f5c8b0ae86097bbc46044df9f317}
 
 
-Definition at line 97 of file Main.\-cs.
-
-\hypertarget{a00093_ad97950e47ce2aaeb598295b7c3c44b13}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!experimental@{experimental}}
-\index{experimental@{experimental}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{experimental}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Execution\-Options.\-experimental\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00093_ad97950e47ce2aaeb598295b7c3c44b13}
-
-
-Definition at line 61 of file Main.\-cs.
+Definition at line 67 of file Program.\-cs.
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
-
-\hypertarget{a00031_aa93cbb1bc1d5328e0a417012621e92d2}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!files@{files}}
-\index{files@{files}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{files}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Base\-Options.\-files\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00031_aa93cbb1bc1d5328e0a417012621e92d2}
+Referenced by Yarn.\-Parse\-Exception.\-Make().
 
 
-Definition at line 47 of file Main.\-cs.
+\begin{DoxyCode}
+67 : base(message) \{ \}
+\end{DoxyCode}
 
 
-
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run(), and Yarn.\-Yarn\-Spinner\-Console.\-Verify().
-
-\hypertarget{a00093_af4c0062a1d46281d377f87084fde374e}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!only\-Consider\-Node@{only\-Consider\-Node}}
-\index{only\-Consider\-Node@{only\-Consider\-Node}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{only\-Consider\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Execution\-Options.\-only\-Consider\-Node\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00093_af4c0062a1d46281d377f87084fde374e}
-
-
-Definition at line 59 of file Main.\-cs.
-
-\hypertarget{a00147_a525bb1890b29f86002c2f163ace4a3d8}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!run\-Times@{run\-Times}}
-\index{run\-Times@{run\-Times}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{run\-Times}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Run\-Options.\-run\-Times\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00147_a525bb1890b29f86002c2f163ace4a3d8}
-
-
-Definition at line 94 of file Main.\-cs.
-
-\hypertarget{a00031_a89964ea17bd19caf00cb5bff563ed01c}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!show\-Debugging\-Info@{show\-Debugging\-Info}}
-\index{show\-Debugging\-Info@{show\-Debugging\-Info}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{show\-Debugging\-Info}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-show\-Debugging\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00031_a89964ea17bd19caf00cb5bff563ed01c}
-
-
-Definition at line 40 of file Main.\-cs.
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00147_aa3c4f5c8b0ae86097bbc46044df9f317_icgraph}
+\end{center}
+\end{figure}
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
 
-\hypertarget{a00147_a785bd0f1c8b6674e7a1cfbe38c29b961}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!start\-Node@{start\-Node}}
-\index{start\-Node@{start\-Node}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{start\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Run\-Options.\-start\-Node\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00147_a785bd0f1c8b6674e7a1cfbe38c29b961}
-
-
-Definition at line 88 of file Main.\-cs.
-
-\hypertarget{a00093_a7e43c3b73722956cb0f5d507e4eef527}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!string\-Table@{string\-Table}}
-\index{string\-Table@{string\-Table}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{string\-Table}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Execution\-Options.\-string\-Table\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00093_a7e43c3b73722956cb0f5d507e4eef527}
+\subsection{Member Function Documentation}
+\hypertarget{a00147_a511a51bb42dc5bb107eb68f7e5cf5ff1}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
+\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
+\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
+\begin{DoxyParamCaption}
+\item[{{\bf Token}}]{found\-Token, }
+\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{expected\-Types}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00147_a511a51bb42dc5bb107eb68f7e5cf5ff1}
 
 
-Definition at line 55 of file Main.\-cs.
-
-\hypertarget{a00147_a2222c73ce5366b02490c6123b711f596}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!variables@{variables}}
-\index{variables@{variables}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{variables}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Run\-Options.\-variables\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00147_a2222c73ce5366b02490c6123b711f596}
-
-
-Definition at line 91 of file Main.\-cs.
-
-\hypertarget{a00031_ada4d83d1756918f362d55f6649b82b17}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!verbose@{verbose}}
-\index{verbose@{verbose}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{verbose}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-verbose\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00031_ada4d83d1756918f362d55f6649b82b17}
-
-
-Definition at line 44 of file Main.\-cs.
+Definition at line 16 of file Program.\-cs.
 
 
 
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Table\-Generator.\-Generate\-Tables().
-
-\hypertarget{a00147_a4b385e83338d14947c4d840d2d1ee266}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!wait\-For\-Input@{wait\-For\-Input}}
-\index{wait\-For\-Input@{wait\-For\-Input}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{wait\-For\-Input}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Run\-Options.\-wait\-For\-Input\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00147_a4b385e83338d14947c4d840d2d1ee266}
+References Yarn.\-Parse\-Exception.\-line\-Number, and Yarn.\-Parse\-Exception.\-Parse\-Exception().
 
 
-Definition at line 85 of file Main.\-cs.
+\begin{DoxyCode}
+17         \{
+18 
+19             var \hyperlink{a00147_ab335169367e64fd6d89d58b3ac573751}{lineNumber} = foundToken.lineNumber + 1;
+20 
+21             var expectedTypeNames = \textcolor{keyword}{new} List<String>();
+22             \textcolor{keywordflow}{foreach} (var type \textcolor{keywordflow}{in} expectedTypes)
+23             \{
+24                 expectedTypeNames.Add(type.ToString());
+25             \}
+26 
+27             \textcolor{keywordtype}{string} possibleValues = string.Join(\textcolor{stringliteral}{","}, expectedTypeNames.ToArray());
+28             \textcolor{keywordtype}{string} message = string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Line \{0\}:\{1\}: Expected \{2\}, but
+       found \{3\}"},
+29                                            \hyperlink{a00147_ab335169367e64fd6d89d58b3ac573751}{lineNumber},
+30                                            foundToken.columnNumber,
+31                                            possibleValues,
+32                                            foundToken.type.ToString()
+33                                            );
+34             var e = \textcolor{keyword}{new} \hyperlink{a00147_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException}(message);
+35             e.lineNumber = \hyperlink{a00147_ab335169367e64fd6d89d58b3ac573751}{lineNumber};
+36             \textcolor{keywordflow}{return} e;
+37         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00147_a511a51bb42dc5bb107eb68f7e5cf5ff1_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00147_a173f3cabc4741d9d9e016310e90c1c9f}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
+\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
+\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
+\begin{DoxyParamCaption}
+\item[{{\bf Token}}]{most\-Recent\-Token, }
+\item[{string}]{message}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00147_a173f3cabc4741d9d9e016310e90c1c9f}
+
+
+Definition at line 39 of file Program.\-cs.
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run().
+References Yarn.\-Parse\-Exception.\-line\-Number, and Yarn.\-Parse\-Exception.\-Parse\-Exception().
+
+
+\begin{DoxyCode}
+40         \{
+41             var \hyperlink{a00147_ab335169367e64fd6d89d58b3ac573751}{lineNumber} = mostRecentToken.lineNumber + 1;
+42             \textcolor{keywordtype}{string} theMessage = string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Line \{0\}:\{1\}: \{2\}"},
+43                                  \hyperlink{a00147_ab335169367e64fd6d89d58b3ac573751}{lineNumber},
+44                                 mostRecentToken.columnNumber,
+45                                  message);
+46             var e = \textcolor{keyword}{new} \hyperlink{a00147_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException}(theMessage);
+47             e.lineNumber = \hyperlink{a00147_ab335169367e64fd6d89d58b3ac573751}{lineNumber};
+48             \textcolor{keywordflow}{return} e;
+49         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00147_a173f3cabc4741d9d9e016310e90c1c9f_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00147_a0265905b09fbd675d40c452d9fc61207}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
+\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
+\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
+\begin{DoxyParamCaption}
+\item[{{\bf Antlr4.\-Runtime.\-Parser\-Rule\-Context}}]{context, }
+\item[{string}]{message}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00147_a0265905b09fbd675d40c452d9fc61207}
+
+
+Definition at line 51 of file Program.\-cs.
+
+
+
+References Yarn.\-Parse\-Exception.\-Parse\-Exception().
+
+
+\begin{DoxyCode}
+52         \{
+53             \textcolor{keywordtype}{int} line = context.Start.Line;
+54 
+55             \textcolor{comment}{// getting the text that has the issue inside}
+56             \textcolor{keywordtype}{int} start = context.Start.StartIndex;
+57             \textcolor{keywordtype}{int} end = context.Stop.StopIndex;
+58             \textcolor{keywordtype}{string} body = context.Start.InputStream.GetText(\textcolor{keyword}{new} Antlr4.Runtime.Misc.Interval(start, end));
+59 
+60             \textcolor{keywordtype}{string} theMessage = string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Error on line \{0\}\(\backslash\)n\{1\}\(\backslash\)n\{2\}"}, 
+      line,body,message);
+61 
+62             var e = \textcolor{keyword}{new} \hyperlink{a00147_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException}(theMessage);
+63             e.lineNumber = line;
+64             \textcolor{keywordflow}{return} e;
+65         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00147_a0265905b09fbd675d40c452d9fc61207_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00147_ab335169367e64fd6d89d58b3ac573751}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parse\-Exception.\-line\-Number = 0\hspace{0.3cm}{\ttfamily [package]}}}\label{a00147_ab335169367e64fd6d89d58b3ac573751}
+
+
+Definition at line 14 of file Program.\-cs.
+
+
+
+Referenced by Yarn.\-Parse\-Exception.\-Make().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner\-Console/\hyperlink{a00307}{Main.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00314}{Program.\-cs}\end{DoxyCompactItemize}

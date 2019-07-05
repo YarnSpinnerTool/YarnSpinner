@@ -1,168 +1,122 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00072" kind="class" prot="public">
-    <compoundname>CsvHelper::CsvWriterException</compoundname>
-    <basecompoundref refid="a00056" prot="public" virt="non-virtual">CsvHelper.CsvHelperException</basecompoundref>
+  <compounddef id="a00072" kind="class" prot="package">
+    <compoundname>CsvHelper::Configuration::CsvPropertyMapComparer</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IComparer&lt; CsvPropertyMap &gt;</basecompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00072_1a4e5030012e1258c3db3da1725c0d9332" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvWriterException.CsvWriterException</definition>
-        <argsstring>()</argsstring>
-        <name>CsvWriterException</name>
-        <briefdescription>
-<para>Initializes a new instance of the <ref refid="a00072" kindref="compound">CsvWriterException</ref> class. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" bodystart="23" bodyend="23"/>
-      </memberdef>
-      <memberdef kind="function" id="a00072_1a6d01cb3854a95d77cd1f9e2d8b1aa304" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvWriterException.CsvWriterException</definition>
-        <argsstring>(string message)</argsstring>
-        <name>CsvWriterException</name>
+      <memberdef kind="function" id="a00072_1a41ab777503459b3984a2e2826a14d52a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>virtual int CsvHelper.Configuration.CsvPropertyMapComparer.Compare</definition>
+        <argsstring>(object x, object y)</argsstring>
+        <name>Compare</name>
         <param>
-          <type>string</type>
-          <declname>message</declname>
+          <type>object</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>y</declname>
         </param>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="a00072" kindref="compound">CsvWriterException</ref> class with a specified error message. </para>        </briefdescription>
+<para>Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other. </para>        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
+<para><simplesect kind="return"><para>Value Condition Less than zero <emphasis>x</emphasis>  is less than <emphasis>y</emphasis> . Zero <emphasis>x</emphasis>  equals <emphasis>y</emphasis> . Greater than zero <emphasis>x</emphasis>  is greater than <emphasis>y</emphasis> . </para></simplesect>
+<parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>message</parametername>
+<parametername>x</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The message that describes the error.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" line="30" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" bodystart="30" bodyend="30"/>
-      </memberdef>
-      <memberdef kind="function" id="a00072_1aedacd3e9a9161a62991cc1d388298a14" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvWriterException.CsvWriterException</definition>
-        <argsstring>(string message, Exception innerException)</argsstring>
-        <name>CsvWriterException</name>
-        <param>
-          <type>string</type>
-          <declname>message</declname>
-        </param>
-        <param>
-          <type>Exception</type>
-          <declname>innerException</declname>
-        </param>
-        <briefdescription>
-<para>Initializes a new instance of the <ref refid="a00072" kindref="compound">CsvWriterException</ref> class with a specified error message and a reference to the inner exception that is the cause of this exception. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>message</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The error message that explains the reason for the exception.</para></parameterdescription>
+<para>The first object to compare. </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>innerException</parametername>
+<parametername>y</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</para></parameterdescription>
+<para>The second object to compare. </para></parameterdescription>
 </parameteritem>
 </parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" bodystart="39" bodyend="39"/>
-      </memberdef>
-      <memberdef kind="function" id="a00072_1ac4ae90ce8433632c2047d4de364effa6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvWriterException.CsvWriterException</definition>
-        <argsstring>(SerializationInfo info, StreamingContext context)</argsstring>
-        <name>CsvWriterException</name>
-        <param>
-          <type>SerializationInfo</type>
-          <declname>info</declname>
-        </param>
-        <param>
-          <type>StreamingContext</type>
-          <declname>context</declname>
-        </param>
-        <briefdescription>
-<para>Initializes a new instance of the <ref refid="a00072" kindref="compound">CsvWriterException</ref> class with serialized data. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
+<parameterlist kind="exception"><parameteritem>
 <parameternamelist>
-<parametername>info</parametername>
+<parametername>T:System.ArgumentException</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The SerializationInfo that holds the serialized object data about the exception being thrown.</para></parameterdescription>
+<para>Neither <emphasis>x</emphasis>  nor <emphasis>y</emphasis>  implements the T:System.IComparable interface. -or- <emphasis>x</emphasis>  and <emphasis>y</emphasis>  are of different types and neither one can handle comparisons with the other. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;filterpriority&gt;2&lt;/filterpriority&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapComparer.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapComparer.cs" bodystart="38" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="a00072_1ab9c855cf5389c8f1ae1b476d508ade5d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>virtual int CsvHelper.Configuration.CsvPropertyMapComparer.Compare</definition>
+        <argsstring>(CsvPropertyMap x, CsvPropertyMap y)</argsstring>
+        <name>Compare</name>
+        <param>
+          <type><ref refid="a00070" kindref="compound">CsvPropertyMap</ref></type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="a00070" kindref="compound">CsvPropertyMap</ref></type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Value Condition Less than zero <emphasis>x</emphasis>  is less than <emphasis>y</emphasis> . Zero <emphasis>x</emphasis>  equals <emphasis>y</emphasis> . Greater than zero <emphasis>x</emphasis>  is greater than <emphasis>y</emphasis> . </para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first object to compare. </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>context</parametername>
+<parametername>y</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The StreamingContext that contains contextual information about the source or destination.</para></parameterdescription>
+<para>The second object to compare. </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" bodystart="48" bodyend="48"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapComparer.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapComparer.cs" bodystart="61" bodyend="73"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Represents errors that occur while writing a CSV file. </para>    </briefdescription>
+<para>Used to compare <ref refid="a00070" kindref="compound">CsvPropertyMap</ref>s. The order is by field index ascending. Any fields that don&apos;t have an index are pushed to the bottom. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1185">
-        <label>CsvHelper.CsvWriterException</label>
+      <node id="1126">
+        <label>CsvHelper.Configuration.CsvPropertyMapComparer</label>
         <link refid="a00072"/>
-        <childnode refid="1186" relation="public-inheritance">
+        <childnode refid="1127" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1187">
-        <label>Exception</label>
-      </node>
-      <node id="1186">
-        <label>CsvHelperException</label>
-        <link refid="a00056"/>
-        <childnode refid="1187" relation="public-inheritance">
-        </childnode>
+      <node id="1127">
+        <label>IComparer&lt; CsvPropertyMap &gt;</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1188">
-        <label>CsvHelper.CsvWriterException</label>
+      <node id="1128">
+        <label>CsvHelper.Configuration.CsvPropertyMapComparer</label>
         <link refid="a00072"/>
-        <childnode refid="1189" relation="public-inheritance">
+        <childnode refid="1129" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1190">
-        <label>Exception</label>
-      </node>
-      <node id="1189">
-        <label>CsvHelperException</label>
-        <link refid="a00056"/>
-        <childnode refid="1190" relation="public-inheritance">
-        </childnode>
+      <node id="1129">
+        <label>IComparer&lt; CsvPropertyMap &gt;</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" bodystart="18" bodyend="50"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapComparer.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapComparer.cs" bodystart="17" bodyend="74"/>
     <listofallmembers>
-      <member refid="a00056_1a83571967535529f42bb42b33684e4631" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvHelperException</name></member>
-      <member refid="a00056_1a47cbed4fb25c42fd548282b3f8652290" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvHelperException</name></member>
-      <member refid="a00056_1ac97c52774cb49f7e5d855b7586cdfa1d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvHelperException</name></member>
-      <member refid="a00056_1a1194d6917d1b52a8e15e3701a6e8264d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvHelperException</name></member>
-      <member refid="a00072_1a4e5030012e1258c3db3da1725c0d9332" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvWriterException</name></member>
-      <member refid="a00072_1a6d01cb3854a95d77cd1f9e2d8b1aa304" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvWriterException</name></member>
-      <member refid="a00072_1aedacd3e9a9161a62991cc1d388298a14" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvWriterException</name></member>
-      <member refid="a00072_1ac4ae90ce8433632c2047d4de364effa6" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvWriterException</name></member>
+      <member refid="a00072_1a41ab777503459b3984a2e2826a14d52a" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMapComparer</scope><name>Compare</name></member>
+      <member refid="a00072_1ab9c855cf5389c8f1ae1b476d508ade5d" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMapComparer</scope><name>Compare</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

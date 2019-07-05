@@ -1,5 +1,0 @@
-<map id="IYarnSpinnerParserListener" name="IYarnSpinnerParserListener">
-<area shape="rect" id="node3" href="$a00186.html" title="This class provides an empty implementation of IYarnSpinnerParserListener, which can be extended to c..." alt="" coords="62,403,268,627"/>
-<area shape="rect" id="node4" href="$a00028.html" title="{Yarn.AntlrCompiler\n|+ program\l~ flags\l~ currentNode\l~ library\l~ rawTextNode\l&#45; labelCount\l|+ EnterNode()\l+ ExitNode()\l+ EnterHeader()\l+ EnterHeader_title()\l+ EnterHeader_tag()\l+ ExitHeader()\l+ EnterBody()\l+ ExitBody()\l~ AntlrCompiler()\l~ RegisterLabel()\l~ Emit()\l~ GetLineID()\l~ Compile()\l&#45; Emit()\l}" alt="" coords="5,675,147,1016"/>
-<area shape="rect" id="node5" href="$a00099.html" title="{Yarn.GraphListener\n|+ graph\l&#45; currentNode\l&#45; yarnName\l|+ EnterHeader_title()\l+ ExitOption_statement()\l}" alt="" coords="172,785,340,906"/>
-</map>

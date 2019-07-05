@@ -1,9 +1,11 @@
 var a00181 =
 [
-    [ "Clear", "a00181.html#a587fe10b367ace190e10f3bcb590a53c", null ],
-    [ "GetNumber", "a00181.html#add85a45dd65a5d4bd41c9d5ce5f77d19", null ],
-    [ "GetValue", "a00181.html#ac6ebafcbebc2b2d71eba8562490a2f1e", null ],
-    [ "ResetToDefaults", "a00181.html#a33fcbff56561e53e0a70b59c56f0c3af", null ],
-    [ "SetNumber", "a00181.html#ac0d2f2e081944ad197992a26ad1a833c", null ],
-    [ "SetValue", "a00181.html#a25f979b062d63c9e886fe7070ce4561b", null ]
+    [ "TypeInfo", "a00181.html#ae2bbf4462c274977b6df5c994808cc39", null ],
+    [ "IsAssignableFrom", "a00181.html#a8c74647f572e998dd7e843a752d5234d", null ],
+    [ "BaseType", "a00181.html#a8bb78c2b0377f57dba1a3e2031216029", null ],
+    [ "IsClass", "a00181.html#a6ae2d0f4c557010a075a6fecab18fbb5", null ],
+    [ "IsGenericType", "a00181.html#a6a532f6a581b3280d1837fc242f314af", null ],
+    [ "IsPrimitive", "a00181.html#ab38ba26ebc21ec6fb908b74eede99a5c", null ],
+    [ "IsValueType", "a00181.html#ae2255904b8743c47a185d62909404aed", null ],
+    [ "type", "a00181.html#a71c4f4b000d08808c8965222d4ba1b8d", null ]
 ];

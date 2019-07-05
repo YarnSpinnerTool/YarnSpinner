@@ -1,178 +1,235 @@
-\hypertarget{a00085}{\section{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour Class Reference}
-\label{a00085}\index{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour@{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}}
+\hypertarget{a00085}{\section{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter Class Reference}
+\label{a00085}\index{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}}
 }
 
 
-Scripts that can act as the U\-I for the conversation should subclass this.  
+Converts a Date\-Time\-Offset to and from a string.  
 
 
 
 
-Inheritance diagram for Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour\-:
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00768}
+\includegraphics[width=220pt]{a00524}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour\-:
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=236pt]{a00769}
+\includegraphics[width=220pt]{a00525}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual I\-Enumerator \hyperlink{a00085_af9d88ca81ac536d43046ca6572e3ff54}{Dialogue\-Started} ()
-\begin{DoxyCompactList}\small\item\em A conversation has started. \end{DoxyCompactList}\item 
-abstract I\-Enumerator \hyperlink{a00085_a754c6dd0bc67895d11f878fe4477d698}{Run\-Line} (\hyperlink{a00041_a00359}{Yarn.\-Line} line)
-\begin{DoxyCompactList}\small\item\em Display a line. \end{DoxyCompactList}\item 
-abstract I\-Enumerator \hyperlink{a00085_ac5b29079f638f2ceb078627ef1e60004}{Run\-Options} (\hyperlink{a00041_a00362}{Yarn.\-Options} options\-Collection, \hyperlink{a00041_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} option\-Chooser)
-\begin{DoxyCompactList}\small\item\em Display the options, and call the option\-Chooser when done. \end{DoxyCompactList}\item 
-abstract I\-Enumerator \hyperlink{a00085_a3dffe84b9e7a10fdec6749baf697d111}{Run\-Command} (\hyperlink{a00041_a00355}{Yarn.\-Command} command)
-\begin{DoxyCompactList}\small\item\em Perform some game-\/specific command. \end{DoxyCompactList}\item 
-virtual I\-Enumerator \hyperlink{a00085_a2900548a0704d39d4502a153945f4bef}{Node\-Complete} (string next\-Node)
-\begin{DoxyCompactList}\small\item\em The node has ended. \end{DoxyCompactList}\item 
-virtual I\-Enumerator \hyperlink{a00085_aecc60aee9e9386da1f71fb183f43c52d}{Dialogue\-Complete} ()
-\begin{DoxyCompactList}\small\item\em The conversation has ended. \end{DoxyCompactList}\end{DoxyCompactItemize}
+override object \hyperlink{a00085_aa69835fc086d80a8eabe7ac50cb92f47}{Convert\-From\-String} (\hyperlink{a00178}{Type\-Converter\-Options} options, string text)
+\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
+override bool \hyperlink{a00085_a82a8cf4b77600ef49da60deb0c24a708}{Can\-Convert\-From} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual string \hyperlink{a00088_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00178}{Type\-Converter\-Options} options, object value)
+\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00088_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Scripts that can act as the U\-I for the conversation should subclass this. 
+Converts a Date\-Time\-Offset to and from a string. 
 
-Definition at line 429 of file Dialogue\-Runner.\-cs.
+
+
+Definition at line 14 of file Date\-Time\-Offset\-Converter.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00085_aecc60aee9e9386da1f71fb183f43c52d}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Dialogue\-Complete@{Dialogue\-Complete}}
-\index{Dialogue\-Complete@{Dialogue\-Complete}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Dialogue\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Dialogue\-Complete (
+\hypertarget{a00085_a82a8cf4b77600ef49da60deb0c24a708}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter.\-Can\-Convert\-From (
 \begin{DoxyParamCaption}
-{}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00085_aecc60aee9e9386da1f71fb183f43c52d}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00085_a82a8cf4b77600ef49da60deb0c24a708}
 
 
-The conversation has ended. 
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{a00088_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
 
 
 
-Reimplemented in \hyperlink{a00091_a1f2a08baacc25aea09af8e60eb5d3eb1}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
-
-
-
-Definition at line 454 of file Dialogue\-Runner.\-cs.
+Definition at line 49 of file Date\-Time\-Offset\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-454                                                        \{
-455             \textcolor{comment}{// Default implementation does nothing.}
-456             yield \textcolor{keywordflow}{break};
-457         \}
+50         \{
+51             \textcolor{comment}{// We only care about strings.}
+52             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+53         \}
 \end{DoxyCode}
-\hypertarget{a00085_af9d88ca81ac536d43046ca6572e3ff54}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Dialogue\-Started@{Dialogue\-Started}}
-\index{Dialogue\-Started@{Dialogue\-Started}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Dialogue\-Started}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Dialogue\-Started (
+\hypertarget{a00088_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
+\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
+\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
 \begin{DoxyParamCaption}
-{}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00085_af9d88ca81ac536d43046ca6572e3ff54}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00088_acb65bd8c8199d88d5b1629ae35d18514}
 
 
-A conversation has started. 
+Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00123_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-Reimplemented in \hyperlink{a00091_a313283f6c53354b54f25898eb436eba0}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
+Reimplemented in \hyperlink{a00099_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
 
 
 
-Definition at line 432 of file Dialogue\-Runner.\-cs.
+Definition at line 69 of file Default\-Type\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-432                                                      \{
-433             \textcolor{comment}{// Default implementation does nothing.}
-434             yield \textcolor{keywordflow}{break};
-435         \}
+70         \{
+71             \textcolor{comment}{// We only care about strings.}
+72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+73         \}
 \end{DoxyCode}
-\hypertarget{a00085_a2900548a0704d39d4502a153945f4bef}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Node\-Complete@{Node\-Complete}}
-\index{Node\-Complete@{Node\-Complete}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Node\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Node\-Complete (
+\hypertarget{a00085_aa69835fc086d80a8eabe7ac50cb92f47}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
+\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
+\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter.\-Convert\-From\-String (
 \begin{DoxyParamCaption}
-\item[{string}]{next\-Node}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{string}]{text}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00085_a2900548a0704d39d4502a153945f4bef}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00085_aa69835fc086d80a8eabe7ac50cb92f47}
 
 
-The node has ended. 
+Converts the string to an object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em text} & The string to convert to an object.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The object created from the string.
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{a00088_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
 
 
 
-Definition at line 448 of file Dialogue\-Runner.\-cs.
+Definition at line 22 of file Date\-Time\-Offset\-Converter.\-cs.
+
+
+
+References Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info.
 
 
 \begin{DoxyCode}
-448                                                                  \{
-449             \textcolor{comment}{// Default implementation does nothing.}
-450             yield \textcolor{keywordflow}{break};
-451         \}
+23         \{
+24             \textcolor{keywordflow}{if}( text == null )
+25             \{
+26                 \textcolor{keywordflow}{return} base.ConvertFromString( options, null );
+27             \}
+28 
+29             \textcolor{keywordflow}{if}( text.Trim().Length == 0 )
+30             \{
+31                 \textcolor{keywordflow}{return} DateTimeOffset.MinValue;
+32             \}
+33 
+34             var formatProvider = (IFormatProvider)options.CultureInfo.GetFormat( typeof( DateTimeFormatInfo
+       ) ) ?? options.CultureInfo;
+35             var dateTimeStyle = options.DateTimeStyle ?? DateTimeStyles.None;
+36 
+37             \textcolor{keywordflow}{return} string.IsNullOrEmpty( options.Format )
+38                 ? DateTimeOffset.Parse( text, formatProvider, dateTimeStyle )
+39                 : DateTimeOffset.ParseExact( text, options.Format, formatProvider, dateTimeStyle );
+40         \}
 \end{DoxyCode}
-\hypertarget{a00085_a3dffe84b9e7a10fdec6749baf697d111}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Run\-Command@{Run\-Command}}
-\index{Run\-Command@{Run\-Command}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Run\-Command}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Command (
+\hypertarget{a00088_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
+\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
+\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
 \begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Command}}]{command}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{object}]{value}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00085_a3dffe84b9e7a10fdec6749baf697d111}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00088_a36cb2f9b24f15a671293f3a722324c27}
 
 
-Perform some game-\/specific command. 
+Converts the object to a string. 
 
 
-
-Implemented in \hyperlink{a00091_a7f84b1e7d3c9c1f7507d143e11ba8075}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
-
-\hypertarget{a00085_a754c6dd0bc67895d11f878fe4477d698}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Run\-Line@{Run\-Line}}
-\index{Run\-Line@{Run\-Line}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Run\-Line}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Line (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Line}}]{line}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00085_a754c6dd0bc67895d11f878fe4477d698}
-
-
-Display a line. 
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em value} & The object to convert to a string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the object.
+\end{DoxyReturn}
 
 
-
-Implemented in \hyperlink{a00091_a109aeedc5206dcbc4f629638b7830030}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
-
-\hypertarget{a00085_ac5b29079f638f2ceb078627ef1e60004}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Run\-Options@{Run\-Options}}
-\index{Run\-Options@{Run\-Options}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Run\-Options}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Options (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Options}}]{options\-Collection, }
-\item[{{\bf Yarn.\-Option\-Chooser}}]{option\-Chooser}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00085_ac5b29079f638f2ceb078627ef1e60004}
-
-
-Display the options, and call the option\-Chooser when done. 
+Implements \hyperlink{a00123_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-Implemented in \hyperlink{a00091_aaa93672700a456e66c694636460a58f4}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
+Reimplemented in \hyperlink{a00142_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00099_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
 
+
+
+Definition at line 21 of file Default\-Type\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+22         \{
+23             \textcolor{keywordflow}{if}( value == null )
+24             \{
+25                 \textcolor{keywordflow}{return} string.Empty;
+26             \}
+27 
+28             var formattable = value as IFormattable;
+29             \textcolor{keywordflow}{if}( formattable != null )
+30             \{
+31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
+32             \}
+33 
+34             \textcolor{keywordflow}{return} value.ToString();
+35         \}
+\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn\-Spinner/\-Code/\hyperlink{a00277}{Dialogue\-Runner.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00265}{Date\-Time\-Offset\-Converter.\-cs}\end{DoxyCompactItemize}

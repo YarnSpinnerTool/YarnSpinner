@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: YarnSpinner/ErrorListener.cs Source File</title>
+<title>YarnSpinner: packages/Microsoft.NetFramework.Analyzers.2.9.1/documentation/Microsoft.NetFramework.Analyzers.md Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('a00291_source.html','');});
+$(document).ready(function(){initNavTree('a00291.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -105,83 +105,25 @@ $(document).ready(function(){initNavTree('a00291_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">ErrorListener.cs</div>  </div>
+<div class="title">packages/Microsoft.NetFramework.Analyzers.2.9.1/documentation/Microsoft.NetFramework.Analyzers.md</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00291.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">using</span> System;</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using</span> Antlr4.Runtime;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">using</span> System.Text;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">using</span> System.IO;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span>Yarn</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="a00090.html">    8</a></span>&#160;    <span class="keyword">public</span> sealed <span class="keyword">class </span><a class="code" href="a00090.html">ErrorListener</a> : BaseErrorListener</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    {</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="a00090.html#a9421873edea84c51d5905f5a24c62479">   10</a></span>&#160;        <span class="keyword">private</span> <span class="keyword">static</span> readonly <a class="code" href="a00090.html">ErrorListener</a> <a class="code" href="a00090.html#a9421873edea84c51d5905f5a24c62479">instance</a> = <span class="keyword">new</span> <a class="code" href="a00090.html#a1f0cc41aac10bd8a2402355534c1123c">ErrorListener</a>();</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="a00090.html#a1f0cc41aac10bd8a2402355534c1123c">   11</a></span>&#160;        <span class="keyword">private</span> <a class="code" href="a00090.html#a1f0cc41aac10bd8a2402355534c1123c">ErrorListener</a>(){}</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="a00090.html">ErrorListener</a> <a class="code" href="a00090.html#a47b8f4f1d414afa1ea6067218c7ee34d">Instance</a></div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="a00090.html#a47b8f4f1d414afa1ea6067218c7ee34d">   13</a></span>&#160;        {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <span class="keyword">get</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                <span class="keywordflow">return</span> <a class="code" href="a00090.html#a9421873edea84c51d5905f5a24c62479">instance</a>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            }</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        }</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00090.html#a47fb9f6d50aa6a4e4796dea10b237fe4">   20</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">void</span> <a class="code" href="a00090.html#a47fb9f6d50aa6a4e4796dea10b237fe4">SyntaxError</a>(System.IO.TextWriter <a class="code" href="a00330.html#a3da6d48778c7b08a040bf24377f67792">output</a>, IRecognizer recognizer, <a class="code" href="a00301.html#ae3d87b0b748ea892bff48f60862e182d">IToken</a> offendingSymbol, <span class="keywordtype">int</span> line, <span class="keywordtype">int</span> charPositionInLine, <span class="keywordtype">string</span> msg, RecognitionException e)</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            StringBuilder builder = <span class="keyword">new</span> StringBuilder();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="comment">// the human readable message</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordtype">object</span>[] format = <span class="keyword">new</span> <span class="keywordtype">object</span>[] { line, charPositionInLine + 1 };</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            builder.AppendFormat(<span class="stringliteral">&quot;Error on line {0} at position {1}:\n&quot;</span>, format);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="comment">// the actual error message</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            builder.AppendLine(msg);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="comment">// the line with the error on it</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keywordtype">string</span> input = offendingSymbol.TokenSource.InputStream.ToString();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordtype">string</span>[] lines = input.Split(<span class="charliteral">&#39;\n&#39;</span>);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keywordtype">string</span> errorLine = lines[line - 1];</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            builder.AppendLine(errorLine);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="comment">// adding indicator symbols pointing out where the error is on the line</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordtype">int</span> start = offendingSymbol.StartIndex;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keywordtype">int</span> stop = offendingSymbol.StopIndex;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="keywordflow">if</span> (start &gt;= 0 &amp;&amp; stop &gt;= 0)</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="comment">// the end point of the error in &quot;line space&quot;</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="keywordtype">int</span> end = (stop - start) + charPositionInLine + 1;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; end; i++)</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                    <span class="comment">// move over until we are at the point we need to be</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                    <span class="keywordflow">if</span> (i &gt;= charPositionInLine &amp;&amp; i &lt; end)</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                    {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                        builder.Append(<span class="stringliteral">&quot;^&quot;</span>);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                    }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                    {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                        builder.Append(<span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                    }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="a00137.html">Yarn.ParseException</a>(builder.ToString());</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
-<div class="ttc" id="a00090_html_a47b8f4f1d414afa1ea6067218c7ee34d"><div class="ttname"><a href="a00090.html#a47b8f4f1d414afa1ea6067218c7ee34d">Yarn.ErrorListener.Instance</a></div><div class="ttdeci">static ErrorListener Instance</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00013">ErrorListener.cs:13</a></div></div>
-<div class="ttc" id="a00090_html_a9421873edea84c51d5905f5a24c62479"><div class="ttname"><a href="a00090.html#a9421873edea84c51d5905f5a24c62479">Yarn.ErrorListener.instance</a></div><div class="ttdeci">static readonly ErrorListener instance</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00010">ErrorListener.cs:10</a></div></div>
-<div class="ttc" id="a00330_html_a3da6d48778c7b08a040bf24377f67792"><div class="ttname"><a href="a00330.html#a3da6d48778c7b08a040bf24377f67792">preprocessor.output</a></div><div class="ttdeci">tuple output</div><div class="ttdef"><b>Definition:</b> <a href="a00190_source.html#l00092">preprocessor.py:92</a></div></div>
-<div class="ttc" id="a00090_html"><div class="ttname"><a href="a00090.html">Yarn.ErrorListener</a></div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00008">ErrorListener.cs:8</a></div></div>
-<div class="ttc" id="a00137_html"><div class="ttname"><a href="a00137.html">Yarn.ParseException</a></div><div class="ttdef"><b>Definition:</b> <a href="a00296_source.html#l00010">Program.cs:10</a></div></div>
-<div class="ttc" id="a00090_html_a47fb9f6d50aa6a4e4796dea10b237fe4"><div class="ttname"><a href="a00090.html#a47fb9f6d50aa6a4e4796dea10b237fe4">Yarn.ErrorListener.SyntaxError</a></div><div class="ttdeci">override void SyntaxError(System.IO.TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00020">ErrorListener.cs:20</a></div></div>
-<div class="ttc" id="a00301_html_ae3d87b0b748ea892bff48f60862e182d"><div class="ttname"><a href="a00301.html#ae3d87b0b748ea892bff48f60862e182d">IToken</a></div><div class="ttdeci">Antlr4.Runtime.IToken IToken</div><div class="ttdef"><b>Definition:</b> <a href="a00301_source.html#l00026">YarnSpinnerParserBaseListener.cs:26</a></div></div>
-<div class="ttc" id="a00090_html_a1f0cc41aac10bd8a2402355534c1123c"><div class="ttname"><a href="a00090.html#a1f0cc41aac10bd8a2402355534c1123c">Yarn.ErrorListener.ErrorListener</a></div><div class="ttdeci">ErrorListener()</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00011">ErrorListener.cs:11</a></div></div>
+<a href="a00291.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;Sr. No. | Rule ID | Title | Category | Enabled | CodeFix | Description |</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;--------|---------|-------|----------|---------|---------|--------------------------------------------------------------------------------------------------------------|</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;1 | [CA1058](https:<span class="comment">//docs.microsoft.com/visualstudio/code-quality/ca1058-types-should-not-extend-certain-base-types) | Types should not extend certain base types | Design | True | True | An externally visible type extends certain base types. Use one of the alternatives. |</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;2 | [CA2153](https:<span class="comment">//docs.microsoft.com/visualstudio/code-quality/ca2153-avoid-handling-corrupted-state-exceptions) | Do Not Catch Corrupted State Exceptions | Security | True | False | Catching corrupted state exceptions could mask errors (such as access violations), resulting in inconsistent state of execution or making it easier for attackers to compromise system. Instead, catch and handle a more specific set of exception type(s) or re-throw the exception |</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;3 | [CA3075](https:<span class="comment">//docs.microsoft.com/visualstudio/code-quality/ca3075-insecure-dtd-processing) | Insecure DTD processing in XML | Security | True | False | Using XmlTextReader.Load(), creating an insecure XmlReaderSettings instance when invoking XmlReader.Create(), setting the InnerXml property of the XmlDocument and enabling DTD processing using XmlUrlResolver insecurely can lead to information disclosure. Replace it with a call to the Load() method overload that takes an XmlReader instance, use XmlReader.Create() to accept XmlReaderSettings arguments or consider explicitly setting secure values. The DataViewSettingCollectionString property of DataViewManager should always be assigned from a trusted source, the DtdProcessing property should be set to false, and the XmlResolver property should be changed to XmlSecureResolver or null.  |</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;4 | [CA3076](https:<span class="comment">//docs.microsoft.com/visualstudio/code-quality/ca3076-insecure-xslt-script-execution) | Insecure XSLT script processing. | Security | True | False | Providing an insecure XsltSettings instance and an insecure XmlResolver instance to XslCompiledTransform.Load method is potentially unsafe as it allows processing script within XSL, which on an untrusted XSL input may lead to malicious code execution. Either replace the insecure XsltSettings argument with XsltSettings.Default or an instance that has disabled document function and script execution, or replace the XmlResolver argurment with null or an XmlSecureResolver instance. This message may be suppressed if the input is known to be from a trusted source and external resource resolution from locations that are not known in advance must be supported. |</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;5 | [CA3077](https:<span class="comment">//docs.microsoft.com/visualstudio/code-quality/ca3077-insecure-processing-in-api-design-xml-document-and-xml-text-reader) | Insecure Processing in API Design, XmlDocument and XmlTextReader | Security | True | False | Enabling DTD processing on all instances derived from XmlTextReader or  XmlDocument and using XmlUrlResolver for resolving external XML entities may lead to information disclosure. Ensure to set the XmlResolver property to null, create an instance of XmlSecureResolver when processing untrusted input, or use XmlReader.Create method with a secure XmlReaderSettings argument. Unless you need to enable it, ensure the DtdProcessing property is set to false.  |</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;6 | [CA3147](https:<span class="comment">//docs.microsoft.com/visualstudio/code-quality/ca3147-mark-verb-handlers-with-validateantiforgerytoken) | Mark Verb Handlers With Validate Antiforgery Token | Security | True | False | Missing ValidateAntiForgeryTokenAttribute on controller action {0}. |</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00291.html">ErrorListener.cs</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:35 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00291.html">Microsoft.NetFramework.Analyzers.md</a></li>
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:04 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -1,0 +1,8 @@
+<map id="CsvHelper.CsvReader.Read" name="CsvHelper.CsvReader.Read">
+<area shape="rect" id="node2" href="$a00077.html#a6fa45a46ed1322dc1872ca2321b5edbc" title="Checks if the instance has been disposed of. " alt="" coords="987,34,1183,75"/>
+<area shape="rect" id="node3" href="$a00077.html#a57ba5fa523de97bd2cf068973329090d" title="Reads the header field without reading the first row. " alt="" coords="243,66,432,107"/>
+<area shape="rect" id="node4" href="$a00077.html#a3b8db0163b61e20d56ed8626e21338d6" title="Checks if the current record should be skipped or not. " alt="" coords="481,131,679,172"/>
+<area shape="rect" id="node7" href="$a00077.html#afc1150ed2f9ed7c9e87238e65a5e12e9" title="Parses the named indexes from the header record. " alt="" coords="484,66,676,107"/>
+<area shape="rect" id="node5" href="$a00077.html#a9f3f7336e8ceebafbfe0959508a2a9f0" title="Determines whether the current record is empty. A record is considered empty if all fields are empty..." alt="" coords="728,124,939,166"/>
+<area shape="rect" id="node6" href="$a00077.html#a2d9249171ed1568e45d152766d364c31" title="Checks if the reader has been read yet. " alt="" coords="987,124,1183,166"/>
+</map>

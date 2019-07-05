@@ -1,116 +1,88 @@
-\hypertarget{a00131}{\section{Yarn.\-Unity.\-Example.\-N\-P\-C Class Reference}
-\label{a00131}\index{Yarn.\-Unity.\-Example.\-N\-P\-C@{Yarn.\-Unity.\-Example.\-N\-P\-C}}
+\hypertarget{a00131}{\section{Yarn.\-Line\-Info Struct Reference}
+\label{a00131}\index{Yarn.\-Line\-Info@{Yarn.\-Line\-Info}}
 }
 
 
-Inheritance diagram for Yarn.\-Unity.\-Example.\-N\-P\-C\-:
+Collaboration diagram for Yarn.\-Line\-Info\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=208pt]{a00789}
+\includegraphics[width=154pt]{a00715}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Unity.\-Example.\-N\-P\-C\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=208pt]{a00790}
-\end{center}
-\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00131_a15924fb79c648f2089ff0db955679dd9}{Line\-Info} (string \hyperlink{a00131_a5a91331fb123e29d71d69e096f943c2f}{node\-Name}, int \hyperlink{a00131_a7165cafce64a3deafc41b2090ddf8d0e}{line\-Number})
+\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00131_a418ea7095bd8201559ed392f07905ca3}{character\-Name} = \char`\"{}\char`\"{}
+int \hyperlink{a00131_a7165cafce64a3deafc41b2090ddf8d0e}{line\-Number}
 \item 
-string \hyperlink{a00131_a64f4f1fb66b2046a674e3ebf3b9fdb56}{talk\-To\-Node} = \char`\"{}\char`\"{}
-\item 
-Text\-Asset \hyperlink{a00131_a63145fb6ddf357e604d71bac04ca8a60}{script\-To\-Load}
-\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-void \hyperlink{a00131_a0bf37075312ea87c2e329cc363a328a6}{Start} ()
-\item 
-void \hyperlink{a00131_ab1bea5afabd1c2e1e991063b1579d062}{Update} ()
+string \hyperlink{a00131_a5a91331fb123e29d71d69e096f943c2f}{node\-Name}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 33 of file N\-P\-C.\-cs.
+Definition at line 71 of file Program.\-cs.
 
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00131_a0bf37075312ea87c2e329cc363a328a6}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!Start@{Start}}
-\index{Start@{Start}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
-\subsubsection[{Start}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-N\-P\-C.\-Start (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00131_a15924fb79c648f2089ff0db955679dd9}{\index{Yarn\-::\-Line\-Info@{Yarn\-::\-Line\-Info}!Line\-Info@{Line\-Info}}
+\index{Line\-Info@{Line\-Info}!Yarn::LineInfo@{Yarn\-::\-Line\-Info}}
+\subsubsection[{Line\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Line\-Info.\-Line\-Info (
 \begin{DoxyParamCaption}
-{}
+\item[{string}]{node\-Name, }
+\item[{int}]{line\-Number}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00131_a0bf37075312ea87c2e329cc363a328a6}
+)}}\label{a00131_a15924fb79c648f2089ff0db955679dd9}
 
 
-Definition at line 44 of file N\-P\-C.\-cs.
+Definition at line 76 of file Program.\-cs.
+
+
+
+References Yarn.\-Line\-Info.\-line\-Number, and Yarn.\-Line\-Info.\-node\-Name.
 
 
 \begin{DoxyCode}
-44                       \{
-45             \textcolor{keywordflow}{if} (\hyperlink{a00131_a63145fb6ddf357e604d71bac04ca8a60}{scriptToLoad} != null) \{
-46                 FindObjectOfType<\hyperlink{a00083}{Yarn.Unity.DialogueRunner}>().AddScript(
-      \hyperlink{a00131_a63145fb6ddf357e604d71bac04ca8a60}{scriptToLoad});
-47             \}
-48 
-49         \}
-\end{DoxyCode}
-\hypertarget{a00131_ab1bea5afabd1c2e1e991063b1579d062}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!Update@{Update}}
-\index{Update@{Update}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
-\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-N\-P\-C.\-Update (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00131_ab1bea5afabd1c2e1e991063b1579d062}
-
-
-Definition at line 52 of file N\-P\-C.\-cs.
-
-
-\begin{DoxyCode}
-52                        \{
-53 
-54         \}
+77         \{
+78             this.nodeName = \hyperlink{a00131_a5a91331fb123e29d71d69e096f943c2f}{nodeName};
+79             this.lineNumber = \hyperlink{a00131_a7165cafce64a3deafc41b2090ddf8d0e}{lineNumber};
+80         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00131_a418ea7095bd8201559ed392f07905ca3}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!character\-Name@{character\-Name}}
-\index{character\-Name@{character\-Name}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
-\subsubsection[{character\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Example.\-N\-P\-C.\-character\-Name = \char`\"{}\char`\"{}}}\label{a00131_a418ea7095bd8201559ed392f07905ca3}
+\hypertarget{a00131_a7165cafce64a3deafc41b2090ddf8d0e}{\index{Yarn\-::\-Line\-Info@{Yarn\-::\-Line\-Info}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::LineInfo@{Yarn\-::\-Line\-Info}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Line\-Info.\-line\-Number}}\label{a00131_a7165cafce64a3deafc41b2090ddf8d0e}
 
 
-Definition at line 35 of file N\-P\-C.\-cs.
-
-\hypertarget{a00131_a63145fb6ddf357e604d71bac04ca8a60}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!script\-To\-Load@{script\-To\-Load}}
-\index{script\-To\-Load@{script\-To\-Load}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
-\subsubsection[{script\-To\-Load}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Asset Yarn.\-Unity.\-Example.\-N\-P\-C.\-script\-To\-Load}}\label{a00131_a63145fb6ddf357e604d71bac04ca8a60}
-
-
-Definition at line 41 of file N\-P\-C.\-cs.
-
-\hypertarget{a00131_a64f4f1fb66b2046a674e3ebf3b9fdb56}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!talk\-To\-Node@{talk\-To\-Node}}
-\index{talk\-To\-Node@{talk\-To\-Node}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
-\subsubsection[{talk\-To\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Example.\-N\-P\-C.\-talk\-To\-Node = \char`\"{}\char`\"{}}}\label{a00131_a64f4f1fb66b2046a674e3ebf3b9fdb56}
-
-
-Definition at line 38 of file N\-P\-C.\-cs.
+Definition at line 73 of file Program.\-cs.
 
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+Referenced by Yarn.\-Line\-Info.\-Line\-Info().
+
+\hypertarget{a00131_a5a91331fb123e29d71d69e096f943c2f}{\index{Yarn\-::\-Line\-Info@{Yarn\-::\-Line\-Info}!node\-Name@{node\-Name}}
+\index{node\-Name@{node\-Name}!Yarn::LineInfo@{Yarn\-::\-Line\-Info}}
+\subsubsection[{node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Line\-Info.\-node\-Name}}\label{a00131_a5a91331fb123e29d71d69e096f943c2f}
+
+
+Definition at line 74 of file Program.\-cs.
+
+
+
+Referenced by Yarn.\-Line\-Info.\-Line\-Info().
+
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00284}{N\-P\-C.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00314}{Program.\-cs}\end{DoxyCompactItemize}

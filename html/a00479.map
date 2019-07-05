@@ -1,4 +1,4 @@
-<map id="CsvHelper.Configuration.CsvPropertyMapData" name="CsvHelper.Configuration.CsvPropertyMapData">
-<area shape="rect" id="node2" href="$a00168.html" title="Options used when doing type conversion. " alt="" coords="5,134,192,343"/>
-<area shape="rect" id="node3" href="$a00064.html" title="A collection that holds property names. " alt="" coords="217,134,404,343"/>
+<map id="CsvHelper.Configuration.CsvClassMap&lt; T &gt;" name="CsvHelper.Configuration.CsvClassMap&lt; T &gt;">
+<area shape="rect" id="node3" href="$a00087.html" title="A default CsvClassMap{T} that can be used to create a class map dynamically. " alt="" coords="17,478,196,570"/>
+<area shape="rect" id="node2" href="$a00060.html" title="Maps class properties to CSV fields. " alt="" coords="5,6,208,245"/>
 </map>

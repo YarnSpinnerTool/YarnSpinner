@@ -1,10 +1,10 @@
 var a00065 =
 [
-    [ "CsvPropertyReferenceMap", "a00065.html#a02823d2439667bca75233abbe81651ff", null ],
-    [ "GetMaxIndex", "a00065.html#a1e879f9a6ed84415ac52c44f1f086606", null ],
-    [ "Prefix", "a00065.html#a0ed653de99ec2251fd99837740693789", null ],
-    [ "data", "a00065.html#aa6926229eec915aa6a71c9ee603064f5", null ],
-    [ "Data", "a00065.html#aa83ef91c4eb293a9d035013c8b4af016", null ],
-    [ "Mapping", "a00065.html#a555d8d59960792aa556002a1a1b942f9", null ],
-    [ "Property", "a00065.html#a1bf8b55373206c0dc378c8f7247bf149", null ]
+    [ "CreateParser", "a00065.html#a741fb4a1622778af65bfa27606bf6f25", null ],
+    [ "CreateParser", "a00065.html#a07665ae71961a161552189877d11a5be", null ],
+    [ "CreateReader", "a00065.html#a12b1358fc847e407519a76b7fe003a34", null ],
+    [ "CreateReader", "a00065.html#a77bcca4ad5023f5628c519c2914da5bb", null ],
+    [ "CreateReader", "a00065.html#a4e7e06df9265cbd53219c964424cec1e", null ],
+    [ "CreateWriter", "a00065.html#a6bfe534b70ff92ea3809f1a372d160cc", null ],
+    [ "CreateWriter", "a00065.html#a0cec3a639b206f2d88debdc50413202a", null ]
 ];

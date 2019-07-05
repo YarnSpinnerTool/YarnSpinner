@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs Source File</title>
+<title>YarnSpinner: Documentation/YarnSpinner-Programming/Building.md Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('a00213_source.html','');});
+$(document).ready(function(){initNavTree('a00213.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -105,186 +105,51 @@ $(document).ready(function(){initNavTree('a00213_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">CsvPropertyMap.cs</div>  </div>
+<div class="title">Documentation/YarnSpinner-Programming/Building.md</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00213.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#if !NET_2_0</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">using</span> System.Diagnostics;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">using</span> System.Globalization;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">using</span> System.Linq;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">using</span> System.Linq.Expressions;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">using</span> System.Reflection;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">using</span> CsvHelper.TypeConversion;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>CsvHelper.Configuration</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    [DebuggerDisplay( <span class="stringliteral">&quot;Names = {string.Join(\&quot;,\&quot;, Data.Names)}, Index = {Data.Index}, Ignore = {Data.Ignore}, Property = {Data.Property}, TypeConverter = {Data.TypeConverter}&quot;</span> )]</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="a00060.html">   21</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00060.html">CsvPropertyMap</a></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    {</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="a00060.html#a2943371f5d55b2fd7313bbb0e87a013c">   23</a></span>&#160;        <span class="keyword">private</span> readonly <a class="code" href="a00063.html">CsvPropertyMapData</a> <a class="code" href="a00060.html#a2943371f5d55b2fd7313bbb0e87a013c">data</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">public</span> <a class="code" href="a00063.html">CsvPropertyMapData</a> Data</div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="a00060.html#a207637fa121612b618ed1131cb28b8bb">   29</a></span>&#160;        {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> data; }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="a00060.html#a7284729e68d85b66d2a4d19975f4382a">   36</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00060.html#a7284729e68d85b66d2a4d19975f4382a">CsvPropertyMap</a>( PropertyInfo property )</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            data = <span class="keyword">new</span> <a class="code" href="a00063.html">CsvPropertyMapData</a>( property )</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <span class="comment">// Set some defaults.</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                TypeConverter = TypeConverterFactory.GetConverter( property.PropertyType )</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            };</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            data.Names.Add( property.Name );</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="a00060.html#a0d503e7dfdefa7334f5d04878c37316e">   56</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvPropertyMap</a> <a class="code" href="a00060.html#a0d503e7dfdefa7334f5d04878c37316e">Name</a>( params <span class="keywordtype">string</span>[] names )</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordflow">if</span>( names == null || names.Length == 0 )</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;names&quot;</span> );</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            data.Names.Clear();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            data.Names.AddRange( names );</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            data.IsNameSet = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="a00060.html#a2d6191df96c55bf3d044b31581e2a9b3">   75</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvPropertyMap</a> <a class="code" href="a00060.html#a2d6191df96c55bf3d044b31581e2a9b3">NameIndex</a>( <span class="keywordtype">int</span> index )</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            data.NameIndex = index;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="a00060.html#ae4563b0f7c3b3a22b1bea5073d95ddae">   88</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvPropertyMap</a> <a class="code" href="a00060.html#ae4563b0f7c3b3a22b1bea5073d95ddae">Index</a>( <span class="keywordtype">int</span> index )</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            data.Index = index;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            data.IsIndexSet = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="a00060.html#aaf29f485feec0bd918ae9911208465e7">   98</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvPropertyMap</a> <a class="code" href="a00060.html#aaf29f485feec0bd918ae9911208465e7">Ignore</a>()</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        {</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            data.Ignore = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="a00060.html#a933c8b6d81e78b5c34fd24cbccf9a4a5">  108</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvPropertyMap</a> <a class="code" href="a00060.html#a933c8b6d81e78b5c34fd24cbccf9a4a5">Ignore</a>( <span class="keywordtype">bool</span> ignore )</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        {</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            data.Ignore = ignore;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        }</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
-<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="a00060.html#a35815aef1a6aa2692e4b9f7d57a52b60">  119</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvPropertyMap</a> <a class="code" href="a00060.html#a35815aef1a6aa2692e4b9f7d57a52b60">Default</a>( <span class="keywordtype">object</span> defaultValue )</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        {</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            data.Default = defaultValue;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        }</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="a00060.html#a4bd41dc4c24fa515854d83ca5f730678">  130</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvPropertyMap</a> <a class="code" href="a00060.html#a4bd41dc4c24fa515854d83ca5f730678">TypeConverter</a>( <a class="code" href="a00113.html">ITypeConverter</a> typeConverter )</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        {</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            data.TypeConverter = typeConverter;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        }</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
-<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="a00060.html#a129110c34e2c12709f25948794390f97">  142</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvPropertyMap</a> TypeConverter&lt;T&gt;() where T : <a class="code" href="a00113.html">ITypeConverter</a></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        {</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            TypeConverter( <a class="code" href="a00145.html">ReflectionHelper</a>.<a class="code" href="a00145.html#a9b8690ff760f41b0a7ef46626949c777">CreateInstance</a>&lt;T&gt;() );</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        }</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="a00060.html#a02e31bd00f62fc495c81d400c00b65cb">  154</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvPropertyMap</a> ConvertUsing&lt;T&gt;( Func&lt;ICsvReaderRow, T&gt; convertExpression )</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        {</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            data.ConvertExpression = (Expression&lt;Func&lt;ICsvReaderRow, T&gt;&gt;)( x =&gt; convertExpression( x ) );</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        }</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
-<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="a00060.html#a652b7feb8994aefa43652755d42b3fbf">  166</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvPropertyMap</a> <a class="code" href="a00060.html#a652b7feb8994aefa43652755d42b3fbf">TypeConverterOption</a>( CultureInfo cultureInfo )</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        {</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            data.TypeConverterOptions.CultureInfo = cultureInfo;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        }</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
-<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="a00060.html#a20bc1aec3a0054ac9b9c462562f111d2">  177</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvPropertyMap</a> <a class="code" href="a00060.html#a20bc1aec3a0054ac9b9c462562f111d2">TypeConverterOption</a>( DateTimeStyles dateTimeStyle )</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        {</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            data.TypeConverterOptions.DateTimeStyle = dateTimeStyle;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        }</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
-<div class="line"><a name="l00188"></a><span class="lineno"><a class="line" href="a00060.html#a16243e8334687160385ed8c589184031">  188</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvPropertyMap</a> <a class="code" href="a00060.html#a16243e8334687160385ed8c589184031">TypeConverterOption</a>( NumberStyles numberStyle )</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        {</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            data.TypeConverterOptions.NumberStyle = numberStyle;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        }</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
-<div class="line"><a name="l00198"></a><span class="lineno"><a class="line" href="a00060.html#a4df14f039b706d21e7235eb7050fac2d">  198</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvPropertyMap</a> <a class="code" href="a00060.html#a4df14f039b706d21e7235eb7050fac2d">TypeConverterOption</a>( <span class="keywordtype">string</span> format )</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        {</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            data.TypeConverterOptions.Format = format;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        }</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
-<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="a00060.html#a957ea50ce91adb642751201e8277949d">  209</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvPropertyMap</a> <a class="code" href="a00060.html#a957ea50ce91adb642751201e8277949d">TypeConverterOption</a>( <span class="keywordtype">bool</span> isTrue, params <span class="keywordtype">string</span>[] booleanValues )</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        {</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            <span class="keywordflow">return</span> TypeConverterOption( isTrue, <span class="keyword">true</span>, booleanValues );</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        }</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
-<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="a00060.html#a6fd25629d769c619b029a6c141ab77c2">  220</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvPropertyMap</a> <a class="code" href="a00060.html#a6fd25629d769c619b029a6c141ab77c2">TypeConverterOption</a>( <span class="keywordtype">bool</span> isTrue, <span class="keywordtype">bool</span> clearValues, params <span class="keywordtype">string</span>[] booleanValues )</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        {</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="keywordflow">if</span>( isTrue )</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            {</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                <span class="keywordflow">if</span>( clearValues )</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                {</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                    data.TypeConverterOptions.BooleanTrueValues.Clear();</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                }</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                data.TypeConverterOptions.BooleanTrueValues.AddRange( booleanValues );</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            }</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            {</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                <span class="keywordflow">if</span>( clearValues )</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                {</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                    data.TypeConverterOptions.BooleanFalseValues.Clear();</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                }</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                data.TypeConverterOptions.BooleanFalseValues.AddRange( booleanValues );</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            }</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        }</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    }</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;}</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="preprocessor">#endif // !NET_2_0</span></div>
-<div class="ttc" id="a00060_html_a6fd25629d769c619b029a6c141ab77c2"><div class="ttname"><a href="a00060.html#a6fd25629d769c619b029a6c141ab77c2">CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption</a></div><div class="ttdeci">virtual CsvPropertyMap TypeConverterOption(bool isTrue, bool clearValues, params string[] booleanValues)</div><div class="ttdoc">The string values used to represent a boolean when converting. </div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00220">CsvPropertyMap.cs:220</a></div></div>
-<div class="ttc" id="a00060_html_aaf29f485feec0bd918ae9911208465e7"><div class="ttname"><a href="a00060.html#aaf29f485feec0bd918ae9911208465e7">CsvHelper.Configuration.CsvPropertyMap.Ignore</a></div><div class="ttdeci">virtual CsvPropertyMap Ignore()</div><div class="ttdoc">Ignore the property when reading and writing. </div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00098">CsvPropertyMap.cs:98</a></div></div>
-<div class="ttc" id="a00060_html_a957ea50ce91adb642751201e8277949d"><div class="ttname"><a href="a00060.html#a957ea50ce91adb642751201e8277949d">CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption</a></div><div class="ttdeci">virtual CsvPropertyMap TypeConverterOption(bool isTrue, params string[] booleanValues)</div><div class="ttdoc">The string values used to represent a boolean when converting. </div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00209">CsvPropertyMap.cs:209</a></div></div>
-<div class="ttc" id="a00060_html_a4df14f039b706d21e7235eb7050fac2d"><div class="ttname"><a href="a00060.html#a4df14f039b706d21e7235eb7050fac2d">CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption</a></div><div class="ttdeci">virtual CsvPropertyMap TypeConverterOption(string format)</div><div class="ttdoc">The string format to be used when type converting. </div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00198">CsvPropertyMap.cs:198</a></div></div>
-<div class="ttc" id="a00060_html_a0d503e7dfdefa7334f5d04878c37316e"><div class="ttname"><a href="a00060.html#a0d503e7dfdefa7334f5d04878c37316e">CsvHelper.Configuration.CsvPropertyMap.Name</a></div><div class="ttdeci">virtual CsvPropertyMap Name(params string[] names)</div><div class="ttdoc">When reading, is used to get the field at the index of the name if there was a header specified...</div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00056">CsvPropertyMap.cs:56</a></div></div>
-<div class="ttc" id="a00060_html_a2d6191df96c55bf3d044b31581e2a9b3"><div class="ttname"><a href="a00060.html#a2d6191df96c55bf3d044b31581e2a9b3">CsvHelper.Configuration.CsvPropertyMap.NameIndex</a></div><div class="ttdeci">virtual CsvPropertyMap NameIndex(int index)</div><div class="ttdoc">When reading, is used to get the index of the name used when there are multiple names that are the sa...</div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00075">CsvPropertyMap.cs:75</a></div></div>
-<div class="ttc" id="a00060_html_ae4563b0f7c3b3a22b1bea5073d95ddae"><div class="ttname"><a href="a00060.html#ae4563b0f7c3b3a22b1bea5073d95ddae">CsvHelper.Configuration.CsvPropertyMap.Index</a></div><div class="ttdeci">virtual CsvPropertyMap Index(int index)</div><div class="ttdoc">When reading, is used to get the field at the given index. When writing, the fields will be written i...</div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00088">CsvPropertyMap.cs:88</a></div></div>
-<div class="ttc" id="a00060_html_a933c8b6d81e78b5c34fd24cbccf9a4a5"><div class="ttname"><a href="a00060.html#a933c8b6d81e78b5c34fd24cbccf9a4a5">CsvHelper.Configuration.CsvPropertyMap.Ignore</a></div><div class="ttdeci">virtual CsvPropertyMap Ignore(bool ignore)</div><div class="ttdoc">Ignore the property when reading and writing. </div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00108">CsvPropertyMap.cs:108</a></div></div>
-<div class="ttc" id="a00060_html_a35815aef1a6aa2692e4b9f7d57a52b60"><div class="ttname"><a href="a00060.html#a35815aef1a6aa2692e4b9f7d57a52b60">CsvHelper.Configuration.CsvPropertyMap.Default</a></div><div class="ttdeci">virtual CsvPropertyMap Default(object defaultValue)</div><div class="ttdoc">The default value that will be used when reading when the CSV field is empty. </div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00119">CsvPropertyMap.cs:119</a></div></div>
-<div class="ttc" id="a00145_html_a9b8690ff760f41b0a7ef46626949c777"><div class="ttname"><a href="a00145.html#a9b8690ff760f41b0a7ef46626949c777">CsvHelper.ReflectionHelper.CreateInstance</a></div><div class="ttdeci">static object CreateInstance(Type type, params object[] args)</div><div class="ttdoc">Creates an instance of the specified type. </div><div class="ttdef"><b>Definition:</b> <a href="a00248_source.html#l00042">ReflectionHelper.cs:42</a></div></div>
-<div class="ttc" id="a00063_html"><div class="ttname"><a href="a00063.html">CsvHelper.Configuration.CsvPropertyMapData</a></div><div class="ttdoc">The configured data for the property map. </div><div class="ttdef"><b>Definition:</b> <a href="a00216_source.html#l00015">CsvPropertyMapData.cs:15</a></div></div>
-<div class="ttc" id="a00060_html_a16243e8334687160385ed8c589184031"><div class="ttname"><a href="a00060.html#a16243e8334687160385ed8c589184031">CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption</a></div><div class="ttdeci">virtual CsvPropertyMap TypeConverterOption(NumberStyles numberStyle)</div><div class="ttdoc">The NumberStyles to use when type converting. This is used when doing any number conversions. </div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00188">CsvPropertyMap.cs:188</a></div></div>
-<div class="ttc" id="a00060_html_a20bc1aec3a0054ac9b9c462562f111d2"><div class="ttname"><a href="a00060.html#a20bc1aec3a0054ac9b9c462562f111d2">CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption</a></div><div class="ttdeci">virtual CsvPropertyMap TypeConverterOption(DateTimeStyles dateTimeStyle)</div><div class="ttdoc">The DateTimeStyles to use when type converting. This is used when doing any DateTime conversions...</div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00177">CsvPropertyMap.cs:177</a></div></div>
-<div class="ttc" id="a00060_html_a7284729e68d85b66d2a4d19975f4382a"><div class="ttname"><a href="a00060.html#a7284729e68d85b66d2a4d19975f4382a">CsvHelper.Configuration.CsvPropertyMap.CsvPropertyMap</a></div><div class="ttdeci">CsvPropertyMap(PropertyInfo property)</div><div class="ttdoc">Creates a new CsvPropertyMap instance using the specified property. </div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00036">CsvPropertyMap.cs:36</a></div></div>
-<div class="ttc" id="a00060_html_a652b7feb8994aefa43652755d42b3fbf"><div class="ttname"><a href="a00060.html#a652b7feb8994aefa43652755d42b3fbf">CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption</a></div><div class="ttdeci">virtual CsvPropertyMap TypeConverterOption(CultureInfo cultureInfo)</div><div class="ttdoc">The CultureInfo used when type converting. This will override the global CsvConfiguration.CultureInfo setting. </div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00166">CsvPropertyMap.cs:166</a></div></div>
-<div class="ttc" id="a00060_html_a4bd41dc4c24fa515854d83ca5f730678"><div class="ttname"><a href="a00060.html#a4bd41dc4c24fa515854d83ca5f730678">CsvHelper.Configuration.CsvPropertyMap.TypeConverter</a></div><div class="ttdeci">virtual CsvPropertyMap TypeConverter(ITypeConverter typeConverter)</div><div class="ttdoc">Specifies the TypeConverter to use when converting the property to and from a CSV field...</div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00130">CsvPropertyMap.cs:130</a></div></div>
-<div class="ttc" id="a00113_html"><div class="ttname"><a href="a00113.html">CsvHelper.TypeConversion.ITypeConverter</a></div><div class="ttdoc">Converts objects to and from strings. </div><div class="ttdef"><b>Definition:</b> <a href="a00265_source.html#l00013">ITypeConverter.cs:13</a></div></div>
-<div class="ttc" id="a00145_html"><div class="ttname"><a href="a00145.html">CsvHelper.ReflectionHelper</a></div><div class="ttdoc">Common reflection tasks. </div><div class="ttdef"><b>Definition:</b> <a href="a00248_source.html#l00019">ReflectionHelper.cs:19</a></div></div>
-<div class="ttc" id="a00060_html_a2943371f5d55b2fd7313bbb0e87a013c"><div class="ttname"><a href="a00060.html#a2943371f5d55b2fd7313bbb0e87a013c">CsvHelper.Configuration.CsvPropertyMap.data</a></div><div class="ttdeci">readonly CsvPropertyMapData data</div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00023">CsvPropertyMap.cs:23</a></div></div>
-<div class="ttc" id="a00060_html"><div class="ttname"><a href="a00060.html">CsvHelper.Configuration.CsvPropertyMap</a></div><div class="ttdoc">Mapping info for a property to a CSV field. </div><div class="ttdef"><b>Definition:</b> <a href="a00213_source.html#l00021">CsvPropertyMap.cs:21</a></div></div>
+<a href="a00213.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Building Yarn Spinner</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;&gt; ***Important:*** This document only matters to you <span class="keywordflow">if</span> you want to build Yarn Spinner from source. In almost all cases, you<span class="stringliteral">&#39;ll be totally fine with [downloading a build](https://github.com/thesecretlab/YarnSpinner/releases), and using that in your project.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="stringliteral">## Windows and Mac using MonoDevelop</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="stringliteral">To build Yarn Spinner on Windows or Mac, you&#39;</span>ll need MonoDevelop. You can [download MonoDevelop <span class="keywordflow">for</span> your OS from the MonoDevelop site](http:<span class="comment">//www.monodevelop.com/download/).</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">## Linux</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"></span>To build Yarn Spinner on Linux, you can either</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;* use [xbuild](http:<span class="comment">//www.mono-project.com/docs/tools+libraries/tools/xbuild/) and [nuget](http://www.nuget.org).</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;* Then ensure you have the correct packages installed by nuget, `nuget restore YarnSpinner.sln`.</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;* See the [build.sh](../../build.sh) script <span class="keywordflow">for</span> further information on how <span class="keyword">using</span> mono to build.</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;or</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;* use [Flatpak](http:<span class="comment">//flatpak.org/getting.html), you can [download MonoDevelop from the MonoDevelop site](http://www.monodevelop.com/download/linux/).</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;## Using MonoDevelop</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;* Open **YarnSpinner.sln**.</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;* Open the **Build menu**, and choose **Build All**.</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;* Open the **Unity/Assets/Yarn Spinner** folder. You<span class="stringliteral">&#39;ll find a copy of **YarnSpinner.dll** there.</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="stringliteral">* Copy that DLL file wherever you need it.</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="stringliteral">## Building Documentation</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="stringliteral">Yarn Spinner uses [Doxygen](https://www.stack.nl/~dimitri/doxygen) to generate [DocBook](http://docbook.org/), [HTML](https://en.wikipedia.org/wiki/HTML), [LaTeX](https://www.latex-project.org/help/documentation/), [RTF](https://en.wikipedia.org/wiki/Rich_Text_Format), and [XML](https://en.wikipedia.org/wiki/XML) documentation. [GNU GLOBAL](https://www.gnu.org/software/global/) is also used.</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="stringliteral">Basic steps to clean out existing documentation, generate new documentation and check the new documentation for generation errors. Note that some ocurrences of the word &#39;</span>error<span class="stringliteral">&#39; will be due to classes/methods etc. of YarnSpinner itself and not an actual error in the documentation.</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="stringliteral">```</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="stringliteral">rm -fr Documentation/{docbook,html,latex,rtf,xml}</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="stringliteral">doxygen Documentation/Doxyfile &gt; doxyoutput.txt 2&gt;&amp;1</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="stringliteral">grep -i error doxyoutput.txt</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="stringliteral">```</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="stringliteral">[MarkDown](https://daringfireball.net/projects/markdown/) documentation is available via conversion of the XML output to Markdown using third party tools such as [Pandoc](http://pandoc.org) or [doxygen2md](https://github.com/pferdinand/doxygen2md)</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_3401b88f0a1c00c4409faa11193eadf6.html">Configuration</a></li><li class="navelem"><a class="el" href="a00213.html">CsvPropertyMap.cs</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:35 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00213.html">Building.md</a></li>
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:04 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

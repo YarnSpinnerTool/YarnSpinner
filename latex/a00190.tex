@@ -1,37 +1,145 @@
-\hypertarget{a00190}{\section{A\-N\-T\-L\-R/preprocessor.py File Reference}
-\label{a00190}\index{A\-N\-T\-L\-R/preprocessor.\-py@{A\-N\-T\-L\-R/preprocessor.\-py}}
+\hypertarget{a00190}{\section{Yarn.\-Variable\-Storage Interface Reference}
+\label{a00190}\index{Yarn.\-Variable\-Storage@{Yarn.\-Variable\-Storage}}
 }
-\subsection*{Namespaces}
+
+
+Where we turn to for storing and loading variable data.  
+
+
+
+
+Inheritance diagram for Yarn.\-Variable\-Storage\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00607}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Variable\-Storage\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=188pt]{a00608}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00330}{preprocessor}
+void \hyperlink{a00190_aa28c3694f985cf73489efc301b9d41dd}{Set\-Number} (string variable\-Name, float number)
+\item 
+float \hyperlink{a00190_a04b061c52d8ac814ce559da5286fbc71}{Get\-Number} (string variable\-Name)
+\item 
+void \hyperlink{a00190_aa90ff61224432c5ed3ce72199c55f440}{Set\-Value} (string variable\-Name, \hyperlink{a00187}{Value} value)
+\item 
+\hyperlink{a00187}{Value} \hyperlink{a00190_accab1fc5c8fc353dbfc53ca0f4029576}{Get\-Value} (string variable\-Name)
+\item 
+void \hyperlink{a00190_af98c1e41f351cb96e13f668ca2fd9d92}{Clear} ()
 \end{DoxyCompactItemize}
-\subsection*{Variables}
-\begin{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Where we turn to for storing and loading variable data. 
+
+Definition at line 65 of file Dialogue.\-cs.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00190_af98c1e41f351cb96e13f668ca2fd9d92}{\index{Yarn\-::\-Variable\-Storage@{Yarn\-::\-Variable\-Storage}!Clear@{Clear}}
+\index{Clear@{Clear}!Yarn::VariableStorage@{Yarn\-::\-Variable\-Storage}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Variable\-Storage.\-Clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00190_af98c1e41f351cb96e13f668ca2fd9d92}
+
+
+Implemented in \hyperlink{a00056_a082617cf099d13cb4338935020ced764}{Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation}, \hyperlink{a00191_a587fe10b367ace190e10f3bcb590a53c}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}, \hyperlink{a00089_a0ce614bee8d5b220500fb765390b4ca3}{Example\-Variable\-Storage}, \hyperlink{a00136_aa6d243e7ef02b91f793a221f509dae69}{Yarn.\-Memory\-Variable\-Store}, and \hyperlink{a00042_a7e45c37f3662ce9f2643e306bb2b3adc}{Yarn.\-Base\-Variable\-Storage}.
+
+\hypertarget{a00190_a04b061c52d8ac814ce559da5286fbc71}{\index{Yarn\-::\-Variable\-Storage@{Yarn\-::\-Variable\-Storage}!Get\-Number@{Get\-Number}}
+\index{Get\-Number@{Get\-Number}!Yarn::VariableStorage@{Yarn\-::\-Variable\-Storage}}
+\subsubsection[{Get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Variable\-Storage.\-Get\-Number (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name}
+\end{DoxyParamCaption}
+)}}\label{a00190_a04b061c52d8ac814ce559da5286fbc71}
+
+
+Implemented in \hyperlink{a00056_adf34fa27235fc0fd5fe35c32023220c4}{Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation}, \hyperlink{a00191_add85a45dd65a5d4bd41c9d5ce5f77d19}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}, and \hyperlink{a00042_a1b7f7f4468b2463e7b47986d99362279}{Yarn.\-Base\-Variable\-Storage}.
+
+\hypertarget{a00190_accab1fc5c8fc353dbfc53ca0f4029576}{\index{Yarn\-::\-Variable\-Storage@{Yarn\-::\-Variable\-Storage}!Get\-Value@{Get\-Value}}
+\index{Get\-Value@{Get\-Value}!Yarn::VariableStorage@{Yarn\-::\-Variable\-Storage}}
+\subsubsection[{Get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Variable\-Storage.\-Get\-Value (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name}
+\end{DoxyParamCaption}
+)}}\label{a00190_accab1fc5c8fc353dbfc53ca0f4029576}
+
+
+Implemented in \hyperlink{a00056_a66fc86080cd452079f5adf15e97c8e41}{Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation}, \hyperlink{a00191_ac6ebafcbebc2b2d71eba8562490a2f1e}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}, \hyperlink{a00089_a741593be1a299dcc2136f05b9b4a995a}{Example\-Variable\-Storage}, \hyperlink{a00136_a0ce77e8245c504a777540e359704aa2a}{Yarn.\-Memory\-Variable\-Store}, and \hyperlink{a00042_a13b142df804d9842e97e628e252928e8}{Yarn.\-Base\-Variable\-Storage}.
+
+
+
+Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00190_accab1fc5c8fc353dbfc53ca0f4029576_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00190_aa28c3694f985cf73489efc301b9d41dd}{\index{Yarn\-::\-Variable\-Storage@{Yarn\-::\-Variable\-Storage}!Set\-Number@{Set\-Number}}
+\index{Set\-Number@{Set\-Number}!Yarn::VariableStorage@{Yarn\-::\-Variable\-Storage}}
+\subsubsection[{Set\-Number}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Variable\-Storage.\-Set\-Number (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{float}]{number}
+\end{DoxyParamCaption}
+)}}\label{a00190_aa28c3694f985cf73489efc301b9d41dd}
+
+
+Implemented in \hyperlink{a00056_adc9bfad13d8ae2f147deeddbc5c38ea3}{Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation}, \hyperlink{a00191_ac0d2f2e081944ad197992a26ad1a833c}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}, and \hyperlink{a00042_a48b93de9cd7ae61d0cd9583c8330d3ee}{Yarn.\-Base\-Variable\-Storage}.
+
+\hypertarget{a00190_aa90ff61224432c5ed3ce72199c55f440}{\index{Yarn\-::\-Variable\-Storage@{Yarn\-::\-Variable\-Storage}!Set\-Value@{Set\-Value}}
+\index{Set\-Value@{Set\-Value}!Yarn::VariableStorage@{Yarn\-::\-Variable\-Storage}}
+\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Variable\-Storage.\-Set\-Value (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{{\bf Value}}]{value}
+\end{DoxyParamCaption}
+)}}\label{a00190_aa90ff61224432c5ed3ce72199c55f440}
+
+
+Implemented in \hyperlink{a00056_ab6312d89b626ca803a74a9181286d608}{Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation}, \hyperlink{a00191_a25f979b062d63c9e886fe7070ce4561b}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}, \hyperlink{a00089_ac4265c1c9da485f13a6b05784b0f668d}{Example\-Variable\-Storage}, \hyperlink{a00136_a653a459811e5c19549f4b31269093ef5}{Yarn.\-Memory\-Variable\-Store}, and \hyperlink{a00042_a1c57d6d208b78abec0a670396771448e}{Yarn.\-Base\-Variable\-Storage}.
+
+
+
+Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00190_aa90ff61224432c5ed3ce72199c55f440_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-list \hyperlink{a00330_a3766d6a1d728423223fa0743ba62011f}{preprocessor.\-output\-\_\-lines} = \mbox{[}$\,$\mbox{]}
-\item 
-list \hyperlink{a00330_a00fba9ee9674b2513dbe28eab795b734}{preprocessor.\-indents} = \mbox{[}(0,False)\mbox{]}
-\item 
-\hyperlink{a00330_afa485f45ab87bc0f06c1dfc46737c057}{preprocessor.\-should\-Track\-Next\-Indentation} = False
-\item 
-string \hyperlink{a00330_ae3f2190a793ab77428838e58e0e83676}{preprocessor.\-I\-N\-D\-E\-N\-T} = '\textbackslash{}a'
-\item 
-string \hyperlink{a00330_a83653c3e52fa74614e655a91ad2b7181}{preprocessor.\-D\-E\-D\-E\-N\-T} = '\textbackslash{}v'
-\item 
-string \hyperlink{a00330_a7ca2dc5371587b21476669a45af013cd}{preprocessor.\-O\-P\-T\-I\-O\-N} = \char`\"{}-\/$>$\char`\"{}
-\item 
-int \hyperlink{a00330_ac7b4a28b6670884cd095cd684a452c94}{preprocessor.\-line\-\_\-count} = 1
-\item 
-tuple \hyperlink{a00330_acab50490b6d7a9dc2bb935ad4ffe2eff}{preprocessor.\-tweaked\-\_\-line} = line.\-replace('\textbackslash{}t',' ')
-\item 
-tuple \hyperlink{a00330_a0e59365a4aa5811f6495b92a51e23573}{preprocessor.\-this\-Indentation} = len(tweaked\-\_\-line)
-\item 
-tuple \hyperlink{a00330_abf34284b1c9a00275810e5c13a4dcea2}{preprocessor.\-is\-\_\-option} = tweaked\-\_\-line.\-strip()
-\item 
-list \hyperlink{a00330_ade44b858578c3eab7b6f90030a0e3ea1}{preprocessor.\-previous\-Indentation} = indents\mbox{[}-\/1\mbox{]}
-\item 
-tuple \hyperlink{a00330_a8b7e5c0b2c6870eaa8f9454b4f33678b}{preprocessor.\-top\-Level} = indents.\-pop()
-\item 
-tuple \hyperlink{a00330_a3da6d48778c7b08a040bf24377f67792}{preprocessor.\-output} = open('processed.\-yarn', 'w')
-\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00305}{Dialogue.\-cs}\end{DoxyCompactItemize}

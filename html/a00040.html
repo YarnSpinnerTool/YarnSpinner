@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.Parser.IfStatement.Clause Struct Reference</title>
+<title>YarnSpinner: Yarn.Analysis.ASTAnalyser Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,40 +107,32 @@ $(document).ready(function(){initNavTree('a00040.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pac-methods">Package Functions</a> &#124;
-<a href="#pac-attribs">Package Attributes</a> &#124;
-<a href="a00665.html">List of all members</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="a00768.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Parser.IfStatement.Clause Struct Reference</div>  </div>
+<div class="title">Yarn.Analysis.ASTAnalyser Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Parser.IfStatement.Clause:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Analysis.ASTAnalyser:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00666.png" border="0" usemap="#_yarn_8_parser_8_if_statement_8_clause_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_parser_8_if_statement_8_clause_coll__map" id="_yarn_8_parser_8_if_statement_8_clause_coll__map">
-<area shape="rect" id="node2" href="a00094.html" title="{Yarn.Parser.Expression\n|~ type\l~ parameters\l|~ Expression()\l~ Expression()\l~ PrintTree()\l~ Parse()\l&#45; ShouldApplyPrecedence()\l}" alt="" coords="75,683,255,834"/><area shape="rect" id="node3" href="a00138.html" title="{ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="25,222,145,373"/><area shape="rect" id="node6" href="a00178.html" title="{Yarn.Parser.ValueNode\n|+ value\l|~ ValueNode()\l~ ValueNode()\l~ PrintTree()\l&#45; UseToken()\l}" alt="" coords="86,461,244,582"/><area shape="rect" id="node4" href="a00138.html" title="{Yarn.Parser.ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="5,6,164,157"/><area shape="rect" id="node5" href="a00096.html" title="{Yarn.FunctionInfo\n|+ name\l+ paramCount\l+ function\l+ returningFunction\l+ returnsValue\l|+ Invoke()\l+ InvokeWithArray()\l~ FunctionInfo()\l~ FunctionInfo()\l~ IsParameterCountCorrect()\l}" alt="" coords="269,424,459,619"/></map>
+<div class="center"><img src="a00769.png" border="0" usemap="#_yarn_8_analysis_8_a_s_t_analyser_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_analysis_8_a_s_t_analyser_coll__map" id="_yarn_8_analysis_8_a_s_t_analyser_coll__map">
+</map>
 </div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-methods"></a>
-Package Functions</h2></td></tr>
-<tr class="memitem:a7f4fc9399896512b68fdc7bc7cf818c9"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00040.html#a7f4fc9399896512b68fdc7bc7cf818c9">PrintTree</a> (int indentLevel)</td></tr>
-<tr class="separator:a7f4fc9399896512b68fdc7bc7cf818c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-attribs"></a>
-Package Attributes</h2></td></tr>
-<tr class="memitem:a1abd1f7c41f68ccdf64074ea49365be9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00094.html">Expression</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00040.html#a1abd1f7c41f68ccdf64074ea49365be9">expression</a></td></tr>
-<tr class="separator:a1abd1f7c41f68ccdf64074ea49365be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f4765482e98ed042e38a0ede13f171f"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="a00156.html">Statement</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00040.html#a6f4765482e98ed042e38a0ede13f171f">statements</a></td></tr>
-<tr class="separator:a6f4765482e98ed042e38a0ede13f171f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a07bb220dead44ed12c8842de706ecdf7"><td class="memItemLeft" align="right" valign="top">abstract IEnumerable&lt; <a class="el" href="a00091.html">Diagnosis</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00040.html#a07bb220dead44ed12c8842de706ecdf7">Diagnose</a> (<a class="el" href="a00138.html">Yarn.Parser.Node</a> node)</td></tr>
+<tr class="separator:a07bb220dead44ed12c8842de706ecdf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="a00295_source.html#l00546">546</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00302_source.html#l00147">147</a> of file <a class="el" href="a00302_source.html">Analyser.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a7f4fc9399896512b68fdc7bc7cf818c9"></a>
+<a class="anchor" id="a07bb220dead44ed12c8842de706ecdf7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -148,110 +140,32 @@ Package Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string Yarn.Parser.IfStatement.Clause.PrintTree </td>
+          <td class="memname">abstract IEnumerable&lt;<a class="el" href="a00091.html">Diagnosis</a>&gt; Yarn.Analysis.ASTAnalyser.Diagnose </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>indentLevel</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="a00138.html">Yarn.Parser.Node</a>&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00295_source.html#l00549">549</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
-
-<p>References <a class="el" href="a00295_source.html#l00547">Yarn.Parser.IfStatement.Clause.expression</a>, <a class="el" href="a00295_source.html#l00548">Yarn.Parser.IfStatement.Clause.statements</a>, and <a class="el" href="a00295_source.html#l00040">Yarn.Parser.Tab()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;                                                           {</div>
-<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;                    var sb = <span class="keyword">new</span> StringBuilder ();</div>
-<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;                    <span class="keywordflow">if</span> (<a class="code" href="a00040.html#a1abd1f7c41f68ccdf64074ea49365be9">expression</a> != null)</div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;                        sb.Append (expression.PrintTree (indentLevel));</div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;                    sb.Append (<a class="code" href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel, <span class="stringliteral">&quot;{&quot;</span>));</div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;                    <span class="keywordflow">foreach</span> (var statement <span class="keywordflow">in</span> <a class="code" href="a00040.html#a6f4765482e98ed042e38a0ede13f171f">statements</a>) {</div>
-<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;                        sb.Append (statement.PrintTree (indentLevel + 1));</div>
-<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;                    }</div>
-<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;                    sb.Append (<a class="code" href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel, <span class="stringliteral">&quot;}&quot;</span>));</div>
-<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;                    <span class="keywordflow">return</span> sb.ToString ();</div>
-<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;                }</div>
-<div class="ttc" id="a00040_html_a6f4765482e98ed042e38a0ede13f171f"><div class="ttname"><a href="a00040.html#a6f4765482e98ed042e38a0ede13f171f">Yarn.Parser.IfStatement.Clause.statements</a></div><div class="ttdeci">IEnumerable&lt; Statement &gt; statements</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00548">Parser.cs:548</a></div></div>
-<div class="ttc" id="a00139_html_aa8fa36b46de12a1c561d77b99c4b9ae3"><div class="ttname"><a href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Yarn.Parser.Tab</a></div><div class="ttdeci">static string Tab(int indentLevel, string input, bool newLine=true)</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00040">Parser.cs:40</a></div></div>
-<div class="ttc" id="a00040_html_a1abd1f7c41f68ccdf64074ea49365be9"><div class="ttname"><a href="a00040.html#a1abd1f7c41f68ccdf64074ea49365be9">Yarn.Parser.IfStatement.Clause.expression</a></div><div class="ttdeci">Expression expression</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00547">Parser.cs:547</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00040_a7f4fc9399896512b68fdc7bc7cf818c9_cgraph.png" border="0" usemap="#a00040_a7f4fc9399896512b68fdc7bc7cf818c9_cgraph" alt=""/></div>
-<map name="a00040_a7f4fc9399896512b68fdc7bc7cf818c9_cgraph" id="a00040_a7f4fc9399896512b68fdc7bc7cf818c9_cgraph">
-<area shape="rect" id="node2" href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3" title="Yarn.Parser.Tab" alt="" coords="221,12,339,39"/></map>
-</div>
-</p>
-
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a1abd1f7c41f68ccdf64074ea49365be9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00094.html">Expression</a> Yarn.Parser.IfStatement.Clause.expression</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00295_source.html#l00547">547</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00295_source.html#l00549">Yarn.Parser.IfStatement.Clause.PrintTree()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6f4765482e98ed042e38a0ede13f171f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">IEnumerable&lt;<a class="el" href="a00156.html">Statement</a>&gt; Yarn.Parser.IfStatement.Clause.statements</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00295_source.html#l00548">548</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00295_source.html#l00549">Yarn.Parser.IfStatement.Clause.PrintTree()</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="a00295_source.html">Parser.cs</a></li>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>YarnSpinner/<a class="el" href="a00302_source.html">Analyser.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00041.html">Yarn</a></li><li class="navelem"><a class="el" href="a00139.html">Parser</a></li><li class="navelem"><a class="el" href="a00108.html">IfStatement</a></li><li class="navelem"><a class="el" href="a00040.html">Clause</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:38 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00051.html">Yarn</a></li><li class="navelem"><a class="el" href="a00369.html">Analysis</a></li><li class="navelem"><a class="el" href="a00040.html">ASTAnalyser</a></li>
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:08 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

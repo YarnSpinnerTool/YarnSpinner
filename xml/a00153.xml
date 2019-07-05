@@ -1,80 +1,41 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00153" kind="class" prot="public">
-    <compoundname>Yarn::Unity::Example::SpriteSwitcher</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
-    <innerclass refid="a00364" prot="public">Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</innerclass>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00153_1a1e85d9f4f6b33ca7ae638cce2eb704aa" prot="public" static="no" mutable="no">
-        <type><ref refid="a00364" kindref="compound">SpriteInfo</ref>[]</type>
-        <definition>SpriteInfo [] Yarn.Unity.Example.SpriteSwitcher.sprites</definition>
-        <argsstring></argsstring>
-        <name>sprites</name>
+    <compoundname>Yarn::ProgramExporter</compoundname>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="a00153_1a3679a1f144471ea411fed34f6a79a18d" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Yarn.ProgramExporter.Export</definition>
+        <argsstring>(CompileOptions options)</argsstring>
+        <name>Export</name>
+        <param>
+          <type><ref refid="a00055" kindref="compound">CompileOptions</ref></type>
+          <declname>options</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="42" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00153_1ac26718b713f342f3de8f3e569c5b62da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.Example.SpriteSwitcher.UseSprite</definition>
-        <argsstring>(string spriteName)</argsstring>
-        <name>UseSprite</name>
-        <param>
-          <type>string</type>
-          <declname>spriteName</declname>
-        </param>
-        <briefdescription>
-<para>Create a command to use on a sprite. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="46" bodyend="61"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/ProgramExporter.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/ProgramExporter.cs" bodystart="10" bodyend="50"/>
+        <references refid="a00195_1a0979de7ea02c8c0375b8220a12e6575e" compoundref="a00325" startline="273">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</references>
+        <referencedby refid="a00195_1a1d71ff2eb190449ea1d42ce86f44489f" compoundref="a00325" startline="244" endline="271">Yarn.YarnSpinnerConsole.Main</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Attach <ref refid="a00153" kindref="compound">SpriteSwitcher</ref> to game object. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1651">
-        <label>Yarn.Unity.Example.SpriteSwitcher</label>
-        <link refid="a00153"/>
-        <childnode refid="1652" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1652">
-        <label>MonoBehaviour</label>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1653">
-        <label>Yarn.Unity.Example.SpriteSwitcher</label>
+      <node id="1598">
+        <label>Yarn.ProgramExporter</label>
         <link refid="a00153"/>
-        <childnode refid="1654" relation="public-inheritance">
-        </childnode>
-        <childnode refid="1655" relation="usage">
-          <edgelabel>+sprites</edgelabel>
-        </childnode>
-      </node>
-      <node id="1655">
-        <label>Yarn.Unity.Example.SpriteSwitcher.SpriteInfo</label>
-        <link refid="a00364"/>
-      </node>
-      <node id="1654">
-        <label>MonoBehaviour</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="34" bodyend="62"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/ProgramExporter.cs" line="8" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/ProgramExporter.cs" bodystart="7" bodyend="51"/>
     <listofallmembers>
-      <member refid="a00153_1a1e85d9f4f6b33ca7ae638cce2eb704aa" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher</scope><name>sprites</name></member>
-      <member refid="a00153_1ac26718b713f342f3de8f3e569c5b62da" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher</scope><name>UseSprite</name></member>
+      <member refid="a00153_1a3679a1f144471ea411fed34f6a79a18d" prot="package" virt="non-virtual"><scope>Yarn::ProgramExporter</scope><name>Export</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

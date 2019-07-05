@@ -1,4 +1,7 @@
-<map id="Yarn.BaseVariableStorage" name="Yarn.BaseVariableStorage">
-<area shape="rect" id="node3" href="$a00126.html" title="Very simple continuity class that keeps all variables in memory. " alt="" coords="5,373,184,480"/>
-<area shape="rect" id="node2" href="$a00180.html" title="Where we turn to for storing and loading variable data. " alt="" coords="37,5,152,141"/>
+<map id="Yarn.AntlrCompiler" name="Yarn.AntlrCompiler">
+<area shape="rect" id="node2" href="$a00196.html" title="This class provides an empty implementation of IYarnSpinnerParserListener, which can be extended to c..." alt="" coords="5,408,211,632"/>
+<area shape="rect" id="node3" href="$a00124.html" title="This interface defines a complete listener for a parse tree produced by YarnSpinnerParser. " alt="" coords="17,133,199,357"/>
+<area shape="rect" id="node5" href="$a00051.html#a00379" title="{Yarn.Node\n|+ instructions\l+ name\l+ sourceTextStringID\l+ labels\l+ tags\l|}" alt="" coords="236,452,383,588"/>
+<area shape="rect" id="node6" href="$a00129.html" title="{Yarn.Library\n|&#45; functions\l|+ GetFunction()\l+ ImportLibrary()\l+ RegisterFunction()\l+ RegisterFunction()\l+ RegisterFunction()\l+ FunctionExists()\l+ DeregisterFunction()\l}" alt="" coords="407,437,559,603"/>
+<area shape="rect" id="node7" href="$a00038.html#a00374" title="{Yarn.AntlrCompiler.Compile\lFlags\n|+ DisableShuffleOptionsAfter\lNextSet\l|}" alt="" coords="583,467,775,573"/>
 </map>

@@ -1,11 +1,102 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00322" kind="namespace">
-    <compoundname>DFA</compoundname>
+  <compounddef id="a00322" kind="file">
+    <compoundname>YarnSpinnerParserVisitor.cs</compoundname>
+    <innerclass refid="a00125" prot="public">IYarnSpinnerParserVisitor&lt; Result &gt;</innerclass>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="a00322_1ae3d87b0b748ea892bff48f60862e182d" prot="public" static="no">
+        <type>Antlr4.Runtime.IToken</type>
+        <definition>using IToken =  Antlr4.Runtime.IToken</definition>
+        <argsstring></argsstring>
+        <name>IToken</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserVisitor.cs" line="24" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserVisitor.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerLexer.cs" line="28" column="1"/>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//------------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>&lt;auto-generated&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>This<sp/>code<sp/>was<sp/>generated<sp/>by<sp/>a<sp/>tool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>ANTLR<sp/>Version:<sp/>4.7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>Changes<sp/>to<sp/>this<sp/>file<sp/>may<sp/>cause<sp/>incorrect<sp/>behavior<sp/>and<sp/>will<sp/>be<sp/>lost<sp/>if</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>the<sp/>code<sp/>is<sp/>regenerated.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>&lt;/auto-generated&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//------------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Generated<sp/>from<sp/>YarnSpinnerParser.g4<sp/>by<sp/>ANTLR<sp/>4.7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Unreachable<sp/>code<sp/>detected</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>warning<sp/>disable<sp/>0162</highlight></codeline>
+<codeline lineno="15"><highlight class="preprocessor"></highlight><highlight class="comment">//<sp/>The<sp/>variable<sp/>&apos;...&apos;<sp/>is<sp/>assigned<sp/>but<sp/>its<sp/>value<sp/>is<sp/>never<sp/>used</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>warning<sp/>disable<sp/>0219</highlight></codeline>
+<codeline lineno="17"><highlight class="preprocessor"></highlight><highlight class="comment">//<sp/>Missing<sp/>XML<sp/>comment<sp/>for<sp/>publicly<sp/>visible<sp/>type<sp/>or<sp/>member<sp/>&apos;...&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>warning<sp/>disable<sp/>1591</highlight></codeline>
+<codeline lineno="19"><highlight class="preprocessor"></highlight><highlight class="comment">//<sp/>Ambiguous<sp/>reference<sp/>in<sp/>cref<sp/>attribute</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>warning<sp/>disable<sp/>419</highlight></codeline>
+<codeline lineno="21"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Antlr4.Runtime.Misc;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Antlr4.Runtime.Tree;</highlight></codeline>
+<codeline lineno="24" refid="a00322_1ae3d87b0b748ea892bff48f60862e182d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="a00319_1ae3d87b0b748ea892bff48f60862e182d" kindref="member">IToken</ref><sp/>=<sp/><ref refid="a00322_1ae3d87b0b748ea892bff48f60862e182d" kindref="member">Antlr4.Runtime.IToken</ref>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">[System.CodeDom.Compiler.GeneratedCode(</highlight><highlight class="stringliteral">&quot;ANTLR&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;4.7&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">[System.CLSCompliant(</highlight><highlight class="keyword">false</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="33" refid="a00125" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">interface<sp/></highlight><highlight class="normal">IYarnSpinnerParserVisitor&lt;Result&gt;<sp/>:<sp/>IParseTreeVisitor&lt;Result&gt;<sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitDialogue([NotNull]<sp/>YarnSpinnerParser.DialogueContext<sp/>context);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitNode([NotNull]<sp/>YarnSpinnerParser.NodeContext<sp/>context);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitHeader([NotNull]<sp/>YarnSpinnerParser.HeaderContext<sp/>context);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitHeader_title([NotNull]<sp/>YarnSpinnerParser.Header_titleContext<sp/>context);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitHeader_tag([NotNull]<sp/>YarnSpinnerParser.Header_tagContext<sp/>context);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitHeader_line([NotNull]<sp/>YarnSpinnerParser.Header_lineContext<sp/>context);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitBody([NotNull]<sp/>YarnSpinnerParser.BodyContext<sp/>context);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitStatement([NotNull]<sp/>YarnSpinnerParser.StatementContext<sp/>context);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitShortcut_statement([NotNull]<sp/>YarnSpinnerParser.Shortcut_statementContext<sp/>context);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitShortcut([NotNull]<sp/>YarnSpinnerParser.ShortcutContext<sp/>context);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitShortcut_conditional([NotNull]<sp/>YarnSpinnerParser.Shortcut_conditionalContext<sp/>context);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitShortcut_text([NotNull]<sp/>YarnSpinnerParser.Shortcut_textContext<sp/>context);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitIf_statement([NotNull]<sp/>YarnSpinnerParser.If_statementContext<sp/>context);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitIf_clause([NotNull]<sp/>YarnSpinnerParser.If_clauseContext<sp/>context);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitElse_if_clause([NotNull]<sp/>YarnSpinnerParser.Else_if_clauseContext<sp/>context);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitElse_clause([NotNull]<sp/>YarnSpinnerParser.Else_clauseContext<sp/>context);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitSet_statement([NotNull]<sp/>YarnSpinnerParser.Set_statementContext<sp/>context);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitOption_statement([NotNull]<sp/>YarnSpinnerParser.Option_statementContext<sp/>context);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitFunction([NotNull]<sp/>YarnSpinnerParser.FunctionContext<sp/>context);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitFunction_statement([NotNull]<sp/>YarnSpinnerParser.Function_statementContext<sp/>context);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitAction_statement([NotNull]<sp/>YarnSpinnerParser.Action_statementContext<sp/>context);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitText([NotNull]<sp/>YarnSpinnerParser.TextContext<sp/>context);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitLine_statement([NotNull]<sp/>YarnSpinnerParser.Line_statementContext<sp/>context);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitHashtag_block([NotNull]<sp/>YarnSpinnerParser.Hashtag_blockContext<sp/>context);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitHashtag([NotNull]<sp/>YarnSpinnerParser.HashtagContext<sp/>context);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitExpParens([NotNull]<sp/>YarnSpinnerParser.ExpParensContext<sp/>context);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitExpMultDivMod([NotNull]<sp/>YarnSpinnerParser.ExpMultDivModContext<sp/>context);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitExpMultDivModEquals([NotNull]<sp/>YarnSpinnerParser.ExpMultDivModEqualsContext<sp/>context);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitExpComparison([NotNull]<sp/>YarnSpinnerParser.ExpComparisonContext<sp/>context);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitExpNegative([NotNull]<sp/>YarnSpinnerParser.ExpNegativeContext<sp/>context);</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitExpAndOrXor([NotNull]<sp/>YarnSpinnerParser.ExpAndOrXorContext<sp/>context);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitExpPlusMinusEquals([NotNull]<sp/>YarnSpinnerParser.ExpPlusMinusEqualsContext<sp/>context);</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitExpAddSub([NotNull]<sp/>YarnSpinnerParser.ExpAddSubContext<sp/>context);</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitExpNot([NotNull]<sp/>YarnSpinnerParser.ExpNotContext<sp/>context);</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitExpValue([NotNull]<sp/>YarnSpinnerParser.ExpValueContext<sp/>context);</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitExpEquality([NotNull]<sp/>YarnSpinnerParser.ExpEqualityContext<sp/>context);</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitValueNumber([NotNull]<sp/>YarnSpinnerParser.ValueNumberContext<sp/>context);</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitValueTrue([NotNull]<sp/>YarnSpinnerParser.ValueTrueContext<sp/>context);</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitValueFalse([NotNull]<sp/>YarnSpinnerParser.ValueFalseContext<sp/>context);</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitValueVar([NotNull]<sp/>YarnSpinnerParser.ValueVarContext<sp/>context);</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitValueString([NotNull]<sp/>YarnSpinnerParser.ValueStringContext<sp/>context);</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitValueFunc([NotNull]<sp/>YarnSpinnerParser.ValueFuncContext<sp/>context);</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitValueNull([NotNull]<sp/>YarnSpinnerParser.ValueNullContext<sp/>context);</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/>Result<sp/>VisitVariable([NotNull]<sp/>YarnSpinnerParser.VariableContext<sp/>context);</highlight></codeline>
+<codeline lineno="316"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserVisitor.cs"/>
   </compounddef>
 </doxygen>

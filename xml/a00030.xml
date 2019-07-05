@@ -1,39 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00030" kind="class" prot="package" abstract="yes">
-    <compoundname>Yarn::Analysis::ASTAnalyser</compoundname>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00030_1a07bb220dead44ed12c8842de706ecdf7" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract IEnumerable&lt; <ref refid="a00081" kindref="compound">Diagnosis</ref> &gt;</type>
-        <definition>abstract IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.ASTAnalyser.Diagnose</definition>
-        <argsstring>(Yarn.Parser.Node node)</argsstring>
-        <name>Diagnose</name>
-        <param>
-          <type><ref refid="a00128" kindref="compound">Yarn.Parser.Node</ref></type>
-          <declname>node</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="147" column="1"/>
-      </memberdef>
-      </sectiondef>
-    <briefdescription>
-    </briefdescription>
+  <compounddef id="a00030" kind="page">
+    <compoundname>md_packages_Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.1_documentation_Microsoft.CodeAnalysis.VersionCheckAnalyzer</compoundname>
+    <title>Microsoft</title>
     <detaileddescription>
-    </detaileddescription>
-    <collaborationgraph>
-      <node id="947">
-        <label>Yarn.Analysis.ASTAnalyser</label>
-        <link refid="a00030"/>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="146" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="146" bodyend="148"/>
-    <listofallmembers>
-      <member refid="a00030_1a07bb220dead44ed12c8842de706ecdf7" prot="public" virt="pure-virtual"><scope>Yarn::Analysis::ASTAnalyser</scope><name>Diagnose</name></member>
-    </listofallmembers>
+<para><table rows="2" cols="7"><row>
+<entry thead="yes"><para>Sr. No. </para></entry><entry thead="yes"><para>Rule ID </para></entry><entry thead="yes"><para>Title </para></entry><entry thead="yes"><para>Category </para></entry><entry thead="yes"><para>Enabled </para></entry><entry thead="yes"><para>CodeFix </para></entry><entry thead="yes"><para>Description  </para></entry></row>
+<row>
+<entry thead="no"><para>1 </para></entry><entry thead="no"><para>CA9999 </para></entry><entry thead="no"><para>Analyzer version mismatch </para></entry><entry thead="no"><para>Reliability </para></entry><entry thead="no"><para>True </para></entry><entry thead="no"><para>False </para></entry><entry thead="no"><para>Analyzers in this package require a certain minimum version of Microsoft.CodeAnalysis to execute correctly. Refer to <ulink url="https://docs.microsoft.com/en-us/visualstudio/code-quality/install-fxcop-analyzers?view=vs-2017#fxcopanalyzers-package-versions">https://docs.microsoft.com/en-us/visualstudio/code-quality/install-fxcop-analyzers?view=vs-2017#fxcopanalyzers-package-versions</ulink> to install the correct analyzer version. </para></entry></row>
+</table>
+</para>    </detaileddescription>
   </compounddef>
 </doxygen>

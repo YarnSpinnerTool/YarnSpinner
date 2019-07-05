@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: YarnSpinner/YarnSpinnerParserVisitor.cs File Reference</title>
+<title>YarnSpinner: YarnSpinner/Compiler.cs File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -106,9 +106,9 @@ $(document).ready(function(){initNavTree('a00304.html','');});
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
-<div class="title">YarnSpinnerParserVisitor.cs File Reference</div>  </div>
+<div class="title">Compiler.cs File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -116,27 +116,46 @@ $(document).ready(function(){initNavTree('a00304.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html">IYarnSpinnerParserVisitor&lt; Result &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This interface defines a complete generic visitor for a parse tree produced by YarnSpinnerParser.  <a href="a00115.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00054.html">Yarn.Compiler</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00375"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00054.html#a00375">Yarn.Compiler.CompileFlags</a></td></tr>
+<tr class="separator:a00375"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:ae3d87b0b748ea892bff48f60862e182d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00304.html#ae3d87b0b748ea892bff48f60862e182d">IToken</a> = Antlr4.Runtime.IToken</td></tr>
-<tr class="separator:ae3d87b0b748ea892bff48f60862e182d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:a00051"><td class="memItemLeft" align="right" valign="top">package &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00051.html">Yarn</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="ae3d87b0b748ea892bff48f60862e182d"></a>
+<hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="a00375" id="a00375"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="a00301.html#ae3d87b0b748ea892bff48f60862e182d">IToken</a> =  Antlr4.Runtime.IToken</td>
+          <td class="memname">struct Yarn::Compiler::CompileFlags</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00304_source.html#l00024">24</a> of file <a class="el" href="a00304_source.html">YarnSpinnerParserVisitor.cs</a>.</p>
+<div class="textblock">
+<p>Definition at line <a class="el" href="a00304_source.html#l00009">9</a> of file <a class="el" href="a00304_source.html">Compiler.cs</a>.</p>
+</div><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Compiler.CompileFlags:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00389.png" border="0" usemap="#_yarn_8_compiler_8_compile_flags_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_compiler_8_compile_flags_coll__map" id="_yarn_8_compiler_8_compile_flags_coll__map">
+</map>
+</div>
+<table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a8b49bb7763ff477cba21d7c771ef3ed0"></a>bool</td>
+<td class="fieldname">
+DisableShuffleOptionsAfterNextSet</td>
+<td class="fielddoc">
+</td></tr>
+</table>
 
 </div>
 </div>
@@ -145,8 +164,8 @@ Typedefs</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00304.html">YarnSpinnerParserVisitor.cs</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 01:56:36 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00304.html">Compiler.cs</a></li>
+    <li class="footer">Generated on Fri Jul 5 2019 01:58:05 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

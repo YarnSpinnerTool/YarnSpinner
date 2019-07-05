@@ -1,208 +1,80 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00163" kind="class" prot="package">
-    <compoundname>Yarn::Token</compoundname>
+  <compounddef id="a00163" kind="class" prot="public">
+    <compoundname>Yarn::Unity::Example::SpriteSwitcher</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <innerclass refid="a00382" prot="public">Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</innerclass>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00163_1a471a25da67fda0524f2375f9a882aafa" prot="public" static="no" mutable="no">
-        <type><ref refid="a00041_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
-        <definition>TokenType Yarn.Token.type</definition>
+      <memberdef kind="variable" id="a00163_1a1e85d9f4f6b33ca7ae638cce2eb704aa" prot="public" static="no" mutable="no">
+        <type><ref refid="a00382" kindref="compound">SpriteInfo</ref>[]</type>
+        <definition>SpriteInfo [] Yarn.Unity.Example.SpriteSwitcher.sprites</definition>
         <argsstring></argsstring>
-        <name>type</name>
+        <name>sprites</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="177" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="177" bodyend="-1"/>
-        <referencedby refid="a00094_1a686da57aaf67d50d2832f9ee0028a979" compoundref="a00295" startline="772" endline="1042">Yarn.Parser.Expression.Parse</referencedby>
-        <referencedby refid="a00163_1ab8531150354ef148b8929a727f29ae39" compoundref="a00292" startline="194" endline="200">Yarn.Token.Token</referencedby>
-        <referencedby refid="a00163_1abf676a737679ec2fb1dffd75dc4d7976" compoundref="a00292" startline="202" endline="208">Yarn.Token.ToString</referencedby>
-        <referencedby refid="a00178_1a7be6a979ee21b2d07ce541fb9c5b52df" compoundref="a00295" startline="676" endline="710">Yarn.Parser.ValueNode.UseToken</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00163_1a3df6b32d6190a639619a3f064c2154e2" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Token.value</definition>
-        <argsstring></argsstring>
-        <name>value</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="178" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="178" bodyend="-1"/>
-        <referencedby refid="a00163_1ab8531150354ef148b8929a727f29ae39" compoundref="a00292" startline="194" endline="200">Yarn.Token.Token</referencedby>
-        <referencedby refid="a00163_1abf676a737679ec2fb1dffd75dc4d7976" compoundref="a00292" startline="202" endline="208">Yarn.Token.ToString</referencedby>
-        <referencedby refid="a00178_1a7be6a979ee21b2d07ce541fb9c5b52df" compoundref="a00295" startline="676" endline="710">Yarn.Parser.ValueNode.UseToken</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00163_1a80fe710713201bb793a41452e314a721" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Token.lineNumber</definition>
-        <argsstring></argsstring>
-        <name>lineNumber</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="181" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="181" bodyend="-1"/>
-        <referencedby refid="a00163_1ab8531150354ef148b8929a727f29ae39" compoundref="a00292" startline="194" endline="200">Yarn.Token.Token</referencedby>
-        <referencedby refid="a00163_1abf676a737679ec2fb1dffd75dc4d7976" compoundref="a00292" startline="202" endline="208">Yarn.Token.ToString</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00163_1a9a0f0a8a7ab1e90ab48f15192323ffca" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Token.columnNumber</definition>
-        <argsstring></argsstring>
-        <name>columnNumber</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="182" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="182" bodyend="-1"/>
-        <referencedby refid="a00163_1ab8531150354ef148b8929a727f29ae39" compoundref="a00292" startline="194" endline="200">Yarn.Token.Token</referencedby>
-        <referencedby refid="a00163_1abf676a737679ec2fb1dffd75dc4d7976" compoundref="a00292" startline="202" endline="208">Yarn.Token.ToString</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00163_1a089d248c904a6e8366b81c2c47ff5af8" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Token.context</definition>
-        <argsstring></argsstring>
-        <name>context</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="183" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="183" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00163_1af15d26fa4e6f276ab58ff66d3c4203da" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.Token.delimitsText</definition>
-        <argsstring></argsstring>
-        <name>delimitsText</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="185" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="185" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00163_1adf11c0d29b66935a8d8109d6308d0488" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Token.parameterCount</definition>
-        <argsstring></argsstring>
-        <name>parameterCount</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="189" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="189" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00163_1a710099e7abe84f30864a320cc7464214" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Token.lexerState</definition>
-        <argsstring></argsstring>
-        <name>lexerState</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="192" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="192" bodyend="-1"/>
-        <referencedby refid="a00163_1abf676a737679ec2fb1dffd75dc4d7976" compoundref="a00292" startline="202" endline="208">Yarn.Token.ToString</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="42" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00163_1ab8531150354ef148b8929a727f29ae39" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Token.Token</definition>
-        <argsstring>(TokenType type, Lexer.LexerState lexerState, int lineNumber=-1, int columnNumber=-1, string value=null)</argsstring>
-        <name>Token</name>
-        <param>
-          <type><ref refid="a00041_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
-          <declname>type</declname>
-        </param>
-        <param>
-          <type><ref refid="a00118" kindref="compound">Lexer.LexerState</ref></type>
-          <declname>lexerState</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>lineNumber</declname>
-          <defval>-1</defval>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>columnNumber</declname>
-          <defval>-1</defval>
-        </param>
+      <memberdef kind="function" id="a00163_1ac26718b713f342f3de8f3e569c5b62da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.Example.SpriteSwitcher.UseSprite</definition>
+        <argsstring>(string spriteName)</argsstring>
+        <name>UseSprite</name>
         <param>
           <type>string</type>
-          <declname>value</declname>
-          <defval>null</defval>
+          <declname>spriteName</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Create a command to use on a sprite. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="194" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="194" bodyend="200"/>
-        <references refid="a00163_1a9a0f0a8a7ab1e90ab48f15192323ffca" compoundref="a00292" startline="182">Yarn.Token.columnNumber</references>
-        <references refid="a00163_1a80fe710713201bb793a41452e314a721" compoundref="a00292" startline="181">Yarn.Token.lineNumber</references>
-        <references refid="a00163_1a471a25da67fda0524f2375f9a882aafa" compoundref="a00292" startline="177">Yarn.Token.type</references>
-        <references refid="a00163_1a3df6b32d6190a639619a3f064c2154e2" compoundref="a00292" startline="178">Yarn.Token.value</references>
-      </memberdef>
-      <memberdef kind="function" id="a00163_1abf676a737679ec2fb1dffd75dc4d7976" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override string</type>
-        <definition>override string Yarn.Token.ToString</definition>
-        <argsstring>()</argsstring>
-        <name>ToString</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="202" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="202" bodyend="208"/>
-        <references refid="a00163_1a9a0f0a8a7ab1e90ab48f15192323ffca" compoundref="a00292" startline="182">Yarn.Token.columnNumber</references>
-        <references refid="a00163_1a710099e7abe84f30864a320cc7464214" compoundref="a00292" startline="192">Yarn.Token.lexerState</references>
-        <references refid="a00163_1a80fe710713201bb793a41452e314a721" compoundref="a00292" startline="181">Yarn.Token.lineNumber</references>
-        <references refid="a00163_1a471a25da67fda0524f2375f9a882aafa" compoundref="a00292" startline="177">Yarn.Token.type</references>
-        <references refid="a00163_1a3df6b32d6190a639619a3f064c2154e2" compoundref="a00292" startline="178">Yarn.Token.value</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="46" bodyend="61"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Attach <ref refid="a00163" kindref="compound">SpriteSwitcher</ref> to game object. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1703">
-        <label>Yarn.Token</label>
+    <inheritancegraph>
+      <node id="1651">
+        <label>Yarn.Unity.Example.SpriteSwitcher</label>
         <link refid="a00163"/>
+        <childnode refid="1652" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1652">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1653">
+        <label>Yarn.Unity.Example.SpriteSwitcher</label>
+        <link refid="a00163"/>
+        <childnode refid="1654" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1655" relation="usage">
+          <edgelabel>+sprites</edgelabel>
+        </childnode>
+      </node>
+      <node id="1655">
+        <label>Yarn.Unity.Example.SpriteSwitcher.SpriteInfo</label>
+        <link refid="a00382"/>
+      </node>
+      <node id="1654">
+        <label>MonoBehaviour</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="174" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="174" bodyend="209"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="34" bodyend="62"/>
     <listofallmembers>
-      <member refid="a00163_1a9a0f0a8a7ab1e90ab48f15192323ffca" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>columnNumber</name></member>
-      <member refid="a00163_1a089d248c904a6e8366b81c2c47ff5af8" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>context</name></member>
-      <member refid="a00163_1af15d26fa4e6f276ab58ff66d3c4203da" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>delimitsText</name></member>
-      <member refid="a00163_1a710099e7abe84f30864a320cc7464214" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>lexerState</name></member>
-      <member refid="a00163_1a80fe710713201bb793a41452e314a721" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>lineNumber</name></member>
-      <member refid="a00163_1adf11c0d29b66935a8d8109d6308d0488" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>parameterCount</name></member>
-      <member refid="a00163_1ab8531150354ef148b8929a727f29ae39" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>Token</name></member>
-      <member refid="a00163_1abf676a737679ec2fb1dffd75dc4d7976" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>ToString</name></member>
-      <member refid="a00163_1a471a25da67fda0524f2375f9a882aafa" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>type</name></member>
-      <member refid="a00163_1a3df6b32d6190a639619a3f064c2154e2" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>value</name></member>
+      <member refid="a00163_1a1e85d9f4f6b33ca7ae638cce2eb704aa" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher</scope><name>sprites</name></member>
+      <member refid="a00163_1ac26718b713f342f3de8f3e569c5b62da" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher</scope><name>UseSprite</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

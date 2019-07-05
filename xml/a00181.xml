@@ -1,175 +1,150 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00181" kind="class" prot="public" abstract="yes">
-    <compoundname>Yarn::Unity::VariableStorageBehaviour</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
-    <basecompoundref refid="a00180" prot="public" virt="non-virtual">Yarn.VariableStorage</basecompoundref>
-    <derivedcompoundref refid="a00079" prot="public" virt="non-virtual">ExampleVariableStorage</derivedcompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00181_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.SetNumber</definition>
-        <argsstring>(string variableName, float number)</argsstring>
-        <name>SetNumber</name>
-        <reimplements refid="a00180_1aa28c3694f985cf73489efc301b9d41dd">SetNumber</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>number</declname>
-        </param>
-        <briefdescription>
-<para>Not implemented here. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="465" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="465" bodyend="468"/>
-      </memberdef>
-      <memberdef kind="function" id="a00181_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>float</type>
-        <definition>virtual float Yarn.Unity.VariableStorageBehaviour.GetNumber</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetNumber</name>
-        <reimplements refid="a00180_1a04b061c52d8ac814ce559da5286fbc71">GetNumber</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <briefdescription>
-<para>Not implemented here. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="471" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="471" bodyend="474"/>
-      </memberdef>
-      <memberdef kind="function" id="a00181_1ac6ebafcbebc2b2d71eba8562490a2f1e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00177" kindref="compound">Value</ref></type>
-        <definition>virtual Value Yarn.Unity.VariableStorageBehaviour.GetValue</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetValue</name>
-        <reimplements refid="a00180_1accab1fc5c8fc353dbfc53ca0f4029576">GetValue</reimplements>
-        <reimplementedby refid="a00079_1a741593be1a299dcc2136f05b9b4a995a">GetValue</reimplementedby>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <briefdescription>
-<para>Get a value. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="477" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="477" bodyend="479"/>
-      </memberdef>
-      <memberdef kind="function" id="a00181_1a25f979b062d63c9e886fe7070ce4561b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.SetValue</definition>
-        <argsstring>(string variableName, Value value)</argsstring>
-        <name>SetValue</name>
-        <reimplements refid="a00180_1aa90ff61224432c5ed3ce72199c55f440">SetValue</reimplements>
-        <reimplementedby refid="a00079_1ac4265c1c9da485f13a6b05784b0f668d">SetValue</reimplementedby>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type><ref refid="a00177" kindref="compound">Value</ref></type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-<para>Set a value. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="482" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="482" bodyend="484"/>
-      </memberdef>
-      <memberdef kind="function" id="a00181_1a587fe10b367ace190e10f3bcb590a53c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.Clear</definition>
-        <argsstring>()</argsstring>
-        <name>Clear</name>
-        <reimplements refid="a00180_1af98c1e41f351cb96e13f668ca2fd9d92">Clear</reimplements>
-        <reimplementedby refid="a00079_1a0ce614bee8d5b220500fb765390b4ca3">Clear</reimplementedby>
-        <briefdescription>
-<para>Not implemented here. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="487" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="487" bodyend="490"/>
-      </memberdef>
-      <memberdef kind="function" id="a00181_1a33fcbff56561e53e0a70b59c56f0c3af" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract void</type>
-        <definition>abstract void Yarn.Unity.VariableStorageBehaviour.ResetToDefaults</definition>
-        <argsstring>()</argsstring>
-        <name>ResetToDefaults</name>
-        <reimplementedby refid="a00079_1a3a05d66cdacadb2e9b618cd0aef45f84">ResetToDefaults</reimplementedby>
+  <compounddef id="a00181" kind="class" prot="public">
+    <compoundname>System::Reflection::TypeInfo</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00181_1a71c4f4b000d08808c8965222d4ba1b8d" prot="private" static="no" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type System.Reflection.TypeInfo.type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="492" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" line="8" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00181_1a8bb78c2b0377f57dba1a3e2031216029" prot="public" static="no" mutable="no">
+        <type>Type</type>
+        <definition>Type System.Reflection.TypeInfo.BaseType</definition>
+        <argsstring></argsstring>
+        <name>BaseType</name>
+        <initializer>=&gt; type.BaseType</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00181_1a6ae2d0f4c557010a075a6fecab18fbb5" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool System.Reflection.TypeInfo.IsClass</definition>
+        <argsstring></argsstring>
+        <name>IsClass</name>
+        <initializer>=&gt; type.IsClass</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" line="12" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00181_1a6a532f6a581b3280d1837fc242f314af" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool System.Reflection.TypeInfo.IsGenericType</definition>
+        <argsstring></argsstring>
+        <name>IsGenericType</name>
+        <initializer>=&gt; type.IsGenericType</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00181_1ab38ba26ebc21ec6fb908b74eede99a5c" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool System.Reflection.TypeInfo.IsPrimitive</definition>
+        <argsstring></argsstring>
+        <name>IsPrimitive</name>
+        <initializer>=&gt; type.IsPrimitive</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00181_1ae2255904b8743c47a185d62909404aed" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool System.Reflection.TypeInfo.IsValueType</definition>
+        <argsstring></argsstring>
+        <name>IsValueType</name>
+        <initializer>=&gt; type.IsValueType</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00181_1ae2bbf4462c274977b6df5c994808cc39" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>System.Reflection.TypeInfo.TypeInfo</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>TypeInfo</name>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" bodystart="20" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="a00181_1a8c74647f572e998dd7e843a752d5234d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool System.Reflection.TypeInfo.IsAssignableFrom</definition>
+        <argsstring>(TypeInfo typeInfo)</argsstring>
+        <name>IsAssignableFrom</name>
+        <param>
+          <type><ref refid="a00181" kindref="compound">TypeInfo</ref></type>
+          <declname>typeInfo</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" line="25" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" bodystart="25" bodyend="28"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Scripts that can act as a variable storage should subclass this. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1773">
-        <label>ExampleVariableStorage</label>
-        <link refid="a00079"/>
-        <childnode refid="1770" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1772">
-        <label>Yarn::VariableStorage</label>
-        <link refid="a00180"/>
-      </node>
-      <node id="1770">
-        <label>Yarn.Unity.VariableStorageBehaviour</label>
-        <link refid="a00181"/>
-        <childnode refid="1771" relation="public-inheritance">
-        </childnode>
-        <childnode refid="1772" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1771">
-        <label>MonoBehaviour</label>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1776">
-        <label>Yarn::VariableStorage</label>
-        <link refid="a00180"/>
-      </node>
-      <node id="1774">
-        <label>Yarn.Unity.VariableStorageBehaviour</label>
+      <node id="1723">
+        <label>System.Reflection.TypeInfo</label>
         <link refid="a00181"/>
-        <childnode refid="1775" relation="public-inheritance">
-        </childnode>
-        <childnode refid="1776" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1775">
-        <label>MonoBehaviour</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="462" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="461" bodyend="494"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" line="7" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs" bodystart="6" bodyend="29"/>
     <listofallmembers>
-      <member refid="a00181_1a587fe10b367ace190e10f3bcb590a53c" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>Clear</name></member>
-      <member refid="a00181_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>GetNumber</name></member>
-      <member refid="a00181_1ac6ebafcbebc2b2d71eba8562490a2f1e" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>GetValue</name></member>
-      <member refid="a00181_1a33fcbff56561e53e0a70b59c56f0c3af" prot="public" virt="pure-virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>ResetToDefaults</name></member>
-      <member refid="a00181_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>SetNumber</name></member>
-      <member refid="a00181_1a25f979b062d63c9e886fe7070ce4561b" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>SetValue</name></member>
+      <member refid="a00181_1a8bb78c2b0377f57dba1a3e2031216029" prot="public" virt="non-virtual"><scope>System::Reflection::TypeInfo</scope><name>BaseType</name></member>
+      <member refid="a00181_1a8c74647f572e998dd7e843a752d5234d" prot="public" virt="non-virtual"><scope>System::Reflection::TypeInfo</scope><name>IsAssignableFrom</name></member>
+      <member refid="a00181_1a6ae2d0f4c557010a075a6fecab18fbb5" prot="public" virt="non-virtual"><scope>System::Reflection::TypeInfo</scope><name>IsClass</name></member>
+      <member refid="a00181_1a6a532f6a581b3280d1837fc242f314af" prot="public" virt="non-virtual"><scope>System::Reflection::TypeInfo</scope><name>IsGenericType</name></member>
+      <member refid="a00181_1ab38ba26ebc21ec6fb908b74eede99a5c" prot="public" virt="non-virtual"><scope>System::Reflection::TypeInfo</scope><name>IsPrimitive</name></member>
+      <member refid="a00181_1ae2255904b8743c47a185d62909404aed" prot="public" virt="non-virtual"><scope>System::Reflection::TypeInfo</scope><name>IsValueType</name></member>
+      <member refid="a00181_1a71c4f4b000d08808c8965222d4ba1b8d" prot="private" virt="non-virtual"><scope>System::Reflection::TypeInfo</scope><name>type</name></member>
+      <member refid="a00181_1ae2bbf4462c274977b6df5c994808cc39" prot="public" virt="non-virtual"><scope>System::Reflection::TypeInfo</scope><name>TypeInfo</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

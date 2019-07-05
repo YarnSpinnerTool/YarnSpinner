@@ -1,153 +1,174 @@
-\hypertarget{a00049}{\section{Csv\-Helper.\-Csv\-Bad\-Data\-Exception Class Reference}
-\label{a00049}\index{Csv\-Helper.\-Csv\-Bad\-Data\-Exception@{Csv\-Helper.\-Csv\-Bad\-Data\-Exception}}
+\hypertarget{a00049}{\section{Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result Class Reference}
+\label{a00049}\index{Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result@{Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result}}
 }
 
 
-Represents errors that occur due to bad data.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Csv\-Bad\-Data\-Exception\-:
+Collaboration diagram for Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=246pt]{a00401}
+\includegraphics[width=224pt]{a00795}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-Csv\-Bad\-Data\-Exception\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=246pt]{a00402}
-\end{center}
-\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{a00049_ab24848d7951ce44eb3c7768c6ee10385}{State} \{ \hyperlink{a00049_ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5}{State.\-Not\-Tested}, 
+\hyperlink{a00049_ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15}{State.\-Passed}, 
+\hyperlink{a00049_ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca}{State.\-Failed}
+ \}
+\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00049_a337ebca212c62127ba837ae726a0cc3a}{Csv\-Bad\-Data\-Exception} ()
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00049}{Csv\-Bad\-Data\-Exception} class. \end{DoxyCompactList}\item 
-\hyperlink{a00049_a31da9e807053a75e8bd252aa792269eb}{Csv\-Bad\-Data\-Exception} (string message)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00049}{Csv\-Bad\-Data\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
-\hyperlink{a00049_a2c210cf80604e58ffecc177f6f7c2547}{Csv\-Bad\-Data\-Exception} (string message, Exception inner\-Exception)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00049}{Csv\-Bad\-Data\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
-\hyperlink{a00049_abe956c9c100374953fd899bef2f2489f}{Csv\-Bad\-Data\-Exception} (Serialization\-Info info, Streaming\-Context context)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00056}{Csv\-Helper\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+override bool \hyperlink{a00049_a1e653caad5ab99847c26ff8f67da8f45}{Equals} (object obj)
+\item 
+override int \hyperlink{a00049_a85d50993390cdd8ba30ac44043b18de7}{Get\-Hash\-Code} ()
+\item 
+\hyperlink{a00049_af1c9b3d1757d33ad2141c639c3827c97}{Checker\-Result} (Text\-Asset \hyperlink{a00049_a6c852f7521c0a91b519aa3d391f63e6b}{script})
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00049_ab24848d7951ce44eb3c7768c6ee10385}{State} \hyperlink{a00049_a7202b24bd068da24d7e28bec5668b13a}{state}
+\item 
+Text\-Asset \hyperlink{a00049_a6c852f7521c0a91b519aa3d391f63e6b}{script}
+\item 
+\hyperlink{a00186_a00383}{Validation\-Message}\mbox{[}$\,$\mbox{]} \hyperlink{a00049_a808a039e280cf875cb3c9e9385148498}{messages} = new \hyperlink{a00186_a00383}{Validation\-Message}\mbox{[}0\mbox{]}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Represents errors that occur due to bad data. 
+
+
+Definition at line 35 of file Yarn\-Spinner\-Editor\-Window.\-cs.
 
 
 
-Definition at line 18 of file Csv\-Bad\-Data\-Exception.\-cs.
+\subsection{Member Enumeration Documentation}
+\hypertarget{a00049_ab24848d7951ce44eb3c7768c6ee10385}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!State@{State}}
+\index{State@{State}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
+\subsubsection[{State}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-State}}}\label{a00049_ab24848d7951ce44eb3c7768c6ee10385}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Not\-Tested@{Not\-Tested}!Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Not\-Tested@{Not\-Tested}}\item[{\em 
+\hypertarget{a00049_ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5}{Not\-Tested}\label{a00049_ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5}
+}]\index{Passed@{Passed}!Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Passed@{Passed}}\item[{\em 
+\hypertarget{a00049_ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15}{Passed}\label{a00049_ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15}
+}]\index{Failed@{Failed}!Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Failed@{Failed}}\item[{\em 
+\hypertarget{a00049_ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca}{Failed}\label{a00049_ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca}
+}]\end{description}
+\end{Desc}
 
+
+Definition at line 36 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+
+
+\begin{DoxyCode}
+36                               \{
+37                 \hyperlink{a00049_ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5}{NotTested},
+38                 \hyperlink{a00049_ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15}{Passed},
+39                 \hyperlink{a00049_ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca}{Failed}
+40             \}
+\end{DoxyCode}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00049_a337ebca212c62127ba837ae726a0cc3a}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
-\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
-\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\hypertarget{a00049_af1c9b3d1757d33ad2141c639c3827c97}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Checker\-Result@{Checker\-Result}}
+\index{Checker\-Result@{Checker\-Result}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
+\subsubsection[{Checker\-Result}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-Checker\-Result (
+\begin{DoxyParamCaption}
+\item[{Text\-Asset}]{script}
+\end{DoxyParamCaption}
+)}}\label{a00049_af1c9b3d1757d33ad2141c639c3827c97}
+
+
+Definition at line 60 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+
+
+\begin{DoxyCode}
+60                                                    \{
+61                 this.script = \hyperlink{a00049_a6c852f7521c0a91b519aa3d391f63e6b}{script};
+62                 this.state = State.NotTested;
+63             \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00049_a1e653caad5ab99847c26ff8f67da8f45}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Equals@{Equals}}
+\index{Equals@{Equals}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
+\subsubsection[{Equals}]{\setlength{\rightskip}{0pt plus 5cm}override bool Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-Equals (
+\begin{DoxyParamCaption}
+\item[{object}]{obj}
+\end{DoxyParamCaption}
+)}}\label{a00049_a1e653caad5ab99847c26ff8f67da8f45}
+
+
+Definition at line 47 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+
+
+\begin{DoxyCode}
+48             \{
+49                 \textcolor{keywordflow}{if} (obj is \hyperlink{a00049_af1c9b3d1757d33ad2141c639c3827c97}{CheckerResult} && ((\hyperlink{a00049_af1c9b3d1757d33ad2141c639c3827c97}{CheckerResult})obj).
+      \hyperlink{a00049_a6c852f7521c0a91b519aa3d391f63e6b}{script} == this.\hyperlink{a00049_a6c852f7521c0a91b519aa3d391f63e6b}{script})
+50                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+51                 \textcolor{keywordflow}{else}
+52                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+53             \}
+\end{DoxyCode}
+\hypertarget{a00049_a85d50993390cdd8ba30ac44043b18de7}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Get\-Hash\-Code@{Get\-Hash\-Code}}
+\index{Get\-Hash\-Code@{Get\-Hash\-Code}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
+\subsubsection[{Get\-Hash\-Code}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-Get\-Hash\-Code (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00049_a337ebca212c62127ba837ae726a0cc3a}
+)}}\label{a00049_a85d50993390cdd8ba30ac44043b18de7}
 
 
-Initializes a new instance of the \hyperlink{a00049}{Csv\-Bad\-Data\-Exception} class. 
-
-
-
-Definition at line 23 of file Csv\-Bad\-Data\-Exception.\-cs.
+Definition at line 55 of file Yarn\-Spinner\-Editor\-Window.\-cs.
 
 
 \begin{DoxyCode}
-23 \{\}
+56             \{
+57                 \textcolor{keywordflow}{return} this.script.GetHashCode();
+58             \}
 \end{DoxyCode}
-\hypertarget{a00049_a31da9e807053a75e8bd252aa792269eb}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
-\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
-\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
-\begin{DoxyParamCaption}
-\item[{string}]{message}
-\end{DoxyParamCaption}
-)}}\label{a00049_a31da9e807053a75e8bd252aa792269eb}
 
 
-Initializes a new instance of the \hyperlink{a00049}{Csv\-Bad\-Data\-Exception} class with a specified error message. 
+\subsection{Member Data Documentation}
+\hypertarget{a00049_a808a039e280cf875cb3c9e9385148498}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!messages@{messages}}
+\index{messages@{messages}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
+\subsubsection[{messages}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Validation\-Message} \mbox{[}$\,$\mbox{]} Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-messages = new {\bf Validation\-Message}\mbox{[}0\mbox{]}}}\label{a00049_a808a039e280cf875cb3c9e9385148498}
 
 
-\begin{DoxyParams}{Parameters}
-{\em message} & The message that describes the error.\\
-\hline
-\end{DoxyParams}
+Definition at line 45 of file Yarn\-Spinner\-Editor\-Window.\-cs.
 
 
-Definition at line 30 of file Csv\-Bad\-Data\-Exception.\-cs.
+
+Referenced by Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Draw\-Script\-G\-U\-I().
+
+\hypertarget{a00049_a6c852f7521c0a91b519aa3d391f63e6b}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!script@{script}}
+\index{script@{script}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
+\subsubsection[{script}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Asset Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-script}}\label{a00049_a6c852f7521c0a91b519aa3d391f63e6b}
 
 
-\begin{DoxyCode}
-30 : base( message ) \{\}
-\end{DoxyCode}
-\hypertarget{a00049_a2c210cf80604e58ffecc177f6f7c2547}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
-\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
-\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
-\begin{DoxyParamCaption}
-\item[{string}]{message, }
-\item[{Exception}]{inner\-Exception}
-\end{DoxyParamCaption}
-)}}\label{a00049_a2c210cf80604e58ffecc177f6f7c2547}
+Definition at line 43 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+
+\hypertarget{a00049_a7202b24bd068da24d7e28bec5668b13a}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!state@{state}}
+\index{state@{state}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
+\subsubsection[{state}]{\setlength{\rightskip}{0pt plus 5cm}{\bf State} Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-state}}\label{a00049_a7202b24bd068da24d7e28bec5668b13a}
 
 
-Initializes a new instance of the \hyperlink{a00049}{Csv\-Bad\-Data\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
+Definition at line 42 of file Yarn\-Spinner\-Editor\-Window.\-cs.
 
 
-\begin{DoxyParams}{Parameters}
-{\em message} & The error message that explains the reason for the exception.\\
-\hline
-{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
-\hline
-\end{DoxyParams}
 
+Referenced by Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Draw\-Script\-G\-U\-I().
 
-Definition at line 39 of file Csv\-Bad\-Data\-Exception.\-cs.
-
-
-\begin{DoxyCode}
-39 : base( message, innerException ) \{ \}
-\end{DoxyCode}
-\hypertarget{a00049_abe956c9c100374953fd899bef2f2489f}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
-\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
-\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
-\begin{DoxyParamCaption}
-\item[{Serialization\-Info}]{info, }
-\item[{Streaming\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00049_abe956c9c100374953fd899bef2f2489f}
-
-
-Initializes a new instance of the \hyperlink{a00056}{Csv\-Helper\-Exception} class with serialized data. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
-\hline
-{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 48 of file Csv\-Bad\-Data\-Exception.\-cs.
-
-
-\begin{DoxyCode}
-48 : base( info, context ) \{\}
-\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00223}{Csv\-Bad\-Data\-Exception.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn\-Spinner/\-Code/\-Editor/\hyperlink{a00293}{Yarn\-Spinner\-Editor\-Window.\-cs}\end{DoxyCompactItemize}

@@ -1,264 +1,232 @@
-\hypertarget{a00112}{\section{Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter Class Reference}
-\label{a00112}\index{Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter}}
+\hypertarget{a00112}{\section{Csv\-Helper.\-I\-Csv\-Factory Interface Reference}
+\label{a00112}\index{Csv\-Helper.\-I\-Csv\-Factory@{Csv\-Helper.\-I\-Csv\-Factory}}
 }
 
 
-Converts an Int64 to and from a string.  
+Defines methods used to create \hyperlink{a00337}{Csv\-Helper} classes.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter\-:
+Inheritance diagram for Csv\-Helper.\-I\-Csv\-Factory\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00533}
+\includegraphics[width=198pt]{a00454}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter\-:
+Collaboration diagram for Csv\-Helper.\-I\-Csv\-Factory\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00534}
+\includegraphics[width=198pt]{a00455}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override object \hyperlink{a00112_a9080b7b6a5abc7d8271ffb6924c31b7c}{Convert\-From\-String} (\hyperlink{a00168}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00112_a1aec0ff8b13f9f61240ecf2a337a6340}{Can\-Convert\-From} (System.\-Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual string \hyperlink{a00078_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00168}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00078_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00078_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00113}{I\-Csv\-Parser} \hyperlink{a00112_a9b68cbd7292c76037959d51ecc7c374d}{Create\-Parser} (Text\-Reader reader, \hyperlink{a00063}{Csv\-Configuration} configuration)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00113}{I\-Csv\-Parser}. \end{DoxyCompactList}\item 
+\hyperlink{a00113}{I\-Csv\-Parser} \hyperlink{a00112_ab085a057f1b80ebf03ed2247d8759314}{Create\-Parser} (Text\-Reader reader)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00113}{I\-Csv\-Parser}. \end{DoxyCompactList}\item 
+\hyperlink{a00114}{I\-Csv\-Reader} \hyperlink{a00112_ade2a6e776fad6aa36c201901d6427058}{Create\-Reader} (Text\-Reader reader, \hyperlink{a00063}{Csv\-Configuration} configuration)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00114}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
+\hyperlink{a00114}{I\-Csv\-Reader} \hyperlink{a00112_ae1ebb61244b36ddecb986d047ac9c217}{Create\-Reader} (Text\-Reader reader)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00114}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
+\hyperlink{a00114}{I\-Csv\-Reader} \hyperlink{a00112_af5b755ba2825f781d501402f1d765b33}{Create\-Reader} (\hyperlink{a00113}{I\-Csv\-Parser} parser)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00114}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
+\hyperlink{a00117}{I\-Csv\-Writer} \hyperlink{a00112_ae77852d2702bc2caad76c045a538933e}{Create\-Writer} (Text\-Writer writer, \hyperlink{a00063}{Csv\-Configuration} configuration)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00117}{I\-Csv\-Writer}. \end{DoxyCompactList}\item 
+\hyperlink{a00117}{I\-Csv\-Writer} \hyperlink{a00112_ab6df59078b6245e653c06c00358b402a}{Create\-Writer} (Text\-Writer writer)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00117}{I\-Csv\-Writer}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Converts an Int64 to and from a string. 
+Defines methods used to create \hyperlink{a00337}{Csv\-Helper} classes. 
 
 
 
-Definition at line 12 of file Int64\-Converter.\-cs.
+Definition at line 14 of file I\-Csv\-Factory.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00112_a1aec0ff8b13f9f61240ecf2a337a6340}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::Int64Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00112_a9b68cbd7292c76037959d51ecc7c374d}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Parser@{Create\-Parser}}
+\index{Create\-Parser@{Create\-Parser}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
+\subsubsection[{Create\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Parser} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Parser (
 \begin{DoxyParamCaption}
-\item[{System.\-Type}]{type}
+\item[{Text\-Reader}]{reader, }
+\item[{{\bf Csv\-Configuration}}]{configuration}
 \end{DoxyParamCaption}
-)}}\label{a00112_a1aec0ff8b13f9f61240ecf2a337a6340}
+)}}\label{a00112_a9b68cbd7292c76037959d51ecc7c374d}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+Creates an \hyperlink{a00113}{I\-Csv\-Parser}. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
+{\em reader} & The text reader to use for the csv parser.\\
+\hline
+{\em configuration} & The configuration to use for the csv parser.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+The created parser.
 \end{DoxyReturn}
 
 
-Definition at line 40 of file Int64\-Converter.\-cs.
+Implemented in \hyperlink{a00065_a741fb4a1622778af65bfa27606bf6f25}{Csv\-Helper.\-Csv\-Factory}.
 
-
-\begin{DoxyCode}
-41         \{
-42             \textcolor{comment}{// We only care about strings.}
-43             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-44         \}
-\end{DoxyCode}
-\hypertarget{a00078_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::Int64Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00112_ab085a057f1b80ebf03ed2247d8759314}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Parser@{Create\-Parser}}
+\index{Create\-Parser@{Create\-Parser}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
+\subsubsection[{Create\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Parser} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Parser (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{Text\-Reader}]{reader}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00078_a470d21adaa704eb281250dbd112ff91a}
+)}}\label{a00112_ab085a057f1b80ebf03ed2247d8759314}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+Creates an \hyperlink{a00113}{I\-Csv\-Parser}. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
+{\em reader} & The text reader to use for the csv parser.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+The created parser.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{a00113_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Implemented in \hyperlink{a00065_a07665ae71961a161552189877d11a5be}{Csv\-Helper.\-Csv\-Factory}.
 
-
-
-Reimplemented in \hyperlink{a00132_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00035_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00088_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00089_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00075_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00074_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00036_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00162_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
-
-
-
-Definition at line 55 of file Default\-Type\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-56         \{
-57             \textcolor{comment}{// The default convert doesn't know how to}
-58             \textcolor{comment}{// convert from any type.}
-59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-60         \}
-\end{DoxyCode}
-\hypertarget{a00078_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::Int64Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
+\hypertarget{a00112_ade2a6e776fad6aa36c201901d6427058}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
+\index{Create\-Reader@{Create\-Reader}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
+\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Reader} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Reader (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{Text\-Reader}]{reader, }
+\item[{{\bf Csv\-Configuration}}]{configuration}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00078_acb65bd8c8199d88d5b1629ae35d18514}
+)}}\label{a00112_ade2a6e776fad6aa36c201901d6427058}
 
 
-Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
+Creates an \hyperlink{a00114}{I\-Csv\-Reader}. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
+{\em reader} & The text reader to use for the csv reader.\\
+\hline
+{\em configuration} & The configuration to use for the reader.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+The created reader.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{a00113_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Implemented in \hyperlink{a00065_a12b1358fc847e407519a76b7fe003a34}{Csv\-Helper.\-Csv\-Factory}.
 
-
-
-Reimplemented in \hyperlink{a00089_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
-
-
-Definition at line 69 of file Default\-Type\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-70         \{
-71             \textcolor{comment}{// We only care about strings.}
-72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-73         \}
-\end{DoxyCode}
-\hypertarget{a00112_a9080b7b6a5abc7d8271ffb6924c31b7c}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::Int64Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter.\-Convert\-From\-String (
+\hypertarget{a00112_ae1ebb61244b36ddecb986d047ac9c217}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
+\index{Create\-Reader@{Create\-Reader}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
+\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Reader} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Reader (
 \begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{string}]{text}
+\item[{Text\-Reader}]{reader}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00112_a9080b7b6a5abc7d8271ffb6924c31b7c}
+)}}\label{a00112_ae1ebb61244b36ddecb986d047ac9c217}
 
 
-Converts the string to an object. 
+Creates an \hyperlink{a00114}{I\-Csv\-Reader}. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em text} & The string to convert to an object.\\
+{\em reader} & The text reader to use for the csv reader.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The object created from the string.
+The created reader.
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{a00078_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Implemented in \hyperlink{a00065_a77bcca4ad5023f5628c519c2914da5bb}{Csv\-Helper.\-Csv\-Factory}.
 
-
-
-Definition at line 20 of file Int64\-Converter.\-cs.
-
-
-
-References Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info.
-
-
-\begin{DoxyCode}
-21         \{
-22             var numberStyle = options.NumberStyle ?? NumberStyles.Integer;
-23 
-24             \textcolor{keywordtype}{long} l;
-25             \textcolor{keywordflow}{if}( \textcolor{keywordtype}{long}.TryParse( text, numberStyle, options.CultureInfo, out l ) )
-26             \{
-27                 \textcolor{keywordflow}{return} l;
-28             \}
-29 
-30             \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
-31         \}
-\end{DoxyCode}
-\hypertarget{a00078_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::Int64Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
+\hypertarget{a00112_af5b755ba2825f781d501402f1d765b33}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
+\index{Create\-Reader@{Create\-Reader}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
+\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Reader} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Reader (
 \begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{object}]{value}
+\item[{{\bf I\-Csv\-Parser}}]{parser}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00078_a36cb2f9b24f15a671293f3a722324c27}
+)}}\label{a00112_af5b755ba2825f781d501402f1d765b33}
 
 
-Converts the object to a string. 
+Creates an \hyperlink{a00114}{I\-Csv\-Reader}. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em value} & The object to convert to a string.\\
+{\em parser} & The parser used to create the reader.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The string representation of the object.
+The created reader.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{a00113_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Implemented in \hyperlink{a00065_a4e7e06df9265cbd53219c964424cec1e}{Csv\-Helper.\-Csv\-Factory}.
+
+\hypertarget{a00112_ae77852d2702bc2caad76c045a538933e}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Writer@{Create\-Writer}}
+\index{Create\-Writer@{Create\-Writer}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
+\subsubsection[{Create\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Writer} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Writer (
+\begin{DoxyParamCaption}
+\item[{Text\-Writer}]{writer, }
+\item[{{\bf Csv\-Configuration}}]{configuration}
+\end{DoxyParamCaption}
+)}}\label{a00112_ae77852d2702bc2caad76c045a538933e}
+
+
+Creates an \hyperlink{a00117}{I\-Csv\-Writer}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & The text writer to use for the csv writer.\\
+\hline
+{\em configuration} & The configuration to use for the writer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created writer.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00065_a6bfe534b70ff92ea3809f1a372d160cc}{Csv\-Helper.\-Csv\-Factory}.
+
+\hypertarget{a00112_ab6df59078b6245e653c06c00358b402a}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Writer@{Create\-Writer}}
+\index{Create\-Writer@{Create\-Writer}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
+\subsubsection[{Create\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Writer} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Writer (
+\begin{DoxyParamCaption}
+\item[{Text\-Writer}]{writer}
+\end{DoxyParamCaption}
+)}}\label{a00112_ab6df59078b6245e653c06c00358b402a}
+
+
+Creates an \hyperlink{a00117}{I\-Csv\-Writer}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & The text writer to use for the csv writer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created writer.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00065_a0cec3a639b206f2d88debdc50413202a}{Csv\-Helper.\-Csv\-Factory}.
 
 
 
-Reimplemented in \hyperlink{a00132_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00089_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
-
-
-Definition at line 21 of file Default\-Type\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-22         \{
-23             \textcolor{keywordflow}{if}( value == null )
-24             \{
-25                 \textcolor{keywordflow}{return} string.Empty;
-26             \}
-27 
-28             var formattable = value as IFormattable;
-29             \textcolor{keywordflow}{if}( formattable != null )
-30             \{
-31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
-32             \}
-33 
-34             \textcolor{keywordflow}{return} value.ToString();
-35         \}
-\end{DoxyCode}
-
-
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00264}{Int64\-Converter.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00245}{I\-Csv\-Factory.\-cs}\end{DoxyCompactItemize}

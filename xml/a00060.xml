@@ -1,515 +1,385 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00060" kind="class" prot="public">
-    <compoundname>CsvHelper::Configuration::CsvPropertyMap</compoundname>
+    <compoundname>CsvHelper::Configuration::CsvClassMap</compoundname>
+    <derivedcompoundref refid="a00061" prot="public" virt="non-virtual">CsvHelper.Configuration.CsvClassMap&lt; T &gt;</derivedcompoundref>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00060_1a2943371f5d55b2fd7313bbb0e87a013c" prot="private" static="no" mutable="no">
-        <type>readonly <ref refid="a00063" kindref="compound">CsvPropertyMapData</ref></type>
-        <definition>readonly CsvPropertyMapData CsvHelper.Configuration.CsvPropertyMap.data</definition>
+      <memberdef kind="variable" id="a00060_1af2c164ac53fb00b7130fcfd334e3df94" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="a00071" kindref="compound">CsvPropertyMapCollection</ref></type>
+        <definition>readonly CsvPropertyMapCollection CsvHelper.Configuration.CsvClassMap.propertyMaps</definition>
         <argsstring></argsstring>
-        <name>data</name>
+        <name>propertyMaps</name>
+        <initializer>= new <ref refid="a00071" kindref="compound">CsvPropertyMapCollection</ref>()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="23" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00060_1a440e190c61de45479816430d67930463" prot="private" static="no" mutable="no">
+        <type>readonly List&lt; <ref refid="a00075" kindref="compound">CsvPropertyReferenceMap</ref> &gt;</type>
+        <definition>readonly List&lt;CsvPropertyReferenceMap&gt; CsvHelper.Configuration.CsvClassMap.referenceMaps</definition>
+        <argsstring></argsstring>
+        <name>referenceMaps</name>
+        <initializer>= new List&lt;<ref refid="a00075" kindref="compound">CsvPropertyReferenceMap</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="22" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="property">
-      <memberdef kind="property" id="a00060_1a207637fa121612b618ed1131cb28b8bb" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type><ref refid="a00063" kindref="compound">CsvPropertyMapData</ref></type>
-        <definition>CsvPropertyMapData CsvHelper.Configuration.CsvPropertyMap.Data</definition>
+      <memberdef kind="property" id="a00060_1ae8038b36db7584ef1a73852fcc46404b" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>NewExpression</type>
+        <definition>virtual NewExpression CsvHelper.Configuration.CsvClassMap.Constructor</definition>
         <argsstring></argsstring>
-        <name>Data</name>
+        <name>Constructor</name>
         <briefdescription>
-<para>Gets the property map data. </para>        </briefdescription>
+<para>Gets the constructor expression. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="29" bodyend="-1"/>
-        <referencedby refid="a00067_1ab0f1158c863fdedadff576a28a533c71" compoundref="a00229" startline="1587" endline="1598">CsvHelper.CsvReader.CanRead</referencedby>
-        <referencedby refid="a00071_1a6085ddfd5e9c626d1d9f575ff21a0599" compoundref="a00232" startline="823" endline="834">CsvHelper.CsvWriter.CanWrite</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="33" bodyend="-1"/>
+        <referencedby refid="a00063_1a0cd9dc588cc7967d56cee7da5c903aee" compoundref="a00221" startline="479" endline="489">CsvHelper.Configuration.CsvConfiguration.RegisterClassMap</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="a00060_1a9580e897abcba144f3101eb983348e25" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type><ref refid="a00071" kindref="compound">CsvPropertyMapCollection</ref></type>
+        <definition>virtual CsvPropertyMapCollection CsvHelper.Configuration.CsvClassMap.PropertyMaps</definition>
+        <argsstring></argsstring>
+        <name>PropertyMaps</name>
+        <briefdescription>
+<para>The class property mappings. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="39" bodyend="-1"/>
+        <referencedby refid="a00077_1a5d8c85bf8923d38ead3df9b9463f3eae" compoundref="a00239" startline="1456" endline="1472">CsvHelper.CsvReader.CreatePropertyBindingsForMapping</referencedby>
+        <referencedby refid="a00081_1aada073c07b3fd07dba434855ffb18b75" compoundref="a00242" startline="563" endline="610">CsvHelper.CsvWriter.CreatePropertyExpression</referencedby>
+        <referencedby refid="a00063_1a0cd9dc588cc7967d56cee7da5c903aee" compoundref="a00221" startline="479" endline="489">CsvHelper.Configuration.CsvConfiguration.RegisterClassMap</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="a00060_1a6dfbf8f743b16d2ec83edef865ea2d9e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>List&lt; <ref refid="a00075" kindref="compound">CsvPropertyReferenceMap</ref> &gt;</type>
+        <definition>virtual List&lt;CsvPropertyReferenceMap&gt; CsvHelper.Configuration.CsvClassMap.ReferenceMaps</definition>
+        <argsstring></argsstring>
+        <name>ReferenceMaps</name>
+        <briefdescription>
+<para>The class property reference mappings. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="47" bodyend="-1"/>
+        <referencedby refid="a00063_1a0cd9dc588cc7967d56cee7da5c903aee" compoundref="a00221" startline="479" endline="489">CsvHelper.Configuration.CsvConfiguration.RegisterClassMap</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00060_1a7284729e68d85b66d2a4d19975f4382a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.Configuration.CsvPropertyMap.CsvPropertyMap</definition>
-        <argsstring>(PropertyInfo property)</argsstring>
-        <name>CsvPropertyMap</name>
-        <param>
-          <type>PropertyInfo</type>
-          <declname>property</declname>
-        </param>
+      <memberdef kind="function" id="a00060_1a83de9d28160d0d3da1e017df554a9481" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.Configuration.CsvClassMap.CreateMap</definition>
+        <argsstring>()</argsstring>
+        <name>CreateMap</name>
         <briefdescription>
-<para>Creates a new <ref refid="a00060" kindref="compound">CsvPropertyMap</ref> instance using the specified property. </para>        </briefdescription>
+<para>Called to create the mappings. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="36" bodyend="44"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="28" bodyend="28"/>
       </memberdef>
-      <memberdef kind="function" id="a00060_1a0d503e7dfdefa7334f5d04878c37316e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00060" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMap.Name</definition>
-        <argsstring>(params string[] names)</argsstring>
-        <name>Name</name>
+      <memberdef kind="function" id="a00060_1abab2b5cd5a290fd5d17116430b084420" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="a00070" kindref="compound">CsvPropertyMap</ref></type>
+        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvClassMap.PropertyMap&lt; T &gt;</definition>
+        <argsstring>(Expression&lt; Func&lt; T, object &gt;&gt; expression)</argsstring>
+        <name>PropertyMap&lt; T &gt;</name>
         <param>
-          <type>params string[]</type>
-          <declname>names</declname>
+          <type>Expression&lt; Func&lt; T, object &gt;&gt;</type>
+          <declname>expression</declname>
         </param>
         <briefdescription>
-<para>When reading, is used to get the field at the index of the name if there was a header specified. It will look for the first name match in the order listed. When writing, sets the name of the field in the header record. The first name will be used. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>names</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The possible names of the CSV field.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="56" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="56" bodyend="67"/>
-      </memberdef>
-      <memberdef kind="function" id="a00060_1a2d6191df96c55bf3d044b31581e2a9b3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00060" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMap.NameIndex</definition>
-        <argsstring>(int index)</argsstring>
-        <name>NameIndex</name>
-        <param>
-          <type>int</type>
-          <declname>index</declname>
-        </param>
-        <briefdescription>
-<para>When reading, is used to get the index of the name used when there are multiple names that are the same. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>index</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The index of the name.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="75" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="75" bodyend="79"/>
-      </memberdef>
-      <memberdef kind="function" id="a00060_1ae4563b0f7c3b3a22b1bea5073d95ddae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00060" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMap.Index</definition>
-        <argsstring>(int index)</argsstring>
-        <name>Index</name>
-        <param>
-          <type>int</type>
-          <declname>index</declname>
-        </param>
-        <briefdescription>
-<para>When reading, is used to get the field at the given index. When writing, the fields will be written in the order of the field indexes. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>index</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The index of the CSV field.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="88" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="88" bodyend="93"/>
-      </memberdef>
-      <memberdef kind="function" id="a00060_1aaf29f485feec0bd918ae9911208465e7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00060" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMap.Ignore</definition>
-        <argsstring>()</argsstring>
-        <name>Ignore</name>
-        <briefdescription>
-<para>Ignore the property when reading and writing. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="98" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="98" bodyend="102"/>
-      </memberdef>
-      <memberdef kind="function" id="a00060_1a933c8b6d81e78b5c34fd24cbccf9a4a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00060" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMap.Ignore</definition>
-        <argsstring>(bool ignore)</argsstring>
-        <name>Ignore</name>
-        <param>
-          <type>bool</type>
-          <declname>ignore</declname>
-        </param>
-        <briefdescription>
-<para>Ignore the property when reading and writing. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>ignore</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>True to ignore, otherwise false.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="108" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="108" bodyend="112"/>
-      </memberdef>
-      <memberdef kind="function" id="a00060_1a35815aef1a6aa2692e4b9f7d57a52b60" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00060" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMap.Default</definition>
-        <argsstring>(object defaultValue)</argsstring>
-        <name>Default</name>
-        <param>
-          <type>object</type>
-          <declname>defaultValue</declname>
-        </param>
-        <briefdescription>
-<para>The default value that will be used when reading when the CSV field is empty. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>defaultValue</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The default value.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="119" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="119" bodyend="123"/>
-      </memberdef>
-      <memberdef kind="function" id="a00060_1a4bd41dc4c24fa515854d83ca5f730678" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00060" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMap.TypeConverter</definition>
-        <argsstring>(ITypeConverter typeConverter)</argsstring>
-        <name>TypeConverter</name>
-        <param>
-          <type><ref refid="a00113" kindref="compound">ITypeConverter</ref></type>
-          <declname>typeConverter</declname>
-        </param>
-        <briefdescription>
-<para>Specifies the <ref refid="a00060_1a4bd41dc4c24fa515854d83ca5f730678" kindref="member">TypeConverter</ref> to use when converting the property to and from a CSV field. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>typeConverter</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The TypeConverter to use.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="130" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="130" bodyend="134"/>
-      </memberdef>
-      <memberdef kind="function" id="a00060_1a129110c34e2c12709f25948794390f97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00060" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMap.TypeConverter&lt; T &gt;</definition>
-        <argsstring>()</argsstring>
-        <name>TypeConverter&lt; T &gt;</name>
-        <briefdescription>
-<para>Specifies the <ref refid="a00060_1a4bd41dc4c24fa515854d83ca5f730678" kindref="member">TypeConverter</ref> to use when converting the property to and from a CSV field. </para>        </briefdescription>
+<para>Gets the property map for the given property expression. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
 <parametername>T</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The Type of the <ref refid="a00060_1a4bd41dc4c24fa515854d83ca5f730678" kindref="member">TypeConverter</ref> to use.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="142" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="142" bodyend="146"/>
-        <references refid="a00145_1a9b8690ff760f41b0a7ef46626949c777" compoundref="a00248" startline="42" endline="62">CsvHelper.ReflectionHelper.CreateInstance</references>
-      </memberdef>
-      <memberdef kind="function" id="a00060_1a02e31bd00f62fc495c81d400c00b65cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00060" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMap.ConvertUsing&lt; T &gt;</definition>
-        <argsstring>(Func&lt; ICsvReaderRow, T &gt; convertExpression)</argsstring>
-        <name>ConvertUsing&lt; T &gt;</name>
-        <param>
-          <type>Func&lt; <ref refid="a00105" kindref="compound">ICsvReaderRow</ref>, T &gt;</type>
-          <declname>convertExpression</declname>
-        </param>
-        <briefdescription>
-<para>Specifies an expression to be used to convert data in the row to the property. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type of the property that will be set.</para></parameterdescription>
+<para>The type of the class the property belongs to.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>convertExpression</parametername>
+<parametername>expression</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The convert expression.</para></parameterdescription>
+<para>The property expression.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
+<simplesect kind="return"><para>The <ref refid="a00070" kindref="compound">CsvPropertyMap</ref> for the given expression.</para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="154" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="154" bodyend="158"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="63" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="63" bodyend="81"/>
       </memberdef>
-      <memberdef kind="function" id="a00060_1a652b7feb8994aefa43652755d42b3fbf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00060" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption</definition>
-        <argsstring>(CultureInfo cultureInfo)</argsstring>
-        <name>TypeConverterOption</name>
-        <param>
-          <type>CultureInfo</type>
-          <declname>cultureInfo</declname>
-        </param>
-        <briefdescription>
-<para>The CultureInfo used when type converting. This will override the global <ref refid="a00053_1ad04ccfdd3cbc265f527ee5baa2e08508" kindref="member">CsvConfiguration.CultureInfo</ref> setting. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>cultureInfo</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The culture info.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="166" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="166" bodyend="170"/>
-      </memberdef>
-      <memberdef kind="function" id="a00060_1a20bc1aec3a0054ac9b9c462562f111d2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00060" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption</definition>
-        <argsstring>(DateTimeStyles dateTimeStyle)</argsstring>
-        <name>TypeConverterOption</name>
-        <param>
-          <type>DateTimeStyles</type>
-          <declname>dateTimeStyle</declname>
-        </param>
-        <briefdescription>
-<para>The DateTimeStyles to use when type converting. This is used when doing any DateTime conversions. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>dateTimeStyle</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The date time style.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="177" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="177" bodyend="181"/>
-      </memberdef>
-      <memberdef kind="function" id="a00060_1a16243e8334687160385ed8c589184031" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00060" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption</definition>
-        <argsstring>(NumberStyles numberStyle)</argsstring>
-        <name>TypeConverterOption</name>
-        <param>
-          <type>NumberStyles</type>
-          <declname>numberStyle</declname>
-        </param>
-        <briefdescription>
-<para>The NumberStyles to use when type converting. This is used when doing any number conversions. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>numberStyle</parametername>
-</parameternamelist>
-<parameterdescription>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="188" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="188" bodyend="192"/>
-      </memberdef>
-      <memberdef kind="function" id="a00060_1a4df14f039b706d21e7235eb7050fac2d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00060" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption</definition>
-        <argsstring>(string format)</argsstring>
-        <name>TypeConverterOption</name>
-        <param>
-          <type>string</type>
-          <declname>format</declname>
-        </param>
-        <briefdescription>
-<para>The string format to be used when type converting. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>format</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The format.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="198" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="198" bodyend="202"/>
-      </memberdef>
-      <memberdef kind="function" id="a00060_1a957ea50ce91adb642751201e8277949d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00060" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption</definition>
-        <argsstring>(bool isTrue, params string[] booleanValues)</argsstring>
-        <name>TypeConverterOption</name>
+      <memberdef kind="function" id="a00060_1aec2097b09baaaac45171f91592af439d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.Configuration.CsvClassMap.AutoMap</definition>
+        <argsstring>(bool ignoreReferences=false, bool prefixReferenceHeaders=false)</argsstring>
+        <name>AutoMap</name>
         <param>
           <type>bool</type>
-          <declname>isTrue</declname>
-        </param>
-        <param>
-          <type>params string[]</type>
-          <declname>booleanValues</declname>
-        </param>
-        <briefdescription>
-<para>The string values used to represent a boolean when converting. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>isTrue</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>A value indicating whether true values or false values are being set.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>booleanValues</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string boolean values.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="209" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="209" bodyend="212"/>
-      </memberdef>
-      <memberdef kind="function" id="a00060_1a6fd25629d769c619b029a6c141ab77c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00060" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption</definition>
-        <argsstring>(bool isTrue, bool clearValues, params string[] booleanValues)</argsstring>
-        <name>TypeConverterOption</name>
-        <param>
-          <type>bool</type>
-          <declname>isTrue</declname>
+          <declname>ignoreReferences</declname>
+          <defval>false</defval>
         </param>
         <param>
           <type>bool</type>
-          <declname>clearValues</declname>
-        </param>
-        <param>
-          <type>params string[]</type>
-          <declname>booleanValues</declname>
+          <declname>prefixReferenceHeaders</declname>
+          <defval>false</defval>
         </param>
         <briefdescription>
-<para>The string values used to represent a boolean when converting. </para>        </briefdescription>
+<para>Auto maps all properties for the given type. If a property is mapped again it will override the existing map. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>isTrue</parametername>
+<parametername>ignoreReferences</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A value indicating whether true values or false values are being set.</para></parameterdescription>
+<para>A value indicating if references should be ignored when auto mapping. True to ignore references, otherwise false.</para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>clearValues</parametername>
+<parametername>prefixReferenceHeaders</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A value indication if the current values should be cleared before adding the new ones.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>booleanValues</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string boolean values.</para></parameterdescription>
+<para>A value indicating if headers of reference properties should get prefixed by the parent property name. True to prefix, otherwise false.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="220" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="220" bodyend="239"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="92" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="92" bodyend="96"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="a00060_1affc5ae8f2b0406d496bcbdf246da6210" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.Configuration.CsvClassMap.CsvClassMap</definition>
+        <argsstring>()</argsstring>
+        <name>CsvClassMap</name>
+        <briefdescription>
+<para>Allow only internal creation of <ref refid="a00060" kindref="compound">CsvClassMap</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="54" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a708c455aa7f78a26b55dafc46a587ec3" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int CsvHelper.Configuration.CsvClassMap.GetMaxIndex</definition>
+        <argsstring>()</argsstring>
+        <name>GetMaxIndex</name>
+        <briefdescription>
+<para>Get the largest index for the properties and references. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The max index.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="103" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="103" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1ac6c1e8ae1d049bd0ef09e7c2d99fbe55" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int CsvHelper.Configuration.CsvClassMap.ReIndex</definition>
+        <argsstring>(int indexStart=0)</argsstring>
+        <name>ReIndex</name>
+        <param>
+          <type>int</type>
+          <declname>indexStart</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Resets the indexes based on the given start index. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>indexStart</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index start.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The last index + 1.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="125" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="125" bodyend="141"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="a00060_1a16b5bb84064e86c2b319348d8a42693d" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CsvHelper.Configuration.CsvClassMap.AutoMapInternal</definition>
+        <argsstring>(CsvClassMap map, bool ignoreReferences, bool prefixReferenceHeaders, LinkedList&lt; Type &gt; mapParents, int indexStart=0)</argsstring>
+        <name>AutoMapInternal</name>
+        <param>
+          <type><ref refid="a00060" kindref="compound">CsvClassMap</ref></type>
+          <declname>map</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>ignoreReferences</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>prefixReferenceHeaders</declname>
+        </param>
+        <param>
+          <type>LinkedList&lt; Type &gt;</type>
+          <declname>mapParents</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>indexStart</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Auto maps the given map and checks for circular references as it goes. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>map</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The map to auto map.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ignoreReferences</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A value indicating if references should be ignored when auto mapping. True to ignore references, otherwise false.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prefixReferenceHeaders</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A value indicating if headers of reference properties should get prefixed by the parent property name. True to prefix, otherwise false.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mapParents</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The list of parents for the map.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="153" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="153" bodyend="223"/>
+        <references refid="a00155_1a9b8690ff760f41b0a7ef46626949c777" compoundref="a00258" startline="42" endline="62">CsvHelper.ReflectionHelper.CreateInstance</references>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a4b2f3fc2e0670d17566b4705b7b622aa" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool CsvHelper.Configuration.CsvClassMap.CheckForCircularReference</definition>
+        <argsstring>(Type type, LinkedList&lt; Type &gt; mapParents)</argsstring>
+        <name>CheckForCircularReference</name>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>LinkedList&lt; Type &gt;</type>
+          <declname>mapParents</declname>
+        </param>
+        <briefdescription>
+<para>Checks for circular references. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type to check for.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mapParents</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The list of parents to check against.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A value indicating if a circular reference was found. True if a circular reference was found, otherwise false.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="232" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="232" bodyend="255"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Mapping info for a property to a CSV field. </para>    </briefdescription>
+<para>Maps class properties to CSV fields. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1119">
-        <label>CsvHelper.TypeConversion.TypeConverterOptions</label>
-        <link refid="a00168"/>
-      </node>
-      <node id="1118">
-        <label>CsvHelper.Configuration.CsvPropertyMapData</label>
-        <link refid="a00063"/>
-        <childnode refid="1119" relation="usage">
-          <edgelabel>-typeConverterOptions</edgelabel>
-        </childnode>
-        <childnode refid="1120" relation="usage">
-          <edgelabel>-names</edgelabel>
+    <inheritancegraph>
+      <node id="1056">
+        <label>CsvHelper.Configuration.CsvClassMap&lt; T &gt;</label>
+        <link refid="a00061"/>
+        <childnode refid="1055" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1120">
-        <label>CsvHelper.Configuration.CsvPropertyNameCollection</label>
-        <link refid="a00064"/>
-        <childnode refid="1121" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1121">
-        <label>IEnumerable&lt; string &gt;</label>
-      </node>
-      <node id="1117">
-        <label>CsvHelper.Configuration.CsvPropertyMap</label>
+      <node id="1055">
+        <label>CsvHelper.Configuration.CsvClassMap</label>
         <link refid="a00060"/>
-        <childnode refid="1118" relation="usage">
-          <edgelabel>-data</edgelabel>
+      </node>
+      <node id="1057">
+        <label>CsvHelper.Configuration.DefaultCsvClassMap&lt; T &gt;</label>
+        <link refid="a00087"/>
+        <childnode refid="1056" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1060">
+        <label>IList&lt; CsvPropertyMap &gt;</label>
+      </node>
+      <node id="1058">
+        <label>CsvHelper.Configuration.CsvClassMap</label>
+        <link refid="a00060"/>
+        <childnode refid="1059" relation="usage">
+          <edgelabel>-propertyMaps</edgelabel>
+        </childnode>
+      </node>
+      <node id="1059">
+        <label>CsvHelper.Configuration.CsvPropertyMapCollection</label>
+        <link refid="a00071"/>
+        <childnode refid="1060" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMap.cs" bodystart="21" bodyend="240"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="19" bodyend="256"/>
     <listofallmembers>
-      <member refid="a00060_1a02e31bd00f62fc495c81d400c00b65cb" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>ConvertUsing&lt; T &gt;</name></member>
-      <member refid="a00060_1a7284729e68d85b66d2a4d19975f4382a" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>CsvPropertyMap</name></member>
-      <member refid="a00060_1a207637fa121612b618ed1131cb28b8bb" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>Data</name></member>
-      <member refid="a00060_1a2943371f5d55b2fd7313bbb0e87a013c" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>data</name></member>
-      <member refid="a00060_1a35815aef1a6aa2692e4b9f7d57a52b60" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>Default</name></member>
-      <member refid="a00060_1aaf29f485feec0bd918ae9911208465e7" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>Ignore</name></member>
-      <member refid="a00060_1a933c8b6d81e78b5c34fd24cbccf9a4a5" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>Ignore</name></member>
-      <member refid="a00060_1ae4563b0f7c3b3a22b1bea5073d95ddae" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>Index</name></member>
-      <member refid="a00060_1a0d503e7dfdefa7334f5d04878c37316e" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>Name</name></member>
-      <member refid="a00060_1a2d6191df96c55bf3d044b31581e2a9b3" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>NameIndex</name></member>
-      <member refid="a00060_1a4bd41dc4c24fa515854d83ca5f730678" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>TypeConverter</name></member>
-      <member refid="a00060_1a129110c34e2c12709f25948794390f97" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>TypeConverter&lt; T &gt;</name></member>
-      <member refid="a00060_1a652b7feb8994aefa43652755d42b3fbf" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>TypeConverterOption</name></member>
-      <member refid="a00060_1a20bc1aec3a0054ac9b9c462562f111d2" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>TypeConverterOption</name></member>
-      <member refid="a00060_1a16243e8334687160385ed8c589184031" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>TypeConverterOption</name></member>
-      <member refid="a00060_1a4df14f039b706d21e7235eb7050fac2d" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>TypeConverterOption</name></member>
-      <member refid="a00060_1a957ea50ce91adb642751201e8277949d" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>TypeConverterOption</name></member>
-      <member refid="a00060_1a6fd25629d769c619b029a6c141ab77c2" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMap</scope><name>TypeConverterOption</name></member>
+      <member refid="a00060_1aec2097b09baaaac45171f91592af439d" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvClassMap</scope><name>AutoMap</name></member>
+      <member refid="a00060_1a16b5bb84064e86c2b319348d8a42693d" prot="package" virt="non-virtual"><scope>CsvHelper::Configuration::CsvClassMap</scope><name>AutoMapInternal</name></member>
+      <member refid="a00060_1a4b2f3fc2e0670d17566b4705b7b622aa" prot="package" virt="non-virtual"><scope>CsvHelper::Configuration::CsvClassMap</scope><name>CheckForCircularReference</name></member>
+      <member refid="a00060_1ae8038b36db7584ef1a73852fcc46404b" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvClassMap</scope><name>Constructor</name></member>
+      <member refid="a00060_1a83de9d28160d0d3da1e017df554a9481" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvClassMap</scope><name>CreateMap</name></member>
+      <member refid="a00060_1affc5ae8f2b0406d496bcbdf246da6210" prot="package" virt="non-virtual"><scope>CsvHelper::Configuration::CsvClassMap</scope><name>CsvClassMap</name></member>
+      <member refid="a00060_1a708c455aa7f78a26b55dafc46a587ec3" prot="package" virt="non-virtual"><scope>CsvHelper::Configuration::CsvClassMap</scope><name>GetMaxIndex</name></member>
+      <member refid="a00060_1abab2b5cd5a290fd5d17116430b084420" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvClassMap</scope><name>PropertyMap&lt; T &gt;</name></member>
+      <member refid="a00060_1af2c164ac53fb00b7130fcfd334e3df94" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvClassMap</scope><name>propertyMaps</name></member>
+      <member refid="a00060_1a9580e897abcba144f3101eb983348e25" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvClassMap</scope><name>PropertyMaps</name></member>
+      <member refid="a00060_1a440e190c61de45479816430d67930463" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvClassMap</scope><name>referenceMaps</name></member>
+      <member refid="a00060_1a6dfbf8f743b16d2ec83edef865ea2d9e" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvClassMap</scope><name>ReferenceMaps</name></member>
+      <member refid="a00060_1ac6c1e8ae1d049bd0ef09e7c2d99fbe55" prot="package" virt="non-virtual"><scope>CsvHelper::Configuration::CsvClassMap</scope><name>ReIndex</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

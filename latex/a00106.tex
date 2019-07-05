@@ -1,93 +1,308 @@
-\hypertarget{a00106}{\section{Csv\-Helper.\-I\-Csv\-Serializer Interface Reference}
-\label{a00106}\index{Csv\-Helper.\-I\-Csv\-Serializer@{Csv\-Helper.\-I\-Csv\-Serializer}}
+\hypertarget{a00106}{\section{Yarn.\-Function\-Info Class Reference}
+\label{a00106}\index{Yarn.\-Function\-Info@{Yarn.\-Function\-Info}}
 }
 
 
-Defines methods used to serialize data into a C\-S\-V file.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-I\-Csv\-Serializer\-:
+Collaboration diagram for Yarn.\-Function\-Info\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=208pt]{a00448}
-\end{center}
-\end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-I\-Csv\-Serializer\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=208pt]{a00449}
+\includegraphics[width=222pt]{a00654}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00106_a0b442858eef85b7d933662359646fd0b}{Write} (string\mbox{[}$\,$\mbox{]} record)
-\begin{DoxyCompactList}\small\item\em Writes a record to the C\-S\-V file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00187}{Value} \hyperlink{a00106_ab400ac66785d7df2e3fc0f3ce3796044}{Invoke} (params \hyperlink{a00187}{Value}\mbox{[}$\,$\mbox{]} parameters)
+\item 
+\hyperlink{a00187}{Value} \hyperlink{a00106_a3ce11058d35232907a738de4bb094c67}{Invoke\-With\-Array} (\hyperlink{a00187}{Value}\mbox{[}$\,$\mbox{]} parameters)
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00106_a93457cd0e838cb2ef59cc2a3a46ce758}{Function\-Info} (string \hyperlink{a00106_adb38e83e3c1597b553aeff14bef5bfcb}{name}, int \hyperlink{a00106_aa8527de9e4f153b05164ccaf167c3186}{param\-Count}, \hyperlink{a00051_ae0be2e5cf13d5779816102439e61ff1a}{Function} implementation)
+\item 
+\hyperlink{a00106_a41d97c09da25caede70cb734d18113b9}{Function\-Info} (string \hyperlink{a00106_adb38e83e3c1597b553aeff14bef5bfcb}{name}, int \hyperlink{a00106_aa8527de9e4f153b05164ccaf167c3186}{param\-Count}, \hyperlink{a00051_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} implementation)
+\item 
+bool \hyperlink{a00106_a1ed09ff8aafa230a0d2bbc23cd6cd763}{Is\-Parameter\-Count\-Correct} (int parameter\-Count)
+\end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00053}{Csv\-Configuration} \hyperlink{a00106_a54d241fe87517707b6f85c30fe8b3a95}{Configuration}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+string \hyperlink{a00106_adb38e83e3c1597b553aeff14bef5bfcb}{name}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \hyperlink{a00106_aa8527de9e4f153b05164ccaf167c3186}{param\-Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00051_ae0be2e5cf13d5779816102439e61ff1a}{Function} \hyperlink{a00106_a1dd2f9d11614a2fce170b3f3eecdb5f9}{function}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00051_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} \hyperlink{a00106_a8b6e0e5a875c427a1d947f3c52c308ca}{returning\-Function}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{a00106_acaff044276aa230de7c0b27dd5267bc7}{returns\-Value}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Defines methods used to serialize data into a C\-S\-V file. 
+
+
+Definition at line 12 of file Library.\-cs.
 
 
 
-Definition at line 13 of file I\-Csv\-Serializer.\-cs.
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00106_a93457cd0e838cb2ef59cc2a3a46ce758}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Function\-Info@{Function\-Info}}
+\index{Function\-Info@{Function\-Info}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{Function\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Function\-Info.\-Function\-Info (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{param\-Count, }
+\item[{{\bf Function}}]{implementation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00106_a93457cd0e838cb2ef59cc2a3a46ce758}
 
+
+Definition at line 68 of file Library.\-cs.
+
+
+
+References Yarn.\-Function\-Info.\-name, and Yarn.\-Function\-Info.\-param\-Count.
+
+
+\begin{DoxyCode}
+68                                                                                     \{
+69             this.name = \hyperlink{a00106_adb38e83e3c1597b553aeff14bef5bfcb}{name};
+70             this.paramCount = \hyperlink{a00106_aa8527de9e4f153b05164ccaf167c3186}{paramCount};
+71             this.function = implementation;
+72             this.returningFunction = null;
+73         \}
+\end{DoxyCode}
+\hypertarget{a00106_a41d97c09da25caede70cb734d18113b9}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Function\-Info@{Function\-Info}}
+\index{Function\-Info@{Function\-Info}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{Function\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Function\-Info.\-Function\-Info (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{param\-Count, }
+\item[{{\bf Returning\-Function}}]{implementation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00106_a41d97c09da25caede70cb734d18113b9}
+
+
+Definition at line 75 of file Library.\-cs.
+
+
+
+References Yarn.\-Function\-Info.\-name, and Yarn.\-Function\-Info.\-param\-Count.
+
+
+\begin{DoxyCode}
+75                                                                                              \{
+76             this.name = \hyperlink{a00106_adb38e83e3c1597b553aeff14bef5bfcb}{name};
+77             this.paramCount = \hyperlink{a00106_aa8527de9e4f153b05164ccaf167c3186}{paramCount};
+78             this.returningFunction = implementation;
+79             this.function = null;
+80         \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00106_a0b442858eef85b7d933662359646fd0b}{\index{Csv\-Helper\-::\-I\-Csv\-Serializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}!Write@{Write}}
-\index{Write@{Write}!CsvHelper::ICsvSerializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}}
-\subsubsection[{Write}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Serializer.\-Write (
+\hypertarget{a00106_ab400ac66785d7df2e3fc0f3ce3796044}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Invoke@{Invoke}}
+\index{Invoke@{Invoke}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{Invoke}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Function\-Info.\-Invoke (
 \begin{DoxyParamCaption}
-\item[{string\mbox{[}$\,$\mbox{]}}]{record}
+\item[{params {\bf Value}\mbox{[}$\,$\mbox{]}}]{parameters}
 \end{DoxyParamCaption}
-)}}\label{a00106_a0b442858eef85b7d933662359646fd0b}
+)}}\label{a00106_ab400ac66785d7df2e3fc0f3ce3796044}
 
 
-Writes a record to the C\-S\-V file. 
+Definition at line 35 of file Library.\-cs.
 
 
-\begin{DoxyParams}{Parameters}
-{\em record} & The record to write.\\
-\hline
-\end{DoxyParams}
+
+References Yarn.\-Function\-Info.\-Invoke\-With\-Array().
 
 
-Implemented in \hyperlink{a00069_aefad906acd048863d3dd414651a44793}{Csv\-Helper.\-Csv\-Serializer}.
+\begin{DoxyCode}
+35                                                        \{
+36             \textcolor{keywordflow}{return} \hyperlink{a00106_a3ce11058d35232907a738de4bb094c67}{InvokeWithArray}(parameters);
+37         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00106_ab400ac66785d7df2e3fc0f3ce3796044_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00106_a3ce11058d35232907a738de4bb094c67}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Invoke\-With\-Array@{Invoke\-With\-Array}}
+\index{Invoke\-With\-Array@{Invoke\-With\-Array}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{Invoke\-With\-Array}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Function\-Info.\-Invoke\-With\-Array (
+\begin{DoxyParamCaption}
+\item[{{\bf Value}\mbox{[}$\,$\mbox{]}}]{parameters}
+\end{DoxyParamCaption}
+)}}\label{a00106_a3ce11058d35232907a738de4bb094c67}
+
+
+Definition at line 39 of file Library.\-cs.
+
+
+
+References Yarn.\-Function\-Info.\-Is\-Parameter\-Count\-Correct(), Yarn.\-Value.\-N\-U\-L\-L, Yarn.\-Function\-Info.\-returning\-Function, and Yarn.\-Function\-Info.\-returns\-Value.
+
+
+
+Referenced by Yarn.\-Function\-Info.\-Invoke().
+
+
+\begin{DoxyCode}
+39                                                          \{
+40 
+41             \textcolor{keywordtype}{int} length;
+42 
+43             \textcolor{keywordflow}{if} (parameters != null)
+44                 length = parameters.Length;
+45             \textcolor{keywordflow}{else}
+46                 length = 0;
+47 
+48             \textcolor{keywordflow}{if} (\hyperlink{a00106_a1ed09ff8aafa230a0d2bbc23cd6cd763}{IsParameterCountCorrect} (length)) \{
+49                 \textcolor{keywordflow}{if} (\hyperlink{a00106_acaff044276aa230de7c0b27dd5267bc7}{returnsValue}) \{
+50                     \textcolor{keywordflow}{return} \textcolor{keyword}{new} Value(\hyperlink{a00106_a8b6e0e5a875c427a1d947f3c52c308ca}{returningFunction} (parameters));
+51                 \} \textcolor{keywordflow}{else} \{
+52                     \textcolor{keyword}{function} (parameters);
+53                     \textcolor{keywordflow}{return} \hyperlink{a00187_a1ed2964965baca8621c45efa23f37660}{Value.NULL}; \textcolor{comment}{// a null Value}
+54                 \}
+55             \} \textcolor{keywordflow}{else} \{
+56                 \textcolor{keywordtype}{string} error = string.Format (CultureInfo.CurrentCulture,
+57                     \textcolor{stringliteral}{"Incorrect number of parameters for function \{0\} (expected \{1\}, got \{2\}"},
+58                     this.name,
+59                     this.paramCount,
+60                     parameters.Length);
+61 
+62                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (error);
+63             \}
+64         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00106_a3ce11058d35232907a738de4bb094c67_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00106_a3ce11058d35232907a738de4bb094c67_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00106_a1ed09ff8aafa230a0d2bbc23cd6cd763}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Is\-Parameter\-Count\-Correct@{Is\-Parameter\-Count\-Correct}}
+\index{Is\-Parameter\-Count\-Correct@{Is\-Parameter\-Count\-Correct}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{Is\-Parameter\-Count\-Correct}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Function\-Info.\-Is\-Parameter\-Count\-Correct (
+\begin{DoxyParamCaption}
+\item[{int}]{parameter\-Count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00106_a1ed09ff8aafa230a0d2bbc23cd6cd763}
+
+
+Definition at line 82 of file Library.\-cs.
+
+
+
+References Yarn.\-Function\-Info.\-param\-Count.
+
+
+
+Referenced by Yarn.\-Function\-Info.\-Invoke\-With\-Array(), and Yarn.\-Parser.\-Expression.\-Parse().
+
+
+\begin{DoxyCode}
+83         \{
+84             \textcolor{keywordflow}{return} \hyperlink{a00106_aa8527de9e4f153b05164ccaf167c3186}{paramCount} == parameterCount || \hyperlink{a00106_aa8527de9e4f153b05164ccaf167c3186}{paramCount} == -1;
+85         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00106_a1ed09ff8aafa230a0d2bbc23cd6cd763_icgraph}
+\end{center}
+\end{figure}
+
 
 
 
 \subsection{Property Documentation}
-\hypertarget{a00106_a54d241fe87517707b6f85c30fe8b3a95}{\index{Csv\-Helper\-::\-I\-Csv\-Serializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}!Configuration@{Configuration}}
-\index{Configuration@{Configuration}!CsvHelper::ICsvSerializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}}
-\subsubsection[{Configuration}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Configuration} Csv\-Helper.\-I\-Csv\-Serializer.\-Configuration\hspace{0.3cm}{\ttfamily [get]}}}\label{a00106_a54d241fe87517707b6f85c30fe8b3a95}
+\hypertarget{a00106_a1dd2f9d11614a2fce170b3f3eecdb5f9}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!function@{function}}
+\index{function@{function}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Function} Yarn.\-Function\-Info.\-function\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00106_a1dd2f9d11614a2fce170b3f3eecdb5f9}
 
 
-Gets the configuration. 
+Definition at line 25 of file Library.\-cs.
+
+\hypertarget{a00106_adb38e83e3c1597b553aeff14bef5bfcb}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!name@{name}}
+\index{name@{name}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Function\-Info.\-name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00106_adb38e83e3c1597b553aeff14bef5bfcb}
+
+
+Definition at line 15 of file Library.\-cs.
 
 
 
-Definition at line 18 of file I\-Csv\-Serializer.\-cs.
+Referenced by Yarn.\-Function\-Info.\-Function\-Info().
+
+\hypertarget{a00106_aa8527de9e4f153b05164ccaf167c3186}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!param\-Count@{param\-Count}}
+\index{param\-Count@{param\-Count}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{param\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Function\-Info.\-param\-Count\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00106_aa8527de9e4f153b05164ccaf167c3186}
+
+
+Definition at line 19 of file Library.\-cs.
 
 
 
-Referenced by Csv\-Helper.\-Csv\-Writer.\-Csv\-Writer().
+Referenced by Yarn.\-Function\-Info.\-Function\-Info(), Yarn.\-Body\-Visitor.\-Handle\-Function(), and Yarn.\-Function\-Info.\-Is\-Parameter\-Count\-Correct().
+
+\hypertarget{a00106_a8b6e0e5a875c427a1d947f3c52c308ca}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!returning\-Function@{returning\-Function}}
+\index{returning\-Function@{returning\-Function}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{returning\-Function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Returning\-Function} Yarn.\-Function\-Info.\-returning\-Function\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00106_a8b6e0e5a875c427a1d947f3c52c308ca}
+
+
+Definition at line 26 of file Library.\-cs.
 
 
 
-The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
+Referenced by Yarn.\-Function\-Info.\-Invoke\-With\-Array().
+
+\hypertarget{a00106_acaff044276aa230de7c0b27dd5267bc7}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!returns\-Value@{returns\-Value}}
+\index{returns\-Value@{returns\-Value}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{returns\-Value}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Function\-Info.\-returns\-Value\hspace{0.3cm}{\ttfamily [get]}}}\label{a00106_acaff044276aa230de7c0b27dd5267bc7}
+
+
+Definition at line 29 of file Library.\-cs.
+
+
+
+Referenced by Yarn.\-Function\-Info.\-Invoke\-With\-Array().
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00239}{I\-Csv\-Serializer.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00311}{Library.\-cs}\end{DoxyCompactItemize}

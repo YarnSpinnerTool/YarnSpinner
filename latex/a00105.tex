@@ -1,1221 +1,466 @@
-\hypertarget{a00105}{\section{Csv\-Helper.\-I\-Csv\-Reader\-Row Interface Reference}
-\label{a00105}\index{Csv\-Helper.\-I\-Csv\-Reader\-Row@{Csv\-Helper.\-I\-Csv\-Reader\-Row}}
+\hypertarget{a00105}{\section{Yarn.\-File\-Format\-Converter Class Reference}
+\label{a00105}\index{Yarn.\-File\-Format\-Converter@{Yarn.\-File\-Format\-Converter}}
 }
 
 
-Defines methods used to read parsed data from a C\-S\-V file row.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-I\-Csv\-Reader\-Row\-:
+Collaboration diagram for Yarn.\-File\-Format\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{a00445}
+\includegraphics[width=222pt]{a00728}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-I\-Csv\-Reader\-Row\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=218pt]{a00446}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Static Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00105_a3051b174bf5018e7480e6c4e53fbeeb5}{Get\-Field} (int index)
-\begin{DoxyCompactList}\small\item\em Gets the raw field at position (column) index. \end{DoxyCompactList}\item 
-string \hyperlink{a00105_aef0f82a96420210343b447e7709400ae}{Get\-Field} (string name)
-\begin{DoxyCompactList}\small\item\em Gets the raw field at position (column) name. \end{DoxyCompactList}\item 
-string \hyperlink{a00105_a89d1e21e131f988e0959c5edff4f982f}{Get\-Field} (string name, int index)
-\begin{DoxyCompactList}\small\item\em Gets the raw field at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. \end{DoxyCompactList}\item 
-object \hyperlink{a00105_a139fd51e035dc42bfc820371209b9782}{Get\-Field} (Type type, int index)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Object using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
-object \hyperlink{a00105_a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c}{Get\-Field} (Type type, string name)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Object using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
-object \hyperlink{a00105_ae0128a2e48bd24db451e64b17b4631ae}{Get\-Field} (Type type, string name, int index)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Object using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
-object \hyperlink{a00105_acc16f1e7d5c552c8adb86087c8774b43}{Get\-Field} (Type type, int index, \hyperlink{a00113}{I\-Type\-Converter} converter)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Object using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
-object \hyperlink{a00105_ad3fce0bfa735dc92844d51d756396892}{Get\-Field} (Type type, string name, \hyperlink{a00113}{I\-Type\-Converter} converter)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Object using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
-object \hyperlink{a00105_a04389e3edb60cc2ab9760668e7781518}{Get\-Field} (Type type, string name, int index, \hyperlink{a00113}{I\-Type\-Converter} converter)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Object using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
-T \hyperlink{a00105_af5282bab4799899c6c986fa4189eea0a}{Get\-Field$<$ T $>$} (int index)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) index. \end{DoxyCompactList}\item 
-T \hyperlink{a00105_af3b292ed7d991a8e975f67fb8ddde859}{Get\-Field$<$ T $>$} (string name)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name. \end{DoxyCompactList}\item 
-T \hyperlink{a00105_aa8c349da18823eb8c30911d891b3e3bc}{Get\-Field$<$ T $>$} (string name, int index)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. \end{DoxyCompactList}\item 
-T \hyperlink{a00105_a8ae4f95a7b9bbbbf2ef19009da81dd18}{Get\-Field$<$ T $>$} (int index, \hyperlink{a00113}{I\-Type\-Converter} converter)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) index using the given I\-Type\-Converter. \end{DoxyCompactList}\item 
-T \hyperlink{a00105_a640689c76826aafd8c79ff71d4f0992d}{Get\-Field$<$ T $>$} (string name, \hyperlink{a00113}{I\-Type\-Converter} converter)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name using the given I\-Type\-Converter. \end{DoxyCompactList}\item 
-T \hyperlink{a00105_a8851c2bc99ee403fc003f62ae96b090c}{Get\-Field$<$ T $>$} (string name, int index, \hyperlink{a00113}{I\-Type\-Converter} converter)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. \end{DoxyCompactList}\item 
-T \hyperlink{a00105_a787094f29179fcf06cec6db42fa59de3}{Get\-Field$<$ T, T\-Converter $>$} (int index)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) index using the given I\-Type\-Converter. \end{DoxyCompactList}\item 
-T \hyperlink{a00105_ae7ea281792a1e0e8f64991062a3acffb}{Get\-Field$<$ T, T\-Converter $>$} (string name)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name using the given I\-Type\-Converter. \end{DoxyCompactList}\item 
-T \hyperlink{a00105_a6a55c1b2fc98eb7ef4bdb73e80f4b093}{Get\-Field$<$ T, T\-Converter $>$} (string name, int index)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. \end{DoxyCompactList}\item 
-bool \hyperlink{a00105_a476c426866e69a8c1b81f40956e0b538}{Try\-Get\-Field$<$ T $>$} (int index, out T field)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) index. \end{DoxyCompactList}\item 
-bool \hyperlink{a00105_a1ac55ecd014a239d9b0b62345637b745}{Try\-Get\-Field$<$ T $>$} (string name, out T field)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name. \end{DoxyCompactList}\item 
-bool \hyperlink{a00105_a4c2667e997378fa984f44d7d5e62492b}{Try\-Get\-Field$<$ T $>$} (string name, int index, out T field)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. \end{DoxyCompactList}\item 
-bool \hyperlink{a00105_aa8aaa34c75b213e3774394b3f912842f}{Try\-Get\-Field$<$ T $>$} (int index, \hyperlink{a00113}{I\-Type\-Converter} converter, out T field)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) index using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
-bool \hyperlink{a00105_a33e4e39bf2395a79a90cb02554c84d22}{Try\-Get\-Field$<$ T $>$} (string name, \hyperlink{a00113}{I\-Type\-Converter} converter, out T field)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
-bool \hyperlink{a00105_a2d001b5e65d063db9f102b720da0edf2}{Try\-Get\-Field$<$ T $>$} (string name, int index, \hyperlink{a00113}{I\-Type\-Converter} converter, out T field)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
-bool \hyperlink{a00105_a5df5f7bc974ec541c25bf63b29ebf618}{Try\-Get\-Field$<$ T, T\-Converter $>$} (int index, out T field)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) index using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
-bool \hyperlink{a00105_a9bd7b721a7b4acbc21050817aca71f21}{Try\-Get\-Field$<$ T, T\-Converter $>$} (string name, out T field)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
-bool \hyperlink{a00105_a8ecc5b03e5e818163aca86b979b01158}{Try\-Get\-Field$<$ T, T\-Converter $>$} (string name, int index, out T field)
-\begin{DoxyCompactList}\small\item\em Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. \end{DoxyCompactList}\item 
-bool \hyperlink{a00105_a49ad028b358d5a0642d8108b3bb87ff7}{Is\-Record\-Empty} ()
-\begin{DoxyCompactList}\small\item\em Determines whether the current record is empty. A record is considered empty if all fields are empty. \end{DoxyCompactList}\item 
-T \hyperlink{a00105_ae82d451b6e26742a685d652c84c0b807}{Get\-Record$<$ T $>$} ()
-\begin{DoxyCompactList}\small\item\em Gets the record converted into Type T. \end{DoxyCompactList}\item 
-object \hyperlink{a00105_a911748932ed897a2e7086c0c49bdceea}{Get\-Record} (Type type)
-\begin{DoxyCompactList}\small\item\em Gets the record. \end{DoxyCompactList}\item 
-I\-Enumerable$<$ T $>$ \hyperlink{a00105_a880d3ee25c0b55bd9a193c61cd116e21}{Get\-Records$<$ T $>$} ()
-\begin{DoxyCompactList}\small\item\em Gets all the records in the C\-S\-V file and converts each to Type T. The Read method should not be used when using this. \end{DoxyCompactList}\item 
-I\-Enumerable$<$ object $>$ \hyperlink{a00105_a8f1187e434201dc22036f2f48cc4d050}{Get\-Records} (Type type)
-\begin{DoxyCompactList}\small\item\em Gets all the records in the C\-S\-V file and converts each to Type T. The Read method should not be used when using this. \end{DoxyCompactList}\item 
-void \hyperlink{a00105_ae903a343efdafa8b22236184dfcf7a97}{Clear\-Record\-Cache$<$ T $>$} ()
-\begin{DoxyCompactList}\small\item\em Clears the record cache for the given type. After Get\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, Clear\-Record\-Cache\{\-T\} needs to be called to update the record cache. \end{DoxyCompactList}\item 
-void \hyperlink{a00105_aa035080da331f40071b29c17b1f8c228}{Clear\-Record\-Cache} (Type type)
-\begin{DoxyCompactList}\small\item\em Clears the record cache for the given type. After I\-Csv\-Reader\-Row.\-Get\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, \hyperlink{a00105_aa035080da331f40071b29c17b1f8c228}{Clear\-Record\-Cache( Type )} needs to be called to update the record cache. \end{DoxyCompactList}\item 
-void \hyperlink{a00105_a87251d0ff95c599cf3f6bd1cbb8204d8}{Clear\-Record\-Cache} ()
-\begin{DoxyCompactList}\small\item\em Clears the record cache for all types. After I\-Csv\-Reader\-Row.\-Get\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, \hyperlink{a00105_a87251d0ff95c599cf3f6bd1cbb8204d8}{Clear\-Record\-Cache()} needs to be called to update the record cache. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Properties}
+static int \hyperlink{a00105_aa4db4ccac799c5f047a8b1a9efbe109d}{Convert\-Format} (\hyperlink{a00058}{Convert\-Format\-Options} options)
+\item 
+static string \hyperlink{a00105_a85596df924468279b2dc44a9f31d8bad}{Convert\-Nodes} (I\-Enumerable$<$ \hyperlink{a00140}{Loader.\-Node\-Info} $>$ nodes, \hyperlink{a00051_ad7ebb46e7309ead8767383a672b3272f}{Node\-Format} format)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-string\mbox{[}$\,$\mbox{]} \hyperlink{a00105_a4e8958e51331591b1d9e811e32bd92d0}{Current\-Record}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Get the current record; \end{DoxyCompactList}\item 
-int \hyperlink{a00105_ac1bd960358282c70f0b85de90f00b446}{Row}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the current row. \end{DoxyCompactList}\item 
-string \hyperlink{a00105_a45d5b14c7382418d90b4c085c2bdc7dc}{this\mbox{[}int index\mbox{]}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the raw field at position (column) index. \end{DoxyCompactList}\item 
-string \hyperlink{a00105_a999cf88bd8eb0b59c65b235cfe0e2835}{this\mbox{[}string name\mbox{]}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the raw field at position (column) name. \end{DoxyCompactList}\item 
-string \hyperlink{a00105_abe611a2c471e6f11da579297bb876fb1}{this\mbox{[}string name, int index\mbox{]}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the raw field at position (column) name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+delegate string \hyperlink{a00105_af9bd5d832fdd2bcbdc626d9f8632e05c}{Convert\-Nodes\-To\-Text} (I\-Enumerable$<$ \hyperlink{a00140}{Loader.\-Node\-Info} $>$ nodes)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{a00105_a28a086a7b44ecea7430af40436f38df6}{Convert\-To\-J\-S\-O\-N} (\hyperlink{a00058}{Convert\-Format\-Options} options)
+\item 
+static int \hyperlink{a00105_a1e6cd39b0c813f21da278367dcff76d2}{Convert\-To\-Yarn} (\hyperlink{a00058}{Convert\-Format\-Options} options)
+\item 
+static string \hyperlink{a00105_a282f283f02c9b1d3e53d813ec2f35233}{Convert\-Nodes\-To\-Yarn\-Text} (I\-Enumerable$<$ \hyperlink{a00140}{Loader.\-Node\-Info} $>$ nodes)
+\item 
+static void \hyperlink{a00105_aa72838be584177b5592c31d73c0febdb}{Convert\-Nodes\-In\-File} (\hyperlink{a00058}{Convert\-Format\-Options} options, string file, string file\-Extension, \hyperlink{a00105_af9bd5d832fdd2bcbdc626d9f8632e05c}{Convert\-Nodes\-To\-Text} convert)
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Defines methods used to read parsed data from a C\-S\-V file row. 
 
 
-
-Definition at line 16 of file I\-Csv\-Reader\-Row.\-cs.
+Definition at line 9 of file File\-Format\-Converter.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00105_aa035080da331f40071b29c17b1f8c228}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Clear\-Record\-Cache@{Clear\-Record\-Cache}}
-\index{Clear\-Record\-Cache@{Clear\-Record\-Cache}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Clear\-Record\-Cache}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Clear\-Record\-Cache (
+\hypertarget{a00105_aa4db4ccac799c5f047a8b1a9efbe109d}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Format@{Convert\-Format}}
+\index{Convert\-Format@{Convert\-Format}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
+\subsubsection[{Convert\-Format}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-File\-Format\-Converter.\-Convert\-Format (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{{\bf Convert\-Format\-Options}}]{options}
 \end{DoxyParamCaption}
-)}}\label{a00105_aa035080da331f40071b29c17b1f8c228}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00105_aa4db4ccac799c5f047a8b1a9efbe109d}
 
 
-Clears the record cache for the given type. After I\-Csv\-Reader\-Row.\-Get\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, \hyperlink{a00105_aa035080da331f40071b29c17b1f8c228}{Clear\-Record\-Cache( Type )} needs to be called to update the record cache. 
+Definition at line 11 of file File\-Format\-Converter.\-cs.
 
 
-\begin{DoxyParams}{Parameters}
-{\em type} & The type to invalidate.\\
-\hline
-\end{DoxyParams}
+
+References Yarn.\-Yarn\-Spinner\-Console.\-A\-L\-L\-O\-W\-E\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N\-S, Yarn.\-File\-Format\-Converter.\-Convert\-To\-J\-S\-O\-N(), Yarn.\-Convert\-Format\-Options.\-convert\-To\-J\-S\-O\-N, Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn(), and Yarn.\-Convert\-Format\-Options.\-convert\-To\-Yarn.
 
 
-Implemented in \hyperlink{a00067_a669ecad48ad94b03a06131e78faa767a}{Csv\-Helper.\-Csv\-Reader}.
 
-\hypertarget{a00105_a87251d0ff95c599cf3f6bd1cbb8204d8}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Clear\-Record\-Cache@{Clear\-Record\-Cache}}
-\index{Clear\-Record\-Cache@{Clear\-Record\-Cache}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Clear\-Record\-Cache}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Clear\-Record\-Cache (
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Main().
+
+
+\begin{DoxyCode}
+12         \{
+13 
+14             YarnSpinnerConsole.CheckFileList(options.files, 
+      \hyperlink{a00195_a0979de7ea02c8c0375b8220a12e6575e}{YarnSpinnerConsole.ALLOWED\_EXTENSIONS});
+15 
+16             \textcolor{keywordflow}{if} (options.convertToJSON)
+17             \{
+18                 \textcolor{keywordflow}{return} \hyperlink{a00105_a28a086a7b44ecea7430af40436f38df6}{ConvertToJSON}(options);
+19             \}
+20             \textcolor{keywordflow}{if} (options.convertToYarn)
+21             \{
+22                 \textcolor{keywordflow}{return} \hyperlink{a00105_a1e6cd39b0c813f21da278367dcff76d2}{ConvertToYarn}(options);
+23             \}
+24 
+25             var processName = System.IO.Path.GetFileName(Environment.GetCommandLineArgs()[0]);
+26 
+27             YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"You must specify a
+       destination format. Run '\{0\} help convert' to learn more."}, processName));
+28             \textcolor{keywordflow}{return} 1;
+29         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00105_aa4db4ccac799c5f047a8b1a9efbe109d_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00105_aa4db4ccac799c5f047a8b1a9efbe109d_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00105_a85596df924468279b2dc44a9f31d8bad}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes@{Convert\-Nodes}}
+\index{Convert\-Nodes@{Convert\-Nodes}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
+\subsubsection[{Convert\-Nodes}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-File\-Format\-Converter.\-Convert\-Nodes (
 \begin{DoxyParamCaption}
-{}
+\item[{I\-Enumerable$<$ {\bf Loader.\-Node\-Info} $>$}]{nodes, }
+\item[{{\bf Node\-Format}}]{format}
 \end{DoxyParamCaption}
-)}}\label{a00105_a87251d0ff95c599cf3f6bd1cbb8204d8}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00105_a85596df924468279b2dc44a9f31d8bad}
 
 
-Clears the record cache for all types. After I\-Csv\-Reader\-Row.\-Get\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, \hyperlink{a00105_a87251d0ff95c599cf3f6bd1cbb8204d8}{Clear\-Record\-Cache()} needs to be called to update the record cache. 
+Definition at line 63 of file File\-Format\-Converter.\-cs.
 
 
 
-Implemented in \hyperlink{a00067_a1e115e1f379009b2b1cb91e7c24fdd02}{Csv\-Helper.\-Csv\-Reader}.
+References Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Yarn\-Text().
 
-\hypertarget{a00105_ae903a343efdafa8b22236184dfcf7a97}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Clear\-Record\-Cache$<$ T $>$@{Clear\-Record\-Cache$<$ T $>$}}
-\index{Clear\-Record\-Cache$<$ T $>$@{Clear\-Record\-Cache$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Clear\-Record\-Cache$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Clear\-Record\-Cache}$<$ T $>$ (
+
+\begin{DoxyCode}
+63                                                                                                    \{
+64             \textcolor{keywordflow}{switch} (format)
+65             \{
+66                 \textcolor{keywordflow}{case} NodeFormat.JSON:
+67                     \textcolor{keywordflow}{return} JsonConvert.SerializeObject(nodes, Formatting.Indented);
+68                 \textcolor{keywordflow}{case} NodeFormat.Text:
+69                     \textcolor{keywordflow}{return} \hyperlink{a00105_a282f283f02c9b1d3e53d813ec2f35233}{ConvertNodesToYarnText}(nodes);
+70                 \textcolor{keywordflow}{default}:
+71                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException();
+72             \}
+73         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00105_a85596df924468279b2dc44a9f31d8bad_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00105_aa72838be584177b5592c31d73c0febdb}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes\-In\-File@{Convert\-Nodes\-In\-File}}
+\index{Convert\-Nodes\-In\-File@{Convert\-Nodes\-In\-File}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
+\subsubsection[{Convert\-Nodes\-In\-File}]{\setlength{\rightskip}{0pt plus 5cm}static void Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf Convert\-Format\-Options}}]{options, }
+\item[{string}]{file, }
+\item[{string}]{file\-Extension, }
+\item[{{\bf Convert\-Nodes\-To\-Text}}]{convert}
 \end{DoxyParamCaption}
-)}}\label{a00105_ae903a343efdafa8b22236184dfcf7a97}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00105_aa72838be584177b5592c31d73c0febdb}
 
 
-Clears the record cache for the given type. After Get\-Record\{\-T\} is called the first time, code is dynamically generated based on the Csv\-Property\-Map\-Collection, compiled, and stored for the given type T. If the Csv\-Property\-Map\-Collection changes, Clear\-Record\-Cache\{\-T\} needs to be called to update the record cache. 
+Definition at line 144 of file File\-Format\-Converter.\-cs.
 
 
 
-Implemented in \hyperlink{a00067_abc2052d47de1fc745579881daeae8806}{Csv\-Helper.\-Csv\-Reader}.
+References Yarn.\-Base\-Options.\-verbose.
 
-\hypertarget{a00105_a3051b174bf5018e7480e6c4e53fbeeb5}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
-\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
+
+
+Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-To\-J\-S\-O\-N(), and Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn().
+
+
+\begin{DoxyCode}
+145         \{
+146             var d = \textcolor{keyword}{new} Dialogue(null);
+147 
+148             var text = File.ReadAllText(file);
+149 
+150             IEnumerable<Loader.NodeInfo> nodes;
+151             \textcolor{keywordflow}{try} \{
+152                 nodes = d.loader.GetNodesFromText(text, Loader.GetFormatFromFileName(file));
+153             \} \textcolor{keywordflow}{catch} (FormatException e) \{
+154                 YarnSpinnerConsole.Error(e.Message);
+155                 \textcolor{keywordflow}{return};
+156             \}
+157 
+158             var serialisedText = convert(nodes);
+159 
+160             var destinationDirectory = options.outputDirectory;
+161 
+162             \textcolor{keywordflow}{if} (destinationDirectory == null)
+163             \{
+164                 destinationDirectory = Path.GetDirectoryName(file);
+165             \}
+166 
+167             var fileName = Path.GetFileName(file);
+168 
+169             \textcolor{comment}{// ChangeExtension thinks that the file "Foo.yarn.txt" has the extension "txt", so}
+170             \textcolor{comment}{// to simplify things, just lop that extension off right away if it's there}
+171             fileName = fileName.Replace(\textcolor{stringliteral}{".yarn.txt"}, \textcolor{stringliteral}{""});
+172 
+173             \textcolor{comment}{// change the filename's extension}
+174             fileName = Path.ChangeExtension(fileName, fileExtension);
+175 
+176             \textcolor{comment}{// figure out where we're writing this file}
+177             var destinationFilePath = Path.Combine(destinationDirectory, fileName);
+178 
+179             File.WriteAllText(destinationFilePath, serialisedText);
+180 
+181             \textcolor{keywordflow}{if} (options.verbose)
+182             \{
+183                 YarnSpinnerConsole.Note(\textcolor{stringliteral}{"Wrote "} + destinationFilePath);
+184             \}
+185         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00105_aa72838be584177b5592c31d73c0febdb_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00105_af9bd5d832fdd2bcbdc626d9f8632e05c}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes\-To\-Text@{Convert\-Nodes\-To\-Text}}
+\index{Convert\-Nodes\-To\-Text@{Convert\-Nodes\-To\-Text}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
+\subsubsection[{Convert\-Nodes\-To\-Text}]{\setlength{\rightskip}{0pt plus 5cm}delegate string Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Text (
 \begin{DoxyParamCaption}
-\item[{int}]{index}
+\item[{I\-Enumerable$<$ {\bf Loader.\-Node\-Info} $>$}]{nodes}
 \end{DoxyParamCaption}
-)}}\label{a00105_a3051b174bf5018e7480e6c4e53fbeeb5}
-
-
-Gets the raw field at position (column) index. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em index} & The zero based index of the field.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The raw field.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_ac1500fd628ea947c3ae05a7ce3fbd01a}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_aef0f82a96420210343b447e7709400ae}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
-\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00105_af9bd5d832fdd2bcbdc626d9f8632e05c}
+\hypertarget{a00105_a282f283f02c9b1d3e53d813ec2f35233}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes\-To\-Yarn\-Text@{Convert\-Nodes\-To\-Yarn\-Text}}
+\index{Convert\-Nodes\-To\-Yarn\-Text@{Convert\-Nodes\-To\-Yarn\-Text}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
+\subsubsection[{Convert\-Nodes\-To\-Yarn\-Text}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Yarn\-Text (
 \begin{DoxyParamCaption}
-\item[{string}]{name}
+\item[{I\-Enumerable$<$ {\bf Loader.\-Node\-Info} $>$}]{nodes}
 \end{DoxyParamCaption}
-)}}\label{a00105_aef0f82a96420210343b447e7709400ae}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00105_a282f283f02c9b1d3e53d813ec2f35233}
 
 
-Gets the raw field at position (column) name. 
+Definition at line 75 of file File\-Format\-Converter.\-cs.
 
 
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The raw field.
-\end{DoxyReturn}
+
+Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes(), and Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn().
 
 
-Implemented in \hyperlink{a00067_a2dea592c2879215b86a4e49280492930}{Csv\-Helper.\-Csv\-Reader}.
+\begin{DoxyCode}
+76         \{
+77             var sb = \textcolor{keyword}{new} System.Text.StringBuilder();
+78 
+79             var properties = typeof(Loader.NodeInfo).GetProperties();
+80 
+81             \textcolor{keywordflow}{foreach} (var node \textcolor{keywordflow}{in} nodes) \{
+82 
+83                 \textcolor{keywordflow}{foreach} (var property \textcolor{keywordflow}{in} properties) \{
+84 
+85                     \textcolor{comment}{// ignore the body attribute}
+86                     \textcolor{keywordflow}{if} (property.Name == \textcolor{stringliteral}{"body"}) \{
+87                         \textcolor{keywordflow}{continue};
+88                     \}
+89 
+90                     \textcolor{comment}{// piggy-back off the JsonIgnoreAttribute to sense items that should not be serialised}
+91                     \textcolor{keywordflow}{if} (property.GetCustomAttributes(typeof(JsonIgnoreAttribute), \textcolor{keyword}{false}).Length > 0) \{
+92                         \textcolor{keywordflow}{continue};
+93                     \}
+94 
+95                     var field = property.Name;
+96 
+97                     \textcolor{keywordtype}{string} value;
+98 
+99                     var propertyType = property.PropertyType;
+100                     \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(\textcolor{keywordtype}{string})))
+101                     \{
+102                         value = (string)property.GetValue(node, null);
+103 
+104                         \textcolor{comment}{// avoid storing nulls when we could store the empty string instead}
+105                         \textcolor{keywordflow}{if} (value == null)
+106                             value = \textcolor{stringliteral}{""};
+107                     \}
+108                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(\textcolor{keywordtype}{int})))
+109                     \{
+110                         value = ((int)property.GetValue(node, null)).ToString(CultureInfo.InvariantCulture)
+      ;
+111                     \}
+112                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(Loader.NodeInfo.Position)))
+113                     \{
+114                         var position = (Loader.NodeInfo.Position)property.GetValue(node, null);
+115 
+116                         value = string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0\},\{1\}"}, position.x, 
+      position.y);
+117                     \} \textcolor{keywordflow}{else} \{
+118                         YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Internal error:
+       Node \{0\}'s property \{1\} has unsupported type \{2\}"}, node.title, property.Name, propertyType.FullName));
+119 
+120                         \textcolor{comment}{// will never be run, but prevents the compiler being mean about us not returning a
+       value}
+121                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} Exception();
+122                     \}
+123 
+124                     var header = string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0\}: \{1\}"}, field, value);
+125 
+126                     sb.AppendLine(header);
+127 
+128                 \}
+129                 \textcolor{comment}{// now write the body}
+130                 sb.AppendLine(\textcolor{stringliteral}{"---"});
+131 
+132                 sb.AppendLine(node.body);
+133 
+134                 sb.AppendLine(\textcolor{stringliteral}{"==="});
+135 
+136             \}
+137 
+138             \textcolor{keywordflow}{return} sb.ToString();
+139         \}
+\end{DoxyCode}
 
-\hypertarget{a00105_a89d1e21e131f988e0959c5edff4f982f}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
-\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00105_a282f283f02c9b1d3e53d813ec2f35233_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00105_a28a086a7b44ecea7430af40436f38df6}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-To\-J\-S\-O\-N@{Convert\-To\-J\-S\-O\-N}}
+\index{Convert\-To\-J\-S\-O\-N@{Convert\-To\-J\-S\-O\-N}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
+\subsubsection[{Convert\-To\-J\-S\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-File\-Format\-Converter.\-Convert\-To\-J\-S\-O\-N (
 \begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{index}
+\item[{{\bf Convert\-Format\-Options}}]{options}
 \end{DoxyParamCaption}
-)}}\label{a00105_a89d1e21e131f988e0959c5edff4f982f}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00105_a28a086a7b44ecea7430af40436f38df6}
 
 
-Gets the raw field at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. 
+Definition at line 31 of file File\-Format\-Converter.\-cs.
 
 
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-{\em index} & The zero based index of the instance of the field.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The raw field.
-\end{DoxyReturn}
+
+References Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Loader.\-Get\-Format\-From\-File\-Name().
 
 
-Implemented in \hyperlink{a00067_aa1d5909bc0bb20045ece92b3448a5297}{Csv\-Helper.\-Csv\-Reader}.
 
-\hypertarget{a00105_a139fd51e035dc42bfc820371209b9782}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
-\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
+Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Format().
+
+
+\begin{DoxyCode}
+32         \{
+33             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.files)
+34             \{
+35 
+36                 \textcolor{keywordflow}{if} (Loader.GetFormatFromFileName(file) == NodeFormat.JSON)
+37                 \{
+38                     YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Not converting file
+       \{0\}, because its name implies it's already in JSON format"}, file));
+39                     \textcolor{keywordflow}{continue};
+40                 \}
+41 
+42                 \hyperlink{a00105_aa72838be584177b5592c31d73c0febdb}{ConvertNodesInFile}(options, file, \textcolor{stringliteral}{"json"}, (IEnumerable<Loader.NodeInfo> 
+      nodes) => JsonConvert.SerializeObject(nodes, Formatting.Indented));
+43 
+44             \}
+45             \textcolor{keywordflow}{return} 0;
+46         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00105_a28a086a7b44ecea7430af40436f38df6_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00105_a28a086a7b44ecea7430af40436f38df6_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00105_a1e6cd39b0c813f21da278367dcff76d2}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-To\-Yarn@{Convert\-To\-Yarn}}
+\index{Convert\-To\-Yarn@{Convert\-To\-Yarn}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
+\subsubsection[{Convert\-To\-Yarn}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn (
 \begin{DoxyParamCaption}
-\item[{Type}]{type, }
-\item[{int}]{index}
+\item[{{\bf Convert\-Format\-Options}}]{options}
 \end{DoxyParamCaption}
-)}}\label{a00105_a139fd51e035dc42bfc820371209b9782}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00105_a1e6cd39b0c813f21da278367dcff76d2}
 
 
-Gets the field converted to Object using the specified I\-Type\-Converter. 
+Definition at line 48 of file File\-Format\-Converter.\-cs.
 
 
-\begin{DoxyParams}{Parameters}
-{\em type} & The type of the field.\\
-\hline
-{\em index} & The index of the field.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The field converted to Object.
-\end{DoxyReturn}
 
+References Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Yarn\-Text(), and Yarn.\-Loader.\-Get\-Format\-From\-File\-Name().
 
-Implemented in \hyperlink{a00067_a35724e33388ac5772ccfa0526ca812fc}{Csv\-Helper.\-Csv\-Reader}.
 
-\hypertarget{a00105_a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
-\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
-\begin{DoxyParamCaption}
-\item[{Type}]{type, }
-\item[{string}]{name}
-\end{DoxyParamCaption}
-)}}\label{a00105_a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c}
 
+Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Format().
 
-Gets the field converted to Object using the specified I\-Type\-Converter. 
 
+\begin{DoxyCode}
+49         \{
+50             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.files)
+51             \{
+52                 \textcolor{keywordflow}{if} (Loader.GetFormatFromFileName(file) == NodeFormat.Text)
+53                 \{
+54                     YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Not converting file
+       \{0\}, because its name implies it's already in Yarn format"}, file));
+55                     \textcolor{keywordflow}{continue};
+56                 \}
+57 
+58                 \hyperlink{a00105_aa72838be584177b5592c31d73c0febdb}{ConvertNodesInFile}(options, file, \textcolor{stringliteral}{"yarn.txt"}, 
+      \hyperlink{a00105_a282f283f02c9b1d3e53d813ec2f35233}{ConvertNodesToYarnText});
+59             \}
+60             \textcolor{keywordflow}{return} 0;
+61         \}
+\end{DoxyCode}
 
-\begin{DoxyParams}{Parameters}
-{\em type} & The type of the field.\\
-\hline
-{\em name} & The named index of the field.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The field converted to Object.
-\end{DoxyReturn}
 
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00105_a1e6cd39b0c813f21da278367dcff76d2_cgraph}
+\end{center}
+\end{figure}
 
-Implemented in \hyperlink{a00067_a5e255cb4bfa8d7a9dc364660cb079415}{Csv\-Helper.\-Csv\-Reader}.
 
-\hypertarget{a00105_ae0128a2e48bd24db451e64b17b4631ae}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
-\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
-\begin{DoxyParamCaption}
-\item[{Type}]{type, }
-\item[{string}]{name, }
-\item[{int}]{index}
-\end{DoxyParamCaption}
-)}}\label{a00105_ae0128a2e48bd24db451e64b17b4631ae}
 
 
-Gets the field converted to Object using the specified I\-Type\-Converter. 
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00105_a1e6cd39b0c813f21da278367dcff76d2_icgraph}
+\end{center}
+\end{figure}
 
 
-\begin{DoxyParams}{Parameters}
-{\em type} & The type of the field.\\
-\hline
-{\em name} & The named index of the field.\\
-\hline
-{\em index} & The zero based index of the instance of the field.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The field converted to Object.
-\end{DoxyReturn}
 
 
-Implemented in \hyperlink{a00067_a3fb351f9f77bb39bddc05c76691e830f}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_acc16f1e7d5c552c8adb86087c8774b43}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
-\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
-\begin{DoxyParamCaption}
-\item[{Type}]{type, }
-\item[{int}]{index, }
-\item[{{\bf I\-Type\-Converter}}]{converter}
-\end{DoxyParamCaption}
-)}}\label{a00105_acc16f1e7d5c552c8adb86087c8774b43}
-
-
-Gets the field converted to Object using the specified I\-Type\-Converter. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type of the field.\\
-\hline
-{\em index} & The index of the field.\\
-\hline
-{\em converter} & The I\-Type\-Converter used to convert the field to Object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The field converted to Object.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_ae574612025171f2169e3e3683067d326}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_ad3fce0bfa735dc92844d51d756396892}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
-\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
-\begin{DoxyParamCaption}
-\item[{Type}]{type, }
-\item[{string}]{name, }
-\item[{{\bf I\-Type\-Converter}}]{converter}
-\end{DoxyParamCaption}
-)}}\label{a00105_ad3fce0bfa735dc92844d51d756396892}
-
-
-Gets the field converted to Object using the specified I\-Type\-Converter. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type of the field.\\
-\hline
-{\em name} & The named index of the field.\\
-\hline
-{\em converter} & The I\-Type\-Converter used to convert the field to Object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The field converted to Object.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_a29d9cc37e0a7fd6a08cba9626ebdfe69}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_a04389e3edb60cc2ab9760668e7781518}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field@{Get\-Field}}
-\index{Get\-Field@{Get\-Field}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field (
-\begin{DoxyParamCaption}
-\item[{Type}]{type, }
-\item[{string}]{name, }
-\item[{int}]{index, }
-\item[{{\bf I\-Type\-Converter}}]{converter}
-\end{DoxyParamCaption}
-)}}\label{a00105_a04389e3edb60cc2ab9760668e7781518}
-
-
-Gets the field converted to Object using the specified I\-Type\-Converter. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type of the field.\\
-\hline
-{\em name} & The named index of the field.\\
-\hline
-{\em index} & The zero based index of the instance of the field.\\
-\hline
-{\em converter} & The I\-Type\-Converter used to convert the field to Object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The field converted to Object.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_a08ff19d0e0b2c10b644e14621966f2fa}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_af5282bab4799899c6c986fa4189eea0a}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}}
-\index{Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{int}]{index}
-\end{DoxyParamCaption}
-)}}\label{a00105_af5282bab4799899c6c986fa4189eea0a}
-
-
-Gets the field converted to Type T at position (column) index. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em index} & The zero based index of the field.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The field converted to Type T.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_a6a43cfaf39caea93ecd87e506be7b404}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_af3b292ed7d991a8e975f67fb8ddde859}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}}
-\index{Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{string}]{name}
-\end{DoxyParamCaption}
-)}}\label{a00105_af3b292ed7d991a8e975f67fb8ddde859}
-
-
-Gets the field converted to Type T at position (column) name. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The field converted to Type T.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_a8ebe0d6e7644eebbbbddef3c9d2922be}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_aa8c349da18823eb8c30911d891b3e3bc}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}}
-\index{Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{index}
-\end{DoxyParamCaption}
-)}}\label{a00105_aa8c349da18823eb8c30911d891b3e3bc}
-
-
-Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & \\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-{\em index} & The zero based index of the instance of the field.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_afd2c85d724fdc84220a15e5f576cb673}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_a8ae4f95a7b9bbbbf2ef19009da81dd18}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}}
-\index{Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{int}]{index, }
-\item[{{\bf I\-Type\-Converter}}]{converter}
-\end{DoxyParamCaption}
-)}}\label{a00105_a8ae4f95a7b9bbbbf2ef19009da81dd18}
-
-
-Gets the field converted to Type T at position (column) index using the given I\-Type\-Converter. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em index} & The zero based index of the field.\\
-\hline
-{\em converter} & The I\-Type\-Converter used to convert the field to Type T.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The field converted to Type T.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_a2b593a60de4dc4d776abde5c29232d0d}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_a640689c76826aafd8c79ff71d4f0992d}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}}
-\index{Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{{\bf I\-Type\-Converter}}]{converter}
-\end{DoxyParamCaption}
-)}}\label{a00105_a640689c76826aafd8c79ff71d4f0992d}
-
-
-Gets the field converted to Type T at position (column) name using the given I\-Type\-Converter. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-{\em converter} & The I\-Type\-Converter used to convert the field to Type T.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The field converted to Type T.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_aadec530254222a2c6fb0e25774a7498b}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_a8851c2bc99ee403fc003f62ae96b090c}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}}
-\index{Get\-Field$<$ T $>$@{Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{index, }
-\item[{{\bf I\-Type\-Converter}}]{converter}
-\end{DoxyParamCaption}
-)}}\label{a00105_a8851c2bc99ee403fc003f62ae96b090c}
-
-
-Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-{\em index} & The zero based index of the instance of the field.\\
-\hline
-{\em converter} & The I\-Type\-Converter used to convert the field to Type T.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The field converted to Type T.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_a607c6c23ce887b6de60f81c1ea2a8348}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_a787094f29179fcf06cec6db42fa59de3}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T, T\-Converter $>$@{Get\-Field$<$ T, T\-Converter $>$}}
-\index{Get\-Field$<$ T, T\-Converter $>$@{Get\-Field$<$ T, T\-Converter $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field$<$ T, T\-Converter $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T, T\-Converter $>$ (
-\begin{DoxyParamCaption}
-\item[{int}]{index}
-\end{DoxyParamCaption}
-)}}\label{a00105_a787094f29179fcf06cec6db42fa59de3}
-
-
-Gets the field converted to Type T at position (column) index using the given I\-Type\-Converter. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-{\em T\-Converter} & The I\-Type\-Converter used to convert the field to Type T.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em index} & The zero based index of the field.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The field converted to Type T.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_ac989008aec99a6462d9980a1d8a87072}{Csv\-Helper.\-Csv\-Reader}.
-
-\begin{Desc}
-\item[Type Constraints]\begin{description}
-\item[{\em T\-Converter} : {\em I\-Type\-Converter}]\end{description}
-\end{Desc}
-\hypertarget{a00105_ae7ea281792a1e0e8f64991062a3acffb}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T, T\-Converter $>$@{Get\-Field$<$ T, T\-Converter $>$}}
-\index{Get\-Field$<$ T, T\-Converter $>$@{Get\-Field$<$ T, T\-Converter $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field$<$ T, T\-Converter $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T, T\-Converter $>$ (
-\begin{DoxyParamCaption}
-\item[{string}]{name}
-\end{DoxyParamCaption}
-)}}\label{a00105_ae7ea281792a1e0e8f64991062a3acffb}
-
-
-Gets the field converted to Type T at position (column) name using the given I\-Type\-Converter. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-{\em T\-Converter} & The I\-Type\-Converter used to convert the field to Type T.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The field converted to Type T.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_ac76d4fabc62e9ac896c1b2e6e861ed11}{Csv\-Helper.\-Csv\-Reader}.
-
-\begin{Desc}
-\item[Type Constraints]\begin{description}
-\item[{\em T\-Converter} : {\em I\-Type\-Converter}]\end{description}
-\end{Desc}
-\hypertarget{a00105_a6a55c1b2fc98eb7ef4bdb73e80f4b093}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Field$<$ T, T\-Converter $>$@{Get\-Field$<$ T, T\-Converter $>$}}
-\index{Get\-Field$<$ T, T\-Converter $>$@{Get\-Field$<$ T, T\-Converter $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Field$<$ T, T\-Converter $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Field}$<$ T, T\-Converter $>$ (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{index}
-\end{DoxyParamCaption}
-)}}\label{a00105_a6a55c1b2fc98eb7ef4bdb73e80f4b093}
-
-
-Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-{\em T\-Converter} & The I\-Type\-Converter used to convert the field to Type T.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-{\em index} & The zero based index of the instance of the field.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The field converted to Type T.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_a6b77ca85326f76d006935275b46342f0}{Csv\-Helper.\-Csv\-Reader}.
-
-\begin{Desc}
-\item[Type Constraints]\begin{description}
-\item[{\em T\-Converter} : {\em I\-Type\-Converter}]\end{description}
-\end{Desc}
-\hypertarget{a00105_a911748932ed897a2e7086c0c49bdceea}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Record@{Get\-Record}}
-\index{Get\-Record@{Get\-Record}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Record}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Record (
-\begin{DoxyParamCaption}
-\item[{Type}]{type}
-\end{DoxyParamCaption}
-)}}\label{a00105_a911748932ed897a2e7086c0c49bdceea}
-
-
-Gets the record. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The Type of the record.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The record.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_a10680de48d9c21ef1792661947f9f601}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_ae82d451b6e26742a685d652c84c0b807}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Record$<$ T $>$@{Get\-Record$<$ T $>$}}
-\index{Get\-Record$<$ T $>$@{Get\-Record$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Record$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Record}$<$ T $>$ (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00105_ae82d451b6e26742a685d652c84c0b807}
-
-
-Gets the record converted into Type T. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the record.\\
-\hline
-\end{DoxyTemplParams}
-\begin{DoxyReturn}{Returns}
-The record converted to Type T.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_ac607c1182168a5f9c7fa1642670ad320}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_a8f1187e434201dc22036f2f48cc4d050}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Records@{Get\-Records}}
-\index{Get\-Records@{Get\-Records}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Records}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<$object$>$ Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Records (
-\begin{DoxyParamCaption}
-\item[{Type}]{type}
-\end{DoxyParamCaption}
-)}}\label{a00105_a8f1187e434201dc22036f2f48cc4d050}
-
-
-Gets all the records in the C\-S\-V file and converts each to Type T. The Read method should not be used when using this. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The Type of the record.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-An I\-List\{\-Object\} of records.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_aaa94b8f27e410194fbaadd75f38b030e}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_a880d3ee25c0b55bd9a193c61cd116e21}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Get\-Records$<$ T $>$@{Get\-Records$<$ T $>$}}
-\index{Get\-Records$<$ T $>$@{Get\-Records$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Get\-Records$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<$T$>$ {\bf Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Get\-Records}$<$ T $>$ (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00105_a880d3ee25c0b55bd9a193c61cd116e21}
-
-
-Gets all the records in the C\-S\-V file and converts each to Type T. The Read method should not be used when using this. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the record.\\
-\hline
-\end{DoxyTemplParams}
-\begin{DoxyReturn}{Returns}
-An I\-List\{\-T\} of records.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_afed61bbcd2a120487498acd36e6ae2f2}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_a49ad028b358d5a0642d8108b3bb87ff7}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Is\-Record\-Empty@{Is\-Record\-Empty}}
-\index{Is\-Record\-Empty@{Is\-Record\-Empty}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Is\-Record\-Empty}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Is\-Record\-Empty (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00105_a49ad028b358d5a0642d8108b3bb87ff7}
-
-
-Determines whether the current record is empty. A record is considered empty if all fields are empty. 
-
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if \mbox{[}is record empty\mbox{]}; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_a9f3f7336e8ceebafbfe0959508a2a9f0}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_a476c426866e69a8c1b81f40956e0b538}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}}
-\index{Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Try\-Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{int}]{index, }
-\item[{out T}]{field}
-\end{DoxyParamCaption}
-)}}\label{a00105_a476c426866e69a8c1b81f40956e0b538}
-
-
-Gets the field converted to Type T at position (column) index. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em index} & The zero based index of the field.\\
-\hline
-{\em field} & The field converted to type T.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A value indicating if the get was successful.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_ae5531b6fa3247cf038ca6a9c20ca43dd}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_a1ac55ecd014a239d9b0b62345637b745}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}}
-\index{Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Try\-Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{out T}]{field}
-\end{DoxyParamCaption}
-)}}\label{a00105_a1ac55ecd014a239d9b0b62345637b745}
-
-
-Gets the field converted to Type T at position (column) name. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-{\em field} & The field converted to Type T.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A value indicating if the get was successful.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_aab6eff4536568c7c0268616aa2b9a674}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_a4c2667e997378fa984f44d7d5e62492b}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}}
-\index{Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Try\-Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{index, }
-\item[{out T}]{field}
-\end{DoxyParamCaption}
-)}}\label{a00105_a4c2667e997378fa984f44d7d5e62492b}
-
-
-Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & \\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-{\em index} & The zero based index of the instance of the field.\\
-\hline
-{\em field} & The field converted to Type T.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A value indicating if the get was successful.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_a6b32f9207db53d8d09598ee2d743d06b}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_aa8aaa34c75b213e3774394b3f912842f}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}}
-\index{Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Try\-Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{int}]{index, }
-\item[{{\bf I\-Type\-Converter}}]{converter, }
-\item[{out T}]{field}
-\end{DoxyParamCaption}
-)}}\label{a00105_aa8aaa34c75b213e3774394b3f912842f}
-
-
-Gets the field converted to Type T at position (column) index using the specified I\-Type\-Converter. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em index} & The zero based index of the field.\\
-\hline
-{\em converter} & The I\-Type\-Converter used to convert the field to Type T.\\
-\hline
-{\em field} & The field converted to Type T.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A value indicating if the get was successful.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_aa8622306f74940386663fa4020eb8971}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_a33e4e39bf2395a79a90cb02554c84d22}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}}
-\index{Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Try\-Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{{\bf I\-Type\-Converter}}]{converter, }
-\item[{out T}]{field}
-\end{DoxyParamCaption}
-)}}\label{a00105_a33e4e39bf2395a79a90cb02554c84d22}
-
-
-Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-{\em converter} & The I\-Type\-Converter used to convert the field to Type T.\\
-\hline
-{\em field} & The field converted to Type T.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A value indicating if the get was successful.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_ade47afe2ea6cdd4439265e9364626c6b}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_a2d001b5e65d063db9f102b720da0edf2}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}}
-\index{Try\-Get\-Field$<$ T $>$@{Try\-Get\-Field$<$ T $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Try\-Get\-Field$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{index, }
-\item[{{\bf I\-Type\-Converter}}]{converter, }
-\item[{out T}]{field}
-\end{DoxyParamCaption}
-)}}\label{a00105_a2d001b5e65d063db9f102b720da0edf2}
-
-
-Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-{\em index} & The zero based index of the instance of the field.\\
-\hline
-{\em converter} & The I\-Type\-Converter used to convert the field to Type T.\\
-\hline
-{\em field} & The field converted to Type T.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A value indicating if the get was successful.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_a152975903578da620893d21cba2f8afa}{Csv\-Helper.\-Csv\-Reader}.
-
-\hypertarget{a00105_a5df5f7bc974ec541c25bf63b29ebf618}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T, T\-Converter $>$@{Try\-Get\-Field$<$ T, T\-Converter $>$}}
-\index{Try\-Get\-Field$<$ T, T\-Converter $>$@{Try\-Get\-Field$<$ T, T\-Converter $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Try\-Get\-Field$<$ T, T\-Converter $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T, T\-Converter $>$ (
-\begin{DoxyParamCaption}
-\item[{int}]{index, }
-\item[{out T}]{field}
-\end{DoxyParamCaption}
-)}}\label{a00105_a5df5f7bc974ec541c25bf63b29ebf618}
-
-
-Gets the field converted to Type T at position (column) index using the specified I\-Type\-Converter. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-{\em T\-Converter} & The I\-Type\-Converter used to convert the field to Type T.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em index} & The zero based index of the field.\\
-\hline
-{\em field} & The field converted to Type T.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A value indicating if the get was successful.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_a58c361c230abb87ae13f97646748be61}{Csv\-Helper.\-Csv\-Reader}.
-
-\begin{Desc}
-\item[Type Constraints]\begin{description}
-\item[{\em T\-Converter} : {\em I\-Type\-Converter}]\end{description}
-\end{Desc}
-\hypertarget{a00105_a9bd7b721a7b4acbc21050817aca71f21}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T, T\-Converter $>$@{Try\-Get\-Field$<$ T, T\-Converter $>$}}
-\index{Try\-Get\-Field$<$ T, T\-Converter $>$@{Try\-Get\-Field$<$ T, T\-Converter $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Try\-Get\-Field$<$ T, T\-Converter $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T, T\-Converter $>$ (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{out T}]{field}
-\end{DoxyParamCaption}
-)}}\label{a00105_a9bd7b721a7b4acbc21050817aca71f21}
-
-
-Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-{\em T\-Converter} & The I\-Type\-Converter used to convert the field to Type T.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-{\em field} & The field converted to Type T.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A value indicating if the get was successful.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_a1ad85089ce2a6eae15c48e21d5da6c47}{Csv\-Helper.\-Csv\-Reader}.
-
-\begin{Desc}
-\item[Type Constraints]\begin{description}
-\item[{\em T\-Converter} : {\em I\-Type\-Converter}]\end{description}
-\end{Desc}
-\hypertarget{a00105_a8ecc5b03e5e818163aca86b979b01158}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Try\-Get\-Field$<$ T, T\-Converter $>$@{Try\-Get\-Field$<$ T, T\-Converter $>$}}
-\index{Try\-Get\-Field$<$ T, T\-Converter $>$@{Try\-Get\-Field$<$ T, T\-Converter $>$}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Try\-Get\-Field$<$ T, T\-Converter $>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Try\-Get\-Field$<$ T, T\-Converter $>$ (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{index, }
-\item[{out T}]{field}
-\end{DoxyParamCaption}
-)}}\label{a00105_a8ecc5b03e5e818163aca86b979b01158}
-
-
-Gets the field converted to Type T at position (column) name using the specified I\-Type\-Converter. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the field.\\
-\hline
-{\em T\-Converter} & The I\-Type\-Converter used to convert the field to Type T.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-{\em index} & The zero based index of the instance of the field.\\
-\hline
-{\em field} & The field converted to Type T.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A value indicating if the get was successful.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00067_a6665d63535ab6ca768ffbc76c1347e58}{Csv\-Helper.\-Csv\-Reader}.
-
-\begin{Desc}
-\item[Type Constraints]\begin{description}
-\item[{\em T\-Converter} : {\em I\-Type\-Converter}]\end{description}
-\end{Desc}
-
-
-\subsection{Property Documentation}
-\hypertarget{a00105_a4e8958e51331591b1d9e811e32bd92d0}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Current\-Record@{Current\-Record}}
-\index{Current\-Record@{Current\-Record}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Current\-Record}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Current\-Record\hspace{0.3cm}{\ttfamily [get]}}}\label{a00105_a4e8958e51331591b1d9e811e32bd92d0}
-
-
-Get the current record; 
-
-
-
-Definition at line 21 of file I\-Csv\-Reader\-Row.\-cs.
-
-\hypertarget{a00105_ac1bd960358282c70f0b85de90f00b446}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!Row@{Row}}
-\index{Row@{Row}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{Row}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-I\-Csv\-Reader\-Row.\-Row\hspace{0.3cm}{\ttfamily [get]}}}\label{a00105_ac1bd960358282c70f0b85de90f00b446}
-
-
-Gets the current row. 
-
-
-
-Definition at line 26 of file I\-Csv\-Reader\-Row.\-cs.
-
-\hypertarget{a00105_a45d5b14c7382418d90b4c085c2bdc7dc}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!this\mbox{[}int index\mbox{]}@{this[int index]}}
-\index{this\mbox{[}int index\mbox{]}@{this[int index]}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{this[int index]}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-I\-Csv\-Reader\-Row.\-this\mbox{[}int index\mbox{]}\hspace{0.3cm}{\ttfamily [get]}}}\label{a00105_a45d5b14c7382418d90b4c085c2bdc7dc}
-
-
-Gets the raw field at position (column) index. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em index} & The zero based index of the field.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The raw field.
-\end{DoxyReturn}
-
-
-Definition at line 33 of file I\-Csv\-Reader\-Row.\-cs.
-
-\hypertarget{a00105_abe611a2c471e6f11da579297bb876fb1}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!this\mbox{[}string name, int index\mbox{]}@{this[string name, int index]}}
-\index{this\mbox{[}string name, int index\mbox{]}@{this[string name, int index]}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{this[string name, int index]}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-I\-Csv\-Reader\-Row.\-this\mbox{[}string name, int index\mbox{]}\hspace{0.3cm}{\ttfamily [get]}}}\label{a00105_abe611a2c471e6f11da579297bb876fb1}
-
-
-Gets the raw field at position (column) name. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-{\em index} & The zero based index of the field.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The raw field.
-\end{DoxyReturn}
-
-
-Definition at line 48 of file I\-Csv\-Reader\-Row.\-cs.
-
-\hypertarget{a00105_a999cf88bd8eb0b59c65b235cfe0e2835}{\index{Csv\-Helper\-::\-I\-Csv\-Reader\-Row@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}!this\mbox{[}string name\mbox{]}@{this[string name]}}
-\index{this\mbox{[}string name\mbox{]}@{this[string name]}!CsvHelper::ICsvReaderRow@{Csv\-Helper\-::\-I\-Csv\-Reader\-Row}}
-\subsubsection[{this[string name]}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-I\-Csv\-Reader\-Row.\-this\mbox{[}string name\mbox{]}\hspace{0.3cm}{\ttfamily [get]}}}\label{a00105_a999cf88bd8eb0b59c65b235cfe0e2835}
-
-
-Gets the raw field at position (column) name. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em name} & The named index of the field.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The raw field.
-\end{DoxyReturn}
-
-
-Definition at line 40 of file I\-Csv\-Reader\-Row.\-cs.
-
-
-
-The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00238}{I\-Csv\-Reader\-Row.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner\-Console/\hyperlink{a00323}{File\-Format\-Converter.\-cs}\end{DoxyCompactItemize}

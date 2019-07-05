@@ -1,3 +1,3 @@
-<map id="CsvHelper.Configuration.CsvConfiguration" name="CsvHelper.Configuration.CsvConfiguration">
-<area shape="rect" id="node2" href="$a00052.html" title="Collection that holds CsvClassMaps for record types. " alt="" coords="5,5,221,171"/>
+<map id="CsvHelper.ICsvSerializer" name="CsvHelper.ICsvSerializer">
+<area shape="rect" id="node3" href="$a00079.html" title="Defines methods used to serialize data into a CSV file. " alt="" coords="7,256,173,451"/>
 </map>

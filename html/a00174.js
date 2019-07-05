@@ -1,8 +1,8 @@
 var a00174 =
 [
-    [ "CanConvertFrom", "a00174.html#a3d9e9527b77fbf94786f2e5b8c4e5829", null ],
-    [ "CanConvertFrom", "a00174.html#a470d21adaa704eb281250dbd112ff91a", null ],
-    [ "CanConvertTo", "a00174.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
-    [ "ConvertFromString", "a00174.html#a1d3e86ea3d34de0d47a365c9b8622eb7", null ],
-    [ "ConvertToString", "a00174.html#a36cb2f9b24f15a671293f3a722324c27", null ]
+    [ "TokeniserException", "a00174.html#ad00fcf742d2b0d476ce43b27a3f3b6c1", null ],
+    [ "TokeniserException", "a00174.html#aa8674d006a0d29081a7b87bdd8ff2f4f", null ],
+    [ "ExpectedTokensFromState", "a00174.html#af88cfa5eafdee355e1abb67e358497bd", null ],
+    [ "columnNumber", "a00174.html#aabf2ad38f3984297c1daede9be55e3d6", null ],
+    [ "lineNumber", "a00174.html#a54b936d7b4f26f88a07a66c5fc1d1ad1", null ]
 ];

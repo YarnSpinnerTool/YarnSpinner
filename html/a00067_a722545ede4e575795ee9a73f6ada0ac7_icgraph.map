@@ -1,4 +1,0 @@
-<map id="CsvHelper.CsvReader.CreateRecord" name="CsvHelper.CsvReader.CreateRecord">
-<area shape="rect" id="node2" href="$a00067.html#a10680de48d9c21ef1792661947f9f601" title="Gets the record. " alt="" coords="255,5,476,32"/>
-<area shape="rect" id="node3" href="$a00067.html#aaa94b8f27e410194fbaadd75f38b030e" title="Gets all the records in the CSV file and converts each to Type T. The Read method should not be used ..." alt="" coords="251,56,479,83"/>
-</map>

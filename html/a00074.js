@@ -1,7 +1,13 @@
 var a00074 =
 [
-    [ "CanConvertFrom", "a00074.html#af44239d3bd014b1423fa80f7440bbd25", null ],
-    [ "CanConvertTo", "a00074.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
-    [ "ConvertFromString", "a00074.html#a6b1b54cb2d1b200beb8fa3c63e4c064a", null ],
-    [ "ConvertToString", "a00074.html#a36cb2f9b24f15a671293f3a722324c27", null ]
+    [ "Add", "a00074.html#ad7b7d11d5814bcce5ed38e054ef71b4e", null ],
+    [ "AddRange", "a00074.html#ac568746273968080890abca50b882802", null ],
+    [ "Clear", "a00074.html#abec990435c8dccfb4553602b89f93201", null ],
+    [ "GetEnumerator", "a00074.html#a61b6a80e51d06f17d0043ec6aef89f1b", null ],
+    [ "GetEnumerator", "a00074.html#a76b5c67fcecf55dbdd4b680cde1a78f7", null ],
+    [ "names", "a00074.html#a41eb6804d8afe8d674e64d71f66962ce", null ],
+    [ "Count", "a00074.html#a4b7b56286ad80183e1a33554a49eefa1", null ],
+    [ "Names", "a00074.html#a1aa06a47337f6ab576b23fe63854dcbe", null ],
+    [ "Prefix", "a00074.html#ab8f3256d8435a1c93f0280064aa3ff06", null ],
+    [ "this[int index]", "a00074.html#acdce91a755be3bec6218e3d82f4dfe82", null ]
 ];

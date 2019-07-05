@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00205" kind="file">
-    <compoundname>YarnSpinner-with-Unity-QuickStart.md</compoundname>
+    <compoundname>README.md</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#<sp/>Quickstart<sp/>to<sp/>Using<sp/>Yarn<sp/>Spinner<sp/>in<sp/>your<sp/>Unity<sp/>game</highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Yarn<sp/>Spinner<sp/>Programming<sp/>README</highlight></codeline>
 <codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Style<sp/>Guide</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Style<sp/>Guide</highlight></codeline>
 <codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal">`Inline<sp/>Code`<sp/>contain<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>snippets<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
@@ -21,24 +21,19 @@
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal">&gt;<sp/>Blockquotes<sp/>contain<sp/>essential<sp/>information</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Tutorial</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Introduction</highlight></codeline>
 <codeline lineno="16"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal">&gt;<sp/>***Note:***<sp/>This<sp/>tutorial<sp/>assumes<sp/>that<sp/>you<sp/>know<sp/>a<sp/>little<sp/>bit<sp/>about<sp/>[Unity](http:</highlight><highlight class="comment">//www.unity3d.com).<sp/>In<sp/>particular,<sp/>it<sp/>is<sp/>helpful<sp/>that<sp/>you<sp/>know<sp/>how<sp/>to<sp/>get<sp/>around<sp/>the<sp/>Unity<sp/>editor,<sp/>how<sp/>to<sp/>work<sp/>with<sp/>game<sp/>objects,<sp/>and<sp/>how<sp/>to<sp/>write<sp/>scripts<sp/>in<sp/>C#.<sp/>If<sp/>you<sp/>don&apos;t<sp/>know<sp/>these<sp/>things,<sp/>please<sp/>refer<sp/>to<sp/>[Unity&apos;s<sp/>documentation](http://unity3d.com/learn).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">This<sp/>document<sp/>lists<sp/>the<sp/>other<sp/>document<sp/>that<sp/>comprise<sp/>the<sp/>Programming<sp/>documentation<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Yarn<sp/>Spinner.<sp/>Programming<sp/>Yarn<sp/>Spinner<sp/>is<sp/>intended<sp/>to<sp/>mean<sp/>coding<sp/>C#<sp/>to<sp/>achieve<sp/>the<sp/>goals<sp/>set<sp/>out<sp/>in<sp/>Yarn<sp/>Dialogue<sp/>to<sp/>meet<sp/>the<sp/>proudction<sp/>requirements<sp/>of<sp/>producing<sp/>a<sp/>game.<sp/>The<sp/>game<sp/>can<sp/>be<sp/>produced<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>any<sp/>engine,<sp/>however<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>now<sp/>we<sp/>only<sp/>document<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Unity.</highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Yarn<sp/>Spinner<sp/>Quick<sp/>Start</highlight></codeline>
-<codeline lineno="20"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal">Here</highlight><highlight class="stringliteral">&apos;s<sp/>how<sp/>to<sp/>quickly<sp/>jump<sp/>in<sp/>to<sp/>Yarn<sp/>Spinner<sp/>if<sp/>you&apos;</highlight><highlight class="normal">re<sp/>already<sp/>familiar<sp/>with<sp/>Unity.</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal">*<sp/>**Download**<sp/>[the<sp/>YarnSpinner<sp/>package](https:</highlight><highlight class="comment">//github.com/thesecretlab/YarnSpinner/releases)<sp/>into<sp/>your<sp/>Unity<sp/>project.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal">*<sp/>**Import**<sp/>the<sp/></highlight><highlight class="keyword">package<sp/></highlight><highlight class="normal">into<sp/>your<sp/>project.</highlight></codeline>
-<codeline lineno="25"><highlight class="normal">*<sp/>Inside<sp/>the<sp/>YarnSpinner<sp/>folder,<sp/>**open<sp/>the<sp/>`Examples/Yarn<sp/>Spinner<sp/>Basic<sp/>Example`<sp/>scene.**</highlight></codeline>
-<codeline lineno="26"><highlight class="normal">*<sp/>**Start<sp/>the<sp/>game.**</highlight></codeline>
-<codeline lineno="27"><highlight class="normal">*<sp/>**Play<sp/>through<sp/>the<sp/>dialogue.**</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal">Once<sp/>you&apos;ve<sp/>played<sp/>with<sp/>it,<sp/>open<sp/>the<sp/>Example<sp/>Script<sp/>file<sp/>in<sp/>the<sp/>[Yarn<sp/>Editor](http:</highlight><highlight class="comment">//github.com/infiniteammoinc/Yarn),<sp/>(it&apos;s<sp/>in<sp/>the<sp/>`Examples/Demo<sp/>Assets`<sp/>folder),<sp/>and<sp/>make<sp/>some<sp/>changes<sp/>to<sp/>the<sp/>script.<sp/>Once<sp/>you&apos;ve<sp/>done<sp/>that,<sp/>take<sp/>a<sp/>look<sp/>at<sp/>how<sp/>`Code/DialogueRunner.cs`,<sp/>`Examples/Demo<sp/>Scripts/ExampleDialogueUI.cs`<sp/>and<sp/>`Examples/Demo<sp/>Scripts/ExampleVariableStorage.cs`<sp/>work.<sp/>You<sp/>can<sp/>also<sp/>[add<sp/>your<sp/>own<sp/>functions<sp/>to<sp/>Yarn](../YarnSpinner-Programming/Extending.md).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">##<sp/>Building</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">The<sp/>[Building](Building.md)<sp/>assists<sp/>you<sp/>in<sp/>compiling<sp/>the<sp/>Yarn<sp/>Spinner<sp/>software.<sp/>You<sp/>may<sp/>need<sp/>to<sp/>build<sp/>Yarn<sp/>Spinner<sp/>yourself,<sp/>particularly<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>you<sp/>wish<sp/>to<sp/>test<sp/>out<sp/>certain<sp/>code<sp/>or<sp/>use<sp/>tools<sp/>(such<sp/>as<sp/>[Localization](../YarnSpinner-Dialogue/Dialogue-Localization.md).</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">##<sp/>Extending</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">The<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal"><sp/>Yarn<sp/>Spinner<sp/>code<sp/>may<sp/>not<sp/>provide<sp/>enough<sp/>functionality<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>game,<sp/>so<sp/>you<sp/>will<sp/>need<sp/>to<sp/>extend<sp/>it<sp/>by<sp/>adding<sp/>your<sp/>own<sp/>functions.<sp/><sp/>The<sp/>[Extending](Extending.md)<sp/>documentation<sp/>provides<sp/>an<sp/>example<sp/>on<sp/>how<sp/>to<sp/>create<sp/>custom<sp/>C#<sp/>code<sp/>to<sp/>integrate<sp/>with<sp/>[Yarn<sp/>Dialogue](../YarnSpinner-Dialogue/)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>API<sp/>Reference</highlight></codeline>
+<codeline lineno="26"><highlight class="preprocessor">The<sp/>[API<sp/>Reference](https://thesecretlab.github.io/YarnSpinner/html/)<sp/>is<sp/>available<sp/>online<sp/>for<sp/>the<sp/>current<sp/>release.<sp/>It&apos;s<sp/>possible<sp/>to<sp/>use<sp/>the<sp/>build<sp/>script<sp/>to<sp/>create<sp/>your<sp/>own.<sp/>See<sp/>the<sp/>[Building](Building.md)<sp/>documentation<sp/>for<sp/>information<sp/>on<sp/>how<sp/>to<sp/>do<sp/>this.</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-QuickStart.md"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Programming/README.md"/>
   </compounddef>
 </doxygen>

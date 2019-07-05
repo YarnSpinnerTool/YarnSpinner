@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00369" kind="namespace">
+    <compoundname>Yarn::Analysis</compoundname>
+    <innerclass refid="a00091" prot="public">Yarn::Analysis::Diagnosis</innerclass>
+    <innerclass refid="a00057" prot="public">Yarn::Analysis::Context</innerclass>
+    <innerclass refid="a00040" prot="package">Yarn::Analysis::ASTAnalyser</innerclass>
+    <innerclass refid="a00053" prot="package">Yarn::Analysis::CompiledProgramAnalyser</innerclass>
+    <innerclass refid="a00189" prot="package">Yarn::Analysis::VariableLister</innerclass>
+    <innerclass refid="a00185" prot="package">Yarn::Analysis::UnusedVariableChecker</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="6" column="1"/>
+  </compounddef>
+</doxygen>

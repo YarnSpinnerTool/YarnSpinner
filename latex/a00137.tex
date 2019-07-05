@@ -1,243 +1,71 @@
-\hypertarget{a00137}{\section{Yarn.\-Parse\-Exception Class Reference}
-\label{a00137}\index{Yarn.\-Parse\-Exception@{Yarn.\-Parse\-Exception}}
+\hypertarget{a00137}{\section{Mobile\-Only Class Reference}
+\label{a00137}\index{Mobile\-Only@{Mobile\-Only}}
 }
 
 
-Inheritance diagram for Yarn.\-Parse\-Exception\-:
+Removes an object from the scene when the game is running on a non-\/mobile platform.  
+
+
+
+
+Inheritance diagram for Mobile\-Only\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=188pt]{a00694}
+\includegraphics[width=162pt]{a00405}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Parse\-Exception\-:
+Collaboration diagram for Mobile\-Only\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=188pt]{a00695}
+\includegraphics[width=162pt]{a00406}
 \end{center}
 \end{figure}
-\subsection*{Package Functions}
+\subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00137_aa3c4f5c8b0ae86097bbc46044df9f317}{Parse\-Exception} (string message)
-\end{DoxyCompactItemize}
-\subsection*{Static Package Functions}
-\begin{DoxyCompactItemize}
-\item 
-static \hyperlink{a00137}{Parse\-Exception} \hyperlink{a00137_a511a51bb42dc5bb107eb68f7e5cf5ff1}{Make} (\hyperlink{a00163}{Token} found\-Token, params \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} expected\-Types)
-\item 
-static \hyperlink{a00137}{Parse\-Exception} \hyperlink{a00137_a173f3cabc4741d9d9e016310e90c1c9f}{Make} (\hyperlink{a00163}{Token} most\-Recent\-Token, string message)
-\item 
-static \hyperlink{a00137}{Parse\-Exception} \hyperlink{a00137_a0265905b09fbd675d40c452d9fc61207}{Make} (\hyperlink{a00302_a7e45f8222713cb764832fd3c69d0268f}{Antlr4.\-Runtime.\-Parser\-Rule\-Context} context, string message)
-\end{DoxyCompactItemize}
-\subsection*{Package Attributes}
-\begin{DoxyCompactItemize}
-\item 
-int \hyperlink{a00137_ab335169367e64fd6d89d58b3ac573751}{line\-Number} = 0
+void \hyperlink{a00137_acfb1b3a9c8f62b30300331fb84752022}{Awake} ()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Removes an object from the scene when the game is running on a non-\/mobile platform. 
 
-
-Definition at line 10 of file Program.\-cs.
-
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00137_aa3c4f5c8b0ae86097bbc46044df9f317}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Parse\-Exception@{Parse\-Exception}}
-\index{Parse\-Exception@{Parse\-Exception}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{Parse\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parse\-Exception.\-Parse\-Exception (
-\begin{DoxyParamCaption}
-\item[{string}]{message}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00137_aa3c4f5c8b0ae86097bbc46044df9f317}
-
-
-Definition at line 66 of file Program.\-cs.
-
-
-
-Referenced by Yarn.\-Parse\-Exception.\-Make().
-
-
-\begin{DoxyCode}
-66 : base(message) \{ \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00137_aa3c4f5c8b0ae86097bbc46044df9f317_icgraph}
-\end{center}
-\end{figure}
-
+Definition at line 7 of file Mobile\-Only.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00137_a511a51bb42dc5bb107eb68f7e5cf5ff1}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
-\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
+\hypertarget{a00137_acfb1b3a9c8f62b30300331fb84752022}{\index{Mobile\-Only@{Mobile\-Only}!Awake@{Awake}}
+\index{Awake@{Awake}!MobileOnly@{Mobile\-Only}}
+\subsubsection[{Awake}]{\setlength{\rightskip}{0pt plus 5cm}void Mobile\-Only.\-Awake (
 \begin{DoxyParamCaption}
-\item[{{\bf Token}}]{found\-Token, }
-\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{expected\-Types}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00137_a511a51bb42dc5bb107eb68f7e5cf5ff1}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00137_acfb1b3a9c8f62b30300331fb84752022}
 
 
-Definition at line 15 of file Program.\-cs.
-
-
-
-References Yarn.\-Parse\-Exception.\-line\-Number, and Yarn.\-Parse\-Exception.\-Parse\-Exception().
+Definition at line 10 of file Mobile\-Only.\-cs.
 
 
 \begin{DoxyCode}
-16         \{
+10                   \{
+11 
+12         \textcolor{keywordflow}{if} (Application.isMobilePlatform || Application.platform == RuntimePlatform.WebGLPlayer ) \{
+13             \textcolor{comment}{// Hang around}
+14         \} \textcolor{keywordflow}{else} \{
+15             Destroy(gameObject);
+16         \}
 17 
-18             var \hyperlink{a00137_ab335169367e64fd6d89d58b3ac573751}{lineNumber} = foundToken.lineNumber + 1;
-19 
-20             var expectedTypeNames = \textcolor{keyword}{new} List<String>();
-21             \textcolor{keywordflow}{foreach} (var type \textcolor{keywordflow}{in} expectedTypes)
-22             \{
-23                 expectedTypeNames.Add(type.ToString());
-24             \}
-25 
-26             \textcolor{keywordtype}{string} possibleValues = string.Join(\textcolor{stringliteral}{","}, expectedTypeNames.ToArray());
-27             \textcolor{keywordtype}{string} message = string.Format(\textcolor{stringliteral}{"Line \{0\}:\{1\}: Expected \{2\}, but found \{3\}"},
-28                                            \hyperlink{a00137_ab335169367e64fd6d89d58b3ac573751}{lineNumber},
-29                                            foundToken.columnNumber,
-30                                            possibleValues,
-31                                            foundToken.type.ToString()
-32                                            );
-33             var e = \textcolor{keyword}{new} \hyperlink{a00137_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException}(message);
-34             e.lineNumber = \hyperlink{a00137_ab335169367e64fd6d89d58b3ac573751}{lineNumber};
-35             \textcolor{keywordflow}{return} e;
-36         \}
+18     \}
 \end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00137_a511a51bb42dc5bb107eb68f7e5cf5ff1_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00137_a173f3cabc4741d9d9e016310e90c1c9f}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
-\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
-\begin{DoxyParamCaption}
-\item[{{\bf Token}}]{most\-Recent\-Token, }
-\item[{string}]{message}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00137_a173f3cabc4741d9d9e016310e90c1c9f}
-
-
-Definition at line 38 of file Program.\-cs.
-
-
-
-References Yarn.\-Parse\-Exception.\-line\-Number, and Yarn.\-Parse\-Exception.\-Parse\-Exception().
-
-
-\begin{DoxyCode}
-39         \{
-40             var \hyperlink{a00137_ab335169367e64fd6d89d58b3ac573751}{lineNumber} = mostRecentToken.lineNumber + 1;
-41             \textcolor{keywordtype}{string} theMessage = string.Format(\textcolor{stringliteral}{"Line \{0\}:\{1\}: \{2\}"},
-42                                  \hyperlink{a00137_ab335169367e64fd6d89d58b3ac573751}{lineNumber},
-43                                 mostRecentToken.columnNumber,
-44                                  message);
-45             var e = \textcolor{keyword}{new} \hyperlink{a00137_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException}(theMessage);
-46             e.lineNumber = \hyperlink{a00137_ab335169367e64fd6d89d58b3ac573751}{lineNumber};
-47             \textcolor{keywordflow}{return} e;
-48         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00137_a173f3cabc4741d9d9e016310e90c1c9f_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00137_a0265905b09fbd675d40c452d9fc61207}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
-\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
-\begin{DoxyParamCaption}
-\item[{{\bf Antlr4.\-Runtime.\-Parser\-Rule\-Context}}]{context, }
-\item[{string}]{message}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00137_a0265905b09fbd675d40c452d9fc61207}
-
-
-Definition at line 50 of file Program.\-cs.
-
-
-
-References Yarn.\-Parse\-Exception.\-Parse\-Exception().
-
-
-\begin{DoxyCode}
-51         \{
-52             \textcolor{keywordtype}{int} line = context.Start.Line;
-53 
-54             \textcolor{comment}{// getting the text that has the issue inside}
-55             \textcolor{keywordtype}{int} start = context.Start.StartIndex;
-56             \textcolor{keywordtype}{int} end = context.Stop.StopIndex;
-57             \textcolor{keywordtype}{string} body = context.Start.InputStream.GetText(\textcolor{keyword}{new} Antlr4.Runtime.Misc.Interval(start, end));
-58 
-59             \textcolor{keywordtype}{string} theMessage = String.Format(\textcolor{stringliteral}{"Error on line \{0\}\(\backslash\)n\{1\}\(\backslash\)n\{2\}"},line,body,message);
-60 
-61             var e = \textcolor{keyword}{new} \hyperlink{a00137_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException}(theMessage);
-62             e.lineNumber = line;
-63             \textcolor{keywordflow}{return} e;
-64         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00137_a0265905b09fbd675d40c452d9fc61207_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00137_ab335169367e64fd6d89d58b3ac573751}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!line\-Number@{line\-Number}}
-\index{line\-Number@{line\-Number}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parse\-Exception.\-line\-Number = 0\hspace{0.3cm}{\ttfamily [package]}}}\label{a00137_ab335169367e64fd6d89d58b3ac573751}
-
-
-Definition at line 13 of file Program.\-cs.
-
-
-
-Referenced by Yarn.\-Parse\-Exception.\-Make().
-
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00296}{Program.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00298}{Mobile\-Only.\-cs}\end{DoxyCompactItemize}

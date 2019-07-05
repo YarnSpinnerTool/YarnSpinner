@@ -1,14 +1,9 @@
 var a00136 =
 [
-    [ "OptionStatement", "a00136.html#ad18938712d01cf71edbc75d4974cd0e0", null ],
-    [ "CanParse", "a00136.html#a1ffeca22df52451120cb362f90fd4e9f", null ],
-    [ "NodeParent", "a00136.html#a580e520a29444fc23ac3660cbe514a09", null ],
-    [ "PrintTree", "a00136.html#aafba8c941dbd3d0ef841ac9d472e1ba3", null ],
-    [ "TagsToString", "a00136.html#a054f36c80d5eeacd569a8859f599af67", null ],
-    [ "ToString", "a00136.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
-    [ "lineNumber", "a00136.html#a18b493382de0fde5b4299c1bd2250075", null ],
-    [ "parent", "a00136.html#af313a82103fcc2ff5a177dbb06b92f7b", null ],
-    [ "tags", "a00136.html#a58b3a15788fd2d4127d73619dc6d04ae", null ],
-    [ "destination", "a00136.html#abbe56fba06169901508e6c659f06c236", null ],
-    [ "label", "a00136.html#a7f27d78e67fed6992767e995e70fc468", null ]
+    [ "Clear", "a00136.html#aa6d243e7ef02b91f793a221f509dae69", null ],
+    [ "GetNumber", "a00136.html#a1b7f7f4468b2463e7b47986d99362279", null ],
+    [ "GetValue", "a00136.html#a0ce77e8245c504a777540e359704aa2a", null ],
+    [ "SetNumber", "a00136.html#a48b93de9cd7ae61d0cd9583c8330d3ee", null ],
+    [ "SetValue", "a00136.html#a653a459811e5c19549f4b31269093ef5", null ],
+    [ "variables", "a00136.html#aad18acd95297edb8ed496857337f8071", null ]
 ];
