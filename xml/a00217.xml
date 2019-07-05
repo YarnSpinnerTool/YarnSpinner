@@ -28,8 +28,6 @@
 <codeline lineno="19"><highlight class="normal">LIABILITY,<sp/>WHETHER<sp/>IN<sp/>AN<sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>TORT<sp/>OR<sp/>OTHERWISE,<sp/>ARISING<sp/>FROM,</highlight></codeline>
 <codeline lineno="20"><highlight class="normal">OUT<sp/>OF<sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>SOFTWARE<sp/>OR<sp/>THE<sp/>USE<sp/>OR<sp/>OTHER<sp/>DEALINGS<sp/>IN<sp/>THE</highlight></codeline>
 <codeline lineno="21"><highlight class="normal">SOFTWARE.</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal">This<sp/>software<sp/>contains<sp/>third-party<sp/>code:<sp/>Unity<sp/>Test<sp/>Tools<sp/>(MIT<sp/>license),<sp/>NUnit<sp/>(BSD<sp/>license),<sp/>NSubstitute<sp/>(BSD<sp/>license)<sp/>and<sp/>Cecil<sp/>(MIT/X11<sp/>license).<sp/>For<sp/>more<sp/>information,<sp/>see<sp/>the<sp/>[Unity<sp/>Test<sp/>Tools<sp/>license<sp/>file](Unity/Assets/UnityTestTools/LICENSE.txt).</highlight></codeline>
     </programlisting>
     <location file="/home/travis/build/thesecretlab/YarnSpinner/LICENSE.md"/>
   </compounddef>
