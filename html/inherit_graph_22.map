@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$a00197.html" title="This class provides an empty implementation of IYarnSpinnerParserVisitor{Result}, which can be extend..." alt="" coords="406,38,605,79"/>
-<area shape="rect" id="node3" href="$a00044.html" title="Yarn.BodyVisitor" alt="" coords="653,45,773,72"/>
-<area shape="rect" id="node5" href="$a00125.html" title="This interface defines a complete generic visitor for a parse tree produced by YarnSpinnerParser. " alt="" coords="185,70,357,111"/>
+<area shape="rect" id="node2" href="$a00199.html" title="This class provides an empty implementation of IYarnSpinnerParserVisitor{Result}, which can be extend..." alt="" coords="406,38,605,79"/>
+<area shape="rect" id="node3" href="$a00046.html" title="Yarn.BodyVisitor" alt="" coords="653,45,773,72"/>
+<area shape="rect" id="node5" href="$a00127.html" title="This interface defines a complete generic visitor for a parse tree produced by YarnSpinnerParser. " alt="" coords="185,70,357,111"/>
 </map>

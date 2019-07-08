@@ -1,90 +1,106 @@
-\hypertarget{a00052}{\section{Yarn.\-Dialogue.\-Command\-Result Class Reference}
-\label{a00052}\index{Yarn.\-Dialogue.\-Command\-Result@{Yarn.\-Dialogue.\-Command\-Result}}
+\hypertarget{a00052}{\section{Yarn.\-Parser.\-If\-Statement.\-Clause Struct Reference}
+\label{a00052}\index{Yarn.\-Parser.\-If\-Statement.\-Clause@{Yarn.\-Parser.\-If\-Statement.\-Clause}}
 }
 
 
-The client should run a command (it's up to them to parse the string)  
-
-
-
-
-Inheritance diagram for Yarn.\-Dialogue.\-Command\-Result\-:
+Collaboration diagram for Yarn.\-Parser.\-If\-Statement.\-Clause\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=234pt]{a00620}
+\includegraphics[height=550pt]{a00687}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Dialogue.\-Command\-Result\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=259pt]{a00621}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00052_a1a553422394fb0c854d1184985f993bb}{Command\-Result} (string text)
+string \hyperlink{a00052_a7f4fc9399896512b68fdc7bc7cf818c9}{Print\-Tree} (int indent\-Level)
 \end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\subsection*{Package Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00051_a00373}{Command} \hyperlink{a00052_a420ca0984d6e5c33bb761654305c592e}{command}
+\hyperlink{a00106}{Expression} \hyperlink{a00052_a1abd1f7c41f68ccdf64074ea49365be9}{expression}
+\item 
+I\-Enumerable$<$ \hyperlink{a00168}{Statement} $>$ \hyperlink{a00052_a6f4765482e98ed042e38a0ede13f171f}{statements}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The client should run a command (it's up to them to parse the string) 
-
-Definition at line 156 of file Dialogue.\-cs.
 
 
+Definition at line 547 of file Parser.\-cs.
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00052_a1a553422394fb0c854d1184985f993bb}{\index{Yarn\-::\-Dialogue\-::\-Command\-Result@{Yarn\-::\-Dialogue\-::\-Command\-Result}!Command\-Result@{Command\-Result}}
-\index{Command\-Result@{Command\-Result}!Yarn::Dialogue::CommandResult@{Yarn\-::\-Dialogue\-::\-Command\-Result}}
-\subsubsection[{Command\-Result}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Dialogue.\-Command\-Result.\-Command\-Result (
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00052_a7f4fc9399896512b68fdc7bc7cf818c9}{\index{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause@{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::IfStatement::Clause@{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-If\-Statement.\-Clause.\-Print\-Tree (
 \begin{DoxyParamCaption}
-\item[{string}]{text}
+\item[{int}]{indent\-Level}
 \end{DoxyParamCaption}
-)}}\label{a00052_a1a553422394fb0c854d1184985f993bb}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00052_a7f4fc9399896512b68fdc7bc7cf818c9}
 
 
-Definition at line 159 of file Dialogue.\-cs.
+Definition at line 550 of file Parser.\-cs.
 
 
 
-References Yarn.\-Dialogue.\-Command\-Result.\-command.
+References Yarn.\-Parser.\-If\-Statement.\-Clause.\-expression, Yarn.\-Parser.\-If\-Statement.\-Clause.\-statements, and Yarn.\-Parser.\-Tab().
 
 
 \begin{DoxyCode}
-159                                                \{
-160                 var \hyperlink{a00052_a420ca0984d6e5c33bb761654305c592e}{command} = \textcolor{keyword}{new} Command();
-161                 command.text = text;
-162                 this.command = \hyperlink{a00052_a420ca0984d6e5c33bb761654305c592e}{command};
-163             \}
+550                                                            \{
+551                     var sb = \textcolor{keyword}{new} StringBuilder ();
+552                     \textcolor{keywordflow}{if} (\hyperlink{a00052_a1abd1f7c41f68ccdf64074ea49365be9}{expression} != null)
+553                         sb.Append (expression.PrintTree (indentLevel));
+554                     sb.Append (\hyperlink{a00151_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"\{"}));
+555                     \textcolor{keywordflow}{foreach} (var statement \textcolor{keywordflow}{in} \hyperlink{a00052_a6f4765482e98ed042e38a0ede13f171f}{statements}) \{
+556                         sb.Append (statement.PrintTree (indentLevel + 1));
+557                     \}
+558                     sb.Append (\hyperlink{a00151_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"\}"}));
+559                     \textcolor{keywordflow}{return} sb.ToString ();
+560                 \}
 \end{DoxyCode}
 
 
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{a00052_a7f4fc9399896512b68fdc7bc7cf818c9_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
 \subsection{Member Data Documentation}
-\hypertarget{a00052_a420ca0984d6e5c33bb761654305c592e}{\index{Yarn\-::\-Dialogue\-::\-Command\-Result@{Yarn\-::\-Dialogue\-::\-Command\-Result}!command@{command}}
-\index{command@{command}!Yarn::Dialogue::CommandResult@{Yarn\-::\-Dialogue\-::\-Command\-Result}}
-\subsubsection[{command}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Command} Yarn.\-Dialogue.\-Command\-Result.\-command}}\label{a00052_a420ca0984d6e5c33bb761654305c592e}
+\hypertarget{a00052_a1abd1f7c41f68ccdf64074ea49365be9}{\index{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause@{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause}!expression@{expression}}
+\index{expression@{expression}!Yarn::Parser::IfStatement::Clause@{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause}}
+\subsubsection[{expression}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Expression} Yarn.\-Parser.\-If\-Statement.\-Clause.\-expression\hspace{0.3cm}{\ttfamily [package]}}}\label{a00052_a1abd1f7c41f68ccdf64074ea49365be9}
 
 
-Definition at line 157 of file Dialogue.\-cs.
-
-
-
-Referenced by Yarn.\-Dialogue.\-Command\-Result.\-Command\-Result().
+Definition at line 548 of file Parser.\-cs.
 
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+Referenced by Yarn.\-Parser.\-If\-Statement.\-Clause.\-Print\-Tree().
+
+\hypertarget{a00052_a6f4765482e98ed042e38a0ede13f171f}{\index{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause@{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause}!statements@{statements}}
+\index{statements@{statements}!Yarn::Parser::IfStatement::Clause@{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause}}
+\subsubsection[{statements}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Statement}$>$ Yarn.\-Parser.\-If\-Statement.\-Clause.\-statements\hspace{0.3cm}{\ttfamily [package]}}}\label{a00052_a6f4765482e98ed042e38a0ede13f171f}
+
+
+Definition at line 549 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-If\-Statement.\-Clause.\-Print\-Tree().
+
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00305}{Dialogue.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00316}{Parser.\-cs}\end{DoxyCompactItemize}

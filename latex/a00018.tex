@@ -1,39 +1,113 @@
-\begin{quotation}
-$\ast$$\ast$$\ast$\-Important\-:$\ast$$\ast$$\ast$ This document only matters to you if you want to build \hyperlink{a00051}{Yarn} Spinner from source. In almost all cases, you'll be totally fine with \href{https://github.com/thesecretlab/YarnSpinner/releases}{\tt downloading a build}, and using that in your project.
+This document is intended to act as a comprehensive and concise reference for \hyperlink{a00053}{Yarn} syntax and structure, for use by programmers and content creators. It assumes a working knowledge of modern programming/scripting languages. For a more thorough explanation of \hyperlink{a00053}{Yarn} usage, see the \hyperlink{a00213}{General Usage Guide}
 
-\end{quotation}
-
-
-\subsection*{Windows and Mac using Mono\-Develop}
-
-To build \hyperlink{a00051}{Yarn} Spinner on Windows or Mac, you'll need Mono\-Develop. You can \href{http://www.monodevelop.com/download/}{\tt download Mono\-Develop for your O\-S from the Mono\-Develop site}.
-
-\subsection*{Linux}
-
-To build \hyperlink{a00051}{Yarn} Spinner on Linux, you can either
-\begin{DoxyItemize}
-\item use \href{http://www.mono-project.com/docs/tools+libraries/tools/xbuild/}{\tt xbuild} and \href{http://www.nuget.org}{\tt nuget}.
-\item Then ensure you have the correct packages installed by nuget, {\ttfamily nuget restore Yarn\-Spinner.\-sln}.
-\item See the \href{../../build.sh}{\tt build.\-sh} script for further information on how using mono to build. or
-\item use \href{http://flatpak.org/getting.html}{\tt Flatpak}, you can \href{http://www.monodevelop.com/download/linux/}{\tt download Mono\-Develop from the Mono\-Develop site}.
-\end{DoxyItemize}
-
-\subsection*{Using Mono\-Develop}
+\subsection*{Table of Contents}
 
 
 \begin{DoxyItemize}
-\item Open {\bfseries Yarn\-Spinner.\-sln}.
-\item Open the {\bfseries Build menu}, and choose {\bfseries Build All}.
-\item Open the {\bfseries Unity/\-Assets/\-Yarn Spinner} folder. You'll find a copy of {\bfseries Yarn\-Spinner.\-dll} there.
-\item Copy that D\-L\-L file wherever you need it.
+\item \href{#nodes}{\tt Nodes}
+\item \href{#links-between-nodes}{\tt Links Between Nodes}
+\begin{DoxyItemize}
+\item \href{#menu-syntax}{\tt Menu Syntax}
+\item \href{#option-syntax}{\tt Option Syntax}
+\end{DoxyItemize}
+\item \href{#variables---conditionals}{\tt Variables \& Conditionals}
+\begin{DoxyItemize}
+\item \href{#declaring-and-setting-variables}{\tt Declaring and Setting Variables}
+\item \href{#variable-types}{\tt Variable Types}
+\item \href{#if-else-statements}{\tt If/\-Else Statements}
+\item \href{#operator-synonyms}{\tt Operator Synonyms}
+\end{DoxyItemize}
+\item \href{#commands-and-functions}{\tt Commands and Functions}
 \end{DoxyItemize}
 
-\subsection*{Building Documentation}
+\subsubsection*{Nodes}
 
-\hyperlink{a00051}{Yarn} Spinner uses \href{https://www.stack.nl/~dimitri/doxygen}{\tt Doxygen} to generate \href{http://docbook.org/}{\tt Doc\-Book}, \href{https://en.wikipedia.org/wiki/HTML}{\tt H\-T\-M\-L}, \href{https://www.latex-project.org/help/documentation/}{\tt La\-Te\-X}, \href{https://en.wikipedia.org/wiki/Rich_Text_Format}{\tt R\-T\-F}, and \href{https://en.wikipedia.org/wiki/XML}{\tt X\-M\-L} documentation. \href{https://www.gnu.org/software/global/}{\tt G\-N\-U G\-L\-O\-B\-A\-L} is also used.
+Nodes act as containers for \hyperlink{a00053}{Yarn} script, and must have unique titles. The script in the body of a node is processed line by line.
 
-Basic steps to clean out existing documentation, generate new documentation and check the new documentation for generation errors. Note that some ocurrences of the word 'error' will be due to classes/methods etc. of \hyperlink{a00371}{Yarn\-Spinner} itself and not an actual error in the documentation.
+A node's header contains its metadata -\/ by default, \hyperlink{a00053}{Yarn} only uses the {\ttfamily title} field, but can be extended to use arbitrary fields.
 
-``` rm -\/fr Documentation/\{docbook,html,latex,rtf,xml\} doxygen Documentation/\-Doxyfile $>$ doxyoutput.\-txt 2$>$\&1 grep -\/i error doxyoutput.\-txt ```
+``` title\-: Example\-Node\-Name \subsection*{tags\-: foo, bar }
 
-\href{https://daringfireball.net/projects/markdown/}{\tt Mark\-Down} documentation is available via conversion of the X\-M\-L output to Markdown using third party tools such as \href{http://pandoc.org}{\tt Pandoc} or \href{https://github.com/pferdinand/doxygen2md}{\tt doxygen2md} 
+\hyperlink{a00053}{Yarn} content goes here. This is the second line. 
+
+ ```
+
+A script file can contain multiple nodes. In this case, nodes are delineated using three equals ({\ttfamily =}) characters.
+
+Additionally, \hyperlink{a00053}{Yarn} can check if a node has been visited by calling {\ttfamily visited(\char`\"{}\-Node\-Name\char`\"{})} in an {\ttfamily if} statement (i.\-e. {\ttfamily $<$$<$if visited(\char`\"{}\-Node\-Name\char`\"{}) == true$>$$>$}).
+
+\subsubsection*{Links Between Nodes}
+
+Nodes link to other nodes through {\itshape options}. An option is composed of a label (optional) and a node name separated by a vertical bar ({\ttfamily $\vert$}), like so\-:
+
+``` \mbox{[}\mbox{[}A Link To A Node$\vert$\-Node1\mbox{]}\mbox{]} ```
+
+If a node link with no label is provided ({\ttfamily \mbox{[}\mbox{[}Node1\mbox{]}\mbox{]}}), \hyperlink{a00053}{Yarn} will automatically navigate to the linked node.
+
+\paragraph*{Menu Syntax}
+
+Shortcut options allow for small branches in \hyperlink{a00053}{Yarn} scripts without requiring extra nodes. Shortcut option sets allow for an arbitrary number of sub-\/branches, but it's recommended that users stick to as few as possible for the sake of script readability.
+
+``` Mae\-: What did you say to her? -\/$>$ Nothing. Mae\-: Oh, man. Maybe you should have. -\/$>$ That she was a jerk. Mae\-: Hah! I bet that pissed her off. Mae\-: How'd she react? -\/$>$ She didn't. Mae\-: Booooo. That's boring. -\/$>$ Furiously. Mae\-: That's what I like to hear! Mae\-: Anyway, I'd better get going. ```
+
+Additionally, shortcut options can utilize conditional logic, commands and functions (detailed below), and can include standard node links. If a condition is attached to a shortcut option, the option will only appear to the reader if the condition passes\-:
+
+``` Bob\-: What would you like? -\/$>$ A burger. $<$$<$if \$money $>$ 5$>$$>$ Bob\-: Nice. Enjoy! \mbox{[}\mbox{[}Ate\-A\-Burger\mbox{]}\mbox{]} -\/$>$ A soda. $<$$<$if \$money $>$ 2$>$$>$ Bob\-: Yum! \mbox{[}\mbox{[}Drank\-A\-Soda\mbox{]}\mbox{]} -\/$>$ Nothing. Bob\-: Okay. Bob\-: Thanks for coming! ```
+
+\paragraph*{Option Syntax}
+
+Multiple labeled node links on consecutive lines will be parsed as a menu. Example\-:
+
+``` \mbox{[}\mbox{[}Option 1$\vert$\-Node1\mbox{]}\mbox{]} \mbox{[}\mbox{[}Option the Second$\vert$\-Node2\mbox{]}\mbox{]} \mbox{[}\mbox{[}Third Option$\vert$\-Node3\mbox{]}\mbox{]} ```
+
+\subsection*{Variables \& Conditionals}
+
+\paragraph*{Declaring and Setting Variables}
+
+``` $<$$<$set \$\-Example\-Variable to 1$>$$>$ ```
+
+This statement serves to set a variable's value. No declarative statement is required; setting a variable's value brings it into existence.
+
+Variable names must start with a {\ttfamily \$} character.
+
+\paragraph*{Variable Types}
+
+There are four different types of variable in \hyperlink{a00053}{Yarn}\-: strings, floating-\/point numbers, \href{http://eesemi.com/boolean.htm}{\tt booleans}, and {\ttfamily null}.
+
+\hyperlink{a00053}{Yarn} will automatically convert between types. For example\-:
+
+``` $<$$<$if \char`\"{}hi\char`\"{} == \char`\"{}hi\char`\"{}$>$$>$ The two strings are the same! $<$$<$endif$>$$>$
+
+$<$$<$if 1+1+\char`\"{}hi\char`\"{} == \char`\"{}2hi\char`\"{}$>$$>$ Strings get joined together with other values! $<$$<$endif$>$$>$ ```
+
+\paragraph*{If/\-Else Statements}
+
+\hyperlink{a00053}{Yarn} supports standard if/else/elseif statements.
+
+``` $<$$<$if \char`\"{}hi\char`\"{} == \char`\"{}hi\char`\"{}$>$$>$ The two strings are the same! $<$$<$endif$>$$>$ ```
+
+``` $<$$<$if \$variable == 1$>$$>$ Success! $<$$<$elseif \$variable == \char`\"{}hello\char`\"{}$>$$>$ Success...? $<$$<$else$>$$>$ No success. \-:( $<$$<$endif$>$$>$ ```
+
+\paragraph*{Operator Synonyms}
+
+\subparagraph*{Assignment}
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}\PBS\centering {\bf word }&\PBS\centering {\bf symbol  }\\\cline{1-2}
+\PBS\centering {\ttfamily to} &\PBS\centering {\ttfamily =} \\\cline{1-2}
+\end{TabularC}
+\subparagraph*{Comparison}
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}\PBS\centering {\bf word }&\PBS\centering {\bf symbol  }\\\cline{1-2}
+\PBS\centering {\ttfamily and} &\PBS\centering {\ttfamily \&} \\\cline{1-2}
+\PBS\centering {\ttfamily le} &\PBS\centering {\ttfamily $<$} \\\cline{1-2}
+\PBS\centering {\ttfamily gt} &\PBS\centering {\ttfamily $>$} \\\cline{1-2}
+\end{TabularC}
+$\vert$ {\ttfamily or} $\vert$ {\ttfamily $\vert$$\vert$} $\vert$ $\vert$ {\ttfamily leq} $\vert$ {\ttfamily $<$=} $\vert$ $\vert$ {\ttfamily geq} $\vert$ {\ttfamily $>$=} $\vert$ $\vert$ {\ttfamily eq} $\vert$ {\ttfamily ==} $\vert$ $\vert$ {\ttfamily is} $\vert$ {\ttfamily ==} $\vert$ $\vert$ {\ttfamily neq} $\vert$ {\ttfamily !=} $\vert$ $\vert$ {\ttfamily not} $\vert$ {\ttfamily !} $\vert$
+
+\subsection*{Commands and Functions}
+
+By default, \hyperlink{a00053}{Yarn} Spinner includes a {\ttfamily visited()} function, used to check whether a node has been entered. ``` $<$$<$if visited(\char`\"{}\-Go\-To\-City\char`\"{})$>$$>$ We have gone to the city before! $<$$<$endif$>$$>$ ``` Additional functions and commands can be added at run-\/time. See ../\-Yarn\-Spinner-\/\-Programming/\-Extending.md \char`\"{}\char`\"{}Extending \hyperlink{a00053}{Yarn} Spinner\char`\"{}\char`\"{} for more info. 

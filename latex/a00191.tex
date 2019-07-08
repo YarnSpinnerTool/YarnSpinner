@@ -1,208 +1,132 @@
-\hypertarget{a00191}{\section{Yarn.\-Unity.\-Variable\-Storage\-Behaviour Class Reference}
-\label{a00191}\index{Yarn.\-Unity.\-Variable\-Storage\-Behaviour@{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}}
+\hypertarget{a00191}{\section{Yarn.\-Analysis.\-Variable\-Lister Class Reference}
+\label{a00191}\index{Yarn.\-Analysis.\-Variable\-Lister@{Yarn.\-Analysis.\-Variable\-Lister}}
 }
 
 
-Scripts that can act as a variable storage should subclass this.  
-
-
-
-
-Inheritance diagram for Yarn.\-Unity.\-Variable\-Storage\-Behaviour\-:
+Inheritance diagram for Yarn.\-Analysis.\-Variable\-Lister\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=294pt]{a00789}
+\includegraphics[width=220pt]{a00777}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Unity.\-Variable\-Storage\-Behaviour\-:
+Collaboration diagram for Yarn.\-Analysis.\-Variable\-Lister\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=294pt]{a00790}
+\includegraphics[width=220pt]{a00778}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual void \hyperlink{a00191_ac0d2f2e081944ad197992a26ad1a833c}{Set\-Number} (string variable\-Name, float number)
-\begin{DoxyCompactList}\small\item\em Not implemented here. \end{DoxyCompactList}\item 
-virtual float \hyperlink{a00191_add85a45dd65a5d4bd41c9d5ce5f77d19}{Get\-Number} (string variable\-Name)
-\begin{DoxyCompactList}\small\item\em Not implemented here. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00187}{Value} \hyperlink{a00191_ac6ebafcbebc2b2d71eba8562490a2f1e}{Get\-Value} (string variable\-Name)
-\begin{DoxyCompactList}\small\item\em Get a value. \end{DoxyCompactList}\item 
-virtual void \hyperlink{a00191_a25f979b062d63c9e886fe7070ce4561b}{Set\-Value} (string variable\-Name, \hyperlink{a00187}{Value} value)
-\begin{DoxyCompactList}\small\item\em Set a value. \end{DoxyCompactList}\item 
-virtual void \hyperlink{a00191_a587fe10b367ace190e10f3bcb590a53c}{Clear} ()
-\begin{DoxyCompactList}\small\item\em Not implemented here. \end{DoxyCompactList}\item 
-abstract void \hyperlink{a00191_a33fcbff56561e53e0a70b59c56f0c3af}{Reset\-To\-Defaults} ()
+override void \hyperlink{a00191_a980f0e64bc5ad171c35ec19bdf838b5c}{Diagnose} (\hyperlink{a00154}{Program} program)
+\item 
+override I\-Enumerable$<$ \hyperlink{a00093}{Diagnosis} $>$ \hyperlink{a00191_ab84e7a8e68740379dee12a51dca69b07}{Gather\-Diagnoses} ()
+\item 
+abstract void \hyperlink{a00055_aba4a36cb823b11ee491074e26477d084}{Diagnose} (\hyperlink{a00154}{Yarn.\-Program} program)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Hash\-Set$<$ string $>$ \hyperlink{a00191_a64ed6c3394c474b6cf5804a35f560746}{variables} = new Hash\-Set$<$string$>$()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Scripts that can act as a variable storage should subclass this. 
 
-Definition at line 483 of file Dialogue\-Runner.\-cs.
+
+Definition at line 156 of file Analyser.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00191_a587fe10b367ace190e10f3bcb590a53c}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Clear@{Clear}}
-\index{Clear@{Clear}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
-\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Clear (
+\hypertarget{a00055_aba4a36cb823b11ee491074e26477d084}{\index{Yarn\-::\-Analysis\-::\-Variable\-Lister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}!Diagnose@{Diagnose}}
+\index{Diagnose@{Diagnose}!Yarn::Analysis::VariableLister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}}
+\subsubsection[{Diagnose}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Analysis.\-Compiled\-Program\-Analyser.\-Diagnose (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Program}}]{program}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [inherited]}}}\label{a00055_aba4a36cb823b11ee491074e26477d084}
+\hypertarget{a00191_a980f0e64bc5ad171c35ec19bdf838b5c}{\index{Yarn\-::\-Analysis\-::\-Variable\-Lister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}!Diagnose@{Diagnose}}
+\index{Diagnose@{Diagnose}!Yarn::Analysis::VariableLister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}}
+\subsubsection[{Diagnose}]{\setlength{\rightskip}{0pt plus 5cm}override void Yarn.\-Analysis.\-Variable\-Lister.\-Diagnose (
+\begin{DoxyParamCaption}
+\item[{{\bf Program}}]{program}
+\end{DoxyParamCaption}
+)}}\label{a00191_a980f0e64bc5ad171c35ec19bdf838b5c}
+
+
+Definition at line 159 of file Analyser.\-cs.
+
+
+\begin{DoxyCode}
+160         \{
+161             \textcolor{comment}{// In each node, find all reads and writes to variables}
+162             \textcolor{keywordflow}{foreach} (var nodeInfo \textcolor{keywordflow}{in} program.nodes)
+163             \{
+164 
+165                 var nodeName = nodeInfo.Key;
+166                 var theNode = nodeInfo.Value;
+167 
+168                 \textcolor{keywordflow}{foreach} (var instruction \textcolor{keywordflow}{in} theNode.instructions)
+169                 \{
+170 
+171                     \textcolor{keywordflow}{switch} (instruction.operation)
+172                     \{
+173                         \textcolor{keywordflow}{case} ByteCode.PushVariable:
+174                         \textcolor{keywordflow}{case} ByteCode.StoreVariable:
+175                             variables.Add((string)instruction.operandA);
+176                             \textcolor{keywordflow}{break};
+177                     \}
+178                 \}
+179             \}
+180         \}
+\end{DoxyCode}
+\hypertarget{a00191_ab84e7a8e68740379dee12a51dca69b07}{\index{Yarn\-::\-Analysis\-::\-Variable\-Lister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}!Gather\-Diagnoses@{Gather\-Diagnoses}}
+\index{Gather\-Diagnoses@{Gather\-Diagnoses}!Yarn::Analysis::VariableLister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}}
+\subsubsection[{Gather\-Diagnoses}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerable$<${\bf Diagnosis}$>$ Yarn.\-Analysis.\-Variable\-Lister.\-Gather\-Diagnoses (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00191_a587fe10b367ace190e10f3bcb590a53c}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00191_ab84e7a8e68740379dee12a51dca69b07}
 
 
-Not implemented here. 
-
-
-
-Implements \hyperlink{a00190_af98c1e41f351cb96e13f668ca2fd9d92}{Yarn.\-Variable\-Storage}.
+Implements \hyperlink{a00055_afe059a2ceeabe50380b000420e512bd6}{Yarn.\-Analysis.\-Compiled\-Program\-Analyser}.
 
 
 
-Reimplemented in \hyperlink{a00089_a0ce614bee8d5b220500fb765390b4ca3}{Example\-Variable\-Storage}.
-
-
-
-Definition at line 509 of file Dialogue\-Runner.\-cs.
+Definition at line 182 of file Analyser.\-cs.
 
 
 \begin{DoxyCode}
-510         \{
-511             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.NotImplementedException ();
-512         \}
+183         \{
+184             var diagnoses = \textcolor{keyword}{new} List<Diagnosis>();
+185 
+186             \textcolor{keywordflow}{foreach} (var variable \textcolor{keywordflow}{in} \hyperlink{a00191_a64ed6c3394c474b6cf5804a35f560746}{variables}) \{
+187                 var d = \textcolor{keyword}{new} Diagnosis(\textcolor{stringliteral}{"Script uses variable "} + variable, Diagnosis.Severity.Note);
+188                 diagnoses.Add(d);
+189             \}
+190 
+191             \textcolor{keywordflow}{return} diagnoses;
+192         \}
 \end{DoxyCode}
-\hypertarget{a00191_add85a45dd65a5d4bd41c9d5ce5f77d19}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Get\-Number@{Get\-Number}}
-\index{Get\-Number@{Get\-Number}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
-\subsubsection[{Get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}virtual float Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Get\-Number (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00191_add85a45dd65a5d4bd41c9d5ce5f77d19}
 
 
-Not implemented here. 
+\subsection{Member Data Documentation}
+\hypertarget{a00191_a64ed6c3394c474b6cf5804a35f560746}{\index{Yarn\-::\-Analysis\-::\-Variable\-Lister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}!variables@{variables}}
+\index{variables@{variables}!Yarn::Analysis::VariableLister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}}
+\subsubsection[{variables}]{\setlength{\rightskip}{0pt plus 5cm}Hash\-Set$<$string$>$ Yarn.\-Analysis.\-Variable\-Lister.\-variables = new Hash\-Set$<$string$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00191_a64ed6c3394c474b6cf5804a35f560746}
 
 
+Definition at line 157 of file Analyser.\-cs.
 
-Implements \hyperlink{a00190_a04b061c52d8ac814ce559da5286fbc71}{Yarn.\-Variable\-Storage}.
-
-
-
-Definition at line 493 of file Dialogue\-Runner.\-cs.
-
-
-\begin{DoxyCode}
-494         \{
-495             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.NotImplementedException ();
-496         \}
-\end{DoxyCode}
-\hypertarget{a00191_ac6ebafcbebc2b2d71eba8562490a2f1e}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Get\-Value@{Get\-Value}}
-\index{Get\-Value@{Get\-Value}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
-\subsubsection[{Get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Value} Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Get\-Value (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00191_ac6ebafcbebc2b2d71eba8562490a2f1e}
-
-
-Get a value. 
-
-
-
-Implements \hyperlink{a00190_accab1fc5c8fc353dbfc53ca0f4029576}{Yarn.\-Variable\-Storage}.
-
-
-
-Reimplemented in \hyperlink{a00089_a741593be1a299dcc2136f05b9b4a995a}{Example\-Variable\-Storage}.
-
-
-
-Definition at line 499 of file Dialogue\-Runner.\-cs.
-
-
-\begin{DoxyCode}
-499                                                            \{
-500             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00187}{Yarn.Value}(this.GetNumber(variableName));
-501         \}
-\end{DoxyCode}
-\hypertarget{a00191_a33fcbff56561e53e0a70b59c56f0c3af}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Reset\-To\-Defaults@{Reset\-To\-Defaults}}
-\index{Reset\-To\-Defaults@{Reset\-To\-Defaults}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
-\subsubsection[{Reset\-To\-Defaults}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Reset\-To\-Defaults (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00191_a33fcbff56561e53e0a70b59c56f0c3af}
-
-
-Implemented in \hyperlink{a00089_a3a05d66cdacadb2e9b618cd0aef45f84}{Example\-Variable\-Storage}.
-
-\hypertarget{a00191_ac0d2f2e081944ad197992a26ad1a833c}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Set\-Number@{Set\-Number}}
-\index{Set\-Number@{Set\-Number}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
-\subsubsection[{Set\-Number}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Set\-Number (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name, }
-\item[{float}]{number}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00191_ac0d2f2e081944ad197992a26ad1a833c}
-
-
-Not implemented here. 
-
-
-
-Implements \hyperlink{a00190_aa28c3694f985cf73489efc301b9d41dd}{Yarn.\-Variable\-Storage}.
-
-
-
-Definition at line 487 of file Dialogue\-Runner.\-cs.
-
-
-\begin{DoxyCode}
-488         \{
-489             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.NotImplementedException ();
-490         \}
-\end{DoxyCode}
-\hypertarget{a00191_a25f979b062d63c9e886fe7070ce4561b}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Set\-Value@{Set\-Value}}
-\index{Set\-Value@{Set\-Value}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
-\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Set\-Value (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name, }
-\item[{{\bf Value}}]{value}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00191_a25f979b062d63c9e886fe7070ce4561b}
-
-
-Set a value. 
-
-
-
-Implements \hyperlink{a00190_aa90ff61224432c5ed3ce72199c55f440}{Yarn.\-Variable\-Storage}.
-
-
-
-Reimplemented in \hyperlink{a00089_ac4265c1c9da485f13a6b05784b0f668d}{Example\-Variable\-Storage}.
-
-
-
-Definition at line 504 of file Dialogue\-Runner.\-cs.
-
-
-\begin{DoxyCode}
-504                                                                        \{
-505             this.SetNumber(variableName, value.AsNumber);
-506         \}
-\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn\-Spinner/\-Code/\hyperlink{a00292}{Dialogue\-Runner.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00305}{Analyser.\-cs}\end{DoxyCompactItemize}

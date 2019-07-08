@@ -2,23 +2,24 @@ var NAVTREE =
 [
   [ "YarnSpinner", "index.html", [
     [ "Lets talk about the WIP ANTLR YarnSpinner parser", "a00002.html", null ],
-    [ "Contributing to Yarn Spinner", "a00004.html", null ],
-    [ "Contributors", "a00006.html", null ],
-    [ "Complex Yarn Dialogue - Tutorial", "a00008.html", null ],
-    [ "Localization", "a00010.html", null ],
-    [ "Yarn Dialogue - General Usage Guide", "a00012.html", null ],
-    [ "Simple Yarn Dialogue - Tutorial", "a00014.html", null ],
-    [ "Yarn Quick Reference", "a00016.html", null ],
-    [ "Building Yarn Spinner", "a00018.html", null ],
-    [ "Extending Yarn Spinner", "a00020.html", null ],
-    [ "Quickstart to Using Yarn Spinner in your Unity game", "a00022.html", null ],
-    [ "Step by Step to Using Yarn Spinner in your Unity game", "a00024.html", null ],
-    [ "LICENSE", "a00026.html", null ],
-    [ "Microsoft", "a00028.html", null ],
+    [ "Contributor Covenant Code of Conduct", "a00004.html", null ],
+    [ "Contributing to Yarn Spinner", "a00006.html", null ],
+    [ "Contributors", "a00008.html", null ],
+    [ "Complex Yarn Dialogue - Tutorial", "a00010.html", null ],
+    [ "Localization", "a00012.html", null ],
+    [ "Yarn Dialogue - General Usage Guide", "a00014.html", null ],
+    [ "Simple Yarn Dialogue - Tutorial", "a00016.html", null ],
+    [ "Yarn Quick Reference", "a00018.html", null ],
+    [ "Building Yarn Spinner", "a00020.html", null ],
+    [ "Extending Yarn Spinner", "a00022.html", null ],
+    [ "Quickstart to Using Yarn Spinner in your Unity game", "a00024.html", null ],
+    [ "Step by Step to Using Yarn Spinner in your Unity game", "a00026.html", null ],
+    [ "LICENSE", "a00028.html", null ],
     [ "Microsoft", "a00030.html", null ],
     [ "Microsoft", "a00032.html", null ],
     [ "Microsoft", "a00034.html", null ],
     [ "Microsoft", "a00036.html", null ],
+    [ "Microsoft", "a00038.html", null ],
     [ "Packages", null, [
       [ "Packages", "namespaces.html", "namespaces" ],
       [ "Package Functions", "namespacemembers.html", [
@@ -56,16 +57,16 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "a00002.html",
-"a00049.html#a85d50993390cdd8ba30ac44043b18de7",
-"a00068.html#ad8b27f20be101a15ef390fcc37f8631b",
-"a00083.html#a18c67cb16090d0889bb9d6c8c6c565f8",
-"a00104.html#af313a82103fcc2ff5a177dbb06b92f7b",
-"a00117.html#a0fc0ce39655b94dd519af7aeecc4e9a3",
-"a00132.html#abfbb0ea840b02acd0ecdc72c5b120257",
-"a00162.html#ab7594e14981ad75cecea3b2e7dcf895c",
-"a00187.html#ad5aaf60ee4504608fcc2ffadefa14884",
-"a00229.html",
-"a00318.html#adff82417cdaed8e1b025db27c7c11fc3"
+"a00051.html#a808a039e280cf875cb3c9e9385148498",
+"a00070.html#ac425b45e53d095d825f0fa8a52041a69",
+"a00085.html#a18b493382de0fde5b4299c1bd2250075",
+"a00106.html#ad55c92df835006328bc2a79a8f91efb9",
+"a00119.html#a0b6bf45e56de8f5125c07f0143e74d19",
+"a00134.html",
+"a00164.html#ab3afe8360a344c16c21213edb3641481",
+"a00189.html#acb140e3466e132528409d4c441fd67da",
+"a00231_source.html",
+"a00321.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

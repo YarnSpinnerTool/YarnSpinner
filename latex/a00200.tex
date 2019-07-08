@@ -1,37 +1,150 @@
-\hypertarget{a00200}{\section{A\-N\-T\-L\-R/preprocessor.py File Reference}
-\label{a00200}\index{A\-N\-T\-L\-R/preprocessor.\-py@{A\-N\-T\-L\-R/preprocessor.\-py}}
+\hypertarget{a00200}{\section{Yarn\-Spinner\-Tests Class Reference}
+\label{a00200}\index{Yarn\-Spinner\-Tests@{Yarn\-Spinner\-Tests}}
 }
-\subsection*{Namespaces}
+
+
+Collaboration diagram for Yarn\-Spinner\-Tests\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{a00420}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00348}{preprocessor}
+void \hyperlink{a00200_ad6e4c6a92bb5ed6187949264df6aaf1b}{Set\-Up} ()
+\item 
+void \hyperlink{a00200_a60ab8ed8dc30ec30e74baa1916d47324}{Editor\-Test} ()
 \end{DoxyCompactItemize}
-\subsection*{Variables}
+\subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-list \hyperlink{a00348_a3766d6a1d728423223fa0743ba62011f}{preprocessor.\-output\-\_\-lines} = \mbox{[}$\,$\mbox{]}
+\hyperlink{a00095}{Yarn.\-Unity.\-Dialogue\-Runner} \hyperlink{a00200_a9791840e0b5987e5bd09bce83ce2d8d9}{dialogue\-Runner}
 \item 
-list \hyperlink{a00348_a00fba9ee9674b2513dbe28eab795b734}{preprocessor.\-indents} = \mbox{[}(0,False)\mbox{]}
+\hyperlink{a00193}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour} \hyperlink{a00200_a27dbc8c3f7f23ce142d1d5d1fd3df8bc}{variable\-Storage}
 \item 
-\hyperlink{a00348_afa485f45ab87bc0f06c1dfc46737c057}{preprocessor.\-should\-Track\-Next\-Indentation} = False
-\item 
-string \hyperlink{a00348_ae3f2190a793ab77428838e58e0e83676}{preprocessor.\-I\-N\-D\-E\-N\-T} = '\textbackslash{}a'
-\item 
-string \hyperlink{a00348_a83653c3e52fa74614e655a91ad2b7181}{preprocessor.\-D\-E\-D\-E\-N\-T} = '\textbackslash{}v'
-\item 
-string \hyperlink{a00348_a7ca2dc5371587b21476669a45af013cd}{preprocessor.\-O\-P\-T\-I\-O\-N} = \char`\"{}-\/$>$\char`\"{}
-\item 
-int \hyperlink{a00348_ac7b4a28b6670884cd095cd684a452c94}{preprocessor.\-line\-\_\-count} = 1
-\item 
-tuple \hyperlink{a00348_acab50490b6d7a9dc2bb935ad4ffe2eff}{preprocessor.\-tweaked\-\_\-line} = line.\-replace('\textbackslash{}t',' ')
-\item 
-tuple \hyperlink{a00348_a0e59365a4aa5811f6495b92a51e23573}{preprocessor.\-this\-Indentation} = len(tweaked\-\_\-line)
-\item 
-tuple \hyperlink{a00348_abf34284b1c9a00275810e5c13a4dcea2}{preprocessor.\-is\-\_\-option} = tweaked\-\_\-line.\-strip()
-\item 
-list \hyperlink{a00348_ade44b858578c3eab7b6f90030a0e3ea1}{preprocessor.\-previous\-Indentation} = indents\mbox{[}-\/1\mbox{]}
-\item 
-tuple \hyperlink{a00348_a8b7e5c0b2c6870eaa8f9454b4f33678b}{preprocessor.\-top\-Level} = indents.\-pop()
-\item 
-tuple \hyperlink{a00348_a3da6d48778c7b08a040bf24377f67792}{preprocessor.\-output} = open('processed.\-yarn', 'w')
+\hyperlink{a00173}{Test\-Dialogue\-U\-I\-Behaviour} \hyperlink{a00200_aace025d2a9a703154a1989c47b0a0737}{dialogue\-U\-I}
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 66 of file Yarn\-Spinner\-Tests.\-cs.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00200_a60ab8ed8dc30ec30e74baa1916d47324}{\index{Yarn\-Spinner\-Tests@{Yarn\-Spinner\-Tests}!Editor\-Test@{Editor\-Test}}
+\index{Editor\-Test@{Editor\-Test}!YarnSpinnerTests@{Yarn\-Spinner\-Tests}}
+\subsubsection[{Editor\-Test}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner\-Tests.\-Editor\-Test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00200_a60ab8ed8dc30ec30e74baa1916d47324}
+
+
+Definition at line 94 of file Yarn\-Spinner\-Tests.\-cs.
+
+
+\begin{DoxyCode}
+95     \{
+96 
+97         dialogueUI.ExpectLine(\textcolor{stringliteral}{"Player: Hey, Sally."});
+98         dialogueUI.ExpectLine(\textcolor{stringliteral}{"Sally: Oh! Hi."});
+99         dialogueUI.ExpectLine(\textcolor{stringliteral}{"Sally: You snuck up on me."});
+100         dialogueUI.ExpectLine(\textcolor{stringliteral}{"Sally: Don't do that."});
+101         dialogueUI.SelectOption(\textcolor{stringliteral}{"Anything exciting happen on your watch?"});
+102 
+103         dialogueRunner.StartDialogue(\textcolor{stringliteral}{"Sally"});
+104 
+105         \textcolor{comment}{// Talking to Sally a second time should result in a different dialogue}
+106 
+107 
+108 
+109 
+110         \textcolor{comment}{//Act}
+111         \textcolor{comment}{//Try to rename the GameObject}
+112 
+113         \textcolor{comment}{//Assert}
+114         \textcolor{comment}{//The object has a new name}
+115         \textcolor{comment}{//Assert.AreEqual(newGameObjectName, gameObject.name);}
+116     \}
+\end{DoxyCode}
+\hypertarget{a00200_ad6e4c6a92bb5ed6187949264df6aaf1b}{\index{Yarn\-Spinner\-Tests@{Yarn\-Spinner\-Tests}!Set\-Up@{Set\-Up}}
+\index{Set\-Up@{Set\-Up}!YarnSpinnerTests@{Yarn\-Spinner\-Tests}}
+\subsubsection[{Set\-Up}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner\-Tests.\-Set\-Up (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00200_ad6e4c6a92bb5ed6187949264df6aaf1b}
+
+
+Definition at line 73 of file Yarn\-Spinner\-Tests.\-cs.
+
+
+
+References dialogue\-Runner, and dialogue\-U\-I.
+
+
+\begin{DoxyCode}
+74     \{
+75         \textcolor{comment}{//Arrange}
+76 
+77         \textcolor{comment}{// Create the dialogue runner}
+78         var dialogueHost = \textcolor{keyword}{new} GameObject();
+79         \hyperlink{a00200_a9791840e0b5987e5bd09bce83ce2d8d9}{dialogueRunner} = dialogueHost.AddComponent<
+      \hyperlink{a00095}{Yarn.Unity.DialogueRunner}>();
+80 
+81         \textcolor{comment}{// Create the variable storage}
+82         \textcolor{comment}{//variableStorage = dialogueHost.AddComponent<ExampleVariableStorage>();}
+83 
+84         \textcolor{comment}{// Load the test script}
+85         var text = AssetDatabase.LoadAssetAtPath<TextAsset>(\textcolor{stringliteral}{"Assets/Yarn Spinner/Examples/Demo
+       Assets/Space.json"});
+86         dialogueRunner.AddScript(text);
+87 
+88         \hyperlink{a00200_aace025d2a9a703154a1989c47b0a0737}{dialogueUI} = dialogueHost.AddComponent<\hyperlink{a00173}{TestDialogueUIBehaviour}>();
+89         dialogueRunner.dialogueUI = \hyperlink{a00200_aace025d2a9a703154a1989c47b0a0737}{dialogueUI};
+90 
+91     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00200_a9791840e0b5987e5bd09bce83ce2d8d9}{\index{Yarn\-Spinner\-Tests@{Yarn\-Spinner\-Tests}!dialogue\-Runner@{dialogue\-Runner}}
+\index{dialogue\-Runner@{dialogue\-Runner}!YarnSpinnerTests@{Yarn\-Spinner\-Tests}}
+\subsubsection[{dialogue\-Runner}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Unity.\-Dialogue\-Runner} Yarn\-Spinner\-Tests.\-dialogue\-Runner\hspace{0.3cm}{\ttfamily [private]}}}\label{a00200_a9791840e0b5987e5bd09bce83ce2d8d9}
+
+
+Definition at line 68 of file Yarn\-Spinner\-Tests.\-cs.
+
+
+
+Referenced by Set\-Up().
+
+\hypertarget{a00200_aace025d2a9a703154a1989c47b0a0737}{\index{Yarn\-Spinner\-Tests@{Yarn\-Spinner\-Tests}!dialogue\-U\-I@{dialogue\-U\-I}}
+\index{dialogue\-U\-I@{dialogue\-U\-I}!YarnSpinnerTests@{Yarn\-Spinner\-Tests}}
+\subsubsection[{dialogue\-U\-I}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Test\-Dialogue\-U\-I\-Behaviour} Yarn\-Spinner\-Tests.\-dialogue\-U\-I\hspace{0.3cm}{\ttfamily [private]}}}\label{a00200_aace025d2a9a703154a1989c47b0a0737}
+
+
+Definition at line 70 of file Yarn\-Spinner\-Tests.\-cs.
+
+
+
+Referenced by Set\-Up().
+
+\hypertarget{a00200_a27dbc8c3f7f23ce142d1d5d1fd3df8bc}{\index{Yarn\-Spinner\-Tests@{Yarn\-Spinner\-Tests}!variable\-Storage@{variable\-Storage}}
+\index{variable\-Storage@{variable\-Storage}!YarnSpinnerTests@{Yarn\-Spinner\-Tests}}
+\subsubsection[{variable\-Storage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Unity.\-Variable\-Storage\-Behaviour} Yarn\-Spinner\-Tests.\-variable\-Storage\hspace{0.3cm}{\ttfamily [private]}}}\label{a00200_a27dbc8c3f7f23ce142d1d5d1fd3df8bc}
+
+
+Definition at line 69 of file Yarn\-Spinner\-Tests.\-cs.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Unity/\-Assets/\-Yarn\-Spinner/\-Code/\-Editor/\hyperlink{a00297}{Yarn\-Spinner\-Tests.\-cs}\end{DoxyCompactItemize}

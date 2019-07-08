@@ -1,220 +1,122 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00074" kind="class" prot="public">
-    <compoundname>CsvHelper::Configuration::CsvPropertyNameCollection</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">IEnumerable&lt; string &gt;</basecompoundref>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00074_1a41eb6804d8afe8d674e64d71f66962ce" prot="private" static="no" mutable="no">
-        <type>readonly List&lt; string &gt;</type>
-        <definition>readonly List&lt;string&gt; CsvHelper.Configuration.CsvPropertyNameCollection.names</definition>
-        <argsstring></argsstring>
-        <name>names</name>
-        <initializer>= new List&lt;string&gt;()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="16" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00074_1acdce91a755be3bec6218e3d82f4dfe82" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string CsvHelper.Configuration.CsvPropertyNameCollection.this[int index]</definition>
-        <argsstring></argsstring>
-        <name>this[int index]</name>
-        <briefdescription>
-<para>Gets the name at the given index. If a prefix is set, it will be prepended to the name. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>index</parametername>
-</parameternamelist>
-<parameterdescription>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para></para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="24" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="25" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00074_1ab8f3256d8435a1c93f0280064aa3ff06" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string CsvHelper.Configuration.CsvPropertyNameCollection.Prefix</definition>
-        <argsstring></argsstring>
-        <name>Prefix</name>
-        <briefdescription>
-<para>Gets the prefix to use for each name. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="33" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00074_1a1aa06a47337f6ab576b23fe63854dcbe" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>List&lt; string &gt;</type>
-        <definition>List&lt;string&gt; CsvHelper.Configuration.CsvPropertyNameCollection.Names</definition>
-        <argsstring></argsstring>
-        <name>Names</name>
-        <briefdescription>
-<para>Gets the raw list of names without the prefix being prepended. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="40" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00074_1a4b7b56286ad80183e1a33554a49eefa1" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>int</type>
-        <definition>int CsvHelper.Configuration.CsvPropertyNameCollection.Count</definition>
-        <argsstring></argsstring>
-        <name>Count</name>
-        <briefdescription>
-<para>Gets the count. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="48" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00074" kind="class" prot="package">
+    <compoundname>CsvHelper::Configuration::CsvPropertyMapComparer</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IComparer&lt; CsvPropertyMap &gt;</basecompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00074_1ad7b7d11d5814bcce5ed38e054ef71b4e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void CsvHelper.Configuration.CsvPropertyNameCollection.Add</definition>
-        <argsstring>(string name)</argsstring>
-        <name>Add</name>
+      <memberdef kind="function" id="a00074_1a41ab777503459b3984a2e2826a14d52a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>virtual int CsvHelper.Configuration.CsvPropertyMapComparer.Compare</definition>
+        <argsstring>(object x, object y)</argsstring>
+        <name>Compare</name>
         <param>
-          <type>string</type>
-          <declname>name</declname>
+          <type>object</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>y</declname>
         </param>
         <briefdescription>
-<para>Adds the given name to the collection. </para>        </briefdescription>
+<para>Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other. </para>        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
+<para><simplesect kind="return"><para>Value Condition Less than zero <emphasis>x</emphasis>  is less than <emphasis>y</emphasis> . Zero <emphasis>x</emphasis>  equals <emphasis>y</emphasis> . Greater than zero <emphasis>x</emphasis>  is greater than <emphasis>y</emphasis> . </para></simplesect>
+<parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>name</parametername>
+<parametername>x</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The name to add.</para></parameterdescription>
+<para>The first object to compare. </para></parameterdescription>
 </parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="56" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="56" bodyend="59"/>
-      </memberdef>
-      <memberdef kind="function" id="a00074_1abec990435c8dccfb4553602b89f93201" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void CsvHelper.Configuration.CsvPropertyNameCollection.Clear</definition>
-        <argsstring>()</argsstring>
-        <name>Clear</name>
-        <briefdescription>
-<para>Clears all names from the collection. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="64" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="64" bodyend="67"/>
-      </memberdef>
-      <memberdef kind="function" id="a00074_1ac568746273968080890abca50b882802" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void CsvHelper.Configuration.CsvPropertyNameCollection.AddRange</definition>
-        <argsstring>(IEnumerable&lt; string &gt; names)</argsstring>
-        <name>AddRange</name>
-        <param>
-          <type>IEnumerable&lt; string &gt;</type>
-          <declname>names</declname>
-        </param>
-        <briefdescription>
-<para>Adds a range of names to the collection. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
+<parameteritem>
 <parameternamelist>
-<parametername>names</parametername>
+<parametername>y</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The range to add.</para></parameterdescription>
+<para>The second object to compare. </para></parameterdescription>
 </parameteritem>
 </parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="73" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="73" bodyend="76"/>
-      </memberdef>
-      <memberdef kind="function" id="a00074_1a61b6a80e51d06f17d0043ec6aef89f1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>IEnumerator&lt; string &gt;</type>
-        <definition>IEnumerator&lt;string&gt; CsvHelper.Configuration.CsvPropertyNameCollection.GetEnumerator</definition>
-        <argsstring>()</argsstring>
-        <name>GetEnumerator</name>
-        <briefdescription>
-<para>Returns an enumerator that iterates through the collection. </para>        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>A T:System.Collections.Generic.IEnumerator`1 that can be used to iterate through the collection. </para></simplesect>
-&lt;filterpriority&gt;1&lt;/filterpriority&gt; </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="85" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="85" bodyend="91"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="a00074_1a76b5c67fcecf55dbdd4b680cde1a78f7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>IEnumerator IEnumerable.</type>
-        <definition>IEnumerator IEnumerable. CsvHelper.Configuration.CsvPropertyNameCollection.GetEnumerator</definition>
-        <argsstring>()</argsstring>
-        <name>GetEnumerator</name>
-        <briefdescription>
-<para>Returns an enumerator that iterates through a collection. </para>        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>An T:System.Collections.IEnumerator object that can be used to iterate through the collection. </para></simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>T:System.ArgumentException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Neither <emphasis>x</emphasis>  nor <emphasis>y</emphasis>  implements the T:System.IComparable interface. -or- <emphasis>x</emphasis>  and <emphasis>y</emphasis>  are of different types and neither one can handle comparisons with the other. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
 &lt;filterpriority&gt;2&lt;/filterpriority&gt; </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="100" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="100" bodyend="103"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapComparer.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapComparer.cs" bodystart="38" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="a00074_1ab9c855cf5389c8f1ae1b476d508ade5d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>virtual int CsvHelper.Configuration.CsvPropertyMapComparer.Compare</definition>
+        <argsstring>(CsvPropertyMap x, CsvPropertyMap y)</argsstring>
+        <name>Compare</name>
+        <param>
+          <type><ref refid="a00072" kindref="compound">CsvPropertyMap</ref></type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="a00072" kindref="compound">CsvPropertyMap</ref></type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Value Condition Less than zero <emphasis>x</emphasis>  is less than <emphasis>y</emphasis> . Zero <emphasis>x</emphasis>  equals <emphasis>y</emphasis> . Greater than zero <emphasis>x</emphasis>  is greater than <emphasis>y</emphasis> . </para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first object to compare. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second object to compare. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapComparer.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapComparer.cs" bodystart="61" bodyend="73"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>A collection that holds property names. </para>    </briefdescription>
+<para>Used to compare <ref refid="a00072" kindref="compound">CsvPropertyMap</ref>s. The order is by field index ascending. Any fields that don&apos;t have an index are pushed to the bottom. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1135">
-        <label>CsvHelper.Configuration.CsvPropertyNameCollection</label>
+      <node id="1126">
+        <label>CsvHelper.Configuration.CsvPropertyMapComparer</label>
         <link refid="a00074"/>
-        <childnode refid="1136" relation="public-inheritance">
+        <childnode refid="1127" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1136">
-        <label>IEnumerable&lt; string &gt;</label>
+      <node id="1127">
+        <label>IComparer&lt; CsvPropertyMap &gt;</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1137">
-        <label>CsvHelper.Configuration.CsvPropertyNameCollection</label>
+      <node id="1128">
+        <label>CsvHelper.Configuration.CsvPropertyMapComparer</label>
         <link refid="a00074"/>
-        <childnode refid="1138" relation="public-inheritance">
+        <childnode refid="1129" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1138">
-        <label>IEnumerable&lt; string &gt;</label>
+      <node id="1129">
+        <label>IComparer&lt; CsvPropertyMap &gt;</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="14" bodyend="104"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapComparer.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapComparer.cs" bodystart="17" bodyend="74"/>
     <listofallmembers>
-      <member refid="a00074_1ad7b7d11d5814bcce5ed38e054ef71b4e" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>Add</name></member>
-      <member refid="a00074_1ac568746273968080890abca50b882802" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>AddRange</name></member>
-      <member refid="a00074_1abec990435c8dccfb4553602b89f93201" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>Clear</name></member>
-      <member refid="a00074_1a4b7b56286ad80183e1a33554a49eefa1" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>Count</name></member>
-      <member refid="a00074_1a61b6a80e51d06f17d0043ec6aef89f1b" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>GetEnumerator</name></member>
-      <member refid="a00074_1a76b5c67fcecf55dbdd4b680cde1a78f7" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>GetEnumerator</name></member>
-      <member refid="a00074_1a1aa06a47337f6ab576b23fe63854dcbe" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>Names</name></member>
-      <member refid="a00074_1a41eb6804d8afe8d674e64d71f66962ce" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>names</name></member>
-      <member refid="a00074_1ab8f3256d8435a1c93f0280064aa3ff06" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>Prefix</name></member>
-      <member refid="a00074_1acdce91a755be3bec6218e3d82f4dfe82" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>this[int index]</name></member>
+      <member refid="a00074_1a41ab777503459b3984a2e2826a14d52a" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMapComparer</scope><name>Compare</name></member>
+      <member refid="a00074_1ab9c855cf5389c8f1ae1b476d508ade5d" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMapComparer</scope><name>Compare</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

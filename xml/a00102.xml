@@ -1,175 +1,133 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00102" kind="class" prot="package">
-    <compoundname>CsvHelper::ExceptionHelper</compoundname>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="a00102_1a7415ea84b6d462b9d61ecf2128282837" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void CsvHelper.ExceptionHelper.AddExceptionDataMessage</definition>
-        <argsstring>(Exception exception, ICsvParser parser, Type type, Dictionary&lt; string, List&lt; int &gt;&gt; namedIndexes, int?currentIndex, string[] currentRecord)</argsstring>
-        <name>AddExceptionDataMessage</name>
-        <param>
-          <type>Exception</type>
-          <declname>exception</declname>
-        </param>
-        <param>
-          <type><ref refid="a00113" kindref="compound">ICsvParser</ref></type>
-          <declname>parser</declname>
-        </param>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <param>
-          <type>Dictionary&lt; string, List&lt; int &gt;&gt;</type>
-          <declname>namedIndexes</declname>
-        </param>
-        <param>
-          <type>int?</type>
-          <declname>currentIndex</declname>
-        </param>
-        <param>
-          <type>string[]</type>
-          <declname>currentRecord</declname>
-        </param>
+  <compounddef id="a00102" kind="class" prot="public">
+    <compoundname>Yarn::ErrorListener</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">BaseErrorListener</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="a00102_1a9421873edea84c51d5905f5a24c62479" prot="private" static="yes" mutable="no">
+        <type>readonly <ref refid="a00102" kindref="compound">ErrorListener</ref></type>
+        <definition>readonly ErrorListener Yarn.ErrorListener.instance</definition>
+        <argsstring></argsstring>
+        <name>instance</name>
+        <initializer>= new <ref refid="a00102" kindref="compound">ErrorListener</ref>()</initializer>
         <briefdescription>
-<para>Adds <ref refid="a00337" kindref="compound">CsvHelper</ref> specific information to Exception.Data. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>exception</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The exception to add the info to.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>parser</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The parser.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type of object that was being created in the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>namedIndexes</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The named indexes in the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>currentIndex</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The current index of the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>currentRecord</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The current record of the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" bodystart="28" bodyend="46"/>
-        <references refid="a00102_1a11e421dc9f9fdb2b72d060a24471b5be" compoundref="a00244" startline="57" endline="100">CsvHelper.ExceptionHelper.GetErrorMessage</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" line="11" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" bodystart="11" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="a00102_1a11e421dc9f9fdb2b72d060a24471b5be" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
-        <definition>static string CsvHelper.ExceptionHelper.GetErrorMessage</definition>
-        <argsstring>(ICsvParser parser, Type type, Dictionary&lt; string, List&lt; int &gt;&gt; namedIndexes, int?currentIndex, string[] currentRecord)</argsstring>
-        <name>GetErrorMessage</name>
-        <param>
-          <type><ref refid="a00113" kindref="compound">ICsvParser</ref></type>
-          <declname>parser</declname>
-        </param>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <param>
-          <type>Dictionary&lt; string, List&lt; int &gt;&gt;</type>
-          <declname>namedIndexes</declname>
-        </param>
-        <param>
-          <type>int?</type>
-          <declname>currentIndex</declname>
-        </param>
-        <param>
-          <type>string[]</type>
-          <declname>currentRecord</declname>
-        </param>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00102_1a47b8f4f1d414afa1ea6067218c7ee34d" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
+        <type><ref refid="a00102" kindref="compound">ErrorListener</ref></type>
+        <definition>ErrorListener Yarn.ErrorListener.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
         <briefdescription>
-<para>Gets <ref refid="a00337" kindref="compound">CsvHelper</ref> information to be added to an exception. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>parser</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The parser.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type of object that was being created in the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>namedIndexes</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The named indexes in the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>currentIndex</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The current index of the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>currentRecord</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The current record of the <ref refid="a00077" kindref="compound">CsvReader</ref>.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The <ref refid="a00337" kindref="compound">CsvHelper</ref> information.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" line="57" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" bodystart="57" bodyend="100"/>
-        <referencedby refid="a00102_1a7415ea84b6d462b9d61ecf2128282837" compoundref="a00244" startline="28" endline="46">CsvHelper.ExceptionHelper.AddExceptionDataMessage</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" bodystart="14" bodyend="-1"/>
+        <referencedby refid="a00135_1aa79ba1a47653bfc06ce3ccaf87551ad3" compoundref="a00315" startline="218" endline="354">Yarn.Loader.Load</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00102_1a1f0cc41aac10bd8a2402355534c1123c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.ErrorListener.ErrorListener</definition>
+        <argsstring>()</argsstring>
+        <name>ErrorListener</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" line="12" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" bodystart="12" bodyend="12"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00102_1a47fb9f6d50aa6a4e4796dea10b237fe4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void Yarn.ErrorListener.SyntaxError</definition>
+        <argsstring>(System.IO.TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)</argsstring>
+        <name>SyntaxError</name>
+        <param>
+          <type>System.IO.TextWriter</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>IRecognizer</type>
+          <declname>recognizer</declname>
+        </param>
+        <param>
+          <type><ref refid="a00322_1ae3d87b0b748ea892bff48f60862e182d" kindref="member">IToken</ref></type>
+          <declname>offendingSymbol</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>charPositionInLine</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>RecognitionException</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" bodystart="21" bodyend="58"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Common exception tasks. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1340">
-        <label>CsvHelper.ExceptionHelper</label>
+    <inheritancegraph>
+      <node id="1317">
+        <label>BaseErrorListener</label>
+      </node>
+      <node id="1316">
+        <label>Yarn.ErrorListener</label>
         <link refid="a00102"/>
+        <childnode refid="1317" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1319">
+        <label>BaseErrorListener</label>
+      </node>
+      <node id="1318">
+        <label>Yarn.ErrorListener</label>
+        <link refid="a00102"/>
+        <childnode refid="1319" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1318" relation="usage">
+          <edgelabel>-instance</edgelabel>
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" bodystart="17" bodyend="101"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" bodystart="9" bodyend="59"/>
     <listofallmembers>
-      <member refid="a00102_1a7415ea84b6d462b9d61ecf2128282837" prot="public" virt="non-virtual"><scope>CsvHelper::ExceptionHelper</scope><name>AddExceptionDataMessage</name></member>
-      <member refid="a00102_1a11e421dc9f9fdb2b72d060a24471b5be" prot="public" virt="non-virtual"><scope>CsvHelper::ExceptionHelper</scope><name>GetErrorMessage</name></member>
+      <member refid="a00102_1a1f0cc41aac10bd8a2402355534c1123c" prot="private" virt="non-virtual"><scope>Yarn::ErrorListener</scope><name>ErrorListener</name></member>
+      <member refid="a00102_1a47b8f4f1d414afa1ea6067218c7ee34d" prot="public" virt="non-virtual"><scope>Yarn::ErrorListener</scope><name>Instance</name></member>
+      <member refid="a00102_1a9421873edea84c51d5905f5a24c62479" prot="private" virt="non-virtual"><scope>Yarn::ErrorListener</scope><name>instance</name></member>
+      <member refid="a00102_1a47fb9f6d50aa6a4e4796dea10b237fe4" prot="public" virt="non-virtual"><scope>Yarn::ErrorListener</scope><name>SyntaxError</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

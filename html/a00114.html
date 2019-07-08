@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: CsvHelper.ICsvReader Interface Reference</title>
+<title>YarnSpinner: CsvHelper.ICsvFactory Interface Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -108,356 +108,77 @@ $(document).ready(function(){initNavTree('a00114.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#properties">Properties</a> &#124;
-<a href="a00459.html">List of all members</a>  </div>
+<a href="a00456.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">CsvHelper.ICsvReader Interface Reference</div>  </div>
+<div class="title">CsvHelper.ICsvFactory Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Defines methods used to read parsed data from a CSV file.  
+<p>Defines methods used to create <a class="el" href="a00340.html">CsvHelper</a> classes.  
  <a href="a00114.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for CsvHelper.ICsvReader:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for CsvHelper.ICsvFactory:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00460.png" border="0" usemap="#_csv_helper_8_i_csv_reader_inherit__map" alt="Inheritance graph"/></div>
-<map name="_csv_helper_8_i_csv_reader_inherit__map" id="_csv_helper_8_i_csv_reader_inherit__map">
-<area shape="rect" id="node4" href="a00077.html" title="Reads data that was parsed from ICsvParser. " alt="" coords="42,523,261,1187"/><area shape="rect" id="node2" href="a00115.html" title="Defines methods used to read parsed data from a CSV file row. " alt="" coords="5,6,153,303"/></map>
+<div class="center"><img src="a00457.png" border="0" usemap="#_csv_helper_8_i_csv_factory_inherit__map" alt="Inheritance graph"/></div>
+<map name="_csv_helper_8_i_csv_factory_inherit__map" id="_csv_helper_8_i_csv_factory_inherit__map">
+<area shape="rect" id="node2" href="a00067.html" title="Creates CsvHelper classes. " alt="" coords="6,219,161,384"/></map>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for CsvHelper.ICsvReader:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for CsvHelper.ICsvFactory:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00461.png" border="0" usemap="#_csv_helper_8_i_csv_reader_coll__map" alt="Collaboration graph"/></div>
-<map name="_csv_helper_8_i_csv_reader_coll__map" id="_csv_helper_8_i_csv_reader_coll__map">
-<area shape="rect" id="node2" href="a00115.html" title="Defines methods used to read parsed data from a CSV file row. " alt="" coords="5,6,153,303"/></map>
+<div class="center"><img src="a00458.png" border="0" usemap="#_csv_helper_8_i_csv_factory_coll__map" alt="Collaboration graph"/></div>
+<map name="_csv_helper_8_i_csv_factory_coll__map" id="_csv_helper_8_i_csv_factory_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac90848a26c5ce46d1acb7719e669897b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114.html#ac90848a26c5ce46d1acb7719e669897b">ReadHeader</a> ()</td></tr>
-<tr class="memdesc:ac90848a26c5ce46d1acb7719e669897b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the header field without reading the first row.  <a href="#ac90848a26c5ce46d1acb7719e669897b">More...</a><br/></td></tr>
-<tr class="separator:ac90848a26c5ce46d1acb7719e669897b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a260a692346cfbfaaa23a1075def81898"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114.html#a260a692346cfbfaaa23a1075def81898">Read</a> ()</td></tr>
-<tr class="memdesc:a260a692346cfbfaaa23a1075def81898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances the reader to the next record. If the header hasn't been read yet, it'll automatically be read along with the first record.  <a href="#a260a692346cfbfaaa23a1075def81898">More...</a><br/></td></tr>
-<tr class="separator:a260a692346cfbfaaa23a1075def81898"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3051b174bf5018e7480e6c4e53fbeeb5"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">GetField</a> (int index)</td></tr>
-<tr class="memdesc:a3051b174bf5018e7480e6c4e53fbeeb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw field at position (column) index.  <a href="#a3051b174bf5018e7480e6c4e53fbeeb5">More...</a><br/></td></tr>
-<tr class="separator:a3051b174bf5018e7480e6c4e53fbeeb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef0f82a96420210343b447e7709400ae"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#aef0f82a96420210343b447e7709400ae">GetField</a> (string name)</td></tr>
-<tr class="memdesc:aef0f82a96420210343b447e7709400ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw field at position (column) name.  <a href="#aef0f82a96420210343b447e7709400ae">More...</a><br/></td></tr>
-<tr class="separator:aef0f82a96420210343b447e7709400ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89d1e21e131f988e0959c5edff4f982f"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a89d1e21e131f988e0959c5edff4f982f">GetField</a> (string name, int index)</td></tr>
-<tr class="memdesc:a89d1e21e131f988e0959c5edff4f982f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw field at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name.  <a href="#a89d1e21e131f988e0959c5edff4f982f">More...</a><br/></td></tr>
-<tr class="separator:a89d1e21e131f988e0959c5edff4f982f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a139fd51e035dc42bfc820371209b9782"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a139fd51e035dc42bfc820371209b9782">GetField</a> (Type type, int index)</td></tr>
-<tr class="memdesc:a139fd51e035dc42bfc820371209b9782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Object using the specified ITypeConverter.  <a href="#a139fd51e035dc42bfc820371209b9782">More...</a><br/></td></tr>
-<tr class="separator:a139fd51e035dc42bfc820371209b9782"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c">GetField</a> (Type type, string name)</td></tr>
-<tr class="memdesc:a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Object using the specified ITypeConverter.  <a href="#a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c">More...</a><br/></td></tr>
-<tr class="separator:a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0128a2e48bd24db451e64b17b4631ae"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ae0128a2e48bd24db451e64b17b4631ae">GetField</a> (Type type, string name, int index)</td></tr>
-<tr class="memdesc:ae0128a2e48bd24db451e64b17b4631ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Object using the specified ITypeConverter.  <a href="#ae0128a2e48bd24db451e64b17b4631ae">More...</a><br/></td></tr>
-<tr class="separator:ae0128a2e48bd24db451e64b17b4631ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc16f1e7d5c552c8adb86087c8774b43"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#acc16f1e7d5c552c8adb86087c8774b43">GetField</a> (Type type, int index, <a class="el" href="a00123.html">ITypeConverter</a> converter)</td></tr>
-<tr class="memdesc:acc16f1e7d5c552c8adb86087c8774b43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Object using the specified ITypeConverter.  <a href="#acc16f1e7d5c552c8adb86087c8774b43">More...</a><br/></td></tr>
-<tr class="separator:acc16f1e7d5c552c8adb86087c8774b43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3fce0bfa735dc92844d51d756396892"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ad3fce0bfa735dc92844d51d756396892">GetField</a> (Type type, string name, <a class="el" href="a00123.html">ITypeConverter</a> converter)</td></tr>
-<tr class="memdesc:ad3fce0bfa735dc92844d51d756396892"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Object using the specified ITypeConverter.  <a href="#ad3fce0bfa735dc92844d51d756396892">More...</a><br/></td></tr>
-<tr class="separator:ad3fce0bfa735dc92844d51d756396892"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04389e3edb60cc2ab9760668e7781518"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a04389e3edb60cc2ab9760668e7781518">GetField</a> (Type type, string name, int index, <a class="el" href="a00123.html">ITypeConverter</a> converter)</td></tr>
-<tr class="memdesc:a04389e3edb60cc2ab9760668e7781518"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Object using the specified ITypeConverter.  <a href="#a04389e3edb60cc2ab9760668e7781518">More...</a><br/></td></tr>
-<tr class="separator:a04389e3edb60cc2ab9760668e7781518"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5282bab4799899c6c986fa4189eea0a"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#af5282bab4799899c6c986fa4189eea0a">GetField&lt; T &gt;</a> (int index)</td></tr>
-<tr class="memdesc:af5282bab4799899c6c986fa4189eea0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) index.  <a href="#af5282bab4799899c6c986fa4189eea0a">More...</a><br/></td></tr>
-<tr class="separator:af5282bab4799899c6c986fa4189eea0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3b292ed7d991a8e975f67fb8ddde859"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#af3b292ed7d991a8e975f67fb8ddde859">GetField&lt; T &gt;</a> (string name)</td></tr>
-<tr class="memdesc:af3b292ed7d991a8e975f67fb8ddde859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name.  <a href="#af3b292ed7d991a8e975f67fb8ddde859">More...</a><br/></td></tr>
-<tr class="separator:af3b292ed7d991a8e975f67fb8ddde859"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8c349da18823eb8c30911d891b3e3bc"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#aa8c349da18823eb8c30911d891b3e3bc">GetField&lt; T &gt;</a> (string name, int index)</td></tr>
-<tr class="memdesc:aa8c349da18823eb8c30911d891b3e3bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name.  <a href="#aa8c349da18823eb8c30911d891b3e3bc">More...</a><br/></td></tr>
-<tr class="separator:aa8c349da18823eb8c30911d891b3e3bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ae4f95a7b9bbbbf2ef19009da81dd18"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a8ae4f95a7b9bbbbf2ef19009da81dd18">GetField&lt; T &gt;</a> (int index, <a class="el" href="a00123.html">ITypeConverter</a> converter)</td></tr>
-<tr class="memdesc:a8ae4f95a7b9bbbbf2ef19009da81dd18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) index using the given ITypeConverter.  <a href="#a8ae4f95a7b9bbbbf2ef19009da81dd18">More...</a><br/></td></tr>
-<tr class="separator:a8ae4f95a7b9bbbbf2ef19009da81dd18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a640689c76826aafd8c79ff71d4f0992d"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a640689c76826aafd8c79ff71d4f0992d">GetField&lt; T &gt;</a> (string name, <a class="el" href="a00123.html">ITypeConverter</a> converter)</td></tr>
-<tr class="memdesc:a640689c76826aafd8c79ff71d4f0992d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name using the given ITypeConverter.  <a href="#a640689c76826aafd8c79ff71d4f0992d">More...</a><br/></td></tr>
-<tr class="separator:a640689c76826aafd8c79ff71d4f0992d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8851c2bc99ee403fc003f62ae96b090c"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a8851c2bc99ee403fc003f62ae96b090c">GetField&lt; T &gt;</a> (string name, int index, <a class="el" href="a00123.html">ITypeConverter</a> converter)</td></tr>
-<tr class="memdesc:a8851c2bc99ee403fc003f62ae96b090c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name.  <a href="#a8851c2bc99ee403fc003f62ae96b090c">More...</a><br/></td></tr>
-<tr class="separator:a8851c2bc99ee403fc003f62ae96b090c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a787094f29179fcf06cec6db42fa59de3"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a787094f29179fcf06cec6db42fa59de3">GetField&lt; T, TConverter &gt;</a> (int index)</td></tr>
-<tr class="memdesc:a787094f29179fcf06cec6db42fa59de3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) index using the given ITypeConverter.  <a href="#a787094f29179fcf06cec6db42fa59de3">More...</a><br/></td></tr>
-<tr class="separator:a787094f29179fcf06cec6db42fa59de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7ea281792a1e0e8f64991062a3acffb"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ae7ea281792a1e0e8f64991062a3acffb">GetField&lt; T, TConverter &gt;</a> (string name)</td></tr>
-<tr class="memdesc:ae7ea281792a1e0e8f64991062a3acffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name using the given ITypeConverter.  <a href="#ae7ea281792a1e0e8f64991062a3acffb">More...</a><br/></td></tr>
-<tr class="separator:ae7ea281792a1e0e8f64991062a3acffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a55c1b2fc98eb7ef4bdb73e80f4b093"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a6a55c1b2fc98eb7ef4bdb73e80f4b093">GetField&lt; T, TConverter &gt;</a> (string name, int index)</td></tr>
-<tr class="memdesc:a6a55c1b2fc98eb7ef4bdb73e80f4b093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name.  <a href="#a6a55c1b2fc98eb7ef4bdb73e80f4b093">More...</a><br/></td></tr>
-<tr class="separator:a6a55c1b2fc98eb7ef4bdb73e80f4b093"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a476c426866e69a8c1b81f40956e0b538"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a476c426866e69a8c1b81f40956e0b538">TryGetField&lt; T &gt;</a> (int index, out T field)</td></tr>
-<tr class="memdesc:a476c426866e69a8c1b81f40956e0b538"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) index.  <a href="#a476c426866e69a8c1b81f40956e0b538">More...</a><br/></td></tr>
-<tr class="separator:a476c426866e69a8c1b81f40956e0b538"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ac55ecd014a239d9b0b62345637b745"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a1ac55ecd014a239d9b0b62345637b745">TryGetField&lt; T &gt;</a> (string name, out T field)</td></tr>
-<tr class="memdesc:a1ac55ecd014a239d9b0b62345637b745"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name.  <a href="#a1ac55ecd014a239d9b0b62345637b745">More...</a><br/></td></tr>
-<tr class="separator:a1ac55ecd014a239d9b0b62345637b745"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c2667e997378fa984f44d7d5e62492b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a4c2667e997378fa984f44d7d5e62492b">TryGetField&lt; T &gt;</a> (string name, int index, out T field)</td></tr>
-<tr class="memdesc:a4c2667e997378fa984f44d7d5e62492b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name.  <a href="#a4c2667e997378fa984f44d7d5e62492b">More...</a><br/></td></tr>
-<tr class="separator:a4c2667e997378fa984f44d7d5e62492b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8aaa34c75b213e3774394b3f912842f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#aa8aaa34c75b213e3774394b3f912842f">TryGetField&lt; T &gt;</a> (int index, <a class="el" href="a00123.html">ITypeConverter</a> converter, out T field)</td></tr>
-<tr class="memdesc:aa8aaa34c75b213e3774394b3f912842f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) index using the specified ITypeConverter.  <a href="#aa8aaa34c75b213e3774394b3f912842f">More...</a><br/></td></tr>
-<tr class="separator:aa8aaa34c75b213e3774394b3f912842f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33e4e39bf2395a79a90cb02554c84d22"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a33e4e39bf2395a79a90cb02554c84d22">TryGetField&lt; T &gt;</a> (string name, <a class="el" href="a00123.html">ITypeConverter</a> converter, out T field)</td></tr>
-<tr class="memdesc:a33e4e39bf2395a79a90cb02554c84d22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name using the specified ITypeConverter.  <a href="#a33e4e39bf2395a79a90cb02554c84d22">More...</a><br/></td></tr>
-<tr class="separator:a33e4e39bf2395a79a90cb02554c84d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d001b5e65d063db9f102b720da0edf2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a2d001b5e65d063db9f102b720da0edf2">TryGetField&lt; T &gt;</a> (string name, int index, <a class="el" href="a00123.html">ITypeConverter</a> converter, out T field)</td></tr>
-<tr class="memdesc:a2d001b5e65d063db9f102b720da0edf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name using the specified ITypeConverter.  <a href="#a2d001b5e65d063db9f102b720da0edf2">More...</a><br/></td></tr>
-<tr class="separator:a2d001b5e65d063db9f102b720da0edf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5df5f7bc974ec541c25bf63b29ebf618"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a5df5f7bc974ec541c25bf63b29ebf618">TryGetField&lt; T, TConverter &gt;</a> (int index, out T field)</td></tr>
-<tr class="memdesc:a5df5f7bc974ec541c25bf63b29ebf618"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) index using the specified ITypeConverter.  <a href="#a5df5f7bc974ec541c25bf63b29ebf618">More...</a><br/></td></tr>
-<tr class="separator:a5df5f7bc974ec541c25bf63b29ebf618"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bd7b721a7b4acbc21050817aca71f21"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a9bd7b721a7b4acbc21050817aca71f21">TryGetField&lt; T, TConverter &gt;</a> (string name, out T field)</td></tr>
-<tr class="memdesc:a9bd7b721a7b4acbc21050817aca71f21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name using the specified ITypeConverter.  <a href="#a9bd7b721a7b4acbc21050817aca71f21">More...</a><br/></td></tr>
-<tr class="separator:a9bd7b721a7b4acbc21050817aca71f21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ecc5b03e5e818163aca86b979b01158"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a8ecc5b03e5e818163aca86b979b01158">TryGetField&lt; T, TConverter &gt;</a> (string name, int index, out T field)</td></tr>
-<tr class="memdesc:a8ecc5b03e5e818163aca86b979b01158"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field converted to Type T at position (column) name using the specified ITypeConverter.  <a href="#a8ecc5b03e5e818163aca86b979b01158">More...</a><br/></td></tr>
-<tr class="separator:a8ecc5b03e5e818163aca86b979b01158"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49ad028b358d5a0642d8108b3bb87ff7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a49ad028b358d5a0642d8108b3bb87ff7">IsRecordEmpty</a> ()</td></tr>
-<tr class="memdesc:a49ad028b358d5a0642d8108b3bb87ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether the current record is empty. A record is considered empty if all fields are empty.  <a href="#a49ad028b358d5a0642d8108b3bb87ff7">More...</a><br/></td></tr>
-<tr class="separator:a49ad028b358d5a0642d8108b3bb87ff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae82d451b6e26742a685d652c84c0b807"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ae82d451b6e26742a685d652c84c0b807">GetRecord&lt; T &gt;</a> ()</td></tr>
-<tr class="memdesc:ae82d451b6e26742a685d652c84c0b807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the record converted into Type T.  <a href="#ae82d451b6e26742a685d652c84c0b807">More...</a><br/></td></tr>
-<tr class="separator:ae82d451b6e26742a685d652c84c0b807"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a911748932ed897a2e7086c0c49bdceea"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a911748932ed897a2e7086c0c49bdceea">GetRecord</a> (Type type)</td></tr>
-<tr class="memdesc:a911748932ed897a2e7086c0c49bdceea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the record.  <a href="#a911748932ed897a2e7086c0c49bdceea">More...</a><br/></td></tr>
-<tr class="separator:a911748932ed897a2e7086c0c49bdceea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a880d3ee25c0b55bd9a193c61cd116e21"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a880d3ee25c0b55bd9a193c61cd116e21">GetRecords&lt; T &gt;</a> ()</td></tr>
-<tr class="memdesc:a880d3ee25c0b55bd9a193c61cd116e21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the records in the CSV file and converts each to Type T. The Read method should not be used when using this.  <a href="#a880d3ee25c0b55bd9a193c61cd116e21">More...</a><br/></td></tr>
-<tr class="separator:a880d3ee25c0b55bd9a193c61cd116e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f1187e434201dc22036f2f48cc4d050"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a8f1187e434201dc22036f2f48cc4d050">GetRecords</a> (Type type)</td></tr>
-<tr class="memdesc:a8f1187e434201dc22036f2f48cc4d050"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the records in the CSV file and converts each to Type T. The Read method should not be used when using this.  <a href="#a8f1187e434201dc22036f2f48cc4d050">More...</a><br/></td></tr>
-<tr class="separator:a8f1187e434201dc22036f2f48cc4d050"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae903a343efdafa8b22236184dfcf7a97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ae903a343efdafa8b22236184dfcf7a97">ClearRecordCache&lt; T &gt;</a> ()</td></tr>
-<tr class="memdesc:ae903a343efdafa8b22236184dfcf7a97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the record cache for the given type. After GetRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, ClearRecordCache{T} needs to be called to update the record cache.  <a href="#ae903a343efdafa8b22236184dfcf7a97">More...</a><br/></td></tr>
-<tr class="separator:ae903a343efdafa8b22236184dfcf7a97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa035080da331f40071b29c17b1f8c228"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#aa035080da331f40071b29c17b1f8c228">ClearRecordCache</a> (Type type)</td></tr>
-<tr class="memdesc:aa035080da331f40071b29c17b1f8c228"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the record cache for the given type. After ICsvReaderRow.GetRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <a class="el" href="a00115.html#aa035080da331f40071b29c17b1f8c228" title="Clears the record cache for the given type. After ICsvReaderRow.GetRecord{T} is called the first time...">ClearRecordCache( Type )</a> needs to be called to update the record cache.  <a href="#aa035080da331f40071b29c17b1f8c228">More...</a><br/></td></tr>
-<tr class="separator:aa035080da331f40071b29c17b1f8c228"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87251d0ff95c599cf3f6bd1cbb8204d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a87251d0ff95c599cf3f6bd1cbb8204d8">ClearRecordCache</a> ()</td></tr>
-<tr class="memdesc:a87251d0ff95c599cf3f6bd1cbb8204d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the record cache for all types. After ICsvReaderRow.GetRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <a class="el" href="a00115.html#a87251d0ff95c599cf3f6bd1cbb8204d8" title="Clears the record cache for all types. After ICsvReaderRow.GetRecord{T} is called the first time...">ClearRecordCache()</a> needs to be called to update the record cache.  <a href="#a87251d0ff95c599cf3f6bd1cbb8204d8">More...</a><br/></td></tr>
-<tr class="separator:a87251d0ff95c599cf3f6bd1cbb8204d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
-Properties</h2></td></tr>
-<tr class="memitem:a7576cb7637038bcc2e83646cef26a33b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00063.html">CsvConfiguration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114.html#a7576cb7637038bcc2e83646cef26a33b">Configuration</a><code> [get]</code></td></tr>
-<tr class="memdesc:a7576cb7637038bcc2e83646cef26a33b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the configuration.  <a href="#a7576cb7637038bcc2e83646cef26a33b">More...</a><br/></td></tr>
-<tr class="separator:a7576cb7637038bcc2e83646cef26a33b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adce9913bb37fc0b5a432e70d75d3b03b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00113.html">ICsvParser</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114.html#adce9913bb37fc0b5a432e70d75d3b03b">Parser</a><code> [get]</code></td></tr>
-<tr class="memdesc:adce9913bb37fc0b5a432e70d75d3b03b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the parser.  <a href="#adce9913bb37fc0b5a432e70d75d3b03b">More...</a><br/></td></tr>
-<tr class="separator:adce9913bb37fc0b5a432e70d75d3b03b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66061c488832f52a28f101272403dd00"><td class="memItemLeft" align="right" valign="top">string[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114.html#a66061c488832f52a28f101272403dd00">FieldHeaders</a><code> [get]</code></td></tr>
-<tr class="memdesc:a66061c488832f52a28f101272403dd00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field headers.  <a href="#a66061c488832f52a28f101272403dd00">More...</a><br/></td></tr>
-<tr class="separator:a66061c488832f52a28f101272403dd00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e8958e51331591b1d9e811e32bd92d0"><td class="memItemLeft" align="right" valign="top">string[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a4e8958e51331591b1d9e811e32bd92d0">CurrentRecord</a><code> [get]</code></td></tr>
-<tr class="memdesc:a4e8958e51331591b1d9e811e32bd92d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current record;  <a href="#a4e8958e51331591b1d9e811e32bd92d0">More...</a><br/></td></tr>
-<tr class="separator:a4e8958e51331591b1d9e811e32bd92d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1bd960358282c70f0b85de90f00b446"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#ac1bd960358282c70f0b85de90f00b446">Row</a><code> [get]</code></td></tr>
-<tr class="memdesc:ac1bd960358282c70f0b85de90f00b446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current row.  <a href="#ac1bd960358282c70f0b85de90f00b446">More...</a><br/></td></tr>
-<tr class="separator:ac1bd960358282c70f0b85de90f00b446"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45d5b14c7382418d90b4c085c2bdc7dc"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a45d5b14c7382418d90b4c085c2bdc7dc">this[int index]</a><code> [get]</code></td></tr>
-<tr class="memdesc:a45d5b14c7382418d90b4c085c2bdc7dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw field at position (column) index.  <a href="#a45d5b14c7382418d90b4c085c2bdc7dc">More...</a><br/></td></tr>
-<tr class="separator:a45d5b14c7382418d90b4c085c2bdc7dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a999cf88bd8eb0b59c65b235cfe0e2835"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#a999cf88bd8eb0b59c65b235cfe0e2835">this[string name]</a><code> [get]</code></td></tr>
-<tr class="memdesc:a999cf88bd8eb0b59c65b235cfe0e2835"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw field at position (column) name.  <a href="#a999cf88bd8eb0b59c65b235cfe0e2835">More...</a><br/></td></tr>
-<tr class="separator:a999cf88bd8eb0b59c65b235cfe0e2835"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe611a2c471e6f11da579297bb876fb1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html#abe611a2c471e6f11da579297bb876fb1">this[string name, int index]</a><code> [get]</code></td></tr>
-<tr class="memdesc:abe611a2c471e6f11da579297bb876fb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw field at position (column) name.  <a href="#abe611a2c471e6f11da579297bb876fb1">More...</a><br/></td></tr>
-<tr class="separator:abe611a2c471e6f11da579297bb876fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b68cbd7292c76037959d51ecc7c374d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00115.html">ICsvParser</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114.html#a9b68cbd7292c76037959d51ecc7c374d">CreateParser</a> (TextReader reader, <a class="el" href="a00065.html">CsvConfiguration</a> configuration)</td></tr>
+<tr class="memdesc:a9b68cbd7292c76037959d51ecc7c374d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="a00115.html" title="Defines methods used the parse a CSV file. ">ICsvParser</a>.  <a href="#a9b68cbd7292c76037959d51ecc7c374d">More...</a><br/></td></tr>
+<tr class="separator:a9b68cbd7292c76037959d51ecc7c374d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab085a057f1b80ebf03ed2247d8759314"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00115.html">ICsvParser</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114.html#ab085a057f1b80ebf03ed2247d8759314">CreateParser</a> (TextReader reader)</td></tr>
+<tr class="memdesc:ab085a057f1b80ebf03ed2247d8759314"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="a00115.html" title="Defines methods used the parse a CSV file. ">ICsvParser</a>.  <a href="#ab085a057f1b80ebf03ed2247d8759314">More...</a><br/></td></tr>
+<tr class="separator:ab085a057f1b80ebf03ed2247d8759314"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade2a6e776fad6aa36c201901d6427058"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00116.html">ICsvReader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114.html#ade2a6e776fad6aa36c201901d6427058">CreateReader</a> (TextReader reader, <a class="el" href="a00065.html">CsvConfiguration</a> configuration)</td></tr>
+<tr class="memdesc:ade2a6e776fad6aa36c201901d6427058"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="a00116.html" title="Defines methods used to read parsed data from a CSV file. ">ICsvReader</a>.  <a href="#ade2a6e776fad6aa36c201901d6427058">More...</a><br/></td></tr>
+<tr class="separator:ade2a6e776fad6aa36c201901d6427058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1ebb61244b36ddecb986d047ac9c217"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00116.html">ICsvReader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114.html#ae1ebb61244b36ddecb986d047ac9c217">CreateReader</a> (TextReader reader)</td></tr>
+<tr class="memdesc:ae1ebb61244b36ddecb986d047ac9c217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="a00116.html" title="Defines methods used to read parsed data from a CSV file. ">ICsvReader</a>.  <a href="#ae1ebb61244b36ddecb986d047ac9c217">More...</a><br/></td></tr>
+<tr class="separator:ae1ebb61244b36ddecb986d047ac9c217"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5b755ba2825f781d501402f1d765b33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00116.html">ICsvReader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114.html#af5b755ba2825f781d501402f1d765b33">CreateReader</a> (<a class="el" href="a00115.html">ICsvParser</a> parser)</td></tr>
+<tr class="memdesc:af5b755ba2825f781d501402f1d765b33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="a00116.html" title="Defines methods used to read parsed data from a CSV file. ">ICsvReader</a>.  <a href="#af5b755ba2825f781d501402f1d765b33">More...</a><br/></td></tr>
+<tr class="separator:af5b755ba2825f781d501402f1d765b33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae77852d2702bc2caad76c045a538933e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00119.html">ICsvWriter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114.html#ae77852d2702bc2caad76c045a538933e">CreateWriter</a> (TextWriter writer, <a class="el" href="a00065.html">CsvConfiguration</a> configuration)</td></tr>
+<tr class="memdesc:ae77852d2702bc2caad76c045a538933e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="a00119.html" title="Defines methods used to write to a CSV file. ">ICsvWriter</a>.  <a href="#ae77852d2702bc2caad76c045a538933e">More...</a><br/></td></tr>
+<tr class="separator:ae77852d2702bc2caad76c045a538933e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6df59078b6245e653c06c00358b402a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00119.html">ICsvWriter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114.html#ab6df59078b6245e653c06c00358b402a">CreateWriter</a> (TextWriter writer)</td></tr>
+<tr class="memdesc:ab6df59078b6245e653c06c00358b402a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="a00119.html" title="Defines methods used to write to a CSV file. ">ICsvWriter</a>.  <a href="#ab6df59078b6245e653c06c00358b402a">More...</a><br/></td></tr>
+<tr class="separator:ab6df59078b6245e653c06c00358b402a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines methods used to read parsed data from a CSV file. </p>
+<div class="textblock"><p>Defines methods used to create <a class="el" href="a00340.html">CsvHelper</a> classes. </p>
 
-<p>Definition at line <a class="el" href="a00247_source.html#l00014">14</a> of file <a class="el" href="a00247_source.html">ICsvReader.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00248_source.html#l00014">14</a> of file <a class="el" href="a00248_source.html">ICsvFactory.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="aa035080da331f40071b29c17b1f8c228"></a>
+<a class="anchor" id="a9b68cbd7292c76037959d51ecc7c374d"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CsvHelper.ICsvReaderRow.ClearRecordCache </td>
+          <td class="memname"><a class="el" href="a00115.html">ICsvParser</a> CsvHelper.ICsvFactory.CreateParser </td>
           <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Clears the record cache for the given type. After ICsvReaderRow.GetRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <a class="el" href="a00115.html#aa035080da331f40071b29c17b1f8c228" title="Clears the record cache for the given type. After ICsvReaderRow.GetRecord{T} is called the first time...">ClearRecordCache( Type )</a> needs to be called to update the record cache. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>The type to invalidate.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a669ecad48ad94b03a06131e78faa767a">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a87251d0ff95c599cf3f6bd1cbb8204d8"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.ICsvReaderRow.ClearRecordCache </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Clears the record cache for all types. After ICsvReaderRow.GetRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <a class="el" href="a00115.html#a87251d0ff95c599cf3f6bd1cbb8204d8" title="Clears the record cache for all types. After ICsvReaderRow.GetRecord{T} is called the first time...">ClearRecordCache()</a> needs to be called to update the record cache. </p>
-
-<p>Implemented in <a class="el" href="a00077.html#a1e115e1f379009b2b1cb91e7c24fdd02">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae903a343efdafa8b22236184dfcf7a97"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="a00115.html#aa035080da331f40071b29c17b1f8c228">CsvHelper.ICsvReaderRow.ClearRecordCache</a>&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Clears the record cache for the given type. After GetRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, ClearRecordCache{T} needs to be called to update the record cache. </p>
-
-<p>Implemented in <a class="el" href="a00077.html#abc2052d47de1fc745579881daeae8806">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3051b174bf5018e7480e6c4e53fbeeb5"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string CsvHelper.ICsvReaderRow.GetField </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the raw field at position (column) index. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The raw field.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#ac1500fd628ea947c3ae05a7ce3fbd01a">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aef0f82a96420210343b447e7709400ae"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string CsvHelper.ICsvReaderRow.GetField </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the raw field at position (column) name. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The raw field.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a2dea592c2879215b86a4e49280492930">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a89d1e21e131f988e0959c5edff4f982f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string CsvHelper.ICsvReaderRow.GetField </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
+          <td class="paramtype">TextReader&#160;</td>
+          <td class="paramname"><em>reader</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="a00065.html">CsvConfiguration</a>&#160;</td>
+          <td class="paramname"><em>configuration</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -465,45 +186,64 @@ Properties</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Gets the raw field at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. </p>
+<p>Creates an <a class="el" href="a00115.html" title="Defines methods used the parse a CSV file. ">ICsvParser</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
+    <tr><td class="paramname">reader</td><td>The text reader to use for the csv parser.</td></tr>
+    <tr><td class="paramname">configuration</td><td>The configuration to use for the csv parser.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The raw field.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The created parser.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00077.html#aa1d5909bc0bb20045ece92b3448a5297">CsvHelper.CsvReader</a>.</p>
+<p>Implemented in <a class="el" href="a00067.html#a741fb4a1622778af65bfa27606bf6f25">CsvHelper.CsvFactory</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a139fd51e035dc42bfc820371209b9782"></a>
+<a class="anchor" id="ab085a057f1b80ebf03ed2247d8759314"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">object CsvHelper.ICsvReaderRow.GetField </td>
+          <td class="memname"><a class="el" href="a00115.html">ICsvParser</a> CsvHelper.ICsvFactory.CreateParser </td>
           <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
+          <td class="paramtype">TextReader&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates an <a class="el" href="a00115.html" title="Defines methods used the parse a CSV file. ">ICsvParser</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reader</td><td>The text reader to use for the csv parser.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The created parser.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00067.html#a07665ae71961a161552189877d11a5be">CsvHelper.CsvFactory</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ade2a6e776fad6aa36c201901d6427058"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00116.html">ICsvReader</a> CsvHelper.ICsvFactory.CreateReader </td>
+          <td>(</td>
+          <td class="paramtype">TextReader&#160;</td>
+          <td class="paramname"><em>reader</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="a00065.html">CsvConfiguration</a>&#160;</td>
+          <td class="paramname"><em>configuration</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -511,45 +251,91 @@ Properties</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Gets the field converted to Object using the specified ITypeConverter. </p>
+<p>Creates an <a class="el" href="a00116.html" title="Defines methods used to read parsed data from a CSV file. ">ICsvReader</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td>The type of the field.</td></tr>
-    <tr><td class="paramname">index</td><td>The index of the field.</td></tr>
+    <tr><td class="paramname">reader</td><td>The text reader to use for the csv reader.</td></tr>
+    <tr><td class="paramname">configuration</td><td>The configuration to use for the reader.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The field converted to Object.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The created reader.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00077.html#a35724e33388ac5772ccfa0526ca812fc">CsvHelper.CsvReader</a>.</p>
+<p>Implemented in <a class="el" href="a00067.html#a12b1358fc847e407519a76b7fe003a34">CsvHelper.CsvFactory</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c"></a>
+<a class="anchor" id="ae1ebb61244b36ddecb986d047ac9c217"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">object CsvHelper.ICsvReaderRow.GetField </td>
+          <td class="memname"><a class="el" href="a00116.html">ICsvReader</a> CsvHelper.ICsvFactory.CreateReader </td>
           <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
+          <td class="paramtype">TextReader&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates an <a class="el" href="a00116.html" title="Defines methods used to read parsed data from a CSV file. ">ICsvReader</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reader</td><td>The text reader to use for the csv reader.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The created reader.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00067.html#a77bcca4ad5023f5628c519c2914da5bb">CsvHelper.CsvFactory</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af5b755ba2825f781d501402f1d765b33"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00116.html">ICsvReader</a> CsvHelper.ICsvFactory.CreateReader </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00115.html">ICsvParser</a>&#160;</td>
+          <td class="paramname"><em>parser</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates an <a class="el" href="a00116.html" title="Defines methods used to read parsed data from a CSV file. ">ICsvReader</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parser</td><td>The parser used to create the reader.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The created reader.</dd></dl>
+
+<p>Implemented in <a class="el" href="a00067.html#a4e7e06df9265cbd53219c964424cec1e">CsvHelper.CsvFactory</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae77852d2702bc2caad76c045a538933e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00119.html">ICsvWriter</a> CsvHelper.ICsvFactory.CreateWriter </td>
+          <td>(</td>
+          <td class="paramtype">TextWriter&#160;</td>
+          <td class="paramname"><em>writer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="a00065.html">CsvConfiguration</a>&#160;</td>
+          <td class="paramname"><em>configuration</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -557,1666 +343,59 @@ Properties</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Gets the field converted to Object using the specified ITypeConverter. </p>
+<p>Creates an <a class="el" href="a00119.html" title="Defines methods used to write to a CSV file. ">ICsvWriter</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td>The type of the field.</td></tr>
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
+    <tr><td class="paramname">writer</td><td>The text writer to use for the csv writer.</td></tr>
+    <tr><td class="paramname">configuration</td><td>The configuration to use for the writer.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The field converted to Object.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The created writer.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00077.html#a5e255cb4bfa8d7a9dc364660cb079415">CsvHelper.CsvReader</a>.</p>
+<p>Implemented in <a class="el" href="a00067.html#a6bfe534b70ff92ea3809f1a372d160cc">CsvHelper.CsvFactory</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae0128a2e48bd24db451e64b17b4631ae"></a>
+<a class="anchor" id="ab6df59078b6245e653c06c00358b402a"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">object CsvHelper.ICsvReaderRow.GetField </td>
+          <td class="memname"><a class="el" href="a00119.html">ICsvWriter</a> CsvHelper.ICsvFactory.CreateWriter </td>
           <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">TextWriter&#160;</td>
+          <td class="paramname"><em>writer</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Gets the field converted to Object using the specified ITypeConverter. </p>
+<p>Creates an <a class="el" href="a00119.html" title="Defines methods used to write to a CSV file. ">ICsvWriter</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td>The type of the field.</td></tr>
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
+    <tr><td class="paramname">writer</td><td>The text writer to use for the csv writer.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The field converted to Object.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The created writer.</dd></dl>
 
-<p>Implemented in <a class="el" href="a00077.html#a3fb351f9f77bb39bddc05c76691e830f">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acc16f1e7d5c552c8adb86087c8774b43"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">object CsvHelper.ICsvReaderRow.GetField </td>
-          <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
-          <td class="paramname"><em>converter</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Object using the specified ITypeConverter. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>The type of the field.</td></tr>
-    <tr><td class="paramname">index</td><td>The index of the field.</td></tr>
-    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Object.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The field converted to Object.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#ae574612025171f2169e3e3683067d326">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad3fce0bfa735dc92844d51d756396892"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">object CsvHelper.ICsvReaderRow.GetField </td>
-          <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
-          <td class="paramname"><em>converter</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Object using the specified ITypeConverter. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>The type of the field.</td></tr>
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Object.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The field converted to Object.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a29d9cc37e0a7fd6a08cba9626ebdfe69">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a04389e3edb60cc2ab9760668e7781518"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">object CsvHelper.ICsvReaderRow.GetField </td>
-          <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
-          <td class="paramname"><em>converter</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Object using the specified ITypeConverter. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>The type of the field.</td></tr>
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
-    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Object.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The field converted to Object.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a08ff19d0e0b2c10b644e14621966f2fa">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af5282bab4799899c6c986fa4189eea0a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) index. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a6a43cfaf39caea93ecd87e506be7b404">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af3b292ed7d991a8e975f67fb8ddde859"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) name. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a8ebe0d6e7644eebbbbddef3c9d2922be">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa8c349da18823eb8c30911d891b3e3bc"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#afd2c85d724fdc84220a15e5f576cb673">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8ae4f95a7b9bbbbf2ef19009da81dd18"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
-          <td class="paramname"><em>converter</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) index using the given ITypeConverter. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
-    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a2b593a60de4dc4d776abde5c29232d0d">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a640689c76826aafd8c79ff71d4f0992d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
-          <td class="paramname"><em>converter</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) name using the given ITypeConverter. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#aadec530254222a2c6fb0e25774a7498b">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8851c2bc99ee403fc003f62ae96b090c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
-          <td class="paramname"><em>converter</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
-    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a607c6c23ce887b6de60f81c1ea2a8348">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a787094f29179fcf06cec6db42fa59de3"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T, TConverter &gt; </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) index using the given ITypeConverter. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-    <tr><td class="paramname">TConverter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#ac989008aec99a6462d9980a1d8a87072">CsvHelper.CsvReader</a>.</p>
-<div class="typeconstraint">
-<dl><dt><b>Type Constraints</b></dt><dd>
-<table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em>TConverter</em></td><td>&#160;:</td><td valign="top"><em>ITypeConverter</em></td><td>&#160;</td></tr>
-</table>
-</dl>
-</div>
-
-</div>
-</div>
-<a class="anchor" id="ae7ea281792a1e0e8f64991062a3acffb"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T, TConverter &gt; </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) name using the given ITypeConverter. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-    <tr><td class="paramname">TConverter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#ac76d4fabc62e9ac896c1b2e6e861ed11">CsvHelper.CsvReader</a>.</p>
-<div class="typeconstraint">
-<dl><dt><b>Type Constraints</b></dt><dd>
-<table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em>TConverter</em></td><td>&#160;:</td><td valign="top"><em>ITypeConverter</em></td><td>&#160;</td></tr>
-</table>
-</dl>
-</div>
-
-</div>
-</div>
-<a class="anchor" id="a6a55c1b2fc98eb7ef4bdb73e80f4b093"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T <a class="el" href="a00115.html#a3051b174bf5018e7480e6c4e53fbeeb5">CsvHelper.ICsvReaderRow.GetField</a>&lt; T, TConverter &gt; </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-    <tr><td class="paramname">TConverter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The field converted to Type T.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a6b77ca85326f76d006935275b46342f0">CsvHelper.CsvReader</a>.</p>
-<div class="typeconstraint">
-<dl><dt><b>Type Constraints</b></dt><dd>
-<table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em>TConverter</em></td><td>&#160;:</td><td valign="top"><em>ITypeConverter</em></td><td>&#160;</td></tr>
-</table>
-</dl>
-</div>
-
-</div>
-</div>
-<a class="anchor" id="a911748932ed897a2e7086c0c49bdceea"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">object CsvHelper.ICsvReaderRow.GetRecord </td>
-          <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the record. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>The Type of the record.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The record.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a10680de48d9c21ef1792661947f9f601">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae82d451b6e26742a685d652c84c0b807"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T <a class="el" href="a00115.html#a911748932ed897a2e7086c0c49bdceea">CsvHelper.ICsvReaderRow.GetRecord</a>&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the record converted into Type T. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the record.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The record converted to Type T.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#ac607c1182168a5f9c7fa1642670ad320">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8f1187e434201dc22036f2f48cc4d050"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">IEnumerable&lt;object&gt; CsvHelper.ICsvReaderRow.GetRecords </td>
-          <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets all the records in the CSV file and converts each to Type T. The Read method should not be used when using this. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>The Type of the record.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>An IList{Object} of records.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#aaa94b8f27e410194fbaadd75f38b030e">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a880d3ee25c0b55bd9a193c61cd116e21"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">IEnumerable&lt;T&gt; <a class="el" href="a00115.html#a8f1187e434201dc22036f2f48cc4d050">CsvHelper.ICsvReaderRow.GetRecords</a>&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets all the records in the CSV file and converts each to Type T. The Read method should not be used when using this. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the record.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>An IList{T} of records.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#afed61bbcd2a120487498acd36e6ae2f2">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a49ad028b358d5a0642d8108b3bb87ff7"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CsvHelper.ICsvReaderRow.IsRecordEmpty </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Determines whether the current record is empty. A record is considered empty if all fields are empty. </p>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if [is record empty]; otherwise, <code>false</code>. </dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a9f3f7336e8ceebafbfe0959508a2a9f0">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a260a692346cfbfaaa23a1075def81898"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CsvHelper.ICsvReader.Read </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Advances the reader to the next record. If the header hasn't been read yet, it'll automatically be read along with the first record. </p>
-<dl class="section return"><dt>Returns</dt><dd>True if there are more records, otherwise false.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#af1f0d4d722e93df9da30fe60b89ff2d6">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac90848a26c5ce46d1acb7719e669897b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CsvHelper.ICsvReader.ReadHeader </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads the header field without reading the first row. </p>
-<dl class="section return"><dt>Returns</dt><dd>True if there are more records, otherwise false.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a57ba5fa523de97bd2cf068973329090d">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a476c426866e69a8c1b81f40956e0b538"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">out T&#160;</td>
-          <td class="paramname"><em>field</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) index. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
-    <tr><td class="paramname">field</td><td>The field converted to type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#ae5531b6fa3247cf038ca6a9c20ca43dd">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1ac55ecd014a239d9b0b62345637b745"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">out T&#160;</td>
-          <td class="paramname"><em>field</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) name. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#aab6eff4536568c7c0268616aa2b9a674">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4c2667e997378fa984f44d7d5e62492b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">out T&#160;</td>
-          <td class="paramname"><em>field</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
-    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a6b32f9207db53d8d09598ee2d743d06b">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa8aaa34c75b213e3774394b3f912842f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
-          <td class="paramname"><em>converter</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">out T&#160;</td>
-          <td class="paramname"><em>field</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) index using the specified ITypeConverter. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
-    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
-    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#aa8622306f74940386663fa4020eb8971">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a33e4e39bf2395a79a90cb02554c84d22"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
-          <td class="paramname"><em>converter</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">out T&#160;</td>
-          <td class="paramname"><em>field</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) name using the specified ITypeConverter. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
-    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#ade47afe2ea6cdd4439265e9364626c6b">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2d001b5e65d063db9f102b720da0edf2"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00123.html">ITypeConverter</a>&#160;</td>
-          <td class="paramname"><em>converter</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">out T&#160;</td>
-          <td class="paramname"><em>field</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) name using the specified ITypeConverter. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
-    <tr><td class="paramname">converter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
-    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a152975903578da620893d21cba2f8afa">CsvHelper.CsvReader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5df5f7bc974ec541c25bf63b29ebf618"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T, TConverter &gt; </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">out T&#160;</td>
-          <td class="paramname"><em>field</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) index using the specified ITypeConverter. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-    <tr><td class="paramname">TConverter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
-    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a58c361c230abb87ae13f97646748be61">CsvHelper.CsvReader</a>.</p>
-<div class="typeconstraint">
-<dl><dt><b>Type Constraints</b></dt><dd>
-<table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em>TConverter</em></td><td>&#160;:</td><td valign="top"><em>ITypeConverter</em></td><td>&#160;</td></tr>
-</table>
-</dl>
-</div>
-
-</div>
-</div>
-<a class="anchor" id="a9bd7b721a7b4acbc21050817aca71f21"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T, TConverter &gt; </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">out T&#160;</td>
-          <td class="paramname"><em>field</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) name using the specified ITypeConverter. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-    <tr><td class="paramname">TConverter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a1ad85089ce2a6eae15c48e21d5da6c47">CsvHelper.CsvReader</a>.</p>
-<div class="typeconstraint">
-<dl><dt><b>Type Constraints</b></dt><dd>
-<table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em>TConverter</em></td><td>&#160;:</td><td valign="top"><em>ITypeConverter</em></td><td>&#160;</td></tr>
-</table>
-</dl>
-</div>
-
-</div>
-</div>
-<a class="anchor" id="a8ecc5b03e5e818163aca86b979b01158"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CsvHelper.ICsvReaderRow.TryGetField&lt; T, TConverter &gt; </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">out T&#160;</td>
-          <td class="paramname"><em>field</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field converted to Type T at position (column) name using the specified ITypeConverter. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the field.</td></tr>
-    <tr><td class="paramname">TConverter</td><td>The ITypeConverter used to convert the field to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-    <tr><td class="paramname">index</td><td>The zero based index of the instance of the field.</td></tr>
-    <tr><td class="paramname">field</td><td>The field converted to Type T.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A value indicating if the get was successful.</dd></dl>
-
-<p>Implemented in <a class="el" href="a00077.html#a6665d63535ab6ca768ffbc76c1347e58">CsvHelper.CsvReader</a>.</p>
-<div class="typeconstraint">
-<dl><dt><b>Type Constraints</b></dt><dd>
-<table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em>TConverter</em></td><td>&#160;:</td><td valign="top"><em>ITypeConverter</em></td><td>&#160;</td></tr>
-</table>
-</dl>
-</div>
-
-</div>
-</div>
-<h2 class="groupheader">Property Documentation</h2>
-<a class="anchor" id="a7576cb7637038bcc2e83646cef26a33b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00063.html">CsvConfiguration</a> CsvHelper.ICsvReader.Configuration</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets or sets the configuration. </p>
-
-<p>Definition at line <a class="el" href="a00247_source.html#l00019">19</a> of file <a class="el" href="a00247_source.html">ICsvReader.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4e8958e51331591b1d9e811e32bd92d0"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string [] CsvHelper.ICsvReaderRow.CurrentRecord</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the current record; </p>
-
-<p>Definition at line <a class="el" href="a00248_source.html#l00021">21</a> of file <a class="el" href="a00248_source.html">ICsvReaderRow.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a66061c488832f52a28f101272403dd00"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string [] CsvHelper.ICsvReader.FieldHeaders</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the field headers. </p>
-
-<p>Definition at line <a class="el" href="a00247_source.html#l00029">29</a> of file <a class="el" href="a00247_source.html">ICsvReader.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adce9913bb37fc0b5a432e70d75d3b03b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00113.html">ICsvParser</a> CsvHelper.ICsvReader.Parser</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the parser. </p>
-
-<p>Definition at line <a class="el" href="a00247_source.html#l00024">24</a> of file <a class="el" href="a00247_source.html">ICsvReader.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac1bd960358282c70f0b85de90f00b446"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int CsvHelper.ICsvReaderRow.Row</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the current row. </p>
-
-<p>Definition at line <a class="el" href="a00248_source.html#l00026">26</a> of file <a class="el" href="a00248_source.html">ICsvReaderRow.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a45d5b14c7382418d90b4c085c2bdc7dc"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string CsvHelper.ICsvReaderRow.this[int index]</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the raw field at position (column) index. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The raw field.</dd></dl>
-
-<p>Definition at line <a class="el" href="a00248_source.html#l00033">33</a> of file <a class="el" href="a00248_source.html">ICsvReaderRow.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abe611a2c471e6f11da579297bb876fb1"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string CsvHelper.ICsvReaderRow.this[string name, int index]</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the raw field at position (column) name. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-    <tr><td class="paramname">index</td><td>The zero based index of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The raw field.</dd></dl>
-
-<p>Definition at line <a class="el" href="a00248_source.html#l00048">48</a> of file <a class="el" href="a00248_source.html">ICsvReaderRow.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a999cf88bd8eb0b59c65b235cfe0e2835"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string CsvHelper.ICsvReaderRow.this[string name]</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the raw field at position (column) name. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The named index of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The raw field.</dd></dl>
-
-<p>Definition at line <a class="el" href="a00248_source.html#l00040">40</a> of file <a class="el" href="a00248_source.html">ICsvReaderRow.cs</a>.</p>
+<p>Implemented in <a class="el" href="a00067.html#a0cec3a639b206f2d88debdc50413202a">CsvHelper.CsvFactory</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this interface was generated from the following file:<ul>
-<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/<a class="el" href="a00247_source.html">ICsvReader.cs</a></li>
+<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/<a class="el" href="a00248_source.html">ICsvFactory.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00337.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00114.html">ICsvReader</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 03:19:13 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00340.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00114.html">ICsvFactory</a></li>
+    <li class="footer">Generated on Mon Jul 8 2019 11:16:34 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

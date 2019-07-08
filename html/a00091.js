@@ -1,16 +1,19 @@
 var a00091 =
 [
-    [ "Severity", "a00091.html#a227813cbc8fa03c3448a612ffc909d1c", [
-      [ "Error", "a00091.html#a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd", null ],
-      [ "Warning", "a00091.html#a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa", null ],
-      [ "Note", "a00091.html#a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec", null ]
+    [ "DefaultVariable", "a00091.html#a00379", [
+      [ "name", "a00091.html#a609feaa53936e7dc42248ff2ba68454a", null ],
+      [ "type", "a00091.html#a904347efdca12f40243c7dedb646153d", null ],
+      [ "value", "a00091.html#a0f00ecb21b58aa754a4bbb61edf62818", null ]
     ] ],
-    [ "Diagnosis", "a00091.html#ad3fd818f1be98dc803e5bec959153824", null ],
-    [ "ToString", "a00091.html#a4475eb5890c340da5c0012e25c2c86ae", null ],
-    [ "ToString", "a00091.html#a985dee7ca27aa896332590133606b6a9", null ],
-    [ "columnNumber", "a00091.html#a658e7fb05555c0f9ab5f80057bdc1408", null ],
-    [ "lineNumber", "a00091.html#a0bd73f1c684bfd66ae7b6bef8f2972d0", null ],
-    [ "message", "a00091.html#ac7ed070dddd2613c08e7874ea5afb3af", null ],
-    [ "nodeName", "a00091.html#a662aca4ad2af5116c2cf6773daf1a847", null ],
-    [ "severity", "a00091.html#ad90ffa839ce0f568a099bb37b4a6c4da", null ]
+    [ "Awake", "a00091.html#ab6a56afc687455f360876eff67891163", null ],
+    [ "Clear", "a00091.html#a0ce614bee8d5b220500fb765390b4ca3", null ],
+    [ "GetNumber", "a00091.html#add85a45dd65a5d4bd41c9d5ce5f77d19", null ],
+    [ "GetValue", "a00091.html#a741593be1a299dcc2136f05b9b4a995a", null ],
+    [ "ResetToDefaults", "a00091.html#a3a05d66cdacadb2e9b618cd0aef45f84", null ],
+    [ "SetNumber", "a00091.html#ac0d2f2e081944ad197992a26ad1a833c", null ],
+    [ "SetValue", "a00091.html#ac4265c1c9da485f13a6b05784b0f668d", null ],
+    [ "Update", "a00091.html#af646a17cfd63039a25149f8fc0776dcb", null ],
+    [ "debugTextView", "a00091.html#a9893656e3683711eb78441b30c52a600", null ],
+    [ "defaultVariables", "a00091.html#a464c8a4ff6a3c624602d0adc55dfc59a", null ],
+    [ "variables", "a00091.html#a4a4fec7b4ad707cd0603393dd57de96c", null ]
 ];

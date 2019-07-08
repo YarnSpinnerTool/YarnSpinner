@@ -1,112 +1,76 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00141" kind="class" prot="public">
-    <compoundname>Yarn::Unity::Example::NPC</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <compoundname>Yarn::Dialogue::NodeCompleteResult</compoundname>
+    <basecompoundref refid="a00158" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00141_1a418ea7095bd8201559ed392f07905ca3" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="a00141_1ad48b37b51066b94cd48c58626ac0e774" prot="public" static="no" mutable="no">
         <type>string</type>
-        <definition>string Yarn.Unity.Example.NPC.characterName</definition>
+        <definition>string Yarn.Dialogue.NodeCompleteResult.nextNode</definition>
         <argsstring></argsstring>
-        <name>characterName</name>
-        <initializer>= &quot;&quot;</initializer>
+        <name>nextNode</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/NPC.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/NPC.cs" bodystart="35" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00141_1a64f4f1fb66b2046a674e3ebf3b9fdb56" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Unity.Example.NPC.talkToNode</definition>
-        <argsstring></argsstring>
-        <name>talkToNode</name>
-        <initializer>= &quot;&quot;</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/NPC.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/NPC.cs" bodystart="38" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00141_1a63145fb6ddf357e604d71bac04ca8a60" prot="public" static="no" mutable="no">
-        <type>TextAsset</type>
-        <definition>TextAsset Yarn.Unity.Example.NPC.scriptToLoad</definition>
-        <argsstring></argsstring>
-        <name>scriptToLoad</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/NPC.cs" line="41" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/NPC.cs" bodystart="41" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="185" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="185" bodyend="-1"/>
+        <referencedby refid="a00141_1a88c81469a69987c05aa92780c5a5c1f9" compoundref="a00308" startline="187" endline="189">Yarn.Dialogue.NodeCompleteResult.NodeCompleteResult</referencedby>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="a00141_1a0bf37075312ea87c2e329cc363a328a6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.Example.NPC.Start</definition>
-        <argsstring>()</argsstring>
-        <name>Start</name>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00141_1a88c81469a69987c05aa92780c5a5c1f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Dialogue.NodeCompleteResult.NodeCompleteResult</definition>
+        <argsstring>(string nextNode)</argsstring>
+        <name>NodeCompleteResult</name>
+        <param>
+          <type>string</type>
+          <declname>nextNode</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/NPC.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/NPC.cs" bodystart="44" bodyend="49"/>
-      </memberdef>
-      <memberdef kind="function" id="a00141_1ab1bea5afabd1c2e1e991063b1579d062" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.Example.NPC.Update</definition>
-        <argsstring>()</argsstring>
-        <name>Update</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/NPC.cs" line="52" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/NPC.cs" bodystart="52" bodyend="54"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="187" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="187" bodyend="189"/>
+        <references refid="a00141_1ad48b37b51066b94cd48c58626ac0e774" compoundref="a00308" startline="185">Yarn.Dialogue.NodeCompleteResult.nextNode</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>We&apos;ve reached the end of this node. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1539">
-        <label>Yarn.Unity.Example.NPC</label>
+      <node id="1533">
+        <label>Yarn.Dialogue.NodeCompleteResult</label>
         <link refid="a00141"/>
-        <childnode refid="1540" relation="public-inheritance">
+        <childnode refid="1534" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1540">
-        <label>MonoBehaviour</label>
+      <node id="1534">
+        <label>RunnerResult</label>
+        <link refid="a00158"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1541">
-        <label>Yarn.Unity.Example.NPC</label>
+      <node id="1535">
+        <label>Yarn.Dialogue.NodeCompleteResult</label>
         <link refid="a00141"/>
-        <childnode refid="1542" relation="public-inheritance">
+        <childnode refid="1536" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1542">
-        <label>MonoBehaviour</label>
+      <node id="1536">
+        <label>RunnerResult</label>
+        <link refid="a00158"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/NPC.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/NPC.cs" bodystart="33" bodyend="55"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="184" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="184" bodyend="190"/>
     <listofallmembers>
-      <member refid="a00141_1a418ea7095bd8201559ed392f07905ca3" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::NPC</scope><name>characterName</name></member>
-      <member refid="a00141_1a63145fb6ddf357e604d71bac04ca8a60" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::NPC</scope><name>scriptToLoad</name></member>
-      <member refid="a00141_1a0bf37075312ea87c2e329cc363a328a6" prot="private" virt="non-virtual"><scope>Yarn::Unity::Example::NPC</scope><name>Start</name></member>
-      <member refid="a00141_1a64f4f1fb66b2046a674e3ebf3b9fdb56" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::NPC</scope><name>talkToNode</name></member>
-      <member refid="a00141_1ab1bea5afabd1c2e1e991063b1579d062" prot="private" virt="non-virtual"><scope>Yarn::Unity::Example::NPC</scope><name>Update</name></member>
+      <member refid="a00141_1ad48b37b51066b94cd48c58626ac0e774" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::NodeCompleteResult</scope><name>nextNode</name></member>
+      <member refid="a00141_1a88c81469a69987c05aa92780c5a5c1f9" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::NodeCompleteResult</scope><name>NodeCompleteResult</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

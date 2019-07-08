@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Documentation/YarnSpinner-Dialogue/Dialogue-Localization.md Source File</title>
+<title>YarnSpinner: Documentation/YarnSpinner-Unity/README.md Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,37 +105,62 @@ $(document).ready(function(){initNavTree('a00209.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Documentation/YarnSpinner-Dialogue/Dialogue-Localization.md</div>  </div>
+<div class="title">Documentation/YarnSpinner-Unity/README.md</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00209.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Localization</span></div>
+<a href="a00209.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Using Yarn Spinner in your Unity game</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;Yarn Spinner provides tools to help convert your game in to any language you like. This is achieved by usage of the [YarnSpinnerConsole](../YarnSpinnerConsole) tool. At the moment, <span class="keyword">this</span> tool is not available standalone and needs to be [built from source](../YarnSpinner-Programming/Building.md).</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;## Localisation procedure</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">### Style Guide</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;`Inline Code` contain <span class="keywordtype">short</span> snippets of code <span class="keywordflow">for</span> your project</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;1. We first use the tool to place unique **taglines** on each line of text that the end user will see. To <span class="keywordflow">do</span> <span class="keyword">this</span>, we execute the tool with the **taglines** command, eg:  `YarnSpinnerConsole.exe taglines MyYarnFile.yarn.txt`.</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    Code Blocks contain segments or chunks of code <span class="keywordflow">for</span> your project</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;2. Next, we use the tool to generate a file of strings (**genstrings**) in &#39;[comma separated value](https:<span class="comment">//en.wikipedia.org/wiki/Comma-separated_values)&#39; (csv) format. `YarnSpinnerConsole.exe genstrings MyYarnFile.yarn.txt` will generate a file, (in this example MyYarnFIle.yarn_lines.csv), that can then distributed to translators. It is recommended that this file first be renamed using a language identifier before distribution, eg</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    ```</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    MyYarnFIle.yarn_lines.enAU.csv</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    MyYarnFIle.yarn_lines.ptTL.csv</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    ```</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;3. When the file is returned from translators, we then use Yarn Spinner&#39;s DialogueRunner inside Unity to set String Groups for the required language.</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;&lt;!-- Placeholder for image of DialogueRunner --&gt;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">## Footnotes</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"></span>* While not essential that all files follow a standard, but highly recommended that consistency of format be used across all localisation files within a project eg [ISO-15897](https:<span class="comment">//www.iso.org/obp/ui/#iso:std:iso-iec:15897:ed-2:v1:en)</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;* Originally, Yarn Spinner used .json format. The Yarn Spinner Console can convert <span class="keyword">this</span> json format to the <span class="keyword">new</span> improved text format: `YarnSpinnerConsole.exe convert --yarn Ship.json`</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;* Command reference is available <span class="keywordflow">for</span> YarnSpinnerConsole.exe by either running it with no arguments or by utilising the help command (`YarnSpinnerConsole.exe help`). Help <span class="keywordflow">for each</span> command is available by <span class="keyword">using</span> <span class="stringliteral">&#39;help command&#39;</span> (eg `YarnSpinnderConsole.exe help compile`)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;**Bold indicate actions (Select menu item, copying file, etc.)**</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;***Bold italic text indicates emphasis***</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;&gt; Blockquotes contain essential information</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">## Tutorial</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;&gt; ***Note:*** This tutorial assumes that you know a little bit about [Unity](http:<span class="comment">//www.unity3d.com). In particular, it is helpful that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don&#39;t know these things, please refer to [Unity&#39;s documentation](http://unity3d.com/learn). We recommend their [tutorials](https://unity3d.com/learn/tutorials/), starting with the [Roll-a-ball tutorial](https://unity3d.com/learn/tutorials/projects/roll-ball-tutorial). It is also helpful if you know a little about the [Yarn Editor](https://github.com/InfiniteAmmoInc/Yarn).</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">## Yarn Spinner Quick Start</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<a class="code" href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">If</a> you<span class="stringliteral">&#39;re already familiar with Unity and the Yarn Editor, we have a [Unity Quickstart](YarnSpinner-with-Unity-QuickStart.md) guide.</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="stringliteral">## Step by Step</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="stringliteral">If you&#39;</span>ve not done much more than install Unity and the Yarn Editor, confirmed that menu and dialogue functions of these applications appear operational and gone through the Unity [Roll-a-ball tutorial](https:<span class="comment">//unity3d.com/learn/tutorials/projects/roll-ball-tutorial), our [Step By Step](YarnSpinner-with-Unity-StepByStep.md) guide is intended to walk you through the creation of a very basic game using Yarn Spinner.</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">## Tips during Unity install</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">### Windows</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;* <a class="code" href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">If</a> you install to Unity the <span class="keywordflow">default</span> file location, find the temp folder the installer has executed from and back it up before it completes installing.</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;* <a class="code" href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">If</a> you decide to install Visual Studio seperately, be aware that there are files from <span class="keyword">this</span> program that insist on being installed on the C:\ drive and that your development experience may be restricted.</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;### Mac</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;(This space left intentionally blank)</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">### Linux</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;* Unity is only officially supported on Ubuntu. YarnSpinner is built on Ubuntu. However, we use Debian <span class="keywordflow">for</span> some of our development and testing.</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;* Unity <span class="keywordflow">for</span> Linux is not available in formal release and we are not actively pursuing <span class="keyword">this</span> platform, however we are very enthusastic about <span class="keyword">this</span> future prospect. We have confirmed that Yarnspinner works with the current 5.6 release of [Unity <span class="keywordflow">for</span> Linux](https:<span class="comment">//forum.unity3d.com/threads/unity-on-linux-release-notes-and-known-issues.350256/), although this has only been tested with our example Unity code on Debian Stretch (amd64 architecture).</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;* npm is needed <span class="keywordflow">for</span> Unity. It is available in Debian Jessie, however it is not available in Debian Stretch. For Debian Stretch or later releases, or other Debian derived distributions, please refer to the [nodejs.org website](https:<span class="comment">//nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions).</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;* Some 32bit support is required to run Unity. <a class="code" href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">If</a> you are running a 64bit environment, please refer to your distribution<span class="stringliteral">&#39;s documentation on how to do this. Once you have that enabled, ensure lib32gcc1, lib32stdc++6 and libc6-i386 are installed (eg, `sudo apt install lib32gcc1 lib32stdc++6 libc6-i386`)</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="stringliteral">* We encourge Linux users to test Yarnspinner using the [Monodevelop FlatPak](http://www.monodevelop.com/download/linux/). Although FlatPak is designed to be Linux agnostic, we are currently utilising Gnome3 on Debian Stretch for desktop development purposes. Your mileage may vary on other Linux combinations and flavours, we are eager to receive your feedback.</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="stringliteral"></span></div>
+<div class="ttc" id="a00053_html_a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639"><div class="ttname"><a href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">Yarn.If</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00209.html">Dialogue-Localization.md</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 03:19:11 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00209.html">README.md</a></li>
+    <li class="footer">Generated on Mon Jul 8 2019 11:16:33 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

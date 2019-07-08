@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.Dialogue.RunnerResult Class Reference</title>
+<title>YarnSpinner: YarnSpinner.Tests.ProjectTests Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -106,45 +106,534 @@ $(document).ready(function(){initNavTree('a00156.html','');});
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="a00824.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Dialogue.RunnerResult Class Reference</div>  </div>
+<div class="title">YarnSpinner.Tests.ProjectTests Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Represents something for the end user ("client") of the <a class="el" href="a00092.html" title="The Dialogue class is the main thing that clients will use. ">Dialogue</a> class to do.  
- <a href="a00156.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.Dialogue.RunnerResult:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for YarnSpinner.Tests.ProjectTests:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00631.png" border="0" usemap="#_yarn_8_dialogue_8_runner_result_inherit__map" alt="Inheritance graph"/></div>
-<map name="_yarn_8_dialogue_8_runner_result_inherit__map" id="_yarn_8_dialogue_8_runner_result_inherit__map">
-<area shape="rect" id="node2" href="a00052.html" title="The client should run a command (it&#39;s up to them to parse the string) " alt="" coords="5,139,211,216"/><area shape="rect" id="node3" href="a00132.html" title="The client should run a line of dialogue. " alt="" coords="236,139,407,216"/><area shape="rect" id="node4" href="a00139.html" title="We&#39;ve reached the end of this node. " alt="" coords="431,131,625,223"/><area shape="rect" id="node5" href="a00145.html" title="The client should show a list of options, and call setSelectedOptionDelegate before asking for the ne..." alt="" coords="650,131,853,223"/></map>
+<div class="center"><img src="a00825.png" border="0" usemap="#_yarn_spinner_8_tests_8_project_tests_inherit__map" alt="Inheritance graph"/></div>
+<map name="_yarn_spinner_8_tests_8_project_tests_inherit__map" id="_yarn_spinner_8_tests_8_project_tests_inherit__map">
+<area shape="rect" id="node2" href="a00172.html" title="{TestBase\n|+ ProjectRootPath\l+ TestDataPath\l+ UnityDemoScriptsPath\l+ isExpectingLine\l# storage\l# dialogue\l# errorsCauseFailures\l&#45; nextExpectedLine\l&#45; nextExpectedOptionCount\l&#45; nextOptionToSelect\l&#45; nextExpectedCommand\l|+ Init()\l# RunStandardTestcase()\l# HandleResult()\l# ExpectLine()\l}" alt="" coords="5,6,187,274"/></map>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Dialogue.RunnerResult:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for YarnSpinner.Tests.ProjectTests:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00632.png" border="0" usemap="#_yarn_8_dialogue_8_runner_result_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_dialogue_8_runner_result_coll__map" id="_yarn_8_dialogue_8_runner_result_coll__map">
-</map>
+<div class="center"><img src="a00826.png" border="0" usemap="#_yarn_spinner_8_tests_8_project_tests_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_spinner_8_tests_8_project_tests_coll__map" id="_yarn_spinner_8_tests_8_project_tests_coll__map">
+<area shape="rect" id="node2" href="a00172.html" title="{TestBase\n|+ ProjectRootPath\l+ TestDataPath\l+ UnityDemoScriptsPath\l+ isExpectingLine\l# errorsCauseFailures\l&#45; nextExpectedLine\l&#45; nextExpectedOptionCount\l&#45; nextOptionToSelect\l&#45; nextExpectedCommand\l|+ Init()\l# RunStandardTestcase()\l# HandleResult()\l# ExpectLine()\l}" alt="" coords="711,818,893,1057"/><area shape="rect" id="node3" href="a00094.html" title="The Dialogue class is the main thing that clients will use. " alt="" coords="479,294,685,709"/><area shape="rect" id="node4" href="a00164.html" title="{Yarn.VirtualMachine\n|+ lineHandler\l+ optionsHandler\l+ commandHandler\l+ nodeCompleteHandler\l+ currentNodeName\l+ executionState\l&#45; random\l&#45; _executionState\l|+ LineHandler()\l+ OptionsHandler()\l+ CommandHandler()\l+ NodeCompleteHandler()\l+ SetNode()\l+ Stop()\l~ VirtualMachine()\l~ RunNext()\l~ FindInstructionPointForLabel()\l~ RunInstruction()\l&#45; ResetState()\l}" alt="" coords="245,774,453,1101"/><area shape="rect" id="node9" href="a00135.html" title="{Yarn.Loader\n|+ program\l|+ Loader()\l+ Load()\l~ GetNodesFromText()\l~ GetFormatFromFileName()\l&#45; PrintTokenList()\l&#45; PrintParseTree()\l&#45; preprocessor()\l}" alt="" coords="485,855,675,1020"/><area shape="rect" id="node5" href="a00053.html#a00382" title="{Yarn.Node\n|+ instructions\l+ name\l+ sourceTextStringID\l+ labels\l+ tags\l|}" alt="" coords="5,433,152,569"/><area shape="rect" id="node6" href="a00154.html" title="{Yarn.Program\n|+ untaggedStrings\l~ strings\l~ lineInfo\l~ nodes\l&#45; stringCount\l|+ LoadStrings()\l+ RegisterString()\l+ GetString()\l+ DumpCode()\l+ GetTextForNode()\l+ GetTagsForNode()\l+ Include()\l}" alt="" coords="234,5,376,229"/><area shape="rect" id="node7" href="a00167.html" title="{Yarn.VirtualMachine.State\n|+ currentNodeName\l+ programCounter\l+ currentOptions\l&#45; stack\l|+ PushValue()\l+ PopValue()\l+ PeekValue()\l+ ClearStack()\l}" alt="" coords="281,419,455,584"/><area shape="rect" id="node8" href="a00131.html" title="{Yarn.Library\n|&#45; functions\l|+ GetFunction()\l+ ImportLibrary()\l+ RegisterFunction()\l+ RegisterFunction()\l+ RegisterFunction()\l+ FunctionExists()\l+ DeregisterFunction()\l}" alt="" coords="507,35,659,200"/><area shape="rect" id="node10" href="a00192.html" title="Where we turn to for storing and loading variable data. " alt="" coords="701,49,845,185"/></map>
 </div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:af8cec595dce7455eeace4841d0f71a35"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00156.html#af8cec595dce7455eeace4841d0f71a35">ProjectTests</a> (bool experimental)</td></tr>
+<tr class="separator:af8cec595dce7455eeace4841d0f71a35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09fb3b241843b94176be710e4a2a6833"><td class="memItemLeft" align="right" valign="top">new void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00156.html#a09fb3b241843b94176be710e4a2a6833">Init</a> ()</td></tr>
+<tr class="separator:a09fb3b241843b94176be710e4a2a6833"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d3dccb3f5ddf0b24e65782b7af15369"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00156.html#a7d3dccb3f5ddf0b24e65782b7af15369">TestLoadingSingleFile</a> ()</td></tr>
+<tr class="separator:a7d3dccb3f5ddf0b24e65782b7af15369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:abffa134d40d72b21e6b35c3bf05fc53f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00172.html#abffa134d40d72b21e6b35c3bf05fc53f">RunStandardTestcase</a> (string nodeName=&quot;Start&quot;)</td></tr>
+<tr class="separator:abffa134d40d72b21e6b35c3bf05fc53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b525f85a26d7c942e1cbfa5d6453893"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00172.html#a7b525f85a26d7c942e1cbfa5d6453893">HandleResult</a> (<a class="el" href="a00158.html">Yarn.Dialogue.RunnerResult</a> result)</td></tr>
+<tr class="separator:a7b525f85a26d7c942e1cbfa5d6453893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac21a5082ddac1da9db17ae54038df44e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00172.html#ac21a5082ddac1da9db17ae54038df44e">ExpectLine</a> (string line)</td></tr>
+<tr class="separator:ac21a5082ddac1da9db17ae54038df44e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a23d59ace1516ca72924c6fe3feafd3f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00192.html">VariableStorage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00172.html#a23d59ace1516ca72924c6fe3feafd3f7">storage</a> = new <a class="el" href="a00138.html">MemoryVariableStore</a>()</td></tr>
+<tr class="separator:a23d59ace1516ca72924c6fe3feafd3f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cff5de56c4b8a91c76b6eb2d622a795"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00094.html">Dialogue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00172.html#a4cff5de56c4b8a91c76b6eb2d622a795">dialogue</a></td></tr>
+<tr class="separator:a4cff5de56c4b8a91c76b6eb2d622a795"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac978fe85db843c51411f5517bdbe0eb8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00172.html#ac978fe85db843c51411f5517bdbe0eb8">errorsCauseFailures</a> = true</td></tr>
+<tr class="separator:ac978fe85db843c51411f5517bdbe0eb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:ab1ad614f465a49447da31c4000ec6b3e"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00172.html#ab1ad614f465a49447da31c4000ec6b3e">ProjectRootPath</a><code> [get]</code></td></tr>
+<tr class="separator:ab1ad614f465a49447da31c4000ec6b3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9b4d902d61adad7165154a265f69aa4"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00172.html#aa9b4d902d61adad7165154a265f69aa4">TestDataPath</a><code> [get]</code></td></tr>
+<tr class="separator:aa9b4d902d61adad7165154a265f69aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39922286f6255e4fd0e433a4fc7521c4"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00172.html#a39922286f6255e4fd0e433a4fc7521c4">UnityDemoScriptsPath</a><code> [get]</code></td></tr>
+<tr class="separator:a39922286f6255e4fd0e433a4fc7521c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47f35b8e8123ed9471883d02b8bc9f3e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00172.html#a47f35b8e8123ed9471883d02b8bc9f3e">isExpectingLine</a><code> [get]</code></td></tr>
+<tr class="separator:a47f35b8e8123ed9471883d02b8bc9f3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ad7914a14ec1a746a7d02fb9b2c69e91b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00156.html#ad7914a14ec1a746a7d02fb9b2c69e91b">experimentalMode</a></td></tr>
+<tr class="separator:ad7914a14ec1a746a7d02fb9b2c69e91b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Represents something for the end user ("client") of the <a class="el" href="a00092.html" title="The Dialogue class is the main thing that clients will use. ">Dialogue</a> class to do. </p>
+<div class="textblock">
+<p>Definition at line <a class="el" href="a00333_source.html#l00014">14</a> of file <a class="el" href="a00333_source.html">ProjectTests.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="af8cec595dce7455eeace4841d0f71a35"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">YarnSpinner.Tests.ProjectTests.ProjectTests </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>experimental</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00305_source.html#l00140">140</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="a00305_source.html">Dialogue.cs</a></li>
+<p>Definition at line <a class="el" href="a00333_source.html#l00017">17</a> of file <a class="el" href="a00333_source.html">ProjectTests.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            this.experimentalMode = experimental;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ac21a5082ddac1da9db17ae54038df44e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void YarnSpinner.Tests.TestBase.ExpectLine </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>line</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00334_source.html#l00170">170</a> of file <a class="el" href="a00334_source.html">TestBase.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                                               {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            <a class="code" href="a00172.html#a3651ffb5425ab15bd1e42749347c1ee7">nextExpectedLine</a> = line;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        }</div>
+<div class="ttc" id="a00172_html_a3651ffb5425ab15bd1e42749347c1ee7"><div class="ttname"><a href="a00172.html#a3651ffb5425ab15bd1e42749347c1ee7">YarnSpinner.Tests.TestBase.nextExpectedLine</a></div><div class="ttdeci">string nextExpectedLine</div><div class="ttdef"><b>Definition:</b> <a href="a00334_source.html#l00017">TestBase.cs:17</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a7b525f85a26d7c942e1cbfa5d6453893"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void YarnSpinner.Tests.TestBase.HandleResult </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00158.html">Yarn.Dialogue.RunnerResult</a>&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00334_source.html#l00122">122</a> of file <a class="el" href="a00334_source.html">TestBase.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                                                                       {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            <span class="keywordflow">if</span> (result is Yarn.Dialogue.LineResult) {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                var text = (result as <a class="code" href="a00134.html">Yarn.Dialogue.LineResult</a>).line.text;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                Console.WriteLine(<span class="stringliteral">&quot;Line: &quot;</span> + text);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00172.html#a47f35b8e8123ed9471883d02b8bc9f3e">isExpectingLine</a>) {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                    Assert.AreEqual (text, <a class="code" href="a00172.html#a3651ffb5425ab15bd1e42749347c1ee7">nextExpectedLine</a>);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (result is Yarn.Dialogue.OptionSetResult) {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                var options = (result as <a class="code" href="a00147.html">Yarn.Dialogue.OptionSetResult</a>).options.options;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                var optionCount = options.Count;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                var resultDelegate = (result as Yarn.Dialogue.OptionSetResult).setSelectedOptionDelegate;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                Console.WriteLine(<span class="stringliteral">&quot;Options:&quot;</span>);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                <span class="keywordflow">foreach</span> (var option <span class="keywordflow">in</span> options) {</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                    Console.WriteLine(<span class="stringliteral">&quot; - &quot;</span> + option);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                }</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00172.html#aaabaf15249efe42f3d857129bdbc2864">nextExpectedOptionCount</a> != -1) {</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                    Assert.AreEqual (<a class="code" href="a00172.html#aaabaf15249efe42f3d857129bdbc2864">nextExpectedOptionCount</a>, optionCount);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                }</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00172.html#a343055fa693e9d5dfc1bdbfcd0f02676">nextOptionToSelect</a> != -1) {</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                    resultDelegate (<a class="code" href="a00172.html#a343055fa693e9d5dfc1bdbfcd0f02676">nextOptionToSelect</a>);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                    resultDelegate(0);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                }</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (result is Yarn.Dialogue.CommandResult) {</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                var commandText = (result as <a class="code" href="a00054.html">Yarn.Dialogue.CommandResult</a>).command.text;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                Console.WriteLine(<span class="stringliteral">&quot;Command: &quot;</span> + commandText);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00172.html#a26fae5694fc06c3cdb12d3108dbc34de">nextExpectedCommand</a> != null) {</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                    Assert.AreEqual (<a class="code" href="a00172.html#a26fae5694fc06c3cdb12d3108dbc34de">nextExpectedCommand</a>, commandText);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                }</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            }</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <span class="comment">// Reset all &#39;expected&#39; stuff</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            <a class="code" href="a00172.html#a3651ffb5425ab15bd1e42749347c1ee7">nextExpectedLine</a> = null;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <a class="code" href="a00172.html#a26fae5694fc06c3cdb12d3108dbc34de">nextExpectedCommand</a> = null;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            <a class="code" href="a00172.html#aaabaf15249efe42f3d857129bdbc2864">nextExpectedOptionCount</a> = -1;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            <a class="code" href="a00172.html#a343055fa693e9d5dfc1bdbfcd0f02676">nextOptionToSelect</a> = -1;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        }</div>
+<div class="ttc" id="a00172_html_a3651ffb5425ab15bd1e42749347c1ee7"><div class="ttname"><a href="a00172.html#a3651ffb5425ab15bd1e42749347c1ee7">YarnSpinner.Tests.TestBase.nextExpectedLine</a></div><div class="ttdeci">string nextExpectedLine</div><div class="ttdef"><b>Definition:</b> <a href="a00334_source.html#l00017">TestBase.cs:17</a></div></div>
+<div class="ttc" id="a00172_html_a343055fa693e9d5dfc1bdbfcd0f02676"><div class="ttname"><a href="a00172.html#a343055fa693e9d5dfc1bdbfcd0f02676">YarnSpinner.Tests.TestBase.nextOptionToSelect</a></div><div class="ttdeci">int nextOptionToSelect</div><div class="ttdef"><b>Definition:</b> <a href="a00334_source.html#l00019">TestBase.cs:19</a></div></div>
+<div class="ttc" id="a00172_html_a26fae5694fc06c3cdb12d3108dbc34de"><div class="ttname"><a href="a00172.html#a26fae5694fc06c3cdb12d3108dbc34de">YarnSpinner.Tests.TestBase.nextExpectedCommand</a></div><div class="ttdeci">string nextExpectedCommand</div><div class="ttdef"><b>Definition:</b> <a href="a00334_source.html#l00020">TestBase.cs:20</a></div></div>
+<div class="ttc" id="a00147_html"><div class="ttname"><a href="a00147.html">Yarn.Dialogue.OptionSetResult</a></div><div class="ttdoc">The client should show a list of options, and call setSelectedOptionDelegate before asking for the ne...</div><div class="ttdef"><b>Definition:</b> <a href="a00308_source.html#l00170">Dialogue.cs:170</a></div></div>
+<div class="ttc" id="a00172_html_a47f35b8e8123ed9471883d02b8bc9f3e"><div class="ttname"><a href="a00172.html#a47f35b8e8123ed9471883d02b8bc9f3e">YarnSpinner.Tests.TestBase.isExpectingLine</a></div><div class="ttdeci">bool isExpectingLine</div><div class="ttdef"><b>Definition:</b> <a href="a00334_source.html#l00174">TestBase.cs:174</a></div></div>
+<div class="ttc" id="a00134_html"><div class="ttname"><a href="a00134.html">Yarn.Dialogue.LineResult</a></div><div class="ttdoc">The client should run a line of dialogue. </div><div class="ttdef"><b>Definition:</b> <a href="a00308_source.html#l00143">Dialogue.cs:143</a></div></div>
+<div class="ttc" id="a00054_html"><div class="ttname"><a href="a00054.html">Yarn.Dialogue.CommandResult</a></div><div class="ttdoc">The client should run a command (it&#39;s up to them to parse the string) </div><div class="ttdef"><b>Definition:</b> <a href="a00308_source.html#l00156">Dialogue.cs:156</a></div></div>
+<div class="ttc" id="a00172_html_aaabaf15249efe42f3d857129bdbc2864"><div class="ttname"><a href="a00172.html#aaabaf15249efe42f3d857129bdbc2864">YarnSpinner.Tests.TestBase.nextExpectedOptionCount</a></div><div class="ttdeci">int nextExpectedOptionCount</div><div class="ttdef"><b>Definition:</b> <a href="a00334_source.html#l00018">TestBase.cs:18</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a09fb3b241843b94176be710e4a2a6833"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">new void YarnSpinner.Tests.ProjectTests.Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00333_source.html#l00023">23</a> of file <a class="el" href="a00333_source.html">ProjectTests.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            base.Init();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            dialogue.experimentalMode = this.experimentalMode;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="abffa134d40d72b21e6b35c3bf05fc53f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void YarnSpinner.Tests.TestBase.RunStandardTestcase </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>nodeName</em> = <code>&quot;Start&quot;</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00334_source.html#l00116">116</a> of file <a class="el" href="a00334_source.html">TestBase.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                                                                      {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <span class="keywordflow">foreach</span> (var result <span class="keywordflow">in</span> <a class="code" href="a00172.html#a4cff5de56c4b8a91c76b6eb2d622a795">dialogue</a>.<a class="code" href="a00094.html#aead84ee50cb113ca45724894290ce9c2">Run</a>(nodeName)) {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                <a class="code" href="a00172.html#a7b525f85a26d7c942e1cbfa5d6453893">HandleResult</a> (result);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        }</div>
+<div class="ttc" id="a00172_html_a7b525f85a26d7c942e1cbfa5d6453893"><div class="ttname"><a href="a00172.html#a7b525f85a26d7c942e1cbfa5d6453893">YarnSpinner.Tests.TestBase.HandleResult</a></div><div class="ttdeci">void HandleResult(Yarn.Dialogue.RunnerResult result)</div><div class="ttdef"><b>Definition:</b> <a href="a00334_source.html#l00122">TestBase.cs:122</a></div></div>
+<div class="ttc" id="a00172_html_a4cff5de56c4b8a91c76b6eb2d622a795"><div class="ttname"><a href="a00172.html#a4cff5de56c4b8a91c76b6eb2d622a795">YarnSpinner.Tests.TestBase.dialogue</a></div><div class="ttdeci">Dialogue dialogue</div><div class="ttdef"><b>Definition:</b> <a href="a00334_source.html#l00024">TestBase.cs:24</a></div></div>
+<div class="ttc" id="a00094_html_aead84ee50cb113ca45724894290ce9c2"><div class="ttname"><a href="a00094.html#aead84ee50cb113ca45724894290ce9c2">Yarn.Dialogue.Run</a></div><div class="ttdeci">IEnumerable&lt; Yarn.Dialogue.RunnerResult &gt; Run(string startNode=DEFAULT_START)</div><div class="ttdoc">Use this in a for-each construct; each time you iterate over it, you&#39;ll get a line, command, or set of options. </div><div class="ttdef"><b>Definition:</b> <a href="a00308_source.html#l00387">Dialogue.cs:387</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a7d3dccb3f5ddf0b24e65782b7af15369"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void YarnSpinner.Tests.ProjectTests.TestLoadingSingleFile </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00333_source.html#l00031">31</a> of file <a class="el" href="a00333_source.html">ProjectTests.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            var path = Path.Combine(<a class="code" href="a00172.html#aa9b4d902d61adad7165154a265f69aa4">TestDataPath</a>, <span class="stringliteral">&quot;Projects&quot;</span>, <span class="stringliteral">&quot;Basic&quot;</span>, <span class="stringliteral">&quot;Test.yarn.txt&quot;</span>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="comment">// high-level test: load the file, verify it has the nodes we want,</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="comment">// and run one</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            dialogue.LoadFile(path);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            Assert.AreEqual(3, dialogue.program.nodes.Count);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            Assert.True(dialogue.NodeExists(<span class="stringliteral">&quot;TestNode&quot;</span>));</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            Assert.True(dialogue.NodeExists(<span class="stringliteral">&quot;AnotherTestNode&quot;</span>));</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            Assert.True(dialogue.NodeExists(<span class="stringliteral">&quot;ThirdNode&quot;</span>));</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="comment">// execute a node</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            var secondNodeName = <span class="stringliteral">&quot;AnotherTestNode&quot;</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <a class="code" href="a00172.html#ac21a5082ddac1da9db17ae54038df44e">ExpectLine</a>(<span class="stringliteral">&quot;This is a second test node!&quot;</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="comment">// we are now expecting a node</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            Assert.IsTrue(this.isExpectingLine);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <a class="code" href="a00172.html#abffa134d40d72b21e6b35c3bf05fc53f">RunStandardTestcase</a>(secondNodeName);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <span class="comment">// the line should have run, so this property should become true</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            Assert.IsFalse(this.isExpectingLine);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="comment">// and the variable $x should now have a value</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            Assert.AreEqual(23, (int)<a class="code" href="a00172.html#a4cff5de56c4b8a91c76b6eb2d622a795">dialogue</a>.<a class="code" href="a00094.html#ae94eaa4b03b432422f5d205fabe37ff5">continuity</a>.<a class="code" href="a00192.html#accab1fc5c8fc353dbfc53ca0f4029576">GetValue</a>(<span class="stringliteral">&quot;$x&quot;</span>).AsNumber);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="comment">// Next, we&#39;ll do a lower-level test, verifying that properties are loaded correctly</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="comment">// manually load the NodeInfos and verify data</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            var text = File.ReadAllText(path);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            var nodes = dialogue.loader.GetNodesFromText(text, NodeFormat.Text);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="comment">// first node has a colorID</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            Assert.AreEqual(3, nodes[0].colorID);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="comment">// second node has got a position defined</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            var position = nodes[1].position;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            Assert.AreEqual(2, position.x);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            Assert.AreEqual(4, position.y);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="comment">// third node has tags</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            var expectedTags = <span class="keyword">new</span> List&lt;string&gt;(<span class="keyword">new</span> <span class="keywordtype">string</span>[] { <span class="stringliteral">&quot;multiple&quot;</span>, <span class="stringliteral">&quot;tags!&quot;</span>});</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            Assert.AreEqual(expectedTags, nodes[2].tagsList);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="comment">// the third node&#39;s body is empty</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            Assert.IsEmpty(nodes[2].body);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        }</div>
+<div class="ttc" id="a00172_html_a4cff5de56c4b8a91c76b6eb2d622a795"><div class="ttname"><a href="a00172.html#a4cff5de56c4b8a91c76b6eb2d622a795">YarnSpinner.Tests.TestBase.dialogue</a></div><div class="ttdeci">Dialogue dialogue</div><div class="ttdef"><b>Definition:</b> <a href="a00334_source.html#l00024">TestBase.cs:24</a></div></div>
+<div class="ttc" id="a00172_html_ac21a5082ddac1da9db17ae54038df44e"><div class="ttname"><a href="a00172.html#ac21a5082ddac1da9db17ae54038df44e">YarnSpinner.Tests.TestBase.ExpectLine</a></div><div class="ttdeci">void ExpectLine(string line)</div><div class="ttdef"><b>Definition:</b> <a href="a00334_source.html#l00170">TestBase.cs:170</a></div></div>
+<div class="ttc" id="a00172_html_abffa134d40d72b21e6b35c3bf05fc53f"><div class="ttname"><a href="a00172.html#abffa134d40d72b21e6b35c3bf05fc53f">YarnSpinner.Tests.TestBase.RunStandardTestcase</a></div><div class="ttdeci">void RunStandardTestcase(string nodeName=&quot;Start&quot;)</div><div class="ttdef"><b>Definition:</b> <a href="a00334_source.html#l00116">TestBase.cs:116</a></div></div>
+<div class="ttc" id="a00094_html_ae94eaa4b03b432422f5d205fabe37ff5"><div class="ttname"><a href="a00094.html#ae94eaa4b03b432422f5d205fabe37ff5">Yarn.Dialogue.continuity</a></div><div class="ttdeci">VariableStorage continuity</div><div class="ttdef"><b>Definition:</b> <a href="a00308_source.html#l00133">Dialogue.cs:133</a></div></div>
+<div class="ttc" id="a00172_html_aa9b4d902d61adad7165154a265f69aa4"><div class="ttname"><a href="a00172.html#aa9b4d902d61adad7165154a265f69aa4">YarnSpinner.Tests.TestBase.TestDataPath</a></div><div class="ttdeci">static string TestDataPath</div><div class="ttdef"><b>Definition:</b> <a href="a00334_source.html#l00051">TestBase.cs:51</a></div></div>
+<div class="ttc" id="a00192_html_accab1fc5c8fc353dbfc53ca0f4029576"><div class="ttname"><a href="a00192.html#accab1fc5c8fc353dbfc53ca0f4029576">Yarn.VariableStorage.GetValue</a></div><div class="ttdeci">Value GetValue(string variableName)</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a4cff5de56c4b8a91c76b6eb2d622a795"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00094.html">Dialogue</a> YarnSpinner.Tests.TestBase.dialogue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00334_source.html#l00024">24</a> of file <a class="el" href="a00334_source.html">TestBase.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac978fe85db843c51411f5517bdbe0eb8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool YarnSpinner.Tests.TestBase.errorsCauseFailures = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00334_source.html#l00026">26</a> of file <a class="el" href="a00334_source.html">TestBase.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad7914a14ec1a746a7d02fb9b2c69e91b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool YarnSpinner.Tests.ProjectTests.experimentalMode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00333_source.html#l00016">16</a> of file <a class="el" href="a00333_source.html">ProjectTests.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a23d59ace1516ca72924c6fe3feafd3f7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00192.html">VariableStorage</a> YarnSpinner.Tests.TestBase.storage = new <a class="el" href="a00138.html">MemoryVariableStore</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00334_source.html#l00023">23</a> of file <a class="el" href="a00334_source.html">TestBase.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a class="anchor" id="a47f35b8e8123ed9471883d02b8bc9f3e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool YarnSpinner.Tests.TestBase.isExpectingLine</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00334_source.html#l00174">174</a> of file <a class="el" href="a00334_source.html">TestBase.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab1ad614f465a49447da31c4000ec6b3e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string YarnSpinner.Tests.TestBase.ProjectRootPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00334_source.html#l00030">30</a> of file <a class="el" href="a00334_source.html">TestBase.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa9b4d902d61adad7165154a265f69aa4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string YarnSpinner.Tests.TestBase.TestDataPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00334_source.html#l00051">51</a> of file <a class="el" href="a00334_source.html">TestBase.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a39922286f6255e4fd0e433a4fc7521c4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string YarnSpinner.Tests.TestBase.UnityDemoScriptsPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00334_source.html#l00059">59</a> of file <a class="el" href="a00334_source.html">TestBase.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>YarnSpinnerTests/<a class="el" href="a00333_source.html">ProjectTests.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00051.html">Yarn</a></li><li class="navelem"><a class="el" href="a00092.html">Dialogue</a></li><li class="navelem"><a class="el" href="a00156.html">RunnerResult</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 03:19:14 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00374.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00375.html">Tests</a></li><li class="navelem"><a class="el" href="a00156.html">ProjectTests</a></li>
+    <li class="footer">Generated on Mon Jul 8 2019 11:16:36 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -1,7 +1,3 @@
-<map id="CsvHelper.CsvReader" name="CsvHelper.CsvReader">
-<area shape="rect" id="node2" href="$a00114.html" title="Defines methods used to read parsed data from a CSV file. " alt="" coords="23,581,137,702"/>
-<area shape="rect" id="node3" href="$a00115.html" title="Defines methods used to read parsed data from a CSV file row. " alt="" coords="5,6,153,303"/>
-<area shape="rect" id="node7" href="$a00113.html" title="Defines methods used the parse a CSV file. " alt="" coords="161,566,315,717"/>
-<area shape="rect" id="node5" href="$a00063.html" title="Configuration used for reading and writing CSV data. " alt="" coords="341,368,547,915"/>
-<area shape="rect" id="node6" href="$a00062.html" title="Collection that holds CsvClassMaps for record types. " alt="" coords="336,72,552,237"/>
+<map id="CsvHelper.CsvParserException" name="CsvHelper.CsvParserException">
+<area shape="rect" id="node2" href="$a00068.html" title="Represents errors that occur in CsvHelper. " alt="" coords="28,131,191,253"/>
 </map>

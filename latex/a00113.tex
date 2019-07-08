@@ -1,156 +1,139 @@
-\hypertarget{a00113}{\section{Csv\-Helper.\-I\-Csv\-Parser Interface Reference}
-\label{a00113}\index{Csv\-Helper.\-I\-Csv\-Parser@{Csv\-Helper.\-I\-Csv\-Parser}}
+\hypertarget{a00113}{\section{Yarn.\-Unity.\-Icons Class Reference}
+\label{a00113}\index{Yarn.\-Unity.\-Icons@{Yarn.\-Unity.\-Icons}}
 }
 
 
-Defines methods used the parse a C\-S\-V file.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-I\-Csv\-Parser\-:
+Collaboration diagram for Yarn.\-Unity.\-Icons\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{a00457}
+\includegraphics[width=170pt]{a00802}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-I\-Csv\-Parser\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=194pt]{a00458}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-string\mbox{[}$\,$\mbox{]} \hyperlink{a00113_a411461b4cd33dce0b42c81715359f687}{Read} ()
-\begin{DoxyCompactList}\small\item\em Reads a record from the C\-S\-V file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00063}{Csv\-Configuration} \hyperlink{a00113_af1303d18a827bf46a56f9cb6ba05ed64}{Configuration}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the configuration. \end{DoxyCompactList}\item 
-int \hyperlink{a00113_a50c0428defc2ada782c6863d72a990e4}{Field\-Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the field count. \end{DoxyCompactList}\item 
-long \hyperlink{a00113_aa47c7ce6c764dddc78bb4d3ee83714eb}{Char\-Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the character position that the parser is currently on. \end{DoxyCompactList}\item 
-long \hyperlink{a00113_a23dee37412eeb387df1d336e7bf07cc2}{Byte\-Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the byte position that the parser is currently on. \end{DoxyCompactList}\item 
-int \hyperlink{a00113_a0ec83f976594f51a002448fa2fe2e392}{Row}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the row of the C\-S\-V file that the parser is currently on. \end{DoxyCompactList}\item 
-string \hyperlink{a00113_a1b238e3bb053f2f6c122ee0d77bb48d7}{Raw\-Record}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the raw row for the current record that was parsed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static Texture \hyperlink{a00113_aec8aea03eb6e31771ebc98e0611fff79}{success\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static Texture \hyperlink{a00113_aae7cc0e5016db04a90b2aa0e80957626}{failed\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static Texture \hyperlink{a00113_ab8afce565cd2ad1543d1e32e7e589e77}{not\-Tested\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static Texture \hyperlink{a00113_aa78ab016ad041bc36850c8b20ba63972}{window\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Texture \hyperlink{a00113_a267896b2c4512f5b17772e7e1e46d6da}{Get\-Texture} (string texture\-Name)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Texture \hyperlink{a00113_a40e137f48495168d4423c103c8935a1b}{\-\_\-success\-Icon}
+\item 
+static Texture \hyperlink{a00113_a75ef0bcf3f5968f11949e6bfa4fdddd5}{\-\_\-failed\-Icon}
+\item 
+static Texture \hyperlink{a00113_a497c5dcdfef75245a24c295f523fb7f7}{\-\_\-not\-Tested\-Icon}
+\item 
+static Texture \hyperlink{a00113_abba8fef6cc12836ea431a8a7c9e2f3db}{\-\_\-window\-Icon}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Defines methods used the parse a C\-S\-V file. 
 
 
-
-Definition at line 13 of file I\-Csv\-Parser.\-cs.
+Definition at line 550 of file Yarn\-Spinner\-Editor\-Window.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00113_a411461b4cd33dce0b42c81715359f687}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Read@{Read}}
-\index{Read@{Read}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
-\subsubsection[{Read}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Csv\-Helper.\-I\-Csv\-Parser.\-Read (
+\hypertarget{a00113_a267896b2c4512f5b17772e7e1e46d6da}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!Get\-Texture@{Get\-Texture}}
+\index{Get\-Texture@{Get\-Texture}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{Get\-Texture}]{\setlength{\rightskip}{0pt plus 5cm}static Texture Yarn.\-Unity.\-Icons.\-Get\-Texture (
 \begin{DoxyParamCaption}
-{}
+\item[{string}]{texture\-Name}
 \end{DoxyParamCaption}
-)}}\label{a00113_a411461b4cd33dce0b42c81715359f687}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00113_a267896b2c4512f5b17772e7e1e46d6da}
 
 
-Reads a record from the C\-S\-V file. 
-
-\begin{DoxyReturn}{Returns}
-A T\-:\-String\mbox{[}$\,$\mbox{]} of fields for the record read.
-\end{DoxyReturn}
+Definition at line 552 of file Yarn\-Spinner\-Editor\-Window.\-cs.
 
 
-Implemented in \hyperlink{a00068_a8e938842c6267343128babd111df9710}{Csv\-Helper.\-Csv\-Parser}.
+\begin{DoxyCode}
+552                                                               \{
+553             var guids = AssetDatabase.FindAssets (string.Format (\textcolor{stringliteral}{"\{0\} t:texture"}, textureName));
+554             \textcolor{keywordflow}{if} (guids.Length == 0)
+555                 \textcolor{keywordflow}{return} null;
+556 
+557             var path = AssetDatabase.GUIDToAssetPath(guids[0]);
+558             \textcolor{keywordflow}{return} AssetDatabase.LoadAssetAtPath<Texture>(path);
+559         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00113_a75ef0bcf3f5968f11949e6bfa4fdddd5}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-failed\-Icon@{\-\_\-failed\-Icon}}
+\index{\-\_\-failed\-Icon@{\-\_\-failed\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-failed\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-failed\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00113_a75ef0bcf3f5968f11949e6bfa4fdddd5}
+
+
+Definition at line 571 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+
+\hypertarget{a00113_a497c5dcdfef75245a24c295f523fb7f7}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-not\-Tested\-Icon@{\-\_\-not\-Tested\-Icon}}
+\index{\-\_\-not\-Tested\-Icon@{\-\_\-not\-Tested\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-not\-Tested\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-not\-Tested\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00113_a497c5dcdfef75245a24c295f523fb7f7}
+
+
+Definition at line 581 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+
+\hypertarget{a00113_a40e137f48495168d4423c103c8935a1b}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-success\-Icon@{\-\_\-success\-Icon}}
+\index{\-\_\-success\-Icon@{\-\_\-success\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-success\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-success\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00113_a40e137f48495168d4423c103c8935a1b}
+
+
+Definition at line 561 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+
+\hypertarget{a00113_abba8fef6cc12836ea431a8a7c9e2f3db}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-window\-Icon@{\-\_\-window\-Icon}}
+\index{\-\_\-window\-Icon@{\-\_\-window\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-window\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-window\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00113_abba8fef6cc12836ea431a8a7c9e2f3db}
+
+
+Definition at line 591 of file Yarn\-Spinner\-Editor\-Window.\-cs.
 
 
 
 \subsection{Property Documentation}
-\hypertarget{a00113_a23dee37412eeb387df1d336e7bf07cc2}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Byte\-Position@{Byte\-Position}}
-\index{Byte\-Position@{Byte\-Position}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
-\subsubsection[{Byte\-Position}]{\setlength{\rightskip}{0pt plus 5cm}long Csv\-Helper.\-I\-Csv\-Parser.\-Byte\-Position\hspace{0.3cm}{\ttfamily [get]}}}\label{a00113_a23dee37412eeb387df1d336e7bf07cc2}
+\hypertarget{a00113_aae7cc0e5016db04a90b2aa0e80957626}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!failed\-Icon@{failed\-Icon}}
+\index{failed\-Icon@{failed\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{failed\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-failed\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00113_aae7cc0e5016db04a90b2aa0e80957626}
 
 
-Gets the byte position that the parser is currently on. 
+Definition at line 572 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+
+\hypertarget{a00113_ab8afce565cd2ad1543d1e32e7e589e77}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!not\-Tested\-Icon@{not\-Tested\-Icon}}
+\index{not\-Tested\-Icon@{not\-Tested\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{not\-Tested\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-not\-Tested\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00113_ab8afce565cd2ad1543d1e32e7e589e77}
 
 
+Definition at line 582 of file Yarn\-Spinner\-Editor\-Window.\-cs.
 
-Definition at line 33 of file I\-Csv\-Parser.\-cs.
-
-\hypertarget{a00113_aa47c7ce6c764dddc78bb4d3ee83714eb}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Char\-Position@{Char\-Position}}
-\index{Char\-Position@{Char\-Position}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
-\subsubsection[{Char\-Position}]{\setlength{\rightskip}{0pt plus 5cm}long Csv\-Helper.\-I\-Csv\-Parser.\-Char\-Position\hspace{0.3cm}{\ttfamily [get]}}}\label{a00113_aa47c7ce6c764dddc78bb4d3ee83714eb}
-
-
-Gets the character position that the parser is currently on. 
+\hypertarget{a00113_aec8aea03eb6e31771ebc98e0611fff79}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!success\-Icon@{success\-Icon}}
+\index{success\-Icon@{success\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{success\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-success\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00113_aec8aea03eb6e31771ebc98e0611fff79}
 
 
+Definition at line 562 of file Yarn\-Spinner\-Editor\-Window.\-cs.
 
-Definition at line 28 of file I\-Csv\-Parser.\-cs.
-
-\hypertarget{a00113_af1303d18a827bf46a56f9cb6ba05ed64}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Configuration@{Configuration}}
-\index{Configuration@{Configuration}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
-\subsubsection[{Configuration}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Configuration} Csv\-Helper.\-I\-Csv\-Parser.\-Configuration\hspace{0.3cm}{\ttfamily [get]}}}\label{a00113_af1303d18a827bf46a56f9cb6ba05ed64}
-
-
-Gets the configuration. 
+\hypertarget{a00113_aa78ab016ad041bc36850c8b20ba63972}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!window\-Icon@{window\-Icon}}
+\index{window\-Icon@{window\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{window\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-window\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00113_aa78ab016ad041bc36850c8b20ba63972}
 
 
-
-Definition at line 18 of file I\-Csv\-Parser.\-cs.
+Definition at line 592 of file Yarn\-Spinner\-Editor\-Window.\-cs.
 
 
 
-Referenced by Csv\-Helper.\-Csv\-Reader.\-Csv\-Reader().
-
-\hypertarget{a00113_a50c0428defc2ada782c6863d72a990e4}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Field\-Count@{Field\-Count}}
-\index{Field\-Count@{Field\-Count}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
-\subsubsection[{Field\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-I\-Csv\-Parser.\-Field\-Count\hspace{0.3cm}{\ttfamily [get]}}}\label{a00113_a50c0428defc2ada782c6863d72a990e4}
-
-
-Gets the field count. 
-
-
-
-Definition at line 23 of file I\-Csv\-Parser.\-cs.
-
-\hypertarget{a00113_a1b238e3bb053f2f6c122ee0d77bb48d7}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Raw\-Record@{Raw\-Record}}
-\index{Raw\-Record@{Raw\-Record}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
-\subsubsection[{Raw\-Record}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-I\-Csv\-Parser.\-Raw\-Record\hspace{0.3cm}{\ttfamily [get]}}}\label{a00113_a1b238e3bb053f2f6c122ee0d77bb48d7}
-
-
-Gets the raw row for the current record that was parsed. 
-
-
-
-Definition at line 43 of file I\-Csv\-Parser.\-cs.
-
-\hypertarget{a00113_a0ec83f976594f51a002448fa2fe2e392}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Row@{Row}}
-\index{Row@{Row}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
-\subsubsection[{Row}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-I\-Csv\-Parser.\-Row\hspace{0.3cm}{\ttfamily [get]}}}\label{a00113_a0ec83f976594f51a002448fa2fe2e392}
-
-
-Gets the row of the C\-S\-V file that the parser is currently on. 
-
-
-
-Definition at line 38 of file I\-Csv\-Parser.\-cs.
-
-
-
-The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00246}{I\-Csv\-Parser.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn\-Spinner/\-Code/\-Editor/\hyperlink{a00296}{Yarn\-Spinner\-Editor\-Window.\-cs}\end{DoxyCompactItemize}

@@ -1,173 +1,63 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00136" kind="class" prot="public">
-    <compoundname>Yarn::MemoryVariableStore</compoundname>
-    <basecompoundref refid="a00042" prot="public" virt="non-virtual">Yarn.BaseVariableStorage</basecompoundref>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00136_1aad18acd95297edb8ed496857337f8071" prot="private" static="no" mutable="no">
-        <type>Dictionary&lt; string, <ref refid="a00187" kindref="compound">Value</ref> &gt;</type>
-        <definition>Dictionary&lt;string, Value&gt; Yarn.MemoryVariableStore.variables</definition>
+    <compoundname>Yarn::LocalisedLine</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00136_1aad88f588cbbe2df9bb83da59eeff3d3c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.LocalisedLine.LineCode</definition>
         <argsstring></argsstring>
-        <name>variables</name>
-        <initializer>= new Dictionary&lt;string, <ref refid="a00187" kindref="compound">Value</ref>&gt;()</initializer>
+        <name>LineCode</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="104" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="104" bodyend="-1"/>
-        <referencedby refid="a00136_1a0ce77e8245c504a777540e359704aa2a" compoundref="a00305" startline="111" endline="121">Yarn.MemoryVariableStore.GetValue</referencedby>
-        <referencedby refid="a00136_1a653a459811e5c19549f4b31269093ef5" compoundref="a00305" startline="106" endline="109">Yarn.MemoryVariableStore.SetValue</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="96" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="96" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00136_1a653a459811e5c19549f4b31269093ef5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override void</type>
-        <definition>override void Yarn.MemoryVariableStore.SetValue</definition>
-        <argsstring>(string variableName, Value value)</argsstring>
-        <name>SetValue</name>
-        <reimplements refid="a00042_1a1c57d6d208b78abec0a670396771448e">SetValue</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type><ref refid="a00187" kindref="compound">Value</ref></type>
-          <declname>value</declname>
-        </param>
+      <memberdef kind="property" id="a00136_1ab0b4fa82cfa7693ff3c96fe5c3837fff" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.LocalisedLine.LineText</definition>
+        <argsstring></argsstring>
+        <name>LineText</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="106" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="106" bodyend="109"/>
-        <references refid="a00136_1aad18acd95297edb8ed496857337f8071" compoundref="a00305" startline="104">Yarn.MemoryVariableStore.variables</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="97" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="97" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="a00136_1a0ce77e8245c504a777540e359704aa2a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override <ref refid="a00187" kindref="compound">Value</ref></type>
-        <definition>override Value Yarn.MemoryVariableStore.GetValue</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetValue</name>
-        <reimplements refid="a00042_1a13b142df804d9842e97e628e252928e8">GetValue</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
+      <memberdef kind="property" id="a00136_1afbfb834bb1623653fa73945c221c4b9d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.LocalisedLine.Comment</definition>
+        <argsstring></argsstring>
+        <name>Comment</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="111" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="111" bodyend="121"/>
-        <references refid="a00187_1a1ed2964965baca8621c45efa23f37660" compoundref="a00315" startline="9">Yarn.Value.NULL</references>
-        <references refid="a00136_1aad18acd95297edb8ed496857337f8071" compoundref="a00305" startline="104">Yarn.MemoryVariableStore.variables</references>
-      </memberdef>
-      <memberdef kind="function" id="a00136_1aa6d243e7ef02b91f793a221f509dae69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override void</type>
-        <definition>override void Yarn.MemoryVariableStore.Clear</definition>
-        <argsstring>()</argsstring>
-        <name>Clear</name>
-        <reimplements refid="a00042_1a7e45c37f3662ce9f2643e306bb2b3adc">Clear</reimplements>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="123" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="123" bodyend="126"/>
-      </memberdef>
-      <memberdef kind="function" id="a00042_1a48b93de9cd7ae61d0cd9583c8330d3ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.BaseVariableStorage.SetNumber</definition>
-        <argsstring>(string variableName, float number)</argsstring>
-        <name>SetNumber</name>
-        <reimplements refid="a00190_1aa28c3694f985cf73489efc301b9d41dd">SetNumber</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>number</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="76" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="76" bodyend="78"/>
-      </memberdef>
-      <memberdef kind="function" id="a00042_1a1b7f7f4468b2463e7b47986d99362279" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>float</type>
-        <definition>float Yarn.BaseVariableStorage.GetNumber</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetNumber</name>
-        <reimplements refid="a00190_1a04b061c52d8ac814ce559da5286fbc71">GetNumber</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="81" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="81" bodyend="83"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="98" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="98" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Very simple continuity class that keeps all variables in memory. </para>    </briefdescription>
+<para>A line, localised into the current locale. </para>    </briefdescription>
     <detaileddescription>
-    </detaileddescription>
-    <inheritancegraph>
-      <node id="1518">
-        <label>VariableStorage</label>
-        <link refid="a00190"/>
-      </node>
-      <node id="1516">
-        <label>Yarn.MemoryVariableStore</label>
-        <link refid="a00136"/>
-        <childnode refid="1517" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1517">
-        <label>Yarn::BaseVariableStorage</label>
-        <link refid="a00042"/>
-        <childnode refid="1518" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
+<para>LocalisedLines are used in both lines, options, and shortcut options - basically, anything user-facing. </para>    </detaileddescription>
     <collaborationgraph>
-      <node id="1521">
-        <label>VariableStorage</label>
-        <link refid="a00190"/>
-      </node>
-      <node id="1519">
-        <label>Yarn.MemoryVariableStore</label>
+      <node id="1513">
+        <label>Yarn.LocalisedLine</label>
         <link refid="a00136"/>
-        <childnode refid="1520" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1520">
-        <label>Yarn::BaseVariableStorage</label>
-        <link refid="a00042"/>
-        <childnode refid="1521" relation="public-inheritance">
-        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="103" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="102" bodyend="127"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="95" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="94" bodyend="99"/>
     <listofallmembers>
-      <member refid="a00136_1aa6d243e7ef02b91f793a221f509dae69" prot="public" virt="virtual"><scope>Yarn::MemoryVariableStore</scope><name>Clear</name></member>
-      <member refid="a00042_1a1b7f7f4468b2463e7b47986d99362279" prot="public" virt="non-virtual"><scope>Yarn::MemoryVariableStore</scope><name>GetNumber</name></member>
-      <member refid="a00136_1a0ce77e8245c504a777540e359704aa2a" prot="public" virt="virtual"><scope>Yarn::MemoryVariableStore</scope><name>GetValue</name></member>
-      <member refid="a00042_1a48b93de9cd7ae61d0cd9583c8330d3ee" prot="public" virt="non-virtual"><scope>Yarn::MemoryVariableStore</scope><name>SetNumber</name></member>
-      <member refid="a00136_1a653a459811e5c19549f4b31269093ef5" prot="public" virt="virtual"><scope>Yarn::MemoryVariableStore</scope><name>SetValue</name></member>
-      <member refid="a00136_1aad18acd95297edb8ed496857337f8071" prot="private" virt="non-virtual"><scope>Yarn::MemoryVariableStore</scope><name>variables</name></member>
+      <member refid="a00136_1afbfb834bb1623653fa73945c221c4b9d" prot="public" virt="non-virtual"><scope>Yarn::LocalisedLine</scope><name>Comment</name></member>
+      <member refid="a00136_1aad88f588cbbe2df9bb83da59eeff3d3c" prot="public" virt="non-virtual"><scope>Yarn::LocalisedLine</scope><name>LineCode</name></member>
+      <member refid="a00136_1ab0b4fa82cfa7693ff3c96fe5c3837fff" prot="public" virt="non-virtual"><scope>Yarn::LocalisedLine</scope><name>LineText</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

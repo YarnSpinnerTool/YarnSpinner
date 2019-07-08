@@ -1,18 +1,101 @@
-\hypertarget{a00317}{\section{Yarn\-Spinner/\-Yarn\-Spinner\-Lexer.cs File Reference}
-\label{a00317}\index{Yarn\-Spinner/\-Yarn\-Spinner\-Lexer.\-cs@{Yarn\-Spinner/\-Yarn\-Spinner\-Lexer.\-cs}}
+\hypertarget{a00317}{\section{Yarn\-Spinner/\-Program.cs File Reference}
+\label{a00317}\index{Yarn\-Spinner/\-Program.\-cs@{Yarn\-Spinner/\-Program.\-cs}}
 }
-\subsection*{Typedefs}
+\subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-using \hyperlink{a00317_adff82417cdaed8e1b025db27c7c11fc3}{D\-F\-A} = Antlr4.\-Runtime.\-Dfa.\-D\-F\-A
+class \hyperlink{a00149}{Yarn.\-Parse\-Exception}
+\item 
+struct \hyperlink{a00133}{Yarn.\-Line\-Info}
+\item 
+class \hyperlink{a00154}{Yarn.\-Program}
+\item 
+class \hyperlink{a00053_a00382}{Yarn.\-Node}
+\item 
+struct \hyperlink{a00121}{Yarn.\-Instruction}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+package \hyperlink{a00053}{Yarn}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{Yarn.\-Byte\-Code} \{ \\*
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894ab021df6aac4654c454f46c77646e745f}{Yarn.\-Byte\-Code.\-Label}, 
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894acd664ebca0b52a8f2ece7d0767bacb49}{Yarn.\-Byte\-Code.\-Jump\-To}, 
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894a101f693f72287a2819a364f64ca1c0ed}{Yarn.\-Byte\-Code.\-Jump}, 
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894a005c6df9c6edea5516e29d96571fbbbc}{Yarn.\-Byte\-Code.\-Run\-Line}, 
+\\*
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894a64d231d79e9f7640a4572f7ae75aa226}{Yarn.\-Byte\-Code.\-Run\-Command}, 
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894a0e6a6b9eb32a4d55f277d45eff74250d}{Yarn.\-Byte\-Code.\-Add\-Option}, 
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894a658963e1a47a5018fd1e6fbc2af804f7}{Yarn.\-Byte\-Code.\-Show\-Options}, 
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894a3e7800d36ccb7bfe6c463bbe7db7e41a}{Yarn.\-Byte\-Code.\-Push\-String}, 
+\\*
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894a29c8f5d9d5088ada190ccd9c21c31f33}{Yarn.\-Byte\-Code.\-Push\-Number}, 
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894af698d0b66ccf00f7d362c039949d1b80}{Yarn.\-Byte\-Code.\-Push\-Bool}, 
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894acf728db6b8e47e735666156aec7ae755}{Yarn.\-Byte\-Code.\-Push\-Null}, 
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894af8bbf32f00c942d974ade428e24b021f}{Yarn.\-Byte\-Code.\-Jump\-If\-False}, 
+\\*
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894a0ae61bd0474e04c9f1195d4baa0213a0}{Yarn.\-Byte\-Code.\-Pop}, 
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894a3b5e7e8300dc6e4b78cb865c5b10f01a}{Yarn.\-Byte\-Code.\-Call\-Func}, 
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894ab8c46f65015a178516fadbb5ad6c2038}{Yarn.\-Byte\-Code.\-Push\-Variable}, 
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894a872dc050abaff4beb46e70dadd4088c2}{Yarn.\-Byte\-Code.\-Store\-Variable}, 
+\\*
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894a11a755d598c0c417f9a36758c3da7481}{Yarn.\-Byte\-Code.\-Stop}, 
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894ae956bcf888278c168ee9b106927ff6ac}{Yarn.\-Byte\-Code.\-Run\-Node}
+ \}
 \end{DoxyCompactItemize}
 
 
-\subsection{Typedef Documentation}
-\hypertarget{a00317_adff82417cdaed8e1b025db27c7c11fc3}{\index{Yarn\-Spinner\-Lexer.\-cs@{Yarn\-Spinner\-Lexer.\-cs}!D\-F\-A@{D\-F\-A}}
-\index{D\-F\-A@{D\-F\-A}!YarnSpinnerLexer.cs@{Yarn\-Spinner\-Lexer.\-cs}}
-\subsubsection[{D\-F\-A}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf D\-F\-A} =  Antlr4.\-Runtime.\-Dfa.\-D\-F\-A}}\label{a00317_adff82417cdaed8e1b025db27c7c11fc3}
+\subsection{Class Documentation}
+\index{Yarn\-::\-Node@{Yarn\-::\-Node}}\label{a00382}
+\hypertarget{a00053_a00382}{}
+\subsubsection{class Yarn\-:\-:Node}
 
 
-Definition at line 28 of file Yarn\-Spinner\-Lexer.\-cs.
+Definition at line 252 of file Program.\-cs.
 
+
+
+Collaboration diagram for Yarn.\-Node\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{a00396}
+\end{center}
+\end{figure}
+\begin{DoxyFields}{Class Members}
+\hypertarget{a00053_a156723a9252b62d288ddf611939ea7c3}{List$<$ \hyperlink{a00121}{Instruction} $>$}\label{a00053_a156723a9252b62d288ddf611939ea7c3}
+&
+instructions&
+\\
+\hline
+
+\hypertarget{a00053_a9afa49f4fbc72e806a0210cb4198f12e}{Dictionary$<$ string, int $>$}\label{a00053_a9afa49f4fbc72e806a0210cb4198f12e}
+&
+labels&
+\\
+\hline
+
+\hypertarget{a00053_a107b0de3fcfc65e99913edc01b5ce9db}{string}\label{a00053_a107b0de3fcfc65e99913edc01b5ce9db}
+&
+name&
+\\
+\hline
+
+\hypertarget{a00053_a09c6af5b50925d0876283b84281b3ed4}{string}\label{a00053_a09c6af5b50925d0876283b84281b3ed4}
+&
+source\-Text\-String\-I\-D&
+the entry in the program's string table that contains the original text of this node; null if this is not available \\
+\hline
+
+\hypertarget{a00053_a811086feceebbe79a74eba071c1d516b}{List$<$ string $>$}\label{a00053_a811086feceebbe79a74eba071c1d516b}
+&
+tags&
+\\
+\hline
+
+\end{DoxyFields}

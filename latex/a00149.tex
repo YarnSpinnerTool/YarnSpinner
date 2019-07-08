@@ -1,113 +1,73 @@
-\hypertarget{a00149}{\section{Yarn.\-Parser Class Reference}
-\label{a00149}\index{Yarn.\-Parser@{Yarn.\-Parser}}
+\hypertarget{a00149}{\section{Yarn.\-Parse\-Exception Class Reference}
+\label{a00149}\index{Yarn.\-Parse\-Exception@{Yarn.\-Parse\-Exception}}
 }
 
 
-Collaboration diagram for Yarn.\-Parser\-:
+Inheritance diagram for Yarn.\-Parse\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=194pt]{a00667}
+\includegraphics[width=188pt]{a00715}
 \end{center}
 \end{figure}
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \hyperlink{a00039}{Assignment\-Statement}
-\item 
-class \hyperlink{a00043}{Block}
-\item 
-class \hyperlink{a00083}{Custom\-Command}
-\item 
-class \hyperlink{a00104}{Expression}
-\item 
-class \hyperlink{a00118}{If\-Statement}
-\item 
-class \hyperlink{a00138}{Node}
-\item 
-class \hyperlink{a00143}{Operator}
-\item 
-class \hyperlink{a00146}{Option\-Statement}
-\item 
-class \hyperlink{a00148}{Parse\-Node}
-\item 
-class \hyperlink{a00159}{Shortcut\-Option}
-\item 
-class \hyperlink{a00160}{Shortcut\-Option\-Group}
-\item 
-class \hyperlink{a00166}{Statement}
-\item 
-class \hyperlink{a00188}{Value\-Node}
-\end{DoxyCompactItemize}
+
+
+Collaboration diagram for Yarn.\-Parse\-Exception\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=188pt]{a00716}
+\end{center}
+\end{figure}
 \subsection*{Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00149_acd2714b911fb5e7c38f0e07a9dc1af58}{Parser} (I\-Collection$<$ \hyperlink{a00173}{Token} $>$ \hyperlink{a00149_a1a4de646937057988b59d2ff8035eae3}{tokens}, \hyperlink{a00129}{Library} \hyperlink{a00149_a1313951b09177a1c83b6cf035139197a}{library})
-\item 
-\hyperlink{a00138}{Node} \hyperlink{a00149_a811cc7226f4f4a2f3440cdb67ad14468}{Parse} ()
+\hyperlink{a00149_aa3c4f5c8b0ae86097bbc46044df9f317}{Parse\-Exception} (string message)
 \end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
+\subsection*{Static Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{a00149_a666a945da1a7845b02b92592fccac291}{Next\-Symbol\-Is} (params \hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} valid\-Types)
+static \hyperlink{a00149}{Parse\-Exception} \hyperlink{a00149_a511a51bb42dc5bb107eb68f7e5cf5ff1}{Make} (\hyperlink{a00175}{Token} found\-Token, params \hyperlink{a00053_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} expected\-Types)
 \item 
-bool \hyperlink{a00149_afaa7e96d4cdaf6b1fde9ecd273c00c34}{Next\-Symbols\-Are} (params \hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} valid\-Types)
+static \hyperlink{a00149}{Parse\-Exception} \hyperlink{a00149_a173f3cabc4741d9d9e016310e90c1c9f}{Make} (\hyperlink{a00175}{Token} most\-Recent\-Token, string message)
 \item 
-\hyperlink{a00173}{Token} \hyperlink{a00149_a8a396d05e7dad704009e8c77657b31d3}{Expect\-Symbol} (\hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} type)
-\item 
-\hyperlink{a00173}{Token} \hyperlink{a00149_a5a8f02cd87335aae2f2aa7de13c7512c}{Expect\-Symbol} ()
-\item 
-\hyperlink{a00173}{Token} \hyperlink{a00149_ae69620071ecfd16807c5dfc0948ee7f5}{Expect\-Symbol} (params \hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} valid\-Types)
+static \hyperlink{a00149}{Parse\-Exception} \hyperlink{a00149_a0265905b09fbd675d40c452d9fc61207}{Make} (\hyperlink{a00323_a7e45f8222713cb764832fd3c69d0268f}{Antlr4.\-Runtime.\-Parser\-Rule\-Context} context, string message)
 \end{DoxyCompactItemize}
-\subsection*{Static Private Member Functions}
+\subsection*{Package Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static string \hyperlink{a00149_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (int indent\-Level, string input, bool new\-Line=true)
-\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-Queue$<$ \hyperlink{a00173}{Token} $>$ \hyperlink{a00149_a1a4de646937057988b59d2ff8035eae3}{tokens}
-\item 
-\hyperlink{a00129}{Library} \hyperlink{a00149_a1313951b09177a1c83b6cf035139197a}{library}
+int \hyperlink{a00149_ab335169367e64fd6d89d58b3ac573751}{line\-Number} = 0
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 38 of file Parser.\-cs.
+Definition at line 11 of file Program.\-cs.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00149_acd2714b911fb5e7c38f0e07a9dc1af58}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Parser@{Parser}}
-\index{Parser@{Parser}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Parser}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Parser (
+\hypertarget{a00149_aa3c4f5c8b0ae86097bbc46044df9f317}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Parse\-Exception@{Parse\-Exception}}
+\index{Parse\-Exception@{Parse\-Exception}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
+\subsubsection[{Parse\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parse\-Exception.\-Parse\-Exception (
 \begin{DoxyParamCaption}
-\item[{I\-Collection$<$ {\bf Token} $>$}]{tokens, }
-\item[{{\bf Library}}]{library}
+\item[{string}]{message}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00149_acd2714b911fb5e7c38f0e07a9dc1af58}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00149_aa3c4f5c8b0ae86097bbc46044df9f317}
 
 
-Definition at line 1265 of file Parser.\-cs.
-
-
-
-References Yarn.\-Parser.\-library, and Yarn.\-Parser.\-tokens.
+Definition at line 67 of file Program.\-cs.
 
 
 
-Referenced by Yarn.\-Parser.\-Custom\-Command.\-Custom\-Command().
+Referenced by Yarn.\-Parse\-Exception.\-Make().
 
 
 \begin{DoxyCode}
-1265                                                                     \{
-1266             this.tokens = \textcolor{keyword}{new} Queue<Token>(\hyperlink{a00149_a1a4de646937057988b59d2ff8035eae3}{tokens});
-1267             this.library = \hyperlink{a00149_a1313951b09177a1c83b6cf035139197a}{library};
-1268         \}
+67 : base(message) \{ \}
 \end{DoxyCode}
 
 
@@ -116,7 +76,7 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00149_acd2714b911fb5e7c38f0e07a9dc1af58_icgraph}
+\includegraphics[width=350pt]{a00149_aa3c4f5c8b0ae86097bbc46044df9f317_icgraph}
 \end{center}
 \end{figure}
 
@@ -124,232 +84,142 @@ Here is the caller graph for this function\-:
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00149_a8a396d05e7dad704009e8c77657b31d3}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Expect\-Symbol@{Expect\-Symbol}}
-\index{Expect\-Symbol@{Expect\-Symbol}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Expect\-Symbol}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token} Yarn.\-Parser.\-Expect\-Symbol (
+\hypertarget{a00149_a511a51bb42dc5bb107eb68f7e5cf5ff1}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
+\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
+\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
 \begin{DoxyParamCaption}
-\item[{{\bf Token\-Type}}]{type}
+\item[{{\bf Token}}]{found\-Token, }
+\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{expected\-Types}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00149_a8a396d05e7dad704009e8c77657b31d3}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00149_a511a51bb42dc5bb107eb68f7e5cf5ff1}
 
 
-Definition at line 1302 of file Parser.\-cs.
+Definition at line 16 of file Program.\-cs.
+
+
+
+References Yarn.\-Parse\-Exception.\-line\-Number, and Yarn.\-Parse\-Exception.\-Parse\-Exception().
 
 
 \begin{DoxyCode}
-1302                                            \{
-1303             var t = this.tokens.Dequeue();
-1304             \textcolor{keywordflow}{if} (t.type != type) \{
-1305 
-1306                 \textcolor{keywordflow}{throw} ParseException.Make(t, type);
-1307             \}
-1308             \textcolor{keywordflow}{return} t;
-1309         \}
-\end{DoxyCode}
-\hypertarget{a00149_a5a8f02cd87335aae2f2aa7de13c7512c}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Expect\-Symbol@{Expect\-Symbol}}
-\index{Expect\-Symbol@{Expect\-Symbol}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Expect\-Symbol}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token} Yarn.\-Parser.\-Expect\-Symbol (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00149_a5a8f02cd87335aae2f2aa7de13c7512c}
-
-
-Definition at line 1312 of file Parser.\-cs.
-
-
-\begin{DoxyCode}
-1312                              \{
-1313             var token = this.tokens.Dequeue ();
-1314             \textcolor{keywordflow}{if} (token.type == \hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EndOfInput) \{
-1315                 \textcolor{keywordflow}{throw} ParseException.Make (token, \textcolor{stringliteral}{"Unexpected end of input"});
-1316             \}
-1317             \textcolor{keywordflow}{return} token;
-1318         \}
-\end{DoxyCode}
-\hypertarget{a00149_ae69620071ecfd16807c5dfc0948ee7f5}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Expect\-Symbol@{Expect\-Symbol}}
-\index{Expect\-Symbol@{Expect\-Symbol}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Expect\-Symbol}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token} Yarn.\-Parser.\-Expect\-Symbol (
-\begin{DoxyParamCaption}
-\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{valid\-Types}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00149_ae69620071ecfd16807c5dfc0948ee7f5}
-
-
-Definition at line 1322 of file Parser.\-cs.
-
-
-\begin{DoxyCode}
-1322                                                           \{
-1323             var t = this.tokens.Dequeue();
-1324 
-1325             \textcolor{keywordflow}{foreach} (var validType \textcolor{keywordflow}{in} validTypes) \{
-1326                 \textcolor{keywordflow}{if} (t.type == validType) \{
-1327                     \textcolor{keywordflow}{return} t;
-1328                 \}
-1329             \}
-1330 
-1331             \textcolor{keywordflow}{throw} ParseException.Make(t, validTypes);
-1332         \}
-\end{DoxyCode}
-\hypertarget{a00149_a666a945da1a7845b02b92592fccac291}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Next\-Symbol\-Is@{Next\-Symbol\-Is}}
-\index{Next\-Symbol\-Is@{Next\-Symbol\-Is}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Next\-Symbol\-Is}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Parser.\-Next\-Symbol\-Is (
-\begin{DoxyParamCaption}
-\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{valid\-Types}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00149_a666a945da1a7845b02b92592fccac291}
-
-
-Definition at line 1277 of file Parser.\-cs.
-
-
-
-Referenced by Yarn.\-Parser.\-Block.\-Block(), Yarn.\-Parser.\-Custom\-Command.\-Custom\-Command(), Yarn.\-Parser.\-If\-Statement.\-If\-Statement(), Yarn.\-Parser.\-Node.\-Node(), Yarn.\-Parser.\-Option\-Statement.\-Option\-Statement(), Yarn.\-Parser.\-Expression.\-Parse(), Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option(), Yarn.\-Parser.\-Shortcut\-Option\-Group.\-Shortcut\-Option\-Group(), and Yarn.\-Parser.\-Statement.\-Statement().
-
-
-\begin{DoxyCode}
-1277                                                          \{
-1278             var t = this.tokens.Peek().type;
-1279 
-1280             \textcolor{keywordflow}{foreach} (var validType \textcolor{keywordflow}{in} validTypes) \{
-1281                 \textcolor{keywordflow}{if} (t == validType) \{
-1282                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-1283                 \}
-1284             \}
-1285             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-1286         \}
+17         \{
+18 
+19             var \hyperlink{a00149_ab335169367e64fd6d89d58b3ac573751}{lineNumber} = foundToken.lineNumber + 1;
+20 
+21             var expectedTypeNames = \textcolor{keyword}{new} List<String>();
+22             \textcolor{keywordflow}{foreach} (var type \textcolor{keywordflow}{in} expectedTypes)
+23             \{
+24                 expectedTypeNames.Add(type.ToString());
+25             \}
+26 
+27             \textcolor{keywordtype}{string} possibleValues = string.Join(\textcolor{stringliteral}{","}, expectedTypeNames.ToArray());
+28             \textcolor{keywordtype}{string} message = string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Line \{0\}:\{1\}: Expected \{2\}, but
+       found \{3\}"},
+29                                            \hyperlink{a00149_ab335169367e64fd6d89d58b3ac573751}{lineNumber},
+30                                            foundToken.columnNumber,
+31                                            possibleValues,
+32                                            foundToken.type.ToString()
+33                                            );
+34             var e = \textcolor{keyword}{new} \hyperlink{a00149_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException}(message);
+35             e.lineNumber = \hyperlink{a00149_ab335169367e64fd6d89d58b3ac573751}{lineNumber};
+36             \textcolor{keywordflow}{return} e;
+37         \}
 \end{DoxyCode}
 
 
-Here is the caller graph for this function\-:
+Here is the call graph for this function\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00149_a666a945da1a7845b02b92592fccac291_icgraph}
+\includegraphics[width=350pt]{a00149_a511a51bb42dc5bb107eb68f7e5cf5ff1_cgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{a00149_afaa7e96d4cdaf6b1fde9ecd273c00c34}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Next\-Symbols\-Are@{Next\-Symbols\-Are}}
-\index{Next\-Symbols\-Are@{Next\-Symbols\-Are}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Next\-Symbols\-Are}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Parser.\-Next\-Symbols\-Are (
+\hypertarget{a00149_a173f3cabc4741d9d9e016310e90c1c9f}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
+\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
+\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
 \begin{DoxyParamCaption}
-\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{valid\-Types}
+\item[{{\bf Token}}]{most\-Recent\-Token, }
+\item[{string}]{message}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00149_afaa7e96d4cdaf6b1fde9ecd273c00c34}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00149_a173f3cabc4741d9d9e016310e90c1c9f}
 
 
-Definition at line 1291 of file Parser.\-cs.
-
-
-
-References Yarn.\-Parser.\-tokens.
+Definition at line 39 of file Program.\-cs.
 
 
 
-Referenced by Yarn.\-Parser.\-Custom\-Command.\-Can\-Parse(), Yarn.\-Parser.\-If\-Statement.\-If\-Statement(), and Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option().
+References Yarn.\-Parse\-Exception.\-line\-Number, and Yarn.\-Parse\-Exception.\-Parse\-Exception().
 
 
 \begin{DoxyCode}
-1291                                                            \{
-1292             var tempQueue = \textcolor{keyword}{new} Queue<Token> (\hyperlink{a00149_a1a4de646937057988b59d2ff8035eae3}{tokens});
-1293             \textcolor{keywordflow}{foreach} (var type \textcolor{keywordflow}{in} validTypes) \{
-1294                 \textcolor{keywordflow}{if} (tempQueue.Dequeue ().type != type)
-1295                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-1296             \}
-1297             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-1298         \}
+40         \{
+41             var \hyperlink{a00149_ab335169367e64fd6d89d58b3ac573751}{lineNumber} = mostRecentToken.lineNumber + 1;
+42             \textcolor{keywordtype}{string} theMessage = string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Line \{0\}:\{1\}: \{2\}"},
+43                                  \hyperlink{a00149_ab335169367e64fd6d89d58b3ac573751}{lineNumber},
+44                                 mostRecentToken.columnNumber,
+45                                  message);
+46             var e = \textcolor{keyword}{new} \hyperlink{a00149_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException}(theMessage);
+47             e.lineNumber = \hyperlink{a00149_ab335169367e64fd6d89d58b3ac573751}{lineNumber};
+48             \textcolor{keywordflow}{return} e;
+49         \}
 \end{DoxyCode}
 
 
-Here is the caller graph for this function\-:
+Here is the call graph for this function\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00149_afaa7e96d4cdaf6b1fde9ecd273c00c34_icgraph}
+\includegraphics[width=350pt]{a00149_a173f3cabc4741d9d9e016310e90c1c9f_cgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{a00149_a811cc7226f4f4a2f3440cdb67ad14468}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Parse@{Parse}}
-\index{Parse@{Parse}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Parse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse (
+\hypertarget{a00149_a0265905b09fbd675d40c452d9fc61207}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
+\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
+\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf Antlr4.\-Runtime.\-Parser\-Rule\-Context}}]{context, }
+\item[{string}]{message}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00149_a811cc7226f4f4a2f3440cdb67ad14468}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00149_a0265905b09fbd675d40c452d9fc61207}
 
 
-Definition at line 1270 of file Parser.\-cs.
+Definition at line 51 of file Program.\-cs.
 
 
 
-Referenced by Yarn.\-Parser.\-Value\-Node.\-Use\-Token().
+References Yarn.\-Parse\-Exception.\-Parse\-Exception().
 
 
 \begin{DoxyCode}
-1270                               \{
-1271 
-1272             \textcolor{comment}{// Kick off the parsing process by trying to parse a whole node}
-1273             \textcolor{keywordflow}{return} \textcolor{keyword}{new} Node(\textcolor{stringliteral}{"Start"}, null, \textcolor{keyword}{this});
-1274         \}
+52         \{
+53             \textcolor{keywordtype}{int} line = context.Start.Line;
+54 
+55             \textcolor{comment}{// getting the text that has the issue inside}
+56             \textcolor{keywordtype}{int} start = context.Start.StartIndex;
+57             \textcolor{keywordtype}{int} end = context.Stop.StopIndex;
+58             \textcolor{keywordtype}{string} body = context.Start.InputStream.GetText(\textcolor{keyword}{new} Antlr4.Runtime.Misc.Interval(start, end));
+59 
+60             \textcolor{keywordtype}{string} theMessage = string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Error on line \{0\}\(\backslash\)n\{1\}\(\backslash\)n\{2\}"}, 
+      line,body,message);
+61 
+62             var e = \textcolor{keyword}{new} \hyperlink{a00149_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException}(theMessage);
+63             e.lineNumber = line;
+64             \textcolor{keywordflow}{return} e;
+65         \}
 \end{DoxyCode}
 
 
-Here is the caller graph for this function\-:
+Here is the call graph for this function\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00149_a811cc7226f4f4a2f3440cdb67ad14468_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00149_aa8fa36b46de12a1c561d77b99c4b9ae3}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Tab@{Tab}}
-\index{Tab@{Tab}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Tab}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-Parser.\-Tab (
-\begin{DoxyParamCaption}
-\item[{int}]{indent\-Level, }
-\item[{string}]{input, }
-\item[{bool}]{new\-Line = {\ttfamily true}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00149_aa8fa36b46de12a1c561d77b99c4b9ae3}
-
-
-Definition at line 41 of file Parser.\-cs.
-
-
-
-Referenced by Yarn.\-Parser.\-Node.\-Print\-Tree(), Yarn.\-Parser.\-Statement.\-Print\-Tree(), Yarn.\-Parser.\-Custom\-Command.\-Print\-Tree(), Yarn.\-Parser.\-Shortcut\-Option\-Group.\-Print\-Tree(), Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree(), Yarn.\-Parser.\-Block.\-Print\-Tree(), Yarn.\-Parser.\-Option\-Statement.\-Print\-Tree(), Yarn.\-Parser.\-If\-Statement.\-Clause.\-Print\-Tree(), Yarn.\-Parser.\-If\-Statement.\-Print\-Tree(), Yarn.\-Parser.\-Value\-Node.\-Print\-Tree(), Yarn.\-Parser.\-Expression.\-Print\-Tree(), Yarn.\-Parser.\-Assignment\-Statement.\-Print\-Tree(), Yarn.\-Parser.\-Operator.\-Print\-Tree(), and Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String().
-
-
-\begin{DoxyCode}
-41                                                                                       \{
-42             var sb = \textcolor{keyword}{new} StringBuilder();
-43 
-44             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < indentLevel; i++) \{
-45                 sb.Append (\textcolor{stringliteral}{"| "});
-46             \}
-47             sb.Append (input);
-48 
-49             \textcolor{keywordflow}{if} (newLine)
-50                 sb.Append (\textcolor{stringliteral}{"\(\backslash\)n"});
-51 
-52             \textcolor{keywordflow}{return} sb.ToString ();
-53         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00149_aa8fa36b46de12a1c561d77b99c4b9ae3_icgraph}
+\includegraphics[width=350pt]{a00149_a0265905b09fbd675d40c452d9fc61207_cgraph}
 \end{center}
 \end{figure}
 
@@ -357,30 +227,19 @@ Here is the caller graph for this function\-:
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00149_a1313951b09177a1c83b6cf035139197a}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!library@{library}}
-\index{library@{library}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{library}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Library} Yarn.\-Parser.\-library\hspace{0.3cm}{\ttfamily [private]}}}\label{a00149_a1313951b09177a1c83b6cf035139197a}
+\hypertarget{a00149_ab335169367e64fd6d89d58b3ac573751}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parse\-Exception.\-line\-Number = 0\hspace{0.3cm}{\ttfamily [package]}}}\label{a00149_ab335169367e64fd6d89d58b3ac573751}
 
 
-Definition at line 1260 of file Parser.\-cs.
-
-
-
-Referenced by Yarn.\-Parser.\-Custom\-Command.\-Custom\-Command(), Yarn.\-Parser.\-Expression.\-Parse(), and Yarn.\-Parser.\-Parser().
-
-\hypertarget{a00149_a1a4de646937057988b59d2ff8035eae3}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!tokens@{tokens}}
-\index{tokens@{tokens}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{tokens}]{\setlength{\rightskip}{0pt plus 5cm}Queue$<${\bf Token}$>$ Yarn.\-Parser.\-tokens\hspace{0.3cm}{\ttfamily [private]}}}\label{a00149_a1a4de646937057988b59d2ff8035eae3}
-
-
-Definition at line 1258 of file Parser.\-cs.
+Definition at line 14 of file Program.\-cs.
 
 
 
-Referenced by Yarn.\-Parser.\-Next\-Symbols\-Are(), Yarn.\-Parser.\-Node.\-Node(), Yarn.\-Parser.\-Expression.\-Parse(), Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node(), Yarn.\-Parser.\-Parser(), and Yarn.\-Parser.\-Statement.\-Statement().
+Referenced by Yarn.\-Parse\-Exception.\-Make().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00313}{Parser.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00317}{Program.\-cs}\end{DoxyCompactItemize}

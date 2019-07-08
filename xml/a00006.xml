@@ -1,11 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00006" kind="page">
-    <compoundname>md_CONTRIBUTORS</compoundname>
-    <title>Contributors</title>
+    <compoundname>md_CONTRIBUTING</compoundname>
+    <title>Contributing to Yarn Spinner</title>
     <detaileddescription>
-<para>The following people have contributed to the development of <ref refid="a00051" kindref="compound">Yarn</ref> Spinner. If you submit a pull request, please add your name to the list below.</para><para><itemizedlist>
-<listitem><para>20??-ongoing: Secret Lab Team - Dr Jon Manning and Dr Paris Buttfield-Addison <ulink url="mailto:lab@secretlab.com.au">lab@secretlab.com.au</ulink></para></listitem><listitem><para>2017: Rev Peter Lawler <ulink url="mailto:relwalretep@gmail.com">relwalretep@gmail.com</ulink></para></listitem><listitem><para>2017: Dr Tim &apos;McJones&apos; Nugent <ulink url="mailto:tim@lonely.coffee">tim@lonely.coffee</ulink></para></listitem><listitem><para>2018: Damon &apos;demanrisu&apos; Reece <ulink url="mailto:de@coy.ninja">de@coy.ninja</ulink></para></listitem><listitem><para>2019: Tamme Schichler <ulink url="mailto:tamme@schichler.dev">tamme@schichler.dev</ulink> </para></listitem></itemizedlist>
-</para>    </detaileddescription>
+<para>Hi there! We&apos;re thrilled that you&apos;d like to contribute to this project. Your help is essential for keeping it great.</para><para><heading level="2">How to send in your contributions</heading>
+</para><para>There are many ways you can send your contributions to <ref refid="a00053" kindref="compound">Yarn</ref> Spinner. You can either <bold>report a bug</bold>, or you can make the changes yourself and <bold>submit a pull request</bold>!</para><para><heading level="3">Reporting bugs and opening issues</heading>
+</para><para>Please <ulink url="https://github.com/thesecretlab/YarnSpinner/issues">report bugs</ulink> and open issues generously. Don&apos;t be afraid that your idea is silly, or you&apos;re reporting a duplicate. We&apos;re happy to hear from you. Seriously.</para><para><blockquote><para>***Please Note:*** <ref refid="a00053" kindref="compound">Yarn</ref> Spinner is written by volunteers. If you encounter a problem while using it, we&apos;ll do our best to help you, but neither the authors, or Secret Lab Pty. Ltd. can offer any support.</para><para></para></blockquote></para><para><heading level="3">Submitting a pull request</heading>
+</para><para><itemizedlist>
+<listitem><para><ulink url="https://github.com/thesecretlab/YarnSpinner/fork">Fork</ulink> and clone the repository</para></listitem><listitem><para>Create a new branch: git checkout -b my-branch-name</para></listitem><listitem><para>Make your changes</para></listitem><listitem><para>Push to your fork and <ulink url="https://github.com/thesecretlab/YarnSpinner/compare">submit a pull request</ulink></para></listitem><listitem><para>Pat your self on the back and wait for your pull request to be reviewed.</para></listitem></itemizedlist>
+</para><para>If you&apos;re unfamiliar with how pull requests work, <ulink url="https://help.github.com/articles/using-pull-requests/">GitHub&apos;s documentation on them</ulink> is very good.</para><para>Here are a few things you can do that will increase the likelihood of your pull request being accepted:</para><para><itemizedlist>
+<listitem><para>Update the documentation as necessary, as well as making code changes.</para></listitem><listitem><para>Keep your change as focused as possible. If there are multiple changes you would like to make that are not dependent upon each other, consider submitting them as separate pull requests.</para></listitem><listitem><para><ulink url="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">Write a good commit message</ulink>.</para></listitem></itemizedlist>
+</para><para><heading level="3">Branches</heading>
+</para><para>All of <ref refid="a00053" kindref="compound">Yarn</ref> Spinner&apos;s in-progress work happens on the <computeroutput>development</computeroutput> branch. When we make a release, we merge from <computeroutput>development</computeroutput> into <computeroutput>master</computeroutput>. This means that <computeroutput>master</computeroutput> is always in a releasable state.</para><para><heading level="3">Code and other contributions</heading>
+</para><para>Contributions to <ref refid="a00053" kindref="compound">Yarn</ref> Spinner (via pull request or otherwise) must be licensed under the MIT license. </para>    </detaileddescription>
   </compounddef>
 </doxygen>

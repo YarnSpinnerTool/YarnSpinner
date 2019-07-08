@@ -1,36 +1,35 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00380" kind="struct" prot="public">
-    <compoundname>Yarn::Options</compoundname>
+    <compoundname>Yarn::Line</compoundname>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00380_1ae8c616d923ceeeed192a9436c55d9917" prot="public" static="no" mutable="no">
-        <type>IList&lt; string &gt;</type>
-        <definition>IList&lt;string&gt; Yarn.Options.options</definition>
+      <memberdef kind="variable" id="a00380_1a81d1f04bbb4cf6642d2bd685bda1da20" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Line.text</definition>
         <argsstring></argsstring>
-        <name>options</name>
+        <name>text</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="60" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="60" bodyend="-1"/>
-        <referencedby refid="a00056_1a62674694fa65e5ae8c0c0da4fbceda51" compoundref="a00325" startline="566" endline="643">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunOptions</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="59" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="59" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Information about stuff that the client should handle. </para>    </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para>(Currently this just wraps a single field, but doing it like this gives us the option to add more stuff later without breaking the API.) </para>    </detaileddescription>
     <collaborationgraph>
-      <node id="1557">
-        <label>Yarn.Options</label>
+      <node id="1493">
+        <label>Yarn.Line</label>
         <link refid="a00380"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="60" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="60" bodyend="60"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="59" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="59" bodyend="59"/>
     <listofallmembers>
-      <member refid="a00380_1ae8c616d923ceeeed192a9436c55d9917" prot="public" virt="non-virtual"><scope>Yarn::Options</scope><name>options</name></member>
+      <member refid="a00380_1a81d1f04bbb4cf6642d2bd685bda1da20" prot="public" virt="non-virtual"><scope>Yarn::Line</scope><name>text</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

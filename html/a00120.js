@@ -1,8 +1,14 @@
 var a00120 =
 [
-    [ "CanConvertFrom", "a00120.html#a4040b7e66af082f1a57b65c20877dd7f", null ],
-    [ "CanConvertFrom", "a00120.html#a470d21adaa704eb281250dbd112ff91a", null ],
-    [ "CanConvertTo", "a00120.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
-    [ "ConvertFromString", "a00120.html#aff576c6ca9bb1942fb17e385befb0197", null ],
-    [ "ConvertToString", "a00120.html#a36cb2f9b24f15a671293f3a722324c27", null ]
+    [ "Clause", "a00052.html", "a00052" ],
+    [ "IfStatement", "a00120.html#ae534078389e8663edf7660403acf3cbc", null ],
+    [ "CanParse", "a00120.html#afd6b96e1a27872701c4e6832f17fc3ce", null ],
+    [ "NodeParent", "a00120.html#a580e520a29444fc23ac3660cbe514a09", null ],
+    [ "PrintTree", "a00120.html#a5494c1daef8e0f3ac3ab68f91db4f332", null ],
+    [ "TagsToString", "a00120.html#a054f36c80d5eeacd569a8859f599af67", null ],
+    [ "ToString", "a00120.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
+    [ "clauses", "a00120.html#a679b1a21582c78ed06df36bccc9c3cbc", null ],
+    [ "lineNumber", "a00120.html#a18b493382de0fde5b4299c1bd2250075", null ],
+    [ "parent", "a00120.html#af313a82103fcc2ff5a177dbb06b92f7b", null ],
+    [ "tags", "a00120.html#a58b3a15788fd2d4127d73619dc6d04ae", null ]
 ];

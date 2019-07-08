@@ -1,4 +1,4 @@
-\subsubsection*{Style Guide}
+\subsection*{Style Guide}
 
 {\ttfamily Inline Code} contain short snippets of code for your project \begin{DoxyVerb}Code Blocks contain segments or chunks of code for your project
 \end{DoxyVerb}
@@ -14,25 +14,42 @@ Blockquotes contain essential information
 \end{quotation}
 
 
-\subsection*{Tutorial}
+\subsection*{Introduction}
 
-\begin{quotation}
-$\ast$$\ast$$\ast$\-Note\-:$\ast$$\ast$$\ast$ This tutorial assumes that you know a little bit about \href{http://www.unity3d.com}{\tt Unity}. In particular, it is helpful that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C\#. If you don't know these things, please refer to \href{http://unity3d.com/learn}{\tt Unity's documentation}.
+This document intends to demonstrate to a developer how they can add new functions so that they can be called from inside \hyperlink{a00053}{Yarn}.
 
-\end{quotation}
-
-
-\subsection*{\hyperlink{a00051}{Yarn} Spinner Quick Start}
-
-Here's how to quickly jump in to \hyperlink{a00051}{Yarn} Spinner if you're already familiar with Unity.
+\subsubsection*{Programming style}
 
 
 \begin{DoxyItemize}
-\item {\bfseries Download} \href{https://github.com/thesecretlab/YarnSpinner/releases}{\tt the Yarn\-Spinner package} into your Unity project.
-\item {\bfseries Import} the package into your project.
-\item Inside the \hyperlink{a00371}{Yarn\-Spinner} folder, {\bfseries open the {\ttfamily Examples/\-Yarn Spinner Basic Example} scene.}
-\item {\bfseries Start the game.}
-\item {\bfseries Play through the dialogue.}
+\item It is recommended that you follow our programming style so that in the case of bug or patch submission, it makes it easier for us to read. As such, indents should be four spaces and not tab stops.
+\item We use the Doxygen format for documentation, thus three forward slashes {\ttfamily ///} indicate the head of a documentation comment and details for documentation comments are contained within the {\ttfamily /$\ast$ ....} structure. Please refer to the Doxygen site for more information.
+\item Other comments should use two forward slashes. This will ensure proper code commentary without it appearing in generated A\-P\-I documentation.
 \end{DoxyItemize}
 
-Once you've played with it, open the Example Script file in the \href{http://github.com/infiniteammoinc/Yarn}{\tt Yarn Editor}, (it's in the {\ttfamily Examples/\-Demo Assets} folder), and make some changes to the script. Once you've done that, take a look at how {\ttfamily \hyperlink{a00292}{Code/\-Dialogue\-Runner.\-cs}}, {\ttfamily Examples/\-Demo \hyperlink{a00296}{Scripts/\-Example\-Dialogue\-U\-I.\-cs}} and {\ttfamily Examples/\-Demo \hyperlink{a00297}{Scripts/\-Example\-Variable\-Storage.\-cs}} work. You can also ../\-Yarn\-Spinner-\/\-Programming/\-Extending.md \char`\"{}add your own functions to Yarn\char`\"{}. 
+\subsection*{Creating a custom command}
+
+Creating a custom command is a simple two step procedure.\-i
+
+
+\begin{DoxyEnumerate}
+\item We need to get the dialogue object that's in use, then regiser a new function for it. ``` // get the Dialogue object // varstorage\-\_\-implementation is the object that handles variable storage -\/ it's not important in this example var dialogue = new Dialogue(varstorage\-\_\-implementation); ``{\ttfamily }
+\item {\ttfamily Next, register your new function. For example, let's make a function that takes 1 parameter, which is a number, and returns}true{\ttfamily if it's even\-: }`` // Register\-Function(name, parameter\-Count, implementation) dialogue.\-library.\-Register\-Function (\char`\"{}is\-\_\-even\char`\"{}, 1, delegate(\-Value\mbox{[}$\,$\mbox{]} parameters) \{ return (int)parameters\mbox{[}0\mbox{]}.As\-Number \% 2 == 0; \}); ``` When the function is called, the delegate you provide will be run.
+\end{DoxyEnumerate}
+
+Some notes\-:
+
+
+\begin{DoxyItemize}
+\item You don't have to return a value from your function.
+\item The parameters passed to your function are of type \hyperlink{a00189}{Yarn.\-Value}. You can get their value as numbers, bools or strings by using the {\ttfamily As\-Number}, {\ttfamily As\-String} and {\ttfamily As\-Bool} properties.
+\item You can only return values of the following types\-:
+\begin{DoxyItemize}
+\item String
+\item Float
+\item Double
+\item Integer
+\item \hyperlink{a00189}{Yarn.\-Value}
+\end{DoxyItemize}
+\item \hyperlink{a00053}{Yarn} Spinner will make sure that the correct number of parameters is passed to your method. If you specify {\ttfamily -\/1} as your parameter count, the function may have any number of parameters. 
+\end{DoxyItemize}

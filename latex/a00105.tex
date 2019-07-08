@@ -1,466 +1,111 @@
-\hypertarget{a00105}{\section{Yarn.\-File\-Format\-Converter Class Reference}
-\label{a00105}\index{Yarn.\-File\-Format\-Converter@{Yarn.\-File\-Format\-Converter}}
+\hypertarget{a00105}{\section{Yarn.\-Execution\-Options Class Reference}
+\label{a00105}\index{Yarn.\-Execution\-Options@{Yarn.\-Execution\-Options}}
 }
 
 
-Collaboration diagram for Yarn.\-File\-Format\-Converter\-:
+Inheritance diagram for Yarn.\-Execution\-Options\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=222pt]{a00728}
+\includegraphics[width=350pt]{a00738}
 \end{center}
 \end{figure}
-\subsection*{Static Package Functions}
+
+
+Collaboration diagram for Yarn.\-Execution\-Options\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{a00739}
+\end{center}
+\end{figure}
+\subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-static int \hyperlink{a00105_aa4db4ccac799c5f047a8b1a9efbe109d}{Convert\-Format} (\hyperlink{a00058}{Convert\-Format\-Options} options)
+string \hyperlink{a00105_a7e43c3b73722956cb0f5d507e4eef527}{string\-Table}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-static string \hyperlink{a00105_a85596df924468279b2dc44a9f31d8bad}{Convert\-Nodes} (I\-Enumerable$<$ \hyperlink{a00140}{Loader.\-Node\-Info} $>$ nodes, \hyperlink{a00051_ad7ebb46e7309ead8767383a672b3272f}{Node\-Format} format)
-\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
+string \hyperlink{a00105_af4c0062a1d46281d377f87084fde374e}{only\-Consider\-Node}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-delegate string \hyperlink{a00105_af9bd5d832fdd2bcbdc626d9f8632e05c}{Convert\-Nodes\-To\-Text} (I\-Enumerable$<$ \hyperlink{a00140}{Loader.\-Node\-Info} $>$ nodes)
-\end{DoxyCompactItemize}
-\subsection*{Static Private Member Functions}
-\begin{DoxyCompactItemize}
+bool \hyperlink{a00105_ad97950e47ce2aaeb598295b7c3c44b13}{experimental}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-static int \hyperlink{a00105_a28a086a7b44ecea7430af40436f38df6}{Convert\-To\-J\-S\-O\-N} (\hyperlink{a00058}{Convert\-Format\-Options} options)
+bool \hyperlink{a00043_a89964ea17bd19caf00cb5bff563ed01c}{show\-Debugging\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-static int \hyperlink{a00105_a1e6cd39b0c813f21da278367dcff76d2}{Convert\-To\-Yarn} (\hyperlink{a00058}{Convert\-Format\-Options} options)
+bool \hyperlink{a00043_ada4d83d1756918f362d55f6649b82b17}{verbose}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-static string \hyperlink{a00105_a282f283f02c9b1d3e53d813ec2f35233}{Convert\-Nodes\-To\-Yarn\-Text} (I\-Enumerable$<$ \hyperlink{a00140}{Loader.\-Node\-Info} $>$ nodes)
-\item 
-static void \hyperlink{a00105_aa72838be584177b5592c31d73c0febdb}{Convert\-Nodes\-In\-File} (\hyperlink{a00058}{Convert\-Format\-Options} options, string file, string file\-Extension, \hyperlink{a00105_af9bd5d832fdd2bcbdc626d9f8632e05c}{Convert\-Nodes\-To\-Text} convert)
+I\-List$<$ string $>$ \hyperlink{a00043_aa93cbb1bc1d5328e0a417012621e92d2}{files}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 9 of file File\-Format\-Converter.\-cs.
+Definition at line 54 of file Main.\-cs.
 
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00105_aa4db4ccac799c5f047a8b1a9efbe109d}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Format@{Convert\-Format}}
-\index{Convert\-Format@{Convert\-Format}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-Format}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-File\-Format\-Converter.\-Convert\-Format (
-\begin{DoxyParamCaption}
-\item[{{\bf Convert\-Format\-Options}}]{options}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00105_aa4db4ccac799c5f047a8b1a9efbe109d}
+\subsection{Property Documentation}
+\hypertarget{a00105_ad97950e47ce2aaeb598295b7c3c44b13}{\index{Yarn\-::\-Execution\-Options@{Yarn\-::\-Execution\-Options}!experimental@{experimental}}
+\index{experimental@{experimental}!Yarn::ExecutionOptions@{Yarn\-::\-Execution\-Options}}
+\subsubsection[{experimental}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Execution\-Options.\-experimental\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00105_ad97950e47ce2aaeb598295b7c3c44b13}
 
 
-Definition at line 11 of file File\-Format\-Converter.\-cs.
+Definition at line 63 of file Main.\-cs.
 
 
 
-References Yarn.\-Yarn\-Spinner\-Console.\-A\-L\-L\-O\-W\-E\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N\-S, Yarn.\-File\-Format\-Converter.\-Convert\-To\-J\-S\-O\-N(), Yarn.\-Convert\-Format\-Options.\-convert\-To\-J\-S\-O\-N, Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn(), and Yarn.\-Convert\-Format\-Options.\-convert\-To\-Yarn.
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
 
+\hypertarget{a00043_aa93cbb1bc1d5328e0a417012621e92d2}{\index{Yarn\-::\-Execution\-Options@{Yarn\-::\-Execution\-Options}!files@{files}}
+\index{files@{files}!Yarn::ExecutionOptions@{Yarn\-::\-Execution\-Options}}
+\subsubsection[{files}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Base\-Options.\-files\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00043_aa93cbb1bc1d5328e0a417012621e92d2}
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Main().
+Definition at line 49 of file Main.\-cs.
 
 
-\begin{DoxyCode}
-12         \{
-13 
-14             YarnSpinnerConsole.CheckFileList(options.files, 
-      \hyperlink{a00195_a0979de7ea02c8c0375b8220a12e6575e}{YarnSpinnerConsole.ALLOWED\_EXTENSIONS});
-15 
-16             \textcolor{keywordflow}{if} (options.convertToJSON)
-17             \{
-18                 \textcolor{keywordflow}{return} \hyperlink{a00105_a28a086a7b44ecea7430af40436f38df6}{ConvertToJSON}(options);
-19             \}
-20             \textcolor{keywordflow}{if} (options.convertToYarn)
-21             \{
-22                 \textcolor{keywordflow}{return} \hyperlink{a00105_a1e6cd39b0c813f21da278367dcff76d2}{ConvertToYarn}(options);
-23             \}
-24 
-25             var processName = System.IO.Path.GetFileName(Environment.GetCommandLineArgs()[0]);
-26 
-27             YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"You must specify a
-       destination format. Run '\{0\} help convert' to learn more."}, processName));
-28             \textcolor{keywordflow}{return} 1;
-29         \}
-\end{DoxyCode}
 
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run(), and Yarn.\-Yarn\-Spinner\-Console.\-Verify().
 
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00105_aa4db4ccac799c5f047a8b1a9efbe109d_cgraph}
-\end{center}
-\end{figure}
+\hypertarget{a00105_af4c0062a1d46281d377f87084fde374e}{\index{Yarn\-::\-Execution\-Options@{Yarn\-::\-Execution\-Options}!only\-Consider\-Node@{only\-Consider\-Node}}
+\index{only\-Consider\-Node@{only\-Consider\-Node}!Yarn::ExecutionOptions@{Yarn\-::\-Execution\-Options}}
+\subsubsection[{only\-Consider\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Execution\-Options.\-only\-Consider\-Node\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00105_af4c0062a1d46281d377f87084fde374e}
 
 
+Definition at line 61 of file Main.\-cs.
 
+\hypertarget{a00043_a89964ea17bd19caf00cb5bff563ed01c}{\index{Yarn\-::\-Execution\-Options@{Yarn\-::\-Execution\-Options}!show\-Debugging\-Info@{show\-Debugging\-Info}}
+\index{show\-Debugging\-Info@{show\-Debugging\-Info}!Yarn::ExecutionOptions@{Yarn\-::\-Execution\-Options}}
+\subsubsection[{show\-Debugging\-Info}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-show\-Debugging\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00043_a89964ea17bd19caf00cb5bff563ed01c}
 
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00105_aa4db4ccac799c5f047a8b1a9efbe109d_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00105_a85596df924468279b2dc44a9f31d8bad}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes@{Convert\-Nodes}}
-\index{Convert\-Nodes@{Convert\-Nodes}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-Nodes}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-File\-Format\-Converter.\-Convert\-Nodes (
-\begin{DoxyParamCaption}
-\item[{I\-Enumerable$<$ {\bf Loader.\-Node\-Info} $>$}]{nodes, }
-\item[{{\bf Node\-Format}}]{format}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00105_a85596df924468279b2dc44a9f31d8bad}
-
-
-Definition at line 63 of file File\-Format\-Converter.\-cs.
-
-
-
-References Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Yarn\-Text().
-
-
-\begin{DoxyCode}
-63                                                                                                    \{
-64             \textcolor{keywordflow}{switch} (format)
-65             \{
-66                 \textcolor{keywordflow}{case} NodeFormat.JSON:
-67                     \textcolor{keywordflow}{return} JsonConvert.SerializeObject(nodes, Formatting.Indented);
-68                 \textcolor{keywordflow}{case} NodeFormat.Text:
-69                     \textcolor{keywordflow}{return} \hyperlink{a00105_a282f283f02c9b1d3e53d813ec2f35233}{ConvertNodesToYarnText}(nodes);
-70                 \textcolor{keywordflow}{default}:
-71                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException();
-72             \}
-73         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00105_a85596df924468279b2dc44a9f31d8bad_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00105_aa72838be584177b5592c31d73c0febdb}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes\-In\-File@{Convert\-Nodes\-In\-File}}
-\index{Convert\-Nodes\-In\-File@{Convert\-Nodes\-In\-File}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-Nodes\-In\-File}]{\setlength{\rightskip}{0pt plus 5cm}static void Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File (
-\begin{DoxyParamCaption}
-\item[{{\bf Convert\-Format\-Options}}]{options, }
-\item[{string}]{file, }
-\item[{string}]{file\-Extension, }
-\item[{{\bf Convert\-Nodes\-To\-Text}}]{convert}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00105_aa72838be584177b5592c31d73c0febdb}
-
-
-Definition at line 144 of file File\-Format\-Converter.\-cs.
-
-
-
-References Yarn.\-Base\-Options.\-verbose.
-
-
-
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-To\-J\-S\-O\-N(), and Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn().
-
-
-\begin{DoxyCode}
-145         \{
-146             var d = \textcolor{keyword}{new} Dialogue(null);
-147 
-148             var text = File.ReadAllText(file);
-149 
-150             IEnumerable<Loader.NodeInfo> nodes;
-151             \textcolor{keywordflow}{try} \{
-152                 nodes = d.loader.GetNodesFromText(text, Loader.GetFormatFromFileName(file));
-153             \} \textcolor{keywordflow}{catch} (FormatException e) \{
-154                 YarnSpinnerConsole.Error(e.Message);
-155                 \textcolor{keywordflow}{return};
-156             \}
-157 
-158             var serialisedText = convert(nodes);
-159 
-160             var destinationDirectory = options.outputDirectory;
-161 
-162             \textcolor{keywordflow}{if} (destinationDirectory == null)
-163             \{
-164                 destinationDirectory = Path.GetDirectoryName(file);
-165             \}
-166 
-167             var fileName = Path.GetFileName(file);
-168 
-169             \textcolor{comment}{// ChangeExtension thinks that the file "Foo.yarn.txt" has the extension "txt", so}
-170             \textcolor{comment}{// to simplify things, just lop that extension off right away if it's there}
-171             fileName = fileName.Replace(\textcolor{stringliteral}{".yarn.txt"}, \textcolor{stringliteral}{""});
-172 
-173             \textcolor{comment}{// change the filename's extension}
-174             fileName = Path.ChangeExtension(fileName, fileExtension);
-175 
-176             \textcolor{comment}{// figure out where we're writing this file}
-177             var destinationFilePath = Path.Combine(destinationDirectory, fileName);
-178 
-179             File.WriteAllText(destinationFilePath, serialisedText);
-180 
-181             \textcolor{keywordflow}{if} (options.verbose)
-182             \{
-183                 YarnSpinnerConsole.Note(\textcolor{stringliteral}{"Wrote "} + destinationFilePath);
-184             \}
-185         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00105_aa72838be584177b5592c31d73c0febdb_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00105_af9bd5d832fdd2bcbdc626d9f8632e05c}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes\-To\-Text@{Convert\-Nodes\-To\-Text}}
-\index{Convert\-Nodes\-To\-Text@{Convert\-Nodes\-To\-Text}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-Nodes\-To\-Text}]{\setlength{\rightskip}{0pt plus 5cm}delegate string Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Text (
-\begin{DoxyParamCaption}
-\item[{I\-Enumerable$<$ {\bf Loader.\-Node\-Info} $>$}]{nodes}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00105_af9bd5d832fdd2bcbdc626d9f8632e05c}
-\hypertarget{a00105_a282f283f02c9b1d3e53d813ec2f35233}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes\-To\-Yarn\-Text@{Convert\-Nodes\-To\-Yarn\-Text}}
-\index{Convert\-Nodes\-To\-Yarn\-Text@{Convert\-Nodes\-To\-Yarn\-Text}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-Nodes\-To\-Yarn\-Text}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Yarn\-Text (
-\begin{DoxyParamCaption}
-\item[{I\-Enumerable$<$ {\bf Loader.\-Node\-Info} $>$}]{nodes}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00105_a282f283f02c9b1d3e53d813ec2f35233}
-
-
-Definition at line 75 of file File\-Format\-Converter.\-cs.
-
-
-
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes(), and Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn().
-
-
-\begin{DoxyCode}
-76         \{
-77             var sb = \textcolor{keyword}{new} System.Text.StringBuilder();
-78 
-79             var properties = typeof(Loader.NodeInfo).GetProperties();
-80 
-81             \textcolor{keywordflow}{foreach} (var node \textcolor{keywordflow}{in} nodes) \{
-82 
-83                 \textcolor{keywordflow}{foreach} (var property \textcolor{keywordflow}{in} properties) \{
-84 
-85                     \textcolor{comment}{// ignore the body attribute}
-86                     \textcolor{keywordflow}{if} (property.Name == \textcolor{stringliteral}{"body"}) \{
-87                         \textcolor{keywordflow}{continue};
-88                     \}
-89 
-90                     \textcolor{comment}{// piggy-back off the JsonIgnoreAttribute to sense items that should not be serialised}
-91                     \textcolor{keywordflow}{if} (property.GetCustomAttributes(typeof(JsonIgnoreAttribute), \textcolor{keyword}{false}).Length > 0) \{
-92                         \textcolor{keywordflow}{continue};
-93                     \}
-94 
-95                     var field = property.Name;
-96 
-97                     \textcolor{keywordtype}{string} value;
-98 
-99                     var propertyType = property.PropertyType;
-100                     \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(\textcolor{keywordtype}{string})))
-101                     \{
-102                         value = (string)property.GetValue(node, null);
-103 
-104                         \textcolor{comment}{// avoid storing nulls when we could store the empty string instead}
-105                         \textcolor{keywordflow}{if} (value == null)
-106                             value = \textcolor{stringliteral}{""};
-107                     \}
-108                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(\textcolor{keywordtype}{int})))
-109                     \{
-110                         value = ((int)property.GetValue(node, null)).ToString(CultureInfo.InvariantCulture)
-      ;
-111                     \}
-112                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(Loader.NodeInfo.Position)))
-113                     \{
-114                         var position = (Loader.NodeInfo.Position)property.GetValue(node, null);
-115 
-116                         value = string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0\},\{1\}"}, position.x, 
-      position.y);
-117                     \} \textcolor{keywordflow}{else} \{
-118                         YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Internal error:
-       Node \{0\}'s property \{1\} has unsupported type \{2\}"}, node.title, property.Name, propertyType.FullName));
-119 
-120                         \textcolor{comment}{// will never be run, but prevents the compiler being mean about us not returning a
-       value}
-121                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} Exception();
-122                     \}
-123 
-124                     var header = string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0\}: \{1\}"}, field, value);
-125 
-126                     sb.AppendLine(header);
-127 
-128                 \}
-129                 \textcolor{comment}{// now write the body}
-130                 sb.AppendLine(\textcolor{stringliteral}{"---"});
-131 
-132                 sb.AppendLine(node.body);
-133 
-134                 sb.AppendLine(\textcolor{stringliteral}{"==="});
-135 
-136             \}
-137 
-138             \textcolor{keywordflow}{return} sb.ToString();
-139         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00105_a282f283f02c9b1d3e53d813ec2f35233_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00105_a28a086a7b44ecea7430af40436f38df6}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-To\-J\-S\-O\-N@{Convert\-To\-J\-S\-O\-N}}
-\index{Convert\-To\-J\-S\-O\-N@{Convert\-To\-J\-S\-O\-N}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-To\-J\-S\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-File\-Format\-Converter.\-Convert\-To\-J\-S\-O\-N (
-\begin{DoxyParamCaption}
-\item[{{\bf Convert\-Format\-Options}}]{options}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00105_a28a086a7b44ecea7430af40436f38df6}
-
-
-Definition at line 31 of file File\-Format\-Converter.\-cs.
-
-
-
-References Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Loader.\-Get\-Format\-From\-File\-Name().
-
-
-
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Format().
-
-
-\begin{DoxyCode}
-32         \{
-33             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.files)
-34             \{
-35 
-36                 \textcolor{keywordflow}{if} (Loader.GetFormatFromFileName(file) == NodeFormat.JSON)
-37                 \{
-38                     YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Not converting file
-       \{0\}, because its name implies it's already in JSON format"}, file));
-39                     \textcolor{keywordflow}{continue};
-40                 \}
-41 
-42                 \hyperlink{a00105_aa72838be584177b5592c31d73c0febdb}{ConvertNodesInFile}(options, file, \textcolor{stringliteral}{"json"}, (IEnumerable<Loader.NodeInfo> 
-      nodes) => JsonConvert.SerializeObject(nodes, Formatting.Indented));
-43 
-44             \}
-45             \textcolor{keywordflow}{return} 0;
-46         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00105_a28a086a7b44ecea7430af40436f38df6_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00105_a28a086a7b44ecea7430af40436f38df6_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00105_a1e6cd39b0c813f21da278367dcff76d2}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-To\-Yarn@{Convert\-To\-Yarn}}
-\index{Convert\-To\-Yarn@{Convert\-To\-Yarn}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-To\-Yarn}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn (
-\begin{DoxyParamCaption}
-\item[{{\bf Convert\-Format\-Options}}]{options}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00105_a1e6cd39b0c813f21da278367dcff76d2}
-
-
-Definition at line 48 of file File\-Format\-Converter.\-cs.
-
-
-
-References Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Yarn\-Text(), and Yarn.\-Loader.\-Get\-Format\-From\-File\-Name().
-
-
-
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Format().
-
-
-\begin{DoxyCode}
-49         \{
-50             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.files)
-51             \{
-52                 \textcolor{keywordflow}{if} (Loader.GetFormatFromFileName(file) == NodeFormat.Text)
-53                 \{
-54                     YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Not converting file
-       \{0\}, because its name implies it's already in Yarn format"}, file));
-55                     \textcolor{keywordflow}{continue};
-56                 \}
-57 
-58                 \hyperlink{a00105_aa72838be584177b5592c31d73c0febdb}{ConvertNodesInFile}(options, file, \textcolor{stringliteral}{"yarn.txt"}, 
-      \hyperlink{a00105_a282f283f02c9b1d3e53d813ec2f35233}{ConvertNodesToYarnText});
-59             \}
-60             \textcolor{keywordflow}{return} 0;
-61         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00105_a1e6cd39b0c813f21da278367dcff76d2_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00105_a1e6cd39b0c813f21da278367dcff76d2_icgraph}
-\end{center}
-\end{figure}
 
+Definition at line 42 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
+
+\hypertarget{a00105_a7e43c3b73722956cb0f5d507e4eef527}{\index{Yarn\-::\-Execution\-Options@{Yarn\-::\-Execution\-Options}!string\-Table@{string\-Table}}
+\index{string\-Table@{string\-Table}!Yarn::ExecutionOptions@{Yarn\-::\-Execution\-Options}}
+\subsubsection[{string\-Table}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Execution\-Options.\-string\-Table\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00105_a7e43c3b73722956cb0f5d507e4eef527}
+
+
+Definition at line 57 of file Main.\-cs.
+
+\hypertarget{a00043_ada4d83d1756918f362d55f6649b82b17}{\index{Yarn\-::\-Execution\-Options@{Yarn\-::\-Execution\-Options}!verbose@{verbose}}
+\index{verbose@{verbose}!Yarn::ExecutionOptions@{Yarn\-::\-Execution\-Options}}
+\subsubsection[{verbose}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-verbose\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00043_ada4d83d1756918f362d55f6649b82b17}
+
+
+Definition at line 46 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Table\-Generator.\-Generate\-Tables().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner\-Console/\hyperlink{a00323}{File\-Format\-Converter.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner\-Console/\hyperlink{a00328}{Main.\-cs}\end{DoxyCompactItemize}

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs Source File</title>
+<title>YarnSpinner: LICENSE.md Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('a00220_source.html','');});
+$(document).ready(function(){initNavTree('a00220.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -105,99 +105,37 @@ $(document).ready(function(){initNavTree('a00220_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">CsvClassMapCollection.cs</div>  </div>
+<div class="title">LICENSE.md</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00220.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#if !NET_2_0</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">using</span> System.Linq;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">using</span> System.Reflection;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span>CsvHelper.Configuration</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="a00062.html">   16</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00062.html">CsvClassMapCollection</a></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    {</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00062.html#a6402d0986ae539363780f34eefd5fa99">   18</a></span>&#160;        <span class="keyword">private</span> readonly Dictionary&lt;Type, CsvClassMap&gt; data = <span class="keyword">new</span> Dictionary&lt;Type, CsvClassMap&gt;();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00060.html">CsvClassMap</a> <span class="keyword">this</span>[Type type]</div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="a00062.html#a58c95d5126b396fcf3f58d7daa59646e">   29</a></span>&#160;        {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keyword">get</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                var map = data.Keys</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                    .Where( k =&gt; k.IsAssignableFrom( type ) )</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                    .Select( k =&gt; data[k] ).FirstOrDefault();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                <span class="keywordflow">return</span> map;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        }</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="a00062.html#ac75513617b6c256c3d693adf4482e1ed">   45</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00061.html">CsvClassMap&lt;T&gt;</a> Find&lt;T&gt;()</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="a00061.html">CsvClassMap&lt;T&gt;</a>)<span class="keyword">this</span>[typeof( T )];</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="a00062.html#aab6a14a4c1a614fac511ddd6af2c9e40">   56</a></span>&#160;        <span class="keyword">internal</span> <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="a00062.html#aab6a14a4c1a614fac511ddd6af2c9e40">Add</a>( <a class="code" href="a00060.html">CsvClassMap</a> map )</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            var type = GetGenericCsvClassMapType( map.GetType() ).GetGenericArguments().First();</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keywordflow">if</span>( data.ContainsKey( type ) )</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                data[type] = map;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                data.Add( type, map );</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="a00062.html#a0b18f7ab62839aa354021986e5a2ef96">   74</a></span>&#160;        <span class="keyword">internal</span> <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="a00062.html#a0b18f7ab62839aa354021986e5a2ef96">Remove</a>( Type classMapType )</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">if</span>( !typeof( <a class="code" href="a00060.html">CsvClassMap</a> ).IsAssignableFrom( classMapType ) )</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentException( <span class="stringliteral">&quot;The class map type must inherit from CsvClassMap.&quot;</span> );</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            var type = GetGenericCsvClassMapType( classMapType ).GetGenericArguments().First();</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            data.Remove( type );</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="a00062.html#a91718f9b6527a7f833393d24587716cc">   89</a></span>&#160;        <span class="keyword">internal</span> <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="a00062.html#a91718f9b6527a7f833393d24587716cc">Clear</a>()</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            data.Clear();</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        }</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="a00062.html#a73e02f782a0c35347d7d035bec5deb99">   99</a></span>&#160;        <span class="keyword">private</span> Type <a class="code" href="a00062.html#a73e02f782a0c35347d7d035bec5deb99">GetGenericCsvClassMapType</a>( Type type )</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordflow">if</span>( type.GetTypeInfo().IsGenericType &amp;&amp; type.GetGenericTypeDefinition() == typeof( <a class="code" href="a00060.html">CsvClassMap&lt;&gt;</a> ) )</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                <span class="keywordflow">return</span> type;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            }</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="keywordflow">return</span> GetGenericCsvClassMapType( type.GetTypeInfo().BaseType );</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;}</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#endif // !NET_2_0</span></div>
-<div class="ttc" id="a00062_html"><div class="ttname"><a href="a00062.html">CsvHelper.Configuration.CsvClassMapCollection</a></div><div class="ttdoc">Collection that holds CsvClassMaps for record types. </div><div class="ttdef"><b>Definition:</b> <a href="a00220_source.html#l00016">CsvClassMapCollection.cs:16</a></div></div>
-<div class="ttc" id="a00062_html_a91718f9b6527a7f833393d24587716cc"><div class="ttname"><a href="a00062.html#a91718f9b6527a7f833393d24587716cc">CsvHelper.Configuration.CsvClassMapCollection.Clear</a></div><div class="ttdeci">virtual void Clear()</div><div class="ttdoc">Removes all maps. </div><div class="ttdef"><b>Definition:</b> <a href="a00220_source.html#l00089">CsvClassMapCollection.cs:89</a></div></div>
-<div class="ttc" id="a00061_html"><div class="ttname"><a href="a00061.html">CsvHelper.Configuration.CsvClassMap&lt; T &gt;</a></div><div class="ttdoc">Maps class properties to CSV fields. </div><div class="ttdef"><b>Definition:</b> <a href="a00219_source.html#l00020">CsvClassMap`1.cs:20</a></div></div>
-<div class="ttc" id="a00062_html_a0b18f7ab62839aa354021986e5a2ef96"><div class="ttname"><a href="a00062.html#a0b18f7ab62839aa354021986e5a2ef96">CsvHelper.Configuration.CsvClassMapCollection.Remove</a></div><div class="ttdeci">virtual void Remove(Type classMapType)</div><div class="ttdoc">Removes the class map. </div><div class="ttdef"><b>Definition:</b> <a href="a00220_source.html#l00074">CsvClassMapCollection.cs:74</a></div></div>
-<div class="ttc" id="a00062_html_a73e02f782a0c35347d7d035bec5deb99"><div class="ttname"><a href="a00062.html#a73e02f782a0c35347d7d035bec5deb99">CsvHelper.Configuration.CsvClassMapCollection.GetGenericCsvClassMapType</a></div><div class="ttdeci">Type GetGenericCsvClassMapType(Type type)</div><div class="ttdoc">Goes up the inheritance tree to find the type instance of CsvClassMap{}. </div><div class="ttdef"><b>Definition:</b> <a href="a00220_source.html#l00099">CsvClassMapCollection.cs:99</a></div></div>
-<div class="ttc" id="a00060_html"><div class="ttname"><a href="a00060.html">CsvHelper.Configuration.CsvClassMap</a></div><div class="ttdoc">Maps class properties to CSV fields. </div><div class="ttdef"><b>Definition:</b> <a href="a00218_source.html#l00019">CsvClassMap.cs:19</a></div></div>
-<div class="ttc" id="a00062_html_aab6a14a4c1a614fac511ddd6af2c9e40"><div class="ttname"><a href="a00062.html#aab6a14a4c1a614fac511ddd6af2c9e40">CsvHelper.Configuration.CsvClassMapCollection.Add</a></div><div class="ttdeci">virtual void Add(CsvClassMap map)</div><div class="ttdoc">Adds the specified map for it&#39;s record type. If a map already exists for the record type...</div><div class="ttdef"><b>Definition:</b> <a href="a00220_source.html#l00056">CsvClassMapCollection.cs:56</a></div></div>
+<a href="a00220.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;The MIT License (MIT)</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;Permission is hereby granted, free of charge, to any person obtaining a copy</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;of this software and associated documentation files (the &quot;Software&quot;), to deal</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;in the Software without restriction, including without limitation the rights</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;copies of the Software, and to permit persons to whom the Software is</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;furnished to do so, subject to the following conditions:</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;The above copyright notice and this permission notice shall be included in all</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;copies or substantial portions of the Software.</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;SOFTWARE.</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_3401b88f0a1c00c4409faa11193eadf6.html">Configuration</a></li><li class="navelem"><a class="el" href="a00220.html">CsvClassMapCollection.cs</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 03:19:11 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00220.html">LICENSE.md</a></li>
+    <li class="footer">Generated on Mon Jul 8 2019 11:16:33 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

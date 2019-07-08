@@ -1,30 +1,16 @@
 var a00093 =
 [
-    [ "AddScript", "a00093.html#a88d161b1be7c99b1e202e6ae9e0d1e73", null ],
-    [ "AddScript", "a00093.html#a2fd7f165afff0b8bc2004f10ce4537dd", null ],
-    [ "AddStringTable", "a00093.html#a2e9d9472b4dba699ef72ab558c89e009", null ],
-    [ "AddStringTable", "a00093.html#a08d4eb5038b23aad6d59d74ac89806a9", null ],
-    [ "AddStringTable", "a00093.html#abc595a490988ca712d37af540c2e0df9", null ],
-    [ "Clear", "a00093.html#a09f5769c0c0921a21e659fed0af09c01", null ],
-    [ "DispatchCommand", "a00093.html#a83e4b881e8359b22d2d9efc3237699b6", null ],
-    [ "NodeExists", "a00093.html#aadf7711b9ba101d6ce8ba491d9c5a4c3", null ],
-    [ "ResetDialogue", "a00093.html#ac08900ac15b3ca90446b9454c7fd117e", null ],
-    [ "RunDialogue", "a00093.html#adf4e816844b7d9ab4ed99265fd3f3ea9", null ],
-    [ "Start", "a00093.html#a18eb3750a0161dbfc20d7eb39e151b6c", null ],
-    [ "StartDialogue", "a00093.html#ab083d0ac60b41958b591c632e3c3a53e", null ],
-    [ "StartDialogue", "a00093.html#abda765c6804853e264282a0f45920cd3", null ],
-    [ "Stop", "a00093.html#af94e66876098f8b187181014973645e6", null ],
-    [ "_dialogue", "a00093.html#a822055443227d3b76c6a8fb509812820", null ],
-    [ "automaticCommands", "a00093.html#a6aac5e877d5396a8141da5e85243f462", null ],
-    [ "dialogueUI", "a00093.html#ac87fdc65b0be57868f80c0fcd62ffd6d", null ],
-    [ "overrideLanguage", "a00093.html#ad12db159fc3df0819d5b594c33fba834", null ],
-    [ "shouldOverrideLanguage", "a00093.html#a3e093d36845924378a8b2fd9ea3ac73d", null ],
-    [ "sourceText", "a00093.html#a71eae33d06990a3aec5d444fae017492", null ],
-    [ "startAutomatically", "a00093.html#a6476a987f9788dba653976bcbe72980c", null ],
-    [ "startNode", "a00093.html#a61c92b8d2228d01d8ac123b73bbb41a0", null ],
-    [ "stringGroups", "a00093.html#a4d00a0671c2966b88d1c806c675fe915", null ],
-    [ "variableStorage", "a00093.html#a6cca3d33f8b0ce3e750caed9fd8fc734", null ],
-    [ "currentNodeName", "a00093.html#a8589c66769e89906eaff3c2263bdad5d", null ],
-    [ "dialogue", "a00093.html#a4f9712a847ca6d53ec8d2dd64dfcffd8", null ],
-    [ "isDialogueRunning", "a00093.html#a9eb0fd7b600a4667595042832af1d655", null ]
+    [ "Severity", "a00093.html#a227813cbc8fa03c3448a612ffc909d1c", [
+      [ "Error", "a00093.html#a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd", null ],
+      [ "Warning", "a00093.html#a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa", null ],
+      [ "Note", "a00093.html#a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec", null ]
+    ] ],
+    [ "Diagnosis", "a00093.html#ad3fd818f1be98dc803e5bec959153824", null ],
+    [ "ToString", "a00093.html#a4475eb5890c340da5c0012e25c2c86ae", null ],
+    [ "ToString", "a00093.html#a985dee7ca27aa896332590133606b6a9", null ],
+    [ "columnNumber", "a00093.html#a658e7fb05555c0f9ab5f80057bdc1408", null ],
+    [ "lineNumber", "a00093.html#a0bd73f1c684bfd66ae7b6bef8f2972d0", null ],
+    [ "message", "a00093.html#ac7ed070dddd2613c08e7874ea5afb3af", null ],
+    [ "nodeName", "a00093.html#a662aca4ad2af5116c2cf6773daf1a847", null ],
+    [ "severity", "a00093.html#ad90ffa839ce0f568a099bb37b4a6c4da", null ]
 ];

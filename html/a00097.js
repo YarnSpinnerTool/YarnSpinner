@@ -1,6 +1,9 @@
 var a00097 =
 [
-    [ "EmissionTuple", "a00097.html#a79857a881f3e1bab47a2cee5007e62a2", null ],
-    [ "depth", "a00097.html#ad3d26f07b18e91e1ba31ba3b5d6923db", null ],
-    [ "emitted", "a00097.html#a5916dbbd4d2e24ddfd02b0afdea290bf", null ]
+    [ "DialogueComplete", "a00097.html#aecc60aee9e9386da1f71fb183f43c52d", null ],
+    [ "DialogueStarted", "a00097.html#af9d88ca81ac536d43046ca6572e3ff54", null ],
+    [ "NodeComplete", "a00097.html#a2900548a0704d39d4502a153945f4bef", null ],
+    [ "RunCommand", "a00097.html#a3dffe84b9e7a10fdec6749baf697d111", null ],
+    [ "RunLine", "a00097.html#a754c6dd0bc67895d11f878fe4477d698", null ],
+    [ "RunOptions", "a00097.html#ac5b29079f638f2ceb078627ef1e60004", null ]
 ];

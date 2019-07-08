@@ -1,10 +1,16 @@
 var a00140 =
 [
-    [ "Position", "a00151.html", "a00151" ],
-    [ "body", "a00140.html#a18a8b97f2173fbcf8f3077582cc6e96e", null ],
-    [ "colorID", "a00140.html#a65f686e0170a9c50b97c4e4eedd1a093", null ],
-    [ "position", "a00140.html#ac368ed021558af21c4abed88042c1aa8", null ],
-    [ "tags", "a00140.html#acd4d4915f6cc14f8b0f1f92d27da8b36", null ],
-    [ "tagsList", "a00140.html#ab5010cc4c731e0da871e6002e5fb99a1", null ],
-    [ "title", "a00140.html#aafc45bbc86a9acb9bdbcf7877695a96c", null ]
+    [ "Node", "a00140.html#ae0562dc06ca747307b66039ef2f28772", null ],
+    [ "NodeParent", "a00140.html#a580e520a29444fc23ac3660cbe514a09", null ],
+    [ "PrintTree", "a00140.html#ab11501ebf251fdaa7cfe44edfa993068", null ],
+    [ "TagsToString", "a00140.html#a054f36c80d5eeacd569a8859f599af67", null ],
+    [ "ToString", "a00140.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
+    [ "_statements", "a00140.html#ae910a20906be9b1964499efaefa48274", null ],
+    [ "lineNumber", "a00140.html#a18b493382de0fde5b4299c1bd2250075", null ],
+    [ "parent", "a00140.html#af313a82103fcc2ff5a177dbb06b92f7b", null ],
+    [ "tags", "a00140.html#a58b3a15788fd2d4127d73619dc6d04ae", null ],
+    [ "name", "a00140.html#a3cfa07840da3a7a92c820788e902aefb", null ],
+    [ "nodeTags", "a00140.html#a7b1e55929dd7c9b1b0349a70d1787f2a", null ],
+    [ "source", "a00140.html#a005a6b0f614beb77708fc5ce8fea66e1", null ],
+    [ "statements", "a00140.html#abdae3fb1c6927b38ce29b1b71a00cb12", null ]
 ];

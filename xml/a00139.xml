@@ -1,76 +1,52 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00139" kind="class" prot="public">
-    <compoundname>Yarn::Dialogue::NodeCompleteResult</compoundname>
-    <basecompoundref refid="a00156" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00139_1ad48b37b51066b94cd48c58626ac0e774" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Dialogue.NodeCompleteResult.nextNode</definition>
-        <argsstring></argsstring>
-        <name>nextNode</name>
+    <compoundname>MobileOnly</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00139_1acfb1b3a9c8f62b30300331fb84752022" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MobileOnly.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="185" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="185" bodyend="-1"/>
-        <referencedby refid="a00139_1a88c81469a69987c05aa92780c5a5c1f9" compoundref="a00305" startline="187" endline="189">Yarn.Dialogue.NodeCompleteResult.NodeCompleteResult</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00139_1a88c81469a69987c05aa92780c5a5c1f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Dialogue.NodeCompleteResult.NodeCompleteResult</definition>
-        <argsstring>(string nextNode)</argsstring>
-        <name>NodeCompleteResult</name>
-        <param>
-          <type>string</type>
-          <declname>nextNode</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="187" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="187" bodyend="189"/>
-        <references refid="a00139_1ad48b37b51066b94cd48c58626ac0e774" compoundref="a00305" startline="185">Yarn.Dialogue.NodeCompleteResult.nextNode</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" bodystart="10" bodyend="18"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>We&apos;ve reached the end of this node. </para>    </briefdescription>
+<para>Removes an object from the scene when the game is running on a non-mobile platform. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1533">
-        <label>Yarn.Dialogue.NodeCompleteResult</label>
+      <node id="1522">
+        <label>MobileOnly</label>
         <link refid="a00139"/>
-        <childnode refid="1534" relation="public-inheritance">
+        <childnode refid="1523" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1534">
-        <label>RunnerResult</label>
-        <link refid="a00156"/>
+      <node id="1523">
+        <label>MonoBehaviour</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1535">
-        <label>Yarn.Dialogue.NodeCompleteResult</label>
+      <node id="1524">
+        <label>MobileOnly</label>
         <link refid="a00139"/>
-        <childnode refid="1536" relation="public-inheritance">
+        <childnode refid="1525" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1536">
-        <label>RunnerResult</label>
-        <link refid="a00156"/>
+      <node id="1525">
+        <label>MonoBehaviour</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="184" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="184" bodyend="190"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" line="7" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" bodystart="7" bodyend="20"/>
     <listofallmembers>
-      <member refid="a00139_1ad48b37b51066b94cd48c58626ac0e774" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::NodeCompleteResult</scope><name>nextNode</name></member>
-      <member refid="a00139_1a88c81469a69987c05aa92780c5a5c1f9" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::NodeCompleteResult</scope><name>NodeCompleteResult</name></member>
+      <member refid="a00139_1acfb1b3a9c8f62b30300331fb84752022" prot="private" virt="non-virtual"><scope>MobileOnly</scope><name>Awake</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

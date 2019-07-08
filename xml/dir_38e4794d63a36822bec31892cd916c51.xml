@@ -2,9 +2,9 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_38e4794d63a36822bec31892cd916c51" kind="dir">
     <compoundname>packages/CsvHelper.2.16.0.0/src/CsvHelper/MissingFrom20</compoundname>
-    <innerfile refid="a00251">Delegates.cs</innerfile>
-    <innerfile refid="a00252">EnumerableExtensions.cs</innerfile>
-    <innerfile refid="a00254">ExtensionAttribute.cs</innerfile>
+    <innerfile refid="a00254">Delegates.cs</innerfile>
+    <innerfile refid="a00255">EnumerableExtensions.cs</innerfile>
+    <innerfile refid="a00257">ExtensionAttribute.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

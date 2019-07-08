@@ -1,241 +1,230 @@
-\hypertarget{a00056}{\section{Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation Class Reference}
-\label{a00056}\index{Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation@{Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation}}
+\hypertarget{a00056}{\section{Yarn.\-Compiler Class Reference}
+\label{a00056}\index{Yarn.\-Compiler@{Yarn.\-Compiler}}
 }
 
 
-Inheritance diagram for Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation\-:
+Collaboration diagram for Yarn.\-Compiler\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=246pt]{a00758}
+\includegraphics[width=224pt]{a00605}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=278pt]{a00759}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00056_a8a2687bbff3f09203c14fa505b06f505}{Console\-Runner\-Implementation} (bool \hyperlink{a00056_a90b0c755ea1d2f3ffaffa6cf18266709}{wait\-For\-Lines}=false)
-\item 
-void \hyperlink{a00056_a13bc6c3a8ba43223a20befae50dbbcb4}{Run\-Line} (\hyperlink{a00051_a00377}{Yarn.\-Line} line\-Text)
-\item 
-void \hyperlink{a00056_a62674694fa65e5ae8c0c0da4fbceda51}{Run\-Options} (\hyperlink{a00051_a00380}{Options} options\-Group, \hyperlink{a00051_a39866cbb03c03a35805d598b5d4ad553}{Option\-Chooser} option\-Chooser)
-\item 
-void \hyperlink{a00056_aef048f9dbd90258eacc2886aa48ef6af}{Run\-Command} (string command)
-\item 
-void \hyperlink{a00056_ad6299fd476e53164d9f97d324d8c5936}{Dialogue\-Complete} ()
-\item 
-void \hyperlink{a00056_a925ecf432875c3831adc1a9959db8b46}{Handle\-Error\-Message} (string error)
-\item 
-void \hyperlink{a00056_ab656ffe1f6e66f2e6d2cb3e970f54b90}{Handle\-Debug\-Message} (string message)
-\item 
-virtual void \hyperlink{a00056_adc9bfad13d8ae2f147deeddbc5c38ea3}{Set\-Number} (string variable\-Name, float number)
-\item 
-virtual float \hyperlink{a00056_adf34fa27235fc0fd5fe35c32023220c4}{Get\-Number} (string variable\-Name)
-\item 
-virtual void \hyperlink{a00056_ab6312d89b626ca803a74a9181286d608}{Set\-Value} (string variable\-Name, \hyperlink{a00187}{Value} value)
-\item 
-virtual \hyperlink{a00187}{Value} \hyperlink{a00056_a66fc86080cd452079f5adf15e97c8e41}{Get\-Value} (string variable\-Name)
-\item 
-void \hyperlink{a00056_a082617cf099d13cb4338935020ced764}{Clear} ()
+struct \hyperlink{a00056_a00378}{Compile\-Flags}
 \end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\subsection*{Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{a00056_a2e17937195ecd64d5d867d958c45d2c3}{number\-Of\-Expected\-Options} = -\/1
+\hyperlink{a00056_a47bfde319a618a1e11d00cb282a84364}{Compiler} (string program\-Name)
 \item 
-int \hyperlink{a00056_a34886671e91a1bf3fc225eeb67baced1}{auto\-Select\-Option\-Number} = -\/1
+void \hyperlink{a00056_a10b52c5694f78285d087a455e3654eaa}{Compile\-Node} (\hyperlink{a00140}{Parser.\-Node} node)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00056_a33a44e39f2d90850cee234dfad50f2c5}{expected\-Next\-Line} = null
+\hyperlink{a00154}{Program} \hyperlink{a00056_aa1737da428ec7d597009661dd8a47829}{program}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00056_a3c7133c65dc7cf293f49b61426a0c4aa}{expected\-Next\-Command} = null
+string \hyperlink{a00056_a1bae0d8b701a59708641aa36ea971fa5}{Register\-Label} (string commentary=null)
 \item 
-bool \hyperlink{a00056_a09a552ee9ff58cb3c995f8ecba1592b6}{auto\-Select\-First\-Option} = false
+void \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (\hyperlink{a00053_a00382}{Node} node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{Byte\-Code} code, object operand\-A=null, object operand\-B=null)
+\item 
+void \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{Generate\-Code} (\hyperlink{a00053_a00382}{Node} node, \hyperlink{a00168}{Parser.\-Statement} statement)
+\item 
+void \hyperlink{a00056_a656b6c7fcd08d24300ec592465274f66}{Generate\-Code} (\hyperlink{a00053_a00382}{Node} node, \hyperlink{a00085}{Parser.\-Custom\-Command} statement)
+\item 
+string \hyperlink{a00056_a5117b9c2253de15d3fd3557c8b037235}{Get\-Line\-I\-D\-From\-Node\-Tags} (\hyperlink{a00150}{Parser.\-Parse\-Node} node)
+\item 
+void \hyperlink{a00056_af1ee28d67902b27ee0816e2a47343652}{Generate\-Code} (\hyperlink{a00053_a00382}{Node} node, \hyperlink{a00168}{Parser.\-Statement} parse\-Node, string line)
+\item 
+void \hyperlink{a00056_a3e492edcefdfeacec80e528f8c4fa6cc}{Generate\-Code} (\hyperlink{a00053_a00382}{Node} node, \hyperlink{a00162}{Parser.\-Shortcut\-Option\-Group} statement)
+\item 
+void \hyperlink{a00056_ab4f6dd2ddf38b0c5bfb2b8a40869a09a}{Generate\-Code} (\hyperlink{a00053_a00382}{Node} node, I\-Enumerable$<$ \hyperlink{a00168}{Yarn.\-Parser.\-Statement} $>$ statement\-List)
+\item 
+void \hyperlink{a00056_a6ab14514a3b0644ae39c626e5e5e180d}{Generate\-Code} (\hyperlink{a00053_a00382}{Node} node, \hyperlink{a00120}{Parser.\-If\-Statement} statement)
+\item 
+void \hyperlink{a00056_a5cb3cbcd9727bdef018ec5299bd13142}{Generate\-Code} (\hyperlink{a00053_a00382}{Node} node, \hyperlink{a00148}{Parser.\-Option\-Statement} statement)
+\item 
+void \hyperlink{a00056_afb86d9228f66896abe31d47d72a267ce}{Generate\-Code} (\hyperlink{a00053_a00382}{Node} node, \hyperlink{a00041}{Parser.\-Assignment\-Statement} statement)
+\item 
+void \hyperlink{a00056_a5c762915320958c3a03b193b06a7e279}{Generate\-Code} (\hyperlink{a00053_a00382}{Node} node, \hyperlink{a00106}{Parser.\-Expression} expression)
+\item 
+void \hyperlink{a00056_a41438a0b25f2668a180372d05127d891}{Generate\-Code} (\hyperlink{a00053_a00382}{Node} node, \hyperlink{a00190}{Parser.\-Value\-Node} value)
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{a00056_a90b0c755ea1d2f3ffaffa6cf18266709}{wait\-For\-Lines} = false
+\hyperlink{a00056_a00378}{Compile\-Flags} \hyperlink{a00056_a541022d89bcf9bc8f794eb6d6b438d08}{flags}
 \item 
-\hyperlink{a00136}{Yarn.\-Memory\-Variable\-Store} \hyperlink{a00056_a9907b805775d5837a900ddbd0a1739b7}{variable\-Store}
+int \hyperlink{a00056_a87758397eba2e84cda8e0d6c40656f3f}{label\-Count} = 0
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 519 of file Main.\-cs.
+Definition at line 7 of file Compiler.\-cs.
 
+
+
+\subsection{Class Documentation}
+\index{Yarn\-::\-Compiler\-::\-Compile\-Flags@{Yarn\-::\-Compiler\-::\-Compile\-Flags}}\label{a00378}
+\hypertarget{a00056_a00378}{}
+\subsubsection{struct Yarn\-:\-:Compiler\-:\-:Compile\-Flags}
+
+
+Definition at line 9 of file Compiler.\-cs.
+
+
+
+Collaboration diagram for Yarn.\-Compiler.\-Compile\-Flags\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{a00392}
+\end{center}
+\end{figure}
+\begin{DoxyFields}{Class Members}
+\hypertarget{a00056_a8b49bb7763ff477cba21d7c771ef3ed0}{bool}\label{a00056_a8b49bb7763ff477cba21d7c771ef3ed0}
+&
+Disable\-Shuffle\-Options\-After\-Next\-Set&
+\\
+\hline
+
+\end{DoxyFields}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00056_a8a2687bbff3f09203c14fa505b06f505}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!Console\-Runner\-Implementation@{Console\-Runner\-Implementation}}
-\index{Console\-Runner\-Implementation@{Console\-Runner\-Implementation}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{Console\-Runner\-Implementation}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Console\-Runner\-Implementation (
+\hypertarget{a00056_a47bfde319a618a1e11d00cb282a84364}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!Compiler@{Compiler}}
+\index{Compiler@{Compiler}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{Compiler}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Compiler.\-Compiler (
 \begin{DoxyParamCaption}
-\item[{bool}]{wait\-For\-Lines = {\ttfamily false}}
+\item[{string}]{program\-Name}
 \end{DoxyParamCaption}
-)}}\label{a00056_a8a2687bbff3f09203c14fa505b06f505}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00056_a47bfde319a618a1e11d00cb282a84364}
 
 
-Definition at line 540 of file Main.\-cs.
+Definition at line 19 of file Compiler.\-cs.
 
 
 
-References Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-wait\-For\-Lines.
+References Yarn.\-Compiler.\-program.
 
 
 \begin{DoxyCode}
-541             \{
-542                 this.variableStore = \textcolor{keyword}{new} MemoryVariableStore();
-543                 this.waitForLines = \hyperlink{a00056_a90b0c755ea1d2f3ffaffa6cf18266709}{waitForLines};
-544             \}
+20         \{
+21             \hyperlink{a00056_aa1737da428ec7d597009661dd8a47829}{program} = \textcolor{keyword}{new} Program ();
+22         \}
 \end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00056_a082617cf099d13cb4338935020ced764}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!Clear@{Clear}}
-\index{Clear@{Clear}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Clear (
+\hypertarget{a00056_a10b52c5694f78285d087a455e3654eaa}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!Compile\-Node@{Compile\-Node}}
+\index{Compile\-Node@{Compile\-Node}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{Compile\-Node}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Compiler.\-Compile\-Node (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf Parser.\-Node}}]{node}
 \end{DoxyParamCaption}
-)}}\label{a00056_a082617cf099d13cb4338935020ced764}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00056_a10b52c5694f78285d087a455e3654eaa}
 
 
-Implements \hyperlink{a00190_af98c1e41f351cb96e13f668ca2fd9d92}{Yarn.\-Variable\-Storage}.
+Definition at line 24 of file Compiler.\-cs.
 
 
 
-Definition at line 695 of file Main.\-cs.
+References Yarn.\-Compiler.\-Compile\-Flags.\-Disable\-Shuffle\-Options\-After\-Next\-Set, Yarn.\-Compiler.\-Emit(), Yarn.\-Compiler.\-flags, Yarn.\-Compiler.\-Generate\-Code(), Yarn.\-Program.\-nodes, Yarn.\-Compiler.\-program, and Yarn.\-Compiler.\-Register\-Label().
 
 
 \begin{DoxyCode}
-696             \{
-697                 variableStore.Clear();
-698             \}
-\end{DoxyCode}
-\hypertarget{a00056_ad6299fd476e53164d9f97d324d8c5936}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!Dialogue\-Complete@{Dialogue\-Complete}}
-\index{Dialogue\-Complete@{Dialogue\-Complete}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{Dialogue\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Dialogue\-Complete (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00056_ad6299fd476e53164d9f97d324d8c5936}
-
-
-Definition at line 660 of file Main.\-cs.
-
-
-\begin{DoxyCode}
-661             \{
-662                 \textcolor{comment}{// All done}
-663             \}
-\end{DoxyCode}
-\hypertarget{a00056_adf34fa27235fc0fd5fe35c32023220c4}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!Get\-Number@{Get\-Number}}
-\index{Get\-Number@{Get\-Number}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{Get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}virtual float Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Get\-Number (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00056_adf34fa27235fc0fd5fe35c32023220c4}
-
-
-Implements \hyperlink{a00190_a04b061c52d8ac814ce559da5286fbc71}{Yarn.\-Variable\-Storage}.
-
-
-
-Definition at line 680 of file Main.\-cs.
-
-
-\begin{DoxyCode}
-681             \{
-682                 \textcolor{keywordflow}{return} variableStore.GetValue(variableName).AsNumber;
-683             \}
-\end{DoxyCode}
-\hypertarget{a00056_a66fc86080cd452079f5adf15e97c8e41}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!Get\-Value@{Get\-Value}}
-\index{Get\-Value@{Get\-Value}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{Get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Value} Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Get\-Value (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00056_a66fc86080cd452079f5adf15e97c8e41}
-
-
-Implements \hyperlink{a00190_accab1fc5c8fc353dbfc53ca0f4029576}{Yarn.\-Variable\-Storage}.
-
-
-
-Definition at line 690 of file Main.\-cs.
-
-
-\begin{DoxyCode}
-691             \{
-692                 \textcolor{keywordflow}{return} variableStore.GetValue(variableName);
-693             \}
-\end{DoxyCode}
-\hypertarget{a00056_ab656ffe1f6e66f2e6d2cb3e970f54b90}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!Handle\-Debug\-Message@{Handle\-Debug\-Message}}
-\index{Handle\-Debug\-Message@{Handle\-Debug\-Message}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{Handle\-Debug\-Message}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Handle\-Debug\-Message (
-\begin{DoxyParamCaption}
-\item[{string}]{message}
-\end{DoxyParamCaption}
-)}}\label{a00056_ab656ffe1f6e66f2e6d2cb3e970f54b90}
-
-
-Definition at line 670 of file Main.\-cs.
-
-
-
-References Yarn.\-Yarn\-Spinner\-Console.\-Note().
-
-
-\begin{DoxyCode}
-671             \{
-672                 \hyperlink{a00195_a939cc9e943c574b36c6af93e9c772702}{Note}(message);
-673             \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00056_ab656ffe1f6e66f2e6d2cb3e970f54b90_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00056_a925ecf432875c3831adc1a9959db8b46}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!Handle\-Error\-Message@{Handle\-Error\-Message}}
-\index{Handle\-Error\-Message@{Handle\-Error\-Message}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{Handle\-Error\-Message}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Handle\-Error\-Message (
-\begin{DoxyParamCaption}
-\item[{string}]{error}
-\end{DoxyParamCaption}
-)}}\label{a00056_a925ecf432875c3831adc1a9959db8b46}
-
-
-Definition at line 665 of file Main.\-cs.
-
-
-
-References Yarn.\-Yarn\-Spinner\-Console.\-Error().
-
-
-\begin{DoxyCode}
-666             \{
-667                 \hyperlink{a00195_a2f63f9f5b7634cb50ee75ff2eb18b137}{Error}(error);
-668             \}
+24                                                     \{
+25 
+26             \textcolor{keywordflow}{if} (\hyperlink{a00056_aa1737da428ec7d597009661dd8a47829}{program}.\hyperlink{a00154_a3f4928a577c88263ad016be259b175c4}{nodes}.ContainsKey(node.name)) \{
+27                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException (\textcolor{stringliteral}{"Duplicate node name "} + node.name);
+28             \}
+29 
+30             var compiledNode =  \textcolor{keyword}{new} Node();
+31 
+32             compiledNode.name = node.name;
+33 
+34             compiledNode.tags = node.nodeTags;
+35 
+36             \textcolor{comment}{// Register the entire text of this node if we have it}
+37             \textcolor{keywordflow}{if} (node.source != null)
+38             \{
+39                 \textcolor{comment}{// Dump the entire contents of this node into the string table}
+40                 \textcolor{comment}{// instead of compiling its contents.}
+41 
+42                 \textcolor{comment}{// the line number is 0 because the string starts at the start of the node}
+43                 compiledNode.sourceTextStringID = program.RegisterString(node.source, node.name, \textcolor{stringliteral}{"line:"}+
+      node.name, 0, \textcolor{keyword}{true});
+44             \} \textcolor{keywordflow}{else} \{
+45 
+46                 \textcolor{comment}{// Compile the node.}
+47 
+48                 var startLabel = \hyperlink{a00056_a1bae0d8b701a59708641aa36ea971fa5}{RegisterLabel}();
+49                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit}(compiledNode, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label, startLabel);
+50 
+51                 \textcolor{keywordflow}{foreach} (var statement \textcolor{keywordflow}{in} node.statements)
+52                 \{
+53                     \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode}(compiledNode, statement);
+54                 \}
+55 
+56                 \textcolor{comment}{// Does this node end after emitting AddOptions codes}
+57                 \textcolor{comment}{// without calling ShowOptions?}
+58 
+59                 \textcolor{comment}{// Note: this only works when we know that we don't have}
+60                 \textcolor{comment}{// AddOptions and then Jump up back into the code to run them.}
+61                 \textcolor{comment}{// TODO: A better solution would be for the parser to flag}
+62                 \textcolor{comment}{// whether a node has Options at the end.}
+63                 var hasRemainingOptions = \textcolor{keyword}{false};
+64                 \textcolor{keywordflow}{foreach} (var instruction \textcolor{keywordflow}{in} compiledNode.instructions)
+65                 \{
+66                     \textcolor{keywordflow}{if} (instruction.operation == \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.AddOption)
+67                     \{
+68                         hasRemainingOptions = \textcolor{keyword}{true};
+69                     \}
+70                     \textcolor{keywordflow}{if} (instruction.operation == \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.ShowOptions)
+71                     \{
+72                         hasRemainingOptions = \textcolor{keyword}{false};
+73                     \}
+74                 \}
+75 
+76                 \textcolor{comment}{// If this compiled node has no lingering options to show at the end of the node, then stop
+       at the end}
+77                 \textcolor{keywordflow}{if} (hasRemainingOptions == \textcolor{keyword}{false})
+78                 \{
+79                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit}(compiledNode, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Stop);
+80                 \}
+81                 \textcolor{keywordflow}{else} \{
+82                     \textcolor{comment}{// Otherwise, show the accumulated nodes and then jump to the selected node}
+83 
+84                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit}(compiledNode, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.ShowOptions);
+85 
+86                     \textcolor{keywordflow}{if} (\hyperlink{a00056_a541022d89bcf9bc8f794eb6d6b438d08}{flags}.\hyperlink{a00056_a8b49bb7763ff477cba21d7c771ef3ed0}{DisableShuffleOptionsAfterNextSet} == \textcolor{keyword}{
+      true})
+87                     \{
+88                         \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit}(compiledNode, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.PushBool, \textcolor{keyword}{false});
+89                         \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit}(compiledNode, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.StoreVariable, VirtualMachine.
+      SpecialVariables.ShuffleOptions);
+90                         \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit}(compiledNode, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Pop);
+91                         flags.DisableShuffleOptionsAfterNextSet = \textcolor{keyword}{false};
+92                     \}
+93 
+94                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit}(compiledNode, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.RunNode);
+95                 \}
+96 
+97             \}
+98 
+99             program.nodes[compiledNode.name] = compiledNode;
+100 
+101         \}
 \end{DoxyCode}
 
 
@@ -244,43 +233,174 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00056_a925ecf432875c3831adc1a9959db8b46_cgraph}
+\includegraphics[width=350pt]{a00056_a10b52c5694f78285d087a455e3654eaa_cgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{a00056_aef048f9dbd90258eacc2886aa48ef6af}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!Run\-Command@{Run\-Command}}
-\index{Run\-Command@{Run\-Command}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{Run\-Command}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Run\-Command (
+\hypertarget{a00056_a774e8c143cdda0584fcfdda98626a83c}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!Emit@{Emit}}
+\index{Emit@{Emit}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{Emit}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Compiler.\-Emit (
 \begin{DoxyParamCaption}
-\item[{string}]{command}
+\item[{{\bf Node}}]{node, }
+\item[{{\bf Byte\-Code}}]{code, }
+\item[{object}]{operand\-A = {\ttfamily null}, }
+\item[{object}]{operand\-B = {\ttfamily null}}
 \end{DoxyParamCaption}
-)}}\label{a00056_aef048f9dbd90258eacc2886aa48ef6af}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_a774e8c143cdda0584fcfdda98626a83c}
 
 
-Definition at line 645 of file Main.\-cs.
+Definition at line 110 of file Compiler.\-cs.
 
 
 
-References Yarn.\-Yarn\-Spinner\-Console.\-Error(), and Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-expected\-Next\-Command.
+References Yarn.\-Node.\-instructions.
+
+
+
+Referenced by Yarn.\-Compiler.\-Compile\-Node(), and Yarn.\-Compiler.\-Generate\-Code().
 
 
 \begin{DoxyCode}
-646             \{
-647 
-648                 \textcolor{keywordflow}{if} (\hyperlink{a00056_a3c7133c65dc7cf293f49b61426a0c4aa}{expectedNextCommand} != null && 
-      \hyperlink{a00056_a3c7133c65dc7cf293f49b61426a0c4aa}{expectedNextCommand} != command)
-649                 \{
-650                     \textcolor{comment}{// TODO: Output diagnostic info here}
-651                     \hyperlink{a00195_a2f63f9f5b7634cb50ee75ff2eb18b137}{Error}(\textcolor{keywordtype}{string}.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Unexpected command.\(\backslash\)n\(\backslash\)tExpected:
-       \{0\}\(\backslash\)n\(\backslash\)tReceived: \{1\}"},
-652                                         \hyperlink{a00056_a3c7133c65dc7cf293f49b61426a0c4aa}{expectedNextCommand}, command));
-653                 \}
-654 
-655                 \hyperlink{a00056_a3c7133c65dc7cf293f49b61426a0c4aa}{expectedNextCommand} = null;
-656 
-657                 Console.WriteLine(\textcolor{stringliteral}{"Command: <<"} + command + \textcolor{stringliteral}{">>"});
-658             \}
+110                                                                                             \{
+111             var instruction = \textcolor{keyword}{new} Instruction();
+112             instruction.operation = code;
+113             instruction.operandA = operandA;
+114             instruction.operandB = operandB;
+115 
+116             node.instructions.Add (instruction);
+117 
+118             \textcolor{keywordflow}{if} (code == \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label) \{
+119                 \textcolor{comment}{// Add this label to the label table}
+120                 node.labels.Add ((string)instruction.operandA, node.instructions.Count - 1);
+121             \}
+122         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00056_a774e8c143cdda0584fcfdda98626a83c_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00056_a006f3becd521cc179ba3d3352f6f930b}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!Generate\-Code@{Generate\-Code}}
+\index{Generate\-Code@{Generate\-Code}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{Generate\-Code}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Compiler.\-Generate\-Code (
+\begin{DoxyParamCaption}
+\item[{{\bf Node}}]{node, }
+\item[{{\bf Parser.\-Statement}}]{statement}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_a006f3becd521cc179ba3d3352f6f930b}
+
+
+Definition at line 125 of file Compiler.\-cs.
+
+
+
+Referenced by Yarn.\-Compiler.\-Compile\-Node(), and Yarn.\-Compiler.\-Generate\-Code().
+
+
+\begin{DoxyCode}
+125                                                                  \{
+126             \textcolor{keywordflow}{switch} (statement.type) \{
+127             \textcolor{keywordflow}{case} Parser.Statement.Type.CustomCommand:
+128                 \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, statement.customCommand);
+129                 \textcolor{keywordflow}{break};
+130             \textcolor{keywordflow}{case} Parser.Statement.Type.ShortcutOptionGroup:
+131                 \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, statement.shortcutOptionGroup);
+132                 \textcolor{keywordflow}{break};
+133             \textcolor{keywordflow}{case} Parser.Statement.Type.Block:
+134 
+135                 \textcolor{comment}{// Blocks are just groups of statements}
+136                 \textcolor{keywordflow}{foreach} (var blockStatement \textcolor{keywordflow}{in} statement.block.statements) \{
+137                     \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode}(node, blockStatement);
+138                 \}
+139 
+140                 \textcolor{keywordflow}{break};
+141 
+142             \textcolor{keywordflow}{case} Parser.Statement.Type.IfStatement:
+143                 \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, statement.ifStatement);
+144                 \textcolor{keywordflow}{break};
+145 
+146             \textcolor{keywordflow}{case} Parser.Statement.Type.OptionStatement:
+147                 \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, statement.optionStatement);
+148                 \textcolor{keywordflow}{break};
+149 
+150             \textcolor{keywordflow}{case} Parser.Statement.Type.AssignmentStatement:
+151                 \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, statement.assignmentStatement);
+152                 \textcolor{keywordflow}{break};
+153 
+154             \textcolor{keywordflow}{case} Parser.Statement.Type.Line:
+155                 \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, statement, statement.line);
+156                 \textcolor{keywordflow}{break};
+157 
+158             \textcolor{keywordflow}{default}:
+159                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException ();
+160             \}
+161 
+162         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00056_a006f3becd521cc179ba3d3352f6f930b_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00056_a656b6c7fcd08d24300ec592465274f66}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!Generate\-Code@{Generate\-Code}}
+\index{Generate\-Code@{Generate\-Code}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{Generate\-Code}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Compiler.\-Generate\-Code (
+\begin{DoxyParamCaption}
+\item[{{\bf Node}}]{node, }
+\item[{{\bf Parser.\-Custom\-Command}}]{statement}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_a656b6c7fcd08d24300ec592465274f66}
+
+
+Definition at line 164 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Compiler.\-Emit(), and Yarn.\-Compiler.\-Generate\-Code().
+
+
+\begin{DoxyCode}
+164                                                                      \{
+165 
+166             \textcolor{comment}{// If this command is an evaluable expression, evaluate it}
+167             \textcolor{keywordflow}{if} (statement.expression != null) \{
+168                 \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, statement.expression);
+169             \} \textcolor{keywordflow}{else} \{
+170                 \textcolor{keywordflow}{switch} (statement.clientCommand) \{
+171                 \textcolor{keywordflow}{case} \textcolor{stringliteral}{"stop"}:
+172                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Stop);
+173                     \textcolor{keywordflow}{break};
+174                 \textcolor{keywordflow}{case} \textcolor{stringliteral}{"shuffleNextOptions"}:
+175                     \textcolor{comment}{// Emit code that sets "VAR\_SHUFFLE\_OPTIONS" to true}
+176                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.PushBool, \textcolor{keyword}{true});
+177                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.StoreVariable, VirtualMachine.SpecialVariables.
+      ShuffleOptions);
+178                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Pop);
+179                     flags.DisableShuffleOptionsAfterNextSet = \textcolor{keyword}{true};
+180                     \textcolor{keywordflow}{break};
+181 
+182                 \textcolor{keywordflow}{default}:
+183                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.RunCommand, statement.clientCommand);
+184                     \textcolor{keywordflow}{break};
+185                 \}
+186             \}
+187 
+188         \}
 \end{DoxyCode}
 
 
@@ -289,48 +409,40 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00056_aef048f9dbd90258eacc2886aa48ef6af_cgraph}
+\includegraphics[width=350pt]{a00056_a656b6c7fcd08d24300ec592465274f66_cgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{a00056_a13bc6c3a8ba43223a20befae50dbbcb4}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!Run\-Line@{Run\-Line}}
-\index{Run\-Line@{Run\-Line}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{Run\-Line}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Run\-Line (
+\hypertarget{a00056_af1ee28d67902b27ee0816e2a47343652}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!Generate\-Code@{Generate\-Code}}
+\index{Generate\-Code@{Generate\-Code}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{Generate\-Code}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Compiler.\-Generate\-Code (
 \begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Line}}]{line\-Text}
+\item[{{\bf Node}}]{node, }
+\item[{{\bf Parser.\-Statement}}]{parse\-Node, }
+\item[{string}]{line}
 \end{DoxyParamCaption}
-)}}\label{a00056_a13bc6c3a8ba43223a20befae50dbbcb4}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_af1ee28d67902b27ee0816e2a47343652}
 
 
-Definition at line 546 of file Main.\-cs.
+Definition at line 202 of file Compiler.\-cs.
 
 
 
-References Yarn.\-Yarn\-Spinner\-Console.\-Error(), Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-expected\-Next\-Line, and Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-wait\-For\-Lines.
+References Yarn.\-Compiler.\-Emit(), and Yarn.\-Compiler.\-Get\-Line\-I\-D\-From\-Node\-Tags().
 
 
 \begin{DoxyCode}
-547             \{
-548 
-549                 \textcolor{keywordflow}{if} (\hyperlink{a00056_a33a44e39f2d90850cee234dfad50f2c5}{expectedNextLine} != null && \hyperlink{a00056_a33a44e39f2d90850cee234dfad50f2c5}{expectedNextLine} != 
-      lineText.text)
-550                 \{
-551                     \textcolor{comment}{// TODO: Output diagnostic info here}
-552                     \hyperlink{a00195_a2f63f9f5b7634cb50ee75ff2eb18b137}{Error}(\textcolor{keywordtype}{string}.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Unexpected line.\(\backslash\)nExpected: \{0\}\(\backslash\)n
-      Received: \{1\}"},
-553                         \hyperlink{a00056_a33a44e39f2d90850cee234dfad50f2c5}{expectedNextLine}, lineText.text));
-554 
-555                 \}
-556 
-557                 \hyperlink{a00056_a33a44e39f2d90850cee234dfad50f2c5}{expectedNextLine} = null;
-558 
-559                 Console.WriteLine(lineText.text);
-560                 \textcolor{keywordflow}{if} (\hyperlink{a00056_a90b0c755ea1d2f3ffaffa6cf18266709}{waitForLines} == \textcolor{keyword}{true})
-561                 \{
-562                     Console.Read();
-563                 \}
-564             \}
+202                                                                               \{
+203 
+204             \textcolor{comment}{// Does this line have a "#line:LINENUM" tag? Use it}
+205             \textcolor{keywordtype}{string} lineID = \hyperlink{a00056_a5117b9c2253de15d3fd3557c8b037235}{GetLineIDFromNodeTags}(parseNode);
+206 
+207             var num = program.RegisterString (line, node.name, lineID, parseNode.lineNumber, \textcolor{keyword}{true});
+208 
+209             \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.RunLine, num);
+210 
+211         \}
 \end{DoxyCode}
 
 
@@ -339,109 +451,98 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00056_a13bc6c3a8ba43223a20befae50dbbcb4_cgraph}
+\includegraphics[width=350pt]{a00056_af1ee28d67902b27ee0816e2a47343652_cgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{a00056_a62674694fa65e5ae8c0c0da4fbceda51}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!Run\-Options@{Run\-Options}}
-\index{Run\-Options@{Run\-Options}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{Run\-Options}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Run\-Options (
+\hypertarget{a00056_a3e492edcefdfeacec80e528f8c4fa6cc}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!Generate\-Code@{Generate\-Code}}
+\index{Generate\-Code@{Generate\-Code}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{Generate\-Code}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Compiler.\-Generate\-Code (
 \begin{DoxyParamCaption}
-\item[{{\bf Options}}]{options\-Group, }
-\item[{{\bf Option\-Chooser}}]{option\-Chooser}
+\item[{{\bf Node}}]{node, }
+\item[{{\bf Parser.\-Shortcut\-Option\-Group}}]{statement}
 \end{DoxyParamCaption}
-)}}\label{a00056_a62674694fa65e5ae8c0c0da4fbceda51}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_a3e492edcefdfeacec80e528f8c4fa6cc}
 
 
-Definition at line 566 of file Main.\-cs.
+Definition at line 213 of file Compiler.\-cs.
 
 
 
-References Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-auto\-Select\-First\-Option, Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-auto\-Select\-Option\-Number, Yarn.\-Yarn\-Spinner\-Console.\-Error(), Yarn.\-Yarn\-Spinner\-Console.\-Note(), Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-number\-Of\-Expected\-Options, and Yarn.\-Options.\-options.
+References Yarn.\-Compiler.\-Compile\-Flags.\-Disable\-Shuffle\-Options\-After\-Next\-Set, Yarn.\-Compiler.\-Emit(), Yarn.\-Compiler.\-flags, Yarn.\-Compiler.\-Generate\-Code(), Yarn.\-Compiler.\-Get\-Line\-I\-D\-From\-Node\-Tags(), and Yarn.\-Compiler.\-Register\-Label().
 
 
 \begin{DoxyCode}
-567             \{
-568 
-569                 Console.WriteLine(\textcolor{stringliteral}{"Options:"});
-570                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < optionsGroup.options.Count; i++)
-571                 \{
-572                     var optionDisplay = string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"\{0\}. \{1\}"}, i + 1, 
-      optionsGroup.options[i]);
-573                     Console.WriteLine(optionDisplay);
-574                 \}
-575 
-576 
-577                 \textcolor{comment}{// Check to see if the number of expected options}
-578                 \textcolor{comment}{// is what we're expecting to see}
-579                 \textcolor{keywordflow}{if} (\hyperlink{a00056_a2e17937195ecd64d5d867d958c45d2c3}{numberOfExpectedOptions} != -1 &&
-580                     optionsGroup.options.Count != \hyperlink{a00056_a2e17937195ecd64d5d867d958c45d2c3}{numberOfExpectedOptions})
-581                 \{
-582                     \textcolor{comment}{// TODO: Output diagnostic info here}
-583                     \hyperlink{a00195_a2f63f9f5b7634cb50ee75ff2eb18b137}{Error}(\textcolor{keywordtype}{string}.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"[ERROR: Expected \{0\} options, but
-       received \{1\}]"}, \hyperlink{a00056_a2e17937195ecd64d5d867d958c45d2c3}{numberOfExpectedOptions}, optionsGroup.options.Count));
-584 
-585                 \}
-586 
-587                 \textcolor{comment}{// If we were told to automatically select an option, do so}
-588                 \textcolor{keywordflow}{if} (\hyperlink{a00056_a34886671e91a1bf3fc225eeb67baced1}{autoSelectOptionNumber} != -1)
-589                 \{
-590                     \hyperlink{a00195_a939cc9e943c574b36c6af93e9c772702}{Note}(\textcolor{keywordtype}{string}.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"[Received \{0\} options, choosing
-       option \{1\}]"}, optionsGroup.options.Count, \hyperlink{a00056_a34886671e91a1bf3fc225eeb67baced1}{autoSelectOptionNumber}));
-591 
-592                     optionChooser(\hyperlink{a00056_a34886671e91a1bf3fc225eeb67baced1}{autoSelectOptionNumber});
-593 
-594                     \hyperlink{a00056_a34886671e91a1bf3fc225eeb67baced1}{autoSelectOptionNumber} = -1;
-595 
-596                     \textcolor{keywordflow}{return};
-597 
-598                 \}
-599 
-600                 \textcolor{comment}{// Reset the expected options counter}
-601                 \hyperlink{a00056_a2e17937195ecd64d5d867d958c45d2c3}{numberOfExpectedOptions} = -1;
-602 
-603 
-604 
-605                 \textcolor{keywordflow}{if} (\hyperlink{a00056_a09a552ee9ff58cb3c995f8ecba1592b6}{autoSelectFirstOption} == \textcolor{keyword}{true})
-606                 \{
-607                     \hyperlink{a00195_a939cc9e943c574b36c6af93e9c772702}{Note}(\textcolor{stringliteral}{"[automatically choosing option 1]"});
-608                     optionChooser(0);
-609                     \textcolor{keywordflow}{return};
-610                 \}
-611 
-612                 \textcolor{keywordflow}{do}
-613                 \{
-614                     Console.Write(\textcolor{stringliteral}{"? "});
-615                     \textcolor{keywordflow}{try}
-616                     \{
-617                         var selectedKey = Console.ReadKey().KeyChar.ToString(CultureInfo.InvariantCulture);
-618                         \textcolor{keywordtype}{int} selection;
-619 
-620                         \textcolor{keywordflow}{if} (\textcolor{keywordtype}{int}.TryParse(selectedKey, out selection) == \textcolor{keyword}{true})
-621                         \{
-622                             Console.WriteLine();
-623 
-624                             \textcolor{comment}{// we present the list as 1,2,3, but the API expects}
-625                             \textcolor{comment}{// answers as 0,1,2}
-626                             selection -= 1;
-627 
-628                             \textcolor{keywordflow}{if} (selection > optionsGroup.options.Count)
-629                             \{
-630                                 Console.WriteLine(\textcolor{stringliteral}{"Invalid option."});
-631                             \}
-632                             \textcolor{keywordflow}{else}
-633                             \{
-634                                 optionChooser(selection);
-635                                 \textcolor{keywordflow}{break};
-636                             \}
-637                         \}
-638 
-639                     \}
-640                     \textcolor{keywordflow}{catch} (FormatException) \{ \}
-641 
-642                 \} \textcolor{keywordflow}{while} (\textcolor{keyword}{true});
-643             \}
+213                                                                            \{
+214 
+215             var endOfGroupLabel = \hyperlink{a00056_a1bae0d8b701a59708641aa36ea971fa5}{RegisterLabel} (\textcolor{stringliteral}{"group\_end"});
+216 
+217             var labels = \textcolor{keyword}{new} List<string> ();
+218 
+219             \textcolor{keywordtype}{int} optionCount = 0;
+220             \textcolor{keywordflow}{foreach} (var shortcutOption \textcolor{keywordflow}{in} statement.options) \{
+221 
+222                 var optionDestinationLabel = \hyperlink{a00056_a1bae0d8b701a59708641aa36ea971fa5}{RegisterLabel} (\textcolor{stringliteral}{"option\_"} + (optionCount+1));
+223                 labels.Add (optionDestinationLabel);
+224 
+225                 \textcolor{keywordtype}{string} endOfClauseLabel = null;
+226 
+227                 \textcolor{keywordflow}{if} (shortcutOption.condition != null) \{
+228                     endOfClauseLabel = \hyperlink{a00056_a1bae0d8b701a59708641aa36ea971fa5}{RegisterLabel} (\textcolor{stringliteral}{"conditional\_"}+optionCount);
+229                     \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, shortcutOption.condition);
+230 
+231                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.JumpIfFalse, endOfClauseLabel);
+232                 \}
+233 
+234                 var labelLineID = \hyperlink{a00056_a5117b9c2253de15d3fd3557c8b037235}{GetLineIDFromNodeTags}(shortcutOption);
+235 
+236                 var labelStringID = program.RegisterString (shortcutOption.label, node.name, labelLineID, 
+      shortcutOption.lineNumber, \textcolor{keyword}{true});
+237 
+238                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.AddOption, labelStringID, optionDestinationLabel);
+239 
+240                 \textcolor{keywordflow}{if} (shortcutOption.condition != null) \{
+241                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label, endOfClauseLabel);
+242                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Pop);
+243                 \}
+244 
+245                 optionCount++;
+246             \}
+247 
+248             \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.ShowOptions);
+249 
+250             \textcolor{keywordflow}{if} (\hyperlink{a00056_a541022d89bcf9bc8f794eb6d6b438d08}{flags}.\hyperlink{a00056_a8b49bb7763ff477cba21d7c771ef3ed0}{DisableShuffleOptionsAfterNextSet} == \textcolor{keyword}{true}) \{
+251                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.PushBool, \textcolor{keyword}{false});
+252                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.StoreVariable, VirtualMachine.SpecialVariables.
+      ShuffleOptions);
+253                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Pop);
+254                 flags.DisableShuffleOptionsAfterNextSet = \textcolor{keyword}{false};
+255             \}
+256 
+257             \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Jump);
+258 
+259             optionCount = 0;
+260             \textcolor{keywordflow}{foreach} (var shortcutOption \textcolor{keywordflow}{in} statement.options) \{
+261 
+262                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label, labels [optionCount]);
+263 
+264                 \textcolor{keywordflow}{if} (shortcutOption.optionNode != null)
+265                     \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, shortcutOption.optionNode.statements);
+266 
+267                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.JumpTo, endOfGroupLabel);
+268 
+269                 optionCount++;
+270 
+271             \}
+272 
+273             \textcolor{comment}{// reached the end of the option group}
+274             \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label, endOfGroupLabel);
+275 
+276             \textcolor{comment}{// clean up after the jump}
+277             \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Pop);
+278 
+279         \}
 \end{DoxyCode}
 
 
@@ -450,133 +551,477 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00056_a62674694fa65e5ae8c0c0da4fbceda51_cgraph}
+\includegraphics[width=350pt]{a00056_a3e492edcefdfeacec80e528f8c4fa6cc_cgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{a00056_adc9bfad13d8ae2f147deeddbc5c38ea3}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!Set\-Number@{Set\-Number}}
-\index{Set\-Number@{Set\-Number}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{Set\-Number}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Set\-Number (
+\hypertarget{a00056_ab4f6dd2ddf38b0c5bfb2b8a40869a09a}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!Generate\-Code@{Generate\-Code}}
+\index{Generate\-Code@{Generate\-Code}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{Generate\-Code}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Compiler.\-Generate\-Code (
 \begin{DoxyParamCaption}
-\item[{string}]{variable\-Name, }
-\item[{float}]{number}
+\item[{{\bf Node}}]{node, }
+\item[{I\-Enumerable$<$ {\bf Yarn.\-Parser.\-Statement} $>$}]{statement\-List}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00056_adc9bfad13d8ae2f147deeddbc5c38ea3}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_ab4f6dd2ddf38b0c5bfb2b8a40869a09a}
 
 
-Implements \hyperlink{a00190_aa28c3694f985cf73489efc301b9d41dd}{Yarn.\-Variable\-Storage}.
+Definition at line 281 of file Compiler.\-cs.
 
 
 
-Definition at line 675 of file Main.\-cs.
+References Yarn.\-Compiler.\-Generate\-Code().
 
 
 \begin{DoxyCode}
-676             \{
-677                 variableStore.SetValue(variableName, \textcolor{keyword}{new} Value(number));
-678             \}
+281                                                                                        \{
+282 
+283             \textcolor{keywordflow}{if} (statementList == null)
+284                 \textcolor{keywordflow}{return};
+285 
+286             \textcolor{keywordflow}{foreach} (var statement \textcolor{keywordflow}{in} statementList) \{
+287                 \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, statement);
+288             \}
+289         \}
 \end{DoxyCode}
-\hypertarget{a00056_ab6312d89b626ca803a74a9181286d608}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!Set\-Value@{Set\-Value}}
-\index{Set\-Value@{Set\-Value}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Set\-Value (
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00056_ab4f6dd2ddf38b0c5bfb2b8a40869a09a_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00056_a6ab14514a3b0644ae39c626e5e5e180d}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!Generate\-Code@{Generate\-Code}}
+\index{Generate\-Code@{Generate\-Code}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{Generate\-Code}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Compiler.\-Generate\-Code (
 \begin{DoxyParamCaption}
-\item[{string}]{variable\-Name, }
-\item[{{\bf Value}}]{value}
+\item[{{\bf Node}}]{node, }
+\item[{{\bf Parser.\-If\-Statement}}]{statement}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00056_ab6312d89b626ca803a74a9181286d608}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_a6ab14514a3b0644ae39c626e5e5e180d}
 
 
-Implements \hyperlink{a00190_aa90ff61224432c5ed3ce72199c55f440}{Yarn.\-Variable\-Storage}.
+Definition at line 291 of file Compiler.\-cs.
 
 
 
-Definition at line 685 of file Main.\-cs.
+References Yarn.\-Compiler.\-Emit(), Yarn.\-Compiler.\-Generate\-Code(), and Yarn.\-Compiler.\-Register\-Label().
 
 
 \begin{DoxyCode}
-686             \{
-687                 variableStore.SetValue(variableName, value);
-688             \}
+291                                                                    \{
+292 
+293             \textcolor{comment}{// We'll jump to this label at the end of every clause}
+294             var endOfIfStatementLabel = \hyperlink{a00056_a1bae0d8b701a59708641aa36ea971fa5}{RegisterLabel} (\textcolor{stringliteral}{"endif"});
+295 
+296             \textcolor{keywordflow}{foreach} (var clause \textcolor{keywordflow}{in} statement.clauses) \{
+297                 var endOfClauseLabel = \hyperlink{a00056_a1bae0d8b701a59708641aa36ea971fa5}{RegisterLabel} (\textcolor{stringliteral}{"skipclause"});
+298 
+299                 \textcolor{keywordflow}{if} (clause.expression != null) \{
+300 
+301                     \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, clause.expression);
+302 
+303                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.JumpIfFalse, endOfClauseLabel);
+304 
+305                 \}
+306 
+307                 \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, clause.statements);
+308 
+309                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.JumpTo, endOfIfStatementLabel);
+310 
+311                 \textcolor{keywordflow}{if} (clause.expression != null) \{
+312                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label, endOfClauseLabel);
+313                 \}
+314                 \textcolor{comment}{// Clean up the stack by popping the expression that was tested earlier}
+315                 \textcolor{keywordflow}{if} (clause.expression != null) \{
+316                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Pop);
+317                 \}
+318             \}
+319 
+320             \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label, endOfIfStatementLabel);
+321         \}
 \end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00056_a6ab14514a3b0644ae39c626e5e5e180d_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00056_a5cb3cbcd9727bdef018ec5299bd13142}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!Generate\-Code@{Generate\-Code}}
+\index{Generate\-Code@{Generate\-Code}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{Generate\-Code}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Compiler.\-Generate\-Code (
+\begin{DoxyParamCaption}
+\item[{{\bf Node}}]{node, }
+\item[{{\bf Parser.\-Option\-Statement}}]{statement}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_a5cb3cbcd9727bdef018ec5299bd13142}
+
+
+Definition at line 323 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Compiler.\-Emit(), and Yarn.\-Compiler.\-Get\-Line\-I\-D\-From\-Node\-Tags().
+
+
+\begin{DoxyCode}
+323                                                                        \{
+324 
+325             var destination = statement.destination;
+326 
+327             \textcolor{keywordflow}{if} (statement.label == null) \{
+328                 \textcolor{comment}{// this is a jump to another node}
+329                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit}(node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.RunNode, destination);
+330             \} \textcolor{keywordflow}{else} \{
+331 
+332                 var lineID = \hyperlink{a00056_a5117b9c2253de15d3fd3557c8b037235}{GetLineIDFromNodeTags}(statement.parent);
+333 
+334                 var stringID = program.RegisterString (statement.label, node.name, lineID, 
+      statement.lineNumber, \textcolor{keyword}{true});
+335 
+336                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.AddOption, stringID, destination);
+337             \}
+338 
+339         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00056_a5cb3cbcd9727bdef018ec5299bd13142_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00056_afb86d9228f66896abe31d47d72a267ce}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!Generate\-Code@{Generate\-Code}}
+\index{Generate\-Code@{Generate\-Code}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{Generate\-Code}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Compiler.\-Generate\-Code (
+\begin{DoxyParamCaption}
+\item[{{\bf Node}}]{node, }
+\item[{{\bf Parser.\-Assignment\-Statement}}]{statement}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_afb86d9228f66896abe31d47d72a267ce}
+
+
+Definition at line 341 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Compiler.\-Emit(), and Yarn.\-Compiler.\-Generate\-Code().
+
+
+\begin{DoxyCode}
+341                                                                            \{
+342 
+343             \textcolor{comment}{// Is it a straight assignment?}
+344             \textcolor{keywordflow}{if} (statement.operation == \hyperlink{a00053_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EqualToOrAssign) \{
+345                 \textcolor{comment}{// Evaluate the expression, which will result in a value}
+346                 \textcolor{comment}{// on the stack}
+347                 \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, statement.valueExpression);
+348 
+349                 \textcolor{comment}{// Stack now contains [destinationValue]}
+350             \} \textcolor{keywordflow}{else} \{
+351 
+352                 \textcolor{comment}{// It's a combined operation-plus-assignment}
+353 
+354                 \textcolor{comment}{// Get the current value of the variable}
+355                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit}(node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.PushVariable, statement.destinationVariableName);
+356 
+357                 \textcolor{comment}{// Evaluate the expression, which will result in a value}
+358                 \textcolor{comment}{// on the stack}
+359                 \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, statement.valueExpression);
+360 
+361                 \textcolor{comment}{// Stack now contains [currentValue, expressionValue]}
+362 
+363                 \textcolor{keywordflow}{switch} (statement.operation) \{
+364 
+365                 \textcolor{keywordflow}{case} TokenType.AddAssign:
+366                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.CallFunc, \hyperlink{a00053_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Add.ToString ());
+367                     \textcolor{keywordflow}{break};
+368                 \textcolor{keywordflow}{case} TokenType.MinusAssign:
+369                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.CallFunc, \hyperlink{a00053_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Minus.ToString ());
+370                     \textcolor{keywordflow}{break};
+371                 \textcolor{keywordflow}{case} TokenType.MultiplyAssign:
+372                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.CallFunc, \hyperlink{a00053_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Multiply.ToString ());
+373                     \textcolor{keywordflow}{break};
+374                 \textcolor{keywordflow}{case} TokenType.DivideAssign:
+375                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.CallFunc, \hyperlink{a00053_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Divide.ToString ());
+376                     \textcolor{keywordflow}{break};
+377                 \textcolor{keywordflow}{default}:
+378                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException ();
+379                 \}
+380 
+381                 \textcolor{comment}{// Stack now contains [destinationValue]}
+382             \}
+383 
+384             \textcolor{comment}{// Store the top of the stack in the variable}
+385             \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit}(node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.StoreVariable, statement.destinationVariableName);
+386 
+387             \textcolor{comment}{// Clean up the stack}
+388             \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Pop);
+389 
+390         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00056_afb86d9228f66896abe31d47d72a267ce_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00056_a5c762915320958c3a03b193b06a7e279}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!Generate\-Code@{Generate\-Code}}
+\index{Generate\-Code@{Generate\-Code}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{Generate\-Code}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Compiler.\-Generate\-Code (
+\begin{DoxyParamCaption}
+\item[{{\bf Node}}]{node, }
+\item[{{\bf Parser.\-Expression}}]{expression}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_a5c762915320958c3a03b193b06a7e279}
+
+
+Definition at line 392 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Compiler.\-Emit(), Yarn.\-Compiler.\-Generate\-Code(), and Yarn.\-Node.\-name.
+
+
+\begin{DoxyCode}
+392                                                                    \{
+393 
+394             \textcolor{comment}{// Expressions are either plain values, or function calls}
+395             \textcolor{keywordflow}{switch} (expression.type) \{
+396             \textcolor{keywordflow}{case} Parser.Expression.Type.Value:
+397                 \textcolor{comment}{// Plain value? Emit that}
+398                 \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, expression.value);
+399                 \textcolor{keywordflow}{break};
+400             \textcolor{keywordflow}{case} Parser.Expression.Type.FunctionCall:
+401                 \textcolor{comment}{// Evaluate all parameter expressions (which will}
+402                 \textcolor{comment}{// push them to the stack)}
+403                 \textcolor{keywordflow}{foreach} (var parameter \textcolor{keywordflow}{in} expression.parameters) \{
+404                     \hyperlink{a00056_a006f3becd521cc179ba3d3352f6f930b}{GenerateCode} (node, parameter);
+405                 \}
+406                 \textcolor{comment}{// If this function has a variable number of parameters, put}
+407                 \textcolor{comment}{// the number of parameters that were passed onto the stack}
+408                 \textcolor{keywordflow}{if} (expression.function.paramCount == -1) \{
+409                     \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.PushNumber, expression.parameters.Count);
+410                 \}
+411 
+412                 \textcolor{comment}{// And then call the function}
+413                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.CallFunc, expression.function.name);
+414                 \textcolor{keywordflow}{break};
+415             \}
+416         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00056_a5c762915320958c3a03b193b06a7e279_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00056_a41438a0b25f2668a180372d05127d891}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!Generate\-Code@{Generate\-Code}}
+\index{Generate\-Code@{Generate\-Code}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{Generate\-Code}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Compiler.\-Generate\-Code (
+\begin{DoxyParamCaption}
+\item[{{\bf Node}}]{node, }
+\item[{{\bf Parser.\-Value\-Node}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_a41438a0b25f2668a180372d05127d891}
+
+
+Definition at line 418 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Compiler.\-Emit().
+
+
+\begin{DoxyCode}
+418                                                              \{
+419 
+420             \textcolor{comment}{// Push a value onto the stack}
+421 
+422             \textcolor{keywordflow}{switch} (value.value.type) \{
+423             \textcolor{keywordflow}{case} Value.Type.Number:
+424                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.PushNumber, value.value.numberValue);
+425                 \textcolor{keywordflow}{break};
+426             \textcolor{keywordflow}{case} Value.Type.String:
+427                 \textcolor{comment}{// TODO: we use 'null' as the line ID here because strings used in expressions}
+428                 \textcolor{comment}{// don't have a #line: tag we can use}
+429                 var \textcolor{keywordtype}{id} = program.RegisterString (value.value.stringValue, node.name, null, value.lineNumber
+      , \textcolor{keyword}{false});
+430                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.PushString, \textcolor{keywordtype}{id});
+431                 \textcolor{keywordflow}{break};
+432             \textcolor{keywordflow}{case} Value.Type.Bool:
+433                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.PushBool, value.value.boolValue);
+434                 \textcolor{keywordflow}{break};
+435             \textcolor{keywordflow}{case} Value.Type.Variable:
+436                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.PushVariable, value.value.variableName);
+437                 \textcolor{keywordflow}{break};
+438             \textcolor{keywordflow}{case} Value.Type.Null:
+439                 \hyperlink{a00056_a774e8c143cdda0584fcfdda98626a83c}{Emit} (node, \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.PushNull);
+440                 \textcolor{keywordflow}{break};
+441             \textcolor{keywordflow}{default}:
+442                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException ();
+443             \}
+444         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00056_a41438a0b25f2668a180372d05127d891_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00056_a5117b9c2253de15d3fd3557c8b037235}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!Get\-Line\-I\-D\-From\-Node\-Tags@{Get\-Line\-I\-D\-From\-Node\-Tags}}
+\index{Get\-Line\-I\-D\-From\-Node\-Tags@{Get\-Line\-I\-D\-From\-Node\-Tags}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{Get\-Line\-I\-D\-From\-Node\-Tags}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Compiler.\-Get\-Line\-I\-D\-From\-Node\-Tags (
+\begin{DoxyParamCaption}
+\item[{{\bf Parser.\-Parse\-Node}}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_a5117b9c2253de15d3fd3557c8b037235}
+
+
+Definition at line 190 of file Compiler.\-cs.
+
+
+
+Referenced by Yarn.\-Compiler.\-Generate\-Code().
+
+
+\begin{DoxyCode}
+190                                                             \{
+191             \textcolor{comment}{// TODO: This will use only the first #line: tag, ignoring all others}
+192             \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} node.tags)
+193             \{
+194                 \textcolor{keywordflow}{if} (tag.StartsWith(\textcolor{stringliteral}{"line:"}, StringComparison.InvariantCulture))
+195                 \{
+196                     \textcolor{keywordflow}{return} tag;
+197                 \}
+198             \}
+199             \textcolor{keywordflow}{return} null;
+200         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00056_a5117b9c2253de15d3fd3557c8b037235_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00056_a1bae0d8b701a59708641aa36ea971fa5}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!Register\-Label@{Register\-Label}}
+\index{Register\-Label@{Register\-Label}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{Register\-Label}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Compiler.\-Register\-Label (
+\begin{DoxyParamCaption}
+\item[{string}]{commentary = {\ttfamily null}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_a1bae0d8b701a59708641aa36ea971fa5}
+
+
+Definition at line 106 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Compiler.\-label\-Count.
+
+
+
+Referenced by Yarn.\-Compiler.\-Compile\-Node(), and Yarn.\-Compiler.\-Generate\-Code().
+
+
+\begin{DoxyCode}
+106                                                        \{
+107             \textcolor{keywordflow}{return} \textcolor{stringliteral}{"L"} + \hyperlink{a00056_a87758397eba2e84cda8e0d6c40656f3f}{labelCount}++ + commentary;
+108         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00056_a1bae0d8b701a59708641aa36ea971fa5_icgraph}
+\end{center}
+\end{figure}
+
+
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00056_a09a552ee9ff58cb3c995f8ecba1592b6}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!auto\-Select\-First\-Option@{auto\-Select\-First\-Option}}
-\index{auto\-Select\-First\-Option@{auto\-Select\-First\-Option}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{auto\-Select\-First\-Option}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-auto\-Select\-First\-Option = false}}\label{a00056_a09a552ee9ff58cb3c995f8ecba1592b6}
+\hypertarget{a00056_a541022d89bcf9bc8f794eb6d6b438d08}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!flags@{flags}}
+\index{flags@{flags}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{flags}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Compile\-Flags} Yarn.\-Compiler.\-flags\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_a541022d89bcf9bc8f794eb6d6b438d08}
 
 
-Definition at line 538 of file Main.\-cs.
-
-
-
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Run\-Options().
-
-\hypertarget{a00056_a34886671e91a1bf3fc225eeb67baced1}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!auto\-Select\-Option\-Number@{auto\-Select\-Option\-Number}}
-\index{auto\-Select\-Option\-Number@{auto\-Select\-Option\-Number}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{auto\-Select\-Option\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-auto\-Select\-Option\-Number = -\/1}}\label{a00056_a34886671e91a1bf3fc225eeb67baced1}
-
-
-Definition at line 532 of file Main.\-cs.
+Definition at line 15 of file Compiler.\-cs.
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Run\-Options().
+Referenced by Yarn.\-Compiler.\-Compile\-Node(), and Yarn.\-Compiler.\-Generate\-Code().
 
-\hypertarget{a00056_a3c7133c65dc7cf293f49b61426a0c4aa}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!expected\-Next\-Command@{expected\-Next\-Command}}
-\index{expected\-Next\-Command@{expected\-Next\-Command}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{expected\-Next\-Command}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-expected\-Next\-Command = null}}\label{a00056_a3c7133c65dc7cf293f49b61426a0c4aa}
-
-
-Definition at line 536 of file Main.\-cs.
+\hypertarget{a00056_a87758397eba2e84cda8e0d6c40656f3f}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!label\-Count@{label\-Count}}
+\index{label\-Count@{label\-Count}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{label\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Compiler.\-label\-Count = 0\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_a87758397eba2e84cda8e0d6c40656f3f}
 
 
-
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Run\-Command().
-
-\hypertarget{a00056_a33a44e39f2d90850cee234dfad50f2c5}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!expected\-Next\-Line@{expected\-Next\-Line}}
-\index{expected\-Next\-Line@{expected\-Next\-Line}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{expected\-Next\-Line}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-expected\-Next\-Line = null}}\label{a00056_a33a44e39f2d90850cee234dfad50f2c5}
-
-
-Definition at line 534 of file Main.\-cs.
+Definition at line 103 of file Compiler.\-cs.
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Run\-Line().
-
-\hypertarget{a00056_a2e17937195ecd64d5d867d958c45d2c3}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!number\-Of\-Expected\-Options@{number\-Of\-Expected\-Options}}
-\index{number\-Of\-Expected\-Options@{number\-Of\-Expected\-Options}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{number\-Of\-Expected\-Options}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-number\-Of\-Expected\-Options = -\/1}}\label{a00056_a2e17937195ecd64d5d867d958c45d2c3}
-
-
-Definition at line 528 of file Main.\-cs.
+Referenced by Yarn.\-Compiler.\-Register\-Label().
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Run\-Options().
-
-\hypertarget{a00056_a9907b805775d5837a900ddbd0a1739b7}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!variable\-Store@{variable\-Store}}
-\index{variable\-Store@{variable\-Store}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{variable\-Store}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Memory\-Variable\-Store} Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-variable\-Store\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_a9907b805775d5837a900ddbd0a1739b7}
-
-
-Definition at line 524 of file Main.\-cs.
-
-\hypertarget{a00056_a90b0c755ea1d2f3ffaffa6cf18266709}{\index{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}!wait\-For\-Lines@{wait\-For\-Lines}}
-\index{wait\-For\-Lines@{wait\-For\-Lines}!Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation@{Yarn\-::\-Yarn\-Spinner\-Console\-::\-Console\-Runner\-Implementation}}
-\subsubsection[{wait\-For\-Lines}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-wait\-For\-Lines = false\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_a90b0c755ea1d2f3ffaffa6cf18266709}
+\subsection{Property Documentation}
+\hypertarget{a00056_aa1737da428ec7d597009661dd8a47829}{\index{Yarn\-::\-Compiler@{Yarn\-::\-Compiler}!program@{program}}
+\index{program@{program}!Yarn::Compiler@{Yarn\-::\-Compiler}}
+\subsubsection[{program}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Program} Yarn.\-Compiler.\-program\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00056_aa1737da428ec7d597009661dd8a47829}
 
 
-Definition at line 522 of file Main.\-cs.
+Definition at line 17 of file Compiler.\-cs.
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Console\-Runner\-Implementation(), and Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation.\-Run\-Line().
+Referenced by Yarn.\-Compiler.\-Compile\-Node(), and Yarn.\-Compiler.\-Compiler().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner\-Console/\hyperlink{a00325}{Main.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00307}{Compiler.\-cs}\end{DoxyCompactItemize}

@@ -1,158 +1,275 @@
-\hypertarget{a00100}{\section{Yarn.\-Error\-Listener Class Reference}
-\label{a00100}\index{Yarn.\-Error\-Listener@{Yarn.\-Error\-Listener}}
+\hypertarget{a00100}{\section{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter Class Reference}
+\label{a00100}\index{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}}
 }
 
 
-Inheritance diagram for Yarn.\-Error\-Listener\-:
+Converts an Enum to and from a string.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=174pt]{a00637}
+\includegraphics[width=220pt]{a00539}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Error\-Listener\-:
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=235pt]{a00638}
+\includegraphics[width=220pt]{a00540}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override void \hyperlink{a00100_a47fb9f6d50aa6a4e4796dea10b237fe4}{Syntax\-Error} (System.\-I\-O.\-Text\-Writer output, I\-Recognizer recognizer, \hyperlink{a00319_ae3d87b0b748ea892bff48f60862e182d}{I\-Token} offending\-Symbol, int line, int char\-Position\-In\-Line, string msg, Recognition\-Exception e)
-\end{DoxyCompactItemize}
-\subsection*{Properties}
+\hyperlink{a00100_adda8e6bff0d7635c0de15d36d49495da}{Enum\-Converter} (Type \hyperlink{a00100_a3c144b5c7e2720e66dc957aaed671e9a}{type})
+\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{a00100}{Enum\-Converter} for the given Enum Type. \end{DoxyCompactList}\item 
+override object \hyperlink{a00100_abbbd7ece803a97b4714445c745918dc9}{Convert\-From\-String} (\hyperlink{a00180}{Type\-Converter\-Options} options, string text)
+\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
+override bool \hyperlink{a00100_a31af8209aad64ed11d949586075c244a}{Can\-Convert\-From} (Type \hyperlink{a00100_a3c144b5c7e2720e66dc957aaed671e9a}{type})
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual string \hyperlink{a00090_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00180}{Type\-Converter\-Options} options, object value)
+\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00090_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type \hyperlink{a00100_a3c144b5c7e2720e66dc957aaed671e9a}{type})
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{a00100}{Error\-Listener} \hyperlink{a00100_a47b8f4f1d414afa1ea6067218c7ee34d}{Instance}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00100_a1f0cc41aac10bd8a2402355534c1123c}{Error\-Listener} ()
-\end{DoxyCompactItemize}
-\subsection*{Static Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-static readonly \hyperlink{a00100}{Error\-Listener} \hyperlink{a00100_a9421873edea84c51d5905f5a24c62479}{instance} = new \hyperlink{a00100}{Error\-Listener}()
+readonly Type \hyperlink{a00100_a3c144b5c7e2720e66dc957aaed671e9a}{type}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Converts an Enum to and from a string. 
 
 
-Definition at line 9 of file Error\-Listener.\-cs.
+
+Definition at line 13 of file Enum\-Converter.\-cs.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00100_a1f0cc41aac10bd8a2402355534c1123c}{\index{Yarn\-::\-Error\-Listener@{Yarn\-::\-Error\-Listener}!Error\-Listener@{Error\-Listener}}
-\index{Error\-Listener@{Error\-Listener}!Yarn::ErrorListener@{Yarn\-::\-Error\-Listener}}
-\subsubsection[{Error\-Listener}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Error\-Listener.\-Error\-Listener (
+\hypertarget{a00100_adda8e6bff0d7635c0de15d36d49495da}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}!Enum\-Converter@{Enum\-Converter}}
+\index{Enum\-Converter@{Enum\-Converter}!CsvHelper::TypeConversion::EnumConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}}
+\subsubsection[{Enum\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter.\-Enum\-Converter (
 \begin{DoxyParamCaption}
-{}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00100_a1f0cc41aac10bd8a2402355534c1123c}
+)}}\label{a00100_adda8e6bff0d7635c0de15d36d49495da}
 
 
-Definition at line 12 of file Error\-Listener.\-cs.
+Creates a new \hyperlink{a00100}{Enum\-Converter} for the given Enum Type. 
 
 
-\begin{DoxyCode}
-12 \{\}
-\end{DoxyCode}
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the Enum.\\
+\hline
+\end{DoxyParams}
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00100_a47fb9f6d50aa6a4e4796dea10b237fe4}{\index{Yarn\-::\-Error\-Listener@{Yarn\-::\-Error\-Listener}!Syntax\-Error@{Syntax\-Error}}
-\index{Syntax\-Error@{Syntax\-Error}!Yarn::ErrorListener@{Yarn\-::\-Error\-Listener}}
-\subsubsection[{Syntax\-Error}]{\setlength{\rightskip}{0pt plus 5cm}override void Yarn.\-Error\-Listener.\-Syntax\-Error (
-\begin{DoxyParamCaption}
-\item[{System.\-I\-O.\-Text\-Writer}]{output, }
-\item[{I\-Recognizer}]{recognizer, }
-\item[{{\bf I\-Token}}]{offending\-Symbol, }
-\item[{int}]{line, }
-\item[{int}]{char\-Position\-In\-Line, }
-\item[{string}]{msg, }
-\item[{Recognition\-Exception}]{e}
-\end{DoxyParamCaption}
-)}}\label{a00100_a47fb9f6d50aa6a4e4796dea10b237fe4}
-
-
-Definition at line 21 of file Error\-Listener.\-cs.
+Definition at line 21 of file Enum\-Converter.\-cs.
 
 
 \begin{DoxyCode}
 22         \{
-23             StringBuilder builder = \textcolor{keyword}{new} StringBuilder();
-24 
-25             \textcolor{comment}{// the human readable message}
-26             \textcolor{keywordtype}{object}[] format = \textcolor{keyword}{new} \textcolor{keywordtype}{object}[] \{ line, charPositionInLine + 1 \};
-27             builder.AppendFormat(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Error on line \{0\} at position \{1\}:\(\backslash\)n"}, format
-      );
-28             \textcolor{comment}{// the actual error message}
-29             builder.AppendLine(msg);
-30 
-31             \textcolor{comment}{// the line with the error on it}
-32             \textcolor{keywordtype}{string} input = offendingSymbol.TokenSource.InputStream.ToString();
-33             \textcolor{keywordtype}{string}[] lines = input.Split(\textcolor{charliteral}{'\(\backslash\)n'});
-34             \textcolor{keywordtype}{string} errorLine = lines[line - 1];
-35             builder.AppendLine(errorLine);
-36 
-37             \textcolor{comment}{// adding indicator symbols pointing out where the error is on the line}
-38             \textcolor{keywordtype}{int} start = offendingSymbol.StartIndex;
-39             \textcolor{keywordtype}{int} stop = offendingSymbol.StopIndex;
-40             \textcolor{keywordflow}{if} (start >= 0 && stop >= 0)
+23             var isAssignableFrom = typeof( Enum ).GetTypeInfo().IsAssignableFrom( 
+      \hyperlink{a00100_a3c144b5c7e2720e66dc957aaed671e9a}{type}.GetTypeInfo() );
+24             \textcolor{keywordflow}{if}( !typeof( Enum ).IsAssignableFrom( \hyperlink{a00100_a3c144b5c7e2720e66dc957aaed671e9a}{type} ) )
+25             \{
+26                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException( $\textcolor{stringliteral}{"'\{type.FullName\}' is not an Enum."} );
+27             \}
+28 
+29             this.type = \hyperlink{a00100_a3c144b5c7e2720e66dc957aaed671e9a}{type};
+30         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00100_a31af8209aad64ed11d949586075c244a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::EnumConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter.\-Can\-Convert\-From (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00100_a31af8209aad64ed11d949586075c244a}
+
+
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{a00090_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+
+
+
+Definition at line 57 of file Enum\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+58         \{
+59             \textcolor{comment}{// We only care about strings.}
+60             \textcolor{keywordflow}{return} \hyperlink{a00100_a3c144b5c7e2720e66dc957aaed671e9a}{type} == typeof( \textcolor{keywordtype}{string} );
+61         \}
+\end{DoxyCode}
+\hypertarget{a00090_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
+\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::EnumConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}}
+\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00090_acb65bd8c8199d88d5b1629ae35d18514}
+
+
+Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00125_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00101_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+
+
+Definition at line 69 of file Default\-Type\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+70         \{
+71             \textcolor{comment}{// We only care about strings.}
+72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+73         \}
+\end{DoxyCode}
+\hypertarget{a00100_abbbd7ece803a97b4714445c745918dc9}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
+\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::EnumConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}}
+\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter.\-Convert\-From\-String (
+\begin{DoxyParamCaption}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{string}]{text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00100_abbbd7ece803a97b4714445c745918dc9}
+
+
+Converts the string to an object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em text} & The string to convert to an object.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The object created from the string.
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{a00090_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+
+
+
+Definition at line 38 of file Enum\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+39         \{
+40             \textcolor{keywordflow}{try}
 41             \{
-42                 \textcolor{comment}{// the end point of the error in "line space"}
-43                 \textcolor{keywordtype}{int} end = (stop - start) + charPositionInLine + 1;
-44                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < end; i++)
-45                 \{
-46                     \textcolor{comment}{// move over until we are at the point we need to be}
-47                     \textcolor{keywordflow}{if} (i >= charPositionInLine && i < end)
-48                     \{
-49                         builder.Append(\textcolor{stringliteral}{"^"});
-50                     \}
-51                     \textcolor{keywordflow}{else}
-52                     \{
-53                         builder.Append(\textcolor{stringliteral}{" "});
-54                     \}
-55                 \}
-56             \}
-57             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} \hyperlink{a00147}{Yarn.ParseException}(builder.ToString());
-58         \}
+42                 \textcolor{keywordflow}{return} Enum.Parse( \hyperlink{a00100_a3c144b5c7e2720e66dc957aaed671e9a}{type}, text, true );
+43             \}
+44             \textcolor{keywordflow}{catch}
+45             \{
+46                 \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
+47             \}
+48         \}
+\end{DoxyCode}
+\hypertarget{a00090_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
+\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::EnumConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}}
+\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
+\begin{DoxyParamCaption}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{object}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00090_a36cb2f9b24f15a671293f3a722324c27}
+
+
+Converts the object to a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em value} & The object to convert to a string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the object.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00125_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00144_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00101_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+
+
+Definition at line 21 of file Default\-Type\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+22         \{
+23             \textcolor{keywordflow}{if}( value == null )
+24             \{
+25                 \textcolor{keywordflow}{return} string.Empty;
+26             \}
+27 
+28             var formattable = value as IFormattable;
+29             \textcolor{keywordflow}{if}( formattable != null )
+30             \{
+31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
+32             \}
+33 
+34             \textcolor{keywordflow}{return} value.ToString();
+35         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00100_a9421873edea84c51d5905f5a24c62479}{\index{Yarn\-::\-Error\-Listener@{Yarn\-::\-Error\-Listener}!instance@{instance}}
-\index{instance@{instance}!Yarn::ErrorListener@{Yarn\-::\-Error\-Listener}}
-\subsubsection[{instance}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Error\-Listener} Yarn.\-Error\-Listener.\-instance = new {\bf Error\-Listener}()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00100_a9421873edea84c51d5905f5a24c62479}
+\hypertarget{a00100_a3c144b5c7e2720e66dc957aaed671e9a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}!type@{type}}
+\index{type@{type}!CsvHelper::TypeConversion::EnumConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enum\-Converter}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}readonly Type Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter.\-type\hspace{0.3cm}{\ttfamily [private]}}}\label{a00100_a3c144b5c7e2720e66dc957aaed671e9a}
 
 
-Definition at line 11 of file Error\-Listener.\-cs.
-
-
-
-\subsection{Property Documentation}
-\hypertarget{a00100_a47b8f4f1d414afa1ea6067218c7ee34d}{\index{Yarn\-::\-Error\-Listener@{Yarn\-::\-Error\-Listener}!Instance@{Instance}}
-\index{Instance@{Instance}!Yarn::ErrorListener@{Yarn\-::\-Error\-Listener}}
-\subsubsection[{Instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Error\-Listener} Yarn.\-Error\-Listener.\-Instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00100_a47b8f4f1d414afa1ea6067218c7ee34d}
-
-
-Definition at line 14 of file Error\-Listener.\-cs.
-
-
-
-Referenced by Yarn.\-Loader.\-Load().
+Definition at line 15 of file Enum\-Converter.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00306}{Error\-Listener.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00272}{Enum\-Converter.\-cs}\end{DoxyCompactItemize}

@@ -1,369 +1,207 @@
-\hypertarget{a00152}{\section{Yarn.\-Program Class Reference}
-\label{a00152}\index{Yarn.\-Program@{Yarn.\-Program}}
+\hypertarget{a00152}{\section{Yarn.\-Unity.\-Example.\-Player\-Character Class Reference}
+\label{a00152}\index{Yarn.\-Unity.\-Example.\-Player\-Character@{Yarn.\-Unity.\-Example.\-Player\-Character}}
 }
 
 
-Collaboration diagram for Yarn.\-Program\-:
+Inheritance diagram for Yarn.\-Unity.\-Example.\-Player\-Character\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=186pt]{a00717}
+\includegraphics[width=216pt]{a00813}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Unity.\-Example.\-Player\-Character\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{a00814}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00152_a977d1ed02e3f6f39d30dfea1663e7927}{Load\-Strings} (Dictionary$<$ string, string $>$ new\-Strings)
-\begin{DoxyCompactList}\small\item\em Loads a new string table into the program. \end{DoxyCompactList}\item 
-string \hyperlink{a00152_a9baf491479375aa8c3aa2b0c31cf0932}{Register\-String} (string the\-String, string node\-Name, string line\-I\-D, int line\-Number, bool localisable)
-\item 
-string \hyperlink{a00152_a14737b93594c4aab25c59cb0a3c918f7}{Get\-String} (string key)
-\item 
-string \hyperlink{a00152_a2f5bb468ce53eb7bbe647e3c11ddbb61}{Dump\-Code} (\hyperlink{a00129}{Library} l)
-\item 
-string \hyperlink{a00152_aad8029f37832ff1985fad6a31e51afd8}{Get\-Text\-For\-Node} (string node\-Name)
-\item 
-I\-Enumerable$<$ string $>$ \hyperlink{a00152_a116312a32b20bc18e09f90c9c92a079f}{Get\-Tags\-For\-Node} (string node\-Name)
-\item 
-void \hyperlink{a00152_afd3385ca1f7589b3b9dae3646e4fee84}{Include} (\hyperlink{a00152}{Program} other\-Program)
-\end{DoxyCompactItemize}
-\subsection*{Package Attributes}
+void \hyperlink{a00152_a574b6d984b8671c7a780d3d10e040a9b}{Check\-For\-Nearby\-N\-P\-C} ()
+\begin{DoxyCompactList}\small\item\em Find all Dialogue\-Participants. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-Dictionary$<$ string, string $>$ \hyperlink{a00152_a59263e00cecfe36d9881b4c30b048f09}{strings} = new Dictionary$<$string, string$>$()
+float \hyperlink{a00152_ac025d4f4afaf854f8256e0d2d03e5b52}{min\-Position} = -\/5.\-3f
 \item 
-Dictionary$<$ string, \hyperlink{a00131}{Line\-Info} $>$ \hyperlink{a00152_a0d4da395947767b4a1eaaff8a9842adc}{line\-Info} = new Dictionary$<$string, \hyperlink{a00131}{Line\-Info}$>$()
+float \hyperlink{a00152_ada9dd748a1d89a7f9b12ac8967a07ae6}{max\-Position} = 5.\-3f
 \item 
-Dictionary$<$ string, \hyperlink{a00051_a00379}{Node} $>$ \hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes} = new Dictionary$<$string, \hyperlink{a00051_a00379}{Node}$>$()
+float \hyperlink{a00152_adc602a4b2c7e44e4b15a11f1ffcf07e4}{move\-Speed} = 1.\-0f
+\item 
+float \hyperlink{a00152_af89807d2195915ee9a0c42317e110fc6}{interaction\-Radius} = 2.\-0f
 \end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-Dictionary$<$ string, string $>$ \hyperlink{a00152_aa8fedbfceaf931d1da3f600eaab6ae87}{untagged\-Strings}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+float \hyperlink{a00152_a7bcde19f080bfd09bbc833b8fb555cf7}{movement\-From\-Buttons}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \end{DoxyCompactItemize}
-\subsection*{Private Attributes}
+\subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{a00152_a8ef1d10094ef00311aade6715ba78ec7}{string\-Count} = 0
-\end{DoxyCompactItemize}
+void \hyperlink{a00152_a9e83ec3c6e45ee4dd17215e3030f6403}{On\-Draw\-Gizmos\-Selected} ()
+\begin{DoxyCompactList}\small\item\em Draw the range at which we'll start talking to people. \end{DoxyCompactList}\item 
+void \hyperlink{a00152_a8e78b2dc1cd221fb9d05b89e70155df4}{Update} ()
+\begin{DoxyCompactList}\small\item\em Update is called once per frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 84 of file Program.\-cs.
+Definition at line 32 of file Player\-Character.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00152_a2f5bb468ce53eb7bbe647e3c11ddbb61}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Dump\-Code@{Dump\-Code}}
-\index{Dump\-Code@{Dump\-Code}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Dump\-Code}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Program.\-Dump\-Code (
+\hypertarget{a00152_a574b6d984b8671c7a780d3d10e040a9b}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!Check\-For\-Nearby\-N\-P\-C@{Check\-For\-Nearby\-N\-P\-C}}
+\index{Check\-For\-Nearby\-N\-P\-C@{Check\-For\-Nearby\-N\-P\-C}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{Check\-For\-Nearby\-N\-P\-C}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Player\-Character.\-Check\-For\-Nearby\-N\-P\-C (
 \begin{DoxyParamCaption}
-\item[{{\bf Library}}]{l}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00152_a2f5bb468ce53eb7bbe647e3c11ddbb61}
+)}}\label{a00152_a574b6d984b8671c7a780d3d10e040a9b}
 
 
-Definition at line 162 of file Program.\-cs.
+Find all Dialogue\-Participants. 
 
+Filter them to those that have a \hyperlink{a00053}{Yarn} start node and are in range; then start a conversation with the first one 
 
-
-References Yarn.\-Program.\-line\-Info, Yarn.\-Program.\-nodes, and Yarn.\-Program.\-strings.
+Definition at line 84 of file Player\-Character.\-cs.
 
 
 \begin{DoxyCode}
-163         \{
-164 
-165             var sb = \textcolor{keyword}{new} System.Text.StringBuilder();
-166 
-167             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} \hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes})
-168             \{
-169                 sb.AppendLine(\textcolor{stringliteral}{"Node "} + entry.Key + \textcolor{stringliteral}{":"});
-170 
-171                 \textcolor{keywordtype}{int} instructionCount = 0;
-172                 \textcolor{keywordflow}{foreach} (var instruction \textcolor{keywordflow}{in} entry.Value.instructions)
-173                 \{
-174                     \textcolor{keywordtype}{string} instructionText;
-175 
-176                     \textcolor{keywordflow}{if} (instruction.operation == \hyperlink{a00051_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label)
-177                     \{
-178                         instructionText = instruction.ToString(\textcolor{keyword}{this}, l);
-179                     \}
-180                     \textcolor{keywordflow}{else}
-181                     \{
-182                         instructionText = \textcolor{stringliteral}{"    "} + instruction.ToString(\textcolor{keyword}{this}, l);
-183                     \}
-184 
-185                     \textcolor{keywordtype}{string} preface;
-186 
-187                     \textcolor{keywordflow}{if} (instructionCount % 5 == 0 || instructionCount == entry.Value.instructions.Count - 1
-      )
-188                     \{
-189                         preface = string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0,6\}   "}, instructionCount)
-      ;
-190                     \}
-191                     \textcolor{keywordflow}{else}
-192                     \{
-193                         preface = string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0,6\}   "}, \textcolor{stringliteral}{" "});
-194                     \}
-195 
-196                     sb.AppendLine(preface + instructionText);
-197 
-198                     instructionCount++;
-199                 \}
-200 
-201                 sb.AppendLine();
-202             \}
-203 
-204             sb.AppendLine(\textcolor{stringliteral}{"String table:"});
-205 
-206             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} \hyperlink{a00152_a59263e00cecfe36d9881b4c30b048f09}{strings})
-207             \{
-208                 var \hyperlink{a00152_a0d4da395947767b4a1eaaff8a9842adc}{lineInfo} = this.lineInfo[entry.Key];
-209 
-210                 sb.AppendLine(string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0\}: \{1\} (\{2\}:\{3\})"}, entry.Key, 
-      entry.Value, lineInfo.nodeName, lineInfo.lineNumber));
-211             \}
-212 
-213             \textcolor{keywordflow}{return} sb.ToString();
-214         \}
+85         \{
+86             var allParticipants = \textcolor{keyword}{new} List<NPC> (FindObjectsOfType<NPC> ());
+87             var target = allParticipants.Find (delegate (NPC p) \{
+88                 \textcolor{keywordflow}{return} string.IsNullOrEmpty (p.talkToNode) == \textcolor{keyword}{false} && \textcolor{comment}{// has a conversation node?}
+89                 (p.transform.position - \textcolor{keyword}{this}.transform.position)\textcolor{comment}{// is in range?}
+90                 .magnitude <= \hyperlink{a00152_af89807d2195915ee9a0c42317e110fc6}{interactionRadius};
+91             \});
+92             \textcolor{keywordflow}{if} (target != null) \{
+93                 \textcolor{comment}{// Kick off the dialogue at this node.}
+94                 FindObjectOfType<DialogueRunner> ().StartDialogue (target.talkToNode);
+95             \}
+96         \}
 \end{DoxyCode}
-\hypertarget{a00152_a14737b93594c4aab25c59cb0a3c918f7}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Get\-String@{Get\-String}}
-\index{Get\-String@{Get\-String}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Get\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Program.\-Get\-String (
+\hypertarget{a00152_a9e83ec3c6e45ee4dd17215e3030f6403}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!On\-Draw\-Gizmos\-Selected@{On\-Draw\-Gizmos\-Selected}}
+\index{On\-Draw\-Gizmos\-Selected@{On\-Draw\-Gizmos\-Selected}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{On\-Draw\-Gizmos\-Selected}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Player\-Character.\-On\-Draw\-Gizmos\-Selected (
 \begin{DoxyParamCaption}
-\item[{string}]{key}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00152_a14737b93594c4aab25c59cb0a3c918f7}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00152_a9e83ec3c6e45ee4dd17215e3030f6403}
 
 
-Definition at line 155 of file Program.\-cs.
+Draw the range at which we'll start talking to people. 
+
+
+
+Definition at line 44 of file Player\-Character.\-cs.
 
 
 \begin{DoxyCode}
-156         \{
-157             \textcolor{keywordtype}{string} value = null;
-158             strings.TryGetValue(key, out value);
-159             \textcolor{keywordflow}{return} value;
-160         \}
+44                                     \{
+45             Gizmos.color = Color.blue;
+46 
+47             \textcolor{comment}{// Flatten the sphere into a disk, which looks nicer in 2D games}
+48             Gizmos.matrix = Matrix4x4.TRS(transform.position, Quaternion.identity, \textcolor{keyword}{new} Vector3(1,1,0));
+49 
+50             \textcolor{comment}{// Need to draw at position zero because we set position in the line above}
+51             Gizmos.DrawWireSphere(Vector3.zero, \hyperlink{a00152_af89807d2195915ee9a0c42317e110fc6}{interactionRadius});
+52         \}
 \end{DoxyCode}
-\hypertarget{a00152_a116312a32b20bc18e09f90c9c92a079f}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Get\-Tags\-For\-Node@{Get\-Tags\-For\-Node}}
-\index{Get\-Tags\-For\-Node@{Get\-Tags\-For\-Node}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Get\-Tags\-For\-Node}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<$string$>$ Yarn.\-Program.\-Get\-Tags\-For\-Node (
+\hypertarget{a00152_a8e78b2dc1cd221fb9d05b89e70155df4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!Update@{Update}}
+\index{Update@{Update}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Player\-Character.\-Update (
 \begin{DoxyParamCaption}
-\item[{string}]{node\-Name}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00152_a116312a32b20bc18e09f90c9c92a079f}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00152_a8e78b2dc1cd221fb9d05b89e70155df4}
 
 
-Definition at line 221 of file Program.\-cs.
+Update is called once per frame. 
 
 
 
-References Yarn.\-Program.\-nodes.
+Definition at line 55 of file Player\-Character.\-cs.
 
 
 \begin{DoxyCode}
-222         \{
-223             \textcolor{keywordflow}{return} \hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}[nodeName].tags;
-224         \}
-\end{DoxyCode}
-\hypertarget{a00152_aad8029f37832ff1985fad6a31e51afd8}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Get\-Text\-For\-Node@{Get\-Text\-For\-Node}}
-\index{Get\-Text\-For\-Node@{Get\-Text\-For\-Node}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Get\-Text\-For\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Program.\-Get\-Text\-For\-Node (
-\begin{DoxyParamCaption}
-\item[{string}]{node\-Name}
-\end{DoxyParamCaption}
-)}}\label{a00152_aad8029f37832ff1985fad6a31e51afd8}
-
-
-Definition at line 216 of file Program.\-cs.
-
-
-
-References Yarn.\-Program.\-nodes.
-
-
-\begin{DoxyCode}
-217         \{
-218             \textcolor{keywordflow}{return} this.GetString(\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}[nodeName].sourceTextStringID);
-219         \}
-\end{DoxyCode}
-\hypertarget{a00152_afd3385ca1f7589b3b9dae3646e4fee84}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Include@{Include}}
-\index{Include@{Include}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Include}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Program.\-Include (
-\begin{DoxyParamCaption}
-\item[{{\bf Program}}]{other\-Program}
-\end{DoxyParamCaption}
-)}}\label{a00152_afd3385ca1f7589b3b9dae3646e4fee84}
-
-
-Definition at line 226 of file Program.\-cs.
-
-
-
-References Yarn.\-Program.\-nodes, and Yarn.\-Program.\-strings.
-
-
-\begin{DoxyCode}
-227         \{
-228             \textcolor{keywordflow}{foreach} (var otherNodeName \textcolor{keywordflow}{in} otherProgram.nodes)
-229             \{
-230 
-231                 \textcolor{keywordflow}{if} (\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}.ContainsKey(otherNodeName.Key))
-232                 \{
-233                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException(\textcolor{keywordtype}{string}.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"This
-       program already contains a node named \{0\}"}, otherNodeName.Key));
-234                 \}
-235 
-236                 \hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}[otherNodeName.Key] = otherNodeName.Value;
-237             \}
-238 
-239             \textcolor{keywordflow}{foreach} (var otherString \textcolor{keywordflow}{in} otherProgram.strings)
-240             \{
-241 
-242                 \textcolor{keywordflow}{if} (\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}.ContainsKey(otherString.Key))
-243                 \{
-244                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException(\textcolor{keywordtype}{string}.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"This
-       program already contains a string with key \{0\}"}, otherString.Key));
-245                 \}
-246 
-247                 \hyperlink{a00152_a59263e00cecfe36d9881b4c30b048f09}{strings}[otherString.Key] = otherString.Value;
-248             \}
-249         \}
-\end{DoxyCode}
-\hypertarget{a00152_a977d1ed02e3f6f39d30dfea1663e7927}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Load\-Strings@{Load\-Strings}}
-\index{Load\-Strings@{Load\-Strings}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Load\-Strings}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Program.\-Load\-Strings (
-\begin{DoxyParamCaption}
-\item[{Dictionary$<$ string, string $>$}]{new\-Strings}
-\end{DoxyParamCaption}
-)}}\label{a00152_a977d1ed02e3f6f39d30dfea1663e7927}
-
-
-Loads a new string table into the program. 
-
-The string table is merged with any existing strings, with the new table taking precedence over the old. 
-
-Definition at line 125 of file Program.\-cs.
-
-
-
-References Yarn.\-Program.\-strings.
-
-
-\begin{DoxyCode}
-126         \{
-127             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} newStrings)
-128             \{
-129                 \hyperlink{a00152_a59263e00cecfe36d9881b4c30b048f09}{strings}[entry.Key] = entry.Value;
-130             \}
-131         \}
-\end{DoxyCode}
-\hypertarget{a00152_a9baf491479375aa8c3aa2b0c31cf0932}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Register\-String@{Register\-String}}
-\index{Register\-String@{Register\-String}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Register\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Program.\-Register\-String (
-\begin{DoxyParamCaption}
-\item[{string}]{the\-String, }
-\item[{string}]{node\-Name, }
-\item[{string}]{line\-I\-D, }
-\item[{int}]{line\-Number, }
-\item[{bool}]{localisable}
-\end{DoxyParamCaption}
-)}}\label{a00152_a9baf491479375aa8c3aa2b0c31cf0932}
-
-
-Definition at line 133 of file Program.\-cs.
-
-
-
-References Yarn.\-Program.\-string\-Count.
-
-
-\begin{DoxyCode}
-134         \{
-135 
-136             \textcolor{keywordtype}{string} key;
-137 
-138             \textcolor{keywordflow}{if} (lineID == null)
-139                 key = string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0\}-\{1\}"}, nodeName, 
-      \hyperlink{a00152_a8ef1d10094ef00311aade6715ba78ec7}{stringCount}++);
-140             \textcolor{keywordflow}{else}
-141                 key = lineID;
-142 
-143             \textcolor{comment}{// It's not in the list; append it}
-144             strings.Add(key, theString);
-145 
-146             \textcolor{keywordflow}{if} (localisable)
-147             \{
-148                 \textcolor{comment}{// Additionally, keep info about this string around}
-149                 lineInfo.Add(key, \textcolor{keyword}{new} LineInfo(nodeName, lineNumber));
-150             \}
-151 
-152             \textcolor{keywordflow}{return} key;
-153         \}
+55                        \{
+56 
+57             \textcolor{comment}{// Remove all player control when we're in dialogue}
+58             \textcolor{keywordflow}{if} (FindObjectOfType<DialogueRunner>().isDialogueRunning == \textcolor{keyword}{true}) \{
+59                 \textcolor{keywordflow}{return};
+60             \}
+61 
+62             \textcolor{comment}{// Move the player, clamping them to within the boundaries }
+63             \textcolor{comment}{// of the level.}
+64             var movement = Input.GetAxis(\textcolor{stringliteral}{"Horizontal"});
+65             movement += \hyperlink{a00152_a7bcde19f080bfd09bbc833b8fb555cf7}{movementFromButtons};
+66             movement *= (\hyperlink{a00152_adc602a4b2c7e44e4b15a11f1ffcf07e4}{moveSpeed} * Time.deltaTime);
+67 
+68             var newPosition = transform.position;
+69             newPosition.x += movement;
+70             newPosition.x = Mathf.Clamp(newPosition.x, \hyperlink{a00152_ac025d4f4afaf854f8256e0d2d03e5b52}{minPosition}, 
+      \hyperlink{a00152_ada9dd748a1d89a7f9b12ac8967a07ae6}{maxPosition});
+71 
+72             transform.position = newPosition;
+73 
+74             \textcolor{comment}{// Detect if we want to start a conversation}
+75             \textcolor{keywordflow}{if} (Input.GetKeyDown(KeyCode.Space)) \{
+76                 \hyperlink{a00152_a574b6d984b8671c7a780d3d10e040a9b}{CheckForNearbyNPC} ();
+77             \}
+78         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00152_a0d4da395947767b4a1eaaff8a9842adc}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!line\-Info@{line\-Info}}
-\index{line\-Info@{line\-Info}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{line\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Line\-Info}$>$ Yarn.\-Program.\-line\-Info = new Dictionary$<$string, {\bf Line\-Info}$>$()\hspace{0.3cm}{\ttfamily [package]}}}\label{a00152_a0d4da395947767b4a1eaaff8a9842adc}
+\hypertarget{a00152_af89807d2195915ee9a0c42317e110fc6}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!interaction\-Radius@{interaction\-Radius}}
+\index{interaction\-Radius@{interaction\-Radius}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{interaction\-Radius}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-interaction\-Radius = 2.\-0f}}\label{a00152_af89807d2195915ee9a0c42317e110fc6}
 
 
-Definition at line 88 of file Program.\-cs.
+Definition at line 39 of file Player\-Character.\-cs.
+
+\hypertarget{a00152_ada9dd748a1d89a7f9b12ac8967a07ae6}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!max\-Position@{max\-Position}}
+\index{max\-Position@{max\-Position}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{max\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-max\-Position = 5.\-3f}}\label{a00152_ada9dd748a1d89a7f9b12ac8967a07ae6}
 
 
+Definition at line 35 of file Player\-Character.\-cs.
 
-Referenced by Yarn.\-Program.\-Dump\-Code().
-
-\hypertarget{a00152_a3f4928a577c88263ad016be259b175c4}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!nodes@{nodes}}
-\index{nodes@{nodes}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{nodes}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Node}$>$ Yarn.\-Program.\-nodes = new Dictionary$<$string, {\bf Node}$>$()\hspace{0.3cm}{\ttfamily [package]}}}\label{a00152_a3f4928a577c88263ad016be259b175c4}
-
-
-Definition at line 91 of file Program.\-cs.
+\hypertarget{a00152_ac025d4f4afaf854f8256e0d2d03e5b52}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!min\-Position@{min\-Position}}
+\index{min\-Position@{min\-Position}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{min\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-min\-Position = -\/5.\-3f}}\label{a00152_ac025d4f4afaf854f8256e0d2d03e5b52}
 
 
+Definition at line 34 of file Player\-Character.\-cs.
 
-Referenced by Yarn.\-Compiler.\-Compile\-Node(), Yarn.\-Program.\-Dump\-Code(), Yarn.\-Dialogue.\-Get\-Tags\-For\-All\-Nodes(), Yarn.\-Program.\-Get\-Tags\-For\-Node(), Yarn.\-Dialogue.\-Get\-Tags\-For\-Node(), Yarn.\-Dialogue.\-Get\-Text\-For\-All\-Nodes(), Yarn.\-Program.\-Get\-Text\-For\-Node(), Yarn.\-Dialogue.\-Get\-Text\-For\-Node(), Yarn.\-Program.\-Include(), Yarn.\-Dialogue.\-Node\-Exists(), and Yarn.\-Virtual\-Machine.\-Set\-Node().
-
-\hypertarget{a00152_a8ef1d10094ef00311aade6715ba78ec7}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!string\-Count@{string\-Count}}
-\index{string\-Count@{string\-Count}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{string\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Program.\-string\-Count = 0\hspace{0.3cm}{\ttfamily [private]}}}\label{a00152_a8ef1d10094ef00311aade6715ba78ec7}
-
-
-Definition at line 119 of file Program.\-cs.
+\hypertarget{a00152_adc602a4b2c7e44e4b15a11f1ffcf07e4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!move\-Speed@{move\-Speed}}
+\index{move\-Speed@{move\-Speed}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{move\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-move\-Speed = 1.\-0f}}\label{a00152_adc602a4b2c7e44e4b15a11f1ffcf07e4}
 
 
-
-Referenced by Yarn.\-Program.\-Register\-String().
-
-\hypertarget{a00152_a59263e00cecfe36d9881b4c30b048f09}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!strings@{strings}}
-\index{strings@{strings}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{strings}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, string$>$ Yarn.\-Program.\-strings = new Dictionary$<$string, string$>$()\hspace{0.3cm}{\ttfamily [package]}}}\label{a00152_a59263e00cecfe36d9881b4c30b048f09}
-
-
-Definition at line 87 of file Program.\-cs.
-
-
-
-Referenced by Yarn.\-Program.\-Dump\-Code(), Yarn.\-Program.\-Include(), and Yarn.\-Program.\-Load\-Strings().
+Definition at line 37 of file Player\-Character.\-cs.
 
 
 
 \subsection{Property Documentation}
-\hypertarget{a00152_aa8fedbfceaf931d1da3f600eaab6ae87}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!untagged\-Strings@{untagged\-Strings}}
-\index{untagged\-Strings@{untagged\-Strings}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{untagged\-Strings}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, string$>$ Yarn.\-Program.\-untagged\-Strings\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [package]}}}\label{a00152_aa8fedbfceaf931d1da3f600eaab6ae87}
+\hypertarget{a00152_a7bcde19f080bfd09bbc833b8fb555cf7}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!movement\-From\-Buttons@{movement\-From\-Buttons}}
+\index{movement\-From\-Buttons@{movement\-From\-Buttons}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{movement\-From\-Buttons}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-movement\-From\-Buttons\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00152_a7bcde19f080bfd09bbc833b8fb555cf7}
 
 
-Definition at line 103 of file Program.\-cs.
+Definition at line 41 of file Player\-Character.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00314}{Program.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00303}{Player\-Character.\-cs}\end{DoxyCompactItemize}

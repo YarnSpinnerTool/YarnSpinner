@@ -1,19 +1,120 @@
-\hyperlink{a00051}{Yarn} Spinner provides tools to help convert your game in to any language you like. This is achieved by usage of the \href{../YarnSpinnerConsole}{\tt Yarn\-Spinner\-Console} tool. At the moment, this tool is not available standalone and needs to be ../\-Yarn\-Spinner-\/\-Programming/\-Building.md \char`\"{}built from source\char`\"{}.
+\subsubsection*{Style Guide}
 
-\subsection*{Localisation procedure}
+{\ttfamily Inline Code} contain short snippets of code for your project \begin{DoxyVerb}Code Blocks contain segments or chunks of code for your project
+\end{DoxyVerb}
 
 
-\begin{DoxyEnumerate}
-\item We first use the tool to place unique {\bfseries taglines} on each line of text that the end user will see. To do this, we execute the tool with the {\bfseries taglines} command, eg\-: {\ttfamily Yarn\-Spinner\-Console.\-exe taglines My\-Yarn\-File.\-yarn.\-txt}.
-\item Next, we use the tool to generate a file of strings ({\bfseries genstrings}) in '\href{https://en.wikipedia.org/wiki/Comma-separated_values}{\tt comma separated value}' (csv) format. {\ttfamily Yarn\-Spinner\-Console.\-exe genstrings My\-Yarn\-File.\-yarn.\-txt} will generate a file, (in this example My\-Yarn\-F\-Ile.\-yarn\-\_\-lines.\-csv), that can then distributed to translators. It is recommended that this file first be renamed using a language identifier before distribution, eg ``` My\-Yarn\-F\-Ile.\-yarn\-\_\-lines.\-en\-A\-U.\-csv My\-Yarn\-F\-Ile.\-yarn\-\_\-lines.\-pt\-T\-L.\-csv ```
-\item When the file is returned from translators, we then use \hyperlink{a00051}{Yarn} Spinner's Dialogue\-Runner inside Unity to set String Groups for the required language.
-\end{DoxyEnumerate}
+{\bfseries Bold indicate actions (Select menu item, copying file, etc.)}
 
-\subsection*{Footnotes}
+$\ast$$\ast$$\ast$\-Bold italic text indicates emphasis$\ast$$\ast$$\ast$
+
+\begin{quotation}
+Blockquotes contain essential information
+
+\end{quotation}
+
+
+\subsection*{Tutorial}
+
+\begin{quotation}
+$\ast$$\ast$$\ast$\-Note$\ast$$\ast$$\ast$ This document talks about how to use \hyperlink{a00053}{Yarn} if you're using it to write \hyperlink{a00053}{Yarn} Dialogue. It is strongly suggested you have first read through the \hyperlink{a00214}{Simple Example} document. Neither the Simple Example or this document talk about how to integrate \hyperlink{a00053}{Yarn} Spinner into your project; for that, see \href{../YarnSpinner-Unity}{\tt \char`\"{}\-Using Yarn Spinner in your Unity game\char`\"{}}.
+
+\end{quotation}
+
+
+\subsection*{Complex Example}
+
+In our Complex Example, we will establish a multiple files of \hyperlink{a00053}{Yarn} Dialogue. This Dialogue will take place between three characters\-: the Player, an N\-P\-C called Sally and an N\-P\-C called Ship.
+
+A limited amount of programming knowledge is required for narrative adventure \hyperlink{a00053}{Yarn} Dialogue creation, otherwise we cannot tell what is required to for the desired plot sequences to take place. In this example, we will introduce $\ast$$\ast$$\ast$\href{https://en.wikipedia.org/wiki/Command_(computing}{\tt commands})$\ast$$\ast$$\ast$ as well as $\ast$$\ast$$\ast$\href{https://en.wikipedia.org/wiki/Conditional_(computer_programming}{\tt conditionals})$\ast$$\ast$$\ast$ along with $\ast$$\ast$$\ast$\href{https://en.wikipedia.org/wiki/Relational_operator}{\tt tests}$\ast$$\ast$$\ast$ and $\ast$$\ast$$\ast$\href{https://en.wikipedia.org/wiki/Function_composition_(computer_science}{\tt functions})$\ast$$\ast$$\ast$ to produce a more reactive narrative. We shall also discuss $\ast$$\ast$$\ast$\href{https://en.wikipedia.org/wiki/Variable_(computer_science}{\tt variables})$\ast$$\ast$$\ast$ and how to use them to influence Dialogue interaction.
 
 
 \begin{DoxyItemize}
-\item While not essential that all files follow a standard, but highly recommended that consistency of format be used across all localisation files within a project eg \href{https://www.iso.org/obp/ui/#iso:std:iso-iec:15897:ed-2:v1:en}{\tt I\-S\-O-\/15897}
-\item Originally, \hyperlink{a00051}{Yarn} Spinner used .json format. The \hyperlink{a00051}{Yarn} Spinner Console can convert this json format to the new improved text format\-: {\ttfamily Yarn\-Spinner\-Console.\-exe convert -\/-\/yarn Ship.\-json}
-\item Command reference is available for Yarn\-Spinner\-Console.\-exe by either running it with no arguments or by utilising the help command ({\ttfamily Yarn\-Spinner\-Console.\-exe help}). Help for each command is available by using 'help command' (eg {\ttfamily Yarn\-Spinnder\-Console.\-exe help compile}) 
+\item $\ast$$\ast$$\ast$\-Commands$\ast$$\ast$$\ast$ instruct the game engine to execute specific code, such as making a noise in sequence with some text or generating a graphic or both (for example, displaying lightning and making the noise of thunder).
+\item $\ast$$\ast$$\ast$\-Conditionals$\ast$$\ast$$\ast$ are a form of \href{https://en.wikipedia.org/wiki/Branch_(computer_science}{\tt branches}). By following the \hyperlink{a00214}{simple example}, you've already learned a little about \href{https://en.wikipedia.org/wiki/Branch_(computer_science}{\tt control flow}), in that how selecting certain text determines which nodes to $\ast$$\ast$$\ast$jump$\ast$$\ast$$\ast$ to. Conditionals are only slightly more complex than jumps, as they are simply a method to determine which jumps may become available and when.
+\item $\ast$$\ast$$\ast$\-Tests$\ast$$\ast$$\ast$ utilise a combination of variables, functions to contruct a $\ast$$\ast$$\ast$conditional$\ast$$\ast$$\ast$.
+\item $\ast$$\ast$$\ast$\-Functions$\ast$$\ast$$\ast$, also known in other programming languages as subroutines, procedures, or subprograms, are an external set of commands that perform a specific task. In this example, we use a function called 'Visited' to see if a node has been reached by a player in the context of a narrative story. Based upon this visit, or lack thereof, different narrative events take place.
+\item $\ast$$\ast$$\ast$\-Variables$\ast$$\ast$$\ast$ hold pieces of information relating to the state of the game that may change depending on events happening in the game. For example, if a player picks up sticks the number of sticks can be stored in a variable called '\$sticks\-\_\-collected' \begin{quotation}
+$\ast$$\ast$$\ast$\-Note$\ast$$\ast$$\ast$ Variable names $\ast$$\ast$$\ast$\-M\-U\-S\-T$\ast$$\ast$$\ast$ always start with the \$ character otherwise \hyperlink{a00053}{Yarn} Spinner will freak the crap out.
+
+\end{quotation}
+
 \end{DoxyItemize}
+
+\subsection*{First Dialogue File}
+
+First off, we'll create an initial scene. Because our Complex Example is set inside a space ship, we'll give the name of the node 'Ship'. We'll give this node some initial Dialogue. ``` Ship\-: Hey, friend. Player\-: Hi, Ship. Player\-: How's space? Ship\-: Oh, man. ``` \subsubsection*{Commands}
+
+Next, we'll add a $\ast$$\ast$$\ast$command$\ast$$\ast$$\ast$ to make the face of the ship change, the ship to say some text, then the ship return to neutral. ``` $<$$<$setsprite shipface=\char`\"{}\char`\"{} happy$>$=\char`\"{}\char`\"{}$>$$>$ Ship\-: It's H\-U\-G\-E! $<$$<$setsprite shipface=\char`\"{}\char`\"{} neutral$>$=\char`\"{}\char`\"{}$>$$>$ ``` Do not be concerned that you do not have any graphics for the Ship\-Face. Nor, in fact, don't be too concerned if you'd rather call the graphic Face\-Of\-Ship. In fact, the name can be anything. However to be compatible with the existing example, for comparison sake we are using Ship\-Face.
+
+Our Dialogue now reads ``` Ship\-: Hey, friend. Player\-: Hi, Ship. Player\-: How's space? Ship\-: Oh, man. $<$$<$setsprite shipface=\char`\"{}\char`\"{} happy$>$=\char`\"{}\char`\"{}$>$$>$ Ship\-: It's H\-U\-G\-E! $<$$<$setsprite shipface=\char`\"{}\char`\"{} neutral$>$=\char`\"{}\char`\"{}$>$$>$ ``` This is some simple introductory text for our Ship character, but it wouldn't make much sense to repeat this if our player has already visited Ship. So we will need to write a little bit of code to ensure that the second time we visit Ship, it acts differently. We need to check the state of having $\ast$$\ast$$\ast$visited$\ast$$\ast$$\ast$ the ship.
+
+\subsubsection*{Conditionals and Functions}
+
+\hyperlink{a00053}{Yarn} Spinner has an inbuilt $\ast$$\ast$$\ast$function$\ast$$\ast$$\ast$ called {\ttfamily visited}. This function checks to see if a node has previously been accessed by the player. We can combine this function with a $\ast$$\ast$$\ast$conditional$\ast$$\ast$$\ast$ to see whether a node has been previously displayed to the player. The basic syntax of such a conditional is\-: ``` $<$$<$if visited(\char`\"{}\-Node\-Name\char`\"{}) is true$>$$>$ N\-P\-C\-: You have visited me before, player $<$$<$else$>$$>$ N\-P\-C\-: You have not visited me before, player $<$$<$endif$>$$>$ ``` \begin{quotation}
+$\ast$$\ast$$\ast$\-Note\-:$\ast$$\ast$$\ast$ The above can be re-\/written to provide the same outcome by reversing the test from true to false and inverting the N\-P\-C text\-:
+
+\end{quotation}
+``` $<$$<$if visited(\char`\"{}\-Node\-Name\char`\"{}) is false$>$$>$ N\-P\-C\-: You have not visited me before, player $<$$<$else$>$$>$ N\-P\-C\-: You have visited me before, player $<$$<$endif$>$$>$ ``` From this basic understanding of the $\ast$$\ast$$\ast$'if then else'$\ast$$\ast$$\ast$ conditional, and usage of the {\ttfamily visited} function, we can then establish whether a player has visited Ship and change the Dialogue that Ship presents\-: ``` $<$$<$if visited(\char`\"{}\-Ship\char`\"{}) is false$>$$>$ Ship\-: Hey, friend. Player\-: Hi, Ship. Player\-: How's space? Ship\-: Oh, man. $<$$<$setsprite shipface=\char`\"{}\char`\"{} happy$>$=\char`\"{}\char`\"{}$>$$>$ Ship\-: It's H\-U\-G\-E! $<$$<$setsprite shipface=\char`\"{}\char`\"{} neutral$>$=\char`\"{}\char`\"{}$>$$>$ $<$$<$else$>$$>$ $<$$<$setsprite shipface=\char`\"{}\char`\"{} happy$>$=\char`\"{}\char`\"{}$>$$>$ Ship\-: Hey!! $<$$<$setsprite shipface=\char`\"{}\char`\"{} neutral$>$=\char`\"{}\char`\"{}$>$$>$ $<$$<$endif$>$$>$ ``{\ttfamily  $>$$\ast$$\ast$$\ast$\-Note\-:$\ast$$\ast$$\ast$ Remember, if we have}if visited(\char`\"{}\-Ship\char`\"{}) is true`, the order of the content of the $\ast$$\ast$$\ast$'if then else'$\ast$$\ast$$\ast$ would need to be reversed to ensure the correct text is presented for when Player has previously visited Ship.
+
+We will now add in some Dialogue that responds to whether we've interacted with another N\-P\-C, Sally. Sally's nodes will be contained within a seperate text file for ease of editing purposes. You can contain all \hyperlink{a00053}{Yarn} Dialogue nodes in the same file but you will find that it becomes increasingly difficult to maintain as your file grows longer, so we strongly encourage this separation of characters. This is the remainder of the text required for the Ship Node of \hyperlink{a00053}{Yarn} Dialogue. ``` $<$$<$if \$should\-\_\-see\-\_\-ship is true and \$sally\-\_\-warning is false$>$$>$ Player\-: Sally said you wanted to see me? $<$$<$setsprite shipface=\char`\"{}\char`\"{} happy$>$=\char`\"{}\char`\"{}$>$$>$ Ship\-: She totally did!! $<$$<$setsprite shipface=\char`\"{}\char`\"{} neutral$>$=\char`\"{}\char`\"{}$>$$>$ Ship\-: She wanted me to tell you... Ship\-: If you ever go off-\/watch without resetting the console again... $<$$<$setsprite shipface=\char`\"{}\char`\"{} happy$>$=\char`\"{}\char`\"{}$>$$>$ Ship\-: She'll flay you alive! $<$$<$set \$sally\-\_\-warning to true$>$$>$ Player\-: Uh. $<$$<$setsprite shipface=\char`\"{}\char`\"{} neutral$>$=\char`\"{}\char`\"{}$>$$>$ \section*{$<$$>$ }
+
+``` \subsubsection*{Variables and Tests}
+
+We can see from this code that there a couple of new things in this code snippet. They are {\ttfamily \$should\-\_\-see\-\_\-ship is true} and {\ttfamily \$sally\-\_\-warning is false}.
+
+{\ttfamily \$should\-\_\-see\-\_\-ship} and {\ttfamily \$sally\-\_\-warning} are examples of what are known as a $\ast$$\ast$$\ast$variable$\ast$$\ast$$\ast$. In this case, they are a variable of \href{https://en.wikipedia.org/wiki/Boolean_data_type}{\tt boolean data type} and both {\ttfamily \$should\-\_\-see\-\_\-ship is true} and {\ttfamily \$sally\-\_\-warning is false} are known as \href{https://en.wikipedia.org/wiki/Boolean_expression}{\tt boolean expressions}. In simple terms, a boolean data type can hold one of two different states, true or false. By setting the variable to either of these two states and later evaluating it, determinations can be made as to which section of \hyperlink{a00053}{Yarn} Dialogue should be displayed.
+
+We shall address the setting on the first boolean, {\ttfamily \$should\-\_\-see\-\_\-ship}, in the nodes for the Sally character contained in the file \href{../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Sally.yarn.txt}{\tt Sally.\-yarn.\-txt}. The boolean {\ttfamily \$sally\-\_\-warning} is set to {\ttfamily true} via the code {\ttfamily $<$$<$set \$sally\-\_\-warning to true$>$$>$} after Ship warns us that sally will flay us alive.
+
+\begin{quotation}
+$\ast$$\ast$$\ast$\-Note\-:$\ast$$\ast$$\ast$ We have now completed the \hyperlink{a00053}{Yarn} Dialogue for the Ship node. The source for this node can be found in the example file \href{../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Ship.yarn.txt}{\tt Ship.\-yarn.\-txt}. It is replicated below so as to be easily read here as a complete file.
+
+\end{quotation}
+
+
+``` \subsection*{title\-: Ship }
+
+$<$$<$if visited(\char`\"{}\-Ship\char`\"{}) is false$>$$>$ Ship\-: Hey, friend. Player\-: Hi, Ship. Player\-: How's space? Ship\-: Oh, man. $<$$<$setsprite shipface=\char`\"{}\char`\"{} happy$>$=\char`\"{}\char`\"{}$>$$>$ Ship\-: It's H\-U\-G\-E! $<$$<$setsprite shipface=\char`\"{}\char`\"{} neutral$>$=\char`\"{}\char`\"{}$>$$>$ $<$$<$else$>$$>$ $<$$<$setsprite shipface=\char`\"{}\char`\"{} happy$>$=\char`\"{}\char`\"{}$>$$>$ Ship\-: Hey!! $<$$<$setsprite shipface=\char`\"{}\char`\"{} neutral$>$=\char`\"{}\char`\"{}$>$$>$ $<$$<$endif$>$$>$
+
+$<$$<$if \$should\-\_\-see\-\_\-ship is true and \$sally\-\_\-warning is false$>$$>$ Player\-: Sally said you wanted to see me? $<$$<$setsprite shipface=\char`\"{}\char`\"{} happy$>$=\char`\"{}\char`\"{}$>$$>$ Ship\-: She totally did!! $<$$<$setsprite shipface=\char`\"{}\char`\"{} neutral$>$=\char`\"{}\char`\"{}$>$$>$ Ship\-: She wanted me to tell you... Ship\-: If you ever go off-\/watch without resetting the console again... $<$$<$setsprite shipface=\char`\"{}\char`\"{} happy$>$=\char`\"{}\char`\"{}$>$$>$ Ship\-: She'll flay you alive! $<$$<$set \$sally\-\_\-warning to true$>$$>$ Player\-: Uh. $<$$<$setsprite shipface=\char`\"{}\char`\"{} neutral$>$=\char`\"{}\char`\"{}$>$$>$ \section*{$<$$>$ }
+
+``` \subsubsection*{Second \hyperlink{a00053}{Yarn} Dialogue file}
+
+Our \hyperlink{a00053}{Yarn} Dialogue for Sally will start out as simply as before, with her words changing depending on whether the player has previously {\ttfamily visited} her. ``` $<$$<$if visited(\char`\"{}\-Sally\char`\"{}) is false$>$$>$ Sally\-: Oh! Hi. Sally\-: You snuck up on me. Sally\-: Don't do that. $<$$<$else$>$$>$ Player\-: Hey. Sally\-: Hi. $<$$<$endif$>$$>$ ``{\ttfamily  The next step is to have Sally react to whether we've visited her Watch node, and if not perform a $\ast$$\ast$$\ast$jump$\ast$$\ast$$\ast$ to that node.. We do this by constructing a $\ast$$\ast$$\ast$conditional$\ast$$\ast$$\ast$ that $\ast$$\ast$$\ast$tests$\ast$$\ast$$\ast$ to see if the player has $\ast$$\ast$$\ast$visited$\ast$$\ast$$\ast$ the}Sally.\-Watch$<$tt$>$node. `` $<$$<$if not visited(\char`\"{}\-Sally.\-Watch\char`\"{})$>$$>$ \mbox{[}\mbox{[}Anything exciting happen on your watch?$\vert$\-Sally.Watch\mbox{]}\mbox{]} $<$$<$endif$>$$>$ ``` The next section of the Sally node will be to have Sally scold us about going off watch, but only if we've received the warning from the Ship about her as well as only if she has not scolded us previously. ``` $<$$<$if \$sally\-\_\-warning and not visited(\char`\"{}\-Sally.\-Sorry\char`\"{})$>$$>$ \mbox{[}\mbox{[}Sorry about the console.$\vert$\-Sally.Sorry\mbox{]}\mbox{]} $<$$<$endif$>$$>$ ``` \begin{quotation}
+$\ast$$\ast$$\ast$\-Note\-:$\ast$$\ast$$\ast$ We're using the {\ttfamily visited} state of a singular node, {\ttfamily Sally.\-Sorry}. We could set a singular additional boolean value in the node, but as it would provide no increased functionality over usage of the built in {\ttfamily visited} command, it is written this way.
+
+\end{quotation}
+
+
+After all the above \hyperlink{a00053}{Yarn} Dialogue is executed, and the nodes are visited, we will jump to the final node. ``` \mbox{[}\mbox{[}See you later.$\vert$\-Sally.Exit\mbox{]}\mbox{]} ``` The first node in our \hyperlink{a00053}{Yarn} Dialogue for Sally now reads\-: ``` \subsection*{title\-: Sally }
+
+$<$$<$if visited(\char`\"{}\-Sally\char`\"{}) is false$>$$>$ Sally\-: Oh! Hi. Sally\-: You snuck up on me. Sally\-: Don't do that. $<$$<$else$>$$>$ Player\-: Hey. Sally\-: Hi. $<$$<$endif$>$$>$
+
+$<$$<$if not visited(\char`\"{}\-Sally.\-Watch\char`\"{})$>$$>$ \mbox{[}\mbox{[}Anything exciting happen on your watch?$\vert$\-Sally.Watch\mbox{]}\mbox{]} $<$$<$endif$>$$>$ $<$$<$if \$sally\-\_\-warning and not visited(\char`\"{}\-Sally.\-Sorry\char`\"{})$>$$>$ \mbox{[}\mbox{[}Sorry about the console.$\vert$\-Sally.Sorry\mbox{]}\mbox{]} $<$$<$endif$>$$>$ \mbox{[}\mbox{[}See you later.$\vert$\-Sally.Exit\mbox{]}\mbox{]} ``{\ttfamily  We're near the end, as all we have to do now is write the}Sally.\-Watch$<$tt$>$,Sally.\-Exit$<$tt$>$andSally.\-Sorry` nodes.
+
+{\ttfamily Sally.\-Watch} is rather straight forward \hyperlink{a00053}{Yarn} Dialogue. It sets a $\ast$$\ast$$\ast$variable$\ast$$\ast$$\ast$ {\ttfamily \$should\-\_\-see\-\_\-ship} when Sally tells us to go visit the ship. It also tests to see if we've visited already visited the ship and if so, presents some additional Dialogue. ``` Sally\-: Not really. Sally\-: Same old nebula, doing the same old thing. Sally\-: Oh, Ship wanted to see you. Go say hi to it. $<$$<$set \$should\-\_\-see\-\_\-ship to true$>$$>$ $<$$<$if visited(\char`\"{}\-Ship\char`\"{}) is true$>$$>$ Player\-: Already done! Sally\-: Go say hi again. $<$$<$endif$>$$>$ ``` \begin{quotation}
+$\ast$$\ast$$\ast$\-Note\-:$\ast$$\ast$$\ast$ There are no new concepts in \hyperlink{a00053}{Yarn} Dialogue in the previous code snippet. If you are having difficulties understanding this snippet, please re-\/read the sub-\/sections on Variables and Conditionals.
+
+\end{quotation}
+
+
+Finally, we have two short nodes. Firstly, the node containing the text as the Dialogue completes\-: ``` Sally\-: Bye. ``` And the text containing the Dialogue containing the text of Sally scolding the player\-: ``` Sally\-: Yeah. Don't do it again. ``` We now have our completed \href{../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Sally.yarn.txt}{\tt Sally.\-yarn.\-txt} file, and have finished creating the \hyperlink{a00053}{Yarn} Dialogue for our Complex Example. ``` \subsection*{title\-: Sally }
+
+$<$$<$if visited(\char`\"{}\-Sally\char`\"{}) is false$>$$>$ Sally\-: Oh! Hi. Sally\-: You snuck up on me. Sally\-: Don't do that. $<$$<$else$>$$>$ Player\-: Hey. Sally\-: Hi. $<$$<$endif$>$$>$
+
+$<$$<$if not visited(\char`\"{}\-Sally.\-Watch\char`\"{})$>$$>$ \mbox{[}\mbox{[}Anything exciting happen on your watch?$\vert$\-Sally.Watch\mbox{]}\mbox{]} $<$$<$endif$>$$>$ $<$$<$if \$sally\-\_\-warning and not visited(\char`\"{}\-Sally.\-Sorry\char`\"{})$>$$>$ \mbox{[}\mbox{[}Sorry about the console.$\vert$\-Sally.Sorry\mbox{]}\mbox{]} $<$$<$endif$>$$>$ \section*{\mbox{[}\mbox{[}See you later.$\vert$\-Sally.Exit\mbox{]}\mbox{]} }
+
+\subsection*{title\-: Sally.\-Watch }
+
+Sally\-: Not really. Sally\-: Same old nebula, doing the same old thing. Sally\-: Oh, Ship wanted to see you. Go say hi to it. $<$$<$set \$should\-\_\-see\-\_\-ship to true$>$$>$ $<$$<$if visited(\char`\"{}\-Ship\char`\"{}) is true$>$$>$ Player\-: Already done! Sally\-: Go say hi again. \section*{$<$$>$ }
+
+\subsection*{title\-: Sally.\-Exit }
+
+\section*{Sally\-: Bye. }
+
+\subsection*{title\-: Sally.\-Sorry }
+
+\section*{Sally\-: Yeah. Don't do it again. }
+
+``` 

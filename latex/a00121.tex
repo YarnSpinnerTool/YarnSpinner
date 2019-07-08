@@ -1,264 +1,190 @@
-\hypertarget{a00121}{\section{Csv\-Helper.\-Type\-Conversion.\-Int32\-Converter Class Reference}
-\label{a00121}\index{Csv\-Helper.\-Type\-Conversion.\-Int32\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Int32\-Converter}}
+\hypertarget{a00121}{\section{Yarn.\-Instruction Struct Reference}
+\label{a00121}\index{Yarn.\-Instruction@{Yarn.\-Instruction}}
 }
 
 
-Converts an Int32 to and from a string.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Int32\-Converter\-:
+Collaboration diagram for Yarn.\-Instruction\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00548}
-\end{center}
-\end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Int32\-Converter\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=220pt]{a00549}
+\includegraphics[width=166pt]{a00722}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override object \hyperlink{a00121_a392314cc9b5f5b4ad176d0f1a99af32f}{Convert\-From\-String} (\hyperlink{a00178}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00121_ad5fc1d8a5eb73fb4588e7cdc66bd2d89}{Can\-Convert\-From} (System.\-Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual string \hyperlink{a00088_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00178}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00088_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00088_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+string \hyperlink{a00121_a939d511f211e8a61cfbca902e802564f}{To\-String} (\hyperlink{a00154}{Program} p, \hyperlink{a00131}{Library} l)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{Byte\-Code} \hyperlink{a00121_a566bf5f7198cc353ea5c3710cb3a31cb}{operation}
+\item 
+object \hyperlink{a00121_ab5d386faa0d3dbc23db80f8e62706afd}{operand\-A}
+\item 
+object \hyperlink{a00121_a56348c6fe7eb919b7277afc06e5b224a}{operand\-B}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Converts an Int32 to and from a string. 
 
 
-
-Definition at line 12 of file Int32\-Converter.\-cs.
+Definition at line 268 of file Program.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00121_ad5fc1d8a5eb73fb4588e7cdc66bd2d89}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int32\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int32\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::Int32Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int32\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Int32\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00121_a939d511f211e8a61cfbca902e802564f}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Instruction.\-To\-String (
 \begin{DoxyParamCaption}
-\item[{System.\-Type}]{type}
+\item[{{\bf Program}}]{p, }
+\item[{{\bf Library}}]{l}
 \end{DoxyParamCaption}
-)}}\label{a00121_ad5fc1d8a5eb73fb4588e7cdc66bd2d89}
+)}}\label{a00121_a939d511f211e8a61cfbca902e802564f}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+Definition at line 274 of file Program.\-cs.
 
 
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
 
-
-Definition at line 40 of file Int32\-Converter.\-cs.
+References Yarn.\-Instruction.\-operand\-A, Yarn.\-Instruction.\-operand\-B, and Yarn.\-Instruction.\-operation.
 
 
 \begin{DoxyCode}
-41         \{
-42             \textcolor{comment}{// We only care about strings.}
-43             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-44         \}
-\end{DoxyCode}
-\hypertarget{a00088_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int32\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int32\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::Int32Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int32\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
-\begin{DoxyParamCaption}
-\item[{Type}]{type}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00088_a470d21adaa704eb281250dbd112ff91a}
-
-
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00123_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00142_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00045_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00098_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00099_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00085_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00084_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00046_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00172_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
-
-
-
-Definition at line 55 of file Default\-Type\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-56         \{
-57             \textcolor{comment}{// The default convert doesn't know how to}
-58             \textcolor{comment}{// convert from any type.}
-59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-60         \}
-\end{DoxyCode}
-\hypertarget{a00088_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int32\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int32\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::Int32Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int32\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
-\begin{DoxyParamCaption}
-\item[{Type}]{type}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00088_acb65bd8c8199d88d5b1629ae35d18514}
-
-
-Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00123_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00099_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
-
-
-Definition at line 69 of file Default\-Type\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-70         \{
-71             \textcolor{comment}{// We only care about strings.}
-72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-73         \}
-\end{DoxyCode}
-\hypertarget{a00121_a392314cc9b5f5b4ad176d0f1a99af32f}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int32\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int32\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::Int32Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int32\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Int32\-Converter.\-Convert\-From\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{string}]{text}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00121_a392314cc9b5f5b4ad176d0f1a99af32f}
-
-
-Converts the string to an object. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em text} & The string to convert to an object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The object created from the string.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00088_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
-
-
-
-Definition at line 20 of file Int32\-Converter.\-cs.
-
-
-
-References Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info.
-
-
-\begin{DoxyCode}
-21         \{
-22             var numberStyle = options.NumberStyle ?? NumberStyles.Integer;
-23 
-24             \textcolor{keywordtype}{int} i;
-25             \textcolor{keywordflow}{if}( \textcolor{keywordtype}{int}.TryParse( text, numberStyle, options.CultureInfo, out i ) )
-26             \{
-27                 \textcolor{keywordflow}{return} i;
-28             \}
-29 
-30             \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
-31         \}
-\end{DoxyCode}
-\hypertarget{a00088_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int32\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int32\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::Int32Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int32\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{object}]{value}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00088_a36cb2f9b24f15a671293f3a722324c27}
-
-
-Converts the object to a string. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em value} & The object to convert to a string.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The string representation of the object.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00123_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00142_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00099_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
-
-
-Definition at line 21 of file Default\-Type\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-22         \{
-23             \textcolor{keywordflow}{if}( value == null )
-24             \{
-25                 \textcolor{keywordflow}{return} string.Empty;
-26             \}
-27 
-28             var formattable = value as IFormattable;
-29             \textcolor{keywordflow}{if}( formattable != null )
-30             \{
-31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
-32             \}
-33 
-34             \textcolor{keywordflow}{return} value.ToString();
-35         \}
+275         \{
+276 
+277             \textcolor{comment}{// Labels are easy: just dump out the name}
+278             \textcolor{keywordflow}{if} (\hyperlink{a00121_a566bf5f7198cc353ea5c3710cb3a31cb}{operation} == \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label)
+279             \{
+280                 \textcolor{keywordflow}{return} \hyperlink{a00121_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} + \textcolor{stringliteral}{":"};
+281             \}
+282 
+283             \textcolor{comment}{// Convert the operands to strings}
+284             var opAString = \hyperlink{a00121_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} != null ? Convert.ToString(\hyperlink{a00121_ab5d386faa0d3dbc23db80f8e62706afd}{operandA}, 
+      CultureInfo.InvariantCulture) : \textcolor{stringliteral}{""};
+285             var opBString = \hyperlink{a00121_a56348c6fe7eb919b7277afc06e5b224a}{operandB} != null ? Convert.ToString(\hyperlink{a00121_a56348c6fe7eb919b7277afc06e5b224a}{operandB}, 
+      CultureInfo.InvariantCulture) : \textcolor{stringliteral}{""};
+286 
+287             \textcolor{comment}{// Generate a comment, if the instruction warrants it}
+288             \textcolor{keywordtype}{string} comment = \textcolor{stringliteral}{""};
+289 
+290             \textcolor{comment}{// Stack manipulation comments}
+291             var pops = 0;
+292             var pushes = 0;
+293 
+294             \textcolor{keywordflow}{switch} (\hyperlink{a00121_a566bf5f7198cc353ea5c3710cb3a31cb}{operation})
+295             \{
+296 
+297                 \textcolor{comment}{// These operations all push a single value to the stack}
+298                 \textcolor{keywordflow}{case} ByteCode.PushBool:
+299                 \textcolor{keywordflow}{case} ByteCode.PushNull:
+300                 \textcolor{keywordflow}{case} ByteCode.PushNumber:
+301                 \textcolor{keywordflow}{case} ByteCode.PushString:
+302                 \textcolor{keywordflow}{case} ByteCode.PushVariable:
+303                 \textcolor{keywordflow}{case} ByteCode.ShowOptions:
+304                     pushes = 1;
+305                     \textcolor{keywordflow}{break};
+306 
+307                 \textcolor{comment}{// Functions pop 0 or more values, and pop 0 or 1}
+308                 \textcolor{keywordflow}{case} ByteCode.CallFunc:
+309                     var \textcolor{keyword}{function} = l.GetFunction((string)operandA);
+310 
+311                     pops = function.paramCount;
+312 
+313                     \textcolor{keywordflow}{if} (\textcolor{keyword}{function}.returnsValue)
+314                         pushes = 1;
+315 
+316 
+317                     \textcolor{keywordflow}{break};
+318 
+319                 \textcolor{comment}{// Pop always pops a single value}
+320                 \textcolor{keywordflow}{case} ByteCode.Pop:
+321                     pops = 1;
+322                     \textcolor{keywordflow}{break};
+323 
+324                 \textcolor{comment}{// Switching to a different node will always clear the stack}
+325                 \textcolor{keywordflow}{case} ByteCode.RunNode:
+326                     comment += \textcolor{stringliteral}{"Clears stack"};
+327                     \textcolor{keywordflow}{break};
+328             \}
+329 
+330             \textcolor{comment}{// If we had any pushes or pops, report them}
+331 
+332             \textcolor{keywordflow}{if} (pops > 0 && pushes > 0)
+333                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pops \{0\}, Pushes \{1\}"}, pops, pushes
+      );
+334             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pops > 0)
+335                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pops \{0\}"}, pops);
+336             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pushes > 0)
+337                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pushes \{0\}"}, pushes);
+338 
+339             \textcolor{comment}{// String lookup comments}
+340             \textcolor{keywordflow}{switch} (\hyperlink{a00121_a566bf5f7198cc353ea5c3710cb3a31cb}{operation})
+341             \{
+342                 \textcolor{keywordflow}{case} ByteCode.PushString:
+343                 \textcolor{keywordflow}{case} ByteCode.RunLine:
+344                 \textcolor{keywordflow}{case} ByteCode.AddOption:
+345 
+346                     \textcolor{comment}{// Add the string for this option, if it has one}
+347                     \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{string})operandA != null)
+348                     \{
+349                         var text = p.GetString((string)operandA);
+350                         comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\(\backslash\)"\{0\}\(\backslash\)""}, text);
+351                     \}
+352 
+353                     \textcolor{keywordflow}{break};
+354 
+355             \}
+356 
+357             \textcolor{keywordflow}{if} (comment != \textcolor{stringliteral}{""})
+358             \{
+359                 comment = \textcolor{stringliteral}{"; "} + comment;
+360             \}
+361 
+362             \textcolor{keywordflow}{return} string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0,-15\} \{1,-10\} \{2,-10\} \{3, -10\}"}, 
+      operation.ToString(), opAString, opBString, comment);
+363         \}
 \end{DoxyCode}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\subsection{Member Data Documentation}
+\hypertarget{a00121_ab5d386faa0d3dbc23db80f8e62706afd}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operand\-A@{operand\-A}}
+\index{operand\-A@{operand\-A}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{operand\-A}]{\setlength{\rightskip}{0pt plus 5cm}object Yarn.\-Instruction.\-operand\-A}}\label{a00121_ab5d386faa0d3dbc23db80f8e62706afd}
+
+
+Definition at line 271 of file Program.\-cs.
+
+
+
+Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction(), and Yarn.\-Instruction.\-To\-String().
+
+\hypertarget{a00121_a56348c6fe7eb919b7277afc06e5b224a}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operand\-B@{operand\-B}}
+\index{operand\-B@{operand\-B}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{operand\-B}]{\setlength{\rightskip}{0pt plus 5cm}object Yarn.\-Instruction.\-operand\-B}}\label{a00121_a56348c6fe7eb919b7277afc06e5b224a}
+
+
+Definition at line 272 of file Program.\-cs.
+
+
+
+Referenced by Yarn.\-Instruction.\-To\-String().
+
+\hypertarget{a00121_a566bf5f7198cc353ea5c3710cb3a31cb}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operation@{operation}}
+\index{operation@{operation}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{operation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Byte\-Code} Yarn.\-Instruction.\-operation}}\label{a00121_a566bf5f7198cc353ea5c3710cb3a31cb}
+
+
+Definition at line 270 of file Program.\-cs.
+
+
+
+Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction(), and Yarn.\-Instruction.\-To\-String().
+
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00273}{Int32\-Converter.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00317}{Program.\-cs}\end{DoxyCompactItemize}

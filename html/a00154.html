@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: YarnSpinner.Tests.ProjectTests Class Reference</title>
+<title>YarnSpinner: Yarn.Program Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -108,346 +108,358 @@ $(document).ready(function(){initNavTree('a00154.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pac-attribs">Package Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="a00821.html">List of all members</a>  </div>
+<a href="a00719.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">YarnSpinner.Tests.ProjectTests Class Reference</div>  </div>
+<div class="title">Yarn.Program Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for YarnSpinner.Tests.ProjectTests:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Program:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00822.png" border="0" usemap="#_yarn_spinner_8_tests_8_project_tests_inherit__map" alt="Inheritance graph"/></div>
-<map name="_yarn_spinner_8_tests_8_project_tests_inherit__map" id="_yarn_spinner_8_tests_8_project_tests_inherit__map">
-<area shape="rect" id="node2" href="a00170.html" title="{TestBase\n|+ ProjectRootPath\l+ TestDataPath\l+ UnityDemoScriptsPath\l+ isExpectingLine\l# storage\l# dialogue\l# errorsCauseFailures\l&#45; nextExpectedLine\l&#45; nextExpectedOptionCount\l&#45; nextOptionToSelect\l&#45; nextExpectedCommand\l|+ Init()\l# RunStandardTestcase()\l# HandleResult()\l# ExpectLine()\l}" alt="" coords="5,6,187,274"/></map>
-</div>
-<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for YarnSpinner.Tests.ProjectTests:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00823.png" border="0" usemap="#_yarn_spinner_8_tests_8_project_tests_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_spinner_8_tests_8_project_tests_coll__map" id="_yarn_spinner_8_tests_8_project_tests_coll__map">
-<area shape="rect" id="node2" href="a00170.html" title="{TestBase\n|+ ProjectRootPath\l+ TestDataPath\l+ UnityDemoScriptsPath\l+ isExpectingLine\l# errorsCauseFailures\l&#45; nextExpectedLine\l&#45; nextExpectedOptionCount\l&#45; nextOptionToSelect\l&#45; nextExpectedCommand\l|+ Init()\l# RunStandardTestcase()\l# HandleResult()\l# ExpectLine()\l}" alt="" coords="711,818,893,1057"/><area shape="rect" id="node3" href="a00092.html" title="The Dialogue class is the main thing that clients will use. " alt="" coords="479,294,685,709"/><area shape="rect" id="node4" href="a00162.html" title="{Yarn.VirtualMachine\n|+ lineHandler\l+ optionsHandler\l+ commandHandler\l+ nodeCompleteHandler\l+ currentNodeName\l+ executionState\l&#45; random\l&#45; _executionState\l|+ LineHandler()\l+ OptionsHandler()\l+ CommandHandler()\l+ NodeCompleteHandler()\l+ SetNode()\l+ Stop()\l~ VirtualMachine()\l~ RunNext()\l~ FindInstructionPointForLabel()\l~ RunInstruction()\l&#45; ResetState()\l}" alt="" coords="245,774,453,1101"/><area shape="rect" id="node9" href="a00133.html" title="{Yarn.Loader\n|+ program\l|+ Loader()\l+ Load()\l~ GetNodesFromText()\l~ GetFormatFromFileName()\l&#45; PrintTokenList()\l&#45; PrintParseTree()\l&#45; preprocessor()\l}" alt="" coords="485,855,675,1020"/><area shape="rect" id="node5" href="a00051.html#a00379" title="{Yarn.Node\n|+ instructions\l+ name\l+ sourceTextStringID\l+ labels\l+ tags\l|}" alt="" coords="5,433,152,569"/><area shape="rect" id="node6" href="a00152.html" title="{Yarn.Program\n|+ untaggedStrings\l~ strings\l~ lineInfo\l~ nodes\l&#45; stringCount\l|+ LoadStrings()\l+ RegisterString()\l+ GetString()\l+ DumpCode()\l+ GetTextForNode()\l+ GetTagsForNode()\l+ Include()\l}" alt="" coords="234,5,376,229"/><area shape="rect" id="node7" href="a00165.html" title="{Yarn.VirtualMachine.State\n|+ currentNodeName\l+ programCounter\l+ currentOptions\l&#45; stack\l|+ PushValue()\l+ PopValue()\l+ PeekValue()\l+ ClearStack()\l}" alt="" coords="281,419,455,584"/><area shape="rect" id="node8" href="a00129.html" title="{Yarn.Library\n|&#45; functions\l|+ GetFunction()\l+ ImportLibrary()\l+ RegisterFunction()\l+ RegisterFunction()\l+ RegisterFunction()\l+ FunctionExists()\l+ DeregisterFunction()\l}" alt="" coords="507,35,659,200"/><area shape="rect" id="node10" href="a00190.html" title="Where we turn to for storing and loading variable data. " alt="" coords="701,49,845,185"/></map>
+<div class="center"><img src="a00720.png" border="0" usemap="#_yarn_8_program_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_program_coll__map" id="_yarn_8_program_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af8cec595dce7455eeace4841d0f71a35"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#af8cec595dce7455eeace4841d0f71a35">ProjectTests</a> (bool experimental)</td></tr>
-<tr class="separator:af8cec595dce7455eeace4841d0f71a35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09fb3b241843b94176be710e4a2a6833"><td class="memItemLeft" align="right" valign="top">new void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#a09fb3b241843b94176be710e4a2a6833">Init</a> ()</td></tr>
-<tr class="separator:a09fb3b241843b94176be710e4a2a6833"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d3dccb3f5ddf0b24e65782b7af15369"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#a7d3dccb3f5ddf0b24e65782b7af15369">TestLoadingSingleFile</a> ()</td></tr>
-<tr class="separator:a7d3dccb3f5ddf0b24e65782b7af15369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a977d1ed02e3f6f39d30dfea1663e7927"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#a977d1ed02e3f6f39d30dfea1663e7927">LoadStrings</a> (Dictionary&lt; string, string &gt; newStrings)</td></tr>
+<tr class="memdesc:a977d1ed02e3f6f39d30dfea1663e7927"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a new string table into the program.  <a href="#a977d1ed02e3f6f39d30dfea1663e7927">More...</a><br/></td></tr>
+<tr class="separator:a977d1ed02e3f6f39d30dfea1663e7927"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9baf491479375aa8c3aa2b0c31cf0932"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#a9baf491479375aa8c3aa2b0c31cf0932">RegisterString</a> (string theString, string nodeName, string lineID, int lineNumber, bool localisable)</td></tr>
+<tr class="separator:a9baf491479375aa8c3aa2b0c31cf0932"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14737b93594c4aab25c59cb0a3c918f7"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#a14737b93594c4aab25c59cb0a3c918f7">GetString</a> (string key)</td></tr>
+<tr class="separator:a14737b93594c4aab25c59cb0a3c918f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f5bb468ce53eb7bbe647e3c11ddbb61"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#a2f5bb468ce53eb7bbe647e3c11ddbb61">DumpCode</a> (<a class="el" href="a00131.html">Library</a> l)</td></tr>
+<tr class="separator:a2f5bb468ce53eb7bbe647e3c11ddbb61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad8029f37832ff1985fad6a31e51afd8"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#aad8029f37832ff1985fad6a31e51afd8">GetTextForNode</a> (string nodeName)</td></tr>
+<tr class="separator:aad8029f37832ff1985fad6a31e51afd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a116312a32b20bc18e09f90c9c92a079f"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#a116312a32b20bc18e09f90c9c92a079f">GetTagsForNode</a> (string nodeName)</td></tr>
+<tr class="separator:a116312a32b20bc18e09f90c9c92a079f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd3385ca1f7589b3b9dae3646e4fee84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#afd3385ca1f7589b3b9dae3646e4fee84">Include</a> (<a class="el" href="a00154.html">Program</a> otherProgram)</td></tr>
+<tr class="separator:afd3385ca1f7589b3b9dae3646e4fee84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:abffa134d40d72b21e6b35c3bf05fc53f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#abffa134d40d72b21e6b35c3bf05fc53f">RunStandardTestcase</a> (string nodeName=&quot;Start&quot;)</td></tr>
-<tr class="separator:abffa134d40d72b21e6b35c3bf05fc53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b525f85a26d7c942e1cbfa5d6453893"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#a7b525f85a26d7c942e1cbfa5d6453893">HandleResult</a> (<a class="el" href="a00156.html">Yarn.Dialogue.RunnerResult</a> result)</td></tr>
-<tr class="separator:a7b525f85a26d7c942e1cbfa5d6453893"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac21a5082ddac1da9db17ae54038df44e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#ac21a5082ddac1da9db17ae54038df44e">ExpectLine</a> (string line)</td></tr>
-<tr class="separator:ac21a5082ddac1da9db17ae54038df44e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:a23d59ace1516ca72924c6fe3feafd3f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00190.html">VariableStorage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#a23d59ace1516ca72924c6fe3feafd3f7">storage</a> = new <a class="el" href="a00136.html">MemoryVariableStore</a>()</td></tr>
-<tr class="separator:a23d59ace1516ca72924c6fe3feafd3f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cff5de56c4b8a91c76b6eb2d622a795"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00092.html">Dialogue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#a4cff5de56c4b8a91c76b6eb2d622a795">dialogue</a></td></tr>
-<tr class="separator:a4cff5de56c4b8a91c76b6eb2d622a795"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac978fe85db843c51411f5517bdbe0eb8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#ac978fe85db843c51411f5517bdbe0eb8">errorsCauseFailures</a> = true</td></tr>
-<tr class="separator:ac978fe85db843c51411f5517bdbe0eb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-attribs"></a>
+Package Attributes</h2></td></tr>
+<tr class="memitem:a59263e00cecfe36d9881b4c30b048f09"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#a59263e00cecfe36d9881b4c30b048f09">strings</a> = new Dictionary&lt;string, string&gt;()</td></tr>
+<tr class="separator:a59263e00cecfe36d9881b4c30b048f09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d4da395947767b4a1eaaff8a9842adc"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, <a class="el" href="a00133.html">LineInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#a0d4da395947767b4a1eaaff8a9842adc">lineInfo</a> = new Dictionary&lt;string, <a class="el" href="a00133.html">LineInfo</a>&gt;()</td></tr>
+<tr class="separator:a0d4da395947767b4a1eaaff8a9842adc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f4928a577c88263ad016be259b175c4"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, <a class="el" href="a00053.html#a00382">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#a3f4928a577c88263ad016be259b175c4">nodes</a> = new Dictionary&lt;string, <a class="el" href="a00053.html#a00382">Node</a>&gt;()</td></tr>
+<tr class="separator:a3f4928a577c88263ad016be259b175c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:ab1ad614f465a49447da31c4000ec6b3e"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#ab1ad614f465a49447da31c4000ec6b3e">ProjectRootPath</a><code> [get]</code></td></tr>
-<tr class="separator:ab1ad614f465a49447da31c4000ec6b3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9b4d902d61adad7165154a265f69aa4"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#aa9b4d902d61adad7165154a265f69aa4">TestDataPath</a><code> [get]</code></td></tr>
-<tr class="separator:aa9b4d902d61adad7165154a265f69aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39922286f6255e4fd0e433a4fc7521c4"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#a39922286f6255e4fd0e433a4fc7521c4">UnityDemoScriptsPath</a><code> [get]</code></td></tr>
-<tr class="separator:a39922286f6255e4fd0e433a4fc7521c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47f35b8e8123ed9471883d02b8bc9f3e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#a47f35b8e8123ed9471883d02b8bc9f3e">isExpectingLine</a><code> [get]</code></td></tr>
-<tr class="separator:a47f35b8e8123ed9471883d02b8bc9f3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8fedbfceaf931d1da3f600eaab6ae87"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#aa8fedbfceaf931d1da3f600eaab6ae87">untaggedStrings</a><code> [get]</code></td></tr>
+<tr class="separator:aa8fedbfceaf931d1da3f600eaab6ae87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:ad7914a14ec1a746a7d02fb9b2c69e91b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#ad7914a14ec1a746a7d02fb9b2c69e91b">experimentalMode</a></td></tr>
-<tr class="separator:ad7914a14ec1a746a7d02fb9b2c69e91b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ef1d10094ef00311aade6715ba78ec7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html#a8ef1d10094ef00311aade6715ba78ec7">stringCount</a> = 0</td></tr>
+<tr class="separator:a8ef1d10094ef00311aade6715ba78ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="a00330_source.html#l00014">14</a> of file <a class="el" href="a00330_source.html">ProjectTests.cs</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="af8cec595dce7455eeace4841d0f71a35"></a>
+<p>Definition at line <a class="el" href="a00317_source.html#l00084">84</a> of file <a class="el" href="a00317_source.html">Program.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a2f5bb468ce53eb7bbe647e3c11ddbb61"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">YarnSpinner.Tests.ProjectTests.ProjectTests </td>
+          <td class="memname">string Yarn.Program.DumpCode </td>
           <td>(</td>
+          <td class="paramtype"><a class="el" href="a00131.html">Library</a>&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00317_source.html#l00162">162</a> of file <a class="el" href="a00317_source.html">Program.cs</a>.</p>
+
+<p>References <a class="el" href="a00317_source.html#l00088">Yarn.Program.lineInfo</a>, <a class="el" href="a00317_source.html#l00091">Yarn.Program.nodes</a>, and <a class="el" href="a00317_source.html#l00087">Yarn.Program.strings</a>.</p>
+<div class="fragment"><div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            var sb = <span class="keyword">new</span> System.Text.StringBuilder();</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            <span class="keywordflow">foreach</span> (var entry <span class="keywordflow">in</span> <a class="code" href="a00154.html#a3f4928a577c88263ad016be259b175c4">nodes</a>)</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            {</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                sb.AppendLine(<span class="stringliteral">&quot;Node &quot;</span> + entry.Key + <span class="stringliteral">&quot;:&quot;</span>);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                <span class="keywordtype">int</span> instructionCount = 0;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                <span class="keywordflow">foreach</span> (var instruction <span class="keywordflow">in</span> entry.Value.instructions)</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                {</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                    <span class="keywordtype">string</span> instructionText;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                    <span class="keywordflow">if</span> (instruction.operation == <a class="code" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894">ByteCode</a>.Label)</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                    {</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                        instructionText = instruction.ToString(<span class="keyword">this</span>, l);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                    }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                    {</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                        instructionText = <span class="stringliteral">&quot;    &quot;</span> + instruction.ToString(<span class="keyword">this</span>, l);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                    }</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                    <span class="keywordtype">string</span> preface;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                    <span class="keywordflow">if</span> (instructionCount % 5 == 0 || instructionCount == entry.Value.instructions.Count - 1)</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                    {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                        preface = string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;{0,6}   &quot;</span>, instructionCount);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                    }</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                    {</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                        preface = string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;{0,6}   &quot;</span>, <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                    }</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                    sb.AppendLine(preface + instructionText);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                    instructionCount++;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                }</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                sb.AppendLine();</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            }</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            sb.AppendLine(<span class="stringliteral">&quot;String table:&quot;</span>);</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            <span class="keywordflow">foreach</span> (var entry <span class="keywordflow">in</span> <a class="code" href="a00154.html#a59263e00cecfe36d9881b4c30b048f09">strings</a>)</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            {</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                var <a class="code" href="a00154.html#a0d4da395947767b4a1eaaff8a9842adc">lineInfo</a> = this.lineInfo[entry.Key];</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                sb.AppendLine(string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;{0}: {1} ({2}:{3})&quot;</span>, entry.Key, entry.Value, lineInfo.nodeName, lineInfo.lineNumber));</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            }</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            <span class="keywordflow">return</span> sb.ToString();</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        }</div>
+<div class="ttc" id="a00154_html_a59263e00cecfe36d9881b4c30b048f09"><div class="ttname"><a href="a00154.html#a59263e00cecfe36d9881b4c30b048f09">Yarn.Program.strings</a></div><div class="ttdeci">Dictionary&lt; string, string &gt; strings</div><div class="ttdef"><b>Definition:</b> <a href="a00317_source.html#l00087">Program.cs:87</a></div></div>
+<div class="ttc" id="a00154_html_a3f4928a577c88263ad016be259b175c4"><div class="ttname"><a href="a00154.html#a3f4928a577c88263ad016be259b175c4">Yarn.Program.nodes</a></div><div class="ttdeci">Dictionary&lt; string, Node &gt; nodes</div><div class="ttdef"><b>Definition:</b> <a href="a00317_source.html#l00091">Program.cs:91</a></div></div>
+<div class="ttc" id="a00154_html_a0d4da395947767b4a1eaaff8a9842adc"><div class="ttname"><a href="a00154.html#a0d4da395947767b4a1eaaff8a9842adc">Yarn.Program.lineInfo</a></div><div class="ttdeci">Dictionary&lt; string, LineInfo &gt; lineInfo</div><div class="ttdef"><b>Definition:</b> <a href="a00317_source.html#l00088">Program.cs:88</a></div></div>
+<div class="ttc" id="a00053_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00317_source.html#l00366">Program.cs:366</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a14737b93594c4aab25c59cb0a3c918f7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Yarn.Program.GetString </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00317_source.html#l00155">155</a> of file <a class="el" href="a00317_source.html">Program.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        {</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            <span class="keywordtype">string</span> value = null;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            strings.TryGetValue(key, out value);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="keywordflow">return</span> value;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a116312a32b20bc18e09f90c9c92a079f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerable&lt;string&gt; Yarn.Program.GetTagsForNode </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>nodeName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00317_source.html#l00221">221</a> of file <a class="el" href="a00317_source.html">Program.cs</a>.</p>
+
+<p>References <a class="el" href="a00317_source.html#l00091">Yarn.Program.nodes</a>.</p>
+<div class="fragment"><div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        {</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="a00154.html#a3f4928a577c88263ad016be259b175c4">nodes</a>[nodeName].tags;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        }</div>
+<div class="ttc" id="a00154_html_a3f4928a577c88263ad016be259b175c4"><div class="ttname"><a href="a00154.html#a3f4928a577c88263ad016be259b175c4">Yarn.Program.nodes</a></div><div class="ttdeci">Dictionary&lt; string, Node &gt; nodes</div><div class="ttdef"><b>Definition:</b> <a href="a00317_source.html#l00091">Program.cs:91</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="aad8029f37832ff1985fad6a31e51afd8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Yarn.Program.GetTextForNode </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>nodeName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00317_source.html#l00216">216</a> of file <a class="el" href="a00317_source.html">Program.cs</a>.</p>
+
+<p>References <a class="el" href="a00317_source.html#l00091">Yarn.Program.nodes</a>.</p>
+<div class="fragment"><div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        {</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            <span class="keywordflow">return</span> this.GetString(<a class="code" href="a00154.html#a3f4928a577c88263ad016be259b175c4">nodes</a>[nodeName].sourceTextStringID);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        }</div>
+<div class="ttc" id="a00154_html_a3f4928a577c88263ad016be259b175c4"><div class="ttname"><a href="a00154.html#a3f4928a577c88263ad016be259b175c4">Yarn.Program.nodes</a></div><div class="ttdeci">Dictionary&lt; string, Node &gt; nodes</div><div class="ttdef"><b>Definition:</b> <a href="a00317_source.html#l00091">Program.cs:91</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="afd3385ca1f7589b3b9dae3646e4fee84"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Yarn.Program.Include </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00154.html">Program</a>&#160;</td>
+          <td class="paramname"><em>otherProgram</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00317_source.html#l00226">226</a> of file <a class="el" href="a00317_source.html">Program.cs</a>.</p>
+
+<p>References <a class="el" href="a00317_source.html#l00091">Yarn.Program.nodes</a>, and <a class="el" href="a00317_source.html#l00087">Yarn.Program.strings</a>.</p>
+<div class="fragment"><div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            <span class="keywordflow">foreach</span> (var otherNodeName <span class="keywordflow">in</span> otherProgram.nodes)</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            {</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00154.html#a3f4928a577c88263ad016be259b175c4">nodes</a>.ContainsKey(otherNodeName.Key))</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                {</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="keywordtype">string</span>.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;This program already contains a node named {0}&quot;</span>, otherNodeName.Key));</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                }</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                <a class="code" href="a00154.html#a3f4928a577c88263ad016be259b175c4">nodes</a>[otherNodeName.Key] = otherNodeName.Value;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            }</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            <span class="keywordflow">foreach</span> (var otherString <span class="keywordflow">in</span> otherProgram.strings)</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            {</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00154.html#a3f4928a577c88263ad016be259b175c4">nodes</a>.ContainsKey(otherString.Key))</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                {</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="keywordtype">string</span>.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;This program already contains a string with key {0}&quot;</span>, otherString.Key));</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                }</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                <a class="code" href="a00154.html#a59263e00cecfe36d9881b4c30b048f09">strings</a>[otherString.Key] = otherString.Value;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            }</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        }</div>
+<div class="ttc" id="a00154_html_a59263e00cecfe36d9881b4c30b048f09"><div class="ttname"><a href="a00154.html#a59263e00cecfe36d9881b4c30b048f09">Yarn.Program.strings</a></div><div class="ttdeci">Dictionary&lt; string, string &gt; strings</div><div class="ttdef"><b>Definition:</b> <a href="a00317_source.html#l00087">Program.cs:87</a></div></div>
+<div class="ttc" id="a00154_html_a3f4928a577c88263ad016be259b175c4"><div class="ttname"><a href="a00154.html#a3f4928a577c88263ad016be259b175c4">Yarn.Program.nodes</a></div><div class="ttdeci">Dictionary&lt; string, Node &gt; nodes</div><div class="ttdef"><b>Definition:</b> <a href="a00317_source.html#l00091">Program.cs:91</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a977d1ed02e3f6f39d30dfea1663e7927"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Yarn.Program.LoadStrings </td>
+          <td>(</td>
+          <td class="paramtype">Dictionary&lt; string, string &gt;&#160;</td>
+          <td class="paramname"><em>newStrings</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Loads a new string table into the program. </p>
+<p>The string table is merged with any existing strings, with the new table taking precedence over the old. </p>
+
+<p>Definition at line <a class="el" href="a00317_source.html#l00125">125</a> of file <a class="el" href="a00317_source.html">Program.cs</a>.</p>
+
+<p>References <a class="el" href="a00317_source.html#l00087">Yarn.Program.strings</a>.</p>
+<div class="fragment"><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            <span class="keywordflow">foreach</span> (var entry <span class="keywordflow">in</span> newStrings)</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            {</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                <a class="code" href="a00154.html#a59263e00cecfe36d9881b4c30b048f09">strings</a>[entry.Key] = entry.Value;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            }</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        }</div>
+<div class="ttc" id="a00154_html_a59263e00cecfe36d9881b4c30b048f09"><div class="ttname"><a href="a00154.html#a59263e00cecfe36d9881b4c30b048f09">Yarn.Program.strings</a></div><div class="ttdeci">Dictionary&lt; string, string &gt; strings</div><div class="ttdef"><b>Definition:</b> <a href="a00317_source.html#l00087">Program.cs:87</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a9baf491479375aa8c3aa2b0c31cf0932"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Yarn.Program.RegisterString </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>theString</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>nodeName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>lineID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>lineNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>experimental</em></td><td>)</td>
-          <td></td>
+          <td class="paramname"><em>localisable</em>&#160;</td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00330_source.html#l00017">17</a> of file <a class="el" href="a00330_source.html">ProjectTests.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            this.experimentalMode = experimental;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ac21a5082ddac1da9db17ae54038df44e"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
         <tr>
-          <td class="memname">void YarnSpinner.Tests.TestBase.ExpectLine </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>line</em></td><td>)</td>
           <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00331_source.html#l00170">170</a> of file <a class="el" href="a00331_source.html">TestBase.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                                               {</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            <a class="code" href="a00170.html#a3651ffb5425ab15bd1e42749347c1ee7">nextExpectedLine</a> = line;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        }</div>
-<div class="ttc" id="a00170_html_a3651ffb5425ab15bd1e42749347c1ee7"><div class="ttname"><a href="a00170.html#a3651ffb5425ab15bd1e42749347c1ee7">YarnSpinner.Tests.TestBase.nextExpectedLine</a></div><div class="ttdeci">string nextExpectedLine</div><div class="ttdef"><b>Definition:</b> <a href="a00331_source.html#l00017">TestBase.cs:17</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a7b525f85a26d7c942e1cbfa5d6453893"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void YarnSpinner.Tests.TestBase.HandleResult </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00156.html">Yarn.Dialogue.RunnerResult</a>&#160;</td>
-          <td class="paramname"><em>result</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>Definition at line <a class="el" href="a00317_source.html#l00133">133</a> of file <a class="el" href="a00317_source.html">Program.cs</a>.</p>
 
-<p>Definition at line <a class="el" href="a00331_source.html#l00122">122</a> of file <a class="el" href="a00331_source.html">TestBase.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                                                                       {</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            <span class="keywordflow">if</span> (result is Yarn.Dialogue.LineResult) {</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                var text = (result as <a class="code" href="a00132.html">Yarn.Dialogue.LineResult</a>).line.text;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                Console.WriteLine(<span class="stringliteral">&quot;Line: &quot;</span> + text);</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00170.html#a47f35b8e8123ed9471883d02b8bc9f3e">isExpectingLine</a>) {</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                    Assert.AreEqual (text, <a class="code" href="a00170.html#a3651ffb5425ab15bd1e42749347c1ee7">nextExpectedLine</a>);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (result is Yarn.Dialogue.OptionSetResult) {</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                var options = (result as <a class="code" href="a00145.html">Yarn.Dialogue.OptionSetResult</a>).options.options;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                var optionCount = options.Count;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                var resultDelegate = (result as Yarn.Dialogue.OptionSetResult).setSelectedOptionDelegate;</div>
+<p>References <a class="el" href="a00317_source.html#l00119">Yarn.Program.stringCount</a>.</p>
+<div class="fragment"><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        {</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            <span class="keywordtype">string</span> key;</div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                Console.WriteLine(<span class="stringliteral">&quot;Options:&quot;</span>);</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                <span class="keywordflow">foreach</span> (var option <span class="keywordflow">in</span> options) {</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                    Console.WriteLine(<span class="stringliteral">&quot; - &quot;</span> + option);</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <span class="keywordflow">if</span> (lineID == null)</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                key = string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;{0}-{1}&quot;</span>, nodeName, <a class="code" href="a00154.html#a8ef1d10094ef00311aade6715ba78ec7">stringCount</a>++);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                key = lineID;</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00170.html#aaabaf15249efe42f3d857129bdbc2864">nextExpectedOptionCount</a> != -1) {</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                    Assert.AreEqual (<a class="code" href="a00170.html#aaabaf15249efe42f3d857129bdbc2864">nextExpectedOptionCount</a>, optionCount);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                }</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00170.html#a343055fa693e9d5dfc1bdbfcd0f02676">nextOptionToSelect</a> != -1) {</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                    resultDelegate (<a class="code" href="a00170.html#a343055fa693e9d5dfc1bdbfcd0f02676">nextOptionToSelect</a>);</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                    resultDelegate(0);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                }</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (result is Yarn.Dialogue.CommandResult) {</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                var commandText = (result as <a class="code" href="a00052.html">Yarn.Dialogue.CommandResult</a>).command.text;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                Console.WriteLine(<span class="stringliteral">&quot;Command: &quot;</span> + commandText);</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00170.html#a26fae5694fc06c3cdb12d3108dbc34de">nextExpectedCommand</a> != null) {</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                    Assert.AreEqual (<a class="code" href="a00170.html#a26fae5694fc06c3cdb12d3108dbc34de">nextExpectedCommand</a>, commandText);</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                }</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            }</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <span class="comment">// Reset all &#39;expected&#39; stuff</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            <a class="code" href="a00170.html#a3651ffb5425ab15bd1e42749347c1ee7">nextExpectedLine</a> = null;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <a class="code" href="a00170.html#a26fae5694fc06c3cdb12d3108dbc34de">nextExpectedCommand</a> = null;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            <a class="code" href="a00170.html#aaabaf15249efe42f3d857129bdbc2864">nextExpectedOptionCount</a> = -1;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            <a class="code" href="a00170.html#a343055fa693e9d5dfc1bdbfcd0f02676">nextOptionToSelect</a> = -1;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        }</div>
-<div class="ttc" id="a00170_html_a47f35b8e8123ed9471883d02b8bc9f3e"><div class="ttname"><a href="a00170.html#a47f35b8e8123ed9471883d02b8bc9f3e">YarnSpinner.Tests.TestBase.isExpectingLine</a></div><div class="ttdeci">bool isExpectingLine</div><div class="ttdef"><b>Definition:</b> <a href="a00331_source.html#l00174">TestBase.cs:174</a></div></div>
-<div class="ttc" id="a00170_html_a26fae5694fc06c3cdb12d3108dbc34de"><div class="ttname"><a href="a00170.html#a26fae5694fc06c3cdb12d3108dbc34de">YarnSpinner.Tests.TestBase.nextExpectedCommand</a></div><div class="ttdeci">string nextExpectedCommand</div><div class="ttdef"><b>Definition:</b> <a href="a00331_source.html#l00020">TestBase.cs:20</a></div></div>
-<div class="ttc" id="a00132_html"><div class="ttname"><a href="a00132.html">Yarn.Dialogue.LineResult</a></div><div class="ttdoc">The client should run a line of dialogue. </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00143">Dialogue.cs:143</a></div></div>
-<div class="ttc" id="a00170_html_a3651ffb5425ab15bd1e42749347c1ee7"><div class="ttname"><a href="a00170.html#a3651ffb5425ab15bd1e42749347c1ee7">YarnSpinner.Tests.TestBase.nextExpectedLine</a></div><div class="ttdeci">string nextExpectedLine</div><div class="ttdef"><b>Definition:</b> <a href="a00331_source.html#l00017">TestBase.cs:17</a></div></div>
-<div class="ttc" id="a00052_html"><div class="ttname"><a href="a00052.html">Yarn.Dialogue.CommandResult</a></div><div class="ttdoc">The client should run a command (it&#39;s up to them to parse the string) </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00156">Dialogue.cs:156</a></div></div>
-<div class="ttc" id="a00145_html"><div class="ttname"><a href="a00145.html">Yarn.Dialogue.OptionSetResult</a></div><div class="ttdoc">The client should show a list of options, and call setSelectedOptionDelegate before asking for the ne...</div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00170">Dialogue.cs:170</a></div></div>
-<div class="ttc" id="a00170_html_a343055fa693e9d5dfc1bdbfcd0f02676"><div class="ttname"><a href="a00170.html#a343055fa693e9d5dfc1bdbfcd0f02676">YarnSpinner.Tests.TestBase.nextOptionToSelect</a></div><div class="ttdeci">int nextOptionToSelect</div><div class="ttdef"><b>Definition:</b> <a href="a00331_source.html#l00019">TestBase.cs:19</a></div></div>
-<div class="ttc" id="a00170_html_aaabaf15249efe42f3d857129bdbc2864"><div class="ttname"><a href="a00170.html#aaabaf15249efe42f3d857129bdbc2864">YarnSpinner.Tests.TestBase.nextExpectedOptionCount</a></div><div class="ttdeci">int nextExpectedOptionCount</div><div class="ttdef"><b>Definition:</b> <a href="a00331_source.html#l00018">TestBase.cs:18</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a09fb3b241843b94176be710e4a2a6833"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">new void YarnSpinner.Tests.ProjectTests.Init </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00330_source.html#l00023">23</a> of file <a class="el" href="a00330_source.html">ProjectTests.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            base.Init();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            dialogue.experimentalMode = this.experimentalMode;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="abffa134d40d72b21e6b35c3bf05fc53f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void YarnSpinner.Tests.TestBase.RunStandardTestcase </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>nodeName</em> = <code>&quot;Start&quot;</code></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00331_source.html#l00116">116</a> of file <a class="el" href="a00331_source.html">TestBase.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                                                                      {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <span class="keywordflow">foreach</span> (var result <span class="keywordflow">in</span> <a class="code" href="a00170.html#a4cff5de56c4b8a91c76b6eb2d622a795">dialogue</a>.<a class="code" href="a00092.html#aead84ee50cb113ca45724894290ce9c2">Run</a>(nodeName)) {</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                <a class="code" href="a00170.html#a7b525f85a26d7c942e1cbfa5d6453893">HandleResult</a> (result);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            }</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        }</div>
-<div class="ttc" id="a00092_html_aead84ee50cb113ca45724894290ce9c2"><div class="ttname"><a href="a00092.html#aead84ee50cb113ca45724894290ce9c2">Yarn.Dialogue.Run</a></div><div class="ttdeci">IEnumerable&lt; Yarn.Dialogue.RunnerResult &gt; Run(string startNode=DEFAULT_START)</div><div class="ttdoc">Use this in a for-each construct; each time you iterate over it, you&#39;ll get a line, command, or set of options. </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00387">Dialogue.cs:387</a></div></div>
-<div class="ttc" id="a00170_html_a4cff5de56c4b8a91c76b6eb2d622a795"><div class="ttname"><a href="a00170.html#a4cff5de56c4b8a91c76b6eb2d622a795">YarnSpinner.Tests.TestBase.dialogue</a></div><div class="ttdeci">Dialogue dialogue</div><div class="ttdef"><b>Definition:</b> <a href="a00331_source.html#l00024">TestBase.cs:24</a></div></div>
-<div class="ttc" id="a00170_html_a7b525f85a26d7c942e1cbfa5d6453893"><div class="ttname"><a href="a00170.html#a7b525f85a26d7c942e1cbfa5d6453893">YarnSpinner.Tests.TestBase.HandleResult</a></div><div class="ttdeci">void HandleResult(Yarn.Dialogue.RunnerResult result)</div><div class="ttdef"><b>Definition:</b> <a href="a00331_source.html#l00122">TestBase.cs:122</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a7d3dccb3f5ddf0b24e65782b7af15369"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void YarnSpinner.Tests.ProjectTests.TestLoadingSingleFile </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00330_source.html#l00031">31</a> of file <a class="el" href="a00330_source.html">ProjectTests.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            var path = Path.Combine(<a class="code" href="a00170.html#aa9b4d902d61adad7165154a265f69aa4">TestDataPath</a>, <span class="stringliteral">&quot;Projects&quot;</span>, <span class="stringliteral">&quot;Basic&quot;</span>, <span class="stringliteral">&quot;Test.yarn.txt&quot;</span>);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="comment">// high-level test: load the file, verify it has the nodes we want,</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="comment">// and run one</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            dialogue.LoadFile(path);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            Assert.AreEqual(3, dialogue.program.nodes.Count);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            Assert.True(dialogue.NodeExists(<span class="stringliteral">&quot;TestNode&quot;</span>));</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            Assert.True(dialogue.NodeExists(<span class="stringliteral">&quot;AnotherTestNode&quot;</span>));</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            Assert.True(dialogue.NodeExists(<span class="stringliteral">&quot;ThirdNode&quot;</span>));</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="comment">// execute a node</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            var secondNodeName = <span class="stringliteral">&quot;AnotherTestNode&quot;</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <a class="code" href="a00170.html#ac21a5082ddac1da9db17ae54038df44e">ExpectLine</a>(<span class="stringliteral">&quot;This is a second test node!&quot;</span>);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="comment">// we are now expecting a node</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            Assert.IsTrue(this.isExpectingLine);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <a class="code" href="a00170.html#abffa134d40d72b21e6b35c3bf05fc53f">RunStandardTestcase</a>(secondNodeName);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <span class="comment">// the line should have run, so this property should become true</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            Assert.IsFalse(this.isExpectingLine);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="comment">// and the variable $x should now have a value</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            Assert.AreEqual(23, (int)<a class="code" href="a00170.html#a4cff5de56c4b8a91c76b6eb2d622a795">dialogue</a>.<a class="code" href="a00092.html#ae94eaa4b03b432422f5d205fabe37ff5">continuity</a>.<a class="code" href="a00190.html#accab1fc5c8fc353dbfc53ca0f4029576">GetValue</a>(<span class="stringliteral">&quot;$x&quot;</span>).AsNumber);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="comment">// Next, we&#39;ll do a lower-level test, verifying that properties are loaded correctly</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="comment">// manually load the NodeInfos and verify data</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            var text = File.ReadAllText(path);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            var nodes = dialogue.loader.GetNodesFromText(text, NodeFormat.Text);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="comment">// first node has a colorID</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            Assert.AreEqual(3, nodes[0].colorID);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="comment">// second node has got a position defined</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            var position = nodes[1].position;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            Assert.AreEqual(2, position.x);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            Assert.AreEqual(4, position.y);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="comment">// third node has tags</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            var expectedTags = <span class="keyword">new</span> List&lt;string&gt;(<span class="keyword">new</span> <span class="keywordtype">string</span>[] { <span class="stringliteral">&quot;multiple&quot;</span>, <span class="stringliteral">&quot;tags!&quot;</span>});</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            Assert.AreEqual(expectedTags, nodes[2].tagsList);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="comment">// the third node&#39;s body is empty</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            Assert.IsEmpty(nodes[2].body);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        }</div>
-<div class="ttc" id="a00170_html_ac21a5082ddac1da9db17ae54038df44e"><div class="ttname"><a href="a00170.html#ac21a5082ddac1da9db17ae54038df44e">YarnSpinner.Tests.TestBase.ExpectLine</a></div><div class="ttdeci">void ExpectLine(string line)</div><div class="ttdef"><b>Definition:</b> <a href="a00331_source.html#l00170">TestBase.cs:170</a></div></div>
-<div class="ttc" id="a00170_html_abffa134d40d72b21e6b35c3bf05fc53f"><div class="ttname"><a href="a00170.html#abffa134d40d72b21e6b35c3bf05fc53f">YarnSpinner.Tests.TestBase.RunStandardTestcase</a></div><div class="ttdeci">void RunStandardTestcase(string nodeName=&quot;Start&quot;)</div><div class="ttdef"><b>Definition:</b> <a href="a00331_source.html#l00116">TestBase.cs:116</a></div></div>
-<div class="ttc" id="a00190_html_accab1fc5c8fc353dbfc53ca0f4029576"><div class="ttname"><a href="a00190.html#accab1fc5c8fc353dbfc53ca0f4029576">Yarn.VariableStorage.GetValue</a></div><div class="ttdeci">Value GetValue(string variableName)</div></div>
-<div class="ttc" id="a00170_html_aa9b4d902d61adad7165154a265f69aa4"><div class="ttname"><a href="a00170.html#aa9b4d902d61adad7165154a265f69aa4">YarnSpinner.Tests.TestBase.TestDataPath</a></div><div class="ttdeci">static string TestDataPath</div><div class="ttdef"><b>Definition:</b> <a href="a00331_source.html#l00051">TestBase.cs:51</a></div></div>
-<div class="ttc" id="a00170_html_a4cff5de56c4b8a91c76b6eb2d622a795"><div class="ttname"><a href="a00170.html#a4cff5de56c4b8a91c76b6eb2d622a795">YarnSpinner.Tests.TestBase.dialogue</a></div><div class="ttdeci">Dialogue dialogue</div><div class="ttdef"><b>Definition:</b> <a href="a00331_source.html#l00024">TestBase.cs:24</a></div></div>
-<div class="ttc" id="a00092_html_ae94eaa4b03b432422f5d205fabe37ff5"><div class="ttname"><a href="a00092.html#ae94eaa4b03b432422f5d205fabe37ff5">Yarn.Dialogue.continuity</a></div><div class="ttdeci">VariableStorage continuity</div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00133">Dialogue.cs:133</a></div></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            <span class="comment">// It&#39;s not in the list; append it</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            strings.Add(key, theString);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            <span class="keywordflow">if</span> (localisable)</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            {</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                <span class="comment">// Additionally, keep info about this string around</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                lineInfo.Add(key, <span class="keyword">new</span> LineInfo(nodeName, lineNumber));</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            }</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="keywordflow">return</span> key;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        }</div>
+<div class="ttc" id="a00154_html_a8ef1d10094ef00311aade6715ba78ec7"><div class="ttname"><a href="a00154.html#a8ef1d10094ef00311aade6715ba78ec7">Yarn.Program.stringCount</a></div><div class="ttdeci">int stringCount</div><div class="ttdef"><b>Definition:</b> <a href="a00317_source.html#l00119">Program.cs:119</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a4cff5de56c4b8a91c76b6eb2d622a795"></a>
+<a class="anchor" id="a0d4da395947767b4a1eaaff8a9842adc"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -455,21 +467,23 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00092.html">Dialogue</a> YarnSpinner.Tests.TestBase.dialogue</td>
+          <td class="memname">Dictionary&lt;string, <a class="el" href="a00133.html">LineInfo</a>&gt; Yarn.Program.lineInfo = new Dictionary&lt;string, <a class="el" href="a00133.html">LineInfo</a>&gt;()</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00331_source.html#l00024">24</a> of file <a class="el" href="a00331_source.html">TestBase.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00317_source.html#l00088">88</a> of file <a class="el" href="a00317_source.html">Program.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00317_source.html#l00162">Yarn.Program.DumpCode()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac978fe85db843c51411f5517bdbe0eb8"></a>
+<a class="anchor" id="a3f4928a577c88263ad016be259b175c4"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -477,21 +491,23 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool YarnSpinner.Tests.TestBase.errorsCauseFailures = true</td>
+          <td class="memname">Dictionary&lt;string, <a class="el" href="a00053.html#a00382">Node</a>&gt; Yarn.Program.nodes = new Dictionary&lt;string, <a class="el" href="a00053.html#a00382">Node</a>&gt;()</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00331_source.html#l00026">26</a> of file <a class="el" href="a00331_source.html">TestBase.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00317_source.html#l00091">91</a> of file <a class="el" href="a00317_source.html">Program.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00307_source.html#l00024">Yarn.Compiler.CompileNode()</a>, <a class="el" href="a00317_source.html#l00162">Yarn.Program.DumpCode()</a>, <a class="el" href="a00308_source.html#l00511">Yarn.Dialogue.GetTagsForAllNodes()</a>, <a class="el" href="a00317_source.html#l00221">Yarn.Program.GetTagsForNode()</a>, <a class="el" href="a00308_source.html#l00527">Yarn.Dialogue.GetTagsForNode()</a>, <a class="el" href="a00308_source.html#l00483">Yarn.Dialogue.GetTextForAllNodes()</a>, <a class="el" href="a00317_source.html#l00216">Yarn.Program.GetTextForNode()</a>, <a class="el" href="a00308_source.html#l00499">Yarn.Dialogue.GetTextForNode()</a>, <a class="el" href="a00317_source.html#l00226">Yarn.Program.Include()</a>, <a class="el" href="a00308_source.html#l00603">Yarn.Dialogue.NodeExists()</a>, and <a class="el" href="a00319_source.html#l00112">Yarn.VirtualMachine.SetNode()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad7914a14ec1a746a7d02fb9b2c69e91b"></a>
+<a class="anchor" id="a8ef1d10094ef00311aade6715ba78ec7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -499,7 +515,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool YarnSpinner.Tests.ProjectTests.experimentalMode</td>
+          <td class="memname">int Yarn.Program.stringCount = 0</td>
         </tr>
       </table>
   </td>
@@ -509,11 +525,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00330_source.html#l00016">16</a> of file <a class="el" href="a00330_source.html">ProjectTests.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00317_source.html#l00119">119</a> of file <a class="el" href="a00317_source.html">Program.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00317_source.html#l00133">Yarn.Program.RegisterString()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a23d59ace1516ca72924c6fe3feafd3f7"></a>
+<a class="anchor" id="a59263e00cecfe36d9881b4c30b048f09"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -521,22 +539,24 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00190.html">VariableStorage</a> YarnSpinner.Tests.TestBase.storage = new <a class="el" href="a00136.html">MemoryVariableStore</a>()</td>
+          <td class="memname">Dictionary&lt;string, string&gt; Yarn.Program.strings = new Dictionary&lt;string, string&gt;()</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00331_source.html#l00023">23</a> of file <a class="el" href="a00331_source.html">TestBase.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00317_source.html#l00087">87</a> of file <a class="el" href="a00317_source.html">Program.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00317_source.html#l00162">Yarn.Program.DumpCode()</a>, <a class="el" href="a00317_source.html#l00226">Yarn.Program.Include()</a>, and <a class="el" href="a00317_source.html#l00125">Yarn.Program.LoadStrings()</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
-<a class="anchor" id="a47f35b8e8123ed9471883d02b8bc9f3e"></a>
+<a class="anchor" id="aa8fedbfceaf931d1da3f600eaab6ae87"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -544,96 +564,30 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool YarnSpinner.Tests.TestBase.isExpectingLine</td>
+          <td class="memname">Dictionary&lt;string, string&gt; Yarn.Program.untaggedStrings</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00331_source.html#l00174">174</a> of file <a class="el" href="a00331_source.html">TestBase.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab1ad614f465a49447da31c4000ec6b3e"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string YarnSpinner.Tests.TestBase.ProjectRootPath</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00331_source.html#l00030">30</a> of file <a class="el" href="a00331_source.html">TestBase.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa9b4d902d61adad7165154a265f69aa4"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string YarnSpinner.Tests.TestBase.TestDataPath</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00331_source.html#l00051">51</a> of file <a class="el" href="a00331_source.html">TestBase.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a39922286f6255e4fd0e433a4fc7521c4"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string YarnSpinner.Tests.TestBase.UnityDemoScriptsPath</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00331_source.html#l00059">59</a> of file <a class="el" href="a00331_source.html">TestBase.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00317_source.html#l00103">103</a> of file <a class="el" href="a00317_source.html">Program.cs</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>YarnSpinnerTests/<a class="el" href="a00330_source.html">ProjectTests.cs</a></li>
+<li>YarnSpinner/<a class="el" href="a00317_source.html">Program.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00371.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00372.html">Tests</a></li><li class="navelem"><a class="el" href="a00154.html">ProjectTests</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 03:19:15 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00053.html">Yarn</a></li><li class="navelem"><a class="el" href="a00154.html">Program</a></li>
+    <li class="footer">Generated on Mon Jul 8 2019 11:16:36 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

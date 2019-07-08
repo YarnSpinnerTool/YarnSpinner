@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvSerializer.cs Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,7 +105,7 @@ $(document).ready(function(){initNavTree('a00249_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">ICsvSerializer.cs</div>  </div>
+<div class="title">ICsvParser.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00249.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
@@ -117,24 +117,39 @@ $(document).ready(function(){initNavTree('a00249_source.html','');});
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>CsvHelper</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="a00116.html">   13</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">interface </span><a class="code" href="a00116.html">ICsvSerializer</a> : IDisposable</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="a00115.html">   13</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">interface </span><a class="code" href="a00115.html">ICsvParser</a> : IDisposable</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00116.html#a54d241fe87517707b6f85c30fe8b3a95">   18</a></span>&#160;        <a class="code" href="a00063.html">CsvConfiguration</a> <a class="code" href="a00116.html#a54d241fe87517707b6f85c30fe8b3a95">Configuration</a> { <span class="keyword">get</span>; }</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00115.html#af1303d18a827bf46a56f9cb6ba05ed64">   18</a></span>&#160;        <a class="code" href="a00065.html">CsvConfiguration</a> <a class="code" href="a00115.html#af1303d18a827bf46a56f9cb6ba05ed64">Configuration</a> { <span class="keyword">get</span>; }</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="a00116.html#a0b442858eef85b7d933662359646fd0b">Write</a>( <span class="keywordtype">string</span>[] record );</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
-<div class="ttc" id="a00063_html"><div class="ttname"><a href="a00063.html">CsvHelper.Configuration.CsvConfiguration</a></div><div class="ttdoc">Configuration used for reading and writing CSV data. </div><div class="ttdef"><b>Definition:</b> <a href="a00221_source.html#l00018">CsvConfiguration.cs:18</a></div></div>
-<div class="ttc" id="a00116_html_a0b442858eef85b7d933662359646fd0b"><div class="ttname"><a href="a00116.html#a0b442858eef85b7d933662359646fd0b">CsvHelper.ICsvSerializer.Write</a></div><div class="ttdeci">void Write(string[] record)</div><div class="ttdoc">Writes a record to the CSV file. </div></div>
-<div class="ttc" id="a00116_html"><div class="ttname"><a href="a00116.html">CsvHelper.ICsvSerializer</a></div><div class="ttdoc">Defines methods used to serialize data into a CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00249_source.html#l00013">ICsvSerializer.cs:13</a></div></div>
-<div class="ttc" id="a00116_html_a54d241fe87517707b6f85c30fe8b3a95"><div class="ttname"><a href="a00116.html#a54d241fe87517707b6f85c30fe8b3a95">CsvHelper.ICsvSerializer.Configuration</a></div><div class="ttdeci">CsvConfiguration Configuration</div><div class="ttdoc">Gets the configuration. </div><div class="ttdef"><b>Definition:</b> <a href="a00249_source.html#l00018">ICsvSerializer.cs:18</a></div></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="a00115.html#a50c0428defc2ada782c6863d72a990e4">   23</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="a00115.html#a50c0428defc2ada782c6863d72a990e4">FieldCount</a> { <span class="keyword">get</span>; }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="a00115.html#aa47c7ce6c764dddc78bb4d3ee83714eb">   28</a></span>&#160;        <span class="keywordtype">long</span> <a class="code" href="a00115.html#aa47c7ce6c764dddc78bb4d3ee83714eb">CharPosition</a> { <span class="keyword">get</span>; }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="a00115.html#a23dee37412eeb387df1d336e7bf07cc2">   33</a></span>&#160;        <span class="keywordtype">long</span> <a class="code" href="a00115.html#a23dee37412eeb387df1d336e7bf07cc2">BytePosition</a> { <span class="keyword">get</span>; }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="a00115.html#a0ec83f976594f51a002448fa2fe2e392">   38</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="a00115.html#a0ec83f976594f51a002448fa2fe2e392">Row</a> { <span class="keyword">get</span>; }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="a00115.html#a1b238e3bb053f2f6c122ee0d77bb48d7">   43</a></span>&#160;        <span class="keywordtype">string</span> <a class="code" href="a00115.html#a1b238e3bb053f2f6c122ee0d77bb48d7">RawRecord</a> { <span class="keyword">get</span>; }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">string</span>[] <a class="code" href="a00115.html#a411461b4cd33dce0b42c81715359f687">Read</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
+<div class="ttc" id="a00115_html_a1b238e3bb053f2f6c122ee0d77bb48d7"><div class="ttname"><a href="a00115.html#a1b238e3bb053f2f6c122ee0d77bb48d7">CsvHelper.ICsvParser.RawRecord</a></div><div class="ttdeci">string RawRecord</div><div class="ttdoc">Gets the raw row for the current record that was parsed. </div><div class="ttdef"><b>Definition:</b> <a href="a00249_source.html#l00043">ICsvParser.cs:43</a></div></div>
+<div class="ttc" id="a00115_html_af1303d18a827bf46a56f9cb6ba05ed64"><div class="ttname"><a href="a00115.html#af1303d18a827bf46a56f9cb6ba05ed64">CsvHelper.ICsvParser.Configuration</a></div><div class="ttdeci">CsvConfiguration Configuration</div><div class="ttdoc">Gets the configuration. </div><div class="ttdef"><b>Definition:</b> <a href="a00249_source.html#l00018">ICsvParser.cs:18</a></div></div>
+<div class="ttc" id="a00115_html"><div class="ttname"><a href="a00115.html">CsvHelper.ICsvParser</a></div><div class="ttdoc">Defines methods used the parse a CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00249_source.html#l00013">ICsvParser.cs:13</a></div></div>
+<div class="ttc" id="a00115_html_a0ec83f976594f51a002448fa2fe2e392"><div class="ttname"><a href="a00115.html#a0ec83f976594f51a002448fa2fe2e392">CsvHelper.ICsvParser.Row</a></div><div class="ttdeci">int Row</div><div class="ttdoc">Gets the row of the CSV file that the parser is currently on. </div><div class="ttdef"><b>Definition:</b> <a href="a00249_source.html#l00038">ICsvParser.cs:38</a></div></div>
+<div class="ttc" id="a00115_html_a50c0428defc2ada782c6863d72a990e4"><div class="ttname"><a href="a00115.html#a50c0428defc2ada782c6863d72a990e4">CsvHelper.ICsvParser.FieldCount</a></div><div class="ttdeci">int FieldCount</div><div class="ttdoc">Gets the field count. </div><div class="ttdef"><b>Definition:</b> <a href="a00249_source.html#l00023">ICsvParser.cs:23</a></div></div>
+<div class="ttc" id="a00115_html_a411461b4cd33dce0b42c81715359f687"><div class="ttname"><a href="a00115.html#a411461b4cd33dce0b42c81715359f687">CsvHelper.ICsvParser.Read</a></div><div class="ttdeci">string[] Read()</div><div class="ttdoc">Reads a record from the CSV file. </div></div>
+<div class="ttc" id="a00065_html"><div class="ttname"><a href="a00065.html">CsvHelper.Configuration.CsvConfiguration</a></div><div class="ttdoc">Configuration used for reading and writing CSV data. </div><div class="ttdef"><b>Definition:</b> <a href="a00224_source.html#l00018">CsvConfiguration.cs:18</a></div></div>
+<div class="ttc" id="a00115_html_a23dee37412eeb387df1d336e7bf07cc2"><div class="ttname"><a href="a00115.html#a23dee37412eeb387df1d336e7bf07cc2">CsvHelper.ICsvParser.BytePosition</a></div><div class="ttdeci">long BytePosition</div><div class="ttdoc">Gets the byte position that the parser is currently on. </div><div class="ttdef"><b>Definition:</b> <a href="a00249_source.html#l00033">ICsvParser.cs:33</a></div></div>
+<div class="ttc" id="a00115_html_aa47c7ce6c764dddc78bb4d3ee83714eb"><div class="ttname"><a href="a00115.html#aa47c7ce6c764dddc78bb4d3ee83714eb">CsvHelper.ICsvParser.CharPosition</a></div><div class="ttdeci">long CharPosition</div><div class="ttdoc">Gets the character position that the parser is currently on. </div><div class="ttdef"><b>Definition:</b> <a href="a00249_source.html#l00028">ICsvParser.cs:28</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00249.html">ICsvSerializer.cs</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 03:19:11 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00249.html">ICsvParser.cs</a></li>
+    <li class="footer">Generated on Mon Jul 8 2019 11:16:33 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

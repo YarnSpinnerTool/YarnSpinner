@@ -1,88 +1,71 @@
-\hypertarget{a00139}{\section{Yarn.\-Dialogue.\-Node\-Complete\-Result Class Reference}
-\label{a00139}\index{Yarn.\-Dialogue.\-Node\-Complete\-Result@{Yarn.\-Dialogue.\-Node\-Complete\-Result}}
+\hypertarget{a00139}{\section{Mobile\-Only Class Reference}
+\label{a00139}\index{Mobile\-Only@{Mobile\-Only}}
 }
 
 
-We've reached the end of this node.  
+Removes an object from the scene when the game is running on a non-\/mobile platform.  
 
 
 
 
-Inheritance diagram for Yarn.\-Dialogue.\-Node\-Complete\-Result\-:
+Inheritance diagram for Mobile\-Only\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=226pt]{a00626}
+\includegraphics[width=162pt]{a00408}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Dialogue.\-Node\-Complete\-Result\-:
+Collaboration diagram for Mobile\-Only\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=226pt]{a00627}
+\includegraphics[width=162pt]{a00409}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00139_a88c81469a69987c05aa92780c5a5c1f9}{Node\-Complete\-Result} (string \hyperlink{a00139_ad48b37b51066b94cd48c58626ac0e774}{next\-Node})
-\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-string \hyperlink{a00139_ad48b37b51066b94cd48c58626ac0e774}{next\-Node}
+void \hyperlink{a00139_acfb1b3a9c8f62b30300331fb84752022}{Awake} ()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-We've reached the end of this node. 
+Removes an object from the scene when the game is running on a non-\/mobile platform. 
 
-Definition at line 184 of file Dialogue.\-cs.
+Definition at line 7 of file Mobile\-Only.\-cs.
 
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00139_a88c81469a69987c05aa92780c5a5c1f9}{\index{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}!Node\-Complete\-Result@{Node\-Complete\-Result}}
-\index{Node\-Complete\-Result@{Node\-Complete\-Result}!Yarn::Dialogue::NodeCompleteResult@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}}
-\subsubsection[{Node\-Complete\-Result}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Dialogue.\-Node\-Complete\-Result.\-Node\-Complete\-Result (
+\subsection{Member Function Documentation}
+\hypertarget{a00139_acfb1b3a9c8f62b30300331fb84752022}{\index{Mobile\-Only@{Mobile\-Only}!Awake@{Awake}}
+\index{Awake@{Awake}!MobileOnly@{Mobile\-Only}}
+\subsubsection[{Awake}]{\setlength{\rightskip}{0pt plus 5cm}void Mobile\-Only.\-Awake (
 \begin{DoxyParamCaption}
-\item[{string}]{next\-Node}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00139_a88c81469a69987c05aa92780c5a5c1f9}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00139_acfb1b3a9c8f62b30300331fb84752022}
 
 
-Definition at line 187 of file Dialogue.\-cs.
-
-
-
-References Yarn.\-Dialogue.\-Node\-Complete\-Result.\-next\-Node.
+Definition at line 10 of file Mobile\-Only.\-cs.
 
 
 \begin{DoxyCode}
-187                                                         \{
-188                 this.nextNode = \hyperlink{a00139_ad48b37b51066b94cd48c58626ac0e774}{nextNode};
-189             \}
+10                   \{
+11 
+12         \textcolor{keywordflow}{if} (Application.isMobilePlatform || Application.platform == RuntimePlatform.WebGLPlayer ) \{
+13             \textcolor{comment}{// Hang around}
+14         \} \textcolor{keywordflow}{else} \{
+15             Destroy(gameObject);
+16         \}
+17 
+18     \}
 \end{DoxyCode}
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00139_ad48b37b51066b94cd48c58626ac0e774}{\index{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}!next\-Node@{next\-Node}}
-\index{next\-Node@{next\-Node}!Yarn::Dialogue::NodeCompleteResult@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}}
-\subsubsection[{next\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Dialogue.\-Node\-Complete\-Result.\-next\-Node}}\label{a00139_ad48b37b51066b94cd48c58626ac0e774}
-
-
-Definition at line 185 of file Dialogue.\-cs.
-
-
-
-Referenced by Yarn.\-Dialogue.\-Node\-Complete\-Result.\-Node\-Complete\-Result().
-
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00305}{Dialogue.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00301}{Mobile\-Only.\-cs}\end{DoxyCompactItemize}

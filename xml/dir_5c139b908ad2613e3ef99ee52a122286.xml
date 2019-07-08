@@ -2,33 +2,33 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_5c139b908ad2613e3ef99ee52a122286" kind="dir">
     <compoundname>packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion</compoundname>
-    <innerfile refid="a00260">BooleanConverter.cs</innerfile>
-    <innerfile refid="a00261">ByteConverter.cs</innerfile>
-    <innerfile refid="a00262">CharConverter.cs</innerfile>
-    <innerfile refid="a00263">CsvTypeConverterException.cs</innerfile>
-    <innerfile refid="a00264">DateTimeConverter.cs</innerfile>
-    <innerfile refid="a00265">DateTimeOffsetConverter.cs</innerfile>
-    <innerfile refid="a00266">DecimalConverter.cs</innerfile>
-    <innerfile refid="a00267">DefaultTypeConverter.cs</innerfile>
-    <innerfile refid="a00268">DoubleConverter.cs</innerfile>
-    <innerfile refid="a00269">EnumConverter.cs</innerfile>
-    <innerfile refid="a00270">EnumerableConverter.cs</innerfile>
-    <innerfile refid="a00271">GuidConverter.cs</innerfile>
-    <innerfile refid="a00272">Int16Converter.cs</innerfile>
-    <innerfile refid="a00273">Int32Converter.cs</innerfile>
-    <innerfile refid="a00274">Int64Converter.cs</innerfile>
-    <innerfile refid="a00275">ITypeConverter.cs</innerfile>
-    <innerfile refid="a00276">NullableConverter.cs</innerfile>
-    <innerfile refid="a00277">SByteConverter.cs</innerfile>
-    <innerfile refid="a00278">SingleConverter.cs</innerfile>
-    <innerfile refid="a00279">StringConverter.cs</innerfile>
-    <innerfile refid="a00280">TimeSpanConverter.cs</innerfile>
-    <innerfile refid="a00281">TypeConverterFactory.cs</innerfile>
-    <innerfile refid="a00282">TypeConverterOptions.cs</innerfile>
-    <innerfile refid="a00283">TypeConverterOptionsFactory.cs</innerfile>
-    <innerfile refid="a00284">UInt16Converter.cs</innerfile>
-    <innerfile refid="a00285">UInt32Converter.cs</innerfile>
-    <innerfile refid="a00286">UInt64Converter.cs</innerfile>
+    <innerfile refid="a00263">BooleanConverter.cs</innerfile>
+    <innerfile refid="a00264">ByteConverter.cs</innerfile>
+    <innerfile refid="a00265">CharConverter.cs</innerfile>
+    <innerfile refid="a00266">CsvTypeConverterException.cs</innerfile>
+    <innerfile refid="a00267">DateTimeConverter.cs</innerfile>
+    <innerfile refid="a00268">DateTimeOffsetConverter.cs</innerfile>
+    <innerfile refid="a00269">DecimalConverter.cs</innerfile>
+    <innerfile refid="a00270">DefaultTypeConverter.cs</innerfile>
+    <innerfile refid="a00271">DoubleConverter.cs</innerfile>
+    <innerfile refid="a00272">EnumConverter.cs</innerfile>
+    <innerfile refid="a00273">EnumerableConverter.cs</innerfile>
+    <innerfile refid="a00274">GuidConverter.cs</innerfile>
+    <innerfile refid="a00275">Int16Converter.cs</innerfile>
+    <innerfile refid="a00276">Int32Converter.cs</innerfile>
+    <innerfile refid="a00277">Int64Converter.cs</innerfile>
+    <innerfile refid="a00278">ITypeConverter.cs</innerfile>
+    <innerfile refid="a00279">NullableConverter.cs</innerfile>
+    <innerfile refid="a00280">SByteConverter.cs</innerfile>
+    <innerfile refid="a00281">SingleConverter.cs</innerfile>
+    <innerfile refid="a00282">StringConverter.cs</innerfile>
+    <innerfile refid="a00283">TimeSpanConverter.cs</innerfile>
+    <innerfile refid="a00284">TypeConverterFactory.cs</innerfile>
+    <innerfile refid="a00285">TypeConverterOptions.cs</innerfile>
+    <innerfile refid="a00286">TypeConverterOptionsFactory.cs</innerfile>
+    <innerfile refid="a00287">UInt16Converter.cs</innerfile>
+    <innerfile refid="a00288">UInt32Converter.cs</innerfile>
+    <innerfile refid="a00289">UInt64Converter.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

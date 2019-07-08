@@ -1,22 +1,24 @@
 var a00056 =
 [
-    [ "ConsoleRunnerImplementation", "a00056.html#a8a2687bbff3f09203c14fa505b06f505", null ],
-    [ "Clear", "a00056.html#a082617cf099d13cb4338935020ced764", null ],
-    [ "DialogueComplete", "a00056.html#ad6299fd476e53164d9f97d324d8c5936", null ],
-    [ "GetNumber", "a00056.html#adf34fa27235fc0fd5fe35c32023220c4", null ],
-    [ "GetValue", "a00056.html#a66fc86080cd452079f5adf15e97c8e41", null ],
-    [ "HandleDebugMessage", "a00056.html#ab656ffe1f6e66f2e6d2cb3e970f54b90", null ],
-    [ "HandleErrorMessage", "a00056.html#a925ecf432875c3831adc1a9959db8b46", null ],
-    [ "RunCommand", "a00056.html#aef048f9dbd90258eacc2886aa48ef6af", null ],
-    [ "RunLine", "a00056.html#a13bc6c3a8ba43223a20befae50dbbcb4", null ],
-    [ "RunOptions", "a00056.html#a62674694fa65e5ae8c0c0da4fbceda51", null ],
-    [ "SetNumber", "a00056.html#adc9bfad13d8ae2f147deeddbc5c38ea3", null ],
-    [ "SetValue", "a00056.html#ab6312d89b626ca803a74a9181286d608", null ],
-    [ "autoSelectFirstOption", "a00056.html#a09a552ee9ff58cb3c995f8ecba1592b6", null ],
-    [ "autoSelectOptionNumber", "a00056.html#a34886671e91a1bf3fc225eeb67baced1", null ],
-    [ "expectedNextCommand", "a00056.html#a3c7133c65dc7cf293f49b61426a0c4aa", null ],
-    [ "expectedNextLine", "a00056.html#a33a44e39f2d90850cee234dfad50f2c5", null ],
-    [ "numberOfExpectedOptions", "a00056.html#a2e17937195ecd64d5d867d958c45d2c3", null ],
-    [ "variableStore", "a00056.html#a9907b805775d5837a900ddbd0a1739b7", null ],
-    [ "waitForLines", "a00056.html#a90b0c755ea1d2f3ffaffa6cf18266709", null ]
+    [ "CompileFlags", "a00056.html#a00378", [
+      [ "DisableShuffleOptionsAfterNextSet", "a00056.html#a8b49bb7763ff477cba21d7c771ef3ed0", null ]
+    ] ],
+    [ "Compiler", "a00056.html#a47bfde319a618a1e11d00cb282a84364", null ],
+    [ "CompileNode", "a00056.html#a10b52c5694f78285d087a455e3654eaa", null ],
+    [ "Emit", "a00056.html#a774e8c143cdda0584fcfdda98626a83c", null ],
+    [ "GenerateCode", "a00056.html#a006f3becd521cc179ba3d3352f6f930b", null ],
+    [ "GenerateCode", "a00056.html#a656b6c7fcd08d24300ec592465274f66", null ],
+    [ "GenerateCode", "a00056.html#af1ee28d67902b27ee0816e2a47343652", null ],
+    [ "GenerateCode", "a00056.html#a3e492edcefdfeacec80e528f8c4fa6cc", null ],
+    [ "GenerateCode", "a00056.html#ab4f6dd2ddf38b0c5bfb2b8a40869a09a", null ],
+    [ "GenerateCode", "a00056.html#a6ab14514a3b0644ae39c626e5e5e180d", null ],
+    [ "GenerateCode", "a00056.html#a5cb3cbcd9727bdef018ec5299bd13142", null ],
+    [ "GenerateCode", "a00056.html#afb86d9228f66896abe31d47d72a267ce", null ],
+    [ "GenerateCode", "a00056.html#a5c762915320958c3a03b193b06a7e279", null ],
+    [ "GenerateCode", "a00056.html#a41438a0b25f2668a180372d05127d891", null ],
+    [ "GetLineIDFromNodeTags", "a00056.html#a5117b9c2253de15d3fd3557c8b037235", null ],
+    [ "RegisterLabel", "a00056.html#a1bae0d8b701a59708641aa36ea971fa5", null ],
+    [ "flags", "a00056.html#a541022d89bcf9bc8f794eb6d6b438d08", null ],
+    [ "labelCount", "a00056.html#a87758397eba2e84cda8e0d6c40656f3f", null ],
+    [ "program", "a00056.html#aa1737da428ec7d597009661dd8a47829", null ]
 ];

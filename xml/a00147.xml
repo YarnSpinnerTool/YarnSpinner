@@ -1,104 +1,50 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00147" kind="class" prot="package">
-    <compoundname>Yarn::ParseException</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">Exception</basecompoundref>
-      <sectiondef kind="package-attrib">
-      <memberdef kind="variable" id="a00147_1ab335169367e64fd6d89d58b3ac573751" prot="package" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.ParseException.lineNumber</definition>
+  <compounddef id="a00147" kind="class" prot="public">
+    <compoundname>Yarn::Dialogue::OptionSetResult</compoundname>
+    <basecompoundref refid="a00158" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00147_1abda9c3047ff9d3c3ec5540566a239315" prot="public" static="no" mutable="no">
+        <type><ref refid="a00383" kindref="compound">Options</ref></type>
+        <definition>Options Yarn.Dialogue.OptionSetResult.options</definition>
         <argsstring></argsstring>
-        <name>lineNumber</name>
-        <initializer>= 0</initializer>
+        <name>options</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="14" bodyend="-1"/>
-        <referencedby refid="a00147_1a511a51bb42dc5bb107eb68f7e5cf5ff1" compoundref="a00314" startline="16" endline="37">Yarn.ParseException.Make</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="171" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="171" bodyend="-1"/>
+        <referencedby refid="a00147_1a934c02fb1047ffd05b2b5a9c6fcd7acb" compoundref="a00308" startline="174" endline="179">Yarn.Dialogue.OptionSetResult.OptionSetResult</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00147_1a6f2683598cf0f62b76bb864640cc79dd" prot="public" static="no" mutable="no">
+        <type><ref refid="a00053_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">OptionChooser</ref></type>
+        <definition>OptionChooser Yarn.Dialogue.OptionSetResult.setSelectedOptionDelegate</definition>
+        <argsstring></argsstring>
+        <name>setSelectedOptionDelegate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="172" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="172" bodyend="-1"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="package-static-func">
-      <memberdef kind="function" id="a00147_1a511a51bb42dc5bb107eb68f7e5cf5ff1" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00147" kindref="compound">ParseException</ref></type>
-        <definition>static ParseException Yarn.ParseException.Make</definition>
-        <argsstring>(Token foundToken, params TokenType[] expectedTypes)</argsstring>
-        <name>Make</name>
-        <param>
-          <type><ref refid="a00173" kindref="compound">Token</ref></type>
-          <declname>foundToken</declname>
-        </param>
-        <param>
-          <type>params <ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>[]</type>
-          <declname>expectedTypes</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="16" bodyend="37"/>
-        <references refid="a00147_1ab335169367e64fd6d89d58b3ac573751" compoundref="a00314" startline="14">Yarn.ParseException.lineNumber</references>
-        <references refid="a00147_1aa3c4f5c8b0ae86097bbc46044df9f317" compoundref="a00314" startline="67" endline="67">Yarn.ParseException.ParseException</references>
-      </memberdef>
-      <memberdef kind="function" id="a00147_1a173f3cabc4741d9d9e016310e90c1c9f" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00147" kindref="compound">ParseException</ref></type>
-        <definition>static ParseException Yarn.ParseException.Make</definition>
-        <argsstring>(Token mostRecentToken, string message)</argsstring>
-        <name>Make</name>
-        <param>
-          <type><ref refid="a00173" kindref="compound">Token</ref></type>
-          <declname>mostRecentToken</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>message</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="39" bodyend="49"/>
-        <references refid="a00147_1ab335169367e64fd6d89d58b3ac573751" compoundref="a00314" startline="14">Yarn.ParseException.lineNumber</references>
-        <references refid="a00147_1aa3c4f5c8b0ae86097bbc46044df9f317" compoundref="a00314" startline="67" endline="67">Yarn.ParseException.ParseException</references>
-      </memberdef>
-      <memberdef kind="function" id="a00147_1a0265905b09fbd675d40c452d9fc61207" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00147" kindref="compound">ParseException</ref></type>
-        <definition>static ParseException Yarn.ParseException.Make</definition>
-        <argsstring>(Antlr4.Runtime.ParserRuleContext context, string message)</argsstring>
-        <name>Make</name>
-        <param>
-          <type><ref refid="a00320_1a7e45f8222713cb764832fd3c69d0268f" kindref="member">Antlr4.Runtime.ParserRuleContext</ref></type>
-          <declname>context</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>message</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="51" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="51" bodyend="65"/>
-        <references refid="a00147_1aa3c4f5c8b0ae86097bbc46044df9f317" compoundref="a00314" startline="67" endline="67">Yarn.ParseException.ParseException</references>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00147_1aa3c4f5c8b0ae86097bbc46044df9f317" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00147_1a934c02fb1047ffd05b2b5a9c6fcd7acb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>Yarn.ParseException.ParseException</definition>
-        <argsstring>(string message)</argsstring>
-        <name>ParseException</name>
+        <definition>Yarn.Dialogue.OptionSetResult.OptionSetResult</definition>
+        <argsstring>(IList&lt; string &gt; optionStrings, OptionChooser setSelectedOption)</argsstring>
+        <name>OptionSetResult</name>
         <param>
-          <type>string</type>
-          <declname>message</declname>
+          <type>IList&lt; string &gt;</type>
+          <declname>optionStrings</declname>
+        </param>
+        <param>
+          <type><ref refid="a00053_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">OptionChooser</ref></type>
+          <declname>setSelectedOption</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -106,43 +52,50 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="67" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="67" bodyend="67"/>
-        <referencedby refid="a00147_1a511a51bb42dc5bb107eb68f7e5cf5ff1" compoundref="a00314" startline="16" endline="37">Yarn.ParseException.Make</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="174" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="174" bodyend="179"/>
+        <references refid="a00147_1abda9c3047ff9d3c3ec5540566a239315" compoundref="a00308" startline="171">Yarn.Dialogue.OptionSetResult.options</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>The client should show a list of options, and call setSelectedOptionDelegate before asking for the next line. It&apos;s an error if you don&apos;t. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1568">
-        <label>Yarn.ParseException</label>
-        <link refid="a00147"/>
-        <childnode refid="1569" relation="public-inheritance">
-        </childnode>
+      <node id="1559">
+        <label>RunnerResult</label>
+        <link refid="a00158"/>
       </node>
-      <node id="1569">
-        <label>Exception</label>
+      <node id="1558">
+        <label>Yarn.Dialogue.OptionSetResult</label>
+        <link refid="a00147"/>
+        <childnode refid="1559" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1570">
-        <label>Yarn.ParseException</label>
+      <node id="1562">
+        <label>Yarn.Options</label>
+        <link refid="a00383"/>
+      </node>
+      <node id="1561">
+        <label>RunnerResult</label>
+        <link refid="a00158"/>
+      </node>
+      <node id="1560">
+        <label>Yarn.Dialogue.OptionSetResult</label>
         <link refid="a00147"/>
-        <childnode refid="1571" relation="public-inheritance">
+        <childnode refid="1561" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1562" relation="usage">
+          <edgelabel>+options</edgelabel>
         </childnode>
       </node>
-      <node id="1571">
-        <label>Exception</label>
-      </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="12" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="11" bodyend="69"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="170" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="170" bodyend="181"/>
     <listofallmembers>
-      <member refid="a00147_1ab335169367e64fd6d89d58b3ac573751" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>lineNumber</name></member>
-      <member refid="a00147_1a511a51bb42dc5bb107eb68f7e5cf5ff1" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>Make</name></member>
-      <member refid="a00147_1a173f3cabc4741d9d9e016310e90c1c9f" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>Make</name></member>
-      <member refid="a00147_1a0265905b09fbd675d40c452d9fc61207" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>Make</name></member>
-      <member refid="a00147_1aa3c4f5c8b0ae86097bbc46044df9f317" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>ParseException</name></member>
+      <member refid="a00147_1abda9c3047ff9d3c3ec5540566a239315" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::OptionSetResult</scope><name>options</name></member>
+      <member refid="a00147_1a934c02fb1047ffd05b2b5a9c6fcd7acb" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::OptionSetResult</scope><name>OptionSetResult</name></member>
+      <member refid="a00147_1a6f2683598cf0f62b76bb864640cc79dd" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::OptionSetResult</scope><name>setSelectedOptionDelegate</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

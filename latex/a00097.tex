@@ -1,88 +1,178 @@
-\hypertarget{a00097}{\section{Yarn.\-Loader.\-Emission\-Tuple Struct Reference}
-\label{a00097}\index{Yarn.\-Loader.\-Emission\-Tuple@{Yarn.\-Loader.\-Emission\-Tuple}}
+\hypertarget{a00097}{\section{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour Class Reference}
+\label{a00097}\index{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour@{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}}
 }
 
 
-Collaboration diagram for Yarn.\-Loader.\-Emission\-Tuple\-:
+Scripts that can act as the U\-I for the conversation should subclass this.  
+
+
+
+
+Inheritance diagram for Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=216pt]{a00661}
+\includegraphics[width=350pt]{a00789}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{a00790}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00097_a79857a881f3e1bab47a2cee5007e62a2}{Emission\-Tuple} (int \hyperlink{a00097_ad3d26f07b18e91e1ba31ba3b5d6923db}{depth}, bool \hyperlink{a00097_a5916dbbd4d2e24ddfd02b0afdea290bf}{emitted})
-\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-int \hyperlink{a00097_ad3d26f07b18e91e1ba31ba3b5d6923db}{depth}
-\item 
-bool \hyperlink{a00097_a5916dbbd4d2e24ddfd02b0afdea290bf}{emitted}
-\end{DoxyCompactItemize}
+virtual I\-Enumerator \hyperlink{a00097_af9d88ca81ac536d43046ca6572e3ff54}{Dialogue\-Started} ()
+\begin{DoxyCompactList}\small\item\em A conversation has started. \end{DoxyCompactList}\item 
+abstract I\-Enumerator \hyperlink{a00097_a754c6dd0bc67895d11f878fe4477d698}{Run\-Line} (\hyperlink{a00053_a00380}{Yarn.\-Line} line)
+\begin{DoxyCompactList}\small\item\em Display a line. \end{DoxyCompactList}\item 
+abstract I\-Enumerator \hyperlink{a00097_ac5b29079f638f2ceb078627ef1e60004}{Run\-Options} (\hyperlink{a00053_a00383}{Yarn.\-Options} options\-Collection, \hyperlink{a00053_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} option\-Chooser)
+\begin{DoxyCompactList}\small\item\em Display the options, and call the option\-Chooser when done. \end{DoxyCompactList}\item 
+abstract I\-Enumerator \hyperlink{a00097_a3dffe84b9e7a10fdec6749baf697d111}{Run\-Command} (\hyperlink{a00053_a00376}{Yarn.\-Command} command)
+\begin{DoxyCompactList}\small\item\em Perform some game-\/specific command. \end{DoxyCompactList}\item 
+virtual I\-Enumerator \hyperlink{a00097_a2900548a0704d39d4502a153945f4bef}{Node\-Complete} (string next\-Node)
+\begin{DoxyCompactList}\small\item\em The node has ended. \end{DoxyCompactList}\item 
+virtual I\-Enumerator \hyperlink{a00097_aecc60aee9e9386da1f71fb183f43c52d}{Dialogue\-Complete} ()
+\begin{DoxyCompactList}\small\item\em The conversation has ended. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Scripts that can act as the U\-I for the conversation should subclass this. 
+
+Definition at line 451 of file Dialogue\-Runner.\-cs.
 
 
-Definition at line 96 of file Loader.\-cs.
 
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00097_a79857a881f3e1bab47a2cee5007e62a2}{\index{Yarn\-::\-Loader\-::\-Emission\-Tuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}!Emission\-Tuple@{Emission\-Tuple}}
-\index{Emission\-Tuple@{Emission\-Tuple}!Yarn::Loader::EmissionTuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}}
-\subsubsection[{Emission\-Tuple}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Loader.\-Emission\-Tuple.\-Emission\-Tuple (
+\subsection{Member Function Documentation}
+\hypertarget{a00097_aecc60aee9e9386da1f71fb183f43c52d}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Dialogue\-Complete@{Dialogue\-Complete}}
+\index{Dialogue\-Complete@{Dialogue\-Complete}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Dialogue\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Dialogue\-Complete (
 \begin{DoxyParamCaption}
-\item[{int}]{depth, }
-\item[{bool}]{emitted}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00097_a79857a881f3e1bab47a2cee5007e62a2}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00097_aecc60aee9e9386da1f71fb183f43c52d}
 
 
-Definition at line 100 of file Loader.\-cs.
+The conversation has ended. 
 
 
 
-References Yarn.\-Loader.\-Emission\-Tuple.\-depth, and Yarn.\-Loader.\-Emission\-Tuple.\-emitted.
+Reimplemented in \hyperlink{a00103_a1f2a08baacc25aea09af8e60eb5d3eb1}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
+
+
+
+Definition at line 476 of file Dialogue\-Runner.\-cs.
 
 
 \begin{DoxyCode}
-101             \{
-102                 this.depth = \hyperlink{a00097_ad3d26f07b18e91e1ba31ba3b5d6923db}{depth};
-103                 this.emitted = \hyperlink{a00097_a5916dbbd4d2e24ddfd02b0afdea290bf}{emitted};
-104             \}
+476                                                        \{
+477             \textcolor{comment}{// Default implementation does nothing.}
+478             yield \textcolor{keywordflow}{break};
+479         \}
 \end{DoxyCode}
+\hypertarget{a00097_af9d88ca81ac536d43046ca6572e3ff54}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Dialogue\-Started@{Dialogue\-Started}}
+\index{Dialogue\-Started@{Dialogue\-Started}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Dialogue\-Started}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Dialogue\-Started (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00097_af9d88ca81ac536d43046ca6572e3ff54}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00097_ad3d26f07b18e91e1ba31ba3b5d6923db}{\index{Yarn\-::\-Loader\-::\-Emission\-Tuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}!depth@{depth}}
-\index{depth@{depth}!Yarn::Loader::EmissionTuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}}
-\subsubsection[{depth}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Loader.\-Emission\-Tuple.\-depth}}\label{a00097_ad3d26f07b18e91e1ba31ba3b5d6923db}
-
-
-Definition at line 98 of file Loader.\-cs.
-
-
-
-Referenced by Yarn.\-Loader.\-Emission\-Tuple.\-Emission\-Tuple().
-
-\hypertarget{a00097_a5916dbbd4d2e24ddfd02b0afdea290bf}{\index{Yarn\-::\-Loader\-::\-Emission\-Tuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}!emitted@{emitted}}
-\index{emitted@{emitted}!Yarn::Loader::EmissionTuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}}
-\subsubsection[{emitted}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Loader.\-Emission\-Tuple.\-emitted}}\label{a00097_a5916dbbd4d2e24ddfd02b0afdea290bf}
-
-
-Definition at line 99 of file Loader.\-cs.
+A conversation has started. 
 
 
 
-Referenced by Yarn.\-Loader.\-Emission\-Tuple.\-Emission\-Tuple().
+Reimplemented in \hyperlink{a00103_a313283f6c53354b54f25898eb436eba0}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
 
 
 
-The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+Definition at line 454 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+454                                                      \{
+455             \textcolor{comment}{// Default implementation does nothing.}
+456             yield \textcolor{keywordflow}{break};
+457         \}
+\end{DoxyCode}
+\hypertarget{a00097_a2900548a0704d39d4502a153945f4bef}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Node\-Complete@{Node\-Complete}}
+\index{Node\-Complete@{Node\-Complete}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Node\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Node\-Complete (
+\begin{DoxyParamCaption}
+\item[{string}]{next\-Node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00097_a2900548a0704d39d4502a153945f4bef}
+
+
+The node has ended. 
+
+
+
+Definition at line 470 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+470                                                                  \{
+471             \textcolor{comment}{// Default implementation does nothing.}
+472             yield \textcolor{keywordflow}{break};
+473         \}
+\end{DoxyCode}
+\hypertarget{a00097_a3dffe84b9e7a10fdec6749baf697d111}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Run\-Command@{Run\-Command}}
+\index{Run\-Command@{Run\-Command}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Run\-Command}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Command (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Command}}]{command}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00097_a3dffe84b9e7a10fdec6749baf697d111}
+
+
+Perform some game-\/specific command. 
+
+
+
+Implemented in \hyperlink{a00103_a7f84b1e7d3c9c1f7507d143e11ba8075}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
+
+\hypertarget{a00097_a754c6dd0bc67895d11f878fe4477d698}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Run\-Line@{Run\-Line}}
+\index{Run\-Line@{Run\-Line}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Run\-Line}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Line (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Line}}]{line}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00097_a754c6dd0bc67895d11f878fe4477d698}
+
+
+Display a line. 
+
+
+
+Implemented in \hyperlink{a00103_a109aeedc5206dcbc4f629638b7830030}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
+
+\hypertarget{a00097_ac5b29079f638f2ceb078627ef1e60004}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Run\-Options@{Run\-Options}}
+\index{Run\-Options@{Run\-Options}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Run\-Options}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Options (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Options}}]{options\-Collection, }
+\item[{{\bf Yarn.\-Option\-Chooser}}]{option\-Chooser}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00097_ac5b29079f638f2ceb078627ef1e60004}
+
+
+Display the options, and call the option\-Chooser when done. 
+
+
+
+Implemented in \hyperlink{a00103_aaa93672700a456e66c694636460a58f4}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00312}{Loader.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn\-Spinner/\-Code/\hyperlink{a00295}{Dialogue\-Runner.\-cs}\end{DoxyCompactItemize}

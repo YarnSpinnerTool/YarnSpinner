@@ -1,257 +1,233 @@
-\hypertarget{a00167}{\section{Csv\-Helper.\-Type\-Conversion.\-String\-Converter Class Reference}
-\label{a00167}\index{Csv\-Helper.\-Type\-Conversion.\-String\-Converter@{Csv\-Helper.\-Type\-Conversion.\-String\-Converter}}
+\hypertarget{a00167}{\section{Yarn.\-Virtual\-Machine.\-State Class Reference}
+\label{a00167}\index{Yarn.\-Virtual\-Machine.\-State@{Yarn.\-Virtual\-Machine.\-State}}
 }
 
 
-Converts a string to and from a string.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-String\-Converter\-:
+Collaboration diagram for Yarn.\-Virtual\-Machine.\-State\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00566}
-\end{center}
-\end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-String\-Converter\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=220pt]{a00567}
+\includegraphics[width=210pt]{a00729}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override object \hyperlink{a00167_a50bf35ff93e01df630a9c5e3c7b7569f}{Convert\-From\-String} (\hyperlink{a00178}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00167_a3e7f3959693638756bb98951fe8791f3}{Can\-Convert\-From} (System.\-Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual string \hyperlink{a00088_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00178}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00088_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00088_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{a00167_aace44f5b85b9f746fede834becda4a8e}{Push\-Value} (object o)
+\begin{DoxyCompactList}\small\item\em Methods for working with the stack. \end{DoxyCompactList}\item 
+\hyperlink{a00189}{Value} \hyperlink{a00167_a36881a888ea2839d74c3d4e7c199f4ee}{Pop\-Value} ()
+\begin{DoxyCompactList}\small\item\em Pop a value from the stack. \end{DoxyCompactList}\item 
+\hyperlink{a00189}{Value} \hyperlink{a00167_a54fd5b64ec94e937e771846167242dc2}{Peek\-Value} ()
+\begin{DoxyCompactList}\small\item\em Peek at a value from the stack. \end{DoxyCompactList}\item 
+void \hyperlink{a00167_a9c787097fbbbbf1680e4960cda092535}{Clear\-Stack} ()
+\begin{DoxyCompactList}\small\item\em Clear the stack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00167_a86f481fad527f719b49f8fee6ff79764}{current\-Node\-Name}
+\begin{DoxyCompactList}\small\item\em The name of the node that we're currently in. \end{DoxyCompactList}\item 
+int \hyperlink{a00167_a2c76546b54b4fb573d7f14d79ce230a3}{program\-Counter} = 0
+\begin{DoxyCompactList}\small\item\em The instruction number in the current node. \end{DoxyCompactList}\item 
+List$<$ Key\-Value\-Pair$<$ string, \\*
+string $>$ $>$ \hyperlink{a00167_ab816dfea32ecda23282700f01454e0a9}{current\-Options} = new List$<$Key\-Value\-Pair$<$string, string$>$$>$()
+\begin{DoxyCompactList}\small\item\em List of options, where each option = $<$string id, destination node$>$ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Stack$<$ \hyperlink{a00189}{Value} $>$ \hyperlink{a00167_a0bc84abf38b3ff31cbb47363b851c233}{stack} = new Stack$<$\hyperlink{a00189}{Value}$>$()
+\begin{DoxyCompactList}\small\item\em The value stack. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Converts a string to and from a string. 
 
 
-
-Definition at line 12 of file String\-Converter.\-cs.
+Definition at line 10 of file Virtual\-Machine.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00167_a3e7f3959693638756bb98951fe8791f3}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::StringConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-String\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00167_a9c787097fbbbbf1680e4960cda092535}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Clear\-Stack@{Clear\-Stack}}
+\index{Clear\-Stack@{Clear\-Stack}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{Clear\-Stack}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Virtual\-Machine.\-State.\-Clear\-Stack (
 \begin{DoxyParamCaption}
-\item[{System.\-Type}]{type}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00167_a3e7f3959693638756bb98951fe8791f3}
+)}}\label{a00167_a9c787097fbbbbf1680e4960cda092535}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+Clear the stack. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
 
-
-Definition at line 37 of file String\-Converter.\-cs.
+Definition at line 44 of file Virtual\-Machine.\-cs.
 
 
 \begin{DoxyCode}
-38         \{
-39             \textcolor{comment}{// We only care about strings.}
-40             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-41         \}
+44                                      \{
+45                 stack.Clear ();
+46             \}
 \end{DoxyCode}
-\hypertarget{a00088_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::StringConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00167_a54fd5b64ec94e937e771846167242dc2}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Peek\-Value@{Peek\-Value}}
+\index{Peek\-Value@{Peek\-Value}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{Peek\-Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Virtual\-Machine.\-State.\-Peek\-Value (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00088_a470d21adaa704eb281250dbd112ff91a}
+)}}\label{a00167_a54fd5b64ec94e937e771846167242dc2}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00123_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Peek at a value from the stack. 
 
 
 
-Reimplemented in \hyperlink{a00142_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00045_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00098_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00099_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00085_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00084_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00046_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00172_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
+Definition at line 39 of file Virtual\-Machine.\-cs.
 
 
 
-Definition at line 55 of file Default\-Type\-Converter.\-cs.
+Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
 
 
 \begin{DoxyCode}
-56         \{
-57             \textcolor{comment}{// The default convert doesn't know how to}
-58             \textcolor{comment}{// convert from any type.}
-59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-60         \}
+39                                      \{
+40                 \textcolor{keywordflow}{return} stack.Peek ();
+41             \}
 \end{DoxyCode}
-\hypertarget{a00088_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::StringConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00167_a54fd5b64ec94e937e771846167242dc2_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00167_a36881a888ea2839d74c3d4e7c199f4ee}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Pop\-Value@{Pop\-Value}}
+\index{Pop\-Value@{Pop\-Value}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{Pop\-Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Virtual\-Machine.\-State.\-Pop\-Value (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00088_acb65bd8c8199d88d5b1629ae35d18514}
+)}}\label{a00167_a36881a888ea2839d74c3d4e7c199f4ee}
 
 
-Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00123_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Pop a value from the stack. 
 
 
 
-Reimplemented in \hyperlink{a00099_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+Definition at line 34 of file Virtual\-Machine.\-cs.
 
 
 
-Definition at line 69 of file Default\-Type\-Converter.\-cs.
+Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
 
 
 \begin{DoxyCode}
-70         \{
-71             \textcolor{comment}{// We only care about strings.}
-72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-73         \}
+34                                     \{
+35                 \textcolor{keywordflow}{return} stack.Pop ();
+36             \}
 \end{DoxyCode}
-\hypertarget{a00167_a50bf35ff93e01df630a9c5e3c7b7569f}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::StringConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-String\-Converter.\-Convert\-From\-String (
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00167_a36881a888ea2839d74c3d4e7c199f4ee_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00167_aace44f5b85b9f746fede834becda4a8e}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Push\-Value@{Push\-Value}}
+\index{Push\-Value@{Push\-Value}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{Push\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Virtual\-Machine.\-State.\-Push\-Value (
 \begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{string}]{text}
+\item[{object}]{o}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00167_a50bf35ff93e01df630a9c5e3c7b7569f}
+)}}\label{a00167_aace44f5b85b9f746fede834becda4a8e}
 
 
-Converts the string to an object. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em text} & The string to convert to an object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The object created from the string.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00088_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Methods for working with the stack. 
 
 
 
-Definition at line 20 of file String\-Converter.\-cs.
+Definition at line 25 of file Virtual\-Machine.\-cs.
 
 
 \begin{DoxyCode}
-21         \{
-22             \textcolor{keywordflow}{if}( text == null )
-23             \{
-24                 \textcolor{keywordflow}{return} string.Empty;
-25             \}
-26 
-27             \textcolor{keywordflow}{return} text;
-28         \}
+25                                             \{
+26                 \textcolor{keywordflow}{if}( o is Value ) \{
+27                     stack.Push(o as Value);
+28                 \} \textcolor{keywordflow}{else} \{
+29                     stack.Push (\textcolor{keyword}{new} Value(o));
+30                 \}
+31             \}
 \end{DoxyCode}
-\hypertarget{a00088_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::StringConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{object}]{value}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00088_a36cb2f9b24f15a671293f3a722324c27}
 
 
-Converts the object to a string. 
+\subsection{Member Data Documentation}
+\hypertarget{a00167_a86f481fad527f719b49f8fee6ff79764}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!current\-Node\-Name@{current\-Node\-Name}}
+\index{current\-Node\-Name@{current\-Node\-Name}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{current\-Node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Virtual\-Machine.\-State.\-current\-Node\-Name}}\label{a00167_a86f481fad527f719b49f8fee6ff79764}
 
 
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em value} & The object to convert to a string.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The string representation of the object.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00123_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+The name of the node that we're currently in. 
 
 
 
-Reimplemented in \hyperlink{a00142_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00099_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+Definition at line 13 of file Virtual\-Machine.\-cs.
 
 
 
-Definition at line 21 of file Default\-Type\-Converter.\-cs.
+Referenced by Yarn.\-Virtual\-Machine.\-Find\-Instruction\-Point\-For\-Label().
+
+\hypertarget{a00167_ab816dfea32ecda23282700f01454e0a9}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!current\-Options@{current\-Options}}
+\index{current\-Options@{current\-Options}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{current\-Options}]{\setlength{\rightskip}{0pt plus 5cm}List$<$Key\-Value\-Pair$<$string,string$>$ $>$ Yarn.\-Virtual\-Machine.\-State.\-current\-Options = new List$<$Key\-Value\-Pair$<$string, string$>$$>$()}}\label{a00167_ab816dfea32ecda23282700f01454e0a9}
 
 
-\begin{DoxyCode}
-22         \{
-23             \textcolor{keywordflow}{if}( value == null )
-24             \{
-25                 \textcolor{keywordflow}{return} string.Empty;
-26             \}
-27 
-28             var formattable = value as IFormattable;
-29             \textcolor{keywordflow}{if}( formattable != null )
-30             \{
-31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
-32             \}
-33 
-34             \textcolor{keywordflow}{return} value.ToString();
-35         \}
-\end{DoxyCode}
+List of options, where each option = $<$string id, destination node$>$ 
+
+
+
+Definition at line 19 of file Virtual\-Machine.\-cs.
+
+
+
+Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
+
+\hypertarget{a00167_a2c76546b54b4fb573d7f14d79ce230a3}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!program\-Counter@{program\-Counter}}
+\index{program\-Counter@{program\-Counter}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{program\-Counter}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Virtual\-Machine.\-State.\-program\-Counter = 0}}\label{a00167_a2c76546b54b4fb573d7f14d79ce230a3}
+
+
+The instruction number in the current node. 
+
+
+
+Definition at line 16 of file Virtual\-Machine.\-cs.
+
+
+
+Referenced by Yarn.\-Virtual\-Machine.\-Run\-Next().
+
+\hypertarget{a00167_a0bc84abf38b3ff31cbb47363b851c233}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!stack@{stack}}
+\index{stack@{stack}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{stack}]{\setlength{\rightskip}{0pt plus 5cm}Stack$<${\bf Value}$>$ Yarn.\-Virtual\-Machine.\-State.\-stack = new Stack$<${\bf Value}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00167_a0bc84abf38b3ff31cbb47363b851c233}
+
+
+The value stack. 
+
+
+
+Definition at line 22 of file Virtual\-Machine.\-cs.
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00279}{String\-Converter.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00319}{Virtual\-Machine.\-cs}\end{DoxyCompactItemize}

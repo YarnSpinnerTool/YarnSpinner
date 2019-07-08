@@ -1,207 +1,259 @@
-\hypertarget{a00150}{\section{Yarn.\-Unity.\-Example.\-Player\-Character Class Reference}
-\label{a00150}\index{Yarn.\-Unity.\-Example.\-Player\-Character@{Yarn.\-Unity.\-Example.\-Player\-Character}}
+\hypertarget{a00150}{\section{Yarn.\-Parser.\-Parse\-Node Class Reference}
+\label{a00150}\index{Yarn.\-Parser.\-Parse\-Node@{Yarn.\-Parser.\-Parse\-Node}}
 }
 
 
-Inheritance diagram for Yarn.\-Unity.\-Example.\-Player\-Character\-:
+Inheritance diagram for Yarn.\-Parser.\-Parse\-Node\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=216pt]{a00810}
+\includegraphics[width=350pt]{a00700}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Unity.\-Example.\-Player\-Character\-:
+Collaboration diagram for Yarn.\-Parser.\-Parse\-Node\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=216pt]{a00811}
+\includegraphics[width=254pt]{a00701}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00150_a574b6d984b8671c7a780d3d10e040a9b}{Check\-For\-Nearby\-N\-P\-C} ()
-\begin{DoxyCompactList}\small\item\em Find all Dialogue\-Participants. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
+string \hyperlink{a00150_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
 \item 
-float \hyperlink{a00150_ac025d4f4afaf854f8256e0d2d03e5b52}{min\-Position} = -\/5.\-3f
-\item 
-float \hyperlink{a00150_ada9dd748a1d89a7f9b12ac8967a07ae6}{max\-Position} = 5.\-3f
-\item 
-float \hyperlink{a00150_adc602a4b2c7e44e4b15a11f1ffcf07e4}{move\-Speed} = 1.\-0f
-\item 
-float \hyperlink{a00150_af89807d2195915ee9a0c42317e110fc6}{interaction\-Radius} = 2.\-0f
+override string \hyperlink{a00150_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
 \end{DoxyCompactItemize}
-\subsection*{Properties}
+\subsection*{Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-float \hyperlink{a00150_a7bcde19f080bfd09bbc833b8fb555cf7}{movement\-From\-Buttons}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\hyperlink{a00150_a9e7e90bbaed268529230512e4b5a2f77}{Parse\-Node} (\hyperlink{a00150}{Parse\-Node} \hyperlink{a00150_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00151}{Parser} p)
+\item 
+abstract string \hyperlink{a00150_a0d6611653f20c2e4d90a97a96c657137}{Print\-Tree} (int indent\-Level)
+\item 
+\hyperlink{a00140}{Node} \hyperlink{a00150_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
 \end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
+\subsection*{Package Attributes}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00150_a9e83ec3c6e45ee4dd17215e3030f6403}{On\-Draw\-Gizmos\-Selected} ()
-\begin{DoxyCompactList}\small\item\em Draw the range at which we'll start talking to people. \end{DoxyCompactList}\item 
-void \hyperlink{a00150_a8e78b2dc1cd221fb9d05b89e70155df4}{Update} ()
-\begin{DoxyCompactList}\small\item\em Update is called once per frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00150}{Parse\-Node} \hyperlink{a00150_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
+\item 
+int \hyperlink{a00150_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{a00150_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 32 of file Player\-Character.\-cs.
+Definition at line 57 of file Parser.\-cs.
 
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00150_a9e7e90bbaed268529230512e4b5a2f77}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!Parse\-Node@{Parse\-Node}}
+\index{Parse\-Node@{Parse\-Node}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{Parse\-Node}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node (
+\begin{DoxyParamCaption}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00150_a9e7e90bbaed268529230512e4b5a2f77}
+
+
+Definition at line 66 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Parse\-Node.\-line\-Number, Yarn.\-Parser.\-Parse\-Node.\-parent, and Yarn.\-Parser.\-tokens.
+
+
+\begin{DoxyCode}
+66                                                            \{
+67                 this.parent = \hyperlink{a00150_af313a82103fcc2ff5a177dbb06b92f7b}{parent};
+68                 \textcolor{keywordflow}{if} (p.tokens.Count > 0)
+69                     this.lineNumber = p.tokens.Peek().\hyperlink{a00150_a18b493382de0fde5b4299c1bd2250075}{lineNumber};
+70                 \textcolor{keywordflow}{else}
+71                     this.lineNumber = -1;
+72             \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00150_a574b6d984b8671c7a780d3d10e040a9b}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!Check\-For\-Nearby\-N\-P\-C@{Check\-For\-Nearby\-N\-P\-C}}
-\index{Check\-For\-Nearby\-N\-P\-C@{Check\-For\-Nearby\-N\-P\-C}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{Check\-For\-Nearby\-N\-P\-C}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Player\-Character.\-Check\-For\-Nearby\-N\-P\-C (
+\hypertarget{a00150_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!Node\-Parent@{Node\-Parent}}
+\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00150_a574b6d984b8671c7a780d3d10e040a9b}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00150_a580e520a29444fc23ac3660cbe514a09}
 
 
-Find all Dialogue\-Participants. 
+Definition at line 101 of file Parser.\-cs.
 
-Filter them to those that have a \hyperlink{a00051}{Yarn} start node and are in range; then start a conversation with the first one 
 
-Definition at line 84 of file Player\-Character.\-cs.
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option().
 
 
 \begin{DoxyCode}
-85         \{
-86             var allParticipants = \textcolor{keyword}{new} List<NPC> (FindObjectsOfType<NPC> ());
-87             var target = allParticipants.Find (delegate (NPC p) \{
-88                 \textcolor{keywordflow}{return} string.IsNullOrEmpty (p.talkToNode) == \textcolor{keyword}{false} && \textcolor{comment}{// has a conversation node?}
-89                 (p.transform.position - \textcolor{keyword}{this}.transform.position)\textcolor{comment}{// is in range?}
-90                 .magnitude <= \hyperlink{a00150_af89807d2195915ee9a0c42317e110fc6}{interactionRadius};
-91             \});
-92             \textcolor{keywordflow}{if} (target != null) \{
-93                 \textcolor{comment}{// Kick off the dialogue at this node.}
-94                 FindObjectOfType<DialogueRunner> ().StartDialogue (target.talkToNode);
-95             \}
-96         \}
+101                                        \{
+102                 var node = \textcolor{keyword}{this};
+103 
+104                 \textcolor{keywordflow}{do} \{
+105                     \textcolor{keywordflow}{if} (node is Node) \{
+106                         \textcolor{keywordflow}{return} node as Node;
+107                     \}
+108                     node = node.parent;
+109                 \} \textcolor{keywordflow}{while} (node
+110                     != null);
+111 
+112                 \textcolor{keywordflow}{return} null;
+113             \}
 \end{DoxyCode}
-\hypertarget{a00150_a9e83ec3c6e45ee4dd17215e3030f6403}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!On\-Draw\-Gizmos\-Selected@{On\-Draw\-Gizmos\-Selected}}
-\index{On\-Draw\-Gizmos\-Selected@{On\-Draw\-Gizmos\-Selected}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{On\-Draw\-Gizmos\-Selected}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Player\-Character.\-On\-Draw\-Gizmos\-Selected (
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00150_a580e520a29444fc23ac3660cbe514a09_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00150_a0d6611653f20c2e4d90a97a96c657137}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}abstract string Yarn.\-Parser.\-Parse\-Node.\-Print\-Tree (
 \begin{DoxyParamCaption}
-{}
+\item[{int}]{indent\-Level}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00150_a9e83ec3c6e45ee4dd17215e3030f6403}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [pure virtual]}}}\label{a00150_a0d6611653f20c2e4d90a97a96c657137}
 
 
-Draw the range at which we'll start talking to people. 
+Implemented in \hyperlink{a00145_a0c2ad7c4d6837ffc7b5325bbb8330c51}{Yarn.\-Parser.\-Operator}, \hyperlink{a00041_accb9ddcb472eb035a65188c857b8efd8}{Yarn.\-Parser.\-Assignment\-Statement}, \hyperlink{a00106_a509ba6d93218203bae56a5a7a82e8261}{Yarn.\-Parser.\-Expression}, \hyperlink{a00190_ae4659e4431e9846a45e0d048c960781a}{Yarn.\-Parser.\-Value\-Node}, \hyperlink{a00120_a5494c1daef8e0f3ac3ab68f91db4f332}{Yarn.\-Parser.\-If\-Statement}, \hyperlink{a00148_aafba8c941dbd3d0ef841ac9d472e1ba3}{Yarn.\-Parser.\-Option\-Statement}, \hyperlink{a00045_aaaacfc4e3ff2871fa5e2fb75e48636de}{Yarn.\-Parser.\-Block}, \hyperlink{a00161_a529a2ef1aa6d7226db4ea7f3ea92b8c2}{Yarn.\-Parser.\-Shortcut\-Option}, \hyperlink{a00162_a7b60f85e46b8767db81177ec40e83104}{Yarn.\-Parser.\-Shortcut\-Option\-Group}, \hyperlink{a00085_ad8c821f5f5671cdbac6e4a6fc0b9174b}{Yarn.\-Parser.\-Custom\-Command}, \hyperlink{a00168_aaac6d1e0c3b31f33e1c6f964c205153e}{Yarn.\-Parser.\-Statement}, and \hyperlink{a00140_ab11501ebf251fdaa7cfe44edfa993068}{Yarn.\-Parser.\-Node}.
+
+\hypertarget{a00150_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!Tags\-To\-String@{Tags\-To\-String}}
+\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)}}\label{a00150_a054f36c80d5eeacd569a8859f599af67}
+
+
+Definition at line 79 of file Parser.\-cs.
 
 
 
-Definition at line 44 of file Player\-Character.\-cs.
+References Yarn.\-Parser.\-Tab(), and Yarn.\-Parser.\-Parse\-Node.\-tags.
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Print\-Tree(), and Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree().
 
 
 \begin{DoxyCode}
-44                                     \{
-45             Gizmos.color = Color.blue;
-46 
-47             \textcolor{comment}{// Flatten the sphere into a disk, which looks nicer in 2D games}
-48             Gizmos.matrix = Matrix4x4.TRS(transform.position, Quaternion.identity, \textcolor{keyword}{new} Vector3(1,1,0));
-49 
-50             \textcolor{comment}{// Need to draw at position zero because we set position in the line above}
-51             Gizmos.DrawWireSphere(Vector3.zero, \hyperlink{a00150_af89807d2195915ee9a0c42317e110fc6}{interactionRadius});
-52         \}
+80             \{
+81                 \textcolor{keywordflow}{if} (\hyperlink{a00150_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
+82                     var s = \textcolor{keyword}{new} StringBuilder ();
+83 
+84                     s.Append (\hyperlink{a00151_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
+85                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00150_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
+86                         s.Append(\hyperlink{a00151_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
+87                     \}
+88                     \textcolor{keywordflow}{return} s.ToString ();
+89                 \} \textcolor{keywordflow}{else} \{
+90                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+91                 \}
+92 
+93             \}
 \end{DoxyCode}
-\hypertarget{a00150_a8e78b2dc1cd221fb9d05b89e70155df4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!Update@{Update}}
-\index{Update@{Update}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Player\-Character.\-Update (
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00150_a054f36c80d5eeacd569a8859f599af67_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00150_a054f36c80d5eeacd569a8859f599af67_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00150_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00150_a8e78b2dc1cd221fb9d05b89e70155df4}
+)}}\label{a00150_a18c67cb16090d0889bb9d6c8c6c565f8}
 
 
-Update is called once per frame. 
-
-
-
-Definition at line 55 of file Player\-Character.\-cs.
+Definition at line 95 of file Parser.\-cs.
 
 
 \begin{DoxyCode}
-55                        \{
-56 
-57             \textcolor{comment}{// Remove all player control when we're in dialogue}
-58             \textcolor{keywordflow}{if} (FindObjectOfType<DialogueRunner>().isDialogueRunning == \textcolor{keyword}{true}) \{
-59                 \textcolor{keywordflow}{return};
-60             \}
-61 
-62             \textcolor{comment}{// Move the player, clamping them to within the boundaries }
-63             \textcolor{comment}{// of the level.}
-64             var movement = Input.GetAxis(\textcolor{stringliteral}{"Horizontal"});
-65             movement += \hyperlink{a00150_a7bcde19f080bfd09bbc833b8fb555cf7}{movementFromButtons};
-66             movement *= (\hyperlink{a00150_adc602a4b2c7e44e4b15a11f1ffcf07e4}{moveSpeed} * Time.deltaTime);
-67 
-68             var newPosition = transform.position;
-69             newPosition.x += movement;
-70             newPosition.x = Mathf.Clamp(newPosition.x, \hyperlink{a00150_ac025d4f4afaf854f8256e0d2d03e5b52}{minPosition}, 
-      \hyperlink{a00150_ada9dd748a1d89a7f9b12ac8967a07ae6}{maxPosition});
-71 
-72             transform.position = newPosition;
-73 
-74             \textcolor{comment}{// Detect if we want to start a conversation}
-75             \textcolor{keywordflow}{if} (Input.GetKeyDown(KeyCode.Space)) \{
-76                 \hyperlink{a00150_a574b6d984b8671c7a780d3d10e040a9b}{CheckForNearbyNPC} ();
-77             \}
-78         \}
+96             \{
+97                 \textcolor{keywordflow}{return} this.GetType ().Name;
+98             \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00150_af89807d2195915ee9a0c42317e110fc6}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!interaction\-Radius@{interaction\-Radius}}
-\index{interaction\-Radius@{interaction\-Radius}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{interaction\-Radius}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-interaction\-Radius = 2.\-0f}}\label{a00150_af89807d2195915ee9a0c42317e110fc6}
+\hypertarget{a00150_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}}}\label{a00150_a18b493382de0fde5b4299c1bd2250075}
 
 
-Definition at line 39 of file Player\-Character.\-cs.
-
-\hypertarget{a00150_ada9dd748a1d89a7f9b12ac8967a07ae6}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!max\-Position@{max\-Position}}
-\index{max\-Position@{max\-Position}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{max\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-max\-Position = 5.\-3f}}\label{a00150_ada9dd748a1d89a7f9b12ac8967a07ae6}
-
-
-Definition at line 35 of file Player\-Character.\-cs.
-
-\hypertarget{a00150_ac025d4f4afaf854f8256e0d2d03e5b52}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!min\-Position@{min\-Position}}
-\index{min\-Position@{min\-Position}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{min\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-min\-Position = -\/5.\-3f}}\label{a00150_ac025d4f4afaf854f8256e0d2d03e5b52}
-
-
-Definition at line 34 of file Player\-Character.\-cs.
-
-\hypertarget{a00150_adc602a4b2c7e44e4b15a11f1ffcf07e4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!move\-Speed@{move\-Speed}}
-\index{move\-Speed@{move\-Speed}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{move\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-move\-Speed = 1.\-0f}}\label{a00150_adc602a4b2c7e44e4b15a11f1ffcf07e4}
-
-
-Definition at line 37 of file Player\-Character.\-cs.
+Definition at line 62 of file Parser.\-cs.
 
 
 
-\subsection{Property Documentation}
-\hypertarget{a00150_a7bcde19f080bfd09bbc833b8fb555cf7}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!movement\-From\-Buttons@{movement\-From\-Buttons}}
-\index{movement\-From\-Buttons@{movement\-From\-Buttons}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{movement\-From\-Buttons}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-movement\-From\-Buttons\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00150_a7bcde19f080bfd09bbc833b8fb555cf7}
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
+
+\hypertarget{a00150_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!parent@{parent}}
+\index{parent@{parent}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}}}\label{a00150_af313a82103fcc2ff5a177dbb06b92f7b}
 
 
-Definition at line 41 of file Player\-Character.\-cs.
+Definition at line 59 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
+
+\hypertarget{a00150_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!tags@{tags}}
+\index{tags@{tags}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}}}\label{a00150_a58b3a15788fd2d4127d73619dc6d04ae}
+
+
+Definition at line 77 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option(), Yarn.\-Parser.\-Statement.\-Statement(), and Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00300}{Player\-Character.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00316}{Parser.\-cs}\end{DoxyCompactItemize}

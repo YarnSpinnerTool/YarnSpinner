@@ -1,17 +1,15 @@
 var a00154 =
 [
-    [ "ProjectTests", "a00154.html#af8cec595dce7455eeace4841d0f71a35", null ],
-    [ "ExpectLine", "a00154.html#ac21a5082ddac1da9db17ae54038df44e", null ],
-    [ "HandleResult", "a00154.html#a7b525f85a26d7c942e1cbfa5d6453893", null ],
-    [ "Init", "a00154.html#a09fb3b241843b94176be710e4a2a6833", null ],
-    [ "RunStandardTestcase", "a00154.html#abffa134d40d72b21e6b35c3bf05fc53f", null ],
-    [ "TestLoadingSingleFile", "a00154.html#a7d3dccb3f5ddf0b24e65782b7af15369", null ],
-    [ "dialogue", "a00154.html#a4cff5de56c4b8a91c76b6eb2d622a795", null ],
-    [ "errorsCauseFailures", "a00154.html#ac978fe85db843c51411f5517bdbe0eb8", null ],
-    [ "experimentalMode", "a00154.html#ad7914a14ec1a746a7d02fb9b2c69e91b", null ],
-    [ "storage", "a00154.html#a23d59ace1516ca72924c6fe3feafd3f7", null ],
-    [ "isExpectingLine", "a00154.html#a47f35b8e8123ed9471883d02b8bc9f3e", null ],
-    [ "ProjectRootPath", "a00154.html#ab1ad614f465a49447da31c4000ec6b3e", null ],
-    [ "TestDataPath", "a00154.html#aa9b4d902d61adad7165154a265f69aa4", null ],
-    [ "UnityDemoScriptsPath", "a00154.html#a39922286f6255e4fd0e433a4fc7521c4", null ]
+    [ "DumpCode", "a00154.html#a2f5bb468ce53eb7bbe647e3c11ddbb61", null ],
+    [ "GetString", "a00154.html#a14737b93594c4aab25c59cb0a3c918f7", null ],
+    [ "GetTagsForNode", "a00154.html#a116312a32b20bc18e09f90c9c92a079f", null ],
+    [ "GetTextForNode", "a00154.html#aad8029f37832ff1985fad6a31e51afd8", null ],
+    [ "Include", "a00154.html#afd3385ca1f7589b3b9dae3646e4fee84", null ],
+    [ "LoadStrings", "a00154.html#a977d1ed02e3f6f39d30dfea1663e7927", null ],
+    [ "RegisterString", "a00154.html#a9baf491479375aa8c3aa2b0c31cf0932", null ],
+    [ "lineInfo", "a00154.html#a0d4da395947767b4a1eaaff8a9842adc", null ],
+    [ "nodes", "a00154.html#a3f4928a577c88263ad016be259b175c4", null ],
+    [ "stringCount", "a00154.html#a8ef1d10094ef00311aade6715ba78ec7", null ],
+    [ "strings", "a00154.html#a59263e00cecfe36d9881b4c30b048f09", null ],
+    [ "untaggedStrings", "a00154.html#aa8fedbfceaf931d1da3f600eaab6ae87", null ]
 ];

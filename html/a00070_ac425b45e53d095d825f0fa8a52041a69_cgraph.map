@@ -1,0 +1,5 @@
+<map id="CsvHelper.CsvParser.GetChar" name="CsvHelper.CsvParser.GetChar">
+<area shape="rect" id="node2" href="$a00070.html#a5ccc63fca7b292e0a313ccf81c5ac48c" title="Adds the field to the current record. " alt="" coords="256,5,461,46"/>
+<area shape="rect" id="node3" href="$a00070.html#a699a73656cc4d6b06df34b37460a0963" title="Appends the current buffer data to the field. " alt="" coords="259,70,458,111"/>
+<area shape="rect" id="node4" href="$a00070.html#a80b65e1df274bb8ef11d8bc5ba142982" title="Updates the byte position using the data from the reader buffer. " alt="" coords="261,135,457,177"/>
+</map>

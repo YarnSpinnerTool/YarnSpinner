@@ -1,71 +1,59 @@
-\hypertarget{a00137}{\section{Mobile\-Only Class Reference}
-\label{a00137}\index{Mobile\-Only@{Mobile\-Only}}
+\hypertarget{a00137}{\section{Package Yarn.\-Unity}
+\label{a00137}\index{Yarn.\-Unity@{Yarn.\-Unity}}
 }
-
-
-Removes an object from the scene when the game is running on a non-\/mobile platform.  
-
-
-
-
-Inheritance diagram for Mobile\-Only\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=162pt]{a00405}
-\end{center}
-\end{figure}
-
-
-Collaboration diagram for Mobile\-Only\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=162pt]{a00406}
-\end{center}
-\end{figure}
-\subsection*{Private Member Functions}
+\subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00137_acfb1b3a9c8f62b30300331fb84752022}{Awake} ()
+package \hyperlink{a00373}{Example}
+\begin{DoxyCompactList}\small\item\em attached to the non-\/player characters, and stores the name of the \hyperlink{a00053}{Yarn} node that should be run when you talk to them. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{a00137_a00381}{Localised\-String\-Group}
+\item 
+class \hyperlink{a00095}{Dialogue\-Runner}
+\begin{DoxyCompactList}\small\item\em Dialogue\-Runners act as the interface between your game and \hyperlink{a00374}{Yarn\-Spinner}. \end{DoxyCompactList}\item 
+class \hyperlink{a00195}{Yarn\-Command\-Attribute}
+\begin{DoxyCompactList}\small\item\em Apply this attribute to methods in your scripts to expose them to \hyperlink{a00053}{Yarn}. \end{DoxyCompactList}\item 
+class \hyperlink{a00097}{Dialogue\-U\-I\-Behaviour}
+\begin{DoxyCompactList}\small\item\em Scripts that can act as the U\-I for the conversation should subclass this. \end{DoxyCompactList}\item 
+class \hyperlink{a00193}{Variable\-Storage\-Behaviour}
+\begin{DoxyCompactList}\small\item\em Scripts that can act as a variable storage should subclass this. \end{DoxyCompactList}\item 
+class \hyperlink{a00188}{Yarn\-Spinner\-Editor\-Window}
+\item 
+class \hyperlink{a00113}{Icons}
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-Removes an object from the scene when the game is running on a non-\/mobile platform. 
-
-Definition at line 7 of file Mobile\-Only.\-cs.
-
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00137_acfb1b3a9c8f62b30300331fb84752022}{\index{Mobile\-Only@{Mobile\-Only}!Awake@{Awake}}
-\index{Awake@{Awake}!MobileOnly@{Mobile\-Only}}
-\subsubsection[{Awake}]{\setlength{\rightskip}{0pt plus 5cm}void Mobile\-Only.\-Awake (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00137_acfb1b3a9c8f62b30300331fb84752022}
+\subsection{Class Documentation}
+\index{Yarn\-::\-Unity\-::\-Localised\-String\-Group@{Yarn\-::\-Unity\-::\-Localised\-String\-Group}}\label{a00381}
+\hypertarget{a00137_a00381}{}
+\subsubsection{class Yarn\-:\-:Unity\-:\-:Localised\-String\-Group}
 
 
-Definition at line 10 of file Mobile\-Only.\-cs.
+Definition at line 37 of file Dialogue\-Runner.\-cs.
 
 
-\begin{DoxyCode}
-10                   \{
-11 
-12         \textcolor{keywordflow}{if} (Application.isMobilePlatform || Application.platform == RuntimePlatform.WebGLPlayer ) \{
-13             \textcolor{comment}{// Hang around}
-14         \} \textcolor{keywordflow}{else} \{
-15             Destroy(gameObject);
-16         \}
-17 
-18     \}
-\end{DoxyCode}
 
+Collaboration diagram for Yarn.\-Unity.\-Localised\-String\-Group\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{a00387}
+\end{center}
+\end{figure}
+\begin{DoxyFields}{Class Members}
+\hypertarget{a00137_a395d808fa32cb4fe68a62d7852534e1a}{System\-Language}\label{a00137_a395d808fa32cb4fe68a62d7852534e1a}
+&
+language&
+\\
+\hline
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
-\item 
-Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00298}{Mobile\-Only.\-cs}\end{DoxyCompactItemize}
+\hypertarget{a00137_a636624112fd57fedda96d485d20e6b9e}{Text\-Asset\mbox{[}$\,$\mbox{]}}\label{a00137_a636624112fd57fedda96d485d20e6b9e}
+&
+string\-Files&
+\\
+\hline
+
+\end{DoxyFields}

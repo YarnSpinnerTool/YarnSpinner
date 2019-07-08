@@ -1,245 +1,101 @@
-\hypertarget{a00147}{\section{Yarn.\-Parse\-Exception Class Reference}
-\label{a00147}\index{Yarn.\-Parse\-Exception@{Yarn.\-Parse\-Exception}}
+\hypertarget{a00147}{\section{Yarn.\-Dialogue.\-Option\-Set\-Result Class Reference}
+\label{a00147}\index{Yarn.\-Dialogue.\-Option\-Set\-Result@{Yarn.\-Dialogue.\-Option\-Set\-Result}}
 }
 
 
-Inheritance diagram for Yarn.\-Parse\-Exception\-:
+The client should show a list of options, and call set\-Selected\-Option\-Delegate before asking for the next line. It's an error if you don't.  
+
+
+
+
+Inheritance diagram for Yarn.\-Dialogue.\-Option\-Set\-Result\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=188pt]{a00712}
+\includegraphics[width=232pt]{a00632}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Parse\-Exception\-:
+Collaboration diagram for Yarn.\-Dialogue.\-Option\-Set\-Result\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=188pt]{a00713}
+\includegraphics[width=249pt]{a00633}
 \end{center}
 \end{figure}
-\subsection*{Package Functions}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00147_aa3c4f5c8b0ae86097bbc46044df9f317}{Parse\-Exception} (string message)
+\hyperlink{a00147_a934c02fb1047ffd05b2b5a9c6fcd7acb}{Option\-Set\-Result} (I\-List$<$ string $>$ option\-Strings, \hyperlink{a00053_a39866cbb03c03a35805d598b5d4ad553}{Option\-Chooser} set\-Selected\-Option)
 \end{DoxyCompactItemize}
-\subsection*{Static Package Functions}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{a00147}{Parse\-Exception} \hyperlink{a00147_a511a51bb42dc5bb107eb68f7e5cf5ff1}{Make} (\hyperlink{a00173}{Token} found\-Token, params \hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} expected\-Types)
+\hyperlink{a00053_a00383}{Options} \hyperlink{a00147_abda9c3047ff9d3c3ec5540566a239315}{options}
 \item 
-static \hyperlink{a00147}{Parse\-Exception} \hyperlink{a00147_a173f3cabc4741d9d9e016310e90c1c9f}{Make} (\hyperlink{a00173}{Token} most\-Recent\-Token, string message)
-\item 
-static \hyperlink{a00147}{Parse\-Exception} \hyperlink{a00147_a0265905b09fbd675d40c452d9fc61207}{Make} (\hyperlink{a00320_a7e45f8222713cb764832fd3c69d0268f}{Antlr4.\-Runtime.\-Parser\-Rule\-Context} context, string message)
-\end{DoxyCompactItemize}
-\subsection*{Package Attributes}
-\begin{DoxyCompactItemize}
-\item 
-int \hyperlink{a00147_ab335169367e64fd6d89d58b3ac573751}{line\-Number} = 0
+\hyperlink{a00053_a39866cbb03c03a35805d598b5d4ad553}{Option\-Chooser} \hyperlink{a00147_a6f2683598cf0f62b76bb864640cc79dd}{set\-Selected\-Option\-Delegate}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+The client should show a list of options, and call set\-Selected\-Option\-Delegate before asking for the next line. It's an error if you don't. 
 
-
-Definition at line 11 of file Program.\-cs.
+Definition at line 170 of file Dialogue.\-cs.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00147_aa3c4f5c8b0ae86097bbc46044df9f317}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Parse\-Exception@{Parse\-Exception}}
-\index{Parse\-Exception@{Parse\-Exception}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{Parse\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parse\-Exception.\-Parse\-Exception (
+\hypertarget{a00147_a934c02fb1047ffd05b2b5a9c6fcd7acb}{\index{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}!Option\-Set\-Result@{Option\-Set\-Result}}
+\index{Option\-Set\-Result@{Option\-Set\-Result}!Yarn::Dialogue::OptionSetResult@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}}
+\subsubsection[{Option\-Set\-Result}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Dialogue.\-Option\-Set\-Result.\-Option\-Set\-Result (
 \begin{DoxyParamCaption}
-\item[{string}]{message}
+\item[{I\-List$<$ string $>$}]{option\-Strings, }
+\item[{{\bf Option\-Chooser}}]{set\-Selected\-Option}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00147_aa3c4f5c8b0ae86097bbc46044df9f317}
+)}}\label{a00147_a934c02fb1047ffd05b2b5a9c6fcd7acb}
 
 
-Definition at line 67 of file Program.\-cs.
+Definition at line 174 of file Dialogue.\-cs.
 
 
 
-Referenced by Yarn.\-Parse\-Exception.\-Make().
+References Yarn.\-Dialogue.\-Option\-Set\-Result.\-options.
 
 
 \begin{DoxyCode}
-67 : base(message) \{ \}
+174                                                                                                   \{
+175                 var \hyperlink{a00147_abda9c3047ff9d3c3ec5540566a239315}{options} = \textcolor{keyword}{new} Options();
+176                 options.options = optionStrings;
+177                 this.options = \hyperlink{a00147_abda9c3047ff9d3c3ec5540566a239315}{options};
+178                 this.setSelectedOptionDelegate = setSelectedOption;
+179             \}
 \end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00147_aa3c4f5c8b0ae86097bbc46044df9f317_icgraph}
-\end{center}
-\end{figure}
-
-
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00147_a511a51bb42dc5bb107eb68f7e5cf5ff1}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
-\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
-\begin{DoxyParamCaption}
-\item[{{\bf Token}}]{found\-Token, }
-\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{expected\-Types}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00147_a511a51bb42dc5bb107eb68f7e5cf5ff1}
-
-
-Definition at line 16 of file Program.\-cs.
-
-
-
-References Yarn.\-Parse\-Exception.\-line\-Number, and Yarn.\-Parse\-Exception.\-Parse\-Exception().
-
-
-\begin{DoxyCode}
-17         \{
-18 
-19             var \hyperlink{a00147_ab335169367e64fd6d89d58b3ac573751}{lineNumber} = foundToken.lineNumber + 1;
-20 
-21             var expectedTypeNames = \textcolor{keyword}{new} List<String>();
-22             \textcolor{keywordflow}{foreach} (var type \textcolor{keywordflow}{in} expectedTypes)
-23             \{
-24                 expectedTypeNames.Add(type.ToString());
-25             \}
-26 
-27             \textcolor{keywordtype}{string} possibleValues = string.Join(\textcolor{stringliteral}{","}, expectedTypeNames.ToArray());
-28             \textcolor{keywordtype}{string} message = string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Line \{0\}:\{1\}: Expected \{2\}, but
-       found \{3\}"},
-29                                            \hyperlink{a00147_ab335169367e64fd6d89d58b3ac573751}{lineNumber},
-30                                            foundToken.columnNumber,
-31                                            possibleValues,
-32                                            foundToken.type.ToString()
-33                                            );
-34             var e = \textcolor{keyword}{new} \hyperlink{a00147_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException}(message);
-35             e.lineNumber = \hyperlink{a00147_ab335169367e64fd6d89d58b3ac573751}{lineNumber};
-36             \textcolor{keywordflow}{return} e;
-37         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00147_a511a51bb42dc5bb107eb68f7e5cf5ff1_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00147_a173f3cabc4741d9d9e016310e90c1c9f}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
-\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
-\begin{DoxyParamCaption}
-\item[{{\bf Token}}]{most\-Recent\-Token, }
-\item[{string}]{message}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00147_a173f3cabc4741d9d9e016310e90c1c9f}
-
-
-Definition at line 39 of file Program.\-cs.
-
-
-
-References Yarn.\-Parse\-Exception.\-line\-Number, and Yarn.\-Parse\-Exception.\-Parse\-Exception().
-
-
-\begin{DoxyCode}
-40         \{
-41             var \hyperlink{a00147_ab335169367e64fd6d89d58b3ac573751}{lineNumber} = mostRecentToken.lineNumber + 1;
-42             \textcolor{keywordtype}{string} theMessage = string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Line \{0\}:\{1\}: \{2\}"},
-43                                  \hyperlink{a00147_ab335169367e64fd6d89d58b3ac573751}{lineNumber},
-44                                 mostRecentToken.columnNumber,
-45                                  message);
-46             var e = \textcolor{keyword}{new} \hyperlink{a00147_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException}(theMessage);
-47             e.lineNumber = \hyperlink{a00147_ab335169367e64fd6d89d58b3ac573751}{lineNumber};
-48             \textcolor{keywordflow}{return} e;
-49         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00147_a173f3cabc4741d9d9e016310e90c1c9f_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00147_a0265905b09fbd675d40c452d9fc61207}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
-\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
-\begin{DoxyParamCaption}
-\item[{{\bf Antlr4.\-Runtime.\-Parser\-Rule\-Context}}]{context, }
-\item[{string}]{message}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00147_a0265905b09fbd675d40c452d9fc61207}
-
-
-Definition at line 51 of file Program.\-cs.
-
-
-
-References Yarn.\-Parse\-Exception.\-Parse\-Exception().
-
-
-\begin{DoxyCode}
-52         \{
-53             \textcolor{keywordtype}{int} line = context.Start.Line;
-54 
-55             \textcolor{comment}{// getting the text that has the issue inside}
-56             \textcolor{keywordtype}{int} start = context.Start.StartIndex;
-57             \textcolor{keywordtype}{int} end = context.Stop.StopIndex;
-58             \textcolor{keywordtype}{string} body = context.Start.InputStream.GetText(\textcolor{keyword}{new} Antlr4.Runtime.Misc.Interval(start, end));
-59 
-60             \textcolor{keywordtype}{string} theMessage = string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Error on line \{0\}\(\backslash\)n\{1\}\(\backslash\)n\{2\}"}, 
-      line,body,message);
-61 
-62             var e = \textcolor{keyword}{new} \hyperlink{a00147_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException}(theMessage);
-63             e.lineNumber = line;
-64             \textcolor{keywordflow}{return} e;
-65         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00147_a0265905b09fbd675d40c452d9fc61207_cgraph}
-\end{center}
-\end{figure}
-
-
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00147_ab335169367e64fd6d89d58b3ac573751}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!line\-Number@{line\-Number}}
-\index{line\-Number@{line\-Number}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parse\-Exception.\-line\-Number = 0\hspace{0.3cm}{\ttfamily [package]}}}\label{a00147_ab335169367e64fd6d89d58b3ac573751}
+\hypertarget{a00147_abda9c3047ff9d3c3ec5540566a239315}{\index{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}!options@{options}}
+\index{options@{options}!Yarn::Dialogue::OptionSetResult@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}}
+\subsubsection[{options}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Options} Yarn.\-Dialogue.\-Option\-Set\-Result.\-options}}\label{a00147_abda9c3047ff9d3c3ec5540566a239315}
 
 
-Definition at line 14 of file Program.\-cs.
+Definition at line 171 of file Dialogue.\-cs.
 
 
 
-Referenced by Yarn.\-Parse\-Exception.\-Make().
+Referenced by Yarn.\-Dialogue.\-Option\-Set\-Result.\-Option\-Set\-Result().
+
+\hypertarget{a00147_a6f2683598cf0f62b76bb864640cc79dd}{\index{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}!set\-Selected\-Option\-Delegate@{set\-Selected\-Option\-Delegate}}
+\index{set\-Selected\-Option\-Delegate@{set\-Selected\-Option\-Delegate}!Yarn::Dialogue::OptionSetResult@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}}
+\subsubsection[{set\-Selected\-Option\-Delegate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Option\-Chooser} Yarn.\-Dialogue.\-Option\-Set\-Result.\-set\-Selected\-Option\-Delegate}}\label{a00147_a6f2683598cf0f62b76bb864640cc79dd}
+
+
+Definition at line 172 of file Dialogue.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00314}{Program.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00308}{Dialogue.\-cs}\end{DoxyCompactItemize}

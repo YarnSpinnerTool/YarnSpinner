@@ -1,8 +1,11 @@
 var a00183 =
 [
-    [ "CanConvertFrom", "a00183.html#a2acfe170e7562c745bcb0aaff3d74020", null ],
-    [ "CanConvertFrom", "a00183.html#a470d21adaa704eb281250dbd112ff91a", null ],
-    [ "CanConvertTo", "a00183.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
-    [ "ConvertFromString", "a00183.html#a15686325b6bfa7648b65f201ecf50cd2", null ],
-    [ "ConvertToString", "a00183.html#a36cb2f9b24f15a671293f3a722324c27", null ]
+    [ "TypeInfo", "a00183.html#ae2bbf4462c274977b6df5c994808cc39", null ],
+    [ "IsAssignableFrom", "a00183.html#a8c74647f572e998dd7e843a752d5234d", null ],
+    [ "BaseType", "a00183.html#a8bb78c2b0377f57dba1a3e2031216029", null ],
+    [ "IsClass", "a00183.html#a6ae2d0f4c557010a075a6fecab18fbb5", null ],
+    [ "IsGenericType", "a00183.html#a6a532f6a581b3280d1837fc242f314af", null ],
+    [ "IsPrimitive", "a00183.html#ab38ba26ebc21ec6fb908b74eede99a5c", null ],
+    [ "IsValueType", "a00183.html#ae2255904b8743c47a185d62909404aed", null ],
+    [ "type", "a00183.html#a71c4f4b000d08808c8965222d4ba1b8d", null ]
 ];

@@ -2,8 +2,8 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_c5cf8f143880c36815d9a9500b3a0ab7" kind="dir">
     <compoundname>Unity/Assets/YarnSpinner/Code/Editor</compoundname>
-    <innerfile refid="a00293">YarnSpinnerEditorWindow.cs</innerfile>
-    <innerfile refid="a00294">YarnSpinnerTests.cs</innerfile>
+    <innerfile refid="a00296">YarnSpinnerEditorWindow.cs</innerfile>
+    <innerfile refid="a00297">YarnSpinnerTests.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

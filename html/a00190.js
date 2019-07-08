@@ -1,8 +1,14 @@
 var a00190 =
 [
-    [ "Clear", "a00190.html#af98c1e41f351cb96e13f668ca2fd9d92", null ],
-    [ "GetNumber", "a00190.html#a04b061c52d8ac814ce559da5286fbc71", null ],
-    [ "GetValue", "a00190.html#accab1fc5c8fc353dbfc53ca0f4029576", null ],
-    [ "SetNumber", "a00190.html#aa28c3694f985cf73489efc301b9d41dd", null ],
-    [ "SetValue", "a00190.html#aa90ff61224432c5ed3ce72199c55f440", null ]
+    [ "ValueNode", "a00190.html#afeaea21eee1c8360a76a202a419d3912", null ],
+    [ "ValueNode", "a00190.html#ac63fbe99131dc3b42af16a2d087c0655", null ],
+    [ "NodeParent", "a00190.html#a580e520a29444fc23ac3660cbe514a09", null ],
+    [ "PrintTree", "a00190.html#ae4659e4431e9846a45e0d048c960781a", null ],
+    [ "TagsToString", "a00190.html#a054f36c80d5eeacd569a8859f599af67", null ],
+    [ "ToString", "a00190.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
+    [ "UseToken", "a00190.html#a7be6a979ee21b2d07ce541fb9c5b52df", null ],
+    [ "lineNumber", "a00190.html#a18b493382de0fde5b4299c1bd2250075", null ],
+    [ "parent", "a00190.html#af313a82103fcc2ff5a177dbb06b92f7b", null ],
+    [ "tags", "a00190.html#a58b3a15788fd2d4127d73619dc6d04ae", null ],
+    [ "value", "a00190.html#a51ab5939344f9bfa21181c02cf0e341d", null ]
 ];

@@ -1,154 +1,195 @@
-\hypertarget{a00176}{\section{Yarn.\-Lexer.\-Token\-Rule Class Reference}
-\label{a00176}\index{Yarn.\-Lexer.\-Token\-Rule@{Yarn.\-Lexer.\-Token\-Rule}}
+\hypertarget{a00176}{\section{Yarn.\-Tokeniser\-Exception Class Reference}
+\label{a00176}\index{Yarn.\-Tokeniser\-Exception@{Yarn.\-Tokeniser\-Exception}}
 }
 
 
-Collaboration diagram for Yarn.\-Lexer.\-Token\-Rule\-:
+Inheritance diagram for Yarn.\-Tokeniser\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=194pt]{a00652}
+\includegraphics[width=230pt]{a00643}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Tokeniser\-Exception\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{a00644}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00176_a3d171ae7c4870659d2d1d977a216bdd7}{Token\-Rule} (\hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} \hyperlink{a00176_a0de6fac3b55cf0c61e07cea53ce67caa}{type}, Regex \hyperlink{a00176_a47a404d6637fae489c3c77729a01cc69}{regex}, string \hyperlink{a00176_af6a4bd3416c4e1b8e56f9db461d52d18}{enters\-State}=null, bool \hyperlink{a00176_ab0849136a1f27b4d13cb7a45e2fe7130}{delimits\-Text}=false)
+\hyperlink{a00176_ad00fcf742d2b0d476ce43b27a3f3b6c1}{Tokeniser\-Exception} (string message)
 \item 
-override string \hyperlink{a00176_a1ed23ad16b116ecb06dd75b157bf752f}{To\-String} ()
+\hyperlink{a00176_aa8674d006a0d29081a7b87bdd8ff2f4f}{Tokeniser\-Exception} (int \hyperlink{a00176_a54b936d7b4f26f88a07a66c5fc1d1ad1}{line\-Number}, int \hyperlink{a00176_aabf2ad38f3984297c1daede9be55e3d6}{column\-Number}, string message)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{a00176}{Tokeniser\-Exception} \hyperlink{a00176_af88cfa5eafdee355e1abb67e358497bd}{Expected\-Tokens\-From\-State} (int \hyperlink{a00176_a54b936d7b4f26f88a07a66c5fc1d1ad1}{line\-Number}, int \hyperlink{a00176_aabf2ad38f3984297c1daede9be55e3d6}{column\-Number}, \hyperlink{a00130}{Lexer.\-Lexer\-State} state)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-Regex \hyperlink{a00176_a47a404d6637fae489c3c77729a01cc69}{regex} = null
+int \hyperlink{a00176_a54b936d7b4f26f88a07a66c5fc1d1ad1}{line\-Number}
 \item 
-string \hyperlink{a00176_af6a4bd3416c4e1b8e56f9db461d52d18}{enters\-State}
-\item 
-\hyperlink{a00051_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} \hyperlink{a00176_a0de6fac3b55cf0c61e07cea53ce67caa}{type}
-\item 
-bool \hyperlink{a00176_a09f49e6edf9ace38a92d723998181f8f}{is\-Text\-Rule} = false
-\item 
-bool \hyperlink{a00176_ab0849136a1f27b4d13cb7a45e2fe7130}{delimits\-Text} = false
+int \hyperlink{a00176_aabf2ad38f3984297c1daede9be55e3d6}{column\-Number}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 280 of file Lexer.\-cs.
+Definition at line 34 of file Lexer.\-cs.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00176_a3d171ae7c4870659d2d1d977a216bdd7}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!Token\-Rule@{Token\-Rule}}
-\index{Token\-Rule@{Token\-Rule}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
-\subsubsection[{Token\-Rule}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Lexer.\-Token\-Rule.\-Token\-Rule (
+\hypertarget{a00176_ad00fcf742d2b0d476ce43b27a3f3b6c1}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!Tokeniser\-Exception@{Tokeniser\-Exception}}
+\index{Tokeniser\-Exception@{Tokeniser\-Exception}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
+\subsubsection[{Tokeniser\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception (
 \begin{DoxyParamCaption}
-\item[{{\bf Token\-Type}}]{type, }
-\item[{Regex}]{regex, }
-\item[{string}]{enters\-State = {\ttfamily null}, }
-\item[{bool}]{delimits\-Text = {\ttfamily false}}
+\item[{string}]{message}
 \end{DoxyParamCaption}
-)}}\label{a00176_a3d171ae7c4870659d2d1d977a216bdd7}
+)}}\label{a00176_ad00fcf742d2b0d476ce43b27a3f3b6c1}
 
 
-Definition at line 289 of file Lexer.\-cs.
+Definition at line 39 of file Lexer.\-cs.
 
 
 
-References Yarn.\-Lexer.\-Token\-Rule.\-delimits\-Text, Yarn.\-Lexer.\-Token\-Rule.\-enters\-State, Yarn.\-Lexer.\-Token\-Rule.\-regex, and Yarn.\-Lexer.\-Token\-Rule.\-type.
+Referenced by Yarn.\-Tokeniser\-Exception.\-Expected\-Tokens\-From\-State().
 
 
 \begin{DoxyCode}
-290             \{
-291                 this.regex = \hyperlink{a00176_a47a404d6637fae489c3c77729a01cc69}{regex};
-292                 this.entersState = \hyperlink{a00176_af6a4bd3416c4e1b8e56f9db461d52d18}{entersState};
-293                 this.type = \hyperlink{a00176_a0de6fac3b55cf0c61e07cea53ce67caa}{type};
-294                 this.delimitsText = \hyperlink{a00176_ab0849136a1f27b4d13cb7a45e2fe7130}{delimitsText};
-295             \}
+39 : base (message) \{\}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00176_ad00fcf742d2b0d476ce43b27a3f3b6c1_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00176_aa8674d006a0d29081a7b87bdd8ff2f4f}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!Tokeniser\-Exception@{Tokeniser\-Exception}}
+\index{Tokeniser\-Exception@{Tokeniser\-Exception}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
+\subsubsection[{Tokeniser\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception (
+\begin{DoxyParamCaption}
+\item[{int}]{line\-Number, }
+\item[{int}]{column\-Number, }
+\item[{string}]{message}
+\end{DoxyParamCaption}
+)}}\label{a00176_aa8674d006a0d29081a7b87bdd8ff2f4f}
+
+
+Definition at line 40 of file Lexer.\-cs.
+
+
+
+References Yarn.\-Tokeniser\-Exception.\-column\-Number, and Yarn.\-Tokeniser\-Exception.\-line\-Number.
+
+
+\begin{DoxyCode}
+41             : base(\textcolor{keywordtype}{string}.Format (CultureInfo.CurrentCulture, \textcolor{stringliteral}{"\{0\}:\{1\}: \{2\}"}, 
+      \hyperlink{a00176_a54b936d7b4f26f88a07a66c5fc1d1ad1}{lineNumber}, \hyperlink{a00176_aabf2ad38f3984297c1daede9be55e3d6}{columnNumber}, message))
+42         \{
+43             this.lineNumber = \hyperlink{a00176_a54b936d7b4f26f88a07a66c5fc1d1ad1}{lineNumber};
+44             this.columnNumber = \hyperlink{a00176_aabf2ad38f3984297c1daede9be55e3d6}{columnNumber};
+45         \}
 \end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00176_a1ed23ad16b116ecb06dd75b157bf752f}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Lexer.\-Token\-Rule.\-To\-String (
+\hypertarget{a00176_af88cfa5eafdee355e1abb67e358497bd}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!Expected\-Tokens\-From\-State@{Expected\-Tokens\-From\-State}}
+\index{Expected\-Tokens\-From\-State@{Expected\-Tokens\-From\-State}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
+\subsubsection[{Expected\-Tokens\-From\-State}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Tokeniser\-Exception} Yarn.\-Tokeniser\-Exception.\-Expected\-Tokens\-From\-State (
 \begin{DoxyParamCaption}
-{}
+\item[{int}]{line\-Number, }
+\item[{int}]{column\-Number, }
+\item[{{\bf Lexer.\-Lexer\-State}}]{state}
 \end{DoxyParamCaption}
-)}}\label{a00176_a1ed23ad16b116ecb06dd75b157bf752f}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00176_af88cfa5eafdee355e1abb67e358497bd}
 
 
-Definition at line 297 of file Lexer.\-cs.
+Definition at line 48 of file Lexer.\-cs.
 
 
 
-References Yarn.\-Lexer.\-Token\-Rule.\-type.
+References Yarn.\-Tokeniser\-Exception.\-column\-Number, Yarn.\-Tokeniser\-Exception.\-line\-Number, and Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception().
 
 
 \begin{DoxyCode}
-298             \{
-299                 \textcolor{keywordflow}{return} string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"[TokenRule: \{0\} - \{1\}]"}, 
-      \hyperlink{a00176_a0de6fac3b55cf0c61e07cea53ce67caa}{type}, this.regex);
-300             \}
+48                                                                                                            
+                       \{
+49 
+50             var names = \textcolor{keyword}{new} List<string> ();
+51             \textcolor{keywordflow}{foreach} (var tokenRule \textcolor{keywordflow}{in} state.tokenRules) \{
+52                 names.Add (tokenRule.type.ToString ());
+53             \}
+54 
+55             \textcolor{keywordtype}{string} nameList;
+56             \textcolor{keywordflow}{if} (names.Count > 1) \{
+57                 nameList = String.Join (\textcolor{stringliteral}{", "}, names.ToArray (), 0, names.Count - 1);
+58                 nameList += \textcolor{stringliteral}{", or "} + names [names.Count - 1];
+59             \} \textcolor{keywordflow}{else} \{
+60                 nameList = names [0];
+61             \}
+62 
+63             var message = string.Format (CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Expected \{0\}"}, nameList);
+64 
+65             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00176_ad00fcf742d2b0d476ce43b27a3f3b6c1}{TokeniserException} (\hyperlink{a00176_a54b936d7b4f26f88a07a66c5fc1d1ad1}{lineNumber}, 
+      \hyperlink{a00176_aabf2ad38f3984297c1daede9be55e3d6}{columnNumber}, message);
+66         \}
 \end{DoxyCode}
 
 
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00176_af88cfa5eafdee355e1abb67e358497bd_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
 \subsection{Member Data Documentation}
-\hypertarget{a00176_ab0849136a1f27b4d13cb7a45e2fe7130}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!delimits\-Text@{delimits\-Text}}
-\index{delimits\-Text@{delimits\-Text}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
-\subsubsection[{delimits\-Text}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Lexer.\-Token\-Rule.\-delimits\-Text = false}}\label{a00176_ab0849136a1f27b4d13cb7a45e2fe7130}
+\hypertarget{a00176_aabf2ad38f3984297c1daede9be55e3d6}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!column\-Number@{column\-Number}}
+\index{column\-Number@{column\-Number}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
+\subsubsection[{column\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Tokeniser\-Exception.\-column\-Number}}\label{a00176_aabf2ad38f3984297c1daede9be55e3d6}
 
 
-Definition at line 287 of file Lexer.\-cs.
-
-
-
-Referenced by Yarn.\-Lexer.\-Token\-Rule.\-Token\-Rule().
-
-\hypertarget{a00176_af6a4bd3416c4e1b8e56f9db461d52d18}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!enters\-State@{enters\-State}}
-\index{enters\-State@{enters\-State}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
-\subsubsection[{enters\-State}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Lexer.\-Token\-Rule.\-enters\-State}}\label{a00176_af6a4bd3416c4e1b8e56f9db461d52d18}
-
-
-Definition at line 284 of file Lexer.\-cs.
+Definition at line 37 of file Lexer.\-cs.
 
 
 
-Referenced by Yarn.\-Lexer.\-Token\-Rule.\-Token\-Rule().
+Referenced by Yarn.\-Tokeniser\-Exception.\-Expected\-Tokens\-From\-State(), and Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception().
 
-\hypertarget{a00176_a09f49e6edf9ace38a92d723998181f8f}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!is\-Text\-Rule@{is\-Text\-Rule}}
-\index{is\-Text\-Rule@{is\-Text\-Rule}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
-\subsubsection[{is\-Text\-Rule}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Lexer.\-Token\-Rule.\-is\-Text\-Rule = false}}\label{a00176_a09f49e6edf9ace38a92d723998181f8f}
-
-
-Definition at line 286 of file Lexer.\-cs.
-
-\hypertarget{a00176_a47a404d6637fae489c3c77729a01cc69}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!regex@{regex}}
-\index{regex@{regex}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
-\subsubsection[{regex}]{\setlength{\rightskip}{0pt plus 5cm}Regex Yarn.\-Lexer.\-Token\-Rule.\-regex = null}}\label{a00176_a47a404d6637fae489c3c77729a01cc69}
+\hypertarget{a00176_a54b936d7b4f26f88a07a66c5fc1d1ad1}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Tokeniser\-Exception.\-line\-Number}}\label{a00176_a54b936d7b4f26f88a07a66c5fc1d1ad1}
 
 
-Definition at line 281 of file Lexer.\-cs.
+Definition at line 36 of file Lexer.\-cs.
 
 
 
-Referenced by Yarn.\-Lexer.\-Token\-Rule.\-Token\-Rule().
-
-\hypertarget{a00176_a0de6fac3b55cf0c61e07cea53ce67caa}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!type@{type}}
-\index{type@{type}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
-\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-Type} Yarn.\-Lexer.\-Token\-Rule.\-type}}\label{a00176_a0de6fac3b55cf0c61e07cea53ce67caa}
-
-
-Definition at line 285 of file Lexer.\-cs.
-
-
-
-Referenced by Yarn.\-Lexer.\-Token\-Rule.\-Token\-Rule(), and Yarn.\-Lexer.\-Token\-Rule.\-To\-String().
+Referenced by Yarn.\-Tokeniser\-Exception.\-Expected\-Tokens\-From\-State(), and Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00310}{Lexer.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00313}{Lexer.\-cs}\end{DoxyCompactItemize}

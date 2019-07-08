@@ -1,282 +1,372 @@
-\hypertarget{a00179}{\section{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory Class Reference}
-\label{a00179}\index{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory@{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory}}
+\hypertarget{a00179}{\section{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory Class Reference}
+\label{a00179}\index{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory@{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory}}
 }
 
 
-Creates \hyperlink{a00178}{Type\-Converter\-Options}.  
+Creates \hyperlink{a00125}{I\-Type\-Converter}s.  
 
 
 
 
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory\-:
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=228pt]{a00576}
+\includegraphics[width=220pt]{a00575}
 \end{center}
 \end{figure}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \hyperlink{a00179_a3f70014574bc374acbe8a152e9e741f2}{Add\-Options} (Type type, \hyperlink{a00178}{Type\-Converter\-Options} options)
-\begin{DoxyCompactList}\small\item\em Adds the \hyperlink{a00178}{Type\-Converter\-Options} for the given Type. \end{DoxyCompactList}\item 
-static void \hyperlink{a00179_ab65b57d4c987d39e33bc136dfd5cb989}{Add\-Options$<$ T $>$} (\hyperlink{a00178}{Type\-Converter\-Options} options)
-\begin{DoxyCompactList}\small\item\em Adds the \hyperlink{a00178}{Type\-Converter\-Options} for the given Type. \end{DoxyCompactList}\item 
-static void \hyperlink{a00179_af5ceccd212df16bb55cf90cdcd76c286}{Remove\-Options} (Type type)
-\begin{DoxyCompactList}\small\item\em Removes the \hyperlink{a00178}{Type\-Converter\-Options} for the given type. \end{DoxyCompactList}\item 
-static void \hyperlink{a00179_a201c3cd79a7bfe46424929150f2b84d8}{Remove\-Options$<$ T $>$} ()
-\begin{DoxyCompactList}\small\item\em Removes the \hyperlink{a00178}{Type\-Converter\-Options} for the given type. \end{DoxyCompactList}\item 
-static \hyperlink{a00178}{Type\-Converter\-Options} \hyperlink{a00179_a2958beb79bb066c2b99c9fc97be9043d}{Get\-Options} (Type type)
-\begin{DoxyCompactList}\small\item\em Get the \hyperlink{a00178}{Type\-Converter\-Options} for the given Type. \end{DoxyCompactList}\item 
-static \hyperlink{a00178}{Type\-Converter\-Options} \hyperlink{a00179_abff68f203e82218e5d9d316a81d90157}{Get\-Options$<$ T $>$} ()
-\begin{DoxyCompactList}\small\item\em Get the \hyperlink{a00178}{Type\-Converter\-Options} for the given Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static void \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{Add\-Converter} (Type type, \hyperlink{a00125}{I\-Type\-Converter} type\-Converter)
+\begin{DoxyCompactList}\small\item\em Adds the \hyperlink{a00125}{I\-Type\-Converter} for the given Type. \end{DoxyCompactList}\item 
+static void \hyperlink{a00179_a744e7c3cf7515bb75c21d8b3c3fcff0a}{Add\-Converter$<$ T $>$} (\hyperlink{a00125}{I\-Type\-Converter} type\-Converter)
+\begin{DoxyCompactList}\small\item\em Adds the \hyperlink{a00125}{I\-Type\-Converter} for the given Type. \end{DoxyCompactList}\item 
+static void \hyperlink{a00179_a1044dbab9820df273baea7ee68e6a813}{Remove\-Converter} (Type type)
+\begin{DoxyCompactList}\small\item\em Removes the \hyperlink{a00125}{I\-Type\-Converter} for the given Type. \end{DoxyCompactList}\item 
+static void \hyperlink{a00179_ad2d287cebc4bc88d2a6e1423059f05ae}{Remove\-Converter$<$ T $>$} ()
+\begin{DoxyCompactList}\small\item\em Removes the \hyperlink{a00125}{I\-Type\-Converter} for the given Type. \end{DoxyCompactList}\item 
+static \hyperlink{a00125}{I\-Type\-Converter} \hyperlink{a00179_a17b3c37c648e5f760a7724e1445ce7ae}{Get\-Converter} (Type type)
+\begin{DoxyCompactList}\small\item\em Gets the converter for the given Type. \end{DoxyCompactList}\item 
+static \hyperlink{a00125}{I\-Type\-Converter} \hyperlink{a00179_a0674e190f4bcf27b0bdbc7da7e8f3d0f}{Get\-Converter$<$ T $>$} ()
+\begin{DoxyCompactList}\small\item\em Gets the converter for the given Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{a00179_aec2f01e01f95ff8c7a69ccaf991b6fa6}{Type\-Converter\-Factory} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{a00179}{Type\-Converter\-Factory} class. \end{DoxyCompactList}\item 
+static void \hyperlink{a00179_af698f94f4d69a2d9a4f4fa8ad0e21619}{Create\-Default\-Converters} ()
+\end{DoxyCompactItemize}
 \subsection*{Static Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 static readonly Dictionary\\*
-$<$ Type, \hyperlink{a00178}{Type\-Converter\-Options} $>$ \hyperlink{a00179_abef552dcc7a0c631d09fa8f2ea5fead4}{type\-Converter\-Options} = new Dictionary$<$Type, \hyperlink{a00178}{Type\-Converter\-Options}$>$()
+$<$ Type, \hyperlink{a00125}{I\-Type\-Converter} $>$ \hyperlink{a00179_a5229fe94e2acf6302b733c3d114f187e}{type\-Converters} = new Dictionary$<$Type, \hyperlink{a00125}{I\-Type\-Converter}$>$()
 \item 
-static readonly object \hyperlink{a00179_aeea3952a7ac1a8cb0291db079800ead4}{locker} = new object()
+static readonly object \hyperlink{a00179_aae823641d64f44cf1a79573bb55a5090}{locker} = new object()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Creates \hyperlink{a00178}{Type\-Converter\-Options}. 
+Creates \hyperlink{a00125}{I\-Type\-Converter}s. 
 
 
 
-Definition at line 13 of file Type\-Converter\-Options\-Factory.\-cs.
+Definition at line 15 of file Type\-Converter\-Factory.\-cs.
 
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00179_a3f70014574bc374acbe8a152e9e741f2}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!Add\-Options@{Add\-Options}}
-\index{Add\-Options@{Add\-Options}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
-\subsubsection[{Add\-Options}]{\setlength{\rightskip}{0pt plus 5cm}static void Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-Add\-Options (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00179_aec2f01e01f95ff8c7a69ccaf991b6fa6}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Type\-Converter\-Factory@{Type\-Converter\-Factory}}
+\index{Type\-Converter\-Factory@{Type\-Converter\-Factory}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Type\-Converter\-Factory}]{\setlength{\rightskip}{0pt plus 5cm}static Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Type\-Converter\-Factory (
 \begin{DoxyParamCaption}
-\item[{Type}]{type, }
-\item[{{\bf Type\-Converter\-Options}}]{options}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00179_a3f70014574bc374acbe8a152e9e741f2}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00179_aec2f01e01f95ff8c7a69ccaf991b6fa6}
 
 
-Adds the \hyperlink{a00178}{Type\-Converter\-Options} for the given Type. 
+Initializes the \hyperlink{a00179}{Type\-Converter\-Factory} class. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em type} & The type the options are for.\\
-\hline
-{\em options} & The options.\\
-\hline
-\end{DoxyParams}
 
-
-Definition at line 23 of file Type\-Converter\-Options\-Factory.\-cs.
+Definition at line 23 of file Type\-Converter\-Factory.\-cs.
 
 
 \begin{DoxyCode}
 24         \{
-25             \textcolor{keywordflow}{if}( type == null )
-26             \{
-27                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"type"} );
-28             \}
-29 
-30             \textcolor{keywordflow}{if}( options == null )
-31             \{
-32                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"options"} );
-33             \}
-34 
-35             lock( \hyperlink{a00179_aeea3952a7ac1a8cb0291db079800ead4}{locker} )
-36             \{
-37                 \hyperlink{a00179_abef552dcc7a0c631d09fa8f2ea5fead4}{typeConverterOptions}[type] = options;
-38             \}
-39         \}
+25             \hyperlink{a00179_af698f94f4d69a2d9a4f4fa8ad0e21619}{CreateDefaultConverters}();
+26         \}
 \end{DoxyCode}
-\hypertarget{a00179_ab65b57d4c987d39e33bc136dfd5cb989}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!Add\-Options$<$ T $>$@{Add\-Options$<$ T $>$}}
-\index{Add\-Options$<$ T $>$@{Add\-Options$<$ T $>$}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
-\subsubsection[{Add\-Options$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-Add\-Options}$<$ T $>$ (
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00179_aea523d100f0064672767dfe2c912cfca}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Add\-Converter@{Add\-Converter}}
+\index{Add\-Converter@{Add\-Converter}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Add\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}static void Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Add\-Converter (
 \begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options}
+\item[{Type}]{type, }
+\item[{{\bf I\-Type\-Converter}}]{type\-Converter}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00179_ab65b57d4c987d39e33bc136dfd5cb989}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00179_aea523d100f0064672767dfe2c912cfca}
 
 
-Adds the \hyperlink{a00178}{Type\-Converter\-Options} for the given Type. 
+Adds the \hyperlink{a00125}{I\-Type\-Converter} for the given Type. 
 
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type the options are for.\\
-\hline
-\end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em options} & The options.\\
+{\em type} & The type the converter converts.\\
+\hline
+{\em type\-Converter} & The type converter that converts the type.\\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 46 of file Type\-Converter\-Options\-Factory.\-cs.
+Definition at line 33 of file Type\-Converter\-Factory.\-cs.
 
 
 \begin{DoxyCode}
-47         \{
-48             \hyperlink{a00179_a3f70014574bc374acbe8a152e9e741f2}{AddOptions}( typeof( T ), options );
+34         \{
+35             \textcolor{keywordflow}{if}( type == null )
+36             \{
+37                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( nameof( type ) );
+38             \}
+39 
+40             \textcolor{keywordflow}{if}( typeConverter == null )
+41             \{
+42                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( nameof( typeConverter ) );
+43             \}
+44 
+45             lock( \hyperlink{a00179_aae823641d64f44cf1a79573bb55a5090}{locker} )
+46             \{
+47                 \hyperlink{a00179_a5229fe94e2acf6302b733c3d114f187e}{typeConverters}[type] = typeConverter;
+48             \}
 49         \}
 \end{DoxyCode}
-\hypertarget{a00179_a2958beb79bb066c2b99c9fc97be9043d}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!Get\-Options@{Get\-Options}}
-\index{Get\-Options@{Get\-Options}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
-\subsubsection[{Get\-Options}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Type\-Converter\-Options} Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-Get\-Options (
+\hypertarget{a00179_a744e7c3cf7515bb75c21d8b3c3fcff0a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Add\-Converter$<$ T $>$@{Add\-Converter$<$ T $>$}}
+\index{Add\-Converter$<$ T $>$@{Add\-Converter$<$ T $>$}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Add\-Converter$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Add\-Converter}$<$ T $>$ (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{{\bf I\-Type\-Converter}}]{type\-Converter}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00179_a2958beb79bb066c2b99c9fc97be9043d}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00179_a744e7c3cf7515bb75c21d8b3c3fcff0a}
 
 
-Get the \hyperlink{a00178}{Type\-Converter\-Options} for the given Type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type the options are for.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The options for the given type.
-\end{DoxyReturn}
-
-
-Definition at line 82 of file Type\-Converter\-Options\-Factory.\-cs.
-
-
-\begin{DoxyCode}
-83         \{
-84             \textcolor{keywordflow}{if}( type == null )
-85             \{
-86                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException();
-87             \}
-88 
-89             lock( \hyperlink{a00179_aeea3952a7ac1a8cb0291db079800ead4}{locker} )
-90             \{
-91                 TypeConverterOptions options;
-92 
-93                 \textcolor{keywordflow}{if}( !\hyperlink{a00179_abef552dcc7a0c631d09fa8f2ea5fead4}{typeConverterOptions}.TryGetValue( type, out options ) )
-94                 \{
-95                     options = \textcolor{keyword}{new} TypeConverterOptions();
-96                     typeConverterOptions.Add( type, options );
-97                 \}
-98 
-99                 \textcolor{keywordflow}{return} options;
-100             \}
-101         \}
-\end{DoxyCode}
-\hypertarget{a00179_abff68f203e82218e5d9d316a81d90157}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!Get\-Options$<$ T $>$@{Get\-Options$<$ T $>$}}
-\index{Get\-Options$<$ T $>$@{Get\-Options$<$ T $>$}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
-\subsubsection[{Get\-Options$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Type\-Converter\-Options} {\bf Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-Get\-Options}$<$ T $>$ (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00179_abff68f203e82218e5d9d316a81d90157}
-
-
-Get the \hyperlink{a00178}{Type\-Converter\-Options} for the given Type. 
+Adds the \hyperlink{a00125}{I\-Type\-Converter} for the given Type. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type the options are for.\\
+{\em T} & The type the converter converts.\\
 \hline
 \end{DoxyTemplParams}
-\begin{DoxyReturn}{Returns}
-The options for the given type.
-\end{DoxyReturn}
-
-
-Definition at line 108 of file Type\-Converter\-Options\-Factory.\-cs.
-
-
-\begin{DoxyCode}
-109         \{
-110             \textcolor{keywordflow}{return} \hyperlink{a00179_a2958beb79bb066c2b99c9fc97be9043d}{GetOptions}( typeof( T ) );
-111         \}
-\end{DoxyCode}
-\hypertarget{a00179_af5ceccd212df16bb55cf90cdcd76c286}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!Remove\-Options@{Remove\-Options}}
-\index{Remove\-Options@{Remove\-Options}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
-\subsubsection[{Remove\-Options}]{\setlength{\rightskip}{0pt plus 5cm}static void Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-Remove\-Options (
-\begin{DoxyParamCaption}
-\item[{Type}]{type}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00179_af5ceccd212df16bb55cf90cdcd76c286}
-
-
-Removes the \hyperlink{a00178}{Type\-Converter\-Options} for the given type. 
-
 
 \begin{DoxyParams}{Parameters}
-{\em type} & The type to remove the options for.\\
+{\em type\-Converter} & The type converter that converts the type.\\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 55 of file Type\-Converter\-Options\-Factory.\-cs.
+Definition at line 56 of file Type\-Converter\-Factory.\-cs.
 
 
 \begin{DoxyCode}
-56         \{
-57             \textcolor{keywordflow}{if}( type == null )
-58             \{
-59                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"type"} );
-60             \}
-61 
-62             lock( \hyperlink{a00179_aeea3952a7ac1a8cb0291db079800ead4}{locker} )
-63             \{
-64                 typeConverterOptions.Remove( type );
-65             \}
-66         \}
+57         \{
+58             \textcolor{keywordflow}{if}( typeConverter == null )
+59             \{
+60                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( nameof( typeConverter ) );
+61             \}
+62 
+63             lock( \hyperlink{a00179_aae823641d64f44cf1a79573bb55a5090}{locker} )
+64             \{
+65                 \hyperlink{a00179_a5229fe94e2acf6302b733c3d114f187e}{typeConverters}[typeof( T )] = typeConverter;
+66             \}
+67         \}
 \end{DoxyCode}
-\hypertarget{a00179_a201c3cd79a7bfe46424929150f2b84d8}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!Remove\-Options$<$ T $>$@{Remove\-Options$<$ T $>$}}
-\index{Remove\-Options$<$ T $>$@{Remove\-Options$<$ T $>$}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
-\subsubsection[{Remove\-Options$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-Remove\-Options}$<$ T $>$ (
+\hypertarget{a00179_af698f94f4d69a2d9a4f4fa8ad0e21619}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Create\-Default\-Converters@{Create\-Default\-Converters}}
+\index{Create\-Default\-Converters@{Create\-Default\-Converters}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Create\-Default\-Converters}]{\setlength{\rightskip}{0pt plus 5cm}static void Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Create\-Default\-Converters (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00179_a201c3cd79a7bfe46424929150f2b84d8}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00179_af698f94f4d69a2d9a4f4fa8ad0e21619}
 
 
-Removes the \hyperlink{a00178}{Type\-Converter\-Options} for the given type. 
+Definition at line 146 of file Type\-Converter\-Factory.\-cs.
+
+
+\begin{DoxyCode}
+147         \{
+148             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{bool} ), \textcolor{keyword}{new} BooleanConverter() );
+149             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( byte ), \textcolor{keyword}{new} ByteConverter() );
+150             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{char} ), \textcolor{keyword}{new} CharConverter() );
+151             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( DateTime ), \textcolor{keyword}{new} DateTimeConverter() );
+152             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( DateTimeOffset ), \textcolor{keyword}{new} DateTimeOffsetConverter() );
+153             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( decimal ), \textcolor{keyword}{new} DecimalConverter() );
+154             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{double} ), \textcolor{keyword}{new} DoubleConverter() );
+155             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{float} ), \textcolor{keyword}{new} SingleConverter() );
+156             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( Guid ), \textcolor{keyword}{new} GuidConverter() );
+157             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{short} ), \textcolor{keyword}{new} Int16Converter() );
+158             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{int} ), \textcolor{keyword}{new} Int32Converter() );
+159             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{long} ), \textcolor{keyword}{new} Int64Converter() );
+160             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( sbyte ), \textcolor{keyword}{new} SByteConverter() );
+161             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( \textcolor{keywordtype}{string} ), \textcolor{keyword}{new} StringConverter() );
+162             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( TimeSpan ), \textcolor{keyword}{new} TimeSpanConverter() );
+163             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( ushort ), \textcolor{keyword}{new} UInt16Converter() );
+164             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( uint ), \textcolor{keyword}{new} UInt32Converter() );
+165             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( ulong ), \textcolor{keyword}{new} UInt64Converter() );
+166             \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( typeof( IEnumerable ), \textcolor{keyword}{new} EnumerableConverter() );
+167         \} 
+\end{DoxyCode}
+\hypertarget{a00179_a17b3c37c648e5f760a7724e1445ce7ae}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Get\-Converter@{Get\-Converter}}
+\index{Get\-Converter@{Get\-Converter}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Get\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf I\-Type\-Converter} Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Get\-Converter (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00179_a17b3c37c648e5f760a7724e1445ce7ae}
+
+
+Gets the converter for the given Type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type to get the converter for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{a00125}{I\-Type\-Converter} for the given Type.
+\end{DoxyReturn}
+
+
+Definition at line 100 of file Type\-Converter\-Factory.\-cs.
+
+
+\begin{DoxyCode}
+101         \{
+102             \textcolor{keywordflow}{if}( type == null )
+103             \{
+104                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( nameof( type ) );
+105             \}
+106 
+107             lock( \hyperlink{a00179_aae823641d64f44cf1a79573bb55a5090}{locker} )
+108             \{
+109                 ITypeConverter typeConverter;
+110                 \textcolor{keywordflow}{if}( \hyperlink{a00179_a5229fe94e2acf6302b733c3d114f187e}{typeConverters}.TryGetValue( type, out typeConverter ) )
+111                 \{
+112                     \textcolor{keywordflow}{return} typeConverter;
+113                 \}
+114             \}
+115 
+116             \textcolor{keywordflow}{if}( typeof( IEnumerable ).IsAssignableFrom( type ) )
+117             \{
+118                 \textcolor{keywordflow}{return} \hyperlink{a00179_a17b3c37c648e5f760a7724e1445ce7ae}{GetConverter}( typeof( IEnumerable ) );
+119             \}
+120 
+121             \textcolor{keywordflow}{if}( typeof( Enum ).IsAssignableFrom( type ) )
+122             \{
+123                 \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( type, \textcolor{keyword}{new} EnumConverter( type ) );
+124                 \textcolor{keywordflow}{return} \hyperlink{a00179_a17b3c37c648e5f760a7724e1445ce7ae}{GetConverter}( type );
+125             \}
+126 
+127             \textcolor{keywordflow}{if}( type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof( Nullable<> )
+       )
+128             \{
+129                 \hyperlink{a00179_aea523d100f0064672767dfe2c912cfca}{AddConverter}( type, \textcolor{keyword}{new} NullableConverter( type ) );
+130                 \textcolor{keywordflow}{return} \hyperlink{a00179_a17b3c37c648e5f760a7724e1445ce7ae}{GetConverter}( type );
+131             \}
+132 
+133             \textcolor{keywordflow}{return} \textcolor{keyword}{new} DefaultTypeConverter();
+134         \}
+\end{DoxyCode}
+\hypertarget{a00179_a0674e190f4bcf27b0bdbc7da7e8f3d0f}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Get\-Converter$<$ T $>$@{Get\-Converter$<$ T $>$}}
+\index{Get\-Converter$<$ T $>$@{Get\-Converter$<$ T $>$}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Get\-Converter$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf I\-Type\-Converter} {\bf Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Get\-Converter}$<$ T $>$ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00179_a0674e190f4bcf27b0bdbc7da7e8f3d0f}
+
+
+Gets the converter for the given Type. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type to remove the options for.\\
+{\em T} & The type to get the converter for.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{a00125}{I\-Type\-Converter} for the given Type.
+\end{DoxyReturn}
+
+
+Definition at line 141 of file Type\-Converter\-Factory.\-cs.
+
+
+\begin{DoxyCode}
+142         \{
+143             \textcolor{keywordflow}{return} \hyperlink{a00179_a17b3c37c648e5f760a7724e1445ce7ae}{GetConverter}( typeof( T ) );
+144         \}
+\end{DoxyCode}
+\hypertarget{a00179_a1044dbab9820df273baea7ee68e6a813}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Remove\-Converter@{Remove\-Converter}}
+\index{Remove\-Converter@{Remove\-Converter}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Remove\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}static void Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Remove\-Converter (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00179_a1044dbab9820df273baea7ee68e6a813}
+
+
+Removes the \hyperlink{a00125}{I\-Type\-Converter} for the given Type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type to remove the converter for.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 73 of file Type\-Converter\-Factory.\-cs.
+
+
+\begin{DoxyCode}
+74         \{
+75             \textcolor{keywordflow}{if}( type == null )
+76             \{
+77                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( nameof( type ) );
+78             \}
+79 
+80             lock( \hyperlink{a00179_aae823641d64f44cf1a79573bb55a5090}{locker} )
+81             \{
+82                 typeConverters.Remove( type );
+83             \}
+84         \}
+\end{DoxyCode}
+\hypertarget{a00179_ad2d287cebc4bc88d2a6e1423059f05ae}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!Remove\-Converter$<$ T $>$@{Remove\-Converter$<$ T $>$}}
+\index{Remove\-Converter$<$ T $>$@{Remove\-Converter$<$ T $>$}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{Remove\-Converter$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-Remove\-Converter}$<$ T $>$ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00179_ad2d287cebc4bc88d2a6e1423059f05ae}
+
+
+Removes the \hyperlink{a00125}{I\-Type\-Converter} for the given Type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type to remove the converter for.\\
 \hline
 \end{DoxyTemplParams}
 
 
-Definition at line 72 of file Type\-Converter\-Options\-Factory.\-cs.
+Definition at line 90 of file Type\-Converter\-Factory.\-cs.
 
 
 \begin{DoxyCode}
-73         \{
-74             \hyperlink{a00179_af5ceccd212df16bb55cf90cdcd76c286}{RemoveOptions}( typeof( T ) );
-75         \}
+91         \{
+92             \hyperlink{a00179_a1044dbab9820df273baea7ee68e6a813}{RemoveConverter}( typeof( T ) );
+93         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00179_aeea3952a7ac1a8cb0291db079800ead4}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!locker@{locker}}
-\index{locker@{locker}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
-\subsubsection[{locker}]{\setlength{\rightskip}{0pt plus 5cm}readonly object Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-locker = new object()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00179_aeea3952a7ac1a8cb0291db079800ead4}
+\hypertarget{a00179_aae823641d64f44cf1a79573bb55a5090}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!locker@{locker}}
+\index{locker@{locker}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{locker}]{\setlength{\rightskip}{0pt plus 5cm}readonly object Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-locker = new object()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00179_aae823641d64f44cf1a79573bb55a5090}
 
 
-Definition at line 16 of file Type\-Converter\-Options\-Factory.\-cs.
+Definition at line 18 of file Type\-Converter\-Factory.\-cs.
 
-\hypertarget{a00179_abef552dcc7a0c631d09fa8f2ea5fead4}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!type\-Converter\-Options@{type\-Converter\-Options}}
-\index{type\-Converter\-Options@{type\-Converter\-Options}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
-\subsubsection[{type\-Converter\-Options}]{\setlength{\rightskip}{0pt plus 5cm}readonly Dictionary$<$Type, {\bf Type\-Converter\-Options}$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-type\-Converter\-Options = new Dictionary$<$Type, {\bf Type\-Converter\-Options}$>$()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00179_abef552dcc7a0c631d09fa8f2ea5fead4}
+\hypertarget{a00179_a5229fe94e2acf6302b733c3d114f187e}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}!type\-Converters@{type\-Converters}}
+\index{type\-Converters@{type\-Converters}!CsvHelper::TypeConversion::TypeConverterFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Factory}}
+\subsubsection[{type\-Converters}]{\setlength{\rightskip}{0pt plus 5cm}readonly Dictionary$<$Type, {\bf I\-Type\-Converter}$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Factory.\-type\-Converters = new Dictionary$<$Type, {\bf I\-Type\-Converter}$>$()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00179_a5229fe94e2acf6302b733c3d114f187e}
 
 
-Definition at line 15 of file Type\-Converter\-Options\-Factory.\-cs.
+Definition at line 17 of file Type\-Converter\-Factory.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00283}{Type\-Converter\-Options\-Factory.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00284}{Type\-Converter\-Factory.\-cs}\end{DoxyCompactItemize}

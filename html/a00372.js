@@ -1,7 +1,9 @@
 var a00372 =
 [
-    [ "DialogueTests", "a00094.html", "a00094" ],
-    [ "LanguageTests", "a00126.html", "a00126" ],
-    [ "ProjectTests", "a00154.html", "a00154" ],
-    [ "TestBase", "a00170.html", "a00170" ]
+    [ "Diagnosis", "a00093.html", "a00093" ],
+    [ "Context", "a00059.html", "a00059" ],
+    [ "ASTAnalyser", "a00042.html", "a00042" ],
+    [ "CompiledProgramAnalyser", "a00055.html", "a00055" ],
+    [ "VariableLister", "a00191.html", "a00191" ],
+    [ "UnusedVariableChecker", "a00187.html", "a00187" ]
 ];

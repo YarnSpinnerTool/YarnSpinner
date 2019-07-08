@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.Lexer.TokenRule Class Reference</title>
+<title>YarnSpinner: Yarn.TokeniserException Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -108,73 +108,108 @@ $(document).ready(function(){initNavTree('a00176.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="a00651.html">List of all members</a>  </div>
+<a href="a00642.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Lexer.TokenRule Class Reference</div>  </div>
+<div class="title">Yarn.TokeniserException Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Lexer.TokenRule:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.TokeniserException:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00652.png" border="0" usemap="#_yarn_8_lexer_8_token_rule_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_lexer_8_token_rule_coll__map" id="_yarn_8_lexer_8_token_rule_coll__map">
+<div class="center"><img src="a00643.png" border="0" usemap="#_yarn_8_tokeniser_exception_inherit__map" alt="Inheritance graph"/></div>
+<map name="_yarn_8_tokeniser_exception_inherit__map" id="_yarn_8_tokeniser_exception_inherit__map">
+</map>
+</div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.TokeniserException:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00644.png" border="0" usemap="#_yarn_8_tokeniser_exception_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_tokeniser_exception_coll__map" id="_yarn_8_tokeniser_exception_coll__map">
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3d171ae7c4870659d2d1d977a216bdd7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#a3d171ae7c4870659d2d1d977a216bdd7">TokenRule</a> (<a class="el" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> <a class="el" href="a00176.html#a0de6fac3b55cf0c61e07cea53ce67caa">type</a>, Regex <a class="el" href="a00176.html#a47a404d6637fae489c3c77729a01cc69">regex</a>, string <a class="el" href="a00176.html#af6a4bd3416c4e1b8e56f9db461d52d18">entersState</a>=null, bool <a class="el" href="a00176.html#ab0849136a1f27b4d13cb7a45e2fe7130">delimitsText</a>=false)</td></tr>
-<tr class="separator:a3d171ae7c4870659d2d1d977a216bdd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ed23ad16b116ecb06dd75b157bf752f"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#a1ed23ad16b116ecb06dd75b157bf752f">ToString</a> ()</td></tr>
-<tr class="separator:a1ed23ad16b116ecb06dd75b157bf752f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad00fcf742d2b0d476ce43b27a3f3b6c1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#ad00fcf742d2b0d476ce43b27a3f3b6c1">TokeniserException</a> (string message)</td></tr>
+<tr class="separator:ad00fcf742d2b0d476ce43b27a3f3b6c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8674d006a0d29081a7b87bdd8ff2f4f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#aa8674d006a0d29081a7b87bdd8ff2f4f">TokeniserException</a> (int <a class="el" href="a00176.html#a54b936d7b4f26f88a07a66c5fc1d1ad1">lineNumber</a>, int <a class="el" href="a00176.html#aabf2ad38f3984297c1daede9be55e3d6">columnNumber</a>, string message)</td></tr>
+<tr class="separator:aa8674d006a0d29081a7b87bdd8ff2f4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:af88cfa5eafdee355e1abb67e358497bd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="a00176.html">TokeniserException</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#af88cfa5eafdee355e1abb67e358497bd">ExpectedTokensFromState</a> (int <a class="el" href="a00176.html#a54b936d7b4f26f88a07a66c5fc1d1ad1">lineNumber</a>, int <a class="el" href="a00176.html#aabf2ad38f3984297c1daede9be55e3d6">columnNumber</a>, <a class="el" href="a00130.html">Lexer.LexerState</a> state)</td></tr>
+<tr class="separator:af88cfa5eafdee355e1abb67e358497bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a47a404d6637fae489c3c77729a01cc69"><td class="memItemLeft" align="right" valign="top">Regex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#a47a404d6637fae489c3c77729a01cc69">regex</a> = null</td></tr>
-<tr class="separator:a47a404d6637fae489c3c77729a01cc69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6a4bd3416c4e1b8e56f9db461d52d18"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#af6a4bd3416c4e1b8e56f9db461d52d18">entersState</a></td></tr>
-<tr class="separator:af6a4bd3416c4e1b8e56f9db461d52d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0de6fac3b55cf0c61e07cea53ce67caa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#a0de6fac3b55cf0c61e07cea53ce67caa">type</a></td></tr>
-<tr class="separator:a0de6fac3b55cf0c61e07cea53ce67caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09f49e6edf9ace38a92d723998181f8f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#a09f49e6edf9ace38a92d723998181f8f">isTextRule</a> = false</td></tr>
-<tr class="separator:a09f49e6edf9ace38a92d723998181f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0849136a1f27b4d13cb7a45e2fe7130"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#ab0849136a1f27b4d13cb7a45e2fe7130">delimitsText</a> = false</td></tr>
-<tr class="separator:ab0849136a1f27b4d13cb7a45e2fe7130"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54b936d7b4f26f88a07a66c5fc1d1ad1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#a54b936d7b4f26f88a07a66c5fc1d1ad1">lineNumber</a></td></tr>
+<tr class="separator:a54b936d7b4f26f88a07a66c5fc1d1ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabf2ad38f3984297c1daede9be55e3d6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#aabf2ad38f3984297c1daede9be55e3d6">columnNumber</a></td></tr>
+<tr class="separator:aabf2ad38f3984297c1daede9be55e3d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="a00310_source.html#l00280">280</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00313_source.html#l00034">34</a> of file <a class="el" href="a00313_source.html">Lexer.cs</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a3d171ae7c4870659d2d1d977a216bdd7"></a>
+<a class="anchor" id="ad00fcf742d2b0d476ce43b27a3f3b6c1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Yarn.Lexer.TokenRule.TokenRule </td>
+          <td class="memname">Yarn.TokeniserException.TokeniserException </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00313_source.html#l00039">39</a> of file <a class="el" href="a00313_source.html">Lexer.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00313_source.html#l00048">Yarn.TokeniserException.ExpectedTokensFromState()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;: base (message) {}</div>
+</div><!-- fragment -->
+<p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00176_ad00fcf742d2b0d476ce43b27a3f3b6c1_icgraph.png" border="0" usemap="#a00176_ad00fcf742d2b0d476ce43b27a3f3b6c1_icgraph" alt=""/></div>
+<map name="a00176_ad00fcf742d2b0d476ce43b27a3f3b6c1_icgraph" id="a00176_ad00fcf742d2b0d476ce43b27a3f3b6c1_icgraph">
+<area shape="rect" id="node2" href="a00176.html#af88cfa5eafdee355e1abb67e358497bd" title="Yarn.TokeniserException.\lExpectedTokensFromState" alt="" coords="227,5,408,46"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa8674d006a0d29081a7b87bdd8ff2f4f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Yarn.TokeniserException.TokeniserException </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>lineNumber</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Regex&#160;</td>
-          <td class="paramname"><em>regex</em>, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>columnNumber</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>entersState</em> = <code>null</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>delimitsText</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -184,135 +219,140 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00310_source.html#l00289">289</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00313_source.html#l00040">40</a> of file <a class="el" href="a00313_source.html">Lexer.cs</a>.</p>
 
-<p>References <a class="el" href="a00310_source.html#l00287">Yarn.Lexer.TokenRule.delimitsText</a>, <a class="el" href="a00310_source.html#l00284">Yarn.Lexer.TokenRule.entersState</a>, <a class="el" href="a00310_source.html#l00281">Yarn.Lexer.TokenRule.regex</a>, and <a class="el" href="a00310_source.html#l00285">Yarn.Lexer.TokenRule.type</a>.</p>
-<div class="fragment"><div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            {</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                this.regex = <a class="code" href="a00176.html#a47a404d6637fae489c3c77729a01cc69">regex</a>;</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                this.entersState = <a class="code" href="a00176.html#af6a4bd3416c4e1b8e56f9db461d52d18">entersState</a>;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                this.type = <a class="code" href="a00176.html#a0de6fac3b55cf0c61e07cea53ce67caa">type</a>;</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                this.delimitsText = <a class="code" href="a00176.html#ab0849136a1f27b4d13cb7a45e2fe7130">delimitsText</a>;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            }</div>
-<div class="ttc" id="a00176_html_a0de6fac3b55cf0c61e07cea53ce67caa"><div class="ttname"><a href="a00176.html#a0de6fac3b55cf0c61e07cea53ce67caa">Yarn.Lexer.TokenRule.type</a></div><div class="ttdeci">TokenType type</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00285">Lexer.cs:285</a></div></div>
-<div class="ttc" id="a00176_html_ab0849136a1f27b4d13cb7a45e2fe7130"><div class="ttname"><a href="a00176.html#ab0849136a1f27b4d13cb7a45e2fe7130">Yarn.Lexer.TokenRule.delimitsText</a></div><div class="ttdeci">bool delimitsText</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00287">Lexer.cs:287</a></div></div>
-<div class="ttc" id="a00176_html_af6a4bd3416c4e1b8e56f9db461d52d18"><div class="ttname"><a href="a00176.html#af6a4bd3416c4e1b8e56f9db461d52d18">Yarn.Lexer.TokenRule.entersState</a></div><div class="ttdeci">string entersState</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00284">Lexer.cs:284</a></div></div>
-<div class="ttc" id="a00176_html_a47a404d6637fae489c3c77729a01cc69"><div class="ttname"><a href="a00176.html#a47a404d6637fae489c3c77729a01cc69">Yarn.Lexer.TokenRule.regex</a></div><div class="ttdeci">Regex regex</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00281">Lexer.cs:281</a></div></div>
+<p>References <a class="el" href="a00313_source.html#l00037">Yarn.TokeniserException.columnNumber</a>, and <a class="el" href="a00313_source.html#l00036">Yarn.TokeniserException.lineNumber</a>.</p>
+<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            : base(<span class="keywordtype">string</span>.Format (CultureInfo.CurrentCulture, <span class="stringliteral">&quot;{0}:{1}: {2}&quot;</span>, <a class="code" href="a00176.html#a54b936d7b4f26f88a07a66c5fc1d1ad1">lineNumber</a>, <a class="code" href="a00176.html#aabf2ad38f3984297c1daede9be55e3d6">columnNumber</a>, message))</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            this.lineNumber = <a class="code" href="a00176.html#a54b936d7b4f26f88a07a66c5fc1d1ad1">lineNumber</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            this.columnNumber = <a class="code" href="a00176.html#aabf2ad38f3984297c1daede9be55e3d6">columnNumber</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        }</div>
+<div class="ttc" id="a00176_html_a54b936d7b4f26f88a07a66c5fc1d1ad1"><div class="ttname"><a href="a00176.html#a54b936d7b4f26f88a07a66c5fc1d1ad1">Yarn.TokeniserException.lineNumber</a></div><div class="ttdeci">int lineNumber</div><div class="ttdef"><b>Definition:</b> <a href="a00313_source.html#l00036">Lexer.cs:36</a></div></div>
+<div class="ttc" id="a00176_html_aabf2ad38f3984297c1daede9be55e3d6"><div class="ttname"><a href="a00176.html#aabf2ad38f3984297c1daede9be55e3d6">Yarn.TokeniserException.columnNumber</a></div><div class="ttdeci">int columnNumber</div><div class="ttdef"><b>Definition:</b> <a href="a00313_source.html#l00037">Lexer.cs:37</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a1ed23ad16b116ecb06dd75b157bf752f"></a>
+<a class="anchor" id="af88cfa5eafdee355e1abb67e358497bd"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">override string Yarn.Lexer.TokenRule.ToString </td>
+          <td class="memname">static <a class="el" href="a00176.html">TokeniserException</a> Yarn.TokeniserException.ExpectedTokensFromState </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>lineNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>columnNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00130.html">Lexer.LexerState</a>&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00310_source.html#l00297">297</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00313_source.html#l00048">48</a> of file <a class="el" href="a00313_source.html">Lexer.cs</a>.</p>
 
-<p>References <a class="el" href="a00310_source.html#l00285">Yarn.Lexer.TokenRule.type</a>.</p>
-<div class="fragment"><div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            {</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                <span class="keywordflow">return</span> string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;[TokenRule: {0} - {1}]&quot;</span>, <a class="code" href="a00176.html#a0de6fac3b55cf0c61e07cea53ce67caa">type</a>, this.regex);</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;            }</div>
-<div class="ttc" id="a00176_html_a0de6fac3b55cf0c61e07cea53ce67caa"><div class="ttname"><a href="a00176.html#a0de6fac3b55cf0c61e07cea53ce67caa">Yarn.Lexer.TokenRule.type</a></div><div class="ttdeci">TokenType type</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00285">Lexer.cs:285</a></div></div>
+<p>References <a class="el" href="a00313_source.html#l00037">Yarn.TokeniserException.columnNumber</a>, <a class="el" href="a00313_source.html#l00036">Yarn.TokeniserException.lineNumber</a>, and <a class="el" href="a00313_source.html#l00039">Yarn.TokeniserException.TokeniserException()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                                                                                                                            {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            var names = <span class="keyword">new</span> List&lt;string&gt; ();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordflow">foreach</span> (var tokenRule <span class="keywordflow">in</span> state.tokenRules) {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                names.Add (tokenRule.type.ToString ());</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordtype">string</span> nameList;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">if</span> (names.Count &gt; 1) {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                nameList = String.Join (<span class="stringliteral">&quot;, &quot;</span>, names.ToArray (), 0, names.Count - 1);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                nameList += <span class="stringliteral">&quot;, or &quot;</span> + names [names.Count - 1];</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                nameList = names [0];</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            var message = string.Format (CultureInfo.CurrentCulture, <span class="stringliteral">&quot;Expected {0}&quot;</span>, nameList);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00176.html#ad00fcf742d2b0d476ce43b27a3f3b6c1">TokeniserException</a> (<a class="code" href="a00176.html#a54b936d7b4f26f88a07a66c5fc1d1ad1">lineNumber</a>, <a class="code" href="a00176.html#aabf2ad38f3984297c1daede9be55e3d6">columnNumber</a>, message);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
+<div class="ttc" id="a00176_html_a54b936d7b4f26f88a07a66c5fc1d1ad1"><div class="ttname"><a href="a00176.html#a54b936d7b4f26f88a07a66c5fc1d1ad1">Yarn.TokeniserException.lineNumber</a></div><div class="ttdeci">int lineNumber</div><div class="ttdef"><b>Definition:</b> <a href="a00313_source.html#l00036">Lexer.cs:36</a></div></div>
+<div class="ttc" id="a00176_html_aabf2ad38f3984297c1daede9be55e3d6"><div class="ttname"><a href="a00176.html#aabf2ad38f3984297c1daede9be55e3d6">Yarn.TokeniserException.columnNumber</a></div><div class="ttdeci">int columnNumber</div><div class="ttdef"><b>Definition:</b> <a href="a00313_source.html#l00037">Lexer.cs:37</a></div></div>
+<div class="ttc" id="a00176_html_ad00fcf742d2b0d476ce43b27a3f3b6c1"><div class="ttname"><a href="a00176.html#ad00fcf742d2b0d476ce43b27a3f3b6c1">Yarn.TokeniserException.TokeniserException</a></div><div class="ttdeci">TokeniserException(string message)</div><div class="ttdef"><b>Definition:</b> <a href="a00313_source.html#l00039">Lexer.cs:39</a></div></div>
 </div><!-- fragment -->
+<p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00176_af88cfa5eafdee355e1abb67e358497bd_cgraph.png" border="0" usemap="#a00176_af88cfa5eafdee355e1abb67e358497bd_cgraph" alt=""/></div>
+<map name="a00176_af88cfa5eafdee355e1abb67e358497bd_cgraph" id="a00176_af88cfa5eafdee355e1abb67e358497bd_cgraph">
+<area shape="rect" id="node2" href="a00176.html#ad00fcf742d2b0d476ce43b27a3f3b6c1" title="Yarn.TokeniserException.\lTokeniserException" alt="" coords="235,5,407,46"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="ab0849136a1f27b4d13cb7a45e2fe7130"></a>
+<a class="anchor" id="aabf2ad38f3984297c1daede9be55e3d6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Yarn.Lexer.TokenRule.delimitsText = false</td>
+          <td class="memname">int Yarn.TokeniserException.columnNumber</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00310_source.html#l00287">287</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00313_source.html#l00037">37</a> of file <a class="el" href="a00313_source.html">Lexer.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00310_source.html#l00289">Yarn.Lexer.TokenRule.TokenRule()</a>.</p>
+<p>Referenced by <a class="el" href="a00313_source.html#l00048">Yarn.TokeniserException.ExpectedTokensFromState()</a>, and <a class="el" href="a00313_source.html#l00040">Yarn.TokeniserException.TokeniserException()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af6a4bd3416c4e1b8e56f9db461d52d18"></a>
+<a class="anchor" id="a54b936d7b4f26f88a07a66c5fc1d1ad1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">string Yarn.Lexer.TokenRule.entersState</td>
+          <td class="memname">int Yarn.TokeniserException.lineNumber</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00310_source.html#l00284">284</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00313_source.html#l00036">36</a> of file <a class="el" href="a00313_source.html">Lexer.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00310_source.html#l00289">Yarn.Lexer.TokenRule.TokenRule()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a09f49e6edf9ace38a92d723998181f8f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Yarn.Lexer.TokenRule.isTextRule = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00310_source.html#l00286">286</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a47a404d6637fae489c3c77729a01cc69"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Regex Yarn.Lexer.TokenRule.regex = null</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00310_source.html#l00281">281</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00310_source.html#l00289">Yarn.Lexer.TokenRule.TokenRule()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0de6fac3b55cf0c61e07cea53ce67caa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> Yarn.Lexer.TokenRule.type</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00310_source.html#l00285">285</a> of file <a class="el" href="a00310_source.html">Lexer.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00310_source.html#l00289">Yarn.Lexer.TokenRule.TokenRule()</a>, and <a class="el" href="a00310_source.html#l00297">Yarn.Lexer.TokenRule.ToString()</a>.</p>
+<p>Referenced by <a class="el" href="a00313_source.html#l00048">Yarn.TokeniserException.ExpectedTokensFromState()</a>, and <a class="el" href="a00313_source.html#l00040">Yarn.TokeniserException.TokeniserException()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="a00310_source.html">Lexer.cs</a></li>
+<li>YarnSpinner/<a class="el" href="a00313_source.html">Lexer.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00051.html">Yarn</a></li><li class="navelem"><a class="el" href="a00127.html">Lexer</a></li><li class="navelem"><a class="el" href="a00176.html">TokenRule</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 03:19:14 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00053.html">Yarn</a></li><li class="navelem"><a class="el" href="a00176.html">TokeniserException</a></li>
+    <li class="footer">Generated on Mon Jul 8 2019 11:16:36 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -1,11 +1,86 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00352" kind="namespace">
-    <compoundname>System::Collections::Generic</compoundname>
+    <compoundname>std</compoundname>
+    <innerclass refid="a00831" prot="public">std::allocator</innerclass>
+    <innerclass refid="a00832" prot="public">std::array</innerclass>
+    <innerclass refid="a00833" prot="public">std::auto_ptr</innerclass>
+    <innerclass refid="a00834" prot="public">std::smart_ptr</innerclass>
+    <innerclass refid="a00835" prot="public">std::unique_ptr</innerclass>
+    <innerclass refid="a00836" prot="public">std::weak_ptr</innerclass>
+    <innerclass refid="a00837" prot="public">std::ios_base</innerclass>
+    <innerclass refid="a00838" prot="public">std::error_code</innerclass>
+    <innerclass refid="a00839" prot="public">std::error_category</innerclass>
+    <innerclass refid="a00840" prot="public">std::system_error</innerclass>
+    <innerclass refid="a00841" prot="public">std::error_condition</innerclass>
+    <innerclass refid="a00842" prot="public">std::thread</innerclass>
+    <innerclass refid="a00843" prot="public">std::basic_ios</innerclass>
+    <innerclass refid="a00844" prot="public">std::basic_istream</innerclass>
+    <innerclass refid="a00845" prot="public">std::basic_ostream</innerclass>
+    <innerclass refid="a00846" prot="public">std::basic_iostream</innerclass>
+    <innerclass refid="a00847" prot="public">std::basic_ifstream</innerclass>
+    <innerclass refid="a00848" prot="public">std::basic_ofstream</innerclass>
+    <innerclass refid="a00849" prot="public">std::basic_fstream</innerclass>
+    <innerclass refid="a00850" prot="public">std::basic_istringstream</innerclass>
+    <innerclass refid="a00851" prot="public">std::basic_ostringstream</innerclass>
+    <innerclass refid="a00852" prot="public">std::basic_stringstream</innerclass>
+    <innerclass refid="a00853" prot="public">std::ios</innerclass>
+    <innerclass refid="a00854" prot="public">std::wios</innerclass>
+    <innerclass refid="a00855" prot="public">std::istream</innerclass>
+    <innerclass refid="a00856" prot="public">std::wistream</innerclass>
+    <innerclass refid="a00857" prot="public">std::ostream</innerclass>
+    <innerclass refid="a00858" prot="public">std::wostream</innerclass>
+    <innerclass refid="a00859" prot="public">std::ifstream</innerclass>
+    <innerclass refid="a00860" prot="public">std::wifstream</innerclass>
+    <innerclass refid="a00861" prot="public">std::ofstream</innerclass>
+    <innerclass refid="a00862" prot="public">std::wofstream</innerclass>
+    <innerclass refid="a00863" prot="public">std::fstream</innerclass>
+    <innerclass refid="a00864" prot="public">std::wfstream</innerclass>
+    <innerclass refid="a00865" prot="public">std::istringstream</innerclass>
+    <innerclass refid="a00866" prot="public">std::wistringstream</innerclass>
+    <innerclass refid="a00867" prot="public">std::ostringstream</innerclass>
+    <innerclass refid="a00868" prot="public">std::wostringstream</innerclass>
+    <innerclass refid="a00869" prot="public">std::stringstream</innerclass>
+    <innerclass refid="a00870" prot="public">std::wstringstream</innerclass>
+    <innerclass refid="a00871" prot="public">std::basic_string</innerclass>
+    <innerclass refid="a00872" prot="public">std::string</innerclass>
+    <innerclass refid="a00873" prot="public">std::wstring</innerclass>
+    <innerclass refid="a00874" prot="public">std::complex</innerclass>
+    <innerclass refid="a00875" prot="public">std::bitset</innerclass>
+    <innerclass refid="a00876" prot="public">std::deque</innerclass>
+    <innerclass refid="a00877" prot="public">std::list</innerclass>
+    <innerclass refid="a00878" prot="public">std::forward_list</innerclass>
+    <innerclass refid="a00879" prot="public">std::map</innerclass>
+    <innerclass refid="a00880" prot="public">std::unordered_map</innerclass>
+    <innerclass refid="a00881" prot="public">std::multimap</innerclass>
+    <innerclass refid="a00882" prot="public">std::unordered_multimap</innerclass>
+    <innerclass refid="a00883" prot="public">std::set</innerclass>
+    <innerclass refid="a00884" prot="public">std::unordered_set</innerclass>
+    <innerclass refid="a00885" prot="public">std::multiset</innerclass>
+    <innerclass refid="a00886" prot="public">std::unordered_multiset</innerclass>
+    <innerclass refid="a00887" prot="public">std::vector</innerclass>
+    <innerclass refid="a00888" prot="public">std::queue</innerclass>
+    <innerclass refid="a00889" prot="public">std::priority_queue</innerclass>
+    <innerclass refid="a00890" prot="public">std::stack</innerclass>
+    <innerclass refid="a00891" prot="public">std::valarray</innerclass>
+    <innerclass refid="a00892" prot="public">std::exception</innerclass>
+    <innerclass refid="a00893" prot="public">std::bad_alloc</innerclass>
+    <innerclass refid="a00894" prot="public">std::bad_cast</innerclass>
+    <innerclass refid="a00895" prot="public">std::bad_typeid</innerclass>
+    <innerclass refid="a00896" prot="public">std::logic_error</innerclass>
+    <innerclass refid="a00897" prot="public">std::runtime_error</innerclass>
+    <innerclass refid="a00898" prot="public">std::bad_exception</innerclass>
+    <innerclass refid="a00899" prot="public">std::domain_error</innerclass>
+    <innerclass refid="a00900" prot="public">std::invalid_argument</innerclass>
+    <innerclass refid="a00901" prot="public">std::length_error</innerclass>
+    <innerclass refid="a00902" prot="public">std::out_of_range</innerclass>
+    <innerclass refid="a00903" prot="public">std::range_error</innerclass>
+    <innerclass refid="a00904" prot="public">std::overflow_error</innerclass>
+    <innerclass refid="a00905" prot="public">std::underflow_error</innerclass>
     <briefdescription>
-    </briefdescription>
+<para>STL namespace. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="8" column="1"/>
+    <location file="[STL]" line="1" column="1"/>
   </compounddef>
 </doxygen>

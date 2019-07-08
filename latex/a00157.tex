@@ -1,160 +1,405 @@
-\hypertarget{a00157}{\section{Yarn.\-Run\-Options Class Reference}
-\label{a00157}\index{Yarn.\-Run\-Options@{Yarn.\-Run\-Options}}
+\hypertarget{a00157}{\section{Csv\-Helper.\-Reflection\-Helper Class Reference}
+\label{a00157}\index{Csv\-Helper.\-Reflection\-Helper@{Csv\-Helper.\-Reflection\-Helper}}
 }
 
 
-Inheritance diagram for Yarn.\-Run\-Options\-:
+Common reflection tasks.  
+
+
+
+
+Collaboration diagram for Csv\-Helper.\-Reflection\-Helper\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=210pt]{a00741}
+\includegraphics[width=218pt]{a00475}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Run\-Options\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=210pt]{a00742}
-\end{center}
-\end{figure}
-\subsection*{Properties}
+\subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{a00157_a4b385e83338d14947c4d840d2d1ee266}{wait\-For\-Input}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+static T \hyperlink{a00157_a45f0f552711f33392f33693a88fb20b3}{Create\-Instance$<$ T $>$} (params object\mbox{[}$\,$\mbox{]} args)
+\begin{DoxyCompactList}\small\item\em Creates an instance of type T. \end{DoxyCompactList}\item 
+static object \hyperlink{a00157_a9b8690ff760f41b0a7ef46626949c777}{Create\-Instance} (Type type, params object\mbox{[}$\,$\mbox{]} args)
+\begin{DoxyCompactList}\small\item\em Creates an instance of the specified type. \end{DoxyCompactList}\item 
+static T \hyperlink{a00157_aadf73df00d450ae49ceb8d78ac254b6d}{Get\-Attribute$<$ T $>$} (Property\-Info property, bool inherit)
+\begin{DoxyCompactList}\small\item\em Gets the first attribute of type T on property. \end{DoxyCompactList}\item 
+static T\mbox{[}$\,$\mbox{]} \hyperlink{a00157_adb0641e341c8468906b175f3f982ab6b}{Get\-Attributes$<$ T $>$} (Property\-Info property, bool inherit)
+\begin{DoxyCompactList}\small\item\em Gets the attributes of type T on property. \end{DoxyCompactList}\item 
+static New\-Expression \hyperlink{a00157_a7f2e39949787d37053702e7ea547ee69}{Get\-Constructor$<$ T $>$} (Expression$<$ Func$<$ T $>$$>$ expression)
+\begin{DoxyCompactList}\small\item\em Gets the constructor New\-Expression from the give Expression. \end{DoxyCompactList}\item 
+static Property\-Info \hyperlink{a00157_afaa6e2741145eabea34c625684fb4636}{Get\-Property$<$ T\-Model $>$} (Expression$<$ Func$<$ T\-Model, object $>$$>$ expression)
+\begin{DoxyCompactList}\small\item\em Gets the property from the expression. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00157_a785bd0f1c8b6674e7a1cfbe38c29b961}{start\-Node}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-I\-List$<$ string $>$ \hyperlink{a00157_a2222c73ce5366b02490c6123b711f596}{variables}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-int \hyperlink{a00157_a525bb1890b29f86002c2f163ace4a3d8}{run\-Times}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00157_ae21d271c37dabee023771a951f6e774e}{automatically\-Select\-First\-Option}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-string \hyperlink{a00103_a7e43c3b73722956cb0f5d507e4eef527}{string\-Table}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-string \hyperlink{a00103_af4c0062a1d46281d377f87084fde374e}{only\-Consider\-Node}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00103_ad97950e47ce2aaeb598295b7c3c44b13}{experimental}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00041_a89964ea17bd19caf00cb5bff563ed01c}{show\-Debugging\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00041_ada4d83d1756918f362d55f6649b82b17}{verbose}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-I\-List$<$ string $>$ \hyperlink{a00041_aa93cbb1bc1d5328e0a417012621e92d2}{files}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\end{DoxyCompactItemize}
+static Member\-Expression \hyperlink{a00157_ab462ff86486973f2eee6785bed535cdc}{Get\-Member\-Expression$<$ T\-Model, T $>$} (Expression$<$ Func$<$ T\-Model, T $>$$>$ expression)
+\begin{DoxyCompactList}\small\item\em Gets the member expression. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-
-
-Definition at line 83 of file Main.\-cs.
-
-
-
-\subsection{Property Documentation}
-\hypertarget{a00157_ae21d271c37dabee023771a951f6e774e}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!automatically\-Select\-First\-Option@{automatically\-Select\-First\-Option}}
-\index{automatically\-Select\-First\-Option@{automatically\-Select\-First\-Option}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{automatically\-Select\-First\-Option}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Run\-Options.\-automatically\-Select\-First\-Option\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00157_ae21d271c37dabee023771a951f6e774e}
-
-
-Definition at line 99 of file Main.\-cs.
-
-\hypertarget{a00103_ad97950e47ce2aaeb598295b7c3c44b13}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!experimental@{experimental}}
-\index{experimental@{experimental}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{experimental}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Execution\-Options.\-experimental\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00103_ad97950e47ce2aaeb598295b7c3c44b13}
-
-
-Definition at line 63 of file Main.\-cs.
+Common reflection tasks. 
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
-
-\hypertarget{a00041_aa93cbb1bc1d5328e0a417012621e92d2}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!files@{files}}
-\index{files@{files}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{files}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Base\-Options.\-files\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00041_aa93cbb1bc1d5328e0a417012621e92d2}
-
-
-Definition at line 49 of file Main.\-cs.
+Definition at line 19 of file Reflection\-Helper.\-cs.
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run(), and Yarn.\-Yarn\-Spinner\-Console.\-Verify().
-
-\hypertarget{a00103_af4c0062a1d46281d377f87084fde374e}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!only\-Consider\-Node@{only\-Consider\-Node}}
-\index{only\-Consider\-Node@{only\-Consider\-Node}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{only\-Consider\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Execution\-Options.\-only\-Consider\-Node\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00103_af4c0062a1d46281d377f87084fde374e}
-
-
-Definition at line 61 of file Main.\-cs.
-
-\hypertarget{a00157_a525bb1890b29f86002c2f163ace4a3d8}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!run\-Times@{run\-Times}}
-\index{run\-Times@{run\-Times}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{run\-Times}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Run\-Options.\-run\-Times\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00157_a525bb1890b29f86002c2f163ace4a3d8}
+\subsection{Member Function Documentation}
+\hypertarget{a00157_a9b8690ff760f41b0a7ef46626949c777}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Create\-Instance@{Create\-Instance}}
+\index{Create\-Instance@{Create\-Instance}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
+\subsubsection[{Create\-Instance}]{\setlength{\rightskip}{0pt plus 5cm}static object Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance (
+\begin{DoxyParamCaption}
+\item[{Type}]{type, }
+\item[{params object\mbox{[}$\,$\mbox{]}}]{args}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_a9b8690ff760f41b0a7ef46626949c777}
 
 
-Definition at line 96 of file Main.\-cs.
-
-\hypertarget{a00041_a89964ea17bd19caf00cb5bff563ed01c}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!show\-Debugging\-Info@{show\-Debugging\-Info}}
-\index{show\-Debugging\-Info@{show\-Debugging\-Info}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{show\-Debugging\-Info}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-show\-Debugging\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00041_a89964ea17bd19caf00cb5bff563ed01c}
+Creates an instance of the specified type. 
 
 
-Definition at line 42 of file Main.\-cs.
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of instance to create.\\
+\hline
+{\em args} & The constructor arguments.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new instance of the specified type.
+\end{DoxyReturn}
 
 
-
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
-
-\hypertarget{a00157_a785bd0f1c8b6674e7a1cfbe38c29b961}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!start\-Node@{start\-Node}}
-\index{start\-Node@{start\-Node}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{start\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Run\-Options.\-start\-Node\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00157_a785bd0f1c8b6674e7a1cfbe38c29b961}
-
-
-Definition at line 90 of file Main.\-cs.
-
-\hypertarget{a00103_a7e43c3b73722956cb0f5d507e4eef527}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!string\-Table@{string\-Table}}
-\index{string\-Table@{string\-Table}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{string\-Table}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Execution\-Options.\-string\-Table\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00103_a7e43c3b73722956cb0f5d507e4eef527}
-
-
-Definition at line 57 of file Main.\-cs.
-
-\hypertarget{a00157_a2222c73ce5366b02490c6123b711f596}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!variables@{variables}}
-\index{variables@{variables}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{variables}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Run\-Options.\-variables\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00157_a2222c73ce5366b02490c6123b711f596}
-
-
-Definition at line 93 of file Main.\-cs.
-
-\hypertarget{a00041_ada4d83d1756918f362d55f6649b82b17}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!verbose@{verbose}}
-\index{verbose@{verbose}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{verbose}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-verbose\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00041_ada4d83d1756918f362d55f6649b82b17}
-
-
-Definition at line 46 of file Main.\-cs.
+Definition at line 42 of file Reflection\-Helper.\-cs.
 
 
 
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Table\-Generator.\-Generate\-Tables().
-
-\hypertarget{a00157_a4b385e83338d14947c4d840d2d1ee266}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!wait\-For\-Input@{wait\-For\-Input}}
-\index{wait\-For\-Input@{wait\-For\-Input}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{wait\-For\-Input}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Run\-Options.\-wait\-For\-Input\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00157_a4b385e83338d14947c4d840d2d1ee266}
+Referenced by Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Auto\-Map(), Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Auto\-Map\-Internal(), Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance$<$ T $>$(), Csv\-Helper.\-Configuration.\-Csv\-Class\-Map$<$ T $>$.\-References(), Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Register\-Class\-Map(), and Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Type\-Converter$<$ T $>$().
 
 
-Definition at line 87 of file Main.\-cs.
+\begin{DoxyCode}
+43         \{
+44 \textcolor{preprocessor}{#if NET\_2\_0}
+45 \textcolor{preprocessor}{}            \textcolor{keywordflow}{return} Activator.CreateInstance( type, args );
+46 \textcolor{preprocessor}{#else}
+47 \textcolor{preprocessor}{}
+48             var argumentTypes = args.Select( a => a.GetType() ).ToArray();
+49             var argumentExpressions = argumentTypes.Select( ( t, i ) => Expression.Parameter( t, \textcolor{stringliteral}{"var"} + i 
+      ) ).ToArray();
+50             var constructorInfo = type.GetConstructor( argumentTypes );
+51             var constructor = Expression.New( constructorInfo, argumentExpressions );
+52             var compiled = Expression.Lambda( constructor, argumentExpressions ).Compile();
+53             \textcolor{keywordflow}{try}
+54             \{
+55                 \textcolor{keywordflow}{return} compiled.DynamicInvoke( args );
+56             \}
+57             \textcolor{keywordflow}{catch}( TargetInvocationException ex )
+58             \{
+59                 \textcolor{keywordflow}{throw} ex.InnerException;
+60             \}
+61 \textcolor{preprocessor}{#endif}
+62 \textcolor{preprocessor}{}        \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00157_a9b8690ff760f41b0a7ef46626949c777_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00157_a45f0f552711f33392f33693a88fb20b3}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Create\-Instance$<$ T $>$@{Create\-Instance$<$ T $>$}}
+\index{Create\-Instance$<$ T $>$@{Create\-Instance$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
+\subsubsection[{Create\-Instance$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static T {\bf Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance}$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{params object\mbox{[}$\,$\mbox{]}}]{args}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_a45f0f552711f33392f33693a88fb20b3}
+
+
+Creates an instance of type T. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of instance to create.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em args} & The constructor arguments.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new instance of type T.
+\end{DoxyReturn}
+
+
+Definition at line 27 of file Reflection\-Helper.\-cs.
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run().
+References Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance().
 
+
+\begin{DoxyCode}
+28         \{
+29 \textcolor{preprocessor}{#if NET\_2\_0}
+30 \textcolor{preprocessor}{}            \textcolor{keywordflow}{return} Activator.CreateInstance<T>();
+31 \textcolor{preprocessor}{#else}
+32 \textcolor{preprocessor}{}            \textcolor{keywordflow}{return} (T)\hyperlink{a00157_a9b8690ff760f41b0a7ef46626949c777}{CreateInstance}( typeof( T ), args );
+33 \textcolor{preprocessor}{#endif}
+34 \textcolor{preprocessor}{}        \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00157_a45f0f552711f33392f33693a88fb20b3_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00157_aadf73df00d450ae49ceb8d78ac254b6d}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Attribute$<$ T $>$@{Get\-Attribute$<$ T $>$}}
+\index{Get\-Attribute$<$ T $>$@{Get\-Attribute$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
+\subsubsection[{Get\-Attribute$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static T Csv\-Helper.\-Reflection\-Helper.\-Get\-Attribute$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{Property\-Info}]{property, }
+\item[{bool}]{inherit}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_aadf73df00d450ae49ceb8d78ac254b6d}
+
+
+Gets the first attribute of type T on property. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of attribute to get.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em property} & The Property\-Info to get the attribute from.\\
+\hline
+{\em inherit} & True to search inheritance tree, otherwise false.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first attribute of type T, otherwise null.
+\end{DoxyReturn}
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em T} : {\em Attribute}]\end{description}
+\end{Desc}
+
+
+Definition at line 72 of file Reflection\-Helper.\-cs.
+
+
+\begin{DoxyCode}
+72                                                                                        : Attribute
+73         \{
+74             T attribute = null;
+75             var attributes = property.GetCustomAttributes( typeof( T ), inherit ).ToList();
+76             \textcolor{keywordflow}{if}( attributes.Count > 0 )
+77             \{
+78                 attribute = attributes[0] as T;
+79             \}
+80             \textcolor{keywordflow}{return} attribute;
+81         \}
+\end{DoxyCode}
+\hypertarget{a00157_adb0641e341c8468906b175f3f982ab6b}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Attributes$<$ T $>$@{Get\-Attributes$<$ T $>$}}
+\index{Get\-Attributes$<$ T $>$@{Get\-Attributes$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
+\subsubsection[{Get\-Attributes$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static T \mbox{[}$\,$\mbox{]} Csv\-Helper.\-Reflection\-Helper.\-Get\-Attributes$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{Property\-Info}]{property, }
+\item[{bool}]{inherit}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_adb0641e341c8468906b175f3f982ab6b}
+
+
+Gets the attributes of type T on property. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of attribute to get.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em property} & The Property\-Info to get the attribute from.\\
+\hline
+{\em inherit} & True to search inheritance tree, otherwise false.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The attributes of type T.
+\end{DoxyReturn}
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em T} : {\em Attribute}]\end{description}
+\end{Desc}
+
+
+Definition at line 90 of file Reflection\-Helper.\-cs.
+
+
+\begin{DoxyCode}
+90                                                                                           : Attribute
+91         \{
+92             var attributes = property.GetCustomAttributes( typeof( T ), inherit );
+93             \textcolor{keywordflow}{return} attributes.Cast<T>().ToArray();
+94         \}
+\end{DoxyCode}
+\hypertarget{a00157_a7f2e39949787d37053702e7ea547ee69}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Constructor$<$ T $>$@{Get\-Constructor$<$ T $>$}}
+\index{Get\-Constructor$<$ T $>$@{Get\-Constructor$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
+\subsubsection[{Get\-Constructor$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static New\-Expression Csv\-Helper.\-Reflection\-Helper.\-Get\-Constructor$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{Expression$<$ Func$<$ T $>$$>$}]{expression}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_a7f2e39949787d37053702e7ea547ee69}
+
+
+Gets the constructor New\-Expression from the give Expression. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The Type of the object that will be constructed.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em expression} & The constructor Expression.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A constructor New\-Expression.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em System.\-Argument\-Exception} & Not a constructor expression.;expression\\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 103 of file Reflection\-Helper.\-cs.
+
+
+\begin{DoxyCode}
+104         \{
+105             var newExpression = expression.Body as NewExpression;
+106             \textcolor{keywordflow}{if}( newExpression == null )
+107             \{
+108                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException( \textcolor{stringliteral}{"Not a constructor expression."}, nameof( expression ) );
+109             \}
+110 
+111             \textcolor{keywordflow}{return} newExpression;
+112         \}
+\end{DoxyCode}
+\hypertarget{a00157_ab462ff86486973f2eee6785bed535cdc}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Member\-Expression$<$ T\-Model, T $>$@{Get\-Member\-Expression$<$ T\-Model, T $>$}}
+\index{Get\-Member\-Expression$<$ T\-Model, T $>$@{Get\-Member\-Expression$<$ T\-Model, T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
+\subsubsection[{Get\-Member\-Expression$<$ T\-Model, T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static Member\-Expression Csv\-Helper.\-Reflection\-Helper.\-Get\-Member\-Expression$<$ T\-Model, T $>$ (
+\begin{DoxyParamCaption}
+\item[{Expression$<$ Func$<$ T\-Model, T $>$$>$}]{expression}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00157_ab462ff86486973f2eee6785bed535cdc}
+
+
+Gets the member expression. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T\-Model} & The type of the model.\\
+\hline
+{\em T} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em expression} & The expression.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 139 of file Reflection\-Helper.\-cs.
+
+
+\begin{DoxyCode}
+140         \{
+141             MemberExpression memberExpression = null;
+142             \textcolor{keywordflow}{if}( expression.Body.NodeType == ExpressionType.Convert )
+143             \{
+144                 var body = (UnaryExpression)expression.Body;
+145                 memberExpression = body.Operand as MemberExpression;
+146             \}
+147             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( expression.Body.NodeType == ExpressionType.MemberAccess )
+148             \{
+149                 memberExpression = expression.Body as MemberExpression;
+150             \}
+151 
+152             \textcolor{keywordflow}{if}( memberExpression == null )
+153             \{
+154                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException( \textcolor{stringliteral}{"Not a member access"}, nameof( expression ) );
+155             \}
+156 
+157             \textcolor{keywordflow}{return} memberExpression;
+158         \}
+\end{DoxyCode}
+\hypertarget{a00157_afaa6e2741145eabea34c625684fb4636}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Property$<$ T\-Model $>$@{Get\-Property$<$ T\-Model $>$}}
+\index{Get\-Property$<$ T\-Model $>$@{Get\-Property$<$ T\-Model $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
+\subsubsection[{Get\-Property$<$ T\-Model $>$}]{\setlength{\rightskip}{0pt plus 5cm}static Property\-Info Csv\-Helper.\-Reflection\-Helper.\-Get\-Property$<$ T\-Model $>$ (
+\begin{DoxyParamCaption}
+\item[{Expression$<$ Func$<$ T\-Model, object $>$$>$}]{expression}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_afaa6e2741145eabea34c625684fb4636}
+
+
+Gets the property from the expression. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T\-Model} & The type of the model.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em expression} & The expression.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Property\-Info for the expression.
+\end{DoxyReturn}
+
+
+Definition at line 120 of file Reflection\-Helper.\-cs.
+
+
+\begin{DoxyCode}
+121         \{
+122             var member = GetMemberExpression( expression ).Member;
+123             var \textcolor{keyword}{property} = member as PropertyInfo;
+124             \textcolor{keywordflow}{if}( property == null )
+125             \{
+126                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} \hyperlink{a00066}{CsvConfigurationException}( $\textcolor{stringliteral}{"'\{member.Name\}' is not a
+       property. Did you try to map a field by accident?"} );
+127             \}
+128 
+129             \textcolor{keywordflow}{return} property;
+130         \}
+\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner\-Console/\hyperlink{a00325}{Main.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00261}{Reflection\-Helper.\-cs}\end{DoxyCompactItemize}

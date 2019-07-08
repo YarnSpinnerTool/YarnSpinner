@@ -1,268 +1,121 @@
-\hypertarget{a00130}{\section{Yarn.\-Line\-Adder Class Reference}
-\label{a00130}\index{Yarn.\-Line\-Adder@{Yarn.\-Line\-Adder}}
+\hypertarget{a00130}{\section{Yarn.\-Lexer.\-Lexer\-State Class Reference}
+\label{a00130}\index{Yarn.\-Lexer.\-Lexer\-State@{Yarn.\-Lexer.\-Lexer\-State}}
 }
 
 
-Collaboration diagram for Yarn.\-Line\-Adder\-:
+Collaboration diagram for Yarn.\-Lexer.\-Lexer\-State\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=174pt]{a00730}
+\includegraphics[width=212pt]{a00653}
 \end{center}
 \end{figure}
-\subsection*{Static Package Functions}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static int \hyperlink{a00130_aa2b8af349e709b8a45d42af5146ca848}{Add\-Lines} (\hyperlink{a00037}{Add\-Labels\-Options} options)
+\hyperlink{a00130_ac67a7c0e09d7b4350f75b105723a4f6c}{Lexer\-State} (Dictionary$<$ \hyperlink{a00053_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}, string $>$ \hyperlink{a00130_a951f91e9522ffe84851f2e25e9445106}{patterns})
+\item 
+\hyperlink{a00178}{Token\-Rule} \hyperlink{a00130_a71ba52744e853ff142de19e97cf5daed}{Add\-Transition} (\hyperlink{a00053_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} type, string enters\-State=null, bool delimits\-Text=false)
+\item 
+\hyperlink{a00178}{Token\-Rule} \hyperlink{a00130_af183111863c651ae5681665a2c379830}{Add\-Text\-Rule} (\hyperlink{a00053_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} type, string enters\-State=null)
 \end{DoxyCompactItemize}
-\subsection*{Static Private Member Functions}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static string \hyperlink{a00130_a91ad68b679bd3b0bd89fe92ea5068688}{Generate\-String} (List$<$ string $>$ existing\-Keys)
+string \hyperlink{a00130_aeb8debd0d81a76e90f083f0bf407573e}{name}
+\item 
+List$<$ \hyperlink{a00178}{Token\-Rule} $>$ \hyperlink{a00130_adf6563b1dc6f3ef80ed13c2b15b7be03}{token\-Rules} = new List$<$\hyperlink{a00178}{Token\-Rule}$>$()
+\item 
+bool \hyperlink{a00130_ad8b6ccac53bedd9dc202ffe6ac5698b2}{set\-Track\-Next\-Indentation} = false
 \end{DoxyCompactItemize}
-\subsection*{Static Private Attributes}
+\subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-static Random \hyperlink{a00130_ad887744b1b813fc081be814958742c37}{random} = new Random()
+bool \hyperlink{a00130_a69948f05c35eeae9cb8448c849a053e6}{contains\-Text\-Rule} \textbackslash{}G((?!\{0\}).)$\ast$\char`\"{}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Dictionary$<$ \hyperlink{a00053_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}, string $>$ \hyperlink{a00130_a951f91e9522ffe84851f2e25e9445106}{patterns}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 9 of file Line\-Adder.\-cs.
+Definition at line 214 of file Lexer.\-cs.
 
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00130_aa2b8af349e709b8a45d42af5146ca848}{\index{Yarn\-::\-Line\-Adder@{Yarn\-::\-Line\-Adder}!Add\-Lines@{Add\-Lines}}
-\index{Add\-Lines@{Add\-Lines}!Yarn::LineAdder@{Yarn\-::\-Line\-Adder}}
-\subsubsection[{Add\-Lines}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-Line\-Adder.\-Add\-Lines (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00130_ac67a7c0e09d7b4350f75b105723a4f6c}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!Lexer\-State@{Lexer\-State}}
+\index{Lexer\-State@{Lexer\-State}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{Lexer\-State}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Lexer.\-Lexer\-State.\-Lexer\-State (
 \begin{DoxyParamCaption}
-\item[{{\bf Add\-Labels\-Options}}]{options}
+\item[{Dictionary$<$ {\bf Token\-Type}, string $>$}]{patterns}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00130_aa2b8af349e709b8a45d42af5146ca848}
+)}}\label{a00130_ac67a7c0e09d7b4350f75b105723a4f6c}
 
 
-Definition at line 12 of file Line\-Adder.\-cs.
-
-
-
-References Yarn.\-Yarn\-Spinner\-Console.\-A\-L\-L\-O\-W\-E\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N\-S, and Yarn.\-Line\-Adder.\-Generate\-String().
+Definition at line 220 of file Lexer.\-cs.
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Main().
+References Yarn.\-Lexer.\-Lexer\-State.\-patterns.
 
 
 \begin{DoxyCode}
-13         \{
-14 
-15             YarnSpinnerConsole.CheckFileList(options.files, 
-      \hyperlink{a00195_a0979de7ea02c8c0375b8220a12e6575e}{YarnSpinnerConsole.ALLOWED\_EXTENSIONS});
-16 
-17             var existingKeys = \textcolor{keyword}{new} List<string>();
-18 
-19             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.\hyperlink{a00041_aa93cbb1bc1d5328e0a417012621e92d2}{files})
-20             \{
-21 
-22                 \hyperlink{a00051_ad7ebb46e7309ead8767383a672b3272f}{NodeFormat} fileFormat;
-23                 \textcolor{keywordflow}{try}
-24                 \{
-25                     fileFormat = Loader.GetFormatFromFileName(file);
-26                 \}
-27                 \textcolor{keywordflow}{catch} (FormatException)
-28                 \{
-29                     fileFormat = NodeFormat.Unknown;
-30                 \}
-31 
-32                 \textcolor{keywordflow}{switch} (fileFormat)
-33                 \{
-34                     \textcolor{keywordflow}{case} NodeFormat.JSON:
-35                         \textcolor{keywordflow}{break};
-36                     \textcolor{keywordflow}{case} NodeFormat.Text:
-37                         \textcolor{keywordflow}{break};
-38                     \textcolor{keywordflow}{default}:
-39                         YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Skipping file
-       \{0\}, which is in unsupported format '\{1\}'"}, file, fileFormat));
-40                         \textcolor{keywordflow}{continue};
-41                 \}
-42 
-43 
-44                 \hyperlink{a00092}{Dialogue} d = YarnSpinnerConsole.CreateDialogueForUtilities();
-45 
-46                 \textcolor{keywordflow}{try}
-47                 \{
-48                     \textcolor{comment}{// First, we need to ensure that this file compiles.}
-49                     d.LoadFile(file);
-50                 \}
-51 \textcolor{preprocessor}{#pragma warning disable CA1031 // Do not catch general exception types}
-52 \textcolor{preprocessor}{}                \textcolor{keywordflow}{catch}
-53                 \{
-54                     YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Skipping file \{0\}
-       due to compilation errors."}, file));
-55                     \textcolor{keywordflow}{continue};
-56                 \}
-57 \textcolor{preprocessor}{#pragma warning restore CA1031 // Do not catch general exception types}
-58 \textcolor{preprocessor}{}
-59                 Dictionary<string, LineInfo> linesWithNoTag = \textcolor{keyword}{new} Dictionary<string, LineInfo>();
-60 
-61                 \textcolor{comment}{// Filter the string info table to exclude lines that have a line code}
-62                 \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} d.GetStringInfoTable())
-63                 \{
-64                     \textcolor{keywordflow}{if} (entry.Key.StartsWith(\textcolor{stringliteral}{"line:"}, StringComparison.InvariantCulture) == \textcolor{keyword}{false})
-65                     \{
-66                         linesWithNoTag[entry.Key] = entry.Value;
-67                     \}
-68                 \}
-69 
-70                 \textcolor{keywordflow}{if} (linesWithNoTag.Count == 0)
-71                 \{
-72                     var message = string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"\{0\} had no untagged lines.
-       Either they're all tagged already, or it has no localisable text."}, file);
-73                     YarnSpinnerConsole.Note(message);
-74                     \textcolor{keywordflow}{continue};
-75                 \}
-76 
-77                 \textcolor{comment}{// We also need the raw NodeInfo structures contained within this file.}
-78                 \textcolor{comment}{// These contain the source code to what we just compiled.}
-79 
-80                 \hyperlink{a00140}{Loader.NodeInfo}[] nodeInfoList;
-81 
-82                 var nodeFormat = Loader.GetFormatFromFileName(file);
-83 
-84                 \textcolor{keyword}{using} (var reader = \textcolor{keyword}{new} System.IO.StreamReader(file))
-85                 \{
-86                     nodeInfoList = d.loader.GetNodesFromText(reader.ReadToEnd(), nodeFormat);
-87                 \}
-88 
-89                 \textcolor{comment}{// Convert this list into an easier-to-index dictionary}
-90                 var lineInfo = \textcolor{keyword}{new} Dictionary<string, \hyperlink{a00140}{Loader.NodeInfo}>();
-91 
-92                 \textcolor{keywordflow}{foreach} (var node \textcolor{keywordflow}{in} nodeInfoList)
-93                 \{
-94                     lineInfo[node.title] = node;
-95 
-96                 \}
-97 
-98                 \textcolor{comment}{// Make a list of line codes that we already know about.}
-99                 \textcolor{comment}{// This list will be updated as we tag lines, to prevent collisions.}
-100                 existingKeys.AddRange(lineInfo.Keys);
-101 
-102                 \textcolor{keywordtype}{bool} anyNodesModified = \textcolor{keyword}{false};
-103 
-104                 \textcolor{comment}{// We now have a list of all strings that do not have a string tag.}
-105                 \textcolor{comment}{// Add a new tag to these lines.}
-106                 \textcolor{keywordflow}{foreach} (var line \textcolor{keywordflow}{in} linesWithNoTag)
-107                 \{
-108 
-109                     \textcolor{comment}{// TODO: There's quite a bit of redundant work done here in each loop.}
-110                     \textcolor{comment}{// We're unzipping and re-combining the node for EACH line. Would be better}
-111                     \textcolor{comment}{// to do that only once.}
-112 
-113                     \textcolor{comment}{// Get the node that this line is in.}
-114                     var nodeInfo = lineInfo[line.Value.nodeName];
-115 
-116                     \textcolor{comment}{// Is this line contained within a rawText node?}
-117                     \textcolor{keywordflow}{if} (nodeInfo.tagsList.FindIndex(i => i == \textcolor{stringliteral}{"rawText"}) != -1)
-118                     \{
-119                         \textcolor{comment}{// We don't need to add a tag to it - genstrings will export}
-120                         \textcolor{comment}{// the whole thing for us.}
-121                         \textcolor{keywordflow}{continue};
-122                     \}
-123 
-124                     \textcolor{comment}{// If we have a tag to consider, and this node doesn't have that tag,}
-125                     \textcolor{comment}{// continue}
-126                     \textcolor{keywordflow}{if} (options.\hyperlink{a00037_ab6162338f9606a836f3101fe0e228249}{onlyUseTag} != null)
-127                     \{
-128                         \textcolor{keywordflow}{if} (nodeInfo.tagsList.FindIndex(i => i == options.
-      \hyperlink{a00037_ab6162338f9606a836f3101fe0e228249}{onlyUseTag}) == -1)
-129                         \{
-130                             \textcolor{keywordflow}{continue};
-131                         \}
-132                     \}
-133 
-134 
-135                     \textcolor{comment}{// Split this node's source by newlines}
-136                     var lines = nodeInfo.body.Split(\textcolor{keyword}{new} \textcolor{keywordtype}{string}[] \{ \textcolor{stringliteral}{"\(\backslash\)r\(\backslash\)n"}, \textcolor{stringliteral}{"\(\backslash\)n"} \}, StringSplitOptions.None)
-      ;
-137 
-138                     \textcolor{comment}{// Get the original line}
-139                     var existingLine = lines[line.Value.lineNumber - 1];
-140 
-141                     \textcolor{comment}{// Generate a new tag for this line}
-142                     var newTag = \hyperlink{a00130_a91ad68b679bd3b0bd89fe92ea5068688}{GenerateString}(existingKeys);
-143 
-144                     \textcolor{comment}{// Remember that we've used this tag, to prevent it from being re-used}
-145                     existingKeys.Add(newTag);
-146 
-147                     \textcolor{keywordflow}{if} (options.\hyperlink{a00041_ada4d83d1756918f362d55f6649b82b17}{verbose})
-148                     \{
-149                         YarnSpinnerConsole.Note(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Tagged line with
-       ID \(\backslash\)"\{0\}\(\backslash\)" in node \{1\}: \{2\}"}, newTag, nodeInfo.title, existingLine));
-150                     \}
-151 
-152                     \textcolor{comment}{// Re-write the line.}
-153                     var newLine = string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0\} #\{1\}"}, existingLine, 
-      newTag);
-154                     lines[line.Value.lineNumber - 1] = newLine;
-155 
-156 
-157                     \textcolor{comment}{// Pack this all back up into a single string}
-158                     nodeInfo.body = string.Join(\textcolor{stringliteral}{"\(\backslash\)n"}, lines);
-159 
-160                     \textcolor{comment}{// Put the updated node in the node collection.}
-161                     lineInfo[line.Value.nodeName] = nodeInfo;
-162 
-163                     anyNodesModified = \textcolor{keyword}{true};
-164 
-165                 \}
-166 
-167                 \textcolor{comment}{// If we didn't end up changing anything, don't modify the file}
-168                 \textcolor{keywordflow}{if} (anyNodesModified == \textcolor{keyword}{false})
-169                 \{
-170                     \textcolor{keywordflow}{continue};
-171                 \}
-172 
-173                 \textcolor{comment}{// All the nodes have been updated; save this back to disk.}
-174 
-175                 \textcolor{comment}{// Are we doing a dry run?}
-176                 \textcolor{keywordflow}{if} (options.\hyperlink{a00037_a5dc9d9db767738237e988f95fc0330f4}{dryRun})
-177                 \{
-178                     \textcolor{comment}{// Then bail out at this point, before we start}
-179                     \textcolor{comment}{// modifying files}
-180                     YarnSpinnerConsole.Note(\textcolor{stringliteral}{"Would have written to file "} + file);
-181                     \textcolor{keywordflow}{continue};
-182                 \}
-183 
-184                 var format = Loader.GetFormatFromFileName(file);
-185 
-186                 \textcolor{keywordflow}{switch} (format)
-187                 \{
-188                     \textcolor{keywordflow}{case} NodeFormat.JSON:
-189                         \textcolor{keywordflow}{break};
-190                     \textcolor{keywordflow}{case} NodeFormat.Text:
-191                         \textcolor{keywordflow}{break};
-192                     \textcolor{keywordflow}{default}:
-193                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException();
-194                 \}
-195 
-196 
-197                 \textcolor{comment}{// Convert the nodes into the correct format}
-198                 var savedData = FileFormatConverter.ConvertNodes(lineInfo.Values, fileFormat);
-199 
-200 
-201                 \textcolor{comment}{// Write the file!}
-202                 \textcolor{keyword}{using} (var writer = \textcolor{keyword}{new} System.IO.StreamWriter(file))
-203                 \{
-204                     writer.Write(savedData);
-205                 \}
-206 
-207 
-208             \}
-209             \textcolor{keywordflow}{return} 0;
-210         \}
+221             \{
+222                 this.patterns = \hyperlink{a00130_a951f91e9522ffe84851f2e25e9445106}{patterns};
+223             \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00130_af183111863c651ae5681665a2c379830}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!Add\-Text\-Rule@{Add\-Text\-Rule}}
+\index{Add\-Text\-Rule@{Add\-Text\-Rule}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{Add\-Text\-Rule}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-Rule} Yarn.\-Lexer.\-Lexer\-State.\-Add\-Text\-Rule (
+\begin{DoxyParamCaption}
+\item[{{\bf Token\-Type}}]{type, }
+\item[{string}]{enters\-State = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}}\label{a00130_af183111863c651ae5681665a2c379830}
+
+
+Definition at line 240 of file Lexer.\-cs.
+
+
+
+References Yarn.\-Lexer.\-Lexer\-State.\-Add\-Transition(), Yarn.\-Lexer.\-Lexer\-State.\-contains\-Text\-Rule, and Yarn.\-Lexer.\-Lexer\-State.\-token\-Rules.
+
+
+\begin{DoxyCode}
+241             \{
+242                 \textcolor{keywordflow}{if} (\hyperlink{a00130_a69948f05c35eeae9cb8448c849a053e6}{containsTextRule}) \{
+243                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (\textcolor{stringliteral}{"State already contains a text rule"});
+244                 \}
+245 
+246                 var delimiterRules = \textcolor{keyword}{new} List<string>();
+247 
+248                 \textcolor{keywordflow}{foreach} (var otherRule \textcolor{keywordflow}{in} \hyperlink{a00130_adf6563b1dc6f3ef80ed13c2b15b7be03}{tokenRules}) \{
+249                     \textcolor{keywordflow}{if} (otherRule.delimitsText == \textcolor{keyword}{true})
+250                         delimiterRules.Add (string.Format (CultureInfo.InvariantCulture, \textcolor{stringliteral}{"(\{0\})"}, 
+      otherRule.regex.ToString().Substring(2)));
+251                 \}
+252 
+253                 \textcolor{comment}{// Create a regex that matches all text up to but not including}
+254                 \textcolor{comment}{// any of the delimiter rules}
+255                 var pattern = string.Format (CultureInfo.InvariantCulture, \textcolor{stringliteral}{@"\(\backslash\)G((?!\{0\}).)*"},
+256                     string.Join (\textcolor{stringliteral}{"|"}, delimiterRules.ToArray()));
+257 
+258                 var rule = \hyperlink{a00130_a71ba52744e853ff142de19e97cf5daed}{AddTransition}(type, entersState);
+259 
+260                 rule.regex = \textcolor{keyword}{new} Regex (pattern);
+261                 rule.isTextRule = \textcolor{keyword}{true};
+262 
+263                 \textcolor{keywordflow}{return} rule;
+264             \}
 \end{DoxyCode}
 
 
@@ -271,54 +124,46 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00130_aa2b8af349e709b8a45d42af5146ca848_cgraph}
+\includegraphics[width=350pt]{a00130_af183111863c651ae5681665a2c379830_cgraph}
 \end{center}
 \end{figure}
 
 
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00130_aa2b8af349e709b8a45d42af5146ca848_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00130_a91ad68b679bd3b0bd89fe92ea5068688}{\index{Yarn\-::\-Line\-Adder@{Yarn\-::\-Line\-Adder}!Generate\-String@{Generate\-String}}
-\index{Generate\-String@{Generate\-String}!Yarn::LineAdder@{Yarn\-::\-Line\-Adder}}
-\subsubsection[{Generate\-String}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-Line\-Adder.\-Generate\-String (
+\hypertarget{a00130_a71ba52744e853ff142de19e97cf5daed}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!Add\-Transition@{Add\-Transition}}
+\index{Add\-Transition@{Add\-Transition}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{Add\-Transition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-Rule} Yarn.\-Lexer.\-Lexer\-State.\-Add\-Transition (
 \begin{DoxyParamCaption}
-\item[{List$<$ string $>$}]{existing\-Keys}
+\item[{{\bf Token\-Type}}]{type, }
+\item[{string}]{enters\-State = {\ttfamily null}, }
+\item[{bool}]{delimits\-Text = {\ttfamily false}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00130_a91ad68b679bd3b0bd89fe92ea5068688}
+)}}\label{a00130_a71ba52744e853ff142de19e97cf5daed}
 
 
-Definition at line 216 of file Line\-Adder.\-cs.
+Definition at line 227 of file Lexer.\-cs.
 
 
 
-Referenced by Yarn.\-Line\-Adder.\-Add\-Lines().
+References Yarn.\-Lexer.\-Lexer\-State.\-patterns.
+
+
+
+Referenced by Yarn.\-Lexer.\-Lexer\-State.\-Add\-Text\-Rule().
 
 
 \begin{DoxyCode}
-216                                                                 \{
-217 
-218             \textcolor{keywordtype}{string} tag = null;
-219             \textcolor{keywordtype}{bool} isUnique = \textcolor{keyword}{true};
-220             \textcolor{keywordflow}{do}
-221             \{
-222                 tag = string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"line:\{0:x6\}"}, random.Next(0x1000000));
-223 
-224                 isUnique = existingKeys.FindIndex(i => i == tag) == -1;
-225 
-226             \} \textcolor{keywordflow}{while} (isUnique == \textcolor{keyword}{false});
-227 
-228             \textcolor{keywordflow}{return} tag;
-229         \}
+227                                                                                                            
+            \{
+228 
+229                 var pattern = string.Format (CultureInfo.InvariantCulture, \textcolor{stringliteral}{@"\(\backslash\)G\{0\}"}, 
+      \hyperlink{a00130_a951f91e9522ffe84851f2e25e9445106}{patterns} [type]);
+230 
+231                 var rule = \textcolor{keyword}{new} TokenRule (type, \textcolor{keyword}{new} Regex(pattern), entersState, delimitsText);
+232 
+233                 tokenRules.Add(rule);
+234 
+235                 \textcolor{keywordflow}{return} rule;
+236             \}
 \end{DoxyCode}
 
 
@@ -327,7 +172,7 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00130_a91ad68b679bd3b0bd89fe92ea5068688_icgraph}
+\includegraphics[width=350pt]{a00130_a71ba52744e853ff142de19e97cf5daed_icgraph}
 \end{center}
 \end{figure}
 
@@ -335,15 +180,62 @@ Here is the caller graph for this function\-:
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00130_ad887744b1b813fc081be814958742c37}{\index{Yarn\-::\-Line\-Adder@{Yarn\-::\-Line\-Adder}!random@{random}}
-\index{random@{random}!Yarn::LineAdder@{Yarn\-::\-Line\-Adder}}
-\subsubsection[{random}]{\setlength{\rightskip}{0pt plus 5cm}Random Yarn.\-Line\-Adder.\-random = new Random()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00130_ad887744b1b813fc081be814958742c37}
+\hypertarget{a00130_aeb8debd0d81a76e90f083f0bf407573e}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!name@{name}}
+\index{name@{name}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Lexer.\-Lexer\-State.\-name}}\label{a00130_aeb8debd0d81a76e90f083f0bf407573e}
 
 
-Definition at line 213 of file Line\-Adder.\-cs.
+Definition at line 216 of file Lexer.\-cs.
+
+\hypertarget{a00130_a951f91e9522ffe84851f2e25e9445106}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!patterns@{patterns}}
+\index{patterns@{patterns}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{patterns}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<${\bf Token\-Type}, string$>$ Yarn.\-Lexer.\-Lexer\-State.\-patterns\hspace{0.3cm}{\ttfamily [private]}}}\label{a00130_a951f91e9522ffe84851f2e25e9445106}
+
+
+Definition at line 218 of file Lexer.\-cs.
+
+
+
+Referenced by Yarn.\-Lexer.\-Lexer\-State.\-Add\-Transition(), and Yarn.\-Lexer.\-Lexer\-State.\-Lexer\-State().
+
+\hypertarget{a00130_ad8b6ccac53bedd9dc202ffe6ac5698b2}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!set\-Track\-Next\-Indentation@{set\-Track\-Next\-Indentation}}
+\index{set\-Track\-Next\-Indentation@{set\-Track\-Next\-Indentation}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{set\-Track\-Next\-Indentation}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Lexer.\-Lexer\-State.\-set\-Track\-Next\-Indentation = false}}\label{a00130_ad8b6ccac53bedd9dc202ffe6ac5698b2}
+
+
+Definition at line 276 of file Lexer.\-cs.
+
+
+
+Referenced by Yarn.\-Lexer.\-Enter\-State().
+
+\hypertarget{a00130_adf6563b1dc6f3ef80ed13c2b15b7be03}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!token\-Rules@{token\-Rules}}
+\index{token\-Rules@{token\-Rules}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{token\-Rules}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Token\-Rule}$>$ Yarn.\-Lexer.\-Lexer\-State.\-token\-Rules = new List$<${\bf Token\-Rule}$>$()}}\label{a00130_adf6563b1dc6f3ef80ed13c2b15b7be03}
+
+
+Definition at line 225 of file Lexer.\-cs.
+
+
+
+Referenced by Yarn.\-Lexer.\-Lexer\-State.\-Add\-Text\-Rule(), and Yarn.\-Lexer.\-Tokenise\-Line().
+
+
+
+\subsection{Property Documentation}
+\hypertarget{a00130_a69948f05c35eeae9cb8448c849a053e6}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!contains\-Text\-Rule@{contains\-Text\-Rule}}
+\index{contains\-Text\-Rule@{contains\-Text\-Rule}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{contains\-Text\-Rule}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Lexer.\-Lexer\-State.\-contains\-Text\-Rule \textbackslash{}G((?!\{0\}).)$\ast$\char`\"{}\hspace{0.3cm}{\ttfamily [get]}}}\label{a00130_a69948f05c35eeae9cb8448c849a053e6}
+
+
+Definition at line 266 of file Lexer.\-cs.
+
+
+
+Referenced by Yarn.\-Lexer.\-Lexer\-State.\-Add\-Text\-Rule().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner\-Console/\hyperlink{a00324}{Line\-Adder.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00313}{Lexer.\-cs}\end{DoxyCompactItemize}

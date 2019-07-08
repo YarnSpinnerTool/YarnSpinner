@@ -1,4 +1,3 @@
-<map id="CsvHelper.TypeConversion.DateTimeConverter" name="CsvHelper.TypeConversion.DateTimeConverter">
-<area shape="rect" id="node2" href="$a00088.html" title="Converts an object to and from a string. " alt="" coords="23,177,175,298"/>
-<area shape="rect" id="node3" href="$a00123.html" title="Converts objects to and from strings. " alt="" coords="23,6,175,127"/>
+<map id="CsvHelper.TypeConversion.CsvTypeConverterException" name="CsvHelper.TypeConversion.CsvTypeConverterException">
+<area shape="rect" id="node2" href="$a00068.html" title="Represents errors that occur in CsvHelper. " alt="" coords="28,131,191,253"/>
 </map>

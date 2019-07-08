@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: YarnSpinner/YarnSpinnerLexer.cs File Reference</title>
+<title>YarnSpinner: YarnSpinner/Program.cs File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,31 +105,117 @@ $(document).ready(function(){initNavTree('a00317.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
-<div class="title">YarnSpinnerLexer.cs File Reference</div>  </div>
+<div class="title">Program.cs File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p><a href="a00317_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:adff82417cdaed8e1b025db27c7c11fc3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00317.html#adff82417cdaed8e1b025db27c7c11fc3">DFA</a> = Antlr4.Runtime.Dfa.DFA</td></tr>
-<tr class="separator:adff82417cdaed8e1b025db27c7c11fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00149.html">Yarn.ParseException</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00133.html">Yarn.LineInfo</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html">Yarn.Program</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00382"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00053.html#a00382">Yarn.Node</a></td></tr>
+<tr class="separator:a00382"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00121.html">Yarn.Instruction</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:a00053"><td class="memItemLeft" align="right" valign="top">package &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00053.html">Yarn</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ad5dfb6ee68ca7469623ad3e459f98894"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a> { <br/>
+&#160;&#160;<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894ab021df6aac4654c454f46c77646e745f">Yarn.ByteCode.Label</a>, 
+<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894acd664ebca0b52a8f2ece7d0767bacb49">Yarn.ByteCode.JumpTo</a>, 
+<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894a101f693f72287a2819a364f64ca1c0ed">Yarn.ByteCode.Jump</a>, 
+<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894a005c6df9c6edea5516e29d96571fbbbc">Yarn.ByteCode.RunLine</a>, 
+<br/>
+&#160;&#160;<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894a64d231d79e9f7640a4572f7ae75aa226">Yarn.ByteCode.RunCommand</a>, 
+<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894a0e6a6b9eb32a4d55f277d45eff74250d">Yarn.ByteCode.AddOption</a>, 
+<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894a658963e1a47a5018fd1e6fbc2af804f7">Yarn.ByteCode.ShowOptions</a>, 
+<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894a3e7800d36ccb7bfe6c463bbe7db7e41a">Yarn.ByteCode.PushString</a>, 
+<br/>
+&#160;&#160;<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894a29c8f5d9d5088ada190ccd9c21c31f33">Yarn.ByteCode.PushNumber</a>, 
+<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894af698d0b66ccf00f7d362c039949d1b80">Yarn.ByteCode.PushBool</a>, 
+<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894acf728db6b8e47e735666156aec7ae755">Yarn.ByteCode.PushNull</a>, 
+<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894af8bbf32f00c942d974ade428e24b021f">Yarn.ByteCode.JumpIfFalse</a>, 
+<br/>
+&#160;&#160;<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894a0ae61bd0474e04c9f1195d4baa0213a0">Yarn.ByteCode.Pop</a>, 
+<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894a3b5e7e8300dc6e4b78cb865c5b10f01a">Yarn.ByteCode.CallFunc</a>, 
+<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894ab8c46f65015a178516fadbb5ad6c2038">Yarn.ByteCode.PushVariable</a>, 
+<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894a872dc050abaff4beb46e70dadd4088c2">Yarn.ByteCode.StoreVariable</a>, 
+<br/>
+&#160;&#160;<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894a11a755d598c0c417f9a36758c3da7481">Yarn.ByteCode.Stop</a>, 
+<a class="el" href="a00053.html#ad5dfb6ee68ca7469623ad3e459f98894ae956bcf888278c168ee9b106927ff6ac">Yarn.ByteCode.RunNode</a>
+<br/>
+ }</td></tr>
+<tr class="separator:ad5dfb6ee68ca7469623ad3e459f98894"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="adff82417cdaed8e1b025db27c7c11fc3"></a>
+<hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="a00382" id="a00382"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="a00317.html#adff82417cdaed8e1b025db27c7c11fc3">DFA</a> =  Antlr4.Runtime.Dfa.DFA</td>
+          <td class="memname">class Yarn::Node</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00317_source.html#l00028">28</a> of file <a class="el" href="a00317_source.html">YarnSpinnerLexer.cs</a>.</p>
+<div class="textblock">
+<p>Definition at line <a class="el" href="a00317_source.html#l00252">252</a> of file <a class="el" href="a00317_source.html">Program.cs</a>.</p>
+</div><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Node:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00396.png" border="0" usemap="#_yarn_8_node_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_node_coll__map" id="_yarn_8_node_coll__map">
+</map>
+</div>
+<table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a156723a9252b62d288ddf611939ea7c3"></a>List&lt; <a class="el" href="a00121.html">Instruction</a> &gt;</td>
+<td class="fieldname">
+instructions</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a9afa49f4fbc72e806a0210cb4198f12e"></a>Dictionary&lt; string, int &gt;</td>
+<td class="fieldname">
+labels</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a107b0de3fcfc65e99913edc01b5ce9db"></a>string</td>
+<td class="fieldname">
+name</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a09c6af5b50925d0876283b84281b3ed4"></a>string</td>
+<td class="fieldname">
+sourceTextStringID</td>
+<td class="fielddoc">
+the entry in the program's string table that contains the original text of this node; null if this is not available </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a811086feceebbe79a74eba071c1d516b"></a>List&lt; string &gt;</td>
+<td class="fieldname">
+tags</td>
+<td class="fielddoc">
+</td></tr>
+</table>
 
 </div>
 </div>
@@ -138,8 +224,8 @@ Typedefs</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00317.html">YarnSpinnerLexer.cs</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 03:19:12 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00317.html">Program.cs</a></li>
+    <li class="footer">Generated on Mon Jul 8 2019 11:16:33 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

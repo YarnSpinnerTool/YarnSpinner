@@ -1,77 +1,161 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00097" kind="struct" prot="private">
-    <compoundname>Yarn::Loader::EmissionTuple</compoundname>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00097_1ad3d26f07b18e91e1ba31ba3b5d6923db" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Loader.EmissionTuple.depth</definition>
-        <argsstring></argsstring>
-        <name>depth</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="98" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="98" bodyend="-1"/>
-        <referencedby refid="a00097_1a79857a881f3e1bab47a2cee5007e62a2" compoundref="a00312" startline="100" endline="104">Yarn.Loader.EmissionTuple.EmissionTuple</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00097_1a5916dbbd4d2e24ddfd02b0afdea290bf" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.Loader.EmissionTuple.emitted</definition>
-        <argsstring></argsstring>
-        <name>emitted</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="99" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="99" bodyend="-1"/>
-        <referencedby refid="a00097_1a79857a881f3e1bab47a2cee5007e62a2" compoundref="a00312" startline="100" endline="104">Yarn.Loader.EmissionTuple.EmissionTuple</referencedby>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00097" kind="class" prot="public" abstract="yes">
+    <compoundname>Yarn::Unity::DialogueUIBehaviour</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <derivedcompoundref refid="a00173" prot="public" virt="non-virtual">TestDialogueUIBehaviour</derivedcompoundref>
+    <derivedcompoundref refid="a00103" prot="public" virt="non-virtual">Yarn.Unity.Example.ExampleDialogueUI</derivedcompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00097_1a79857a881f3e1bab47a2cee5007e62a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Loader.EmissionTuple.EmissionTuple</definition>
-        <argsstring>(int depth, bool emitted)</argsstring>
-        <name>EmissionTuple</name>
-        <param>
-          <type>int</type>
-          <declname>depth</declname>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>emitted</declname>
-        </param>
+      <memberdef kind="function" id="a00097_1af9d88ca81ac536d43046ca6572e3ff54" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>IEnumerator</type>
+        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueStarted</definition>
+        <argsstring>()</argsstring>
+        <name>DialogueStarted</name>
+        <reimplementedby refid="a00103_1a313283f6c53354b54f25898eb436eba0">DialogueStarted</reimplementedby>
         <briefdescription>
-        </briefdescription>
+<para>A conversation has started. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="100" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="100" bodyend="104"/>
-        <references refid="a00097_1ad3d26f07b18e91e1ba31ba3b5d6923db" compoundref="a00312" startline="98">Yarn.Loader.EmissionTuple.depth</references>
-        <references refid="a00097_1a5916dbbd4d2e24ddfd02b0afdea290bf" compoundref="a00312" startline="99">Yarn.Loader.EmissionTuple.emitted</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="454" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="454" bodyend="457"/>
+      </memberdef>
+      <memberdef kind="function" id="a00097_1a754c6dd0bc67895d11f878fe4477d698" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract IEnumerator</type>
+        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunLine</definition>
+        <argsstring>(Yarn.Line line)</argsstring>
+        <name>RunLine</name>
+        <reimplementedby refid="a00103_1a109aeedc5206dcbc4f629638b7830030">RunLine</reimplementedby>
+        <param>
+          <type><ref refid="a00380" kindref="compound">Yarn.Line</ref></type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+<para>Display a line. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="460" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00097_1ac5b29079f638f2ceb078627ef1e60004" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract IEnumerator</type>
+        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunOptions</definition>
+        <argsstring>(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser)</argsstring>
+        <name>RunOptions</name>
+        <reimplementedby refid="a00103_1aaa93672700a456e66c694636460a58f4">RunOptions</reimplementedby>
+        <param>
+          <type><ref refid="a00383" kindref="compound">Yarn.Options</ref></type>
+          <declname>optionsCollection</declname>
+        </param>
+        <param>
+          <type><ref refid="a00053_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">Yarn.OptionChooser</ref></type>
+          <declname>optionChooser</declname>
+        </param>
+        <briefdescription>
+<para>Display the options, and call the optionChooser when done. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="463" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00097_1a3dffe84b9e7a10fdec6749baf697d111" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract IEnumerator</type>
+        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunCommand</definition>
+        <argsstring>(Yarn.Command command)</argsstring>
+        <name>RunCommand</name>
+        <reimplementedby refid="a00103_1a7f84b1e7d3c9c1f7507d143e11ba8075">RunCommand</reimplementedby>
+        <param>
+          <type><ref refid="a00376" kindref="compound">Yarn.Command</ref></type>
+          <declname>command</declname>
+        </param>
+        <briefdescription>
+<para>Perform some game-specific command. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="467" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00097_1a2900548a0704d39d4502a153945f4bef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>IEnumerator</type>
+        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.NodeComplete</definition>
+        <argsstring>(string nextNode)</argsstring>
+        <name>NodeComplete</name>
+        <param>
+          <type>string</type>
+          <declname>nextNode</declname>
+        </param>
+        <briefdescription>
+<para>The node has ended. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="470" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="470" bodyend="473"/>
+      </memberdef>
+      <memberdef kind="function" id="a00097_1aecc60aee9e9386da1f71fb183f43c52d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>IEnumerator</type>
+        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueComplete</definition>
+        <argsstring>()</argsstring>
+        <name>DialogueComplete</name>
+        <reimplementedby refid="a00103_1a1f2a08baacc25aea09af8e60eb5d3eb1">DialogueComplete</reimplementedby>
+        <briefdescription>
+<para>The conversation has ended. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="476" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="476" bodyend="479"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Scripts that can act as the UI for the conversation should subclass this. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1303">
-        <label>Yarn.Loader.EmissionTuple</label>
+    <inheritancegraph>
+      <node id="1293">
+        <label>Yarn.Unity.Example.ExampleDialogueUI</label>
+        <link refid="a00103"/>
+        <childnode refid="1290" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1290">
+        <label>Yarn.Unity.DialogueUIBehaviour</label>
         <link refid="a00097"/>
+        <childnode refid="1291" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1291">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1292">
+        <label>TestDialogueUIBehaviour</label>
+        <link refid="a00173"/>
+        <childnode refid="1290" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1294">
+        <label>Yarn.Unity.DialogueUIBehaviour</label>
+        <link refid="a00097"/>
+        <childnode refid="1295" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1295">
+        <label>MonoBehaviour</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="97" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="96" bodyend="105"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="452" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="451" bodyend="480"/>
     <listofallmembers>
-      <member refid="a00097_1ad3d26f07b18e91e1ba31ba3b5d6923db" prot="public" virt="non-virtual"><scope>Yarn::Loader::EmissionTuple</scope><name>depth</name></member>
-      <member refid="a00097_1a79857a881f3e1bab47a2cee5007e62a2" prot="public" virt="non-virtual"><scope>Yarn::Loader::EmissionTuple</scope><name>EmissionTuple</name></member>
-      <member refid="a00097_1a5916dbbd4d2e24ddfd02b0afdea290bf" prot="public" virt="non-virtual"><scope>Yarn::Loader::EmissionTuple</scope><name>emitted</name></member>
+      <member refid="a00097_1aecc60aee9e9386da1f71fb183f43c52d" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>DialogueComplete</name></member>
+      <member refid="a00097_1af9d88ca81ac536d43046ca6572e3ff54" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>DialogueStarted</name></member>
+      <member refid="a00097_1a2900548a0704d39d4502a153945f4bef" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>NodeComplete</name></member>
+      <member refid="a00097_1a3dffe84b9e7a10fdec6749baf697d111" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunCommand</name></member>
+      <member refid="a00097_1a754c6dd0bc67895d11f878fe4477d698" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunLine</name></member>
+      <member refid="a00097_1ac5b29079f638f2ceb078627ef1e60004" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunOptions</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

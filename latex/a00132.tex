@@ -1,90 +1,349 @@
-\hypertarget{a00132}{\section{Yarn.\-Dialogue.\-Line\-Result Class Reference}
-\label{a00132}\index{Yarn.\-Dialogue.\-Line\-Result@{Yarn.\-Dialogue.\-Line\-Result}}
+\hypertarget{a00132}{\section{Yarn.\-Line\-Adder Class Reference}
+\label{a00132}\index{Yarn.\-Line\-Adder@{Yarn.\-Line\-Adder}}
 }
 
 
-The client should run a line of dialogue.  
-
-
-
-
-Inheritance diagram for Yarn.\-Dialogue.\-Line\-Result\-:
+Collaboration diagram for Yarn.\-Line\-Adder\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=208pt]{a00623}
+\includegraphics[width=174pt]{a00733}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Dialogue.\-Line\-Result\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=232pt]{a00624}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Static Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00132_ad91ff667246e8c4ac0492cedea34b524}{Line\-Result} (string text)
+static int \hyperlink{a00132_aa2b8af349e709b8a45d42af5146ca848}{Add\-Lines} (\hyperlink{a00039}{Add\-Labels\-Options} options)
 \end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\subsection*{Static Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00051_a00377}{Line} \hyperlink{a00132_abfbb0ea840b02acd0ecdc72c5b120257}{line}
+static string \hyperlink{a00132_a91ad68b679bd3b0bd89fe92ea5068688}{Generate\-String} (List$<$ string $>$ existing\-Keys)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Random \hyperlink{a00132_ad887744b1b813fc081be814958742c37}{random} = new Random()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The client should run a line of dialogue. 
-
-Definition at line 143 of file Dialogue.\-cs.
 
 
+Definition at line 9 of file Line\-Adder.\-cs.
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00132_ad91ff667246e8c4ac0492cedea34b524}{\index{Yarn\-::\-Dialogue\-::\-Line\-Result@{Yarn\-::\-Dialogue\-::\-Line\-Result}!Line\-Result@{Line\-Result}}
-\index{Line\-Result@{Line\-Result}!Yarn::Dialogue::LineResult@{Yarn\-::\-Dialogue\-::\-Line\-Result}}
-\subsubsection[{Line\-Result}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Dialogue.\-Line\-Result.\-Line\-Result (
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00132_aa2b8af349e709b8a45d42af5146ca848}{\index{Yarn\-::\-Line\-Adder@{Yarn\-::\-Line\-Adder}!Add\-Lines@{Add\-Lines}}
+\index{Add\-Lines@{Add\-Lines}!Yarn::LineAdder@{Yarn\-::\-Line\-Adder}}
+\subsubsection[{Add\-Lines}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-Line\-Adder.\-Add\-Lines (
 \begin{DoxyParamCaption}
-\item[{string}]{text}
+\item[{{\bf Add\-Labels\-Options}}]{options}
 \end{DoxyParamCaption}
-)}}\label{a00132_ad91ff667246e8c4ac0492cedea34b524}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00132_aa2b8af349e709b8a45d42af5146ca848}
 
 
-Definition at line 147 of file Dialogue.\-cs.
+Definition at line 12 of file Line\-Adder.\-cs.
 
 
 
-References Yarn.\-Dialogue.\-Line\-Result.\-line.
+References Yarn.\-Yarn\-Spinner\-Console.\-A\-L\-L\-O\-W\-E\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N\-S, and Yarn.\-Line\-Adder.\-Generate\-String().
+
+
+
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Main().
 
 
 \begin{DoxyCode}
-147                                             \{
-148                 var \hyperlink{a00132_abfbb0ea840b02acd0ecdc72c5b120257}{line} = \textcolor{keyword}{new} Line();
-149                 line.text = text;
-150                 this.line = \hyperlink{a00132_abfbb0ea840b02acd0ecdc72c5b120257}{line};
-151             \}
+13         \{
+14 
+15             YarnSpinnerConsole.CheckFileList(options.files, 
+      \hyperlink{a00197_a0979de7ea02c8c0375b8220a12e6575e}{YarnSpinnerConsole.ALLOWED\_EXTENSIONS});
+16 
+17             var existingKeys = \textcolor{keyword}{new} List<string>();
+18 
+19             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.\hyperlink{a00043_aa93cbb1bc1d5328e0a417012621e92d2}{files})
+20             \{
+21 
+22                 \hyperlink{a00053_ad7ebb46e7309ead8767383a672b3272f}{NodeFormat} fileFormat;
+23                 \textcolor{keywordflow}{try}
+24                 \{
+25                     fileFormat = Loader.GetFormatFromFileName(file);
+26                 \}
+27                 \textcolor{keywordflow}{catch} (FormatException)
+28                 \{
+29                     fileFormat = NodeFormat.Unknown;
+30                 \}
+31 
+32                 \textcolor{keywordflow}{switch} (fileFormat)
+33                 \{
+34                     \textcolor{keywordflow}{case} NodeFormat.JSON:
+35                         \textcolor{keywordflow}{break};
+36                     \textcolor{keywordflow}{case} NodeFormat.Text:
+37                         \textcolor{keywordflow}{break};
+38                     \textcolor{keywordflow}{default}:
+39                         YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Skipping file
+       \{0\}, which is in unsupported format '\{1\}'"}, file, fileFormat));
+40                         \textcolor{keywordflow}{continue};
+41                 \}
+42 
+43 
+44                 \hyperlink{a00094}{Dialogue} d = YarnSpinnerConsole.CreateDialogueForUtilities();
+45 
+46                 \textcolor{keywordflow}{try}
+47                 \{
+48                     \textcolor{comment}{// First, we need to ensure that this file compiles.}
+49                     d.LoadFile(file);
+50                 \}
+51 \textcolor{preprocessor}{#pragma warning disable CA1031 // Do not catch general exception types}
+52 \textcolor{preprocessor}{}                \textcolor{keywordflow}{catch}
+53                 \{
+54                     YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Skipping file \{0\}
+       due to compilation errors."}, file));
+55                     \textcolor{keywordflow}{continue};
+56                 \}
+57 \textcolor{preprocessor}{#pragma warning restore CA1031 // Do not catch general exception types}
+58 \textcolor{preprocessor}{}
+59                 Dictionary<string, LineInfo> linesWithNoTag = \textcolor{keyword}{new} Dictionary<string, LineInfo>();
+60 
+61                 \textcolor{comment}{// Filter the string info table to exclude lines that have a line code}
+62                 \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} d.GetStringInfoTable())
+63                 \{
+64                     \textcolor{keywordflow}{if} (entry.Key.StartsWith(\textcolor{stringliteral}{"line:"}, StringComparison.InvariantCulture) == \textcolor{keyword}{false})
+65                     \{
+66                         linesWithNoTag[entry.Key] = entry.Value;
+67                     \}
+68                 \}
+69 
+70                 \textcolor{keywordflow}{if} (linesWithNoTag.Count == 0)
+71                 \{
+72                     var message = string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"\{0\} had no untagged lines.
+       Either they're all tagged already, or it has no localisable text."}, file);
+73                     YarnSpinnerConsole.Note(message);
+74                     \textcolor{keywordflow}{continue};
+75                 \}
+76 
+77                 \textcolor{comment}{// We also need the raw NodeInfo structures contained within this file.}
+78                 \textcolor{comment}{// These contain the source code to what we just compiled.}
+79 
+80                 \hyperlink{a00142}{Loader.NodeInfo}[] nodeInfoList;
+81 
+82                 var nodeFormat = Loader.GetFormatFromFileName(file);
+83 
+84                 \textcolor{keyword}{using} (var reader = \textcolor{keyword}{new} System.IO.StreamReader(file))
+85                 \{
+86                     nodeInfoList = d.loader.GetNodesFromText(reader.ReadToEnd(), nodeFormat);
+87                 \}
+88 
+89                 \textcolor{comment}{// Convert this list into an easier-to-index dictionary}
+90                 var lineInfo = \textcolor{keyword}{new} Dictionary<string, \hyperlink{a00142}{Loader.NodeInfo}>();
+91 
+92                 \textcolor{keywordflow}{foreach} (var node \textcolor{keywordflow}{in} nodeInfoList)
+93                 \{
+94                     lineInfo[node.title] = node;
+95 
+96                 \}
+97 
+98                 \textcolor{comment}{// Make a list of line codes that we already know about.}
+99                 \textcolor{comment}{// This list will be updated as we tag lines, to prevent collisions.}
+100                 existingKeys.AddRange(lineInfo.Keys);
+101 
+102                 \textcolor{keywordtype}{bool} anyNodesModified = \textcolor{keyword}{false};
+103 
+104                 \textcolor{comment}{// We now have a list of all strings that do not have a string tag.}
+105                 \textcolor{comment}{// Add a new tag to these lines.}
+106                 \textcolor{keywordflow}{foreach} (var line \textcolor{keywordflow}{in} linesWithNoTag)
+107                 \{
+108 
+109                     \textcolor{comment}{// TODO: There's quite a bit of redundant work done here in each loop.}
+110                     \textcolor{comment}{// We're unzipping and re-combining the node for EACH line. Would be better}
+111                     \textcolor{comment}{// to do that only once.}
+112 
+113                     \textcolor{comment}{// Get the node that this line is in.}
+114                     var nodeInfo = lineInfo[line.Value.nodeName];
+115 
+116                     \textcolor{comment}{// Is this line contained within a rawText node?}
+117                     \textcolor{keywordflow}{if} (nodeInfo.tagsList.FindIndex(i => i == \textcolor{stringliteral}{"rawText"}) != -1)
+118                     \{
+119                         \textcolor{comment}{// We don't need to add a tag to it - genstrings will export}
+120                         \textcolor{comment}{// the whole thing for us.}
+121                         \textcolor{keywordflow}{continue};
+122                     \}
+123 
+124                     \textcolor{comment}{// If we have a tag to consider, and this node doesn't have that tag,}
+125                     \textcolor{comment}{// continue}
+126                     \textcolor{keywordflow}{if} (options.\hyperlink{a00039_ab6162338f9606a836f3101fe0e228249}{onlyUseTag} != null)
+127                     \{
+128                         \textcolor{keywordflow}{if} (nodeInfo.tagsList.FindIndex(i => i == options.
+      \hyperlink{a00039_ab6162338f9606a836f3101fe0e228249}{onlyUseTag}) == -1)
+129                         \{
+130                             \textcolor{keywordflow}{continue};
+131                         \}
+132                     \}
+133 
+134 
+135                     \textcolor{comment}{// Split this node's source by newlines}
+136                     var lines = nodeInfo.body.Split(\textcolor{keyword}{new} \textcolor{keywordtype}{string}[] \{ \textcolor{stringliteral}{"\(\backslash\)r\(\backslash\)n"}, \textcolor{stringliteral}{"\(\backslash\)n"} \}, StringSplitOptions.None)
+      ;
+137 
+138                     \textcolor{comment}{// Get the original line}
+139                     var existingLine = lines[line.Value.lineNumber - 1];
+140 
+141                     \textcolor{comment}{// Generate a new tag for this line}
+142                     var newTag = \hyperlink{a00132_a91ad68b679bd3b0bd89fe92ea5068688}{GenerateString}(existingKeys);
+143 
+144                     \textcolor{comment}{// Remember that we've used this tag, to prevent it from being re-used}
+145                     existingKeys.Add(newTag);
+146 
+147                     \textcolor{keywordflow}{if} (options.\hyperlink{a00043_ada4d83d1756918f362d55f6649b82b17}{verbose})
+148                     \{
+149                         YarnSpinnerConsole.Note(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Tagged line with
+       ID \(\backslash\)"\{0\}\(\backslash\)" in node \{1\}: \{2\}"}, newTag, nodeInfo.title, existingLine));
+150                     \}
+151 
+152                     \textcolor{comment}{// Re-write the line.}
+153                     var newLine = string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0\} #\{1\}"}, existingLine, 
+      newTag);
+154                     lines[line.Value.lineNumber - 1] = newLine;
+155 
+156 
+157                     \textcolor{comment}{// Pack this all back up into a single string}
+158                     nodeInfo.body = string.Join(\textcolor{stringliteral}{"\(\backslash\)n"}, lines);
+159 
+160                     \textcolor{comment}{// Put the updated node in the node collection.}
+161                     lineInfo[line.Value.nodeName] = nodeInfo;
+162 
+163                     anyNodesModified = \textcolor{keyword}{true};
+164 
+165                 \}
+166 
+167                 \textcolor{comment}{// If we didn't end up changing anything, don't modify the file}
+168                 \textcolor{keywordflow}{if} (anyNodesModified == \textcolor{keyword}{false})
+169                 \{
+170                     \textcolor{keywordflow}{continue};
+171                 \}
+172 
+173                 \textcolor{comment}{// All the nodes have been updated; save this back to disk.}
+174 
+175                 \textcolor{comment}{// Are we doing a dry run?}
+176                 \textcolor{keywordflow}{if} (options.\hyperlink{a00039_a5dc9d9db767738237e988f95fc0330f4}{dryRun})
+177                 \{
+178                     \textcolor{comment}{// Then bail out at this point, before we start}
+179                     \textcolor{comment}{// modifying files}
+180                     YarnSpinnerConsole.Note(\textcolor{stringliteral}{"Would have written to file "} + file);
+181                     \textcolor{keywordflow}{continue};
+182                 \}
+183 
+184                 var format = Loader.GetFormatFromFileName(file);
+185 
+186                 \textcolor{keywordflow}{switch} (format)
+187                 \{
+188                     \textcolor{keywordflow}{case} NodeFormat.JSON:
+189                         \textcolor{keywordflow}{break};
+190                     \textcolor{keywordflow}{case} NodeFormat.Text:
+191                         \textcolor{keywordflow}{break};
+192                     \textcolor{keywordflow}{default}:
+193                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException();
+194                 \}
+195 
+196 
+197                 \textcolor{comment}{// Convert the nodes into the correct format}
+198                 var savedData = FileFormatConverter.ConvertNodes(lineInfo.Values, fileFormat);
+199 
+200 
+201                 \textcolor{comment}{// Write the file!}
+202                 \textcolor{keyword}{using} (var writer = \textcolor{keyword}{new} System.IO.StreamWriter(file))
+203                 \{
+204                     writer.Write(savedData);
+205                 \}
+206 
+207 
+208             \}
+209             \textcolor{keywordflow}{return} 0;
+210         \}
 \end{DoxyCode}
 
 
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00132_aa2b8af349e709b8a45d42af5146ca848_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00132_aa2b8af349e709b8a45d42af5146ca848_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00132_a91ad68b679bd3b0bd89fe92ea5068688}{\index{Yarn\-::\-Line\-Adder@{Yarn\-::\-Line\-Adder}!Generate\-String@{Generate\-String}}
+\index{Generate\-String@{Generate\-String}!Yarn::LineAdder@{Yarn\-::\-Line\-Adder}}
+\subsubsection[{Generate\-String}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-Line\-Adder.\-Generate\-String (
+\begin{DoxyParamCaption}
+\item[{List$<$ string $>$}]{existing\-Keys}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00132_a91ad68b679bd3b0bd89fe92ea5068688}
+
+
+Definition at line 216 of file Line\-Adder.\-cs.
+
+
+
+Referenced by Yarn.\-Line\-Adder.\-Add\-Lines().
+
+
+\begin{DoxyCode}
+216                                                                 \{
+217 
+218             \textcolor{keywordtype}{string} tag = null;
+219             \textcolor{keywordtype}{bool} isUnique = \textcolor{keyword}{true};
+220             \textcolor{keywordflow}{do}
+221             \{
+222                 tag = string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"line:\{0:x6\}"}, random.Next(0x1000000));
+223 
+224                 isUnique = existingKeys.FindIndex(i => i == tag) == -1;
+225 
+226             \} \textcolor{keywordflow}{while} (isUnique == \textcolor{keyword}{false});
+227 
+228             \textcolor{keywordflow}{return} tag;
+229         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00132_a91ad68b679bd3b0bd89fe92ea5068688_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
 \subsection{Member Data Documentation}
-\hypertarget{a00132_abfbb0ea840b02acd0ecdc72c5b120257}{\index{Yarn\-::\-Dialogue\-::\-Line\-Result@{Yarn\-::\-Dialogue\-::\-Line\-Result}!line@{line}}
-\index{line@{line}!Yarn::Dialogue::LineResult@{Yarn\-::\-Dialogue\-::\-Line\-Result}}
-\subsubsection[{line}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Line} Yarn.\-Dialogue.\-Line\-Result.\-line}}\label{a00132_abfbb0ea840b02acd0ecdc72c5b120257}
+\hypertarget{a00132_ad887744b1b813fc081be814958742c37}{\index{Yarn\-::\-Line\-Adder@{Yarn\-::\-Line\-Adder}!random@{random}}
+\index{random@{random}!Yarn::LineAdder@{Yarn\-::\-Line\-Adder}}
+\subsubsection[{random}]{\setlength{\rightskip}{0pt plus 5cm}Random Yarn.\-Line\-Adder.\-random = new Random()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00132_ad887744b1b813fc081be814958742c37}
 
 
-Definition at line 145 of file Dialogue.\-cs.
-
-
-
-Referenced by Yarn.\-Dialogue.\-Line\-Result.\-Line\-Result().
+Definition at line 213 of file Line\-Adder.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00305}{Dialogue.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner\-Console/\hyperlink{a00327}{Line\-Adder.\-cs}\end{DoxyCompactItemize}

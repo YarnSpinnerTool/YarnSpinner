@@ -1,8 +1,8 @@
 var a00185 =
 [
-    [ "Diagnose", "a00185.html#aba4a36cb823b11ee491074e26477d084", null ],
-    [ "Diagnose", "a00185.html#aeac8f333d4dcc85f4d4a716bf8fea01f", null ],
-    [ "GatherDiagnoses", "a00185.html#a107aecf707b130c4b733930a95f9154e", null ],
-    [ "readVariables", "a00185.html#a6b542092ddce1b92c9455d60899518a9", null ],
-    [ "writtenVariables", "a00185.html#a0c2fe6eded1b10b135ca2469f5980a39", null ]
+    [ "CanConvertFrom", "a00185.html#a2acfe170e7562c745bcb0aaff3d74020", null ],
+    [ "CanConvertFrom", "a00185.html#a470d21adaa704eb281250dbd112ff91a", null ],
+    [ "CanConvertTo", "a00185.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
+    [ "ConvertFromString", "a00185.html#a15686325b6bfa7648b65f201ecf50cd2", null ],
+    [ "ConvertToString", "a00185.html#a36cb2f9b24f15a671293f3a722324c27", null ]
 ];

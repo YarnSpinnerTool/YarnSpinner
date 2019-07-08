@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00211" kind="file">
-    <compoundname>Simple-Dialogue-Tutorial.md</compoundname>
+    <compoundname>Complex-Dialogue-Tutorial.md</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#<sp/>Simple<sp/>Yarn<sp/>Dialogue<sp/>-<sp/>Tutorial</highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Complex<sp/>Yarn<sp/>Dialogue<sp/>-<sp/>Tutorial</highlight></codeline>
 <codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Style<sp/>Guide</highlight></codeline>
 <codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
@@ -15,207 +15,270 @@
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>Code<sp/>Blocks<sp/>contain<sp/>segments<sp/>or<sp/>chunks<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal">**Bold<sp/>indicates<sp/>actions<sp/>(select<sp/>menu<sp/>item,<sp/>copying<sp/>file,<sp/>etc).**</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">**Bold<sp/>indicate<sp/>actions<sp/>(Select<sp/>menu<sp/>item,<sp/>copying<sp/>file,<sp/>etc.)**</highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal">***Bold<sp/>italic<sp/>text<sp/>indicates<sp/>emphasis.***</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">***Bold<sp/>italic<sp/>text<sp/>indicates<sp/>emphasis***</highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal">&gt;<sp/>Blockquotes<sp/>contain<sp/>essential<sp/>information</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Tutorial</highlight></codeline>
 <codeline lineno="16"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal">&gt;<sp/>***Note:***<sp/>This<sp/>tutorial<sp/>assumes<sp/>that<sp/>you<sp/>know<sp/>nothing<sp/>about<sp/>writing<sp/>code,<sp/>in<sp/>particular<sp/>how<sp/>to<sp/>use<sp/>[Unity](http:</highlight><highlight class="comment">//www.unity3d.com)<sp/>or<sp/>the<sp/>Yarn<sp/>Editor.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal">&gt;<sp/>You<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>not<sp/>need<sp/>to<sp/>know<sp/>how<sp/>to<sp/>use<sp/>those<sp/>tools<sp/>to<sp/>write<sp/>Yarn<sp/>Dialogue.<sp/>It<sp/>is<sp/>required<sp/>that<sp/>you<sp/>know<sp/>how<sp/>to<sp/>create<sp/>a<sp/>text<sp/>file<sp/>(.txt),<sp/>which<sp/>is<sp/>different<sp/>to<sp/>a<sp/>.doc,<sp/>.docx,<sp/>.rtf<sp/>etc.<sp/>document,<sp/>in<sp/>whatever<sp/>text<sp/>editor<sp/>you<sp/>are<sp/>most<sp/>comfortable<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal">.<sp/>Please<sp/>refer<sp/>to<sp/>your<sp/>friendly<sp/>local<sp/>computer<sp/>expert<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>you<sp/>are<sp/>unsure<sp/>how<sp/>to<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>this.</highlight></codeline>
-<codeline lineno="19"><highlight class="normal">&gt;<sp/>As<sp/>you<sp/>learn<sp/>more<sp/>about<sp/>Yarn<sp/>Dialogue,<sp/>you<sp/>may<sp/>find<sp/>the<sp/>Yarn<sp/>Editor<sp/>useful<sp/>as<sp/>you<sp/>progress<sp/>with<sp/>your<sp/>authoring.<sp/>It<sp/>is<sp/>a<sp/>text<sp/>editor<sp/>that<sp/>is<sp/>designed<sp/>to<sp/>make<sp/>Yarn<sp/>Dialogue<sp/>easier<sp/>to<sp/>create.</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal">##<sp/>Introducing<sp/>Yarn<sp/>Dialogue</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal">Yarn<sp/>Dialogue<sp/>is<sp/>designed<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Authors<sp/>who<sp/>have<sp/>little<sp/>or<sp/>no<sp/>programming<sp/>knowledge.<sp/>It<sp/>makes<sp/>no<sp/>assumptions<sp/>about<sp/>how<sp/>your<sp/>game<sp/>presents<sp/>resultant<sp/>text<sp/>to<sp/>the<sp/>player,<sp/>or<sp/>about<sp/>how<sp/>the<sp/>player<sp/>chooses<sp/>their<sp/>responses.<sp/>These<sp/>tasks<sp/>are<sp/>left<sp/>to<sp/>the<sp/>game<sp/>production<sp/>team,<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>programming<sp/>and<sp/>design<sp/>tools<sp/>such<sp/>as<sp/>Unity3D<sp/>and<sp/>C#.</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal">###<sp/>Simple<sp/>Example<sp/>Script</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal">We<sp/>will<sp/>create<sp/>the<sp/>essential<sp/>Yarn<sp/>Dialogue<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>the<sp/>[Simple<sp/>Example<sp/>Dialogue](../Unity/Assets/YarnSpinner/Examples/DemoAssets/SimpleExampleScript.yarn.txt).<sp/>We<sp/>will<sp/>start<sp/>off<sp/>with<sp/>the<sp/>text<sp/>as<sp/>presented<sp/>by<sp/>the<sp/>ingame<sp/>characters,<sp/>add<sp/>in<sp/>choices<sp/>which<sp/>are<sp/>essentially<sp/>what<sp/>the<sp/>player<sp/>says<sp/>to<sp/>the<sp/>characters,<sp/>and<sp/>have<sp/>the<sp/>characters<sp/>react<sp/>to<sp/>the<sp/>choices.</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal">Each<sp/>section<sp/>of<sp/>text<sp/>in<sp/>Yarn<sp/>Dialogue<sp/>is<sp/>known<sp/>as<sp/>a<sp/>***node***.</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">&gt;<sp/>***Note***<sp/>This<sp/>document<sp/>talks<sp/>about<sp/>how<sp/>to<sp/>use<sp/>Yarn<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>you</highlight><highlight class="stringliteral">&apos;re<sp/>using<sp/>it<sp/>to<sp/>write<sp/>Yarn<sp/>Dialogue.<sp/>It<sp/>is<sp/>strongly<sp/>suggested<sp/>you<sp/>have<sp/>first<sp/>read<sp/>through<sp/>the<sp/>[Simple<sp/>Example](Simple-Dialogue-Tutorial.md)<sp/>document.<sp/>Neither<sp/>the<sp/>Simple<sp/>Example<sp/>or<sp/>this<sp/>document<sp/>talk<sp/>about<sp/>how<sp/>to<sp/>integrate<sp/>Yarn<sp/>Spinner<sp/>into<sp/>your<sp/>project;<sp/>for<sp/>that,<sp/>see<sp/>[&quot;Using<sp/>Yarn<sp/>Spinner<sp/>in<sp/>your<sp/>Unity<sp/>game&quot;](../YarnSpinner-Unity).</highlight></codeline>
+<codeline lineno="18"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="19"><highlight class="stringliteral">##<sp/>Complex<sp/>Example</highlight></codeline>
+<codeline lineno="20"><highlight class="stringliteral">In<sp/>our<sp/>Complex<sp/>Example,<sp/>we<sp/>will<sp/>establish<sp/>a<sp/>multiple<sp/>files<sp/>of<sp/>Yarn<sp/>Dialogue.<sp/>This<sp/>Dialogue<sp/>will<sp/>take<sp/>place<sp/>between<sp/>three<sp/>characters:<sp/>the<sp/>Player,<sp/>an<sp/>NPC<sp/>called<sp/>Sally<sp/>and<sp/>an<sp/>NPC<sp/>called<sp/>Ship.</highlight></codeline>
+<codeline lineno="21"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="22"><highlight class="stringliteral">A<sp/>limited<sp/>amount<sp/>of<sp/>programming<sp/>knowledge<sp/>is<sp/>required<sp/>for<sp/>narrative<sp/>adventure<sp/>Yarn<sp/>Dialogue<sp/>creation,<sp/>otherwise<sp/>we<sp/>cannot<sp/>tell<sp/>what<sp/>is<sp/>required<sp/>to<sp/>for<sp/>the<sp/>desired<sp/>plot<sp/>sequences<sp/>to<sp/>take<sp/>place.<sp/>In<sp/>this<sp/>example,<sp/>we<sp/>will<sp/>introduce<sp/>***[commands](https://en.wikipedia.org/wiki/Command_(computing))***<sp/>as<sp/>well<sp/>as<sp/>***[conditionals](https://en.wikipedia.org/wiki/Conditional_(computer_programming))***<sp/>along<sp/>with<sp/>***[tests](https://en.wikipedia.org/wiki/Relational_operator)***<sp/>and<sp/>***[functions](https://en.wikipedia.org/wiki/Function_composition_(computer_science))***<sp/>to<sp/>produce<sp/>a<sp/>more<sp/>reactive<sp/>narrative.<sp/>We<sp/>shall<sp/>also<sp/>discuss<sp/>***[variables](https://en.wikipedia.org/wiki/Variable_(computer_science))***<sp/>and<sp/>how<sp/>to<sp/>use<sp/>them<sp/>to<sp/>influence<sp/>Dialogue<sp/>interaction.</highlight></codeline>
+<codeline lineno="23"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="24"><highlight class="stringliteral">*<sp/>***Commands***<sp/>instruct<sp/>the<sp/>game<sp/>engine<sp/>to<sp/>execute<sp/>specific<sp/>code,<sp/>such<sp/>as<sp/>making<sp/>a<sp/>noise<sp/>in<sp/>sequence<sp/>with<sp/>some<sp/>text<sp/>or<sp/>generating<sp/>a<sp/>graphic<sp/>or<sp/>both<sp/>(for<sp/>example,<sp/>displaying<sp/>lightning<sp/>and<sp/>making<sp/>the<sp/>noise<sp/>of<sp/>thunder).</highlight></codeline>
+<codeline lineno="25"><highlight class="stringliteral">*<sp/>***Conditionals***<sp/>are<sp/>a<sp/>form<sp/>of<sp/>[branches](https://en.wikipedia.org/wiki/Branch_(computer_science)).<sp/>By<sp/>following<sp/>the<sp/>[simple<sp/>example](Simple-Dialogue-Tutorial.md),<sp/>you&apos;</highlight><highlight class="normal">ve<sp/>already<sp/>learned<sp/>a<sp/>little<sp/>about<sp/>[control<sp/>flow](https:</highlight><highlight class="comment">//en.wikipedia.org/wiki/Branch_(computer_science)),<sp/>in<sp/>that<sp/>how<sp/>selecting<sp/>certain<sp/>text<sp/>determines<sp/>which<sp/>nodes<sp/>to<sp/>***jump***<sp/>to.<sp/>Conditionals<sp/>are<sp/>only<sp/>slightly<sp/>more<sp/>complex<sp/>than<sp/>jumps,<sp/>as<sp/>they<sp/>are<sp/>simply<sp/>a<sp/>method<sp/>to<sp/>determine<sp/>which<sp/>jumps<sp/>may<sp/>become<sp/>available<sp/>and<sp/>when.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">*<sp/>***Tests***<sp/>utilise<sp/>a<sp/>combination<sp/>of<sp/>variables,<sp/>functions<sp/>to<sp/>contruct<sp/>a<sp/>***conditional***.</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">*<sp/>***Functions***,<sp/>also<sp/>known<sp/>in<sp/>other<sp/>programming<sp/>languages<sp/>as<sp/>subroutines,<sp/>procedures,<sp/>or<sp/>subprograms,<sp/>are<sp/>an<sp/>external<sp/>set<sp/>of<sp/>commands<sp/>that<sp/>perform<sp/>a<sp/>specific<sp/>task.<sp/>In<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>example,<sp/>we<sp/>use<sp/>a<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal"><sp/>called<sp/></highlight><highlight class="stringliteral">&apos;Visited&apos;</highlight><highlight class="normal"><sp/>to<sp/>see<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>a<sp/>node<sp/>has<sp/>been<sp/>reached<sp/>by<sp/>a<sp/>player<sp/>in<sp/>the<sp/>context<sp/>of<sp/>a<sp/>narrative<sp/>story.<sp/>Based<sp/>upon<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>visit,<sp/>or<sp/>lack<sp/>thereof,<sp/>different<sp/>narrative<sp/>events<sp/>take<sp/>place.</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">*<sp/>***Variables***<sp/>hold<sp/>pieces<sp/>of<sp/>information<sp/>relating<sp/>to<sp/>the<sp/>state<sp/>of<sp/>the<sp/>game<sp/>that<sp/>may<sp/>change<sp/>depending<sp/>on<sp/>events<sp/>happening<sp/>in<sp/>the<sp/>game.<sp/>For<sp/>example,<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>a<sp/>player<sp/>picks<sp/>up<sp/>sticks<sp/>the<sp/>number<sp/>of<sp/>sticks<sp/>can<sp/>be<sp/>stored<sp/>in<sp/>a<sp/>variable<sp/>called<sp/></highlight><highlight class="stringliteral">&apos;$sticks_collected&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">&gt;<sp/>***Note***<sp/><ref refid="a00053_1a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9" kindref="member">Variable</ref><sp/>names<sp/>***MUST***<sp/>always<sp/>start<sp/>with<sp/>the<sp/>$<sp/>character<sp/>otherwise<sp/>Yarn<sp/>Spinner<sp/>will<sp/>freak<sp/>the<sp/>crap<sp/>out.</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal">A<sp/>***node***<sp/>consists<sp/>of<sp/>***header<sp/>data***<sp/>and<sp/>***body<sp/>data***.<sp/>The<sp/>header<sp/>data<sp/>provides<sp/>information<sp/>about<sp/>the<sp/>body<sp/>data,<sp/>and<sp/>the<sp/>body<sp/>data<sp/>contains<sp/>Yarn<sp/>Dialogue<sp/>and<sp/>options<sp/>relating<sp/>to<sp/>the<sp/>Dialogue.</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal">In<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>example,<sp/>our<sp/>first<sp/>node<sp/>commences<sp/>with<sp/>two<sp/>characters,<sp/>A<sp/>and<sp/>B.</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal">We<sp/>need<sp/>to<sp/>give<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>node<sp/>a<sp/>title,<sp/>and<sp/>in<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>example<sp/>we<sp/>will<sp/>call<sp/>it<sp/>***start***.<sp/>There<sp/>is<sp/>no<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal"><sp/>title,<sp/>it<sp/>can<sp/>be<sp/>anything<sp/>you<sp/>like.</highlight></codeline>
-<codeline lineno="36"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="37"><highlight class="normal">title:<sp/>start</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">##<sp/>First<sp/>Dialogue<sp/>File</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">First<sp/>off,<sp/>we</highlight><highlight class="stringliteral">&apos;ll<sp/>create<sp/>an<sp/>initial<sp/>scene.<sp/>Because<sp/>our<sp/>Complex<sp/>Example<sp/>is<sp/>set<sp/>inside<sp/>a<sp/>space<sp/>ship,<sp/>we&apos;</highlight><highlight class="normal">ll<sp/>give<sp/>the<sp/>name<sp/>of<sp/>the<sp/>node<sp/></highlight><highlight class="stringliteral">&apos;Ship&apos;</highlight><highlight class="normal">.<sp/>We</highlight><highlight class="stringliteral">&apos;ll<sp/>give<sp/>this<sp/>node<sp/>some<sp/>initial<sp/>Dialogue.</highlight></codeline>
+<codeline lineno="33"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="34"><highlight class="stringliteral">Ship:<sp/>Hey,<sp/>friend.</highlight></codeline>
+<codeline lineno="35"><highlight class="stringliteral">Player:<sp/>Hi,<sp/>Ship.</highlight></codeline>
+<codeline lineno="36"><highlight class="stringliteral">Player:<sp/>How&apos;</highlight><highlight class="normal">s<sp/>space?</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">Ship:<sp/>Oh,<sp/>man.</highlight></codeline>
 <codeline lineno="38"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal">&gt;<sp/>Node<sp/>titles<sp/>are<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>sensitive.<sp/>The<sp/>titles<sp/>***start***,<sp/>***Start***,<sp/>***START***<sp/>and<sp/>***StArT***<sp/>are<sp/>different.</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal">&gt;<sp/>There<sp/>is<sp/>no<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal"><sp/>title.<sp/>You<sp/>will<sp/>need<sp/>to<sp/>ensure<sp/>that<sp/>your<sp/>game<sp/>programmers<sp/>know<sp/>which<sp/>node<sp/>your<sp/>game<sp/>starts<sp/>on,<sp/>as<sp/>it<sp/>may<sp/>not<sp/>necessarily<sp/>be<sp/>the<sp/>first<sp/>node<sp/>in<sp/>your<sp/>Yarn<sp/>Dialogue<sp/>file.</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44"><highlight class="normal">The<sp/>title<sp/>tag<sp/>is<sp/>part<sp/>of<sp/>a<sp/>collection<sp/>of<sp/>data<sp/>known<sp/>as<sp/>***header<sp/>data***<sp/>that<sp/>can<sp/>refer<sp/>to<sp/>position,<sp/>colour<sp/>and<sp/>other<sp/>information<sp/>about<sp/>the<sp/>Dialogue.<sp/>While<sp/>the<sp/>title<sp/>tag<sp/>is<sp/>required,<sp/>these<sp/>other<sp/>header<sp/>data<sp/>tags<sp/>are<sp/>optional<sp/>and<sp/>generally<sp/>used<sp/>later<sp/>in<sp/>game<sp/>development<sp/>when<sp/>the<sp/>Dialogue<sp/>is<sp/>attached<sp/>to<sp/>scenes<sp/>and<sp/>graphical<sp/>characters.</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal">To<sp/>seperate<sp/>the<sp/>***header<sp/>data***<sp/>from<sp/>the<sp/>***body<sp/>data***<sp/>in<sp/>the<sp/>node,<sp/>we<sp/>then<sp/>add<sp/>in<sp/>three<sp/>`-`<sp/>characters,<sp/>known<sp/>as<sp/>a<sp/>header<sp/>delimiter.</highlight></codeline>
-<codeline lineno="47"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="48"><highlight class="normal">---</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Commands</highlight></codeline>
+<codeline lineno="40"><highlight class="preprocessor"></highlight><highlight class="normal">Next,<sp/>we</highlight><highlight class="stringliteral">&apos;ll<sp/>add<sp/>a<sp/>***command***<sp/>to<sp/>make<sp/>the<sp/>face<sp/>of<sp/>the<sp/>ship<sp/>change,<sp/>the<sp/>ship<sp/>to<sp/>say<sp/>some<sp/>text,<sp/>then<sp/>the<sp/>ship<sp/>return<sp/>to<sp/>neutral.</highlight></codeline>
+<codeline lineno="41"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="42"><highlight class="stringliteral">&lt;&lt;setsprite<sp/>ShipFace<sp/>happy&gt;&gt;</highlight></codeline>
+<codeline lineno="43"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Ship:<sp/>It&apos;</highlight><highlight class="normal">s<sp/>HUGE!</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">&lt;&lt;setsprite<sp/>ShipFace<sp/>neutral&gt;&gt;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">Do<sp/>not<sp/>be<sp/>concerned<sp/>that<sp/>you<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>not<sp/>have<sp/>any<sp/>graphics<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>the<sp/>ShipFace.<sp/>Nor,<sp/>in<sp/>fact,<sp/>don</highlight><highlight class="stringliteral">&apos;t<sp/>be<sp/>too<sp/>concerned<sp/>if<sp/>you&apos;</highlight><highlight class="normal">d<sp/>rather<sp/>call<sp/>the<sp/>graphic<sp/>FaceOfShip.<sp/>In<sp/>fact,<sp/>the<sp/>name<sp/>can<sp/>be<sp/>anything.<sp/>However<sp/>to<sp/>be<sp/>compatible<sp/>with<sp/>the<sp/>existing<sp/>example,<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>comparison<sp/>sake<sp/>we<sp/>are<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>ShipFace.</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">Our<sp/>Dialogue<sp/>now<sp/>reads</highlight></codeline>
 <codeline lineno="49"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="50"><highlight class="normal">We<sp/>can<sp/>now<sp/>add<sp/>the<sp/>starting<sp/>text<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>our<sp/>characters<sp/>A<sp/>and<sp/>B.<sp/>Their<sp/>Dialogue<sp/>is<sp/>so:</highlight></codeline>
-<codeline lineno="51"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="52"><highlight class="normal">A:<sp/>Hey,<sp/>I</highlight><highlight class="stringliteral">&apos;m<sp/>a<sp/>character<sp/>in<sp/>a<sp/>script!</highlight></codeline>
-<codeline lineno="53"><highlight class="stringliteral">B:<sp/>And<sp/>I<sp/>am<sp/>too!<sp/>You<sp/>are<sp/>talking<sp/>to<sp/>me!</highlight></codeline>
-<codeline lineno="54"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="55"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="56"><highlight class="stringliteral">To<sp/>indicate<sp/>the<sp/>end<sp/>of<sp/>the<sp/>node,<sp/>we<sp/>add<sp/>three<sp/>`=`<sp/>characters.<sp/>This<sp/>is<sp/>called<sp/>a<sp/>***node<sp/>delimiter***</highlight></codeline>
-<codeline lineno="57"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="58"><highlight class="stringliteral">===</highlight></codeline>
-<codeline lineno="59"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="60"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="61"><highlight class="stringliteral">Your<sp/>***node***<sp/>should<sp/>now<sp/>look<sp/>like<sp/>this</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">Ship:<sp/>Hey,<sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal">.</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">Player:<sp/>Hi,<sp/>Ship.</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">Player:<sp/>How</highlight><highlight class="stringliteral">&apos;s<sp/>space?</highlight></codeline>
+<codeline lineno="53"><highlight class="stringliteral">Ship:<sp/>Oh,<sp/>man.</highlight></codeline>
+<codeline lineno="54"><highlight class="stringliteral">&lt;&lt;setsprite<sp/>ShipFace<sp/>happy&gt;&gt;</highlight></codeline>
+<codeline lineno="55"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Ship:<sp/>It&apos;</highlight><highlight class="normal">s<sp/>HUGE!</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">&lt;&lt;setsprite<sp/>ShipFace<sp/>neutral&gt;&gt;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">This<sp/>is<sp/>some<sp/>simple<sp/>introductory<sp/>text<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>our<sp/>Ship<sp/>character,<sp/>but<sp/>it<sp/>wouldn</highlight><highlight class="stringliteral">&apos;t<sp/>make<sp/>much<sp/>sense<sp/>to<sp/>repeat<sp/>this<sp/>if<sp/>our<sp/>player<sp/>has<sp/>already<sp/>visited<sp/>Ship.<sp/>So<sp/>we<sp/>will<sp/>need<sp/>to<sp/>write<sp/>a<sp/>little<sp/>bit<sp/>of<sp/>code<sp/>to<sp/>ensure<sp/>that<sp/>the<sp/>second<sp/>time<sp/>we<sp/>visit<sp/>Ship,<sp/>it<sp/>acts<sp/>differently.<sp/>We<sp/>need<sp/>to<sp/>check<sp/>the<sp/>state<sp/>of<sp/>having<sp/>***visited***<sp/>the<sp/>ship.</highlight></codeline>
+<codeline lineno="59"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="60"><highlight class="stringliteral">###<sp/>Conditionals<sp/>and<sp/>Functions</highlight></codeline>
+<codeline lineno="61"><highlight class="stringliteral">Yarn<sp/>Spinner<sp/>has<sp/>an<sp/>inbuilt<sp/>***function***<sp/>called<sp/>`visited`.<sp/>This<sp/>function<sp/>checks<sp/>to<sp/>see<sp/>if<sp/>a<sp/>node<sp/>has<sp/>previously<sp/>been<sp/>accessed<sp/>by<sp/>the<sp/>player.<sp/>We<sp/>can<sp/>combine<sp/>this<sp/>function<sp/>with<sp/>a<sp/>***conditional***<sp/>to<sp/>see<sp/>whether<sp/>a<sp/>node<sp/>has<sp/>been<sp/>previously<sp/>displayed<sp/>to<sp/>the<sp/>player.<sp/>The<sp/>basic<sp/>syntax<sp/>of<sp/>such<sp/>a<sp/>conditional<sp/>is:</highlight></codeline>
 <codeline lineno="62"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="63"><highlight class="stringliteral">title:<sp/>start</highlight></codeline>
-<codeline lineno="64"><highlight class="stringliteral">---</highlight></codeline>
-<codeline lineno="65"><highlight class="stringliteral">A:<sp/>Hey,<sp/>I&apos;</highlight><highlight class="normal">m<sp/>a<sp/>character<sp/>in<sp/>a<sp/>script!</highlight></codeline>
-<codeline lineno="66"><highlight class="normal">B:<sp/>And<sp/>I<sp/>am<sp/>too!<sp/>You<sp/>are<sp/>talking<sp/>to<sp/>me!</highlight></codeline>
-<codeline lineno="67"><highlight class="normal">===</highlight></codeline>
-<codeline lineno="68"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal">Congratulations,<sp/>you</highlight><highlight class="stringliteral">&apos;ve<sp/>just<sp/>written<sp/>your<sp/>very<sp/>first<sp/>piece<sp/>of<sp/>Yarn<sp/>Dialogue!</highlight></codeline>
-<codeline lineno="71"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="72"><highlight class="stringliteral">###<sp/>Adding<sp/>Options<sp/>and<sp/>Replies</highlight></codeline>
-<codeline lineno="73"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="74"><highlight class="stringliteral">####<sp/>Options</highlight></codeline>
-<codeline lineno="75"><highlight class="stringliteral">The<sp/>next<sp/>step<sp/>we&apos;</highlight><highlight class="normal">ll<sp/>take<sp/>is<sp/>to<sp/>add<sp/>in<sp/>some<sp/>options<sp/>to<sp/>present<sp/>to<sp/>the<sp/>player.<sp/>We<sp/>wish<sp/>to<sp/>present<sp/>the<sp/>player<sp/>with<sp/>the<sp/>choice<sp/>of<sp/>two<sp/>options.<sp/>To<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/>we<sp/>use<sp/>the<sp/>`-&gt;`<sp/>marker<sp/>as<sp/>the<sp/>first<sp/>characters<sp/>in<sp/>our<sp/>line<sp/>of<sp/>text<sp/>to<sp/>tell<sp/>the<sp/>system<sp/>the<sp/>text<sp/>is<sp/>an<sp/>option.</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal">We<sp/>add<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>after<sp/>the<sp/>A<sp/>and<sp/>B<sp/>character<sp/>Dialogue,<sp/>but<sp/>before<sp/>the<sp/>ending<sp/>tag.</highlight></codeline>
-<codeline lineno="78"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="79"><highlight class="normal">-&gt;<sp/>What</highlight><highlight class="stringliteral">&apos;s<sp/>going<sp/>on</highlight></codeline>
-<codeline lineno="80"><highlight class="stringliteral">-&gt;<sp/>Um<sp/>ok</highlight></codeline>
-<codeline lineno="81"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="82"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="83"><highlight class="stringliteral">Our<sp/>Yarn<sp/>Dialogue<sp/>now<sp/>reads<sp/>as<sp/>like<sp/>this:</highlight></codeline>
-<codeline lineno="84"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="85"><highlight class="stringliteral">title:<sp/>start</highlight></codeline>
-<codeline lineno="86"><highlight class="stringliteral">---</highlight></codeline>
-<codeline lineno="87"><highlight class="stringliteral">A:<sp/>Hey,<sp/>I&apos;</highlight><highlight class="normal">m<sp/>a<sp/>character<sp/>in<sp/>a<sp/>script!</highlight></codeline>
-<codeline lineno="88"><highlight class="normal">B:<sp/>And<sp/>I<sp/>am<sp/>too!<sp/>You<sp/>are<sp/>talking<sp/>to<sp/>me!</highlight></codeline>
-<codeline lineno="89"><highlight class="normal">-&gt;<sp/>What</highlight><highlight class="stringliteral">&apos;s<sp/>going<sp/>on</highlight></codeline>
-<codeline lineno="90"><highlight class="stringliteral">-&gt;<sp/>Um<sp/>ok</highlight></codeline>
-<codeline lineno="91"><highlight class="stringliteral">===</highlight></codeline>
+<codeline lineno="63"><highlight class="stringliteral">&lt;&lt;if<sp/>visited(&quot;NodeName&quot;)<sp/>is<sp/>true&gt;&gt;</highlight></codeline>
+<codeline lineno="64"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>NPC:<sp/>You<sp/>have<sp/>visited<sp/>me<sp/>before,<sp/>player</highlight></codeline>
+<codeline lineno="65"><highlight class="stringliteral">&lt;&lt;else&gt;&gt;</highlight></codeline>
+<codeline lineno="66"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>NPC:<sp/>You<sp/>have<sp/>not<sp/>visited<sp/>me<sp/>before,<sp/>player</highlight></codeline>
+<codeline lineno="67"><highlight class="stringliteral">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="68"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="69"><highlight class="stringliteral">&gt;<sp/>***Note:***<sp/>The<sp/>above<sp/>can<sp/>be<sp/>re-written<sp/>to<sp/>provide<sp/>the<sp/>same<sp/>outcome<sp/>by<sp/>reversing<sp/>the<sp/>test<sp/>from<sp/>true<sp/>to<sp/>false<sp/>and<sp/>inverting<sp/>the<sp/>NPC<sp/>text:</highlight></codeline>
+<codeline lineno="70"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="71"><highlight class="stringliteral">&lt;&lt;if<sp/>visited(&quot;NodeName&quot;)<sp/>is<sp/>false&gt;&gt;</highlight></codeline>
+<codeline lineno="72"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>NPC:<sp/>You<sp/>have<sp/>not<sp/>visited<sp/>me<sp/>before,<sp/>player</highlight></codeline>
+<codeline lineno="73"><highlight class="stringliteral">&lt;&lt;else&gt;&gt;</highlight></codeline>
+<codeline lineno="74"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>NPC:<sp/>You<sp/>have<sp/>visited<sp/>me<sp/>before,<sp/>player</highlight></codeline>
+<codeline lineno="75"><highlight class="stringliteral">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="76"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="77"><highlight class="stringliteral">From<sp/>this<sp/>basic<sp/>understanding<sp/>of<sp/>the<sp/>***&apos;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>then<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="stringliteral">&apos;***<sp/>conditional,<sp/>and<sp/>usage<sp/>of<sp/>the<sp/>`visited`<sp/>function,<sp/>we<sp/>can<sp/>then<sp/>establish<sp/>whether<sp/>a<sp/>player<sp/>has<sp/>visited<sp/>Ship<sp/>and<sp/>change<sp/>the<sp/>Dialogue<sp/>that<sp/>Ship<sp/>presents:</highlight></codeline>
+<codeline lineno="78"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="79"><highlight class="stringliteral">&lt;&lt;if<sp/>visited(&quot;Ship&quot;)<sp/>is<sp/>false&gt;&gt;</highlight></codeline>
+<codeline lineno="80"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Ship:<sp/>Hey,<sp/>friend.</highlight></codeline>
+<codeline lineno="81"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Player:<sp/>Hi,<sp/>Ship.</highlight></codeline>
+<codeline lineno="82"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Player:<sp/>How&apos;</highlight><highlight class="normal">s<sp/>space?</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>Ship:<sp/>Oh,<sp/>man.</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>happy&gt;&gt;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Ship:<sp/>It</highlight><highlight class="stringliteral">&apos;s<sp/>HUGE!</highlight></codeline>
+<codeline lineno="86"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>neutral&gt;&gt;</highlight></codeline>
+<codeline lineno="87"><highlight class="stringliteral">&lt;&lt;else&gt;&gt;</highlight></codeline>
+<codeline lineno="88"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>happy&gt;&gt;</highlight></codeline>
+<codeline lineno="89"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Ship:<sp/>Hey!!</highlight></codeline>
+<codeline lineno="90"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>neutral&gt;&gt;</highlight></codeline>
+<codeline lineno="91"><highlight class="stringliteral">&lt;&lt;endif&gt;&gt;</highlight></codeline>
 <codeline lineno="92"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="93"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="94"><highlight class="stringliteral">####<sp/>Replies</highlight></codeline>
-<codeline lineno="95"><highlight class="stringliteral">Options<sp/>aren&apos;</highlight><highlight class="normal">t<sp/>really<sp/>that<sp/>useful<sp/>without<sp/>a<sp/>***reply***.<sp/>Replies<sp/>are<sp/>indented<sp/>with<sp/>four<sp/>spaces.</highlight></codeline>
-<codeline lineno="96"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>A:<sp/>Why<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>is<sp/>a<sp/>demo<sp/>of<sp/>the<sp/>script<sp/>system!</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>B:<sp/>And<sp/>you</highlight><highlight class="stringliteral">&apos;re<sp/>in<sp/>it!</highlight></codeline>
-<codeline lineno="99"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="100"><highlight class="stringliteral">The<sp/>reply<sp/>is<sp/>placed<sp/>immediately<sp/>after<sp/>the<sp/>option<sp/>to<sp/>which<sp/>it<sp/>is<sp/>connected.<sp/>We&apos;</highlight><highlight class="normal">ll<sp/>add<sp/>the<sp/>above<sp/>replies<sp/>to<sp/>the<sp/>first<sp/>option,<sp/>resulting<sp/>in<sp/>our<sp/>Yarn<sp/>Dialogue<sp/>now<sp/>looking<sp/>like<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="101"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="102"><highlight class="normal">title:<sp/>start</highlight></codeline>
-<codeline lineno="103"><highlight class="normal">---</highlight></codeline>
-<codeline lineno="104"><highlight class="normal">A:<sp/>Hey,<sp/>I</highlight><highlight class="stringliteral">&apos;m<sp/>a<sp/>character<sp/>in<sp/>a<sp/>script!</highlight></codeline>
-<codeline lineno="105"><highlight class="stringliteral">B:<sp/>And<sp/>I<sp/>am<sp/>too!<sp/>You<sp/>are<sp/>talking<sp/>to<sp/>me!</highlight></codeline>
-<codeline lineno="106"><highlight class="stringliteral">-&gt;<sp/>What&apos;</highlight><highlight class="normal">s<sp/>going<sp/>on</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>A:<sp/>Why<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>is<sp/>a<sp/>demo<sp/>of<sp/>the<sp/>script<sp/>system!</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>B:<sp/>And<sp/>you</highlight><highlight class="stringliteral">&apos;re<sp/>in<sp/>it!</highlight></codeline>
-<codeline lineno="109"><highlight class="stringliteral">-&gt;<sp/>Um<sp/>ok</highlight></codeline>
-<codeline lineno="110"><highlight class="stringliteral">===</highlight></codeline>
-<codeline lineno="111"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="112"><highlight class="stringliteral">&gt;<sp/>Note:<sp/>The<sp/>order<sp/>of<sp/>the<sp/>reply<sp/>is<sp/>important.<sp/>In<sp/>the<sp/>above<sp/>example,<sp/>Character<sp/>A<sp/>replies,<sp/>then<sp/>Character<sp/>B.<sp/>We<sp/>could<sp/>easily<sp/>reverse<sp/>these<sp/>lines<sp/>if<sp/>we<sp/>wanted<sp/>Character<sp/>B<sp/>to<sp/>reply<sp/>first.</highlight></codeline>
-<codeline lineno="113"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="114"><highlight class="stringliteral">Finishing<sp/>up<sp/>here,<sp/>we&apos;</highlight><highlight class="normal">ll<sp/>end<sp/>the<sp/>Dialogue<sp/>with<sp/>a<sp/>pleasantary.</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="117"><highlight class="normal">A:<sp/>How<sp/>delightful!</highlight></codeline>
-<codeline lineno="118"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="119"><highlight class="normal">We<sp/>now<sp/>have:</highlight></codeline>
-<codeline lineno="120"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="121"><highlight class="normal">title:<sp/>start</highlight></codeline>
-<codeline lineno="122"><highlight class="normal">---</highlight></codeline>
-<codeline lineno="123"><highlight class="normal">A:<sp/>Hey,<sp/>I</highlight><highlight class="stringliteral">&apos;m<sp/>a<sp/>character<sp/>in<sp/>a<sp/>script!</highlight></codeline>
-<codeline lineno="124"><highlight class="stringliteral">B:<sp/>And<sp/>I<sp/>am<sp/>too!<sp/>You<sp/>are<sp/>talking<sp/>to<sp/>me!</highlight></codeline>
-<codeline lineno="125"><highlight class="stringliteral">-&gt;<sp/>What&apos;</highlight><highlight class="normal">s<sp/>going<sp/>on</highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>A:<sp/>Why<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>is<sp/>a<sp/>demo<sp/>of<sp/>the<sp/>script<sp/>system!</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>B:<sp/>And<sp/>you</highlight><highlight class="stringliteral">&apos;re<sp/>in<sp/>it!</highlight></codeline>
-<codeline lineno="128"><highlight class="stringliteral">-&gt;<sp/>Um<sp/>ok</highlight></codeline>
-<codeline lineno="129"><highlight class="stringliteral">A:<sp/>How<sp/>delightful!</highlight></codeline>
-<codeline lineno="130"><highlight class="stringliteral">===</highlight></codeline>
-<codeline lineno="131"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="132"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="133"><highlight class="stringliteral">###<sp/>Branching<sp/>to<sp/>New<sp/>Nodes</highlight></codeline>
-<codeline lineno="134"><highlight class="stringliteral">Additional<sp/>nodes<sp/>can<sp/>be<sp/>added<sp/>to<sp/>extend<sp/>the<sp/>story.<sp/>These<sp/>further<sp/>nodes<sp/>can<sp/>introduce<sp/>new<sp/>characters,<sp/>actions<sp/>or<sp/>provide<sp/>different<sp/>options<sp/>and<sp/>replies.</highlight></codeline>
-<codeline lineno="135"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="136"><highlight class="stringliteral">We<sp/>will<sp/>now<sp/>present<sp/>the<sp/>player<sp/>with<sp/>options<sp/>of<sp/>selecting<sp/>what<sp/>to<sp/>do<sp/>next.</highlight></codeline>
-<codeline lineno="137"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="138"><highlight class="stringliteral">B:<sp/>What<sp/>would<sp/>you<sp/>prefer<sp/>to<sp/>do<sp/>next?</highlight></codeline>
-<codeline lineno="139"><highlight class="stringliteral">[[Leave|Leave]]</highlight></codeline>
-<codeline lineno="140"><highlight class="stringliteral">[[Learn<sp/>more|LearnMore]]</highlight></codeline>
-<codeline lineno="141"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="142"><highlight class="stringliteral">The<sp/>square<sp/>double<sp/>braces,<sp/>`[[`<sp/>and<sp/>`]]`,<sp/>indicate<sp/>a<sp/>branch<sp/>to<sp/>a<sp/>different<sp/>node.<sp/>The<sp/>vertical<sp/>bar,<sp/>``|``,<sp/>separates<sp/>the<sp/>string<sp/>to<sp/>be<sp/>presented<sp/>to<sp/>the<sp/>player<sp/>(the<sp/>option),<sp/>from<sp/>the<sp/>destination<sp/>***node<sp/>name***.<sp/>Presentation<sp/>of<sp/>the<sp/>new<sp/>node<sp/>will<sp/>commence<sp/>once<sp/>the<sp/>player<sp/>has<sp/>selected<sp/>their<sp/>chosen<sp/>option<sp/>text.<sp/>Thus,<sp/>the<sp/>above<sp/>code<sp/>will<sp/>present<sp/>the<sp/>player<sp/>with<sp/>two<sp/>choices,<sp/>&apos;</highlight><highlight class="normal">Leave</highlight><highlight class="stringliteral">&apos;<sp/>and<sp/>&apos;</highlight><highlight class="normal">Learn<sp/>More</highlight><highlight class="stringliteral">&apos;.<sp/>These<sp/>options<sp/>will<sp/>take<sp/>the<sp/>player<sp/>to<sp/>the<sp/>&apos;</highlight><highlight class="normal">Leave</highlight><highlight class="stringliteral">&apos;<sp/>and<sp/>&apos;</highlight><highlight class="normal">LearnMore</highlight><highlight class="stringliteral">&apos;<sp/>nodes<sp/>respectively.</highlight></codeline>
-<codeline lineno="143"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="144"><highlight class="stringliteral">&gt;<sp/>Note:<sp/>***Node<sp/>names***<sp/>must<sp/>be<sp/>a<sp/>single<sp/>string,<sp/>that<sp/>is<sp/>to<sp/>say<sp/>they<sp/>cannot<sp/>have<sp/>spaces<sp/>in<sp/>them.</highlight></codeline>
-<codeline lineno="145"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="146"><highlight class="stringliteral">Our<sp/>Dialogue<sp/>now<sp/>reads<sp/>like<sp/>this:</highlight></codeline>
-<codeline lineno="147"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="148"><highlight class="stringliteral">title:<sp/>Start</highlight></codeline>
-<codeline lineno="149"><highlight class="stringliteral">---</highlight></codeline>
-<codeline lineno="150"><highlight class="stringliteral">A:<sp/>Hey,<sp/>I&apos;</highlight><highlight class="normal">m<sp/>a<sp/>character<sp/>in<sp/>a<sp/>script!</highlight></codeline>
-<codeline lineno="151"><highlight class="normal">B:<sp/>And<sp/>I<sp/>am<sp/>too!<sp/>You<sp/>are<sp/>talking<sp/>to<sp/>me!</highlight></codeline>
-<codeline lineno="152"><highlight class="normal">-&gt;<sp/>What</highlight><highlight class="stringliteral">&apos;s<sp/>going<sp/>on</highlight></codeline>
-<codeline lineno="153"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>A:<sp/>Why<sp/>this<sp/>is<sp/>a<sp/>demo<sp/>of<sp/>the<sp/>script<sp/>system!</highlight></codeline>
-<codeline lineno="154"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>B:<sp/>And<sp/>you&apos;</highlight><highlight class="normal">re<sp/>in<sp/>it!</highlight></codeline>
-<codeline lineno="155"><highlight class="normal">-&gt;<sp/>Um<sp/>ok</highlight></codeline>
-<codeline lineno="156"><highlight class="normal">A:<sp/>How<sp/>delightful!</highlight></codeline>
-<codeline lineno="157"><highlight class="normal">B:<sp/>What<sp/>would<sp/>you<sp/>prefer<sp/>to<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>next?</highlight></codeline>
-<codeline lineno="158"><highlight class="normal">[[Leave|Leave]]</highlight></codeline>
-<codeline lineno="159"><highlight class="normal">[[Learn<sp/>more|LearnMore]]</highlight></codeline>
-<codeline lineno="160"><highlight class="normal">===</highlight></codeline>
-<codeline lineno="161"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="162"><highlight class="normal"></highlight></codeline>
-<codeline lineno="163"><highlight class="normal">All<sp/>we<sp/>need<sp/>to<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>now<sp/>is<sp/>add<sp/>in<sp/>two<sp/>more<sp/>nodes,<sp/>the<sp/>Leave<sp/>and<sp/>LearnMore<sp/>nodes.<sp/>We</highlight><highlight class="stringliteral">&apos;ll<sp/>add<sp/>a<sp/>little<sp/>bit<sp/>of<sp/>conversation<sp/>in<sp/>to<sp/>Characters<sp/>A<sp/>and<sp/>B<sp/>just<sp/>to<sp/>differentiate<sp/>between<sp/>the<sp/>two<sp/>nodes.</highlight></codeline>
-<codeline lineno="164"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="165"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="166"><highlight class="stringliteral">title:<sp/>Leave</highlight></codeline>
-<codeline lineno="167"><highlight class="stringliteral">---</highlight></codeline>
-<codeline lineno="168"><highlight class="stringliteral">A:<sp/>Oh,<sp/>goodbye!</highlight></codeline>
-<codeline lineno="169"><highlight class="stringliteral">B:<sp/>You&apos;</highlight><highlight class="normal">ll<sp/>be<sp/>back<sp/>soon!</highlight></codeline>
-<codeline lineno="170"><highlight class="normal">===</highlight></codeline>
-<codeline lineno="171"><highlight class="normal">title:<sp/>LearnMore</highlight></codeline>
-<codeline lineno="172"><highlight class="normal">---</highlight></codeline>
-<codeline lineno="173"><highlight class="normal">A:<sp/>HAHAHA</highlight></codeline>
-<codeline lineno="174"><highlight class="normal">===</highlight></codeline>
-<codeline lineno="175"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="176"><highlight class="normal"></highlight></codeline>
-<codeline lineno="177"><highlight class="normal">Our<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal"><sp/>Yarn<sp/>Dialogue<sp/>file<sp/>will<sp/>read<sp/>such:</highlight></codeline>
-<codeline lineno="178"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="179"><highlight class="normal">title:<sp/>Start</highlight></codeline>
-<codeline lineno="180"><highlight class="normal">---</highlight></codeline>
-<codeline lineno="181"><highlight class="normal">A:<sp/>Hey,<sp/>I</highlight><highlight class="stringliteral">&apos;m<sp/>a<sp/>character<sp/>in<sp/>a<sp/>script!</highlight></codeline>
-<codeline lineno="182"><highlight class="stringliteral">B:<sp/>And<sp/>I<sp/>am<sp/>too!<sp/>You<sp/>are<sp/>talking<sp/>to<sp/>me!</highlight></codeline>
-<codeline lineno="183"><highlight class="stringliteral">-&gt;<sp/>What&apos;</highlight><highlight class="normal">s<sp/>going<sp/>on</highlight></codeline>
-<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>A:<sp/>Why<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>is<sp/>a<sp/>demo<sp/>of<sp/>the<sp/>script<sp/>system!</highlight></codeline>
-<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>B:<sp/>And<sp/>you</highlight><highlight class="stringliteral">&apos;re<sp/>in<sp/>it!</highlight></codeline>
-<codeline lineno="186"><highlight class="stringliteral">-&gt;<sp/>Um<sp/>ok</highlight></codeline>
-<codeline lineno="187"><highlight class="stringliteral">A:<sp/>How<sp/>delightful!</highlight></codeline>
-<codeline lineno="188"><highlight class="stringliteral">B:<sp/>What<sp/>would<sp/>you<sp/>prefer<sp/>to<sp/>do<sp/>next?</highlight></codeline>
-<codeline lineno="189"><highlight class="stringliteral">[[Leave|Leave]]</highlight></codeline>
-<codeline lineno="190"><highlight class="stringliteral">[[Learn<sp/>more|LearnMore]]</highlight></codeline>
-<codeline lineno="191"><highlight class="stringliteral">===</highlight></codeline>
-<codeline lineno="192"><highlight class="stringliteral">title:<sp/>Leave</highlight></codeline>
-<codeline lineno="193"><highlight class="stringliteral">---</highlight></codeline>
-<codeline lineno="194"><highlight class="stringliteral">A:<sp/>Oh,<sp/>goodbye!</highlight></codeline>
-<codeline lineno="195"><highlight class="stringliteral">B:<sp/>You&apos;</highlight><highlight class="normal">ll<sp/>be<sp/>back<sp/>soon!</highlight></codeline>
-<codeline lineno="196"><highlight class="normal">===</highlight></codeline>
-<codeline lineno="197"><highlight class="normal">title:<sp/>LearnMore</highlight></codeline>
-<codeline lineno="198"><highlight class="normal">---</highlight></codeline>
-<codeline lineno="199"><highlight class="normal">A:<sp/>HAHAHA</highlight></codeline>
-<codeline lineno="200"><highlight class="normal">===</highlight></codeline>
-<codeline lineno="201"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="202"><highlight class="normal"></highlight></codeline>
-<codeline lineno="203"><highlight class="normal">##<sp/>Live<sp/>example</highlight></codeline>
-<codeline lineno="204"><highlight class="normal"></highlight></codeline>
-<codeline lineno="205"><highlight class="normal">We<sp/>have<sp/>a<sp/>fully<sp/>parsed<sp/>version<sp/>of<sp/>the<sp/>above<sp/>Yarn<sp/>Dialogue<sp/>available<sp/>in<sp/>our<sp/>Unity<sp/>examples<sp/>directory<sp/>as<sp/>[Simple<sp/>Example<sp/>Script](../Unity/Assets/YarnSpinner/Examples/DemoAssets/SimpleExampleScript.yarn.txt).<sp/>Please<sp/>note<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>differs<sp/>from<sp/>the<sp/>above<sp/>Yarn<sp/>Dialogue<sp/>in<sp/>a<sp/>couple<sp/>of<sp/>minor,<sp/>yet<sp/>important<sp/>points:</highlight></codeline>
-<codeline lineno="206"><highlight class="normal">*<sp/>Extra<sp/>header<sp/>tags<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>colour<sp/>and<sp/>position<sp/>of<sp/>the<sp/>Dialogue<sp/>within<sp/>the<sp/>Yarn<sp/>Editor,<sp/>and<sp/>not<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>within<sp/>the<sp/>game<sp/>environment.<sp/><ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675" kindref="member">Text</ref><sp/>placement,<sp/>colourising,<sp/>and<sp/>font<sp/>selection<sp/>is<sp/>considered<sp/>to<sp/>be<sp/>the<sp/>domain<sp/>of<sp/>design<sp/>and<sp/>programming<sp/>and<sp/>thus<sp/>outside<sp/>the<sp/>scope<sp/>of<sp/>Dialogue.</highlight></codeline>
-<codeline lineno="207"><highlight class="normal">*<sp/>Translation<sp/>tags<sp/>to<sp/>aide<sp/>with<sp/>localization</highlight></codeline>
-<codeline lineno="208"><highlight class="normal">These<sp/>differences<sp/>are<sp/>generally<sp/>created<sp/>by<sp/>programmers.<sp/>It<sp/>is<sp/>envisaged<sp/>that<sp/>in<sp/>the<sp/>future<sp/>they<sp/>will<sp/>be<sp/>automatically<sp/>generated<sp/>by<sp/>a<sp/>Yarn<sp/>Dialogue<sp/>editor.</highlight></codeline>
+<codeline lineno="93"><highlight class="stringliteral">&gt;***Note:***<sp/>Remember,<sp/>if<sp/>we<sp/>have<sp/>`if<sp/>visited(&quot;Ship&quot;)<sp/>is<sp/>true`,<sp/>the<sp/>order<sp/>of<sp/>the<sp/>content<sp/>of<sp/>the<sp/>***&apos;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>then<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="stringliteral">&apos;***<sp/>would<sp/>need<sp/>to<sp/>be<sp/>reversed<sp/>to<sp/>ensure<sp/>the<sp/>correct<sp/>text<sp/>is<sp/>presented<sp/>for<sp/>when<sp/>Player<sp/>has<sp/>previously<sp/>visited<sp/>Ship.</highlight></codeline>
+<codeline lineno="94"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="95"><highlight class="stringliteral">We<sp/>will<sp/>now<sp/>add<sp/>in<sp/>some<sp/>Dialogue<sp/>that<sp/>responds<sp/>to<sp/>whether<sp/>we&apos;</highlight><highlight class="normal">ve<sp/>interacted<sp/>with<sp/>another<sp/>NPC,<sp/>Sally.<sp/>Sally</highlight><highlight class="stringliteral">&apos;s<sp/>nodes<sp/>will<sp/>be<sp/>contained<sp/>within<sp/>a<sp/>seperate<sp/>text<sp/>file<sp/>for<sp/>ease<sp/>of<sp/>editing<sp/>purposes.<sp/>You<sp/>can<sp/>contain<sp/>all<sp/>Yarn<sp/>Dialogue<sp/>nodes<sp/>in<sp/>the<sp/>same<sp/>file<sp/>but<sp/>you<sp/>will<sp/>find<sp/>that<sp/>it<sp/>becomes<sp/>increasingly<sp/>difficult<sp/>to<sp/>maintain<sp/>as<sp/>your<sp/>file<sp/>grows<sp/>longer,<sp/>so<sp/>we<sp/>strongly<sp/>encourage<sp/>this<sp/>separation<sp/>of<sp/>characters.<sp/>This<sp/>is<sp/>the<sp/>remainder<sp/>of<sp/>the<sp/>text<sp/>required<sp/>for<sp/>the<sp/>Ship<sp/>Node<sp/>of<sp/>Yarn<sp/>Dialogue.</highlight></codeline>
+<codeline lineno="96"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="97"><highlight class="stringliteral">&lt;&lt;if<sp/>$should_see_ship<sp/>is<sp/>true<sp/>and<sp/>$sally_warning<sp/>is<sp/>false&gt;&gt;</highlight></codeline>
+<codeline lineno="98"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Player:<sp/>Sally<sp/>said<sp/>you<sp/>wanted<sp/>to<sp/>see<sp/>me?</highlight></codeline>
+<codeline lineno="99"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>happy&gt;&gt;</highlight></codeline>
+<codeline lineno="100"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Ship:<sp/>She<sp/>totally<sp/>did!!</highlight></codeline>
+<codeline lineno="101"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>neutral&gt;&gt;</highlight></codeline>
+<codeline lineno="102"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Ship:<sp/>She<sp/>wanted<sp/>me<sp/>to<sp/>tell<sp/>you...</highlight></codeline>
+<codeline lineno="103"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Ship:<sp/>If<sp/>you<sp/>ever<sp/>go<sp/>off-watch<sp/>without<sp/>resetting<sp/>the<sp/>console<sp/>again...</highlight></codeline>
+<codeline lineno="104"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>happy&gt;&gt;</highlight></codeline>
+<codeline lineno="105"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Ship:<sp/>She&apos;</highlight><highlight class="normal">ll<sp/>flay<sp/>you<sp/>alive!</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;&lt;set<sp/>$sally_warning<sp/>to<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">&gt;&gt;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>Player:<sp/>Uh.</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>neutral&gt;&gt;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal">===</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Variables<sp/>and<sp/>Tests</highlight></codeline>
+<codeline lineno="113"><highlight class="preprocessor"></highlight><highlight class="normal">We<sp/>can<sp/>see<sp/>from<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>code<sp/>that<sp/>there<sp/>a<sp/>couple<sp/>of<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>things<sp/>in<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>code<sp/>snippet.<sp/>They<sp/>are<sp/>`$should_see_ship<sp/>is<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">`<sp/>and<sp/>`$sally_warning<sp/>is<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">`.</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal">`$should_see_ship`<sp/>and<sp/>`$sally_warning`<sp/>are<sp/>examples<sp/>of<sp/>what<sp/>are<sp/>known<sp/>as<sp/>a<sp/>***variable***.<sp/>In<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal">,<sp/>they<sp/>are<sp/>a<sp/>variable<sp/>of<sp/>[</highlight><highlight class="keywordtype">boolean</highlight><highlight class="normal"><sp/>data<sp/>type](https:</highlight><highlight class="comment">//en.wikipedia.org/wiki/Boolean_data_type)<sp/>and<sp/>both<sp/>`$should_see_ship<sp/>is<sp/>true`<sp/>and<sp/>`$sally_warning<sp/>is<sp/>false`<sp/>are<sp/>known<sp/>as<sp/>[boolean<sp/>expressions](https://en.wikipedia.org/wiki/Boolean_expression).<sp/>In<sp/>simple<sp/>terms,<sp/>a<sp/>boolean<sp/>data<sp/>type<sp/>can<sp/>hold<sp/>one<sp/>of<sp/>two<sp/>different<sp/>states,<sp/>true<sp/>or<sp/>false.<sp/>By<sp/>setting<sp/>the<sp/>variable<sp/>to<sp/>either<sp/>of<sp/>these<sp/>two<sp/>states<sp/>and<sp/>later<sp/>evaluating<sp/>it,<sp/>determinations<sp/>can<sp/>be<sp/>made<sp/>as<sp/>to<sp/>which<sp/>section<sp/>of<sp/>Yarn<sp/>Dialogue<sp/>should<sp/>be<sp/>displayed.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal">We<sp/>shall<sp/>address<sp/>the<sp/>setting<sp/>on<sp/>the<sp/>first<sp/>boolean,<sp/>`$should_see_ship`,<sp/>in<sp/>the<sp/>nodes<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>the<sp/>Sally<sp/>character<sp/>contained<sp/>in<sp/>the<sp/>file<sp/>[Sally.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Sally.yarn.txt).<sp/>The<sp/></highlight><highlight class="keywordtype">boolean</highlight><highlight class="normal"><sp/>`$sally_warning`<sp/>is<sp/>set<sp/>to<sp/>`</highlight><highlight class="keyword">true</highlight><highlight class="normal">`<sp/>via<sp/>the<sp/>code<sp/>`&lt;&lt;set<sp/>$sally_warning<sp/>to<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">&gt;&gt;`<sp/>after<sp/>Ship<sp/>warns<sp/>us<sp/>that<sp/>sally<sp/>will<sp/>flay<sp/>us<sp/>alive.</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal">&gt;<sp/>***Note:***<sp/>We<sp/>have<sp/>now<sp/>completed<sp/>the<sp/>Yarn<sp/>Dialogue<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>the<sp/>Ship<sp/>node.<sp/>The<sp/>source<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>node<sp/>can<sp/>be<sp/>found<sp/>in<sp/>the<sp/>example<sp/>file<sp/>[Ship.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Ship.yarn.txt).<sp/>It<sp/>is<sp/>replicated<sp/>below<sp/>so<sp/>as<sp/>to<sp/>be<sp/>easily<sp/>read<sp/>here<sp/>as<sp/>a<sp/>complete<sp/>file.</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="122"><highlight class="normal">title:<sp/>Ship</highlight></codeline>
+<codeline lineno="123"><highlight class="normal">---</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">&lt;&lt;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>visited(</highlight><highlight class="stringliteral">&quot;Ship&quot;</highlight><highlight class="normal">)<sp/>is<sp/>false&gt;&gt;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>Ship:<sp/>Hey,<sp/>friend.</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>Player:<sp/>Hi,<sp/>Ship.</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>Player:<sp/>How&apos;s<sp/>space?</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>Ship:<sp/>Oh,<sp/>man.</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>happy&gt;&gt;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Ship:<sp/>It&apos;s<sp/>HUGE!</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>neutral&gt;&gt;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal">&lt;&lt;else&gt;&gt;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>happy&gt;&gt;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Ship:<sp/>Hey!!</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>neutral&gt;&gt;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal">&lt;&lt;if<sp/>$should_see_ship<sp/>is<sp/>true<sp/>and<sp/>$sally_warning<sp/>is<sp/>false&gt;&gt;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>Player:<sp/>Sally<sp/>said<sp/>you<sp/>wanted<sp/>to<sp/>see<sp/>me?</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>happy&gt;&gt;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>Ship:<sp/>She<sp/>totally<sp/>did!!</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>neutral&gt;&gt;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>Ship:<sp/>She<sp/>wanted<sp/>me<sp/>to<sp/>tell<sp/>you...</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>Ship:<sp/>If<sp/>you<sp/>ever<sp/>go<sp/>off-watch<sp/>without<sp/>resetting<sp/>the<sp/>console<sp/>again...</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>happy&gt;&gt;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>Ship:<sp/>She&apos;ll<sp/>flay<sp/>you<sp/>alive!</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;&lt;set<sp/>$sally_warning<sp/>to<sp/>true&gt;&gt;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>Player:<sp/>Uh.</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;&lt;setsprite<sp/>ShipFace<sp/>neutral&gt;&gt;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal">===</highlight></codeline>
+<codeline lineno="152"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Second<sp/>Yarn<sp/>Dialogue<sp/>file</highlight></codeline>
+<codeline lineno="154"><highlight class="preprocessor"></highlight><highlight class="normal">Our<sp/>Yarn<sp/>Dialogue<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Sally<sp/>will<sp/>start<sp/>out<sp/>as<sp/>simply<sp/>as<sp/>before,<sp/>with<sp/>her<sp/>words<sp/>changing<sp/>depending<sp/>on<sp/>whether<sp/>the<sp/>player<sp/>has<sp/>previously<sp/>`visited`<sp/>her.</highlight></codeline>
+<codeline lineno="155"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="156"><highlight class="normal">&lt;&lt;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>visited(</highlight><highlight class="stringliteral">&quot;Sally&quot;</highlight><highlight class="normal">)<sp/>is<sp/>false&gt;&gt;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>Sally:<sp/>Oh!<sp/>Hi.</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>Sally:<sp/>You<sp/>snuck<sp/>up<sp/>on<sp/>me.</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>Sally:<sp/>Don&apos;t<sp/>do<sp/>that.</highlight></codeline>
+<codeline lineno="160"><highlight class="normal">&lt;&lt;else&gt;&gt;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>Player:<sp/>Hey.</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>Sally:<sp/>Hi.</highlight></codeline>
+<codeline lineno="163"><highlight class="normal">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="165"><highlight class="normal">The<sp/>next<sp/>step<sp/>is<sp/>to<sp/>have<sp/>Sally<sp/>react<sp/>to<sp/>whether<sp/>we&apos;ve<sp/>visited<sp/>her<sp/>Watch<sp/>node,<sp/>and<sp/>if<sp/>not<sp/>perform<sp/>a<sp/>***jump***<sp/>to<sp/>that<sp/>node..<sp/>We<sp/>do<sp/>this<sp/>by<sp/>constructing<sp/>a<sp/>***conditional***<sp/>that<sp/>***tests***<sp/>to<sp/>see<sp/>if<sp/>the<sp/>player<sp/>has<sp/>***visited***<sp/>the<sp/>`Sally.Watch`<sp/>node.</highlight></codeline>
+<codeline lineno="166"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="167"><highlight class="normal">&lt;&lt;if<sp/>not<sp/>visited(&quot;Sally.Watch&quot;)&gt;&gt;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>[[Anything<sp/>exciting<sp/>happen<sp/>on<sp/>your<sp/>watch?|Sally.Watch]]</highlight></codeline>
+<codeline lineno="169"><highlight class="normal">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="171"><highlight class="normal">The<sp/>next<sp/>section<sp/>of<sp/>the<sp/>Sally<sp/>node<sp/>will<sp/>be<sp/>to<sp/>have<sp/>Sally<sp/>scold<sp/>us<sp/>about<sp/>going<sp/>off<sp/>watch,<sp/>but<sp/>only<sp/>if<sp/>we&apos;ve<sp/>received<sp/>the<sp/>warning<sp/>from<sp/>the<sp/>Ship<sp/>about<sp/>her<sp/>as<sp/>well<sp/>as<sp/>only<sp/>if<sp/>she<sp/>has<sp/>not<sp/>scolded<sp/>us<sp/>previously.</highlight></codeline>
+<codeline lineno="172"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="173"><highlight class="normal">&lt;&lt;if<sp/>$sally_warning<sp/>and<sp/>not<sp/>visited(&quot;Sally.Sorry&quot;)&gt;&gt;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>[[Sorry<sp/>about<sp/>the<sp/>console.|Sally.Sorry]]</highlight></codeline>
+<codeline lineno="175"><highlight class="normal">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="177"><highlight class="normal">&gt;<sp/>***Note:***<sp/>We&apos;re<sp/>using<sp/>the<sp/>`visited`<sp/>state<sp/>of<sp/>a<sp/>singular<sp/>node,<sp/>`Sally.Sorry`.<sp/>We<sp/>could<sp/>set<sp/>a<sp/>singular<sp/>additional<sp/></highlight><highlight class="keywordtype">boolean</highlight><highlight class="normal"><sp/>value<sp/>in<sp/>the<sp/>node,<sp/>but<sp/>as<sp/>it<sp/>would<sp/>provide<sp/>no<sp/>increased<sp/>functionality<sp/>over<sp/>usage<sp/>of<sp/>the<sp/>built<sp/>in<sp/>`visited`<sp/>command,<sp/>it<sp/>is<sp/>written<sp/>this<sp/>way.</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal">After<sp/>all<sp/>the<sp/>above<sp/>Yarn<sp/>Dialogue<sp/>is<sp/>executed,<sp/>and<sp/>the<sp/>nodes<sp/>are<sp/>visited,<sp/>we<sp/>will<sp/>jump<sp/>to<sp/>the<sp/>final<sp/>node.</highlight></codeline>
+<codeline lineno="180"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="181"><highlight class="normal">[[See<sp/>you<sp/>later.|Sally.Exit]]</highlight></codeline>
+<codeline lineno="182"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="183"><highlight class="normal">The<sp/>first<sp/>node<sp/>in<sp/>our<sp/>Yarn<sp/>Dialogue<sp/>for<sp/>Sally<sp/>now<sp/>reads:</highlight></codeline>
+<codeline lineno="184"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="185"><highlight class="normal">title:<sp/>Sally</highlight></codeline>
+<codeline lineno="186"><highlight class="normal">---</highlight></codeline>
+<codeline lineno="187"><highlight class="normal">&lt;&lt;if<sp/>visited(&quot;Sally&quot;)<sp/>is<sp/>false&gt;&gt;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>Sally:<sp/>Oh!<sp/>Hi.</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>Sally:<sp/>You<sp/>snuck<sp/>up<sp/>on<sp/>me.</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>Sally:<sp/>Don&apos;t<sp/>do<sp/>that.</highlight></codeline>
+<codeline lineno="191"><highlight class="normal">&lt;&lt;else&gt;&gt;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>Player:<sp/>Hey.</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>Sally:<sp/>Hi.</highlight></codeline>
+<codeline lineno="194"><highlight class="normal">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal">&lt;&lt;if<sp/>not<sp/>visited(&quot;Sally.Watch&quot;)&gt;&gt;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>[[Anything<sp/>exciting<sp/>happen<sp/>on<sp/>your<sp/>watch?|Sally.Watch]]</highlight></codeline>
+<codeline lineno="198"><highlight class="normal">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal">&lt;&lt;if<sp/>$sally_warning<sp/>and<sp/>not<sp/>visited(&quot;Sally.Sorry&quot;)&gt;&gt;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>[[Sorry<sp/>about<sp/>the<sp/>console.|Sally.Sorry]]</highlight></codeline>
+<codeline lineno="201"><highlight class="normal">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal">[[See<sp/>you<sp/>later.|Sally.Exit]]</highlight></codeline>
+<codeline lineno="203"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="204"><highlight class="normal">We&apos;re<sp/>near<sp/>the<sp/>end,<sp/>as<sp/>all<sp/>we<sp/>have<sp/>to<sp/>do<sp/>now<sp/>is<sp/>write<sp/>the<sp/>`Sally.Watch`,<sp/>`Sally.Exit`<sp/>and<sp/>`Sally.Sorry`<sp/>nodes.</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal">`Sally.Watch`<sp/>is<sp/>rather<sp/>straight<sp/>forward<sp/>Yarn<sp/>Dialogue.<sp/>It<sp/>sets<sp/>a<sp/>***variable***<sp/>`$should_see_ship`<sp/>when<sp/>Sally<sp/>tells<sp/>us<sp/>to<sp/>go<sp/>visit<sp/>the<sp/>ship.<sp/>It<sp/>also<sp/>tests<sp/>to<sp/>see<sp/>if<sp/>we&apos;ve<sp/>visited<sp/>already<sp/>visited<sp/>the<sp/>ship<sp/>and<sp/>if<sp/>so,<sp/>presents<sp/>some<sp/>additional<sp/>Dialogue.</highlight></codeline>
+<codeline lineno="207"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="208"><highlight class="normal">Sally:<sp/>Not<sp/>really.</highlight></codeline>
+<codeline lineno="209"><highlight class="normal">Sally:<sp/>Same<sp/>old<sp/>nebula,<sp/>doing<sp/>the<sp/>same<sp/>old<sp/>thing.</highlight></codeline>
+<codeline lineno="210"><highlight class="normal">Sally:<sp/>Oh,<sp/>Ship<sp/>wanted<sp/>to<sp/>see<sp/>you.<sp/>Go<sp/>say<sp/>hi<sp/>to<sp/>it.</highlight></codeline>
+<codeline lineno="211"><highlight class="normal">&lt;&lt;set<sp/>$should_see_ship<sp/>to<sp/>true&gt;&gt;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal">&lt;&lt;if<sp/>visited(&quot;Ship&quot;)<sp/>is<sp/>true&gt;&gt;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/>Player:<sp/>Already<sp/>done!</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>Sally:<sp/>Go<sp/>say<sp/>hi<sp/>again.</highlight></codeline>
+<codeline lineno="215"><highlight class="normal">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="217"><highlight class="normal">&gt;<sp/>***Note:***<sp/>There<sp/>are<sp/>no<sp/>new<sp/>concepts<sp/>in<sp/>Yarn<sp/>Dialogue<sp/>in<sp/>the<sp/>previous<sp/>code<sp/>snippet.<sp/>If<sp/>you<sp/>are<sp/>having<sp/>difficulties<sp/>understanding<sp/>this<sp/>snippet,<sp/>please<sp/>re-read<sp/>the<sp/>sub-sections<sp/>on<sp/>Variables<sp/>and<sp/>Conditionals.</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal">Finally,<sp/>we<sp/>have<sp/>two<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>nodes.<sp/>Firstly,<sp/>the<sp/>node<sp/>containing<sp/>the<sp/>text</highlight></codeline>
+<codeline lineno="220"><highlight class="normal">as<sp/>the<sp/>Dialogue<sp/>completes:</highlight></codeline>
+<codeline lineno="221"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="222"><highlight class="normal">Sally:<sp/>Bye.</highlight></codeline>
+<codeline lineno="223"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="224"><highlight class="normal">And<sp/>the<sp/>text<sp/>containing<sp/>the<sp/>Dialogue<sp/>containing<sp/>the<sp/>text<sp/>of<sp/>Sally<sp/>scolding<sp/>the<sp/>player:</highlight></codeline>
+<codeline lineno="225"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="226"><highlight class="normal">Sally:<sp/>Yeah.<sp/>Don&apos;t<sp/>do<sp/>it<sp/>again.</highlight></codeline>
+<codeline lineno="227"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="228"><highlight class="normal">We<sp/>now<sp/>have<sp/>our<sp/>completed<sp/>[Sally.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Sally.yarn.txt)<sp/>file,<sp/>and<sp/>have<sp/>finished<sp/>creating<sp/>the<sp/>Yarn<sp/>Dialogue<sp/>for<sp/>our<sp/>Complex<sp/>Example.</highlight></codeline>
+<codeline lineno="229"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="230"><highlight class="normal">title:<sp/>Sally</highlight></codeline>
+<codeline lineno="231"><highlight class="normal">---</highlight></codeline>
+<codeline lineno="232"><highlight class="normal">&lt;&lt;if<sp/>visited(&quot;Sally&quot;)<sp/>is<sp/>false&gt;&gt;</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/>Sally:<sp/>Oh!<sp/>Hi.</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/>Sally:<sp/>You<sp/>snuck<sp/>up<sp/>on<sp/>me.</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/>Sally:<sp/>Don&apos;t<sp/>do<sp/>that.</highlight></codeline>
+<codeline lineno="236"><highlight class="normal">&lt;&lt;else&gt;&gt;</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/>Player:<sp/>Hey.</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>Sally:<sp/>Hi.</highlight></codeline>
+<codeline lineno="239"><highlight class="normal">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal">&lt;&lt;if<sp/>not<sp/>visited(&quot;Sally.Watch&quot;)&gt;&gt;</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/>[[Anything<sp/>exciting<sp/>happen<sp/>on<sp/>your<sp/>watch?|Sally.Watch]]</highlight></codeline>
+<codeline lineno="243"><highlight class="normal">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="244"><highlight class="normal">&lt;&lt;if<sp/>$sally_warning<sp/>and<sp/>not<sp/>visited(&quot;Sally.Sorry&quot;)&gt;&gt;</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/>[[Sorry<sp/>about<sp/>the<sp/>console.|Sally.Sorry]]</highlight></codeline>
+<codeline lineno="246"><highlight class="normal">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="247"><highlight class="normal">[[See<sp/>you<sp/>later.|Sally.Exit]]</highlight></codeline>
+<codeline lineno="248"><highlight class="normal">===</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal">title:<sp/>Sally.Watch</highlight></codeline>
+<codeline lineno="251"><highlight class="normal">---</highlight></codeline>
+<codeline lineno="252"><highlight class="normal">Sally:<sp/>Not<sp/>really.</highlight></codeline>
+<codeline lineno="253"><highlight class="normal">Sally:<sp/>Same<sp/>old<sp/>nebula,<sp/>doing<sp/>the<sp/>same<sp/>old<sp/>thing.</highlight></codeline>
+<codeline lineno="254"><highlight class="normal">Sally:<sp/>Oh,<sp/>Ship<sp/>wanted<sp/>to<sp/>see<sp/>you.<sp/>Go<sp/>say<sp/>hi<sp/>to<sp/>it.</highlight></codeline>
+<codeline lineno="255"><highlight class="normal">&lt;&lt;set<sp/>$should_see_ship<sp/>to<sp/>true&gt;&gt;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal">&lt;&lt;if<sp/>visited(&quot;Ship&quot;)<sp/>is<sp/>true&gt;&gt;</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/>Player:<sp/>Already<sp/>done!</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>Sally:<sp/>Go<sp/>say<sp/>hi<sp/>again.</highlight></codeline>
+<codeline lineno="259"><highlight class="normal">&lt;&lt;endif&gt;&gt;</highlight></codeline>
+<codeline lineno="260"><highlight class="normal">===</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal">title:<sp/>Sally.Exit</highlight></codeline>
+<codeline lineno="263"><highlight class="normal">---</highlight></codeline>
+<codeline lineno="264"><highlight class="normal">Sally:<sp/>Bye.</highlight></codeline>
+<codeline lineno="265"><highlight class="normal">===</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal">title:<sp/>Sally.Sorry</highlight></codeline>
+<codeline lineno="268"><highlight class="normal">---</highlight></codeline>
+<codeline lineno="269"><highlight class="normal">Sally:<sp/>Yeah.<sp/>Don&apos;t<sp/>do<sp/>it<sp/>again.</highlight></codeline>
+<codeline lineno="270"><highlight class="normal">===</highlight></codeline>
+<codeline lineno="271"><highlight class="normal">```</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Dialogue/Simple-Dialogue-Tutorial.md"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Dialogue/Complex-Dialogue-Tutorial.md"/>
   </compounddef>
 </doxygen>

@@ -1,8 +1,7 @@
 var a00047 =
 [
-    [ "Update", "a00047.html#a592ddbf8e493bde0a6536c0234869217", null ],
-    [ "maxPosition", "a00047.html#abb0154dcbc2a7d43795beacd61a56de4", null ],
-    [ "minPosition", "a00047.html#a08c6f6c0ea423c21af99e4b5467d3c9b", null ],
-    [ "moveSpeed", "a00047.html#a3d4f2efe9c2cee8c7ff797cac03f27ec", null ],
-    [ "target", "a00047.html#aa5d6958fb14a14ebb74e21c372fcca8b", null ]
+    [ "CanConvertFrom", "a00047.html#a0be20573af4ee53409bb437125a64268", null ],
+    [ "CanConvertTo", "a00047.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
+    [ "ConvertFromString", "a00047.html#abc77c631974272fd1dfe3fe4fcc3bf28", null ],
+    [ "ConvertToString", "a00047.html#a36cb2f9b24f15a671293f3a722324c27", null ]
 ];

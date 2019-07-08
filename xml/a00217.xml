@@ -1,34 +1,67 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00217" kind="file">
-    <compoundname>LICENSE.md</compoundname>
+    <compoundname>Extending.md</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="normal">The<sp/>MIT<sp/>License<sp/>(MIT)</highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal">Copyright<sp/>(c)<sp/>2015-2017<sp/>Secret<sp/>Lab<sp/>Pty.<sp/>Ltd.<sp/>and<sp/>Yarn<sp/>Spinner<sp/>contributors.</highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">Permission<sp/>is<sp/>hereby<sp/>granted,<sp/>free<sp/>of<sp/>charge,<sp/>to<sp/>any<sp/>person<sp/>obtaining<sp/>a<sp/>copy</highlight></codeline>
-<codeline lineno="6"><highlight class="normal">of<sp/>this<sp/>software<sp/>and<sp/>associated<sp/>documentation<sp/>files<sp/>(the<sp/>&quot;Software&quot;),<sp/>to<sp/>deal</highlight></codeline>
-<codeline lineno="7"><highlight class="normal">in<sp/>the<sp/>Software<sp/>without<sp/>restriction,<sp/>including<sp/>without<sp/>limitation<sp/>the<sp/>rights</highlight></codeline>
-<codeline lineno="8"><highlight class="normal">to<sp/>use,<sp/>copy,<sp/>modify,<sp/>merge,<sp/>publish,<sp/>distribute,<sp/>sublicense,<sp/>and/or<sp/>sell</highlight></codeline>
-<codeline lineno="9"><highlight class="normal">copies<sp/>of<sp/>the<sp/>Software,<sp/>and<sp/>to<sp/>permit<sp/>persons<sp/>to<sp/>whom<sp/>the<sp/>Software<sp/>is</highlight></codeline>
-<codeline lineno="10"><highlight class="normal">furnished<sp/>to<sp/>do<sp/>so,<sp/>subject<sp/>to<sp/>the<sp/>following<sp/>conditions:</highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal">The<sp/>above<sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>shall<sp/>be<sp/>included<sp/>in<sp/>all</highlight></codeline>
-<codeline lineno="13"><highlight class="normal">copies<sp/>or<sp/>substantial<sp/>portions<sp/>of<sp/>the<sp/>Software.</highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Extending<sp/>Yarn<sp/>Spinner</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Style<sp/>Guide</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">`Inline<sp/>Code`<sp/>contain<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>snippets<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>Code<sp/>Blocks<sp/>contain<sp/>segments<sp/>or<sp/>chunks<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">**Bold<sp/>indicate<sp/>actions<sp/>(Select<sp/>menu<sp/>item,<sp/>copying<sp/>file,<sp/>etc.)**</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">***Bold<sp/>italic<sp/>text<sp/>indicates<sp/>emphasis***</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">&gt;<sp/>Blockquotes<sp/>contain<sp/>essential<sp/>information</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal">THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;,<sp/>WITHOUT<sp/>WARRANTY<sp/>OF<sp/>ANY<sp/>KIND,<sp/>EXPRESS<sp/>OR</highlight></codeline>
-<codeline lineno="16"><highlight class="normal">IMPLIED,<sp/>INCLUDING<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO<sp/>THE<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY,</highlight></codeline>
-<codeline lineno="17"><highlight class="normal">FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>AND<sp/>NONINFRINGEMENT.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE</highlight></codeline>
-<codeline lineno="18"><highlight class="normal">AUTHORS<sp/>OR<sp/>COPYRIGHT<sp/>HOLDERS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>CLAIM,<sp/>DAMAGES<sp/>OR<sp/>OTHER</highlight></codeline>
-<codeline lineno="19"><highlight class="normal">LIABILITY,<sp/>WHETHER<sp/>IN<sp/>AN<sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>TORT<sp/>OR<sp/>OTHERWISE,<sp/>ARISING<sp/>FROM,</highlight></codeline>
-<codeline lineno="20"><highlight class="normal">OUT<sp/>OF<sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>SOFTWARE<sp/>OR<sp/>THE<sp/>USE<sp/>OR<sp/>OTHER<sp/>DEALINGS<sp/>IN<sp/>THE</highlight></codeline>
-<codeline lineno="21"><highlight class="normal">SOFTWARE.</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Introduction</highlight></codeline>
+<codeline lineno="16"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">This<sp/>document<sp/>intends<sp/>to<sp/>demonstrate<sp/>to<sp/>a<sp/>developer<sp/>how<sp/>they<sp/>can<sp/>add<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>functions<sp/>so<sp/>that<sp/>they<sp/>can<sp/>be<sp/>called<sp/>from<sp/>inside<sp/>Yarn.</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">###<sp/>Programming<sp/>style</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">*<sp/>It<sp/>is<sp/>recommended<sp/>that<sp/>you<sp/>follow<sp/>our<sp/>programming<sp/>style<sp/>so<sp/>that<sp/>in<sp/>the<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>of<sp/>bug<sp/>or<sp/>patch<sp/>submission,<sp/>it<sp/>makes<sp/>it<sp/>easier<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>us<sp/>to<sp/>read.<sp/>As<sp/>such,<sp/><ref refid="a00351_1a00fba9ee9674b2513dbe28eab795b734" kindref="member">indents</ref><sp/>should<sp/>be<sp/>four<sp/>spaces<sp/>and<sp/>not<sp/>tab<sp/>stops.<sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">*<sp/>We<sp/>use<sp/>the<sp/>Doxygen<sp/>format<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>documentation,<sp/>thus<sp/>three<sp/>forward<sp/>slashes<sp/>`</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">*<sp/>Other<sp/>comments<sp/>should<sp/>use<sp/>two<sp/>forward<sp/>slashes.<sp/>This<sp/>will<sp/>ensure<sp/>proper<sp/>code<sp/>commentary<sp/>without<sp/>it<sp/>appearing<sp/>in<sp/>generated<sp/>API<sp/>documentation.</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">##<sp/>Creating<sp/>a<sp/>custom<sp/>command</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">Creating<sp/>a<sp/>custom<sp/>command<sp/>is<sp/>a<sp/>simple<sp/>two<sp/>step<sp/>procedure.i</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">1.<sp/>We<sp/>need<sp/>to<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>the<sp/>dialogue<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/>that</highlight><highlight class="stringliteral">&apos;s<sp/>in<sp/>use,<sp/>then<sp/>regiser<sp/>a<sp/>new<sp/>function<sp/>for<sp/>it.</highlight></codeline>
+<codeline lineno="29"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="30"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>//<sp/>get<sp/>the<sp/>Dialogue<sp/>object<sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>//<sp/>varstorage_implementation<sp/>is<sp/>the<sp/>object<sp/>that<sp/>handles<sp/>variable<sp/>storage<sp/>-<sp/>it&apos;</highlight><highlight class="normal">s<sp/>not<sp/>important<sp/>in<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>example</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>dialogue<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Dialogue(varstorage_implementation);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">2.<sp/>Next,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/>your<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">.<sp/>For<sp/>example,<sp/>let</highlight><highlight class="stringliteral">&apos;s<sp/>make<sp/>a<sp/>function<sp/>that<sp/>takes<sp/>1<sp/>parameter,<sp/>which<sp/>is<sp/>a<sp/>number,<sp/>and<sp/>returns<sp/>`true`<sp/>if<sp/>it&apos;</highlight><highlight class="normal">s<sp/>even:</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>RegisterFunction(name,<sp/>parameterCount,<sp/>implementation)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>dialogue.library.RegisterFunction<sp/>(</highlight><highlight class="stringliteral">&quot;is_even&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>delegate(Value[]<sp/>parameters)<sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)parameters[0].AsNumber<sp/>%<sp/>2<sp/>==<sp/>0;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">```<sp/></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">When<sp/>the<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal"><sp/>is<sp/>called,<sp/>the<sp/>delegate<sp/>you<sp/>provide<sp/>will<sp/>be<sp/>run.</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">Some<sp/>notes:</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">*<sp/>You<sp/>don</highlight><highlight class="stringliteral">&apos;t<sp/>have<sp/>to<sp/>return<sp/>a<sp/>value<sp/>from<sp/>your<sp/>function.</highlight></codeline>
+<codeline lineno="46"><highlight class="stringliteral">*<sp/>The<sp/>parameters<sp/>passed<sp/>to<sp/>your<sp/>function<sp/>are<sp/>of<sp/>type<sp/>Yarn.Value.<sp/>You<sp/>can<sp/>get<sp/>their<sp/>value<sp/>as<sp/>numbers,<sp/>bools<sp/>or<sp/>strings<sp/>by<sp/>using<sp/>the<sp/>`AsNumber`,<sp/>`AsString`<sp/>and<sp/>`AsBool`<sp/>properties.</highlight></codeline>
+<codeline lineno="47"><highlight class="stringliteral">*<sp/>You<sp/>can<sp/>only<sp/>return<sp/>values<sp/>of<sp/>the<sp/>following<sp/>types:</highlight></codeline>
+<codeline lineno="48"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>String</highlight></codeline>
+<codeline lineno="49"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Float</highlight></codeline>
+<codeline lineno="50"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Double</highlight></codeline>
+<codeline lineno="51"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Integer</highlight></codeline>
+<codeline lineno="52"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Yarn.Value</highlight></codeline>
+<codeline lineno="53"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="54"><highlight class="stringliteral">*<sp/>Yarn<sp/>Spinner<sp/>will<sp/>make<sp/>sure<sp/>that<sp/>the<sp/>correct<sp/>number<sp/>of<sp/>parameters<sp/>is<sp/>passed<sp/>to<sp/>your<sp/>method.<sp/>If<sp/>you<sp/>specify<sp/>`-1`<sp/>as<sp/>your<sp/>parameter<sp/>count,<sp/>the<sp/>function<sp/>may<sp/>have<sp/>any<sp/>number<sp/>of<sp/>parameters.</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/LICENSE.md"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Programming/Extending.md"/>
   </compounddef>
 </doxygen>

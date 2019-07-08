@@ -1,9 +1,156 @@
-The M\-I\-T License (M\-I\-T)
+\subsubsection*{Style Guide}
 
-Copyright (c) 2015-\/2017 Secret Lab Pty. Ltd. and \hyperlink{a00051}{Yarn} Spinner contributors.
+{\ttfamily Inline Code} contain short snippets of code for your project \begin{DoxyVerb}Code Blocks contain segments or chunks of code for your project
+\end{DoxyVerb}
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\-Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\-:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+{\bfseries Bold indicate actions (Select menu item, copying file, etc.)}
 
-T\-H\-E S\-O\-F\-T\-W\-A\-R\-E I\-S P\-R\-O\-V\-I\-D\-E\-D \char`\"{}\-A\-S I\-S\char`\"{}, W\-I\-T\-H\-O\-U\-T W\-A\-R\-R\-A\-N\-T\-Y O\-F A\-N\-Y K\-I\-N\-D, E\-X\-P\-R\-E\-S\-S O\-R I\-M\-P\-L\-I\-E\-D, I\-N\-C\-L\-U\-D\-I\-N\-G B\-U\-T N\-O\-T L\-I\-M\-I\-T\-E\-D T\-O T\-H\-E W\-A\-R\-R\-A\-N\-T\-I\-E\-S O\-F M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y, F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E A\-N\-D N\-O\-N\-I\-N\-F\-R\-I\-N\-G\-E\-M\-E\-N\-T. I\-N N\-O E\-V\-E\-N\-T S\-H\-A\-L\-L T\-H\-E A\-U\-T\-H\-O\-R\-S O\-R C\-O\-P\-Y\-R\-I\-G\-H\-T H\-O\-L\-D\-E\-R\-S B\-E L\-I\-A\-B\-L\-E F\-O\-R A\-N\-Y C\-L\-A\-I\-M, D\-A\-M\-A\-G\-E\-S O\-R O\-T\-H\-E\-R L\-I\-A\-B\-I\-L\-I\-T\-Y, W\-H\-E\-T\-H\-E\-R I\-N A\-N A\-C\-T\-I\-O\-N O\-F C\-O\-N\-T\-R\-A\-C\-T, T\-O\-R\-T O\-R O\-T\-H\-E\-R\-W\-I\-S\-E, A\-R\-I\-S\-I\-N\-G F\-R\-O\-M, O\-U\-T O\-F O\-R I\-N C\-O\-N\-N\-E\-C\-T\-I\-O\-N W\-I\-T\-H T\-H\-E S\-O\-F\-T\-W\-A\-R\-E O\-R T\-H\-E U\-S\-E O\-R O\-T\-H\-E\-R D\-E\-A\-L\-I\-N\-G\-S I\-N T\-H\-E S\-O\-F\-T\-W\-A\-R\-E. 
+$\ast$$\ast$$\ast$\-Bold italic text indicates emphasis$\ast$$\ast$$\ast$
+
+\begin{quotation}
+Blockquotes contain essential information
+
+\end{quotation}
+
+
+\subsection*{Tutorial}
+
+\begin{quotation}
+$\ast$$\ast$$\ast$\-Note\-:$\ast$$\ast$$\ast$ This tutorial assumes that you know a little bit about \href{http://www.unity3d.com}{\tt Unity}. In particular, it is helpful that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C\#. If you don't know these things, please refer to \href{http://unity3d.com/learn}{\tt Unity's documentation}.
+
+\end{quotation}
+
+
+\subsection*{Step by Step}
+
+\subsubsection*{Introducing \hyperlink{a00053}{Yarn} Spinner}
+
+\hyperlink{a00053}{Yarn} Spinner is designed to be easy to work with in Unity. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses.
+
+To introduce \hyperlink{a00053}{Yarn} Spinner, we'll create an empty Unity project, and then build it from the ground up to run a sample conversation. If you'd first like to see the finished project, \href{https://github.com/thesecretlab/YarnSpinner/releases}{\tt download Yarn Spinner} and open the \href{https://github.com/thesecretlab/YarnSpinner/tree/master/Unity}{\tt Unity folder} in the Unity editor. To build a standalone version of this loaded project, skip to the end of this documentation.
+
+To use \hyperlink{a00053}{Yarn} Spinner, you use three classes that will exist in the {\ttfamily \hyperlink{a00137}{Yarn.\-Unity}} namespace.
+
+
+\begin{DoxyItemize}
+\item {\ttfamily Dialogue\-Runner}, which is responsible for loading and running your dialogue script;
+\item A subclass of {\ttfamily Dialogue\-U\-I\-Behaviour}, which is reponsible for displaying the lines and dialogue choices to the player; and
+\item A subclass of {\ttfamily Variable\-Storage\-Behaviour}, which is responsible for storing the state of the conversation.
+\end{DoxyItemize}
+
+To create your subclasses of {\ttfamily Dialogue\-U\-I\-Behaviour} and {\ttfamily Variable\-Storage\-Behaviour}, you'll need to add the following code to the top of your C\# code\-: \begin{DoxyVerb}using Yarn.Unity;
+\end{DoxyVerb}
+
+
+\hyperlink{a00053}{Yarn} dialogue is created using the \href{http://github.com/infiniteammoinc/Yarn}{\tt Yarn Editor}, and the resulting dialogue is stored as {\ttfamily .json} assets in the Unity project. If you are using Linux and wish to use the \hyperlink{a00053}{Yarn} Editor, you will first need to \href{https://nwjs.io/downloads/}{\tt install} or build \href{https://nwjs.io/}{\tt N\-W.\-js} then attempt to build the \hyperlink{a00053}{Yarn} Editor. {\bfseries N\-O\-T\-E A\-T T\-H\-I\-S S\-T\-A\-G\-E, B\-U\-I\-L\-D\-I\-N\-G N\-W.\-J\-S H\-A\-S N\-O\-T B\-E\-E\-N A\-T\-T\-E\-M\-P\-T\-E\-D B\-Y U\-S A\-N\-D M\-A\-Y S\-E\-T Y\-O\-U\-R C\-O\-M\-P\-U\-T\-E\-R O\-N F\-I\-R\-E}.
+
+The \hyperlink{a00053}{Yarn} dialogue files can be stored anywhere inside the project hierarchy -\/ you simply provide add them to the {\ttfamily Dialogue\-Runner}'s inspector. You can also call {\ttfamily Add\-Script} on the {\ttfamily Dialogue\-Runner} at runtime; this is useful for cases such as spawning a character who comes with additional dialogue -\/ all that needs to happen is the character then pass their \hyperlink{a00053}{Yarn} script to the {\ttfamily Dialogue\-Runner}.
+
+\subsubsection*{Create the \hyperlink{a00053}{Yarn} conversations}
+
+
+\begin{DoxyItemize}
+\item In the \hyperlink{a00053}{Yarn} Editor, {\bfseries Create a new conversation}, and save it as a J\-S\-O\-N file. (Alternatively, if you already have a dialogue file you'd like to use, go ahead and use that instead!). For information on how to create a \hyperlink{a00053}{Yarn} conversation, please refer to the \hyperlink{a00053}{Yarn} Editor site.
+\end{DoxyItemize}
+
+\subsubsection*{Create the Unity project}
+
+
+\begin{DoxyItemize}
+\item {\bfseries Launch Unity}, and {\bfseries create a new project}. The name of the project doesn't matter.
+\end{DoxyItemize}
+
+\subsubsection*{Import the \hyperlink{a00053}{Yarn} Spinner package.}
+
+
+\begin{DoxyItemize}
+\item $\ast$$\ast$\href{https://github.com/thesecretlab/YarnSpinner/releases}{\tt Import Yarn\-Spinner.\-unitypackage}$\ast$$\ast$ into your project.
+
+\hyperlink{a00053}{Yarn} Spinner is composed of a {\ttfamily yarnspinner.\-dll} file, and a couple of supporting scripts for Unity. This dll file does the heavy lifting involved in parsing your \hyperlink{a00053}{Yarn} files, and executing them.
+
+To show \hyperlink{a00053}{Yarn} dialogue in your game, you will need to add it to your project as well.
+\item {\bfseries Copy your \hyperlink{a00053}{Yarn} J\-S\-O\-N file} into your project.
+\end{DoxyItemize}
+
+You're now ready to start using \hyperlink{a00053}{Yarn} Spinner!
+
+\subsubsection*{Load your conversation with {\ttfamily Dialogue\-Runner}}
+
+\hyperlink{a00053}{Yarn} conversations are loaded and managed by a {\ttfamily Dialogue\-Runner} object. This object is responsible for loading and parsing your \hyperlink{a00053}{Yarn} {\ttfamily .json} files. It also runs the script when it's told to -\/ for example, when you walk up to a character in your game and talk to them.
+
+We'll start by creating an empty object, and then we'll add the {\ttfamily Dialogue\-Runner} component to it.
+
+
+\begin{DoxyItemize}
+\item {\bfseries Create a new empty game object}.
+\item {\bfseries Rename it to \char`\"{}\-Dialogue Runner\char`\"{}}.
+\item With the Dialogue Runner object selected, {\bfseries open the Component menu}, and choose {\bfseries Scripts → \hyperlink{a00053}{Yarn} Spinner → Dialogue Runner}.
+
+Next you need to add the \hyperlink{a00053}{Yarn} files that you want to show. The Dialogue runner can load multiple \hyperlink{a00053}{Yarn} files at the same time. The only requirement is that {\bfseries no nodes are allowed to have the same name}. (This is a requirement that may change in the future.)
+\item {\bfseries Drag your \hyperlink{a00053}{Yarn} J\-S\-O\-N file into the {\ttfamily Source Text} array.}
+\end{DoxyItemize}
+
+\subsubsection*{Display your conversation with {\ttfamily Dialogue\-U\-I}}
+
+Your game's dialogue needs to be shown to the user. Additionally, you need a way to let the player choose what their reaction is going to be.
+
+\hyperlink{a00053}{Yarn} Spinner makes no assumptions about how you want to handle your dialogue's U\-I. Want to present as simple list of options? That's fine. Want a fancy Mass Effect style radial menu? Totally cool. Want a totally bonkers gesture-\/based U\-I with a countdown timer? Oh man that would be sweet.
+
+\hyperlink{a00053}{Yarn} Spinner leaves all of the work of actually presenting the conversation up to you; all it's responsible for is delivering the lines that the player should see, and notifying \hyperlink{a00053}{Yarn} Spinner about what response the user selected.
+
+\hyperlink{a00053}{Yarn} Spinner comes with an example script that uses Unity's U\-I system. It's a good place to start.
+
+\subsubsection*{Store your conversation state with a {\ttfamily Variable\-Storage\-Behaviour}}
+
+There's one last necessary component. As you play through a conversation, you'll probably want to record the user's choices somewhere. \hyperlink{a00053}{Yarn} Spinner doesn't care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a $\ast$$\ast$$\ast$\href{https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/index}{\tt C\# interface})$\ast$$\ast$$\ast$, which defines methods like \char`\"{}set variable\char`\"{} and \char`\"{}get value of variable\char`\"{}.
+
+The simplest implementation of this is one that just keeps your variables in memory, but it's pretty straightforward to adapt an existing save game system to use it.
+
+
+\begin{DoxyItemize}
+\item {\bfseries Create a new game object}, and add the {\ttfamily \hyperlink{a00091}{Example\-Variable\-Storage}} script to it.
+\end{DoxyItemize}
+
+Or\-:
+
+
+\begin{DoxyItemize}
+\item {\bfseries Create a new game object}, and add a new script to it. Make this script subclass {\ttfamily Variable\-Storage\-Behaviour}, and the implement the {\ttfamily Set\-Number}, {\ttfamily Get\-Number}, {\ttfamily Clear}, and {\ttfamily Reset\-To\-Defaults} methods.
+\item Once you've done that, {\bfseries drag this new object into the Dialoge Runner's {\ttfamily Variable Storage} slot.}
+\end{DoxyItemize}
+
+\subsubsection*{Run your conversation}
+
+There's only one thing left to do\-: \hyperlink{a00053}{Yarn} Spinner just needs to know what node in the \hyperlink{a00053}{Yarn} file to start from. It will default to \char`\"{}\-Start\char`\"{}, but you can override it.
+
+
+\begin{DoxyItemize}
+\item {\bfseries Change the Dialogue Runner's {\ttfamily Start Node}} to the {\bfseries name of the node you'd like to start run.}
+\item Finally, {\bfseries run the game.} The conversation will play!
+\end{DoxyItemize}
+
+\subsubsection*{Respond to commands with {\ttfamily Yarn\-Command}}
+
+In \hyperlink{a00053}{Yarn}, you can create {\itshape commands} that tell your game to do something. For example, if you want a character to move to a certain point on the screen, you might have a command that looks like this\-: \begin{DoxyVerb}<<move Sally exit>>
+\end{DoxyVerb}
+
+
+For this to work, the game object named \char`\"{}\-Sally\char`\"{} needs to have a script component attached to it, and one of those scripts needs to have a method that looks like this\-: \begin{DoxyVerb}[YarnCommand("move")]
+public void MoveCharacter(string destinationName) {
+    // move to the destination
+}
+\end{DoxyVerb}
+
+
+When \hyperlink{a00053}{Yarn} encounters a command that contains two or more words, it looks for a game object with the same name as the second word (\char`\"{}\-Sally\char`\"{}, in the above example), and then searches that object's scripts for any method that has a {\ttfamily Yarn\-Command} with the same name as the first word (in this case, \char`\"{}move\char`\"{}).
+
+Any further words in the command are passed as string parameters to the method (\char`\"{}exit\char`\"{}, in this case, which is used as the {\ttfamily destination\-Name} parameter)
+
+Note that {\bfseries all} parameters must be strings. {\ttfamily Dialogue\-Runner} will throw an error if it finds a method that has parameters of any other type. It's up to your method to convert the strings into other types, like numbers.
+
+\subsubsection*{Finishing up}
+
+Save the project
+
+Build a stand alone 

@@ -1,6 +1,4 @@
 var a00321 =
 [
-    [ "IYarnSpinnerParserListener", "a00124.html", "a00124" ],
-    [ "IParseTreeListener", "a00321.html#adde972b0755bbb3b98514c5169d9bfbb", null ],
-    [ "IToken", "a00321.html#ae3d87b0b748ea892bff48f60862e182d", null ]
+    [ "DFA", "a00321.html#adff82417cdaed8e1b025db27c7c11fc3", null ]
 ];

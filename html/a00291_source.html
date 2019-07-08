@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/Microsoft.NetFramework.Analyzers.2.9.1/documentation/Microsoft.NetFramework.Analyzers.md Source File</title>
+<title>YarnSpinner: packages/Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.1/documentation/Microsoft.CodeAnalysis.VersionCheckAnalyzer.md Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,25 +105,22 @@ $(document).ready(function(){initNavTree('a00291.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">packages/Microsoft.NetFramework.Analyzers.2.9.1/documentation/Microsoft.NetFramework.Analyzers.md</div>  </div>
+<div class="title">packages/Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.1/documentation/Microsoft.CodeAnalysis.VersionCheckAnalyzer.md</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00291.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;Sr. No. | Rule ID | Title | Category | Enabled | CodeFix | Description |</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;--------|---------|-------|----------|---------|---------|--------------------------------------------------------------------------------------------------------------|</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;1 | [CA1058](https:<span class="comment">//docs.microsoft.com/visualstudio/code-quality/ca1058-types-should-not-extend-certain-base-types) | Types should not extend certain base types | Design | True | True | An externally visible type extends certain base types. Use one of the alternatives. |</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;2 | [CA2153](https:<span class="comment">//docs.microsoft.com/visualstudio/code-quality/ca2153-avoid-handling-corrupted-state-exceptions) | Do Not Catch Corrupted State Exceptions | Security | True | False | Catching corrupted state exceptions could mask errors (such as access violations), resulting in inconsistent state of execution or making it easier for attackers to compromise system. Instead, catch and handle a more specific set of exception type(s) or re-throw the exception |</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;3 | [CA3075](https:<span class="comment">//docs.microsoft.com/visualstudio/code-quality/ca3075-insecure-dtd-processing) | Insecure DTD processing in XML | Security | True | False | Using XmlTextReader.Load(), creating an insecure XmlReaderSettings instance when invoking XmlReader.Create(), setting the InnerXml property of the XmlDocument and enabling DTD processing using XmlUrlResolver insecurely can lead to information disclosure. Replace it with a call to the Load() method overload that takes an XmlReader instance, use XmlReader.Create() to accept XmlReaderSettings arguments or consider explicitly setting secure values. The DataViewSettingCollectionString property of DataViewManager should always be assigned from a trusted source, the DtdProcessing property should be set to false, and the XmlResolver property should be changed to XmlSecureResolver or null.  |</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;4 | [CA3076](https:<span class="comment">//docs.microsoft.com/visualstudio/code-quality/ca3076-insecure-xslt-script-execution) | Insecure XSLT script processing. | Security | True | False | Providing an insecure XsltSettings instance and an insecure XmlResolver instance to XslCompiledTransform.Load method is potentially unsafe as it allows processing script within XSL, which on an untrusted XSL input may lead to malicious code execution. Either replace the insecure XsltSettings argument with XsltSettings.Default or an instance that has disabled document function and script execution, or replace the XmlResolver argurment with null or an XmlSecureResolver instance. This message may be suppressed if the input is known to be from a trusted source and external resource resolution from locations that are not known in advance must be supported. |</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;5 | [CA3077](https:<span class="comment">//docs.microsoft.com/visualstudio/code-quality/ca3077-insecure-processing-in-api-design-xml-document-and-xml-text-reader) | Insecure Processing in API Design, XmlDocument and XmlTextReader | Security | True | False | Enabling DTD processing on all instances derived from XmlTextReader or  XmlDocument and using XmlUrlResolver for resolving external XML entities may lead to information disclosure. Ensure to set the XmlResolver property to null, create an instance of XmlSecureResolver when processing untrusted input, or use XmlReader.Create method with a secure XmlReaderSettings argument. Unless you need to enable it, ensure the DtdProcessing property is set to false.  |</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;6 | [CA3147](https:<span class="comment">//docs.microsoft.com/visualstudio/code-quality/ca3147-mark-verb-handlers-with-validateantiforgerytoken) | Mark Verb Handlers With Validate Antiforgery Token | Security | True | False | Missing ValidateAntiForgeryTokenAttribute on controller action {0}. |</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;1 | CA9999 | Analyzer version mismatch | Reliability | <a class="code" href="a00053.html#a301aa7c866593a5b625a8fc158bbeaceaf827cf462f62848df37c5e1e94a4da74">True</a> | <a class="code" href="a00053.html#a301aa7c866593a5b625a8fc158bbeaceaf8320b26d30ab433c5a54546d21f414c">False</a> | Analyzers in <span class="keyword">this</span> <span class="keyword">package </span>require a certain minimum version of Microsoft.CodeAnalysis to execute correctly. Refer to https:<span class="comment">//docs.microsoft.com/en-us/visualstudio/code-quality/install-fxcop-analyzers?view=vs-2017#fxcopanalyzers-package-versions to install the correct analyzer version. |</span></div>
+<div class="ttc" id="a00053_html_a301aa7c866593a5b625a8fc158bbeaceaf8320b26d30ab433c5a54546d21f414c"><div class="ttname"><a href="a00053.html#a301aa7c866593a5b625a8fc158bbeaceaf8320b26d30ab433c5a54546d21f414c">Yarn.False</a></div></div>
+<div class="ttc" id="a00053_html_a301aa7c866593a5b625a8fc158bbeaceaf827cf462f62848df37c5e1e94a4da74"><div class="ttname"><a href="a00053.html#a301aa7c866593a5b625a8fc158bbeaceaf827cf462f62848df37c5e1e94a4da74">Yarn.True</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00291.html">Microsoft.NetFramework.Analyzers.md</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 03:19:11 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00291.html">Microsoft.CodeAnalysis.VersionCheckAnalyzer.md</a></li>
+    <li class="footer">Generated on Mon Jul 8 2019 11:16:33 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

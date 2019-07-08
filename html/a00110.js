@@ -1,8 +1,8 @@
 var a00110 =
 [
-    [ "CanConvertFrom", "a00110.html#a0a4f9bd355387b70241a9d5f92c7b0ef", null ],
-    [ "CanConvertFrom", "a00110.html#a470d21adaa704eb281250dbd112ff91a", null ],
-    [ "CanConvertTo", "a00110.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
-    [ "ConvertFromString", "a00110.html#ad00786c329498785bbb77407ea023877", null ],
-    [ "ConvertToString", "a00110.html#a36cb2f9b24f15a671293f3a722324c27", null ]
+    [ "edge", "a00110.html#aeb75730e40484ccdf56e805e6dea22a1", null ],
+    [ "toDot", "a00110.html#aa1f89fd1a2dd058002251dfd6411b905", null ],
+    [ "edges", "a00110.html#a8adf7c937ab5c584b49698283e3da150", null ],
+    [ "graphName", "a00110.html#a8605f1ec5a4e9cfd07d3ac2be042dac6", null ],
+    [ "nodes", "a00110.html#a506df6f737a41748c01239bdea5d82b1", null ]
 ];

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.VariableStorage Interface Reference</title>
+<title>YarnSpinner: Yarn.Parser.ValueNode Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -108,196 +108,602 @@ $(document).ready(function(){initNavTree('a00190.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="a00606.html">List of all members</a>  </div>
+<a href="#pac-methods">Package Functions</a> &#124;
+<a href="#pac-attribs">Package Attributes</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="a00711.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.VariableStorage Interface Reference</div>  </div>
+<div class="title">Yarn.Parser.ValueNode Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Where we turn to for storing and loading variable data.  
- <a href="a00190.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.VariableStorage:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.Parser.ValueNode:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00607.png" border="0" usemap="#_yarn_8_variable_storage_inherit__map" alt="Inheritance graph"/></div>
-<map name="_yarn_8_variable_storage_inherit__map" id="_yarn_8_variable_storage_inherit__map">
-<area shape="rect" id="node2" href="a00042.html" title="{Yarn.BaseVariableStorage\n||+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="7,292,181,428"/><area shape="rect" id="node4" href="a00191.html" title="Scripts that can act as a variable storage should subclass this. " alt="" coords="206,277,385,443"/><area shape="rect" id="node6" href="a00056.html" title="{Yarn.YarnSpinnerConsole.\lConsoleRunnerImplementation\n|+ numberOfExpectedOptions\l+ autoSelectOptionNumber\l+ expectedNextLine\l+ expectedNextCommand\l+ autoSelectFirstOption\l&#45; waitForLines\l&#45; variableStore\l|+ ConsoleRunnerImplementation()\l+ RunLine()\l+ RunOptions()\l+ RunCommand()\l+ DialogueComplete()\l+ HandleErrorMessage()\l+ HandleDebugMessage()\l+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="411,189,632,531"/><area shape="rect" id="node3" href="a00136.html" title="Very simple continuity class that keeps all variables in memory. " alt="" coords="5,616,184,723"/><area shape="rect" id="node5" href="a00089.html" title="An extremely simple implementation of DialogueUnityVariableStorage, which just stores everything in a..." alt="" coords="213,579,377,759"/></map>
+<div class="center"><img src="a00712.png" border="0" usemap="#_yarn_8_parser_8_value_node_inherit__map" alt="Inheritance graph"/></div>
+<map name="_yarn_8_parser_8_value_node_inherit__map" id="_yarn_8_parser_8_value_node_inherit__map">
+<area shape="rect" id="node2" href="a00150.html" title="{ParseNode\n|~ parent\l~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="24,5,144,171"/></map>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.VariableStorage:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Parser.ValueNode:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00608.png" border="0" usemap="#_yarn_8_variable_storage_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_variable_storage_coll__map" id="_yarn_8_variable_storage_coll__map">
-</map>
+<div class="center"><img src="a00713.png" border="0" usemap="#_yarn_8_parser_8_value_node_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_parser_8_value_node_coll__map" id="_yarn_8_parser_8_value_node_coll__map">
+<area shape="rect" id="node2" href="a00150.html" title="{ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="24,222,144,373"/><area shape="rect" id="node3" href="a00150.html" title="{Yarn.Parser.ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="4,6,163,157"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa28c3694f985cf73489efc301b9d41dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00190.html#aa28c3694f985cf73489efc301b9d41dd">SetNumber</a> (string variableName, float number)</td></tr>
-<tr class="separator:aa28c3694f985cf73489efc301b9d41dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04b061c52d8ac814ce559da5286fbc71"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00190.html#a04b061c52d8ac814ce559da5286fbc71">GetNumber</a> (string variableName)</td></tr>
-<tr class="separator:a04b061c52d8ac814ce559da5286fbc71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa90ff61224432c5ed3ce72199c55f440"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00190.html#aa90ff61224432c5ed3ce72199c55f440">SetValue</a> (string variableName, <a class="el" href="a00187.html">Value</a> value)</td></tr>
-<tr class="separator:aa90ff61224432c5ed3ce72199c55f440"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accab1fc5c8fc353dbfc53ca0f4029576"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00187.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00190.html#accab1fc5c8fc353dbfc53ca0f4029576">GetValue</a> (string variableName)</td></tr>
-<tr class="separator:accab1fc5c8fc353dbfc53ca0f4029576"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af98c1e41f351cb96e13f668ca2fd9d92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00190.html#af98c1e41f351cb96e13f668ca2fd9d92">Clear</a> ()</td></tr>
-<tr class="separator:af98c1e41f351cb96e13f668ca2fd9d92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a054f36c80d5eeacd569a8859f599af67"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a054f36c80d5eeacd569a8859f599af67">TagsToString</a> (int indentLevel)</td></tr>
+<tr class="separator:a054f36c80d5eeacd569a8859f599af67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18c67cb16090d0889bb9d6c8c6c565f8"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a18c67cb16090d0889bb9d6c8c6c565f8">ToString</a> ()</td></tr>
+<tr class="separator:a18c67cb16090d0889bb9d6c8c6c565f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-methods"></a>
+Package Functions</h2></td></tr>
+<tr class="memitem:afeaea21eee1c8360a76a202a419d3912"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00190.html#afeaea21eee1c8360a76a202a419d3912">ValueNode</a> (<a class="el" href="a00150.html">ParseNode</a> <a class="el" href="a00150.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a>, <a class="el" href="a00175.html">Token</a> t, <a class="el" href="a00151.html">Parser</a> p)</td></tr>
+<tr class="separator:afeaea21eee1c8360a76a202a419d3912"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac63fbe99131dc3b42af16a2d087c0655"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00190.html#ac63fbe99131dc3b42af16a2d087c0655">ValueNode</a> (<a class="el" href="a00150.html">ParseNode</a> <a class="el" href="a00150.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a>, <a class="el" href="a00151.html">Parser</a> p)</td></tr>
+<tr class="separator:ac63fbe99131dc3b42af16a2d087c0655"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4659e4431e9846a45e0d048c960781a"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00190.html#ae4659e4431e9846a45e0d048c960781a">PrintTree</a> (int indentLevel)</td></tr>
+<tr class="separator:ae4659e4431e9846a45e0d048c960781a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a580e520a29444fc23ac3660cbe514a09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00140.html">Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a580e520a29444fc23ac3660cbe514a09">NodeParent</a> ()</td></tr>
+<tr class="separator:a580e520a29444fc23ac3660cbe514a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-attribs"></a>
+Package Attributes</h2></td></tr>
+<tr class="memitem:af313a82103fcc2ff5a177dbb06b92f7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00150.html">ParseNode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a></td></tr>
+<tr class="separator:af313a82103fcc2ff5a177dbb06b92f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18b493382de0fde5b4299c1bd2250075"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a18b493382de0fde5b4299c1bd2250075">lineNumber</a></td></tr>
+<tr class="separator:a18b493382de0fde5b4299c1bd2250075"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58b3a15788fd2d4127d73619dc6d04ae"><td class="memItemLeft" align="right" valign="top">string[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a58b3a15788fd2d4127d73619dc6d04ae">tags</a> = {}</td></tr>
+<tr class="separator:a58b3a15788fd2d4127d73619dc6d04ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a51ab5939344f9bfa21181c02cf0e341d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00189.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00190.html#a51ab5939344f9bfa21181c02cf0e341d">value</a><code> [get, set]</code></td></tr>
+<tr class="separator:a51ab5939344f9bfa21181c02cf0e341d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a7be6a979ee21b2d07ce541fb9c5b52df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00190.html#a7be6a979ee21b2d07ce541fb9c5b52df">UseToken</a> (<a class="el" href="a00175.html">Token</a> t)</td></tr>
+<tr class="separator:a7be6a979ee21b2d07ce541fb9c5b52df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Where we turn to for storing and loading variable data. </p>
-
-<p>Definition at line <a class="el" href="a00305_source.html#l00065">65</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="af98c1e41f351cb96e13f668ca2fd9d92"></a>
+<div class="textblock">
+<p>Definition at line <a class="el" href="a00316_source.html#l00673">673</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="afeaea21eee1c8360a76a202a419d3912"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Yarn.VariableStorage.Clear </td>
+          <td class="memname">Yarn.Parser.ValueNode.ValueNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00150.html">ParseNode</a>&#160;</td>
+          <td class="paramname"><em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00175.html">Token</a>&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00151.html">Parser</a>&#160;</td>
+          <td class="paramname"><em>p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00316_source.html#l00714">714</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+
+<p>References <a class="el" href="a00316_source.html#l00677">Yarn.Parser.ValueNode.UseToken()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;                                                                    : base (<a class="code" href="a00150.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a>, p) {</div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;                <a class="code" href="a00190.html#a7be6a979ee21b2d07ce541fb9c5b52df">UseToken</a>(t);</div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;            }</div>
+<div class="ttc" id="a00190_html_a7be6a979ee21b2d07ce541fb9c5b52df"><div class="ttname"><a href="a00190.html#a7be6a979ee21b2d07ce541fb9c5b52df">Yarn.Parser.ValueNode.UseToken</a></div><div class="ttdeci">void UseToken(Token t)</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l00677">Parser.cs:677</a></div></div>
+<div class="ttc" id="a00150_html_af313a82103fcc2ff5a177dbb06b92f7b"><div class="ttname"><a href="a00150.html#af313a82103fcc2ff5a177dbb06b92f7b">Yarn.Parser.ParseNode.parent</a></div><div class="ttdeci">ParseNode parent</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l00059">Parser.cs:59</a></div></div>
+</div><!-- fragment -->
+<p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00190_afeaea21eee1c8360a76a202a419d3912_cgraph.png" border="0" usemap="#a00190_afeaea21eee1c8360a76a202a419d3912_cgraph" alt=""/></div>
+<map name="a00190_afeaea21eee1c8360a76a202a419d3912_cgraph" id="a00190_afeaea21eee1c8360a76a202a419d3912_cgraph">
+<area shape="rect" id="node2" href="a00190.html#a7be6a979ee21b2d07ce541fb9c5b52df" title="Yarn.Parser.ValueNode.Use\lToken" alt="" coords="280,5,467,46"/><area shape="rect" id="node3" href="a00151.html#a811cc7226f4f4a2f3440cdb67ad14468" title="Yarn.Parser.Parse" alt="" coords="515,12,645,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ac63fbe99131dc3b42af16a2d087c0655"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Yarn.Parser.ValueNode.ValueNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00150.html">ParseNode</a>&#160;</td>
+          <td class="paramname"><em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00151.html">Parser</a>&#160;</td>
+          <td class="paramname"><em>p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00316_source.html#l00719">719</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+
+<p>References <a class="el" href="a00316_source.html#l00677">Yarn.Parser.ValueNode.UseToken()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;                                                           : base(<a class="code" href="a00150.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a>, p) {</div>
+<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;</div>
+<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;                Token t = p.ExpectSymbol(TokenType.Number, TokenType.Variable, TokenType.String);</div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;</div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;                <a class="code" href="a00190.html#a7be6a979ee21b2d07ce541fb9c5b52df">UseToken</a>(t);</div>
+<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;            }</div>
+<div class="ttc" id="a00190_html_a7be6a979ee21b2d07ce541fb9c5b52df"><div class="ttname"><a href="a00190.html#a7be6a979ee21b2d07ce541fb9c5b52df">Yarn.Parser.ValueNode.UseToken</a></div><div class="ttdeci">void UseToken(Token t)</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l00677">Parser.cs:677</a></div></div>
+<div class="ttc" id="a00150_html_af313a82103fcc2ff5a177dbb06b92f7b"><div class="ttname"><a href="a00150.html#af313a82103fcc2ff5a177dbb06b92f7b">Yarn.Parser.ParseNode.parent</a></div><div class="ttdeci">ParseNode parent</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l00059">Parser.cs:59</a></div></div>
+</div><!-- fragment -->
+<p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00190_ac63fbe99131dc3b42af16a2d087c0655_cgraph.png" border="0" usemap="#a00190_ac63fbe99131dc3b42af16a2d087c0655_cgraph" alt=""/></div>
+<map name="a00190_ac63fbe99131dc3b42af16a2d087c0655_cgraph" id="a00190_ac63fbe99131dc3b42af16a2d087c0655_cgraph">
+<area shape="rect" id="node2" href="a00190.html#a7be6a979ee21b2d07ce541fb9c5b52df" title="Yarn.Parser.ValueNode.Use\lToken" alt="" coords="280,5,467,46"/><area shape="rect" id="node3" href="a00151.html#a811cc7226f4f4a2f3440cdb67ad14468" title="Yarn.Parser.Parse" alt="" coords="515,12,645,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a580e520a29444fc23ac3660cbe514a09"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00140.html">Node</a> Yarn.Parser.ParseNode.NodeParent </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="a00056.html#a082617cf099d13cb4338935020ced764">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</a>, <a class="el" href="a00191.html#a587fe10b367ace190e10f3bcb590a53c">Yarn.Unity.VariableStorageBehaviour</a>, <a class="el" href="a00089.html#a0ce614bee8d5b220500fb765390b4ca3">ExampleVariableStorage</a>, <a class="el" href="a00136.html#aa6d243e7ef02b91f793a221f509dae69">Yarn.MemoryVariableStore</a>, and <a class="el" href="a00042.html#a7e45c37f3662ce9f2643e306bb2b3adc">Yarn.BaseVariableStorage</a>.</p>
+<p>Definition at line <a class="el" href="a00316_source.html#l00101">101</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
 
+<p>Referenced by <a class="el" href="a00316_source.html#l00374">Yarn.Parser.ShortcutOption.ShortcutOption()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                                       {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                var node = <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                <span class="keywordflow">do</span> {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                    <span class="keywordflow">if</span> (node is Node) {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                        <span class="keywordflow">return</span> node as Node;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                    }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                    node = node.parent;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                } <span class="keywordflow">while</span> (node</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                    != null);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                <span class="keywordflow">return</span> null;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            }</div>
+</div><!-- fragment -->
+<p><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
-</div>
-<a class="anchor" id="a04b061c52d8ac814ce559da5286fbc71"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Yarn.VariableStorage.GetNumber </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>variableName</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="a00056.html#adf34fa27235fc0fd5fe35c32023220c4">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</a>, <a class="el" href="a00191.html#add85a45dd65a5d4bd41c9d5ce5f77d19">Yarn.Unity.VariableStorageBehaviour</a>, and <a class="el" href="a00042.html#a1b7f7f4468b2463e7b47986d99362279">Yarn.BaseVariableStorage</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="accab1fc5c8fc353dbfc53ca0f4029576"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00187.html">Value</a> Yarn.VariableStorage.GetValue </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>variableName</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="a00056.html#a66fc86080cd452079f5adf15e97c8e41">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</a>, <a class="el" href="a00191.html#ac6ebafcbebc2b2d71eba8562490a2f1e">Yarn.Unity.VariableStorageBehaviour</a>, <a class="el" href="a00089.html#a741593be1a299dcc2136f05b9b4a995a">ExampleVariableStorage</a>, <a class="el" href="a00136.html#a0ce77e8245c504a777540e359704aa2a">Yarn.MemoryVariableStore</a>, and <a class="el" href="a00042.html#a13b142df804d9842e97e628e252928e8">Yarn.BaseVariableStorage</a>.</p>
-
-<p>Referenced by <a class="el" href="a00316_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>.</p>
-
-<p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00190_accab1fc5c8fc353dbfc53ca0f4029576_icgraph.png" border="0" usemap="#a00190_accab1fc5c8fc353dbfc53ca0f4029576_icgraph" alt=""/></div>
-<map name="a00190_accab1fc5c8fc353dbfc53ca0f4029576_icgraph" id="a00190_accab1fc5c8fc353dbfc53ca0f4029576_icgraph">
-<area shape="rect" id="node2" href="a00162.html#ad2caf9ca4f00cdcbd58983be7c106971" title="Yarn.VirtualMachine.RunInstruction" alt="" coords="225,12,453,39"/><area shape="rect" id="node3" href="a00162.html#af3cc0337914b9f66454a3d52208dba5f" title="Executes the next instruction in the current node. " alt="" coords="501,12,696,39"/></map>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00150_a580e520a29444fc23ac3660cbe514a09_icgraph.png" border="0" usemap="#a00150_a580e520a29444fc23ac3660cbe514a09_icgraph" alt=""/></div>
+<map name="a00150_a580e520a29444fc23ac3660cbe514a09_icgraph" id="a00150_a580e520a29444fc23ac3660cbe514a09_icgraph">
+<area shape="rect" id="node2" href="a00161.html#a2c80b137d65f31b24533987233074605" title="Yarn.Parser.ShortcutOption.\lShortcutOption" alt="" coords="248,5,435,46"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="aa28c3694f985cf73489efc301b9d41dd"></a>
+<a class="anchor" id="ae4659e4431e9846a45e0d048c960781a"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Yarn.VariableStorage.SetNumber </td>
+          <td class="memname">override string Yarn.Parser.ValueNode.PrintTree </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>variableName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>indentLevel</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>number</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="a00056.html#adc9bfad13d8ae2f147deeddbc5c38ea3">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</a>, <a class="el" href="a00191.html#ac0d2f2e081944ad197992a26ad1a833c">Yarn.Unity.VariableStorageBehaviour</a>, and <a class="el" href="a00042.html#a48b93de9cd7ae61d0cd9583c8330d3ee">Yarn.BaseVariableStorage</a>.</p>
+<p>Implements <a class="el" href="a00150.html#a0d6611653f20c2e4d90a97a96c657137">Yarn.Parser.ParseNode</a>.</p>
 
+<p>Definition at line <a class="el" href="a00316_source.html#l00726">726</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+
+<p>References <a class="el" href="a00318_source.html#l00027">Yarn.Value.boolValue</a>, <a class="el" href="a00318_source.html#l00024">Yarn.Value.numberValue</a>, <a class="el" href="a00318_source.html#l00026">Yarn.Value.stringValue</a>, <a class="el" href="a00316_source.html#l00041">Yarn.Parser.Tab()</a>, <a class="el" href="a00318_source.html#l00021">Yarn.Value.type</a>, <a class="el" href="a00316_source.html#l00675">Yarn.Parser.ValueNode.value</a>, and <a class="el" href="a00318_source.html#l00025">Yarn.Value.variableName</a>.</p>
+<div class="fragment"><div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;            {</div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;                <span class="keywordflow">switch</span> (<a class="code" href="a00190.html#a51ab5939344f9bfa21181c02cf0e341d">value</a>.<a class="code" href="a00189.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>) {</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;                <span class="keywordflow">case</span> Value.Type.Number:</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;                    <span class="keywordflow">return</span> <a class="code" href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel, <a class="code" href="a00190.html#a51ab5939344f9bfa21181c02cf0e341d">value</a>.<a class="code" href="a00189.html#ae1892c1c7a8177537d1caa39a2e51da6">numberValue</a>.ToString(CultureInfo.CurrentCulture));</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;                <span class="keywordflow">case</span> Value.Type.String:</div>
+<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;                    <span class="keywordflow">return</span> <a class="code" href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a>(indentLevel, <span class="keywordtype">string</span>.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;\&quot;{0}\&quot;&quot;</span>, <a class="code" href="a00190.html#a51ab5939344f9bfa21181c02cf0e341d">value</a>.<a class="code" href="a00189.html#add1b07146f1a9e4b655b33c93d07dff9">stringValue</a>));</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;                <span class="keywordflow">case</span> Value.Type.Bool:</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;                    <span class="keywordflow">return</span> <a class="code" href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel, <a class="code" href="a00190.html#a51ab5939344f9bfa21181c02cf0e341d">value</a>.<a class="code" href="a00189.html#acb140e3466e132528409d4c441fd67da">boolValue</a>.ToString(CultureInfo.CurrentCulture));</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;                <span class="keywordflow">case</span> Value.Type.Variable:</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;                    <span class="keywordflow">return</span> <a class="code" href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel, <a class="code" href="a00190.html#a51ab5939344f9bfa21181c02cf0e341d">value</a>.<a class="code" href="a00189.html#a8ee2b09b7d28eaf97bf63c74d0023bfd">variableName</a>);</div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;                <span class="keywordflow">case</span> Value.Type.Null:</div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;                    <span class="keywordflow">return</span> <a class="code" href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel, <span class="stringliteral">&quot;(null)&quot;</span>);</div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;                }</div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentException ();</div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;            }</div>
+<div class="ttc" id="a00189_html_add1b07146f1a9e4b655b33c93d07dff9"><div class="ttname"><a href="a00189.html#add1b07146f1a9e4b655b33c93d07dff9">Yarn.Value.stringValue</a></div><div class="ttdeci">string stringValue</div><div class="ttdef"><b>Definition:</b> <a href="a00318_source.html#l00026">Value.cs:26</a></div></div>
+<div class="ttc" id="a00189_html_ae1892c1c7a8177537d1caa39a2e51da6"><div class="ttname"><a href="a00189.html#ae1892c1c7a8177537d1caa39a2e51da6">Yarn.Value.numberValue</a></div><div class="ttdeci">float numberValue</div><div class="ttdef"><b>Definition:</b> <a href="a00318_source.html#l00024">Value.cs:24</a></div></div>
+<div class="ttc" id="a00151_html_aa8fa36b46de12a1c561d77b99c4b9ae3"><div class="ttname"><a href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Yarn.Parser.Tab</a></div><div class="ttdeci">static string Tab(int indentLevel, string input, bool newLine=true)</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l00041">Parser.cs:41</a></div></div>
+<div class="ttc" id="a00189_html_acb140e3466e132528409d4c441fd67da"><div class="ttname"><a href="a00189.html#acb140e3466e132528409d4c441fd67da">Yarn.Value.boolValue</a></div><div class="ttdeci">bool boolValue</div><div class="ttdef"><b>Definition:</b> <a href="a00318_source.html#l00027">Value.cs:27</a></div></div>
+<div class="ttc" id="a00189_html_a6d5820fafa766911b9da84d1ed33e51a"><div class="ttname"><a href="a00189.html#a6d5820fafa766911b9da84d1ed33e51a">Yarn.Value.type</a></div><div class="ttdeci">Value.Type type</div><div class="ttdef"><b>Definition:</b> <a href="a00318_source.html#l00021">Value.cs:21</a></div></div>
+<div class="ttc" id="a00189_html_a8ee2b09b7d28eaf97bf63c74d0023bfd"><div class="ttname"><a href="a00189.html#a8ee2b09b7d28eaf97bf63c74d0023bfd">Yarn.Value.variableName</a></div><div class="ttdeci">string variableName</div><div class="ttdef"><b>Definition:</b> <a href="a00318_source.html#l00025">Value.cs:25</a></div></div>
+<div class="ttc" id="a00190_html_a51ab5939344f9bfa21181c02cf0e341d"><div class="ttname"><a href="a00190.html#a51ab5939344f9bfa21181c02cf0e341d">Yarn.Parser.ValueNode.value</a></div><div class="ttdeci">Value value</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l00675">Parser.cs:675</a></div></div>
+</div><!-- fragment -->
+<p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
-</div>
-<a class="anchor" id="aa90ff61224432c5ed3ce72199c55f440"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Yarn.VariableStorage.SetValue </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>variableName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="a00056.html#ab6312d89b626ca803a74a9181286d608">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</a>, <a class="el" href="a00191.html#a25f979b062d63c9e886fe7070ce4561b">Yarn.Unity.VariableStorageBehaviour</a>, <a class="el" href="a00089.html#ac4265c1c9da485f13a6b05784b0f668d">ExampleVariableStorage</a>, <a class="el" href="a00136.html#a653a459811e5c19549f4b31269093ef5">Yarn.MemoryVariableStore</a>, and <a class="el" href="a00042.html#a1c57d6d208b78abec0a670396771448e">Yarn.BaseVariableStorage</a>.</p>
-
-<p>Referenced by <a class="el" href="a00316_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>.</p>
-
-<p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00190_aa90ff61224432c5ed3ce72199c55f440_icgraph.png" border="0" usemap="#a00190_aa90ff61224432c5ed3ce72199c55f440_icgraph" alt=""/></div>
-<map name="a00190_aa90ff61224432c5ed3ce72199c55f440_icgraph" id="a00190_aa90ff61224432c5ed3ce72199c55f440_icgraph">
-<area shape="rect" id="node2" href="a00162.html#ad2caf9ca4f00cdcbd58983be7c106971" title="Yarn.VirtualMachine.RunInstruction" alt="" coords="225,12,453,39"/><area shape="rect" id="node3" href="a00162.html#af3cc0337914b9f66454a3d52208dba5f" title="Executes the next instruction in the current node. " alt="" coords="501,12,696,39"/></map>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00190_ae4659e4431e9846a45e0d048c960781a_cgraph.png" border="0" usemap="#a00190_ae4659e4431e9846a45e0d048c960781a_cgraph" alt=""/></div>
+<map name="a00190_ae4659e4431e9846a45e0d048c960781a_cgraph" id="a00190_ae4659e4431e9846a45e0d048c960781a_cgraph">
+<area shape="rect" id="node2" href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3" title="Yarn.Parser.Tab" alt="" coords="269,5,387,32"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<hr/>The documentation for this interface was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="a00305_source.html">Dialogue.cs</a></li>
+<a class="anchor" id="a054f36c80d5eeacd569a8859f599af67"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Yarn.Parser.ParseNode.TagsToString </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>indentLevel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00316_source.html#l00079">79</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+
+<p>References <a class="el" href="a00316_source.html#l00041">Yarn.Parser.Tab()</a>, and <a class="el" href="a00316_source.html#l00077">Yarn.Parser.ParseNode.tags</a>.</p>
+
+<p>Referenced by <a class="el" href="a00316_source.html#l00227">Yarn.Parser.Statement.PrintTree()</a>, and <a class="el" href="a00316_source.html#l00410">Yarn.Parser.ShortcutOption.PrintTree()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00150.html#a58b3a15788fd2d4127d73619dc6d04ae">tags</a>.Length &gt; 0) {</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                    var s = <span class="keyword">new</span> StringBuilder ();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                    s.Append (<a class="code" href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel + 1, <span class="stringliteral">&quot;Tags:&quot;</span>));</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                    <span class="keywordflow">foreach</span> (var tag <span class="keywordflow">in</span> this.<a class="code" href="a00150.html#a58b3a15788fd2d4127d73619dc6d04ae">tags</a>) {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                        s.Append(<a class="code" href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel + 2, <span class="stringliteral">&quot;#&quot;</span> + tag));</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                    }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                    <span class="keywordflow">return</span> s.ToString ();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                    <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            }</div>
+<div class="ttc" id="a00150_html_a58b3a15788fd2d4127d73619dc6d04ae"><div class="ttname"><a href="a00150.html#a58b3a15788fd2d4127d73619dc6d04ae">Yarn.Parser.ParseNode.tags</a></div><div class="ttdeci">string[] tags</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l00077">Parser.cs:77</a></div></div>
+<div class="ttc" id="a00151_html_aa8fa36b46de12a1c561d77b99c4b9ae3"><div class="ttname"><a href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Yarn.Parser.Tab</a></div><div class="ttdeci">static string Tab(int indentLevel, string input, bool newLine=true)</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l00041">Parser.cs:41</a></div></div>
+</div><!-- fragment -->
+<p><div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00150_a054f36c80d5eeacd569a8859f599af67_cgraph.png" border="0" usemap="#a00150_a054f36c80d5eeacd569a8859f599af67_cgraph" alt=""/></div>
+<map name="a00150_a054f36c80d5eeacd569a8859f599af67_cgraph" id="a00150_a054f36c80d5eeacd569a8859f599af67_cgraph">
+<area shape="rect" id="node2" href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3" title="Yarn.Parser.Tab" alt="" coords="248,12,365,39"/></map>
+</div>
+</p>
+
+<p><div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00150_a054f36c80d5eeacd569a8859f599af67_icgraph.png" border="0" usemap="#a00150_a054f36c80d5eeacd569a8859f599af67_icgraph" alt=""/></div>
+<map name="a00150_a054f36c80d5eeacd569a8859f599af67_icgraph" id="a00150_a054f36c80d5eeacd569a8859f599af67_icgraph">
+<area shape="rect" id="node2" href="a00168.html#aaac6d1e0c3b31f33e1c6f964c205153e" title="Yarn.Parser.Statement.PrintTree" alt="" coords="249,5,461,32"/><area shape="rect" id="node3" href="a00161.html#a529a2ef1aa6d7226db4ea7f3ea92b8c2" title="Yarn.Parser.ShortcutOption.\lPrintTree" alt="" coords="261,57,448,98"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a18c67cb16090d0889bb9d6c8c6c565f8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override string Yarn.Parser.ParseNode.ToString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00316_source.html#l00095">95</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                <span class="keywordflow">return</span> this.GetType ().Name;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a7be6a979ee21b2d07ce541fb9c5b52df"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Yarn.Parser.ValueNode.UseToken </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00175.html">Token</a>&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00316_source.html#l00677">677</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+
+<p>References <a class="el" href="a00318_source.html#l00009">Yarn.Value.NULL</a>, <a class="el" href="a00316_source.html#l01270">Yarn.Parser.Parse()</a>, <a class="el" href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">Yarn.String</a>, <a class="el" href="a00313_source.html#l00178">Yarn.Token.type</a>, <a class="el" href="a00313_source.html#l00179">Yarn.Token.value</a>, and <a class="el" href="a00316_source.html#l00675">Yarn.Parser.ValueNode.value</a>.</p>
+
+<p>Referenced by <a class="el" href="a00316_source.html#l00714">Yarn.Parser.ValueNode.ValueNode()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;                                           {</div>
+<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;                <span class="comment">// Store the value depending on token&#39;s type</span></div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;                <span class="keywordflow">switch</span> (t.type) {</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;                <span class="keywordflow">case</span> TokenType.Number:</div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;                    <a class="code" href="a00190.html#a51ab5939344f9bfa21181c02cf0e341d">value</a> = <span class="keyword">new</span> Value (<span class="keywordtype">float</span>.<a class="code" href="a00151.html#a811cc7226f4f4a2f3440cdb67ad14468">Parse</a> (t.value as <span class="keywordtype">string</span>, CultureInfo.InvariantCulture));</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;</div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;                <span class="keywordflow">case</span> TokenType.String:</div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;</div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;                    <a class="code" href="a00190.html#a51ab5939344f9bfa21181c02cf0e341d">value</a> = <span class="keyword">new</span> Value (t.value as <a class="code" href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>);</div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;</div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;                <span class="keywordflow">case</span> TokenType.False:</div>
+<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;</div>
+<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;                    <a class="code" href="a00190.html#a51ab5939344f9bfa21181c02cf0e341d">value</a> = <span class="keyword">new</span> Value (<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;                <span class="keywordflow">case</span> TokenType.True:</div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;                    <a class="code" href="a00190.html#a51ab5939344f9bfa21181c02cf0e341d">value</a> = <span class="keyword">new</span> Value (<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;                <span class="keywordflow">case</span> TokenType.Variable:</div>
+<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;                    <a class="code" href="a00190.html#a51ab5939344f9bfa21181c02cf0e341d">value</a> = <span class="keyword">new</span> Value ();</div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;                    value.type = Value.Type.Variable;</div>
+<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;                    value.variableName = t.value as <a class="code" href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>;</div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;                <span class="keywordflow">case</span> TokenType.Null:</div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;                    <a class="code" href="a00190.html#a51ab5939344f9bfa21181c02cf0e341d">value</a> = <a class="code" href="a00189.html#a1ed2964965baca8621c45efa23f37660">Value.NULL</a>;</div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;                <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;                    <span class="keywordflow">throw</span> ParseException.Make (t, <span class="stringliteral">&quot;Invalid token type &quot;</span> + t.ToString ());</div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;                }</div>
+<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;            }</div>
+<div class="ttc" id="a00053_html_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98"><div class="ttname"><a href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">Yarn.String</a></div></div>
+<div class="ttc" id="a00151_html_a811cc7226f4f4a2f3440cdb67ad14468"><div class="ttname"><a href="a00151.html#a811cc7226f4f4a2f3440cdb67ad14468">Yarn.Parser.Parse</a></div><div class="ttdeci">Node Parse()</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l01270">Parser.cs:1270</a></div></div>
+<div class="ttc" id="a00189_html_a1ed2964965baca8621c45efa23f37660"><div class="ttname"><a href="a00189.html#a1ed2964965baca8621c45efa23f37660">Yarn.Value.NULL</a></div><div class="ttdeci">static readonly Value NULL</div><div class="ttdef"><b>Definition:</b> <a href="a00318_source.html#l00009">Value.cs:9</a></div></div>
+<div class="ttc" id="a00190_html_a51ab5939344f9bfa21181c02cf0e341d"><div class="ttname"><a href="a00190.html#a51ab5939344f9bfa21181c02cf0e341d">Yarn.Parser.ValueNode.value</a></div><div class="ttdeci">Value value</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l00675">Parser.cs:675</a></div></div>
+</div><!-- fragment -->
+<p><div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00190_a7be6a979ee21b2d07ce541fb9c5b52df_cgraph.png" border="0" usemap="#a00190_a7be6a979ee21b2d07ce541fb9c5b52df_cgraph" alt=""/></div>
+<map name="a00190_a7be6a979ee21b2d07ce541fb9c5b52df_cgraph" id="a00190_a7be6a979ee21b2d07ce541fb9c5b52df_cgraph">
+<area shape="rect" id="node2" href="a00151.html#a811cc7226f4f4a2f3440cdb67ad14468" title="Yarn.Parser.Parse" alt="" coords="241,12,370,39"/></map>
+</div>
+</p>
+
+<p><div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00190_a7be6a979ee21b2d07ce541fb9c5b52df_icgraph.png" border="0" usemap="#a00190_a7be6a979ee21b2d07ce541fb9c5b52df_icgraph" alt=""/></div>
+<map name="a00190_a7be6a979ee21b2d07ce541fb9c5b52df_icgraph" id="a00190_a7be6a979ee21b2d07ce541fb9c5b52df_icgraph">
+<area shape="rect" id="node2" href="a00190.html#afeaea21eee1c8360a76a202a419d3912" title="Yarn.Parser.ValueNode.ValueNode" alt="" coords="240,12,467,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a18b493382de0fde5b4299c1bd2250075"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Yarn.Parser.ParseNode.lineNumber</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00316_source.html#l00062">62</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00316_source.html#l00066">Yarn.Parser.ParseNode.ParseNode()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af313a82103fcc2ff5a177dbb06b92f7b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00150.html">ParseNode</a> Yarn.Parser.ParseNode.parent</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00316_source.html#l00059">59</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00316_source.html#l00066">Yarn.Parser.ParseNode.ParseNode()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a58b3a15788fd2d4127d73619dc6d04ae"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string [] Yarn.Parser.ParseNode.tags = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00316_source.html#l00077">77</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00316_source.html#l00374">Yarn.Parser.ShortcutOption.ShortcutOption()</a>, <a class="el" href="a00316_source.html#l00187">Yarn.Parser.Statement.Statement()</a>, and <a class="el" href="a00316_source.html#l00079">Yarn.Parser.ParseNode.TagsToString()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a class="anchor" id="a51ab5939344f9bfa21181c02cf0e341d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00189.html">Value</a> Yarn.Parser.ValueNode.value</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00316_source.html#l00675">675</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00316_source.html#l00726">Yarn.Parser.ValueNode.PrintTree()</a>, and <a class="el" href="a00316_source.html#l00677">Yarn.Parser.ValueNode.UseToken()</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>YarnSpinner/<a class="el" href="a00316_source.html">Parser.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00051.html">Yarn</a></li><li class="navelem"><a class="el" href="a00190.html">VariableStorage</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 03:19:14 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00053.html">Yarn</a></li><li class="navelem"><a class="el" href="a00151.html">Parser</a></li><li class="navelem"><a class="el" href="a00190.html">ValueNode</a></li>
+    <li class="footer">Generated on Mon Jul 8 2019 11:16:36 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

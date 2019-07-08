@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: CsvHelper.Configuration.CsvPropertyNameCollection Class Reference</title>
+<title>YarnSpinner: CsvHelper.Configuration.CsvPropertyMapComparer Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -108,191 +108,48 @@ $(document).ready(function(){initNavTree('a00074.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#properties">Properties</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="a00498.html">List of all members</a>  </div>
+<a href="a00496.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">CsvHelper.Configuration.CsvPropertyNameCollection Class Reference</div>  </div>
+<div class="title">CsvHelper.Configuration.CsvPropertyMapComparer Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>A collection that holds property names.  
+<p>Used to compare <a class="el" href="a00072.html" title="Mapping info for a property to a CSV field. ">CsvPropertyMap</a>s. The order is by field index ascending. Any fields that don't have an index are pushed to the bottom.  
  <a href="a00074.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for CsvHelper.Configuration.CsvPropertyNameCollection:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for CsvHelper.Configuration.CsvPropertyMapComparer:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00499.png" border="0" usemap="#_csv_helper_8_configuration_8_csv_property_name_collection_inherit__map" alt="Inheritance graph"/></div>
-<map name="_csv_helper_8_configuration_8_csv_property_name_collection_inherit__map" id="_csv_helper_8_configuration_8_csv_property_name_collection_inherit__map">
+<div class="center"><img src="a00497.png" border="0" usemap="#_csv_helper_8_configuration_8_csv_property_map_comparer_inherit__map" alt="Inheritance graph"/></div>
+<map name="_csv_helper_8_configuration_8_csv_property_map_comparer_inherit__map" id="_csv_helper_8_configuration_8_csv_property_map_comparer_inherit__map">
 </map>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for CsvHelper.Configuration.CsvPropertyNameCollection:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for CsvHelper.Configuration.CsvPropertyMapComparer:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00500.png" border="0" usemap="#_csv_helper_8_configuration_8_csv_property_name_collection_coll__map" alt="Collaboration graph"/></div>
-<map name="_csv_helper_8_configuration_8_csv_property_name_collection_coll__map" id="_csv_helper_8_configuration_8_csv_property_name_collection_coll__map">
+<div class="center"><img src="a00498.png" border="0" usemap="#_csv_helper_8_configuration_8_csv_property_map_comparer_coll__map" alt="Collaboration graph"/></div>
+<map name="_csv_helper_8_configuration_8_csv_property_map_comparer_coll__map" id="_csv_helper_8_configuration_8_csv_property_map_comparer_coll__map">
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad7b7d11d5814bcce5ed38e054ef71b4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html#ad7b7d11d5814bcce5ed38e054ef71b4e">Add</a> (string name)</td></tr>
-<tr class="memdesc:ad7b7d11d5814bcce5ed38e054ef71b4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the given name to the collection.  <a href="#ad7b7d11d5814bcce5ed38e054ef71b4e">More...</a><br/></td></tr>
-<tr class="separator:ad7b7d11d5814bcce5ed38e054ef71b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abec990435c8dccfb4553602b89f93201"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html#abec990435c8dccfb4553602b89f93201">Clear</a> ()</td></tr>
-<tr class="memdesc:abec990435c8dccfb4553602b89f93201"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears all names from the collection.  <a href="#abec990435c8dccfb4553602b89f93201">More...</a><br/></td></tr>
-<tr class="separator:abec990435c8dccfb4553602b89f93201"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac568746273968080890abca50b882802"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html#ac568746273968080890abca50b882802">AddRange</a> (IEnumerable&lt; string &gt; <a class="el" href="a00074.html#a41eb6804d8afe8d674e64d71f66962ce">names</a>)</td></tr>
-<tr class="memdesc:ac568746273968080890abca50b882802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a range of names to the collection.  <a href="#ac568746273968080890abca50b882802">More...</a><br/></td></tr>
-<tr class="separator:ac568746273968080890abca50b882802"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61b6a80e51d06f17d0043ec6aef89f1b"><td class="memItemLeft" align="right" valign="top">IEnumerator&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html#a61b6a80e51d06f17d0043ec6aef89f1b">GetEnumerator</a> ()</td></tr>
-<tr class="memdesc:a61b6a80e51d06f17d0043ec6aef89f1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an enumerator that iterates through the collection.  <a href="#a61b6a80e51d06f17d0043ec6aef89f1b">More...</a><br/></td></tr>
-<tr class="separator:a61b6a80e51d06f17d0043ec6aef89f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
-Properties</h2></td></tr>
-<tr class="memitem:acdce91a755be3bec6218e3d82f4dfe82"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html#acdce91a755be3bec6218e3d82f4dfe82">this[int index]</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:acdce91a755be3bec6218e3d82f4dfe82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name at the given index. If a prefix is set, it will be prepended to the name.  <a href="#acdce91a755be3bec6218e3d82f4dfe82">More...</a><br/></td></tr>
-<tr class="separator:acdce91a755be3bec6218e3d82f4dfe82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8f3256d8435a1c93f0280064aa3ff06"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html#ab8f3256d8435a1c93f0280064aa3ff06">Prefix</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:ab8f3256d8435a1c93f0280064aa3ff06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the prefix to use for each name.  <a href="#ab8f3256d8435a1c93f0280064aa3ff06">More...</a><br/></td></tr>
-<tr class="separator:ab8f3256d8435a1c93f0280064aa3ff06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1aa06a47337f6ab576b23fe63854dcbe"><td class="memItemLeft" align="right" valign="top">List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html#a1aa06a47337f6ab576b23fe63854dcbe">Names</a><code> [get]</code></td></tr>
-<tr class="memdesc:a1aa06a47337f6ab576b23fe63854dcbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw list of names without the prefix being prepended.  <a href="#a1aa06a47337f6ab576b23fe63854dcbe">More...</a><br/></td></tr>
-<tr class="separator:a1aa06a47337f6ab576b23fe63854dcbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b7b56286ad80183e1a33554a49eefa1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html#a4b7b56286ad80183e1a33554a49eefa1">Count</a><code> [get]</code></td></tr>
-<tr class="memdesc:a4b7b56286ad80183e1a33554a49eefa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the count.  <a href="#a4b7b56286ad80183e1a33554a49eefa1">More...</a><br/></td></tr>
-<tr class="separator:a4b7b56286ad80183e1a33554a49eefa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:a76b5c67fcecf55dbdd4b680cde1a78f7"><td class="memItemLeft" align="right" valign="top">IEnumerator IEnumerable.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html#a76b5c67fcecf55dbdd4b680cde1a78f7">GetEnumerator</a> ()</td></tr>
-<tr class="memdesc:a76b5c67fcecf55dbdd4b680cde1a78f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an enumerator that iterates through a collection.  <a href="#a76b5c67fcecf55dbdd4b680cde1a78f7">More...</a><br/></td></tr>
-<tr class="separator:a76b5c67fcecf55dbdd4b680cde1a78f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a41eb6804d8afe8d674e64d71f66962ce"><td class="memItemLeft" align="right" valign="top">readonly List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html#a41eb6804d8afe8d674e64d71f66962ce">names</a> = new List&lt;string&gt;()</td></tr>
-<tr class="separator:a41eb6804d8afe8d674e64d71f66962ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41ab777503459b3984a2e2826a14d52a"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html#a41ab777503459b3984a2e2826a14d52a">Compare</a> (object x, object y)</td></tr>
+<tr class="memdesc:a41ab777503459b3984a2e2826a14d52a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.  <a href="#a41ab777503459b3984a2e2826a14d52a">More...</a><br/></td></tr>
+<tr class="separator:a41ab777503459b3984a2e2826a14d52a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9c855cf5389c8f1ae1b476d508ade5d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html#ab9c855cf5389c8f1ae1b476d508ade5d">Compare</a> (<a class="el" href="a00072.html">CsvPropertyMap</a> x, <a class="el" href="a00072.html">CsvPropertyMap</a> y)</td></tr>
+<tr class="memdesc:ab9c855cf5389c8f1ae1b476d508ade5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.  <a href="#ab9c855cf5389c8f1ae1b476d508ade5d">More...</a><br/></td></tr>
+<tr class="separator:ab9c855cf5389c8f1ae1b476d508ade5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A collection that holds property names. </p>
+<div class="textblock"><p>Used to compare <a class="el" href="a00072.html" title="Mapping info for a property to a CSV field. ">CsvPropertyMap</a>s. The order is by field index ascending. Any fields that don't have an index are pushed to the bottom. </p>
 
-<p>Definition at line <a class="el" href="a00227_source.html#l00014">14</a> of file <a class="el" href="a00227_source.html">CsvPropertyNameCollection.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00228_source.html#l00017">17</a> of file <a class="el" href="a00228_source.html">CsvPropertyMapComparer.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ad7b7d11d5814bcce5ed38e054ef71b4e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.Configuration.CsvPropertyNameCollection.Add </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Adds the given name to the collection. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The name to add.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00227_source.html#l00056">56</a> of file <a class="el" href="a00227_source.html">CsvPropertyNameCollection.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            names.Add( name );</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="ac568746273968080890abca50b882802"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.Configuration.CsvPropertyNameCollection.AddRange </td>
-          <td>(</td>
-          <td class="paramtype">IEnumerable&lt; string &gt;&#160;</td>
-          <td class="paramname"><em>names</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Adds a range of names to the collection. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">names</td><td>The range to add.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00227_source.html#l00073">73</a> of file <a class="el" href="a00227_source.html">CsvPropertyNameCollection.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            this.names.AddRange( <a class="code" href="a00074.html#a41eb6804d8afe8d674e64d71f66962ce">names</a> );</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
-<div class="ttc" id="a00074_html_a41eb6804d8afe8d674e64d71f66962ce"><div class="ttname"><a href="a00074.html#a41eb6804d8afe8d674e64d71f66962ce">CsvHelper.Configuration.CsvPropertyNameCollection.names</a></div><div class="ttdeci">readonly List&lt; string &gt; names</div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00016">CsvPropertyNameCollection.cs:16</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="abec990435c8dccfb4553602b89f93201"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.Configuration.CsvPropertyNameCollection.Clear </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Clears all names from the collection. </p>
-
-<p>Definition at line <a class="el" href="a00227_source.html#l00064">64</a> of file <a class="el" href="a00227_source.html">CsvPropertyNameCollection.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            names.Clear();</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a61b6a80e51d06f17d0043ec6aef89f1b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">IEnumerator&lt;string&gt; CsvHelper.Configuration.CsvPropertyNameCollection.GetEnumerator </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns an enumerator that iterates through the collection. </p>
-<dl class="section return"><dt>Returns</dt><dd>A T:System.Collections.Generic.IEnumerator`1 that can be used to iterate through the collection. </dd></dl>
-<p>&lt;filterpriority&gt;1&lt;/filterpriority&gt; </p>
-
-<p>Definition at line <a class="el" href="a00227_source.html#l00085">85</a> of file <a class="el" href="a00227_source.html">CsvPropertyNameCollection.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        {</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keywordflow">for</span>( var i = 0; i &lt; names.Count; i++ )</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                yield <span class="keywordflow">return</span> <span class="keyword">this</span>[i];</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a76b5c67fcecf55dbdd4b680cde1a78f7"></a>
+<a class="anchor" id="a41ab777503459b3984a2e2826a14d52a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -300,32 +157,58 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">IEnumerator IEnumerable. CsvHelper.Configuration.CsvPropertyNameCollection.GetEnumerator </td>
+          <td class="memname">virtual int CsvHelper.Configuration.CsvPropertyMapComparer.Compare </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns an enumerator that iterates through a collection. </p>
-<dl class="section return"><dt>Returns</dt><dd>An T:System.Collections.IEnumerator object that can be used to iterate through the collection. </dd></dl>
+<p>Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other. </p>
+<dl class="section return"><dt>Returns</dt><dd>Value Condition Less than zero <em>x</em>  is less than <em>y</em> . Zero <em>x</em>  equals <em>y</em> . Greater than zero <em>x</em>  is greater than <em>y</em> . </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The first object to compare. </td></tr>
+    <tr><td class="paramname">y</td><td>The second object to compare. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">T:System.ArgumentException</td><td>Neither <em>x</em>  nor <em>y</em>  implements the T:System.IComparable interface. -or- <em>x</em>  and <em>y</em>  are of different types and neither one can handle comparisons with the other. </td></tr>
+  </table>
+  </dd>
+</dl>
 <p>&lt;filterpriority&gt;2&lt;/filterpriority&gt; </p>
 
-<p>Definition at line <a class="el" href="a00227_source.html#l00100">100</a> of file <a class="el" href="a00227_source.html">CsvPropertyNameCollection.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        {</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keywordflow">return</span> names.GetEnumerator();</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        }</div>
+<p>Definition at line <a class="el" href="a00228_source.html#l00038">38</a> of file <a class="el" href="a00228_source.html">CsvPropertyMapComparer.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            var xProperty = x as CsvPropertyMap;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            var yProperty = y as CsvPropertyMap;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="a00074.html#a41ab777503459b3984a2e2826a14d52a">Compare</a>( xProperty, yProperty );</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div>
+<div class="ttc" id="a00074_html_a41ab777503459b3984a2e2826a14d52a"><div class="ttname"><a href="a00074.html#a41ab777503459b3984a2e2826a14d52a">CsvHelper.Configuration.CsvPropertyMapComparer.Compare</a></div><div class="ttdeci">virtual int Compare(object x, object y)</div><div class="ttdoc">Compares two objects and returns a value indicating whether one is less than, equal to...</div><div class="ttdef"><b>Definition:</b> <a href="a00228_source.html#l00038">CsvPropertyMapComparer.cs:38</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a41eb6804d8afe8d674e64d71f66962ce"></a>
+<a class="anchor" id="ab9c855cf5389c8f1ae1b476d508ade5d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -333,134 +216,66 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">readonly List&lt;string&gt; CsvHelper.Configuration.CsvPropertyNameCollection.names = new List&lt;string&gt;()</td>
+          <td class="memname">virtual int CsvHelper.Configuration.CsvPropertyMapComparer.Compare </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
         </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00227_source.html#l00016">16</a> of file <a class="el" href="a00227_source.html">CsvPropertyNameCollection.cs</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Property Documentation</h2>
-<a class="anchor" id="a4b7b56286ad80183e1a33554a49eefa1"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
         <tr>
-          <td class="memname">int CsvHelper.Configuration.CsvPropertyNameCollection.Count</td>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
         </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the count. </p>
-
-<p>Definition at line <a class="el" href="a00227_source.html#l00048">48</a> of file <a class="el" href="a00227_source.html">CsvPropertyNameCollection.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1aa06a47337f6ab576b23fe63854dcbe"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
         <tr>
-          <td class="memname">List&lt;string&gt; CsvHelper.Configuration.CsvPropertyNameCollection.Names</td>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the raw list of names without the prefix being prepended. </p>
-
-<p>Definition at line <a class="el" href="a00227_source.html#l00040">40</a> of file <a class="el" href="a00227_source.html">CsvPropertyNameCollection.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab8f3256d8435a1c93f0280064aa3ff06"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string CsvHelper.Configuration.CsvPropertyNameCollection.Prefix</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the prefix to use for each name. </p>
-
-<p>Definition at line <a class="el" href="a00227_source.html#l00033">33</a> of file <a class="el" href="a00227_source.html">CsvPropertyNameCollection.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acdce91a755be3bec6218e3d82f4dfe82"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string CsvHelper.Configuration.CsvPropertyNameCollection.this[int index]</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the name at the given index. If a prefix is set, it will be prepended to the name. </p>
+<p>Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other. </p>
+<dl class="section return"><dt>Returns</dt><dd>Value Condition Less than zero <em>x</em>  is less than <em>y</em> . Zero <em>x</em>  equals <em>y</em> . Greater than zero <em>x</em>  is greater than <em>y</em> . </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">index</td><td></td></tr>
+    <tr><td class="paramname">x</td><td>The first object to compare. </td></tr>
+    <tr><td class="paramname">y</td><td>The second object to compare. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p>Definition at line <a class="el" href="a00227_source.html#l00025">25</a> of file <a class="el" href="a00227_source.html">CsvPropertyNameCollection.cs</a>.</p>
-
+<p>Definition at line <a class="el" href="a00228_source.html#l00061">61</a> of file <a class="el" href="a00228_source.html">CsvPropertyMapComparer.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordflow">if</span>( x == null )</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;x&quot;</span> );</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keywordflow">if</span>( y == null )</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;y&quot;</span> );</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">return</span> x.Data.Index.CompareTo( y.Data.Index );</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/<a class="el" href="a00227_source.html">CsvPropertyNameCollection.cs</a></li>
+<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/<a class="el" href="a00228_source.html">CsvPropertyMapComparer.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00337.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00338.html">Configuration</a></li><li class="navelem"><a class="el" href="a00074.html">CsvPropertyNameCollection</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 03:19:13 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00340.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00341.html">Configuration</a></li><li class="navelem"><a class="el" href="a00074.html">CsvPropertyMapComparer</a></li>
+    <li class="footer">Generated on Mon Jul 8 2019 11:16:35 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

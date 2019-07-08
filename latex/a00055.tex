@@ -1,89 +1,63 @@
-\hypertarget{a00055}{\section{Yarn.\-Compile\-Options Class Reference}
-\label{a00055}\index{Yarn.\-Compile\-Options@{Yarn.\-Compile\-Options}}
+\hypertarget{a00055}{\section{Yarn.\-Analysis.\-Compiled\-Program\-Analyser Class Reference}
+\label{a00055}\index{Yarn.\-Analysis.\-Compiled\-Program\-Analyser@{Yarn.\-Analysis.\-Compiled\-Program\-Analyser}}
 }
 
 
-Inheritance diagram for Yarn.\-Compile\-Options\-:
+Inheritance diagram for Yarn.\-Analysis.\-Compiled\-Program\-Analyser\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=190pt]{a00744}
+\includegraphics[width=350pt]{a00774}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Compile\-Options\-:
+Collaboration diagram for Yarn.\-Analysis.\-Compiled\-Program\-Analyser\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=190pt]{a00745}
+\includegraphics[width=236pt]{a00775}
 \end{center}
 \end{figure}
-\subsection*{Properties}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00092_a903f18cdcc66c28ceab5a43c41fe074d}{Dialogue.\-Compiled\-Format} \hyperlink{a00055_a9904ccfb1b0ff64df415c4fc9fe6eb1c}{format}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+abstract void \hyperlink{a00055_aba4a36cb823b11ee491074e26477d084}{Diagnose} (\hyperlink{a00154}{Yarn.\-Program} program)
 \item 
-bool \hyperlink{a00041_a89964ea17bd19caf00cb5bff563ed01c}{show\-Debugging\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00041_ada4d83d1756918f362d55f6649b82b17}{verbose}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-I\-List$<$ string $>$ \hyperlink{a00041_aa93cbb1bc1d5328e0a417012621e92d2}{files}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+abstract I\-Enumerable$<$ \hyperlink{a00093}{Diagnosis} $>$ \hyperlink{a00055_afe059a2ceeabe50380b000420e512bd6}{Gather\-Diagnoses} ()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 104 of file Main.\-cs.
+Definition at line 151 of file Analyser.\-cs.
 
 
 
-\subsection{Property Documentation}
-\hypertarget{a00041_aa93cbb1bc1d5328e0a417012621e92d2}{\index{Yarn\-::\-Compile\-Options@{Yarn\-::\-Compile\-Options}!files@{files}}
-\index{files@{files}!Yarn::CompileOptions@{Yarn\-::\-Compile\-Options}}
-\subsubsection[{files}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Base\-Options.\-files\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00041_aa93cbb1bc1d5328e0a417012621e92d2}
+\subsection{Member Function Documentation}
+\hypertarget{a00055_aba4a36cb823b11ee491074e26477d084}{\index{Yarn\-::\-Analysis\-::\-Compiled\-Program\-Analyser@{Yarn\-::\-Analysis\-::\-Compiled\-Program\-Analyser}!Diagnose@{Diagnose}}
+\index{Diagnose@{Diagnose}!Yarn::Analysis::CompiledProgramAnalyser@{Yarn\-::\-Analysis\-::\-Compiled\-Program\-Analyser}}
+\subsubsection[{Diagnose}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Analysis.\-Compiled\-Program\-Analyser.\-Diagnose (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Program}}]{program}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00055_aba4a36cb823b11ee491074e26477d084}
+\hypertarget{a00055_afe059a2ceeabe50380b000420e512bd6}{\index{Yarn\-::\-Analysis\-::\-Compiled\-Program\-Analyser@{Yarn\-::\-Analysis\-::\-Compiled\-Program\-Analyser}!Gather\-Diagnoses@{Gather\-Diagnoses}}
+\index{Gather\-Diagnoses@{Gather\-Diagnoses}!Yarn::Analysis::CompiledProgramAnalyser@{Yarn\-::\-Analysis\-::\-Compiled\-Program\-Analyser}}
+\subsubsection[{Gather\-Diagnoses}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerable$<${\bf Diagnosis}$>$ Yarn.\-Analysis.\-Compiled\-Program\-Analyser.\-Gather\-Diagnoses (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00055_afe059a2ceeabe50380b000420e512bd6}
 
 
-Definition at line 49 of file Main.\-cs.
-
-
-
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run(), and Yarn.\-Yarn\-Spinner\-Console.\-Verify().
-
-\hypertarget{a00055_a9904ccfb1b0ff64df415c4fc9fe6eb1c}{\index{Yarn\-::\-Compile\-Options@{Yarn\-::\-Compile\-Options}!format@{format}}
-\index{format@{format}!Yarn::CompileOptions@{Yarn\-::\-Compile\-Options}}
-\subsubsection[{format}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue.\-Compiled\-Format} Yarn.\-Compile\-Options.\-format\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00055_a9904ccfb1b0ff64df415c4fc9fe6eb1c}
-
-
-Definition at line 107 of file Main.\-cs.
-
-\hypertarget{a00041_a89964ea17bd19caf00cb5bff563ed01c}{\index{Yarn\-::\-Compile\-Options@{Yarn\-::\-Compile\-Options}!show\-Debugging\-Info@{show\-Debugging\-Info}}
-\index{show\-Debugging\-Info@{show\-Debugging\-Info}!Yarn::CompileOptions@{Yarn\-::\-Compile\-Options}}
-\subsubsection[{show\-Debugging\-Info}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-show\-Debugging\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00041_a89964ea17bd19caf00cb5bff563ed01c}
-
-
-Definition at line 42 of file Main.\-cs.
-
-
-
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
-
-\hypertarget{a00041_ada4d83d1756918f362d55f6649b82b17}{\index{Yarn\-::\-Compile\-Options@{Yarn\-::\-Compile\-Options}!verbose@{verbose}}
-\index{verbose@{verbose}!Yarn::CompileOptions@{Yarn\-::\-Compile\-Options}}
-\subsubsection[{verbose}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-verbose\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00041_ada4d83d1756918f362d55f6649b82b17}
-
-
-Definition at line 46 of file Main.\-cs.
-
-
-
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Table\-Generator.\-Generate\-Tables().
+Implemented in \hyperlink{a00187_a107aecf707b130c4b733930a95f9154e}{Yarn.\-Analysis.\-Unused\-Variable\-Checker}, and \hyperlink{a00191_ab84e7a8e68740379dee12a51dca69b07}{Yarn.\-Analysis.\-Variable\-Lister}.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner\-Console/\hyperlink{a00325}{Main.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00305}{Analyser.\-cs}\end{DoxyCompactItemize}

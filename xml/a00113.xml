@@ -1,148 +1,155 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00113" kind="interface" prot="public">
-    <compoundname>CsvHelper::ICsvParser</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">IDisposable</basecompoundref>
-    <derivedcompoundref refid="a00068" prot="public" virt="non-virtual">CsvHelper.CsvParser</derivedcompoundref>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00113_1af1303d18a827bf46a56f9cb6ba05ed64" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type><ref refid="a00063" kindref="compound">CsvConfiguration</ref></type>
-        <definition>CsvConfiguration CsvHelper.ICsvParser.Configuration</definition>
+  <compounddef id="a00113" kind="class" prot="package">
+    <compoundname>Yarn::Unity::Icons</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="a00113_1a40e137f48495168d4423c103c8935a1b" prot="private" static="yes" mutable="no">
+        <type>Texture</type>
+        <definition>Texture Yarn.Unity.Icons._successIcon</definition>
         <argsstring></argsstring>
-        <name>Configuration</name>
+        <name>_successIcon</name>
         <briefdescription>
-<para>Gets the configuration. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="18" bodyend="-1"/>
-        <referencedby refid="a00077_1a2a7e1bcb33d8013182286439e6f7416f" compoundref="a00239" startline="143" endline="157">CsvHelper.CsvReader.CsvReader</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="561" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="561" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="a00113_1a50c0428defc2ada782c6863d72a990e4" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>int</type>
-        <definition>int CsvHelper.ICsvParser.FieldCount</definition>
+      <memberdef kind="variable" id="a00113_1a75ef0bcf3f5968f11949e6bfa4fdddd5" prot="private" static="yes" mutable="no">
+        <type>Texture</type>
+        <definition>Texture Yarn.Unity.Icons._failedIcon</definition>
         <argsstring></argsstring>
-        <name>FieldCount</name>
+        <name>_failedIcon</name>
         <briefdescription>
-<para>Gets the field count. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="23" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="571" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="571" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="a00113_1aa47c7ce6c764dddc78bb4d3ee83714eb" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>long</type>
-        <definition>long CsvHelper.ICsvParser.CharPosition</definition>
+      <memberdef kind="variable" id="a00113_1a497c5dcdfef75245a24c295f523fb7f7" prot="private" static="yes" mutable="no">
+        <type>Texture</type>
+        <definition>Texture Yarn.Unity.Icons._notTestedIcon</definition>
         <argsstring></argsstring>
-        <name>CharPosition</name>
+        <name>_notTestedIcon</name>
         <briefdescription>
-<para>Gets the character position that the parser is currently on. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="28" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="581" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="581" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="a00113_1a23dee37412eeb387df1d336e7bf07cc2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>long</type>
-        <definition>long CsvHelper.ICsvParser.BytePosition</definition>
+      <memberdef kind="variable" id="a00113_1abba8fef6cc12836ea431a8a7c9e2f3db" prot="private" static="yes" mutable="no">
+        <type>Texture</type>
+        <definition>Texture Yarn.Unity.Icons._windowIcon</definition>
         <argsstring></argsstring>
-        <name>BytePosition</name>
+        <name>_windowIcon</name>
         <briefdescription>
-<para>Gets the byte position that the parser is currently on. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="33" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00113_1a0ec83f976594f51a002448fa2fe2e392" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>int</type>
-        <definition>int CsvHelper.ICsvParser.Row</definition>
-        <argsstring></argsstring>
-        <name>Row</name>
-        <briefdescription>
-<para>Gets the row of the CSV file that the parser is currently on. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="38" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00113_1a1b238e3bb053f2f6c122ee0d77bb48d7" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>string</type>
-        <definition>string CsvHelper.ICsvParser.RawRecord</definition>
-        <argsstring></argsstring>
-        <name>RawRecord</name>
-        <briefdescription>
-<para>Gets the raw row for the current record that was parsed. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="43" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="43" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="591" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="591" bodyend="-1"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00113_1a411461b4cd33dce0b42c81715359f687" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>string[]</type>
-        <definition>string [] CsvHelper.ICsvParser.Read</definition>
-        <argsstring>()</argsstring>
-        <name>Read</name>
-        <reimplementedby refid="a00068_1a8e938842c6267343128babd111df9710">Read</reimplementedby>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00113_1aec8aea03eb6e31771ebc98e0611fff79" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
+        <type>Texture</type>
+        <definition>Texture Yarn.Unity.Icons.successIcon</definition>
+        <argsstring></argsstring>
+        <name>successIcon</name>
         <briefdescription>
-<para>Reads a record from the CSV file. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>A T:String[] of fields for the record read.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="49" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="562" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="562" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00113_1aae7cc0e5016db04a90b2aa0e80957626" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
+        <type>Texture</type>
+        <definition>Texture Yarn.Unity.Icons.failedIcon</definition>
+        <argsstring></argsstring>
+        <name>failedIcon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="572" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="572" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00113_1ab8afce565cd2ad1543d1e32e7e589e77" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
+        <type>Texture</type>
+        <definition>Texture Yarn.Unity.Icons.notTestedIcon</definition>
+        <argsstring></argsstring>
+        <name>notTestedIcon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="582" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="582" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00113_1aa78ab016ad041bc36850c8b20ba63972" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
+        <type>Texture</type>
+        <definition>Texture Yarn.Unity.Icons.windowIcon</definition>
+        <argsstring></argsstring>
+        <name>windowIcon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="592" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="592" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="a00113_1a267896b2c4512f5b17772e7e1e46d6da" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Texture</type>
+        <definition>static Texture Yarn.Unity.Icons.GetTexture</definition>
+        <argsstring>(string textureName)</argsstring>
+        <name>GetTexture</name>
+        <param>
+          <type>string</type>
+          <declname>textureName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="552" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="552" bodyend="559"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Defines methods used the parse a CSV file. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1385">
-        <label>IDisposable</label>
-      </node>
-      <node id="1386">
-        <label>CsvHelper.CsvParser</label>
-        <link refid="a00068"/>
-        <childnode refid="1384" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1384">
-        <label>CsvHelper.ICsvParser</label>
-        <link refid="a00113"/>
-        <childnode refid="1385" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1388">
-        <label>IDisposable</label>
-      </node>
-      <node id="1387">
-        <label>CsvHelper.ICsvParser</label>
+      <node id="1380">
+        <label>Yarn.Unity.Icons</label>
         <link refid="a00113"/>
-        <childnode refid="1388" relation="public-inheritance">
-        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="13" bodyend="50"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="550" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="550" bodyend="600"/>
     <listofallmembers>
-      <member refid="a00113_1a23dee37412eeb387df1d336e7bf07cc2" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>BytePosition</name></member>
-      <member refid="a00113_1aa47c7ce6c764dddc78bb4d3ee83714eb" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>CharPosition</name></member>
-      <member refid="a00113_1af1303d18a827bf46a56f9cb6ba05ed64" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>Configuration</name></member>
-      <member refid="a00113_1a50c0428defc2ada782c6863d72a990e4" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>FieldCount</name></member>
-      <member refid="a00113_1a1b238e3bb053f2f6c122ee0d77bb48d7" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>RawRecord</name></member>
-      <member refid="a00113_1a411461b4cd33dce0b42c81715359f687" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>Read</name></member>
-      <member refid="a00113_1a0ec83f976594f51a002448fa2fe2e392" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>Row</name></member>
+      <member refid="a00113_1a75ef0bcf3f5968f11949e6bfa4fdddd5" prot="private" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>_failedIcon</name></member>
+      <member refid="a00113_1a497c5dcdfef75245a24c295f523fb7f7" prot="private" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>_notTestedIcon</name></member>
+      <member refid="a00113_1a40e137f48495168d4423c103c8935a1b" prot="private" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>_successIcon</name></member>
+      <member refid="a00113_1abba8fef6cc12836ea431a8a7c9e2f3db" prot="private" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>_windowIcon</name></member>
+      <member refid="a00113_1aae7cc0e5016db04a90b2aa0e80957626" prot="public" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>failedIcon</name></member>
+      <member refid="a00113_1a267896b2c4512f5b17772e7e1e46d6da" prot="private" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>GetTexture</name></member>
+      <member refid="a00113_1ab8afce565cd2ad1543d1e32e7e589e77" prot="public" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>notTestedIcon</name></member>
+      <member refid="a00113_1aec8aea03eb6e31771ebc98e0611fff79" prot="public" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>successIcon</name></member>
+      <member refid="a00113_1aa78ab016ad041bc36850c8b20ba63972" prot="public" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>windowIcon</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

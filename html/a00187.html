@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.Value Class Reference</title>
+<title>YarnSpinner: Yarn.Analysis.UnusedVariableChecker Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,280 +107,53 @@ $(document).ready(function(){initNavTree('a00187.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
-<a href="#properties">Properties</a> &#124;
-<a href="a00720.html">List of all members</a>  </div>
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="a00779.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Value Class Reference</div>  </div>
+<div class="title">Yarn.Analysis.UnusedVariableChecker Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.Value:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.Analysis.UnusedVariableChecker:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00721.png" border="0" usemap="#_yarn_8_value_inherit__map" alt="Inheritance graph"/></div>
-<map name="_yarn_8_value_inherit__map" id="_yarn_8_value_inherit__map">
-</map>
+<div class="center"><img src="a00780.png" border="0" usemap="#_yarn_8_analysis_8_unused_variable_checker_inherit__map" alt="Inheritance graph"/></div>
+<map name="_yarn_8_analysis_8_unused_variable_checker_inherit__map" id="_yarn_8_analysis_8_unused_variable_checker_inherit__map">
+<area shape="rect" id="node2" href="a00055.html" title="{CompiledProgramAnalyser\n||+ Diagnose()\l+ GatherDiagnoses()\l}" alt="" coords="15,6,192,98"/></map>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Value:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Analysis.UnusedVariableChecker:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00722.png" border="0" usemap="#_yarn_8_value_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_value_coll__map" id="_yarn_8_value_coll__map">
-</map>
+<div class="center"><img src="a00781.png" border="0" usemap="#_yarn_8_analysis_8_unused_variable_checker_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_analysis_8_unused_variable_checker_coll__map" id="_yarn_8_analysis_8_unused_variable_checker_coll__map">
+<area shape="rect" id="node2" href="a00055.html" title="{CompiledProgramAnalyser\n||+ Diagnose()\l+ GatherDiagnoses()\l}" alt="" coords="15,6,192,98"/></map>
 </div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:ad5aaf60ee4504608fcc2ffadefa14884"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a> { <br/>
-&#160;&#160;<a class="el" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f">Type.Number</a>, 
-<a class="el" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884a27118326006d3829667a400ad23d5d98">Type.String</a>, 
-<a class="el" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034">Type.Bool</a>, 
-<a class="el" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884a47c14840d8e15331fa420b9b2f757cd9">Type.Variable</a>, 
-<br/>
-&#160;&#160;<a class="el" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94">Type.Null</a>
-<br/>
- }</td></tr>
-<tr class="separator:ad5aaf60ee4504608fcc2ffadefa14884"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7d2db75682c57463bf43c13499991ad4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Value</a> ()</td></tr>
-<tr class="separator:a7d2db75682c57463bf43c13499991ad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a960a015e35ea66270fe2713f39490e09"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a960a015e35ea66270fe2713f39490e09">Value</a> (object value)</td></tr>
-<tr class="separator:a960a015e35ea66270fe2713f39490e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf4dccca577017dff90912c01024ff6a"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#abf4dccca577017dff90912c01024ff6a">CompareTo</a> (object obj)</td></tr>
-<tr class="separator:abf4dccca577017dff90912c01024ff6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66de8cb38561c6589f01ca667267f4c6"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a66de8cb38561c6589f01ca667267f4c6">CompareTo</a> (<a class="el" href="a00187.html">Value</a> other)</td></tr>
-<tr class="separator:a66de8cb38561c6589f01ca667267f4c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f4e343c2a82ddca84008ac7d155071d"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a5f4e343c2a82ddca84008ac7d155071d">Equals</a> (object obj)</td></tr>
-<tr class="separator:a5f4e343c2a82ddca84008ac7d155071d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c8412105c2ed3058bddac30ecf49916"><td class="memItemLeft" align="right" valign="top">override int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a4c8412105c2ed3058bddac30ecf49916">GetHashCode</a> ()</td></tr>
-<tr class="separator:a4c8412105c2ed3058bddac30ecf49916"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70460d2f12485c8b980d75ad178e180b"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a70460d2f12485c8b980d75ad178e180b">ToString</a> ()</td></tr>
-<tr class="separator:a70460d2f12485c8b980d75ad178e180b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeac8f333d4dcc85f4d4a716bf8fea01f"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#aeac8f333d4dcc85f4d4a716bf8fea01f">Diagnose</a> (<a class="el" href="a00154.html">Program</a> program)</td></tr>
+<tr class="separator:aeac8f333d4dcc85f4d4a716bf8fea01f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a107aecf707b130c4b733930a95f9154e"><td class="memItemLeft" align="right" valign="top">override IEnumerable&lt; <a class="el" href="a00093.html">Diagnosis</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a107aecf707b130c4b733930a95f9154e">GatherDiagnoses</a> ()</td></tr>
+<tr class="separator:a107aecf707b130c4b733930a95f9154e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba4a36cb823b11ee491074e26477d084"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00055.html#aba4a36cb823b11ee491074e26477d084">Diagnose</a> (<a class="el" href="a00154.html">Yarn.Program</a> program)</td></tr>
+<tr class="separator:aba4a36cb823b11ee491074e26477d084"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:abfd48481b0ac28ff5485a850a8271dfd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="a00187.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#abfd48481b0ac28ff5485a850a8271dfd">operator+</a> (<a class="el" href="a00187.html">Value</a> a, <a class="el" href="a00187.html">Value</a> b)</td></tr>
-<tr class="separator:abfd48481b0ac28ff5485a850a8271dfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef1135f5d3e8925fa2c1b4c66cc8bd0c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="a00187.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#aef1135f5d3e8925fa2c1b4c66cc8bd0c">operator-</a> (<a class="el" href="a00187.html">Value</a> a, <a class="el" href="a00187.html">Value</a> b)</td></tr>
-<tr class="separator:aef1135f5d3e8925fa2c1b4c66cc8bd0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a946a02ecefe18d7c82cad0e2632d19c8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="a00187.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a946a02ecefe18d7c82cad0e2632d19c8">operator*</a> (<a class="el" href="a00187.html">Value</a> a, <a class="el" href="a00187.html">Value</a> b)</td></tr>
-<tr class="separator:a946a02ecefe18d7c82cad0e2632d19c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe3559ae2e0f3db33a23a640ee7832d4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="a00187.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#afe3559ae2e0f3db33a23a640ee7832d4">operator/</a> (<a class="el" href="a00187.html">Value</a> a, <a class="el" href="a00187.html">Value</a> b)</td></tr>
-<tr class="separator:afe3559ae2e0f3db33a23a640ee7832d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00875685b4619a7bcf0d1a77e529657c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="a00187.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a00875685b4619a7bcf0d1a77e529657c">operator%</a> (<a class="el" href="a00187.html">Value</a> a, <a class="el" href="a00187.html">Value</a> b)</td></tr>
-<tr class="separator:a00875685b4619a7bcf0d1a77e529657c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeaf119fa2885dbd1685d1efcd9594316"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="a00187.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#aeaf119fa2885dbd1685d1efcd9594316">operator-</a> (<a class="el" href="a00187.html">Value</a> a)</td></tr>
-<tr class="separator:aeaf119fa2885dbd1685d1efcd9594316"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02509b7c4eb702d86c1ffb7be99f7aeb"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a02509b7c4eb702d86c1ffb7be99f7aeb">operator&gt;</a> (<a class="el" href="a00187.html">Value</a> operand1, <a class="el" href="a00187.html">Value</a> operand2)</td></tr>
-<tr class="separator:a02509b7c4eb702d86c1ffb7be99f7aeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d1d9c4ee3fd55ad97d30279db525e4b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a0d1d9c4ee3fd55ad97d30279db525e4b">operator&lt;</a> (<a class="el" href="a00187.html">Value</a> operand1, <a class="el" href="a00187.html">Value</a> operand2)</td></tr>
-<tr class="separator:a0d1d9c4ee3fd55ad97d30279db525e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7680e8a5ef93dc1d1266a06c0a29dbf"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#ac7680e8a5ef93dc1d1266a06c0a29dbf">operator&gt;=</a> (<a class="el" href="a00187.html">Value</a> operand1, <a class="el" href="a00187.html">Value</a> operand2)</td></tr>
-<tr class="separator:ac7680e8a5ef93dc1d1266a06c0a29dbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4822bad5d6dc0fa6f7b9bd71b71855aa"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a4822bad5d6dc0fa6f7b9bd71b71855aa">operator&lt;=</a> (<a class="el" href="a00187.html">Value</a> operand1, <a class="el" href="a00187.html">Value</a> operand2)</td></tr>
-<tr class="separator:a4822bad5d6dc0fa6f7b9bd71b71855aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr class="memitem:a1ed2964965baca8621c45efa23f37660"><td class="memItemLeft" align="right" valign="top">static readonly <a class="el" href="a00187.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a1ed2964965baca8621c45efa23f37660">NULL</a> = new <a class="el" href="a00187.html">Value</a>()</td></tr>
-<tr class="separator:a1ed2964965baca8621c45efa23f37660"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
-Properties</h2></td></tr>
-<tr class="memitem:a6d5820fafa766911b9da84d1ed33e51a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Value.Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a6d5820fafa766911b9da84d1ed33e51a">type</a><code> [get, set]</code></td></tr>
-<tr class="separator:a6d5820fafa766911b9da84d1ed33e51a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1892c1c7a8177537d1caa39a2e51da6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#ae1892c1c7a8177537d1caa39a2e51da6">numberValue</a><code> [get, set]</code></td></tr>
-<tr class="separator:ae1892c1c7a8177537d1caa39a2e51da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ee2b09b7d28eaf97bf63c74d0023bfd"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a8ee2b09b7d28eaf97bf63c74d0023bfd">variableName</a><code> [get, set]</code></td></tr>
-<tr class="separator:a8ee2b09b7d28eaf97bf63c74d0023bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add1b07146f1a9e4b655b33c93d07dff9"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#add1b07146f1a9e4b655b33c93d07dff9">stringValue</a><code> [get, set]</code></td></tr>
-<tr class="separator:add1b07146f1a9e4b655b33c93d07dff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb140e3466e132528409d4c441fd67da"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#acb140e3466e132528409d4c441fd67da">boolValue</a><code> [get, set]</code></td></tr>
-<tr class="separator:acb140e3466e132528409d4c441fd67da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a051dd30c6cb184f1fe941a95be8781ab"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a051dd30c6cb184f1fe941a95be8781ab">backingValue</a><code> [get]</code></td></tr>
-<tr class="separator:a051dd30c6cb184f1fe941a95be8781ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a751419743761562bf902246d6e6a3c0a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a751419743761562bf902246d6e6a3c0a">AsNumber</a><code> [get]</code></td></tr>
-<tr class="separator:a751419743761562bf902246d6e6a3c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5805faef3b3d376090ff096d6dd6c064"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a5805faef3b3d376090ff096d6dd6c064">AsBool</a><code> [get]</code></td></tr>
-<tr class="separator:a5805faef3b3d376090ff096d6dd6c064"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d5d0ec41c50c642c1d0eeeb6bb2b1c0"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a2d5d0ec41c50c642c1d0eeeb6bb2b1c0">AsString</a><code> [get]</code></td></tr>
-<tr class="separator:a2d5d0ec41c50c642c1d0eeeb6bb2b1c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a6b542092ddce1b92c9455d60899518a9"><td class="memItemLeft" align="right" valign="top">HashSet&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a6b542092ddce1b92c9455d60899518a9">readVariables</a> = new HashSet&lt;string&gt; ()</td></tr>
+<tr class="separator:a6b542092ddce1b92c9455d60899518a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c2fe6eded1b10b135ca2469f5980a39"><td class="memItemLeft" align="right" valign="top">HashSet&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html#a0c2fe6eded1b10b135ca2469f5980a39">writtenVariables</a> = new HashSet&lt;string&gt; ()</td></tr>
+<tr class="separator:a0c2fe6eded1b10b135ca2469f5980a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="a00315_source.html#l00008">8</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-</div><h2 class="groupheader">Member Enumeration Documentation</h2>
-<a class="anchor" id="ad5aaf60ee4504608fcc2ffadefa14884"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Yarn.Value.Type</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f"></a>Number</em>&#160;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ad5aaf60ee4504608fcc2ffadefa14884a27118326006d3829667a400ad23d5d98"></a>String</em>&#160;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034"></a>Bool</em>&#160;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ad5aaf60ee4504608fcc2ffadefa14884a47c14840d8e15331fa420b9b2f757cd9"></a>Variable</em>&#160;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94"></a>Null</em>&#160;</td><td class="fielddoc">
-</td></tr>
-</table>
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00011">11</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                         {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f">Number</a>,  <span class="comment">// a constant number</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#pragma warning disable CA1720 // Identifier contains type name</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span>            <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884a27118326006d3829667a400ad23d5d98">String</a>,  <span class="comment">// a string</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#pragma warning restore CA1720 // Identifier contains type name</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span>            <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034">Bool</a>,    <span class="comment">// a boolean value</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884a47c14840d8e15331fa420b9b2f757cd9">Variable</a>, <span class="comment">// the name of a variable; will be expanded at runtime</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94">Null</a>,    <span class="comment">// the null value</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        }</div>
-<div class="ttc" id="a00187_html_ad5aaf60ee4504608fcc2ffadefa14884a27118326006d3829667a400ad23d5d98"><div class="ttname"><a href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884a27118326006d3829667a400ad23d5d98">Yarn.Value.String</a></div></div>
-<div class="ttc" id="a00187_html_ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f"><div class="ttname"><a href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f">Yarn.Value.Number</a></div></div>
-<div class="ttc" id="a00187_html_ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94"><div class="ttname"><a href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94">Yarn.Value.Null</a></div></div>
-<div class="ttc" id="a00187_html_ad5aaf60ee4504608fcc2ffadefa14884a47c14840d8e15331fa420b9b2f757cd9"><div class="ttname"><a href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884a47c14840d8e15331fa420b9b2f757cd9">Yarn.Value.Variable</a></div></div>
-<div class="ttc" id="a00187_html_ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034"><div class="ttname"><a href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034">Yarn.Value.Bool</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a7d2db75682c57463bf43c13499991ad4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Yarn.Value.Value </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00102">102</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00315_source.html#l00158">Yarn.Value.CompareTo()</a>, <a class="el" href="a00315_source.html#l00193">Yarn.Value.Equals()</a>, <a class="el" href="a00315_source.html#l00300">Yarn.Value.operator%()</a>, <a class="el" href="a00315_source.html#l00276">Yarn.Value.operator*()</a>, <a class="el" href="a00315_source.html#l00234">Yarn.Value.operator+()</a>, <a class="el" href="a00315_source.html#l00264">Yarn.Value.operator-()</a>, <a class="el" href="a00315_source.html#l00288">Yarn.Value.operator/()</a>, and <a class="el" href="a00315_source.html#l00105">Yarn.Value.Value()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;: <span class="keyword">this</span>(null) { }</div>
-</div><!-- fragment -->
-<p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00187_a7d2db75682c57463bf43c13499991ad4_icgraph.png" border="0" usemap="#a00187_a7d2db75682c57463bf43c13499991ad4_icgraph" alt=""/></div>
-<map name="a00187_a7d2db75682c57463bf43c13499991ad4_icgraph" id="a00187_a7d2db75682c57463bf43c13499991ad4_icgraph">
-<area shape="rect" id="node2" href="a00187.html#abf4dccca577017dff90912c01024ff6a" title="Yarn.Value.CompareTo" alt="" coords="177,5,335,32"/><area shape="rect" id="node3" href="a00187.html#a5f4e343c2a82ddca84008ac7d155071d" title="Yarn.Value.Equals" alt="" coords="191,56,321,83"/><area shape="rect" id="node4" href="a00187.html#a00875685b4619a7bcf0d1a77e529657c" title="Yarn.Value.operator%" alt="" coords="181,107,331,133"/><area shape="rect" id="node5" href="a00187.html#a946a02ecefe18d7c82cad0e2632d19c8" title="Yarn.Value.operator*" alt="" coords="185,157,327,184"/><area shape="rect" id="node6" href="a00187.html#abfd48481b0ac28ff5485a850a8271dfd" title="Yarn.Value.operator+" alt="" coords="183,208,329,235"/><area shape="rect" id="node7" href="a00187.html#aef1135f5d3e8925fa2c1b4c66cc8bd0c" title="Yarn.Value.operator&#45;" alt="" coords="185,259,327,285"/><area shape="rect" id="node8" href="a00187.html#afe3559ae2e0f3db33a23a640ee7832d4" title="Yarn.Value.operator/" alt="" coords="185,309,327,336"/><area shape="rect" id="node9" href="a00187.html#a960a015e35ea66270fe2713f39490e09" title="Yarn.Value.Value" alt="" coords="195,360,317,387"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a960a015e35ea66270fe2713f39490e09"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Yarn.Value.Value </td>
-          <td>(</td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00105">105</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>References <a class="el" href="a00315_source.html#l00027">Yarn.Value.boolValue</a>, <a class="el" href="a00315_source.html#l00024">Yarn.Value.numberValue</a>, <a class="el" href="a00315_source.html#l00026">Yarn.Value.stringValue</a>, <a class="el" href="a00315_source.html#l00021">Yarn.Value.type</a>, <a class="el" href="a00315_source.html#l00102">Yarn.Value.Value()</a>, and <a class="el" href="a00315_source.html#l00025">Yarn.Value.variableName</a>.</p>
-<div class="fragment"><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="comment">// Copy an existing value</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            <span class="keywordflow">if</span> (typeof(<a class="code" href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Value</a>).IsInstanceOfType(value)) {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                var otherValue = value as <a class="code" href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Value</a>;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                <a class="code" href="a00187.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> = otherValue.type;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                <span class="keywordflow">switch</span> (<a class="code" href="a00187.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>) {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                <span class="keywordflow">case</span> Type.Number:</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                    <a class="code" href="a00187.html#ae1892c1c7a8177537d1caa39a2e51da6">numberValue</a> = otherValue.numberValue;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                <span class="keywordflow">case</span> Type.String:</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                    <a class="code" href="a00187.html#add1b07146f1a9e4b655b33c93d07dff9">stringValue</a> = otherValue.stringValue;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                <span class="keywordflow">case</span> Type.Bool:</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                    <a class="code" href="a00187.html#acb140e3466e132528409d4c441fd67da">boolValue</a> = otherValue.boolValue;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                <span class="keywordflow">case</span> Type.Variable:</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                    <a class="code" href="a00187.html#a8ee2b09b7d28eaf97bf63c74d0023bfd">variableName</a> = otherValue.variableName;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                <span class="keywordflow">case</span> Type.Null:</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentOutOfRangeException ();</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                }</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            }</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            <span class="keywordflow">if</span> (value == null) {</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                <a class="code" href="a00187.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> = Type.Null;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            }</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            <span class="keywordflow">if</span> (value.GetType() == typeof(<span class="keywordtype">string</span>) ) {</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                <a class="code" href="a00187.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> = Type.String;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                <a class="code" href="a00187.html#add1b07146f1a9e4b655b33c93d07dff9">stringValue</a> = System.Convert.ToString(value, CultureInfo.InvariantCulture);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            }</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <span class="keywordflow">if</span> (value.GetType() == typeof(<span class="keywordtype">int</span>) ||</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                value.GetType() == typeof(<span class="keywordtype">float</span>) ||</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                value.GetType() == typeof(<span class="keywordtype">double</span>)) {</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                <a class="code" href="a00187.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> = Type.Number;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                <a class="code" href="a00187.html#ae1892c1c7a8177537d1caa39a2e51da6">numberValue</a> = System.Convert.ToSingle(value, CultureInfo.InvariantCulture);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            }</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            <span class="keywordflow">if</span> (value.GetType() == typeof(<span class="keywordtype">bool</span>) ) {</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                <a class="code" href="a00187.html#a6d5820fafa766911b9da84d1ed33e51a">type</a> = Type.Bool;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                <a class="code" href="a00187.html#acb140e3466e132528409d4c441fd67da">boolValue</a> = System.Convert.ToBoolean(value, CultureInfo.InvariantCulture);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            }</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            var error = string.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;Attempted to create a Value using a {0}; currently, &quot;</span> +</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                <span class="stringliteral">&quot;Values can only be numbers, strings, bools or null.&quot;</span>, value.GetType().Name);</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> YarnException(error);</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        }</div>
-<div class="ttc" id="a00187_html_a8ee2b09b7d28eaf97bf63c74d0023bfd"><div class="ttname"><a href="a00187.html#a8ee2b09b7d28eaf97bf63c74d0023bfd">Yarn.Value.variableName</a></div><div class="ttdeci">string variableName</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00025">Value.cs:25</a></div></div>
-<div class="ttc" id="a00187_html_ae1892c1c7a8177537d1caa39a2e51da6"><div class="ttname"><a href="a00187.html#ae1892c1c7a8177537d1caa39a2e51da6">Yarn.Value.numberValue</a></div><div class="ttdeci">float numberValue</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00024">Value.cs:24</a></div></div>
-<div class="ttc" id="a00187_html_a6d5820fafa766911b9da84d1ed33e51a"><div class="ttname"><a href="a00187.html#a6d5820fafa766911b9da84d1ed33e51a">Yarn.Value.type</a></div><div class="ttdeci">Value.Type type</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00021">Value.cs:21</a></div></div>
-<div class="ttc" id="a00187_html_acb140e3466e132528409d4c441fd67da"><div class="ttname"><a href="a00187.html#acb140e3466e132528409d4c441fd67da">Yarn.Value.boolValue</a></div><div class="ttdeci">bool boolValue</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00027">Value.cs:27</a></div></div>
-<div class="ttc" id="a00187_html_add1b07146f1a9e4b655b33c93d07dff9"><div class="ttname"><a href="a00187.html#add1b07146f1a9e4b655b33c93d07dff9">Yarn.Value.stringValue</a></div><div class="ttdeci">string stringValue</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00026">Value.cs:26</a></div></div>
-<div class="ttc" id="a00187_html_a7d2db75682c57463bf43c13499991ad4"><div class="ttname"><a href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Yarn.Value.Value</a></div><div class="ttdeci">Value()</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00102">Value.cs:102</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00187_a960a015e35ea66270fe2713f39490e09_cgraph.png" border="0" usemap="#a00187_a960a015e35ea66270fe2713f39490e09_cgraph" alt=""/></div>
-<map name="a00187_a960a015e35ea66270fe2713f39490e09_cgraph" id="a00187_a960a015e35ea66270fe2713f39490e09_cgraph">
-<area shape="rect" id="node2" href="a00187.html#a7d2db75682c57463bf43c13499991ad4" title="Yarn.Value.Value" alt="" coords="176,5,299,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="abf4dccca577017dff90912c01024ff6a"></a>
+<p>Definition at line <a class="el" href="a00305_source.html#l00195">195</a> of file <a class="el" href="a00305_source.html">Analyser.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aba4a36cb823b11ee491074e26477d084"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -388,10 +161,73 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual int Yarn.Value.CompareTo </td>
+          <td class="memname">abstract void Yarn.Analysis.CompiledProgramAnalyser.Diagnose </td>
           <td>(</td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>obj</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="a00154.html">Yarn.Program</a>&#160;</td>
+          <td class="paramname"><em>program</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aeac8f333d4dcc85f4d4a716bf8fea01f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void Yarn.Analysis.UnusedVariableChecker.Diagnose </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00154.html">Program</a>&#160;</td>
+          <td class="paramname"><em>program</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00305_source.html#l00200">200</a> of file <a class="el" href="a00305_source.html">Analyser.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        {</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            <span class="comment">// In each node, find all reads and writes to variables</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <span class="keywordflow">foreach</span> (var nodeInfo <span class="keywordflow">in</span> program.nodes) {</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                var nodeName = nodeInfo.Key;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                var theNode = nodeInfo.Value;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                <span class="keywordflow">foreach</span> (var instruction <span class="keywordflow">in</span> theNode.instructions) {</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                    <span class="keywordflow">switch</span> (instruction.operation) {</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                    <span class="keywordflow">case</span> ByteCode.PushVariable:</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                        readVariables.Add ((string)instruction.operandA);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                    <span class="keywordflow">case</span> ByteCode.StoreVariable:</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                        writtenVariables.Add ((string)instruction.operandA);</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                    }</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                }</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            }</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a107aecf707b130c4b733930a95f9154e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override IEnumerable&lt;<a class="el" href="a00093.html">Diagnosis</a>&gt; Yarn.Analysis.UnusedVariableChecker.GatherDiagnoses </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -402,730 +238,41 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00315_source.html#l00158">158</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
+<p>Implements <a class="el" href="a00055.html#afe059a2ceeabe50380b000420e512bd6">Yarn.Analysis.CompiledProgramAnalyser</a>.</p>
 
-<p>References <a class="el" href="a00315_source.html#l00102">Yarn.Value.Value()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                                                 {</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="keywordflow">if</span> (obj == null) <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            <span class="comment">// soft, fast coercion</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            var other = obj as <a class="code" href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Value</a>;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <span class="comment">// not a value</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            <span class="keywordflow">if</span>( other == null ) <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentException(<span class="stringliteral">&quot;Object is not a Value&quot;</span>);</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            <span class="comment">// it is a value!</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            <span class="keywordflow">return</span> this.CompareTo(other);</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        }</div>
-<div class="ttc" id="a00187_html_a7d2db75682c57463bf43c13499991ad4"><div class="ttname"><a href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Yarn.Value.Value</a></div><div class="ttdeci">Value()</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00102">Value.cs:102</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00187_abf4dccca577017dff90912c01024ff6a_cgraph.png" border="0" usemap="#a00187_abf4dccca577017dff90912c01024ff6a_cgraph" alt=""/></div>
-<map name="a00187_abf4dccca577017dff90912c01024ff6a_cgraph" id="a00187_abf4dccca577017dff90912c01024ff6a_cgraph">
-<area shape="rect" id="node2" href="a00187.html#a7d2db75682c57463bf43c13499991ad4" title="Yarn.Value.Value" alt="" coords="213,5,336,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a66de8cb38561c6589f01ca667267f4c6"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual int Yarn.Value.CompareTo </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>other</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00171">171</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>References <a class="el" href="a00315_source.html#l00021">Yarn.Value.type</a>.</p>
-<div class="fragment"><div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                                                  {</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            <span class="keywordflow">if</span> (other == null) {</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            }</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            <span class="keywordflow">if</span> (other.type == <span class="keyword">this</span>.type) {</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                <span class="keywordflow">switch</span> (this.<a class="code" href="a00187.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>) {</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                <span class="keywordflow">case</span> Type.Null:</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                <span class="keywordflow">case</span> Type.String:</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                    <span class="keywordflow">return</span> string.Compare(this.stringValue, other.stringValue, StringComparison.InvariantCulture);</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                <span class="keywordflow">case</span> Type.Number:</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                    <span class="keywordflow">return</span> this.numberValue.CompareTo (other.numberValue);</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                <span class="keywordflow">case</span> Type.Bool:</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                    <span class="keywordflow">return</span> this.boolValue.CompareTo (other.boolValue);</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                }</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            }</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            <span class="comment">// try to do a string test at that point!</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            <span class="keywordflow">return</span> string.Compare(this.AsString, other.AsString, StringComparison.InvariantCulture);</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        }</div>
-<div class="ttc" id="a00187_html_a6d5820fafa766911b9da84d1ed33e51a"><div class="ttname"><a href="a00187.html#a6d5820fafa766911b9da84d1ed33e51a">Yarn.Value.type</a></div><div class="ttdeci">Value.Type type</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00021">Value.cs:21</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a5f4e343c2a82ddca84008ac7d155071d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">override bool Yarn.Value.Equals </td>
-          <td>(</td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>obj</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00193">193</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>References <a class="el" href="a00315_source.html#l00021">Yarn.Value.type</a>, and <a class="el" href="a00315_source.html#l00102">Yarn.Value.Value()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        {</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            <span class="keywordflow">if</span> (obj == null || GetType() != obj.GetType()) {</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            }</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            var other = (<a class="code" href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Value</a>)obj;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            <span class="keywordflow">switch</span> (this.<a class="code" href="a00187.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>) {</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            <span class="keywordflow">case</span> Type.Number:</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                <span class="keywordflow">return</span> this.AsNumber == other.AsNumber;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <span class="keywordflow">case</span> Type.String:</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                <span class="keywordflow">return</span> this.AsString == other.AsString;</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            <span class="keywordflow">case</span> Type.Bool:</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                <span class="keywordflow">return</span> this.AsBool == other.AsBool;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            <span class="keywordflow">case</span> Type.Null:</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                <span class="keywordflow">return</span> other.type == Type.Null || other.AsNumber == 0 || other.AsBool == <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentOutOfRangeException ();</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            }</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        }</div>
-<div class="ttc" id="a00187_html_a6d5820fafa766911b9da84d1ed33e51a"><div class="ttname"><a href="a00187.html#a6d5820fafa766911b9da84d1ed33e51a">Yarn.Value.type</a></div><div class="ttdeci">Value.Type type</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00021">Value.cs:21</a></div></div>
-<div class="ttc" id="a00187_html_a7d2db75682c57463bf43c13499991ad4"><div class="ttname"><a href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Yarn.Value.Value</a></div><div class="ttdeci">Value()</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00102">Value.cs:102</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00187_a5f4e343c2a82ddca84008ac7d155071d_cgraph.png" border="0" usemap="#a00187_a5f4e343c2a82ddca84008ac7d155071d_cgraph" alt=""/></div>
-<map name="a00187_a5f4e343c2a82ddca84008ac7d155071d_cgraph" id="a00187_a5f4e343c2a82ddca84008ac7d155071d_cgraph">
-<area shape="rect" id="node2" href="a00187.html#a7d2db75682c57463bf43c13499991ad4" title="Yarn.Value.Value" alt="" coords="184,5,307,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a4c8412105c2ed3058bddac30ecf49916"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">override int Yarn.Value.GetHashCode </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00217">217</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        {</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            var backing = this.backingValue;</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            <span class="comment">// TODO: yeah hay maybe fix this</span></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="keywordflow">if</span>( backing != null ) {</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                <span class="keywordflow">return</span> backing.GetHashCode();</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            }</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a00875685b4619a7bcf0d1a77e529657c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="a00187.html">Value</a> Yarn.Value.operator% </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>b</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00300">300</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>References <a class="el" href="a00315_source.html#l00043">Yarn.Value.AsNumber</a>, <a class="el" href="a00315_source.html#l00021">Yarn.Value.type</a>, and <a class="el" href="a00315_source.html#l00102">Yarn.Value.Value()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                                                         {</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;            <span class="keywordflow">if</span> (a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null) ||</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null)) {</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Value</a> (a.AsNumber % b.AsNumber);</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;            }</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> System.ArgumentException(</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                string.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;Cannot modulo types {0} and {1}.&quot;</span>, a.type, b.type )</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;            );</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        }</div>
-<div class="ttc" id="a00187_html_ad5aaf60ee4504608fcc2ffadefa14884"><div class="ttname"><a href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Yarn.Value.Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00011">Value.cs:11</a></div></div>
-<div class="ttc" id="a00187_html_a7d2db75682c57463bf43c13499991ad4"><div class="ttname"><a href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Yarn.Value.Value</a></div><div class="ttdeci">Value()</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00102">Value.cs:102</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00187_a00875685b4619a7bcf0d1a77e529657c_cgraph.png" border="0" usemap="#a00187_a00875685b4619a7bcf0d1a77e529657c_cgraph" alt=""/></div>
-<map name="a00187_a00875685b4619a7bcf0d1a77e529657c_cgraph" id="a00187_a00875685b4619a7bcf0d1a77e529657c_cgraph">
-<area shape="rect" id="node2" href="a00187.html#a7d2db75682c57463bf43c13499991ad4" title="Yarn.Value.Value" alt="" coords="203,5,325,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a946a02ecefe18d7c82cad0e2632d19c8"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="a00187.html">Value</a> Yarn.Value.operator* </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>b</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00276">276</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>References <a class="el" href="a00315_source.html#l00043">Yarn.Value.AsNumber</a>, <a class="el" href="a00315_source.html#l00021">Yarn.Value.type</a>, and <a class="el" href="a00315_source.html#l00102">Yarn.Value.Value()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                                                         {</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            <span class="keywordflow">if</span> (a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null) ||</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null)</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            ) {</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( a.AsNumber * b.AsNumber );</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            }</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> System.ArgumentException(</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                string.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;Cannot multiply types {0} and {1}.&quot;</span>, a.type, b.type )</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            );</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        }</div>
-<div class="ttc" id="a00187_html_ad5aaf60ee4504608fcc2ffadefa14884"><div class="ttname"><a href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Yarn.Value.Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00011">Value.cs:11</a></div></div>
-<div class="ttc" id="a00187_html_a7d2db75682c57463bf43c13499991ad4"><div class="ttname"><a href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Yarn.Value.Value</a></div><div class="ttdeci">Value()</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00102">Value.cs:102</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00187_a946a02ecefe18d7c82cad0e2632d19c8_cgraph.png" border="0" usemap="#a00187_a946a02ecefe18d7c82cad0e2632d19c8_cgraph" alt=""/></div>
-<map name="a00187_a946a02ecefe18d7c82cad0e2632d19c8_cgraph" id="a00187_a946a02ecefe18d7c82cad0e2632d19c8_cgraph">
-<area shape="rect" id="node2" href="a00187.html#a7d2db75682c57463bf43c13499991ad4" title="Yarn.Value.Value" alt="" coords="197,5,320,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="abfd48481b0ac28ff5485a850a8271dfd"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="a00187.html">Value</a> Yarn.Value.operator+ </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>b</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00234">234</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>References <a class="el" href="a00315_source.html#l00043">Yarn.Value.AsNumber</a>, <a class="el" href="a00315_source.html#l00081">Yarn.Value.AsString</a>, <a class="el" href="a00315_source.html#l00021">Yarn.Value.type</a>, and <a class="el" href="a00315_source.html#l00102">Yarn.Value.Value()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                                                         {</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            <span class="comment">// catches:</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            <span class="comment">// undefined + string</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            <span class="comment">// number + string</span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            <span class="comment">// string + string</span></div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            <span class="comment">// bool + string</span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            <span class="comment">// null + string</span></div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            <span class="keywordflow">if</span> (a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.String || b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.String ) {</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                <span class="comment">// we&#39;re headed for string town!</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( a.AsString + b.AsString );</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            }</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            <span class="comment">// catches:</span></div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;            <span class="comment">// number + number</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            <span class="comment">// bool (=&gt; 0 or 1) + number</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            <span class="comment">// null (=&gt; 0) + number</span></div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            <span class="comment">// bool (=&gt; 0 or 1) + bool (=&gt; 0 or 1)</span></div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;            <span class="comment">// null (=&gt; 0) + null (=&gt; 0)</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;            <span class="keywordflow">if</span> ((a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number) ||</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                (a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Bool &amp;&amp; b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Bool) ||</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                (a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null &amp;&amp; b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null)</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;            ) {</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( a.AsNumber + b.AsNumber );</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;            }</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> System.ArgumentException(</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                string.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;Cannot add types {0} and {1}.&quot;</span>, a.type, b.type )</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            );</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        }</div>
-<div class="ttc" id="a00187_html_ad5aaf60ee4504608fcc2ffadefa14884"><div class="ttname"><a href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Yarn.Value.Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00011">Value.cs:11</a></div></div>
-<div class="ttc" id="a00187_html_a7d2db75682c57463bf43c13499991ad4"><div class="ttname"><a href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Yarn.Value.Value</a></div><div class="ttdeci">Value()</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00102">Value.cs:102</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00187_abfd48481b0ac28ff5485a850a8271dfd_cgraph.png" border="0" usemap="#a00187_abfd48481b0ac28ff5485a850a8271dfd_cgraph" alt=""/></div>
-<map name="a00187_abfd48481b0ac28ff5485a850a8271dfd_cgraph" id="a00187_abfd48481b0ac28ff5485a850a8271dfd_cgraph">
-<area shape="rect" id="node2" href="a00187.html#a7d2db75682c57463bf43c13499991ad4" title="Yarn.Value.Value" alt="" coords="200,5,323,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="aef1135f5d3e8925fa2c1b4c66cc8bd0c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="a00187.html">Value</a> Yarn.Value.operator- </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>b</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00264">264</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>References <a class="el" href="a00315_source.html#l00043">Yarn.Value.AsNumber</a>, <a class="el" href="a00315_source.html#l00021">Yarn.Value.type</a>, and <a class="el" href="a00315_source.html#l00102">Yarn.Value.Value()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                                                         {</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;            <span class="keywordflow">if</span> (a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null) ||</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null)</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            ) {</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( a.AsNumber - b.AsNumber );</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            }</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> System.ArgumentException(</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                string.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;Cannot subtract types {0} and {1}.&quot;</span>, a.type, b.type )</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            );</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        }</div>
-<div class="ttc" id="a00187_html_ad5aaf60ee4504608fcc2ffadefa14884"><div class="ttname"><a href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Yarn.Value.Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00011">Value.cs:11</a></div></div>
-<div class="ttc" id="a00187_html_a7d2db75682c57463bf43c13499991ad4"><div class="ttname"><a href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Yarn.Value.Value</a></div><div class="ttdeci">Value()</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00102">Value.cs:102</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-9-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00187_aef1135f5d3e8925fa2c1b4c66cc8bd0c_cgraph.png" border="0" usemap="#a00187_aef1135f5d3e8925fa2c1b4c66cc8bd0c_cgraph" alt=""/></div>
-<map name="a00187_aef1135f5d3e8925fa2c1b4c66cc8bd0c_cgraph" id="a00187_aef1135f5d3e8925fa2c1b4c66cc8bd0c_cgraph">
-<area shape="rect" id="node2" href="a00187.html#a7d2db75682c57463bf43c13499991ad4" title="Yarn.Value.Value" alt="" coords="195,5,317,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="aeaf119fa2885dbd1685d1efcd9594316"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="a00187.html">Value</a> Yarn.Value.operator- </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>a</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00310">310</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>References <a class="el" href="a00315_source.html#l00043">Yarn.Value.AsNumber</a>, <a class="el" href="a00315_source.html#l00081">Yarn.Value.AsString</a>, <a class="el" href="a00315_source.html#l00021">Yarn.Value.type</a>, and <a class="el" href="a00315_source.html#l00102">Yarn.Value.Value()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                                                {</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            <span class="keywordflow">if</span>( a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number ) {</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( -a.AsNumber );</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            }</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            <span class="keywordflow">if</span> (a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null &amp;&amp;</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.String &amp;&amp;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;               (a.AsString == null || a.AsString.Trim() == <span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            ) {</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( -0 );</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;            }</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( <span class="keywordtype">float</span>.NaN );</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        }</div>
-<div class="ttc" id="a00187_html_ad5aaf60ee4504608fcc2ffadefa14884"><div class="ttname"><a href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Yarn.Value.Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00011">Value.cs:11</a></div></div>
-<div class="ttc" id="a00187_html_a7d2db75682c57463bf43c13499991ad4"><div class="ttname"><a href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Yarn.Value.Value</a></div><div class="ttdeci">Value()</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00102">Value.cs:102</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-10-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00187_aeaf119fa2885dbd1685d1efcd9594316_cgraph.png" border="0" usemap="#a00187_aeaf119fa2885dbd1685d1efcd9594316_cgraph" alt=""/></div>
-<map name="a00187_aeaf119fa2885dbd1685d1efcd9594316_cgraph" id="a00187_aeaf119fa2885dbd1685d1efcd9594316_cgraph">
-<area shape="rect" id="node2" href="a00187.html#a7d2db75682c57463bf43c13499991ad4" title="Yarn.Value.Value" alt="" coords="195,5,317,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="afe3559ae2e0f3db33a23a640ee7832d4"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="a00187.html">Value</a> Yarn.Value.operator/ </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>b</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00288">288</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>References <a class="el" href="a00315_source.html#l00043">Yarn.Value.AsNumber</a>, <a class="el" href="a00315_source.html#l00021">Yarn.Value.type</a>, and <a class="el" href="a00315_source.html#l00102">Yarn.Value.Value()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                                                         {</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            <span class="keywordflow">if</span> (a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null) ||</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                b.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number &amp;&amp; (a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Number || a.type == <a class="code" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Type</a>.Null)</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            ) {</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Value</a>( a.AsNumber / b.AsNumber );</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            }</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> System.ArgumentException(</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                string.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;Cannot divide types {0} and {1}.&quot;</span>, a.type, b.type )</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            );</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        }</div>
-<div class="ttc" id="a00187_html_ad5aaf60ee4504608fcc2ffadefa14884"><div class="ttname"><a href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Yarn.Value.Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00011">Value.cs:11</a></div></div>
-<div class="ttc" id="a00187_html_a7d2db75682c57463bf43c13499991ad4"><div class="ttname"><a href="a00187.html#a7d2db75682c57463bf43c13499991ad4">Yarn.Value.Value</a></div><div class="ttdeci">Value()</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00102">Value.cs:102</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-11-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00187_afe3559ae2e0f3db33a23a640ee7832d4_cgraph.png" border="0" usemap="#a00187_afe3559ae2e0f3db33a23a640ee7832d4_cgraph" alt=""/></div>
-<map name="a00187_afe3559ae2e0f3db33a23a640ee7832d4_cgraph" id="a00187_afe3559ae2e0f3db33a23a640ee7832d4_cgraph">
-<area shape="rect" id="node2" href="a00187.html#a7d2db75682c57463bf43c13499991ad4" title="Yarn.Value.Value" alt="" coords="195,5,317,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a0d1d9c4ee3fd55ad97d30279db525e4b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static bool Yarn.Value.operator&lt; </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>operand1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>operand2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00330">330</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        {</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;            <span class="keywordflow">return</span> operand1.CompareTo(operand2) == -1;</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a4822bad5d6dc0fa6f7b9bd71b71855aa"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static bool Yarn.Value.operator&lt;= </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>operand1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>operand2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00342">342</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        {</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            <span class="keywordflow">return</span> operand1.CompareTo(operand2) &lt;= 0;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a02509b7c4eb702d86c1ffb7be99f7aeb"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static bool Yarn.Value.operator&gt; </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>operand1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>operand2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00324">324</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        {</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            <span class="keywordflow">return</span> operand1.CompareTo(operand2) == 1;</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="ac7680e8a5ef93dc1d1266a06c0a29dbf"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static bool Yarn.Value.operator&gt;= </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>operand1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00187.html">Value</a>&#160;</td>
-          <td class="paramname"><em>operand2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00336">336</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;        {</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;            <span class="keywordflow">return</span> operand1.CompareTo(operand2) &gt;= 0;</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a70460d2f12485c8b980d75ad178e180b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">override string Yarn.Value.ToString </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00229">229</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>References <a class="el" href="a00315_source.html#l00064">Yarn.Value.AsBool</a>, <a class="el" href="a00315_source.html#l00043">Yarn.Value.AsNumber</a>, <a class="el" href="a00315_source.html#l00081">Yarn.Value.AsString</a>, and <a class="el" href="a00315_source.html#l00021">Yarn.Value.type</a>.</p>
-<div class="fragment"><div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        {</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <span class="keywordflow">return</span> string.Format (CultureInfo.CurrentCulture, <span class="stringliteral">&quot;[Value: type={0}, AsNumber={1}, AsBool={2}, AsString={3}]&quot;</span>, <a class="code" href="a00187.html#a6d5820fafa766911b9da84d1ed33e51a">type</a>, <a class="code" href="a00187.html#a751419743761562bf902246d6e6a3c0a">AsNumber</a>, <a class="code" href="a00187.html#a5805faef3b3d376090ff096d6dd6c064">AsBool</a>, <a class="code" href="a00187.html#a2d5d0ec41c50c642c1d0eeeb6bb2b1c0">AsString</a>);</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        }</div>
-<div class="ttc" id="a00187_html_a5805faef3b3d376090ff096d6dd6c064"><div class="ttname"><a href="a00187.html#a5805faef3b3d376090ff096d6dd6c064">Yarn.Value.AsBool</a></div><div class="ttdeci">bool AsBool</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00064">Value.cs:64</a></div></div>
-<div class="ttc" id="a00187_html_a6d5820fafa766911b9da84d1ed33e51a"><div class="ttname"><a href="a00187.html#a6d5820fafa766911b9da84d1ed33e51a">Yarn.Value.type</a></div><div class="ttdeci">Value.Type type</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00021">Value.cs:21</a></div></div>
-<div class="ttc" id="a00187_html_a751419743761562bf902246d6e6a3c0a"><div class="ttname"><a href="a00187.html#a751419743761562bf902246d6e6a3c0a">Yarn.Value.AsNumber</a></div><div class="ttdeci">float AsNumber</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00043">Value.cs:43</a></div></div>
-<div class="ttc" id="a00187_html_a2d5d0ec41c50c642c1d0eeeb6bb2b1c0"><div class="ttname"><a href="a00187.html#a2d5d0ec41c50c642c1d0eeeb6bb2b1c0">Yarn.Value.AsString</a></div><div class="ttdeci">string AsString</div><div class="ttdef"><b>Definition:</b> <a href="a00315_source.html#l00081">Value.cs:81</a></div></div>
+<p>Definition at line <a class="el" href="a00305_source.html#l00224">224</a> of file <a class="el" href="a00305_source.html">Analyser.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        {</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            <span class="comment">// Exclude read variables that are also written</span></div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            var readOnlyVariables = <span class="keyword">new</span> HashSet&lt;string&gt; (<a class="code" href="a00187.html#a6b542092ddce1b92c9455d60899518a9">readVariables</a>);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            readOnlyVariables.ExceptWith (<a class="code" href="a00187.html#a0c2fe6eded1b10b135ca2469f5980a39">writtenVariables</a>);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <span class="comment">// Exclude written variables that are also read</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            var writeOnlyVariables = <span class="keyword">new</span> HashSet&lt;string&gt; (<a class="code" href="a00187.html#a0c2fe6eded1b10b135ca2469f5980a39">writtenVariables</a>);</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            writeOnlyVariables.ExceptWith (<a class="code" href="a00187.html#a6b542092ddce1b92c9455d60899518a9">readVariables</a>);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            <span class="comment">// Generate diagnoses</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            var diagnoses = <span class="keyword">new</span> List&lt;Diagnosis&gt;();</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            <span class="keywordflow">foreach</span> (var readOnlyVariable <span class="keywordflow">in</span> readOnlyVariables) {</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                var message = string.Format (CultureInfo.CurrentCulture, <span class="stringliteral">&quot;Variable {0} is read from, but never assigned&quot;</span>, readOnlyVariable);</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;                diagnoses.Add(<span class="keyword">new</span> Diagnosis (message, Diagnosis.Severity.Warning));</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            }</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            <span class="keywordflow">foreach</span> (var writeOnlyVariable <span class="keywordflow">in</span> writeOnlyVariables) {</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                var message = string.Format (CultureInfo.CurrentCulture, <span class="stringliteral">&quot;Variable {0} is assigned, but never read from&quot;</span>, writeOnlyVariable);</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                diagnoses.Add(<span class="keyword">new</span> Diagnosis (message, Diagnosis.Severity.Warning));</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            }</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            <span class="keywordflow">return</span> diagnoses;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        }</div>
+<div class="ttc" id="a00187_html_a0c2fe6eded1b10b135ca2469f5980a39"><div class="ttname"><a href="a00187.html#a0c2fe6eded1b10b135ca2469f5980a39">Yarn.Analysis.UnusedVariableChecker.writtenVariables</a></div><div class="ttdeci">HashSet&lt; string &gt; writtenVariables</div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00198">Analyser.cs:198</a></div></div>
+<div class="ttc" id="a00187_html_a6b542092ddce1b92c9455d60899518a9"><div class="ttname"><a href="a00187.html#a6b542092ddce1b92c9455d60899518a9">Yarn.Analysis.UnusedVariableChecker.readVariables</a></div><div class="ttdeci">HashSet&lt; string &gt; readVariables</div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00197">Analyser.cs:197</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a1ed2964965baca8621c45efa23f37660"></a>
+<a class="anchor" id="a6b542092ddce1b92c9455d60899518a9"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1133,24 +280,21 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">readonly <a class="el" href="a00187.html">Value</a> Yarn.Value.NULL = new <a class="el" href="a00187.html">Value</a>()</td>
+          <td class="memname">HashSet&lt;string&gt; Yarn.Analysis.UnusedVariableChecker.readVariables = new HashSet&lt;string&gt; ()</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00315_source.html#l00009">9</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00305_source.html#l00111">Yarn.MemoryVariableStore.GetValue()</a>, <a class="el" href="a00311_source.html#l00039">Yarn.FunctionInfo.InvokeWithArray()</a>, <a class="el" href="a00316_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>, and <a class="el" href="a00313_source.html#l00677">Yarn.Parser.ValueNode.UseToken()</a>.</p>
+<p>Definition at line <a class="el" href="a00305_source.html#l00197">197</a> of file <a class="el" href="a00305_source.html">Analyser.cs</a>.</p>
 
 </div>
 </div>
-<h2 class="groupheader">Property Documentation</h2>
-<a class="anchor" id="a5805faef3b3d376090ff096d6dd6c064"></a>
+<a class="anchor" id="a0c2fe6eded1b10b135ca2469f5980a39"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1158,222 +302,30 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Yarn.Value.AsBool</td>
+          <td class="memname">HashSet&lt;string&gt; Yarn.Analysis.UnusedVariableChecker.writtenVariables = new HashSet&lt;string&gt; ()</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00315_source.html#l00064">64</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00325_source.html#l00388">Yarn.YarnSpinnerConsole.CreateDialogue()</a>, and <a class="el" href="a00315_source.html#l00229">Yarn.Value.ToString()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a751419743761562bf902246d6e6a3c0a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Yarn.Value.AsNumber</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00043">43</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00315_source.html#l00300">Yarn.Value.operator%()</a>, <a class="el" href="a00315_source.html#l00276">Yarn.Value.operator*()</a>, <a class="el" href="a00315_source.html#l00234">Yarn.Value.operator+()</a>, <a class="el" href="a00315_source.html#l00264">Yarn.Value.operator-()</a>, <a class="el" href="a00315_source.html#l00288">Yarn.Value.operator/()</a>, and <a class="el" href="a00315_source.html#l00229">Yarn.Value.ToString()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2d5d0ec41c50c642c1d0eeeb6bb2b1c0"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string Yarn.Value.AsString</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00081">81</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00315_source.html#l00234">Yarn.Value.operator+()</a>, <a class="el" href="a00315_source.html#l00310">Yarn.Value.operator-()</a>, and <a class="el" href="a00315_source.html#l00229">Yarn.Value.ToString()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a051dd30c6cb184f1fe941a95be8781ab"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">object Yarn.Value.backingValue</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00029">29</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acb140e3466e132528409d4c441fd67da"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Yarn.Value.boolValue</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">package</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00027">27</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00313_source.html#l00726">Yarn.Parser.ValueNode.PrintTree()</a>, and <a class="el" href="a00315_source.html#l00105">Yarn.Value.Value()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae1892c1c7a8177537d1caa39a2e51da6"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Yarn.Value.numberValue</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">package</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00024">24</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00313_source.html#l00726">Yarn.Parser.ValueNode.PrintTree()</a>, and <a class="el" href="a00315_source.html#l00105">Yarn.Value.Value()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="add1b07146f1a9e4b655b33c93d07dff9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string Yarn.Value.stringValue</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">package</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00026">26</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00313_source.html#l00726">Yarn.Parser.ValueNode.PrintTree()</a>, and <a class="el" href="a00315_source.html#l00105">Yarn.Value.Value()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6d5820fafa766911b9da84d1ed33e51a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00187.html#ad5aaf60ee4504608fcc2ffadefa14884">Value.Type</a> Yarn.Value.type</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00021">21</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00315_source.html#l00171">Yarn.Value.CompareTo()</a>, <a class="el" href="a00315_source.html#l00193">Yarn.Value.Equals()</a>, <a class="el" href="a00315_source.html#l00300">Yarn.Value.operator%()</a>, <a class="el" href="a00315_source.html#l00276">Yarn.Value.operator*()</a>, <a class="el" href="a00315_source.html#l00234">Yarn.Value.operator+()</a>, <a class="el" href="a00315_source.html#l00264">Yarn.Value.operator-()</a>, <a class="el" href="a00315_source.html#l00288">Yarn.Value.operator/()</a>, <a class="el" href="a00313_source.html#l00726">Yarn.Parser.ValueNode.PrintTree()</a>, <a class="el" href="a00315_source.html#l00229">Yarn.Value.ToString()</a>, and <a class="el" href="a00315_source.html#l00105">Yarn.Value.Value()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8ee2b09b7d28eaf97bf63c74d0023bfd"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string Yarn.Value.variableName</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">package</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00315_source.html#l00025">25</a> of file <a class="el" href="a00315_source.html">Value.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00313_source.html#l00726">Yarn.Parser.ValueNode.PrintTree()</a>, and <a class="el" href="a00315_source.html#l00105">Yarn.Value.Value()</a>.</p>
+<p>Definition at line <a class="el" href="a00305_source.html#l00198">198</a> of file <a class="el" href="a00305_source.html">Analyser.cs</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="a00315_source.html">Value.cs</a></li>
+<li>YarnSpinner/<a class="el" href="a00305_source.html">Analyser.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00051.html">Yarn</a></li><li class="navelem"><a class="el" href="a00187.html">Value</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 03:19:14 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00053.html">Yarn</a></li><li class="navelem"><a class="el" href="a00372.html">Analysis</a></li><li class="navelem"><a class="el" href="a00187.html">UnusedVariableChecker</a></li>
+    <li class="footer">Generated on Mon Jul 8 2019 11:16:36 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

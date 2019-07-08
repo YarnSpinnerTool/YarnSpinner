@@ -1,0 +1,8 @@
+<map id="Yarn.Parser.Expression.Parse" name="Yarn.Parser.Expression.Parse">
+<area shape="rect" id="node2" href="$a00106.html#a17e5101d02b96d0071e7a0223e4daa3d" title="Yarn.Parser.Expression.Expression" alt="" coords="253,5,483,32"/>
+<area shape="rect" id="node3" href="$a00053.html#ae0be2e5cf13d5779816102439e61ff1a" title="Yarn.Function" alt="" coords="317,56,419,83"/>
+<area shape="rect" id="node4" href="$a00145.html#a77a9edf71f86263e1695869e69505007" title="Yarn.Parser.Operator.IsOperator" alt="" coords="531,195,741,221"/>
+<area shape="rect" id="node5" href="$a00108.html#a1ed09ff8aafa230a0d2bbc23cd6cd763" title="Yarn.FunctionInfo.IsParameter\lCountCorrect" alt="" coords="268,158,468,199"/>
+<area shape="rect" id="node6" href="$a00151.html#a666a945da1a7845b02b92592fccac291" title="Yarn.Parser.NextSymbolIs" alt="" coords="279,224,457,251"/>
+<area shape="rect" id="node7" href="$a00106.html#a5004a8eaa00b2b55856ecb4f339033fb" title="Yarn.Parser.Expression.Should\lApplyPrecedence" alt="" coords="266,275,470,317"/>
+</map>

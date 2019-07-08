@@ -1,7 +1,0 @@
-<map id="CsvHelper.CsvReader.CreateReadRecordFunc" name="CsvHelper.CsvReader.CreateReadRecordFunc">
-<area shape="rect" id="node2" href="$a00077.html#a80a053f470462225c390208e27a1132a" title="Gets the function delegate used to populate a custom class object with data from the reader..." alt="" coords="251,23,461,65"/>
-<area shape="rect" id="node6" href="$a00077.html#a0273af46a69da3ce4af8ba4d4e0c3441" title="Gets the function delegate used to populate a custom class object with data from the reader..." alt="" coords="251,89,461,130"/>
-<area shape="rect" id="node3" href="$a00077.html#a722545ede4e575795ee9a73f6ada0ac7" title="Creates the record for the given type. " alt="" coords="509,23,707,65"/>
-<area shape="rect" id="node4" href="$a00077.html#a10680de48d9c21ef1792661947f9f601" title="Gets the record. " alt="" coords="759,5,980,32"/>
-<area shape="rect" id="node5" href="$a00077.html#aaa94b8f27e410194fbaadd75f38b030e" title="Gets all the records in the CSV file and converts each to Type T. The Read method should not be used ..." alt="" coords="755,56,983,83"/>
-</map>
