@@ -48,9 +48,8 @@ The awesome [logo](Documentation/YarnSpinnerLogo.png) was made by the excellent 
 Yarn Spinner needs your help to be as awesome as it can be! You don't have to be a coder to help out - we'd love to have your help in improving our [documentation](Documentation/README.md), in spreading the word, and in finding bugs.
 
 * Our [issues page](https://github.com/thesecretlab/YarnSpinner/issues) contains a list of things we'd love your help in improving.
-* Hop into our IRC channel, which is [#yarnspinner on Freenode](https://webchat.freenode.net/?channels=yarnspinner), to chat to the team, lend a hand, or ask questions.
-* **New!** Join our discussion on Slack by requesting an invite to our [narrative game development](http://lab.to/narrativegamedev) channel.
-* **New!** Continual integration [API documentation](https://thesecretlab.github.io/YarnSpinner/html/) now available
-* **New!** Follow Yarn Spinner on Twitter: [http://twitter.com/YarnSpinnerTool](http://twitter.com/YarnSpinnerTool)
+* Join our discussion on Slack by requesting an invite to our [narrative game development](http://lab.to/narrativegamedev) channel.
+* Read our [API documentation](https://thesecretlab.github.io/YarnSpinner/html/)
+* Follow Yarn Spinner on Twitter: [http://twitter.com/YarnSpinnerTool](http://twitter.com/YarnSpinnerTool)
 
 If you want to contribute to Yarn Spinner (!!), [go read our contributor's guide!](CONTRIBUTING.md)
