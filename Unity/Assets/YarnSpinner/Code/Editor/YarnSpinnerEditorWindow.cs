@@ -28,6 +28,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Yarn.Unity {
     public class YarnSpinnerEditorWindow : EditorWindow {
@@ -73,6 +74,10 @@ namespace Yarn.Unity {
         // Current scrolling position
         Vector2 scrollPos;
 
+        // Root folder to search for json files
+        private static string jsonRootPath;
+        private static bool isJSONRootPathChosen = false;
+
         // Seconds before the progress bar appears during checking
         const float timeBeforeProgressBar = 0.1f;
 
@@ -86,7 +91,7 @@ namespace Yarn.Unity {
             diagnoses = new List<Yarn.Analysis.Diagnosis>();
 
             // Find all TextAssets
-            var list = AssetDatabase.FindAssets("t:textasset");
+            var list = AssetDatabase.FindAssets("t:textasset", new [] {jsonRootPath});
 
             foreach (var guid in list) {
 
@@ -116,8 +121,8 @@ namespace Yarn.Unity {
             this.titleContent.image = Icons.windowIcon;
 
             // Update the list of scripts known to the window
-            UpdateYarnScriptList();
-
+            if(isJSONRootPathChosen)
+                UpdateYarnScriptList();
         }
 
         void RefreshAllResults() {
@@ -255,6 +260,27 @@ namespace Yarn.Unity {
 
             using (new EditorGUILayout.VerticalScope()) {
                 EditorGUILayout.Space();
+
+                // Show list of folders
+                GUILayout.Label("Root folder for scripts - Will search recursively", EditorStyles.boldLabel);
+                GUILayout.BeginHorizontal();
+                string pathLabelTxt = isJSONRootPathChosen ? jsonRootPath : "***Select Path***";
+                GUILayout.Label(pathLabelTxt, EditorStyles.helpBox);
+                if(GUILayout.Button("Choose JSON Root Path"))
+                {
+                    string folderPath = EditorUtility.OpenFolderPanel("JSON Root Path", "", "");
+
+                    // Parse folder
+                    jsonRootPath = folderPath.Substring(Application.dataPath.ToCharArray().Length-6);                    
+                    
+                    UpdateYarnScriptList();
+                    isJSONRootPathChosen = true;                    
+                }
+                GUILayout.EndHorizontal();
+
+                // Return if no path selected
+                if (!isJSONRootPathChosen)
+                    return;
 
                 //EditorGUILayout.BeginHorizontal();
                 if (GUILayout.Button("Refresh")) {
