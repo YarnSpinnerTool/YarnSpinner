@@ -326,7 +326,7 @@ namespace Yarn {
 
             patterns[TokenType.Text] = ".*";
 
-            patterns[TokenType.Number] = @"\-?[0-9]+(\.[0-9+])?";
+            patterns[TokenType.Number] = @"\-?[0-9]+(\.[0-9]+)?";
             patterns[TokenType.String] = @"""([^""\\]*(?:\\.[^""\\]*)*)""";
             patterns[TokenType.TagMarker] = @"\#";
             patterns[TokenType.LeftParen] = @"\(";
