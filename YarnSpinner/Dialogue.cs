@@ -132,10 +132,7 @@ namespace Yarn {
 
 		internal VariableStorage continuity;
 		/// We'll ask this object for the state of variables
-        public bool experimentalMode = false;
-        // currently this is just the ANTLR compiler but it could change over time
-        // used to determine if the dialogue should use the experimental features
-
+        
         /// Represents something for the end user ("client") of the Dialogue class to do.
         public abstract class RunnerResult { }
 
@@ -149,7 +146,6 @@ namespace Yarn {
                 line.text = text;
                 this.line = line;
             }
-
         }
 
         /// The client should run a command (it's up to them to parse the string)
@@ -374,7 +370,7 @@ namespace Yarn {
                 format = NodeFormat.SingleNodeText;
             }
 
-            program = loader.Load(text, library, fileName, program, showTokens, showParseTree, onlyConsiderNode, format, this.experimentalMode);
+            program = loader.Load(text, library, fileName, program, showTokens, showParseTree, onlyConsiderNode, format);
 
         }
 

@@ -77,12 +77,9 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dialogue.cs" />
-    <Compile Include="Lexer.cs" />
     <Compile Include="Loader.cs" />
-    <Compile Include="Parser.cs" />
     <Compile Include="Library.cs" />
     <Compile Include="VirtualMachine.cs" />
-    <Compile Include="Compiler.cs" />
     <Compile Include="Value.cs" />
     <Compile Include="Analyser.cs" />
     <Compile Include="YarnSpinnerLexer.cs" />

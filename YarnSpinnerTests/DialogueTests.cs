@@ -10,22 +10,12 @@ namespace YarnSpinner.Tests
 {
 
 
-    [TestFixture(true)]
-    [TestFixture(false)]
     public class DialogueTests : TestBase
     {
-        private bool experimentalMode;
-        public DialogueTests(bool experimental)
-        {
-            this.experimentalMode = experimental;
-        }
-
 		[SetUp]
 		public new void Init()
 		{
 			base.Init();
-
-			dialogue.experimentalMode = this.experimentalMode;
 		}
 
 

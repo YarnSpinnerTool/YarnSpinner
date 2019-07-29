@@ -59,8 +59,7 @@ namespace Yarn
         [Option('o', "only-node", HelpText = "Only consider this node.")]
 
         public string onlyConsiderNode { get; set; }
-        [Option('e', "exprimental-mode", HelpText = "Use the experimental compiler, results may be inconsistent")]
-        public bool experimental { get; set; }
+        
     }
 
     [Verb("verify", HelpText = "Verifies files.")]
@@ -391,12 +390,6 @@ namespace Yarn
             // Load nodes
             var dialogue = new Dialogue(impl);
 
-            if (options.experimental)
-            {
-                Warn("Running YarnSpinner in experimental mode may have unexpected behaviour.");
-                dialogue.experimentalMode = true;
-            }
-
             // Add some methods for testing
             dialogue.library.RegisterFunction("add_three_operands", 3, delegate (Value[] parameters)
             {
@@ -475,10 +468,6 @@ namespace Yarn
                 try
                 {
                     dialogue.LoadFile(file, false, false, options.onlyConsiderNode);
-                }
-                catch (Yarn.TokeniserException e)
-                {
-                    Warn(e.Message);
                 }
                 catch (Yarn.ParseException e)
                 {

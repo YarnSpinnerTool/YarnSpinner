@@ -8,8 +8,105 @@ using System.Globalization;
 
 namespace Yarn
 {
+    internal enum TokenType {
+
+
+        // Special tokens
+        Whitespace,
+        Indent,
+        Dedent,
+        EndOfLine,
+        EndOfInput,
+
+        // Numbers. Everybody loves a number
+        Number,
+
+        // Strings. Everybody also loves a string
+        String,
+
+        // '#'
+        TagMarker,
+
+        // Command syntax ("<<foo>>")
+        BeginCommand,
+        EndCommand,
+
+        // Variables ("$foo")
+        Variable,
+
+        // Shortcut syntax ("->")
+        ShortcutOption,
+
+        // Option syntax ("[[Let's go here|Destination]]")
+        OptionStart, // [[
+        OptionDelimit, // |
+        OptionEnd, // ]]
+
+        // Command types (specially recognised command word)
+        If,
+        ElseIf,
+        Else,
+        EndIf,
+        Set,
+
+        // Boolean values
+        True,
+        False,
+
+        // The null value
+        Null,
+
+        // Parentheses
+        LeftParen,
+        RightParen,
+
+        // Parameter delimiters
+        Comma,
+
+        // Operators
+        EqualTo, // ==, eq, is
+        GreaterThan, // >, gt
+        GreaterThanOrEqualTo, // >=, gte
+        LessThan, // <, lt
+        LessThanOrEqualTo, // <=, lte
+        NotEqualTo, // !=, neq
+
+        // Logical operators
+        Or, // ||, or
+        And, // &&, and
+        Xor, // ^, xor
+        Not, // !, not
+
+        // this guy's special because '=' can mean either 'equal to'
+        // or 'becomes' depending on context
+        EqualToOrAssign, // =, to
+
+        UnaryMinus, // -; this is differentiated from Minus
+                    // when parsing expressions
+
+        Add, // +
+        Minus, // -
+        Multiply, // *
+        Divide, // /
+        Modulo, // %
+
+        AddAssign, // +=
+        MinusAssign, // -=
+        MultiplyAssign, // *=
+        DivideAssign, // /=
+
+        Comment, // a run of text that we ignore
+
+        Identifier, // a single word (used for functions)
+
+        Text // a run of text until we hit other syntax
+    }
+    
     public class AntlrCompiler : YarnSpinnerParserBaseListener
     {
+
+        
+
         internal struct CompileFlags
         {
             // should we emit code that turns (VAR_SHUFFLE_OPTIONS) off
