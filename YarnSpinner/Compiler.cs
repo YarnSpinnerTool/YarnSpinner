@@ -102,7 +102,7 @@ namespace Yarn
         Text // a run of text until we hit other syntax
     }
     
-    public class AntlrCompiler : YarnSpinnerParserBaseListener
+    public class Compiler : YarnSpinnerParserBaseListener
     {
 
         
@@ -128,7 +128,7 @@ namespace Yarn
         // or just dump the entire node body as raw text
         internal bool rawTextNode = false;
 
-        internal AntlrCompiler(Library library)
+        internal Compiler(Library library)
         {
             program = new Program();
             this.library = library;
@@ -348,9 +348,9 @@ namespace Yarn
     // might be worth later investigating returning Instructions
     public class BodyVisitor : YarnSpinnerParserBaseVisitor<int>
     {
-        internal AntlrCompiler compiler;
+        internal Compiler compiler;
 
-        public BodyVisitor(AntlrCompiler compiler)
+        public BodyVisitor(Compiler compiler)
         {
             this.compiler = compiler;
             this.loadOperators();

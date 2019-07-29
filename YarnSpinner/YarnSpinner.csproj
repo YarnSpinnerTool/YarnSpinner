@@ -83,7 +83,7 @@
     <Compile Include="Value.cs" />
     <Compile Include="Analyser.cs" />
     <Compile Include="YarnSpinnerLexer.cs" />
-    <Compile Include="AntlrCompiler.cs" />
+    <Compile Include="Compiler.cs" />
     <Compile Include="YarnSpinnerParser.cs" />
     <Compile Include="YarnSpinnerParserBaseListener.cs" />
     <Compile Include="YarnSpinnerParserBaseVisitor.cs" />

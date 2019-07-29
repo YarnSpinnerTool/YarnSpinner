@@ -231,16 +231,16 @@ namespace Yarn {
             parser.AddErrorListener(ErrorListener.Instance);
 
             IParseTree tree = parser.dialogue();
-            AntlrCompiler antlrcompiler = new AntlrCompiler(library);
-            antlrcompiler.Compile(tree);
+            Compiler compiler = new Compiler(library);
+            compiler.Compile(tree);
 
             // merging in the other program if requested
             if (includeProgram != null)
             {
-                antlrcompiler.program.Include(includeProgram);
+                compiler.program.Include(includeProgram);
             }
 
-            return antlrcompiler.program;
+            return compiler.program;
         }
 
         // The raw text of the Yarn node, plus metadata
