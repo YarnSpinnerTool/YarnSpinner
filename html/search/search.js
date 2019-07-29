@@ -12,7 +12,7 @@ var indexSectionsWithContent =
   2: "cpsy",
   3: "abcdefgilmnprstuvy",
   4: "abcdefghilmnoprstuvwy",
-  5: "_abcdefghilmnopqrstuvw",
+  5: "_abcdefghijlmnopqrstuvw",
   6: "dip",
   7: "abcenst",
   8: "abcdefgijlmnoprstuvwx",

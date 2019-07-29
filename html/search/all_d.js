@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['name',['Name',['../a00072.html#a0d503e7dfdefa7334f5d04878c37316e',1,'CsvHelper.Configuration.CsvPropertyMap.Name()'],['../a00091.html#a609feaa53936e7dc42248ff2ba68454a',1,'ExampleVariableStorage.DefaultVariable.name()'],['../a00165.html#a3f5bca2fff413dfe075c1fcf7e58369c',1,'Yarn.Unity.Example.SpriteSwitcher.SpriteInfo.name()'],['../a00130.html#aeb8debd0d81a76e90f083f0bf407573e',1,'Yarn.Lexer.LexerState.name()'],['../a00108.html#adb38e83e3c1597b553aeff14bef5bfcb',1,'Yarn.FunctionInfo.name()'],['../a00140.html#a3cfa07840da3a7a92c820788e902aefb',1,'Yarn.Parser.Node.name()'],['../a00053.html#a107b0de3fcfc65e99913edc01b5ce9db',1,'Yarn.Node.name()']]],
+  ['name',['name',['../a00091.html#a609feaa53936e7dc42248ff2ba68454a',1,'ExampleVariableStorage.DefaultVariable.name()'],['../a00165.html#a3f5bca2fff413dfe075c1fcf7e58369c',1,'Yarn.Unity.Example.SpriteSwitcher.SpriteInfo.name()'],['../a00130.html#aeb8debd0d81a76e90f083f0bf407573e',1,'Yarn.Lexer.LexerState.name()'],['../a00108.html#adb38e83e3c1597b553aeff14bef5bfcb',1,'Yarn.FunctionInfo.name()'],['../a00140.html#a3cfa07840da3a7a92c820788e902aefb',1,'Yarn.Parser.Node.name()'],['../a00053.html#a107b0de3fcfc65e99913edc01b5ce9db',1,'Yarn.Node.name()'],['../a00072.html#a0d503e7dfdefa7334f5d04878c37316e',1,'CsvHelper.Configuration.CsvPropertyMap.Name()']]],
   ['namedindexes',['namedIndexes',['../a00079.html#a3114f49bd2b3c4966f4b15a310747aeb',1,'CsvHelper::CsvReader']]],
   ['nameindex',['NameIndex',['../a00075.html#acf816322908241de17cad1d9a66add43',1,'CsvHelper.Configuration.CsvPropertyMapData.NameIndex()'],['../a00072.html#a2d6191df96c55bf3d044b31581e2a9b3',1,'CsvHelper.Configuration.CsvPropertyMap.NameIndex()']]],
   ['names',['names',['../a00075.html#acb636e590836496473e867897ab79d97',1,'CsvHelper.Configuration.CsvPropertyMapData.names()'],['../a00076.html#a41eb6804d8afe8d674e64d71f66962ce',1,'CsvHelper.Configuration.CsvPropertyNameCollection.names()'],['../a00075.html#ad37a07fbc2781cdb1dce5cb6fcf953d9',1,'CsvHelper.Configuration.CsvPropertyMapData.Names()'],['../a00076.html#a1aa06a47337f6ab576b23fe63854dcbe',1,'CsvHelper.Configuration.CsvPropertyNameCollection.Names()']]],
@@ -16,7 +16,7 @@ var searchData=
   ['node',['Node',['../a00140.html#ae0562dc06ca747307b66039ef2f28772',1,'Yarn::Parser::Node']]],
   ['node',['Node',['../a00140.html',1,'Yarn::Parser']]],
   ['nodecomplete',['NodeComplete',['../a00097.html#a2900548a0704d39d4502a153945f4bef',1,'Yarn::Unity::DialogueUIBehaviour']]],
-  ['nodecompletehandler',['NodeCompleteHandler',['../a00164.html#a5bf3aa51578847c18191fec665a840f9',1,'Yarn.VirtualMachine.NodeCompleteHandler(Dialogue.NodeCompleteResult complete)'],['../a00164.html#a5129c63e67e2d4e2780d86b8351320a2',1,'Yarn.VirtualMachine.nodeCompleteHandler()']]],
+  ['nodecompletehandler',['nodeCompleteHandler',['../a00164.html#a5129c63e67e2d4e2780d86b8351320a2',1,'Yarn.VirtualMachine.nodeCompleteHandler()'],['../a00164.html#a5bf3aa51578847c18191fec665a840f9',1,'Yarn.VirtualMachine.NodeCompleteHandler(Dialogue.NodeCompleteResult complete)']]],
   ['nodecompleteresult',['NodeCompleteResult',['../a00141.html#a88c81469a69987c05aa92780c5a5c1f9',1,'Yarn::Dialogue::NodeCompleteResult']]],
   ['nodecompleteresult',['NodeCompleteResult',['../a00141.html',1,'Yarn::Dialogue']]],
   ['nodeexists',['NodeExists',['../a00095.html#aadf7711b9ba101d6ce8ba491d9c5a4c3',1,'Yarn.Unity.DialogueRunner.NodeExists()'],['../a00094.html#a93bb76a1f9a4058f225ff4cee97483c6',1,'Yarn.Dialogue.NodeExists()']]],
@@ -34,7 +34,7 @@ var searchData=
   ['nottestedicon',['notTestedIcon',['../a00113.html#ab8afce565cd2ad1543d1e32e7e589e77',1,'Yarn::Unity::Icons']]],
   ['npc',['NPC',['../a00143.html',1,'Yarn::Unity::Example']]],
   ['npc_2ecs',['NPC.cs',['../a00302.html',1,'']]],
-  ['null',['NULL',['../a00189.html#a1ed2964965baca8621c45efa23f37660',1,'Yarn.Value.NULL()'],['../a00189.html#ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94',1,'Yarn.Value.Null()'],['../a00053.html#a301aa7c866593a5b625a8fc158bbeaceabbb93ef26e3c101ff11cdd21cab08a94',1,'Yarn.Null()']]],
+  ['null',['Null',['../a00189.html#ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94',1,'Yarn.Value.Null()'],['../a00189.html#a1ed2964965baca8621c45efa23f37660',1,'Yarn.Value.NULL()'],['../a00053.html#a301aa7c866593a5b625a8fc158bbeaceabbb93ef26e3c101ff11cdd21cab08a94',1,'Yarn.Null()']]],
   ['nullableconverter',['NullableConverter',['../a00144.html',1,'CsvHelper::TypeConversion']]],
   ['nullableconverter',['NullableConverter',['../a00144.html#af18c9435dee98900eb8ade933c62951d',1,'CsvHelper::TypeConversion::NullableConverter']]],
   ['nullableconverter_2ecs',['NullableConverter.cs',['../a00279.html',1,'']]],

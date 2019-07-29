@@ -2203,6 +2203,8 @@
     <member refid="a00188_1a25c92cbfdd09661a96714d05b14af886" kind="variable"><name>diagnoses</name></member>
     <member refid="a00188_1a2d9b9702b0980af9d4202aebd440124b" kind="variable"><name>scrollPos</name></member>
     <member refid="a00188_1a62a14b3fbaf2da41154ebad0eb7b6d3f" kind="variable"><name>timeBeforeProgressBar</name></member>
+    <member refid="a00188_1a7599a00e246791ee46a5c549a05975f3" kind="variable"><name>jsonRootPath</name></member>
+    <member refid="a00188_1a85f1c10b20b04052269b0ee2fb71c5af" kind="variable"><name>isJSONRootPathChosen</name></member>
     <member refid="a00188_1a406febf62d77eaabc235f6316e537345" kind="function"><name>UpdateYarnScriptList</name></member>
     <member refid="a00188_1aeba1f39189758bd91bdce298e8859947" kind="function"><name>OnEnable</name></member>
     <member refid="a00188_1ae4faac1a6b0cc9710b20267dc4b88995" kind="function"><name>RefreshAllResults</name></member>

@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="488" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="488" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="514" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="514" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="a00092_1a61605b2d0a17dfdf9c62952270d44fbd" prot="public" static="no" mutable="no">
         <type>string</type>
@@ -27,7 +27,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="489" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="489" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="515" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="515" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="a00092_1ac23509be7ae6b43a3e2154dd430954a7" prot="public" static="no" mutable="no">
         <type>string</type>
@@ -40,7 +40,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="490" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="490" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="516" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="516" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="492" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="492" bodyend="497"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="518" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="518" bodyend="523"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -86,7 +86,7 @@
         <label>System</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="487" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="487" bodyend="499"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="513" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="513" bodyend="525"/>
     <listofallmembers>
       <member refid="a00092_1ae80171841e97a48611c51a9a574a2fc0" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>Deprecation</name></member>
       <member refid="a00092_1a61605b2d0a17dfdf9c62952270d44fbd" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>methodName</name></member>

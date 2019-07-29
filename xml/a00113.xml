@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="561" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="561" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="587" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="587" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="a00113_1a75ef0bcf3f5968f11949e6bfa4fdddd5" prot="private" static="yes" mutable="no">
         <type>Texture</type>
@@ -27,7 +27,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="571" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="571" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="597" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="597" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="a00113_1a497c5dcdfef75245a24c295f523fb7f7" prot="private" static="yes" mutable="no">
         <type>Texture</type>
@@ -40,7 +40,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="581" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="581" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="607" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="607" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="a00113_1abba8fef6cc12836ea431a8a7c9e2f3db" prot="private" static="yes" mutable="no">
         <type>Texture</type>
@@ -53,7 +53,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="591" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="591" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="617" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="617" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="property">
@@ -68,7 +68,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="562" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="562" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="588" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="588" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="a00113_1aae7cc0e5016db04a90b2aa0e80957626" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
         <type>Texture</type>
@@ -81,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="572" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="572" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="598" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="598" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="a00113_1ab8afce565cd2ad1543d1e32e7e589e77" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
         <type>Texture</type>
@@ -94,7 +94,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="582" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="582" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="608" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="608" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="a00113_1aa78ab016ad041bc36850c8b20ba63972" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
         <type>Texture</type>
@@ -107,7 +107,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="592" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="592" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="618" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="618" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-static-func">
@@ -126,7 +126,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="552" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="552" bodyend="559"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="578" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="578" bodyend="585"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -139,7 +139,7 @@
         <link refid="a00113"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="550" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="550" bodyend="600"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="576" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="576" bodyend="626"/>
     <listofallmembers>
       <member refid="a00113_1a75ef0bcf3f5968f11949e6bfa4fdddd5" prot="private" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>_failedIcon</name></member>
       <member refid="a00113_1a497c5dcdfef75245a24c295f523fb7f7" prot="private" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>_notTestedIcon</name></member>

@@ -57,6 +57,7 @@ var searchData=
   ['isgenerictype',['IsGenericType',['../a00183.html#a6a532f6a581b3280d1837fc242f314af',1,'System::Reflection::TypeInfo']]],
   ['isheadercasesensitive',['isHeaderCaseSensitive',['../a00065.html#a71902bcac3d0ed9fdb1d53eb7f97867e',1,'CsvHelper.Configuration.CsvConfiguration.isHeaderCaseSensitive()'],['../a00065.html#aeee80e98871bbc6fe74b87be1c616a8d',1,'CsvHelper.Configuration.CsvConfiguration.IsHeaderCaseSensitive()']]],
   ['isindexset',['IsIndexSet',['../a00075.html#a6af03961e4cab7536aca530902fe4e43',1,'CsvHelper::Configuration::CsvPropertyMapData']]],
+  ['isjsonrootpathchosen',['isJSONRootPathChosen',['../a00188.html#a85f1c10b20b04052269b0ee2fb71c5af',1,'Yarn::Unity::YarnSpinnerEditorWindow']]],
   ['isnameset',['IsNameSet',['../a00075.html#a4edc08c491e692d4b187c4e436a0a216',1,'CsvHelper::Configuration::CsvPropertyMapData']]],
   ['isnullorwhitespace',['IsNullOrWhiteSpace',['../a00170.html#a40c715a7ebf19c7053c7b10f2b3df80f',1,'CsvHelper::StringHelper']]],
   ['isoperator',['IsOperator',['../a00145.html#a77a9edf71f86263e1695869e69505007',1,'Yarn::Parser::Operator']]],

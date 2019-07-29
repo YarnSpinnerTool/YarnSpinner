@@ -19,6 +19,8 @@ var a00188 =
     [ "ValidateFile", "a00188.html#a6f2bf42b228ea29c6477e369226db8b6", null ],
     [ "checkResults", "a00188.html#aa85ab7bd194e5425b991b9c216d4d10e", null ],
     [ "diagnoses", "a00188.html#a25c92cbfdd09661a96714d05b14af886", null ],
+    [ "isJSONRootPathChosen", "a00188.html#a85f1c10b20b04052269b0ee2fb71c5af", null ],
+    [ "jsonRootPath", "a00188.html#a7599a00e246791ee46a5c549a05975f3", null ],
     [ "scrollPos", "a00188.html#a2d9b9702b0980af9d4202aebd440124b", null ],
     [ "timeBeforeProgressBar", "a00188.html#a62a14b3fbaf2da41154ebad0eb7b6d3f", null ]
 ];
