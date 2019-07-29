@@ -585,7 +585,7 @@ namespace Yarn
         // -expression
         public override int VisitExpNegative(YarnSpinnerParser.ExpNegativeContext context)
         {
-            int expression = Visit(context.expression());
+            Visit(context.expression());
 
             // TODO: temp operator call
             compiler.Emit(ByteCode.CallFunc, TokenType.UnaryMinus.ToString());
