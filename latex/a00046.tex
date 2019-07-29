@@ -967,7 +967,7 @@ Definition at line 586 of file Antlr\-Compiler.\-cs.
 
 \begin{DoxyCode}
 587         \{
-588             \textcolor{keywordtype}{int} expression = Visit(context.expression());
+588             Visit(context.expression());
 589 
 590             \textcolor{comment}{// TODO: temp operator call}
 591             compiler.Emit(ByteCode.CallFunc, TokenType.UnaryMinus.ToString());

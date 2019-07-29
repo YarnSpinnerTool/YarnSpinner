@@ -1314,7 +1314,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="a00306_source.html#l00586">586</a> of file <a class="el" href="a00306_source.html">AntlrCompiler.cs</a>.</p>
 <div class="fragment"><div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;        {</div>
-<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;            <span class="keywordtype">int</span> expression = Visit(context.expression());</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;            Visit(context.expression());</div>
 <div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;</div>
 <div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;            <span class="comment">// TODO: temp operator call</span></div>
 <div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;            compiler.Emit(ByteCode.CallFunc, TokenType.UnaryMinus.ToString());</div>
@@ -2914,7 +2914,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="a00053.html">Yarn</a></li><li class="navelem"><a class="el" href="a00046.html">BodyVisitor</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 08:12:55 for YarnSpinner by
+    <li class="footer">Generated on Mon Jul 29 2019 08:15:00 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
