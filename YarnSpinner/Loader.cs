@@ -29,7 +29,6 @@ SOFTWARE.
 
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
@@ -45,8 +44,6 @@ namespace Yarn {
         Unknown, // an unknown type
 
         SingleNodeText, // a plain text file containing a single node with no metadata
-
-        JSON, // a JSON file containing multiple nodes with metadata
 
         Text, //  a text file containing multiple nodes with metadata
 
@@ -245,7 +242,6 @@ namespace Yarn {
 
         // The raw text of the Yarn node, plus metadata
         // All properties are serialised except tagsList, which is a derived property
-        [JsonObject(MemberSerialization.OptOut)]
         public struct NodeInfo {
             public struct Position {
                 public int x { get; set; }
@@ -263,7 +259,6 @@ namespace Yarn {
             public Position position { get; set; }
 
             // The tags for this node, as a list of individual strings.
-            [JsonIgnore]
             public List<string> tagsList
             {
                 get
@@ -282,11 +277,7 @@ namespace Yarn {
         internal static NodeFormat GetFormatFromFileName(string fileName)
         {
             NodeFormat format;
-            if (fileName.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
-            {
-                format = NodeFormat.JSON;
-            }
-            else if (fileName.EndsWith(".yarn.txt", StringComparison.OrdinalIgnoreCase))
+            if (fileName.EndsWith(".yarn.txt", StringComparison.OrdinalIgnoreCase))
             {
                 format = NodeFormat.Text;
             }
@@ -316,19 +307,7 @@ namespace Yarn {
                     nodeInfo.title = "Start";
                     nodeInfo.body = text;
                     nodes.Add(nodeInfo);
-                    break;
-                case NodeFormat.JSON:
-                    // Parse it as JSON
-                    try
-                    {
-                        nodes = JsonConvert.DeserializeObject<List<NodeInfo>>(text);
-                    }
-                    catch (JsonReaderException e)
-                    {
-                        dialogue.LogErrorMessage("Error parsing Yarn input: " + e.Message);
-                    }
-
-                    break;
+                    break;                
                 case NodeFormat.Text:
 
                     // check for the existence of at least one "---"+newline sentinel, which divides

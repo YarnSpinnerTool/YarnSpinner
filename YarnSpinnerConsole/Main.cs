@@ -127,9 +127,6 @@ namespace Yarn
     [Verb("convert", HelpText = "Converts files from one format to another.")]
     class ConvertFormatOptions : BaseOptions
     {
-        [Option("json", HelpText = "Convert to JSON", SetName = "format")]
-        public bool convertToJSON { get; set; }
-
         [Option("yarn", HelpText = "Convert to Yarn", SetName = "format")]
         public bool convertToYarn { get; set; }
 
@@ -257,7 +254,6 @@ namespace Yarn
             var returnCode = results.MapResult(
                 (RunOptions options) => Run(options),
                 (VerifyOptions options) => Verify(options),
-                (CompileOptions options) => ProgramExporter.Export(options),
                 (AddLabelsOptions options) => LineAdder.AddLines(options),
                 (GenerateTableOptions options) => TableGenerator.GenerateTables(options),
                 (ConvertFormatOptions options) => FileFormatConverter.ConvertFormat(options),
@@ -269,7 +265,7 @@ namespace Yarn
 
         }
 
-        static internal List<string> ALLOWED_EXTENSIONS = new List<string>(new string[] { ".json", ".node", ".yarn.bytes", ".yarn.txt" });
+        static internal List<string> ALLOWED_EXTENSIONS = new List<string>(new string[] {  ".node", ".yarn.bytes", ".yarn.txt" });
 
         static int Run(RunOptions options)
         {

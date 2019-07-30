@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Yarn;
-using Newtonsoft.Json;
 using System.Globalization;
 
 namespace Yarn
@@ -31,8 +30,6 @@ namespace Yarn
 
                 switch (fileFormat)
                 {
-                    case NodeFormat.JSON:
-                        break;
                     case NodeFormat.Text:
                         break;
                     default:
@@ -185,8 +182,6 @@ namespace Yarn
 
                 switch (format)
                 {
-                    case NodeFormat.JSON:
-                        break;
                     case NodeFormat.Text:
                         break;
                     default:

@@ -291,57 +291,11 @@ namespace Yarn {
         public void LoadCompiledProgram(byte[] bytes, string fileName, CompiledFormat format = LATEST_FORMAT)
         {
 
-            if (LogDebugMessage == null)
-            {
-                throw new YarnException("LogDebugMessage must be set before loading");
-            }
-
-            if (LogErrorMessage == null)
-            {
-                throw new YarnException("LogErrorMessage must be set before loading");
-            }
-
-            switch (format)
-            {
-                case CompiledFormat.V1:
-                    LoadCompiledProgramV1(bytes);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
+            throw new NotImplementedException("Loading compiled programs is not currently implemented.");
+            
         }
 
-        private void LoadCompiledProgramV1(byte[] bytes)
-        {
-            using (var stream = new System.IO.MemoryStream(bytes))
-            {
-                using (var reader = new Newtonsoft.Json.Bson.BsonReader(stream))
-                {
-                    var serializer = new Newtonsoft.Json.JsonSerializer();
-
-                    try
-                    {
-                        // Load the stored program
-                        var newProgram = serializer.Deserialize<Program>(reader);
-
-                        // Merge it with our existing one, if present
-                        if (program != null)
-                        {
-                            program.Include(newProgram);
-                        }
-                        else {
-                            program = newProgram;
-                        }
-                    }
-                    catch (Newtonsoft.Json.JsonReaderException e)
-                    {
-                        LogErrorMessage(string.Format(CultureInfo.CurrentCulture, "Cannot load compiled program: {0}", e.Message));
-                    }
-                }
-            }
-        }
-
+        
         /// Ask the loader to parse a string.
         /** Returns the number of nodes that were loaded.
          */
@@ -360,8 +314,11 @@ namespace Yarn {
             NodeFormat format;
 
             if (text.StartsWith("[", StringComparison.Ordinal)) {
-                // starts with a {? this is probably a JSON array
-                format = NodeFormat.JSON;
+                // starts with a [? this is probably a JSON array, in which
+                // case we need to reject this.
+
+                throw new YarnException("This input appears to be a JSON file. Support for loading JSON was removed in version 1.0; please re-save your document as a Yarn text file.");
+                
             } else if (text.Contains("---")) {
                 // contains a --- delimiter? probably multi node text
                 format = NodeFormat.Text;
@@ -551,33 +508,7 @@ namespace Yarn {
         }
 
         public const CompiledFormat LATEST_FORMAT = CompiledFormat.V1;
-
-        public byte[] GetCompiledProgram(CompiledFormat format = LATEST_FORMAT)
-        {
-
-            switch (format)
-            {
-                case CompiledFormat.V1:
-                    return GetCompiledProgramV1();
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        private byte[] GetCompiledProgramV1()
-        {
-            using (var outputStream = new System.IO.MemoryStream())
-            {
-                using (var bsonWriter = new Newtonsoft.Json.Bson.BsonWriter(outputStream))
-                {
-                    var s = new Newtonsoft.Json.JsonSerializer();
-                    s.Serialize(bsonWriter, this.program);
-                }
-
-                return outputStream.ToArray();
-            }
-        }
-
+        
         /// Unloads ALL nodes.
         public void UnloadAll(bool clearVisitedNodes = true) {
             if (clearVisitedNodes)
