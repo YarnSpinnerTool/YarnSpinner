@@ -102,7 +102,8 @@ BODY_GOBBLE : . -> more, pushMode(Text);
 // is zero or more as it will always have the first symbol passed by BODY_GOBBLE
 mode Text;
 
-TEXT : ~('\n'|'\u0007'|'\u000B'|'#')* -> popMode;
+TEXT : ~('\n'|'\u0007'|'\u000B'|'#')* ;
+TEXT_NEWLINE : '\n' -> skip, popMode ;
 
 // ----------------------
 // Shortcut mode

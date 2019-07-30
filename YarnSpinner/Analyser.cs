@@ -143,11 +143,7 @@ namespace Yarn.Analysis
         }
 
     }
-
-    internal abstract class ASTAnalyser{
-        public abstract IEnumerable<Diagnosis> Diagnose (Yarn.Parser.Node node);
-    }
-
+    
     internal abstract class CompiledProgramAnalyser {
         public abstract void Diagnose (Yarn.Program program);
         public abstract IEnumerable<Diagnosis> GatherDiagnoses();

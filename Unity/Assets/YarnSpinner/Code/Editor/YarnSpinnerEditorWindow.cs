@@ -97,7 +97,7 @@ namespace Yarn.Unity {
 
                 // Filter the list to only include .json files
                 var path = AssetDatabase.GUIDToAssetPath(guid);
-                if (path.EndsWith(".json")) {
+                if (path.EndsWith(".yarn.txt")) {
                     var asset = AssetDatabase.LoadAssetAtPath<TextAsset>(path);
 
                     var newResult = new CheckerResult(asset);
@@ -166,96 +166,6 @@ namespace Yarn.Unity {
             }
         }
 
-        void CompileAllScripts() {
-            // Start compiling all scripts.
-
-            // First, record when we started - we need
-            // to know if it's time to show a progress
-            // dialogue
-            var startTime = EditorApplication.timeSinceStartup;
-
-            // Have we presented a progress bar?
-            var progressBarVisible = false;
-
-            // Start compiling all files; the delegate will be called
-            // after each file has been compiled
-
-            int complete = 0;
-            int total = checkResults.Count;
-
-
-            AssetDatabase.StartAssetEditing();
-
-            foreach (var entry in checkResults) {
-
-                // How long have we been at this?
-                var timeSinceStart = EditorApplication.timeSinceStartup - startTime;
-
-                // If longer than 'timeBeforeProgressBar', show the progress bar
-                if (timeSinceStart > timeBeforeProgressBar) {
-
-                    // Figure out how much of the progress bar should be filled
-                    var progress = (float)complete / (float)total;
-
-                    // Describe what we're doing
-                    var info = string.Format("Compiling file {0} of {1}...", complete, total);
-
-                    // Display or update the bar
-                    EditorUtility.DisplayProgressBar("Compiling Yarn Files", info, progress);
-
-                    // Record that we need to clear this bar
-                    progressBarVisible = true;
-                }
-
-                var variableStorage = new Yarn.MemoryVariableStore();
-
-                var dialog = new Dialogue(variableStorage);
-
-                bool failed = false;
-
-                dialog.LogErrorMessage = delegate (string message) {
-                    Debug.LogErrorFormat("Error when compiling: {0}", message);
-
-                    failed = true;
-                };
-
-                dialog.LogDebugMessage = delegate (string message) {
-                    Debug.LogFormat("{0}", message);
-                };
-
-                try {
-                    dialog.LoadString(entry.script.text,entry.script.name);
-                } catch (System.Exception e) {
-                    dialog.LogErrorMessage(e.Message);
-                    break;
-                }
-
-                if (failed) {
-                    Debug.LogErrorFormat("Failed to compile script {0}; stopping", entry.script.name);
-                    break;
-                }
-
-                // Figure out where this will go
-                var path = AssetDatabase.GetAssetPath(entry.script);
-
-                path = System.IO.Path.ChangeExtension(path, "yarn.bytes");
-
-                var bytes = dialog.GetCompiledProgram();
-
-                System.IO.File.WriteAllBytes(path, bytes);
-
-                complete++;
-
-            }
-
-            // All done. Get rid of the progress bar if needed.
-            if (progressBarVisible) {
-                EditorUtility.ClearProgressBar();
-            }
-
-            AssetDatabase.StopAssetEditing();
-        }
-
         void OnGUI() {
 
             using (new EditorGUILayout.VerticalScope()) {
@@ -266,9 +176,9 @@ namespace Yarn.Unity {
                 GUILayout.BeginHorizontal();
                 string pathLabelTxt = isJSONRootPathChosen ? jsonRootPath : "***Select Path***";
                 GUILayout.Label(pathLabelTxt, EditorStyles.helpBox);
-                if(GUILayout.Button("Choose JSON Root Path"))
+                if(GUILayout.Button("Choose Yarn Script Root Path"))
                 {
-                    string folderPath = EditorUtility.OpenFolderPanel("JSON Root Path", "", "");
+                    string folderPath = EditorUtility.OpenFolderPanel("Yarn Script Root Path", "", "");
 
                     // Parse folder
                     jsonRootPath = folderPath.Substring(Application.dataPath.ToCharArray().Length-6);                    
@@ -286,19 +196,7 @@ namespace Yarn.Unity {
                 if (GUILayout.Button("Refresh")) {
                     RefreshAllResults();
                 }
-
-                var canCompile = checkResults.TrueForAll(item => item.state == CheckerResult.State.Passed);
-                using (new EditorGUI.DisabledGroupScope(canCompile == false)) {
-                    if (GUILayout.Button("Compile All")) {
-                        CompileAllScripts();
-                    }
-                }
-
-                if (canCompile == false) {
-                    EditorGUILayout.HelpBox("All scripts must be valid in order to " +
-                        "compile. Click Refresh to check them again.", MessageType.Info);
-                }
-
+                
                 EditorGUILayout.Space();
 
                 using (var scroll = new EditorGUILayout.ScrollViewScope(scrollPos)) {

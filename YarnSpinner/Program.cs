@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using System.Runtime.Serialization;
 using System.Globalization;
 
@@ -12,41 +11,6 @@ namespace Yarn
 	{
 
 		internal int lineNumber = 0;
-
-		internal static ParseException Make(Token foundToken, params TokenType[] expectedTypes)
-		{
-
-			var lineNumber = foundToken.lineNumber + 1;
-
-			var expectedTypeNames = new List<String>();
-			foreach (var type in expectedTypes)
-			{
-				expectedTypeNames.Add(type.ToString());
-			}
-
-			string possibleValues = string.Join(",", expectedTypeNames.ToArray());
-			string message = string.Format(CultureInfo.CurrentCulture, "Line {0}:{1}: Expected {2}, but found {3}",
-										   lineNumber,
-										   foundToken.columnNumber,
-										   possibleValues,
-										   foundToken.type.ToString()
-										   );
-			var e = new ParseException(message);
-			e.lineNumber = lineNumber;
-			return e;
-		}
-
-		internal static ParseException Make(Token mostRecentToken, string message)
-		{
-			var lineNumber = mostRecentToken.lineNumber + 1;
-			string theMessage = string.Format(CultureInfo.CurrentCulture, "Line {0}:{1}: {2}",
-								 lineNumber,
-								mostRecentToken.columnNumber,
-								 message);
-			var e = new ParseException(theMessage);
-			e.lineNumber = lineNumber;
-			return e;
-		}
 
         internal static ParseException Make(Antlr4.Runtime.ParserRuleContext context, string message)
         {
@@ -80,14 +44,12 @@ namespace Yarn
 		}
 	}
 
-	[JsonObject(MemberSerialization.OptIn)] // properties must opt-in to JSON serialization
 	internal class Program
 	{
 
 		internal Dictionary<string, string> strings = new Dictionary<string, string>();
 		internal Dictionary<string, LineInfo> lineInfo = new Dictionary<string, LineInfo>();
 
-		[JsonProperty]
 		internal Dictionary<string, Node> nodes = new Dictionary<string, Node>();
 
 		// When saving programs, we want to save only lines that do NOT have a line: key.
@@ -98,7 +60,6 @@ namespace Yarn
 		// We do this by NOT including the main strings list, and providing a property
 		// that gets serialised as "strings" in the output, which includes all untagged strings.
 
-		[JsonProperty("strings")]
 		internal Dictionary<string, string> untaggedStrings
 		{
 			get

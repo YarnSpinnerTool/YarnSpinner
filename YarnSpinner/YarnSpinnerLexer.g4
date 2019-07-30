@@ -93,7 +93,9 @@ OPTION_ENTER : '[[' -> pushMode(Option) ;
 
 HASHTAG : '#' TEXT ;
 
+
 BODY_GOBBLE : . -> more, pushMode(Text);
+
 
 // ----------------------
 // Text mode
@@ -101,6 +103,9 @@ BODY_GOBBLE : . -> more, pushMode(Text);
 // goes until it hits a hashtag, or an indent/dedent and then pops
 // is zero or more as it will always have the first symbol passed by BODY_GOBBLE
 mode Text;
+
+// TEXT_BLOCK_START : '{' ;
+// TEXT_BLOCK_END : '}' ;
 
 TEXT : ~('\n'|'\u0007'|'\u000B'|'#')* -> popMode;
 
@@ -113,7 +118,7 @@ mode Shortcuts;
 // these 3 commented out bits work but use a semantic predicate
 fragment CHEVRON : '<' ~('<'|'#'|'\n'|'\u0007'|'\u000B') ;
 fragment PARTIAL : (~('<'|'#'|'\n'|'\u0007'|'\u000B') | CHEVRON)+ ;
-SHORTCUT_TEXT : (PARTIAL | PARTIAL* '<' {_input.LA(1) != '<'}?) -> popMode ;
+SHORTCUT_TEXT : (PARTIAL | PARTIAL* '<' {InputStream.LA(1) != '<'}?) -> popMode ;
 
 // this is the bit I am trying to get working based on what was said on SO
 //SHORTCUT_TEXT : CHAR+ -> popMode;

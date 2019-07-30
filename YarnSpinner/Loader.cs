@@ -29,7 +29,6 @@ SOFTWARE.
 
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
@@ -46,8 +45,6 @@ namespace Yarn {
 
         SingleNodeText, // a plain text file containing a single node with no metadata
 
-        JSON, // a JSON file containing multiple nodes with metadata
-
         Text, //  a text file containing multiple nodes with metadata
 
     }
@@ -57,27 +54,6 @@ namespace Yarn {
         private Dialogue dialogue;
 
         public Program program { get; private set; }
-
-        // Prints out the list of tokens that the tokeniser found for this node
-        void PrintTokenList(IEnumerable<Token> tokenList) {
-            // Sum up the result
-            var sb = new System.Text.StringBuilder();
-            foreach (var t in tokenList) {
-                sb.AppendLine (string.Format(CultureInfo.CurrentCulture, "{0} ({1} line {2})", t.ToString (), t.context, t.lineNumber));
-            }
-
-            // Let's see what we got
-            dialogue.LogDebugMessage("Tokens:");
-            dialogue.LogDebugMessage(sb.ToString());
-
-        }
-
-        // Prints the parse tree for the node
-        void PrintParseTree(Yarn.Parser.ParseNode rootNode) {
-            dialogue.LogDebugMessage("Parse Tree:");
-            dialogue.LogDebugMessage(rootNode.PrintTree(0));
-
-        }
 
         // Prepares a loader. 'implementation' is used for logging.
         public Loader(Dialogue dialogue) {
@@ -215,147 +191,57 @@ namespace Yarn {
         // You can call this multiple times to append to the collection of nodes,
         // but note that new nodes will replace older ones with the same name.
         // Returns the number of nodes that were loaded.
-        public Program Load(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode, NodeFormat format, bool experimentalMode = false)
+        public Program Load(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode, NodeFormat format)
         {
-			if (format == NodeFormat.Unknown)
-			{
-				format = GetFormatFromFileName(fileName);
-			}
+            if (format == NodeFormat.Unknown)
+            {
+                format = GetFormatFromFileName(fileName);
+            }
 
             // currently experimental node can only be used on yarn.txt yarn files and single nodes
-            if (experimentalMode && (format == NodeFormat.Text || format == NodeFormat.SingleNodeText))
+            if (format != NodeFormat.Text && format != NodeFormat.SingleNodeText)
             {
-                // this isn't the greatest...
-                if (format == NodeFormat.SingleNodeText)
-                {
-                    // it is just the body
-                    // need to add a dummy header and body delimiters
-                    StringBuilder builder = new StringBuilder();
-                    builder.Append("title:Start\n");
-                    builder.Append("---\n");
-                    builder.Append(text);
-                    builder.Append("\n===\n");
-                    text = builder.ToString();
-                }
-
-                string inputString = preprocessor(text);
-                ICharStream input = CharStreams.fromstring(inputString);
-
-                YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
-                CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-                YarnSpinnerParser parser = new YarnSpinnerParser(tokens);
-                // turning off the normal error listener and using ours
-                parser.RemoveErrorListeners();
-                parser.AddErrorListener(ErrorListener.Instance);
-
-                IParseTree tree = parser.dialogue();
-                AntlrCompiler antlrcompiler = new AntlrCompiler(library);
-                antlrcompiler.Compile(tree);
-
-                // merging in the other program if requested
-                if (includeProgram != null)
-                {
-                    antlrcompiler.program.Include(includeProgram);
-                }
-
-                return antlrcompiler.program;
+                throw new InvalidDataException($"Invalid node format {format}");
             }
-            else
+            // this isn't the greatest...
+            if (format == NodeFormat.SingleNodeText)
             {
-                // The final parsed nodes that were in the file we were given
-                Dictionary<string, Yarn.Parser.Node> nodes = new Dictionary<string, Parser.Node>();
-
-                // Load the raw data and get the array of node title-text pairs
-
-                var nodeInfos = GetNodesFromText(text, format);
-
-                int nodesLoaded = 0;
-
-                foreach (NodeInfo nodeInfo in nodeInfos)
-                {
-
-                    if (onlyConsiderNode != null && nodeInfo.title != onlyConsiderNode)
-                        continue;
-
-                    // Attempt to parse every node; log if we encounter any errors
-#if CATCH_EXCEPTIONS
-                    try
-                    {
-#endif
-
-                        if (nodes.ContainsKey(nodeInfo.title))
-                        {
-                            throw new InvalidOperationException("Attempted to load a node called " +
-                                nodeInfo.title + ", but a node with that name has already been loaded!");
-                        }
-
-                        var lexer = new Lexer();
-                        var tokens = lexer.Tokenise(nodeInfo.title, nodeInfo.body);
-
-                        if (showTokens)
-                            PrintTokenList(tokens);
-
-                        var node = new Parser(tokens, library).Parse();
-
-                        // If this node is tagged "rawText", then preserve its source
-                        if (string.IsNullOrEmpty(nodeInfo.tags) == false &&
-                            nodeInfo.tags.Contains("rawText"))
-                        {
-                            node.source = nodeInfo.body;
-                        }
-
-                        node.name = nodeInfo.title;
-
-                        node.nodeTags = nodeInfo.tagsList;
-
-                        if (showParseTree)
-                            PrintParseTree(node);
-
-                        nodes[nodeInfo.title] = node;
-
-                        nodesLoaded++;
-
-#if CATCH_EXCEPTIONS
-                    }
-                    catch (Yarn.TokeniserException t)
-                    {
-                        // Add file information
-                        var message = string.Format(CultureInfo.CurrentCulture, "In file {0}: Error reading node {1}: {2}", fileName, nodeInfo.title, t.Message);
-                        throw new Yarn.TokeniserException(message);
-                    }
-                    catch (Yarn.ParseException p)
-                    {
-                        var message = string.Format(CultureInfo.CurrentCulture, "In file {0}: Error parsing node {1}: {2}", fileName, nodeInfo.title, p.Message);
-                        throw new Yarn.ParseException(message);
-                    }
-                    catch (InvalidOperationException e)
-                    {
-                        var message = string.Format(CultureInfo.CurrentCulture, "In file {0}: Error reading node {1}: {2}", fileName, nodeInfo.title, e.Message);
-                        throw new InvalidOperationException(message);
-                    }
-#endif
-                }
-
-                var compiler = new Yarn.Compiler(fileName);
-
-                foreach (var node in nodes)
-                {
-                    compiler.CompileNode(node.Value);
-                }
-
-                if (includeProgram != null)
-                {
-                    compiler.program.Include(includeProgram);
-                }
-
-                return compiler.program;
+                // it is just the body
+                // need to add a dummy header and body delimiters
+                StringBuilder builder = new StringBuilder();
+                builder.Append("title:Start\n");
+                builder.Append("---\n");
+                builder.Append(text);
+                builder.Append("\n===\n");
+                text = builder.ToString();
             }
+
+            string inputString = preprocessor(text);
+            ICharStream input = CharStreams.fromstring(inputString);
+
+            YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+            YarnSpinnerParser parser = new YarnSpinnerParser(tokens);
+            // turning off the normal error listener and using ours
+            parser.RemoveErrorListeners();
+            parser.AddErrorListener(ErrorListener.Instance);
+
+            IParseTree tree = parser.dialogue();
+            Compiler compiler = new Compiler(library);
+            compiler.Compile(tree);
+
+            // merging in the other program if requested
+            if (includeProgram != null)
+            {
+                compiler.program.Include(includeProgram);
+            }
+
+            return compiler.program;
         }
 
         // The raw text of the Yarn node, plus metadata
         // All properties are serialised except tagsList, which is a derived property
-        [JsonObject(MemberSerialization.OptOut)]
         public struct NodeInfo {
             public struct Position {
                 public int x { get; set; }
@@ -373,7 +259,6 @@ namespace Yarn {
             public Position position { get; set; }
 
             // The tags for this node, as a list of individual strings.
-            [JsonIgnore]
             public List<string> tagsList
             {
                 get
@@ -392,11 +277,7 @@ namespace Yarn {
         internal static NodeFormat GetFormatFromFileName(string fileName)
         {
             NodeFormat format;
-            if (fileName.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
-            {
-                format = NodeFormat.JSON;
-            }
-            else if (fileName.EndsWith(".yarn.txt", StringComparison.OrdinalIgnoreCase))
+            if (fileName.EndsWith(".yarn.txt", StringComparison.OrdinalIgnoreCase))
             {
                 format = NodeFormat.Text;
             }
@@ -426,19 +307,7 @@ namespace Yarn {
                     nodeInfo.title = "Start";
                     nodeInfo.body = text;
                     nodes.Add(nodeInfo);
-                    break;
-                case NodeFormat.JSON:
-                    // Parse it as JSON
-                    try
-                    {
-                        nodes = JsonConvert.DeserializeObject<List<NodeInfo>>(text);
-                    }
-                    catch (JsonReaderException e)
-                    {
-                        dialogue.LogErrorMessage("Error parsing Yarn input: " + e.Message);
-                    }
-
-                    break;
+                    break;                
                 case NodeFormat.Text:
 
                     // check for the existence of at least one "---"+newline sentinel, which divides

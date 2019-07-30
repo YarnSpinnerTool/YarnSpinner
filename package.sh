@@ -151,7 +151,7 @@ echo "Packaging Version $FULL_VERSION with Unity..."
 
 OUTFILE="$OUTDIR/YarnSpinner-$FULL_VERSION.unitypackage"
 
-UNITY="/Applications/Unity 2017.1.0f3/Unity.app"
+UNITY="/Applications/Unity_2019.1.8f1/Unity.app"
 UNITY_BINARY="$UNITY/Contents/MacOS/Unity"
 
 if [[ -f $UNITY_BINARY ]]; then

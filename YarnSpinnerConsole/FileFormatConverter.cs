@@ -1,5 +1,4 @@
 ﻿using System;
-using Newtonsoft.Json;
 using System.IO;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,10 +12,6 @@ namespace Yarn
 
             YarnSpinnerConsole.CheckFileList(options.files, YarnSpinnerConsole.ALLOWED_EXTENSIONS);
 
-            if (options.convertToJSON)
-            {
-                return ConvertToJSON(options);
-            }
             if (options.convertToYarn)
             {
                 return ConvertToYarn(options);
@@ -26,23 +21,6 @@ namespace Yarn
 
             YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, "You must specify a destination format. Run '{0} help convert' to learn more.", processName));
             return 1;
-        }
-
-        static int ConvertToJSON(ConvertFormatOptions options)
-        {
-            foreach (var file in options.files)
-            {
-
-                if (Loader.GetFormatFromFileName(file) == NodeFormat.JSON)
-                {
-                    YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, "Not converting file {0}, because its name implies it's already in JSON format", file));
-                    continue;
-                }
-
-                ConvertNodesInFile(options, file, "json", (IEnumerable<Loader.NodeInfo> nodes) => JsonConvert.SerializeObject(nodes, Formatting.Indented));
-
-            }
-            return 0;
         }
 
         static int ConvertToYarn(ConvertFormatOptions options)
@@ -63,8 +41,6 @@ namespace Yarn
         internal static string ConvertNodes(IEnumerable<Loader.NodeInfo> nodes, NodeFormat format) {
             switch (format)
             {
-                case NodeFormat.JSON:
-                    return JsonConvert.SerializeObject(nodes, Formatting.Indented);
                 case NodeFormat.Text:
                     return ConvertNodesToYarnText(nodes);
                 default:
@@ -87,10 +63,9 @@ namespace Yarn
                         continue;
                     }
 
-                    // piggy-back off the JsonIgnoreAttribute to sense items that should not be serialised
-                    if (property.GetCustomAttributes(typeof(JsonIgnoreAttribute), false).Length > 0) {
-                        continue;
-                    }
+                    // TODO: use attributes to indicate which properties
+                    // should not be included in the yarn text
+
 
                     var field = property.Name;
 

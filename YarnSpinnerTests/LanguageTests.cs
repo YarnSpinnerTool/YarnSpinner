@@ -10,21 +10,11 @@ namespace YarnSpinner.Tests
 {
 
 
-	[TestFixture(true)]
-	[TestFixture(false)]
-    public class LanguageTests : TestBase
+	public class LanguageTests : TestBase
     {
-		private bool experimentalMode;
-        public LanguageTests(bool experimental)
-		{
-			this.experimentalMode = experimental;
-		}
-
-        [SetUp]
+		[SetUp]
         public new void Init() {
             base.Init();
-
-            dialogue.experimentalMode = this.experimentalMode;
 
             // Register some additional functions
             dialogue.library.RegisterFunction("add_three_operands", 3, delegate (Value[] parameters) {
@@ -91,9 +81,9 @@ namespace YarnSpinner.Tests
 
             var scriptFilePath = Path.Combine(TestDataPath, "TestCases", file);
 
-            // skipping the indentation test when in experimental mode
+            // skipping the indentation test when using the ANTLR parser
             // it can never pass
-            if (dialogue.experimentalMode && file == "Indentation.node")
+            if (file == "Indentation.node")
             {
                 runTest = false;
             }

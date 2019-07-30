@@ -59,8 +59,7 @@ namespace Yarn
         [Option('o', "only-node", HelpText = "Only consider this node.")]
 
         public string onlyConsiderNode { get; set; }
-        [Option('e', "exprimental-mode", HelpText = "Use the experimental compiler, results may be inconsistent")]
-        public bool experimental { get; set; }
+        
     }
 
     [Verb("verify", HelpText = "Verifies files.")]
@@ -128,9 +127,6 @@ namespace Yarn
     [Verb("convert", HelpText = "Converts files from one format to another.")]
     class ConvertFormatOptions : BaseOptions
     {
-        [Option("json", HelpText = "Convert to JSON", SetName = "format")]
-        public bool convertToJSON { get; set; }
-
         [Option("yarn", HelpText = "Convert to Yarn", SetName = "format")]
         public bool convertToYarn { get; set; }
 
@@ -258,7 +254,6 @@ namespace Yarn
             var returnCode = results.MapResult(
                 (RunOptions options) => Run(options),
                 (VerifyOptions options) => Verify(options),
-                (CompileOptions options) => ProgramExporter.Export(options),
                 (AddLabelsOptions options) => LineAdder.AddLines(options),
                 (GenerateTableOptions options) => TableGenerator.GenerateTables(options),
                 (ConvertFormatOptions options) => FileFormatConverter.ConvertFormat(options),
@@ -270,7 +265,7 @@ namespace Yarn
 
         }
 
-        static internal List<string> ALLOWED_EXTENSIONS = new List<string>(new string[] { ".json", ".node", ".yarn.bytes", ".yarn.txt" });
+        static internal List<string> ALLOWED_EXTENSIONS = new List<string>(new string[] {  ".node", ".yarn.bytes", ".yarn.txt" });
 
         static int Run(RunOptions options)
         {
@@ -391,12 +386,6 @@ namespace Yarn
             // Load nodes
             var dialogue = new Dialogue(impl);
 
-            if (options.experimental)
-            {
-                Warn("Running YarnSpinner in experimental mode may have unexpected behaviour.");
-                dialogue.experimentalMode = true;
-            }
-
             // Add some methods for testing
             dialogue.library.RegisterFunction("add_three_operands", 3, delegate (Value[] parameters)
             {
@@ -475,10 +464,6 @@ namespace Yarn
                 try
                 {
                     dialogue.LoadFile(file, false, false, options.onlyConsiderNode);
-                }
-                catch (Yarn.TokeniserException e)
-                {
-                    Warn(e.Message);
                 }
                 catch (Yarn.ParseException e)
                 {
