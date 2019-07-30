@@ -1,300 +1,289 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00085" kind="class" prot="package">
-    <compoundname>Yarn::Parser::CustomCommand</compoundname>
-    <basecompoundref refid="a00150" prot="public" virt="non-virtual">Yarn.Parser.ParseNode</basecompoundref>
-      <sectiondef kind="package-type">
-      <memberdef kind="enum" id="a00085_1a1d9f9f57c44e1a0d228793b658339576" prot="package" static="no">
-        <name>Type</name>
-        <enumvalue id="a00085_1a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043" prot="public">
-          <name>Expression</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="a00085_1a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586" prot="public">
-          <name>ClientCommand</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
+  <compounddef id="a00085" kind="class" prot="public">
+    <compoundname>ExampleVariableStorage</compoundname>
+    <basecompoundref refid="a00168" prot="public" virt="non-virtual">Yarn.Unity.VariableStorageBehaviour</basecompoundref>
+    <innerclass refid="a00348" prot="public">ExampleVariableStorage::DefaultVariable</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00085_1a4a4fec7b4ad707cd0603393dd57de96c" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="a00165" kindref="compound">Yarn.Value</ref> &gt;</type>
+        <definition>Dictionary&lt;string, Yarn.Value&gt; ExampleVariableStorage.variables</definition>
+        <argsstring></argsstring>
+        <name>variables</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="a00165" kindref="compound">Yarn.Value</ref>&gt; ()</initializer>
         <briefdescription>
-        </briefdescription>
+<para>Where we actually keeping our variables. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="268" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="268" bodyend="271"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="38" bodyend="-1"/>
+        <referencedby refid="a00085_1a741593be1a299dcc2136f05b9b4a995a" compoundref="a00274" startline="125" endline="132">GetValue</referencedby>
+        <referencedby refid="a00085_1ac4265c1c9da485f13a6b05784b0f668d" compoundref="a00274" startline="118" endline="122">SetValue</referencedby>
+        <referencedby refid="a00085_1af646a17cfd63039a25149f8fc0776dcb" compoundref="a00274" startline="141" endline="152">Update</referencedby>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="package-attrib">
-      <memberdef kind="variable" id="a00085_1a5ef3bc96812be224d91548bfcdfd4b92" prot="package" static="no" mutable="no">
-        <type><ref refid="a00085_1a1d9f9f57c44e1a0d228793b658339576" kindref="member">Type</ref></type>
-        <definition>Type Yarn.Parser.CustomCommand.type</definition>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00085_1a464c8a4ff6a3c624602d0adc55dfc59a" prot="public" static="no" mutable="no">
+        <type><ref refid="a00348" kindref="compound">DefaultVariable</ref>[]</type>
+        <definition>DefaultVariable [] ExampleVariableStorage.defaultVariables</definition>
         <argsstring></argsstring>
-        <name>type</name>
+        <name>defaultVariables</name>
         <briefdescription>
-        </briefdescription>
+<para>Our list of default variables, for debugging. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="273" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="273" bodyend="-1"/>
-        <referencedby refid="a00085_1a49150c9046dcad61d61ce35c51816313" compoundref="a00316" startline="284" endline="313">Yarn.Parser.CustomCommand.CustomCommand</referencedby>
-        <referencedby refid="a00085_1ad8c821f5f5671cdbac6e4a6fc0b9174b" compoundref="a00316" startline="315" endline="325">Yarn.Parser.CustomCommand.PrintTree</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="54" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="54" bodyend="-1"/>
+        <referencedby refid="a00085_1a3a05d66cdacadb2e9b618cd0aef45f84" compoundref="a00274" startline="67" endline="115">ResetToDefaults</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="a00150_1af313a82103fcc2ff5a177dbb06b92f7b" prot="package" static="no" mutable="no">
-        <type><ref refid="a00150" kindref="compound">ParseNode</ref></type>
-        <definition>ParseNode Yarn.Parser.ParseNode.parent</definition>
+      <memberdef kind="variable" id="a00085_1a9893656e3683711eb78441b30c52a600" prot="public" static="no" mutable="no">
+        <type>UnityEngine.UI.Text</type>
+        <definition>UnityEngine.UI.Text ExampleVariableStorage.debugTextView</definition>
         <argsstring></argsstring>
-        <name>parent</name>
+        <name>debugTextView</name>
         <briefdescription>
-        </briefdescription>
+<para>A UI.Text that can show the current list of all variables. Optional. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="59" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="59" bodyend="-1"/>
-        <referencedby refid="a00150_1a9e7e90bbaed268529230512e4b5a2f77" compoundref="a00316" startline="66" endline="72">Yarn.Parser.ParseNode.ParseNode</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00150_1a18b493382de0fde5b4299c1bd2250075" prot="package" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Parser.ParseNode.lineNumber</definition>
-        <argsstring></argsstring>
-        <name>lineNumber</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="62" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="62" bodyend="-1"/>
-        <referencedby refid="a00150_1a9e7e90bbaed268529230512e4b5a2f77" compoundref="a00316" startline="66" endline="72">Yarn.Parser.ParseNode.ParseNode</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00150_1a58b3a15788fd2d4127d73619dc6d04ae" prot="package" static="no" mutable="no">
-        <type>string[]</type>
-        <definition>string [] Yarn.Parser.ParseNode.tags</definition>
-        <argsstring></argsstring>
-        <name>tags</name>
-        <initializer>= {}</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="77" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="77" bodyend="-1"/>
-        <referencedby refid="a00161_1a2c80b137d65f31b24533987233074605" compoundref="a00316" startline="374" endline="408">Yarn.Parser.ShortcutOption.ShortcutOption</referencedby>
-        <referencedby refid="a00168_1acba736ffbcc0f8bf5cee2b23f7733dff" compoundref="a00316" startline="187" endline="225">Yarn.Parser.Statement.Statement</referencedby>
-        <referencedby refid="a00150_1a054f36c80d5eeacd569a8859f599af67" compoundref="a00316" startline="79" endline="93">Yarn.Parser.ParseNode.TagsToString</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="58" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="58" bodyend="-1"/>
+        <referencedby refid="a00085_1af646a17cfd63039a25149f8fc0776dcb" compoundref="a00274" startline="141" endline="152">Update</referencedby>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00085_1a4250d192d5b58e2404a14c68eb616f16" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type><ref refid="a00106" kindref="compound">Expression</ref></type>
-        <definition>Expression Yarn.Parser.CustomCommand.expression</definition>
-        <argsstring></argsstring>
-        <name>expression</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="275" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="275" bodyend="-1"/>
-        <referencedby refid="a00085_1a49150c9046dcad61d61ce35c51816313" compoundref="a00316" startline="284" endline="313">Yarn.Parser.CustomCommand.CustomCommand</referencedby>
-      </memberdef>
-      <memberdef kind="property" id="a00085_1a1a362244273df822233359d8fe4e9f5d" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.Parser.CustomCommand.clientCommand</definition>
-        <argsstring></argsstring>
-        <name>clientCommand</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="276" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="276" bodyend="-1"/>
-        <referencedby refid="a00085_1ad8c821f5f5671cdbac6e4a6fc0b9174b" compoundref="a00316" startline="315" endline="325">Yarn.Parser.CustomCommand.PrintTree</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-static-func">
-      <memberdef kind="function" id="a00085_1a02ee2902115c823bdb46715041b3a2f6" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>static bool Yarn.Parser.CustomCommand.CanParse</definition>
-        <argsstring>(Parser p)</argsstring>
-        <name>CanParse</name>
-        <param>
-          <type><ref refid="a00151" kindref="compound">Parser</ref></type>
-          <declname>p</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="278" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="278" bodyend="282"/>
-        <references refid="a00151_1afaa7e96d4cdaf6b1fde9ecd273c00c34" compoundref="a00316" startline="1291" endline="1298">Yarn.Parser.NextSymbolsAre</references>
-        <referencedby refid="a00168_1acba736ffbcc0f8bf5cee2b23f7733dff" compoundref="a00316" startline="187" endline="225">Yarn.Parser.Statement.Statement</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00085_1a49150c9046dcad61d61ce35c51816313" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Parser.CustomCommand.CustomCommand</definition>
-        <argsstring>(ParseNode parent, Parser p)</argsstring>
-        <name>CustomCommand</name>
-        <param>
-          <type><ref refid="a00150" kindref="compound">ParseNode</ref></type>
-          <declname>parent</declname>
-        </param>
-        <param>
-          <type><ref refid="a00151" kindref="compound">Parser</ref></type>
-          <declname>p</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="284" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="284" bodyend="313"/>
-        <references refid="a00085_1a4250d192d5b58e2404a14c68eb616f16" compoundref="a00316" startline="275">Yarn.Parser.CustomCommand.expression</references>
-        <references refid="a00151_1a1313951b09177a1c83b6cf035139197a" compoundref="a00316" startline="1260">Yarn.Parser.library</references>
-        <references refid="a00151_1a666a945da1a7845b02b92592fccac291" compoundref="a00316" startline="1277" endline="1286">Yarn.Parser.NextSymbolIs</references>
-        <references refid="a00151_1acd2714b911fb5e7c38f0e07a9dc1af58" compoundref="a00316" startline="1265" endline="1268">Yarn.Parser.Parser</references>
-        <references refid="a00085_1a5ef3bc96812be224d91548bfcdfd4b92" compoundref="a00316" startline="273">Yarn.Parser.CustomCommand.type</references>
-      </memberdef>
-      <memberdef kind="function" id="a00085_1ad8c821f5f5671cdbac6e4a6fc0b9174b" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override string</type>
-        <definition>override string Yarn.Parser.CustomCommand.PrintTree</definition>
-        <argsstring>(int indentLevel)</argsstring>
-        <name>PrintTree</name>
-        <reimplements refid="a00150_1a0d6611653f20c2e4d90a97a96c657137">PrintTree</reimplements>
-        <param>
-          <type>int</type>
-          <declname>indentLevel</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="315" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="315" bodyend="325"/>
-        <references refid="a00085_1a1a362244273df822233359d8fe4e9f5d" compoundref="a00316" startline="276">Yarn.Parser.CustomCommand.clientCommand</references>
-        <references refid="a00151_1aa8fa36b46de12a1c561d77b99c4b9ae3" compoundref="a00316" startline="41" endline="53">Yarn.Parser.Tab</references>
-        <references refid="a00085_1a5ef3bc96812be224d91548bfcdfd4b92" compoundref="a00316" startline="273">Yarn.Parser.CustomCommand.type</references>
-      </memberdef>
-      <memberdef kind="function" id="a00150_1a580e520a29444fc23ac3660cbe514a09" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00140" kindref="compound">Node</ref></type>
-        <definition>Node Yarn.Parser.ParseNode.NodeParent</definition>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00085_1ab6a56afc687455f360876eff67891163" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ExampleVariableStorage.Awake</definition>
         <argsstring>()</argsstring>
-        <name>NodeParent</name>
+        <name>Awake</name>
         <briefdescription>
-        </briefdescription>
+<para>Reset to our default values when the game starts. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="101" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="101" bodyend="113"/>
-        <referencedby refid="a00161_1a2c80b137d65f31b24533987233074605" compoundref="a00316" startline="374" endline="408">Yarn.Parser.ShortcutOption.ShortcutOption</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="61" bodyend="64"/>
+        <references refid="a00085_1a3a05d66cdacadb2e9b618cd0aef45f84" compoundref="a00274" startline="67" endline="115">ResetToDefaults</references>
+      </memberdef>
+      <memberdef kind="function" id="a00085_1af646a17cfd63039a25149f8fc0776dcb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ExampleVariableStorage.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <briefdescription>
+<para>If we have a debug view, show the list of all variables in it. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="141" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="141" bodyend="152"/>
+        <references refid="a00085_1a9893656e3683711eb78441b30c52a600" compoundref="a00274" startline="58">debugTextView</references>
+        <references refid="a00085_1a4a4fec7b4ad707cd0603393dd57de96c" compoundref="a00274" startline="38">variables</references>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00150_1a054f36c80d5eeacd569a8859f599af67" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
-        <definition>string Yarn.Parser.ParseNode.TagsToString</definition>
-        <argsstring>(int indentLevel)</argsstring>
-        <name>TagsToString</name>
+      <memberdef kind="function" id="a00085_1a3a05d66cdacadb2e9b618cd0aef45f84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ExampleVariableStorage.ResetToDefaults</definition>
+        <argsstring>()</argsstring>
+        <name>ResetToDefaults</name>
+        <reimplements refid="a00168_1a33fcbff56561e53e0a70b59c56f0c3af">ResetToDefaults</reimplements>
+        <briefdescription>
+<para>Erase all variables and reset to default values. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="67" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="67" bodyend="115"/>
+        <references refid="a00085_1a0ce614bee8d5b220500fb765390b4ca3" compoundref="a00274" startline="135" endline="138">Clear</references>
+        <references refid="a00085_1a464c8a4ff6a3c624602d0adc55dfc59a" compoundref="a00274" startline="54">defaultVariables</references>
+        <references refid="a00085_1ac4265c1c9da485f13a6b05784b0f668d" compoundref="a00274" startline="118" endline="122">SetValue</references>
+        <referencedby refid="a00085_1ab6a56afc687455f360876eff67891163" compoundref="a00274" startline="61" endline="64">Awake</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00085_1ac4265c1c9da485f13a6b05784b0f668d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ExampleVariableStorage.SetValue</definition>
+        <argsstring>(string variableName, Yarn.Value value)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00168_1a25f979b062d63c9e886fe7070ce4561b">SetValue</reimplements>
         <param>
-          <type>int</type>
-          <declname>indentLevel</declname>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type><ref refid="a00165" kindref="compound">Yarn.Value</ref></type>
+          <declname>value</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Set a variable&apos;s value. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="79" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="79" bodyend="93"/>
-        <references refid="a00151_1aa8fa36b46de12a1c561d77b99c4b9ae3" compoundref="a00316" startline="41" endline="53">Yarn.Parser.Tab</references>
-        <references refid="a00150_1a58b3a15788fd2d4127d73619dc6d04ae" compoundref="a00316" startline="77">Yarn.Parser.ParseNode.tags</references>
-        <referencedby refid="a00168_1aaac6d1e0c3b31f33e1c6f964c205153e" compoundref="a00316" startline="227" endline="259">Yarn.Parser.Statement.PrintTree</referencedby>
-        <referencedby refid="a00161_1a529a2ef1aa6d7226db4ea7f3ea92b8c2" compoundref="a00316" startline="410" endline="430">Yarn.Parser.ShortcutOption.PrintTree</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="118" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="118" bodyend="122"/>
+        <references refid="a00085_1a4a4fec7b4ad707cd0603393dd57de96c" compoundref="a00274" startline="38">variables</references>
+        <referencedby refid="a00085_1a3a05d66cdacadb2e9b618cd0aef45f84" compoundref="a00274" startline="67" endline="115">ResetToDefaults</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00150_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override string</type>
-        <definition>override string Yarn.Parser.ParseNode.ToString</definition>
-        <argsstring>()</argsstring>
-        <name>ToString</name>
+      <memberdef kind="function" id="a00085_1a741593be1a299dcc2136f05b9b4a995a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override <ref refid="a00165" kindref="compound">Yarn.Value</ref></type>
+        <definition>override Yarn.Value ExampleVariableStorage.GetValue</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetValue</name>
+        <reimplements refid="a00168_1ac6ebafcbebc2b2d71eba8562490a2f1e">GetValue</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
         <briefdescription>
-        </briefdescription>
+<para>Get a variable&apos;s value. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="95" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="95" bodyend="98"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="125" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="125" bodyend="132"/>
+        <references refid="a00085_1a4a4fec7b4ad707cd0603393dd57de96c" compoundref="a00274" startline="38">variables</references>
+      </memberdef>
+      <memberdef kind="function" id="a00085_1a0ce614bee8d5b220500fb765390b4ca3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ExampleVariableStorage.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <reimplements refid="a00168_1a587fe10b367ace190e10f3bcb590a53c">Clear</reimplements>
+        <briefdescription>
+<para>Erase all variables. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="135" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="135" bodyend="138"/>
+        <referencedby refid="a00085_1a3a05d66cdacadb2e9b618cd0aef45f84" compoundref="a00274" startline="67" endline="115">ResetToDefaults</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00168_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.SetNumber</definition>
+        <argsstring>(string variableName, float number)</argsstring>
+        <name>SetNumber</name>
+        <reimplements refid="a00167_1aa28c3694f985cf73489efc301b9d41dd">SetNumber</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>number</declname>
+        </param>
+        <briefdescription>
+<para>Not implemented here. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="487" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="487" bodyend="490"/>
+      </memberdef>
+      <memberdef kind="function" id="a00168_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>float</type>
+        <definition>virtual float Yarn.Unity.VariableStorageBehaviour.GetNumber</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetNumber</name>
+        <reimplements refid="a00167_1a04b061c52d8ac814ce559da5286fbc71">GetNumber</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <briefdescription>
+<para>Not implemented here. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="493" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="493" bodyend="496"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>An extremely simple implementation of DialogueUnityVariableStorage, which just stores everything in a Dictionary. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1192">
-        <label>ParseNode</label>
-        <link refid="a00150"/>
-      </node>
-      <node id="1191">
-        <label>Yarn.Parser.CustomCommand</label>
-        <link refid="a00085"/>
-        <childnode refid="1192" relation="public-inheritance">
+      <node id="1184">
+        <label>VariableStorageBehaviour</label>
+        <link refid="a00168"/>
+        <childnode refid="1185" relation="public-inheritance">
         </childnode>
+        <childnode refid="1186" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1183">
+        <label>ExampleVariableStorage</label>
+        <link refid="a00085"/>
+        <childnode refid="1184" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1186">
+        <label>Yarn::VariableStorage</label>
+        <link refid="a00167"/>
+      </node>
+      <node id="1185">
+        <label>MonoBehaviour</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1195">
-        <label>Yarn.Parser.ParseNode</label>
-        <link refid="a00150"/>
-        <childnode refid="1195" relation="usage">
-          <edgelabel>~parent</edgelabel>
+      <node id="1188">
+        <label>VariableStorageBehaviour</label>
+        <link refid="a00168"/>
+        <childnode refid="1189" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1190" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1194">
-        <label>ParseNode</label>
-        <link refid="a00150"/>
-        <childnode refid="1195" relation="usage">
-          <edgelabel>~parent</edgelabel>
+      <node id="1187">
+        <label>ExampleVariableStorage</label>
+        <link refid="a00085"/>
+        <childnode refid="1188" relation="public-inheritance">
         </childnode>
+        <childnode refid="1191" relation="usage">
+          <edgelabel>+defaultVariables</edgelabel>
+        </childnode>
+        <childnode refid="1193" relation="usage">
+          <edgelabel>+debugTextView</edgelabel>
+        </childnode>
+      </node>
+      <node id="1190">
+        <label>Yarn::VariableStorage</label>
+        <link refid="a00167"/>
       </node>
       <node id="1193">
-        <label>Yarn.Parser.CustomCommand</label>
-        <link refid="a00085"/>
-        <childnode refid="1194" relation="public-inheritance">
+        <label>UnityEngine</label>
+      </node>
+      <node id="1191">
+        <label>ExampleVariableStorage.DefaultVariable</label>
+        <link refid="a00348"/>
+        <childnode refid="1192" relation="usage">
+          <edgelabel>+type</edgelabel>
         </childnode>
       </node>
+      <node id="1189">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1192">
+        <label>Yarn</label>
+      </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="266" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="266" bodyend="326"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="34" bodyend="154"/>
     <listofallmembers>
-      <member refid="a00085_1a02ee2902115c823bdb46715041b3a2f6" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>CanParse</name></member>
-      <member refid="a00085_1a1a362244273df822233359d8fe4e9f5d" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>clientCommand</name></member>
-      <member refid="a00085_1a49150c9046dcad61d61ce35c51816313" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>CustomCommand</name></member>
-      <member refid="a00085_1a4250d192d5b58e2404a14c68eb616f16" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>expression</name></member>
-      <member refid="a00150_1a18b493382de0fde5b4299c1bd2250075" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>lineNumber</name></member>
-      <member refid="a00150_1a580e520a29444fc23ac3660cbe514a09" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>NodeParent</name></member>
-      <member refid="a00150_1af313a82103fcc2ff5a177dbb06b92f7b" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>parent</name></member>
-      <member refid="a00150_1a9e7e90bbaed268529230512e4b5a2f77" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>ParseNode</name></member>
-      <member refid="a00085_1ad8c821f5f5671cdbac6e4a6fc0b9174b" prot="package" virt="virtual"><scope>Yarn::Parser::CustomCommand</scope><name>PrintTree</name></member>
-      <member refid="a00150_1a58b3a15788fd2d4127d73619dc6d04ae" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>tags</name></member>
-      <member refid="a00150_1a054f36c80d5eeacd569a8859f599af67" prot="public" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>TagsToString</name></member>
-      <member refid="a00150_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>ToString</name></member>
-      <member refid="a00085_1a1d9f9f57c44e1a0d228793b658339576" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>Type</name></member>
-      <member refid="a00085_1a5ef3bc96812be224d91548bfcdfd4b92" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>type</name></member>
+      <member refid="a00085_1ab6a56afc687455f360876eff67891163" prot="private" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>Awake</name></member>
+      <member refid="a00085_1a0ce614bee8d5b220500fb765390b4ca3" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>Clear</name></member>
+      <member refid="a00085_1a9893656e3683711eb78441b30c52a600" prot="public" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>debugTextView</name></member>
+      <member refid="a00085_1a464c8a4ff6a3c624602d0adc55dfc59a" prot="public" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>defaultVariables</name></member>
+      <member refid="a00168_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>GetNumber</name></member>
+      <member refid="a00085_1a741593be1a299dcc2136f05b9b4a995a" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>GetValue</name></member>
+      <member refid="a00085_1a3a05d66cdacadb2e9b618cd0aef45f84" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>ResetToDefaults</name></member>
+      <member refid="a00168_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>SetNumber</name></member>
+      <member refid="a00085_1ac4265c1c9da485f13a6b05784b0f668d" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>SetValue</name></member>
+      <member refid="a00085_1af646a17cfd63039a25149f8fc0776dcb" prot="private" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>Update</name></member>
+      <member refid="a00085_1a4a4fec7b4ad707cd0603393dd57de96c" prot="private" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>variables</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

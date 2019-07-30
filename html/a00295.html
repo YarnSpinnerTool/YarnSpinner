@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Unity/Assets/YarnSpinner/Code/DialogueRunner.cs File Reference</title>
+<title>YarnSpinner: YarnSpinner/YarnSpinnerParserBaseVisitor.cs File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -106,9 +106,9 @@ $(document).ready(function(){initNavTree('a00295.html','');});
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
-<div class="title">DialogueRunner.cs File Reference</div>  </div>
+<div class="title">YarnSpinnerParserBaseVisitor.cs File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -116,62 +116,43 @@ $(document).ready(function(){initNavTree('a00295.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:a00381"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00137.html#a00381">Yarn.Unity.LocalisedStringGroup</a></td></tr>
-<tr class="separator:a00381"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00095.html">Yarn.Unity.DialogueRunner</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">DialogueRunners act as the interface between your game and <a class="el" href="a00374.html">YarnSpinner</a>.  <a href="a00095.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00195.html">Yarn.Unity.YarnCommandAttribute</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply this attribute to methods in your scripts to expose them to <a class="el" href="a00053.html">Yarn</a>.  <a href="a00195.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00097.html">Yarn.Unity.DialogueUIBehaviour</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scripts that can act as the UI for the conversation should subclass this.  <a href="a00097.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00193.html">Yarn.Unity.VariableStorageBehaviour</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scripts that can act as a variable storage should subclass this.  <a href="a00193.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00174.html">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class provides an empty implementation of IYarnSpinnerParserVisitor{Result}, which can be extended to create a visitor which only needs to handle a subset of the available methods.  <a href="a00174.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:a00137"><td class="memItemLeft" align="right" valign="top">package &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00137.html">Yarn.Unity</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ae3d87b0b748ea892bff48f60862e182d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00295.html#ae3d87b0b748ea892bff48f60862e182d">IToken</a> = Antlr4.Runtime.IToken</td></tr>
+<tr class="separator:ae3d87b0b748ea892bff48f60862e182d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e45f8222713cb764832fd3c69d0268f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00295.html#a7e45f8222713cb764832fd3c69d0268f">ParserRuleContext</a> = Antlr4.Runtime.ParserRuleContext</td></tr>
+<tr class="separator:a7e45f8222713cb764832fd3c69d0268f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="a00381" id="a00381"></a>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="ae3d87b0b748ea892bff48f60862e182d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">class Yarn::Unity::LocalisedStringGroup</td>
+          <td class="memname">using <a class="el" href="a00294.html#ae3d87b0b748ea892bff48f60862e182d">IToken</a> =  Antlr4.Runtime.IToken</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock">
-<p>Definition at line <a class="el" href="a00295_source.html#l00037">37</a> of file <a class="el" href="a00295_source.html">DialogueRunner.cs</a>.</p>
-</div><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Unity.LocalisedStringGroup:</div>
-<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+
+<p>Definition at line <a class="el" href="a00295_source.html#l00024">24</a> of file <a class="el" href="a00295_source.html">YarnSpinnerParserBaseVisitor.cs</a>.</p>
+
 </div>
-<div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00387.png" border="0" usemap="#_yarn_8_unity_8_localised_string_group_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_unity_8_localised_string_group_coll__map" id="_yarn_8_unity_8_localised_string_group_coll__map">
-</map>
 </div>
-<table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a395d808fa32cb4fe68a62d7852534e1a"></a>SystemLanguage</td>
-<td class="fieldname">
-language</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a636624112fd57fedda96d485d20e6b9e"></a>TextAsset[]</td>
-<td class="fieldname">
-stringFiles</td>
-<td class="fielddoc">
-</td></tr>
-</table>
+<a class="anchor" id="a7e45f8222713cb764832fd3c69d0268f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="a00294.html#a7e45f8222713cb764832fd3c69d0268f">ParserRuleContext</a> =  Antlr4.Runtime.ParserRuleContext</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00295_source.html#l00025">25</a> of file <a class="el" href="a00295_source.html">YarnSpinnerParserBaseVisitor.cs</a>.</p>
 
 </div>
 </div>
@@ -180,8 +161,8 @@ stringFiles</td>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_3d328b3dca154a477d99beb656992be2.html">Unity</a></li><li class="navelem"><a class="el" href="dir_3b33dffaa21a2ac6f7978a949ffd4e41.html">Assets</a></li><li class="navelem"><a class="el" href="dir_534ffb376c3707ccb35d3c2c883b31fc.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="dir_0cee4ee6e70061622c5e671fb48a3abe.html">Code</a></li><li class="navelem"><a class="el" href="a00295.html">DialogueRunner.cs</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:22 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00295.html">YarnSpinnerParserBaseVisitor.cs</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:44 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

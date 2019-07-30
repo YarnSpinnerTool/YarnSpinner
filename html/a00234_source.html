@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs Source File</title>
+<title>YarnSpinner: YarnSpinnerConsole/Properties/AssemblyInfo.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,33 +105,43 @@ $(document).ready(function(){initNavTree('a00234_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">TypeExtensions.cs</div>  </div>
+<div class="title">AssemblyInfo.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00234.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#if !COREFX &amp;&amp; !NET_4_5</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System;</div>
+<a href="a00234.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">using</span> System.Reflection;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using</span> System.Runtime.CompilerServices;</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="a00362.html">    4</a></span>&#160;<span class="keyword">namespace </span>System.Reflection</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="a00182.html">    6</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="a00182.html">TypeExtensions</a></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    {</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="a00182.html#acbfc3dfbd616c1a87fe0158092215639">    8</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="a00183.html">TypeInfo</a> <a class="code" href="a00182.html#acbfc3dfbd616c1a87fe0158092215639">GetTypeInfo</a>( <span class="keyword">this</span> Type type )</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00183.html">TypeInfo</a>( type );</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        }</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    }</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#endif // !COREFX &amp;&amp; !NET_4_5</span></div>
-<div class="ttc" id="a00182_html_acbfc3dfbd616c1a87fe0158092215639"><div class="ttname"><a href="a00182.html#acbfc3dfbd616c1a87fe0158092215639">System.Reflection.TypeExtensions.GetTypeInfo</a></div><div class="ttdeci">static TypeInfo GetTypeInfo(this Type type)</div><div class="ttdef"><b>Definition:</b> <a href="a00234_source.html#l00008">TypeExtensions.cs:8</a></div></div>
-<div class="ttc" id="a00182_html"><div class="ttname"><a href="a00182.html">System.Reflection.TypeExtensions</a></div><div class="ttdef"><b>Definition:</b> <a href="a00234_source.html#l00006">TypeExtensions.cs:6</a></div></div>
-<div class="ttc" id="a00183_html"><div class="ttname"><a href="a00183.html">System.Reflection.TypeInfo</a></div><div class="ttdef"><b>Definition:</b> <a href="a00235_source.html#l00006">TypeInfo.cs:6</a></div></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// Information about this assembly is defined by the following attributes.</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// Change them to the values specific to your project.</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;[assembly: AssemblyTitle (<span class="stringliteral">&quot;Yarn Spinner&quot;</span>)]</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;[assembly: AssemblyDescription (<span class="stringliteral">&quot;The all-in-one toolbox for working with Yarn.&quot;</span>)]</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;[assembly: AssemblyConfiguration (<span class="stringliteral">&quot;&quot;</span>)]</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;[assembly: AssemblyCompany (<span class="stringliteral">&quot;Secret Lab Pty Ltd&quot;</span>)]</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;[assembly: AssemblyProduct (<span class="stringliteral">&quot;&quot;</span>)]</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;[assembly: AssemblyCopyright(<span class="stringliteral">&quot;© 2016-2017 Secret Lab Pty Ltd and Yarn Spinner contributors&quot;</span>)]</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;[assembly: AssemblyTrademark (<span class="stringliteral">&quot;&quot;</span>)]</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;[assembly: AssemblyCulture (<span class="stringliteral">&quot;&quot;</span>)]</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// The assembly version has the format &quot;{Major}.{Minor}.{Build}.{Revision}&quot;.</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// The form &quot;{Major}.{Minor}.*&quot; will automatically update the build and revision,</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">// and &quot;{Major}.{Minor}.{Build}.*&quot; will update just the revision.</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;[assembly: AssemblyVersion (<span class="stringliteral">&quot;1.0.*&quot;</span>)]</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">// The following attributes are used to specify the signing key for the assembly,</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">// if desired. See the Mono documentation for more information about signing.</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">//[assembly: AssemblyDelaySign(false)]</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">//[assembly: AssemblyKeyFile(&quot;&quot;)]</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_71f81168fdb7d447b41a115f71f5eda9.html">CoreFxCompatibility</a></li><li class="navelem"><a class="el" href="a00234.html">TypeExtensions.cs</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:22 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_6f181b52275ac94c00a65cc257010ba9.html">YarnSpinnerConsole</a></li><li class="navelem"><a class="el" href="dir_c5b5245a8d866663393107841a0eecb5.html">Properties</a></li><li class="navelem"><a class="el" href="a00234.html">AssemblyInfo.cs</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:44 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -1,7 +1,7 @@
 var a00061 =
 [
-    [ "CsvBadDataException", "a00061.html#a337ebca212c62127ba837ae726a0cc3a", null ],
-    [ "CsvBadDataException", "a00061.html#a31da9e807053a75e8bd252aa792269eb", null ],
-    [ "CsvBadDataException", "a00061.html#a2c210cf80604e58ffecc177f6f7c2547", null ],
-    [ "CsvBadDataException", "a00061.html#abe956c9c100374953fd899bef2f2489f", null ]
+    [ "CsvConfigurationException", "a00061.html#a26b35b967f6c7e409dd84bdb60619993", null ],
+    [ "CsvConfigurationException", "a00061.html#a77c920cd1ce043a9494cd19cb074f84e", null ],
+    [ "CsvConfigurationException", "a00061.html#a2dee1f8508b1411b8dc4d369abfd04aa", null ],
+    [ "CsvConfigurationException", "a00061.html#af53550f7b533e7878e010c4048e6686c", null ]
 ];

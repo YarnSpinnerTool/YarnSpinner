@@ -1,4 +1,0 @@
-<map id="Yarn.Analysis.CompiledProgramAnalyser" name="Yarn.Analysis.CompiledProgramAnalyser">
-<area shape="rect" id="node2" href="$a00187.html" title="{Yarn.Analysis.UnusedVariable\lChecker\n|&#45; readVariables\l&#45; writtenVariables\l|+ Diagnose()\l+ GatherDiagnoses()\l}" alt="" coords="5,161,203,282"/>
-<area shape="rect" id="node3" href="$a00191.html" title="{Yarn.Analysis.VariableLister\n|&#45; variables\l|+ Diagnose()\l+ GatherDiagnoses()\l}" alt="" coords="228,175,415,267"/>
-</map>

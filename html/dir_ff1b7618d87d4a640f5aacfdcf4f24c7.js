@@ -6,64 +6,64 @@ var dir_ff1b7618d87d4a640f5aacfdcf4f24c7 =
     [ "MissingFromPcl", "dir_48a1716f11dda95e9025da5db297b66f.html", "dir_48a1716f11dda95e9025da5db297b66f" ],
     [ "Properties", "dir_4c151e014849d6a3fd7578456f95c583.html", "dir_4c151e014849d6a3fd7578456f95c583" ],
     [ "TypeConversion", "dir_5c139b908ad2613e3ef99ee52a122286.html", "dir_5c139b908ad2613e3ef99ee52a122286" ],
-    [ "CsvBadDataException.cs", "a00236.html", [
-      [ "CsvBadDataException", "a00061.html", "a00061" ]
+    [ "CsvBadDataException.cs", "a00210.html", [
+      [ "CsvBadDataException", "a00056.html", "a00056" ]
     ] ],
-    [ "CsvFactory.cs", "a00237.html", [
-      [ "CsvFactory", "a00067.html", "a00067" ]
+    [ "CsvFactory.cs", "a00211.html", [
+      [ "CsvFactory", "a00062.html", "a00062" ]
     ] ],
-    [ "CsvHelperException.cs", "a00238.html", [
-      [ "CsvHelperException", "a00068.html", "a00068" ]
+    [ "CsvHelperException.cs", "a00212.html", [
+      [ "CsvHelperException", "a00063.html", "a00063" ]
     ] ],
-    [ "CsvMissingFieldException.cs", "a00239.html", [
-      [ "CsvMissingFieldException", "a00069.html", "a00069" ]
+    [ "CsvMissingFieldException.cs", "a00213.html", [
+      [ "CsvMissingFieldException", "a00064.html", "a00064" ]
     ] ],
-    [ "CsvParser.cs", "a00240.html", [
-      [ "CsvParser", "a00070.html", "a00070" ]
+    [ "CsvParser.cs", "a00214.html", [
+      [ "CsvParser", "a00065.html", "a00065" ]
     ] ],
-    [ "CsvParserException.cs", "a00241.html", [
-      [ "CsvParserException", "a00071.html", "a00071" ]
+    [ "CsvParserException.cs", "a00215.html", [
+      [ "CsvParserException", "a00066.html", "a00066" ]
     ] ],
-    [ "CsvReader.cs", "a00242.html", [
-      [ "CsvReader", "a00079.html", "a00079" ]
+    [ "CsvReader.cs", "a00216.html", [
+      [ "CsvReader", "a00074.html", "a00074" ]
     ] ],
-    [ "CsvReaderException.cs", "a00243.html", [
-      [ "CsvReaderException", "a00080.html", "a00080" ]
+    [ "CsvReaderException.cs", "a00217.html", [
+      [ "CsvReaderException", "a00075.html", "a00075" ]
     ] ],
-    [ "CsvSerializer.cs", "a00244.html", [
-      [ "CsvSerializer", "a00081.html", "a00081" ]
+    [ "CsvSerializer.cs", "a00218.html", [
+      [ "CsvSerializer", "a00076.html", "a00076" ]
     ] ],
-    [ "CsvWriter.cs", "a00245.html", [
-      [ "CsvWriter", "a00083.html", "a00083" ]
+    [ "CsvWriter.cs", "a00219.html", [
+      [ "CsvWriter", "a00078.html", "a00078" ]
     ] ],
-    [ "CsvWriterException.cs", "a00246.html", [
-      [ "CsvWriterException", "a00084.html", "a00084" ]
+    [ "CsvWriterException.cs", "a00220.html", [
+      [ "CsvWriterException", "a00079.html", "a00079" ]
     ] ],
-    [ "ExceptionHelper.cs", "a00247.html", [
-      [ "ExceptionHelper", "a00104.html", "a00104" ]
+    [ "ExceptionHelper.cs", "a00221.html", [
+      [ "ExceptionHelper", "a00098.html", "a00098" ]
     ] ],
-    [ "ICsvFactory.cs", "a00248.html", [
-      [ "ICsvFactory", "a00114.html", "a00114" ]
+    [ "ICsvFactory.cs", "a00222.html", [
+      [ "ICsvFactory", "a00107.html", "a00107" ]
     ] ],
-    [ "ICsvParser.cs", "a00249.html", [
-      [ "ICsvParser", "a00115.html", "a00115" ]
+    [ "ICsvParser.cs", "a00223.html", [
+      [ "ICsvParser", "a00108.html", "a00108" ]
     ] ],
-    [ "ICsvReader.cs", "a00250.html", [
-      [ "ICsvReader", "a00116.html", "a00116" ]
+    [ "ICsvReader.cs", "a00224.html", [
+      [ "ICsvReader", "a00109.html", "a00109" ]
     ] ],
-    [ "ICsvReaderRow.cs", "a00251.html", [
-      [ "ICsvReaderRow", "a00117.html", "a00117" ]
+    [ "ICsvReaderRow.cs", "a00225.html", [
+      [ "ICsvReaderRow", "a00110.html", "a00110" ]
     ] ],
-    [ "ICsvSerializer.cs", "a00252.html", [
-      [ "ICsvSerializer", "a00118.html", "a00118" ]
+    [ "ICsvSerializer.cs", "a00226.html", [
+      [ "ICsvSerializer", "a00111.html", "a00111" ]
     ] ],
-    [ "ICsvWriter.cs", "a00253.html", [
-      [ "ICsvWriter", "a00119.html", "a00119" ]
+    [ "ICsvWriter.cs", "a00227.html", [
+      [ "ICsvWriter", "a00112.html", "a00112" ]
     ] ],
-    [ "ReflectionHelper.cs", "a00261.html", [
-      [ "ReflectionHelper", "a00157.html", "a00157" ]
+    [ "ReflectionHelper.cs", "a00235.html", [
+      [ "ReflectionHelper", "a00140.html", "a00140" ]
     ] ],
-    [ "StringHelper.cs", "a00262.html", [
-      [ "StringHelper", "a00170.html", "a00170" ]
+    [ "StringHelper.cs", "a00236.html", [
+      [ "StringHelper", "a00150.html", "a00150" ]
     ] ]
 ];

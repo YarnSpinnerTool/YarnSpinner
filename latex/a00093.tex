@@ -1,228 +1,88 @@
-\hypertarget{a00093}{\section{Yarn.\-Analysis.\-Diagnosis Class Reference}
-\label{a00093}\index{Yarn.\-Analysis.\-Diagnosis@{Yarn.\-Analysis.\-Diagnosis}}
+\hypertarget{a00093}{\section{Yarn.\-Loader.\-Emission\-Tuple Struct Reference}
+\label{a00093}\index{Yarn.\-Loader.\-Emission\-Tuple@{Yarn.\-Loader.\-Emission\-Tuple}}
 }
 
 
-Collaboration diagram for Yarn.\-Analysis.\-Diagnosis\-:
+Collaboration diagram for Yarn.\-Loader.\-Emission\-Tuple\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=202pt]{a00768}
+\includegraphics[width=216pt]{a00616}
 \end{center}
 \end{figure}
-\subsection*{Public Types}
-\begin{DoxyCompactItemize}
-\item 
-enum \hyperlink{a00093_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \{ \hyperlink{a00093_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Severity.\-Error}, 
-\hyperlink{a00093_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Severity.\-Warning}, 
-\hyperlink{a00093_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Severity.\-Note}
- \}
-\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00093_ad3fd818f1be98dc803e5bec959153824}{Diagnosis} (string \hyperlink{a00093_ac7ed070dddd2613c08e7874ea5afb3af}{message}, \hyperlink{a00093_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \hyperlink{a00093_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}, string \hyperlink{a00093_a662aca4ad2af5116c2cf6773daf1a847}{node\-Name}=null, int \hyperlink{a00093_a0bd73f1c684bfd66ae7b6bef8f2972d0}{line\-Number}=-\/1, int \hyperlink{a00093_a658e7fb05555c0f9ab5f80057bdc1408}{column\-Number}=-\/1)
-\item 
-override string \hyperlink{a00093_a4475eb5890c340da5c0012e25c2c86ae}{To\-String} ()
-\item 
-string \hyperlink{a00093_a985dee7ca27aa896332590133606b6a9}{To\-String} (bool show\-Severity)
+\hyperlink{a00093_a79857a881f3e1bab47a2cee5007e62a2}{Emission\-Tuple} (int \hyperlink{a00093_ad3d26f07b18e91e1ba31ba3b5d6923db}{depth}, bool \hyperlink{a00093_a5916dbbd4d2e24ddfd02b0afdea290bf}{emitted})
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00093_ac7ed070dddd2613c08e7874ea5afb3af}{message}
+int \hyperlink{a00093_ad3d26f07b18e91e1ba31ba3b5d6923db}{depth}
 \item 
-string \hyperlink{a00093_a662aca4ad2af5116c2cf6773daf1a847}{node\-Name}
-\item 
-int \hyperlink{a00093_a0bd73f1c684bfd66ae7b6bef8f2972d0}{line\-Number}
-\item 
-int \hyperlink{a00093_a658e7fb05555c0f9ab5f80057bdc1408}{column\-Number}
-\item 
-\hyperlink{a00093_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \hyperlink{a00093_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}
+bool \hyperlink{a00093_a5916dbbd4d2e24ddfd02b0afdea290bf}{emitted}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 7 of file Analyser.\-cs.
+Definition at line 72 of file Loader.\-cs.
 
-
-
-\subsection{Member Enumeration Documentation}
-\hypertarget{a00093_a227813cbc8fa03c3448a612ffc909d1c}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Severity@{Severity}}
-\index{Severity@{Severity}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{Severity}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Analysis.\-Diagnosis.\-Severity}}}\label{a00093_a227813cbc8fa03c3448a612ffc909d1c}
-\begin{Desc}
-\item[Enumerator]\par
-\begin{description}
-\index{Error@{Error}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Error@{Error}}\item[{\em 
-\hypertarget{a00093_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Error}\label{a00093_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}
-}]\index{Warning@{Warning}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Warning@{Warning}}\item[{\em 
-\hypertarget{a00093_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning}\label{a00093_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}
-}]\index{Note@{Note}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Note@{Note}}\item[{\em 
-\hypertarget{a00093_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Note}\label{a00093_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}
-}]\end{description}
-\end{Desc}
-
-
-Definition at line 14 of file Analyser.\-cs.
-
-
-\begin{DoxyCode}
-14                              \{
-15             \hyperlink{a00093_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Error},
-16             \hyperlink{a00093_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning},
-17             \hyperlink{a00093_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Note}
-18         \}
-\end{DoxyCode}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00093_ad3fd818f1be98dc803e5bec959153824}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Diagnosis@{Diagnosis}}
-\index{Diagnosis@{Diagnosis}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{Diagnosis}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Analysis.\-Diagnosis.\-Diagnosis (
+\hypertarget{a00093_a79857a881f3e1bab47a2cee5007e62a2}{\index{Yarn\-::\-Loader\-::\-Emission\-Tuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}!Emission\-Tuple@{Emission\-Tuple}}
+\index{Emission\-Tuple@{Emission\-Tuple}!Yarn::Loader::EmissionTuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}}
+\subsubsection[{Emission\-Tuple}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Loader.\-Emission\-Tuple.\-Emission\-Tuple (
 \begin{DoxyParamCaption}
-\item[{string}]{message, }
-\item[{{\bf Severity}}]{severity, }
-\item[{string}]{node\-Name = {\ttfamily null}, }
-\item[{int}]{line\-Number = {\ttfamily -\/1}, }
-\item[{int}]{column\-Number = {\ttfamily -\/1}}
+\item[{int}]{depth, }
+\item[{bool}]{emitted}
 \end{DoxyParamCaption}
-)}}\label{a00093_ad3fd818f1be98dc803e5bec959153824}
+)}}\label{a00093_a79857a881f3e1bab47a2cee5007e62a2}
 
 
-Definition at line 21 of file Analyser.\-cs.
+Definition at line 76 of file Loader.\-cs.
+
+
+
+References Yarn.\-Loader.\-Emission\-Tuple.\-depth, and Yarn.\-Loader.\-Emission\-Tuple.\-emitted.
 
 
 \begin{DoxyCode}
-22         \{
-23             this.message = \hyperlink{a00093_ac7ed070dddd2613c08e7874ea5afb3af}{message};
-24             this.nodeName = \hyperlink{a00093_a662aca4ad2af5116c2cf6773daf1a847}{nodeName};
-25             this.lineNumber = \hyperlink{a00093_a0bd73f1c684bfd66ae7b6bef8f2972d0}{lineNumber};
-26             this.columnNumber = \hyperlink{a00093_a658e7fb05555c0f9ab5f80057bdc1408}{columnNumber};
-27             this.severity = \hyperlink{a00093_ad90ffa839ce0f568a099bb37b4a6c4da}{severity};
-28         \}
-\end{DoxyCode}
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00093_a4475eb5890c340da5c0012e25c2c86ae}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Analysis.\-Diagnosis.\-To\-String (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00093_a4475eb5890c340da5c0012e25c2c86ae}
-
-
-Definition at line 30 of file Analyser.\-cs.
-
-
-\begin{DoxyCode}
-31         \{
-32             \textcolor{keywordflow}{return} \hyperlink{a00093_a4475eb5890c340da5c0012e25c2c86ae}{ToString} (showSeverity: \textcolor{keyword}{false});
-33         \}
-\end{DoxyCode}
-\hypertarget{a00093_a985dee7ca27aa896332590133606b6a9}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-To\-String (
-\begin{DoxyParamCaption}
-\item[{bool}]{show\-Severity}
-\end{DoxyParamCaption}
-)}}\label{a00093_a985dee7ca27aa896332590133606b6a9}
-
-
-Definition at line 35 of file Analyser.\-cs.
-
-
-\begin{DoxyCode}
-36         \{
-37 
-38             \textcolor{keywordtype}{string} contextLabel = \textcolor{stringliteral}{""};
-39 
-40             \textcolor{keywordflow}{if} (showSeverity) \{
-41                 \textcolor{keywordflow}{switch} (\hyperlink{a00093_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}) \{
-42                 \textcolor{keywordflow}{case} Severity.Error:
-43                     contextLabel = \textcolor{stringliteral}{"ERROR: "};
-44                     \textcolor{keywordflow}{break};
-45                 \textcolor{keywordflow}{case} Severity.Warning:
-46                     contextLabel = \textcolor{stringliteral}{"WARNING: "};
-47                     \textcolor{keywordflow}{break};
-48                 \textcolor{keywordflow}{case} Severity.Note:
-49                     contextLabel = \textcolor{stringliteral}{"Note: "};
-50                     \textcolor{keywordflow}{break};
-51                 \textcolor{keywordflow}{default}:
-52                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException ();
-53                 \}
-54             \}
-55 
-56             \textcolor{keywordflow}{if} (this.\hyperlink{a00093_a662aca4ad2af5116c2cf6773daf1a847}{nodeName} != null) \{
-57 
-58                 contextLabel += this.nodeName;
-59                 \textcolor{keywordflow}{if} (this.\hyperlink{a00093_a0bd73f1c684bfd66ae7b6bef8f2972d0}{lineNumber} != -1) \{
-60                     contextLabel += string.Format (CultureInfo.CurrentCulture, \textcolor{stringliteral}{": \{0\}"}, this.lineNumber);
-61 
-62                     \textcolor{keywordflow}{if} (this.\hyperlink{a00093_a658e7fb05555c0f9ab5f80057bdc1408}{columnNumber} != -1) \{
-63                         contextLabel += string.Format (CultureInfo.CurrentCulture, \textcolor{stringliteral}{":\{0\}"}, 
-      this.columnNumber);
-64                     \}
-65                 \}
-66             \}
-67 
-68             \textcolor{keywordtype}{string} \hyperlink{a00093_ac7ed070dddd2613c08e7874ea5afb3af}{message};
-69 
-70             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{string}.IsNullOrEmpty(contextLabel)) \{
-71                 message = this.message;
-72             \} \textcolor{keywordflow}{else} \{
-73                 message = string.Format (CultureInfo.CurrentCulture, \textcolor{stringliteral}{"\{0\}: \{1\}"}, contextLabel, this.message
-      );
-74             \}
-75 
-76             \textcolor{keywordflow}{return} \hyperlink{a00093_ac7ed070dddd2613c08e7874ea5afb3af}{message};
-77         \}
+77             \{
+78                 this.depth = \hyperlink{a00093_ad3d26f07b18e91e1ba31ba3b5d6923db}{depth};
+79                 this.emitted = \hyperlink{a00093_a5916dbbd4d2e24ddfd02b0afdea290bf}{emitted};
+80             \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00093_a658e7fb05555c0f9ab5f80057bdc1408}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!column\-Number@{column\-Number}}
-\index{column\-Number@{column\-Number}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{column\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Analysis.\-Diagnosis.\-column\-Number}}\label{a00093_a658e7fb05555c0f9ab5f80057bdc1408}
+\hypertarget{a00093_ad3d26f07b18e91e1ba31ba3b5d6923db}{\index{Yarn\-::\-Loader\-::\-Emission\-Tuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}!depth@{depth}}
+\index{depth@{depth}!Yarn::Loader::EmissionTuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}}
+\subsubsection[{depth}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Loader.\-Emission\-Tuple.\-depth}}\label{a00093_ad3d26f07b18e91e1ba31ba3b5d6923db}
 
 
-Definition at line 12 of file Analyser.\-cs.
-
-\hypertarget{a00093_a0bd73f1c684bfd66ae7b6bef8f2972d0}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!line\-Number@{line\-Number}}
-\index{line\-Number@{line\-Number}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Analysis.\-Diagnosis.\-line\-Number}}\label{a00093_a0bd73f1c684bfd66ae7b6bef8f2972d0}
-
-
-Definition at line 11 of file Analyser.\-cs.
-
-\hypertarget{a00093_ac7ed070dddd2613c08e7874ea5afb3af}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!message@{message}}
-\index{message@{message}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{message}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-message}}\label{a00093_ac7ed070dddd2613c08e7874ea5afb3af}
-
-
-Definition at line 9 of file Analyser.\-cs.
-
-\hypertarget{a00093_a662aca4ad2af5116c2cf6773daf1a847}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!node\-Name@{node\-Name}}
-\index{node\-Name@{node\-Name}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-node\-Name}}\label{a00093_a662aca4ad2af5116c2cf6773daf1a847}
-
-
-Definition at line 10 of file Analyser.\-cs.
-
-\hypertarget{a00093_ad90ffa839ce0f568a099bb37b4a6c4da}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!severity@{severity}}
-\index{severity@{severity}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{severity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Severity} Yarn.\-Analysis.\-Diagnosis.\-severity}}\label{a00093_ad90ffa839ce0f568a099bb37b4a6c4da}
-
-
-Definition at line 19 of file Analyser.\-cs.
+Definition at line 74 of file Loader.\-cs.
 
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+Referenced by Yarn.\-Loader.\-Emission\-Tuple.\-Emission\-Tuple().
+
+\hypertarget{a00093_a5916dbbd4d2e24ddfd02b0afdea290bf}{\index{Yarn\-::\-Loader\-::\-Emission\-Tuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}!emitted@{emitted}}
+\index{emitted@{emitted}!Yarn::Loader::EmissionTuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}}
+\subsubsection[{emitted}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Loader.\-Emission\-Tuple.\-emitted}}\label{a00093_a5916dbbd4d2e24ddfd02b0afdea290bf}
+
+
+Definition at line 75 of file Loader.\-cs.
+
+
+
+Referenced by Yarn.\-Loader.\-Emission\-Tuple.\-Emission\-Tuple().
+
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00305}{Analyser.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00288}{Loader.\-cs}\end{DoxyCompactItemize}

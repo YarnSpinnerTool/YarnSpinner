@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,137 +105,52 @@ $(document).ready(function(){initNavTree('a00261_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">ReflectionHelper.cs</div>  </div>
+<div class="title">UInt16Converter.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00261.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#if !NET_2_0</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System.Linq;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">using</span> System.Linq.Expressions;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System.Reflection;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">using</span> CsvHelper.Configuration;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">using</span> CsvHelper.TypeConversion;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span>CsvHelper</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="a00157.html">   19</a></span>&#160;    <span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="a00157.html">ReflectionHelper</a></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    {</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="a00157.html#a45f0f552711f33392f33693a88fb20b3">   27</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> T <a class="code" href="a00157.html#a45f0f552711f33392f33693a88fb20b3">CreateInstance&lt;T&gt;</a>( params <span class="keywordtype">object</span>[] args )</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#if NET_2_0</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor"></span>            <span class="keywordflow">return</span> Activator.CreateInstance&lt;T&gt;();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor"></span>            <span class="keywordflow">return</span> (T)<a class="code" href="a00157.html#a9b8690ff760f41b0a7ef46626949c777">CreateInstance</a>( typeof( T ), args );</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor"></span>        }</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="a00157.html#a9b8690ff760f41b0a7ef46626949c777">   42</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">object</span> <a class="code" href="a00157.html#a9b8690ff760f41b0a7ef46626949c777">CreateInstance</a>( Type type, params <span class="keywordtype">object</span>[] args )</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#if NET_2_0</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor"></span>            <span class="keywordflow">return</span> Activator.CreateInstance( type, args );</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            var argumentTypes = args.Select( a =&gt; a.GetType() ).ToArray();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            var argumentExpressions = argumentTypes.Select( ( t, i ) =&gt; Expression.Parameter( t, <span class="stringliteral">&quot;var&quot;</span> + i ) ).ToArray();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            var constructorInfo = type.GetConstructor( argumentTypes );</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            var constructor = Expression.New( constructorInfo, argumentExpressions );</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            var compiled = Expression.Lambda( constructor, argumentExpressions ).Compile();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keywordflow">return</span> compiled.DynamicInvoke( args );</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">catch</span>( TargetInvocationException ex )</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                <span class="keywordflow">throw</span> ex.InnerException;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor"></span>        }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#if !NET_2_0</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor"></span>        <span class="keyword">public</span> <span class="keyword">static</span> T <a class="code" href="a00157.html#aadf73df00d450ae49ceb8d78ac254b6d">GetAttribute&lt;T&gt;</a>( PropertyInfo property, <span class="keywordtype">bool</span> inherit ) where T : Attribute</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            T attribute = null;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            var attributes = property.GetCustomAttributes( typeof( T ), inherit ).ToList();</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">if</span>( attributes.Count &gt; 0 )</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                attribute = attributes[0] as T;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keywordflow">return</span> attribute;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="a00157.html#adb0641e341c8468906b175f3f982ab6b">   90</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> T[] <a class="code" href="a00157.html#adb0641e341c8468906b175f3f982ab6b">GetAttributes&lt;T&gt;</a>( PropertyInfo property, <span class="keywordtype">bool</span> inherit ) where T : Attribute</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            var attributes = property.GetCustomAttributes( typeof( T ), inherit );</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            <span class="keywordflow">return</span> attributes.Cast&lt;T&gt;().ToArray();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="a00157.html#a7f2e39949787d37053702e7ea547ee69">  103</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> NewExpression <a class="code" href="a00157.html#a7f2e39949787d37053702e7ea547ee69">GetConstructor&lt;T&gt;</a>( Expression&lt;Func&lt;T&gt;&gt; expression )</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        {</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            var newExpression = expression.Body as NewExpression;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="keywordflow">if</span>( newExpression == null )</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentException( <span class="stringliteral">&quot;Not a constructor expression.&quot;</span>, nameof( expression ) );</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            }</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <span class="keywordflow">return</span> newExpression;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        }</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="a00157.html#afaa6e2741145eabea34c625684fb4636">  120</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> PropertyInfo <a class="code" href="a00157.html#afaa6e2741145eabea34c625684fb4636">GetProperty&lt;TModel&gt;</a>( Expression&lt;Func&lt;TModel, object&gt;&gt; expression )</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        {</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            var member = GetMemberExpression( expression ).Member;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            var <span class="keyword">property</span> = member as PropertyInfo;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            <span class="keywordflow">if</span>( property == null )</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            {</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="a00066.html">CsvConfigurationException</a>( $<span class="stringliteral">&quot;&#39;{member.Name}&#39; is not a property. Did you try to map a field by accident?&quot;</span> );</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            }</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            <span class="keywordflow">return</span> property;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        }</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
-<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="a00157.html#ab462ff86486973f2eee6785bed535cdc">  139</a></span>&#160;        <span class="keyword">private</span> <span class="keyword">static</span> MemberExpression <a class="code" href="a00157.html#ab462ff86486973f2eee6785bed535cdc">GetMemberExpression&lt;TModel, T&gt;</a>( Expression&lt;Func&lt;TModel, T&gt;&gt; expression )</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        {</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            MemberExpression memberExpression = null;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            <span class="keywordflow">if</span>( expression.Body.NodeType == ExpressionType.Convert )</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            {</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                var body = (UnaryExpression)expression.Body;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                memberExpression = body.Operand as MemberExpression;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            }</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span>( expression.Body.NodeType == ExpressionType.MemberAccess )</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            {</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                memberExpression = expression.Body as MemberExpression;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            }</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="keywordflow">if</span>( memberExpression == null )</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            {</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentException( <span class="stringliteral">&quot;Not a member access&quot;</span>, nameof( expression ) );</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            }</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            <span class="keywordflow">return</span> memberExpression;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        }</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor"></span>    }</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;}</div>
-<div class="ttc" id="a00157_html_a7f2e39949787d37053702e7ea547ee69"><div class="ttname"><a href="a00157.html#a7f2e39949787d37053702e7ea547ee69">CsvHelper.ReflectionHelper.GetConstructor&lt; T &gt;</a></div><div class="ttdeci">static NewExpression GetConstructor&lt; T &gt;(Expression&lt; Func&lt; T &gt;&gt; expression)</div><div class="ttdoc">Gets the constructor NewExpression from the give Expression. </div><div class="ttdef"><b>Definition:</b> <a href="a00261_source.html#l00103">ReflectionHelper.cs:103</a></div></div>
-<div class="ttc" id="a00157_html_adb0641e341c8468906b175f3f982ab6b"><div class="ttname"><a href="a00157.html#adb0641e341c8468906b175f3f982ab6b">CsvHelper.ReflectionHelper.GetAttributes&lt; T &gt;</a></div><div class="ttdeci">static T[] GetAttributes&lt; T &gt;(PropertyInfo property, bool inherit)</div><div class="ttdoc">Gets the attributes of type T on property. </div><div class="ttdef"><b>Definition:</b> <a href="a00261_source.html#l00090">ReflectionHelper.cs:90</a></div></div>
-<div class="ttc" id="a00157_html_a9b8690ff760f41b0a7ef46626949c777"><div class="ttname"><a href="a00157.html#a9b8690ff760f41b0a7ef46626949c777">CsvHelper.ReflectionHelper.CreateInstance</a></div><div class="ttdeci">static object CreateInstance(Type type, params object[] args)</div><div class="ttdoc">Creates an instance of the specified type. </div><div class="ttdef"><b>Definition:</b> <a href="a00261_source.html#l00042">ReflectionHelper.cs:42</a></div></div>
-<div class="ttc" id="a00157_html_aadf73df00d450ae49ceb8d78ac254b6d"><div class="ttname"><a href="a00157.html#aadf73df00d450ae49ceb8d78ac254b6d">CsvHelper.ReflectionHelper.GetAttribute&lt; T &gt;</a></div><div class="ttdeci">static T GetAttribute&lt; T &gt;(PropertyInfo property, bool inherit)</div><div class="ttdoc">Gets the first attribute of type T on property. </div><div class="ttdef"><b>Definition:</b> <a href="a00261_source.html#l00072">ReflectionHelper.cs:72</a></div></div>
-<div class="ttc" id="a00066_html"><div class="ttname"><a href="a00066.html">CsvHelper.Configuration.CsvConfigurationException</a></div><div class="ttdoc">Represents configuration errors that occur. </div><div class="ttdef"><b>Definition:</b> <a href="a00225_source.html#l00015">CsvConfigurationException.cs:15</a></div></div>
-<div class="ttc" id="a00157_html_ab462ff86486973f2eee6785bed535cdc"><div class="ttname"><a href="a00157.html#ab462ff86486973f2eee6785bed535cdc">CsvHelper.ReflectionHelper.GetMemberExpression&lt; TModel, T &gt;</a></div><div class="ttdeci">static MemberExpression GetMemberExpression&lt; TModel, T &gt;(Expression&lt; Func&lt; TModel, T &gt;&gt; expression)</div><div class="ttdoc">Gets the member expression. </div><div class="ttdef"><b>Definition:</b> <a href="a00261_source.html#l00139">ReflectionHelper.cs:139</a></div></div>
-<div class="ttc" id="a00157_html"><div class="ttname"><a href="a00157.html">CsvHelper.ReflectionHelper</a></div><div class="ttdoc">Common reflection tasks. </div><div class="ttdef"><b>Definition:</b> <a href="a00261_source.html#l00019">ReflectionHelper.cs:19</a></div></div>
-<div class="ttc" id="a00157_html_afaa6e2741145eabea34c625684fb4636"><div class="ttname"><a href="a00157.html#afaa6e2741145eabea34c625684fb4636">CsvHelper.ReflectionHelper.GetProperty&lt; TModel &gt;</a></div><div class="ttdeci">static PropertyInfo GetProperty&lt; TModel &gt;(Expression&lt; Func&lt; TModel, object &gt;&gt; expression)</div><div class="ttdoc">Gets the property from the expression. </div><div class="ttdef"><b>Definition:</b> <a href="a00261_source.html#l00120">ReflectionHelper.cs:120</a></div></div>
-<div class="ttc" id="a00157_html_a45f0f552711f33392f33693a88fb20b3"><div class="ttname"><a href="a00157.html#a45f0f552711f33392f33693a88fb20b3">CsvHelper.ReflectionHelper.CreateInstance&lt; T &gt;</a></div><div class="ttdeci">static T CreateInstance&lt; T &gt;(params object[] args)</div><div class="ttdoc">Creates an instance of type T. </div><div class="ttdef"><b>Definition:</b> <a href="a00261_source.html#l00027">ReflectionHelper.cs:27</a></div></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System.Globalization;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>CsvHelper.TypeConversion</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="a00160.html">   12</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00160.html">UInt16Converter</a> : <a class="code" href="a00084.html">DefaultTypeConverter</a></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00160.html#a796e0b7b57d69abee122947166b45a9a">   20</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">object</span> <a class="code" href="a00160.html#a796e0b7b57d69abee122947166b45a9a">ConvertFromString</a>( <a class="code" href="a00156.html">TypeConverterOptions</a> options, <span class="keywordtype">string</span> text )</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            var numberStyle = options.NumberStyle ?? NumberStyles.Integer;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            ushort us;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">if</span>( ushort.TryParse( text, numberStyle, options.<a class="code" href="a00156.html#af6bc545680b477abf9178eb4755572b1">CultureInfo</a>, out us ) )</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordflow">return</span> us;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordflow">return</span> base.ConvertFromString( options, text );</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="a00160.html#a202a9c2413a59423a51b439eab84a3bd">   40</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">bool</span> <a class="code" href="a00160.html#a202a9c2413a59423a51b439eab84a3bd">CanConvertFrom</a>( System.Type type )</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="comment">// We only care about strings.</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keywordflow">return</span> type == typeof( <span class="keywordtype">string</span> );</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
+<div class="ttc" id="a00156_html"><div class="ttname"><a href="a00156.html">CsvHelper.TypeConversion.TypeConverterOptions</a></div><div class="ttdoc">Options used when doing type conversion. </div><div class="ttdef"><b>Definition:</b> <a href="a00259_source.html#l00015">TypeConverterOptions.cs:15</a></div></div>
+<div class="ttc" id="a00160_html_a796e0b7b57d69abee122947166b45a9a"><div class="ttname"><a href="a00160.html#a796e0b7b57d69abee122947166b45a9a">CsvHelper.TypeConversion.UInt16Converter.ConvertFromString</a></div><div class="ttdeci">override object ConvertFromString(TypeConverterOptions options, string text)</div><div class="ttdoc">Converts the string to an object. </div><div class="ttdef"><b>Definition:</b> <a href="a00261_source.html#l00020">UInt16Converter.cs:20</a></div></div>
+<div class="ttc" id="a00084_html"><div class="ttname"><a href="a00084.html">CsvHelper.TypeConversion.DefaultTypeConverter</a></div><div class="ttdoc">Converts an object to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00013">DefaultTypeConverter.cs:13</a></div></div>
+<div class="ttc" id="a00156_html_af6bc545680b477abf9178eb4755572b1"><div class="ttname"><a href="a00156.html#af6bc545680b477abf9178eb4755572b1">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</a></div><div class="ttdeci">CultureInfo CultureInfo</div><div class="ttdoc">Gets or sets the culture info. </div><div class="ttdef"><b>Definition:</b> <a href="a00259_source.html#l00023">TypeConverterOptions.cs:23</a></div></div>
+<div class="ttc" id="a00160_html_a202a9c2413a59423a51b439eab84a3bd"><div class="ttname"><a href="a00160.html#a202a9c2413a59423a51b439eab84a3bd">CsvHelper.TypeConversion.UInt16Converter.CanConvertFrom</a></div><div class="ttdeci">override bool CanConvertFrom(System.Type type)</div><div class="ttdoc">Determines whether this instance [can convert from] the specified type. </div><div class="ttdef"><b>Definition:</b> <a href="a00261_source.html#l00040">UInt16Converter.cs:40</a></div></div>
+<div class="ttc" id="a00160_html"><div class="ttname"><a href="a00160.html">CsvHelper.TypeConversion.UInt16Converter</a></div><div class="ttdoc">Converts a UInt16 to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00261_source.html#l00012">UInt16Converter.cs:12</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00261.html">ReflectionHelper.cs</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:22 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_5c139b908ad2613e3ef99ee52a122286.html">TypeConversion</a></li><li class="navelem"><a class="el" href="a00261.html">UInt16Converter.cs</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:44 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

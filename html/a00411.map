@@ -1,3 +1,4 @@
-<map id="TestDialogueUIBehaviour" name="TestDialogueUIBehaviour">
-<area shape="rect" id="node2" href="$a00097.html" title="Scripts that can act as the UI for the conversation should subclass this. " alt="" coords="5,131,224,282"/>
+<map id="CsvHelper.CsvReaderException" name="CsvHelper.CsvReaderException">
+<area shape="rect" id="node4" href="$a00064.html" title="Represents an error caused because a field is missing in the header while reading a CSV file..." alt="" coords="12,472,209,608"/>
+<area shape="rect" id="node2" href="$a00063.html" title="Represents errors that occur in CsvHelper. " alt="" coords="29,131,192,253"/>
 </map>

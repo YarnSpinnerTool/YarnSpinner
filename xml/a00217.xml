@@ -1,67 +1,42 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00217" kind="file">
-    <compoundname>Extending.md</compoundname>
+    <compoundname>CsvReaderException.cs</compoundname>
+    <innerclass refid="a00075" prot="public">CsvHelper::CsvReaderException</innerclass>
+    <innernamespace refid="a00311">CsvHelper</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#<sp/>Extending<sp/>Yarn<sp/>Spinner</highlight></codeline>
-<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Style<sp/>Guide</highlight></codeline>
-<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">`Inline<sp/>Code`<sp/>contain<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>snippets<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>Code<sp/>Blocks<sp/>contain<sp/>segments<sp/>or<sp/>chunks<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal">**Bold<sp/>indicate<sp/>actions<sp/>(Select<sp/>menu<sp/>item,<sp/>copying<sp/>file,<sp/>etc.)**</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal">***Bold<sp/>italic<sp/>text<sp/>indicates<sp/>emphasis***</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal">&gt;<sp/>Blockquotes<sp/>contain<sp/>essential<sp/>information</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Introduction</highlight></codeline>
-<codeline lineno="16"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal">This<sp/>document<sp/>intends<sp/>to<sp/>demonstrate<sp/>to<sp/>a<sp/>developer<sp/>how<sp/>they<sp/>can<sp/>add<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>functions<sp/>so<sp/>that<sp/>they<sp/>can<sp/>be<sp/>called<sp/>from<sp/>inside<sp/>Yarn.</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal">###<sp/>Programming<sp/>style</highlight></codeline>
-<codeline lineno="20"><highlight class="normal">*<sp/>It<sp/>is<sp/>recommended<sp/>that<sp/>you<sp/>follow<sp/>our<sp/>programming<sp/>style<sp/>so<sp/>that<sp/>in<sp/>the<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>of<sp/>bug<sp/>or<sp/>patch<sp/>submission,<sp/>it<sp/>makes<sp/>it<sp/>easier<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>us<sp/>to<sp/>read.<sp/>As<sp/>such,<sp/><ref refid="a00351_1a00fba9ee9674b2513dbe28eab795b734" kindref="member">indents</ref><sp/>should<sp/>be<sp/>four<sp/>spaces<sp/>and<sp/>not<sp/>tab<sp/>stops.<sp/></highlight></codeline>
-<codeline lineno="21"><highlight class="normal">*<sp/>We<sp/>use<sp/>the<sp/>Doxygen<sp/>format<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>documentation,<sp/>thus<sp/>three<sp/>forward<sp/>slashes<sp/>`</highlight></codeline>
-<codeline lineno="22"><highlight class="normal">*<sp/>Other<sp/>comments<sp/>should<sp/>use<sp/>two<sp/>forward<sp/>slashes.<sp/>This<sp/>will<sp/>ensure<sp/>proper<sp/>code<sp/>commentary<sp/>without<sp/>it<sp/>appearing<sp/>in<sp/>generated<sp/>API<sp/>documentation.</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="comment">//<sp/>Copyright<sp/>2009-2015<sp/>Josh<sp/>Close<sp/>and<sp/>Contributors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>a<sp/>part<sp/>of<sp/>CsvHelper<sp/>and<sp/>is<sp/>dual<sp/>licensed<sp/>under<sp/>MS-PL<sp/>and<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>LICENSE.txt<sp/>for<sp/>details<sp/>or<sp/>visit<sp/>http://www.opensource.org/licenses/ms-pl.html<sp/>for<sp/>MS-PL<sp/>and<sp/>http://opensource.org/licenses/Apache-2.0<sp/>for<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>http://csvhelper.com</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!COREFX</highlight></codeline>
+<codeline lineno="7"><highlight class="preprocessor"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Runtime.Serialization;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="9"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">CsvHelper</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15"><highlight class="preprocessor">#if<sp/>!COREFX<sp/>&amp;&amp;<sp/>!PCL</highlight></codeline>
+<codeline lineno="16"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>[Serializable]</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="18" refid="a00075" refkind="compound"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="a00075" kindref="compound">CsvReaderException</ref><sp/>:<sp/><ref refid="a00063" kindref="compound">CsvHelperException</ref></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="23" refid="a00075_1a92ea35129f92f260c5327bbc3fd330df" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00075_1a92ea35129f92f260c5327bbc3fd330df" kindref="member">CsvReaderException</ref>()<sp/>{}</highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal">##<sp/>Creating<sp/>a<sp/>custom<sp/>command</highlight></codeline>
-<codeline lineno="26"><highlight class="normal">Creating<sp/>a<sp/>custom<sp/>command<sp/>is<sp/>a<sp/>simple<sp/>two<sp/>step<sp/>procedure.i</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal">1.<sp/>We<sp/>need<sp/>to<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>the<sp/>dialogue<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/>that</highlight><highlight class="stringliteral">&apos;s<sp/>in<sp/>use,<sp/>then<sp/>regiser<sp/>a<sp/>new<sp/>function<sp/>for<sp/>it.</highlight></codeline>
-<codeline lineno="29"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="30"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>//<sp/>get<sp/>the<sp/>Dialogue<sp/>object<sp/></highlight></codeline>
-<codeline lineno="31"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>//<sp/>varstorage_implementation<sp/>is<sp/>the<sp/>object<sp/>that<sp/>handles<sp/>variable<sp/>storage<sp/>-<sp/>it&apos;</highlight><highlight class="normal">s<sp/>not<sp/>important<sp/>in<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>example</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>dialogue<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Dialogue(varstorage_implementation);</highlight></codeline>
-<codeline lineno="33"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="34"><highlight class="normal">2.<sp/>Next,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/>your<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">.<sp/>For<sp/>example,<sp/>let</highlight><highlight class="stringliteral">&apos;s<sp/>make<sp/>a<sp/>function<sp/>that<sp/>takes<sp/>1<sp/>parameter,<sp/>which<sp/>is<sp/>a<sp/>number,<sp/>and<sp/>returns<sp/>`true`<sp/>if<sp/>it&apos;</highlight><highlight class="normal">s<sp/>even:</highlight></codeline>
-<codeline lineno="35"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>RegisterFunction(name,<sp/>parameterCount,<sp/>implementation)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>dialogue.library.RegisterFunction<sp/>(</highlight><highlight class="stringliteral">&quot;is_even&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>delegate(Value[]<sp/>parameters)<sp/>{</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)parameters[0].AsNumber<sp/>%<sp/>2<sp/>==<sp/>0;</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
-<codeline lineno="40"><highlight class="normal">```<sp/></highlight></codeline>
-<codeline lineno="41"><highlight class="normal">When<sp/>the<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal"><sp/>is<sp/>called,<sp/>the<sp/>delegate<sp/>you<sp/>provide<sp/>will<sp/>be<sp/>run.</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal">Some<sp/>notes:</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal">*<sp/>You<sp/>don</highlight><highlight class="stringliteral">&apos;t<sp/>have<sp/>to<sp/>return<sp/>a<sp/>value<sp/>from<sp/>your<sp/>function.</highlight></codeline>
-<codeline lineno="46"><highlight class="stringliteral">*<sp/>The<sp/>parameters<sp/>passed<sp/>to<sp/>your<sp/>function<sp/>are<sp/>of<sp/>type<sp/>Yarn.Value.<sp/>You<sp/>can<sp/>get<sp/>their<sp/>value<sp/>as<sp/>numbers,<sp/>bools<sp/>or<sp/>strings<sp/>by<sp/>using<sp/>the<sp/>`AsNumber`,<sp/>`AsString`<sp/>and<sp/>`AsBool`<sp/>properties.</highlight></codeline>
-<codeline lineno="47"><highlight class="stringliteral">*<sp/>You<sp/>can<sp/>only<sp/>return<sp/>values<sp/>of<sp/>the<sp/>following<sp/>types:</highlight></codeline>
-<codeline lineno="48"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>String</highlight></codeline>
-<codeline lineno="49"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Float</highlight></codeline>
-<codeline lineno="50"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Double</highlight></codeline>
-<codeline lineno="51"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Integer</highlight></codeline>
-<codeline lineno="52"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Yarn.Value</highlight></codeline>
-<codeline lineno="53"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="54"><highlight class="stringliteral">*<sp/>Yarn<sp/>Spinner<sp/>will<sp/>make<sp/>sure<sp/>that<sp/>the<sp/>correct<sp/>number<sp/>of<sp/>parameters<sp/>is<sp/>passed<sp/>to<sp/>your<sp/>method.<sp/>If<sp/>you<sp/>specify<sp/>`-1`<sp/>as<sp/>your<sp/>parameter<sp/>count,<sp/>the<sp/>function<sp/>may<sp/>have<sp/>any<sp/>number<sp/>of<sp/>parameters.</highlight></codeline>
+<codeline lineno="30" refid="a00075_1abb4803417d6a479385872b608f1791e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00075_1abb4803417d6a479385872b608f1791e5" kindref="member">CsvReaderException</ref>(<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>message<sp/>)<sp/>:<sp/>base(<sp/>message<sp/>)<sp/>{}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="a00075_1a4507583f079e40d454285c1e4f161aeb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00075_1a4507583f079e40d454285c1e4f161aeb" kindref="member">CsvReaderException</ref>(<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>message,<sp/>Exception<sp/>innerException<sp/>)<sp/>:<sp/>base(<sp/>message,<sp/>innerException<sp/>)<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!PCL<sp/>&amp;&amp;<sp/>!COREFX</highlight></codeline>
+<codeline lineno="42"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00075_1a92ea35129f92f260c5327bbc3fd330df" kindref="member">CsvReaderException</ref>(<sp/>SerializationInfo<sp/>info,<sp/>StreamingContext<sp/>context<sp/>)<sp/>:<sp/>base(<sp/>info,<sp/>context<sp/>)<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="50"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">}</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Programming/Extending.md"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs"/>
   </compounddef>
 </doxygen>

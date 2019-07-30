@@ -1,4 +1,2 @@
-<map id="CsvHelper.ICsvReader" name="CsvHelper.ICsvReader">
-<area shape="rect" id="node4" href="$a00079.html" title="Reads data that was parsed from ICsvParser. " alt="" coords="42,523,261,1187"/>
-<area shape="rect" id="node2" href="$a00117.html" title="Defines methods used to read parsed data from a CSV file row. " alt="" coords="5,6,153,303"/>
+<map id="CsvHelper.Configuration.CsvPropertyMapCollection" name="CsvHelper.Configuration.CsvPropertyMapCollection">
 </map>

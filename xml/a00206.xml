@@ -1,36 +1,53 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00206" kind="file">
-    <compoundname>README.md</compoundname>
+    <compoundname>CsvPropertyReferenceMapData.cs</compoundname>
+    <innerclass refid="a00073" prot="public">CsvHelper::Configuration::CsvPropertyReferenceMapData</innerclass>
+    <innernamespace refid="a00312">CsvHelper::Configuration</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#<sp/>Yarn<sp/>Spinner<sp/>Documentation</highlight></codeline>
-<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Yarn<sp/>Documentation</highlight></codeline>
-<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">Documentation<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Yarn<sp/>Spinner<sp/>is<sp/>under<sp/>active<sp/>development.<sp/>Please<sp/>submit<sp/>any<sp/>suggestions<sp/>you<sp/>may<sp/>have.</highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal">Yarn<sp/>Spinner<sp/>API<sp/>documentation<sp/>is<sp/>generated<sp/>automatically<sp/>by<sp/>the<sp/>[Doxygen](http:</highlight><highlight class="comment">//www.doxygen.org)<sp/>system.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal">The<sp/>documentation<sp/>is<sp/>currently<sp/>automatically<sp/>generated<sp/>every<sp/>time<sp/>a<sp/>commit<sp/>is<sp/>made<sp/>to<sp/>the<sp/>Master<sp/>branch<sp/>on<sp/>GitHub.<sp/>The<sp/>documentation<sp/>is<sp/>availabe<sp/>on<sp/>our<sp/>GitHub<sp/>Page<sp/>in<sp/>[HTML](http:</highlight><highlight class="comment">//thesecretlab.github.io/YarnSpinner/html/)<sp/>and<sp/>in<sp/>our<sp/>Github<sp/>Repository<sp/>in<sp/>[Latex](https://github.com/thesecretlab/YarnSpinner/tree/gh-pages/latex),<sp/>PDF,<sp/>[RTF](https://github.com/thesecretlab/YarnSpinner/tree/gh-pages/rtf),<sp/>and<sp/>[XML](https://github.com/thesecretlab/YarnSpinner/tree/gh-pages/xml)<sp/>formats.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"><ref refid="a00053_1a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639" kindref="member">If</ref><sp/>you<sp/>are<sp/>working<sp/>on<sp/>the<sp/>[Development<sp/>branch](https:</highlight><highlight class="comment">//github.com/thesecretlab/YarnSpinner/tree/development),<sp/>the<sp/>[build.sh](../build.sh)<sp/>script<sp/>is<sp/>capable<sp/>of<sp/>generating<sp/>documents<sp/>for<sp/>you<sp/>locally<sp/>by<sp/>utilising<sp/>the<sp/>-d<sp/>switch.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Building<sp/>Yarn<sp/>Spinner</highlight></codeline>
-<codeline lineno="14"><highlight class="preprocessor"></highlight><highlight class="normal">Yarn<sp/>Spinner<sp/>is<sp/>automatically<sp/>built<sp/>by<sp/>[Travis<sp/>Continual<sp/>Integration](https:</highlight><highlight class="comment">//travis-ci.org/thesecretlab/YarnSpinner)<sp/>system.<sp/>For<sp/>information<sp/>on<sp/>how<sp/>to<sp/>build<sp/>it<sp/>yourself,<sp/>please<sp/>refer<sp/>to<sp/>the<sp/>[Building](YarnSpinner-Programming/Building.md)<sp/>document.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Creating<sp/>Yarn<sp/>Dialogue<sp/>for<sp/>Yarn<sp/>Spinner</highlight></codeline>
-<codeline lineno="17"><highlight class="preprocessor"></highlight><highlight class="normal">For<sp/>information<sp/>on<sp/>how<sp/>to<sp/>write<sp/>dialogue<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Yarn<sp/>Spinner,<sp/>refer<sp/>to<sp/>the<sp/>[Usage](YarnSpinner-Dialogue/General-Usage.md)<sp/>document,<sp/>as<sp/>well<sp/>as<sp/>the<sp/>[Syntax<sp/>Reference](YarnSpinner-Dialogue/Yarn-Syntax.md).<sp/><ref refid="a00053_1a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639" kindref="member">If</ref><sp/>you</highlight><highlight class="stringliteral">&apos;re<sp/>after<sp/>a<sp/>more<sp/>guided<sp/>experience,<sp/>take<sp/>a<sp/>look<sp/>at<sp/>our<sp/>[Simple](YarnSpinner-Dialogue/Simple-Dialogue-Tutorial.md)<sp/>and<sp/>[Complex](YarnSpinner-Dialogue/Complex-Dialogue-Tutorial.md)<sp/>tutorials.</highlight></codeline>
-<codeline lineno="18"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="19"><highlight class="stringliteral">##<sp/>Using<sp/>Unity</highlight></codeline>
-<codeline lineno="20"><highlight class="stringliteral">At<sp/>this<sp/>point<sp/>in<sp/>time,<sp/>only<sp/>examples<sp/>for<sp/>the<sp/>[Unity](http://www.unity3d.com)<sp/>game<sp/>engine<sp/>are<sp/>available.<sp/>We<sp/>hope<sp/>to<sp/>include<sp/>a<sp/>more<sp/>generic<sp/>example<sp/>in<sp/>the<sp/>future.<sp/>Please<sp/>refer<sp/>to<sp/>the<sp/>[Yarn<sp/>Spinner<sp/>Unity](YarnSpinner-Unity/)<sp/>documents<sp/>for<sp/>more<sp/>information.</highlight></codeline>
-<codeline lineno="21"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="22"><highlight class="stringliteral">##<sp/>Extending<sp/>Yarn<sp/>Spinner</highlight></codeline>
-<codeline lineno="23"><highlight class="stringliteral">For<sp/>information<sp/>on<sp/>how<sp/>to<sp/>extend<sp/>Yarn<sp/>Spinner&apos;</highlight><highlight class="normal">s<sp/>functionality,<sp/>please<sp/>refer<sp/>to<sp/>the<sp/>[Extending<sp/>Yarn<sp/>Spinner](YarnSpinner-Programming/Extending.md)<sp/>document.</highlight></codeline>
+<codeline lineno="1"><highlight class="comment">//<sp/>Copyright<sp/>2009-2015<sp/>Josh<sp/>Close<sp/>and<sp/>Contributors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>a<sp/>part<sp/>of<sp/>CsvHelper<sp/>and<sp/>is<sp/>dual<sp/>licensed<sp/>under<sp/>MS-PL<sp/>and<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>LICENSE.txt<sp/>for<sp/>details<sp/>or<sp/>visit<sp/>http://www.opensource.org/licenses/ms-pl.html<sp/>for<sp/>MS-PL<sp/>and<sp/>http://opensource.org/licenses/Apache-2.0<sp/>for<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>http://csvhelper.com</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!NET_2_0</highlight></codeline>
+<codeline lineno="6"><highlight class="preprocessor"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Reflection;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">CsvHelper.Configuration</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="13" refid="a00073" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="a00073" kindref="compound">CsvPropertyReferenceMapData</ref></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="15" refid="a00073_1a24263cbdacd2dd0db9bbe22676a6d989" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="a00073_1a24263cbdacd2dd0db9bbe22676a6d989" kindref="member">prefix</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>Prefix</highlight></codeline>
+<codeline lineno="21" refid="a00073_1a687fe65f1a2b4301f283e9333c282f9c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>prefix;<sp/>}</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>set</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prefix<sp/>=<sp/>value;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">foreach</highlight><highlight class="normal">(<sp/>var<sp/>propertyMap<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>Mapping.PropertyMaps<sp/>)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>propertyMap.Data.Names.Prefix<sp/>=<sp/>value;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="a00073_1a5386ac40fb3ea290944f05cbee99bfcb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>PropertyInfo<sp/>Property<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="a00073_1af2343065df03de92b6b9803ed2bb4f87" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00057" kindref="compound">CsvClassMap</ref><sp/>Mapping<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="a00073_1ad6fe2913932a9fe434f8a908dec30e8b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00073_1ad6fe2913932a9fe434f8a908dec30e8b" kindref="member">CsvPropertyReferenceMapData</ref>(<sp/>PropertyInfo<sp/>property,<sp/><ref refid="a00057" kindref="compound">CsvClassMap</ref><sp/>mapping<sp/>)</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Property<sp/>=<sp/>property;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Mapping<sp/>=<sp/>mapping;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>!NET_2_0</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/README.md"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs"/>
   </compounddef>
 </doxygen>

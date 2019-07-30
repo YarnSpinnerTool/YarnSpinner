@@ -1,7 +1,0 @@
-<map id="Yarn.BodyVisitor.genericExpVisitor" name="Yarn.BodyVisitor.genericExpVisitor">
-<area shape="rect" id="node2" href="$a00046.html#a5eb6df63b55c3ba8e8568d8b0ebd0369" title="Visit a parse tree produced by the expAddSub labeled alternative in YarnSpinnerParser.expression. " alt="" coords="221,5,395,46"/>
-<area shape="rect" id="node3" href="$a00046.html#a19491adb347becea5f216e805763f582" title="Visit a parse tree produced by the expAndOrXor labeled alternative in YarnSpinnerParser.expression. " alt="" coords="221,70,395,111"/>
-<area shape="rect" id="node4" href="$a00046.html#a3e2bd74ec27b6e603b075e0468db3fb5" title="Visit a parse tree produced by the expComparison labeled alternative in YarnSpinnerParser.expression. " alt="" coords="221,135,395,177"/>
-<area shape="rect" id="node5" href="$a00046.html#ae5da558219f42b518a5483f7f794ed0a" title="Visit a parse tree produced by the expEquality labeled alternative in YarnSpinnerParser.expression. " alt="" coords="221,201,395,242"/>
-<area shape="rect" id="node6" href="$a00046.html#a305e4197937bc3b6336592b61ba01eca" title="Visit a parse tree produced by the expMultDivMod labeled alternative in YarnSpinnerParser.expression. " alt="" coords="221,266,395,307"/>
-</map>

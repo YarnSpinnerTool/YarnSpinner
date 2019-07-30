@@ -1,4 +1,0 @@
-<map id="Yarn.BodyVisitor.opEquals" name="Yarn.BodyVisitor.opEquals">
-<area shape="rect" id="node2" href="$a00046.html#ab073a73cd379ee0130e2588c08573345" title="Visit a parse tree produced by the expMultDivModEquals labeled alternative in YarnSpinnerParser.expression. " alt="" coords="232,5,405,46"/>
-<area shape="rect" id="node3" href="$a00046.html#a573f37ce6260e0f112d3c6210fadf638" title="Visit a parse tree produced by the expPlusMinusEquals labeled alternative in YarnSpinnerParser.expression. " alt="" coords="232,70,405,111"/>
-</map>

@@ -1,264 +1,345 @@
-\hypertarget{a00122}{\section{Csv\-Helper.\-Type\-Conversion.\-Int16\-Converter Class Reference}
-\label{a00122}\index{Csv\-Helper.\-Type\-Conversion.\-Int16\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Int16\-Converter}}
+\hypertarget{a00122}{\section{Yarn.\-Line\-Adder Class Reference}
+\label{a00122}\index{Yarn.\-Line\-Adder@{Yarn.\-Line\-Adder}}
 }
 
 
-Converts an Int16 to and from a string.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Int16\-Converter\-:
+Collaboration diagram for Yarn.\-Line\-Adder\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00548}
+\includegraphics[width=174pt]{a00640}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Int16\-Converter\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=220pt]{a00549}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Static Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-override object \hyperlink{a00122_aff576c6ca9bb1942fb17e385befb0197}{Convert\-From\-String} (\hyperlink{a00180}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00122_a4040b7e66af082f1a57b65c20877dd7f}{Can\-Convert\-From} (System.\-Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual string \hyperlink{a00090_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00180}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00090_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00090_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static int \hyperlink{a00122_aa2b8af349e709b8a45d42af5146ca848}{Add\-Lines} (\hyperlink{a00039}{Add\-Labels\-Options} options)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static string \hyperlink{a00122_a91ad68b679bd3b0bd89fe92ea5068688}{Generate\-String} (List$<$ string $>$ existing\-Keys)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Random \hyperlink{a00122_ad887744b1b813fc081be814958742c37}{random} = new Random()
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Converts an Int16 to and from a string. 
 
 
-
-Definition at line 12 of file Int16\-Converter.\-cs.
+Definition at line 8 of file Line\-Adder.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00122_a4040b7e66af082f1a57b65c20877dd7f}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int16\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int16\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::Int16Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int16\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Int16\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00122_aa2b8af349e709b8a45d42af5146ca848}{\index{Yarn\-::\-Line\-Adder@{Yarn\-::\-Line\-Adder}!Add\-Lines@{Add\-Lines}}
+\index{Add\-Lines@{Add\-Lines}!Yarn::LineAdder@{Yarn\-::\-Line\-Adder}}
+\subsubsection[{Add\-Lines}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-Line\-Adder.\-Add\-Lines (
 \begin{DoxyParamCaption}
-\item[{System.\-Type}]{type}
+\item[{{\bf Add\-Labels\-Options}}]{options}
 \end{DoxyParamCaption}
-)}}\label{a00122_a4040b7e66af082f1a57b65c20877dd7f}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00122_aa2b8af349e709b8a45d42af5146ca848}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+Definition at line 11 of file Line\-Adder.\-cs.
 
 
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
+
+References Yarn.\-Yarn\-Spinner\-Console.\-A\-L\-L\-O\-W\-E\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N\-S, and Yarn.\-Line\-Adder.\-Generate\-String().
 
 
-Definition at line 40 of file Int16\-Converter.\-cs.
+
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Main().
 
 
 \begin{DoxyCode}
-41         \{
-42             \textcolor{comment}{// We only care about strings.}
-43             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-44         \}
+12         \{
+13 
+14             YarnSpinnerConsole.CheckFileList(options.files, 
+      \hyperlink{a00172_a0979de7ea02c8c0375b8220a12e6575e}{YarnSpinnerConsole.ALLOWED\_EXTENSIONS});
+15 
+16             var existingKeys = \textcolor{keyword}{new} List<string>();
+17 
+18             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.\hyperlink{a00040_aa93cbb1bc1d5328e0a417012621e92d2}{files})
+19             \{
+20 
+21                 \hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272f}{NodeFormat} fileFormat;
+22                 \textcolor{keywordflow}{try}
+23                 \{
+24                     fileFormat = Loader.GetFormatFromFileName(file);
+25                 \}
+26                 \textcolor{keywordflow}{catch} (FormatException)
+27                 \{
+28                     fileFormat = NodeFormat.Unknown;
+29                 \}
+30 
+31                 \textcolor{keywordflow}{switch} (fileFormat)
+32                 \{
+33                     \textcolor{keywordflow}{case} NodeFormat.Text:
+34                         \textcolor{keywordflow}{break};
+35                     \textcolor{keywordflow}{default}:
+36                         YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Skipping file
+       \{0\}, which is in unsupported format '\{1\}'"}, file, fileFormat));
+37                         \textcolor{keywordflow}{continue};
+38                 \}
+39 
+40 
+41                 \hyperlink{a00088}{Dialogue} d = YarnSpinnerConsole.CreateDialogueForUtilities();
+42 
+43                 \textcolor{keywordflow}{try}
+44                 \{
+45                     \textcolor{comment}{// First, we need to ensure that this file compiles.}
+46                     d.LoadFile(file);
+47                 \}
+48 \textcolor{preprocessor}{#pragma warning disable CA1031 // Do not catch general exception types}
+49 \textcolor{preprocessor}{}                \textcolor{keywordflow}{catch}
+50                 \{
+51                     YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Skipping file \{0\}
+       due to compilation errors."}, file));
+52                     \textcolor{keywordflow}{continue};
+53                 \}
+54 \textcolor{preprocessor}{#pragma warning restore CA1031 // Do not catch general exception types}
+55 \textcolor{preprocessor}{}
+56                 Dictionary<string, LineInfo> linesWithNoTag = \textcolor{keyword}{new} Dictionary<string, LineInfo>();
+57 
+58                 \textcolor{comment}{// Filter the string info table to exclude lines that have a line code}
+59                 \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} d.GetStringInfoTable())
+60                 \{
+61                     \textcolor{keywordflow}{if} (entry.Key.StartsWith(\textcolor{stringliteral}{"line:"}, StringComparison.InvariantCulture) == \textcolor{keyword}{false})
+62                     \{
+63                         linesWithNoTag[entry.Key] = entry.Value;
+64                     \}
+65                 \}
+66 
+67                 \textcolor{keywordflow}{if} (linesWithNoTag.Count == 0)
+68                 \{
+69                     var message = string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"\{0\} had no untagged lines.
+       Either they're all tagged already, or it has no localisable text."}, file);
+70                     YarnSpinnerConsole.Note(message);
+71                     \textcolor{keywordflow}{continue};
+72                 \}
+73 
+74                 \textcolor{comment}{// We also need the raw NodeInfo structures contained within this file.}
+75                 \textcolor{comment}{// These contain the source code to what we just compiled.}
+76 
+77                 \hyperlink{a00131}{Loader.NodeInfo}[] nodeInfoList;
+78 
+79                 var nodeFormat = Loader.GetFormatFromFileName(file);
+80 
+81                 \textcolor{keyword}{using} (var reader = \textcolor{keyword}{new} System.IO.StreamReader(file))
+82                 \{
+83                     nodeInfoList = d.loader.GetNodesFromText(reader.ReadToEnd(), nodeFormat);
+84                 \}
+85 
+86                 \textcolor{comment}{// Convert this list into an easier-to-index dictionary}
+87                 var lineInfo = \textcolor{keyword}{new} Dictionary<string, \hyperlink{a00131}{Loader.NodeInfo}>();
+88 
+89                 \textcolor{keywordflow}{foreach} (var node \textcolor{keywordflow}{in} nodeInfoList)
+90                 \{
+91                     lineInfo[node.title] = node;
+92 
+93                 \}
+94 
+95                 \textcolor{comment}{// Make a list of line codes that we already know about.}
+96                 \textcolor{comment}{// This list will be updated as we tag lines, to prevent collisions.}
+97                 existingKeys.AddRange(lineInfo.Keys);
+98 
+99                 \textcolor{keywordtype}{bool} anyNodesModified = \textcolor{keyword}{false};
+100 
+101                 \textcolor{comment}{// We now have a list of all strings that do not have a string tag.}
+102                 \textcolor{comment}{// Add a new tag to these lines.}
+103                 \textcolor{keywordflow}{foreach} (var line \textcolor{keywordflow}{in} linesWithNoTag)
+104                 \{
+105 
+106                     \textcolor{comment}{// TODO: There's quite a bit of redundant work done here in each loop.}
+107                     \textcolor{comment}{// We're unzipping and re-combining the node for EACH line. Would be better}
+108                     \textcolor{comment}{// to do that only once.}
+109 
+110                     \textcolor{comment}{// Get the node that this line is in.}
+111                     var nodeInfo = lineInfo[line.Value.nodeName];
+112 
+113                     \textcolor{comment}{// Is this line contained within a rawText node?}
+114                     \textcolor{keywordflow}{if} (nodeInfo.tagsList.FindIndex(i => i == \textcolor{stringliteral}{"rawText"}) != -1)
+115                     \{
+116                         \textcolor{comment}{// We don't need to add a tag to it - genstrings will export}
+117                         \textcolor{comment}{// the whole thing for us.}
+118                         \textcolor{keywordflow}{continue};
+119                     \}
+120 
+121                     \textcolor{comment}{// If we have a tag to consider, and this node doesn't have that tag,}
+122                     \textcolor{comment}{// continue}
+123                     \textcolor{keywordflow}{if} (options.\hyperlink{a00039_ab6162338f9606a836f3101fe0e228249}{onlyUseTag} != null)
+124                     \{
+125                         \textcolor{keywordflow}{if} (nodeInfo.tagsList.FindIndex(i => i == options.
+      \hyperlink{a00039_ab6162338f9606a836f3101fe0e228249}{onlyUseTag}) == -1)
+126                         \{
+127                             \textcolor{keywordflow}{continue};
+128                         \}
+129                     \}
+130 
+131 
+132                     \textcolor{comment}{// Split this node's source by newlines}
+133                     var lines = nodeInfo.body.Split(\textcolor{keyword}{new} \textcolor{keywordtype}{string}[] \{ \textcolor{stringliteral}{"\(\backslash\)r\(\backslash\)n"}, \textcolor{stringliteral}{"\(\backslash\)n"} \}, StringSplitOptions.None)
+      ;
+134 
+135                     \textcolor{comment}{// Get the original line}
+136                     var existingLine = lines[line.Value.lineNumber - 1];
+137 
+138                     \textcolor{comment}{// Generate a new tag for this line}
+139                     var newTag = \hyperlink{a00122_a91ad68b679bd3b0bd89fe92ea5068688}{GenerateString}(existingKeys);
+140 
+141                     \textcolor{comment}{// Remember that we've used this tag, to prevent it from being re-used}
+142                     existingKeys.Add(newTag);
+143 
+144                     \textcolor{keywordflow}{if} (options.\hyperlink{a00040_ada4d83d1756918f362d55f6649b82b17}{verbose})
+145                     \{
+146                         YarnSpinnerConsole.Note(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Tagged line with
+       ID \(\backslash\)"\{0\}\(\backslash\)" in node \{1\}: \{2\}"}, newTag, nodeInfo.title, existingLine));
+147                     \}
+148 
+149                     \textcolor{comment}{// Re-write the line.}
+150                     var newLine = string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0\} #\{1\}"}, existingLine, 
+      newTag);
+151                     lines[line.Value.lineNumber - 1] = newLine;
+152 
+153 
+154                     \textcolor{comment}{// Pack this all back up into a single string}
+155                     nodeInfo.body = string.Join(\textcolor{stringliteral}{"\(\backslash\)n"}, lines);
+156 
+157                     \textcolor{comment}{// Put the updated node in the node collection.}
+158                     lineInfo[line.Value.nodeName] = nodeInfo;
+159 
+160                     anyNodesModified = \textcolor{keyword}{true};
+161 
+162                 \}
+163 
+164                 \textcolor{comment}{// If we didn't end up changing anything, don't modify the file}
+165                 \textcolor{keywordflow}{if} (anyNodesModified == \textcolor{keyword}{false})
+166                 \{
+167                     \textcolor{keywordflow}{continue};
+168                 \}
+169 
+170                 \textcolor{comment}{// All the nodes have been updated; save this back to disk.}
+171 
+172                 \textcolor{comment}{// Are we doing a dry run?}
+173                 \textcolor{keywordflow}{if} (options.\hyperlink{a00039_a5dc9d9db767738237e988f95fc0330f4}{dryRun})
+174                 \{
+175                     \textcolor{comment}{// Then bail out at this point, before we start}
+176                     \textcolor{comment}{// modifying files}
+177                     YarnSpinnerConsole.Note(\textcolor{stringliteral}{"Would have written to file "} + file);
+178                     \textcolor{keywordflow}{continue};
+179                 \}
+180 
+181                 var format = Loader.GetFormatFromFileName(file);
+182 
+183                 \textcolor{keywordflow}{switch} (format)
+184                 \{
+185                     \textcolor{keywordflow}{case} NodeFormat.Text:
+186                         \textcolor{keywordflow}{break};
+187                     \textcolor{keywordflow}{default}:
+188                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException();
+189                 \}
+190 
+191 
+192                 \textcolor{comment}{// Convert the nodes into the correct format}
+193                 var savedData = FileFormatConverter.ConvertNodes(lineInfo.Values, fileFormat);
+194 
+195 
+196                 \textcolor{comment}{// Write the file!}
+197                 \textcolor{keyword}{using} (var writer = \textcolor{keyword}{new} System.IO.StreamWriter(file))
+198                 \{
+199                     writer.Write(savedData);
+200                 \}
+201 
+202 
+203             \}
+204             \textcolor{keywordflow}{return} 0;
+205         \}
 \end{DoxyCode}
-\hypertarget{a00090_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int16\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int16\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::Int16Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int16\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00122_aa2b8af349e709b8a45d42af5146ca848_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00122_aa2b8af349e709b8a45d42af5146ca848_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00122_a91ad68b679bd3b0bd89fe92ea5068688}{\index{Yarn\-::\-Line\-Adder@{Yarn\-::\-Line\-Adder}!Generate\-String@{Generate\-String}}
+\index{Generate\-String@{Generate\-String}!Yarn::LineAdder@{Yarn\-::\-Line\-Adder}}
+\subsubsection[{Generate\-String}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-Line\-Adder.\-Generate\-String (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{List$<$ string $>$}]{existing\-Keys}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00090_a470d21adaa704eb281250dbd112ff91a}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00122_a91ad68b679bd3b0bd89fe92ea5068688}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00125_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Definition at line 211 of file Line\-Adder.\-cs.
 
 
 
-Reimplemented in \hyperlink{a00144_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00047_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00100_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00101_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00087_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00086_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00048_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00174_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
-
-
-
-Definition at line 55 of file Default\-Type\-Converter.\-cs.
+Referenced by Yarn.\-Line\-Adder.\-Add\-Lines().
 
 
 \begin{DoxyCode}
-56         \{
-57             \textcolor{comment}{// The default convert doesn't know how to}
-58             \textcolor{comment}{// convert from any type.}
-59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-60         \}
+211                                                                 \{
+212 
+213             \textcolor{keywordtype}{string} tag = null;
+214             \textcolor{keywordtype}{bool} isUnique = \textcolor{keyword}{true};
+215             \textcolor{keywordflow}{do}
+216             \{
+217                 tag = string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"line:\{0:x6\}"}, random.Next(0x1000000));
+218 
+219                 isUnique = existingKeys.FindIndex(i => i == tag) == -1;
+220 
+221             \} \textcolor{keywordflow}{while} (isUnique == \textcolor{keyword}{false});
+222 
+223             \textcolor{keywordflow}{return} tag;
+224         \}
 \end{DoxyCode}
-\hypertarget{a00090_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int16\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int16\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::Int16Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int16\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
-\begin{DoxyParamCaption}
-\item[{Type}]{type}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00090_acb65bd8c8199d88d5b1629ae35d18514}
 
 
-Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00125_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00122_a91ad68b679bd3b0bd89fe92ea5068688_icgraph}
+\end{center}
+\end{figure}
 
 
 
-Reimplemented in \hyperlink{a00101_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+\subsection{Member Data Documentation}
+\hypertarget{a00122_ad887744b1b813fc081be814958742c37}{\index{Yarn\-::\-Line\-Adder@{Yarn\-::\-Line\-Adder}!random@{random}}
+\index{random@{random}!Yarn::LineAdder@{Yarn\-::\-Line\-Adder}}
+\subsubsection[{random}]{\setlength{\rightskip}{0pt plus 5cm}Random Yarn.\-Line\-Adder.\-random = new Random()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00122_ad887744b1b813fc081be814958742c37}
 
 
+Definition at line 208 of file Line\-Adder.\-cs.
 
-Definition at line 69 of file Default\-Type\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-70         \{
-71             \textcolor{comment}{// We only care about strings.}
-72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-73         \}
-\end{DoxyCode}
-\hypertarget{a00122_aff576c6ca9bb1942fb17e385befb0197}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int16\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int16\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::Int16Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int16\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Int16\-Converter.\-Convert\-From\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{string}]{text}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00122_aff576c6ca9bb1942fb17e385befb0197}
-
-
-Converts the string to an object. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em text} & The string to convert to an object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The object created from the string.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00090_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
-
-
-
-Definition at line 20 of file Int16\-Converter.\-cs.
-
-
-
-References Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info.
-
-
-\begin{DoxyCode}
-21         \{
-22             var numberStyle = options.NumberStyle ?? NumberStyles.Integer;
-23 
-24             \textcolor{keywordtype}{short} s;
-25             \textcolor{keywordflow}{if}( \textcolor{keywordtype}{short}.TryParse( text, numberStyle, options.CultureInfo, out s ) )
-26             \{
-27                 \textcolor{keywordflow}{return} s;
-28             \}
-29 
-30             \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
-31         \}
-\end{DoxyCode}
-\hypertarget{a00090_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int16\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int16\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::Int16Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int16\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{object}]{value}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00090_a36cb2f9b24f15a671293f3a722324c27}
-
-
-Converts the object to a string. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em value} & The object to convert to a string.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The string representation of the object.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00125_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00144_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00101_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
-
-
-Definition at line 21 of file Default\-Type\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-22         \{
-23             \textcolor{keywordflow}{if}( value == null )
-24             \{
-25                 \textcolor{keywordflow}{return} string.Empty;
-26             \}
-27 
-28             var formattable = value as IFormattable;
-29             \textcolor{keywordflow}{if}( formattable != null )
-30             \{
-31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
-32             \}
-33 
-34             \textcolor{keywordflow}{return} value.ToString();
-35         \}
-\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00275}{Int16\-Converter.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner\-Console/\hyperlink{a00299}{Line\-Adder.\-cs}\end{DoxyCompactItemize}

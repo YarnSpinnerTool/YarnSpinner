@@ -1,96 +1,66 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00102" kind="class" prot="public">
-    <compoundname>Yarn::ErrorListener</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">BaseErrorListener</basecompoundref>
-      <sectiondef kind="private-static-attrib">
-      <memberdef kind="variable" id="a00102_1a9421873edea84c51d5905f5a24c62479" prot="private" static="yes" mutable="no">
-        <type>readonly <ref refid="a00102" kindref="compound">ErrorListener</ref></type>
-        <definition>readonly ErrorListener Yarn.ErrorListener.instance</definition>
-        <argsstring></argsstring>
-        <name>instance</name>
-        <initializer>= new <ref refid="a00102" kindref="compound">ErrorListener</ref>()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" line="11" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" bodystart="11" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+    <compoundname>Yarn::GenerateTableOptions</compoundname>
+    <basecompoundref refid="a00040" prot="public" virt="non-virtual">Yarn.BaseOptions</basecompoundref>
       <sectiondef kind="property">
-      <memberdef kind="property" id="a00102_1a47b8f4f1d414afa1ea6067218c7ee34d" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
-        <type><ref refid="a00102" kindref="compound">ErrorListener</ref></type>
-        <definition>ErrorListener Yarn.ErrorListener.Instance</definition>
+      <memberdef kind="property" id="a00102_1a8b30c1b7fb1b74eae455a568c1024b3d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.GenerateTableOptions.onlyUseTag</definition>
         <argsstring></argsstring>
-        <name>Instance</name>
+        <name>onlyUseTag</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" bodystart="14" bodyend="-1"/>
-        <referencedby refid="a00135_1aa79ba1a47653bfc06ce3ccaf87551ad3" compoundref="a00315" startline="218" endline="354">Yarn.Loader.Load</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="113" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="113" bodyend="-1"/>
+        <referencedby refid="a00151_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00301" startline="12" endline="124">Yarn.TableGenerator.GenerateTables</referencedby>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="a00102_1a1f0cc41aac10bd8a2402355534c1123c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.ErrorListener.ErrorListener</definition>
-        <argsstring>()</argsstring>
-        <name>ErrorListener</name>
+      <memberdef kind="property" id="a00040_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.BaseOptions.showDebuggingInfo</definition>
+        <argsstring></argsstring>
+        <name>showDebuggingInfo</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" line="12" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" bodystart="12" bodyend="12"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="42" bodyend="-1"/>
+        <referencedby refid="a00172_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00300" startline="383" endline="501">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00102_1a47fb9f6d50aa6a4e4796dea10b237fe4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override void</type>
-        <definition>override void Yarn.ErrorListener.SyntaxError</definition>
-        <argsstring>(System.IO.TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)</argsstring>
-        <name>SyntaxError</name>
-        <param>
-          <type>System.IO.TextWriter</type>
-          <declname>output</declname>
-        </param>
-        <param>
-          <type>IRecognizer</type>
-          <declname>recognizer</declname>
-        </param>
-        <param>
-          <type><ref refid="a00322_1ae3d87b0b748ea892bff48f60862e182d" kindref="member">IToken</ref></type>
-          <declname>offendingSymbol</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>line</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>charPositionInLine</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>msg</declname>
-        </param>
-        <param>
-          <type>RecognitionException</type>
-          <declname>e</declname>
-        </param>
+      <memberdef kind="property" id="a00040_1ada4d83d1756918f362d55f6649b82b17" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.BaseOptions.verbose</definition>
+        <argsstring></argsstring>
+        <name>verbose</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" bodystart="21" bodyend="58"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="46" bodyend="-1"/>
+        <referencedby refid="a00100_1aa72838be584177b5592c31d73c0febdb" compoundref="a00298" startline="119" endline="160">Yarn.FileFormatConverter.ConvertNodesInFile</referencedby>
+        <referencedby refid="a00151_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00301" startline="12" endline="124">Yarn.TableGenerator.GenerateTables</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="a00040_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>IList&lt; string &gt;</type>
+        <definition>IList&lt;string&gt; Yarn.BaseOptions.files</definition>
+        <argsstring></argsstring>
+        <name>files</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="49" bodyend="-1"/>
+        <referencedby refid="a00172_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00300" startline="270" endline="331">Yarn.YarnSpinnerConsole.Run</referencedby>
+        <referencedby refid="a00172_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00300" startline="333" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -98,36 +68,35 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1317">
-        <label>BaseErrorListener</label>
-      </node>
-      <node id="1316">
-        <label>Yarn.ErrorListener</label>
+      <node id="1206">
+        <label>Yarn.GenerateTableOptions</label>
         <link refid="a00102"/>
-        <childnode refid="1317" relation="public-inheritance">
+        <childnode refid="1207" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="1207">
+        <label>BaseOptions</label>
+        <link refid="a00040"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1319">
-        <label>BaseErrorListener</label>
-      </node>
-      <node id="1318">
-        <label>Yarn.ErrorListener</label>
+      <node id="1208">
+        <label>Yarn.GenerateTableOptions</label>
         <link refid="a00102"/>
-        <childnode refid="1319" relation="public-inheritance">
+        <childnode refid="1209" relation="public-inheritance">
         </childnode>
-        <childnode refid="1318" relation="usage">
-          <edgelabel>-instance</edgelabel>
-        </childnode>
+      </node>
+      <node id="1209">
+        <label>BaseOptions</label>
+        <link refid="a00040"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ErrorListener.cs" bodystart="9" bodyend="59"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="111" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="110" bodyend="114"/>
     <listofallmembers>
-      <member refid="a00102_1a1f0cc41aac10bd8a2402355534c1123c" prot="private" virt="non-virtual"><scope>Yarn::ErrorListener</scope><name>ErrorListener</name></member>
-      <member refid="a00102_1a47b8f4f1d414afa1ea6067218c7ee34d" prot="public" virt="non-virtual"><scope>Yarn::ErrorListener</scope><name>Instance</name></member>
-      <member refid="a00102_1a9421873edea84c51d5905f5a24c62479" prot="private" virt="non-virtual"><scope>Yarn::ErrorListener</scope><name>instance</name></member>
-      <member refid="a00102_1a47fb9f6d50aa6a4e4796dea10b237fe4" prot="public" virt="non-virtual"><scope>Yarn::ErrorListener</scope><name>SyntaxError</name></member>
+      <member refid="a00040_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" virt="non-virtual"><scope>Yarn::GenerateTableOptions</scope><name>files</name></member>
+      <member refid="a00102_1a8b30c1b7fb1b74eae455a568c1024b3d" prot="public" virt="non-virtual"><scope>Yarn::GenerateTableOptions</scope><name>onlyUseTag</name></member>
+      <member refid="a00040_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" virt="non-virtual"><scope>Yarn::GenerateTableOptions</scope><name>showDebuggingInfo</name></member>
+      <member refid="a00040_1ada4d83d1756918f362d55f6649b82b17" prot="public" virt="non-virtual"><scope>Yarn::GenerateTableOptions</scope><name>verbose</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

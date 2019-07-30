@@ -1,8 +1,5 @@
 var a00124 =
 [
-    [ "CanConvertFrom", "a00124.html#a1aec0ff8b13f9f61240ecf2a337a6340", null ],
-    [ "CanConvertFrom", "a00124.html#a470d21adaa704eb281250dbd112ff91a", null ],
-    [ "CanConvertTo", "a00124.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
-    [ "ConvertFromString", "a00124.html#a9080b7b6a5abc7d8271ffb6924c31b7c", null ],
-    [ "ConvertToString", "a00124.html#a36cb2f9b24f15a671293f3a722324c27", null ]
+    [ "LineResult", "a00124.html#ad91ff667246e8c4ac0492cedea34b524", null ],
+    [ "line", "a00124.html#abfbb0ea840b02acd0ecdc72c5b120257", null ]
 ];

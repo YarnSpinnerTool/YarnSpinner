@@ -1,53 +1,39 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00158" kind="class" prot="public">
-    <compoundname>Yarn::Dialogue::RunnerResult</compoundname>
-    <derivedcompoundref refid="a00054" prot="public" virt="non-virtual">Yarn.Dialogue.CommandResult</derivedcompoundref>
-    <derivedcompoundref refid="a00134" prot="public" virt="non-virtual">Yarn.Dialogue.LineResult</derivedcompoundref>
-    <derivedcompoundref refid="a00141" prot="public" virt="non-virtual">Yarn.Dialogue.NodeCompleteResult</derivedcompoundref>
-    <derivedcompoundref refid="a00147" prot="public" virt="non-virtual">Yarn.Dialogue.OptionSetResult</derivedcompoundref>
+    <compoundname>System::Reflection::TypeExtensions</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="a00158_1acbfc3dfbd616c1a87fe0158092215639" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00159" kindref="compound">TypeInfo</ref></type>
+        <definition>static TypeInfo System.Reflection.TypeExtensions.GetTypeInfo</definition>
+        <argsstring>(this Type type)</argsstring>
+        <name>GetTypeInfo</name>
+        <param>
+          <type>this Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" line="8" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" bodystart="8" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
-<para>Represents something for the end user (&quot;client&quot;) of the <ref refid="a00094" kindref="compound">Dialogue</ref> class to do. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1615">
-        <label>Yarn.Dialogue.LineResult</label>
-        <link refid="a00134"/>
-        <childnode refid="1613" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1616">
-        <label>Yarn.Dialogue.NodeCompleteResult</label>
-        <link refid="a00141"/>
-        <childnode refid="1613" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1614">
-        <label>Yarn.Dialogue.CommandResult</label>
-        <link refid="a00054"/>
-        <childnode refid="1613" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1613">
-        <label>Yarn.Dialogue.RunnerResult</label>
-        <link refid="a00158"/>
-      </node>
-      <node id="1617">
-        <label>Yarn.Dialogue.OptionSetResult</label>
-        <link refid="a00147"/>
-        <childnode refid="1613" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1618">
-        <label>Yarn.Dialogue.RunnerResult</label>
+      <node id="1496">
+        <label>System.Reflection.TypeExtensions</label>
         <link refid="a00158"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="140" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="140" bodyend="140"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" line="7" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" bodystart="6" bodyend="12"/>
     <listofallmembers>
+      <member refid="a00158_1acbfc3dfbd616c1a87fe0158092215639" prot="public" virt="non-virtual"><scope>System::Reflection::TypeExtensions</scope><name>GetTypeInfo</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

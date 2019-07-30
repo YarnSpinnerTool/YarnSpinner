@@ -1,11 +1,49 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00355" kind="namespace">
-    <compoundname>System::Collections::Generic</compoundname>
+  <compounddef id="a00355" kind="struct" prot="private">
+    <compoundname>Yarn::Unity::YarnSpinnerEditorWindow::ValidationMessage</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00355_1a636dce6708e779c201fa5e7d01cf2955" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Unity.YarnSpinnerEditorWindow.ValidationMessage.message</definition>
+        <argsstring></argsstring>
+        <name>message</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="406" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="406" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00355_1a7d342190c7657fbbe85eb6fa66bcabb8" prot="public" static="no" mutable="no">
+        <type>MessageType</type>
+        <definition>MessageType Yarn.Unity.YarnSpinnerEditorWindow.ValidationMessage.type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="408" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="408" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="8" column="1"/>
+    <collaborationgraph>
+      <node id="1522">
+        <label>Yarn.Unity.YarnSpinnerEditorWindow.ValidationMessage</label>
+        <link refid="a00355"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="405" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="405" bodyend="409"/>
+    <listofallmembers>
+      <member refid="a00355_1a636dce6708e779c201fa5e7d01cf2955" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::ValidationMessage</scope><name>message</name></member>
+      <member refid="a00355_1a7d342190c7657fbbe85eb6fa66bcabb8" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::ValidationMessage</scope><name>type</name></member>
+    </listofallmembers>
   </compounddef>
 </doxygen>

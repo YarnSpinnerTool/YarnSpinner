@@ -1,16 +1,8 @@
 var a00041 =
 [
-    [ "AssignmentStatement", "a00041.html#a34d41e545770d5f41542253d0bb4f8b3", null ],
-    [ "CanParse", "a00041.html#a4f021e4c835e429ed5b5bb504a5acf39", null ],
-    [ "NodeParent", "a00041.html#a580e520a29444fc23ac3660cbe514a09", null ],
-    [ "PrintTree", "a00041.html#accb9ddcb472eb035a65188c857b8efd8", null ],
-    [ "TagsToString", "a00041.html#a054f36c80d5eeacd569a8859f599af67", null ],
-    [ "ToString", "a00041.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
-    [ "lineNumber", "a00041.html#a18b493382de0fde5b4299c1bd2250075", null ],
-    [ "parent", "a00041.html#af313a82103fcc2ff5a177dbb06b92f7b", null ],
-    [ "tags", "a00041.html#a58b3a15788fd2d4127d73619dc6d04ae", null ],
-    [ "validOperators", "a00041.html#af3d393da2f684272251805d3471b6c7a", null ],
-    [ "destinationVariableName", "a00041.html#a4e764622b716a4138d1fd9e005c41336", null ],
-    [ "operation", "a00041.html#a896df0f23b44e9f20036150b3527d9e5", null ],
-    [ "valueExpression", "a00041.html#a7ada366012cacd98436db80227ee65f5", null ]
+    [ "Clear", "a00041.html#a7e45c37f3662ce9f2643e306bb2b3adc", null ],
+    [ "GetNumber", "a00041.html#a1b7f7f4468b2463e7b47986d99362279", null ],
+    [ "GetValue", "a00041.html#a13b142df804d9842e97e628e252928e8", null ],
+    [ "SetNumber", "a00041.html#a48b93de9cd7ae61d0cd9583c8330d3ee", null ],
+    [ "SetValue", "a00041.html#a1c57d6d208b78abec0a670396771448e", null ]
 ];

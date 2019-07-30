@@ -1,19 +1,49 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00137" kind="namespace">
-    <compoundname>Yarn::Unity</compoundname>
-    <innerclass refid="a00381" prot="public">Yarn::Unity::LocalisedStringGroup</innerclass>
-    <innerclass refid="a00095" prot="public">Yarn::Unity::DialogueRunner</innerclass>
-    <innerclass refid="a00195" prot="public">Yarn::Unity::YarnCommandAttribute</innerclass>
-    <innerclass refid="a00097" prot="public">Yarn::Unity::DialogueUIBehaviour</innerclass>
-    <innerclass refid="a00193" prot="public">Yarn::Unity::VariableStorageBehaviour</innerclass>
-    <innerclass refid="a00188" prot="public">Yarn::Unity::YarnSpinnerEditorWindow</innerclass>
-    <innerclass refid="a00113" prot="package">Yarn::Unity::Icons</innerclass>
-    <innernamespace refid="a00373">Yarn::Unity::Example</innernamespace>
+  <compounddef id="a00137" kind="struct" prot="public">
+    <compoundname>Yarn::Loader::NodeInfo::Position</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00137_1a6b40110781090293fbcd2d6f7695ae4d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>int</type>
+        <definition>int Yarn.Loader.NodeInfo.Position.x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="247" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="247" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00137_1a390d560bd9faa3a32d8a0489c69be9e0" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>int</type>
+        <definition>int Yarn.Loader.NodeInfo.Position.y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="248" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="248" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="34" column="1"/>
+    <collaborationgraph>
+      <node id="1398">
+        <label>Yarn.Loader.NodeInfo.Position</label>
+        <link refid="a00137"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="246" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="246" bodyend="249"/>
+    <listofallmembers>
+      <member refid="a00137_1a6b40110781090293fbcd2d6f7695ae4d" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo::Position</scope><name>x</name></member>
+      <member refid="a00137_1a390d560bd9faa3a32d8a0489c69be9e0" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo::Position</scope><name>y</name></member>
+    </listofallmembers>
   </compounddef>
 </doxygen>

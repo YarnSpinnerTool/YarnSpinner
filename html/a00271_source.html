@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DoubleConverter.cs Source File</title>
+<title>YarnSpinner: Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,52 +105,155 @@ $(document).ready(function(){initNavTree('a00271_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">DoubleConverter.cs</div>  </div>
+<div class="title">YarnSpinnerTests.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00271.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System.Globalization;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>CsvHelper.TypeConversion</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="a00098.html">   12</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00098.html">DoubleConverter</a> : <a class="code" href="a00090.html">DefaultTypeConverter</a></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="a00098.html#a0c93a63f9f954646172a65b432c40c69">   22</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">object</span> <a class="code" href="a00098.html#a0c93a63f9f954646172a65b432c40c69">ConvertFromString</a>( <a class="code" href="a00180.html">TypeConverterOptions</a> options, <span class="keywordtype">string</span> text )</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            var numberStyle = options.NumberStyle ?? NumberStyles.Float;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keywordtype">double</span> d;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keywordflow">if</span>( <span class="keywordtype">double</span>.TryParse( text, numberStyle, options.<a class="code" href="a00180.html#af6bc545680b477abf9178eb4755572b1">CultureInfo</a>, out d ) )</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="keywordflow">return</span> d;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">return</span> base.ConvertFromString( options, text );</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="a00098.html#ad67475daa90cdb00cf626429e925e732">   42</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">bool</span> <a class="code" href="a00098.html#ad67475daa90cdb00cf626429e925e732">CanConvertFrom</a>( System.Type type )</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <span class="comment">// We only care about strings.</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">return</span> type == typeof( <span class="keywordtype">string</span> );</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
-<div class="ttc" id="a00180_html_af6bc545680b477abf9178eb4755572b1"><div class="ttname"><a href="a00180.html#af6bc545680b477abf9178eb4755572b1">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</a></div><div class="ttdeci">CultureInfo CultureInfo</div><div class="ttdoc">Gets or sets the culture info. </div><div class="ttdef"><b>Definition:</b> <a href="a00285_source.html#l00023">TypeConverterOptions.cs:23</a></div></div>
-<div class="ttc" id="a00098_html_ad67475daa90cdb00cf626429e925e732"><div class="ttname"><a href="a00098.html#ad67475daa90cdb00cf626429e925e732">CsvHelper.TypeConversion.DoubleConverter.CanConvertFrom</a></div><div class="ttdeci">override bool CanConvertFrom(System.Type type)</div><div class="ttdoc">Determines whether this instance [can convert from] the specified type. </div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00042">DoubleConverter.cs:42</a></div></div>
-<div class="ttc" id="a00090_html"><div class="ttname"><a href="a00090.html">CsvHelper.TypeConversion.DefaultTypeConverter</a></div><div class="ttdoc">Converts an object to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00270_source.html#l00013">DefaultTypeConverter.cs:13</a></div></div>
-<div class="ttc" id="a00098_html"><div class="ttname"><a href="a00098.html">CsvHelper.TypeConversion.DoubleConverter</a></div><div class="ttdoc">Converts a Double to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00012">DoubleConverter.cs:12</a></div></div>
-<div class="ttc" id="a00098_html_a0c93a63f9f954646172a65b432c40c69"><div class="ttname"><a href="a00098.html#a0c93a63f9f954646172a65b432c40c69">CsvHelper.TypeConversion.DoubleConverter.ConvertFromString</a></div><div class="ttdeci">override object ConvertFromString(TypeConverterOptions options, string text)</div><div class="ttdoc">Converts the string to an object. </div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00022">DoubleConverter.cs:22</a></div></div>
-<div class="ttc" id="a00180_html"><div class="ttname"><a href="a00180.html">CsvHelper.TypeConversion.TypeConverterOptions</a></div><div class="ttdoc">Options used when doing type conversion. </div><div class="ttdef"><b>Definition:</b> <a href="a00285_source.html#l00015">TypeConverterOptions.cs:15</a></div></div>
+<a href="a00271.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">using</span> UnityEngine;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using</span> UnityEditor;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">using</span> NUnit.Framework;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="a00153.html">    6</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00153.html">TestDialogueUIBehaviour</a> : Yarn.Unity.DialogueUIBehaviour {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="a00153.html#ab0f7b55e776ae494a651c845b496916c">    8</a></span>&#160;    <span class="keyword">private</span> Queue&lt;string&gt; <a class="code" href="a00153.html#ab0f7b55e776ae494a651c845b496916c">expectedLines</a> = <span class="keyword">new</span> Queue&lt;string&gt;();</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="a00153.html#af51a4e0d00f92dcc991f6c1ac62ac8c3">    9</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00153.html#af51a4e0d00f92dcc991f6c1ac62ac8c3">ExpectLine</a>(<span class="keywordtype">string</span> line) {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        expectedLines.Enqueue(line);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    }</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="a00153.html#a94e4308d412945c977b2deb63f139009">   13</a></span>&#160;    <span class="keyword">private</span> Queue&lt;string&gt; <a class="code" href="a00153.html#a94e4308d412945c977b2deb63f139009">expectedOptions</a> = <span class="keyword">new</span> Queue&lt;string&gt;();</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="a00153.html#adc743ade599769e968fecea525add7b3">   14</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00153.html#adc743ade599769e968fecea525add7b3">SelectOption</a>(<span class="keywordtype">string</span> option) {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        expectedOptions.Enqueue(option);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    }</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">// Delegates that allow this behaviour to notify the test of events</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">public</span> delegate <span class="keywordtype">void</span> <a class="code" href="a00153.html#ac6c30953edbd1cd4181e2a3854a1642b">LineHandler</a>(Yarn.Line line);</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00153.html#af87332992e1420a8b2047822fab2b03c">   20</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="a00153.html#ac6c30953edbd1cd4181e2a3854a1642b">LineHandler</a> <a class="code" href="a00153.html#af87332992e1420a8b2047822fab2b03c">lineHandler</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">public</span> delegate <span class="keywordtype">void</span> <a class="code" href="a00153.html#a7fe2e6bc2d5471d9af14a9d35de821bd">OptionsHandler</a>(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser);</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="a00153.html#adcbea72eb6f5ab305b3757789919f961">   23</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="a00153.html#a7fe2e6bc2d5471d9af14a9d35de821bd">OptionsHandler</a> <a class="code" href="a00153.html#adcbea72eb6f5ab305b3757789919f961">optionsHandler</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">public</span> delegate <span class="keywordtype">void</span> <a class="code" href="a00153.html#afc93c5cf370b31eceab3671c9eca0d94">CommandHandler</a> (Yarn.Command command);</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="a00153.html#a5c2003ece8aeab171db3a749bef5f770">   26</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="a00153.html#afc93c5cf370b31eceab3671c9eca0d94">CommandHandler</a> <a class="code" href="a00153.html#a5c2003ece8aeab171db3a749bef5f770">commandHandler</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="a00153.html#ae274e39b640908d04aacc6cf6624d9da">   29</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">override</span> System.Collections.IEnumerator <a class="code" href="a00153.html#ae274e39b640908d04aacc6cf6624d9da">RunLine</a> (Yarn.Line line)</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="a00153.html#af87332992e1420a8b2047822fab2b03c">lineHandler</a> != null)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <a class="code" href="a00153.html#af87332992e1420a8b2047822fab2b03c">lineHandler</a>(line);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="a00153.html#ab0f7b55e776ae494a651c845b496916c">expectedLines</a>.Count &gt; 0) {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            Assert.AreEqual(expectedLines.Dequeue(), line.text);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        yield <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="a00153.html#ad2ac83f91814d8666482bf8b6f3721d1">   40</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">override</span> System.Collections.IEnumerator <a class="code" href="a00153.html#ad2ac83f91814d8666482bf8b6f3721d1">RunOptions</a> (Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="a00153.html#adcbea72eb6f5ab305b3757789919f961">optionsHandler</a> != null)</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <a class="code" href="a00153.html#adcbea72eb6f5ab305b3757789919f961">optionsHandler</a>(optionsCollection, optionChooser);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="a00153.html#a94e4308d412945c977b2deb63f139009">expectedOptions</a>.Count &gt; 0) {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            var selection = expectedOptions.Dequeue();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            var index = optionsCollection.options.IndexOf(selection);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            Assert.AreNotEqual(index, -1, <span class="stringliteral">&quot;Failed to find option \&quot;{0}\&quot;&quot;</span>, selection);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            Assert.Less(index, optionsCollection.options.Count);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            optionChooser(index);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        yield <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="a00153.html#a01e67009071f9ee5ac5ef3c970cd3695">   58</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">override</span> System.Collections.IEnumerator <a class="code" href="a00153.html#a01e67009071f9ee5ac5ef3c970cd3695">RunCommand</a> (Yarn.Command command)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="a00153.html#a5c2003ece8aeab171db3a749bef5f770">commandHandler</a> != null)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <a class="code" href="a00153.html#a5c2003ece8aeab171db3a749bef5f770">commandHandler</a>(command);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        yield <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="a00175.html">   66</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00175.html">YarnSpinnerTests</a> {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="a00175.html#a9791840e0b5987e5bd09bce83ce2d8d9">   68</a></span>&#160;    <a class="code" href="a00089.html">Yarn.Unity.DialogueRunner</a> <a class="code" href="a00175.html#a9791840e0b5987e5bd09bce83ce2d8d9">dialogueRunner</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="a00175.html#a27dbc8c3f7f23ce142d1d5d1fd3df8bc">   69</a></span>&#160;    <a class="code" href="a00168.html">Yarn.Unity.VariableStorageBehaviour</a> <a class="code" href="a00175.html#a27dbc8c3f7f23ce142d1d5d1fd3df8bc">variableStorage</a>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="a00175.html#aace025d2a9a703154a1989c47b0a0737">   70</a></span>&#160;    <a class="code" href="a00153.html">TestDialogueUIBehaviour</a> <a class="code" href="a00175.html#aace025d2a9a703154a1989c47b0a0737">dialogueUI</a>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    [<a class="code" href="a00175.html#ad6e4c6a92bb5ed6187949264df6aaf1b">SetUp</a>]</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="a00175.html#ad6e4c6a92bb5ed6187949264df6aaf1b">   73</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00175.html#ad6e4c6a92bb5ed6187949264df6aaf1b">SetUp</a>()</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="comment">//Arrange</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="comment">// Create the dialogue runner</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        var dialogueHost = <span class="keyword">new</span> GameObject();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="a00175.html#a9791840e0b5987e5bd09bce83ce2d8d9">dialogueRunner</a> = dialogueHost.AddComponent&lt;<a class="code" href="a00089.html">Yarn.Unity.DialogueRunner</a>&gt;();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="comment">// Create the variable storage</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">//variableStorage = dialogueHost.AddComponent&lt;ExampleVariableStorage&gt;();</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="comment">// Load the test script</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        var text = AssetDatabase.LoadAssetAtPath&lt;TextAsset&gt;(<span class="stringliteral">&quot;Assets/Yarn Spinner/Examples/Demo Assets/Space.json&quot;</span>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        dialogueRunner.AddScript(text);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="a00175.html#aace025d2a9a703154a1989c47b0a0737">dialogueUI</a> = dialogueHost.AddComponent&lt;<a class="code" href="a00153.html">TestDialogueUIBehaviour</a>&gt;();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        dialogueRunner.dialogueUI = <a class="code" href="a00175.html#aace025d2a9a703154a1989c47b0a0737">dialogueUI</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    [Test]</div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="a00175.html#a60ab8ed8dc30ec30e74baa1916d47324">   94</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00175.html#a60ab8ed8dc30ec30e74baa1916d47324">EditorTest</a>()</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        dialogueUI.ExpectLine(<span class="stringliteral">&quot;Player: Hey, Sally.&quot;</span>);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        dialogueUI.ExpectLine(<span class="stringliteral">&quot;Sally: Oh! Hi.&quot;</span>);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        dialogueUI.ExpectLine(<span class="stringliteral">&quot;Sally: You snuck up on me.&quot;</span>);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        dialogueUI.ExpectLine(<span class="stringliteral">&quot;Sally: Don&#39;t do that.&quot;</span>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        dialogueUI.SelectOption(<span class="stringliteral">&quot;Anything exciting happen on your watch?&quot;</span>);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        dialogueRunner.StartDialogue(<span class="stringliteral">&quot;Sally&quot;</span>);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="comment">// Talking to Sally a second time should result in a different dialogue</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="comment">//Act</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="comment">//Try to rename the GameObject</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="comment">//Assert</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="comment">//The object has a new name</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="comment">//Assert.AreEqual(newGameObjectName, gameObject.name);</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
+<div class="ttc" id="a00168_html"><div class="ttname"><a href="a00168.html">Yarn.Unity.VariableStorageBehaviour</a></div><div class="ttdoc">Scripts that can act as a variable storage should subclass this. </div><div class="ttdef"><b>Definition:</b> <a href="a00269_source.html#l00483">DialogueRunner.cs:483</a></div></div>
+<div class="ttc" id="a00153_html_ac6c30953edbd1cd4181e2a3854a1642b"><div class="ttname"><a href="a00153.html#ac6c30953edbd1cd4181e2a3854a1642b">TestDialogueUIBehaviour.LineHandler</a></div><div class="ttdeci">delegate void LineHandler(Yarn.Line line)</div></div>
+<div class="ttc" id="a00153_html_af51a4e0d00f92dcc991f6c1ac62ac8c3"><div class="ttname"><a href="a00153.html#af51a4e0d00f92dcc991f6c1ac62ac8c3">TestDialogueUIBehaviour.ExpectLine</a></div><div class="ttdeci">void ExpectLine(string line)</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00009">YarnSpinnerTests.cs:9</a></div></div>
+<div class="ttc" id="a00153_html_adc743ade599769e968fecea525add7b3"><div class="ttname"><a href="a00153.html#adc743ade599769e968fecea525add7b3">TestDialogueUIBehaviour.SelectOption</a></div><div class="ttdeci">void SelectOption(string option)</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00014">YarnSpinnerTests.cs:14</a></div></div>
+<div class="ttc" id="a00153_html_adcbea72eb6f5ab305b3757789919f961"><div class="ttname"><a href="a00153.html#adcbea72eb6f5ab305b3757789919f961">TestDialogueUIBehaviour.optionsHandler</a></div><div class="ttdeci">OptionsHandler optionsHandler</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00023">YarnSpinnerTests.cs:23</a></div></div>
+<div class="ttc" id="a00153_html_a7fe2e6bc2d5471d9af14a9d35de821bd"><div class="ttname"><a href="a00153.html#a7fe2e6bc2d5471d9af14a9d35de821bd">TestDialogueUIBehaviour.OptionsHandler</a></div><div class="ttdeci">delegate void OptionsHandler(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser)</div></div>
+<div class="ttc" id="a00153_html_a5c2003ece8aeab171db3a749bef5f770"><div class="ttname"><a href="a00153.html#a5c2003ece8aeab171db3a749bef5f770">TestDialogueUIBehaviour.commandHandler</a></div><div class="ttdeci">CommandHandler commandHandler</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00026">YarnSpinnerTests.cs:26</a></div></div>
+<div class="ttc" id="a00153_html_afc93c5cf370b31eceab3671c9eca0d94"><div class="ttname"><a href="a00153.html#afc93c5cf370b31eceab3671c9eca0d94">TestDialogueUIBehaviour.CommandHandler</a></div><div class="ttdeci">delegate void CommandHandler(Yarn.Command command)</div></div>
+<div class="ttc" id="a00153_html_af87332992e1420a8b2047822fab2b03c"><div class="ttname"><a href="a00153.html#af87332992e1420a8b2047822fab2b03c">TestDialogueUIBehaviour.lineHandler</a></div><div class="ttdeci">LineHandler lineHandler</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00020">YarnSpinnerTests.cs:20</a></div></div>
+<div class="ttc" id="a00153_html_a01e67009071f9ee5ac5ef3c970cd3695"><div class="ttname"><a href="a00153.html#a01e67009071f9ee5ac5ef3c970cd3695">TestDialogueUIBehaviour.RunCommand</a></div><div class="ttdeci">override System.Collections.IEnumerator RunCommand(Yarn.Command command)</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00058">YarnSpinnerTests.cs:58</a></div></div>
+<div class="ttc" id="a00175_html"><div class="ttname"><a href="a00175.html">YarnSpinnerTests</a></div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00066">YarnSpinnerTests.cs:66</a></div></div>
+<div class="ttc" id="a00153_html_ae274e39b640908d04aacc6cf6624d9da"><div class="ttname"><a href="a00153.html#ae274e39b640908d04aacc6cf6624d9da">TestDialogueUIBehaviour.RunLine</a></div><div class="ttdeci">override System.Collections.IEnumerator RunLine(Yarn.Line line)</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00029">YarnSpinnerTests.cs:29</a></div></div>
+<div class="ttc" id="a00175_html_a60ab8ed8dc30ec30e74baa1916d47324"><div class="ttname"><a href="a00175.html#a60ab8ed8dc30ec30e74baa1916d47324">YarnSpinnerTests.EditorTest</a></div><div class="ttdeci">void EditorTest()</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00094">YarnSpinnerTests.cs:94</a></div></div>
+<div class="ttc" id="a00175_html_a9791840e0b5987e5bd09bce83ce2d8d9"><div class="ttname"><a href="a00175.html#a9791840e0b5987e5bd09bce83ce2d8d9">YarnSpinnerTests.dialogueRunner</a></div><div class="ttdeci">Yarn.Unity.DialogueRunner dialogueRunner</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00068">YarnSpinnerTests.cs:68</a></div></div>
+<div class="ttc" id="a00153_html_ad2ac83f91814d8666482bf8b6f3721d1"><div class="ttname"><a href="a00153.html#ad2ac83f91814d8666482bf8b6f3721d1">TestDialogueUIBehaviour.RunOptions</a></div><div class="ttdeci">override System.Collections.IEnumerator RunOptions(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser)</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00040">YarnSpinnerTests.cs:40</a></div></div>
+<div class="ttc" id="a00153_html_a94e4308d412945c977b2deb63f139009"><div class="ttname"><a href="a00153.html#a94e4308d412945c977b2deb63f139009">TestDialogueUIBehaviour.expectedOptions</a></div><div class="ttdeci">Queue&lt; string &gt; expectedOptions</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00013">YarnSpinnerTests.cs:13</a></div></div>
+<div class="ttc" id="a00175_html_a27dbc8c3f7f23ce142d1d5d1fd3df8bc"><div class="ttname"><a href="a00175.html#a27dbc8c3f7f23ce142d1d5d1fd3df8bc">YarnSpinnerTests.variableStorage</a></div><div class="ttdeci">Yarn.Unity.VariableStorageBehaviour variableStorage</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00069">YarnSpinnerTests.cs:69</a></div></div>
+<div class="ttc" id="a00175_html_ad6e4c6a92bb5ed6187949264df6aaf1b"><div class="ttname"><a href="a00175.html#ad6e4c6a92bb5ed6187949264df6aaf1b">YarnSpinnerTests.SetUp</a></div><div class="ttdeci">void SetUp()</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00073">YarnSpinnerTests.cs:73</a></div></div>
+<div class="ttc" id="a00089_html"><div class="ttname"><a href="a00089.html">Yarn.Unity.DialogueRunner</a></div><div class="ttdoc">DialogueRunners act as the interface between your game and YarnSpinner. </div><div class="ttdef"><b>Definition:</b> <a href="a00269_source.html#l00045">DialogueRunner.cs:45</a></div></div>
+<div class="ttc" id="a00175_html_aace025d2a9a703154a1989c47b0a0737"><div class="ttname"><a href="a00175.html#aace025d2a9a703154a1989c47b0a0737">YarnSpinnerTests.dialogueUI</a></div><div class="ttdeci">TestDialogueUIBehaviour dialogueUI</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00070">YarnSpinnerTests.cs:70</a></div></div>
+<div class="ttc" id="a00153_html"><div class="ttname"><a href="a00153.html">TestDialogueUIBehaviour</a></div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00006">YarnSpinnerTests.cs:6</a></div></div>
+<div class="ttc" id="a00153_html_ab0f7b55e776ae494a651c845b496916c"><div class="ttname"><a href="a00153.html#ab0f7b55e776ae494a651c845b496916c">TestDialogueUIBehaviour.expectedLines</a></div><div class="ttdeci">Queue&lt; string &gt; expectedLines</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00008">YarnSpinnerTests.cs:8</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_5c139b908ad2613e3ef99ee52a122286.html">TypeConversion</a></li><li class="navelem"><a class="el" href="a00271.html">DoubleConverter.cs</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:22 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_3d328b3dca154a477d99beb656992be2.html">Unity</a></li><li class="navelem"><a class="el" href="dir_3b33dffaa21a2ac6f7978a949ffd4e41.html">Assets</a></li><li class="navelem"><a class="el" href="dir_534ffb376c3707ccb35d3c2c883b31fc.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="dir_0cee4ee6e70061622c5e671fb48a3abe.html">Code</a></li><li class="navelem"><a class="el" href="dir_c5cf8f143880c36815d9a9500b3a0ab7.html">Editor</a></li><li class="navelem"><a class="el" href="a00271.html">YarnSpinnerTests.cs</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:44 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

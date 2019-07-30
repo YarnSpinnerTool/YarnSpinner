@@ -1,89 +1,82 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00203" kind="file">
-    <compoundname>CODE_OF_CONDUCT.md</compoundname>
+    <compoundname>CsvPropertyMapData.cs</compoundname>
+    <innerclass refid="a00070" prot="public">CsvHelper::Configuration::CsvPropertyMapData</innerclass>
+    <innernamespace refid="a00312">CsvHelper::Configuration</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#<sp/>Contributor<sp/>Covenant<sp/>Code<sp/>of<sp/>Conduct</highlight></codeline>
-<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Our<sp/>Pledge</highlight></codeline>
-<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">In<sp/>the<sp/>interest<sp/>of<sp/>fostering<sp/>an<sp/>open<sp/>and<sp/>welcoming<sp/>environment,<sp/>we<sp/>as</highlight></codeline>
-<codeline lineno="6"><highlight class="normal">contributors<sp/>and<sp/>maintainers<sp/>pledge<sp/>to<sp/>making<sp/>participation<sp/>in<sp/>our<sp/>project<sp/>and</highlight></codeline>
-<codeline lineno="7"><highlight class="normal">our<sp/>community<sp/>a<sp/>harassment-free<sp/>experience<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>everyone,<sp/>regardless<sp/>of<sp/>age,<sp/>body</highlight></codeline>
-<codeline lineno="8"><highlight class="normal">size,<sp/>disability,<sp/>ethnicity,<sp/>sex<sp/>characteristics,<sp/>gender<sp/>identity<sp/>and<sp/>expression,</highlight></codeline>
-<codeline lineno="9"><highlight class="normal">level<sp/>of<sp/>experience,<sp/>education,<sp/>socio-economic<sp/>status,<sp/>nationality,<sp/>personal</highlight></codeline>
-<codeline lineno="10"><highlight class="normal">appearance,<sp/>race,<sp/>religion,<sp/>or<sp/>sexual<sp/>identity<sp/>and<sp/>orientation.</highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal">##<sp/>Our<sp/>Standards</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal">Examples<sp/>of<sp/>behavior<sp/>that<sp/>contributes<sp/>to<sp/>creating<sp/>a<sp/>positive<sp/>environment</highlight></codeline>
-<codeline lineno="15"><highlight class="normal">include:</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal">*<sp/>Using<sp/>welcoming<sp/>and<sp/>inclusive<sp/>language</highlight></codeline>
-<codeline lineno="18"><highlight class="normal">*<sp/>Being<sp/>respectful<sp/>of<sp/>differing<sp/>viewpoints<sp/>and<sp/>experiences</highlight></codeline>
-<codeline lineno="19"><highlight class="normal">*<sp/>Gracefully<sp/>accepting<sp/>constructive<sp/>criticism</highlight></codeline>
-<codeline lineno="20"><highlight class="normal">*<sp/>Focusing<sp/>on<sp/>what<sp/>is<sp/>best<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>the<sp/>community</highlight></codeline>
-<codeline lineno="21"><highlight class="normal">*<sp/>Showing<sp/>empathy<sp/>towards<sp/>other<sp/>community<sp/>members</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal">Examples<sp/>of<sp/>unacceptable<sp/>behavior<sp/>by<sp/>participants<sp/>include:</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal">*<sp/>The<sp/>use<sp/>of<sp/>sexualized<sp/>language<sp/>or<sp/>imagery<sp/>and<sp/>unwelcome<sp/>sexual<sp/>attention<sp/>or</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/>advances</highlight></codeline>
-<codeline lineno="27"><highlight class="normal">*<sp/>Trolling,<sp/>insulting/derogatory<sp/>comments,<sp/>and<sp/>personal<sp/>or<sp/>political<sp/>attacks</highlight></codeline>
-<codeline lineno="28"><highlight class="normal">*<sp/>Public<sp/>or<sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>harassment</highlight></codeline>
-<codeline lineno="29"><highlight class="normal">*<sp/>Publishing<sp/>others</highlight><highlight class="stringliteral">&apos;<sp/>private<sp/>information,<sp/>such<sp/>as<sp/>a<sp/>physical<sp/>or<sp/>electronic</highlight></codeline>
-<codeline lineno="30"><highlight class="stringliteral"><sp/>address,<sp/>without<sp/>explicit<sp/>permission</highlight></codeline>
-<codeline lineno="31"><highlight class="stringliteral">*<sp/>Other<sp/>conduct<sp/>which<sp/>could<sp/>reasonably<sp/>be<sp/>considered<sp/>inappropriate<sp/>in<sp/>a</highlight></codeline>
-<codeline lineno="32"><highlight class="stringliteral"><sp/>professional<sp/>setting</highlight></codeline>
-<codeline lineno="33"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="34"><highlight class="stringliteral">##<sp/>Our<sp/>Responsibilities</highlight></codeline>
-<codeline lineno="35"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="36"><highlight class="stringliteral">Project<sp/>maintainers<sp/>are<sp/>responsible<sp/>for<sp/>clarifying<sp/>the<sp/>standards<sp/>of<sp/>acceptable</highlight></codeline>
-<codeline lineno="37"><highlight class="stringliteral">behavior<sp/>and<sp/>are<sp/>expected<sp/>to<sp/>take<sp/>appropriate<sp/>and<sp/>fair<sp/>corrective<sp/>action<sp/>in</highlight></codeline>
-<codeline lineno="38"><highlight class="stringliteral">response<sp/>to<sp/>any<sp/>instances<sp/>of<sp/>unacceptable<sp/>behavior.</highlight></codeline>
-<codeline lineno="39"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="40"><highlight class="stringliteral">Project<sp/>maintainers<sp/>have<sp/>the<sp/>right<sp/>and<sp/>responsibility<sp/>to<sp/>remove,<sp/>edit,<sp/>or</highlight></codeline>
-<codeline lineno="41"><highlight class="stringliteral">reject<sp/>comments,<sp/>commits,<sp/>code,<sp/>wiki<sp/>edits,<sp/>issues,<sp/>and<sp/>other<sp/>contributions</highlight></codeline>
-<codeline lineno="42"><highlight class="stringliteral">that<sp/>are<sp/>not<sp/>aligned<sp/>to<sp/>this<sp/>Code<sp/>of<sp/>Conduct,<sp/>or<sp/>to<sp/>ban<sp/>temporarily<sp/>or</highlight></codeline>
-<codeline lineno="43"><highlight class="stringliteral">permanently<sp/>any<sp/>contributor<sp/>for<sp/>other<sp/>behaviors<sp/>that<sp/>they<sp/>deem<sp/>inappropriate,</highlight></codeline>
-<codeline lineno="44"><highlight class="stringliteral">threatening,<sp/>offensive,<sp/>or<sp/>harmful.</highlight></codeline>
-<codeline lineno="45"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="46"><highlight class="stringliteral">##<sp/>Scope</highlight></codeline>
-<codeline lineno="47"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="48"><highlight class="stringliteral">This<sp/>Code<sp/>of<sp/>Conduct<sp/>applies<sp/>both<sp/>within<sp/>project<sp/>spaces<sp/>and<sp/>in<sp/>public<sp/>spaces</highlight></codeline>
-<codeline lineno="49"><highlight class="stringliteral">when<sp/>an<sp/>individual<sp/>is<sp/>representing<sp/>the<sp/>project<sp/>or<sp/>its<sp/>community.<sp/>Examples<sp/>of</highlight></codeline>
-<codeline lineno="50"><highlight class="stringliteral">representing<sp/>a<sp/>project<sp/>or<sp/>community<sp/>include<sp/>using<sp/>an<sp/>official<sp/>project<sp/>e-mail</highlight></codeline>
-<codeline lineno="51"><highlight class="stringliteral">address,<sp/>posting<sp/>via<sp/>an<sp/>official<sp/>social<sp/>media<sp/>account,<sp/>or<sp/>acting<sp/>as<sp/>an<sp/>appointed</highlight></codeline>
-<codeline lineno="52"><highlight class="stringliteral">representative<sp/>at<sp/>an<sp/>online<sp/>or<sp/>offline<sp/>event.<sp/>Representation<sp/>of<sp/>a<sp/>project<sp/>may<sp/>be</highlight></codeline>
-<codeline lineno="53"><highlight class="stringliteral">further<sp/>defined<sp/>and<sp/>clarified<sp/>by<sp/>project<sp/>maintainers.</highlight></codeline>
-<codeline lineno="54"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="55"><highlight class="stringliteral">##<sp/>Enforcement</highlight></codeline>
-<codeline lineno="56"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="57"><highlight class="stringliteral">Instances<sp/>of<sp/>abusive,<sp/>harassing,<sp/>or<sp/>otherwise<sp/>unacceptable<sp/>behavior<sp/>may<sp/>be</highlight></codeline>
-<codeline lineno="58"><highlight class="stringliteral">reported<sp/>by<sp/>contacting<sp/>the<sp/>project<sp/>team<sp/>at<sp/>yarnspinner@secretlab.com.au.<sp/>All</highlight></codeline>
-<codeline lineno="59"><highlight class="stringliteral">complaints<sp/>will<sp/>be<sp/>reviewed<sp/>and<sp/>investigated<sp/>and<sp/>will<sp/>result<sp/>in<sp/>a<sp/>response<sp/>that</highlight></codeline>
-<codeline lineno="60"><highlight class="stringliteral">is<sp/>deemed<sp/>necessary<sp/>and<sp/>appropriate<sp/>to<sp/>the<sp/>circumstances.<sp/>The<sp/>project<sp/>team<sp/>is</highlight></codeline>
-<codeline lineno="61"><highlight class="stringliteral">obligated<sp/>to<sp/>maintain<sp/>confidentiality<sp/>with<sp/>regard<sp/>to<sp/>the<sp/>reporter<sp/>of<sp/>an<sp/>incident.</highlight></codeline>
-<codeline lineno="62"><highlight class="stringliteral">Further<sp/>details<sp/>of<sp/>specific<sp/>enforcement<sp/>policies<sp/>may<sp/>be<sp/>posted<sp/>separately.</highlight></codeline>
-<codeline lineno="63"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="64"><highlight class="stringliteral">Project<sp/>maintainers<sp/>who<sp/>do<sp/>not<sp/>follow<sp/>or<sp/>enforce<sp/>the<sp/>Code<sp/>of<sp/>Conduct<sp/>in<sp/>good</highlight></codeline>
-<codeline lineno="65"><highlight class="stringliteral">faith<sp/>may<sp/>face<sp/>temporary<sp/>or<sp/>permanent<sp/>repercussions<sp/>as<sp/>determined<sp/>by<sp/>other</highlight></codeline>
-<codeline lineno="66"><highlight class="stringliteral">members<sp/>of<sp/>the<sp/>project&apos;</highlight><highlight class="normal">s<sp/>leadership.</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal">##<sp/>Attribution</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal">This<sp/>Code<sp/>of<sp/>Conduct<sp/>is<sp/>adapted<sp/>from<sp/>the<sp/>[Contributor<sp/>Covenant][homepage],<sp/>version<sp/>1.4,</highlight></codeline>
-<codeline lineno="71"><highlight class="normal">available<sp/>at<sp/>https:</highlight><highlight class="comment">//www.contributor-covenant.org/version/1/4/code-of-conduct.html</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="normal">[homepage]:<sp/>https:</highlight><highlight class="comment">//www.contributor-covenant.org</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal">For<sp/>answers<sp/>to<sp/>common<sp/>questions<sp/>about<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>code<sp/>of<sp/>conduct,<sp/>see</highlight></codeline>
-<codeline lineno="76"><highlight class="normal">https:</highlight><highlight class="comment">//www.contributor-covenant.org/faq</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="comment">//<sp/>Copyright<sp/>2009-2015<sp/>Josh<sp/>Close<sp/>and<sp/>Contributors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>a<sp/>part<sp/>of<sp/>CsvHelper<sp/>and<sp/>is<sp/>dual<sp/>licensed<sp/>under<sp/>MS-PL<sp/>and<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>LICENSE.txt<sp/>for<sp/>details<sp/>or<sp/>visit<sp/>http://www.opensource.org/licenses/ms-pl.html<sp/>for<sp/>MS-PL<sp/>and<sp/>http://opensource.org/licenses/Apache-2.0<sp/>for<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>http://csvhelper.com</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!NET_2_0</highlight></codeline>
+<codeline lineno="6"><highlight class="preprocessor"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Linq.Expressions;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Reflection;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>CsvHelper.TypeConversion;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">CsvHelper.Configuration</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15" refid="a00070" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="a00070" kindref="compound">CsvPropertyMapData</ref></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="17" refid="a00070_1acb636e590836496473e867897ab79d97" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>readonly<sp/><ref refid="a00071" kindref="compound">CsvPropertyNameCollection</ref><sp/>names<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="a00071" kindref="compound">CsvPropertyNameCollection</ref>();</highlight></codeline>
+<codeline lineno="18" refid="a00070_1a6dfbe771775d4c0d785847b7f0d2299c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="19" refid="a00070_1a77d34f2e73ad23e07eb38ee5ecceadf8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/><ref refid="a00070_1a77d34f2e73ad23e07eb38ee5ecceadf8" kindref="member">defaultValue</ref>;</highlight></codeline>
+<codeline lineno="20" refid="a00070_1a0ca8b71605ad4490ea143c24c8adb1f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>readonly<sp/><ref refid="a00156" kindref="compound">TypeConverterOptions</ref><sp/>typeConverterOptions<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="a00156" kindref="compound">TypeConverterOptions</ref>();</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="a00070_1ad8f34e4f5081de744efc703640e3b7d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>PropertyInfo<sp/>Property<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="a00071" kindref="compound">CsvPropertyNameCollection</ref><sp/>Names</highlight></codeline>
+<codeline lineno="32" refid="a00070_1ad37a07fbc2781cdb1dce5cb6fcf953d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>names;<sp/>}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="a00070_1acf816322908241de17cad1d9a66add43" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>NameIndex<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="a00070_1a4edc08c491e692d4b187c4e436a0a216" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>IsNameSet<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Index</highlight></codeline>
+<codeline lineno="54" refid="a00070_1a14a0ca66dd60cf7685ac511906b04927" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>index;<sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>set<sp/>{<sp/>index<sp/>=<sp/>value;<sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="a00070_1a6af03961e4cab7536aca530902fe4e43" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>IsIndexSet<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="a00070_1a5d282b88e912b3909072dff40a205f8b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="a00117" kindref="compound">ITypeConverter</ref><sp/>TypeConverter<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="a00156" kindref="compound">TypeConverterOptions</ref><sp/><ref refid="a00156" kindref="compound">TypeConverterOptions</ref></highlight></codeline>
+<codeline lineno="75" refid="a00070_1ad0d40cffbecb6c5e43d6aae27c97a214" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>typeConverterOptions;<sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="a00070_1a98ca8f9b7cc478644de267d44c6647b7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Ignore<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/>Default</highlight></codeline>
+<codeline lineno="88" refid="a00070_1a3740c3b2f1e6e74349ac5fdf1ec0fce8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>defaultValue;<sp/>}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>set</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>defaultValue<sp/>=<sp/>value;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>IsDefaultSet<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="a00070_1a3b9322c5f0b85df6a3d7662265c75151" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>IsDefaultSet<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="a00070_1a1ae48223a4f425b7b315c6ae3235b4c1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>Expression<sp/>ConvertExpression<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="a00070_1a1a1424683bea80f373e3ea80ae6e39c7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00070_1a1a1424683bea80f373e3ea80ae6e39c7" kindref="member">CsvPropertyMapData</ref>(<sp/>PropertyInfo<sp/>property<sp/>)</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Property<sp/>=<sp/>property;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>!NET_2_0</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/CODE_OF_CONDUCT.md"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapData.cs"/>
   </compounddef>
 </doxygen>

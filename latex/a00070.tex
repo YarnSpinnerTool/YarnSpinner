@@ -1,1363 +1,274 @@
-\hypertarget{a00070}{\section{Csv\-Helper.\-Csv\-Parser Class Reference}
-\label{a00070}\index{Csv\-Helper.\-Csv\-Parser@{Csv\-Helper.\-Csv\-Parser}}
+\hypertarget{a00070}{\section{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data Class Reference}
+\label{a00070}\index{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data@{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data}}
 }
 
 
-Parses a C\-S\-V file.  
+The configured data for the property map.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Csv\-Parser\-:
+Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{a00434}
-\end{center}
-\end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-Csv\-Parser\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=550pt]{a00435}
+\includegraphics[width=350pt]{a00468}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00070_a28afb6761bc195a6f20c284c46811b76}{Csv\-Parser} (Text\-Reader \hyperlink{a00070_a6ab23daf45e84a211b4010c213504f7e}{reader})
-\begin{DoxyCompactList}\small\item\em Creates a new parser using the given Text\-Reader. \end{DoxyCompactList}\item 
-\hyperlink{a00070_a94820d35d587215da53e0a5f2bf229d0}{Csv\-Parser} (Text\-Reader \hyperlink{a00070_a6ab23daf45e84a211b4010c213504f7e}{reader}, \hyperlink{a00065}{Csv\-Configuration} \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration})
-\begin{DoxyCompactList}\small\item\em Creates a new parser using the given Text\-Reader and Csv\-Configuration. \end{DoxyCompactList}\item 
-virtual string\mbox{[}$\,$\mbox{]} \hyperlink{a00070_a8e938842c6267343128babd111df9710}{Read} ()
-\begin{DoxyCompactList}\small\item\em Reads a record from the C\-S\-V file. \end{DoxyCompactList}\item 
-void \hyperlink{a00070_aa13f93a198206179cd19cdc12332d842}{Dispose} ()
-\begin{DoxyCompactList}\small\item\em Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Protected Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-virtual void \hyperlink{a00070_a67eb636585d4e43642b0ad795413f2a2}{Dispose} (bool disposing)
-\begin{DoxyCompactList}\small\item\em Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. \end{DoxyCompactList}\item 
-virtual void \hyperlink{a00070_a294664b81d5e4e61289785fa2c1c5820}{Check\-Disposed} ()
-\begin{DoxyCompactList}\small\item\em Checks if the instance has been disposed of. \end{DoxyCompactList}\item 
-virtual void \hyperlink{a00070_a5ccc63fca7b292e0a313ccf81c5ac48c}{Add\-Field\-To\-Record} (ref int record\-Position, string field, ref bool field\-Is\-Bad)
-\begin{DoxyCompactList}\small\item\em Adds the field to the current record. \end{DoxyCompactList}\item 
-virtual void \hyperlink{a00070_a699a73656cc4d6b06df34b37460a0963}{Append\-Field} (ref string field, int field\-Start\-Position, int length)
-\begin{DoxyCompactList}\small\item\em Appends the current buffer data to the field. \end{DoxyCompactList}\item 
-virtual void \hyperlink{a00070_a80b65e1df274bb8ef11d8bc5ba142982}{Update\-Byte\-Position} (int field\-Start\-Position, int length)
-\begin{DoxyCompactList}\small\item\em Updates the byte position using the data from the reader buffer. \end{DoxyCompactList}\item 
-virtual string\mbox{[}$\,$\mbox{]} \hyperlink{a00070_a5420fbd5e54c6ed9a856f2d92e610957}{Read\-Line} ()
-\begin{DoxyCompactList}\small\item\em Reads the next line. \end{DoxyCompactList}\item 
-bool \hyperlink{a00070_ac425b45e53d095d825f0fa8a52041a69}{Get\-Char} (out char ch, ref int field\-Start\-Position, ref int raw\-Field\-Start\-Position, ref string field, ref bool field\-Is\-Bad, bool prev\-Char\-Was\-Delimiter, ref int record\-Position, ref int field\-Length, bool in\-Comment, bool in\-Delimiter, bool in\-Quotes, bool is\-Peek)
-\begin{DoxyCompactList}\small\item\em Gets the current character from the buffer while advancing the buffer if it ran out. \end{DoxyCompactList}\item 
-virtual void \hyperlink{a00070_a47414bb437abd9918ff4501beaa9ff1c}{Read\-Excel\-Separator} ()
-\begin{DoxyCompactList}\small\item\em Reads the Excel seperator and sets it to the delimiter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00070_a1a1424683bea80f373e3ea80ae6e39c7}{Csv\-Property\-Map\-Data} (Property\-Info property)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00070}{Csv\-Property\-Map\-Data} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-virtual \hyperlink{a00065}{Csv\-Configuration} \hyperlink{a00070_a417fc0dca5536811d7a8571ccdf0d46e}{Configuration}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the configuration. \end{DoxyCompactList}\item 
-virtual int \hyperlink{a00070_aa9cb95463f5328b8c85884f434975249}{Field\-Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the field count. \end{DoxyCompactList}\item 
-virtual long \hyperlink{a00070_a1e9b4aa434c3095d383e0c20b0c0b64c}{Char\-Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the character position that the parser is currently on. \end{DoxyCompactList}\item 
-virtual long \hyperlink{a00070_a6fd7255ce9ae33029aafcaab07205047}{Byte\-Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the byte position that the parser is currently on. \end{DoxyCompactList}\item 
-virtual int \hyperlink{a00070_aae6f5e516189e2b2f9e80c33d235c7b4}{Row}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the row of the C\-S\-V file that the parser is currently on. This is the logical C\-S\-V row. \end{DoxyCompactList}\item 
-virtual int \hyperlink{a00070_a87a7563b2835f1ccd09dbf0185b1b66c}{Raw\-Row}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the row of the C\-S\-V file that the parser is currently on. This is the actual file row. \end{DoxyCompactList}\item 
-virtual string \hyperlink{a00070_ae2c14a3790234029587b817784bdd158}{Raw\-Record}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the raw row for the current record that was parsed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual Property\-Info \hyperlink{a00070_ad8f34e4f5081de744efc703640e3b7d2}{Property}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the Property\-Info that the data is associated with. \end{DoxyCompactList}\item 
+virtual \hyperlink{a00071}{Csv\-Property\-Name\-Collection} \hyperlink{a00070_ad37a07fbc2781cdb1dce5cb6fcf953d9}{Names}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the list of column names. \end{DoxyCompactList}\item 
+virtual int \hyperlink{a00070_acf816322908241de17cad1d9a66add43}{Name\-Index}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the index of the name. This is used if there are multiple columns with the same names. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00070_a4edc08c491e692d4b187c4e436a0a216}{Is\-Name\-Set}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating if the name was explicitly set. True if it was explicity set, otherwise false. \end{DoxyCompactList}\item 
+virtual int \hyperlink{a00070_a14a0ca66dd60cf7685ac511906b04927}{Index}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the column index. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00070_a6af03961e4cab7536aca530902fe4e43}{Is\-Index\-Set}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating if the index was explicitly set. True if it was explicitly set, otherwise false. \end{DoxyCompactList}\item 
+virtual \hyperlink{a00117}{I\-Type\-Converter} \hyperlink{a00070_a5d282b88e912b3909072dff40a205f8b}{Type\-Converter}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the type converter. \end{DoxyCompactList}\item 
+virtual \hyperlink{a00156}{Type\-Converter\-Options} \hyperlink{a00070_ad0d40cffbecb6c5e43d6aae27c97a214}{Type\-Converter\-Options}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the type converter options. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00070_a98ca8f9b7cc478644de267d44c6647b7}{Ignore}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating whether the field should be ignored. \end{DoxyCompactList}\item 
+virtual object \hyperlink{a00070_a3740c3b2f1e6e74349ac5fdf1ec0fce8}{Default}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the default value used when a C\-S\-V field is empty. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00070_a3b9322c5f0b85df6a3d7662265c75151}{Is\-Default\-Set}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating whether this instance is default value set. the default value was explicitly set. True if it was explicitly set, otherwise false. \end{DoxyCompactList}\item 
+virtual Expression \hyperlink{a00070_a1ae48223a4f425b7b315c6ae3235b4c1}{Convert\-Expression}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the expression used to convert data in the row to the property. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{a00070_abeead9997a4c1ec20866458a2e0928bb}{disposed}
+readonly \hyperlink{a00071}{Csv\-Property\-Name\-Collection} \hyperlink{a00070_acb636e590836496473e867897ab79d97}{names} = new \hyperlink{a00071}{Csv\-Property\-Name\-Collection}()
 \item 
-Text\-Reader \hyperlink{a00070_a6ab23daf45e84a211b4010c213504f7e}{reader}
+int \hyperlink{a00070_a6dfbe771775d4c0d785847b7f0d2299c}{index} = -\/1
 \item 
-readonly char\mbox{[}$\,$\mbox{]} \hyperlink{a00070_ad8b27f20be101a15ef390fcc37f8631b}{reader\-Buffer}
+object \hyperlink{a00070_a77d34f2e73ad23e07eb38ee5ecceadf8}{default\-Value}
 \item 
-int \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{reader\-Buffer\-Position}
-\item 
-int \hyperlink{a00070_a9300effd525a71c2a377bde2586da9ae}{chars\-Read}
-\item 
-string\mbox{[}$\,$\mbox{]} \hyperlink{a00070_a4c748c464a59715ecf7e21b21d0a26bb}{record}
-\item 
-int \hyperlink{a00070_abf91f9e65b160b9e835a2991ddced457}{current\-Row}
-\item 
-int \hyperlink{a00070_abea7b56f7571998c07fbf18043852835}{current\-Raw\-Row}
-\item 
-readonly \hyperlink{a00065}{Csv\-Configuration} \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}
-\item 
-char \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{c\-Prev}
-\item 
-char \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} = '\textbackslash{}0'
-\item 
-bool \hyperlink{a00070_aad0c78d3f0233589a8657e2aa22677c2}{read}
-\item 
-bool \hyperlink{a00070_abcc5896fa941dd33377a660909940589}{has\-Excel\-Separator\-Been\-Read}
+readonly \hyperlink{a00156}{Type\-Converter\-Options} \hyperlink{a00070_a0ca8b71605ad4490ea143c24c8adb1f8}{type\-Converter\-Options} = new \hyperlink{a00156}{Type\-Converter\-Options}()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Parses a C\-S\-V file. 
+The configured data for the property map. 
 
 
 
-Definition at line 16 of file Csv\-Parser.\-cs.
+Definition at line 15 of file Csv\-Property\-Map\-Data.\-cs.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00070_a28afb6761bc195a6f20c284c46811b76}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Csv\-Parser@{Csv\-Parser}}
-\index{Csv\-Parser@{Csv\-Parser}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Csv\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Parser.\-Csv\-Parser (
+\hypertarget{a00070_a1a1424683bea80f373e3ea80ae6e39c7}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Csv\-Property\-Map\-Data@{Csv\-Property\-Map\-Data}}
+\index{Csv\-Property\-Map\-Data@{Csv\-Property\-Map\-Data}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{Csv\-Property\-Map\-Data}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Csv\-Property\-Map\-Data (
 \begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader}
+\item[{Property\-Info}]{property}
 \end{DoxyParamCaption}
-)}}\label{a00070_a28afb6761bc195a6f20c284c46811b76}
+)}}\label{a00070_a1a1424683bea80f373e3ea80ae6e39c7}
 
 
-Creates a new parser using the given Text\-Reader. 
+Initializes a new instance of the \hyperlink{a00070}{Csv\-Property\-Map\-Data} class. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em reader} & The Text\-Reader with the C\-S\-V file data.\\
+{\em property} & The property.\\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 76 of file Csv\-Parser.\-cs.
+Definition at line 114 of file Csv\-Property\-Map\-Data.\-cs.
 
 
 \begin{DoxyCode}
-76 : \textcolor{keyword}{this}( \hyperlink{a00070_a6ab23daf45e84a211b4010c213504f7e}{reader}, \textcolor{keyword}{new} \hyperlink{a00065}{CsvConfiguration}() ) \{\}
+115         \{
+116             \hyperlink{a00070_ad8f34e4f5081de744efc703640e3b7d2}{Property} = property;
+117         \}
 \end{DoxyCode}
-\hypertarget{a00070_a94820d35d587215da53e0a5f2bf229d0}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Csv\-Parser@{Csv\-Parser}}
-\index{Csv\-Parser@{Csv\-Parser}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Csv\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Parser.\-Csv\-Parser (
-\begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader, }
-\item[{{\bf Csv\-Configuration}}]{configuration}
-\end{DoxyParamCaption}
-)}}\label{a00070_a94820d35d587215da53e0a5f2bf229d0}
-
-
-Creates a new parser using the given Text\-Reader and Csv\-Configuration. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em reader} & The Text\-Reader with the C\-S\-V file data.\\
-\hline
-{\em configuration} & The configuration.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 84 of file Csv\-Parser.\-cs.
-
-
-
-References Csv\-Helper.\-Csv\-Parser.\-configuration, Csv\-Helper.\-Csv\-Parser.\-reader, and Csv\-Helper.\-Csv\-Parser.\-reader\-Buffer.
-
-
-\begin{DoxyCode}
-85         \{
-86             \textcolor{keywordflow}{if}( \hyperlink{a00070_a6ab23daf45e84a211b4010c213504f7e}{reader} == null )
-87             \{
-88                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"reader"} );
-89             \}
-90 
-91             \textcolor{keywordflow}{if}( configuration == null )
-92             \{
-93                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"configuration"} );
-94             \}
-95 
-96             this.reader = \hyperlink{a00070_a6ab23daf45e84a211b4010c213504f7e}{reader};
-97             this.configuration = \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration};
-98 
-99             \hyperlink{a00070_ad8b27f20be101a15ef390fcc37f8631b}{readerBuffer} = \textcolor{keyword}{new} \textcolor{keywordtype}{char}[configuration.BufferSize];
-100         \}
-\end{DoxyCode}
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00070_a5ccc63fca7b292e0a313ccf81c5ac48c}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Add\-Field\-To\-Record@{Add\-Field\-To\-Record}}
-\index{Add\-Field\-To\-Record@{Add\-Field\-To\-Record}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Add\-Field\-To\-Record}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Parser.\-Add\-Field\-To\-Record (
-\begin{DoxyParamCaption}
-\item[{ref int}]{record\-Position, }
-\item[{string}]{field, }
-\item[{ref bool}]{field\-Is\-Bad}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00070_a5ccc63fca7b292e0a313ccf81c5ac48c}
-
-
-Adds the field to the current record. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em record\-Position} & The record position to add the field to.\\
-\hline
-{\em field} & The field to add.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 187 of file Csv\-Parser.\-cs.
-
-
-
-References Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Bad\-Data\-Callback, Csv\-Helper.\-Csv\-Parser.\-configuration, Csv\-Helper.\-Csv\-Parser.\-current\-Row, Csv\-Helper.\-Csv\-Parser.\-Field\-Count, Csv\-Helper.\-Csv\-Parser.\-record, and Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Throw\-On\-Bad\-Data.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Get\-Char(), and Csv\-Helper.\-Csv\-Parser.\-Read\-Line().
-
-
-\begin{DoxyCode}
-188         \{
-189             \textcolor{keywordflow}{if}( \hyperlink{a00070_a4c748c464a59715ecf7e21b21d0a26bb}{record}.Length < recordPosition + 1 )
-190             \{
-191                 \textcolor{comment}{// Resize record if it's too small.}
-192                 Array.Resize( ref \hyperlink{a00070_a4c748c464a59715ecf7e21b21d0a26bb}{record}, recordPosition + 1 );
-193 
-194                 \textcolor{comment}{// Set the field count. If there is a header}
-195                 \textcolor{comment}{// record, then we can go by the number of}
-196                 \textcolor{comment}{// headers there is. If there is no header}
-197                 \textcolor{comment}{// record, then we can go by the first row.}
-198                 \textcolor{comment}{// Either way, we're using the first row.}
-199                 \textcolor{keywordflow}{if}( \hyperlink{a00070_abf91f9e65b160b9e835a2991ddced457}{currentRow} == 1 )
-200                 \{
-201                     \hyperlink{a00070_aa9cb95463f5328b8c85884f434975249}{FieldCount} = record.Length;
-202                 \}
-203             \}
-204 
-205             \textcolor{keywordflow}{if}( fieldIsBad && \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_ac20c0f1cc282f4b13ce15b6a91305c10}{ThrowOnBadData} )
-206             \{
-207                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvBadDataException( \textcolor{keywordtype}{string}.Format( \textcolor{stringliteral}{"Field: '\{0\}'"}, field ) );
-208             \}
-209 
-210             \textcolor{keywordflow}{if}( fieldIsBad && \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_a1a59e8f40f9629658d47a6f163dda8ed}{BadDataCallback} != null )
-211             \{
-212                 configuration.BadDataCallback( field );
-213             \}
-214 
-215             fieldIsBad = \textcolor{keyword}{false};
-216 
-217             record[recordPosition] = field;
-218             recordPosition++;
-219         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00070_a5ccc63fca7b292e0a313ccf81c5ac48c_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00070_a699a73656cc4d6b06df34b37460a0963}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Append\-Field@{Append\-Field}}
-\index{Append\-Field@{Append\-Field}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Append\-Field}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Parser.\-Append\-Field (
-\begin{DoxyParamCaption}
-\item[{ref string}]{field, }
-\item[{int}]{field\-Start\-Position, }
-\item[{int}]{length}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00070_a699a73656cc4d6b06df34b37460a0963}
-
-
-Appends the current buffer data to the field. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em field} & The field to append the current buffer to.\\
-\hline
-{\em field\-Start\-Position} & The start position in the buffer that the .\\
-\hline
-{\em length} & The length.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 227 of file Csv\-Parser.\-cs.
-
-
-
-References Csv\-Helper.\-Csv\-Parser.\-reader\-Buffer.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Get\-Char(), and Csv\-Helper.\-Csv\-Parser.\-Read\-Line().
-
-
-\begin{DoxyCode}
-228         \{
-229             field += \textcolor{keyword}{new} string( \hyperlink{a00070_ad8b27f20be101a15ef390fcc37f8631b}{readerBuffer}, fieldStartPosition, length );
-230         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00070_a699a73656cc4d6b06df34b37460a0963_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00070_a294664b81d5e4e61289785fa2c1c5820}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Check\-Disposed@{Check\-Disposed}}
-\index{Check\-Disposed@{Check\-Disposed}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Check\-Disposed}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Parser.\-Check\-Disposed (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00070_a294664b81d5e4e61289785fa2c1c5820}
-
-
-Checks if the instance has been disposed of. 
-
-
-\begin{DoxyExceptions}{Exceptions}
-{\em Object\-Disposed\-Exception} & \\
-\hline
-\end{DoxyExceptions}
-
-
-Definition at line 174 of file Csv\-Parser.\-cs.
-
-
-
-References Csv\-Helper.\-Csv\-Parser.\-disposed.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Read().
-
-
-\begin{DoxyCode}
-175         \{
-176             \textcolor{keywordflow}{if}( \hyperlink{a00070_abeead9997a4c1ec20866458a2e0928bb}{disposed} )
-177             \{
-178                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ObjectDisposedException( GetType().ToString() );
-179             \}
-180         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00070_a294664b81d5e4e61289785fa2c1c5820_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00070_aa13f93a198206179cd19cdc12332d842}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Dispose@{Dispose}}
-\index{Dispose@{Dispose}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Csv\-Parser.\-Dispose (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00070_aa13f93a198206179cd19cdc12332d842}
-
-
-Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. 
-
-$<$filterpriority$>$2$<$/filterpriority$>$ 
-
-Definition at line 141 of file Csv\-Parser.\-cs.
-
-
-\begin{DoxyCode}
-142         \{
-143             \hyperlink{a00070_aa13f93a198206179cd19cdc12332d842}{Dispose}( \textcolor{keyword}{true} );
-144             GC.SuppressFinalize( this );
-145         \}
-\end{DoxyCode}
-\hypertarget{a00070_a67eb636585d4e43642b0ad795413f2a2}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Dispose@{Dispose}}
-\index{Dispose@{Dispose}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Parser.\-Dispose (
-\begin{DoxyParamCaption}
-\item[{bool}]{disposing}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00070_a67eb636585d4e43642b0ad795413f2a2}
-
-
-Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em disposing} & True if the instance needs to be disposed of.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 151 of file Csv\-Parser.\-cs.
-
-
-
-References Csv\-Helper.\-Csv\-Parser.\-disposed, and Csv\-Helper.\-Csv\-Parser.\-reader.
-
-
-\begin{DoxyCode}
-152         \{
-153             \textcolor{keywordflow}{if}( \hyperlink{a00070_abeead9997a4c1ec20866458a2e0928bb}{disposed} )
-154             \{
-155                 \textcolor{keywordflow}{return};
-156             \}
-157 
-158             \textcolor{keywordflow}{if}( disposing )
-159             \{
-160                 \textcolor{keywordflow}{if}( \hyperlink{a00070_a6ab23daf45e84a211b4010c213504f7e}{reader} != null )
-161                 \{
-162                     reader.Dispose();
-163                 \}
-164             \}
-165 
-166             \hyperlink{a00070_abeead9997a4c1ec20866458a2e0928bb}{disposed} = \textcolor{keyword}{true};
-167             \hyperlink{a00070_a6ab23daf45e84a211b4010c213504f7e}{reader} = null;
-168         \}
-\end{DoxyCode}
-\hypertarget{a00070_ac425b45e53d095d825f0fa8a52041a69}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Get\-Char@{Get\-Char}}
-\index{Get\-Char@{Get\-Char}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Get\-Char}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-Csv\-Parser.\-Get\-Char (
-\begin{DoxyParamCaption}
-\item[{out char}]{ch, }
-\item[{ref int}]{field\-Start\-Position, }
-\item[{ref int}]{raw\-Field\-Start\-Position, }
-\item[{ref string}]{field, }
-\item[{ref bool}]{field\-Is\-Bad, }
-\item[{bool}]{prev\-Char\-Was\-Delimiter, }
-\item[{ref int}]{record\-Position, }
-\item[{ref int}]{field\-Length, }
-\item[{bool}]{in\-Comment, }
-\item[{bool}]{in\-Delimiter, }
-\item[{bool}]{in\-Quotes, }
-\item[{bool}]{is\-Peek}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}}}\label{a00070_ac425b45e53d095d825f0fa8a52041a69}
-
-
-Gets the current character from the buffer while advancing the buffer if it ran out. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em ch} & The char that gets the read char set to.\\
-\hline
-{\em field\-Start\-Position} & The start position of the current field.\\
-\hline
-{\em raw\-Field\-Start\-Position} & The start position of the raw field.\\
-\hline
-{\em field} & The field.\\
-\hline
-{\em prev\-Char\-Was\-Delimiter} & A value indicating if the previous char read was a delimiter.\\
-\hline
-{\em record\-Position} & The position in the record we are currently at.\\
-\hline
-{\em field\-Length} & The length of the field in the buffer.\\
-\hline
-{\em in\-Comment} & A value indicating if the row is current a comment row.\\
-\hline
-{\em is\-Peek} & A value indicating if this call is a peek. If true and the end of the record was found no record handling will be done.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A value indicating if read a char was read. True if a char was read, otherwise false.
-\end{DoxyReturn}
-
-
-Definition at line 538 of file Csv\-Parser.\-cs.
-
-
-
-References Csv\-Helper.\-Csv\-Parser.\-Add\-Field\-To\-Record(), Csv\-Helper.\-Csv\-Parser.\-Append\-Field(), Csv\-Helper.\-Csv\-Parser.\-c, Csv\-Helper.\-Csv\-Parser.\-chars\-Read, Csv\-Helper.\-Csv\-Parser.\-Raw\-Record, Csv\-Helper.\-Csv\-Parser.\-reader\-Buffer, Csv\-Helper.\-Csv\-Parser.\-reader\-Buffer\-Position, Csv\-Helper.\-Csv\-Parser.\-record, and Csv\-Helper.\-Csv\-Parser.\-Update\-Byte\-Position().
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Read\-Line().
-
-
-\begin{DoxyCode}
-539         \{
-540             \textcolor{keywordflow}{if}( \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} == \hyperlink{a00070_a9300effd525a71c2a377bde2586da9ae}{charsRead} )
-541             \{
-542                 \textcolor{comment}{// We need to read more of the stream.}
-543 
-544                 \textcolor{keywordflow}{if}( !inDelimiter && !inComment )
-545                 \{
-546                     \textcolor{comment}{// The buffer ran out. Take the current}
-547                     \textcolor{comment}{// text and add it to the field.}
-548                     \hyperlink{a00070_a699a73656cc4d6b06df34b37460a0963}{AppendField}( ref field, fieldStartPosition, fieldLength );
-549                 \}
-550 
-551                 \hyperlink{a00070_a80b65e1df274bb8ef11d8bc5ba142982}{UpdateBytePosition}( fieldStartPosition, 
-      \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - fieldStartPosition );
-552                 fieldLength = 0;
-553 
-554                 \hyperlink{a00070_ae2c14a3790234029587b817784bdd158}{RawRecord} += \textcolor{keyword}{new} string( \hyperlink{a00070_ad8b27f20be101a15ef390fcc37f8631b}{readerBuffer}, rawFieldStartPosition, 
-      \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - rawFieldStartPosition );
-555 
-556                 \hyperlink{a00070_a9300effd525a71c2a377bde2586da9ae}{charsRead} = reader.Read( \hyperlink{a00070_ad8b27f20be101a15ef390fcc37f8631b}{readerBuffer}, 0, readerBuffer.Length );
-557                 \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} = 0;
-558                 fieldStartPosition = 0;
-559                 rawFieldStartPosition = 0;
-560 
-561                 \textcolor{keywordflow}{if}( \hyperlink{a00070_a9300effd525a71c2a377bde2586da9ae}{charsRead} == 0 )
-562                 \{
-563                     \textcolor{comment}{// The end of the stream has been reached.}
-564 
-565                     \textcolor{keywordflow}{if}( isPeek )
-566                     \{
-567                         \textcolor{comment}{// Don't do any record handling because we're just looking ahead}
-568                         \textcolor{comment}{// and not actually getting the next char to use.}
-569                         ch = \textcolor{charliteral}{'\(\backslash\)0'};
-570                         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-571                     \}
-572 
-573                     \textcolor{keywordflow}{if}( ( \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} != \textcolor{charliteral}{'\(\backslash\)r'} && \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} != \textcolor{charliteral}{'\(\backslash\)n'} && \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} != \textcolor{charliteral}{'\(\backslash\)0'} && !inComment ) || inQuotes )
-574                     \{
-575                         \textcolor{comment}{// If we're in quotes and have reached the end of the file, record the}
-576                         \textcolor{comment}{// rest of the record and field.}
-577 
-578                         \textcolor{keywordflow}{if}( prevCharWasDelimiter )
-579                         \{
-580                             \textcolor{comment}{// Handle an empty field at the end of the row.}
-581                             field = \textcolor{stringliteral}{""};
-582                         \}
-583 
-584                         \hyperlink{a00070_a5ccc63fca7b292e0a313ccf81c5ac48c}{AddFieldToRecord}( ref recordPosition, field, ref fieldIsBad );
-585                     \}
-586                     \textcolor{keywordflow}{else}
-587                     \{
-588                         \hyperlink{a00070_ae2c14a3790234029587b817784bdd158}{RawRecord} = null;
-589                         \hyperlink{a00070_a4c748c464a59715ecf7e21b21d0a26bb}{record} = null;
-590                     \}
-591 
-592                     ch = \textcolor{charliteral}{'\(\backslash\)0'};
-593                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-594                 \}
-595             \}
-596 
-597             ch = readerBuffer[\hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition}];
-598             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-599         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00070_ac425b45e53d095d825f0fa8a52041a69_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00070_ac425b45e53d095d825f0fa8a52041a69_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00070_a8e938842c6267343128babd111df9710}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Read@{Read}}
-\index{Read@{Read}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Read}]{\setlength{\rightskip}{0pt plus 5cm}virtual string \mbox{[}$\,$\mbox{]} Csv\-Helper.\-Csv\-Parser.\-Read (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00070_a8e938842c6267343128babd111df9710}
-
-
-Reads a record from the C\-S\-V file. 
-
-\begin{DoxyReturn}{Returns}
-A List\{\-String\} of fields for the record read. If there are no more records, null is returned.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00115_a411461b4cd33dce0b42c81715359f687}{Csv\-Helper.\-I\-Csv\-Parser}.
-
-
-
-Definition at line 107 of file Csv\-Parser.\-cs.
-
-
-
-References Csv\-Helper.\-Csv\-Parser.\-Check\-Disposed(), Csv\-Helper.\-Csv\-Parser.\-configuration, Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Detect\-Column\-Count\-Changes, Csv\-Helper.\-Csv\-Parser.\-Field\-Count, Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Has\-Excel\-Separator, Csv\-Helper.\-Csv\-Parser.\-has\-Excel\-Separator\-Been\-Read, Csv\-Helper.\-Csv\-Parser.\-Read\-Excel\-Separator(), and Csv\-Helper.\-Csv\-Parser.\-Read\-Line().
-
-
-\begin{DoxyCode}
-108         \{
-109             \hyperlink{a00070_a294664b81d5e4e61289785fa2c1c5820}{CheckDisposed}();
-110 
-111             \textcolor{keywordflow}{try}
-112             \{
-113                 \textcolor{keywordflow}{if}( \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_a1ec30ebdadc1050686b22d1f518df042}{HasExcelSeparator} && !
-      \hyperlink{a00070_abcc5896fa941dd33377a660909940589}{hasExcelSeparatorBeenRead} )
-114                 \{
-115                     \hyperlink{a00070_a47414bb437abd9918ff4501beaa9ff1c}{ReadExcelSeparator}();
-116                 \}
-117 
-118                 var row = \hyperlink{a00070_a5420fbd5e54c6ed9a856f2d92e610957}{ReadLine}();
-119 
-120                 \textcolor{keywordflow}{if}( \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_a615120d2e42818bc37d87181b72d4ad3}{DetectColumnCountChanges} && row != 
-      null )
-121                 \{
-122                     \textcolor{keywordflow}{if}( \hyperlink{a00070_aa9cb95463f5328b8c85884f434975249}{FieldCount} > 0 && ( \hyperlink{a00070_aa9cb95463f5328b8c85884f434975249}{FieldCount} != row.Length || row.Any( field 
-      => field == null ) ) )
-123                     \{
-124                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvBadDataException( \textcolor{stringliteral}{"An inconsistent number of columns has been
-       detected."} );
-125                     \}
-126                 \}
-127 
-128                 \textcolor{keywordflow}{return} row;
-129             \}
-130             \textcolor{keywordflow}{catch}( Exception ex )
-131             \{
-132                 ExceptionHelper.AddExceptionDataMessage( ex, \textcolor{keyword}{this}, null, null, null, null );
-133                 \textcolor{keywordflow}{throw};
-134             \}
-135         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00070_a8e938842c6267343128babd111df9710_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00070_a47414bb437abd9918ff4501beaa9ff1c}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Read\-Excel\-Separator@{Read\-Excel\-Separator}}
-\index{Read\-Excel\-Separator@{Read\-Excel\-Separator}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Read\-Excel\-Separator}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Parser.\-Read\-Excel\-Separator (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00070_a47414bb437abd9918ff4501beaa9ff1c}
-
-
-Reads the Excel seperator and sets it to the delimiter. 
-
-
-
-Definition at line 604 of file Csv\-Parser.\-cs.
-
-
-
-References Csv\-Helper.\-Csv\-Parser.\-has\-Excel\-Separator\-Been\-Read.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Read().
-
-
-\begin{DoxyCode}
-605         \{
-606             \textcolor{comment}{// sep=delimiter}
-607             var sepLine = reader.ReadLine();
-608             \textcolor{keywordflow}{if}( sepLine != null )
-609             \{
-610                 configuration.Delimiter = sepLine.Substring( 4 );
-611             \}
-612 
-613             \hyperlink{a00070_abcc5896fa941dd33377a660909940589}{hasExcelSeparatorBeenRead} = \textcolor{keyword}{true};
-614         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00070_a47414bb437abd9918ff4501beaa9ff1c_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00070_a5420fbd5e54c6ed9a856f2d92e610957}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Read\-Line@{Read\-Line}}
-\index{Read\-Line@{Read\-Line}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Read\-Line}]{\setlength{\rightskip}{0pt plus 5cm}virtual string \mbox{[}$\,$\mbox{]} Csv\-Helper.\-Csv\-Parser.\-Read\-Line (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00070_a5420fbd5e54c6ed9a856f2d92e610957}
-
-
-Reads the next line. 
-
-\begin{DoxyReturn}{Returns}
-The line separated into fields.
-\end{DoxyReturn}
-
-
-Definition at line 249 of file Csv\-Parser.\-cs.
-
-
-
-References Csv\-Helper.\-Csv\-Parser.\-Add\-Field\-To\-Record(), Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Allow\-Comments, Csv\-Helper.\-Csv\-Parser.\-Append\-Field(), Csv\-Helper.\-Csv\-Parser.\-c, Csv\-Helper.\-Csv\-Parser.\-Char\-Position, Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Comment, Csv\-Helper.\-Csv\-Parser.\-configuration, Csv\-Helper.\-Csv\-Parser.\-c\-Prev, Csv\-Helper.\-Csv\-Parser.\-current\-Raw\-Row, Csv\-Helper.\-Csv\-Parser.\-current\-Row, Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Delimiter, Csv\-Helper.\-Csv\-Parser.\-Field\-Count, Csv\-Helper.\-Csv\-Parser.\-Get\-Char(), Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Ignore\-Blank\-Lines, Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Ignore\-Quotes, Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Quote, Csv\-Helper.\-Csv\-Parser.\-Raw\-Record, Csv\-Helper.\-Csv\-Parser.\-read, Csv\-Helper.\-Csv\-Parser.\-reader\-Buffer, Csv\-Helper.\-Csv\-Parser.\-reader\-Buffer\-Position, Csv\-Helper.\-Csv\-Parser.\-record, Csv\-Helper.\-Csv\-Parser.\-Update\-Byte\-Position(), and Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Use\-Excel\-Leading\-Zeros\-Format\-For\-Numerics.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Read().
-
-
-\begin{DoxyCode}
-250         \{
-251             \textcolor{keywordtype}{string} field = null;
-252             var fieldStartPosition = \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition};
-253             var rawFieldStartPosition = \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition};
-254             var inQuotes = \textcolor{keyword}{false};
-255             var fieldIsEscaped = \textcolor{keyword}{false};
-256             var fieldIsBad = \textcolor{keyword}{false};
-257             var inComment = \textcolor{keyword}{false};
-258             var inDelimiter = \textcolor{keyword}{false};
-259             var inExcelLeadingZerosFormat = \textcolor{keyword}{false};
-260             var delimiterPosition = 0;
-261             var prevCharWasDelimiter = \textcolor{keyword}{false};
-262             var recordPosition = 0;
-263             \hyperlink{a00070_a4c748c464a59715ecf7e21b21d0a26bb}{record} = \textcolor{keyword}{new} \textcolor{keywordtype}{string}[\hyperlink{a00070_aa9cb95463f5328b8c85884f434975249}{FieldCount}];
-264             \hyperlink{a00070_ae2c14a3790234029587b817784bdd158}{RawRecord} = string.Empty;
-265             \hyperlink{a00070_abf91f9e65b160b9e835a2991ddced457}{currentRow}++;
-266             \hyperlink{a00070_abea7b56f7571998c07fbf18043852835}{currentRawRow}++;
-267 
-268             \textcolor{keywordflow}{while}( \textcolor{keyword}{true} )
-269             \{
-270                 \textcolor{keywordflow}{if}( \hyperlink{a00070_aad0c78d3f0233589a8657e2aa22677c2}{read} )
-271                 \{
-272                     \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} = \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c};
-273                 \}
-274 
-275                 var fieldLength = \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - fieldStartPosition;
-276                 \hyperlink{a00070_aad0c78d3f0233589a8657e2aa22677c2}{read} = \hyperlink{a00070_ac425b45e53d095d825f0fa8a52041a69}{GetChar}( out \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c}, ref fieldStartPosition, ref rawFieldStartPosition, ref 
-      field, ref fieldIsBad, 
-277                     prevCharWasDelimiter, ref recordPosition, ref fieldLength, inComment, inDelimiter, 
-      inQuotes, \textcolor{keyword}{false} );
-278                 \textcolor{keywordflow}{if}( !\hyperlink{a00070_aad0c78d3f0233589a8657e2aa22677c2}{read} )
-279                 \{
-280                     \textcolor{keywordflow}{break};
-281                 \}
-282                 \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition}++;
-283                 \hyperlink{a00070_a1e9b4aa434c3095d383e0c20b0c0b64c}{CharPosition}++;
-284 
-285 \textcolor{preprocessor}{                #region Use Excel Leading Zeros Format for Numerics}
-286 \textcolor{preprocessor}{}                \textcolor{comment}{// This needs to get in the way and parse things completely different}
-287                 \textcolor{comment}{// from how a normal CSV field works. This horribly ugly.}
-288                 \textcolor{keywordflow}{if}( \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.
-      \hyperlink{a00065_a5d2eed13b8836f0397f8c39a709de1cc}{UseExcelLeadingZerosFormatForNumerics} )
-289                 \{
-290                     \textcolor{keywordflow}{if}( \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} == \textcolor{charliteral}{'='} && !inExcelLeadingZerosFormat && ( prevCharWasDelimiter || 
-      \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} == \textcolor{charliteral}{'\(\backslash\)r'} || \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} == \textcolor{charliteral}{'\(\backslash\)n'} || \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} == null ) )
-291                     \{
-292                         \textcolor{comment}{// The start of the leading zeros format has been hit.}
-293 
-294                         fieldLength = \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - fieldStartPosition;
-295                         \textcolor{keywordtype}{char} cNext;
-296                         \hyperlink{a00070_ac425b45e53d095d825f0fa8a52041a69}{GetChar}( out cNext, ref fieldStartPosition, ref rawFieldStartPosition, ref 
-      field, ref fieldIsBad, 
-297                             prevCharWasDelimiter, ref recordPosition, ref fieldLength, inComment, 
-      inDelimiter, inQuotes, \textcolor{keyword}{true} );
-298                         \textcolor{keywordflow}{if}( cNext == \textcolor{charliteral}{'"'} )
-299                         \{
-300                             inExcelLeadingZerosFormat = \textcolor{keyword}{true};
-301                             \textcolor{keywordflow}{continue};
-302                         \}
-303                     \}
-304                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( inExcelLeadingZerosFormat )
-305                     \{
-306                         \textcolor{keywordflow}{if}( \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} == \textcolor{charliteral}{'"'} && \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} == \textcolor{charliteral}{'='} || \textcolor{keywordtype}{char}.IsDigit( \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} ) )
-307                         \{
-308                             \textcolor{comment}{// Inside of the field.}
-309                         \}
-310                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} == \textcolor{charliteral}{'"'} )
-311                         \{
-312                             \textcolor{comment}{// The end of the field has been hit.}
-313 
-314                             \textcolor{keywordtype}{char} cNext;
-315                             var peekRead = \hyperlink{a00070_ac425b45e53d095d825f0fa8a52041a69}{GetChar}( out cNext, ref fieldStartPosition, ref 
-      rawFieldStartPosition, ref field, ref fieldIsBad, prevCharWasDelimiter, ref recordPosition, ref fieldLength, 
-      inComment, inDelimiter, inQuotes, \textcolor{keyword}{true} );
-316                             \textcolor{keywordflow}{if}( cNext == \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_a611063826803f98b7cfc275247c1d883}{Delimiter}[0] || cNext == \textcolor{charliteral}{'\(\backslash\)r'} 
-      || cNext == \textcolor{charliteral}{'\(\backslash\)n'} || cNext == \textcolor{charliteral}{'\(\backslash\)0'} )
-317                             \{
-318                                 \hyperlink{a00070_a699a73656cc4d6b06df34b37460a0963}{AppendField}( ref field, fieldStartPosition, 
-      \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - fieldStartPosition );
-319                                 \hyperlink{a00070_a80b65e1df274bb8ef11d8bc5ba142982}{UpdateBytePosition}( fieldStartPosition, 
-      \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - fieldStartPosition );
-320                                 field = field.Trim( \textcolor{charliteral}{'='}, \textcolor{charliteral}{'"'} );
-321                                 fieldStartPosition = \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition};
-322 
-323                                 \textcolor{keywordflow}{if}( !peekRead )
-324                                 \{
-325                                     \hyperlink{a00070_a5ccc63fca7b292e0a313ccf81c5ac48c}{AddFieldToRecord}( ref recordPosition, field, ref 
-      fieldIsBad );
-326                                 \}
-327 
-328                                 inExcelLeadingZerosFormat = \textcolor{keyword}{false};
-329                             \}
-330                         \}
-331                         \textcolor{keywordflow}{else}
-332                         \{
-333                             inExcelLeadingZerosFormat = \textcolor{keyword}{false};
-334                         \}
-335 
-336                         \textcolor{keywordflow}{continue};
-337                     \}
-338                 \}
-339 \textcolor{preprocessor}{                #endregion}
-340 \textcolor{preprocessor}{}
-341                 \textcolor{keywordflow}{if}( \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} == \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_a2a8217dbd09f7d7e4c2895893743e25f}{Quote} && !
-      \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_abb9b54f3fb2aefa066598d74f01d00d8}{IgnoreQuotes} )
-342                 \{
-343                     \textcolor{keywordflow}{if}( !fieldIsEscaped && ( prevCharWasDelimiter || \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} == \textcolor{charliteral}{'\(\backslash\)r'} || 
-      \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} == \textcolor{charliteral}{'\(\backslash\)n'} || \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} == null ) )
-344                     \{
-345                         \textcolor{comment}{// The field is escaped only if the first char of}
-346                         \textcolor{comment}{// the field is a quote.}
-347                         fieldIsEscaped = \textcolor{keyword}{true};
-348                     \}
-349 
-350                     \textcolor{keywordflow}{if}( !fieldIsEscaped )
-351                     \{
-352                         fieldIsBad = \textcolor{keyword}{true};
-353 
-354                         \textcolor{comment}{// If the field isn't escaped, the quote}
-355                         \textcolor{comment}{// is like any other char and we should}
-356                         \textcolor{comment}{// just ignore it.}
-357                         \textcolor{keywordflow}{continue};
-358                     \}
-359 
-360                     inQuotes = !inQuotes;
-361 
-362                     \textcolor{keywordflow}{if}( fieldStartPosition != \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - 1 )
-363                     \{
-364                         \textcolor{comment}{// Grab all the field chars before the}
-365                         \textcolor{comment}{// quote if there are any.}
-366                         \hyperlink{a00070_a699a73656cc4d6b06df34b37460a0963}{AppendField}( ref field, fieldStartPosition, 
-      \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - fieldStartPosition - 1 );
-367                         \textcolor{comment}{// Include the quote in the byte count.}
-368                         \hyperlink{a00070_a80b65e1df274bb8ef11d8bc5ba142982}{UpdateBytePosition}( fieldStartPosition, 
-      \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - fieldStartPosition );
-369                     \}
-370 
-371                     \textcolor{keywordflow}{if}( \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} != \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_a2a8217dbd09f7d7e4c2895893743e25f}{Quote} || !inQuotes )
-372                     \{
-373                         \textcolor{keywordflow}{if}( inQuotes || \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} == \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.
-      \hyperlink{a00065_a2a8217dbd09f7d7e4c2895893743e25f}{Quote} || \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} == 1 )
-374                         \{
-375                             \textcolor{comment}{// The quote will be uncounted and needs to be catered for if:}
-376                             \textcolor{comment}{// 1. It's the opening quote}
-377                             \textcolor{comment}{// 2. It's the closing quote on an empty field ("")}
-378                             \textcolor{comment}{// 3. It's the closing quote and has appeared as the first character in the
-       buffer}
-379                             \hyperlink{a00070_a80b65e1df274bb8ef11d8bc5ba142982}{UpdateBytePosition}( fieldStartPosition, 
-      \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - fieldStartPosition );
-380                         \}
-381 
-382                         \textcolor{comment}{// Set the new field start position to}
-383                         \textcolor{comment}{// the char after the quote.}
-384                         fieldStartPosition = \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition};
-385                     \}
-386 
-387                     prevCharWasDelimiter = \textcolor{keyword}{false};
-388 
-389                     \textcolor{keywordflow}{continue};
-390                 \}
-391 
-392                 prevCharWasDelimiter = \textcolor{keyword}{false};
-393 
-394                 \textcolor{keywordflow}{if}( fieldIsEscaped && inQuotes )
-395                 \{
-396                     \textcolor{keywordflow}{if}( \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} == \textcolor{charliteral}{'\(\backslash\)r'} || ( \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} == \textcolor{charliteral}{'\(\backslash\)n'} && \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} != \textcolor{charliteral}{'\(\backslash\)r'} ) )
-397                     \{
-398                         \hyperlink{a00070_abea7b56f7571998c07fbf18043852835}{currentRawRow}++;
-399                     \}
-400 
-401                     \textcolor{comment}{// While inside an escaped field,}
-402                     \textcolor{comment}{// all chars are ignored.}
-403                     \textcolor{keywordflow}{continue};
-404                 \}
-405 
-406                 \textcolor{keywordflow}{if}( \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} == \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_a2a8217dbd09f7d7e4c2895893743e25f}{Quote} && !
-      \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_abb9b54f3fb2aefa066598d74f01d00d8}{IgnoreQuotes} )
-407                 \{
-408                     \textcolor{keywordflow}{if}( \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} != \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_a611063826803f98b7cfc275247c1d883}{Delimiter}[0] && 
-      \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} != \textcolor{charliteral}{'\(\backslash\)r'} && \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} != \textcolor{charliteral}{'\(\backslash\)n'} )
-409                     \{
-410                         fieldIsBad = \textcolor{keyword}{true};
-411                     \}
-412 
-413                     \textcolor{comment}{// If we're not in quotes and the}
-414                     \textcolor{comment}{// previous char was a quote, the}
-415                     \textcolor{comment}{// field is no longer escaped.}
-416                     fieldIsEscaped = \textcolor{keyword}{false};
-417                 \}
-418 
-419                 \textcolor{keywordflow}{if}( inComment && \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} != \textcolor{charliteral}{'\(\backslash\)r'} && \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} != \textcolor{charliteral}{'\(\backslash\)n'} )
-420                 \{
-421                     \textcolor{comment}{// We are on a commented line.}
-422                     \textcolor{comment}{// Ignore the character.}
-423                 \}
-424                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} == \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_a611063826803f98b7cfc275247c1d883}{Delimiter}[0] || inDelimiter )
-425                 \{
-426                     \textcolor{keywordflow}{if}( !inDelimiter )
-427                     \{
-428                         \textcolor{comment}{// If we hit the delimiter, we are}
-429                         \textcolor{comment}{// done reading the field and can}
-430                         \textcolor{comment}{// add it to the record.}
-431                         delimiterPosition = 0;
-432                         \hyperlink{a00070_a699a73656cc4d6b06df34b37460a0963}{AppendField}( ref field, fieldStartPosition, 
-      \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - fieldStartPosition - 1 );
-433                         \textcolor{comment}{// Include the comma in the byte count.}
-434                         \hyperlink{a00070_a80b65e1df274bb8ef11d8bc5ba142982}{UpdateBytePosition}( fieldStartPosition, 
-      \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - fieldStartPosition );
-435                         \hyperlink{a00070_a5ccc63fca7b292e0a313ccf81c5ac48c}{AddFieldToRecord}( ref recordPosition, field, ref fieldIsBad );
-436                         fieldStartPosition = \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition};
-437                         field = null;
-438 
-439                         inDelimiter = \textcolor{keyword}{true};
-440                     \}
-441                     
-442                     \textcolor{keywordflow}{if}( delimiterPosition == \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.
-      \hyperlink{a00065_a611063826803f98b7cfc275247c1d883}{Delimiter}.Length - 1 )
-443                     \{
-444                         \textcolor{comment}{// We are done reading the delimeter.}
-445 
-446                         \textcolor{comment}{// Include the delimiter in the byte count.}
-447                         \hyperlink{a00070_a80b65e1df274bb8ef11d8bc5ba142982}{UpdateBytePosition}( fieldStartPosition, 
-      \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - fieldStartPosition );
-448                         inDelimiter = \textcolor{keyword}{false};
-449                         prevCharWasDelimiter = \textcolor{keyword}{true};
-450                         fieldStartPosition = \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition};
-451                     \}
-452                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_a611063826803f98b7cfc275247c1d883}{Delimiter}[delimiterPosition] != 
-      \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} )
-453                     \{
-454                         \textcolor{comment}{// We're not actually in a delimiter. Reset things back}
-455                         \textcolor{comment}{// to the previous field.}
-456                         recordPosition--;
-457                         fieldStartPosition -= ( delimiterPosition + 1 );
-458                         inDelimiter = \textcolor{keyword}{false};
-459                     \}
-460                     \textcolor{keywordflow}{else}
-461                     \{
-462                         delimiterPosition++;
-463                     \}
-464                 \}
-465                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} == \textcolor{charliteral}{'\(\backslash\)r'} || \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} == \textcolor{charliteral}{'\(\backslash\)n'} )
-466                 \{
-467                     fieldLength = \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - fieldStartPosition - 1;
-468                     \textcolor{keywordflow}{if}( \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} == \textcolor{charliteral}{'\(\backslash\)r'} )
-469                     \{
-470                         \textcolor{keywordtype}{char} cNext;
-471                         \hyperlink{a00070_ac425b45e53d095d825f0fa8a52041a69}{GetChar}( out cNext, ref fieldStartPosition, ref rawFieldStartPosition, ref 
-      field, ref fieldIsBad, prevCharWasDelimiter, ref recordPosition, ref fieldLength, inComment, inDelimiter, 
-      inQuotes, \textcolor{keyword}{true} );
-472                         \textcolor{keywordflow}{if}( cNext == \textcolor{charliteral}{'\(\backslash\)n'} )
-473                         \{
-474                             \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition}++;
-475                             \hyperlink{a00070_a1e9b4aa434c3095d383e0c20b0c0b64c}{CharPosition}++;
-476                         \}
-477                     \}
-478 
-479                     \textcolor{keywordflow}{if}( \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} == \textcolor{charliteral}{'\(\backslash\)r'} || \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} == \textcolor{charliteral}{'\(\backslash\)n'} || inComment || 
-      \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} == null )
-480                     \{
-481                         \textcolor{comment}{// We have hit a blank line. Ignore it.}
-482 
-483                         \hyperlink{a00070_a80b65e1df274bb8ef11d8bc5ba142982}{UpdateBytePosition}( fieldStartPosition, 
-      \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - fieldStartPosition );
-484 
-485                         fieldStartPosition = \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition};
-486                         inComment = \textcolor{keyword}{false};
-487 
-488                         \textcolor{keywordflow}{if}( !\hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_abec66869c9418966fe5bbf74e32b46a2}{IgnoreBlankLines} )
-489                         \{
-490                             \textcolor{keywordflow}{break};
-491                         \}
-492 
-493                         \textcolor{comment}{// If blank lines are being ignored, we need to add}
-494                         \textcolor{comment}{// to the row count because we're skipping the row}
-495                         \textcolor{comment}{// and it won't get added normally.}
-496                         \hyperlink{a00070_abf91f9e65b160b9e835a2991ddced457}{currentRow}++;
-497 
-498                         \textcolor{keywordflow}{continue};
-499                     \}
-500 
-501                     \textcolor{comment}{// If we hit the end of the record, add }
-502                     \textcolor{comment}{// the current field and return the record.}
-503                     \hyperlink{a00070_a699a73656cc4d6b06df34b37460a0963}{AppendField}( ref field, fieldStartPosition, fieldLength );
-504                     \textcolor{comment}{// Include the \(\backslash\)r or \(\backslash\)n in the byte count.}
-505                     \hyperlink{a00070_a80b65e1df274bb8ef11d8bc5ba142982}{UpdateBytePosition}( fieldStartPosition, 
-      \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - fieldStartPosition );
-506                     \hyperlink{a00070_a5ccc63fca7b292e0a313ccf81c5ac48c}{AddFieldToRecord}( ref recordPosition, field, ref fieldIsBad );
-507                     \textcolor{keywordflow}{break};
-508                 \}
-509                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_a0799eaadd40d70a70cb2d50a3f6f5836}{AllowComments} && 
-      \hyperlink{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{c} == \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_a7df1aa9462eff1da4a271cb3a53feb95}{Comment} && ( \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} == \textcolor{charliteral}{'\(\backslash\)r'} || \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} == \textcolor{charliteral}{'\(\backslash\)n'} || 
-      \hyperlink{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{cPrev} == null ) )
-510                 \{
-511                     inComment = \textcolor{keyword}{true};
-512                 \}
-513             \}
-514 
-515             \textcolor{keywordflow}{if}( \hyperlink{a00070_a4c748c464a59715ecf7e21b21d0a26bb}{record} != null )
-516             \{
-517                 \hyperlink{a00070_ae2c14a3790234029587b817784bdd158}{RawRecord} += \textcolor{keyword}{new} string( \hyperlink{a00070_ad8b27f20be101a15ef390fcc37f8631b}{readerBuffer}, rawFieldStartPosition, 
-      \hyperlink{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{readerBufferPosition} - rawFieldStartPosition );
-518             \}
-519 
-520             \textcolor{keywordflow}{return} \hyperlink{a00070_a4c748c464a59715ecf7e21b21d0a26bb}{record};
-521         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00070_a5420fbd5e54c6ed9a856f2d92e610957_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00070_a5420fbd5e54c6ed9a856f2d92e610957_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00070_a80b65e1df274bb8ef11d8bc5ba142982}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Update\-Byte\-Position@{Update\-Byte\-Position}}
-\index{Update\-Byte\-Position@{Update\-Byte\-Position}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Update\-Byte\-Position}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Parser.\-Update\-Byte\-Position (
-\begin{DoxyParamCaption}
-\item[{int}]{field\-Start\-Position, }
-\item[{int}]{length}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00070_a80b65e1df274bb8ef11d8bc5ba142982}
-
-
-Updates the byte position using the data from the reader buffer. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em field\-Start\-Position} & The field start position.\\
-\hline
-{\em length} & The length.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 237 of file Csv\-Parser.\-cs.
-
-
-
-References Csv\-Helper.\-Csv\-Parser.\-Byte\-Position, Csv\-Helper.\-Csv\-Parser.\-configuration, Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Count\-Bytes, and Csv\-Helper.\-Csv\-Parser.\-reader\-Buffer.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Get\-Char(), and Csv\-Helper.\-Csv\-Parser.\-Read\-Line().
-
-
-\begin{DoxyCode}
-238         \{
-239             \textcolor{keywordflow}{if}( \hyperlink{a00070_aeb171813d1526839ccd41d60ab6483b2}{configuration}.\hyperlink{a00065_af774e3cb6d18788006deec71879f54a1}{CountBytes} )
-240             \{
-241                 \hyperlink{a00070_a6fd7255ce9ae33029aafcaab07205047}{BytePosition} += configuration.Encoding.GetByteCount( 
-      \hyperlink{a00070_ad8b27f20be101a15ef390fcc37f8631b}{readerBuffer}, fieldStartPosition, length );
-242             \}
-243         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00070_a80b65e1df274bb8ef11d8bc5ba142982_icgraph}
-\end{center}
-\end{figure}
-
-
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!c@{c}}
-\index{c@{c}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{c}]{\setlength{\rightskip}{0pt plus 5cm}char Csv\-Helper.\-Csv\-Parser.\-c = '\textbackslash{}0'\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_ae56cb79868b308d55a44c4c4b7cd22d1}
+\hypertarget{a00070_a77d34f2e73ad23e07eb38ee5ecceadf8}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!default\-Value@{default\-Value}}
+\index{default\-Value@{default\-Value}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{default\-Value}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-default\-Value\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_a77d34f2e73ad23e07eb38ee5ecceadf8}
 
 
-Definition at line 28 of file Csv\-Parser.\-cs.
+Definition at line 19 of file Csv\-Property\-Map\-Data.\-cs.
 
+\hypertarget{a00070_a6dfbe771775d4c0d785847b7f0d2299c}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!index@{index}}
+\index{index@{index}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{index}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-index = -\/1\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_a6dfbe771775d4c0d785847b7f0d2299c}
 
 
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Get\-Char(), and Csv\-Helper.\-Csv\-Parser.\-Read\-Line().
+Definition at line 18 of file Csv\-Property\-Map\-Data.\-cs.
 
-\hypertarget{a00070_a9300effd525a71c2a377bde2586da9ae}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!chars\-Read@{chars\-Read}}
-\index{chars\-Read@{chars\-Read}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{chars\-Read}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-Csv\-Parser.\-chars\-Read\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_a9300effd525a71c2a377bde2586da9ae}
+\hypertarget{a00070_acb636e590836496473e867897ab79d97}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!names@{names}}
+\index{names@{names}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{names}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Csv\-Property\-Name\-Collection} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-names = new {\bf Csv\-Property\-Name\-Collection}()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_acb636e590836496473e867897ab79d97}
 
 
-Definition at line 22 of file Csv\-Parser.\-cs.
+Definition at line 17 of file Csv\-Property\-Map\-Data.\-cs.
 
+\hypertarget{a00070_a0ca8b71605ad4490ea143c24c8adb1f8}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!type\-Converter\-Options@{type\-Converter\-Options}}
+\index{type\-Converter\-Options@{type\-Converter\-Options}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{type\-Converter\-Options}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Type\-Converter\-Options} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-type\-Converter\-Options = new {\bf Type\-Converter\-Options}()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_a0ca8b71605ad4490ea143c24c8adb1f8}
 
 
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Get\-Char().
-
-\hypertarget{a00070_aeb171813d1526839ccd41d60ab6483b2}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!configuration@{configuration}}
-\index{configuration@{configuration}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{configuration}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Csv\-Configuration} Csv\-Helper.\-Csv\-Parser.\-configuration\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_aeb171813d1526839ccd41d60ab6483b2}
-
-
-Definition at line 26 of file Csv\-Parser.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Add\-Field\-To\-Record(), Csv\-Helper.\-Csv\-Parser.\-Csv\-Parser(), Csv\-Helper.\-Csv\-Parser.\-Read(), Csv\-Helper.\-Csv\-Parser.\-Read\-Line(), and Csv\-Helper.\-Csv\-Parser.\-Update\-Byte\-Position().
-
-\hypertarget{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!c\-Prev@{c\-Prev}}
-\index{c\-Prev@{c\-Prev}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{c\-Prev}]{\setlength{\rightskip}{0pt plus 5cm}char Csv\-Helper.\-Csv\-Parser.\-c\-Prev\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_a55bb91346d092b3c8dc74b48f6c87bdc}
-
-
-Definition at line 27 of file Csv\-Parser.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Read\-Line().
-
-\hypertarget{a00070_abea7b56f7571998c07fbf18043852835}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!current\-Raw\-Row@{current\-Raw\-Row}}
-\index{current\-Raw\-Row@{current\-Raw\-Row}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{current\-Raw\-Row}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-Csv\-Parser.\-current\-Raw\-Row\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_abea7b56f7571998c07fbf18043852835}
-
-
-Definition at line 25 of file Csv\-Parser.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Read\-Line().
-
-\hypertarget{a00070_abf91f9e65b160b9e835a2991ddced457}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!current\-Row@{current\-Row}}
-\index{current\-Row@{current\-Row}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{current\-Row}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-Csv\-Parser.\-current\-Row\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_abf91f9e65b160b9e835a2991ddced457}
-
-
-Definition at line 24 of file Csv\-Parser.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Add\-Field\-To\-Record(), and Csv\-Helper.\-Csv\-Parser.\-Read\-Line().
-
-\hypertarget{a00070_abeead9997a4c1ec20866458a2e0928bb}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!disposed@{disposed}}
-\index{disposed@{disposed}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{disposed}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-Csv\-Parser.\-disposed\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_abeead9997a4c1ec20866458a2e0928bb}
-
-
-Definition at line 18 of file Csv\-Parser.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Check\-Disposed(), and Csv\-Helper.\-Csv\-Parser.\-Dispose().
-
-\hypertarget{a00070_abcc5896fa941dd33377a660909940589}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!has\-Excel\-Separator\-Been\-Read@{has\-Excel\-Separator\-Been\-Read}}
-\index{has\-Excel\-Separator\-Been\-Read@{has\-Excel\-Separator\-Been\-Read}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{has\-Excel\-Separator\-Been\-Read}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-Csv\-Parser.\-has\-Excel\-Separator\-Been\-Read\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_abcc5896fa941dd33377a660909940589}
-
-
-Definition at line 30 of file Csv\-Parser.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Read(), and Csv\-Helper.\-Csv\-Parser.\-Read\-Excel\-Separator().
-
-\hypertarget{a00070_aad0c78d3f0233589a8657e2aa22677c2}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!read@{read}}
-\index{read@{read}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{read}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-Csv\-Parser.\-read\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_aad0c78d3f0233589a8657e2aa22677c2}
-
-
-Definition at line 29 of file Csv\-Parser.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Read\-Line().
-
-\hypertarget{a00070_a6ab23daf45e84a211b4010c213504f7e}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!reader@{reader}}
-\index{reader@{reader}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{reader}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Reader Csv\-Helper.\-Csv\-Parser.\-reader\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_a6ab23daf45e84a211b4010c213504f7e}
-
-
-Definition at line 19 of file Csv\-Parser.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Csv\-Parser(), and Csv\-Helper.\-Csv\-Parser.\-Dispose().
-
-\hypertarget{a00070_ad8b27f20be101a15ef390fcc37f8631b}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!reader\-Buffer@{reader\-Buffer}}
-\index{reader\-Buffer@{reader\-Buffer}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{reader\-Buffer}]{\setlength{\rightskip}{0pt plus 5cm}readonly char \mbox{[}$\,$\mbox{]} Csv\-Helper.\-Csv\-Parser.\-reader\-Buffer\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_ad8b27f20be101a15ef390fcc37f8631b}
-
-
-Definition at line 20 of file Csv\-Parser.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Append\-Field(), Csv\-Helper.\-Csv\-Parser.\-Csv\-Parser(), Csv\-Helper.\-Csv\-Parser.\-Get\-Char(), Csv\-Helper.\-Csv\-Parser.\-Read\-Line(), and Csv\-Helper.\-Csv\-Parser.\-Update\-Byte\-Position().
-
-\hypertarget{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!reader\-Buffer\-Position@{reader\-Buffer\-Position}}
-\index{reader\-Buffer\-Position@{reader\-Buffer\-Position}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{reader\-Buffer\-Position}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-Csv\-Parser.\-reader\-Buffer\-Position\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_a76b0cbb3c14e0397d2ca1144e538a33c}
-
-
-Definition at line 21 of file Csv\-Parser.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Get\-Char(), and Csv\-Helper.\-Csv\-Parser.\-Read\-Line().
-
-\hypertarget{a00070_a4c748c464a59715ecf7e21b21d0a26bb}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!record@{record}}
-\index{record@{record}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{record}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Csv\-Helper.\-Csv\-Parser.\-record\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_a4c748c464a59715ecf7e21b21d0a26bb}
-
-
-Definition at line 23 of file Csv\-Parser.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Add\-Field\-To\-Record(), Csv\-Helper.\-Csv\-Parser.\-Get\-Char(), and Csv\-Helper.\-Csv\-Parser.\-Read\-Line().
+Definition at line 20 of file Csv\-Property\-Map\-Data.\-cs.
 
 
 
 \subsection{Property Documentation}
-\hypertarget{a00070_a6fd7255ce9ae33029aafcaab07205047}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Byte\-Position@{Byte\-Position}}
-\index{Byte\-Position@{Byte\-Position}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Byte\-Position}]{\setlength{\rightskip}{0pt plus 5cm}virtual long Csv\-Helper.\-Csv\-Parser.\-Byte\-Position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_a6fd7255ce9ae33029aafcaab07205047}
+\hypertarget{a00070_a1ae48223a4f425b7b315c6ae3235b4c1}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Convert\-Expression@{Convert\-Expression}}
+\index{Convert\-Expression@{Convert\-Expression}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{Convert\-Expression}]{\setlength{\rightskip}{0pt plus 5cm}virtual Expression Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Convert\-Expression\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_a1ae48223a4f425b7b315c6ae3235b4c1}
 
 
-Gets the byte position that the parser is currently on. 
-
-
-
-Definition at line 53 of file Csv\-Parser.\-cs.
+Gets or sets the expression used to convert data in the row to the property. 
 
 
 
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Update\-Byte\-Position().
+Definition at line 108 of file Csv\-Property\-Map\-Data.\-cs.
 
-\hypertarget{a00070_a1e9b4aa434c3095d383e0c20b0c0b64c}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Char\-Position@{Char\-Position}}
-\index{Char\-Position@{Char\-Position}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Char\-Position}]{\setlength{\rightskip}{0pt plus 5cm}virtual long Csv\-Helper.\-Csv\-Parser.\-Char\-Position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_a1e9b4aa434c3095d383e0c20b0c0b64c}
-
-
-Gets the character position that the parser is currently on. 
+\hypertarget{a00070_a3740c3b2f1e6e74349ac5fdf1ec0fce8}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Default@{Default}}
+\index{Default@{Default}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{Default}]{\setlength{\rightskip}{0pt plus 5cm}virtual object Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Default\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_a3740c3b2f1e6e74349ac5fdf1ec0fce8}
 
 
-
-Definition at line 48 of file Csv\-Parser.\-cs.
+Gets or sets the default value used when a C\-S\-V field is empty. 
 
 
 
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Read\-Line().
+Definition at line 88 of file Csv\-Property\-Map\-Data.\-cs.
 
-\hypertarget{a00070_a417fc0dca5536811d7a8571ccdf0d46e}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Configuration@{Configuration}}
-\index{Configuration@{Configuration}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Configuration}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Configuration} Csv\-Helper.\-Csv\-Parser.\-Configuration\hspace{0.3cm}{\ttfamily [get]}}}\label{a00070_a417fc0dca5536811d7a8571ccdf0d46e}
-
-
-Gets the configuration. 
+\hypertarget{a00070_a98ca8f9b7cc478644de267d44c6647b7}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Ignore@{Ignore}}
+\index{Ignore@{Ignore}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{Ignore}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Ignore\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_a98ca8f9b7cc478644de267d44c6647b7}
 
 
-
-Definition at line 36 of file Csv\-Parser.\-cs.
-
-\hypertarget{a00070_aa9cb95463f5328b8c85884f434975249}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Field\-Count@{Field\-Count}}
-\index{Field\-Count@{Field\-Count}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Field\-Count}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Csv\-Helper.\-Csv\-Parser.\-Field\-Count\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_aa9cb95463f5328b8c85884f434975249}
-
-
-Gets the field count. 
+Gets or sets a value indicating whether the field should be ignored. 
 
 
 
-Definition at line 43 of file Csv\-Parser.\-cs.
+Definition at line 82 of file Csv\-Property\-Map\-Data.\-cs.
+
+\hypertarget{a00070_a14a0ca66dd60cf7685ac511906b04927}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Index@{Index}}
+\index{Index@{Index}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{Index}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Index\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_a14a0ca66dd60cf7685ac511906b04927}
+
+
+Gets or sets the column index. 
 
 
 
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Add\-Field\-To\-Record(), Csv\-Helper.\-Csv\-Parser.\-Read(), and Csv\-Helper.\-Csv\-Parser.\-Read\-Line().
+Definition at line 54 of file Csv\-Property\-Map\-Data.\-cs.
 
-\hypertarget{a00070_ae2c14a3790234029587b817784bdd158}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Raw\-Record@{Raw\-Record}}
-\index{Raw\-Record@{Raw\-Record}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Raw\-Record}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Csv\-Parser.\-Raw\-Record\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_ae2c14a3790234029587b817784bdd158}
-
-
-Gets the raw row for the current record that was parsed. 
+\hypertarget{a00070_a3b9322c5f0b85df6a3d7662265c75151}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Is\-Default\-Set@{Is\-Default\-Set}}
+\index{Is\-Default\-Set@{Is\-Default\-Set}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{Is\-Default\-Set}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Is\-Default\-Set\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_a3b9322c5f0b85df6a3d7662265c75151}
 
 
-
-Definition at line 70 of file Csv\-Parser.\-cs.
+Gets or sets a value indicating whether this instance is default value set. the default value was explicitly set. True if it was explicitly set, otherwise false. 
 
 
 
-Referenced by Csv\-Helper.\-Csv\-Parser.\-Get\-Char(), and Csv\-Helper.\-Csv\-Parser.\-Read\-Line().
+Definition at line 102 of file Csv\-Property\-Map\-Data.\-cs.
 
-\hypertarget{a00070_a87a7563b2835f1ccd09dbf0185b1b66c}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Raw\-Row@{Raw\-Row}}
-\index{Raw\-Row@{Raw\-Row}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Raw\-Row}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Csv\-Helper.\-Csv\-Parser.\-Raw\-Row\hspace{0.3cm}{\ttfamily [get]}}}\label{a00070_a87a7563b2835f1ccd09dbf0185b1b66c}
-
-
-Gets the row of the C\-S\-V file that the parser is currently on. This is the actual file row. 
+\hypertarget{a00070_a6af03961e4cab7536aca530902fe4e43}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Is\-Index\-Set@{Is\-Index\-Set}}
+\index{Is\-Index\-Set@{Is\-Index\-Set}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{Is\-Index\-Set}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Is\-Index\-Set\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_a6af03961e4cab7536aca530902fe4e43}
 
 
-
-Definition at line 65 of file Csv\-Parser.\-cs.
-
-\hypertarget{a00070_aae6f5e516189e2b2f9e80c33d235c7b4}{\index{Csv\-Helper\-::\-Csv\-Parser@{Csv\-Helper\-::\-Csv\-Parser}!Row@{Row}}
-\index{Row@{Row}!CsvHelper::CsvParser@{Csv\-Helper\-::\-Csv\-Parser}}
-\subsubsection[{Row}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Csv\-Helper.\-Csv\-Parser.\-Row\hspace{0.3cm}{\ttfamily [get]}}}\label{a00070_aae6f5e516189e2b2f9e80c33d235c7b4}
-
-
-Gets the row of the C\-S\-V file that the parser is currently on. This is the logical C\-S\-V row. 
+Gets or sets a value indicating if the index was explicitly set. True if it was explicitly set, otherwise false. 
 
 
 
-Definition at line 59 of file Csv\-Parser.\-cs.
+Definition at line 64 of file Csv\-Property\-Map\-Data.\-cs.
+
+\hypertarget{a00070_a4edc08c491e692d4b187c4e436a0a216}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Is\-Name\-Set@{Is\-Name\-Set}}
+\index{Is\-Name\-Set@{Is\-Name\-Set}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{Is\-Name\-Set}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Is\-Name\-Set\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_a4edc08c491e692d4b187c4e436a0a216}
+
+
+Gets or sets a value indicating if the name was explicitly set. True if it was explicity set, otherwise false. 
+
+
+
+Definition at line 48 of file Csv\-Property\-Map\-Data.\-cs.
+
+\hypertarget{a00070_acf816322908241de17cad1d9a66add43}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Name\-Index@{Name\-Index}}
+\index{Name\-Index@{Name\-Index}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{Name\-Index}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Name\-Index\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_acf816322908241de17cad1d9a66add43}
+
+
+Gets or sets the index of the name. This is used if there are multiple columns with the same names. 
+
+
+
+Definition at line 41 of file Csv\-Property\-Map\-Data.\-cs.
+
+\hypertarget{a00070_ad37a07fbc2781cdb1dce5cb6fcf953d9}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Names@{Names}}
+\index{Names@{Names}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{Names}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Name\-Collection} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Names\hspace{0.3cm}{\ttfamily [get]}}}\label{a00070_ad37a07fbc2781cdb1dce5cb6fcf953d9}
+
+
+Gets the list of column names. 
+
+
+
+Definition at line 32 of file Csv\-Property\-Map\-Data.\-cs.
+
+\hypertarget{a00070_ad8f34e4f5081de744efc703640e3b7d2}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Property@{Property}}
+\index{Property@{Property}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{Property}]{\setlength{\rightskip}{0pt plus 5cm}virtual Property\-Info Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Property\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_ad8f34e4f5081de744efc703640e3b7d2}
+
+
+Gets the Property\-Info that the data is associated with. 
+
+
+
+Definition at line 26 of file Csv\-Property\-Map\-Data.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Reader.\-Can\-Read(), and Csv\-Helper.\-Csv\-Writer.\-Can\-Write().
+
+\hypertarget{a00070_a5d282b88e912b3909072dff40a205f8b}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Type\-Converter@{Type\-Converter}}
+\index{Type\-Converter@{Type\-Converter}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{Type\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Type\-Converter} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Type\-Converter\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_a5d282b88e912b3909072dff40a205f8b}
+
+
+Gets or sets the type converter. 
+
+
+
+Definition at line 69 of file Csv\-Property\-Map\-Data.\-cs.
+
+\hypertarget{a00070_ad0d40cffbecb6c5e43d6aae27c97a214}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Type\-Converter\-Options@{Type\-Converter\-Options}}
+\index{Type\-Converter\-Options@{Type\-Converter\-Options}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
+\subsubsection[{Type\-Converter\-Options}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Type\-Converter\-Options} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Type\-Converter\-Options\hspace{0.3cm}{\ttfamily [get]}}}\label{a00070_ad0d40cffbecb6c5e43d6aae27c97a214}
+
+
+Gets or sets the type converter options. 
+
+
+
+Definition at line 75 of file Csv\-Property\-Map\-Data.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00240}{Csv\-Parser.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00203}{Csv\-Property\-Map\-Data.\-cs}\end{DoxyCompactItemize}

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,7 +105,7 @@ $(document).ready(function(){initNavTree('a00244_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">CsvSerializer.cs</div>  </div>
+<div class="title">DefaultTypeConverter.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00244.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
@@ -113,102 +113,62 @@ $(document).ready(function(){initNavTree('a00244_source.html','');});
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using</span> System.IO;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">using</span> CsvHelper.Configuration;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>CsvHelper</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="a00081.html">   14</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00081.html">CsvSerializer</a> : <a class="code" href="a00118.html">ICsvSerializer</a></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="a00081.html#a2687885dae7f7b0eec3c2db81c05f7e4">   16</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">bool</span> <a class="code" href="a00081.html#a2687885dae7f7b0eec3c2db81c05f7e4">disposed</a>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="a00081.html#ae8c56ff97c0a797245f2205c486833ea">   17</a></span>&#160;        <span class="keyword">private</span> readonly <a class="code" href="a00065.html">CsvConfiguration</a> <a class="code" href="a00081.html#ae8c56ff97c0a797245f2205c486833ea">configuration</a>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00081.html#adfb235fa2c868fc79c0376fd12fda767">   18</a></span>&#160;        <span class="keyword">private</span> TextWriter <a class="code" href="a00081.html#adfb235fa2c868fc79c0376fd12fda767">writer</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">public</span> <a class="code" href="a00065.html">CsvConfiguration</a> <a class="code" href="a00081.html#a2ae1b1a629b707fbfb7d636989442f34">Configuration</a></div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="a00081.html#a2ae1b1a629b707fbfb7d636989442f34">   24</a></span>&#160;        {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> <a class="code" href="a00081.html#ae8c56ff97c0a797245f2205c486833ea">configuration</a>; }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using</span> System.Globalization;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>CsvHelper.TypeConversion</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="a00084.html">   13</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00084.html">DefaultTypeConverter</a> : <a class="code" href="a00117.html">ITypeConverter</a></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="a00084.html#a36cb2f9b24f15a671293f3a722324c27">   21</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">string</span> <a class="code" href="a00084.html#a36cb2f9b24f15a671293f3a722324c27">ConvertToString</a>( <a class="code" href="a00156.html">TypeConverterOptions</a> options, <span class="keywordtype">object</span> value )</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">if</span>( value == null )</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <span class="keywordflow">return</span> string.Empty;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            }</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="a00081.html#a74ea10f7aaea0a478087d8ff6182f38c">   32</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00081.html#a74ea10f7aaea0a478087d8ff6182f38c">CsvSerializer</a>( TextWriter <a class="code" href="a00081.html#adfb235fa2c868fc79c0376fd12fda767">writer</a> ) : this( writer, new <a class="code" href="a00065.html">CsvConfiguration</a>() ) {}</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            var formattable = value as IFormattable;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="keywordflow">if</span>( formattable != null )</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                <span class="keywordflow">return</span> formattable.ToString( options.Format, options.CultureInfo );</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            }</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="a00081.html#ab14fe4a4f630ce97d57c27e2ee050fac">   40</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00081.html#ab14fe4a4f630ce97d57c27e2ee050fac">CsvSerializer</a>( TextWriter <a class="code" href="a00081.html#adfb235fa2c868fc79c0376fd12fda767">writer</a>, <a class="code" href="a00065.html">CsvConfiguration</a> <a class="code" href="a00081.html#ae8c56ff97c0a797245f2205c486833ea">configuration</a> )</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keywordflow">if</span>( writer == null )</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;writer&quot;</span> );</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">if</span>( configuration == null )</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;configuration&quot;</span> );</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            this.writer = <a class="code" href="a00081.html#adfb235fa2c868fc79c0376fd12fda767">writer</a>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            this.configuration = <a class="code" href="a00081.html#ae8c56ff97c0a797245f2205c486833ea">configuration</a>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="a00081.html#aefad906acd048863d3dd414651a44793">   60</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00081.html#aefad906acd048863d3dd414651a44793">Write</a>( <span class="keywordtype">string</span>[] record )</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <a class="code" href="a00081.html#ae14e1913a4e76faf97484c1bde339143">CheckDisposed</a>();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            var recordString = string.Join( configuration.Delimiter, record );</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            writer.WriteLine( recordString );</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="a00081.html#a9d0e8b3508b377a7f978da2394b09e36">   72</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00081.html#a9d0e8b3508b377a7f978da2394b09e36">Dispose</a>()</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <a class="code" href="a00081.html#a9d0e8b3508b377a7f978da2394b09e36">Dispose</a>( <span class="keyword">true</span> );</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            GC.SuppressFinalize( this );</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="a00081.html#a0be3b74ca7606e27fd16441ecc988f0b">   82</a></span>&#160;        <span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="a00081.html#a0be3b74ca7606e27fd16441ecc988f0b">Dispose</a>( <span class="keywordtype">bool</span> disposing )</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordflow">if</span>( <a class="code" href="a00081.html#a2687885dae7f7b0eec3c2db81c05f7e4">disposed</a> )</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">if</span>( disposing )</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <span class="keywordflow">if</span>( <a class="code" href="a00081.html#adfb235fa2c868fc79c0376fd12fda767">writer</a> != null )</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                    writer.Dispose();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <a class="code" href="a00081.html#a2687885dae7f7b0eec3c2db81c05f7e4">disposed</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <a class="code" href="a00081.html#adfb235fa2c868fc79c0376fd12fda767">writer</a> = null;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="a00081.html#ae14e1913a4e76faf97484c1bde339143">  105</a></span>&#160;        <span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="a00081.html#ae14e1913a4e76faf97484c1bde339143">CheckDisposed</a>()</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">if</span>( <a class="code" href="a00081.html#a2687885dae7f7b0eec3c2db81c05f7e4">disposed</a> )</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ObjectDisposedException( GetType().ToString() );</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            }</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}</div>
-<div class="ttc" id="a00081_html_ab14fe4a4f630ce97d57c27e2ee050fac"><div class="ttname"><a href="a00081.html#ab14fe4a4f630ce97d57c27e2ee050fac">CsvHelper.CsvSerializer.CsvSerializer</a></div><div class="ttdeci">CsvSerializer(TextWriter writer, CsvConfiguration configuration)</div><div class="ttdoc">Creates a new serializer using the given TextWriter and CsvConfiguration. </div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00040">CsvSerializer.cs:40</a></div></div>
-<div class="ttc" id="a00081_html_aefad906acd048863d3dd414651a44793"><div class="ttname"><a href="a00081.html#aefad906acd048863d3dd414651a44793">CsvHelper.CsvSerializer.Write</a></div><div class="ttdeci">void Write(string[] record)</div><div class="ttdoc">Writes a record to the CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00060">CsvSerializer.cs:60</a></div></div>
-<div class="ttc" id="a00081_html_ae8c56ff97c0a797245f2205c486833ea"><div class="ttname"><a href="a00081.html#ae8c56ff97c0a797245f2205c486833ea">CsvHelper.CsvSerializer.configuration</a></div><div class="ttdeci">readonly CsvConfiguration configuration</div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00017">CsvSerializer.cs:17</a></div></div>
-<div class="ttc" id="a00081_html_a9d0e8b3508b377a7f978da2394b09e36"><div class="ttname"><a href="a00081.html#a9d0e8b3508b377a7f978da2394b09e36">CsvHelper.CsvSerializer.Dispose</a></div><div class="ttdeci">void Dispose()</div><div class="ttdoc">Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resourc...</div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00072">CsvSerializer.cs:72</a></div></div>
-<div class="ttc" id="a00081_html_a74ea10f7aaea0a478087d8ff6182f38c"><div class="ttname"><a href="a00081.html#a74ea10f7aaea0a478087d8ff6182f38c">CsvHelper.CsvSerializer.CsvSerializer</a></div><div class="ttdeci">CsvSerializer(TextWriter writer)</div><div class="ttdoc">Creates a new serializer using the given TextWriter. </div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00032">CsvSerializer.cs:32</a></div></div>
-<div class="ttc" id="a00118_html"><div class="ttname"><a href="a00118.html">CsvHelper.ICsvSerializer</a></div><div class="ttdoc">Defines methods used to serialize data into a CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00252_source.html#l00013">ICsvSerializer.cs:13</a></div></div>
-<div class="ttc" id="a00081_html_a0be3b74ca7606e27fd16441ecc988f0b"><div class="ttname"><a href="a00081.html#a0be3b74ca7606e27fd16441ecc988f0b">CsvHelper.CsvSerializer.Dispose</a></div><div class="ttdeci">virtual void Dispose(bool disposing)</div><div class="ttdoc">Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resourc...</div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00082">CsvSerializer.cs:82</a></div></div>
-<div class="ttc" id="a00081_html_a2ae1b1a629b707fbfb7d636989442f34"><div class="ttname"><a href="a00081.html#a2ae1b1a629b707fbfb7d636989442f34">CsvHelper.CsvSerializer.Configuration</a></div><div class="ttdeci">CsvConfiguration Configuration</div><div class="ttdoc">Gets the configuration. </div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00024">CsvSerializer.cs:24</a></div></div>
-<div class="ttc" id="a00081_html_a2687885dae7f7b0eec3c2db81c05f7e4"><div class="ttname"><a href="a00081.html#a2687885dae7f7b0eec3c2db81c05f7e4">CsvHelper.CsvSerializer.disposed</a></div><div class="ttdeci">bool disposed</div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00016">CsvSerializer.cs:16</a></div></div>
-<div class="ttc" id="a00081_html"><div class="ttname"><a href="a00081.html">CsvHelper.CsvSerializer</a></div><div class="ttdoc">Defines methods used to serialize data into a CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00014">CsvSerializer.cs:14</a></div></div>
-<div class="ttc" id="a00081_html_adfb235fa2c868fc79c0376fd12fda767"><div class="ttname"><a href="a00081.html#adfb235fa2c868fc79c0376fd12fda767">CsvHelper.CsvSerializer.writer</a></div><div class="ttdeci">TextWriter writer</div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00018">CsvSerializer.cs:18</a></div></div>
-<div class="ttc" id="a00081_html_ae14e1913a4e76faf97484c1bde339143"><div class="ttname"><a href="a00081.html#ae14e1913a4e76faf97484c1bde339143">CsvHelper.CsvSerializer.CheckDisposed</a></div><div class="ttdeci">virtual void CheckDisposed()</div><div class="ttdoc">Checks if the instance has been disposed of. </div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00105">CsvSerializer.cs:105</a></div></div>
-<div class="ttc" id="a00065_html"><div class="ttname"><a href="a00065.html">CsvHelper.Configuration.CsvConfiguration</a></div><div class="ttdoc">Configuration used for reading and writing CSV data. </div><div class="ttdef"><b>Definition:</b> <a href="a00224_source.html#l00018">CsvConfiguration.cs:18</a></div></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordflow">return</span> value.ToString();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="a00084.html#a804ea00060e1de70e5151f90d3bfce9b">   43</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">object</span> <a class="code" href="a00084.html#a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</a>( <a class="code" href="a00156.html">TypeConverterOptions</a> options, <span class="keywordtype">string</span> text )</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="a00077.html">CsvTypeConverterException</a>( <span class="stringliteral">&quot;The conversion cannot be performed.&quot;</span> );</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="a00084.html#a470d21adaa704eb281250dbd112ff91a">   55</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="a00084.html#a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</a>( Type type )</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="comment">// The default convert doesn&#39;t know how to</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="comment">// convert from any type.</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="a00084.html#acb65bd8c8199d88d5b1629ae35d18514">   69</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="a00084.html#acb65bd8c8199d88d5b1629ae35d18514">CanConvertTo</a>( Type type )</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="comment">// We only care about strings.</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">return</span> type == typeof( <span class="keywordtype">string</span> );</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
+<div class="ttc" id="a00156_html"><div class="ttname"><a href="a00156.html">CsvHelper.TypeConversion.TypeConverterOptions</a></div><div class="ttdoc">Options used when doing type conversion. </div><div class="ttdef"><b>Definition:</b> <a href="a00259_source.html#l00015">TypeConverterOptions.cs:15</a></div></div>
+<div class="ttc" id="a00084_html_a36cb2f9b24f15a671293f3a722324c27"><div class="ttname"><a href="a00084.html#a36cb2f9b24f15a671293f3a722324c27">CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</a></div><div class="ttdeci">virtual string ConvertToString(TypeConverterOptions options, object value)</div><div class="ttdoc">Converts the object to a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00021">DefaultTypeConverter.cs:21</a></div></div>
+<div class="ttc" id="a00084_html"><div class="ttname"><a href="a00084.html">CsvHelper.TypeConversion.DefaultTypeConverter</a></div><div class="ttdoc">Converts an object to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00013">DefaultTypeConverter.cs:13</a></div></div>
+<div class="ttc" id="a00117_html"><div class="ttname"><a href="a00117.html">CsvHelper.TypeConversion.ITypeConverter</a></div><div class="ttdoc">Converts objects to and from strings. </div><div class="ttdef"><b>Definition:</b> <a href="a00252_source.html#l00013">ITypeConverter.cs:13</a></div></div>
+<div class="ttc" id="a00084_html_acb65bd8c8199d88d5b1629ae35d18514"><div class="ttname"><a href="a00084.html#acb65bd8c8199d88d5b1629ae35d18514">CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</a></div><div class="ttdeci">virtual bool CanConvertTo(Type type)</div><div class="ttdoc">Determines whether this instance [can convert to] the specified type. </div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00069">DefaultTypeConverter.cs:69</a></div></div>
+<div class="ttc" id="a00084_html_a470d21adaa704eb281250dbd112ff91a"><div class="ttname"><a href="a00084.html#a470d21adaa704eb281250dbd112ff91a">CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertFrom</a></div><div class="ttdeci">virtual bool CanConvertFrom(Type type)</div><div class="ttdoc">Determines whether this instance [can convert from] the specified type. </div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00055">DefaultTypeConverter.cs:55</a></div></div>
+<div class="ttc" id="a00077_html"><div class="ttname"><a href="a00077.html">CsvHelper.TypeConversion.CsvTypeConverterException</a></div><div class="ttdoc">Represents errors that occur while reading a CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00240_source.html#l00015">CsvTypeConverterException.cs:15</a></div></div>
+<div class="ttc" id="a00084_html_a804ea00060e1de70e5151f90d3bfce9b"><div class="ttname"><a href="a00084.html#a804ea00060e1de70e5151f90d3bfce9b">CsvHelper.TypeConversion.DefaultTypeConverter.ConvertFromString</a></div><div class="ttdeci">virtual object ConvertFromString(TypeConverterOptions options, string text)</div><div class="ttdoc">Converts the string to an object. </div><div class="ttdef"><b>Definition:</b> <a href="a00244_source.html#l00043">DefaultTypeConverter.cs:43</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00244.html">CsvSerializer.cs</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:22 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_5c139b908ad2613e3ef99ee52a122286.html">TypeConversion</a></li><li class="navelem"><a class="el" href="a00244.html">DefaultTypeConverter.cs</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:44 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

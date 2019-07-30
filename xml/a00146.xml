@@ -1,97 +1,80 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00146" kind="struct" prot="package">
-    <compoundname>Yarn::Parser::Operator::OperatorInfo</compoundname>
-      <sectiondef kind="package-attrib">
-      <memberdef kind="variable" id="a00146_1accba40a72d9709ca3c18810b8661afe3" prot="package" static="no" mutable="no">
-        <type><ref refid="a00145_1a83fa1b8db0e6678006920812b6f33f62" kindref="member">Associativity</ref></type>
-        <definition>Associativity Yarn.Parser.Operator.OperatorInfo.associativity</definition>
+  <compounddef id="a00146" kind="class" prot="public">
+    <compoundname>Yarn::Unity::Example::SpriteSwitcher</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <innerclass refid="a00354" prot="public">Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</innerclass>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00146_1a1e85d9f4f6b33ca7ae638cce2eb704aa" prot="public" static="no" mutable="no">
+        <type><ref refid="a00354" kindref="compound">SpriteInfo</ref>[]</type>
+        <definition>SpriteInfo [] Yarn.Unity.Example.SpriteSwitcher.sprites</definition>
         <argsstring></argsstring>
-        <name>associativity</name>
+        <name>sprites</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1156" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1156" bodyend="-1"/>
-        <referencedby refid="a00146_1a25faca62235c9f8542e4a071ba8ebc0b" compoundref="a00316" startline="1159" endline="1163">Yarn.Parser.Operator.OperatorInfo.OperatorInfo</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00146_1a0b2921d7b863e268d33aa15213395093" prot="package" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Parser.Operator.OperatorInfo.precedence</definition>
-        <argsstring></argsstring>
-        <name>precedence</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1157" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1157" bodyend="-1"/>
-        <referencedby refid="a00146_1a25faca62235c9f8542e4a071ba8ebc0b" compoundref="a00316" startline="1159" endline="1163">Yarn.Parser.Operator.OperatorInfo.OperatorInfo</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00146_1a0758c6f7dac4b205f616b43b1af95b95" prot="package" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Parser.Operator.OperatorInfo.arguments</definition>
-        <argsstring></argsstring>
-        <name>arguments</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1158" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1158" bodyend="-1"/>
-        <referencedby refid="a00146_1a25faca62235c9f8542e4a071ba8ebc0b" compoundref="a00316" startline="1159" endline="1163">Yarn.Parser.Operator.OperatorInfo.OperatorInfo</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="42" bodyend="-1"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00146_1a25faca62235c9f8542e4a071ba8ebc0b" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Parser.Operator.OperatorInfo.OperatorInfo</definition>
-        <argsstring>(Associativity associativity, int precedence, int arguments)</argsstring>
-        <name>OperatorInfo</name>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00146_1ac26718b713f342f3de8f3e569c5b62da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.Example.SpriteSwitcher.UseSprite</definition>
+        <argsstring>(string spriteName)</argsstring>
+        <name>UseSprite</name>
         <param>
-          <type><ref refid="a00145_1a83fa1b8db0e6678006920812b6f33f62" kindref="member">Associativity</ref></type>
-          <declname>associativity</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>precedence</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>arguments</declname>
+          <type>string</type>
+          <declname>spriteName</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Create a command to use on a sprite. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1159" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1159" bodyend="1163"/>
-        <references refid="a00146_1a0758c6f7dac4b205f616b43b1af95b95" compoundref="a00316" startline="1158">Yarn.Parser.Operator.OperatorInfo.arguments</references>
-        <references refid="a00146_1accba40a72d9709ca3c18810b8661afe3" compoundref="a00316" startline="1156">Yarn.Parser.Operator.OperatorInfo.associativity</references>
-        <references refid="a00146_1a0b2921d7b863e268d33aa15213395093" compoundref="a00316" startline="1157">Yarn.Parser.Operator.OperatorInfo.precedence</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="46" bodyend="61"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Attach <ref refid="a00146" kindref="compound">SpriteSwitcher</ref> to game object. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1555">
-        <label>Yarn.Parser.Operator.OperatorInfo</label>
+    <inheritancegraph>
+      <node id="1443">
+        <label>Yarn.Unity.Example.SpriteSwitcher</label>
         <link refid="a00146"/>
+        <childnode refid="1444" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1444">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1445">
+        <label>Yarn.Unity.Example.SpriteSwitcher</label>
+        <link refid="a00146"/>
+        <childnode refid="1446" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1447" relation="usage">
+          <edgelabel>+sprites</edgelabel>
+        </childnode>
+      </node>
+      <node id="1447">
+        <label>Yarn.Unity.Example.SpriteSwitcher.SpriteInfo</label>
+        <link refid="a00354"/>
+      </node>
+      <node id="1446">
+        <label>MonoBehaviour</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1155" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1155" bodyend="1164"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="34" bodyend="62"/>
     <listofallmembers>
-      <member refid="a00146_1a0758c6f7dac4b205f616b43b1af95b95" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>arguments</name></member>
-      <member refid="a00146_1accba40a72d9709ca3c18810b8661afe3" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>associativity</name></member>
-      <member refid="a00146_1a25faca62235c9f8542e4a071ba8ebc0b" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>OperatorInfo</name></member>
-      <member refid="a00146_1a0b2921d7b863e268d33aa15213395093" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>precedence</name></member>
+      <member refid="a00146_1a1e85d9f4f6b33ca7ae638cce2eb704aa" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher</scope><name>sprites</name></member>
+      <member refid="a00146_1ac26718b713f342f3de8f3e569c5b62da" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher</scope><name>UseSprite</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

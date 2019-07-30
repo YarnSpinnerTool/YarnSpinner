@@ -1,50 +1,72 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00170" kind="class" prot="package">
-    <compoundname>CsvHelper::StringHelper</compoundname>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="a00170_1a40c715a7ebf19c7053c7b10f2b3df80f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>static bool CsvHelper.StringHelper.IsNullOrWhiteSpace</definition>
-        <argsstring>(string s)</argsstring>
-        <name>IsNullOrWhiteSpace</name>
-        <param>
-          <type>string</type>
-          <declname>s</declname>
-        </param>
+  <compounddef id="a00170" kind="class" prot="public">
+    <compoundname>Yarn::Unity::YarnCommandAttribute</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Attribute</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00170_1a6d513a725c819ffcdaa9c5788472ec8d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.Unity.YarnCommandAttribute.commandString</definition>
+        <argsstring></argsstring>
+        <name>commandString</name>
         <briefdescription>
-<para>Tests is a string is null or whitespace. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>s</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to test.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>True if the string is null or whitespace, otherwise false.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/StringHelper.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/StringHelper.cs" bodystart="17" bodyend="33"/>
-        <referencedby refid="a00079_1ad1d1cde1588bb56eca326d5d92592956" compoundref="a00242" startline="1163" endline="1175">CsvHelper.CsvReader.GetEmtpyStringMethod</referencedby>
-        <referencedby refid="a00079_1aa8622306f74940386663fa4020eb8971" compoundref="a00242" startline="747" endline="777">CsvHelper.CsvReader.TryGetField&lt; T &gt;</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="443" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="443" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00170_1a9c0d57cd72c091f63895944959e98330" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Unity.YarnCommandAttribute.YarnCommandAttribute</definition>
+        <argsstring>(string commandString)</argsstring>
+        <name>YarnCommandAttribute</name>
+        <param>
+          <type>string</type>
+          <declname>commandString</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="445" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="445" bodyend="447"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Common string tasks. </para>    </briefdescription>
+<para>Apply this attribute to methods in your scripts to expose them to <ref refid="a00048" kindref="compound">Yarn</ref>. </para>    </briefdescription>
     <detaileddescription>
-    </detaileddescription>
-    <collaborationgraph>
-      <node id="1674">
-        <label>CsvHelper.StringHelper</label>
+<para>For example: [YarnCommand(&quot;dosomething&quot;)] void Foo() { do something! } </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="1562">
+        <label>Yarn.Unity.YarnCommandAttribute</label>
         <link refid="a00170"/>
+        <childnode refid="1563" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1563">
+        <label>System::Attribute</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1564">
+        <label>Yarn.Unity.YarnCommandAttribute</label>
+        <link refid="a00170"/>
+        <childnode refid="1565" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1565">
+        <label>System::Attribute</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/StringHelper.cs" line="11" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/StringHelper.cs" bodystart="10" bodyend="34"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="442" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="441" bodyend="448"/>
     <listofallmembers>
-      <member refid="a00170_1a40c715a7ebf19c7053c7b10f2b3df80f" prot="public" virt="non-virtual"><scope>CsvHelper::StringHelper</scope><name>IsNullOrWhiteSpace</name></member>
+      <member refid="a00170_1a6d513a725c819ffcdaa9c5788472ec8d" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnCommandAttribute</scope><name>commandString</name></member>
+      <member refid="a00170_1a9c0d57cd72c091f63895944959e98330" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnCommandAttribute</scope><name>YarnCommandAttribute</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

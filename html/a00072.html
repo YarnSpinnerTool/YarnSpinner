@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: CsvHelper.Configuration.CsvPropertyMap Class Reference</title>
+<title>YarnSpinner: CsvHelper.Configuration.CsvPropertyReferenceMap Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -108,125 +108,113 @@ $(document).ready(function(){initNavTree('a00072.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pac-methods">Package Functions</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="a00491.html">List of all members</a>  </div>
+<a href="a00472.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">CsvHelper.Configuration.CsvPropertyMap Class Reference</div>  </div>
+<div class="title">CsvHelper.Configuration.CsvPropertyReferenceMap Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Mapping info for a property to a CSV field.  
+<p>Mapping info for a reference property mapping to a class.  
  <a href="a00072.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for CsvHelper.Configuration.CsvPropertyMap:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for CsvHelper.Configuration.CsvPropertyReferenceMap:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00492.png" border="0" usemap="#_csv_helper_8_configuration_8_csv_property_map_coll__map" alt="Collaboration graph"/></div>
-<map name="_csv_helper_8_configuration_8_csv_property_map_coll__map" id="_csv_helper_8_configuration_8_csv_property_map_coll__map">
-<area shape="rect" id="node2" href="a00075.html" title="The configured data for the property map. " alt="" coords="109,408,277,691"/><area shape="rect" id="node3" href="a00180.html" title="Options used when doing type conversion. " alt="" coords="5,134,192,343"/><area shape="rect" id="node4" href="a00076.html" title="A collection that holds property names. " alt="" coords="217,134,404,343"/></map>
+<div class="center"><img src="a00473.png" border="0" usemap="#_csv_helper_8_configuration_8_csv_property_reference_map_coll__map" alt="Collaboration graph"/></div>
+<map name="_csv_helper_8_configuration_8_csv_property_reference_map_coll__map" id="_csv_helper_8_configuration_8_csv_property_reference_map_coll__map">
+<area shape="rect" id="node2" href="a00073.html" title="The configuration data for the reference map. " alt="" coords="5,5,232,141"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7284729e68d85b66d2a4d19975f4382a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a7284729e68d85b66d2a4d19975f4382a">CsvPropertyMap</a> (PropertyInfo property)</td></tr>
-<tr class="memdesc:a7284729e68d85b66d2a4d19975f4382a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="a00072.html" title="Mapping info for a property to a CSV field. ">CsvPropertyMap</a> instance using the specified property.  <a href="#a7284729e68d85b66d2a4d19975f4382a">More...</a><br/></td></tr>
-<tr class="separator:a7284729e68d85b66d2a4d19975f4382a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d503e7dfdefa7334f5d04878c37316e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a0d503e7dfdefa7334f5d04878c37316e">Name</a> (params string[] names)</td></tr>
-<tr class="memdesc:a0d503e7dfdefa7334f5d04878c37316e"><td class="mdescLeft">&#160;</td><td class="mdescRight">When reading, is used to get the field at the index of the name if there was a header specified. It will look for the first name match in the order listed. When writing, sets the name of the field in the header record. The first name will be used.  <a href="#a0d503e7dfdefa7334f5d04878c37316e">More...</a><br/></td></tr>
-<tr class="separator:a0d503e7dfdefa7334f5d04878c37316e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d6191df96c55bf3d044b31581e2a9b3"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a2d6191df96c55bf3d044b31581e2a9b3">NameIndex</a> (int index)</td></tr>
-<tr class="memdesc:a2d6191df96c55bf3d044b31581e2a9b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">When reading, is used to get the index of the name used when there are multiple names that are the same.  <a href="#a2d6191df96c55bf3d044b31581e2a9b3">More...</a><br/></td></tr>
-<tr class="separator:a2d6191df96c55bf3d044b31581e2a9b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4563b0f7c3b3a22b1bea5073d95ddae"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#ae4563b0f7c3b3a22b1bea5073d95ddae">Index</a> (int index)</td></tr>
-<tr class="memdesc:ae4563b0f7c3b3a22b1bea5073d95ddae"><td class="mdescLeft">&#160;</td><td class="mdescRight">When reading, is used to get the field at the given index. When writing, the fields will be written in the order of the field indexes.  <a href="#ae4563b0f7c3b3a22b1bea5073d95ddae">More...</a><br/></td></tr>
-<tr class="separator:ae4563b0f7c3b3a22b1bea5073d95ddae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf29f485feec0bd918ae9911208465e7"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#aaf29f485feec0bd918ae9911208465e7">Ignore</a> ()</td></tr>
-<tr class="memdesc:aaf29f485feec0bd918ae9911208465e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ignore the property when reading and writing.  <a href="#aaf29f485feec0bd918ae9911208465e7">More...</a><br/></td></tr>
-<tr class="separator:aaf29f485feec0bd918ae9911208465e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a933c8b6d81e78b5c34fd24cbccf9a4a5"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a933c8b6d81e78b5c34fd24cbccf9a4a5">Ignore</a> (bool ignore)</td></tr>
-<tr class="memdesc:a933c8b6d81e78b5c34fd24cbccf9a4a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ignore the property when reading and writing.  <a href="#a933c8b6d81e78b5c34fd24cbccf9a4a5">More...</a><br/></td></tr>
-<tr class="separator:a933c8b6d81e78b5c34fd24cbccf9a4a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35815aef1a6aa2692e4b9f7d57a52b60"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a35815aef1a6aa2692e4b9f7d57a52b60">Default</a> (object defaultValue)</td></tr>
-<tr class="memdesc:a35815aef1a6aa2692e4b9f7d57a52b60"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default value that will be used when reading when the CSV field is empty.  <a href="#a35815aef1a6aa2692e4b9f7d57a52b60">More...</a><br/></td></tr>
-<tr class="separator:a35815aef1a6aa2692e4b9f7d57a52b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bd41dc4c24fa515854d83ca5f730678"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a4bd41dc4c24fa515854d83ca5f730678">TypeConverter</a> (<a class="el" href="a00125.html">ITypeConverter</a> typeConverter)</td></tr>
-<tr class="memdesc:a4bd41dc4c24fa515854d83ca5f730678"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies the <a class="el" href="a00072.html#a4bd41dc4c24fa515854d83ca5f730678" title="Specifies the TypeConverter to use when converting the property to and from a CSV field...">TypeConverter</a> to use when converting the property to and from a CSV field.  <a href="#a4bd41dc4c24fa515854d83ca5f730678">More...</a><br/></td></tr>
-<tr class="separator:a4bd41dc4c24fa515854d83ca5f730678"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a129110c34e2c12709f25948794390f97"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a129110c34e2c12709f25948794390f97">TypeConverter&lt; T &gt;</a> ()</td></tr>
-<tr class="memdesc:a129110c34e2c12709f25948794390f97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies the <a class="el" href="a00072.html#a4bd41dc4c24fa515854d83ca5f730678" title="Specifies the TypeConverter to use when converting the property to and from a CSV field...">TypeConverter</a> to use when converting the property to and from a CSV field.  <a href="#a129110c34e2c12709f25948794390f97">More...</a><br/></td></tr>
-<tr class="separator:a129110c34e2c12709f25948794390f97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02e31bd00f62fc495c81d400c00b65cb"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a02e31bd00f62fc495c81d400c00b65cb">ConvertUsing&lt; T &gt;</a> (Func&lt; <a class="el" href="a00117.html">ICsvReaderRow</a>, T &gt; convertExpression)</td></tr>
-<tr class="memdesc:a02e31bd00f62fc495c81d400c00b65cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies an expression to be used to convert data in the row to the property.  <a href="#a02e31bd00f62fc495c81d400c00b65cb">More...</a><br/></td></tr>
-<tr class="separator:a02e31bd00f62fc495c81d400c00b65cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a652b7feb8994aefa43652755d42b3fbf"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a652b7feb8994aefa43652755d42b3fbf">TypeConverterOption</a> (CultureInfo cultureInfo)</td></tr>
-<tr class="memdesc:a652b7feb8994aefa43652755d42b3fbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">The CultureInfo used when type converting. This will override the global <a class="el" href="a00065.html#ad04ccfdd3cbc265f527ee5baa2e08508" title="Gets or sets the culture info used to read an write CSV files. ">CsvConfiguration.CultureInfo</a> setting.  <a href="#a652b7feb8994aefa43652755d42b3fbf">More...</a><br/></td></tr>
-<tr class="separator:a652b7feb8994aefa43652755d42b3fbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20bc1aec3a0054ac9b9c462562f111d2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a20bc1aec3a0054ac9b9c462562f111d2">TypeConverterOption</a> (DateTimeStyles dateTimeStyle)</td></tr>
-<tr class="memdesc:a20bc1aec3a0054ac9b9c462562f111d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The DateTimeStyles to use when type converting. This is used when doing any DateTime conversions.  <a href="#a20bc1aec3a0054ac9b9c462562f111d2">More...</a><br/></td></tr>
-<tr class="separator:a20bc1aec3a0054ac9b9c462562f111d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16243e8334687160385ed8c589184031"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a16243e8334687160385ed8c589184031">TypeConverterOption</a> (NumberStyles numberStyle)</td></tr>
-<tr class="memdesc:a16243e8334687160385ed8c589184031"><td class="mdescLeft">&#160;</td><td class="mdescRight">The NumberStyles to use when type converting. This is used when doing any number conversions.  <a href="#a16243e8334687160385ed8c589184031">More...</a><br/></td></tr>
-<tr class="separator:a16243e8334687160385ed8c589184031"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4df14f039b706d21e7235eb7050fac2d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a4df14f039b706d21e7235eb7050fac2d">TypeConverterOption</a> (string format)</td></tr>
-<tr class="memdesc:a4df14f039b706d21e7235eb7050fac2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The string format to be used when type converting.  <a href="#a4df14f039b706d21e7235eb7050fac2d">More...</a><br/></td></tr>
-<tr class="separator:a4df14f039b706d21e7235eb7050fac2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a957ea50ce91adb642751201e8277949d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a957ea50ce91adb642751201e8277949d">TypeConverterOption</a> (bool isTrue, params string[] booleanValues)</td></tr>
-<tr class="memdesc:a957ea50ce91adb642751201e8277949d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The string values used to represent a boolean when converting.  <a href="#a957ea50ce91adb642751201e8277949d">More...</a><br/></td></tr>
-<tr class="separator:a957ea50ce91adb642751201e8277949d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6fd25629d769c619b029a6c141ab77c2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00072.html">CsvPropertyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a6fd25629d769c619b029a6c141ab77c2">TypeConverterOption</a> (bool isTrue, bool clearValues, params string[] booleanValues)</td></tr>
-<tr class="memdesc:a6fd25629d769c619b029a6c141ab77c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The string values used to represent a boolean when converting.  <a href="#a6fd25629d769c619b029a6c141ab77c2">More...</a><br/></td></tr>
-<tr class="separator:a6fd25629d769c619b029a6c141ab77c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02823d2439667bca75233abbe81651ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a02823d2439667bca75233abbe81651ff">CsvPropertyReferenceMap</a> (PropertyInfo property, <a class="el" href="a00057.html">CsvClassMap</a> mapping)</td></tr>
+<tr class="memdesc:a02823d2439667bca75233abbe81651ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new instance of the <a class="el" href="a00072.html" title="Mapping info for a reference property mapping to a class. ">CsvPropertyReferenceMap</a> class.  <a href="#a02823d2439667bca75233abbe81651ff">More...</a><br/></td></tr>
+<tr class="separator:a02823d2439667bca75233abbe81651ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ed653de99ec2251fd99837740693789"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00072.html">CsvPropertyReferenceMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a0ed653de99ec2251fd99837740693789">Prefix</a> (string prefix=null)</td></tr>
+<tr class="memdesc:a0ed653de99ec2251fd99837740693789"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends a prefix to the header of each field of the reference property  <a href="#a0ed653de99ec2251fd99837740693789">More...</a><br/></td></tr>
+<tr class="separator:a0ed653de99ec2251fd99837740693789"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-methods"></a>
+Package Functions</h2></td></tr>
+<tr class="memitem:a1e879f9a6ed84415ac52c44f1f086606"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a1e879f9a6ed84415ac52c44f1f086606">GetMaxIndex</a> ()</td></tr>
+<tr class="memdesc:a1e879f9a6ed84415ac52c44f1f086606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the largest index for the properties and references.  <a href="#a1e879f9a6ed84415ac52c44f1f086606">More...</a><br/></td></tr>
+<tr class="separator:a1e879f9a6ed84415ac52c44f1f086606"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a207637fa121612b618ed1131cb28b8bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00075.html">CsvPropertyMapData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a207637fa121612b618ed1131cb28b8bb">Data</a><code> [get]</code></td></tr>
-<tr class="memdesc:a207637fa121612b618ed1131cb28b8bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the property map data.  <a href="#a207637fa121612b618ed1131cb28b8bb">More...</a><br/></td></tr>
-<tr class="separator:a207637fa121612b618ed1131cb28b8bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bf8b55373206c0dc378c8f7247bf149"><td class="memItemLeft" align="right" valign="top">PropertyInfo&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a1bf8b55373206c0dc378c8f7247bf149">Property</a><code> [get]</code></td></tr>
+<tr class="memdesc:a1bf8b55373206c0dc378c8f7247bf149"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the property.  <a href="#a1bf8b55373206c0dc378c8f7247bf149">More...</a><br/></td></tr>
+<tr class="separator:a1bf8b55373206c0dc378c8f7247bf149"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a555d8d59960792aa556002a1a1b942f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00057.html">CsvClassMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a555d8d59960792aa556002a1a1b942f9">Mapping</a><code> [get]</code></td></tr>
+<tr class="memdesc:a555d8d59960792aa556002a1a1b942f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the mapping.  <a href="#a555d8d59960792aa556002a1a1b942f9">More...</a><br/></td></tr>
+<tr class="separator:a555d8d59960792aa556002a1a1b942f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa83ef91c4eb293a9d035013c8b4af016"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00073.html">CsvPropertyReferenceMapData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#aa83ef91c4eb293a9d035013c8b4af016">Data</a><code> [get]</code></td></tr>
+<tr class="memdesc:aa83ef91c4eb293a9d035013c8b4af016"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the property reference map data.  <a href="#aa83ef91c4eb293a9d035013c8b4af016">More...</a><br/></td></tr>
+<tr class="separator:aa83ef91c4eb293a9d035013c8b4af016"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a2943371f5d55b2fd7313bbb0e87a013c"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="a00075.html">CsvPropertyMapData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#a2943371f5d55b2fd7313bbb0e87a013c">data</a></td></tr>
-<tr class="separator:a2943371f5d55b2fd7313bbb0e87a013c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6926229eec915aa6a71c9ee603064f5"><td class="memItemLeft" align="right" valign="top">readonly <br class="typebreak"/>
+<a class="el" href="a00073.html">CsvPropertyReferenceMapData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html#aa6926229eec915aa6a71c9ee603064f5">data</a></td></tr>
+<tr class="separator:aa6926229eec915aa6a71c9ee603064f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Mapping info for a property to a CSV field. </p>
+<div class="textblock"><p>Mapping info for a reference property mapping to a class. </p>
 
-<p>Definition at line <a class="el" href="a00226_source.html#l00021">21</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00205_source.html#l00014">14</a> of file <a class="el" href="a00205_source.html">CsvPropertyReferenceMap.cs</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a7284729e68d85b66d2a4d19975f4382a"></a>
+<a class="anchor" id="a02823d2439667bca75233abbe81651ff"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CsvHelper.Configuration.CsvPropertyMap.CsvPropertyMap </td>
+          <td class="memname">CsvHelper.Configuration.CsvPropertyReferenceMap.CsvPropertyReferenceMap </td>
           <td>(</td>
           <td class="paramtype">PropertyInfo&#160;</td>
-          <td class="paramname"><em>property</em></td><td>)</td>
+          <td class="paramname"><em>property</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="a00057.html">CsvClassMap</a>&#160;</td>
+          <td class="paramname"><em>mapping</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates a new <a class="el" href="a00072.html" title="Mapping info for a property to a CSV field. ">CsvPropertyMap</a> instance using the specified property. </p>
+<p>Initializes a new instance of the <a class="el" href="a00072.html" title="Mapping info for a reference property mapping to a class. ">CsvPropertyReferenceMap</a> class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">property</td><td>The property.</td></tr>
+    <tr><td class="paramname">mapping</td><td>The <a class="el" href="a00057.html" title="Maps class properties to CSV fields. ">CsvClassMap</a> to use for the reference map.</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="a00226_source.html#l00036">36</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <a class="code" href="a00072.html#a2943371f5d55b2fd7313bbb0e87a013c">data</a> = <span class="keyword">new</span> CsvPropertyMapData( property )</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <span class="comment">// Set some defaults.</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <a class="code" href="a00072.html#a4bd41dc4c24fa515854d83ca5f730678">TypeConverter</a> = TypeConverterFactory.GetConverter( property.PropertyType )</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            };</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            data.Names.Add( property.Name );</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
-<div class="ttc" id="a00072_html_a4bd41dc4c24fa515854d83ca5f730678"><div class="ttname"><a href="a00072.html#a4bd41dc4c24fa515854d83ca5f730678">CsvHelper.Configuration.CsvPropertyMap.TypeConverter</a></div><div class="ttdeci">virtual CsvPropertyMap TypeConverter(ITypeConverter typeConverter)</div><div class="ttdoc">Specifies the TypeConverter to use when converting the property to and from a CSV field...</div><div class="ttdef"><b>Definition:</b> <a href="a00226_source.html#l00130">CsvPropertyMap.cs:130</a></div></div>
-<div class="ttc" id="a00072_html_a2943371f5d55b2fd7313bbb0e87a013c"><div class="ttname"><a href="a00072.html#a2943371f5d55b2fd7313bbb0e87a013c">CsvHelper.Configuration.CsvPropertyMap.data</a></div><div class="ttdeci">readonly CsvPropertyMapData data</div><div class="ttdef"><b>Definition:</b> <a href="a00226_source.html#l00023">CsvPropertyMap.cs:23</a></div></div>
+<p>Definition at line <a class="el" href="a00205_source.html#l00049">49</a> of file <a class="el" href="a00205_source.html">CsvPropertyReferenceMap.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordflow">if</span>( mapping == null )</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;mapping&quot;</span> );</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <a class="code" href="a00072.html#aa6926229eec915aa6a71c9ee603064f5">data</a> = <span class="keyword">new</span> CsvPropertyReferenceMapData( property, mapping );</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
+<div class="ttc" id="a00072_html_aa6926229eec915aa6a71c9ee603064f5"><div class="ttname"><a href="a00072.html#aa6926229eec915aa6a71c9ee603064f5">CsvHelper.Configuration.CsvPropertyReferenceMap.data</a></div><div class="ttdeci">readonly CsvPropertyReferenceMapData data</div><div class="ttdef"><b>Definition:</b> <a href="a00205_source.html#l00016">CsvPropertyReferenceMap.cs:16</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a02e31bd00f62fc495c81d400c00b65cb"></a>
+<a class="anchor" id="a1e879f9a6ed84415ac52c44f1f086606"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -234,89 +222,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="a00072.html">CsvPropertyMap</a> CsvHelper.Configuration.CsvPropertyMap.ConvertUsing&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">Func&lt; <a class="el" href="a00117.html">ICsvReaderRow</a>, T &gt;&#160;</td>
-          <td class="paramname"><em>convertExpression</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Specifies an expression to be used to convert data in the row to the property. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type of the property that will be set.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">convertExpression</td><td>The convert expression.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00226_source.html#l00154">154</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        {</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            data.ConvertExpression = (Expression&lt;Func&lt;ICsvReaderRow, T&gt;&gt;)( x =&gt; convertExpression( x ) );</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a35815aef1a6aa2692e4b9f7d57a52b60"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="a00072.html">CsvPropertyMap</a> CsvHelper.Configuration.CsvPropertyMap.Default </td>
-          <td>(</td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>defaultValue</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The default value that will be used when reading when the CSV field is empty. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">defaultValue</td><td>The default value.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00226_source.html#l00119">119</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        {</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            data.Default = defaultValue;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="aaf29f485feec0bd918ae9911208465e7"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="a00072.html">CsvPropertyMap</a> CsvHelper.Configuration.CsvPropertyMap.Ignore </td>
+          <td class="memname">int CsvHelper.Configuration.CsvPropertyReferenceMap.GetMaxIndex </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -324,553 +230,60 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Ignore the property when reading and writing. </p>
+<p>Get the largest index for the properties and references. </p>
+<dl class="section return"><dt>Returns</dt><dd>The max index.</dd></dl>
 
-<p>Definition at line <a class="el" href="a00226_source.html#l00098">98</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        {</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            data.Ignore = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        }</div>
+<p>Definition at line <a class="el" href="a00205_source.html#l00081">81</a> of file <a class="el" href="a00205_source.html">CsvPropertyReferenceMap.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">return</span> data.Mapping.GetMaxIndex();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a933c8b6d81e78b5c34fd24cbccf9a4a5"></a>
+<a class="anchor" id="a0ed653de99ec2251fd99837740693789"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="a00072.html">CsvPropertyMap</a> CsvHelper.Configuration.CsvPropertyMap.Ignore </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>ignore</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Ignore the property when reading and writing. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ignore</td><td>True to ignore, otherwise false.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00226_source.html#l00108">108</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        {</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            data.Ignore = ignore;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="ae4563b0f7c3b3a22b1bea5073d95ddae"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="a00072.html">CsvPropertyMap</a> CsvHelper.Configuration.CsvPropertyMap.Index </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>When reading, is used to get the field at the given index. When writing, the fields will be written in the order of the field indexes. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>The index of the CSV field.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00226_source.html#l00088">88</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            data.Index = index;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            data.IsIndexSet = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a0d503e7dfdefa7334f5d04878c37316e"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="a00072.html">CsvPropertyMap</a> CsvHelper.Configuration.CsvPropertyMap.Name </td>
-          <td>(</td>
-          <td class="paramtype">params string[]&#160;</td>
-          <td class="paramname"><em>names</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>When reading, is used to get the field at the index of the name if there was a header specified. It will look for the first name match in the order listed. When writing, sets the name of the field in the header record. The first name will be used. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">names</td><td>The possible names of the CSV field.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00226_source.html#l00056">56</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordflow">if</span>( names == null || names.Length == 0 )</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;names&quot;</span> );</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            data.Names.Clear();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            data.Names.AddRange( names );</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            data.IsNameSet = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a2d6191df96c55bf3d044b31581e2a9b3"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="a00072.html">CsvPropertyMap</a> CsvHelper.Configuration.CsvPropertyMap.NameIndex </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>When reading, is used to get the index of the name used when there are multiple names that are the same. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>The index of the name.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00226_source.html#l00075">75</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            data.NameIndex = index;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a4bd41dc4c24fa515854d83ca5f730678"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="a00072.html">CsvPropertyMap</a> CsvHelper.Configuration.CsvPropertyMap.TypeConverter </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00125.html">ITypeConverter</a>&#160;</td>
-          <td class="paramname"><em>typeConverter</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Specifies the <a class="el" href="a00072.html#a4bd41dc4c24fa515854d83ca5f730678" title="Specifies the TypeConverter to use when converting the property to and from a CSV field...">TypeConverter</a> to use when converting the property to and from a CSV field. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">typeConverter</td><td>The TypeConverter to use.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00226_source.html#l00130">130</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        {</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            data.TypeConverter = typeConverter;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a129110c34e2c12709f25948794390f97"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="a00072.html">CsvPropertyMap</a> <a class="el" href="a00072.html#a4bd41dc4c24fa515854d83ca5f730678">CsvHelper.Configuration.CsvPropertyMap.TypeConverter</a>&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Specifies the <a class="el" href="a00072.html#a4bd41dc4c24fa515854d83ca5f730678" title="Specifies the TypeConverter to use when converting the property to and from a CSV field...">TypeConverter</a> to use when converting the property to and from a CSV field. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The Type of the <a class="el" href="a00072.html#a4bd41dc4c24fa515854d83ca5f730678" title="Specifies the TypeConverter to use when converting the property to and from a CSV field...">TypeConverter</a> to use.</td></tr>
-  </table>
-  </dd>
-</dl>
-<div class="typeconstraint">
-<dl><dt><b>Type Constraints</b></dt><dd>
-<table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>ITypeConverter</em></td><td>&#160;</td></tr>
-</table>
-</dl>
-</div>
-
-<p>Definition at line <a class="el" href="a00226_source.html#l00142">142</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-
-<p>References <a class="el" href="a00261_source.html#l00042">CsvHelper.ReflectionHelper.CreateInstance()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                                                                 : <a class="code" href="a00125.html">ITypeConverter</a></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        {</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            <a class="code" href="a00072.html#a4bd41dc4c24fa515854d83ca5f730678">TypeConverter</a>( ReflectionHelper.CreateInstance&lt;T&gt;() );</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        }</div>
-<div class="ttc" id="a00072_html_a4bd41dc4c24fa515854d83ca5f730678"><div class="ttname"><a href="a00072.html#a4bd41dc4c24fa515854d83ca5f730678">CsvHelper.Configuration.CsvPropertyMap.TypeConverter</a></div><div class="ttdeci">virtual CsvPropertyMap TypeConverter(ITypeConverter typeConverter)</div><div class="ttdoc">Specifies the TypeConverter to use when converting the property to and from a CSV field...</div><div class="ttdef"><b>Definition:</b> <a href="a00226_source.html#l00130">CsvPropertyMap.cs:130</a></div></div>
-<div class="ttc" id="a00125_html"><div class="ttname"><a href="a00125.html">CsvHelper.TypeConversion.ITypeConverter</a></div><div class="ttdoc">Converts objects to and from strings. </div><div class="ttdef"><b>Definition:</b> <a href="a00278_source.html#l00013">ITypeConverter.cs:13</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00072_a129110c34e2c12709f25948794390f97_cgraph.png" border="0" usemap="#a00072_a129110c34e2c12709f25948794390f97_cgraph" alt=""/></div>
-<map name="a00072_a129110c34e2c12709f25948794390f97_cgraph" id="a00072_a129110c34e2c12709f25948794390f97_cgraph">
-<area shape="rect" id="node2" href="a00157.html#a9b8690ff760f41b0a7ef46626949c777" title="Creates an instance of the specified type. " alt="" coords="296,5,485,46"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a652b7feb8994aefa43652755d42b3fbf"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="a00072.html">CsvPropertyMap</a> CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption </td>
-          <td>(</td>
-          <td class="paramtype">CultureInfo&#160;</td>
-          <td class="paramname"><em>cultureInfo</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The CultureInfo used when type converting. This will override the global <a class="el" href="a00065.html#ad04ccfdd3cbc265f527ee5baa2e08508" title="Gets or sets the culture info used to read an write CSV files. ">CsvConfiguration.CultureInfo</a> setting. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cultureInfo</td><td>The culture info.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00226_source.html#l00166">166</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        {</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            data.TypeConverterOptions.CultureInfo = cultureInfo;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a20bc1aec3a0054ac9b9c462562f111d2"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="a00072.html">CsvPropertyMap</a> CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption </td>
-          <td>(</td>
-          <td class="paramtype">DateTimeStyles&#160;</td>
-          <td class="paramname"><em>dateTimeStyle</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The DateTimeStyles to use when type converting. This is used when doing any DateTime conversions. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">dateTimeStyle</td><td>The date time style.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00226_source.html#l00177">177</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        {</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            data.TypeConverterOptions.DateTimeStyle = dateTimeStyle;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a16243e8334687160385ed8c589184031"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="a00072.html">CsvPropertyMap</a> CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption </td>
-          <td>(</td>
-          <td class="paramtype">NumberStyles&#160;</td>
-          <td class="paramname"><em>numberStyle</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The NumberStyles to use when type converting. This is used when doing any number conversions. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">numberStyle</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00226_source.html#l00188">188</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        {</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            data.TypeConverterOptions.NumberStyle = numberStyle;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a4df14f039b706d21e7235eb7050fac2d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="a00072.html">CsvPropertyMap</a> CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption </td>
+          <td class="memname"><a class="el" href="a00072.html">CsvPropertyReferenceMap</a> CsvHelper.Configuration.CsvPropertyReferenceMap.Prefix </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>format</em></td><td>)</td>
+          <td class="paramname"><em>prefix</em> = <code>null</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>The string format to be used when type converting. </p>
+<p>Appends a prefix to the header of each field of the reference property </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">format</td><td>The format.</td></tr>
+    <tr><td class="paramname">prefix</td><td>The prefix to be prepended to headers of each reference property</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>The current <a class="el" href="a00072.html" title="Mapping info for a reference property mapping to a class. ">CsvPropertyReferenceMap</a></dd></dl>
 
-<p>Definition at line <a class="el" href="a00226_source.html#l00198">198</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        {</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            data.TypeConverterOptions.Format = format;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a957ea50ce91adb642751201e8277949d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="a00072.html">CsvPropertyMap</a> CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>isTrue</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">params string[]&#160;</td>
-          <td class="paramname"><em>booleanValues</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The string values used to represent a boolean when converting. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">isTrue</td><td>A value indicating whether true values or false values are being set.</td></tr>
-    <tr><td class="paramname">booleanValues</td><td>The string boolean values.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00226_source.html#l00209">209</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        {</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="a00072.html#a652b7feb8994aefa43652755d42b3fbf">TypeConverterOption</a>( isTrue, <span class="keyword">true</span>, booleanValues );</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        }</div>
-<div class="ttc" id="a00072_html_a652b7feb8994aefa43652755d42b3fbf"><div class="ttname"><a href="a00072.html#a652b7feb8994aefa43652755d42b3fbf">CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption</a></div><div class="ttdeci">virtual CsvPropertyMap TypeConverterOption(CultureInfo cultureInfo)</div><div class="ttdoc">The CultureInfo used when type converting. This will override the global CsvConfiguration.CultureInfo setting. </div><div class="ttdef"><b>Definition:</b> <a href="a00226_source.html#l00166">CsvPropertyMap.cs:166</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a6fd25629d769c619b029a6c141ab77c2"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="a00072.html">CsvPropertyMap</a> CsvHelper.Configuration.CsvPropertyMap.TypeConverterOption </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>isTrue</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>clearValues</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">params string[]&#160;</td>
-          <td class="paramname"><em>booleanValues</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The string values used to represent a boolean when converting. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">isTrue</td><td>A value indicating whether true values or false values are being set.</td></tr>
-    <tr><td class="paramname">clearValues</td><td>A value indication if the current values should be cleared before adding the new ones.</td></tr>
-    <tr><td class="paramname">booleanValues</td><td>The string boolean values.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00226_source.html#l00220">220</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        {</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="keywordflow">if</span>( isTrue )</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            {</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                <span class="keywordflow">if</span>( clearValues )</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                {</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                    data.TypeConverterOptions.BooleanTrueValues.Clear();</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                }</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                data.TypeConverterOptions.BooleanTrueValues.AddRange( booleanValues );</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            }</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            {</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                <span class="keywordflow">if</span>( clearValues )</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                {</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                    data.TypeConverterOptions.BooleanFalseValues.Clear();</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                }</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                data.TypeConverterOptions.BooleanFalseValues.AddRange( booleanValues );</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            }</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        }</div>
+<p>Definition at line <a class="el" href="a00205_source.html#l00064">64</a> of file <a class="el" href="a00205_source.html">CsvPropertyReferenceMap.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keywordflow">if</span>( <span class="keywordtype">string</span>.IsNullOrEmpty( prefix ) )</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                prefix = data.Property.Name + <span class="stringliteral">&quot;.&quot;</span>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            data.Prefix = prefix;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a2943371f5d55b2fd7313bbb0e87a013c"></a>
+<a class="anchor" id="aa6926229eec915aa6a71c9ee603064f5"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -878,7 +291,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">readonly <a class="el" href="a00075.html">CsvPropertyMapData</a> CsvHelper.Configuration.CsvPropertyMap.data</td>
+          <td class="memname">readonly <a class="el" href="a00073.html">CsvPropertyReferenceMapData</a> CsvHelper.Configuration.CsvPropertyReferenceMap.data</td>
         </tr>
       </table>
   </td>
@@ -888,12 +301,12 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00226_source.html#l00023">23</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00205_source.html#l00016">16</a> of file <a class="el" href="a00205_source.html">CsvPropertyReferenceMap.cs</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
-<a class="anchor" id="a207637fa121612b618ed1131cb28b8bb"></a>
+<a class="anchor" id="aa83ef91c4eb293a9d035013c8b4af016"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -901,7 +314,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00075.html">CsvPropertyMapData</a> CsvHelper.Configuration.CsvPropertyMap.Data</td>
+          <td class="memname"><a class="el" href="a00073.html">CsvPropertyReferenceMapData</a> CsvHelper.Configuration.CsvPropertyReferenceMap.Data</td>
         </tr>
       </table>
   </td>
@@ -911,24 +324,72 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the property map data. </p>
+<p>Gets the property reference map data. </p>
 
-<p>Definition at line <a class="el" href="a00226_source.html#l00029">29</a> of file <a class="el" href="a00226_source.html">CsvPropertyMap.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00205_source.html#l00040">40</a> of file <a class="el" href="a00205_source.html">CsvPropertyReferenceMap.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00242_source.html#l01587">CsvHelper.CsvReader.CanRead()</a>, and <a class="el" href="a00245_source.html#l00823">CsvHelper.CsvWriter.CanWrite()</a>.</p>
+<p>Referenced by <a class="el" href="a00216_source.html#l01606">CsvHelper.CsvReader.CanRead()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a555d8d59960792aa556002a1a1b942f9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00057.html">CsvClassMap</a> CsvHelper.Configuration.CsvPropertyReferenceMap.Mapping</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the mapping. </p>
+
+<p>Definition at line <a class="el" href="a00205_source.html#l00032">32</a> of file <a class="el" href="a00205_source.html">CsvPropertyReferenceMap.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1bf8b55373206c0dc378c8f7247bf149"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">PropertyInfo CsvHelper.Configuration.CsvPropertyReferenceMap.Property</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the property. </p>
+
+<p>Definition at line <a class="el" href="a00205_source.html#l00023">23</a> of file <a class="el" href="a00205_source.html">CsvPropertyReferenceMap.cs</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/<a class="el" href="a00226_source.html">CsvPropertyMap.cs</a></li>
+<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/<a class="el" href="a00205_source.html">CsvPropertyReferenceMap.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00340.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00341.html">Configuration</a></li><li class="navelem"><a class="el" href="a00072.html">CsvPropertyMap</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:24 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00311.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00312.html">Configuration</a></li><li class="navelem"><a class="el" href="a00072.html">CsvPropertyReferenceMap</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:46 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

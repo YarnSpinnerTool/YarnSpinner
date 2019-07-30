@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_48a1716f11dda95e9025da5db297b66f" kind="dir">
     <compoundname>packages/CsvHelper.2.16.0.0/src/CsvHelper/MissingFromPcl</compoundname>
-    <innerfile refid="a00256">EnumerableExtensions.cs</innerfile>
+    <innerfile refid="a00230">EnumerableExtensions.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

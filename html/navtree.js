@@ -1,10 +1,10 @@
 var NAVTREE =
 [
   [ "YarnSpinner", "index.html", [
-    [ "Lets talk about the WIP ANTLR YarnSpinner parser", "a00002.html", null ],
-    [ "Contributor Covenant Code of Conduct", "a00004.html", null ],
-    [ "Contributing to Yarn Spinner", "a00006.html", null ],
-    [ "Contributors", "a00008.html", null ],
+    [ "Contributor Covenant Code of Conduct", "a00002.html", null ],
+    [ "Contributing to Yarn Spinner", "a00004.html", null ],
+    [ "Contributors", "a00006.html", null ],
+    [ "Lets talk about the WIP ANTLR YarnSpinner parser", "a00008.html", null ],
     [ "Complex Yarn Dialogue - Tutorial", "a00010.html", null ],
     [ "Localization", "a00012.html", null ],
     [ "Yarn Dialogue - General Usage Guide", "a00014.html", null ],
@@ -40,7 +40,7 @@ var NAVTREE =
         [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Enumerations", "functions_enum.html", null ],
         [ "Enumerator", "functions_eval.html", null ],
-        [ "Properties", "functions_prop.html", "functions_prop" ]
+        [ "Properties", "functions_prop.html", null ]
       ] ]
     ] ],
     [ "Files", null, [
@@ -57,16 +57,15 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "a00002.html",
-"a00051.html#a808a039e280cf875cb3c9e9385148498",
-"a00070.html#ac425b45e53d095d825f0fa8a52041a69",
-"a00085.html#a18b493382de0fde5b4299c1bd2250075",
-"a00106.html#ad55c92df835006328bc2a79a8f91efb9",
-"a00119.html#a0b6bf45e56de8f5125c07f0143e74d19",
-"a00134.html",
-"a00164.html#ab3afe8360a344c16c21213edb3641481",
-"a00189.html#abfd48481b0ac28ff5485a850a8271dfd",
-"a00230_source.html",
-"a00320.html#adff82417cdaed8e1b025db27c7c11fc3"
+"a00052.html#a89964ea17bd19caf00cb5bff563ed01c",
+"a00070.html#a1a1424683bea80f373e3ea80ae6e39c7",
+"a00087.html",
+"a00104.html#ab9705313017584f8f466e481ae4cdcfc",
+"a00118.html#a88efcd53a74110abd0000e4b7d6c4691",
+"a00145.html",
+"a00169.html#ab1a387df201e3e136c15e5744219628d",
+"a00237.html",
+"a00345.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

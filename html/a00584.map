@@ -1,4 +1,4 @@
-<map id="CsvHelper.TypeConversion.UInt32Converter" name="CsvHelper.TypeConversion.UInt32Converter">
-<area shape="rect" id="node2" href="$a00090.html" title="Converts an object to and from a string. " alt="" coords="23,177,175,298"/>
-<area shape="rect" id="node3" href="$a00125.html" title="Converts objects to and from strings. " alt="" coords="23,6,175,127"/>
+<map id="Yarn.MemoryVariableStore" name="Yarn.MemoryVariableStore">
+<area shape="rect" id="node2" href="$a00041.html" title="{Yarn::BaseVariableStorage\n||+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="5,189,184,325"/>
+<area shape="rect" id="node3" href="$a00167.html" title="Where we turn to for storing and loading variable data. " alt="" coords="37,5,152,141"/>
 </map>

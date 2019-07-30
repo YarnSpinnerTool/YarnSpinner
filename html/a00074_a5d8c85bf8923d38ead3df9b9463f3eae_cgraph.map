@@ -1,0 +1,5 @@
+<map id="CsvHelper.CsvReader.CreatePropertyBindingsForMapping" name="CsvHelper.CsvReader.CreatePropertyBindingsForMapping">
+<area shape="rect" id="node2" href="$a00074.html#af1d56b760007c4ab11ccd93eb97e07b4" title="Adds a MemberBinding for each property for it&#39;s field. " alt="" coords="251,57,482,98"/>
+<area shape="rect" id="node3" href="$a00074.html#ab0f1158c863fdedadff576a28a533c71" title="Determines if the property for the CsvPropertyMap can be read. " alt="" coords="531,5,744,32"/>
+<area shape="rect" id="node4" href="$a00074.html#a7e507d40e35fde7bf23e208be7be0884" title="Gets the index of the field at name if found. " alt="" coords="534,57,741,98"/>
+</map>

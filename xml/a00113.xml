@@ -1,124 +1,66 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00113" kind="class" prot="package">
-    <compoundname>Yarn::Unity::Icons</compoundname>
-      <sectiondef kind="private-static-attrib">
-      <memberdef kind="variable" id="a00113_1a40e137f48495168d4423c103c8935a1b" prot="private" static="yes" mutable="no">
-        <type>Texture</type>
-        <definition>Texture Yarn.Unity.Icons._successIcon</definition>
+  <compounddef id="a00113" kind="struct" prot="public">
+    <compoundname>Yarn::Instruction</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00113_1a566bf5f7198cc353ea5c3710cb3a31cb" prot="public" static="no" mutable="no">
+        <type><ref refid="a00048_1ad5dfb6ee68ca7469623ad3e459f98894" kindref="member">ByteCode</ref></type>
+        <definition>ByteCode Yarn.Instruction.operation</definition>
         <argsstring></argsstring>
-        <name>_successIcon</name>
+        <name>operation</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="587" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="587" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="231" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="231" bodyend="-1"/>
+        <referencedby refid="a00145_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00291" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
+        <referencedby refid="a00113_1a939d511f211e8a61cfbca902e802564f" compoundref="a00289" startline="235" endline="324">Yarn.Instruction.ToString</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="a00113_1a75ef0bcf3f5968f11949e6bfa4fdddd5" prot="private" static="yes" mutable="no">
-        <type>Texture</type>
-        <definition>Texture Yarn.Unity.Icons._failedIcon</definition>
+      <memberdef kind="variable" id="a00113_1ab5d386faa0d3dbc23db80f8e62706afd" prot="public" static="no" mutable="no">
+        <type>object</type>
+        <definition>object Yarn.Instruction.operandA</definition>
         <argsstring></argsstring>
-        <name>_failedIcon</name>
+        <name>operandA</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="597" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="597" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="232" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="232" bodyend="-1"/>
+        <referencedby refid="a00145_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00291" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
+        <referencedby refid="a00113_1a939d511f211e8a61cfbca902e802564f" compoundref="a00289" startline="235" endline="324">Yarn.Instruction.ToString</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="a00113_1a497c5dcdfef75245a24c295f523fb7f7" prot="private" static="yes" mutable="no">
-        <type>Texture</type>
-        <definition>Texture Yarn.Unity.Icons._notTestedIcon</definition>
+      <memberdef kind="variable" id="a00113_1a56348c6fe7eb919b7277afc06e5b224a" prot="public" static="no" mutable="no">
+        <type>object</type>
+        <definition>object Yarn.Instruction.operandB</definition>
         <argsstring></argsstring>
-        <name>_notTestedIcon</name>
+        <name>operandB</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="607" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="607" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00113_1abba8fef6cc12836ea431a8a7c9e2f3db" prot="private" static="yes" mutable="no">
-        <type>Texture</type>
-        <definition>Texture Yarn.Unity.Icons._windowIcon</definition>
-        <argsstring></argsstring>
-        <name>_windowIcon</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="617" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="617" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="233" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="233" bodyend="-1"/>
+        <referencedby refid="a00113_1a939d511f211e8a61cfbca902e802564f" compoundref="a00289" startline="235" endline="324">Yarn.Instruction.ToString</referencedby>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00113_1aec8aea03eb6e31771ebc98e0611fff79" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
-        <type>Texture</type>
-        <definition>Texture Yarn.Unity.Icons.successIcon</definition>
-        <argsstring></argsstring>
-        <name>successIcon</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="588" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="588" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00113_1aae7cc0e5016db04a90b2aa0e80957626" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
-        <type>Texture</type>
-        <definition>Texture Yarn.Unity.Icons.failedIcon</definition>
-        <argsstring></argsstring>
-        <name>failedIcon</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="598" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="598" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00113_1ab8afce565cd2ad1543d1e32e7e589e77" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
-        <type>Texture</type>
-        <definition>Texture Yarn.Unity.Icons.notTestedIcon</definition>
-        <argsstring></argsstring>
-        <name>notTestedIcon</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="608" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="608" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00113_1aa78ab016ad041bc36850c8b20ba63972" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
-        <type>Texture</type>
-        <definition>Texture Yarn.Unity.Icons.windowIcon</definition>
-        <argsstring></argsstring>
-        <name>windowIcon</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="618" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="618" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-static-func">
-      <memberdef kind="function" id="a00113_1a267896b2c4512f5b17772e7e1e46d6da" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>Texture</type>
-        <definition>static Texture Yarn.Unity.Icons.GetTexture</definition>
-        <argsstring>(string textureName)</argsstring>
-        <name>GetTexture</name>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00113_1a939d511f211e8a61cfbca902e802564f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Instruction.ToString</definition>
+        <argsstring>(Program p, Library l)</argsstring>
+        <name>ToString</name>
         <param>
-          <type>string</type>
-          <declname>textureName</declname>
+          <type><ref refid="a00138" kindref="compound">Program</ref></type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type><ref refid="a00121" kindref="compound">Library</ref></type>
+          <declname>l</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -126,7 +68,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="578" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="578" bodyend="585"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="235" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="235" bodyend="324"/>
+        <references refid="a00113_1ab5d386faa0d3dbc23db80f8e62706afd" compoundref="a00289" startline="232">Yarn.Instruction.operandA</references>
+        <references refid="a00113_1a56348c6fe7eb919b7277afc06e5b224a" compoundref="a00289" startline="233">Yarn.Instruction.operandB</references>
+        <references refid="a00113_1a566bf5f7198cc353ea5c3710cb3a31cb" compoundref="a00289" startline="231">Yarn.Instruction.operation</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -134,22 +79,17 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="1380">
-        <label>Yarn.Unity.Icons</label>
+      <node id="1259">
+        <label>Yarn.Instruction</label>
         <link refid="a00113"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="576" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="576" bodyend="626"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="230" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="229" bodyend="325"/>
     <listofallmembers>
-      <member refid="a00113_1a75ef0bcf3f5968f11949e6bfa4fdddd5" prot="private" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>_failedIcon</name></member>
-      <member refid="a00113_1a497c5dcdfef75245a24c295f523fb7f7" prot="private" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>_notTestedIcon</name></member>
-      <member refid="a00113_1a40e137f48495168d4423c103c8935a1b" prot="private" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>_successIcon</name></member>
-      <member refid="a00113_1abba8fef6cc12836ea431a8a7c9e2f3db" prot="private" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>_windowIcon</name></member>
-      <member refid="a00113_1aae7cc0e5016db04a90b2aa0e80957626" prot="public" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>failedIcon</name></member>
-      <member refid="a00113_1a267896b2c4512f5b17772e7e1e46d6da" prot="private" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>GetTexture</name></member>
-      <member refid="a00113_1ab8afce565cd2ad1543d1e32e7e589e77" prot="public" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>notTestedIcon</name></member>
-      <member refid="a00113_1aec8aea03eb6e31771ebc98e0611fff79" prot="public" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>successIcon</name></member>
-      <member refid="a00113_1aa78ab016ad041bc36850c8b20ba63972" prot="public" virt="non-virtual"><scope>Yarn::Unity::Icons</scope><name>windowIcon</name></member>
+      <member refid="a00113_1ab5d386faa0d3dbc23db80f8e62706afd" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>operandA</name></member>
+      <member refid="a00113_1a56348c6fe7eb919b7277afc06e5b224a" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>operandB</name></member>
+      <member refid="a00113_1a566bf5f7198cc353ea5c3710cb3a31cb" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>operation</name></member>
+      <member refid="a00113_1a939d511f211e8a61cfbca902e802564f" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>ToString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

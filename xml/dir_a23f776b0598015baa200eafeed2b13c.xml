@@ -2,13 +2,13 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_a23f776b0598015baa200eafeed2b13c" kind="dir">
     <compoundname>Unity/Assets/YarnSpinner/Examples/DemoScripts</compoundname>
-    <innerfile refid="a00298">CameraFollow.cs</innerfile>
-    <innerfile refid="a00299">ExampleDialogueUI.cs</innerfile>
-    <innerfile refid="a00300">ExampleVariableStorage.cs</innerfile>
-    <innerfile refid="a00301">MobileOnly.cs</innerfile>
-    <innerfile refid="a00302">NPC.cs</innerfile>
-    <innerfile refid="a00303">PlayerCharacter.cs</innerfile>
-    <innerfile refid="a00304">SpriteSwitcher.cs</innerfile>
+    <innerfile refid="a00272">CameraFollow.cs</innerfile>
+    <innerfile refid="a00273">ExampleDialogueUI.cs</innerfile>
+    <innerfile refid="a00274">ExampleVariableStorage.cs</innerfile>
+    <innerfile refid="a00275">MobileOnly.cs</innerfile>
+    <innerfile refid="a00276">NPC.cs</innerfile>
+    <innerfile refid="a00277">PlayerCharacter.cs</innerfile>
+    <innerfile refid="a00278">SpriteSwitcher.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

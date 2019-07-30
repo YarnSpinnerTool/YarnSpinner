@@ -1,41 +1,79 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00055" kind="class" prot="package" abstract="yes">
-    <compoundname>Yarn::Analysis::CompiledProgramAnalyser</compoundname>
-    <derivedcompoundref refid="a00187" prot="public" virt="non-virtual">Yarn.Analysis.UnusedVariableChecker</derivedcompoundref>
-    <derivedcompoundref refid="a00191" prot="public" virt="non-virtual">Yarn.Analysis.VariableLister</derivedcompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00055_1aba4a36cb823b11ee491074e26477d084" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract void</type>
-        <definition>abstract void Yarn.Analysis.CompiledProgramAnalyser.Diagnose</definition>
-        <argsstring>(Yarn.Program program)</argsstring>
-        <name>Diagnose</name>
-        <param>
-          <type><ref refid="a00154" kindref="compound">Yarn.Program</ref></type>
-          <declname>program</declname>
-        </param>
+  <compounddef id="a00055" kind="class" prot="public">
+    <compoundname>Yarn::ConvertFormatOptions</compoundname>
+    <basecompoundref refid="a00040" prot="public" virt="non-virtual">Yarn.BaseOptions</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00055_1a052d6f00647c503adc5a79a1ff92cdf4" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.ConvertFormatOptions.convertToYarn</definition>
+        <argsstring></argsstring>
+        <name>convertToYarn</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="152" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="131" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="131" bodyend="-1"/>
+        <referencedby refid="a00100_1aa4db4ccac799c5f047a8b1a9efbe109d" compoundref="a00298" startline="10" endline="24">Yarn.FileFormatConverter.ConvertFormat</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00055_1afe059a2ceeabe50380b000420e512bd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract IEnumerable&lt; <ref refid="a00093" kindref="compound">Diagnosis</ref> &gt;</type>
-        <definition>abstract IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.CompiledProgramAnalyser.GatherDiagnoses</definition>
-        <argsstring>()</argsstring>
-        <name>GatherDiagnoses</name>
-        <reimplementedby refid="a00191_1ab84e7a8e68740379dee12a51dca69b07">GatherDiagnoses</reimplementedby>
-        <reimplementedby refid="a00187_1a107aecf707b130c4b733930a95f9154e">GatherDiagnoses</reimplementedby>
+      <memberdef kind="property" id="a00055_1ab636bde93c2204b2af1a9306560d9749" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.ConvertFormatOptions.outputDirectory</definition>
+        <argsstring></argsstring>
+        <name>outputDirectory</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="153" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="134" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00040_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.BaseOptions.showDebuggingInfo</definition>
+        <argsstring></argsstring>
+        <name>showDebuggingInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="42" bodyend="-1"/>
+        <referencedby refid="a00172_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00300" startline="383" endline="501">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="a00040_1ada4d83d1756918f362d55f6649b82b17" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.BaseOptions.verbose</definition>
+        <argsstring></argsstring>
+        <name>verbose</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="46" bodyend="-1"/>
+        <referencedby refid="a00100_1aa72838be584177b5592c31d73c0febdb" compoundref="a00298" startline="119" endline="160">Yarn.FileFormatConverter.ConvertNodesInFile</referencedby>
+        <referencedby refid="a00151_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00301" startline="12" endline="124">Yarn.TableGenerator.GenerateTables</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="a00040_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>IList&lt; string &gt;</type>
+        <definition>IList&lt;string&gt; Yarn.BaseOptions.files</definition>
+        <argsstring></argsstring>
+        <name>files</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="49" bodyend="-1"/>
+        <referencedby refid="a00172_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00300" startline="270" endline="331">Yarn.YarnSpinnerConsole.Run</referencedby>
+        <referencedby refid="a00172_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00300" startline="333" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -43,33 +81,36 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1023">
-        <label>Yarn.Analysis.CompiledProgramAnalyser</label>
+      <node id="905">
+        <label>Yarn.ConvertFormatOptions</label>
         <link refid="a00055"/>
-      </node>
-      <node id="1025">
-        <label>Yarn.Analysis.VariableLister</label>
-        <link refid="a00191"/>
-        <childnode refid="1023" relation="public-inheritance">
+        <childnode refid="906" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1024">
-        <label>Yarn.Analysis.UnusedVariableChecker</label>
-        <link refid="a00187"/>
-        <childnode refid="1023" relation="public-inheritance">
-        </childnode>
+      <node id="906">
+        <label>BaseOptions</label>
+        <link refid="a00040"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1026">
-        <label>Yarn.Analysis.CompiledProgramAnalyser</label>
+      <node id="907">
+        <label>Yarn.ConvertFormatOptions</label>
         <link refid="a00055"/>
+        <childnode refid="908" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="908">
+        <label>BaseOptions</label>
+        <link refid="a00040"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="151" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="151" bodyend="154"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="129" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="128" bodyend="135"/>
     <listofallmembers>
-      <member refid="a00055_1aba4a36cb823b11ee491074e26477d084" prot="public" virt="pure-virtual"><scope>Yarn::Analysis::CompiledProgramAnalyser</scope><name>Diagnose</name></member>
-      <member refid="a00055_1afe059a2ceeabe50380b000420e512bd6" prot="public" virt="pure-virtual"><scope>Yarn::Analysis::CompiledProgramAnalyser</scope><name>GatherDiagnoses</name></member>
+      <member refid="a00055_1a052d6f00647c503adc5a79a1ff92cdf4" prot="public" virt="non-virtual"><scope>Yarn::ConvertFormatOptions</scope><name>convertToYarn</name></member>
+      <member refid="a00040_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" virt="non-virtual"><scope>Yarn::ConvertFormatOptions</scope><name>files</name></member>
+      <member refid="a00055_1ab636bde93c2204b2af1a9306560d9749" prot="public" virt="non-virtual"><scope>Yarn::ConvertFormatOptions</scope><name>outputDirectory</name></member>
+      <member refid="a00040_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" virt="non-virtual"><scope>Yarn::ConvertFormatOptions</scope><name>showDebuggingInfo</name></member>
+      <member refid="a00040_1ada4d83d1756918f362d55f6649b82b17" prot="public" virt="non-virtual"><scope>Yarn::ConvertFormatOptions</scope><name>verbose</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

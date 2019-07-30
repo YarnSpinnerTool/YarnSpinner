@@ -1,98 +1,82 @@
-\hypertarget{a00170}{\section{Csv\-Helper.\-String\-Helper Class Reference}
-\label{a00170}\index{Csv\-Helper.\-String\-Helper@{Csv\-Helper.\-String\-Helper}}
+\hypertarget{a00170}{\section{Yarn.\-Unity.\-Yarn\-Command\-Attribute Class Reference}
+\label{a00170}\index{Yarn.\-Unity.\-Yarn\-Command\-Attribute@{Yarn.\-Unity.\-Yarn\-Command\-Attribute}}
 }
 
 
-Common string tasks.  
+Apply this attribute to methods in your scripts to expose them to \hyperlink{a00048}{Yarn}.  
 
 
 
 
-Collaboration diagram for Csv\-Helper.\-String\-Helper\-:
+Inheritance diagram for Yarn.\-Unity.\-Yarn\-Command\-Attribute\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=200pt]{a00477}
+\includegraphics[width=246pt]{a00689}
 \end{center}
 \end{figure}
-\subsection*{Static Public Member Functions}
+
+
+Collaboration diagram for Yarn.\-Unity.\-Yarn\-Command\-Attribute\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{a00690}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static bool \hyperlink{a00170_a40c715a7ebf19c7053c7b10f2b3df80f}{Is\-Null\-Or\-White\-Space} (string s)
-\begin{DoxyCompactList}\small\item\em Tests is a string is null or whitespace. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00170_a9c0d57cd72c091f63895944959e98330}{Yarn\-Command\-Attribute} (string \hyperlink{a00170_a6d513a725c819ffcdaa9c5788472ec8d}{command\-String})
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00170_a6d513a725c819ffcdaa9c5788472ec8d}{command\-String}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Common string tasks. 
+Apply this attribute to methods in your scripts to expose them to \hyperlink{a00048}{Yarn}. 
+
+For example\-: \mbox{[}Yarn\-Command(\char`\"{}dosomething\char`\"{})\mbox{]} void Foo() \{ do something! \} 
+
+Definition at line 441 of file Dialogue\-Runner.\-cs.
 
 
 
-Definition at line 10 of file String\-Helper.\-cs.
-
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00170_a40c715a7ebf19c7053c7b10f2b3df80f}{\index{Csv\-Helper\-::\-String\-Helper@{Csv\-Helper\-::\-String\-Helper}!Is\-Null\-Or\-White\-Space@{Is\-Null\-Or\-White\-Space}}
-\index{Is\-Null\-Or\-White\-Space@{Is\-Null\-Or\-White\-Space}!CsvHelper::StringHelper@{Csv\-Helper\-::\-String\-Helper}}
-\subsubsection[{Is\-Null\-Or\-White\-Space}]{\setlength{\rightskip}{0pt plus 5cm}static bool Csv\-Helper.\-String\-Helper.\-Is\-Null\-Or\-White\-Space (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00170_a9c0d57cd72c091f63895944959e98330}{\index{Yarn\-::\-Unity\-::\-Yarn\-Command\-Attribute@{Yarn\-::\-Unity\-::\-Yarn\-Command\-Attribute}!Yarn\-Command\-Attribute@{Yarn\-Command\-Attribute}}
+\index{Yarn\-Command\-Attribute@{Yarn\-Command\-Attribute}!Yarn::Unity::YarnCommandAttribute@{Yarn\-::\-Unity\-::\-Yarn\-Command\-Attribute}}
+\subsubsection[{Yarn\-Command\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Unity.\-Yarn\-Command\-Attribute.\-Yarn\-Command\-Attribute (
 \begin{DoxyParamCaption}
-\item[{string}]{s}
+\item[{string}]{command\-String}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00170_a40c715a7ebf19c7053c7b10f2b3df80f}
+)}}\label{a00170_a9c0d57cd72c091f63895944959e98330}
 
 
-Tests is a string is null or whitespace. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em s} & The string to test.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-True if the string is null or whitespace, otherwise false.
-\end{DoxyReturn}
-
-
-Definition at line 17 of file String\-Helper.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Reader.\-Get\-Emtpy\-String\-Method(), and Csv\-Helper.\-Csv\-Reader.\-Try\-Get\-Field$<$ T $>$().
+Definition at line 445 of file Dialogue\-Runner.\-cs.
 
 
 \begin{DoxyCode}
-18         \{
-19             \textcolor{keywordflow}{if}( s == null )
-20             \{
-21                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-22             \}
-23 
-24             \textcolor{keywordflow}{for}( var i = 0; i < s.Length; i++ )
-25             \{
-26                 \textcolor{keywordflow}{if}( !\textcolor{keywordtype}{char}.IsWhiteSpace( s[i] ) )
-27                 \{
-28                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-29                 \}
-30             \}
-31 
-32             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-33         \}
+445                                                           \{
+446             this.commandString = \hyperlink{a00170_a6d513a725c819ffcdaa9c5788472ec8d}{commandString};
+447         \}
 \end{DoxyCode}
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00170_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph}
-\end{center}
-\end{figure}
+\subsection{Property Documentation}
+\hypertarget{a00170_a6d513a725c819ffcdaa9c5788472ec8d}{\index{Yarn\-::\-Unity\-::\-Yarn\-Command\-Attribute@{Yarn\-::\-Unity\-::\-Yarn\-Command\-Attribute}!command\-String@{command\-String}}
+\index{command\-String@{command\-String}!Yarn::Unity::YarnCommandAttribute@{Yarn\-::\-Unity\-::\-Yarn\-Command\-Attribute}}
+\subsubsection[{command\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Yarn\-Command\-Attribute.\-command\-String\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00170_a6d513a725c819ffcdaa9c5788472ec8d}
 
+
+Definition at line 443 of file Dialogue\-Runner.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00262}{String\-Helper.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn\-Spinner/\-Code/\hyperlink{a00269}{Dialogue\-Runner.\-cs}\end{DoxyCompactItemize}

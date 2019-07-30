@@ -1,190 +1,286 @@
-\hypertarget{a00121}{\section{Yarn.\-Instruction Struct Reference}
-\label{a00121}\index{Yarn.\-Instruction@{Yarn.\-Instruction}}
+\hypertarget{a00121}{\section{Yarn.\-Library Class Reference}
+\label{a00121}\index{Yarn.\-Library@{Yarn.\-Library}}
 }
 
 
-Collaboration diagram for Yarn.\-Instruction\-:
+Inheritance diagram for Yarn.\-Library\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=166pt]{a00722}
+\includegraphics[width=228pt]{a00611}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Library\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{a00612}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00121_a939d511f211e8a61cfbca902e802564f}{To\-String} (\hyperlink{a00154}{Program} p, \hyperlink{a00131}{Library} l)
+\hyperlink{a00101}{Function\-Info} \hyperlink{a00121_aacfb1f00ad8aa3921941b8d8af0960e0}{Get\-Function} (string name)
+\item 
+void \hyperlink{a00121_ab42a4fd30a72156cafa685f959deef78}{Import\-Library} (\hyperlink{a00121}{Library} other\-Library)
+\item 
+void \hyperlink{a00121_a001ab29d21fe7db10fc9c250914287f9}{Register\-Function} (\hyperlink{a00101}{Function\-Info} function)
+\item 
+void \hyperlink{a00121_a2a698de0b528b2bac17bd85f57d45d4b}{Register\-Function} (string name, int parameter\-Count, \hyperlink{a00048_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} implementation)
+\item 
+void \hyperlink{a00121_a6820eaa082077f16496effbc9041b7ad}{Register\-Function} (string name, int parameter\-Count, \hyperlink{a00048_ae0be2e5cf13d5779816102439e61ff1a}{Function} implementation)
+\item 
+bool \hyperlink{a00121_a6c9a1cc3e25b6aae25e210d8a0d68c09}{Function\-Exists} (string name)
+\item 
+void \hyperlink{a00121_a47d1b3664733207d5cda15f4a4a7af7a}{Deregister\-Function} (string name)
 \end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{Byte\-Code} \hyperlink{a00121_a566bf5f7198cc353ea5c3710cb3a31cb}{operation}
-\item 
-object \hyperlink{a00121_ab5d386faa0d3dbc23db80f8e62706afd}{operand\-A}
-\item 
-object \hyperlink{a00121_a56348c6fe7eb919b7277afc06e5b224a}{operand\-B}
+Dictionary$<$ string, \hyperlink{a00101}{Function\-Info} $>$ \hyperlink{a00121_a2fcc78a63963be5320cf09783b66fab6}{functions} = new Dictionary$<$string, \hyperlink{a00101}{Function\-Info}$>$()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 268 of file Program.\-cs.
+Definition at line 90 of file Library.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00121_a939d511f211e8a61cfbca902e802564f}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Instruction@{Yarn\-::\-Instruction}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Instruction.\-To\-String (
+\hypertarget{a00121_a47d1b3664733207d5cda15f4a4a7af7a}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Deregister\-Function@{Deregister\-Function}}
+\index{Deregister\-Function@{Deregister\-Function}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{Deregister\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Deregister\-Function (
 \begin{DoxyParamCaption}
-\item[{{\bf Program}}]{p, }
-\item[{{\bf Library}}]{l}
+\item[{string}]{name}
 \end{DoxyParamCaption}
-)}}\label{a00121_a939d511f211e8a61cfbca902e802564f}
+)}}\label{a00121_a47d1b3664733207d5cda15f4a4a7af7a}
 
 
-Definition at line 274 of file Program.\-cs.
+Definition at line 132 of file Library.\-cs.
 
 
 
-References Yarn.\-Instruction.\-operand\-A, Yarn.\-Instruction.\-operand\-B, and Yarn.\-Instruction.\-operation.
+References Yarn.\-Library.\-functions.
 
 
 \begin{DoxyCode}
-275         \{
-276 
-277             \textcolor{comment}{// Labels are easy: just dump out the name}
-278             \textcolor{keywordflow}{if} (\hyperlink{a00121_a566bf5f7198cc353ea5c3710cb3a31cb}{operation} == \hyperlink{a00053_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label)
-279             \{
-280                 \textcolor{keywordflow}{return} \hyperlink{a00121_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} + \textcolor{stringliteral}{":"};
-281             \}
-282 
-283             \textcolor{comment}{// Convert the operands to strings}
-284             var opAString = \hyperlink{a00121_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} != null ? Convert.ToString(\hyperlink{a00121_ab5d386faa0d3dbc23db80f8e62706afd}{operandA}, 
-      CultureInfo.InvariantCulture) : \textcolor{stringliteral}{""};
-285             var opBString = \hyperlink{a00121_a56348c6fe7eb919b7277afc06e5b224a}{operandB} != null ? Convert.ToString(\hyperlink{a00121_a56348c6fe7eb919b7277afc06e5b224a}{operandB}, 
-      CultureInfo.InvariantCulture) : \textcolor{stringliteral}{""};
-286 
-287             \textcolor{comment}{// Generate a comment, if the instruction warrants it}
-288             \textcolor{keywordtype}{string} comment = \textcolor{stringliteral}{""};
-289 
-290             \textcolor{comment}{// Stack manipulation comments}
-291             var pops = 0;
-292             var pushes = 0;
-293 
-294             \textcolor{keywordflow}{switch} (\hyperlink{a00121_a566bf5f7198cc353ea5c3710cb3a31cb}{operation})
-295             \{
-296 
-297                 \textcolor{comment}{// These operations all push a single value to the stack}
-298                 \textcolor{keywordflow}{case} ByteCode.PushBool:
-299                 \textcolor{keywordflow}{case} ByteCode.PushNull:
-300                 \textcolor{keywordflow}{case} ByteCode.PushNumber:
-301                 \textcolor{keywordflow}{case} ByteCode.PushString:
-302                 \textcolor{keywordflow}{case} ByteCode.PushVariable:
-303                 \textcolor{keywordflow}{case} ByteCode.ShowOptions:
-304                     pushes = 1;
-305                     \textcolor{keywordflow}{break};
-306 
-307                 \textcolor{comment}{// Functions pop 0 or more values, and pop 0 or 1}
-308                 \textcolor{keywordflow}{case} ByteCode.CallFunc:
-309                     var \textcolor{keyword}{function} = l.GetFunction((string)operandA);
-310 
-311                     pops = function.paramCount;
-312 
-313                     \textcolor{keywordflow}{if} (\textcolor{keyword}{function}.returnsValue)
-314                         pushes = 1;
-315 
-316 
-317                     \textcolor{keywordflow}{break};
-318 
-319                 \textcolor{comment}{// Pop always pops a single value}
-320                 \textcolor{keywordflow}{case} ByteCode.Pop:
-321                     pops = 1;
-322                     \textcolor{keywordflow}{break};
-323 
-324                 \textcolor{comment}{// Switching to a different node will always clear the stack}
-325                 \textcolor{keywordflow}{case} ByteCode.RunNode:
-326                     comment += \textcolor{stringliteral}{"Clears stack"};
-327                     \textcolor{keywordflow}{break};
-328             \}
-329 
-330             \textcolor{comment}{// If we had any pushes or pops, report them}
-331 
-332             \textcolor{keywordflow}{if} (pops > 0 && pushes > 0)
-333                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pops \{0\}, Pushes \{1\}"}, pops, pushes
-      );
-334             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pops > 0)
-335                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pops \{0\}"}, pops);
-336             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pushes > 0)
-337                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pushes \{0\}"}, pushes);
-338 
-339             \textcolor{comment}{// String lookup comments}
-340             \textcolor{keywordflow}{switch} (\hyperlink{a00121_a566bf5f7198cc353ea5c3710cb3a31cb}{operation})
-341             \{
-342                 \textcolor{keywordflow}{case} ByteCode.PushString:
-343                 \textcolor{keywordflow}{case} ByteCode.RunLine:
-344                 \textcolor{keywordflow}{case} ByteCode.AddOption:
-345 
-346                     \textcolor{comment}{// Add the string for this option, if it has one}
-347                     \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{string})operandA != null)
-348                     \{
-349                         var text = p.GetString((string)operandA);
-350                         comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\(\backslash\)"\{0\}\(\backslash\)""}, text);
-351                     \}
-352 
-353                     \textcolor{keywordflow}{break};
-354 
-355             \}
-356 
-357             \textcolor{keywordflow}{if} (comment != \textcolor{stringliteral}{""})
-358             \{
-359                 comment = \textcolor{stringliteral}{"; "} + comment;
-360             \}
-361 
-362             \textcolor{keywordflow}{return} string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0,-15\} \{1,-10\} \{2,-10\} \{3, -10\}"}, 
-      operation.ToString(), opAString, opBString, comment);
-363         \}
+132                                                     \{
+133             \textcolor{keywordflow}{if} (\hyperlink{a00121_a2fcc78a63963be5320cf09783b66fab6}{functions}.ContainsKey(name))
+134                 \hyperlink{a00121_a2fcc78a63963be5320cf09783b66fab6}{functions}.Remove (name);
+135         \}
+\end{DoxyCode}
+\hypertarget{a00121_a6c9a1cc3e25b6aae25e210d8a0d68c09}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Function\-Exists@{Function\-Exists}}
+\index{Function\-Exists@{Function\-Exists}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{Function\-Exists}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Library.\-Function\-Exists (
+\begin{DoxyParamCaption}
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)}}\label{a00121_a6c9a1cc3e25b6aae25e210d8a0d68c09}
+
+
+Definition at line 128 of file Library.\-cs.
+
+
+\begin{DoxyCode}
+128                                                 \{
+129             \textcolor{keywordflow}{return} functions.ContainsKey (name);
+130         \}
+\end{DoxyCode}
+\hypertarget{a00121_aacfb1f00ad8aa3921941b8d8af0960e0}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Get\-Function@{Get\-Function}}
+\index{Get\-Function@{Get\-Function}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{Get\-Function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Function\-Info} Yarn.\-Library.\-Get\-Function (
+\begin{DoxyParamCaption}
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)}}\label{a00121_aacfb1f00ad8aa3921941b8d8af0960e0}
+
+
+Definition at line 97 of file Library.\-cs.
+
+
+
+References Yarn.\-Library.\-functions.
+
+
+
+Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
+
+
+\begin{DoxyCode}
+97                                                      \{
+98             \textcolor{keywordflow}{try} \{
+99                 \textcolor{keywordflow}{return} \hyperlink{a00121_a2fcc78a63963be5320cf09783b66fab6}{functions} [name];
+100             \} \textcolor{keywordflow}{catch} (KeyNotFoundException) \{
+101                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (name + \textcolor{stringliteral}{" is not a valid function"});
+102             \}
+103         \}
 \end{DoxyCode}
 
 
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00121_aacfb1f00ad8aa3921941b8d8af0960e0_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00121_ab42a4fd30a72156cafa685f959deef78}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Import\-Library@{Import\-Library}}
+\index{Import\-Library@{Import\-Library}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{Import\-Library}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Import\-Library (
+\begin{DoxyParamCaption}
+\item[{{\bf Library}}]{other\-Library}
+\end{DoxyParamCaption}
+)}}\label{a00121_ab42a4fd30a72156cafa685f959deef78}
+
+
+Definition at line 108 of file Library.\-cs.
+
+
+
+References Yarn.\-Library.\-functions.
+
+
+\begin{DoxyCode}
+108                                                         \{
+109             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} otherLibrary.functions) \{
+110                 \hyperlink{a00121_a2fcc78a63963be5320cf09783b66fab6}{functions} [entry.Key] = entry.Value;
+111             \}
+112         \}
+\end{DoxyCode}
+\hypertarget{a00121_a001ab29d21fe7db10fc9c250914287f9}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Register\-Function@{Register\-Function}}
+\index{Register\-Function@{Register\-Function}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
+\begin{DoxyParamCaption}
+\item[{{\bf Function\-Info}}]{function}
+\end{DoxyParamCaption}
+)}}\label{a00121_a001ab29d21fe7db10fc9c250914287f9}
+
+
+Definition at line 114 of file Library.\-cs.
+
+
+
+References Yarn.\-Library.\-functions.
+
+
+
+Referenced by Yarn.\-Library.\-Register\-Function().
+
+
+\begin{DoxyCode}
+114                                                             \{
+115             \hyperlink{a00121_a2fcc78a63963be5320cf09783b66fab6}{functions} [function.name] = \textcolor{keyword}{function};
+116         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00121_a001ab29d21fe7db10fc9c250914287f9_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00121_a2a698de0b528b2bac17bd85f57d45d4b}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Register\-Function@{Register\-Function}}
+\index{Register\-Function@{Register\-Function}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{parameter\-Count, }
+\item[{{\bf Returning\-Function}}]{implementation}
+\end{DoxyParamCaption}
+)}}\label{a00121_a2a698de0b528b2bac17bd85f57d45d4b}
+
+
+Definition at line 118 of file Library.\-cs.
+
+
+
+References Yarn.\-Library.\-Register\-Function().
+
+
+\begin{DoxyCode}
+118                                                                                                         \{
+119             var info = \textcolor{keyword}{new} FunctionInfo (name, parameterCount, implementation);
+120             \hyperlink{a00121_a001ab29d21fe7db10fc9c250914287f9}{RegisterFunction} (info);
+121         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00121_a2a698de0b528b2bac17bd85f57d45d4b_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00121_a6820eaa082077f16496effbc9041b7ad}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Register\-Function@{Register\-Function}}
+\index{Register\-Function@{Register\-Function}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{parameter\-Count, }
+\item[{{\bf Function}}]{implementation}
+\end{DoxyParamCaption}
+)}}\label{a00121_a6820eaa082077f16496effbc9041b7ad}
+
+
+Definition at line 123 of file Library.\-cs.
+
+
+
+References Yarn.\-Library.\-Register\-Function().
+
+
+\begin{DoxyCode}
+123                                                                                                \{
+124             var info = \textcolor{keyword}{new} FunctionInfo (name, parameterCount, implementation);
+125             \hyperlink{a00121_a001ab29d21fe7db10fc9c250914287f9}{RegisterFunction} (info);
+126         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00121_a6820eaa082077f16496effbc9041b7ad_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
 \subsection{Member Data Documentation}
-\hypertarget{a00121_ab5d386faa0d3dbc23db80f8e62706afd}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operand\-A@{operand\-A}}
-\index{operand\-A@{operand\-A}!Yarn::Instruction@{Yarn\-::\-Instruction}}
-\subsubsection[{operand\-A}]{\setlength{\rightskip}{0pt plus 5cm}object Yarn.\-Instruction.\-operand\-A}}\label{a00121_ab5d386faa0d3dbc23db80f8e62706afd}
+\hypertarget{a00121_a2fcc78a63963be5320cf09783b66fab6}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!functions@{functions}}
+\index{functions@{functions}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{functions}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Function\-Info}$>$ Yarn.\-Library.\-functions = new Dictionary$<$string, {\bf Function\-Info}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00121_a2fcc78a63963be5320cf09783b66fab6}
 
 
-Definition at line 271 of file Program.\-cs.
-
-
-
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction(), and Yarn.\-Instruction.\-To\-String().
-
-\hypertarget{a00121_a56348c6fe7eb919b7277afc06e5b224a}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operand\-B@{operand\-B}}
-\index{operand\-B@{operand\-B}!Yarn::Instruction@{Yarn\-::\-Instruction}}
-\subsubsection[{operand\-B}]{\setlength{\rightskip}{0pt plus 5cm}object Yarn.\-Instruction.\-operand\-B}}\label{a00121_a56348c6fe7eb919b7277afc06e5b224a}
-
-
-Definition at line 272 of file Program.\-cs.
+Definition at line 93 of file Library.\-cs.
 
 
 
-Referenced by Yarn.\-Instruction.\-To\-String().
-
-\hypertarget{a00121_a566bf5f7198cc353ea5c3710cb3a31cb}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operation@{operation}}
-\index{operation@{operation}!Yarn::Instruction@{Yarn\-::\-Instruction}}
-\subsubsection[{operation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Byte\-Code} Yarn.\-Instruction.\-operation}}\label{a00121_a566bf5f7198cc353ea5c3710cb3a31cb}
-
-
-Definition at line 270 of file Program.\-cs.
+Referenced by Yarn.\-Library.\-Deregister\-Function(), Yarn.\-Library.\-Get\-Function(), Yarn.\-Library.\-Import\-Library(), and Yarn.\-Library.\-Register\-Function().
 
 
 
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction(), and Yarn.\-Instruction.\-To\-String().
-
-
-
-The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00317}{Program.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00287}{Library.\-cs}\end{DoxyCompactItemize}

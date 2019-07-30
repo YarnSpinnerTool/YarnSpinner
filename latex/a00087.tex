@@ -1,235 +1,228 @@
-\hypertarget{a00087}{\section{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter Class Reference}
-\label{a00087}\index{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}}
+\hypertarget{a00087}{\section{Yarn.\-Analysis.\-Diagnosis Class Reference}
+\label{a00087}\index{Yarn.\-Analysis.\-Diagnosis@{Yarn.\-Analysis.\-Diagnosis}}
 }
 
 
-Converts a Date\-Time\-Offset to and from a string.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter\-:
+Collaboration diagram for Yarn.\-Analysis.\-Diagnosis\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00527}
+\includegraphics[width=202pt]{a00673}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=220pt]{a00528}
-\end{center}
-\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{a00087_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \{ \hyperlink{a00087_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Severity.\-Error}, 
+\hyperlink{a00087_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Severity.\-Warning}, 
+\hyperlink{a00087_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Severity.\-Note}
+ \}
+\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override object \hyperlink{a00087_aa69835fc086d80a8eabe7ac50cb92f47}{Convert\-From\-String} (\hyperlink{a00180}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00087_a82a8cf4b77600ef49da60deb0c24a708}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual string \hyperlink{a00090_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00180}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00090_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00087_ad3fd818f1be98dc803e5bec959153824}{Diagnosis} (string \hyperlink{a00087_ac7ed070dddd2613c08e7874ea5afb3af}{message}, \hyperlink{a00087_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \hyperlink{a00087_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}, string \hyperlink{a00087_a662aca4ad2af5116c2cf6773daf1a847}{node\-Name}=null, int \hyperlink{a00087_a0bd73f1c684bfd66ae7b6bef8f2972d0}{line\-Number}=-\/1, int \hyperlink{a00087_a658e7fb05555c0f9ab5f80057bdc1408}{column\-Number}=-\/1)
+\item 
+override string \hyperlink{a00087_a4475eb5890c340da5c0012e25c2c86ae}{To\-String} ()
+\item 
+string \hyperlink{a00087_a985dee7ca27aa896332590133606b6a9}{To\-String} (bool show\-Severity)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00087_ac7ed070dddd2613c08e7874ea5afb3af}{message}
+\item 
+string \hyperlink{a00087_a662aca4ad2af5116c2cf6773daf1a847}{node\-Name}
+\item 
+int \hyperlink{a00087_a0bd73f1c684bfd66ae7b6bef8f2972d0}{line\-Number}
+\item 
+int \hyperlink{a00087_a658e7fb05555c0f9ab5f80057bdc1408}{column\-Number}
+\item 
+\hyperlink{a00087_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \hyperlink{a00087_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Converts a Date\-Time\-Offset to and from a string. 
+
+
+Definition at line 7 of file Analyser.\-cs.
 
 
 
-Definition at line 14 of file Date\-Time\-Offset\-Converter.\-cs.
+\subsection{Member Enumeration Documentation}
+\hypertarget{a00087_a227813cbc8fa03c3448a612ffc909d1c}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Severity@{Severity}}
+\index{Severity@{Severity}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{Severity}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Analysis.\-Diagnosis.\-Severity}}}\label{a00087_a227813cbc8fa03c3448a612ffc909d1c}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Error@{Error}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Error@{Error}}\item[{\em 
+\hypertarget{a00087_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Error}\label{a00087_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}
+}]\index{Warning@{Warning}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Warning@{Warning}}\item[{\em 
+\hypertarget{a00087_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning}\label{a00087_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}
+}]\index{Note@{Note}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Note@{Note}}\item[{\em 
+\hypertarget{a00087_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Note}\label{a00087_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}
+}]\end{description}
+\end{Desc}
 
 
-
-\subsection{Member Function Documentation}
-\hypertarget{a00087_a82a8cf4b77600ef49da60deb0c24a708}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter.\-Can\-Convert\-From (
-\begin{DoxyParamCaption}
-\item[{Type}]{type}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00087_a82a8cf4b77600ef49da60deb0c24a708}
-
-
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00090_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
-
-
-
-Definition at line 49 of file Date\-Time\-Offset\-Converter.\-cs.
+Definition at line 14 of file Analyser.\-cs.
 
 
 \begin{DoxyCode}
-50         \{
-51             \textcolor{comment}{// We only care about strings.}
-52             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-53         \}
+14                              \{
+15             \hyperlink{a00087_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Error},
+16             \hyperlink{a00087_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning},
+17             \hyperlink{a00087_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Note}
+18         \}
 \end{DoxyCode}
-\hypertarget{a00090_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00087_ad3fd818f1be98dc803e5bec959153824}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Diagnosis@{Diagnosis}}
+\index{Diagnosis@{Diagnosis}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{Diagnosis}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Analysis.\-Diagnosis.\-Diagnosis (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{string}]{message, }
+\item[{{\bf Severity}}]{severity, }
+\item[{string}]{node\-Name = {\ttfamily null}, }
+\item[{int}]{line\-Number = {\ttfamily -\/1}, }
+\item[{int}]{column\-Number = {\ttfamily -\/1}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00090_acb65bd8c8199d88d5b1629ae35d18514}
+)}}\label{a00087_ad3fd818f1be98dc803e5bec959153824}
 
 
-Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00125_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00101_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
-
-
-Definition at line 69 of file Default\-Type\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-70         \{
-71             \textcolor{comment}{// We only care about strings.}
-72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-73         \}
-\end{DoxyCode}
-\hypertarget{a00087_aa69835fc086d80a8eabe7ac50cb92f47}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter.\-Convert\-From\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{string}]{text}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00087_aa69835fc086d80a8eabe7ac50cb92f47}
-
-
-Converts the string to an object. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em text} & The string to convert to an object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The object created from the string.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00090_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
-
-
-
-Definition at line 22 of file Date\-Time\-Offset\-Converter.\-cs.
-
-
-
-References Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info.
-
-
-\begin{DoxyCode}
-23         \{
-24             \textcolor{keywordflow}{if}( text == null )
-25             \{
-26                 \textcolor{keywordflow}{return} base.ConvertFromString( options, null );
-27             \}
-28 
-29             \textcolor{keywordflow}{if}( text.Trim().Length == 0 )
-30             \{
-31                 \textcolor{keywordflow}{return} DateTimeOffset.MinValue;
-32             \}
-33 
-34             var formatProvider = (IFormatProvider)options.CultureInfo.GetFormat( typeof( DateTimeFormatInfo
-       ) ) ?? options.CultureInfo;
-35             var dateTimeStyle = options.DateTimeStyle ?? DateTimeStyles.None;
-36 
-37             \textcolor{keywordflow}{return} string.IsNullOrEmpty( options.Format )
-38                 ? DateTimeOffset.Parse( text, formatProvider, dateTimeStyle )
-39                 : DateTimeOffset.ParseExact( text, options.Format, formatProvider, dateTimeStyle );
-40         \}
-\end{DoxyCode}
-\hypertarget{a00090_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{object}]{value}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00090_a36cb2f9b24f15a671293f3a722324c27}
-
-
-Converts the object to a string. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em value} & The object to convert to a string.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The string representation of the object.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00125_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00144_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00101_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
-
-
-Definition at line 21 of file Default\-Type\-Converter.\-cs.
+Definition at line 21 of file Analyser.\-cs.
 
 
 \begin{DoxyCode}
 22         \{
-23             \textcolor{keywordflow}{if}( value == null )
-24             \{
-25                 \textcolor{keywordflow}{return} string.Empty;
-26             \}
-27 
-28             var formattable = value as IFormattable;
-29             \textcolor{keywordflow}{if}( formattable != null )
-30             \{
-31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
-32             \}
-33 
-34             \textcolor{keywordflow}{return} value.ToString();
-35         \}
+23             this.message = \hyperlink{a00087_ac7ed070dddd2613c08e7874ea5afb3af}{message};
+24             this.nodeName = \hyperlink{a00087_a662aca4ad2af5116c2cf6773daf1a847}{nodeName};
+25             this.lineNumber = \hyperlink{a00087_a0bd73f1c684bfd66ae7b6bef8f2972d0}{lineNumber};
+26             this.columnNumber = \hyperlink{a00087_a658e7fb05555c0f9ab5f80057bdc1408}{columnNumber};
+27             this.severity = \hyperlink{a00087_ad90ffa839ce0f568a099bb37b4a6c4da}{severity};
+28         \}
 \end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00087_a4475eb5890c340da5c0012e25c2c86ae}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Analysis.\-Diagnosis.\-To\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00087_a4475eb5890c340da5c0012e25c2c86ae}
+
+
+Definition at line 30 of file Analyser.\-cs.
+
+
+\begin{DoxyCode}
+31         \{
+32             \textcolor{keywordflow}{return} \hyperlink{a00087_a4475eb5890c340da5c0012e25c2c86ae}{ToString} (showSeverity: \textcolor{keyword}{false});
+33         \}
+\end{DoxyCode}
+\hypertarget{a00087_a985dee7ca27aa896332590133606b6a9}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-To\-String (
+\begin{DoxyParamCaption}
+\item[{bool}]{show\-Severity}
+\end{DoxyParamCaption}
+)}}\label{a00087_a985dee7ca27aa896332590133606b6a9}
+
+
+Definition at line 35 of file Analyser.\-cs.
+
+
+\begin{DoxyCode}
+36         \{
+37 
+38             \textcolor{keywordtype}{string} contextLabel = \textcolor{stringliteral}{""};
+39 
+40             \textcolor{keywordflow}{if} (showSeverity) \{
+41                 \textcolor{keywordflow}{switch} (\hyperlink{a00087_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}) \{
+42                 \textcolor{keywordflow}{case} Severity.Error:
+43                     contextLabel = \textcolor{stringliteral}{"ERROR: "};
+44                     \textcolor{keywordflow}{break};
+45                 \textcolor{keywordflow}{case} Severity.Warning:
+46                     contextLabel = \textcolor{stringliteral}{"WARNING: "};
+47                     \textcolor{keywordflow}{break};
+48                 \textcolor{keywordflow}{case} Severity.Note:
+49                     contextLabel = \textcolor{stringliteral}{"Note: "};
+50                     \textcolor{keywordflow}{break};
+51                 \textcolor{keywordflow}{default}:
+52                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException ();
+53                 \}
+54             \}
+55 
+56             \textcolor{keywordflow}{if} (this.\hyperlink{a00087_a662aca4ad2af5116c2cf6773daf1a847}{nodeName} != null) \{
+57 
+58                 contextLabel += this.nodeName;
+59                 \textcolor{keywordflow}{if} (this.\hyperlink{a00087_a0bd73f1c684bfd66ae7b6bef8f2972d0}{lineNumber} != -1) \{
+60                     contextLabel += string.Format (CultureInfo.CurrentCulture, \textcolor{stringliteral}{": \{0\}"}, this.lineNumber);
+61 
+62                     \textcolor{keywordflow}{if} (this.\hyperlink{a00087_a658e7fb05555c0f9ab5f80057bdc1408}{columnNumber} != -1) \{
+63                         contextLabel += string.Format (CultureInfo.CurrentCulture, \textcolor{stringliteral}{":\{0\}"}, 
+      this.columnNumber);
+64                     \}
+65                 \}
+66             \}
+67 
+68             \textcolor{keywordtype}{string} \hyperlink{a00087_ac7ed070dddd2613c08e7874ea5afb3af}{message};
+69 
+70             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{string}.IsNullOrEmpty(contextLabel)) \{
+71                 message = this.message;
+72             \} \textcolor{keywordflow}{else} \{
+73                 message = string.Format (CultureInfo.CurrentCulture, \textcolor{stringliteral}{"\{0\}: \{1\}"}, contextLabel, this.message
+      );
+74             \}
+75 
+76             \textcolor{keywordflow}{return} \hyperlink{a00087_ac7ed070dddd2613c08e7874ea5afb3af}{message};
+77         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00087_a658e7fb05555c0f9ab5f80057bdc1408}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!column\-Number@{column\-Number}}
+\index{column\-Number@{column\-Number}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{column\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Analysis.\-Diagnosis.\-column\-Number}}\label{a00087_a658e7fb05555c0f9ab5f80057bdc1408}
+
+
+Definition at line 12 of file Analyser.\-cs.
+
+\hypertarget{a00087_a0bd73f1c684bfd66ae7b6bef8f2972d0}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Analysis.\-Diagnosis.\-line\-Number}}\label{a00087_a0bd73f1c684bfd66ae7b6bef8f2972d0}
+
+
+Definition at line 11 of file Analyser.\-cs.
+
+\hypertarget{a00087_ac7ed070dddd2613c08e7874ea5afb3af}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!message@{message}}
+\index{message@{message}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{message}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-message}}\label{a00087_ac7ed070dddd2613c08e7874ea5afb3af}
+
+
+Definition at line 9 of file Analyser.\-cs.
+
+\hypertarget{a00087_a662aca4ad2af5116c2cf6773daf1a847}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!node\-Name@{node\-Name}}
+\index{node\-Name@{node\-Name}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-node\-Name}}\label{a00087_a662aca4ad2af5116c2cf6773daf1a847}
+
+
+Definition at line 10 of file Analyser.\-cs.
+
+\hypertarget{a00087_ad90ffa839ce0f568a099bb37b4a6c4da}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!severity@{severity}}
+\index{severity@{severity}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{severity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Severity} Yarn.\-Analysis.\-Diagnosis.\-severity}}\label{a00087_ad90ffa839ce0f568a099bb37b4a6c4da}
+
+
+Definition at line 19 of file Analyser.\-cs.
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00268}{Date\-Time\-Offset\-Converter.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00279}{Analyser.\-cs}\end{DoxyCompactItemize}

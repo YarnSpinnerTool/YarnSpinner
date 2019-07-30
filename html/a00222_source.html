@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap`1.cs Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,112 +105,50 @@ $(document).ready(function(){initNavTree('a00222_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">CsvClassMap`1.cs</div>  </div>
+<div class="title">ICsvFactory.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00222.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#if !NET_2_0</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">using</span> System.Collections;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">using</span> System.Linq;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">using</span> System.Linq.Expressions;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">using</span> System.Reflection;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">using</span> CsvHelper.TypeConversion;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span>CsvHelper.Configuration</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00063.html">   20</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class </span><a class="code" href="a00062.html">CsvClassMap</a>&lt;T&gt; : <a class="code" href="a00062.html">CsvClassMap</a></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    {</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="a00063.html#a983d792ae80f888958037eea306b143a">   26</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="a00063.html#a983d792ae80f888958037eea306b143a">ConstructUsing</a>( Expression&lt;Func&lt;T&gt;&gt; expression )</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            Constructor = ReflectionHelper.GetConstructor( expression );</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        }</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System.IO;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using</span> CsvHelper.Configuration;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>CsvHelper</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="a00107.html">   14</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">interface </span><a class="code" href="a00107.html">ICsvFactory</a></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="a00108.html">ICsvParser</a> <a class="code" href="a00107.html#a9b68cbd7292c76037959d51ecc7c374d">CreateParser</a>( TextReader reader, <a class="code" href="a00060.html">CsvConfiguration</a> configuration );</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="a00108.html">ICsvParser</a> <a class="code" href="a00107.html#a9b68cbd7292c76037959d51ecc7c374d">CreateParser</a>( TextReader reader );</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="a00063.html#aa3395a5f657f0dd7c8fe6a0fbf5a03cb">   36</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00072.html">CsvPropertyMap</a> <a class="code" href="a00063.html#aa3395a5f657f0dd7c8fe6a0fbf5a03cb">Map</a>( Expression&lt;Func&lt;T, object&gt;&gt; expression )</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            var <span class="keyword">property</span> = ReflectionHelper.GetProperty( expression );</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            var existingMap = PropertyMaps.SingleOrDefault( m =&gt;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                m.Data.Property == <span class="keyword">property</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                || m.Data.Property.Name == property.Name</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                &amp;&amp; ( m.Data.Property.DeclaringType.GetTypeInfo().IsAssignableFrom( property.DeclaringType.GetTypeInfo() ) || property.DeclaringType.IsAssignableFrom( m.Data.Property.DeclaringType ) ) );</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <span class="keywordflow">if</span>( existingMap != null )</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="keywordflow">return</span> existingMap;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            var propertyMap = <span class="keyword">new</span> <a class="code" href="a00072.html">CsvPropertyMap</a>( property );</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            propertyMap.Data.Index = GetMaxIndex() + 1;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            PropertyMaps.Add( propertyMap );</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="a00109.html">ICsvReader</a> <a class="code" href="a00107.html#ade2a6e776fad6aa36c201901d6427058">CreateReader</a>( TextReader reader, <a class="code" href="a00060.html">CsvConfiguration</a> configuration );</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="a00109.html">ICsvReader</a> <a class="code" href="a00107.html#ade2a6e776fad6aa36c201901d6427058">CreateReader</a>( TextReader reader );</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="a00109.html">ICsvReader</a> <a class="code" href="a00107.html#ade2a6e776fad6aa36c201901d6427058">CreateReader</a>( <a class="code" href="a00108.html">ICsvParser</a> parser );</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordflow">return</span> propertyMap;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="a00063.html#a20365b78c96ac29e3261bcde30e0d746">   63</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00077.html">CsvPropertyReferenceMap</a> References&lt;TClassMap&gt;( Expression&lt;Func&lt;T, object&gt;&gt; expression, params <span class="keywordtype">object</span>[] constructorArgs ) where TClassMap : <a class="code" href="a00062.html">CsvClassMap</a></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            var <span class="keyword">property</span> = ReflectionHelper.GetProperty( expression );</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            var existingMap = ReferenceMaps.SingleOrDefault( m =&gt;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                m.Data.Property == <span class="keyword">property</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                || m.Data.Property.Name == property.Name</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                &amp;&amp; ( m.Data.Property.DeclaringType.IsAssignableFrom( property.DeclaringType ) || property.DeclaringType.IsAssignableFrom( m.Data.Property.DeclaringType ) ) );</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">if</span>( existingMap != null )</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                <span class="keywordflow">return</span> existingMap;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            var map = ReflectionHelper.CreateInstance&lt;TClassMap&gt;( constructorArgs );</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            map.CreateMap();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            map.ReIndex( GetMaxIndex() + 1 );</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            var reference = <span class="keyword">new</span> <a class="code" href="a00077.html">CsvPropertyReferenceMap</a>( property, map );</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            ReferenceMaps.Add( reference );</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="keywordflow">return</span> reference;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        }</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        [Obsolete( <span class="stringliteral">&quot;This method is deprecated and will be removed in the next major release. Use References&lt;TClassMap&gt;( Expression&lt;Func&lt;T, object&gt;&gt; expression, params object[] constructorArgs ) instead.&quot;</span>, <span class="keyword">false</span> )]</div>
-<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="a00063.html#a68caeee244e978110a2acae6d3042fc3">   93</a></span>&#160;        <span class="keyword">protected</span> <span class="keyword">virtual</span> <a class="code" href="a00077.html">CsvPropertyReferenceMap</a> <a class="code" href="a00063.html#a68caeee244e978110a2acae6d3042fc3">References</a>( Type type, Expression&lt;Func&lt;T, object&gt;&gt; expression, params <span class="keywordtype">object</span>[] constructorArgs )</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            var <span class="keyword">property</span> = ReflectionHelper.GetProperty( expression );</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            var existingMap = ReferenceMaps.SingleOrDefault( m =&gt;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                m.Data.Property == <span class="keyword">property</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                || m.Data.Property.Name == property.Name</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                &amp;&amp; ( m.Data.Property.DeclaringType.IsAssignableFrom( property.DeclaringType ) || property.DeclaringType.IsAssignableFrom( m.Data.Property.DeclaringType ) ) );</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <span class="keywordflow">if</span>( existingMap != null )</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            {</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                <span class="keywordflow">return</span> existingMap;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            }</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            var map = (<a class="code" href="a00062.html">CsvClassMap</a>)<a class="code" href="a00157.html">ReflectionHelper</a>.<a class="code" href="a00157.html#a9b8690ff760f41b0a7ef46626949c777">CreateInstance</a>( type, constructorArgs );</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            map.CreateMap();</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            map.ReIndex( GetMaxIndex() + 1 );</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            var reference = <span class="keyword">new</span> <a class="code" href="a00077.html">CsvPropertyReferenceMap</a>( property, map );</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            ReferenceMaps.Add( reference );</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <span class="keywordflow">return</span> reference;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        }</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    }</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#endif // !NET_2_0</span></div>
-<div class="ttc" id="a00063_html_a68caeee244e978110a2acae6d3042fc3"><div class="ttname"><a href="a00063.html#a68caeee244e978110a2acae6d3042fc3">CsvHelper.Configuration.CsvClassMap&lt; T &gt;.References</a></div><div class="ttdeci">virtual CsvPropertyReferenceMap References(Type type, Expression&lt; Func&lt; T, object &gt;&gt; expression, params object[] constructorArgs)</div><div class="ttdoc">Maps a property to another class map. </div><div class="ttdef"><b>Definition:</b> <a href="a00222_source.html#l00093">CsvClassMap`1.cs:93</a></div></div>
-<div class="ttc" id="a00062_html"><div class="ttname"><a href="a00062.html">CsvHelper.Configuration.CsvClassMap</a></div><div class="ttdoc">Maps class properties to CSV fields. </div><div class="ttdef"><b>Definition:</b> <a href="a00221_source.html#l00019">CsvClassMap.cs:19</a></div></div>
-<div class="ttc" id="a00157_html_a9b8690ff760f41b0a7ef46626949c777"><div class="ttname"><a href="a00157.html#a9b8690ff760f41b0a7ef46626949c777">CsvHelper.ReflectionHelper.CreateInstance</a></div><div class="ttdeci">static object CreateInstance(Type type, params object[] args)</div><div class="ttdoc">Creates an instance of the specified type. </div><div class="ttdef"><b>Definition:</b> <a href="a00261_source.html#l00042">ReflectionHelper.cs:42</a></div></div>
-<div class="ttc" id="a00063_html_a983d792ae80f888958037eea306b143a"><div class="ttname"><a href="a00063.html#a983d792ae80f888958037eea306b143a">CsvHelper.Configuration.CsvClassMap&lt; T &gt;.ConstructUsing</a></div><div class="ttdeci">virtual void ConstructUsing(Expression&lt; Func&lt; T &gt;&gt; expression)</div><div class="ttdoc">Constructs the row object using the given expression. </div><div class="ttdef"><b>Definition:</b> <a href="a00222_source.html#l00026">CsvClassMap`1.cs:26</a></div></div>
-<div class="ttc" id="a00157_html"><div class="ttname"><a href="a00157.html">CsvHelper.ReflectionHelper</a></div><div class="ttdoc">Common reflection tasks. </div><div class="ttdef"><b>Definition:</b> <a href="a00261_source.html#l00019">ReflectionHelper.cs:19</a></div></div>
-<div class="ttc" id="a00072_html"><div class="ttname"><a href="a00072.html">CsvHelper.Configuration.CsvPropertyMap</a></div><div class="ttdoc">Mapping info for a property to a CSV field. </div><div class="ttdef"><b>Definition:</b> <a href="a00226_source.html#l00021">CsvPropertyMap.cs:21</a></div></div>
-<div class="ttc" id="a00063_html_aa3395a5f657f0dd7c8fe6a0fbf5a03cb"><div class="ttname"><a href="a00063.html#aa3395a5f657f0dd7c8fe6a0fbf5a03cb">CsvHelper.Configuration.CsvClassMap&lt; T &gt;.Map</a></div><div class="ttdeci">virtual CsvPropertyMap Map(Expression&lt; Func&lt; T, object &gt;&gt; expression)</div><div class="ttdoc">Maps a property to a CSV field. </div><div class="ttdef"><b>Definition:</b> <a href="a00222_source.html#l00036">CsvClassMap`1.cs:36</a></div></div>
-<div class="ttc" id="a00077_html"><div class="ttname"><a href="a00077.html">CsvHelper.Configuration.CsvPropertyReferenceMap</a></div><div class="ttdoc">Mapping info for a reference property mapping to a class. </div><div class="ttdef"><b>Definition:</b> <a href="a00231_source.html#l00014">CsvPropertyReferenceMap.cs:14</a></div></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="a00112.html">ICsvWriter</a> <a class="code" href="a00107.html#ae77852d2702bc2caad76c045a538933e">CreateWriter</a>( TextWriter writer, <a class="code" href="a00060.html">CsvConfiguration</a> configuration );</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <a class="code" href="a00112.html">ICsvWriter</a> <a class="code" href="a00107.html#ae77852d2702bc2caad76c045a538933e">CreateWriter</a>( TextWriter writer );</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
+<div class="ttc" id="a00107_html_ae77852d2702bc2caad76c045a538933e"><div class="ttname"><a href="a00107.html#ae77852d2702bc2caad76c045a538933e">CsvHelper.ICsvFactory.CreateWriter</a></div><div class="ttdeci">ICsvWriter CreateWriter(TextWriter writer, CsvConfiguration configuration)</div><div class="ttdoc">Creates an ICsvWriter. </div></div>
+<div class="ttc" id="a00109_html"><div class="ttname"><a href="a00109.html">CsvHelper.ICsvReader</a></div><div class="ttdoc">Defines methods used to read parsed data from a CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00224_source.html#l00014">ICsvReader.cs:14</a></div></div>
+<div class="ttc" id="a00112_html"><div class="ttname"><a href="a00112.html">CsvHelper.ICsvWriter</a></div><div class="ttdoc">Defines methods used to write to a CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00227_source.html#l00015">ICsvWriter.cs:15</a></div></div>
+<div class="ttc" id="a00107_html_a9b68cbd7292c76037959d51ecc7c374d"><div class="ttname"><a href="a00107.html#a9b68cbd7292c76037959d51ecc7c374d">CsvHelper.ICsvFactory.CreateParser</a></div><div class="ttdeci">ICsvParser CreateParser(TextReader reader, CsvConfiguration configuration)</div><div class="ttdoc">Creates an ICsvParser. </div></div>
+<div class="ttc" id="a00108_html"><div class="ttname"><a href="a00108.html">CsvHelper.ICsvParser</a></div><div class="ttdoc">Defines methods used the parse a CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00223_source.html#l00013">ICsvParser.cs:13</a></div></div>
+<div class="ttc" id="a00060_html"><div class="ttname"><a href="a00060.html">CsvHelper.Configuration.CsvConfiguration</a></div><div class="ttdoc">Configuration used for reading and writing CSV data. </div><div class="ttdef"><b>Definition:</b> <a href="a00198_source.html#l00018">CsvConfiguration.cs:18</a></div></div>
+<div class="ttc" id="a00107_html_ade2a6e776fad6aa36c201901d6427058"><div class="ttname"><a href="a00107.html#ade2a6e776fad6aa36c201901d6427058">CsvHelper.ICsvFactory.CreateReader</a></div><div class="ttdeci">ICsvReader CreateReader(TextReader reader, CsvConfiguration configuration)</div><div class="ttdoc">Creates an ICsvReader. </div></div>
+<div class="ttc" id="a00107_html"><div class="ttname"><a href="a00107.html">CsvHelper.ICsvFactory</a></div><div class="ttdoc">Defines methods used to create CsvHelper classes. </div><div class="ttdef"><b>Definition:</b> <a href="a00222_source.html#l00014">ICsvFactory.cs:14</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_3401b88f0a1c00c4409faa11193eadf6.html">Configuration</a></li><li class="navelem"><a class="el" href="a00222.html">CsvClassMap`1.cs</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:22 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00222.html">ICsvFactory.cs</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:44 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

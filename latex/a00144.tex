@@ -1,114 +1,63 @@
-\hypertarget{a00144}{\section{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter Class Reference}
-\label{a00144}\index{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}}
+\hypertarget{a00144}{\section{Csv\-Helper.\-Type\-Conversion.\-Single\-Converter Class Reference}
+\label{a00144}\index{Csv\-Helper.\-Type\-Conversion.\-Single\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Single\-Converter}}
 }
 
 
-Converts a Nullable to and from a string.  
+Converts a Float to and from a string.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter\-:
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Single\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00560}
+\includegraphics[width=220pt]{a00534}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter\-:
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Single\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00561}
+\includegraphics[width=220pt]{a00535}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00144_af18c9435dee98900eb8ade933c62951d}{Nullable\-Converter} (Type type)
-\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{a00144}{Nullable\-Converter} for the given Nullable\{\-T\} Type. \end{DoxyCompactList}\item 
-override object \hyperlink{a00144_addb6dc12d4927204cd2349202db63e74}{Convert\-From\-String} (\hyperlink{a00180}{Type\-Converter\-Options} options, string text)
+override object \hyperlink{a00144_a5c8a692325c19551246a589e9ca4a1e1}{Convert\-From\-String} (\hyperlink{a00156}{Type\-Converter\-Options} options, string text)
 \begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
-override string \hyperlink{a00144_a7205cdb61d2d119582958232b3e63109}{Convert\-To\-String} (\hyperlink{a00180}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00144_ab9761a9f96be2b41103bb1313611d6f9}{Can\-Convert\-From} (Type type)
+override bool \hyperlink{a00144_a49bc7b2d2d399343a21b691a026dbf99}{Can\-Convert\-From} (System.\-Type type)
 \begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00090_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
+virtual string \hyperlink{a00084_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00156}{Type\-Converter\-Options} options, object value)
+\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00084_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00084_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
 \begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-Type \hyperlink{a00144_add17b913ac5a45cc33ca0fbf10b6603d}{Nullable\-Type}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the type of the nullable. \end{DoxyCompactList}\item 
-Type \hyperlink{a00144_ae6f7f4c0eb8447c7440f01b118e884cf}{Underlying\-Type}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the underlying type of the nullable. \end{DoxyCompactList}\item 
-\hyperlink{a00125}{I\-Type\-Converter} \hyperlink{a00144_aed8934af11e74459f7d37fcf577480a1}{Underlying\-Type\-Converter}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the type converter for the underlying type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Converts a Nullable to and from a string. 
+Converts a Float to and from a string. 
 
 
 
-Definition at line 13 of file Nullable\-Converter.\-cs.
+Definition at line 12 of file Single\-Converter.\-cs.
 
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00144_af18c9435dee98900eb8ade933c62951d}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Nullable\-Converter@{Nullable\-Converter}}
-\index{Nullable\-Converter@{Nullable\-Converter}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
-\subsubsection[{Nullable\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Nullable\-Converter (
-\begin{DoxyParamCaption}
-\item[{Type}]{type}
-\end{DoxyParamCaption}
-)}}\label{a00144_af18c9435dee98900eb8ade933c62951d}
-
-
-Creates a new \hyperlink{a00144}{Nullable\-Converter} for the given Nullable\{\-T\} Type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The nullable type.\\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyExceptions}{Exceptions}
-{\em System.\-Argument\-Exception} & type is not a nullable type.\\
-\hline
-\end{DoxyExceptions}
-
-
-Definition at line 44 of file Nullable\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-45         \{
-46             \hyperlink{a00144_add17b913ac5a45cc33ca0fbf10b6603d}{NullableType} = type;
-47             \hyperlink{a00144_ae6f7f4c0eb8447c7440f01b118e884cf}{UnderlyingType} = Nullable.GetUnderlyingType( type );
-48             \textcolor{keywordflow}{if}( \hyperlink{a00144_ae6f7f4c0eb8447c7440f01b118e884cf}{UnderlyingType} == null )
-49             \{
-50                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException( \textcolor{stringliteral}{"type is not a nullable type."} );
-51             \}
-52 
-53             \hyperlink{a00144_aed8934af11e74459f7d37fcf577480a1}{UnderlyingTypeConverter} = TypeConverterFactory.GetConverter( 
-      \hyperlink{a00144_ae6f7f4c0eb8447c7440f01b118e884cf}{UnderlyingType} );
-54         \}
-\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00144_ab9761a9f96be2b41103bb1313611d6f9}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00144_a49bc7b2d2d399343a21b691a026dbf99}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::SingleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Single\-Converter.\-Can\-Convert\-From (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{System.\-Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00144_ab9761a9f96be2b41103bb1313611d6f9}
+)}}\label{a00144_a49bc7b2d2d399343a21b691a026dbf99}
 
 
 Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
@@ -123,26 +72,61 @@ Determines whether this instance \mbox{[}can convert from\mbox{]} the specified 
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{a00090_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
-
-
-
-Definition at line 90 of file Nullable\-Converter.\-cs.
+Definition at line 40 of file Single\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-91         \{
-92             \textcolor{comment}{// We only care about strings.}
-93             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-94         \}
+41         \{
+42             \textcolor{comment}{// We only care about strings.}
+43             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+44         \}
 \end{DoxyCode}
-\hypertarget{a00090_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
+\hypertarget{a00084_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::SingleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00084_a470d21adaa704eb281250dbd112ff91a}
+
+
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00117_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00133_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00043_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00094_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00095_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00081_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00080_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00044_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00154_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
+
+
+
+Definition at line 55 of file Default\-Type\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+56         \{
+57             \textcolor{comment}{// The default convert doesn't know how to}
+58             \textcolor{comment}{// convert from any type.}
+59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+60         \}
+\end{DoxyCode}
+\hypertarget{a00084_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
+\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::SingleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}}
 \subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
 \begin{DoxyParamCaption}
 \item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00090_acb65bd8c8199d88d5b1629ae35d18514}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00084_acb65bd8c8199d88d5b1629ae35d18514}
 
 
 Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
@@ -157,11 +141,11 @@ Determines whether this instance \mbox{[}can convert to\mbox{]} the specified ty
 \end{DoxyReturn}
 
 
-Implements \hyperlink{a00125_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Implements \hyperlink{a00117_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-Reimplemented in \hyperlink{a00101_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+Reimplemented in \hyperlink{a00095_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
 
 
 
@@ -174,14 +158,14 @@ Definition at line 69 of file Default\-Type\-Converter.\-cs.
 72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
 73         \}
 \end{DoxyCode}
-\hypertarget{a00144_addb6dc12d4927204cd2349202db63e74}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Convert\-From\-String (
+\hypertarget{a00144_a5c8a692325c19551246a589e9ca4a1e1}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
+\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::SingleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}}
+\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Single\-Converter.\-Convert\-From\-String (
 \begin{DoxyParamCaption}
 \item[{{\bf Type\-Converter\-Options}}]{options, }
 \item[{string}]{text}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00144_addb6dc12d4927204cd2349202db63e74}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00144_a5c8a692325c19551246a589e9ca4a1e1}
 
 
 Converts the string to an object. 
@@ -198,31 +182,38 @@ The object created from the string.
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{a00090_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Reimplemented from \hyperlink{a00084_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
 
 
 
-Definition at line 62 of file Nullable\-Converter.\-cs.
+Definition at line 20 of file Single\-Converter.\-cs.
+
+
+
+References Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info.
 
 
 \begin{DoxyCode}
-63         \{
-64             \textcolor{keywordflow}{if}( \textcolor{keywordtype}{string}.IsNullOrEmpty( text ) )
-65             \{
-66                 \textcolor{keywordflow}{return} null;
-67             \}
-68 
-69             \textcolor{keywordflow}{return} UnderlyingTypeConverter.ConvertFromString( options, text );
-70         \}
+21         \{
+22             var numberStyle = options.NumberStyle ?? NumberStyles.Float;
+23 
+24             \textcolor{keywordtype}{float} f;
+25             \textcolor{keywordflow}{if}( \textcolor{keywordtype}{float}.TryParse( text, numberStyle, options.CultureInfo, out f ) )
+26             \{
+27                 \textcolor{keywordflow}{return} f;
+28             \}
+29 
+30             \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
+31         \}
 \end{DoxyCode}
-\hypertarget{a00144_a7205cdb61d2d119582958232b3e63109}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Convert\-To\-String (
+\hypertarget{a00084_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
+\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::SingleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}}
+\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
 \begin{DoxyParamCaption}
 \item[{{\bf Type\-Converter\-Options}}]{options, }
 \item[{object}]{value}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00144_a7205cdb61d2d119582958232b3e63109}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00084_a36cb2f9b24f15a671293f3a722324c27}
 
 
 Converts the object to a string. 
@@ -239,56 +230,35 @@ The string representation of the object.
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{a00090_a36cb2f9b24f15a671293f3a722324c27}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Implements \hyperlink{a00117_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-Definition at line 78 of file Nullable\-Converter.\-cs.
+Reimplemented in \hyperlink{a00133_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00095_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+
+
+Definition at line 21 of file Default\-Type\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-79         \{
-80             \textcolor{keywordflow}{return} UnderlyingTypeConverter.ConvertToString( options, value );
-81         \}
+22         \{
+23             \textcolor{keywordflow}{if}( value == null )
+24             \{
+25                 \textcolor{keywordflow}{return} string.Empty;
+26             \}
+27 
+28             var formattable = value as IFormattable;
+29             \textcolor{keywordflow}{if}( formattable != null )
+30             \{
+31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
+32             \}
+33 
+34             \textcolor{keywordflow}{return} value.ToString();
+35         \}
 \end{DoxyCode}
-
-
-\subsection{Property Documentation}
-\hypertarget{a00144_add17b913ac5a45cc33ca0fbf10b6603d}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Nullable\-Type@{Nullable\-Type}}
-\index{Nullable\-Type@{Nullable\-Type}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
-\subsubsection[{Nullable\-Type}]{\setlength{\rightskip}{0pt plus 5cm}Type Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Nullable\-Type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00144_add17b913ac5a45cc33ca0fbf10b6603d}
-
-
-Gets the type of the nullable. 
-
-The type of the nullable. 
-
-Definition at line 21 of file Nullable\-Converter.\-cs.
-
-\hypertarget{a00144_ae6f7f4c0eb8447c7440f01b118e884cf}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Underlying\-Type@{Underlying\-Type}}
-\index{Underlying\-Type@{Underlying\-Type}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
-\subsubsection[{Underlying\-Type}]{\setlength{\rightskip}{0pt plus 5cm}Type Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Underlying\-Type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00144_ae6f7f4c0eb8447c7440f01b118e884cf}
-
-
-Gets the underlying type of the nullable. 
-
-The underlying type. 
-
-Definition at line 29 of file Nullable\-Converter.\-cs.
-
-\hypertarget{a00144_aed8934af11e74459f7d37fcf577480a1}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Underlying\-Type\-Converter@{Underlying\-Type\-Converter}}
-\index{Underlying\-Type\-Converter@{Underlying\-Type\-Converter}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
-\subsubsection[{Underlying\-Type\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Type\-Converter} Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Underlying\-Type\-Converter\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00144_aed8934af11e74459f7d37fcf577480a1}
-
-
-Gets the type converter for the underlying type. 
-
-The type converter. 
-
-Definition at line 37 of file Nullable\-Converter.\-cs.
-
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00279}{Nullable\-Converter.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00255}{Single\-Converter.\-cs}\end{DoxyCompactItemize}

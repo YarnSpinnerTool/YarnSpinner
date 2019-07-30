@@ -1,139 +1,190 @@
-\hypertarget{a00113}{\section{Yarn.\-Unity.\-Icons Class Reference}
-\label{a00113}\index{Yarn.\-Unity.\-Icons@{Yarn.\-Unity.\-Icons}}
+\hypertarget{a00113}{\section{Yarn.\-Instruction Struct Reference}
+\label{a00113}\index{Yarn.\-Instruction@{Yarn.\-Instruction}}
 }
 
 
-Collaboration diagram for Yarn.\-Unity.\-Icons\-:
+Collaboration diagram for Yarn.\-Instruction\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=170pt]{a00802}
+\includegraphics[width=166pt]{a00629}
 \end{center}
 \end{figure}
-\subsection*{Properties}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static Texture \hyperlink{a00113_aec8aea03eb6e31771ebc98e0611fff79}{success\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
-static Texture \hyperlink{a00113_aae7cc0e5016db04a90b2aa0e80957626}{failed\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
-static Texture \hyperlink{a00113_ab8afce565cd2ad1543d1e32e7e589e77}{not\-Tested\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
-static Texture \hyperlink{a00113_aa78ab016ad041bc36850c8b20ba63972}{window\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+string \hyperlink{a00113_a939d511f211e8a61cfbca902e802564f}{To\-String} (\hyperlink{a00138}{Program} p, \hyperlink{a00121}{Library} l)
 \end{DoxyCompactItemize}
-\subsection*{Static Private Member Functions}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static Texture \hyperlink{a00113_a267896b2c4512f5b17772e7e1e46d6da}{Get\-Texture} (string texture\-Name)
-\end{DoxyCompactItemize}
-\subsection*{Static Private Attributes}
-\begin{DoxyCompactItemize}
+\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894}{Byte\-Code} \hyperlink{a00113_a566bf5f7198cc353ea5c3710cb3a31cb}{operation}
 \item 
-static Texture \hyperlink{a00113_a40e137f48495168d4423c103c8935a1b}{\-\_\-success\-Icon}
+object \hyperlink{a00113_ab5d386faa0d3dbc23db80f8e62706afd}{operand\-A}
 \item 
-static Texture \hyperlink{a00113_a75ef0bcf3f5968f11949e6bfa4fdddd5}{\-\_\-failed\-Icon}
-\item 
-static Texture \hyperlink{a00113_a497c5dcdfef75245a24c295f523fb7f7}{\-\_\-not\-Tested\-Icon}
-\item 
-static Texture \hyperlink{a00113_abba8fef6cc12836ea431a8a7c9e2f3db}{\-\_\-window\-Icon}
+object \hyperlink{a00113_a56348c6fe7eb919b7277afc06e5b224a}{operand\-B}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 576 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+Definition at line 229 of file Program.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00113_a267896b2c4512f5b17772e7e1e46d6da}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!Get\-Texture@{Get\-Texture}}
-\index{Get\-Texture@{Get\-Texture}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
-\subsubsection[{Get\-Texture}]{\setlength{\rightskip}{0pt plus 5cm}static Texture Yarn.\-Unity.\-Icons.\-Get\-Texture (
+\hypertarget{a00113_a939d511f211e8a61cfbca902e802564f}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Instruction.\-To\-String (
 \begin{DoxyParamCaption}
-\item[{string}]{texture\-Name}
+\item[{{\bf Program}}]{p, }
+\item[{{\bf Library}}]{l}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00113_a267896b2c4512f5b17772e7e1e46d6da}
+)}}\label{a00113_a939d511f211e8a61cfbca902e802564f}
 
 
-Definition at line 578 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+Definition at line 235 of file Program.\-cs.
+
+
+
+References Yarn.\-Instruction.\-operand\-A, Yarn.\-Instruction.\-operand\-B, and Yarn.\-Instruction.\-operation.
 
 
 \begin{DoxyCode}
-578                                                               \{
-579             var guids = AssetDatabase.FindAssets (string.Format (\textcolor{stringliteral}{"\{0\} t:texture"}, textureName));
-580             \textcolor{keywordflow}{if} (guids.Length == 0)
-581                 \textcolor{keywordflow}{return} null;
-582 
-583             var path = AssetDatabase.GUIDToAssetPath(guids[0]);
-584             \textcolor{keywordflow}{return} AssetDatabase.LoadAssetAtPath<Texture>(path);
-585         \}
+236         \{
+237 
+238             \textcolor{comment}{// Labels are easy: just dump out the name}
+239             \textcolor{keywordflow}{if} (\hyperlink{a00113_a566bf5f7198cc353ea5c3710cb3a31cb}{operation} == \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label)
+240             \{
+241                 \textcolor{keywordflow}{return} \hyperlink{a00113_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} + \textcolor{stringliteral}{":"};
+242             \}
+243 
+244             \textcolor{comment}{// Convert the operands to strings}
+245             var opAString = \hyperlink{a00113_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} != null ? Convert.ToString(\hyperlink{a00113_ab5d386faa0d3dbc23db80f8e62706afd}{operandA}, 
+      CultureInfo.InvariantCulture) : \textcolor{stringliteral}{""};
+246             var opBString = \hyperlink{a00113_a56348c6fe7eb919b7277afc06e5b224a}{operandB} != null ? Convert.ToString(\hyperlink{a00113_a56348c6fe7eb919b7277afc06e5b224a}{operandB}, 
+      CultureInfo.InvariantCulture) : \textcolor{stringliteral}{""};
+247 
+248             \textcolor{comment}{// Generate a comment, if the instruction warrants it}
+249             \textcolor{keywordtype}{string} comment = \textcolor{stringliteral}{""};
+250 
+251             \textcolor{comment}{// Stack manipulation comments}
+252             var pops = 0;
+253             var pushes = 0;
+254 
+255             \textcolor{keywordflow}{switch} (\hyperlink{a00113_a566bf5f7198cc353ea5c3710cb3a31cb}{operation})
+256             \{
+257 
+258                 \textcolor{comment}{// These operations all push a single value to the stack}
+259                 \textcolor{keywordflow}{case} ByteCode.PushBool:
+260                 \textcolor{keywordflow}{case} ByteCode.PushNull:
+261                 \textcolor{keywordflow}{case} ByteCode.PushNumber:
+262                 \textcolor{keywordflow}{case} ByteCode.PushString:
+263                 \textcolor{keywordflow}{case} ByteCode.PushVariable:
+264                 \textcolor{keywordflow}{case} ByteCode.ShowOptions:
+265                     pushes = 1;
+266                     \textcolor{keywordflow}{break};
+267 
+268                 \textcolor{comment}{// Functions pop 0 or more values, and pop 0 or 1}
+269                 \textcolor{keywordflow}{case} ByteCode.CallFunc:
+270                     var \textcolor{keyword}{function} = l.GetFunction((string)operandA);
+271 
+272                     pops = function.paramCount;
+273 
+274                     \textcolor{keywordflow}{if} (\textcolor{keyword}{function}.returnsValue)
+275                         pushes = 1;
+276 
+277 
+278                     \textcolor{keywordflow}{break};
+279 
+280                 \textcolor{comment}{// Pop always pops a single value}
+281                 \textcolor{keywordflow}{case} ByteCode.Pop:
+282                     pops = 1;
+283                     \textcolor{keywordflow}{break};
+284 
+285                 \textcolor{comment}{// Switching to a different node will always clear the stack}
+286                 \textcolor{keywordflow}{case} ByteCode.RunNode:
+287                     comment += \textcolor{stringliteral}{"Clears stack"};
+288                     \textcolor{keywordflow}{break};
+289             \}
+290 
+291             \textcolor{comment}{// If we had any pushes or pops, report them}
+292 
+293             \textcolor{keywordflow}{if} (pops > 0 && pushes > 0)
+294                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pops \{0\}, Pushes \{1\}"}, pops, pushes
+      );
+295             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pops > 0)
+296                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pops \{0\}"}, pops);
+297             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pushes > 0)
+298                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pushes \{0\}"}, pushes);
+299 
+300             \textcolor{comment}{// String lookup comments}
+301             \textcolor{keywordflow}{switch} (\hyperlink{a00113_a566bf5f7198cc353ea5c3710cb3a31cb}{operation})
+302             \{
+303                 \textcolor{keywordflow}{case} ByteCode.PushString:
+304                 \textcolor{keywordflow}{case} ByteCode.RunLine:
+305                 \textcolor{keywordflow}{case} ByteCode.AddOption:
+306 
+307                     \textcolor{comment}{// Add the string for this option, if it has one}
+308                     \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{string})operandA != null)
+309                     \{
+310                         var text = p.GetString((string)operandA);
+311                         comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\(\backslash\)"\{0\}\(\backslash\)""}, text);
+312                     \}
+313 
+314                     \textcolor{keywordflow}{break};
+315 
+316             \}
+317 
+318             \textcolor{keywordflow}{if} (comment != \textcolor{stringliteral}{""})
+319             \{
+320                 comment = \textcolor{stringliteral}{"; "} + comment;
+321             \}
+322 
+323             \textcolor{keywordflow}{return} string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0,-15\} \{1,-10\} \{2,-10\} \{3, -10\}"}, 
+      operation.ToString(), opAString, opBString, comment);
+324         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00113_a75ef0bcf3f5968f11949e6bfa4fdddd5}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-failed\-Icon@{\-\_\-failed\-Icon}}
-\index{\-\_\-failed\-Icon@{\-\_\-failed\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
-\subsubsection[{\-\_\-failed\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-failed\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00113_a75ef0bcf3f5968f11949e6bfa4fdddd5}
+\hypertarget{a00113_ab5d386faa0d3dbc23db80f8e62706afd}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operand\-A@{operand\-A}}
+\index{operand\-A@{operand\-A}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{operand\-A}]{\setlength{\rightskip}{0pt plus 5cm}object Yarn.\-Instruction.\-operand\-A}}\label{a00113_ab5d386faa0d3dbc23db80f8e62706afd}
 
 
-Definition at line 597 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-\hypertarget{a00113_a497c5dcdfef75245a24c295f523fb7f7}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-not\-Tested\-Icon@{\-\_\-not\-Tested\-Icon}}
-\index{\-\_\-not\-Tested\-Icon@{\-\_\-not\-Tested\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
-\subsubsection[{\-\_\-not\-Tested\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-not\-Tested\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00113_a497c5dcdfef75245a24c295f523fb7f7}
-
-
-Definition at line 607 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-\hypertarget{a00113_a40e137f48495168d4423c103c8935a1b}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-success\-Icon@{\-\_\-success\-Icon}}
-\index{\-\_\-success\-Icon@{\-\_\-success\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
-\subsubsection[{\-\_\-success\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-success\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00113_a40e137f48495168d4423c103c8935a1b}
-
-
-Definition at line 587 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-\hypertarget{a00113_abba8fef6cc12836ea431a8a7c9e2f3db}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-window\-Icon@{\-\_\-window\-Icon}}
-\index{\-\_\-window\-Icon@{\-\_\-window\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
-\subsubsection[{\-\_\-window\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-window\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00113_abba8fef6cc12836ea431a8a7c9e2f3db}
-
-
-Definition at line 617 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+Definition at line 232 of file Program.\-cs.
 
 
 
-\subsection{Property Documentation}
-\hypertarget{a00113_aae7cc0e5016db04a90b2aa0e80957626}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!failed\-Icon@{failed\-Icon}}
-\index{failed\-Icon@{failed\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
-\subsubsection[{failed\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-failed\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00113_aae7cc0e5016db04a90b2aa0e80957626}
+Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction(), and Yarn.\-Instruction.\-To\-String().
+
+\hypertarget{a00113_a56348c6fe7eb919b7277afc06e5b224a}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operand\-B@{operand\-B}}
+\index{operand\-B@{operand\-B}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{operand\-B}]{\setlength{\rightskip}{0pt plus 5cm}object Yarn.\-Instruction.\-operand\-B}}\label{a00113_a56348c6fe7eb919b7277afc06e5b224a}
 
 
-Definition at line 598 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-\hypertarget{a00113_ab8afce565cd2ad1543d1e32e7e589e77}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!not\-Tested\-Icon@{not\-Tested\-Icon}}
-\index{not\-Tested\-Icon@{not\-Tested\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
-\subsubsection[{not\-Tested\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-not\-Tested\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00113_ab8afce565cd2ad1543d1e32e7e589e77}
-
-
-Definition at line 608 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-\hypertarget{a00113_aec8aea03eb6e31771ebc98e0611fff79}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!success\-Icon@{success\-Icon}}
-\index{success\-Icon@{success\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
-\subsubsection[{success\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-success\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00113_aec8aea03eb6e31771ebc98e0611fff79}
-
-
-Definition at line 588 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-\hypertarget{a00113_aa78ab016ad041bc36850c8b20ba63972}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!window\-Icon@{window\-Icon}}
-\index{window\-Icon@{window\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
-\subsubsection[{window\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-window\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00113_aa78ab016ad041bc36850c8b20ba63972}
-
-
-Definition at line 618 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+Definition at line 233 of file Program.\-cs.
 
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+Referenced by Yarn.\-Instruction.\-To\-String().
+
+\hypertarget{a00113_a566bf5f7198cc353ea5c3710cb3a31cb}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operation@{operation}}
+\index{operation@{operation}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{operation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Byte\-Code} Yarn.\-Instruction.\-operation}}\label{a00113_a566bf5f7198cc353ea5c3710cb3a31cb}
+
+
+Definition at line 231 of file Program.\-cs.
+
+
+
+Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction(), and Yarn.\-Instruction.\-To\-String().
+
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn\-Spinner/\-Code/\-Editor/\hyperlink{a00296}{Yarn\-Spinner\-Editor\-Window.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00289}{Program.\-cs}\end{DoxyCompactItemize}

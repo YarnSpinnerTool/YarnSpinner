@@ -1,699 +1,153 @@
-\hypertarget{a00063}{\section{Csv\-Helper.\-Configuration.\-Csv\-Class\-Map$<$ T $>$ Class Template Reference}
-\label{a00063}\index{Csv\-Helper.\-Configuration.\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper.\-Configuration.\-Csv\-Class\-Map$<$ T $>$}}
+\hypertarget{a00063}{\section{Csv\-Helper.\-Csv\-Helper\-Exception Class Reference}
+\label{a00063}\index{Csv\-Helper.\-Csv\-Helper\-Exception@{Csv\-Helper.\-Csv\-Helper\-Exception}}
 }
 
 
-Maps class properties to C\-S\-V fields.  
+Represents errors that occur in \hyperlink{a00311}{Csv\-Helper}.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Configuration.\-Csv\-Class\-Map$<$ T $>$\-:
+Inheritance diagram for Csv\-Helper.\-Csv\-Helper\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=232pt]{a00482}
+\includegraphics[width=350pt]{a00396}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Class\-Map$<$ T $>$\-:
+Collaboration diagram for Csv\-Helper.\-Csv\-Helper\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{a00483}
+\includegraphics[width=236pt]{a00397}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual void \hyperlink{a00063_a983d792ae80f888958037eea306b143a}{Construct\-Using} (Expression$<$ Func$<$ T $>$$>$ expression)
-\begin{DoxyCompactList}\small\item\em Constructs the row object using the given expression. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00072}{Csv\-Property\-Map} \hyperlink{a00063_aa3395a5f657f0dd7c8fe6a0fbf5a03cb}{Map} (Expression$<$ Func$<$ T, object $>$$>$ expression)
-\begin{DoxyCompactList}\small\item\em Maps a property to a C\-S\-V field. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00077}{Csv\-Property\-Reference\-Map} \hyperlink{a00063_a20365b78c96ac29e3261bcde30e0d746}{References$<$ T\-Class\-Map $>$} (Expression$<$ Func$<$ T, object $>$$>$ expression, params object\mbox{[}$\,$\mbox{]} constructor\-Args)
-\begin{DoxyCompactList}\small\item\em Maps a property to another class map. \end{DoxyCompactList}\item 
-virtual void \hyperlink{a00062_a83de9d28160d0d3da1e017df554a9481}{Create\-Map} ()
-\begin{DoxyCompactList}\small\item\em Called to create the mappings. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00072}{Csv\-Property\-Map} \hyperlink{a00062_abab2b5cd5a290fd5d17116430b084420}{Property\-Map$<$ T $>$} (Expression$<$ Func$<$ T, object $>$$>$ expression)
-\begin{DoxyCompactList}\small\item\em Gets the property map for the given property expression. \end{DoxyCompactList}\item 
-virtual void \hyperlink{a00062_aec2097b09baaaac45171f91592af439d}{Auto\-Map} (bool ignore\-References=false, bool prefix\-Reference\-Headers=false)
-\begin{DoxyCompactList}\small\item\em Auto maps all properties for the given type. If a property is mapped again it will override the existing map. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Protected Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-virtual \hyperlink{a00077}{Csv\-Property\-Reference\-Map} \hyperlink{a00063_a68caeee244e978110a2acae6d3042fc3}{References} (Type type, Expression$<$ Func$<$ T, object $>$$>$ expression, params object\mbox{[}$\,$\mbox{]} constructor\-Args)
-\begin{DoxyCompactList}\small\item\em Maps a property to another class map. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Package Functions}
-\begin{DoxyCompactItemize}
-\item 
-int \hyperlink{a00062_a708c455aa7f78a26b55dafc46a587ec3}{Get\-Max\-Index} ()
-\begin{DoxyCompactList}\small\item\em Get the largest index for the properties and references. \end{DoxyCompactList}\item 
-int \hyperlink{a00062_ac6c1e8ae1d049bd0ef09e7c2d99fbe55}{Re\-Index} (int index\-Start=0)
-\begin{DoxyCompactList}\small\item\em Resets the indexes based on the given start index. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Static Package Functions}
-\begin{DoxyCompactItemize}
-\item 
-static void \hyperlink{a00062_a16b5bb84064e86c2b319348d8a42693d}{Auto\-Map\-Internal} (\hyperlink{a00062}{Csv\-Class\-Map} map, bool ignore\-References, bool prefix\-Reference\-Headers, Linked\-List$<$ Type $>$ map\-Parents, int index\-Start=0)
-\begin{DoxyCompactList}\small\item\em Auto maps the given map and checks for circular references as it goes. \end{DoxyCompactList}\item 
-static bool \hyperlink{a00062_a4b2f3fc2e0670d17566b4705b7b622aa}{Check\-For\-Circular\-Reference} (Type type, Linked\-List$<$ Type $>$ map\-Parents)
-\begin{DoxyCompactList}\small\item\em Checks for circular references. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-virtual New\-Expression \hyperlink{a00062_ae8038b36db7584ef1a73852fcc46404b}{Constructor}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the constructor expression. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00073}{Csv\-Property\-Map\-Collection} \hyperlink{a00062_a9580e897abcba144f3101eb983348e25}{Property\-Maps}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em The class property mappings. \end{DoxyCompactList}\item 
-virtual List\\*
-$<$ \hyperlink{a00077}{Csv\-Property\-Reference\-Map} $>$ \hyperlink{a00062_a6dfbf8f743b16d2ec83edef865ea2d9e}{Reference\-Maps}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em The class property reference mappings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00063_a83571967535529f42bb42b33684e4631}{Csv\-Helper\-Exception} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00063}{Csv\-Helper\-Exception} class. \end{DoxyCompactList}\item 
+\hyperlink{a00063_a47cbed4fb25c42fd548282b3f8652290}{Csv\-Helper\-Exception} (string message)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00063}{Csv\-Helper\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
+\hyperlink{a00063_ac97c52774cb49f7e5d855b7586cdfa1d}{Csv\-Helper\-Exception} (string message, Exception inner\-Exception)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00063}{Csv\-Helper\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
+\hyperlink{a00063_a1194d6917d1b52a8e15e3701a6e8264d}{Csv\-Helper\-Exception} (Serialization\-Info info, Streaming\-Context context)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00063}{Csv\-Helper\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Maps class properties to C\-S\-V fields. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of class to map.\\
-\hline
-\end{DoxyTemplParams}
-
-
-Definition at line 20 of file Csv\-Class\-Map`1.\-cs.
+Represents errors that occur in \hyperlink{a00311}{Csv\-Helper}. 
 
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00062_aec2097b09baaaac45171f91592af439d}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}!Auto\-Map@{Auto\-Map}}
-\index{Auto\-Map@{Auto\-Map}!CsvHelper::Configuration::CsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Auto\-Map}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Auto\-Map (
-\begin{DoxyParamCaption}
-\item[{bool}]{ignore\-References = {\ttfamily false}, }
-\item[{bool}]{prefix\-Reference\-Headers = {\ttfamily false}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00062_aec2097b09baaaac45171f91592af439d}
-
-
-Auto maps all properties for the given type. If a property is mapped again it will override the existing map. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em ignore\-References} & A value indicating if references should be ignored when auto mapping. True to ignore references, otherwise false.\\
-\hline
-{\em prefix\-Reference\-Headers} & A value indicating if headers of reference properties should get prefixed by the parent property name. True to prefix, otherwise false.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 92 of file Csv\-Class\-Map.\-cs.
-
-
-\begin{DoxyCode}
-93         \{
-94             var mapParents = \textcolor{keyword}{new} LinkedList<Type>();
-95             \hyperlink{a00062_a16b5bb84064e86c2b319348d8a42693d}{AutoMapInternal}( \textcolor{keyword}{this}, ignoreReferences, prefixReferenceHeaders, mapParents );
-96         \}
-\end{DoxyCode}
-\hypertarget{a00062_a16b5bb84064e86c2b319348d8a42693d}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}!Auto\-Map\-Internal@{Auto\-Map\-Internal}}
-\index{Auto\-Map\-Internal@{Auto\-Map\-Internal}!CsvHelper::Configuration::CsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Auto\-Map\-Internal}]{\setlength{\rightskip}{0pt plus 5cm}static void Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Auto\-Map\-Internal (
-\begin{DoxyParamCaption}
-\item[{{\bf Csv\-Class\-Map}}]{map, }
-\item[{bool}]{ignore\-References, }
-\item[{bool}]{prefix\-Reference\-Headers, }
-\item[{Linked\-List$<$ Type $>$}]{map\-Parents, }
-\item[{int}]{index\-Start = {\ttfamily 0}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00062_a16b5bb84064e86c2b319348d8a42693d}
-
-
-Auto maps the given map and checks for circular references as it goes. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em map} & The map to auto map.\\
-\hline
-{\em ignore\-References} & A value indicating if references should be ignored when auto mapping. True to ignore references, otherwise false.\\
-\hline
-{\em prefix\-Reference\-Headers} & A value indicating if headers of reference properties should get prefixed by the parent property name. True to prefix, otherwise false.\\
-\hline
-{\em map\-Parents} & The list of parents for the map.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 153 of file Csv\-Class\-Map.\-cs.
+Definition at line 18 of file Csv\-Helper\-Exception.\-cs.
 
 
 
-References Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance().
-
-
-\begin{DoxyCode}
-154         \{
-155             var type = map.GetType().GetTypeInfo().BaseType.GetGenericArguments()[0];
-156             \textcolor{keywordflow}{if}( typeof( IEnumerable ).IsAssignableFrom( type ) )
-157             \{
-158                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvConfigurationException( \textcolor{stringliteral}{"Types that inherit IEnumerable cannot be auto mapped.
-       "} +
-159                                                      \textcolor{stringliteral}{"Did you accidentally call GetRecord or WriteRecord
-       which "} +
-160                                                      \textcolor{stringliteral}{"acts on a single record instead of calling GetRecords
-       or "} +
-161                                                      \textcolor{stringliteral}{"WriteRecords which acts on a list of records?"} );
-162             \}
-163 
-164             var properties = type.GetProperties( BindingFlags.Instance | BindingFlags.Public );
-165             \textcolor{keywordflow}{foreach}( var property \textcolor{keywordflow}{in} properties )
-166             \{
-167                 var typeConverterType = TypeConverterFactory.GetConverter( property.PropertyType ).GetType(
-      );
-168                 \textcolor{keywordflow}{if}( typeConverterType == typeof( \hyperlink{a00101}{EnumerableConverter} ) )
-169                 \{
-170                     \textcolor{comment}{// The IEnumerable converter just throws an exception so skip it.}
-171                     \textcolor{keywordflow}{continue};
-172                 \}
-173 
-174                 var isDefaultConverter = typeConverterType == typeof( 
-      \hyperlink{a00090}{DefaultTypeConverter} );
-175                 var hasDefaultConstructor = property.PropertyType.GetConstructor( \textcolor{keyword}{new} Type[0] ) != null;
-176                 \textcolor{keywordflow}{if}( isDefaultConverter && hasDefaultConstructor )
-177                 \{
-178                     \textcolor{keywordflow}{if}( ignoreReferences )
-179                     \{
-180                         \textcolor{keywordflow}{continue};
-181                     \}
-182 
-183                     \textcolor{comment}{// If the type is not one covered by our type converters}
-184                     \textcolor{comment}{// and it has a parameterless constructor, create a}
-185                     \textcolor{comment}{// reference map for it.}
-186                     \textcolor{keywordflow}{if}( \hyperlink{a00062_a4b2f3fc2e0670d17566b4705b7b622aa}{CheckForCircularReference}( property.PropertyType, 
-      mapParents ) )
-187                     \{
-188                         \textcolor{keywordflow}{continue};
-189                     \}
-190 
-191                     mapParents.AddLast( type );
-192                     var refMapType = typeof( DefaultCsvClassMap<> ).MakeGenericType( property.PropertyType 
-      );
-193                     var refMap = (\hyperlink{a00062_affc5ae8f2b0406d496bcbdf246da6210}{CsvClassMap})ReflectionHelper.CreateInstance( refMapType );
-194                     \hyperlink{a00062_a16b5bb84064e86c2b319348d8a42693d}{AutoMapInternal}( refMap, \textcolor{keyword}{false}, prefixReferenceHeaders, mapParents, map.
-      GetMaxIndex() + 1 );
-195 
-196                     \textcolor{keywordflow}{if}( refMap.PropertyMaps.Count > 0 || refMap.ReferenceMaps.Count > 0 )
-197                     \{
-198                         var referenceMap = \textcolor{keyword}{new} CsvPropertyReferenceMap( property, refMap );
-199                         \textcolor{keywordflow}{if}( prefixReferenceHeaders )
-200                         \{
-201                             referenceMap.Prefix();
-202                         \}
-203 
-204                         map.ReferenceMaps.Add( referenceMap );
-205                     \}
-206                 \}
-207                 \textcolor{keywordflow}{else}
-208                 \{
-209                     var propertyMap = \textcolor{keyword}{new} CsvPropertyMap( property );
-210                     propertyMap.Data.Index = map.GetMaxIndex() + 1;
-211                     \textcolor{keywordflow}{if}( propertyMap.Data.TypeConverter.CanConvertFrom( typeof( \textcolor{keywordtype}{string} ) ) ||
-212                         propertyMap.Data.TypeConverter.CanConvertTo( typeof( \textcolor{keywordtype}{string} ) ) && !
-      isDefaultConverter )
-213                     \{
-214                         \textcolor{comment}{// Only add the property map if it can be converted later on.}
-215                         \textcolor{comment}{// If the property will use the default converter, don't add it because}
-216                         \textcolor{comment}{// we don't want the .ToString() value to be used when auto mapping.}
-217                         map.PropertyMaps.Add( propertyMap );
-218                     \}
-219                 \}
-220             \}
-221 
-222             map.ReIndex( indexStart );
-223         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00062_a16b5bb84064e86c2b319348d8a42693d_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00062_a4b2f3fc2e0670d17566b4705b7b622aa}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}!Check\-For\-Circular\-Reference@{Check\-For\-Circular\-Reference}}
-\index{Check\-For\-Circular\-Reference@{Check\-For\-Circular\-Reference}!CsvHelper::Configuration::CsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Check\-For\-Circular\-Reference}]{\setlength{\rightskip}{0pt plus 5cm}static bool Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Check\-For\-Circular\-Reference (
-\begin{DoxyParamCaption}
-\item[{Type}]{type, }
-\item[{Linked\-List$<$ Type $>$}]{map\-Parents}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00062_a4b2f3fc2e0670d17566b4705b7b622aa}
-
-
-Checks for circular references. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type to check for.\\
-\hline
-{\em map\-Parents} & The list of parents to check against.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A value indicating if a circular reference was found. True if a circular reference was found, otherwise false.
-\end{DoxyReturn}
-
-
-Definition at line 232 of file Csv\-Class\-Map.\-cs.
-
-
-\begin{DoxyCode}
-233         \{
-234             \textcolor{keywordflow}{if}( mapParents.Count == 0 )
-235             \{
-236                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-237             \}
-238 
-239             var node = mapParents.Last;
-240             \textcolor{keywordflow}{while}( \textcolor{keyword}{true} )
-241             \{
-242                 \textcolor{keywordflow}{if}( node.Value == type )
-243                 \{
-244                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-245                 \}
-246 
-247                 node = node.Previous;
-248                 \textcolor{keywordflow}{if}( node == null )
-249                 \{
-250                     \textcolor{keywordflow}{break};
-251                 \}
-252             \}
-253 
-254             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-255         \}
-\end{DoxyCode}
-\hypertarget{a00063_a983d792ae80f888958037eea306b143a}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}!Construct\-Using@{Construct\-Using}}
-\index{Construct\-Using@{Construct\-Using}!CsvHelper::Configuration::CsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Construct\-Using}]{\setlength{\rightskip}{0pt plus 5cm}virtual void {\bf Csv\-Helper.\-Configuration.\-Csv\-Class\-Map}$<$ T $>$.Construct\-Using (
-\begin{DoxyParamCaption}
-\item[{Expression$<$ Func$<$ T $>$$>$}]{expression}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00063_a983d792ae80f888958037eea306b143a}
-
-
-Constructs the row object using the given expression. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em expression} & The expression.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 26 of file Csv\-Class\-Map`1.\-cs.
-
-
-\begin{DoxyCode}
-27         \{
-28             \hyperlink{a00062_ae8038b36db7584ef1a73852fcc46404b}{Constructor} = ReflectionHelper.GetConstructor( expression );
-29         \}
-\end{DoxyCode}
-\hypertarget{a00062_a83de9d28160d0d3da1e017df554a9481}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}!Create\-Map@{Create\-Map}}
-\index{Create\-Map@{Create\-Map}!CsvHelper::Configuration::CsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Create\-Map}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Create\-Map (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00063_a83571967535529f42bb42b33684e4631}{\index{Csv\-Helper\-::\-Csv\-Helper\-Exception@{Csv\-Helper\-::\-Csv\-Helper\-Exception}!Csv\-Helper\-Exception@{Csv\-Helper\-Exception}}
+\index{Csv\-Helper\-Exception@{Csv\-Helper\-Exception}!CsvHelper::CsvHelperException@{Csv\-Helper\-::\-Csv\-Helper\-Exception}}
+\subsubsection[{Csv\-Helper\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Helper\-Exception.\-Csv\-Helper\-Exception (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00062_a83de9d28160d0d3da1e017df554a9481}
+)}}\label{a00063_a83571967535529f42bb42b33684e4631}
 
 
-Called to create the mappings. 
+Initializes a new instance of the \hyperlink{a00063}{Csv\-Helper\-Exception} class. 
 
 
 
-Definition at line 28 of file Csv\-Class\-Map.\-cs.
-
-
-\begin{DoxyCode}
-28 \{\}
-\end{DoxyCode}
-\hypertarget{a00062_a708c455aa7f78a26b55dafc46a587ec3}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}!Get\-Max\-Index@{Get\-Max\-Index}}
-\index{Get\-Max\-Index@{Get\-Max\-Index}!CsvHelper::Configuration::CsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Get\-Max\-Index}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Get\-Max\-Index (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00062_a708c455aa7f78a26b55dafc46a587ec3}
-
-
-Get the largest index for the properties and references. 
-
-\begin{DoxyReturn}{Returns}
-The max index.
-\end{DoxyReturn}
-
-
-Definition at line 103 of file Csv\-Class\-Map.\-cs.
+Definition at line 23 of file Csv\-Helper\-Exception.\-cs.
 
 
 \begin{DoxyCode}
-104         \{
-105             \textcolor{keywordflow}{if}( \hyperlink{a00062_a9580e897abcba144f3101eb983348e25}{PropertyMaps}.\hyperlink{a00073_a45cac3a36ac638d4d4b723b7ceb93b5c}{Count} == 0 && \hyperlink{a00062_a6dfbf8f743b16d2ec83edef865ea2d9e}{ReferenceMaps}.Count == 0 )
-106             \{
-107                 \textcolor{keywordflow}{return} -1;
-108             \}
-109 
-110             var indexes = \textcolor{keyword}{new} List<int>();
-111             \textcolor{keywordflow}{if}( \hyperlink{a00062_a9580e897abcba144f3101eb983348e25}{PropertyMaps}.\hyperlink{a00073_a45cac3a36ac638d4d4b723b7ceb93b5c}{Count} > 0 )
-112             \{
-113                 indexes.Add( PropertyMaps.Max( pm => pm.Data.Index ) );
-114             \}
-115             indexes.AddRange( ReferenceMaps.Select( referenceMap => referenceMap.GetMaxIndex() ) );
-116 
-117             \textcolor{keywordflow}{return} indexes.Max();
-118         \}
+23 \{\}
 \end{DoxyCode}
-\hypertarget{a00063_aa3395a5f657f0dd7c8fe6a0fbf5a03cb}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}!Map@{Map}}
-\index{Map@{Map}!CsvHelper::Configuration::CsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Map}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} {\bf Csv\-Helper.\-Configuration.\-Csv\-Class\-Map}$<$ T $>$.Map (
+\hypertarget{a00063_a47cbed4fb25c42fd548282b3f8652290}{\index{Csv\-Helper\-::\-Csv\-Helper\-Exception@{Csv\-Helper\-::\-Csv\-Helper\-Exception}!Csv\-Helper\-Exception@{Csv\-Helper\-Exception}}
+\index{Csv\-Helper\-Exception@{Csv\-Helper\-Exception}!CsvHelper::CsvHelperException@{Csv\-Helper\-::\-Csv\-Helper\-Exception}}
+\subsubsection[{Csv\-Helper\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Helper\-Exception.\-Csv\-Helper\-Exception (
 \begin{DoxyParamCaption}
-\item[{Expression$<$ Func$<$ T, object $>$$>$}]{expression}
+\item[{string}]{message}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00063_aa3395a5f657f0dd7c8fe6a0fbf5a03cb}
+)}}\label{a00063_a47cbed4fb25c42fd548282b3f8652290}
 
 
-Maps a property to a C\-S\-V field. 
+Initializes a new instance of the \hyperlink{a00063}{Csv\-Helper\-Exception} class with a specified error message. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em expression} & The property to map.\\
+{\em message} & The message that describes the error.\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The property mapping.
-\end{DoxyReturn}
 
 
-Definition at line 36 of file Csv\-Class\-Map`1.\-cs.
+Definition at line 30 of file Csv\-Helper\-Exception.\-cs.
 
 
 \begin{DoxyCode}
-37         \{
-38             var \textcolor{keyword}{property} = ReflectionHelper.GetProperty( expression );
-39 
-40             var existingMap = PropertyMaps.SingleOrDefault( m =>
-41                 m.Data.Property == \textcolor{keyword}{property}
-42                 || m.Data.Property.Name == property.Name
-43                 && ( m.Data.Property.DeclaringType.GetTypeInfo().IsAssignableFrom( property.DeclaringType.
-      GetTypeInfo() ) || property.DeclaringType.IsAssignableFrom( m.Data.Property.DeclaringType ) ) );
-44             \textcolor{keywordflow}{if}( existingMap != null )
-45             \{
-46                 \textcolor{keywordflow}{return} existingMap;
-47             \}
-48 
-49             var propertyMap = \textcolor{keyword}{new} CsvPropertyMap( property );
-50             propertyMap.Data.Index = \hyperlink{a00062_a708c455aa7f78a26b55dafc46a587ec3}{GetMaxIndex}() + 1;
-51             PropertyMaps.Add( propertyMap );
-52 
-53             \textcolor{keywordflow}{return} propertyMap;
-54         \}
+30 : base( message ) \{\}
 \end{DoxyCode}
-\hypertarget{a00062_abab2b5cd5a290fd5d17116430b084420}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}!Property\-Map$<$ T $>$@{Property\-Map$<$ T $>$}}
-\index{Property\-Map$<$ T $>$@{Property\-Map$<$ T $>$}!CsvHelper::Configuration::CsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Property\-Map$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Property\-Map$<$ T $>$ (
+\hypertarget{a00063_ac97c52774cb49f7e5d855b7586cdfa1d}{\index{Csv\-Helper\-::\-Csv\-Helper\-Exception@{Csv\-Helper\-::\-Csv\-Helper\-Exception}!Csv\-Helper\-Exception@{Csv\-Helper\-Exception}}
+\index{Csv\-Helper\-Exception@{Csv\-Helper\-Exception}!CsvHelper::CsvHelperException@{Csv\-Helper\-::\-Csv\-Helper\-Exception}}
+\subsubsection[{Csv\-Helper\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Helper\-Exception.\-Csv\-Helper\-Exception (
 \begin{DoxyParamCaption}
-\item[{Expression$<$ Func$<$ T, object $>$$>$}]{expression}
+\item[{string}]{message, }
+\item[{Exception}]{inner\-Exception}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00062_abab2b5cd5a290fd5d17116430b084420}
+)}}\label{a00063_ac97c52774cb49f7e5d855b7586cdfa1d}
 
 
-Gets the property map for the given property expression. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type of the class the property belongs to.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em expression} & The property expression.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The \hyperlink{a00072}{Csv\-Property\-Map} for the given expression.
-\end{DoxyReturn}
-
-
-Definition at line 63 of file Csv\-Class\-Map.\-cs.
-
-
-\begin{DoxyCode}
-64         \{
-65             var \textcolor{keyword}{property} = ReflectionHelper.GetProperty( expression );
-66 
-67             var existingMap = PropertyMaps.SingleOrDefault( m =>
-68                 m.Data.Property == \textcolor{keyword}{property}
-69                 || m.Data.Property.Name == property.Name
-70                 && ( m.Data.Property.DeclaringType.IsAssignableFrom( property.DeclaringType ) || property.
-      DeclaringType.IsAssignableFrom( m.Data.Property.DeclaringType ) ) );
-71             \textcolor{keywordflow}{if}( existingMap != null )
-72             \{
-73                 \textcolor{keywordflow}{return} existingMap;
-74             \}
-75 
-76             var propertyMap = \textcolor{keyword}{new} CsvPropertyMap( property );
-77             propertyMap.Data.Index = \hyperlink{a00062_a708c455aa7f78a26b55dafc46a587ec3}{GetMaxIndex}() + 1;
-78             PropertyMaps.Add( propertyMap );
-79 
-80             \textcolor{keywordflow}{return} propertyMap;
-81         \}
-\end{DoxyCode}
-\hypertarget{a00063_a68caeee244e978110a2acae6d3042fc3}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}!References@{References}}
-\index{References@{References}!CsvHelper::Configuration::CsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{References}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Reference\-Map} {\bf Csv\-Helper.\-Configuration.\-Csv\-Class\-Map}$<$ T $>$.References (
-\begin{DoxyParamCaption}
-\item[{Type}]{type, }
-\item[{Expression$<$ Func$<$ T, object $>$$>$}]{expression, }
-\item[{params object\mbox{[}$\,$\mbox{]}}]{constructor\-Args}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00063_a68caeee244e978110a2acae6d3042fc3}
-
-
-Maps a property to another class map. 
+Initializes a new instance of the \hyperlink{a00063}{Csv\-Helper\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
+{\em message} & The error message that explains the reason for the exception.\\
 \hline
-{\em expression} & The expression.\\
-\hline
-{\em constructor\-Args} & Constructor arguments used to create the reference map.\\
+{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The reference mapping for the property
-\end{DoxyReturn}
 
 
-Definition at line 93 of file Csv\-Class\-Map`1.\-cs.
-
-
-
-References Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance().
+Definition at line 39 of file Csv\-Helper\-Exception.\-cs.
 
 
 \begin{DoxyCode}
-94         \{
-95             var \textcolor{keyword}{property} = ReflectionHelper.GetProperty( expression );
-96             var existingMap = ReferenceMaps.SingleOrDefault( m =>
-97                 m.Data.Property == \textcolor{keyword}{property}
-98                 || m.Data.Property.Name == property.Name
-99                 && ( m.Data.Property.DeclaringType.IsAssignableFrom( property.DeclaringType ) || property.
-      DeclaringType.IsAssignableFrom( m.Data.Property.DeclaringType ) ) );
-100             \textcolor{keywordflow}{if}( existingMap != null )
-101             \{
-102                 \textcolor{keywordflow}{return} existingMap;
-103             \}
-104 
-105             var map = (\hyperlink{a00062_affc5ae8f2b0406d496bcbdf246da6210}{CsvClassMap})ReflectionHelper.CreateInstance( type, constructorArgs );
-106             map.CreateMap();
-107             map.ReIndex( \hyperlink{a00062_a708c455aa7f78a26b55dafc46a587ec3}{GetMaxIndex}() + 1 );
-108             var reference = \textcolor{keyword}{new} CsvPropertyReferenceMap( property, map );
-109             ReferenceMaps.Add( reference );
-110 
-111             \textcolor{keywordflow}{return} reference;
-112         \}
+39 : base( message, innerException ) \{ \}
 \end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00063_a68caeee244e978110a2acae6d3042fc3_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00063_a20365b78c96ac29e3261bcde30e0d746}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}!References$<$ T\-Class\-Map $>$@{References$<$ T\-Class\-Map $>$}}
-\index{References$<$ T\-Class\-Map $>$@{References$<$ T\-Class\-Map $>$}!CsvHelper::Configuration::CsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{References$<$ T\-Class\-Map $>$}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Reference\-Map} {\bf Csv\-Helper.\-Configuration.\-Csv\-Class\-Map}$<$ T $>$.{\bf References}$<$ T\-Class\-Map $>$ (
+\hypertarget{a00063_a1194d6917d1b52a8e15e3701a6e8264d}{\index{Csv\-Helper\-::\-Csv\-Helper\-Exception@{Csv\-Helper\-::\-Csv\-Helper\-Exception}!Csv\-Helper\-Exception@{Csv\-Helper\-Exception}}
+\index{Csv\-Helper\-Exception@{Csv\-Helper\-Exception}!CsvHelper::CsvHelperException@{Csv\-Helper\-::\-Csv\-Helper\-Exception}}
+\subsubsection[{Csv\-Helper\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Helper\-Exception.\-Csv\-Helper\-Exception (
 \begin{DoxyParamCaption}
-\item[{Expression$<$ Func$<$ T, object $>$$>$}]{expression, }
-\item[{params object\mbox{[}$\,$\mbox{]}}]{constructor\-Args}
+\item[{Serialization\-Info}]{info, }
+\item[{Streaming\-Context}]{context}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00063_a20365b78c96ac29e3261bcde30e0d746}
+)}}\label{a00063_a1194d6917d1b52a8e15e3701a6e8264d}
 
 
-Maps a property to another class map. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T\-Class\-Map} & The type of the class map.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em expression} & The expression.\\
-\hline
-{\em constructor\-Args} & Constructor arguments used to create the reference map.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The reference mapping for the property.
-\end{DoxyReturn}
-\begin{Desc}
-\item[Type Constraints]\begin{description}
-\item[{\em T\-Class\-Map} : {\em Csv\-Class\-Map}]\end{description}
-\end{Desc}
-
-
-Definition at line 63 of file Csv\-Class\-Map`1.\-cs.
-
-
-\begin{DoxyCode}
-63                                                                                                            
-                                                           : \hyperlink{a00062_affc5ae8f2b0406d496bcbdf246da6210}{CsvClassMap}
-64         \{
-65             var \textcolor{keyword}{property} = ReflectionHelper.GetProperty( expression );
-66 
-67             var existingMap = ReferenceMaps.SingleOrDefault( m =>
-68                 m.Data.Property == \textcolor{keyword}{property}
-69                 || m.Data.Property.Name == property.Name
-70                 && ( m.Data.Property.DeclaringType.IsAssignableFrom( property.DeclaringType ) || property.
-      DeclaringType.IsAssignableFrom( m.Data.Property.DeclaringType ) ) );
-71             \textcolor{keywordflow}{if}( existingMap != null )
-72             \{
-73                 \textcolor{keywordflow}{return} existingMap;
-74             \}
-75 
-76             var map = ReflectionHelper.CreateInstance<TClassMap>( constructorArgs );
-77             map.CreateMap();
-78             map.ReIndex( \hyperlink{a00062_a708c455aa7f78a26b55dafc46a587ec3}{GetMaxIndex}() + 1 );
-79             var reference = \textcolor{keyword}{new} CsvPropertyReferenceMap( property, map );
-80             ReferenceMaps.Add( reference );
-81 
-82             \textcolor{keywordflow}{return} reference;
-83         \}
-\end{DoxyCode}
-\hypertarget{a00062_ac6c1e8ae1d049bd0ef09e7c2d99fbe55}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}!Re\-Index@{Re\-Index}}
-\index{Re\-Index@{Re\-Index}!CsvHelper::Configuration::CsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Re\-Index}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Re\-Index (
-\begin{DoxyParamCaption}
-\item[{int}]{index\-Start = {\ttfamily 0}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00062_ac6c1e8ae1d049bd0ef09e7c2d99fbe55}
-
-
-Resets the indexes based on the given start index. 
+Initializes a new instance of the \hyperlink{a00063}{Csv\-Helper\-Exception} class with serialized data. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em index\-Start} & The index start.\\
+{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
+\hline
+{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The last index + 1.
-\end{DoxyReturn}
 
 
-Definition at line 125 of file Csv\-Class\-Map.\-cs.
+Definition at line 48 of file Csv\-Helper\-Exception.\-cs.
 
 
 \begin{DoxyCode}
-126         \{
-127             \textcolor{keywordflow}{foreach}( var propertyMap \textcolor{keywordflow}{in} \hyperlink{a00062_a9580e897abcba144f3101eb983348e25}{PropertyMaps} )
-128             \{
-129                 \textcolor{keywordflow}{if}( !propertyMap.Data.IsIndexSet )
-130                 \{
-131                     propertyMap.Data.Index = indexStart + propertyMap.Data.Index;
-132                 \}
-133             \}
-134 
-135             \textcolor{keywordflow}{foreach}( var referenceMap \textcolor{keywordflow}{in} \hyperlink{a00062_a6dfbf8f743b16d2ec83edef865ea2d9e}{ReferenceMaps} )
-136             \{
-137                 indexStart = referenceMap.Data.Mapping.ReIndex( indexStart );
-138             \}
-139 
-140             \textcolor{keywordflow}{return} indexStart;
-141         \}
+48 : base( info, context ) \{\}
 \end{DoxyCode}
-
-
-\subsection{Property Documentation}
-\hypertarget{a00062_ae8038b36db7584ef1a73852fcc46404b}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}!Constructor@{Constructor}}
-\index{Constructor@{Constructor}!CsvHelper::Configuration::CsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Constructor}]{\setlength{\rightskip}{0pt plus 5cm}virtual New\-Expression Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Constructor\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00062_ae8038b36db7584ef1a73852fcc46404b}
-
-
-Gets the constructor expression. 
-
-
-
-Definition at line 33 of file Csv\-Class\-Map.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Register\-Class\-Map().
-
-\hypertarget{a00062_a9580e897abcba144f3101eb983348e25}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}!Property\-Maps@{Property\-Maps}}
-\index{Property\-Maps@{Property\-Maps}!CsvHelper::Configuration::CsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Property\-Maps}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map\-Collection} Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Property\-Maps\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [inherited]}}}\label{a00062_a9580e897abcba144f3101eb983348e25}
-
-
-The class property mappings. 
-
-
-
-Definition at line 39 of file Csv\-Class\-Map.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Reader.\-Create\-Property\-Bindings\-For\-Mapping(), Csv\-Helper.\-Csv\-Writer.\-Create\-Property\-Expression(), and Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Register\-Class\-Map().
-
-\hypertarget{a00062_a6dfbf8f743b16d2ec83edef865ea2d9e}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}!Reference\-Maps@{Reference\-Maps}}
-\index{Reference\-Maps@{Reference\-Maps}!CsvHelper::Configuration::CsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Reference\-Maps}]{\setlength{\rightskip}{0pt plus 5cm}virtual List$<${\bf Csv\-Property\-Reference\-Map}$>$ Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Reference\-Maps\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [inherited]}}}\label{a00062_a6dfbf8f743b16d2ec83edef865ea2d9e}
-
-
-The class property reference mappings. 
-
-
-
-Definition at line 47 of file Csv\-Class\-Map.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Register\-Class\-Map().
-
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00222}{Csv\-Class\-Map`1.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00212}{Csv\-Helper\-Exception.\-cs}\end{DoxyCompactItemize}

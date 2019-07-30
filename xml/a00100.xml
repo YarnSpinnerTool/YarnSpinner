@@ -1,231 +1,162 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00100" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::EnumConverter</compoundname>
-    <basecompoundref refid="a00090" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00100_1a3c144b5c7e2720e66dc957aaed671e9a" prot="private" static="no" mutable="no">
-        <type>readonly Type</type>
-        <definition>readonly Type CsvHelper.TypeConversion.EnumConverter.type</definition>
-        <argsstring></argsstring>
-        <name>type</name>
+    <compoundname>Yarn::FileFormatConverter</compoundname>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="a00100_1aa4db4ccac799c5f047a8b1a9efbe109d" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Yarn.FileFormatConverter.ConvertFormat</definition>
+        <argsstring>(ConvertFormatOptions options)</argsstring>
+        <name>ConvertFormat</name>
+        <param>
+          <type><ref refid="a00055" kindref="compound">ConvertFormatOptions</ref></type>
+          <declname>options</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" bodystart="15" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="10" bodyend="24"/>
+        <references refid="a00172_1a0979de7ea02c8c0375b8220a12e6575e" compoundref="a00300" startline="268">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</references>
+        <references refid="a00100_1a1e6cd39b0c813f21da278367dcff76d2" compoundref="a00298" startline="26" endline="39">Yarn.FileFormatConverter.ConvertToYarn</references>
+        <references refid="a00055_1a052d6f00647c503adc5a79a1ff92cdf4" compoundref="a00300" startline="131">Yarn.ConvertFormatOptions.convertToYarn</references>
+        <referencedby refid="a00172_1a1d71ff2eb190449ea1d42ce86f44489f" compoundref="a00300" startline="240" endline="266">Yarn.YarnSpinnerConsole.Main</referencedby>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00100_1adda8e6bff0d7635c0de15d36d49495da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.TypeConversion.EnumConverter.EnumConverter</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>EnumConverter</name>
+      <memberdef kind="function" id="a00100_1a85596df924468279b2dc44a9f31d8bad" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Yarn.FileFormatConverter.ConvertNodes</definition>
+        <argsstring>(IEnumerable&lt; Loader.NodeInfo &gt; nodes, NodeFormat format)</argsstring>
+        <name>ConvertNodes</name>
         <param>
-          <type>Type</type>
-          <declname>type</declname>
+          <type>IEnumerable&lt; <ref refid="a00131" kindref="compound">Loader.NodeInfo</ref> &gt;</type>
+          <declname>nodes</declname>
+        </param>
+        <param>
+          <type><ref refid="a00048_1ad7ebb46e7309ead8767383a672b3272f" kindref="member">NodeFormat</ref></type>
+          <declname>format</declname>
         </param>
         <briefdescription>
-<para>Creates a new <ref refid="a00100" kindref="compound">EnumConverter</ref> for the given Enum Type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type of the Enum.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" bodystart="21" bodyend="30"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="41" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="41" bodyend="49"/>
+        <references refid="a00100_1a282f283f02c9b1d3e53d813ec2f35233" compoundref="a00298" startline="51" endline="114">Yarn.FileFormatConverter.ConvertNodesToYarnText</references>
       </memberdef>
-      <memberdef kind="function" id="a00100_1abbbd7ece803a97b4714445c745918dc9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.EnumConverter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplements refid="a00090_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="a00100_1a1e6cd39b0c813f21da278367dcff76d2" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Yarn.FileFormatConverter.ConvertToYarn</definition>
+        <argsstring>(ConvertFormatOptions options)</argsstring>
+        <name>ConvertToYarn</name>
         <param>
-          <type><ref refid="a00180" kindref="compound">TypeConverterOptions</ref></type>
+          <type><ref refid="a00055" kindref="compound">ConvertFormatOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="26" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="26" bodyend="39"/>
+        <references refid="a00100_1aa72838be584177b5592c31d73c0febdb" compoundref="a00298" startline="119" endline="160">Yarn.FileFormatConverter.ConvertNodesInFile</references>
+        <references refid="a00100_1a282f283f02c9b1d3e53d813ec2f35233" compoundref="a00298" startline="51" endline="114">Yarn.FileFormatConverter.ConvertNodesToYarnText</references>
+        <references refid="a00125_1a080b2d6b7553c178007c04297d50e9da" compoundref="a00288" startline="277" endline="293">Yarn.Loader.GetFormatFromFileName</references>
+        <referencedby refid="a00100_1aa4db4ccac799c5f047a8b1a9efbe109d" compoundref="a00298" startline="10" endline="24">Yarn.FileFormatConverter.ConvertFormat</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00100_1a282f283f02c9b1d3e53d813ec2f35233" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Yarn.FileFormatConverter.ConvertNodesToYarnText</definition>
+        <argsstring>(IEnumerable&lt; Loader.NodeInfo &gt; nodes)</argsstring>
+        <name>ConvertNodesToYarnText</name>
+        <param>
+          <type>IEnumerable&lt; <ref refid="a00131" kindref="compound">Loader.NodeInfo</ref> &gt;</type>
+          <declname>nodes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="51" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="51" bodyend="114"/>
+        <referencedby refid="a00100_1a85596df924468279b2dc44a9f31d8bad" compoundref="a00298" startline="41" endline="49">Yarn.FileFormatConverter.ConvertNodes</referencedby>
+        <referencedby refid="a00100_1a1e6cd39b0c813f21da278367dcff76d2" compoundref="a00298" startline="26" endline="39">Yarn.FileFormatConverter.ConvertToYarn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00100_1aa72838be584177b5592c31d73c0febdb" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Yarn.FileFormatConverter.ConvertNodesInFile</definition>
+        <argsstring>(ConvertFormatOptions options, string file, string fileExtension, ConvertNodesToText convert)</argsstring>
+        <name>ConvertNodesInFile</name>
+        <param>
+          <type><ref refid="a00055" kindref="compound">ConvertFormatOptions</ref></type>
           <declname>options</declname>
         </param>
         <param>
           <type>string</type>
-          <declname>text</declname>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>fileExtension</declname>
+        </param>
+        <param>
+          <type><ref refid="a00100_1af9bd5d832fdd2bcbdc626d9f8632e05c" kindref="member">ConvertNodesToText</ref></type>
+          <declname>convert</declname>
         </param>
         <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" bodystart="38" bodyend="48"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="119" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="119" bodyend="160"/>
+        <references refid="a00040_1ada4d83d1756918f362d55f6649b82b17" compoundref="a00300" startline="46">Yarn.BaseOptions.verbose</references>
+        <referencedby refid="a00100_1a1e6cd39b0c813f21da278367dcff76d2" compoundref="a00298" startline="26" endline="39">Yarn.FileFormatConverter.ConvertToYarn</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00100_1a31af8209aad64ed11d949586075c244a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.EnumConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplements refid="a00090_1a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</reimplements>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00100_1af9bd5d832fdd2bcbdc626d9f8632e05c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate string</type>
+        <definition>delegate string Yarn.FileFormatConverter.ConvertNodesToText</definition>
+        <argsstring>(IEnumerable&lt; Loader.NodeInfo &gt; nodes)</argsstring>
+        <name>ConvertNodesToText</name>
         <param>
-          <type>Type</type>
-          <declname>type</declname>
+          <type>IEnumerable&lt; <ref refid="a00131" kindref="compound">Loader.NodeInfo</ref> &gt;</type>
+          <declname>nodes</declname>
         </param>
         <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" line="57" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" bodystart="57" bodyend="61"/>
-      </memberdef>
-      <memberdef kind="function" id="a00090_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>string</type>
-        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplements refid="a00125_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
-        <reimplementedby refid="a00101_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="a00144_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
-        <param>
-          <type><ref refid="a00180" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>object</type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
-      </memberdef>
-      <memberdef kind="function" id="a00090_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplements refid="a00125_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="a00101_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="117" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Converts an Enum to and from a string. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1304">
-        <label>CsvHelper.TypeConversion.EnumConverter</label>
-        <link refid="a00100"/>
-        <childnode refid="1305" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1306">
-        <label>ITypeConverter</label>
-        <link refid="a00125"/>
-      </node>
-      <node id="1305">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00090"/>
-        <childnode refid="1306" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1307">
-        <label>CsvHelper.TypeConversion.EnumConverter</label>
+      <node id="1203">
+        <label>Yarn.FileFormatConverter</label>
         <link refid="a00100"/>
-        <childnode refid="1308" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1309">
-        <label>ITypeConverter</label>
-        <link refid="a00125"/>
-      </node>
-      <node id="1308">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00090"/>
-        <childnode refid="1309" relation="public-inheritance">
-        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" bodystart="13" bodyend="62"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="8" bodyend="163"/>
     <listofallmembers>
-      <member refid="a00100_1a31af8209aad64ed11d949586075c244a" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::EnumConverter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00090_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::EnumConverter</scope><name>CanConvertTo</name></member>
-      <member refid="a00100_1abbbd7ece803a97b4714445c745918dc9" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::EnumConverter</scope><name>ConvertFromString</name></member>
-      <member refid="a00090_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::EnumConverter</scope><name>ConvertToString</name></member>
-      <member refid="a00100_1adda8e6bff0d7635c0de15d36d49495da" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::EnumConverter</scope><name>EnumConverter</name></member>
-      <member refid="a00100_1a3c144b5c7e2720e66dc957aaed671e9a" prot="private" virt="non-virtual"><scope>CsvHelper::TypeConversion::EnumConverter</scope><name>type</name></member>
+      <member refid="a00100_1aa4db4ccac799c5f047a8b1a9efbe109d" prot="package" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertFormat</name></member>
+      <member refid="a00100_1a85596df924468279b2dc44a9f31d8bad" prot="package" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodes</name></member>
+      <member refid="a00100_1aa72838be584177b5592c31d73c0febdb" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodesInFile</name></member>
+      <member refid="a00100_1af9bd5d832fdd2bcbdc626d9f8632e05c" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodesToText</name></member>
+      <member refid="a00100_1a282f283f02c9b1d3e53d813ec2f35233" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodesToYarnText</name></member>
+      <member refid="a00100_1a1e6cd39b0c813f21da278367dcff76d2" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertToYarn</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -1,9 +1,0 @@
-<map id="CsvHelper.CsvReader.GetReadRecordFunc" name="CsvHelper.CsvReader.GetReadRecordFunc">
-<area shape="rect" id="node2" href="$a00079.html#afbdbf02b2d21a11d5eed9705be26f9e1" title="Creates the read record func for the given type if it doesn&#39;t already exist. " alt="" coords="264,61,461,102"/>
-<area shape="rect" id="node3" href="$a00079.html#a40317e9dfefc684de48e8d2ad1bf4bcc" title="Creates the function for an object. " alt="" coords="509,27,707,69"/>
-<area shape="rect" id="node8" href="$a00079.html#ad6cc1addf9a64f0cdac3495a4c04f856" title="Creates the function for a primitive. " alt="" coords="509,93,707,134"/>
-<area shape="rect" id="node4" href="$a00079.html#a5d8c85bf8923d38ead3df9b9463f3eae" title="Creates the property bindings for the given CsvClassMap. " alt="" coords="755,27,952,69"/>
-<area shape="rect" id="node5" href="$a00079.html#af1d56b760007c4ab11ccd93eb97e07b4" title="Adds a MemberBinding for each property for it&#39;s field. " alt="" coords="1001,57,1231,98"/>
-<area shape="rect" id="node6" href="$a00079.html#ab0f1158c863fdedadff576a28a533c71" title="Determines if the property for the CsvPropertyMap can be read. " alt="" coords="1280,5,1493,32"/>
-<area shape="rect" id="node7" href="$a00079.html#a7e507d40e35fde7bf23e208be7be0884" title="Gets the index of the field at name if found. " alt="" coords="1283,57,1490,98"/>
-</map>

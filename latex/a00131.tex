@@ -1,286 +1,90 @@
-\hypertarget{a00131}{\section{Yarn.\-Library Class Reference}
-\label{a00131}\index{Yarn.\-Library@{Yarn.\-Library}}
+\hypertarget{a00131}{\section{Yarn.\-Loader.\-Node\-Info Struct Reference}
+\label{a00131}\index{Yarn.\-Loader.\-Node\-Info@{Yarn.\-Loader.\-Node\-Info}}
 }
 
 
-Inheritance diagram for Yarn.\-Library\-:
+Collaboration diagram for Yarn.\-Loader.\-Node\-Info\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=228pt]{a00659}
+\includegraphics[width=190pt]{a00618}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Library\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=194pt]{a00660}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00108}{Function\-Info} \hyperlink{a00131_aacfb1f00ad8aa3921941b8d8af0960e0}{Get\-Function} (string name)
-\item 
-void \hyperlink{a00131_ab42a4fd30a72156cafa685f959deef78}{Import\-Library} (\hyperlink{a00131}{Library} other\-Library)
-\item 
-void \hyperlink{a00131_a001ab29d21fe7db10fc9c250914287f9}{Register\-Function} (\hyperlink{a00108}{Function\-Info} function)
-\item 
-void \hyperlink{a00131_a2a698de0b528b2bac17bd85f57d45d4b}{Register\-Function} (string name, int parameter\-Count, \hyperlink{a00053_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} implementation)
-\item 
-void \hyperlink{a00131_a6820eaa082077f16496effbc9041b7ad}{Register\-Function} (string name, int parameter\-Count, \hyperlink{a00053_ae0be2e5cf13d5779816102439e61ff1a}{Function} implementation)
-\item 
-bool \hyperlink{a00131_a6c9a1cc3e25b6aae25e210d8a0d68c09}{Function\-Exists} (string name)
-\item 
-void \hyperlink{a00131_a47d1b3664733207d5cda15f4a4a7af7a}{Deregister\-Function} (string name)
+struct \hyperlink{a00137}{Position}
 \end{DoxyCompactItemize}
-\subsection*{Private Attributes}
+\subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-Dictionary$<$ string, \hyperlink{a00108}{Function\-Info} $>$ \hyperlink{a00131_a2fcc78a63963be5320cf09783b66fab6}{functions} = new Dictionary$<$string, \hyperlink{a00108}{Function\-Info}$>$()
+string \hyperlink{a00131_aafc45bbc86a9acb9bdbcf7877695a96c}{title}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \hyperlink{a00131_a18a8b97f2173fbcf8f3077582cc6e96e}{body}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \hyperlink{a00131_acd4d4915f6cc14f8b0f1f92d27da8b36}{tags}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \hyperlink{a00131_a65f686e0170a9c50b97c4e4eedd1a093}{color\-I\-D}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00137}{Position} \hyperlink{a00131_ac368ed021558af21c4abed88042c1aa8}{position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+List$<$ string $>$ \hyperlink{a00131_ab5010cc4c731e0da871e6002e5fb99a1}{tags\-List}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 90 of file Library.\-cs.
+Definition at line 245 of file Loader.\-cs.
 
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00131_a47d1b3664733207d5cda15f4a4a7af7a}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Deregister\-Function@{Deregister\-Function}}
-\index{Deregister\-Function@{Deregister\-Function}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Deregister\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Deregister\-Function (
-\begin{DoxyParamCaption}
-\item[{string}]{name}
-\end{DoxyParamCaption}
-)}}\label{a00131_a47d1b3664733207d5cda15f4a4a7af7a}
+\subsection{Property Documentation}
+\hypertarget{a00131_a18a8b97f2173fbcf8f3077582cc6e96e}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!body@{body}}
+\index{body@{body}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
+\subsubsection[{body}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Loader.\-Node\-Info.\-body\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00131_a18a8b97f2173fbcf8f3077582cc6e96e}
 
 
-Definition at line 132 of file Library.\-cs.
+Definition at line 252 of file Loader.\-cs.
 
+\hypertarget{a00131_a65f686e0170a9c50b97c4e4eedd1a093}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!color\-I\-D@{color\-I\-D}}
+\index{color\-I\-D@{color\-I\-D}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
+\subsubsection[{color\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Loader.\-Node\-Info.\-color\-I\-D\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00131_a65f686e0170a9c50b97c4e4eedd1a093}
 
 
-References Yarn.\-Library.\-functions.
+Definition at line 258 of file Loader.\-cs.
 
+\hypertarget{a00131_ac368ed021558af21c4abed88042c1aa8}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!position@{position}}
+\index{position@{position}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
+\subsubsection[{position}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Position} Yarn.\-Loader.\-Node\-Info.\-position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00131_ac368ed021558af21c4abed88042c1aa8}
 
-\begin{DoxyCode}
-132                                                     \{
-133             \textcolor{keywordflow}{if} (\hyperlink{a00131_a2fcc78a63963be5320cf09783b66fab6}{functions}.ContainsKey(name))
-134                 \hyperlink{a00131_a2fcc78a63963be5320cf09783b66fab6}{functions}.Remove (name);
-135         \}
-\end{DoxyCode}
-\hypertarget{a00131_a6c9a1cc3e25b6aae25e210d8a0d68c09}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Function\-Exists@{Function\-Exists}}
-\index{Function\-Exists@{Function\-Exists}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Function\-Exists}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Library.\-Function\-Exists (
-\begin{DoxyParamCaption}
-\item[{string}]{name}
-\end{DoxyParamCaption}
-)}}\label{a00131_a6c9a1cc3e25b6aae25e210d8a0d68c09}
 
+Definition at line 259 of file Loader.\-cs.
 
-Definition at line 128 of file Library.\-cs.
+\hypertarget{a00131_acd4d4915f6cc14f8b0f1f92d27da8b36}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!tags@{tags}}
+\index{tags@{tags}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
+\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Loader.\-Node\-Info.\-tags\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00131_acd4d4915f6cc14f8b0f1f92d27da8b36}
 
 
-\begin{DoxyCode}
-128                                                 \{
-129             \textcolor{keywordflow}{return} functions.ContainsKey (name);
-130         \}
-\end{DoxyCode}
-\hypertarget{a00131_aacfb1f00ad8aa3921941b8d8af0960e0}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Get\-Function@{Get\-Function}}
-\index{Get\-Function@{Get\-Function}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Get\-Function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Function\-Info} Yarn.\-Library.\-Get\-Function (
-\begin{DoxyParamCaption}
-\item[{string}]{name}
-\end{DoxyParamCaption}
-)}}\label{a00131_aacfb1f00ad8aa3921941b8d8af0960e0}
+Definition at line 256 of file Loader.\-cs.
 
+\hypertarget{a00131_ab5010cc4c731e0da871e6002e5fb99a1}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!tags\-List@{tags\-List}}
+\index{tags\-List@{tags\-List}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
+\subsubsection[{tags\-List}]{\setlength{\rightskip}{0pt plus 5cm}List$<$string$>$ Yarn.\-Loader.\-Node\-Info.\-tags\-List\hspace{0.3cm}{\ttfamily [get]}}}\label{a00131_ab5010cc4c731e0da871e6002e5fb99a1}
 
-Definition at line 97 of file Library.\-cs.
 
+Definition at line 263 of file Loader.\-cs.
 
+\hypertarget{a00131_aafc45bbc86a9acb9bdbcf7877695a96c}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!title@{title}}
+\index{title@{title}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
+\subsubsection[{title}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Loader.\-Node\-Info.\-title\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00131_aafc45bbc86a9acb9bdbcf7877695a96c}
 
-References Yarn.\-Library.\-functions.
 
+Definition at line 251 of file Loader.\-cs.
 
 
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
 
-
-\begin{DoxyCode}
-97                                                      \{
-98             \textcolor{keywordflow}{try} \{
-99                 \textcolor{keywordflow}{return} \hyperlink{a00131_a2fcc78a63963be5320cf09783b66fab6}{functions} [name];
-100             \} \textcolor{keywordflow}{catch} (KeyNotFoundException) \{
-101                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (name + \textcolor{stringliteral}{" is not a valid function"});
-102             \}
-103         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00131_aacfb1f00ad8aa3921941b8d8af0960e0_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00131_ab42a4fd30a72156cafa685f959deef78}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Import\-Library@{Import\-Library}}
-\index{Import\-Library@{Import\-Library}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Import\-Library}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Import\-Library (
-\begin{DoxyParamCaption}
-\item[{{\bf Library}}]{other\-Library}
-\end{DoxyParamCaption}
-)}}\label{a00131_ab42a4fd30a72156cafa685f959deef78}
-
-
-Definition at line 108 of file Library.\-cs.
-
-
-
-References Yarn.\-Library.\-functions.
-
-
-\begin{DoxyCode}
-108                                                         \{
-109             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} otherLibrary.functions) \{
-110                 \hyperlink{a00131_a2fcc78a63963be5320cf09783b66fab6}{functions} [entry.Key] = entry.Value;
-111             \}
-112         \}
-\end{DoxyCode}
-\hypertarget{a00131_a001ab29d21fe7db10fc9c250914287f9}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Register\-Function@{Register\-Function}}
-\index{Register\-Function@{Register\-Function}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
-\begin{DoxyParamCaption}
-\item[{{\bf Function\-Info}}]{function}
-\end{DoxyParamCaption}
-)}}\label{a00131_a001ab29d21fe7db10fc9c250914287f9}
-
-
-Definition at line 114 of file Library.\-cs.
-
-
-
-References Yarn.\-Library.\-functions.
-
-
-
-Referenced by Yarn.\-Library.\-Register\-Function().
-
-
-\begin{DoxyCode}
-114                                                             \{
-115             \hyperlink{a00131_a2fcc78a63963be5320cf09783b66fab6}{functions} [function.name] = \textcolor{keyword}{function};
-116         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00131_a001ab29d21fe7db10fc9c250914287f9_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00131_a2a698de0b528b2bac17bd85f57d45d4b}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Register\-Function@{Register\-Function}}
-\index{Register\-Function@{Register\-Function}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{parameter\-Count, }
-\item[{{\bf Returning\-Function}}]{implementation}
-\end{DoxyParamCaption}
-)}}\label{a00131_a2a698de0b528b2bac17bd85f57d45d4b}
-
-
-Definition at line 118 of file Library.\-cs.
-
-
-
-References Yarn.\-Library.\-Register\-Function().
-
-
-\begin{DoxyCode}
-118                                                                                                         \{
-119             var info = \textcolor{keyword}{new} FunctionInfo (name, parameterCount, implementation);
-120             \hyperlink{a00131_a001ab29d21fe7db10fc9c250914287f9}{RegisterFunction} (info);
-121         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00131_a2a698de0b528b2bac17bd85f57d45d4b_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00131_a6820eaa082077f16496effbc9041b7ad}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Register\-Function@{Register\-Function}}
-\index{Register\-Function@{Register\-Function}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{parameter\-Count, }
-\item[{{\bf Function}}]{implementation}
-\end{DoxyParamCaption}
-)}}\label{a00131_a6820eaa082077f16496effbc9041b7ad}
-
-
-Definition at line 123 of file Library.\-cs.
-
-
-
-References Yarn.\-Library.\-Register\-Function().
-
-
-\begin{DoxyCode}
-123                                                                                                \{
-124             var info = \textcolor{keyword}{new} FunctionInfo (name, parameterCount, implementation);
-125             \hyperlink{a00131_a001ab29d21fe7db10fc9c250914287f9}{RegisterFunction} (info);
-126         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00131_a6820eaa082077f16496effbc9041b7ad_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00131_a2fcc78a63963be5320cf09783b66fab6}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!functions@{functions}}
-\index{functions@{functions}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{functions}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Function\-Info}$>$ Yarn.\-Library.\-functions = new Dictionary$<$string, {\bf Function\-Info}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00131_a2fcc78a63963be5320cf09783b66fab6}
-
-
-Definition at line 93 of file Library.\-cs.
-
-
-
-Referenced by Yarn.\-Library.\-Deregister\-Function(), Yarn.\-Library.\-Get\-Function(), Yarn.\-Library.\-Import\-Library(), and Yarn.\-Library.\-Register\-Function().
-
-
-
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00314}{Library.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00288}{Loader.\-cs}\end{DoxyCompactItemize}

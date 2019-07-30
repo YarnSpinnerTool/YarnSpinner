@@ -1,0 +1,5 @@
+<map id="CsvHelper.CsvParser.AddFieldToRecord" name="CsvHelper.CsvParser.AddFieldToRecord">
+<area shape="rect" id="node2" href="$a00065.html#ac425b45e53d095d825f0fa8a52041a69" title="Gets the current character from the buffer while advancing the buffer if it ran out. " alt="" coords="259,5,461,32"/>
+<area shape="rect" id="node3" href="$a00065.html#a5420fbd5e54c6ed9a856f2d92e610957" title="Reads the next line. " alt="" coords="510,31,719,57"/>
+<area shape="rect" id="node4" href="$a00065.html#a8e938842c6267343128babd111df9710" title="Reads a record from the CSV file. " alt="" coords="769,31,954,57"/>
+</map>

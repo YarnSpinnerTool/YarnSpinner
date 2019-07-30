@@ -1,225 +1,34 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00186" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::UInt64Converter</compoundname>
-    <basecompoundref refid="a00090" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00186_1a1d3e86ea3d34de0d47a365c9b8622eb7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.UInt64Converter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplements refid="a00090_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
-        <param>
-          <type><ref refid="a00180" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>text</declname>
-        </param>
-        <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt64Converter.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt64Converter.cs" bodystart="20" bodyend="31"/>
-        <references refid="a00180_1af6bc545680b477abf9178eb4755572b1" compoundref="a00285" startline="23">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</references>
-      </memberdef>
-      <memberdef kind="function" id="a00186_1a3d9e9527b77fbf94786f2e5b8c4e5829" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.UInt64Converter.CanConvertFrom</definition>
-        <argsstring>(System.Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <param>
-          <type>System.Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt64Converter.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt64Converter.cs" bodystart="40" bodyend="44"/>
-      </memberdef>
-      <memberdef kind="function" id="a00090_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>string</type>
-        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplements refid="a00125_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
-        <reimplementedby refid="a00101_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="a00144_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
-        <param>
-          <type><ref refid="a00180" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>object</type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
-      </memberdef>
-      <memberdef kind="function" id="a00090_1a470d21adaa704eb281250dbd112ff91a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplements refid="a00125_1ae1ad863656f4fa96bd846a41344c9349">CanConvertFrom</reimplements>
-        <reimplementedby refid="a00174_1ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00048_1a74a66b405f6c18e69b9fd23a1dea91b0">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00086_1af44239d3bd014b1423fa80f7440bbd25">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00087_1a82a8cf4b77600ef49da60deb0c24a708">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00101_1af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00100_1a31af8209aad64ed11d949586075c244a">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00047_1a0be20573af4ee53409bb437125a64268">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00144_1ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="55" bodyend="60"/>
-      </memberdef>
-      <memberdef kind="function" id="a00090_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplements refid="a00125_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="a00101_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00186" kind="file">
+    <compoundname>Dialogue-Localization.md</compoundname>
     <briefdescription>
-<para>Converts a UInt64 to and from a string. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1738">
-        <label>ITypeConverter</label>
-        <link refid="a00125"/>
-      </node>
-      <node id="1737">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00090"/>
-        <childnode refid="1738" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1736">
-        <label>CsvHelper.TypeConversion.UInt64Converter</label>
-        <link refid="a00186"/>
-        <childnode refid="1737" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="1741">
-        <label>ITypeConverter</label>
-        <link refid="a00125"/>
-      </node>
-      <node id="1740">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00090"/>
-        <childnode refid="1741" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1739">
-        <label>CsvHelper.TypeConversion.UInt64Converter</label>
-        <link refid="a00186"/>
-        <childnode refid="1740" relation="public-inheritance">
-        </childnode>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt64Converter.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt64Converter.cs" bodystart="12" bodyend="45"/>
-    <listofallmembers>
-      <member refid="a00186_1a3d9e9527b77fbf94786f2e5b8c4e5829" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::UInt64Converter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00090_1a470d21adaa704eb281250dbd112ff91a" prot="public" virt="virtual" ambiguityscope="CsvHelper::TypeConversion::DefaultTypeConverter."><scope>CsvHelper::TypeConversion::UInt64Converter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00090_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::UInt64Converter</scope><name>CanConvertTo</name></member>
-      <member refid="a00186_1a1d3e86ea3d34de0d47a365c9b8622eb7" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::UInt64Converter</scope><name>ConvertFromString</name></member>
-      <member refid="a00090_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::UInt64Converter</scope><name>ConvertToString</name></member>
-    </listofallmembers>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Localization</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">Yarn<sp/>Spinner<sp/>provides<sp/>tools<sp/>to<sp/>help<sp/>convert<sp/>your<sp/>game<sp/>in<sp/>to<sp/>any<sp/>language<sp/>you<sp/>like.<sp/>This<sp/>is<sp/>achieved<sp/>by<sp/>usage<sp/>of<sp/>the<sp/>[YarnSpinnerConsole](../YarnSpinnerConsole)<sp/>tool.<sp/>At<sp/>the<sp/>moment,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>tool<sp/>is<sp/>not<sp/>available<sp/>standalone<sp/>and<sp/>needs<sp/>to<sp/>be<sp/>[built<sp/>from<sp/>source](../YarnSpinner-Programming/Building.md).</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">##<sp/>Localisation<sp/>procedure</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">1.<sp/>We<sp/>first<sp/>use<sp/>the<sp/>tool<sp/>to<sp/>place<sp/>unique<sp/>**taglines**<sp/>on<sp/>each<sp/>line<sp/>of<sp/>text<sp/>that<sp/>the<sp/>end<sp/>user<sp/>will<sp/>see.<sp/>To<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/>we<sp/>execute<sp/>the<sp/>tool<sp/>with<sp/>the<sp/>**taglines**<sp/>command,<sp/>eg:<sp/><sp/>`YarnSpinnerConsole.exe<sp/>taglines<sp/>MyYarnFile.yarn.txt`.</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">2.<sp/>Next,<sp/>we<sp/>use<sp/>the<sp/>tool<sp/>to<sp/>generate<sp/>a<sp/>file<sp/>of<sp/>strings<sp/>(**genstrings**)<sp/>in<sp/>&apos;[comma<sp/>separated<sp/>value](https:</highlight><highlight class="comment">//en.wikipedia.org/wiki/Comma-separated_values)&apos;<sp/>(csv)<sp/>format.<sp/>`YarnSpinnerConsole.exe<sp/>genstrings<sp/>MyYarnFile.yarn.txt`<sp/>will<sp/>generate<sp/>a<sp/>file,<sp/>(in<sp/>this<sp/>example<sp/>MyYarnFIle.yarn_lines.csv),<sp/>that<sp/>can<sp/>then<sp/>distributed<sp/>to<sp/>translators.<sp/>It<sp/>is<sp/>recommended<sp/>that<sp/>this<sp/>file<sp/>first<sp/>be<sp/>renamed<sp/>using<sp/>a<sp/>language<sp/>identifier<sp/>before<sp/>distribution,<sp/>eg</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>```</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>MyYarnFIle.yarn_lines.enAU.csv</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>MyYarnFIle.yarn_lines.ptTL.csv</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>```</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">3.<sp/>When<sp/>the<sp/>file<sp/>is<sp/>returned<sp/>from<sp/>translators,<sp/>we<sp/>then<sp/>use<sp/>Yarn<sp/>Spinner&apos;s<sp/>DialogueRunner<sp/>inside<sp/>Unity<sp/>to<sp/>set<sp/>String<sp/>Groups<sp/>for<sp/>the<sp/>required<sp/>language.</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">&lt;!--<sp/>Placeholder<sp/>for<sp/>image<sp/>of<sp/>DialogueRunner<sp/>--&gt;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Footnotes</highlight></codeline>
+<codeline lineno="17"><highlight class="preprocessor"></highlight><highlight class="normal">*<sp/>While<sp/>not<sp/>essential<sp/>that<sp/>all<sp/>files<sp/>follow<sp/>a<sp/>standard,<sp/>but<sp/>highly<sp/>recommended<sp/>that<sp/>consistency<sp/>of<sp/>format<sp/>be<sp/>used<sp/>across<sp/>all<sp/>localisation<sp/>files<sp/>within<sp/>a<sp/>project<sp/>eg<sp/>[ISO-15897](https:</highlight><highlight class="comment">//www.iso.org/obp/ui/#iso:std:iso-iec:15897:ed-2:v1:en)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">*<sp/>Originally,<sp/>Yarn<sp/>Spinner<sp/>used<sp/>.json<sp/>format.<sp/>The<sp/>Yarn<sp/>Spinner<sp/>Console<sp/>can<sp/>convert<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>json<sp/>format<sp/>to<sp/>the<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>improved<sp/>text<sp/>format:<sp/>`YarnSpinnerConsole.exe<sp/>convert<sp/>--yarn<sp/>Ship.json`</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">*<sp/>Command<sp/>reference<sp/>is<sp/>available<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>YarnSpinnerConsole.exe<sp/>by<sp/>either<sp/>running<sp/>it<sp/>with<sp/>no<sp/>arguments<sp/>or<sp/>by<sp/>utilising<sp/>the<sp/>help<sp/>command<sp/>(`YarnSpinnerConsole.exe<sp/>help`).<sp/>Help<sp/></highlight><highlight class="keywordflow">for<sp/>each</highlight><highlight class="normal"><sp/>command<sp/>is<sp/>available<sp/>by<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&apos;help<sp/>command&apos;</highlight><highlight class="normal"><sp/>(eg<sp/>`YarnSpinnderConsole.exe<sp/>help<sp/>compile`)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Dialogue/Dialogue-Localization.md"/>
   </compounddef>
 </doxygen>

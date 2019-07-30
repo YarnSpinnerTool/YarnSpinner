@@ -1,185 +1,42 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00215" kind="file">
-    <compoundname>Yarn-Syntax.md</compoundname>
+    <compoundname>CsvParserException.cs</compoundname>
+    <innerclass refid="a00066" prot="public">CsvHelper::CsvParserException</innerclass>
+    <innernamespace refid="a00311">CsvHelper</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#<sp/>Yarn<sp/>Quick<sp/>Reference</highlight></codeline>
-<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal">This<sp/>document<sp/>is<sp/>intended<sp/>to<sp/>act<sp/>as<sp/>a<sp/>comprehensive<sp/>and<sp/>concise<sp/>reference<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Yarn<sp/>syntax<sp/>and<sp/>structure,<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>use<sp/>by<sp/>programmers<sp/>and<sp/>content<sp/>creators.<sp/>It<sp/>assumes<sp/>a<sp/>working<sp/>knowledge<sp/>of<sp/>modern<sp/>programming/scripting<sp/>languages.<sp/>For<sp/>a<sp/>more<sp/>thorough<sp/>explanation<sp/>of<sp/>Yarn<sp/>usage,<sp/>see<sp/>the<sp/>[General<sp/>Usage<sp/>Guide](General-Usage.md)</highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">##<sp/>Table<sp/>of<sp/>Contents</highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal">+<sp/>[Nodes](#nodes)</highlight></codeline>
-<codeline lineno="8"><highlight class="normal">+<sp/>[Links<sp/>Between<sp/>Nodes](#links-between-nodes)</highlight></codeline>
-<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[Menu<sp/>Syntax](#menu-syntax)</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[Option<sp/>Syntax](#option-syntax)</highlight></codeline>
-<codeline lineno="11"><highlight class="normal">+<sp/>[Variables<sp/>&amp;<sp/>Conditionals](#variables---conditionals)</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[Declaring<sp/>and<sp/>Setting<sp/>Variables](#declaring-and-setting-variables)</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[Variable<sp/>Types](#variable-types)</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[<ref refid="a00053_1a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639" kindref="member">If</ref>/<ref refid="a00053_1a301aa7c866593a5b625a8fc158bbeacea6a0053231db40a4539b8f783a719a54a" kindref="member">Else</ref><sp/>Statements](#</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">-</highlight><highlight class="keywordflow">else</highlight><highlight class="normal">-statements)</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[Operator<sp/>Synonyms](#</highlight><highlight class="keyword">operator</highlight><highlight class="normal">-synonyms)</highlight></codeline>
-<codeline lineno="16"><highlight class="normal">+<sp/>[Commands<sp/>and<sp/>Functions](#commands-and-functions)</highlight></codeline>
-<codeline lineno="17"><highlight class="normal">&lt;!--<sp/>used<sp/>https:</highlight><highlight class="comment">//ecotrust-canada.github.io/markdown-toc/<sp/>for<sp/>this<sp/>--&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal">###<sp/>Nodes</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal">Nodes<sp/>act<sp/>as<sp/>containers<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Yarn<sp/>script,<sp/>and<sp/>must<sp/>have<sp/>unique<sp/>titles.<sp/>The<sp/>script<sp/>in<sp/>the<sp/>body<sp/>of<sp/>a<sp/>node<sp/>is<sp/>processed<sp/>line<sp/>by<sp/>line.</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal">A<sp/>node</highlight><highlight class="stringliteral">&apos;s<sp/>header<sp/>contains<sp/>its<sp/>metadata<sp/>-<sp/>by<sp/>default,<sp/>Yarn<sp/>only<sp/>uses<sp/>the<sp/>`title`<sp/>field,<sp/>but<sp/>can<sp/>be<sp/>extended<sp/>to<sp/>use<sp/>arbitrary<sp/>fields.</highlight></codeline>
-<codeline lineno="24"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="25"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="26"><highlight class="stringliteral">title:<sp/>ExampleNodeName</highlight></codeline>
-<codeline lineno="27"><highlight class="stringliteral">tags:<sp/>foo,<sp/>bar</highlight></codeline>
-<codeline lineno="28"><highlight class="stringliteral">---</highlight></codeline>
-<codeline lineno="29"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="30"><highlight class="stringliteral">Yarn<sp/>content<sp/>goes<sp/>here.</highlight></codeline>
-<codeline lineno="31"><highlight class="stringliteral">This<sp/>is<sp/>the<sp/>second<sp/>line.</highlight></codeline>
-<codeline lineno="32"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="33"><highlight class="stringliteral">===</highlight></codeline>
-<codeline lineno="34"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="35"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="36"><highlight class="stringliteral">A<sp/>script<sp/>file<sp/>can<sp/>contain<sp/>multiple<sp/>nodes.<sp/>In<sp/>this<sp/>case,<sp/>nodes<sp/>are<sp/>delineated<sp/>using<sp/>three<sp/>equals<sp/>(`=`)<sp/>characters.</highlight></codeline>
-<codeline lineno="37"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="38"><highlight class="stringliteral">Additionally,<sp/>Yarn<sp/>can<sp/>check<sp/>if<sp/>a<sp/>node<sp/>has<sp/>been<sp/>visited<sp/>by<sp/>calling<sp/>`visited(&quot;NodeName&quot;)`<sp/>in<sp/>an<sp/>`if`<sp/>statement<sp/>(i.e.<sp/>`&lt;&lt;if<sp/>visited(&quot;NodeName&quot;)<sp/>==<sp/>true&gt;&gt;`).</highlight></codeline>
-<codeline lineno="39"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="40"><highlight class="stringliteral">###<sp/>Links<sp/>Between<sp/>Nodes</highlight></codeline>
-<codeline lineno="41"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="42"><highlight class="stringliteral">Nodes<sp/>link<sp/>to<sp/>other<sp/>nodes<sp/>through<sp/>*options*.<sp/>An<sp/>option<sp/>is<sp/>composed<sp/>of<sp/>a<sp/>label<sp/>(optional)<sp/>and<sp/>a<sp/>node<sp/>name<sp/>separated<sp/>by<sp/>a<sp/>vertical<sp/>bar<sp/>(`|`),<sp/>like<sp/>so:</highlight></codeline>
-<codeline lineno="43"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="44"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="45"><highlight class="stringliteral">[[A<sp/>Link<sp/>To<sp/>A<sp/>Node|Node1]]</highlight></codeline>
-<codeline lineno="46"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="47"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="48"><highlight class="stringliteral">If<sp/>a<sp/>node<sp/>link<sp/>with<sp/>no<sp/>label<sp/>is<sp/>provided<sp/>(`[[Node1]]`),<sp/>Yarn<sp/>will<sp/>automatically<sp/>navigate<sp/>to<sp/>the<sp/>linked<sp/>node.</highlight></codeline>
-<codeline lineno="49"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="50"><highlight class="stringliteral">####<sp/>Menu<sp/>Syntax</highlight></codeline>
-<codeline lineno="51"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="52"><highlight class="stringliteral">Shortcut<sp/>options<sp/>allow<sp/>for<sp/>small<sp/>branches<sp/>in<sp/>Yarn<sp/>scripts<sp/>without<sp/>requiring<sp/>extra<sp/>nodes.<sp/>Shortcut<sp/>option<sp/>sets<sp/>allow<sp/>for<sp/>an<sp/>arbitrary<sp/>number<sp/>of<sp/>sub-branches,<sp/>but<sp/>it&apos;</highlight><highlight class="normal">s<sp/>recommended<sp/>that<sp/>users<sp/>stick<sp/>to<sp/>as<sp/>few<sp/>as<sp/>possible<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>the<sp/>sake<sp/>of<sp/>script<sp/>readability.</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="55"><highlight class="normal">Mae:<sp/>What<sp/>did<sp/>you<sp/>say<sp/>to<sp/>her?</highlight></codeline>
-<codeline lineno="56"><highlight class="normal">-&gt;<sp/>Nothing.</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>Mae:<sp/>Oh,<sp/>man.<sp/>Maybe<sp/>you<sp/>should<sp/>have.</highlight></codeline>
-<codeline lineno="58"><highlight class="normal">-&gt;<sp/>That<sp/>she<sp/>was<sp/>a<sp/>jerk.</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>Mae:<sp/>Hah!<sp/>I<sp/>bet<sp/>that<sp/>pissed<sp/>her<sp/>off.</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>Mae:<sp/>How</highlight><highlight class="stringliteral">&apos;d<sp/>she<sp/>react?</highlight></codeline>
-<codeline lineno="61"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>-&gt;<sp/>She<sp/>didn&apos;</highlight><highlight class="normal">t.</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Mae:<sp/>Booooo.<sp/>That</highlight><highlight class="stringliteral">&apos;s<sp/>boring.</highlight></codeline>
-<codeline lineno="63"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>-&gt;<sp/>Furiously.</highlight></codeline>
-<codeline lineno="64"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Mae:<sp/>That&apos;</highlight><highlight class="normal">s<sp/>what<sp/>I<sp/>like<sp/>to<sp/>hear!</highlight></codeline>
-<codeline lineno="65"><highlight class="normal">Mae:<sp/>Anyway,<sp/>I</highlight><highlight class="stringliteral">&apos;d<sp/>better<sp/>get<sp/>going.</highlight></codeline>
-<codeline lineno="66"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="67"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="68"><highlight class="stringliteral">Additionally,<sp/>shortcut<sp/>options<sp/>can<sp/>utilize<sp/>conditional<sp/>logic,<sp/>commands<sp/>and<sp/>functions<sp/>(detailed<sp/>below),<sp/>and<sp/>can<sp/>include<sp/>standard<sp/>node<sp/>links.<sp/>If<sp/>a<sp/>condition<sp/>is<sp/>attached<sp/>to<sp/>a<sp/>shortcut<sp/>option,<sp/>the<sp/>option<sp/>will<sp/>only<sp/>appear<sp/>to<sp/>the<sp/>reader<sp/>if<sp/>the<sp/>condition<sp/>passes:<sp/>&lt;!--<sp/>TODO:<sp/>CHECK<sp/>UP<sp/>ON<sp/>SHORTCUT<sp/>LOGIC<sp/>--&gt;</highlight></codeline>
-<codeline lineno="69"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="70"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="71"><highlight class="stringliteral">Bob:<sp/>What<sp/>would<sp/>you<sp/>like?</highlight></codeline>
-<codeline lineno="72"><highlight class="stringliteral">-&gt;<sp/>A<sp/>burger.<sp/>&lt;&lt;if<sp/>$money<sp/>&gt;<sp/>5&gt;&gt;<sp/></highlight></codeline>
-<codeline lineno="73"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Bob:<sp/>Nice.<sp/>Enjoy!</highlight></codeline>
-<codeline lineno="74"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>[[AteABurger]]</highlight></codeline>
-<codeline lineno="75"><highlight class="stringliteral">-&gt;<sp/>A<sp/>soda.<sp/>&lt;&lt;if<sp/>$money<sp/>&gt;<sp/>2&gt;&gt;</highlight></codeline>
-<codeline lineno="76"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Bob:<sp/>Yum!</highlight></codeline>
-<codeline lineno="77"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>[[DrankASoda]]</highlight></codeline>
-<codeline lineno="78"><highlight class="stringliteral">-&gt;<sp/>Nothing.</highlight></codeline>
-<codeline lineno="79"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Bob:<sp/>Okay.</highlight></codeline>
-<codeline lineno="80"><highlight class="stringliteral">Bob:<sp/>Thanks<sp/>for<sp/>coming!</highlight></codeline>
-<codeline lineno="81"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="82"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="83"><highlight class="stringliteral">####<sp/>Option<sp/>Syntax</highlight></codeline>
-<codeline lineno="84"><highlight class="stringliteral">&lt;!--<sp/>*Note:<sp/>option<sp/>syntax<sp/>is<sp/>in<sp/>the<sp/>process<sp/>of<sp/>being<sp/>deprecated.*<sp/>--&gt;</highlight></codeline>
-<codeline lineno="85"><highlight class="stringliteral">Multiple<sp/>labeled<sp/>node<sp/>links<sp/>on<sp/>consecutive<sp/>lines<sp/>will<sp/>be<sp/>parsed<sp/>as<sp/>a<sp/>menu.<sp/>Example:</highlight></codeline>
-<codeline lineno="86"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="87"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="88"><highlight class="stringliteral">[[Option<sp/>1|Node1]]</highlight></codeline>
-<codeline lineno="89"><highlight class="stringliteral">[[Option<sp/>the<sp/>Second|Node2]]</highlight></codeline>
-<codeline lineno="90"><highlight class="stringliteral">[[Third<sp/>Option|Node3]]</highlight></codeline>
-<codeline lineno="91"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="92"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="93"><highlight class="stringliteral">##<sp/>Variables<sp/>&amp;<sp/>Conditionals</highlight></codeline>
-<codeline lineno="94"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="95"><highlight class="stringliteral">####<sp/>Declaring<sp/>and<sp/>Setting<sp/>Variables</highlight></codeline>
-<codeline lineno="96"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="97"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="98"><highlight class="stringliteral">&lt;&lt;set<sp/>$ExampleVariable<sp/>to<sp/>1&gt;&gt;</highlight></codeline>
-<codeline lineno="99"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="100"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="101"><highlight class="stringliteral">This<sp/>statement<sp/>serves<sp/>to<sp/>set<sp/>a<sp/>variable&apos;</highlight><highlight class="normal">s<sp/>value.<sp/>No<sp/>declarative<sp/>statement<sp/>is<sp/>required;<sp/>setting<sp/>a<sp/>variable</highlight><highlight class="stringliteral">&apos;s<sp/>value<sp/>brings<sp/>it<sp/>into<sp/>existence.</highlight></codeline>
-<codeline lineno="102"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="103"><highlight class="stringliteral">Variable<sp/>names<sp/>must<sp/>start<sp/>with<sp/>a<sp/>`$`<sp/>character.</highlight></codeline>
-<codeline lineno="104"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="105"><highlight class="stringliteral">####<sp/>Variable<sp/>Types</highlight></codeline>
-<codeline lineno="106"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="107"><highlight class="stringliteral">There<sp/>are<sp/>four<sp/>different<sp/>types<sp/>of<sp/>variable<sp/>in<sp/>Yarn:<sp/>strings,<sp/>floating-point<sp/>numbers,<sp/>[booleans](http://eesemi.com/boolean.htm),<sp/>and<sp/>`null`.</highlight></codeline>
-<codeline lineno="108"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="109"><highlight class="stringliteral">Yarn<sp/>will<sp/>automatically<sp/>convert<sp/>between<sp/>types.<sp/>For<sp/>example:</highlight></codeline>
-<codeline lineno="110"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="111"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="112"><highlight class="stringliteral">&lt;&lt;if<sp/>&quot;hi&quot;<sp/>==<sp/>&quot;hi&quot;&gt;&gt;</highlight></codeline>
-<codeline lineno="113"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>The<sp/>two<sp/>strings<sp/>are<sp/>the<sp/>same!</highlight></codeline>
-<codeline lineno="114"><highlight class="stringliteral">&lt;&lt;endif&gt;&gt;</highlight></codeline>
-<codeline lineno="115"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="116"><highlight class="stringliteral">&lt;&lt;if<sp/>1+1+&quot;hi&quot;<sp/>==<sp/>&quot;2hi&quot;&gt;&gt;</highlight></codeline>
-<codeline lineno="117"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Strings<sp/>get<sp/>joined<sp/>together<sp/>with<sp/>other<sp/>values!</highlight></codeline>
-<codeline lineno="118"><highlight class="stringliteral">&lt;&lt;endif&gt;&gt;</highlight></codeline>
-<codeline lineno="119"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="120"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="121"><highlight class="stringliteral">####<sp/>If/Else<sp/>Statements</highlight></codeline>
-<codeline lineno="122"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="123"><highlight class="stringliteral">Yarn<sp/>supports<sp/>standard<sp/>if/else/elseif<sp/>statements.</highlight></codeline>
-<codeline lineno="124"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="125"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="126"><highlight class="stringliteral">&lt;&lt;if<sp/>&quot;hi&quot;<sp/>==<sp/>&quot;hi&quot;&gt;&gt;</highlight></codeline>
-<codeline lineno="127"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>The<sp/>two<sp/>strings<sp/>are<sp/>the<sp/>same!</highlight></codeline>
-<codeline lineno="128"><highlight class="stringliteral">&lt;&lt;endif&gt;&gt;</highlight></codeline>
-<codeline lineno="129"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="130"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="131"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="132"><highlight class="stringliteral">&lt;&lt;if<sp/>$variable<sp/>==<sp/>1&gt;&gt;</highlight></codeline>
-<codeline lineno="133"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Success!</highlight></codeline>
-<codeline lineno="134"><highlight class="stringliteral">&lt;&lt;elseif<sp/>$variable<sp/>==<sp/>&quot;hello&quot;&gt;&gt;</highlight></codeline>
-<codeline lineno="135"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Success...?</highlight></codeline>
-<codeline lineno="136"><highlight class="stringliteral">&lt;&lt;else&gt;&gt;</highlight></codeline>
-<codeline lineno="137"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>No<sp/>success.<sp/>:(</highlight></codeline>
-<codeline lineno="138"><highlight class="stringliteral">&lt;&lt;endif&gt;&gt;</highlight></codeline>
-<codeline lineno="139"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="140"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="141"><highlight class="stringliteral">####<sp/>Operator<sp/>Synonyms</highlight></codeline>
-<codeline lineno="142"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="143"><highlight class="stringliteral">#####<sp/>Assignment</highlight></codeline>
-<codeline lineno="144"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="145"><highlight class="stringliteral">|<sp/>word<sp/>|<sp/>symbol</highlight></codeline>
-<codeline lineno="146"><highlight class="stringliteral">|:---:|:---:|</highlight></codeline>
-<codeline lineno="147"><highlight class="stringliteral">|<sp/>`to`<sp/>|<sp/>`=`<sp/>|</highlight></codeline>
-<codeline lineno="148"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="149"><highlight class="stringliteral">#####<sp/>Comparison</highlight></codeline>
-<codeline lineno="150"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="151"><highlight class="stringliteral">|<sp/>word<sp/>|<sp/>symbol</highlight></codeline>
-<codeline lineno="152"><highlight class="stringliteral">|:---:|:---:|</highlight></codeline>
-<codeline lineno="153"><highlight class="stringliteral">|<sp/>`and`<sp/>|<sp/>`&amp;`<sp/>|</highlight></codeline>
-<codeline lineno="154"><highlight class="stringliteral">|<sp/>`le`<sp/><sp/>|<sp/>`&lt;`<sp/>|</highlight></codeline>
-<codeline lineno="155"><highlight class="stringliteral">|<sp/>`gt`<sp/><sp/>|<sp/>`&gt;`<sp/>|</highlight></codeline>
-<codeline lineno="156"><highlight class="stringliteral">|<sp/>`or`<sp/><sp/>|<sp/>`||`<sp/>|<sp/>&lt;!--<sp/>TODO:<sp/>CHECK<sp/>THIS<sp/>ISN&apos;</highlight><highlight class="normal">T<sp/>BROKEN<sp/>ON<sp/>GITHUB<sp/>--&gt;</highlight></codeline>
-<codeline lineno="157"><highlight class="normal">|<sp/>`leq`<sp/>|<sp/>`&lt;=`<sp/>|</highlight></codeline>
-<codeline lineno="158"><highlight class="normal">|<sp/>`geq`<sp/>|<sp/>`&gt;=`<sp/>|</highlight></codeline>
-<codeline lineno="159"><highlight class="normal">|<sp/>`eq`<sp/><sp/>|<sp/>`==`<sp/>|</highlight></codeline>
-<codeline lineno="160"><highlight class="normal">|<sp/>`is`<sp/><sp/>|<sp/>`==`<sp/>|</highlight></codeline>
-<codeline lineno="161"><highlight class="normal">|<sp/>`neq`<sp/>|<sp/>`!=`<sp/>|</highlight></codeline>
-<codeline lineno="162"><highlight class="normal">|<sp/>`not`<sp/>|<sp/>`!`<sp/>|</highlight></codeline>
-<codeline lineno="163"><highlight class="normal"></highlight></codeline>
-<codeline lineno="164"><highlight class="normal">##<sp/>Commands<sp/>and<sp/>Functions</highlight></codeline>
-<codeline lineno="165"><highlight class="normal"></highlight></codeline>
-<codeline lineno="166"><highlight class="normal">By<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">,<sp/>Yarn<sp/>Spinner<sp/>includes<sp/>a<sp/>`visited()`<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">,<sp/>used<sp/>to<sp/>check<sp/>whether<sp/>a<sp/>node<sp/>has<sp/>been<sp/>entered.</highlight></codeline>
-<codeline lineno="167"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="168"><highlight class="normal">&lt;&lt;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>visited(</highlight><highlight class="stringliteral">&quot;GoToCity&quot;</highlight><highlight class="normal">)&gt;&gt;</highlight></codeline>
-<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>We<sp/>have<sp/>gone<sp/>to<sp/>the<sp/>city<sp/>before!</highlight></codeline>
-<codeline lineno="170"><highlight class="normal">&lt;&lt;endif&gt;&gt;</highlight></codeline>
-<codeline lineno="171"><highlight class="normal">```</highlight></codeline>
-<codeline lineno="172"><highlight class="normal">Additional<sp/>functions<sp/>and<sp/>commands<sp/>can<sp/>be<sp/>added<sp/>at<sp/>run-time.<sp/>See<sp/>[</highlight><highlight class="stringliteral">&quot;Extending<sp/>Yarn<sp/>Spinner&quot;</highlight><highlight class="normal">](../YarnSpinner-Programming/Extending.md)<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>more<sp/>info.</highlight></codeline>
+<codeline lineno="1"><highlight class="comment">//<sp/>Copyright<sp/>2009-2015<sp/>Josh<sp/>Close<sp/>and<sp/>Contributors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>a<sp/>part<sp/>of<sp/>CsvHelper<sp/>and<sp/>is<sp/>dual<sp/>licensed<sp/>under<sp/>MS-PL<sp/>and<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>LICENSE.txt<sp/>for<sp/>details<sp/>or<sp/>visit<sp/>http://www.opensource.org/licenses/ms-pl.html<sp/>for<sp/>MS-PL<sp/>and<sp/>http://opensource.org/licenses/Apache-2.0<sp/>for<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>http://csvhelper.com</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!COREFX</highlight></codeline>
+<codeline lineno="7"><highlight class="preprocessor"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Runtime.Serialization;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="9"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">CsvHelper</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15"><highlight class="preprocessor">#if<sp/>!COREFX<sp/>&amp;&amp;<sp/>!PCL</highlight></codeline>
+<codeline lineno="16"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>[Serializable]</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="18" refid="a00066" refkind="compound"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="a00066" kindref="compound">CsvParserException</ref><sp/>:<sp/><ref refid="a00063" kindref="compound">CsvHelperException</ref></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="23" refid="a00066_1a4a87a8cbca18790562bab5f571e6e87b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00066_1a4a87a8cbca18790562bab5f571e6e87b" kindref="member">CsvParserException</ref>()<sp/>{}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="a00066_1a6ac692a1b7bb39afc66a7c701963e9c2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00066_1a6ac692a1b7bb39afc66a7c701963e9c2" kindref="member">CsvParserException</ref>(<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>message<sp/>)<sp/>:<sp/>base(<sp/>message<sp/>)<sp/>{}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="a00066_1a62b6bf7ba1ab79737a049a6ced4555d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00066_1a62b6bf7ba1ab79737a049a6ced4555d4" kindref="member">CsvParserException</ref>(<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>message,<sp/>Exception<sp/>innerException<sp/>)<sp/>:<sp/>base(<sp/>message,<sp/>innerException<sp/>)<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!PCL<sp/>&amp;&amp;<sp/>!COREFX</highlight></codeline>
+<codeline lineno="42"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00066_1a4a87a8cbca18790562bab5f571e6e87b" kindref="member">CsvParserException</ref>(<sp/>SerializationInfo<sp/>info,<sp/>StreamingContext<sp/>context<sp/>)<sp/>:<sp/>base(<sp/>info,<sp/>context<sp/>)<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="50"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">}</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Dialogue/Yarn-Syntax.md"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs"/>
   </compounddef>
 </doxygen>

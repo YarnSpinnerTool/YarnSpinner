@@ -1,16 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00171" kind="class" prot="public">
-    <compoundname>Yarn::TableGenerator</compoundname>
-      <sectiondef kind="package-static-func">
-      <memberdef kind="function" id="a00171_1a1d65ef643c3f3495cf9480f86172ff87" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>int</type>
-        <definition>static int Yarn.TableGenerator.GenerateTables</definition>
-        <argsstring>(GenerateTableOptions options)</argsstring>
-        <name>GenerateTables</name>
+    <compoundname>Yarn::YarnException</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Exception</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00171_1aa4a1dc51efdfa238aad7f20d76710fd1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.YarnException.YarnException</definition>
+        <argsstring>(string message)</argsstring>
+        <name>YarnException</name>
         <param>
-          <type><ref refid="a00109" kindref="compound">GenerateTableOptions</ref></type>
-          <declname>options</declname>
+          <type>string</type>
+          <declname>message</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -18,22 +19,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" line="12" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" bodystart="12" bodyend="124"/>
-        <references refid="a00197_1a0979de7ea02c8c0375b8220a12e6575e" compoundref="a00328" startline="273">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</references>
-        <references refid="a00109_1a8b30c1b7fb1b74eae455a568c1024b3d" compoundref="a00328" startline="114">Yarn.GenerateTableOptions.onlyUseTag</references>
-        <references refid="a00043_1ada4d83d1756918f362d55f6649b82b17" compoundref="a00328" startline="46">Yarn.BaseOptions.verbose</references>
-        <referencedby refid="a00197_1a1d71ff2eb190449ea1d42ce86f44489f" compoundref="a00328" startline="244" endline="271">Yarn.YarnSpinnerConsole.Main</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="38" bodyend="38"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="private-static-func">
-      <memberdef kind="function" id="a00171_1ac03637d16d3512258c997b9a21af6c42" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
-        <definition>static string Yarn.TableGenerator.CreateCSVRow</definition>
-        <argsstring>(params string[] entries)</argsstring>
-        <name>CreateCSVRow</name>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="a00171_1a4230584809bc10d063385a96cc23aeb8" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.YarnException.YarnException</definition>
+        <argsstring>(SerializationInfo serializationInfo, StreamingContext streamingContext)</argsstring>
+        <name>YarnException</name>
         <param>
-          <type>params string[]</type>
-          <declname>entries</declname>
+          <type>SerializationInfo</type>
+          <declname>serializationInfo</declname>
+        </param>
+        <param>
+          <type>StreamingContext</type>
+          <declname>streamingContext</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -41,43 +42,39 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" line="126" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" bodystart="126" bodyend="128"/>
-        <referencedby refid="a00171_1aa16da6b6810ce3a5fd2a7920de6322ef" compoundref="a00330" startline="130" endline="132">Yarn.TableGenerator.CreateCSVRow</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00171_1aa16da6b6810ce3a5fd2a7920de6322ef" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
-        <definition>static string Yarn.TableGenerator.CreateCSVRow</definition>
-        <argsstring>(KeyValuePair&lt; string, string &gt; entry)</argsstring>
-        <name>CreateCSVRow</name>
-        <param>
-          <type>KeyValuePair&lt; string, string &gt;</type>
-          <declname>entry</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" line="130" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" bodystart="130" bodyend="132"/>
-        <references refid="a00171_1ac03637d16d3512258c997b9a21af6c42" compoundref="a00330" startline="126" endline="128">Yarn.TableGenerator.CreateCSVRow</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="40" bodyend="40"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Represents things that can go wrong while loading or running a dialogue. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1676">
-        <label>Yarn.TableGenerator</label>
+    <inheritancegraph>
+      <node id="1567">
+        <label>Exception</label>
+      </node>
+      <node id="1566">
+        <label>Yarn.YarnException</label>
         <link refid="a00171"/>
+        <childnode refid="1567" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1569">
+        <label>Exception</label>
+      </node>
+      <node id="1568">
+        <label>Yarn.YarnException</label>
+        <link refid="a00171"/>
+        <childnode refid="1569" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" line="11" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" bodystart="10" bodyend="133"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="37" bodyend="41"/>
     <listofallmembers>
-      <member refid="a00171_1ac03637d16d3512258c997b9a21af6c42" prot="private" virt="non-virtual"><scope>Yarn::TableGenerator</scope><name>CreateCSVRow</name></member>
-      <member refid="a00171_1aa16da6b6810ce3a5fd2a7920de6322ef" prot="private" virt="non-virtual"><scope>Yarn::TableGenerator</scope><name>CreateCSVRow</name></member>
-      <member refid="a00171_1a1d65ef643c3f3495cf9480f86172ff87" prot="package" virt="non-virtual"><scope>Yarn::TableGenerator</scope><name>GenerateTables</name></member>
+      <member refid="a00171_1aa4a1dc51efdfa238aad7f20d76710fd1" prot="public" virt="non-virtual"><scope>Yarn::YarnException</scope><name>YarnException</name></member>
+      <member refid="a00171_1a4230584809bc10d063385a96cc23aeb8" prot="protected" virt="non-virtual"><scope>Yarn::YarnException</scope><name>YarnException</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -1,10 +1,11 @@
 var a00157 =
 [
-    [ "CreateInstance", "a00157.html#a9b8690ff760f41b0a7ef46626949c777", null ],
-    [ "CreateInstance< T >", "a00157.html#a45f0f552711f33392f33693a88fb20b3", null ],
-    [ "GetAttribute< T >", "a00157.html#aadf73df00d450ae49ceb8d78ac254b6d", null ],
-    [ "GetAttributes< T >", "a00157.html#adb0641e341c8468906b175f3f982ab6b", null ],
-    [ "GetConstructor< T >", "a00157.html#a7f2e39949787d37053702e7ea547ee69", null ],
-    [ "GetMemberExpression< TModel, T >", "a00157.html#ab462ff86486973f2eee6785bed535cdc", null ],
-    [ "GetProperty< TModel >", "a00157.html#afaa6e2741145eabea34c625684fb4636", null ]
+    [ "AddOptions", "a00157.html#a3f70014574bc374acbe8a152e9e741f2", null ],
+    [ "AddOptions< T >", "a00157.html#ab65b57d4c987d39e33bc136dfd5cb989", null ],
+    [ "GetOptions", "a00157.html#a2958beb79bb066c2b99c9fc97be9043d", null ],
+    [ "GetOptions< T >", "a00157.html#abff68f203e82218e5d9d316a81d90157", null ],
+    [ "RemoveOptions", "a00157.html#af5ceccd212df16bb55cf90cdcd76c286", null ],
+    [ "RemoveOptions< T >", "a00157.html#a201c3cd79a7bfe46424929150f2b84d8", null ],
+    [ "locker", "a00157.html#aeea3952a7ac1a8cb0291db079800ead4", null ],
+    [ "typeConverterOptions", "a00157.html#abef552dcc7a0c631d09fa8f2ea5fead4", null ]
 ];

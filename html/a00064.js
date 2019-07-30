@@ -1,10 +1,7 @@
 var a00064 =
 [
-    [ "Add", "a00064.html#aab6a14a4c1a614fac511ddd6af2c9e40", null ],
-    [ "Clear", "a00064.html#a91718f9b6527a7f833393d24587716cc", null ],
-    [ "Find< T >", "a00064.html#ac75513617b6c256c3d693adf4482e1ed", null ],
-    [ "GetGenericCsvClassMapType", "a00064.html#a73e02f782a0c35347d7d035bec5deb99", null ],
-    [ "Remove", "a00064.html#a0b18f7ab62839aa354021986e5a2ef96", null ],
-    [ "data", "a00064.html#a6402d0986ae539363780f34eefd5fa99", null ],
-    [ "this[Type type]", "a00064.html#a58c95d5126b396fcf3f58d7daa59646e", null ]
+    [ "CsvMissingFieldException", "a00064.html#ac65429fd7aadcadd7d362722f7a3cab7", null ],
+    [ "CsvMissingFieldException", "a00064.html#aa0b611d59d2c9c47047de427b35cf6a7", null ],
+    [ "CsvMissingFieldException", "a00064.html#a1a6eb7ea392bc14d0da95e447ac001dc", null ],
+    [ "CsvMissingFieldException", "a00064.html#a867cc21f971ca654865f2cce8e1b971d", null ]
 ];

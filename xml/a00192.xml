@@ -1,177 +1,44 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00192" kind="interface" prot="public">
-    <compoundname>Yarn::VariableStorage</compoundname>
-    <derivedcompoundref refid="a00044" prot="public" virt="non-virtual">Yarn.BaseVariableStorage</derivedcompoundref>
-    <derivedcompoundref refid="a00193" prot="public" virt="non-virtual">Yarn.Unity.VariableStorageBehaviour</derivedcompoundref>
-    <derivedcompoundref refid="a00058" prot="public" virt="non-virtual">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</derivedcompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00192_1aa28c3694f985cf73489efc301b9d41dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.VariableStorage.SetNumber</definition>
-        <argsstring>(string variableName, float number)</argsstring>
-        <name>SetNumber</name>
-        <reimplementedby refid="a00044_1a48b93de9cd7ae61d0cd9583c8330d3ee">SetNumber</reimplementedby>
-        <reimplementedby refid="a00193_1ac0d2f2e081944ad197992a26ad1a833c">SetNumber</reimplementedby>
-        <reimplementedby refid="a00058_1adc9bfad13d8ae2f147deeddbc5c38ea3">SetNumber</reimplementedby>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>number</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="67" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="a00192_1a04b061c52d8ac814ce559da5286fbc71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>float</type>
-        <definition>float Yarn.VariableStorage.GetNumber</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetNumber</name>
-        <reimplementedby refid="a00044_1a1b7f7f4468b2463e7b47986d99362279">GetNumber</reimplementedby>
-        <reimplementedby refid="a00193_1add85a45dd65a5d4bd41c9d5ce5f77d19">GetNumber</reimplementedby>
-        <reimplementedby refid="a00058_1adf34fa27235fc0fd5fe35c32023220c4">GetNumber</reimplementedby>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="68" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="a00192_1aa90ff61224432c5ed3ce72199c55f440" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.VariableStorage.SetValue</definition>
-        <argsstring>(string variableName, Value value)</argsstring>
-        <name>SetValue</name>
-        <reimplementedby refid="a00044_1a1c57d6d208b78abec0a670396771448e">SetValue</reimplementedby>
-        <reimplementedby refid="a00138_1a653a459811e5c19549f4b31269093ef5">SetValue</reimplementedby>
-        <reimplementedby refid="a00091_1ac4265c1c9da485f13a6b05784b0f668d">SetValue</reimplementedby>
-        <reimplementedby refid="a00193_1a25f979b062d63c9e886fe7070ce4561b">SetValue</reimplementedby>
-        <reimplementedby refid="a00058_1ab6312d89b626ca803a74a9181286d608">SetValue</reimplementedby>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type><ref refid="a00189" kindref="compound">Value</ref></type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="69" column="1"/>
-        <referencedby refid="a00164_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00319" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00192_1accab1fc5c8fc353dbfc53ca0f4029576" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="a00189" kindref="compound">Value</ref></type>
-        <definition>Value Yarn.VariableStorage.GetValue</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetValue</name>
-        <reimplementedby refid="a00044_1a13b142df804d9842e97e628e252928e8">GetValue</reimplementedby>
-        <reimplementedby refid="a00138_1a0ce77e8245c504a777540e359704aa2a">GetValue</reimplementedby>
-        <reimplementedby refid="a00091_1a741593be1a299dcc2136f05b9b4a995a">GetValue</reimplementedby>
-        <reimplementedby refid="a00193_1ac6ebafcbebc2b2d71eba8562490a2f1e">GetValue</reimplementedby>
-        <reimplementedby refid="a00058_1a66fc86080cd452079f5adf15e97c8e41">GetValue</reimplementedby>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="70" column="1"/>
-        <referencedby refid="a00164_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00319" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00192_1af98c1e41f351cb96e13f668ca2fd9d92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.VariableStorage.Clear</definition>
-        <argsstring>()</argsstring>
-        <name>Clear</name>
-        <reimplementedby refid="a00044_1a7e45c37f3662ce9f2643e306bb2b3adc">Clear</reimplementedby>
-        <reimplementedby refid="a00138_1aa6d243e7ef02b91f793a221f509dae69">Clear</reimplementedby>
-        <reimplementedby refid="a00091_1a0ce614bee8d5b220500fb765390b4ca3">Clear</reimplementedby>
-        <reimplementedby refid="a00193_1a587fe10b367ace190e10f3bcb590a53c">Clear</reimplementedby>
-        <reimplementedby refid="a00058_1a082617cf099d13cb4338935020ced764">Clear</reimplementedby>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="71" column="1"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00192" kind="file">
+    <compoundname>YarnSpinner-with-Unity-QuickStart.md</compoundname>
     <briefdescription>
-<para>Where we turn to for storing and loading variable data. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1767">
-        <label>ExampleVariableStorage</label>
-        <link refid="a00091"/>
-        <childnode refid="1766" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1766">
-        <label>Yarn.Unity.VariableStorageBehaviour</label>
-        <link refid="a00193"/>
-        <childnode refid="1763" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1768">
-        <label>Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</label>
-        <link refid="a00058"/>
-        <childnode refid="1763" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1765">
-        <label>Yarn.MemoryVariableStore</label>
-        <link refid="a00138"/>
-        <childnode refid="1764" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1764">
-        <label>Yarn.BaseVariableStorage</label>
-        <link refid="a00044"/>
-        <childnode refid="1763" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1763">
-        <label>Yarn.VariableStorage</label>
-        <link refid="a00192"/>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="1769">
-        <label>Yarn.VariableStorage</label>
-        <link refid="a00192"/>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="65" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="65" bodyend="72"/>
-    <listofallmembers>
-      <member refid="a00192_1af98c1e41f351cb96e13f668ca2fd9d92" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>Clear</name></member>
-      <member refid="a00192_1a04b061c52d8ac814ce559da5286fbc71" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>GetNumber</name></member>
-      <member refid="a00192_1accab1fc5c8fc353dbfc53ca0f4029576" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>GetValue</name></member>
-      <member refid="a00192_1aa28c3694f985cf73489efc301b9d41dd" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>SetNumber</name></member>
-      <member refid="a00192_1aa90ff61224432c5ed3ce72199c55f440" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>SetValue</name></member>
-    </listofallmembers>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Quickstart<sp/>to<sp/>Using<sp/>Yarn<sp/>Spinner<sp/>in<sp/>your<sp/>Unity<sp/>game</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Style<sp/>Guide</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">`Inline<sp/>Code`<sp/>contain<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>snippets<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>Code<sp/>Blocks<sp/>contain<sp/>segments<sp/>or<sp/>chunks<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">**Bold<sp/>indicate<sp/>actions<sp/>(Select<sp/>menu<sp/>item,<sp/>copying<sp/>file,<sp/>etc.)**</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">***Bold<sp/>italic<sp/>text<sp/>indicates<sp/>emphasis***</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">&gt;<sp/>Blockquotes<sp/>contain<sp/>essential<sp/>information</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Tutorial</highlight></codeline>
+<codeline lineno="16"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">&gt;<sp/>***Note:***<sp/>This<sp/>tutorial<sp/>assumes<sp/>that<sp/>you<sp/>know<sp/>a<sp/>little<sp/>bit<sp/>about<sp/>[Unity](http:</highlight><highlight class="comment">//www.unity3d.com).<sp/>In<sp/>particular,<sp/>it<sp/>is<sp/>helpful<sp/>that<sp/>you<sp/>know<sp/>how<sp/>to<sp/>get<sp/>around<sp/>the<sp/>Unity<sp/>editor,<sp/>how<sp/>to<sp/>work<sp/>with<sp/>game<sp/>objects,<sp/>and<sp/>how<sp/>to<sp/>write<sp/>scripts<sp/>in<sp/>C#.<sp/>If<sp/>you<sp/>don&apos;t<sp/>know<sp/>these<sp/>things,<sp/>please<sp/>refer<sp/>to<sp/>[Unity&apos;s<sp/>documentation](http://unity3d.com/learn).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Yarn<sp/>Spinner<sp/>Quick<sp/>Start</highlight></codeline>
+<codeline lineno="20"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">Here</highlight><highlight class="stringliteral">&apos;s<sp/>how<sp/>to<sp/>quickly<sp/>jump<sp/>in<sp/>to<sp/>Yarn<sp/>Spinner<sp/>if<sp/>you&apos;</highlight><highlight class="normal">re<sp/>already<sp/>familiar<sp/>with<sp/>Unity.</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">*<sp/>**Download**<sp/>[the<sp/>YarnSpinner<sp/>package](https:</highlight><highlight class="comment">//github.com/thesecretlab/YarnSpinner/releases)<sp/>into<sp/>your<sp/>Unity<sp/>project.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">*<sp/>**Import**<sp/>the<sp/></highlight><highlight class="keyword">package<sp/></highlight><highlight class="normal">into<sp/>your<sp/>project.</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">*<sp/>Inside<sp/>the<sp/>YarnSpinner<sp/>folder,<sp/>**open<sp/>the<sp/>`Examples/Yarn<sp/>Spinner<sp/>Basic<sp/>Example`<sp/>scene.**</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">*<sp/>**Start<sp/>the<sp/>game.**</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">*<sp/>**Play<sp/>through<sp/>the<sp/>dialogue.**</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">Once<sp/>you&apos;ve<sp/>played<sp/>with<sp/>it,<sp/>open<sp/>the<sp/>Example<sp/>Script<sp/>file<sp/>in<sp/>the<sp/>[Yarn<sp/>Editor](http:</highlight><highlight class="comment">//github.com/infiniteammoinc/Yarn),<sp/>(it&apos;s<sp/>in<sp/>the<sp/>`Examples/Demo<sp/>Assets`<sp/>folder),<sp/>and<sp/>make<sp/>some<sp/>changes<sp/>to<sp/>the<sp/>script.<sp/>Once<sp/>you&apos;ve<sp/>done<sp/>that,<sp/>take<sp/>a<sp/>look<sp/>at<sp/>how<sp/>`Code/DialogueRunner.cs`,<sp/>`Examples/Demo<sp/>Scripts/ExampleDialogueUI.cs`<sp/>and<sp/>`Examples/Demo<sp/>Scripts/ExampleVariableStorage.cs`<sp/>work.<sp/>You<sp/>can<sp/>also<sp/>[add<sp/>your<sp/>own<sp/>functions<sp/>to<sp/>Yarn](../YarnSpinner-Programming/Extending.md).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-QuickStart.md"/>
   </compounddef>
 </doxygen>

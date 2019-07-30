@@ -1,7 +1,13 @@
 var a00071 =
 [
-    [ "CsvParserException", "a00071.html#a4a87a8cbca18790562bab5f571e6e87b", null ],
-    [ "CsvParserException", "a00071.html#a6ac692a1b7bb39afc66a7c701963e9c2", null ],
-    [ "CsvParserException", "a00071.html#a62b6bf7ba1ab79737a049a6ced4555d4", null ],
-    [ "CsvParserException", "a00071.html#a3ce8a09ae6e88787d47f47a108d33f21", null ]
+    [ "Add", "a00071.html#ad7b7d11d5814bcce5ed38e054ef71b4e", null ],
+    [ "AddRange", "a00071.html#ac568746273968080890abca50b882802", null ],
+    [ "Clear", "a00071.html#abec990435c8dccfb4553602b89f93201", null ],
+    [ "GetEnumerator", "a00071.html#a61b6a80e51d06f17d0043ec6aef89f1b", null ],
+    [ "GetEnumerator", "a00071.html#a76b5c67fcecf55dbdd4b680cde1a78f7", null ],
+    [ "names", "a00071.html#a41eb6804d8afe8d674e64d71f66962ce", null ],
+    [ "Count", "a00071.html#a4b7b56286ad80183e1a33554a49eefa1", null ],
+    [ "Names", "a00071.html#a1aa06a47337f6ab576b23fe63854dcbe", null ],
+    [ "Prefix", "a00071.html#ab8f3256d8435a1c93f0280064aa3ff06", null ],
+    [ "this[int index]", "a00071.html#acdce91a755be3bec6218e3d82f4dfe82", null ]
 ];

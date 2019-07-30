@@ -1,10 +1,10 @@
 var a00059 =
 [
-    [ "Context", "a00059.html#a8e2c56843e8d374b0f90e23326d8d14a", null ],
-    [ "Context", "a00059.html#ad5f41fb64637c4938bce811153492731", null ],
-    [ "AddProgramToAnalysis", "a00059.html#a60255a6d54f296d199507acef251244c", null ],
-    [ "FinishAnalysis", "a00059.html#a1eadea062a5899a64d00ea0172cbbb43", null ],
-    [ "_defaultAnalyserClasses", "a00059.html#ad06829cf848a5936db5724ebced758ec", null ],
-    [ "analysers", "a00059.html#aa5c7eaa90ad9c47969a3b336080d8991", null ],
-    [ "defaultAnalyserClasses", "a00059.html#afdf24f2512251c2203ba1bde8f4a0f90", null ]
+    [ "Add", "a00059.html#aab6a14a4c1a614fac511ddd6af2c9e40", null ],
+    [ "Clear", "a00059.html#a91718f9b6527a7f833393d24587716cc", null ],
+    [ "Find< T >", "a00059.html#ac75513617b6c256c3d693adf4482e1ed", null ],
+    [ "GetGenericCsvClassMapType", "a00059.html#a73e02f782a0c35347d7d035bec5deb99", null ],
+    [ "Remove", "a00059.html#a0b18f7ab62839aa354021986e5a2ef96", null ],
+    [ "data", "a00059.html#a6402d0986ae539363780f34eefd5fa99", null ],
+    [ "this[Type type]", "a00059.html#a58c95d5126b396fcf3f58d7daa59646e", null ]
 ];

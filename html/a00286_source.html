@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs Source File</title>
+<title>YarnSpinner: YarnSpinnerTests/GlobalSuppressions.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,103 +105,24 @@ $(document).ready(function(){initNavTree('a00286_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">TypeConverterOptionsFactory.cs</div>  </div>
+<div class="title">GlobalSuppressions.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00286.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>CsvHelper.TypeConversion</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="a00181.html">   13</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="a00181.html">TypeConverterOptionsFactory</a></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="a00181.html#abef552dcc7a0c631d09fa8f2ea5fead4">   15</a></span>&#160;        <span class="keyword">private</span> <span class="keyword">static</span> readonly Dictionary&lt;Type, TypeConverterOptions&gt; typeConverterOptions = <span class="keyword">new</span> Dictionary&lt;Type, TypeConverterOptions&gt;();</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="a00181.html#aeea3952a7ac1a8cb0291db079800ead4">   16</a></span>&#160;        <span class="keyword">private</span> <span class="keyword">static</span> readonly <span class="keywordtype">object</span> locker = <span class="keyword">new</span> object();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="a00181.html#a3f70014574bc374acbe8a152e9e741f2">   23</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00181.html#a3f70014574bc374acbe8a152e9e741f2">AddOptions</a>( Type type, <a class="code" href="a00180.html">TypeConverterOptions</a> options )</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">if</span>( type == null )</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;type&quot;</span> );</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            }</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordflow">if</span>( options == null )</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;options&quot;</span> );</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            lock( locker )</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                typeConverterOptions[type] = options;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            }</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="a00181.html#ab65b57d4c987d39e33bc136dfd5cb989">   46</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> AddOptions&lt;T&gt;( <a class="code" href="a00180.html">TypeConverterOptions</a> options )</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            AddOptions( typeof( T ), options );</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="a00181.html#af5ceccd212df16bb55cf90cdcd76c286">   55</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00181.html#af5ceccd212df16bb55cf90cdcd76c286">RemoveOptions</a>( Type type )</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">if</span>( type == null )</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;type&quot;</span> );</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            lock( locker )</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                typeConverterOptions.Remove( type );</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="a00181.html#a201c3cd79a7bfe46424929150f2b84d8">   72</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> RemoveOptions&lt;T&gt;()</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            RemoveOptions( typeof( T ) );</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="a00181.html#a2958beb79bb066c2b99c9fc97be9043d">   82</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="a00180.html">TypeConverterOptions</a> <a class="code" href="a00181.html#a2958beb79bb066c2b99c9fc97be9043d">GetOptions</a>( Type type )</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordflow">if</span>( type == null )</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException();</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            lock( locker )</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <a class="code" href="a00180.html">TypeConverterOptions</a> options;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <span class="keywordflow">if</span>( !typeConverterOptions.TryGetValue( type, out options ) )</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                    options = <span class="keyword">new</span> <a class="code" href="a00180.html">TypeConverterOptions</a>();</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                    typeConverterOptions.Add( type, options );</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                <span class="keywordflow">return</span> options;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        }</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="a00181.html#abff68f203e82218e5d9d316a81d90157">  108</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="a00180.html">TypeConverterOptions</a> GetOptions&lt;T&gt;()</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        {</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="keywordflow">return</span> GetOptions( typeof( T ) );</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}</div>
-<div class="ttc" id="a00181_html_a2958beb79bb066c2b99c9fc97be9043d"><div class="ttname"><a href="a00181.html#a2958beb79bb066c2b99c9fc97be9043d">CsvHelper.TypeConversion.TypeConverterOptionsFactory.GetOptions</a></div><div class="ttdeci">static TypeConverterOptions GetOptions(Type type)</div><div class="ttdoc">Get the TypeConverterOptions for the given Type. </div><div class="ttdef"><b>Definition:</b> <a href="a00286_source.html#l00082">TypeConverterOptionsFactory.cs:82</a></div></div>
-<div class="ttc" id="a00181_html"><div class="ttname"><a href="a00181.html">CsvHelper.TypeConversion.TypeConverterOptionsFactory</a></div><div class="ttdoc">Creates TypeConverterOptions. </div><div class="ttdef"><b>Definition:</b> <a href="a00286_source.html#l00013">TypeConverterOptionsFactory.cs:13</a></div></div>
-<div class="ttc" id="a00181_html_a3f70014574bc374acbe8a152e9e741f2"><div class="ttname"><a href="a00181.html#a3f70014574bc374acbe8a152e9e741f2">CsvHelper.TypeConversion.TypeConverterOptionsFactory.AddOptions</a></div><div class="ttdeci">static void AddOptions(Type type, TypeConverterOptions options)</div><div class="ttdoc">Adds the TypeConverterOptions for the given Type. </div><div class="ttdef"><b>Definition:</b> <a href="a00286_source.html#l00023">TypeConverterOptionsFactory.cs:23</a></div></div>
-<div class="ttc" id="a00181_html_af5ceccd212df16bb55cf90cdcd76c286"><div class="ttname"><a href="a00181.html#af5ceccd212df16bb55cf90cdcd76c286">CsvHelper.TypeConversion.TypeConverterOptionsFactory.RemoveOptions</a></div><div class="ttdeci">static void RemoveOptions(Type type)</div><div class="ttdoc">Removes the TypeConverterOptions for the given type. </div><div class="ttdef"><b>Definition:</b> <a href="a00286_source.html#l00055">TypeConverterOptionsFactory.cs:55</a></div></div>
-<div class="ttc" id="a00180_html"><div class="ttname"><a href="a00180.html">CsvHelper.TypeConversion.TypeConverterOptions</a></div><div class="ttdoc">Options used when doing type conversion. </div><div class="ttdef"><b>Definition:</b> <a href="a00285_source.html#l00015">TypeConverterOptions.cs:15</a></div></div>
+<a href="a00286.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is used by Code Analysis to maintain SuppressMessage </span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// attributes that are applied to this project.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// Project-level suppressions either have no target or are given </span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// a specific target and scoped to a namespace, type, member, etc.</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage(<span class="stringliteral">&quot;Design&quot;</span>, <span class="stringliteral">&quot;CA1016:Mark assemblies with assembly version&quot;</span>, Justification = <span class="stringliteral">&quot;You don&#39;t really NEED this, I suppose.&quot;</span>)]</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage(<span class="stringliteral">&quot;Design&quot;</span>, <span class="stringliteral">&quot;CA1051:Do not declare visible instance fields&quot;</span>, Justification = <span class="stringliteral">&quot;These normally would be properties.&quot;</span>)]</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_5c139b908ad2613e3ef99ee52a122286.html">TypeConversion</a></li><li class="navelem"><a class="el" href="a00286.html">TypeConverterOptionsFactory.cs</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:22 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_2870522f32e1cc12c0615fa0200eb498.html">YarnSpinnerTests</a></li><li class="navelem"><a class="el" href="a00286.html">GlobalSuppressions.cs</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:44 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -1,13 +1,10 @@
 var a00108 =
 [
-    [ "FunctionInfo", "a00108.html#a93457cd0e838cb2ef59cc2a3a46ce758", null ],
-    [ "FunctionInfo", "a00108.html#a41d97c09da25caede70cb734d18113b9", null ],
-    [ "Invoke", "a00108.html#ab400ac66785d7df2e3fc0f3ce3796044", null ],
-    [ "InvokeWithArray", "a00108.html#a3ce11058d35232907a738de4bb094c67", null ],
-    [ "IsParameterCountCorrect", "a00108.html#a1ed09ff8aafa230a0d2bbc23cd6cd763", null ],
-    [ "function", "a00108.html#a1dd2f9d11614a2fce170b3f3eecdb5f9", null ],
-    [ "name", "a00108.html#adb38e83e3c1597b553aeff14bef5bfcb", null ],
-    [ "paramCount", "a00108.html#aa8527de9e4f153b05164ccaf167c3186", null ],
-    [ "returningFunction", "a00108.html#a8b6e0e5a875c427a1d947f3c52c308ca", null ],
-    [ "returnsValue", "a00108.html#acaff044276aa230de7c0b27dd5267bc7", null ]
+    [ "Read", "a00108.html#a411461b4cd33dce0b42c81715359f687", null ],
+    [ "BytePosition", "a00108.html#a23dee37412eeb387df1d336e7bf07cc2", null ],
+    [ "CharPosition", "a00108.html#aa47c7ce6c764dddc78bb4d3ee83714eb", null ],
+    [ "Configuration", "a00108.html#af1303d18a827bf46a56f9cb6ba05ed64", null ],
+    [ "FieldCount", "a00108.html#a50c0428defc2ada782c6863d72a990e4", null ],
+    [ "RawRecord", "a00108.html#a1b238e3bb053f2f6c122ee0d77bb48d7", null ],
+    [ "Row", "a00108.html#a0ec83f976594f51a002448fa2fe2e392", null ]
 ];

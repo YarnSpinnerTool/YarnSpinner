@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Documentation/YarnSpinner-Programming/README.md Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('a00208.html','');});
+$(document).ready(function(){initNavTree('a00208_source.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -105,42 +105,33 @@ $(document).ready(function(){initNavTree('a00208.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Documentation/YarnSpinner-Programming/README.md</div>  </div>
+<div class="title">TypeExtensions.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00208.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Yarn Spinner Programming README</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">## Style Guide</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;`Inline Code` contain <span class="keywordtype">short</span> snippets of code <span class="keywordflow">for</span> your project</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    Code Blocks contain segments or chunks of code <span class="keywordflow">for</span> your project</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;**Bold indicate actions (Select menu item, copying file, etc.)**</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;***Bold italic text indicates emphasis***</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;&gt; Blockquotes contain essential information</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">## Introduction</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;This document lists the other document that comprise the Programming documentation <span class="keywordflow">for</span> Yarn Spinner. Programming Yarn Spinner is intended to mean coding C# to achieve the goals set out in Yarn Dialogue to meet the proudction requirements of producing a game. The game can be produced <span class="keyword">using</span> any engine, however <span class="keywordflow">for</span> now we only document <span class="keyword">using</span> Unity.</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;## Building</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;The [Building](Building.md) assists you in compiling the Yarn Spinner software. You may need to build Yarn Spinner yourself, particularly <span class="keywordflow">if</span> you wish to test out certain code or use tools (such as [Localization](../YarnSpinner-Dialogue/Dialogue-Localization.md).</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;## Extending</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;The <span class="keywordflow">default</span> Yarn Spinner code may not provide enough functionality <span class="keywordflow">for</span> your game, so you will need to extend it by adding your own functions.  The [Extending](Extending.md) documentation provides an example on how to create custom C# code to integrate with [Yarn Dialogue](../YarnSpinner-Dialogue/)</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">### API Reference</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">The [API Reference](https://thesecretlab.github.io/YarnSpinner/html/) is available online for the current release. It&#39;s possible to use the build script to create your own. See the [Building](Building.md) documentation for information on how to do this.</span></div>
+<a href="a00208.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#if !COREFX &amp;&amp; !NET_4_5</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="a00332.html">    4</a></span>&#160;<span class="keyword">namespace </span>System.Reflection</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="a00158.html">    6</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="a00158.html">TypeExtensions</a></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    {</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="a00158.html#acbfc3dfbd616c1a87fe0158092215639">    8</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="a00159.html">TypeInfo</a> <a class="code" href="a00158.html#acbfc3dfbd616c1a87fe0158092215639">GetTypeInfo</a>( <span class="keyword">this</span> Type type )</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="a00159.html">TypeInfo</a>( type );</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        }</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    }</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#endif // !COREFX &amp;&amp; !NET_4_5</span></div>
+<div class="ttc" id="a00158_html_acbfc3dfbd616c1a87fe0158092215639"><div class="ttname"><a href="a00158.html#acbfc3dfbd616c1a87fe0158092215639">System.Reflection.TypeExtensions.GetTypeInfo</a></div><div class="ttdeci">static TypeInfo GetTypeInfo(this Type type)</div><div class="ttdef"><b>Definition:</b> <a href="a00208_source.html#l00008">TypeExtensions.cs:8</a></div></div>
+<div class="ttc" id="a00159_html"><div class="ttname"><a href="a00159.html">System.Reflection.TypeInfo</a></div><div class="ttdef"><b>Definition:</b> <a href="a00209_source.html#l00006">TypeInfo.cs:6</a></div></div>
+<div class="ttc" id="a00158_html"><div class="ttname"><a href="a00158.html">System.Reflection.TypeExtensions</a></div><div class="ttdef"><b>Definition:</b> <a href="a00208_source.html#l00006">TypeExtensions.cs:6</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00208.html">README.md</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:22 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_71f81168fdb7d447b41a115f71f5eda9.html">CoreFxCompatibility</a></li><li class="navelem"><a class="el" href="a00208.html">TypeExtensions.cs</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:44 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -1,290 +1,190 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00081" kind="class" prot="public">
-    <compoundname>CsvHelper::CsvSerializer</compoundname>
-    <basecompoundref refid="a00118" prot="public" virt="non-virtual">CsvHelper.ICsvSerializer</basecompoundref>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00081_1a2687885dae7f7b0eec3c2db81c05f7e4" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool CsvHelper.CsvSerializer.disposed</definition>
-        <argsstring></argsstring>
-        <name>disposed</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="16" bodyend="-1"/>
-        <referencedby refid="a00081_1ae14e1913a4e76faf97484c1bde339143" compoundref="a00244" startline="105" endline="111">CsvHelper.CsvSerializer.CheckDisposed</referencedby>
-        <referencedby refid="a00081_1a0be3b74ca7606e27fd16441ecc988f0b" compoundref="a00244" startline="82" endline="99">CsvHelper.CsvSerializer.Dispose</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00081_1ae8c56ff97c0a797245f2205c486833ea" prot="private" static="no" mutable="no">
-        <type>readonly <ref refid="a00065" kindref="compound">CsvConfiguration</ref></type>
-        <definition>readonly CsvConfiguration CsvHelper.CsvSerializer.configuration</definition>
-        <argsstring></argsstring>
-        <name>configuration</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="17" bodyend="-1"/>
-        <referencedby refid="a00081_1ab14fe4a4f630ce97d57c27e2ee050fac" compoundref="a00244" startline="40" endline="54">CsvHelper.CsvSerializer.CsvSerializer</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00081_1adfb235fa2c868fc79c0376fd12fda767" prot="private" static="no" mutable="no">
-        <type>TextWriter</type>
-        <definition>TextWriter CsvHelper.CsvSerializer.writer</definition>
-        <argsstring></argsstring>
-        <name>writer</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="18" bodyend="-1"/>
-        <referencedby refid="a00081_1ab14fe4a4f630ce97d57c27e2ee050fac" compoundref="a00244" startline="40" endline="54">CsvHelper.CsvSerializer.CsvSerializer</referencedby>
-        <referencedby refid="a00081_1a0be3b74ca7606e27fd16441ecc988f0b" compoundref="a00244" startline="82" endline="99">CsvHelper.CsvSerializer.Dispose</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00081_1a2ae1b1a629b707fbfb7d636989442f34" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type><ref refid="a00065" kindref="compound">CsvConfiguration</ref></type>
-        <definition>CsvConfiguration CsvHelper.CsvSerializer.Configuration</definition>
-        <argsstring></argsstring>
-        <name>Configuration</name>
-        <briefdescription>
-<para>Gets the configuration. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="24" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+    <compoundname>CsvHelper::TypeConversion::DateTimeOffsetConverter</compoundname>
+    <basecompoundref refid="a00084" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00081_1a74ea10f7aaea0a478087d8ff6182f38c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvSerializer.CsvSerializer</definition>
-        <argsstring>(TextWriter writer)</argsstring>
-        <name>CsvSerializer</name>
+      <memberdef kind="function" id="a00081_1aa69835fc086d80a8eabe7ac50cb92f47" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override object</type>
+        <definition>override object CsvHelper.TypeConversion.DateTimeOffsetConverter.ConvertFromString</definition>
+        <argsstring>(TypeConverterOptions options, string text)</argsstring>
+        <name>ConvertFromString</name>
+        <reimplements refid="a00084_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
         <param>
-          <type>TextWriter</type>
-          <declname>writer</declname>
+          <type><ref refid="a00156" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
         </param>
         <briefdescription>
-<para>Creates a new serializer using the given TextWriter. </para>        </briefdescription>
+<para>Converts the string to an object. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>writer</parametername>
+<parametername>options</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The TextWriter to write the CSV file data to.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="32" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="32" bodyend="32"/>
-      </memberdef>
-      <memberdef kind="function" id="a00081_1ab14fe4a4f630ce97d57c27e2ee050fac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvSerializer.CsvSerializer</definition>
-        <argsstring>(TextWriter writer, CsvConfiguration configuration)</argsstring>
-        <name>CsvSerializer</name>
-        <param>
-          <type>TextWriter</type>
-          <declname>writer</declname>
-        </param>
-        <param>
-          <type><ref refid="a00065" kindref="compound">CsvConfiguration</ref></type>
-          <declname>configuration</declname>
-        </param>
-        <briefdescription>
-<para>Creates a new serializer using the given TextWriter and CsvConfiguration. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>writer</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The TextWriter to write the CSV file data to.</para></parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>configuration</parametername>
+<parametername>text</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The configuration.</para></parameterdescription>
+<para>The string to convert to an object.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
+<simplesect kind="return"><para>The object created from the string.</para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="40" bodyend="54"/>
-        <references refid="a00081_1ae8c56ff97c0a797245f2205c486833ea" compoundref="a00244" startline="17">CsvHelper.CsvSerializer.configuration</references>
-        <references refid="a00081_1adfb235fa2c868fc79c0376fd12fda767" compoundref="a00244" startline="18">CsvHelper.CsvSerializer.writer</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" bodystart="22" bodyend="40"/>
+        <references refid="a00156_1af6bc545680b477abf9178eb4755572b1" compoundref="a00259" startline="23">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</references>
       </memberdef>
-      <memberdef kind="function" id="a00081_1aefad906acd048863d3dd414651a44793" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void CsvHelper.CsvSerializer.Write</definition>
-        <argsstring>(string[] record)</argsstring>
-        <name>Write</name>
-        <reimplements refid="a00118_1a0b442858eef85b7d933662359646fd0b">Write</reimplements>
+      <memberdef kind="function" id="a00081_1a82a8cf4b77600ef49da60deb0c24a708" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override bool</type>
+        <definition>override bool CsvHelper.TypeConversion.DateTimeOffsetConverter.CanConvertFrom</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertFrom</name>
+        <reimplements refid="a00084_1a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</reimplements>
         <param>
-          <type>string[]</type>
-          <declname>record</declname>
+          <type>Type</type>
+          <declname>type</declname>
         </param>
         <briefdescription>
-<para>Writes a record to the CSV file. </para>        </briefdescription>
+<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>record</parametername>
+<parametername>type</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The record to write.</para></parameterdescription>
+<para>The type.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="60" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="60" bodyend="66"/>
-        <references refid="a00081_1ae14e1913a4e76faf97484c1bde339143" compoundref="a00244" startline="105" endline="111">CsvHelper.CsvSerializer.CheckDisposed</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" bodystart="49" bodyend="53"/>
       </memberdef>
-      <memberdef kind="function" id="a00081_1a9d0e8b3508b377a7f978da2394b09e36" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void CsvHelper.CsvSerializer.Dispose</definition>
-        <argsstring>()</argsstring>
-        <name>Dispose</name>
-        <briefdescription>
-<para>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. </para>        </briefdescription>
-        <detaileddescription>
-<para>&lt;filterpriority&gt;2&lt;/filterpriority&gt; </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="72" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="72" bodyend="76"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-func">
-      <memberdef kind="function" id="a00081_1a0be3b74ca7606e27fd16441ecc988f0b" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void CsvHelper.CsvSerializer.Dispose</definition>
-        <argsstring>(bool disposing)</argsstring>
-        <name>Dispose</name>
+      <memberdef kind="function" id="a00084_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>string</type>
+        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
+        <argsstring>(TypeConverterOptions options, object value)</argsstring>
+        <name>ConvertToString</name>
+        <reimplements refid="a00117_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
+        <reimplementedby refid="a00095_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
+        <reimplementedby refid="a00133_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
         <param>
-          <type>bool</type>
-          <declname>disposing</declname>
+          <type><ref refid="a00156" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
         </param>
         <briefdescription>
-<para>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. </para>        </briefdescription>
+<para>Converts the object to a string. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>disposing</parametername>
+<parametername>options</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>True if the instance needs to be disposed of.</para></parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
 </parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="82" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="82" bodyend="99"/>
-        <references refid="a00081_1a2687885dae7f7b0eec3c2db81c05f7e4" compoundref="a00244" startline="16">CsvHelper.CsvSerializer.disposed</references>
-        <references refid="a00081_1adfb235fa2c868fc79c0376fd12fda767" compoundref="a00244" startline="18">CsvHelper.CsvSerializer.writer</references>
-      </memberdef>
-      <memberdef kind="function" id="a00081_1ae14e1913a4e76faf97484c1bde339143" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void CsvHelper.CsvSerializer.CheckDisposed</definition>
-        <argsstring>()</argsstring>
-        <name>CheckDisposed</name>
-        <briefdescription>
-<para>Checks if the instance has been disposed of. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="exception"><parameteritem>
+<parameteritem>
 <parameternamelist>
-<parametername>ObjectDisposedException</parametername>
+<parametername>value</parametername>
 </parameternamelist>
 <parameterdescription>
-</parameterdescription>
+<para>The object to convert to a string.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
+<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="105" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="105" bodyend="111"/>
-        <references refid="a00081_1a2687885dae7f7b0eec3c2db81c05f7e4" compoundref="a00244" startline="16">CsvHelper.CsvSerializer.disposed</references>
-        <referencedby refid="a00081_1aefad906acd048863d3dd414651a44793" compoundref="a00244" startline="60" endline="66">CsvHelper.CsvSerializer.Write</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="a00084_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertTo</name>
+        <reimplements refid="a00117_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
+        <reimplementedby refid="a00095_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Defines methods used to serialize data into a CSV file. </para>    </briefdescription>
+<para>Converts a DateTimeOffset to and from a string. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1162">
-        <label>CsvHelper.CsvSerializer</label>
+      <node id="1059">
+        <label>ITypeConverter</label>
+        <link refid="a00117"/>
+      </node>
+      <node id="1058">
+        <label>DefaultTypeConverter</label>
+        <link refid="a00084"/>
+        <childnode refid="1059" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1057">
+        <label>CsvHelper.TypeConversion.DateTimeOffsetConverter</label>
         <link refid="a00081"/>
-        <childnode refid="1163" relation="public-inheritance">
+        <childnode refid="1058" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="1163">
-        <label>ICsvSerializer</label>
-        <link refid="a00118"/>
-        <childnode refid="1164" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1164">
-        <label>IDisposable</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1168">
-        <label>CsvHelper.Configuration.CsvConfiguration</label>
-        <link refid="a00065"/>
-        <childnode refid="1169" relation="usage">
-          <edgelabel>-maps</edgelabel>
+      <node id="1062">
+        <label>ITypeConverter</label>
+        <link refid="a00117"/>
+      </node>
+      <node id="1061">
+        <label>DefaultTypeConverter</label>
+        <link refid="a00084"/>
+        <childnode refid="1062" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1165">
-        <label>CsvHelper.CsvSerializer</label>
+      <node id="1060">
+        <label>CsvHelper.TypeConversion.DateTimeOffsetConverter</label>
         <link refid="a00081"/>
-        <childnode refid="1166" relation="public-inheritance">
+        <childnode refid="1061" relation="public-inheritance">
         </childnode>
-        <childnode refid="1168" relation="usage">
-          <edgelabel>-configuration</edgelabel>
-        </childnode>
-      </node>
-      <node id="1166">
-        <label>ICsvSerializer</label>
-        <link refid="a00118"/>
-        <childnode refid="1167" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1167">
-        <label>IDisposable</label>
-      </node>
-      <node id="1169">
-        <label>CsvHelper.Configuration.CsvClassMapCollection</label>
-        <link refid="a00064"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="14" bodyend="112"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" bodystart="14" bodyend="54"/>
     <listofallmembers>
-      <member refid="a00081_1ae14e1913a4e76faf97484c1bde339143" prot="protected" virt="virtual"><scope>CsvHelper::CsvSerializer</scope><name>CheckDisposed</name></member>
-      <member refid="a00081_1ae8c56ff97c0a797245f2205c486833ea" prot="private" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>configuration</name></member>
-      <member refid="a00081_1a2ae1b1a629b707fbfb7d636989442f34" prot="public" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>Configuration</name></member>
-      <member refid="a00081_1a74ea10f7aaea0a478087d8ff6182f38c" prot="public" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>CsvSerializer</name></member>
-      <member refid="a00081_1ab14fe4a4f630ce97d57c27e2ee050fac" prot="public" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>CsvSerializer</name></member>
-      <member refid="a00081_1a9d0e8b3508b377a7f978da2394b09e36" prot="public" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>Dispose</name></member>
-      <member refid="a00081_1a0be3b74ca7606e27fd16441ecc988f0b" prot="protected" virt="virtual"><scope>CsvHelper::CsvSerializer</scope><name>Dispose</name></member>
-      <member refid="a00081_1a2687885dae7f7b0eec3c2db81c05f7e4" prot="private" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>disposed</name></member>
-      <member refid="a00081_1aefad906acd048863d3dd414651a44793" prot="public" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>Write</name></member>
-      <member refid="a00081_1adfb235fa2c868fc79c0376fd12fda767" prot="private" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>writer</name></member>
+      <member refid="a00081_1a82a8cf4b77600ef49da60deb0c24a708" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DateTimeOffsetConverter</scope><name>CanConvertFrom</name></member>
+      <member refid="a00084_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DateTimeOffsetConverter</scope><name>CanConvertTo</name></member>
+      <member refid="a00081_1aa69835fc086d80a8eabe7ac50cb92f47" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DateTimeOffsetConverter</scope><name>ConvertFromString</name></member>
+      <member refid="a00084_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DateTimeOffsetConverter</scope><name>ConvertToString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

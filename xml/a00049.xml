@@ -1,113 +1,83 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00049" kind="class" prot="public">
-    <compoundname>Yarn::Unity::Example::CameraFollow</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <compoundname>Yarn::Dialogue::CommandResult</compoundname>
+    <basecompoundref refid="a00141" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00049_1aa5d6958fb14a14ebb74e21c372fcca8b" prot="public" static="no" mutable="no">
-        <type>Transform</type>
-        <definition>Transform Yarn.Unity.Example.CameraFollow.target</definition>
+      <memberdef kind="variable" id="a00049_1a420ca0984d6e5c33bb761654305c592e" prot="public" static="no" mutable="no">
+        <type><ref refid="a00346" kindref="compound">Command</ref></type>
+        <definition>Command Yarn.Dialogue.CommandResult.command</definition>
         <argsstring></argsstring>
-        <name>target</name>
-        <briefdescription>
-<para>Target of the camera. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" bodystart="40" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00049_1a08c6f6c0ea423c21af99e4b5467d3c9b" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.CameraFollow.minPosition</definition>
-        <argsstring></argsstring>
-        <name>minPosition</name>
-        <initializer>= -5.3f</initializer>
-        <briefdescription>
-<para>Minimum position of camera. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" line="43" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" bodystart="43" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00049_1abb0154dcbc2a7d43795beacd61a56de4" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.CameraFollow.maxPosition</definition>
-        <argsstring></argsstring>
-        <name>maxPosition</name>
-        <initializer>= 5.3f</initializer>
-        <briefdescription>
-<para>Maximum position of camera. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" bodystart="46" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00049_1a3d4f2efe9c2cee8c7ff797cac03f27ec" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.CameraFollow.moveSpeed</definition>
-        <argsstring></argsstring>
-        <name>moveSpeed</name>
-        <initializer>= 1.0f</initializer>
-        <briefdescription>
-<para>Movement speed of camera. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" bodystart="49" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="a00049_1a592ddbf8e493bde0a6536c0234869217" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.Example.CameraFollow.Update</definition>
-        <argsstring>()</argsstring>
-        <name>Update</name>
+        <name>command</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" line="52" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" bodystart="52" bodyend="63"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="153" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="153" bodyend="-1"/>
+        <referencedby refid="a00049_1a1a553422394fb0c854d1184985f993bb" compoundref="a00282" startline="155" endline="159">Yarn.Dialogue.CommandResult.CommandResult</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00049_1a1a553422394fb0c854d1184985f993bb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Dialogue.CommandResult.CommandResult</definition>
+        <argsstring>(string text)</argsstring>
+        <name>CommandResult</name>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="155" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="155" bodyend="159"/>
+        <references refid="a00049_1a420ca0984d6e5c33bb761654305c592e" compoundref="a00282" startline="153">Yarn.Dialogue.CommandResult.command</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Control the position of the camera and its behaviour. </para>    </briefdescription>
+<para>The client should run a command (it&apos;s up to them to parse the string) </para>    </briefdescription>
     <detaileddescription>
-<para>Camera should have minPosition and maxPosition of the same because we&apos;re dealing with 2D. The movement speed shouldn&apos;t be too fast nor too slow </para>    </detaileddescription>
+    </detaileddescription>
     <inheritancegraph>
-      <node id="997">
-        <label>MonoBehaviour</label>
-      </node>
-      <node id="996">
-        <label>Yarn.Unity.Example.CameraFollow</label>
+      <node id="872">
+        <label>Yarn.Dialogue.CommandResult</label>
         <link refid="a00049"/>
-        <childnode refid="997" relation="public-inheritance">
+        <childnode refid="873" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="873">
+        <label>RunnerResult</label>
+        <link refid="a00141"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="999">
-        <label>MonoBehaviour</label>
-      </node>
-      <node id="998">
-        <label>Yarn.Unity.Example.CameraFollow</label>
+      <node id="874">
+        <label>Yarn.Dialogue.CommandResult</label>
         <link refid="a00049"/>
-        <childnode refid="999" relation="public-inheritance">
+        <childnode refid="875" relation="public-inheritance">
+        </childnode>
+        <childnode refid="876" relation="usage">
+          <edgelabel>+command</edgelabel>
         </childnode>
       </node>
+      <node id="875">
+        <label>RunnerResult</label>
+        <link refid="a00141"/>
+      </node>
+      <node id="876">
+        <label>Yarn.Command</label>
+        <link refid="a00346"/>
+      </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" bodystart="37" bodyend="64"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="152" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="152" bodyend="161"/>
     <listofallmembers>
-      <member refid="a00049_1abb0154dcbc2a7d43795beacd61a56de4" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>maxPosition</name></member>
-      <member refid="a00049_1a08c6f6c0ea423c21af99e4b5467d3c9b" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>minPosition</name></member>
-      <member refid="a00049_1a3d4f2efe9c2cee8c7ff797cac03f27ec" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>moveSpeed</name></member>
-      <member refid="a00049_1aa5d6958fb14a14ebb74e21c372fcca8b" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>target</name></member>
-      <member refid="a00049_1a592ddbf8e493bde0a6536c0234869217" prot="private" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>Update</name></member>
+      <member refid="a00049_1a420ca0984d6e5c33bb761654305c592e" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::CommandResult</scope><name>command</name></member>
+      <member refid="a00049_1a1a553422394fb0c854d1184985f993bb" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::CommandResult</scope><name>CommandResult</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

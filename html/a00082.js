@@ -1,7 +1,8 @@
 var a00082 =
 [
-    [ "CsvTypeConverterException", "a00082.html#af2278af1cb915e9b8485c005148c430b", null ],
-    [ "CsvTypeConverterException", "a00082.html#a4e4e9bdf9280d14be37fc42d887b7360", null ],
-    [ "CsvTypeConverterException", "a00082.html#afbea8720637f53c27ef4a9ca99c41955", null ],
-    [ "CsvTypeConverterException", "a00082.html#a118ca20beb2ce0c2b4591502a52b0163", null ]
+    [ "CanConvertFrom", "a00082.html#aba0f1c085a1c33779ea791bb814b6aa5", null ],
+    [ "CanConvertFrom", "a00082.html#a470d21adaa704eb281250dbd112ff91a", null ],
+    [ "CanConvertTo", "a00082.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
+    [ "ConvertFromString", "a00082.html#a07444e6f2bb1e49288f9de3b2407dc4f", null ],
+    [ "ConvertToString", "a00082.html#a36cb2f9b24f15a671293f3a722324c27", null ]
 ];

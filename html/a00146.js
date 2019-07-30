@@ -1,7 +1,9 @@
 var a00146 =
 [
-    [ "OperatorInfo", "a00146.html#a25faca62235c9f8542e4a071ba8ebc0b", null ],
-    [ "arguments", "a00146.html#a0758c6f7dac4b205f616b43b1af95b95", null ],
-    [ "associativity", "a00146.html#accba40a72d9709ca3c18810b8661afe3", null ],
-    [ "precedence", "a00146.html#a0b2921d7b863e268d33aa15213395093", null ]
+    [ "SpriteInfo", "a00146.html#a00354", [
+      [ "name", "a00146.html#a3f5bca2fff413dfe075c1fcf7e58369c", null ],
+      [ "sprite", "a00146.html#adc58df011dc2841837b6cf775b372061", null ]
+    ] ],
+    [ "UseSprite", "a00146.html#ac26718b713f342f3de8f3e569c5b62da", null ],
+    [ "sprites", "a00146.html#a1e85d9f4f6b33ca7ae638cce2eb704aa", null ]
 ];

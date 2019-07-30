@@ -1,225 +1,68 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00184" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::UInt16Converter</compoundname>
-    <basecompoundref refid="a00090" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00184_1a796e0b7b57d69abee122947166b45a9a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.UInt16Converter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplements refid="a00090_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
-        <param>
-          <type><ref refid="a00180" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>text</declname>
-        </param>
-        <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" bodystart="20" bodyend="31"/>
-        <references refid="a00180_1af6bc545680b477abf9178eb4755572b1" compoundref="a00285" startline="23">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</references>
-      </memberdef>
-      <memberdef kind="function" id="a00184_1a202a9c2413a59423a51b439eab84a3bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.UInt16Converter.CanConvertFrom</definition>
-        <argsstring>(System.Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <param>
-          <type>System.Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" bodystart="40" bodyend="44"/>
-      </memberdef>
-      <memberdef kind="function" id="a00090_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>string</type>
-        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplements refid="a00125_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
-        <reimplementedby refid="a00101_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="a00144_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
-        <param>
-          <type><ref refid="a00180" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>object</type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
-      </memberdef>
-      <memberdef kind="function" id="a00090_1a470d21adaa704eb281250dbd112ff91a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplements refid="a00125_1ae1ad863656f4fa96bd846a41344c9349">CanConvertFrom</reimplements>
-        <reimplementedby refid="a00174_1ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00048_1a74a66b405f6c18e69b9fd23a1dea91b0">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00086_1af44239d3bd014b1423fa80f7440bbd25">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00087_1a82a8cf4b77600ef49da60deb0c24a708">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00101_1af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00100_1a31af8209aad64ed11d949586075c244a">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00047_1a0be20573af4ee53409bb437125a64268">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00144_1ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="55" bodyend="60"/>
-      </memberdef>
-      <memberdef kind="function" id="a00090_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplements refid="a00125_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="a00101_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00184" kind="file">
+    <compoundname>README.md</compoundname>
     <briefdescription>
-<para>Converts a UInt16 to and from a string. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1726">
-        <label>ITypeConverter</label>
-        <link refid="a00125"/>
-      </node>
-      <node id="1725">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00090"/>
-        <childnode refid="1726" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1724">
-        <label>CsvHelper.TypeConversion.UInt16Converter</label>
-        <link refid="a00184"/>
-        <childnode refid="1725" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="1729">
-        <label>ITypeConverter</label>
-        <link refid="a00125"/>
-      </node>
-      <node id="1728">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00090"/>
-        <childnode refid="1729" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1727">
-        <label>CsvHelper.TypeConversion.UInt16Converter</label>
-        <link refid="a00184"/>
-        <childnode refid="1728" relation="public-inheritance">
-        </childnode>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" bodystart="12" bodyend="45"/>
-    <listofallmembers>
-      <member refid="a00184_1a202a9c2413a59423a51b439eab84a3bd" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::UInt16Converter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00090_1a470d21adaa704eb281250dbd112ff91a" prot="public" virt="virtual" ambiguityscope="CsvHelper::TypeConversion::DefaultTypeConverter."><scope>CsvHelper::TypeConversion::UInt16Converter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00090_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::UInt16Converter</scope><name>CanConvertTo</name></member>
-      <member refid="a00184_1a796e0b7b57d69abee122947166b45a9a" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::UInt16Converter</scope><name>ConvertFromString</name></member>
-      <member refid="a00090_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::UInt16Converter</scope><name>ConvertToString</name></member>
-    </listofallmembers>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Yarn<sp/>Spinner</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">&lt;img<sp/>src=</highlight><highlight class="stringliteral">&quot;Documentation/YarnSpinnerLogo.png&quot;</highlight><highlight class="normal"><sp/>alt=</highlight><highlight class="stringliteral">&quot;Yarn<sp/>Spinner<sp/>logo&quot;</highlight><highlight class="normal"><sp/>width=</highlight><highlight class="stringliteral">&quot;100px;&quot;</highlight><highlight class="normal"><sp/>align=</highlight><highlight class="stringliteral">&quot;right&quot;</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">**[Yarn](https:</highlight><highlight class="comment">//github.com/infiniteammoinc/Yarn)**<sp/>is<sp/>a<sp/>language<sp/>that&apos;s<sp/>designed<sp/>to<sp/>make<sp/>it<sp/>*super<sp/>easy*<sp/>to<sp/>create<sp/>interactive<sp/>dialogue<sp/>for<sp/>games.<sp/>Yarn&apos;s<sp/>similar<sp/>in<sp/>style<sp/>to<sp/>[Twine](http://twinery.org),<sp/>so<sp/>if<sp/>you<sp/>already<sp/>know<sp/>that,<sp/>you&apos;ll<sp/>be<sp/>right<sp/>at<sp/>home!<sp/>If<sp/>you<sp/>don&apos;t,<sp/>that&apos;s<sp/>cool<sp/>-<sp/>Yarn&apos;s<sp/>[syntax](Documentation/YarnSpinner-Dialogue/Yarn-Syntax.md)<sp/>is<sp/>extremely<sp/>minimal,<sp/>and<sp/>there&apos;s<sp/>not<sp/>much<sp/>there<sp/>to<sp/>learn.<sp/>The<sp/>Yarn<sp/>language<sp/>is<sp/>used<sp/>in<sp/>a<sp/>number<sp/>of<sp/>cool<sp/>games,<sp/>including<sp/>[Night<sp/>In<sp/>The<sp/>Woods](http://nightinthewoods.com)<sp/>and<sp/>[Knights<sp/>and<sp/>Bikes](http://foamswordgames.com/knights).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">&gt;<sp/>**New!**<sp/>Join<sp/>our<sp/>[narrative<sp/>game<sp/>development](http:</highlight><highlight class="comment">//lab.to/narrativegamedev)<sp/>Slack!</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">&gt;<sp/>**New!**<sp/>Continual<sp/>integration<sp/>[API<sp/>documentation](https:</highlight><highlight class="comment">//thesecretlab.github.io/YarnSpinner/html/)<sp/>now<sp/>available.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">**Yarn<sp/>Spinner**<sp/>interprets<sp/>the<sp/>Yarn<sp/>language,<sp/>and<sp/>is<sp/>written<sp/>in<sp/>[C#](https:</highlight><highlight class="comment">//en.wikipedia.org/wiki/C_Sharp_%28programming_language%29).<sp/>Yarn<sp/>Spinner<sp/>is<sp/>designed<sp/>to<sp/>be<sp/>easy<sp/>to<sp/>add<sp/>to<sp/>[Unity](http://www.unity3d.com)<sp/>games,<sp/>but<sp/>it&apos;s<sp/>also<sp/>intended<sp/>for<sp/>use<sp/>in<sp/>other<sp/>contexts<sp/>as<sp/>well.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">&gt;<sp/>***Important:***<sp/>Yarn<sp/>Spinner<sp/>is<sp/>still<sp/>under<sp/>development,<sp/>and<sp/>we<sp/>haven</highlight><highlight class="stringliteral">&apos;t<sp/>made<sp/>our<sp/>1.0<sp/>release<sp/>yet.<sp/>It&apos;</highlight><highlight class="normal">s<sp/>*probably*<sp/>fine<sp/>to<sp/>use<sp/>right<sp/>now,<sp/>but<sp/>there<sp/>are<sp/>a<sp/>few<sp/>bits<sp/>and<sp/>pieces<sp/>that<sp/>might<sp/>change<sp/>between<sp/>now<sp/>and<sp/>first<sp/>release.</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">[![Build<sp/>Status](https:</highlight><highlight class="comment">//travis-ci.org/thesecretlab/YarnSpinner.svg?branch=master)](https://travis-ci.org/thesecretlab/YarnSpinner)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">&lt;img<sp/>src=</highlight><highlight class="stringliteral">&quot;https://dl.dropbox.com/s/wcd7rspsdi6ifxk/NITW-Promo-Screenshot.jpg&quot;</highlight><highlight class="normal"><sp/>title=</highlight><highlight class="stringliteral">&quot;Night<sp/>in<sp/>the<sp/>Woods&quot;</highlight><highlight class="normal"><sp/>style=</highlight><highlight class="stringliteral">&quot;width:<sp/>80%;<sp/>margin:<sp/>0<sp/>auto;&quot;</highlight><highlight class="normal"><sp/>/&gt;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">&gt;<sp/>(Image<sp/>from<sp/></highlight><highlight class="stringliteral">&quot;[Night<sp/>in<sp/>the<sp/>Woods](http://nightinthewoods.com)&quot;</highlight><highlight class="normal"><sp/>by<sp/>Scott<sp/>Benson,<sp/>Bethany<sp/>Hockenberry<sp/>and<sp/>Alec<sp/>Holowka.<sp/>Used<sp/>with<sp/>permission.)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Quick<sp/>Start<sp/>-<sp/>Documentation</highlight></codeline>
+<codeline lineno="23"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">*<sp/><ref refid="a00048_1a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639" kindref="member">If</ref><sp/>you</highlight><highlight class="stringliteral">&apos;re<sp/>already<sp/>familiar<sp/>with<sp/>Unity,<sp/>we<sp/>recommend<sp/>you<sp/>head<sp/>straight<sp/>to<sp/>our<sp/>[Yarn<sp/>Spinner<sp/>With<sp/>Unity<sp/>Quickstart](Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-QuickStart.md)<sp/>document.</highlight></codeline>
+<codeline lineno="25"><highlight class="stringliteral">##<sp/>What<sp/>To<sp/>Do<sp/>Next</highlight></codeline>
+<codeline lineno="26"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="27"><highlight class="stringliteral">*<sp/>Learn<sp/>how<sp/>to<sp/>[build<sp/>Yarn<sp/>Spinner<sp/>from<sp/>source.](Documentation/YarnSpinner-Programming/Building.md)</highlight></codeline>
+<codeline lineno="28"><highlight class="stringliteral">*<sp/>Learn<sp/>more<sp/>about<sp/>[Yarn](https://github.com/infiniteammoinc/Yarn),<sp/>and<sp/>the<sp/>Yarn<sp/>editor.</highlight></codeline>
+<codeline lineno="29"><highlight class="stringliteral">*<sp/>Learn<sp/>more<sp/>about<sp/>[writing<sp/>dialogue<sp/>in<sp/>Yarn.](Documentation/YarnSpinner-Dialogue/README.md)</highlight></codeline>
+<codeline lineno="30"><highlight class="stringliteral">*<sp/>Learn<sp/>about<sp/>using<sp/>[Yarn<sp/>Spinner<sp/>in<sp/>your<sp/>Unity<sp/>game.](Documentation/YarnSpinner-Unity/README.md)</highlight></codeline>
+<codeline lineno="31"><highlight class="stringliteral">*<sp/>If<sp/>you&apos;</highlight><highlight class="normal">re<sp/>unfamiliar<sp/>with<sp/>Unity,<sp/>refer<sp/>to<sp/>our<sp/>[Yarn<sp/>Spinner<sp/>With<sp/>Unity<sp/>Step<sp/>by<sp/>Step](Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-StepByStep.md)<sp/>document.</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">*<sp/>We<sp/>have<sp/>some<sp/>information<sp/>that<sp/>may<sp/>be<sp/>of<sp/>assistance<sp/>in<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>[Yarn<sp/>Spinner<sp/>With<sp/>Unity](Documentation/YarnSpinner-with-Unity/README.md)<sp/>on<sp/>your<sp/>system.</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">*<sp/>Follow<sp/>Yarn<sp/>Spinner<sp/>on<sp/>Twitter:<sp/>[http:</highlight><highlight class="comment">//twitter.com/YarnSpinnerTool](http://twitter.com/YarnSpinnerTool)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>License</highlight></codeline>
+<codeline lineno="36"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">Yarn<sp/>Spinner<sp/>is<sp/>available<sp/>under<sp/>the<sp/>[MIT<sp/>License](LICENSE.md).<sp/>This<sp/>means<sp/>that<sp/>you<sp/>can<sp/>use<sp/>it<sp/>in<sp/>any<sp/>commercial<sp/>or<sp/>noncommercial<sp/>project.<sp/>The<sp/>only<sp/>requirement<sp/>is<sp/>that<sp/>you<sp/>need<sp/>to<sp/>include<sp/>attribution<sp/>in<sp/>your<sp/>game</highlight><highlight class="stringliteral">&apos;s<sp/>docs.<sp/>A<sp/>credit<sp/>would<sp/>be<sp/>very,<sp/>very<sp/>nice,<sp/>too,<sp/>but<sp/>isn&apos;</highlight><highlight class="normal">t<sp/>required.<sp/>If<sp/>you</highlight><highlight class="stringliteral">&apos;d<sp/>like<sp/>to<sp/>know<sp/>more<sp/>about<sp/>what<sp/>this<sp/>license<sp/>lets<sp/>you<sp/>do<sp/>tldrlegal.com<sp/>have<sp/>a<sp/>[very<sp/>nice<sp/>write<sp/>up<sp/>about<sp/>the<sp/>MIT<sp/>license](https://tldrlegal.com/license/mit-license)<sp/>that<sp/>you<sp/>might<sp/>find<sp/>useful.</highlight></codeline>
+<codeline lineno="38"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="39"><highlight class="stringliteral">##<sp/>Made<sp/>by<sp/>Secret<sp/>Lab!</highlight></codeline>
+<codeline lineno="40"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="41"><highlight class="stringliteral">Yarn<sp/>Spinner<sp/>was<sp/>originally<sp/>created<sp/>by<sp/>[Secret<sp/>Lab](http://secretlab.com.au),<sp/>an<sp/>Australian<sp/>game<sp/>dev<sp/>studio.<sp/>[Come<sp/>say<sp/>hi](https://twitter.com/thesecretlab)!<sp/>You<sp/>can<sp/>visit<sp/>the<sp/>[Yarn<sp/>Spinner<sp/>page](http://www.secretlab.com.au/yarnspinner)<sp/>on<sp/>the<sp/>Secret<sp/>Lab<sp/>website<sp/>for<sp/>a<sp/>little<sp/>more<sp/>info,<sp/>and<sp/>to<sp/>donate<sp/>to<sp/>Yarn<sp/>Spinner<sp/>open<sp/>source<sp/>development<sp/>at<sp/>Secret<sp/>Lab.</highlight></codeline>
+<codeline lineno="42"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="43"><highlight class="stringliteral">The<sp/>awesome<sp/>[logo](Documentation/YarnSpinnerLogo.png)<sp/>was<sp/>made<sp/>by<sp/>the<sp/>excellent<sp/>[Rex<sp/>Smeal](https://twitter.com/RexSmeal),<sp/>and<sp/>is<sp/>under<sp/>the<sp/>[Creative<sp/>Commons<sp/>Attribution-ShareAlike<sp/>4.0<sp/>International<sp/>License](http://creativecommons.org/licenses/by-sa/4.0/).</highlight></codeline>
+<codeline lineno="44"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="45"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="46"><highlight class="stringliteral">##<sp/>Help<sp/>Us<sp/>Make<sp/>Yarn<sp/>Spinner!</highlight></codeline>
+<codeline lineno="47"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="48"><highlight class="stringliteral">Yarn<sp/>Spinner<sp/>needs<sp/>your<sp/>help<sp/>to<sp/>be<sp/>as<sp/>awesome<sp/>as<sp/>it<sp/>can<sp/>be!<sp/>You<sp/>don&apos;</highlight><highlight class="normal">t<sp/>have<sp/>to<sp/>be<sp/>a<sp/>coder<sp/>to<sp/>help<sp/>out<sp/>-<sp/>we</highlight><highlight class="stringliteral">&apos;d<sp/>love<sp/>to<sp/>have<sp/>your<sp/>help<sp/>in<sp/>improving<sp/>our<sp/>[documentation](Documentation/README.md),<sp/>in<sp/>spreading<sp/>the<sp/>word,<sp/>and<sp/>in<sp/>finding<sp/>bugs.</highlight></codeline>
+<codeline lineno="49"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="50"><highlight class="stringliteral">*<sp/>Our<sp/>[issues<sp/>page](https://github.com/thesecretlab/YarnSpinner/issues)<sp/>contains<sp/>a<sp/>list<sp/>of<sp/>things<sp/>we&apos;</highlight><highlight class="normal">d<sp/>love<sp/>your<sp/>help<sp/>in<sp/>improving.</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">*<sp/>Join<sp/>our<sp/>discussion<sp/>on<sp/>Slack<sp/>by<sp/>requesting<sp/>an<sp/>invite<sp/>to<sp/>our<sp/>[narrative<sp/>game<sp/>development](http:</highlight><highlight class="comment">//lab.to/narrativegamedev)<sp/>channel.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">*<sp/>Read<sp/>our<sp/>[API<sp/>documentation](https:</highlight><highlight class="comment">//thesecretlab.github.io/YarnSpinner/html/)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">*<sp/>Follow<sp/>Yarn<sp/>Spinner<sp/>on<sp/>Twitter:<sp/>[http:</highlight><highlight class="comment">//twitter.com/YarnSpinnerTool](http://twitter.com/YarnSpinnerTool)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">If<sp/>you<sp/>want<sp/>to<sp/>contribute<sp/>to<sp/>Yarn<sp/>Spinner<sp/>(!!),<sp/>[go<sp/>read<sp/>our<sp/>contributor</highlight><highlight class="stringliteral">&apos;s<sp/>guide!](CONTRIBUTING.md)</highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/README.md"/>
   </compounddef>
 </doxygen>

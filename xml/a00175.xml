@@ -1,184 +1,78 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00175" kind="class" prot="package">
-    <compoundname>Yarn::Token</compoundname>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00175_1a471a25da67fda0524f2375f9a882aafa" prot="public" static="no" mutable="no">
-        <type><ref refid="a00053_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
-        <definition>TokenType Yarn.Token.type</definition>
+  <compounddef id="a00175" kind="class" prot="public">
+    <compoundname>YarnSpinnerTests</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00175_1a9791840e0b5987e5bd09bce83ce2d8d9" prot="private" static="no" mutable="no">
+        <type><ref refid="a00089" kindref="compound">Yarn.Unity.DialogueRunner</ref></type>
+        <definition>Yarn.Unity.DialogueRunner YarnSpinnerTests.dialogueRunner</definition>
         <argsstring></argsstring>
-        <name>type</name>
+        <name>dialogueRunner</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="178" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="178" bodyend="-1"/>
-        <referencedby refid="a00106_1a686da57aaf67d50d2832f9ee0028a979" compoundref="a00316" startline="773" endline="1043">Yarn.Parser.Expression.Parse</referencedby>
-        <referencedby refid="a00175_1ab8531150354ef148b8929a727f29ae39" compoundref="a00313" startline="195" endline="201">Yarn.Token.Token</referencedby>
-        <referencedby refid="a00175_1abf676a737679ec2fb1dffd75dc4d7976" compoundref="a00313" startline="203" endline="209">Yarn.Token.ToString</referencedby>
-        <referencedby refid="a00190_1a7be6a979ee21b2d07ce541fb9c5b52df" compoundref="a00316" startline="677" endline="711">Yarn.Parser.ValueNode.UseToken</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" line="68" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" bodystart="68" bodyend="-1"/>
+        <referencedby refid="a00175_1ad6e4c6a92bb5ed6187949264df6aaf1b" compoundref="a00271" startline="73" endline="91">SetUp</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="a00175_1a3df6b32d6190a639619a3f064c2154e2" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Token.value</definition>
+      <memberdef kind="variable" id="a00175_1a27dbc8c3f7f23ce142d1d5d1fd3df8bc" prot="private" static="no" mutable="no">
+        <type><ref refid="a00168" kindref="compound">Yarn.Unity.VariableStorageBehaviour</ref></type>
+        <definition>Yarn.Unity.VariableStorageBehaviour YarnSpinnerTests.variableStorage</definition>
         <argsstring></argsstring>
-        <name>value</name>
+        <name>variableStorage</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="179" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="179" bodyend="-1"/>
-        <referencedby refid="a00175_1ab8531150354ef148b8929a727f29ae39" compoundref="a00313" startline="195" endline="201">Yarn.Token.Token</referencedby>
-        <referencedby refid="a00175_1abf676a737679ec2fb1dffd75dc4d7976" compoundref="a00313" startline="203" endline="209">Yarn.Token.ToString</referencedby>
-        <referencedby refid="a00190_1a7be6a979ee21b2d07ce541fb9c5b52df" compoundref="a00316" startline="677" endline="711">Yarn.Parser.ValueNode.UseToken</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" bodystart="69" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="a00175_1a80fe710713201bb793a41452e314a721" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Token.lineNumber</definition>
+      <memberdef kind="variable" id="a00175_1aace025d2a9a703154a1989c47b0a0737" prot="private" static="no" mutable="no">
+        <type><ref refid="a00153" kindref="compound">TestDialogueUIBehaviour</ref></type>
+        <definition>TestDialogueUIBehaviour YarnSpinnerTests.dialogueUI</definition>
         <argsstring></argsstring>
-        <name>lineNumber</name>
+        <name>dialogueUI</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="182" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="182" bodyend="-1"/>
-        <referencedby refid="a00175_1ab8531150354ef148b8929a727f29ae39" compoundref="a00313" startline="195" endline="201">Yarn.Token.Token</referencedby>
-        <referencedby refid="a00175_1abf676a737679ec2fb1dffd75dc4d7976" compoundref="a00313" startline="203" endline="209">Yarn.Token.ToString</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00175_1a9a0f0a8a7ab1e90ab48f15192323ffca" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Token.columnNumber</definition>
-        <argsstring></argsstring>
-        <name>columnNumber</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="183" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="183" bodyend="-1"/>
-        <referencedby refid="a00175_1ab8531150354ef148b8929a727f29ae39" compoundref="a00313" startline="195" endline="201">Yarn.Token.Token</referencedby>
-        <referencedby refid="a00175_1abf676a737679ec2fb1dffd75dc4d7976" compoundref="a00313" startline="203" endline="209">Yarn.Token.ToString</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00175_1a089d248c904a6e8366b81c2c47ff5af8" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Token.context</definition>
-        <argsstring></argsstring>
-        <name>context</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="184" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="184" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00175_1af15d26fa4e6f276ab58ff66d3c4203da" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.Token.delimitsText</definition>
-        <argsstring></argsstring>
-        <name>delimitsText</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="186" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="186" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00175_1adf11c0d29b66935a8d8109d6308d0488" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Token.parameterCount</definition>
-        <argsstring></argsstring>
-        <name>parameterCount</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="190" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="190" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00175_1a710099e7abe84f30864a320cc7464214" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Token.lexerState</definition>
-        <argsstring></argsstring>
-        <name>lexerState</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="193" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="193" bodyend="-1"/>
-        <referencedby refid="a00175_1abf676a737679ec2fb1dffd75dc4d7976" compoundref="a00313" startline="203" endline="209">Yarn.Token.ToString</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" line="70" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" bodystart="70" bodyend="-1"/>
+        <referencedby refid="a00175_1ad6e4c6a92bb5ed6187949264df6aaf1b" compoundref="a00271" startline="73" endline="91">SetUp</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00175_1ab8531150354ef148b8929a727f29ae39" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Token.Token</definition>
-        <argsstring>(TokenType type, Lexer.LexerState lexerState, int lineNumber=-1, int columnNumber=-1, string value=null)</argsstring>
-        <name>Token</name>
-        <param>
-          <type><ref refid="a00053_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
-          <declname>type</declname>
-        </param>
-        <param>
-          <type><ref refid="a00130" kindref="compound">Lexer.LexerState</ref></type>
-          <declname>lexerState</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>lineNumber</declname>
-          <defval>-1</defval>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>columnNumber</declname>
-          <defval>-1</defval>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>value</declname>
-          <defval>null</defval>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="195" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="195" bodyend="201"/>
-        <references refid="a00175_1a9a0f0a8a7ab1e90ab48f15192323ffca" compoundref="a00313" startline="183">Yarn.Token.columnNumber</references>
-        <references refid="a00175_1a80fe710713201bb793a41452e314a721" compoundref="a00313" startline="182">Yarn.Token.lineNumber</references>
-        <references refid="a00175_1a471a25da67fda0524f2375f9a882aafa" compoundref="a00313" startline="178">Yarn.Token.type</references>
-        <references refid="a00175_1a3df6b32d6190a639619a3f064c2154e2" compoundref="a00313" startline="179">Yarn.Token.value</references>
-      </memberdef>
-      <memberdef kind="function" id="a00175_1abf676a737679ec2fb1dffd75dc4d7976" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override string</type>
-        <definition>override string Yarn.Token.ToString</definition>
+      <memberdef kind="function" id="a00175_1ad6e4c6a92bb5ed6187949264df6aaf1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void YarnSpinnerTests.SetUp</definition>
         <argsstring>()</argsstring>
-        <name>ToString</name>
+        <name>SetUp</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="203" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="203" bodyend="209"/>
-        <references refid="a00175_1a9a0f0a8a7ab1e90ab48f15192323ffca" compoundref="a00313" startline="183">Yarn.Token.columnNumber</references>
-        <references refid="a00175_1a710099e7abe84f30864a320cc7464214" compoundref="a00313" startline="193">Yarn.Token.lexerState</references>
-        <references refid="a00175_1a80fe710713201bb793a41452e314a721" compoundref="a00313" startline="182">Yarn.Token.lineNumber</references>
-        <references refid="a00175_1a471a25da67fda0524f2375f9a882aafa" compoundref="a00313" startline="178">Yarn.Token.type</references>
-        <references refid="a00175_1a3df6b32d6190a639619a3f064c2154e2" compoundref="a00313" startline="179">Yarn.Token.value</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" line="73" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" bodystart="73" bodyend="91"/>
+        <references refid="a00175_1a9791840e0b5987e5bd09bce83ce2d8d9" compoundref="a00271" startline="68">dialogueRunner</references>
+        <references refid="a00175_1aace025d2a9a703154a1989c47b0a0737" compoundref="a00271" startline="70">dialogueUI</references>
+      </memberdef>
+      <memberdef kind="function" id="a00175_1a60ab8ed8dc30ec30e74baa1916d47324" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void YarnSpinnerTests.EditorTest</definition>
+        <argsstring>()</argsstring>
+        <name>EditorTest</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" line="94" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" bodystart="94" bodyend="116"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -186,23 +80,43 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="1703">
-        <label>Yarn.Token</label>
+      <node id="1594">
+        <label>YarnSpinnerTests</label>
         <link refid="a00175"/>
+        <childnode refid="1595" relation="usage">
+          <edgelabel>-dialogueRunner</edgelabel>
+          <edgelabel>-variableStorage</edgelabel>
+        </childnode>
+        <childnode refid="1596" relation="usage">
+          <edgelabel>-dialogueUI</edgelabel>
+        </childnode>
+      </node>
+      <node id="1598">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1595">
+        <label>Yarn</label>
+      </node>
+      <node id="1596">
+        <label>TestDialogueUIBehaviour</label>
+        <link refid="a00153"/>
+        <childnode refid="1597" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1597">
+        <label>Yarn::Unity::DialogueUIBehaviour</label>
+        <link refid="a00091"/>
+        <childnode refid="1598" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="175" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="175" bodyend="210"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" line="66" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" bodystart="66" bodyend="117"/>
     <listofallmembers>
-      <member refid="a00175_1a9a0f0a8a7ab1e90ab48f15192323ffca" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>columnNumber</name></member>
-      <member refid="a00175_1a089d248c904a6e8366b81c2c47ff5af8" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>context</name></member>
-      <member refid="a00175_1af15d26fa4e6f276ab58ff66d3c4203da" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>delimitsText</name></member>
-      <member refid="a00175_1a710099e7abe84f30864a320cc7464214" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>lexerState</name></member>
-      <member refid="a00175_1a80fe710713201bb793a41452e314a721" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>lineNumber</name></member>
-      <member refid="a00175_1adf11c0d29b66935a8d8109d6308d0488" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>parameterCount</name></member>
-      <member refid="a00175_1ab8531150354ef148b8929a727f29ae39" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>Token</name></member>
-      <member refid="a00175_1abf676a737679ec2fb1dffd75dc4d7976" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>ToString</name></member>
-      <member refid="a00175_1a471a25da67fda0524f2375f9a882aafa" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>type</name></member>
-      <member refid="a00175_1a3df6b32d6190a639619a3f064c2154e2" prot="public" virt="non-virtual"><scope>Yarn::Token</scope><name>value</name></member>
+      <member refid="a00175_1a9791840e0b5987e5bd09bce83ce2d8d9" prot="private" virt="non-virtual"><scope>YarnSpinnerTests</scope><name>dialogueRunner</name></member>
+      <member refid="a00175_1aace025d2a9a703154a1989c47b0a0737" prot="private" virt="non-virtual"><scope>YarnSpinnerTests</scope><name>dialogueUI</name></member>
+      <member refid="a00175_1a60ab8ed8dc30ec30e74baa1916d47324" prot="public" virt="non-virtual"><scope>YarnSpinnerTests</scope><name>EditorTest</name></member>
+      <member refid="a00175_1ad6e4c6a92bb5ed6187949264df6aaf1b" prot="public" virt="non-virtual"><scope>YarnSpinnerTests</scope><name>SetUp</name></member>
+      <member refid="a00175_1a27dbc8c3f7f23ce142d1d5d1fd3df8bc" prot="private" virt="non-virtual"><scope>YarnSpinnerTests</scope><name>variableStorage</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

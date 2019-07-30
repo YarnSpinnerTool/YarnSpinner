@@ -1,8 +1,8 @@
 var a00143 =
 [
-    [ "Start", "a00143.html#a0bf37075312ea87c2e329cc363a328a6", null ],
-    [ "Update", "a00143.html#ab1bea5afabd1c2e1e991063b1579d062", null ],
-    [ "characterName", "a00143.html#a418ea7095bd8201559ed392f07905ca3", null ],
-    [ "scriptToLoad", "a00143.html#a63145fb6ddf357e604d71bac04ca8a60", null ],
-    [ "talkToNode", "a00143.html#a64f4f1fb66b2046a674e3ebf3b9fdb56", null ]
+    [ "CanConvertFrom", "a00143.html#a8f6d23460e0ddfe883cc06ded76bf633", null ],
+    [ "CanConvertFrom", "a00143.html#a470d21adaa704eb281250dbd112ff91a", null ],
+    [ "CanConvertTo", "a00143.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
+    [ "ConvertFromString", "a00143.html#ad16aeb03f418c89b3f78e95b46a46b40", null ],
+    [ "ConvertToString", "a00143.html#a36cb2f9b24f15a671293f3a722324c27", null ]
 ];

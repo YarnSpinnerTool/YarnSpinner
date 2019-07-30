@@ -1,405 +1,282 @@
-\hypertarget{a00157}{\section{Csv\-Helper.\-Reflection\-Helper Class Reference}
-\label{a00157}\index{Csv\-Helper.\-Reflection\-Helper@{Csv\-Helper.\-Reflection\-Helper}}
+\hypertarget{a00157}{\section{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory Class Reference}
+\label{a00157}\index{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory@{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory}}
 }
 
 
-Common reflection tasks.  
+Creates \hyperlink{a00156}{Type\-Converter\-Options}.  
 
 
 
 
-Collaboration diagram for Csv\-Helper.\-Reflection\-Helper\-:
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=218pt]{a00475}
+\includegraphics[width=228pt]{a00547}
 \end{center}
 \end{figure}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static T \hyperlink{a00157_a45f0f552711f33392f33693a88fb20b3}{Create\-Instance$<$ T $>$} (params object\mbox{[}$\,$\mbox{]} args)
-\begin{DoxyCompactList}\small\item\em Creates an instance of type T. \end{DoxyCompactList}\item 
-static object \hyperlink{a00157_a9b8690ff760f41b0a7ef46626949c777}{Create\-Instance} (Type type, params object\mbox{[}$\,$\mbox{]} args)
-\begin{DoxyCompactList}\small\item\em Creates an instance of the specified type. \end{DoxyCompactList}\item 
-static T \hyperlink{a00157_aadf73df00d450ae49ceb8d78ac254b6d}{Get\-Attribute$<$ T $>$} (Property\-Info property, bool inherit)
-\begin{DoxyCompactList}\small\item\em Gets the first attribute of type T on property. \end{DoxyCompactList}\item 
-static T\mbox{[}$\,$\mbox{]} \hyperlink{a00157_adb0641e341c8468906b175f3f982ab6b}{Get\-Attributes$<$ T $>$} (Property\-Info property, bool inherit)
-\begin{DoxyCompactList}\small\item\em Gets the attributes of type T on property. \end{DoxyCompactList}\item 
-static New\-Expression \hyperlink{a00157_a7f2e39949787d37053702e7ea547ee69}{Get\-Constructor$<$ T $>$} (Expression$<$ Func$<$ T $>$$>$ expression)
-\begin{DoxyCompactList}\small\item\em Gets the constructor New\-Expression from the give Expression. \end{DoxyCompactList}\item 
-static Property\-Info \hyperlink{a00157_afaa6e2741145eabea34c625684fb4636}{Get\-Property$<$ T\-Model $>$} (Expression$<$ Func$<$ T\-Model, object $>$$>$ expression)
-\begin{DoxyCompactList}\small\item\em Gets the property from the expression. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Static Private Member Functions}
+static void \hyperlink{a00157_a3f70014574bc374acbe8a152e9e741f2}{Add\-Options} (Type type, \hyperlink{a00156}{Type\-Converter\-Options} options)
+\begin{DoxyCompactList}\small\item\em Adds the \hyperlink{a00156}{Type\-Converter\-Options} for the given Type. \end{DoxyCompactList}\item 
+static void \hyperlink{a00157_ab65b57d4c987d39e33bc136dfd5cb989}{Add\-Options$<$ T $>$} (\hyperlink{a00156}{Type\-Converter\-Options} options)
+\begin{DoxyCompactList}\small\item\em Adds the \hyperlink{a00156}{Type\-Converter\-Options} for the given Type. \end{DoxyCompactList}\item 
+static void \hyperlink{a00157_af5ceccd212df16bb55cf90cdcd76c286}{Remove\-Options} (Type type)
+\begin{DoxyCompactList}\small\item\em Removes the \hyperlink{a00156}{Type\-Converter\-Options} for the given type. \end{DoxyCompactList}\item 
+static void \hyperlink{a00157_a201c3cd79a7bfe46424929150f2b84d8}{Remove\-Options$<$ T $>$} ()
+\begin{DoxyCompactList}\small\item\em Removes the \hyperlink{a00156}{Type\-Converter\-Options} for the given type. \end{DoxyCompactList}\item 
+static \hyperlink{a00156}{Type\-Converter\-Options} \hyperlink{a00157_a2958beb79bb066c2b99c9fc97be9043d}{Get\-Options} (Type type)
+\begin{DoxyCompactList}\small\item\em Get the \hyperlink{a00156}{Type\-Converter\-Options} for the given Type. \end{DoxyCompactList}\item 
+static \hyperlink{a00156}{Type\-Converter\-Options} \hyperlink{a00157_abff68f203e82218e5d9d316a81d90157}{Get\-Options$<$ T $>$} ()
+\begin{DoxyCompactList}\small\item\em Get the \hyperlink{a00156}{Type\-Converter\-Options} for the given Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static Member\-Expression \hyperlink{a00157_ab462ff86486973f2eee6785bed535cdc}{Get\-Member\-Expression$<$ T\-Model, T $>$} (Expression$<$ Func$<$ T\-Model, T $>$$>$ expression)
-\begin{DoxyCompactList}\small\item\em Gets the member expression. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static readonly Dictionary\\*
+$<$ Type, \hyperlink{a00156}{Type\-Converter\-Options} $>$ \hyperlink{a00157_abef552dcc7a0c631d09fa8f2ea5fead4}{type\-Converter\-Options} = new Dictionary$<$Type, \hyperlink{a00156}{Type\-Converter\-Options}$>$()
+\item 
+static readonly object \hyperlink{a00157_aeea3952a7ac1a8cb0291db079800ead4}{locker} = new object()
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Common reflection tasks. 
+Creates \hyperlink{a00156}{Type\-Converter\-Options}. 
 
 
 
-Definition at line 19 of file Reflection\-Helper.\-cs.
+Definition at line 13 of file Type\-Converter\-Options\-Factory.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00157_a9b8690ff760f41b0a7ef46626949c777}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Create\-Instance@{Create\-Instance}}
-\index{Create\-Instance@{Create\-Instance}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
-\subsubsection[{Create\-Instance}]{\setlength{\rightskip}{0pt plus 5cm}static object Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance (
+\hypertarget{a00157_a3f70014574bc374acbe8a152e9e741f2}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!Add\-Options@{Add\-Options}}
+\index{Add\-Options@{Add\-Options}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
+\subsubsection[{Add\-Options}]{\setlength{\rightskip}{0pt plus 5cm}static void Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-Add\-Options (
 \begin{DoxyParamCaption}
 \item[{Type}]{type, }
-\item[{params object\mbox{[}$\,$\mbox{]}}]{args}
+\item[{{\bf Type\-Converter\-Options}}]{options}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_a9b8690ff760f41b0a7ef46626949c777}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_a3f70014574bc374acbe8a152e9e741f2}
 
 
-Creates an instance of the specified type. 
+Adds the \hyperlink{a00156}{Type\-Converter\-Options} for the given Type. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em type} & The type of instance to create.\\
+{\em type} & The type the options are for.\\
 \hline
-{\em args} & The constructor arguments.\\
+{\em options} & The options.\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A new instance of the specified type.
-\end{DoxyReturn}
 
 
-Definition at line 42 of file Reflection\-Helper.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Auto\-Map(), Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Auto\-Map\-Internal(), Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance$<$ T $>$(), Csv\-Helper.\-Configuration.\-Csv\-Class\-Map$<$ T $>$.\-References(), Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Register\-Class\-Map(), and Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Type\-Converter$<$ T $>$().
+Definition at line 23 of file Type\-Converter\-Options\-Factory.\-cs.
 
 
 \begin{DoxyCode}
-43         \{
-44 \textcolor{preprocessor}{#if NET\_2\_0}
-45 \textcolor{preprocessor}{}            \textcolor{keywordflow}{return} Activator.CreateInstance( type, args );
-46 \textcolor{preprocessor}{#else}
-47 \textcolor{preprocessor}{}
-48             var argumentTypes = args.Select( a => a.GetType() ).ToArray();
-49             var argumentExpressions = argumentTypes.Select( ( t, i ) => Expression.Parameter( t, \textcolor{stringliteral}{"var"} + i 
-      ) ).ToArray();
-50             var constructorInfo = type.GetConstructor( argumentTypes );
-51             var constructor = Expression.New( constructorInfo, argumentExpressions );
-52             var compiled = Expression.Lambda( constructor, argumentExpressions ).Compile();
-53             \textcolor{keywordflow}{try}
-54             \{
-55                 \textcolor{keywordflow}{return} compiled.DynamicInvoke( args );
-56             \}
-57             \textcolor{keywordflow}{catch}( TargetInvocationException ex )
+24         \{
+25             \textcolor{keywordflow}{if}( type == null )
+26             \{
+27                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"type"} );
+28             \}
+29 
+30             \textcolor{keywordflow}{if}( options == null )
+31             \{
+32                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"options"} );
+33             \}
+34 
+35             lock( \hyperlink{a00157_aeea3952a7ac1a8cb0291db079800ead4}{locker} )
+36             \{
+37                 \hyperlink{a00157_abef552dcc7a0c631d09fa8f2ea5fead4}{typeConverterOptions}[type] = options;
+38             \}
+39         \}
+\end{DoxyCode}
+\hypertarget{a00157_ab65b57d4c987d39e33bc136dfd5cb989}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!Add\-Options$<$ T $>$@{Add\-Options$<$ T $>$}}
+\index{Add\-Options$<$ T $>$@{Add\-Options$<$ T $>$}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
+\subsubsection[{Add\-Options$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-Add\-Options}$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{{\bf Type\-Converter\-Options}}]{options}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_ab65b57d4c987d39e33bc136dfd5cb989}
+
+
+Adds the \hyperlink{a00156}{Type\-Converter\-Options} for the given Type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type the options are for.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 46 of file Type\-Converter\-Options\-Factory.\-cs.
+
+
+\begin{DoxyCode}
+47         \{
+48             \hyperlink{a00157_a3f70014574bc374acbe8a152e9e741f2}{AddOptions}( typeof( T ), options );
+49         \}
+\end{DoxyCode}
+\hypertarget{a00157_a2958beb79bb066c2b99c9fc97be9043d}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!Get\-Options@{Get\-Options}}
+\index{Get\-Options@{Get\-Options}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
+\subsubsection[{Get\-Options}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Type\-Converter\-Options} Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-Get\-Options (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_a2958beb79bb066c2b99c9fc97be9043d}
+
+
+Get the \hyperlink{a00156}{Type\-Converter\-Options} for the given Type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type the options are for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The options for the given type.
+\end{DoxyReturn}
+
+
+Definition at line 82 of file Type\-Converter\-Options\-Factory.\-cs.
+
+
+\begin{DoxyCode}
+83         \{
+84             \textcolor{keywordflow}{if}( type == null )
+85             \{
+86                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException();
+87             \}
+88 
+89             lock( \hyperlink{a00157_aeea3952a7ac1a8cb0291db079800ead4}{locker} )
+90             \{
+91                 TypeConverterOptions options;
+92 
+93                 \textcolor{keywordflow}{if}( !\hyperlink{a00157_abef552dcc7a0c631d09fa8f2ea5fead4}{typeConverterOptions}.TryGetValue( type, out options ) )
+94                 \{
+95                     options = \textcolor{keyword}{new} TypeConverterOptions();
+96                     typeConverterOptions.Add( type, options );
+97                 \}
+98 
+99                 \textcolor{keywordflow}{return} options;
+100             \}
+101         \}
+\end{DoxyCode}
+\hypertarget{a00157_abff68f203e82218e5d9d316a81d90157}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!Get\-Options$<$ T $>$@{Get\-Options$<$ T $>$}}
+\index{Get\-Options$<$ T $>$@{Get\-Options$<$ T $>$}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
+\subsubsection[{Get\-Options$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Type\-Converter\-Options} {\bf Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-Get\-Options}$<$ T $>$ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_abff68f203e82218e5d9d316a81d90157}
+
+
+Get the \hyperlink{a00156}{Type\-Converter\-Options} for the given Type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type the options are for.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The options for the given type.
+\end{DoxyReturn}
+
+
+Definition at line 108 of file Type\-Converter\-Options\-Factory.\-cs.
+
+
+\begin{DoxyCode}
+109         \{
+110             \textcolor{keywordflow}{return} \hyperlink{a00157_a2958beb79bb066c2b99c9fc97be9043d}{GetOptions}( typeof( T ) );
+111         \}
+\end{DoxyCode}
+\hypertarget{a00157_af5ceccd212df16bb55cf90cdcd76c286}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!Remove\-Options@{Remove\-Options}}
+\index{Remove\-Options@{Remove\-Options}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
+\subsubsection[{Remove\-Options}]{\setlength{\rightskip}{0pt plus 5cm}static void Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-Remove\-Options (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_af5ceccd212df16bb55cf90cdcd76c286}
+
+
+Removes the \hyperlink{a00156}{Type\-Converter\-Options} for the given type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type to remove the options for.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 55 of file Type\-Converter\-Options\-Factory.\-cs.
+
+
+\begin{DoxyCode}
+56         \{
+57             \textcolor{keywordflow}{if}( type == null )
 58             \{
-59                 \textcolor{keywordflow}{throw} ex.InnerException;
+59                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"type"} );
 60             \}
-61 \textcolor{preprocessor}{#endif}
-62 \textcolor{preprocessor}{}        \}
+61 
+62             lock( \hyperlink{a00157_aeea3952a7ac1a8cb0291db079800ead4}{locker} )
+63             \{
+64                 typeConverterOptions.Remove( type );
+65             \}
+66         \}
 \end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00157_a9b8690ff760f41b0a7ef46626949c777_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00157_a45f0f552711f33392f33693a88fb20b3}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Create\-Instance$<$ T $>$@{Create\-Instance$<$ T $>$}}
-\index{Create\-Instance$<$ T $>$@{Create\-Instance$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
-\subsubsection[{Create\-Instance$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static T {\bf Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance}$<$ T $>$ (
+\hypertarget{a00157_a201c3cd79a7bfe46424929150f2b84d8}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!Remove\-Options$<$ T $>$@{Remove\-Options$<$ T $>$}}
+\index{Remove\-Options$<$ T $>$@{Remove\-Options$<$ T $>$}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
+\subsubsection[{Remove\-Options$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-Remove\-Options}$<$ T $>$ (
 \begin{DoxyParamCaption}
-\item[{params object\mbox{[}$\,$\mbox{]}}]{args}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_a45f0f552711f33392f33693a88fb20b3}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_a201c3cd79a7bfe46424929150f2b84d8}
 
 
-Creates an instance of type T. 
+Removes the \hyperlink{a00156}{Type\-Converter\-Options} for the given type. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type of instance to create.\\
+{\em T} & The type to remove the options for.\\
 \hline
 \end{DoxyTemplParams}
 
-\begin{DoxyParams}{Parameters}
-{\em args} & The constructor arguments.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A new instance of type T.
-\end{DoxyReturn}
 
-
-Definition at line 27 of file Reflection\-Helper.\-cs.
-
-
-
-References Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance().
+Definition at line 72 of file Type\-Converter\-Options\-Factory.\-cs.
 
 
 \begin{DoxyCode}
-28         \{
-29 \textcolor{preprocessor}{#if NET\_2\_0}
-30 \textcolor{preprocessor}{}            \textcolor{keywordflow}{return} Activator.CreateInstance<T>();
-31 \textcolor{preprocessor}{#else}
-32 \textcolor{preprocessor}{}            \textcolor{keywordflow}{return} (T)\hyperlink{a00157_a9b8690ff760f41b0a7ef46626949c777}{CreateInstance}( typeof( T ), args );
-33 \textcolor{preprocessor}{#endif}
-34 \textcolor{preprocessor}{}        \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00157_a45f0f552711f33392f33693a88fb20b3_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00157_aadf73df00d450ae49ceb8d78ac254b6d}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Attribute$<$ T $>$@{Get\-Attribute$<$ T $>$}}
-\index{Get\-Attribute$<$ T $>$@{Get\-Attribute$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
-\subsubsection[{Get\-Attribute$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static T Csv\-Helper.\-Reflection\-Helper.\-Get\-Attribute$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{Property\-Info}]{property, }
-\item[{bool}]{inherit}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_aadf73df00d450ae49ceb8d78ac254b6d}
-
-
-Gets the first attribute of type T on property. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of attribute to get.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em property} & The Property\-Info to get the attribute from.\\
-\hline
-{\em inherit} & True to search inheritance tree, otherwise false.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The first attribute of type T, otherwise null.
-\end{DoxyReturn}
-\begin{Desc}
-\item[Type Constraints]\begin{description}
-\item[{\em T} : {\em Attribute}]\end{description}
-\end{Desc}
-
-
-Definition at line 72 of file Reflection\-Helper.\-cs.
-
-
-\begin{DoxyCode}
-72                                                                                        : Attribute
 73         \{
-74             T attribute = null;
-75             var attributes = property.GetCustomAttributes( typeof( T ), inherit ).ToList();
-76             \textcolor{keywordflow}{if}( attributes.Count > 0 )
-77             \{
-78                 attribute = attributes[0] as T;
-79             \}
-80             \textcolor{keywordflow}{return} attribute;
-81         \}
+74             \hyperlink{a00157_af5ceccd212df16bb55cf90cdcd76c286}{RemoveOptions}( typeof( T ) );
+75         \}
 \end{DoxyCode}
-\hypertarget{a00157_adb0641e341c8468906b175f3f982ab6b}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Attributes$<$ T $>$@{Get\-Attributes$<$ T $>$}}
-\index{Get\-Attributes$<$ T $>$@{Get\-Attributes$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
-\subsubsection[{Get\-Attributes$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static T \mbox{[}$\,$\mbox{]} Csv\-Helper.\-Reflection\-Helper.\-Get\-Attributes$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{Property\-Info}]{property, }
-\item[{bool}]{inherit}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_adb0641e341c8468906b175f3f982ab6b}
 
 
-Gets the attributes of type T on property. 
+\subsection{Member Data Documentation}
+\hypertarget{a00157_aeea3952a7ac1a8cb0291db079800ead4}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!locker@{locker}}
+\index{locker@{locker}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
+\subsubsection[{locker}]{\setlength{\rightskip}{0pt plus 5cm}readonly object Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-locker = new object()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00157_aeea3952a7ac1a8cb0291db079800ead4}
 
 
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of attribute to get.\\
-\hline
-\end{DoxyTemplParams}
+Definition at line 16 of file Type\-Converter\-Options\-Factory.\-cs.
 
-\begin{DoxyParams}{Parameters}
-{\em property} & The Property\-Info to get the attribute from.\\
-\hline
-{\em inherit} & True to search inheritance tree, otherwise false.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The attributes of type T.
-\end{DoxyReturn}
-\begin{Desc}
-\item[Type Constraints]\begin{description}
-\item[{\em T} : {\em Attribute}]\end{description}
-\end{Desc}
+\hypertarget{a00157_abef552dcc7a0c631d09fa8f2ea5fead4}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}!type\-Converter\-Options@{type\-Converter\-Options}}
+\index{type\-Converter\-Options@{type\-Converter\-Options}!CsvHelper::TypeConversion::TypeConverterOptionsFactory@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options\-Factory}}
+\subsubsection[{type\-Converter\-Options}]{\setlength{\rightskip}{0pt plus 5cm}readonly Dictionary$<$Type, {\bf Type\-Converter\-Options}$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-Factory.\-type\-Converter\-Options = new Dictionary$<$Type, {\bf Type\-Converter\-Options}$>$()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00157_abef552dcc7a0c631d09fa8f2ea5fead4}
 
 
-Definition at line 90 of file Reflection\-Helper.\-cs.
+Definition at line 15 of file Type\-Converter\-Options\-Factory.\-cs.
 
-
-\begin{DoxyCode}
-90                                                                                           : Attribute
-91         \{
-92             var attributes = property.GetCustomAttributes( typeof( T ), inherit );
-93             \textcolor{keywordflow}{return} attributes.Cast<T>().ToArray();
-94         \}
-\end{DoxyCode}
-\hypertarget{a00157_a7f2e39949787d37053702e7ea547ee69}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Constructor$<$ T $>$@{Get\-Constructor$<$ T $>$}}
-\index{Get\-Constructor$<$ T $>$@{Get\-Constructor$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
-\subsubsection[{Get\-Constructor$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static New\-Expression Csv\-Helper.\-Reflection\-Helper.\-Get\-Constructor$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{Expression$<$ Func$<$ T $>$$>$}]{expression}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_a7f2e39949787d37053702e7ea547ee69}
-
-
-Gets the constructor New\-Expression from the give Expression. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the object that will be constructed.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em expression} & The constructor Expression.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A constructor New\-Expression.
-\end{DoxyReturn}
-
-\begin{DoxyExceptions}{Exceptions}
-{\em System.\-Argument\-Exception} & Not a constructor expression.;expression\\
-\hline
-\end{DoxyExceptions}
-
-
-Definition at line 103 of file Reflection\-Helper.\-cs.
-
-
-\begin{DoxyCode}
-104         \{
-105             var newExpression = expression.Body as NewExpression;
-106             \textcolor{keywordflow}{if}( newExpression == null )
-107             \{
-108                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException( \textcolor{stringliteral}{"Not a constructor expression."}, nameof( expression ) );
-109             \}
-110 
-111             \textcolor{keywordflow}{return} newExpression;
-112         \}
-\end{DoxyCode}
-\hypertarget{a00157_ab462ff86486973f2eee6785bed535cdc}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Member\-Expression$<$ T\-Model, T $>$@{Get\-Member\-Expression$<$ T\-Model, T $>$}}
-\index{Get\-Member\-Expression$<$ T\-Model, T $>$@{Get\-Member\-Expression$<$ T\-Model, T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
-\subsubsection[{Get\-Member\-Expression$<$ T\-Model, T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static Member\-Expression Csv\-Helper.\-Reflection\-Helper.\-Get\-Member\-Expression$<$ T\-Model, T $>$ (
-\begin{DoxyParamCaption}
-\item[{Expression$<$ Func$<$ T\-Model, T $>$$>$}]{expression}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00157_ab462ff86486973f2eee6785bed535cdc}
-
-
-Gets the member expression. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T\-Model} & The type of the model.\\
-\hline
-{\em T} & \\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em expression} & The expression.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-
-
-Definition at line 139 of file Reflection\-Helper.\-cs.
-
-
-\begin{DoxyCode}
-140         \{
-141             MemberExpression memberExpression = null;
-142             \textcolor{keywordflow}{if}( expression.Body.NodeType == ExpressionType.Convert )
-143             \{
-144                 var body = (UnaryExpression)expression.Body;
-145                 memberExpression = body.Operand as MemberExpression;
-146             \}
-147             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( expression.Body.NodeType == ExpressionType.MemberAccess )
-148             \{
-149                 memberExpression = expression.Body as MemberExpression;
-150             \}
-151 
-152             \textcolor{keywordflow}{if}( memberExpression == null )
-153             \{
-154                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException( \textcolor{stringliteral}{"Not a member access"}, nameof( expression ) );
-155             \}
-156 
-157             \textcolor{keywordflow}{return} memberExpression;
-158         \}
-\end{DoxyCode}
-\hypertarget{a00157_afaa6e2741145eabea34c625684fb4636}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Property$<$ T\-Model $>$@{Get\-Property$<$ T\-Model $>$}}
-\index{Get\-Property$<$ T\-Model $>$@{Get\-Property$<$ T\-Model $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
-\subsubsection[{Get\-Property$<$ T\-Model $>$}]{\setlength{\rightskip}{0pt plus 5cm}static Property\-Info Csv\-Helper.\-Reflection\-Helper.\-Get\-Property$<$ T\-Model $>$ (
-\begin{DoxyParamCaption}
-\item[{Expression$<$ Func$<$ T\-Model, object $>$$>$}]{expression}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00157_afaa6e2741145eabea34c625684fb4636}
-
-
-Gets the property from the expression. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T\-Model} & The type of the model.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em expression} & The expression.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The Property\-Info for the expression.
-\end{DoxyReturn}
-
-
-Definition at line 120 of file Reflection\-Helper.\-cs.
-
-
-\begin{DoxyCode}
-121         \{
-122             var member = GetMemberExpression( expression ).Member;
-123             var \textcolor{keyword}{property} = member as PropertyInfo;
-124             \textcolor{keywordflow}{if}( property == null )
-125             \{
-126                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} \hyperlink{a00066}{CsvConfigurationException}( $\textcolor{stringliteral}{"'\{member.Name\}' is not a
-       property. Did you try to map a field by accident?"} );
-127             \}
-128 
-129             \textcolor{keywordflow}{return} property;
-130         \}
-\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00261}{Reflection\-Helper.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00260}{Type\-Converter\-Options\-Factory.\-cs}\end{DoxyCompactItemize}

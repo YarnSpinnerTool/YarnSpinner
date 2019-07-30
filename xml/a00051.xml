@@ -1,159 +1,2885 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00051" kind="class" prot="private">
-    <compoundname>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</compoundname>
-      <sectiondef kind="public-type">
-      <memberdef kind="enum" id="a00051_1ab24848d7951ce44eb3c7768c6ee10385" prot="public" static="no">
-        <name>State</name>
-        <enumvalue id="a00051_1ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5" prot="public">
-          <name>NotTested</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="a00051_1ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15" prot="public">
-          <name>Passed</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="a00051_1ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca" prot="public">
-          <name>Failed</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
+  <compounddef id="a00051" kind="class" prot="public">
+    <compoundname>Yarn::Compiler</compoundname>
+    <basecompoundref refid="a00173" prot="public" virt="non-virtual">YarnSpinnerParserBaseListener</basecompoundref>
+    <innerclass refid="a00347" prot="package">Yarn::Compiler::CompileFlags</innerclass>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="a00051_1a541022d89bcf9bc8f794eb6d6b438d08" prot="package" static="no" mutable="no">
+        <type><ref refid="a00347" kindref="compound">CompileFlags</ref></type>
+        <definition>CompileFlags Yarn.Compiler.flags</definition>
+        <argsstring></argsstring>
+        <name>flags</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="37" bodyend="41"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="117" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="117" bodyend="-1"/>
+        <referencedby refid="a00051_1acec9f57d3785de7fad1e8cac5b286ccf" compoundref="a00281" startline="300" endline="343">Yarn.Compiler.ExitBody</referencedby>
+        <referencedby refid="a00042_1ad1576a22d74304c3155a0c2fa91be5b9" compoundref="a00281" startline="600" endline="672">Yarn.BodyVisitor.VisitShortcut_statement</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00051_1a7384f3d524959a489d51a0a9e1f0477d" prot="package" static="no" mutable="no">
+        <type><ref refid="a00351" kindref="compound">Node</ref></type>
+        <definition>Node Yarn.Compiler.currentNode</definition>
+        <argsstring></argsstring>
+        <name>currentNode</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="123" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="123" bodyend="-1"/>
+        <referencedby refid="a00051_1a1a5d0f8b10ad5195cad5340aaec02676" compoundref="a00281" startline="198" endline="208">Yarn.Compiler.EnterNode</referencedby>
+        <referencedby refid="a00051_1acec9f57d3785de7fad1e8cac5b286ccf" compoundref="a00281" startline="300" endline="343">Yarn.Compiler.ExitBody</referencedby>
+        <referencedby refid="a00051_1aba6a0ffa803b6ef9f68e53fa0f4e00a8" compoundref="a00281" startline="254" endline="261">Yarn.Compiler.ExitHeader</referencedby>
+        <referencedby refid="a00051_1ad3592330a628a27ac9eb9197ec3d767e" compoundref="a00281" startline="212" endline="217">Yarn.Compiler.ExitNode</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00051_1ae211a0c080d18575bc3d299c207ef8ee" prot="package" static="no" mutable="no">
+        <type><ref refid="a00121" kindref="compound">Library</ref></type>
+        <definition>Library Yarn.Compiler.library</definition>
+        <argsstring></argsstring>
+        <name>library</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="125" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="125" bodyend="-1"/>
+        <referencedby refid="a00051_1a4b004fdb6aa93abee8a1a94a22ea9660" compoundref="a00281" startline="131" endline="135">Yarn.Compiler.Compiler</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00051_1af6afc8ccb59931650919b863d62d52a4" prot="package" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Compiler.rawTextNode</definition>
+        <argsstring></argsstring>
+        <name>rawTextNode</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="129" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="129" bodyend="-1"/>
+        <referencedby refid="a00051_1ae575e99fd3b630bd6d549daf2b561e1d" compoundref="a00281" startline="267" endline="294">Yarn.Compiler.EnterBody</referencedby>
+        <referencedby refid="a00051_1a884e9af9753585b8d51aecd5282470fc" compoundref="a00281" startline="237" endline="249">Yarn.Compiler.EnterHeader_tag</referencedby>
+        <referencedby refid="a00051_1a1a5d0f8b10ad5195cad5340aaec02676" compoundref="a00281" startline="198" endline="208">Yarn.Compiler.EnterNode</referencedby>
+        <referencedby refid="a00051_1acec9f57d3785de7fad1e8cac5b286ccf" compoundref="a00281" startline="300" endline="343">Yarn.Compiler.ExitBody</referencedby>
+        <referencedby refid="a00051_1aba6a0ffa803b6ef9f68e53fa0f4e00a8" compoundref="a00281" startline="254" endline="261">Yarn.Compiler.ExitHeader</referencedby>
+        <referencedby refid="a00051_1ad3592330a628a27ac9eb9197ec3d767e" compoundref="a00281" startline="212" endline="217">Yarn.Compiler.ExitNode</referencedby>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00051_1a7202b24bd068da24d7e28bec5668b13a" prot="public" static="no" mutable="no">
-        <type><ref refid="a00051_1ab24848d7951ce44eb3c7768c6ee10385" kindref="member">State</ref></type>
-        <definition>State Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.state</definition>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00051_1a87758397eba2e84cda8e0d6c40656f3f" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.Compiler.labelCount</definition>
         <argsstring></argsstring>
-        <name>state</name>
+        <name>labelCount</name>
+        <initializer>= 0</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="43" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="43" bodyend="-1"/>
-        <referencedby refid="a00188_1a1a7e1a855bb2a9549eb1c0eb292c9b85" compoundref="a00296" startline="340" endline="379">Yarn.Unity.YarnSpinnerEditorWindow.DrawScriptGUI</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="119" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="119" bodyend="-1"/>
+        <referencedby refid="a00051_1a1bae0d8b701a59708641aa36ea971fa5" compoundref="a00281" startline="138" endline="141">Yarn.Compiler.RegisterLabel</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="a00051_1a6c852f7521c0a91b519aa3d391f63e6b" prot="public" static="no" mutable="no">
-        <type>TextAsset</type>
-        <definition>TextAsset Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.script</definition>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00051_1aa1737da428ec7d597009661dd8a47829" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="a00138" kindref="compound">Program</ref></type>
+        <definition>Program Yarn.Compiler.program</definition>
         <argsstring></argsstring>
-        <name>script</name>
+        <name>program</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="44" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="121" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="121" bodyend="-1"/>
+        <referencedby refid="a00051_1a4b004fdb6aa93abee8a1a94a22ea9660" compoundref="a00281" startline="131" endline="135">Yarn.Compiler.Compiler</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="a00051_1a808a039e280cf875cb3c9e9385148498" prot="public" static="no" mutable="no">
-        <type><ref refid="a00386" kindref="compound">ValidationMessage</ref>[]</type>
-        <definition>ValidationMessage [] Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.messages</definition>
-        <argsstring></argsstring>
-        <name>messages</name>
-        <initializer>= new <ref refid="a00386" kindref="compound">ValidationMessage</ref>[0]</initializer>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="a00051_1a4b004fdb6aa93abee8a1a94a22ea9660" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Compiler.Compiler</definition>
+        <argsstring>(Library library)</argsstring>
+        <name>Compiler</name>
+        <param>
+          <type><ref refid="a00121" kindref="compound">Library</ref></type>
+          <declname>library</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="46" bodyend="-1"/>
-        <referencedby refid="a00188_1a1a7e1a855bb2a9549eb1c0eb292c9b85" compoundref="a00296" startline="340" endline="379">Yarn.Unity.YarnSpinnerEditorWindow.DrawScriptGUI</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="131" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="131" bodyend="135"/>
+        <references refid="a00051_1ae211a0c080d18575bc3d299c207ef8ee" compoundref="a00281" startline="125">Yarn.Compiler.library</references>
+        <references refid="a00051_1aa1737da428ec7d597009661dd8a47829" compoundref="a00281" startline="121">Yarn.Compiler.program</references>
+      </memberdef>
+      <memberdef kind="function" id="a00051_1a1bae0d8b701a59708641aa36ea971fa5" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Compiler.RegisterLabel</definition>
+        <argsstring>(string commentary=null)</argsstring>
+        <name>RegisterLabel</name>
+        <param>
+          <type>string</type>
+          <declname>commentary</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="138" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="138" bodyend="141"/>
+        <references refid="a00051_1a87758397eba2e84cda8e0d6c40656f3f" compoundref="a00281" startline="119">Yarn.Compiler.labelCount</references>
+        <referencedby refid="a00051_1aba6a0ffa803b6ef9f68e53fa0f4e00a8" compoundref="a00281" startline="254" endline="261">Yarn.Compiler.ExitHeader</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00051_1a07d6540806e6dbcbac4c1f5d5dd0cab0" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.Emit</definition>
+        <argsstring>(ByteCode code, object operandA=null, object operandB=null)</argsstring>
+        <name>Emit</name>
+        <param>
+          <type><ref refid="a00048_1ad5dfb6ee68ca7469623ad3e459f98894" kindref="member">ByteCode</ref></type>
+          <declname>code</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>operandA</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>operandB</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="160" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="160" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="a00051_1a88503fee196f5aa36ce01e727a34fab6" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Compiler.GetLineID</definition>
+        <argsstring>(YarnSpinnerParser.Hashtag_blockContext context)</argsstring>
+        <name>GetLineID</name>
+        <param>
+          <type>YarnSpinnerParser.Hashtag_blockContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="168" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="168" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="a00051_1a5e3cfcde58526c1642071e51f7dac4c9" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.Compile</definition>
+        <argsstring>(IParseTree tree)</argsstring>
+        <name>Compile</name>
+        <param>
+          <type>IParseTree</type>
+          <declname>tree</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="190" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="190" bodyend="194"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00051_1a774e8c143cdda0584fcfdda98626a83c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.Emit</definition>
+        <argsstring>(Node node, ByteCode code, object operandA=null, object operandB=null)</argsstring>
+        <name>Emit</name>
+        <param>
+          <type><ref refid="a00351" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="a00048_1ad5dfb6ee68ca7469623ad3e459f98894" kindref="member">ByteCode</ref></type>
+          <declname>code</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>operandA</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>operandB</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="143" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="143" bodyend="157"/>
+        <references refid="a00351_1a156723a9252b62d288ddf611939ea7c3" compoundref="a00289" startline="216">Yarn.Node.instructions</references>
+        <referencedby refid="a00051_1acec9f57d3785de7fad1e8cac5b286ccf" compoundref="a00281" startline="300" endline="343">Yarn.Compiler.ExitBody</referencedby>
+        <referencedby refid="a00051_1aba6a0ffa803b6ef9f68e53fa0f4e00a8" compoundref="a00281" startline="254" endline="261">Yarn.Compiler.ExitHeader</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00051_1a1e653caad5ab99847c26ff8f67da8f45" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override bool</type>
-        <definition>override bool Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.Equals</definition>
-        <argsstring>(object obj)</argsstring>
-        <name>Equals</name>
+      <memberdef kind="function" id="a00051_1a1a5d0f8b10ad5195cad5340aaec02676" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Yarn.Compiler.EnterNode</definition>
+        <argsstring>(YarnSpinnerParser.NodeContext context)</argsstring>
+        <name>EnterNode</name>
+        <reimplements refid="a00173_1a3729f55225c9447ae4add58d2d548917">EnterNode</reimplements>
         <param>
-          <type>object</type>
-          <declname>obj</declname>
+          <type>YarnSpinnerParser.NodeContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.node. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="198" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="198" bodyend="208"/>
+        <references refid="a00051_1a7384f3d524959a489d51a0a9e1f0477d" compoundref="a00281" startline="123">Yarn.Compiler.currentNode</references>
+        <references refid="a00051_1af6afc8ccb59931650919b863d62d52a4" compoundref="a00281" startline="129">Yarn.Compiler.rawTextNode</references>
+      </memberdef>
+      <memberdef kind="function" id="a00051_1ad3592330a628a27ac9eb9197ec3d767e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Yarn.Compiler.ExitNode</definition>
+        <argsstring>(YarnSpinnerParser.NodeContext context)</argsstring>
+        <name>ExitNode</name>
+        <reimplements refid="a00173_1a4a181214b03baf8e44df0d66e25d70f2">ExitNode</reimplements>
+        <param>
+          <type>YarnSpinnerParser.NodeContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.node. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="212" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="212" bodyend="217"/>
+        <references refid="a00051_1a7384f3d524959a489d51a0a9e1f0477d" compoundref="a00281" startline="123">Yarn.Compiler.currentNode</references>
+        <references refid="a00051_1af6afc8ccb59931650919b863d62d52a4" compoundref="a00281" startline="129">Yarn.Compiler.rawTextNode</references>
+      </memberdef>
+      <memberdef kind="function" id="a00051_1a9e7161a1440f0f42b02fb2432d5a2ae6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Yarn.Compiler.EnterHeader</definition>
+        <argsstring>(YarnSpinnerParser.HeaderContext context)</argsstring>
+        <name>EnterHeader</name>
+        <reimplements refid="a00173_1a78dc9c70370b2ea9432cd42ffb3e9fb4">EnterHeader</reimplements>
+        <param>
+          <type>YarnSpinnerParser.HeaderContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.header. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="222" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="222" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="a00051_1a8633395e9a996af953874a3c3aef714b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Yarn.Compiler.EnterHeader_title</definition>
+        <argsstring>(YarnSpinnerParser.Header_titleContext context)</argsstring>
+        <name>EnterHeader_title</name>
+        <reimplements refid="a00173_1a534afa69b1205e9e5a5d1684f3efccf8">EnterHeader_title</reimplements>
+        <param>
+          <type>YarnSpinnerParser.Header_titleContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.header_title. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="231" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="231" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="a00051_1a884e9af9753585b8d51aecd5282470fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Yarn.Compiler.EnterHeader_tag</definition>
+        <argsstring>(YarnSpinnerParser.Header_tagContext context)</argsstring>
+        <name>EnterHeader_tag</name>
+        <reimplements refid="a00173_1a7e46ec306ac8412b4f300aec4c3a6a7c">EnterHeader_tag</reimplements>
+        <param>
+          <type>YarnSpinnerParser.Header_tagContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.header_tag. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="237" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="237" bodyend="249"/>
+        <references refid="a00051_1af6afc8ccb59931650919b863d62d52a4" compoundref="a00281" startline="129">Yarn.Compiler.rawTextNode</references>
+      </memberdef>
+      <memberdef kind="function" id="a00051_1aba6a0ffa803b6ef9f68e53fa0f4e00a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Yarn.Compiler.ExitHeader</definition>
+        <argsstring>(YarnSpinnerParser.HeaderContext context)</argsstring>
+        <name>ExitHeader</name>
+        <reimplements refid="a00173_1a6e202bf625b40c0aae4829c9b7200fe9">ExitHeader</reimplements>
+        <param>
+          <type>YarnSpinnerParser.HeaderContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.header. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="254" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="254" bodyend="261"/>
+        <references refid="a00051_1a7384f3d524959a489d51a0a9e1f0477d" compoundref="a00281" startline="123">Yarn.Compiler.currentNode</references>
+        <references refid="a00051_1a774e8c143cdda0584fcfdda98626a83c" compoundref="a00281" startline="143" endline="157">Yarn.Compiler.Emit</references>
+        <references refid="a00051_1af6afc8ccb59931650919b863d62d52a4" compoundref="a00281" startline="129">Yarn.Compiler.rawTextNode</references>
+        <references refid="a00051_1a1bae0d8b701a59708641aa36ea971fa5" compoundref="a00281" startline="138" endline="141">Yarn.Compiler.RegisterLabel</references>
+      </memberdef>
+      <memberdef kind="function" id="a00051_1ae575e99fd3b630bd6d549daf2b561e1d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Yarn.Compiler.EnterBody</definition>
+        <argsstring>(YarnSpinnerParser.BodyContext context)</argsstring>
+        <name>EnterBody</name>
+        <reimplements refid="a00173_1a0bb84237855d76cd67c0214afeaece3c">EnterBody</reimplements>
+        <param>
+          <type>YarnSpinnerParser.BodyContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.body. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="267" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="267" bodyend="294"/>
+        <references refid="a00051_1af6afc8ccb59931650919b863d62d52a4" compoundref="a00281" startline="129">Yarn.Compiler.rawTextNode</references>
+      </memberdef>
+      <memberdef kind="function" id="a00051_1acec9f57d3785de7fad1e8cac5b286ccf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Yarn.Compiler.ExitBody</definition>
+        <argsstring>(YarnSpinnerParser.BodyContext context)</argsstring>
+        <name>ExitBody</name>
+        <reimplements refid="a00173_1ab0f6c8acd95f6213546c6f1f8370fd67">ExitBody</reimplements>
+        <param>
+          <type>YarnSpinnerParser.BodyContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.body. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="300" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="300" bodyend="343"/>
+        <references refid="a00051_1a7384f3d524959a489d51a0a9e1f0477d" compoundref="a00281" startline="123">Yarn.Compiler.currentNode</references>
+        <references refid="a00347_1a8b49bb7763ff477cba21d7c771ef3ed0" compoundref="a00281" startline="114">Yarn.Compiler.CompileFlags.DisableShuffleOptionsAfterNextSet</references>
+        <references refid="a00051_1a774e8c143cdda0584fcfdda98626a83c" compoundref="a00281" startline="143" endline="157">Yarn.Compiler.Emit</references>
+        <references refid="a00051_1a541022d89bcf9bc8f794eb6d6b438d08" compoundref="a00281" startline="117">Yarn.Compiler.flags</references>
+        <references refid="a00351_1a156723a9252b62d288ddf611939ea7c3" compoundref="a00289" startline="216">Yarn.Node.instructions</references>
+        <references refid="a00051_1af6afc8ccb59931650919b863d62d52a4" compoundref="a00281" startline="129">Yarn.Compiler.rawTextNode</references>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1aaeec4ce9cbf5b95d429afab145b57953" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterDialogue</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.DialogueContext context)</argsstring>
+        <name>EnterDialogue</name>
+        <reimplements refid="a00118_1ac614c17efd465d6aebc6f66a8be5802e">EnterDialogue</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.DialogueContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.dialogue. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1adb3910abdd76dca4b087ccbeda671cad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitDialogue</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.DialogueContext context)</argsstring>
+        <name>ExitDialogue</name>
+        <reimplements refid="a00118_1a11c1e679af4d2acf411d54006b287ce7">ExitDialogue</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.DialogueContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.dialogue. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1aa6b04ccce84fc37c85731c8d0ab60d1c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitHeader_title</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Header_titleContext context)</argsstring>
+        <name>ExitHeader_title</name>
+        <reimplements refid="a00118_1acba19587f286a257409442c069ae6770">ExitHeader_title</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Header_titleContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.header_title. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="84" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="84" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a6d2ef3bda1ff771ae9bf39b2842b1f69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitHeader_tag</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Header_tagContext context)</argsstring>
+        <name>ExitHeader_tag</name>
+        <reimplements refid="a00118_1a4a5d85ca93c74b3413087113782b5599">ExitHeader_tag</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Header_tagContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.header_tag. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="96" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="96" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a7d7c66a57f3b9621cec9eafa103f4a92" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterHeader_line</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Header_lineContext context)</argsstring>
+        <name>EnterHeader_line</name>
+        <reimplements refid="a00118_1a2f91a36e5f71d6de07c846a9baf46935">EnterHeader_line</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Header_lineContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.header_line. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="102" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="102" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a5565c81951adcedcdd6a5f1b0fff1dea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitHeader_line</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Header_lineContext context)</argsstring>
+        <name>ExitHeader_line</name>
+        <reimplements refid="a00118_1a57f93fb0b7410d4bf7bca57af870b922">ExitHeader_line</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Header_lineContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.header_line. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="108" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="108" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a0a1a5165215f2eed1a2fdee94218c472" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterStatement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.StatementContext context)</argsstring>
+        <name>EnterStatement</name>
+        <reimplements refid="a00118_1a07ea6b57012f67c54bae045b1edcb5cd">EnterStatement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.StatementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="126" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="126" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a94c70caf87bdc4c46223b1bfc9031c42" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitStatement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.StatementContext context)</argsstring>
+        <name>ExitStatement</name>
+        <reimplements refid="a00118_1ae1d29c72d14a5a8a15be20e8ec03e886">ExitStatement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.StatementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="132" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="132" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a928af133a0075061959dc54bbcf0d006" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterShortcut_statement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Shortcut_statementContext context)</argsstring>
+        <name>EnterShortcut_statement</name>
+        <reimplements refid="a00118_1a124037a3adf339760ef3e45671412d39">EnterShortcut_statement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Shortcut_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.shortcut_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="138" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="138" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1aedbcd5225a20100938edb2b072515b2c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitShortcut_statement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Shortcut_statementContext context)</argsstring>
+        <name>ExitShortcut_statement</name>
+        <reimplements refid="a00118_1ab7bec42187dabe45b25c8131b1895695">ExitShortcut_statement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Shortcut_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.shortcut_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="144" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="144" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1ad110f7d08dcd1a8fd054ac34f5d42d7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterShortcut</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ShortcutContext context)</argsstring>
+        <name>EnterShortcut</name>
+        <reimplements refid="a00118_1a14f646bcb9c0cbff3851f3a2ef663081">EnterShortcut</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ShortcutContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.shortcut. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="150" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="150" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a96270a7aa18e456051f1d17a0d391b87" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitShortcut</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ShortcutContext context)</argsstring>
+        <name>ExitShortcut</name>
+        <reimplements refid="a00118_1a97d413b300c419d5b837c0f86c9c4e51">ExitShortcut</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ShortcutContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.shortcut. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="156" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="156" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a476fa99e75445b668cc5bd7a5cf5e3e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterShortcut_conditional</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Shortcut_conditionalContext context)</argsstring>
+        <name>EnterShortcut_conditional</name>
+        <reimplements refid="a00118_1a96ef0b02dcc514543f420d0c9663b36e">EnterShortcut_conditional</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Shortcut_conditionalContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.shortcut_conditional. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="162" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="162" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1af600a0dc2204782118e7050560f37455" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitShortcut_conditional</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Shortcut_conditionalContext context)</argsstring>
+        <name>ExitShortcut_conditional</name>
+        <reimplements refid="a00118_1a25418f3118840b4649c7f553e6697404">ExitShortcut_conditional</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Shortcut_conditionalContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.shortcut_conditional. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="168" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="168" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a4d7217dafbfae9f55eefe72a1a5e86f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterShortcut_text</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Shortcut_textContext context)</argsstring>
+        <name>EnterShortcut_text</name>
+        <reimplements refid="a00118_1a71dcbcd4ee653ea09672d45b9d18be50">EnterShortcut_text</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Shortcut_textContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.shortcut_text. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="174" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="174" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a26bb6f162b0375a1455013d85dff2ddb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitShortcut_text</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Shortcut_textContext context)</argsstring>
+        <name>ExitShortcut_text</name>
+        <reimplements refid="a00118_1aa6963c7c13fc82d6925c7ac70a64c8f2">ExitShortcut_text</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Shortcut_textContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.shortcut_text. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="180" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="180" bodyend="180"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a6a48fc449efd199d13ecacd410b815ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterIf_statement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.If_statementContext context)</argsstring>
+        <name>EnterIf_statement</name>
+        <reimplements refid="a00118_1a85594bae18a4106a5765e2a77e319e06">EnterIf_statement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.If_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.if_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="186" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="186" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1ac9b0ce9a61afd12bc631e834adc38893" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitIf_statement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.If_statementContext context)</argsstring>
+        <name>ExitIf_statement</name>
+        <reimplements refid="a00118_1a495df45108c3ad2853ce2c409a93e5fb">ExitIf_statement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.If_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.if_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="192" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="192" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a94adce014a20de8b1a4b82b50d3e3036" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterIf_clause</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.If_clauseContext context)</argsstring>
+        <name>EnterIf_clause</name>
+        <reimplements refid="a00118_1a44c884acd99c90b88fe53fea2c6a1c60">EnterIf_clause</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.If_clauseContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.if_clause. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="198" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="198" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1ab9705313017584f8f466e481ae4cdcfc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitIf_clause</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.If_clauseContext context)</argsstring>
+        <name>ExitIf_clause</name>
+        <reimplements refid="a00118_1ae35a37b5475e93fdf6a9e9e29bc0c2ad">ExitIf_clause</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.If_clauseContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.if_clause. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="204" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="204" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a453eb5ea8f6e44280ab156b771821919" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterElse_if_clause</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Else_if_clauseContext context)</argsstring>
+        <name>EnterElse_if_clause</name>
+        <reimplements refid="a00118_1a94a29066fb65c1192204be4ffbd9e067">EnterElse_if_clause</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Else_if_clauseContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.else_if_clause. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="210" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="210" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a071da0b364f87cb542e2e3dff5d9f9c4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitElse_if_clause</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Else_if_clauseContext context)</argsstring>
+        <name>ExitElse_if_clause</name>
+        <reimplements refid="a00118_1ae70cb4fdf91fbc75483e25a76c01587b">ExitElse_if_clause</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Else_if_clauseContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.else_if_clause. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="216" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="216" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a571719b5e04b3e980ab2a05cd2c44989" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterElse_clause</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Else_clauseContext context)</argsstring>
+        <name>EnterElse_clause</name>
+        <reimplements refid="a00118_1a5178ab81cb0e36311cab15c64a6971c1">EnterElse_clause</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Else_clauseContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.else_clause. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="222" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="222" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a2dcc21a150bdc508c49e81bd10b6964f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitElse_clause</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Else_clauseContext context)</argsstring>
+        <name>ExitElse_clause</name>
+        <reimplements refid="a00118_1a2741e8e66167003b75c60c2c4b62f33b">ExitElse_clause</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Else_clauseContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.else_clause. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="228" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="228" bodyend="228"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1aad83c1dbc65e88ec66978ffc6fe96a5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterSet_statement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Set_statementContext context)</argsstring>
+        <name>EnterSet_statement</name>
+        <reimplements refid="a00118_1a4c8486570851b5c41a632d8e72b7c217">EnterSet_statement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Set_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.set_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="234" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="234" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a32a780332df7d7104f4816995e3f4970" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitSet_statement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Set_statementContext context)</argsstring>
+        <name>ExitSet_statement</name>
+        <reimplements refid="a00118_1aeb4689215363ff29e046e3b578167b52">ExitSet_statement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Set_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.set_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="240" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="240" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a2d0f9144a167601309e785868bc9c4cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterOption_statement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Option_statementContext context)</argsstring>
+        <name>EnterOption_statement</name>
+        <reimplements refid="a00118_1aa9a510713a013702293e287b9f3464dd">EnterOption_statement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Option_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.option_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="246" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="246" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a925b4f097ef5e2d7c6ed367bede0bf0d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitOption_statement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Option_statementContext context)</argsstring>
+        <name>ExitOption_statement</name>
+        <reimplements refid="a00118_1aa0ed8883de477e1e5948c681afb4f718">ExitOption_statement</reimplements>
+        <reimplementedby refid="a00104_1a3741704626660a81593bbede4fd07850">ExitOption_statement</reimplementedby>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Option_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.option_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="252" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="252" bodyend="252"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1ae55a7ade788bb17bdb6b52522e181098" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterFunction</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.FunctionContext context)</argsstring>
+        <name>EnterFunction</name>
+        <reimplements refid="a00118_1a264aa2427b19e8f3ee4259705f78674b">EnterFunction</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.FunctionContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.function. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="258" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="258" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a1cf7a34cdb2d3604ce59f8428c720013" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitFunction</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.FunctionContext context)</argsstring>
+        <name>ExitFunction</name>
+        <reimplements refid="a00118_1a8840a4aa42f14456230c77dd3c88b7ce">ExitFunction</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.FunctionContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.function. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="264" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="264" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a812a7fc8d3e7d9d94dc0a2919fa19d7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterFunction_statement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Function_statementContext context)</argsstring>
+        <name>EnterFunction_statement</name>
+        <reimplements refid="a00118_1a3ebb59c8fcfefbfd325db4925ffc520f">EnterFunction_statement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Function_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.function_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="270" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="270" bodyend="270"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a51a618b740ae76bef859c69cf1f35786" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitFunction_statement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Function_statementContext context)</argsstring>
+        <name>ExitFunction_statement</name>
+        <reimplements refid="a00118_1a63723d6e3a452bb0a1ec71b497bfd53e">ExitFunction_statement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Function_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.function_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="276" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="276" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1ac4e5829f87772c872d57dfd30e4f0450" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterAction_statement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Action_statementContext context)</argsstring>
+        <name>EnterAction_statement</name>
+        <reimplements refid="a00118_1a3839b1b12e8d4a973671debac1851687">EnterAction_statement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Action_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.action_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="282" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="282" bodyend="282"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1ad2dccfeea09bb2b5cdcd244833b9f584" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitAction_statement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Action_statementContext context)</argsstring>
+        <name>ExitAction_statement</name>
+        <reimplements refid="a00118_1a86d9540f994925ecbbb7ecd44f5ba7ac">ExitAction_statement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Action_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.action_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="288" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="288" bodyend="288"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1acc7ee2d7db98a4fb7401ceef15333752" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterText</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.TextContext context)</argsstring>
+        <name>EnterText</name>
+        <reimplements refid="a00118_1ad777cbedbe8331c5c97dc9bbc2480e7c">EnterText</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.TextContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.text. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="294" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="294" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a8d4b310bdc6b8f2d48c6885ca52e35d2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitText</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.TextContext context)</argsstring>
+        <name>ExitText</name>
+        <reimplements refid="a00118_1adb756716e74178e1a8f293532cd498eb">ExitText</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.TextContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.text. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="300" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="300" bodyend="300"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1af47d3ec045f331f2f6eb172e3954d504" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterLine_statement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Line_statementContext context)</argsstring>
+        <name>EnterLine_statement</name>
+        <reimplements refid="a00118_1a0fd8bb9c70c8d1083c470e568bcf6aec">EnterLine_statement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Line_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.line_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="306" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="306" bodyend="306"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1adb3ac6b0a7f40d2f4cf5fcfe84b83eb3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitLine_statement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Line_statementContext context)</argsstring>
+        <name>ExitLine_statement</name>
+        <reimplements refid="a00118_1a18610b57975ef40d961ba77077c865a3">ExitLine_statement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Line_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.line_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="312" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="312" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a9ff2355e87f3be1cf750074e9298c3ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterHashtag_block</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Hashtag_blockContext context)</argsstring>
+        <name>EnterHashtag_block</name>
+        <reimplements refid="a00118_1a6c4af4391aac18a40ee7a5c492584bc5">EnterHashtag_block</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Hashtag_blockContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.hashtag_block. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="318" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="318" bodyend="318"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a7fec59b76bdec57fbc3dba0cf0977748" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitHashtag_block</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Hashtag_blockContext context)</argsstring>
+        <name>ExitHashtag_block</name>
+        <reimplements refid="a00118_1ac4066af1055eb75ee99a2d9f1a4fc45b">ExitHashtag_block</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Hashtag_blockContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.hashtag_block. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="324" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="324" bodyend="324"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a0643d47b57d60c3d17fea2e1a883d63c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterHashtag</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.HashtagContext context)</argsstring>
+        <name>EnterHashtag</name>
+        <reimplements refid="a00118_1a261c83e75cd3c09527cafe01940c8ae9">EnterHashtag</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.HashtagContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.hashtag. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="330" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="330" bodyend="330"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a7eb067a011e0ba441779489495424912" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitHashtag</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.HashtagContext context)</argsstring>
+        <name>ExitHashtag</name>
+        <reimplements refid="a00118_1a16d78392cd0da28bb8781e18cbcfcb72">ExitHashtag</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.HashtagContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.hashtag. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="336" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="336" bodyend="336"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a550723908043bb1c5f6e85542710dd8f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterExpParens</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpParensContext context)</argsstring>
+        <name>EnterExpParens</name>
+        <reimplements refid="a00118_1aa7f41b472fd98a42ac1ea66f424658bb">EnterExpParens</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpParensContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>expParens</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="343" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="343" bodyend="343"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a8e9b149b4b21ac11f38b77ca5eb39df3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitExpParens</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpParensContext context)</argsstring>
+        <name>ExitExpParens</name>
+        <reimplements refid="a00118_1a989e491dc01eaaa74acf8f857c38cac5">ExitExpParens</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpParensContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>expParens</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="350" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="350" bodyend="350"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a680b607d4481e92d0b601f2802d93584" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterExpMultDivMod</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpMultDivModContext context)</argsstring>
+        <name>EnterExpMultDivMod</name>
+        <reimplements refid="a00118_1ae358c2b96e0084ef0f64114f9f19a8c4">EnterExpMultDivMod</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpMultDivModContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>expMultDivMod</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="357" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="357" bodyend="357"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1ac874c7fdb818e8f1d4a0ed8cb272804c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitExpMultDivMod</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpMultDivModContext context)</argsstring>
+        <name>ExitExpMultDivMod</name>
+        <reimplements refid="a00118_1ab3ab4f5e37985391b42806a96afcdbc7">ExitExpMultDivMod</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpMultDivModContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>expMultDivMod</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="364" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="364" bodyend="364"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1aa9040fe56a7c7b7452c4284a1e13752a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterExpMultDivModEquals</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpMultDivModEqualsContext context)</argsstring>
+        <name>EnterExpMultDivModEquals</name>
+        <reimplements refid="a00118_1aafa5b528841bd88250fbaa73c8f2ad60">EnterExpMultDivModEquals</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpMultDivModEqualsContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>expMultDivModEquals</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="371" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="371" bodyend="371"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1aac772034f0fc8877ea587dc47e875997" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitExpMultDivModEquals</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpMultDivModEqualsContext context)</argsstring>
+        <name>ExitExpMultDivModEquals</name>
+        <reimplements refid="a00118_1a63259cbd56cf4759add665647c93bb6c">ExitExpMultDivModEquals</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpMultDivModEqualsContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>expMultDivModEquals</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="378" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="378" bodyend="378"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a246642cc69e5c444342c9856893294db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterExpComparison</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpComparisonContext context)</argsstring>
+        <name>EnterExpComparison</name>
+        <reimplements refid="a00118_1a4f8486fce2dec44a1f670a29796e4f53">EnterExpComparison</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpComparisonContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>expComparison</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="385" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="385" bodyend="385"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1af8f026d529dcea66d5ac519ce404ed55" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitExpComparison</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpComparisonContext context)</argsstring>
+        <name>ExitExpComparison</name>
+        <reimplements refid="a00118_1a01d06bb48cb39101bba0701250f8731c">ExitExpComparison</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpComparisonContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>expComparison</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="392" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="392" bodyend="392"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a85e82341fb00749dcc443062ce7e6cd4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterExpNegative</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpNegativeContext context)</argsstring>
+        <name>EnterExpNegative</name>
+        <reimplements refid="a00118_1a4ee9db145a1eb0fa25d1000fb37e234a">EnterExpNegative</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpNegativeContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>expNegative</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="399" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="399" bodyend="399"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1accebff941879b7b98517ee172bc88c51" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitExpNegative</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpNegativeContext context)</argsstring>
+        <name>ExitExpNegative</name>
+        <reimplements refid="a00118_1aa766acf2069da7411c0557e2384ab4c3">ExitExpNegative</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpNegativeContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>expNegative</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="406" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="406" bodyend="406"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1abe7e39550dec3976ad45afbd5a00984a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterExpAndOrXor</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpAndOrXorContext context)</argsstring>
+        <name>EnterExpAndOrXor</name>
+        <reimplements refid="a00118_1ac1f74798608f35aec8e157cf110f281e">EnterExpAndOrXor</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpAndOrXorContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>expAndOrXor</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="413" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="413" bodyend="413"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a126a1a450281df186411ba708a4f8edb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitExpAndOrXor</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpAndOrXorContext context)</argsstring>
+        <name>ExitExpAndOrXor</name>
+        <reimplements refid="a00118_1a84c9108af21b88193b6d10b2fd243536">ExitExpAndOrXor</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpAndOrXorContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>expAndOrXor</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="420" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="420" bodyend="420"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a905bac017e14a6d3aeea293831e3387d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterExpPlusMinusEquals</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpPlusMinusEqualsContext context)</argsstring>
+        <name>EnterExpPlusMinusEquals</name>
+        <reimplements refid="a00118_1a75358b577a973d715473a7ff0167106c">EnterExpPlusMinusEquals</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpPlusMinusEqualsContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>expPlusMinusEquals</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="427" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="427" bodyend="427"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a6fc472ff3937457adf2c286c37a61b7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitExpPlusMinusEquals</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpPlusMinusEqualsContext context)</argsstring>
+        <name>ExitExpPlusMinusEquals</name>
+        <reimplements refid="a00118_1af9f4c212411203127f6b10f43fb3335a">ExitExpPlusMinusEquals</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpPlusMinusEqualsContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>expPlusMinusEquals</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="434" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="434" bodyend="434"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a63f01bf3112c5c181e607aa954dfbf7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterExpAddSub</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpAddSubContext context)</argsstring>
+        <name>EnterExpAddSub</name>
+        <reimplements refid="a00118_1a8b86aa4d3d9edf900b6d4a4e4df467cb">EnterExpAddSub</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpAddSubContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>expAddSub</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="441" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="441" bodyend="441"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1afb75f12ecf35ef5e3886ada6e5519c28" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitExpAddSub</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpAddSubContext context)</argsstring>
+        <name>ExitExpAddSub</name>
+        <reimplements refid="a00118_1ad5fc83b8162c27dcacbdc2f57912b4f9">ExitExpAddSub</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpAddSubContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>expAddSub</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="448" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="448" bodyend="448"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1ad89ca0922b0ff190fc532a9ae98d49d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterExpNot</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpNotContext context)</argsstring>
+        <name>EnterExpNot</name>
+        <reimplements refid="a00118_1a4a4d01bc2bfe6cf94d43df50a90a066f">EnterExpNot</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpNotContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>expNot</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="455" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="455" bodyend="455"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1afba9f6d1f3ede7b042a34ef3bc7b67bb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitExpNot</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpNotContext context)</argsstring>
+        <name>ExitExpNot</name>
+        <reimplements refid="a00118_1a1052e1bbdd20c45fb466a8d19ca773af">ExitExpNot</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpNotContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>expNot</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="462" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="462" bodyend="462"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a72f405648a0cee5cbd9adf15981fb1ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterExpValue</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpValueContext context)</argsstring>
+        <name>EnterExpValue</name>
+        <reimplements refid="a00118_1ab93dc49e61f8858882fb30e8bc741039">EnterExpValue</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpValueContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>expValue</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="469" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="469" bodyend="469"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a721acce8447553c78f8603381a30295f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitExpValue</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpValueContext context)</argsstring>
+        <name>ExitExpValue</name>
+        <reimplements refid="a00118_1aeff54e598400f3abf74b9b26aa115ed0">ExitExpValue</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpValueContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>expValue</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="476" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="476" bodyend="476"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a56be9d851c42ae93e2f47e5f8a5d7677" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterExpEquality</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpEqualityContext context)</argsstring>
+        <name>EnterExpEquality</name>
+        <reimplements refid="a00118_1a28d926bbcba5c2d1ca274026c95f70e0">EnterExpEquality</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpEqualityContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>expEquality</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="483" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="483" bodyend="483"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a95e59996fc8cf316f487c99084228cae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitExpEquality</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ExpEqualityContext context)</argsstring>
+        <name>ExitExpEquality</name>
+        <reimplements refid="a00118_1a52c662d88cd1722bc251fbf2b2ecb3e1">ExitExpEquality</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ExpEqualityContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>expEquality</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="490" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="490" bodyend="490"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1afdedf143e349fc3d45837f63bfecc1c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterValueNumber</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ValueNumberContext context)</argsstring>
+        <name>EnterValueNumber</name>
+        <reimplements refid="a00118_1aae5b3e45fb61b525bc5062316b07f672">EnterValueNumber</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ValueNumberContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>valueNumber</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="497" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="497" bodyend="497"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1aca49c7a82494d35e3c0035dc2d7f5b02" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitValueNumber</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ValueNumberContext context)</argsstring>
+        <name>ExitValueNumber</name>
+        <reimplements refid="a00118_1a5e517c3fc152e67cc951b99b2a35bad9">ExitValueNumber</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ValueNumberContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>valueNumber</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="504" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="504" bodyend="504"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a37726e9d5de13df5a1ff987bca4cbd50" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterValueTrue</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ValueTrueContext context)</argsstring>
+        <name>EnterValueTrue</name>
+        <reimplements refid="a00118_1ad3ab2c970b95401f6c7c680aadcd6d2e">EnterValueTrue</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ValueTrueContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>valueTrue</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="511" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="511" bodyend="511"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1aa93e3f3a8f522d20d559f2b66bf780ce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitValueTrue</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ValueTrueContext context)</argsstring>
+        <name>ExitValueTrue</name>
+        <reimplements refid="a00118_1a46a6bc7d7dd3b877665eea586a9904e4">ExitValueTrue</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ValueTrueContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>valueTrue</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="518" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="518" bodyend="518"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1ac84fd7ce4eec5de621fb041b1a863014" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterValueFalse</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ValueFalseContext context)</argsstring>
+        <name>EnterValueFalse</name>
+        <reimplements refid="a00118_1a0fa7a352e8dfeabc79a44ccc5ae1a0fb">EnterValueFalse</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ValueFalseContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>valueFalse</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="525" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="525" bodyend="525"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1abb1e92cab5c21a27d277f4f77b50b42a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitValueFalse</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ValueFalseContext context)</argsstring>
+        <name>ExitValueFalse</name>
+        <reimplements refid="a00118_1a0833568babf8a349125a9437d7addf4e">ExitValueFalse</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ValueFalseContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>valueFalse</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="532" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="532" bodyend="532"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1ab40a73dd590aa5e9081a131291fd4801" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterValueVar</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ValueVarContext context)</argsstring>
+        <name>EnterValueVar</name>
+        <reimplements refid="a00118_1a10738e8c914ce7e0443a20ae5db8f404">EnterValueVar</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ValueVarContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>valueVar</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="539" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="539" bodyend="539"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1ad03e275623c6693c7de931d3f3323f6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitValueVar</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ValueVarContext context)</argsstring>
+        <name>ExitValueVar</name>
+        <reimplements refid="a00118_1a049dd8a2eab781135818c03762d697b9">ExitValueVar</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ValueVarContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>valueVar</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="546" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="546" bodyend="546"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a86517c7ed031c5b2608ff7acf8b36ab1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterValueString</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ValueStringContext context)</argsstring>
+        <name>EnterValueString</name>
+        <reimplements refid="a00118_1aba58b69a50746aa48101bef32a8c0d50">EnterValueString</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ValueStringContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>valueString</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="553" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="553" bodyend="553"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a0edac722aaa4daaf67b6952f9f323849" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitValueString</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ValueStringContext context)</argsstring>
+        <name>ExitValueString</name>
+        <reimplements refid="a00118_1af20a277d6cc2e1db88544897aca2210c">ExitValueString</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ValueStringContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>valueString</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="560" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="560" bodyend="560"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1af8f0ba926e47307649e74f867ac60a46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterValueFunc</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ValueFuncContext context)</argsstring>
+        <name>EnterValueFunc</name>
+        <reimplements refid="a00118_1a844f15d9cb36effe8ac3396a166d1a4e">EnterValueFunc</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ValueFuncContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>valueFunc</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="567" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="567" bodyend="567"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1ac9b0090b8a75d8aa28bcca61fedb5906" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitValueFunc</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ValueFuncContext context)</argsstring>
+        <name>ExitValueFunc</name>
+        <reimplements refid="a00118_1af1147d6a54ffcd90616fed4c7d9be1b5">ExitValueFunc</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ValueFuncContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>valueFunc</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="574" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="574" bodyend="574"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1aea9d4639edf6d5d016b70057ac8c4759" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterValueNull</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ValueNullContext context)</argsstring>
+        <name>EnterValueNull</name>
+        <reimplements refid="a00118_1a274050dd891e46a964bd2f5f57a3c745">EnterValueNull</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ValueNullContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by the <computeroutput>valueNull</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="581" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="581" bodyend="581"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a518cf1ada7b47f37d83e38c2abcc759d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitValueNull</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ValueNullContext context)</argsstring>
+        <name>ExitValueNull</name>
+        <reimplements refid="a00118_1a88184dc4806c82cefa48f686b51f741f">ExitValueNull</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ValueNullContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by the <computeroutput>valueNull</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="588" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="588" bodyend="588"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1afaa8a2993d94e0e4460a69ef516e5849" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterVariable</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.VariableContext context)</argsstring>
+        <name>EnterVariable</name>
+        <reimplements refid="a00118_1a15e600191882a9157be0da2ac02ed00a">EnterVariable</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.VariableContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Enter a parse tree produced by YarnSpinnerParser.variable. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="594" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="594" bodyend="594"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a2f4cf38483d1c434b0e0225b950f7a66" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitVariable</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.VariableContext context)</argsstring>
+        <name>ExitVariable</name>
+        <reimplements refid="a00118_1a88efcd53a74110abd0000e4b7d6c4691">ExitVariable</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.VariableContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Exit a parse tree produced by YarnSpinnerParser.variable. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="600" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="600" bodyend="600"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a891c4119d1a34f4b7fa3994a8ab63188" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.EnterEveryRule</definition>
+        <argsstring>([NotNull] ParserRuleContext context)</argsstring>
+        <name>EnterEveryRule</name>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type><ref refid="a00294_1a7e45f8222713cb764832fd3c69d0268f" kindref="member">ParserRuleContext</ref></type>
+          <declname>context</declname>
         </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>The default implementation does nothing.</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="48" bodyend="54"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="604" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="604" bodyend="604"/>
       </memberdef>
-      <memberdef kind="function" id="a00051_1a85d50993390cdd8ba30ac44043b18de7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override int</type>
-        <definition>override int Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.GetHashCode</definition>
-        <argsstring>()</argsstring>
-        <name>GetHashCode</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="56" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="56" bodyend="59"/>
-      </memberdef>
-      <memberdef kind="function" id="a00051_1af1c9b3d1757d33ad2141c639c3827c97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.CheckerResult</definition>
-        <argsstring>(TextAsset script)</argsstring>
-        <name>CheckerResult</name>
+      <memberdef kind="function" id="a00173_1adb4bf06fefa70949d705cf1fc4f9eafe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.ExitEveryRule</definition>
+        <argsstring>([NotNull] ParserRuleContext context)</argsstring>
+        <name>ExitEveryRule</name>
         <param>
-          <type>TextAsset</type>
-          <declname>script</declname>
+          <attributes>[NotNull]</attributes>
+          <type><ref refid="a00294_1a7e45f8222713cb764832fd3c69d0268f" kindref="member">ParserRuleContext</ref></type>
+          <declname>context</declname>
         </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>The default implementation does nothing.</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="61" bodyend="64"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="607" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="607" bodyend="607"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1aa1dfd73e68ddef6754237fb33984fcf4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.VisitTerminal</definition>
+        <argsstring>([NotNull] ITerminalNode node)</argsstring>
+        <name>VisitTerminal</name>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type><ref refid="a00294_1a72f9ef657b5686a84acec94a9d7302d1" kindref="member">ITerminalNode</ref></type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="610" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="610" bodyend="610"/>
+      </memberdef>
+      <memberdef kind="function" id="a00173_1a23c6fe6f098193795ac42544600dbb1a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void YarnSpinnerParserBaseListener.VisitErrorNode</definition>
+        <argsstring>([NotNull] IErrorNode node)</argsstring>
+        <name>VisitErrorNode</name>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type><ref refid="a00294_1af5d51a3c18761c8348444279f29c7007" kindref="member">IErrorNode</ref></type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The default implementation does nothing.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" line="613" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseListener.cs" bodystart="613" bodyend="613"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1007">
-        <label>Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult</label>
+    <inheritancegraph>
+      <node id="887">
+        <label>Yarn.Compiler</label>
         <link refid="a00051"/>
-        <childnode refid="1008" relation="usage">
-          <edgelabel>+messages</edgelabel>
+        <childnode refid="888" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1008">
-        <label>Yarn.Unity.YarnSpinnerEditorWindow.ValidationMessage</label>
-        <link refid="a00386"/>
+      <node id="888">
+        <label>YarnSpinnerParserBaseListener</label>
+        <link refid="a00173"/>
+        <childnode refid="889" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="889">
+        <label>IYarnSpinnerParserListener</label>
+        <link refid="a00118"/>
+        <childnode refid="890" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="890">
+        <label>IParseTreeListener</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="891">
+        <label>Yarn.Compiler</label>
+        <link refid="a00051"/>
+        <childnode refid="892" relation="public-inheritance">
+        </childnode>
+        <childnode refid="895" relation="usage">
+          <edgelabel>~currentNode</edgelabel>
+        </childnode>
+        <childnode refid="896" relation="usage">
+          <edgelabel>~library</edgelabel>
+        </childnode>
+        <childnode refid="897" relation="usage">
+          <edgelabel>~flags</edgelabel>
+        </childnode>
+      </node>
+      <node id="896">
+        <label>Yarn.Library</label>
+        <link refid="a00121"/>
+      </node>
+      <node id="892">
+        <label>YarnSpinnerParserBaseListener</label>
+        <link refid="a00173"/>
+        <childnode refid="893" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="893">
+        <label>IYarnSpinnerParserListener</label>
+        <link refid="a00118"/>
+        <childnode refid="894" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="897">
+        <label>Yarn.Compiler.CompileFlags</label>
+        <link refid="a00347"/>
+      </node>
+      <node id="895">
+        <label>Yarn.Node</label>
+        <link refid="a00351"/>
+      </node>
+      <node id="894">
+        <label>IParseTreeListener</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="36" bodyend="65"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="106" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="105" bodyend="344"/>
     <listofallmembers>
-      <member refid="a00051_1af1c9b3d1757d33ad2141c639c3827c97" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>CheckerResult</name></member>
-      <member refid="a00051_1a1e653caad5ab99847c26ff8f67da8f45" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>Equals</name></member>
-      <member refid="a00051_1a85d50993390cdd8ba30ac44043b18de7" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>GetHashCode</name></member>
-      <member refid="a00051_1a808a039e280cf875cb3c9e9385148498" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>messages</name></member>
-      <member refid="a00051_1a6c852f7521c0a91b519aa3d391f63e6b" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>script</name></member>
-      <member refid="a00051_1ab24848d7951ce44eb3c7768c6ee10385" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>State</name></member>
-      <member refid="a00051_1a7202b24bd068da24d7e28bec5668b13a" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>state</name></member>
+      <member refid="a00051_1a5e3cfcde58526c1642071e51f7dac4c9" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>Compile</name></member>
+      <member refid="a00051_1a4b004fdb6aa93abee8a1a94a22ea9660" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>Compiler</name></member>
+      <member refid="a00051_1a7384f3d524959a489d51a0a9e1f0477d" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>currentNode</name></member>
+      <member refid="a00051_1a774e8c143cdda0584fcfdda98626a83c" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>Emit</name></member>
+      <member refid="a00051_1a07d6540806e6dbcbac4c1f5d5dd0cab0" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>Emit</name></member>
+      <member refid="a00173_1ac4e5829f87772c872d57dfd30e4f0450" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterAction_statement</name></member>
+      <member refid="a00051_1ae575e99fd3b630bd6d549daf2b561e1d" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterBody</name></member>
+      <member refid="a00173_1aaeec4ce9cbf5b95d429afab145b57953" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterDialogue</name></member>
+      <member refid="a00173_1a571719b5e04b3e980ab2a05cd2c44989" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterElse_clause</name></member>
+      <member refid="a00173_1a453eb5ea8f6e44280ab156b771821919" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterElse_if_clause</name></member>
+      <member refid="a00173_1a891c4119d1a34f4b7fa3994a8ab63188" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterEveryRule</name></member>
+      <member refid="a00173_1a63f01bf3112c5c181e607aa954dfbf7a" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterExpAddSub</name></member>
+      <member refid="a00173_1abe7e39550dec3976ad45afbd5a00984a" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterExpAndOrXor</name></member>
+      <member refid="a00173_1a246642cc69e5c444342c9856893294db" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterExpComparison</name></member>
+      <member refid="a00173_1a56be9d851c42ae93e2f47e5f8a5d7677" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterExpEquality</name></member>
+      <member refid="a00173_1a680b607d4481e92d0b601f2802d93584" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterExpMultDivMod</name></member>
+      <member refid="a00173_1aa9040fe56a7c7b7452c4284a1e13752a" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterExpMultDivModEquals</name></member>
+      <member refid="a00173_1a85e82341fb00749dcc443062ce7e6cd4" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterExpNegative</name></member>
+      <member refid="a00173_1ad89ca0922b0ff190fc532a9ae98d49d3" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterExpNot</name></member>
+      <member refid="a00173_1a550723908043bb1c5f6e85542710dd8f" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterExpParens</name></member>
+      <member refid="a00173_1a905bac017e14a6d3aeea293831e3387d" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterExpPlusMinusEquals</name></member>
+      <member refid="a00173_1a72f405648a0cee5cbd9adf15981fb1ff" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterExpValue</name></member>
+      <member refid="a00173_1ae55a7ade788bb17bdb6b52522e181098" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterFunction</name></member>
+      <member refid="a00173_1a812a7fc8d3e7d9d94dc0a2919fa19d7a" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterFunction_statement</name></member>
+      <member refid="a00173_1a0643d47b57d60c3d17fea2e1a883d63c" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterHashtag</name></member>
+      <member refid="a00173_1a9ff2355e87f3be1cf750074e9298c3ae" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterHashtag_block</name></member>
+      <member refid="a00051_1a9e7161a1440f0f42b02fb2432d5a2ae6" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterHeader</name></member>
+      <member refid="a00173_1a7d7c66a57f3b9621cec9eafa103f4a92" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterHeader_line</name></member>
+      <member refid="a00051_1a884e9af9753585b8d51aecd5282470fc" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterHeader_tag</name></member>
+      <member refid="a00051_1a8633395e9a996af953874a3c3aef714b" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterHeader_title</name></member>
+      <member refid="a00173_1a94adce014a20de8b1a4b82b50d3e3036" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterIf_clause</name></member>
+      <member refid="a00173_1a6a48fc449efd199d13ecacd410b815ad" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterIf_statement</name></member>
+      <member refid="a00173_1af47d3ec045f331f2f6eb172e3954d504" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterLine_statement</name></member>
+      <member refid="a00051_1a1a5d0f8b10ad5195cad5340aaec02676" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterNode</name></member>
+      <member refid="a00173_1a2d0f9144a167601309e785868bc9c4cb" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterOption_statement</name></member>
+      <member refid="a00173_1aad83c1dbc65e88ec66978ffc6fe96a5f" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterSet_statement</name></member>
+      <member refid="a00173_1ad110f7d08dcd1a8fd054ac34f5d42d7a" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterShortcut</name></member>
+      <member refid="a00173_1a476fa99e75445b668cc5bd7a5cf5e3e9" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterShortcut_conditional</name></member>
+      <member refid="a00173_1a928af133a0075061959dc54bbcf0d006" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterShortcut_statement</name></member>
+      <member refid="a00173_1a4d7217dafbfae9f55eefe72a1a5e86f7" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterShortcut_text</name></member>
+      <member refid="a00173_1a0a1a5165215f2eed1a2fdee94218c472" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterStatement</name></member>
+      <member refid="a00173_1acc7ee2d7db98a4fb7401ceef15333752" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterText</name></member>
+      <member refid="a00173_1ac84fd7ce4eec5de621fb041b1a863014" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterValueFalse</name></member>
+      <member refid="a00173_1af8f0ba926e47307649e74f867ac60a46" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterValueFunc</name></member>
+      <member refid="a00173_1aea9d4639edf6d5d016b70057ac8c4759" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterValueNull</name></member>
+      <member refid="a00173_1afdedf143e349fc3d45837f63bfecc1c8" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterValueNumber</name></member>
+      <member refid="a00173_1a86517c7ed031c5b2608ff7acf8b36ab1" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterValueString</name></member>
+      <member refid="a00173_1a37726e9d5de13df5a1ff987bca4cbd50" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterValueTrue</name></member>
+      <member refid="a00173_1ab40a73dd590aa5e9081a131291fd4801" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterValueVar</name></member>
+      <member refid="a00173_1afaa8a2993d94e0e4460a69ef516e5849" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>EnterVariable</name></member>
+      <member refid="a00173_1ad2dccfeea09bb2b5cdcd244833b9f584" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitAction_statement</name></member>
+      <member refid="a00051_1acec9f57d3785de7fad1e8cac5b286ccf" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitBody</name></member>
+      <member refid="a00173_1adb3910abdd76dca4b087ccbeda671cad" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitDialogue</name></member>
+      <member refid="a00173_1a2dcc21a150bdc508c49e81bd10b6964f" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitElse_clause</name></member>
+      <member refid="a00173_1a071da0b364f87cb542e2e3dff5d9f9c4" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitElse_if_clause</name></member>
+      <member refid="a00173_1adb4bf06fefa70949d705cf1fc4f9eafe" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitEveryRule</name></member>
+      <member refid="a00173_1afb75f12ecf35ef5e3886ada6e5519c28" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitExpAddSub</name></member>
+      <member refid="a00173_1a126a1a450281df186411ba708a4f8edb" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitExpAndOrXor</name></member>
+      <member refid="a00173_1af8f026d529dcea66d5ac519ce404ed55" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitExpComparison</name></member>
+      <member refid="a00173_1a95e59996fc8cf316f487c99084228cae" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitExpEquality</name></member>
+      <member refid="a00173_1ac874c7fdb818e8f1d4a0ed8cb272804c" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitExpMultDivMod</name></member>
+      <member refid="a00173_1aac772034f0fc8877ea587dc47e875997" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitExpMultDivModEquals</name></member>
+      <member refid="a00173_1accebff941879b7b98517ee172bc88c51" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitExpNegative</name></member>
+      <member refid="a00173_1afba9f6d1f3ede7b042a34ef3bc7b67bb" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitExpNot</name></member>
+      <member refid="a00173_1a8e9b149b4b21ac11f38b77ca5eb39df3" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitExpParens</name></member>
+      <member refid="a00173_1a6fc472ff3937457adf2c286c37a61b7a" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitExpPlusMinusEquals</name></member>
+      <member refid="a00173_1a721acce8447553c78f8603381a30295f" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitExpValue</name></member>
+      <member refid="a00173_1a1cf7a34cdb2d3604ce59f8428c720013" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitFunction</name></member>
+      <member refid="a00173_1a51a618b740ae76bef859c69cf1f35786" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitFunction_statement</name></member>
+      <member refid="a00173_1a7eb067a011e0ba441779489495424912" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitHashtag</name></member>
+      <member refid="a00173_1a7fec59b76bdec57fbc3dba0cf0977748" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitHashtag_block</name></member>
+      <member refid="a00051_1aba6a0ffa803b6ef9f68e53fa0f4e00a8" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitHeader</name></member>
+      <member refid="a00173_1a5565c81951adcedcdd6a5f1b0fff1dea" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitHeader_line</name></member>
+      <member refid="a00173_1a6d2ef3bda1ff771ae9bf39b2842b1f69" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitHeader_tag</name></member>
+      <member refid="a00173_1aa6b04ccce84fc37c85731c8d0ab60d1c" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitHeader_title</name></member>
+      <member refid="a00173_1ab9705313017584f8f466e481ae4cdcfc" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitIf_clause</name></member>
+      <member refid="a00173_1ac9b0ce9a61afd12bc631e834adc38893" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitIf_statement</name></member>
+      <member refid="a00173_1adb3ac6b0a7f40d2f4cf5fcfe84b83eb3" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitLine_statement</name></member>
+      <member refid="a00051_1ad3592330a628a27ac9eb9197ec3d767e" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitNode</name></member>
+      <member refid="a00173_1a925b4f097ef5e2d7c6ed367bede0bf0d" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitOption_statement</name></member>
+      <member refid="a00173_1a32a780332df7d7104f4816995e3f4970" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitSet_statement</name></member>
+      <member refid="a00173_1a96270a7aa18e456051f1d17a0d391b87" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitShortcut</name></member>
+      <member refid="a00173_1af600a0dc2204782118e7050560f37455" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitShortcut_conditional</name></member>
+      <member refid="a00173_1aedbcd5225a20100938edb2b072515b2c" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitShortcut_statement</name></member>
+      <member refid="a00173_1a26bb6f162b0375a1455013d85dff2ddb" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitShortcut_text</name></member>
+      <member refid="a00173_1a94c70caf87bdc4c46223b1bfc9031c42" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitStatement</name></member>
+      <member refid="a00173_1a8d4b310bdc6b8f2d48c6885ca52e35d2" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitText</name></member>
+      <member refid="a00173_1abb1e92cab5c21a27d277f4f77b50b42a" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitValueFalse</name></member>
+      <member refid="a00173_1ac9b0090b8a75d8aa28bcca61fedb5906" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitValueFunc</name></member>
+      <member refid="a00173_1a518cf1ada7b47f37d83e38c2abcc759d" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitValueNull</name></member>
+      <member refid="a00173_1aca49c7a82494d35e3c0035dc2d7f5b02" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitValueNumber</name></member>
+      <member refid="a00173_1a0edac722aaa4daaf67b6952f9f323849" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitValueString</name></member>
+      <member refid="a00173_1aa93e3f3a8f522d20d559f2b66bf780ce" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitValueTrue</name></member>
+      <member refid="a00173_1ad03e275623c6693c7de931d3f3323f6c" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitValueVar</name></member>
+      <member refid="a00173_1a2f4cf38483d1c434b0e0225b950f7a66" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>ExitVariable</name></member>
+      <member refid="a00051_1a541022d89bcf9bc8f794eb6d6b438d08" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>flags</name></member>
+      <member refid="a00051_1a88503fee196f5aa36ce01e727a34fab6" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GetLineID</name></member>
+      <member refid="a00051_1a87758397eba2e84cda8e0d6c40656f3f" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>labelCount</name></member>
+      <member refid="a00051_1ae211a0c080d18575bc3d299c207ef8ee" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>library</name></member>
+      <member refid="a00051_1aa1737da428ec7d597009661dd8a47829" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>program</name></member>
+      <member refid="a00051_1af6afc8ccb59931650919b863d62d52a4" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>rawTextNode</name></member>
+      <member refid="a00051_1a1bae0d8b701a59708641aa36ea971fa5" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>RegisterLabel</name></member>
+      <member refid="a00173_1a23c6fe6f098193795ac42544600dbb1a" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>VisitErrorNode</name></member>
+      <member refid="a00173_1aa1dfd73e68ddef6754237fb33984fcf4" prot="public" virt="virtual"><scope>Yarn::Compiler</scope><name>VisitTerminal</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

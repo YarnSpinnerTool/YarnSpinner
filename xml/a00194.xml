@@ -1,199 +1,34 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00194" kind="class" prot="public">
-    <compoundname>Yarn::VerifyOptions</compoundname>
-    <basecompoundref refid="a00105" prot="public" virt="non-virtual">Yarn.ExecutionOptions</basecompoundref>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00194_1ab1a387df201e3e136c15e5744219628d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.VerifyOptions.showTokensAndExit</definition>
-        <argsstring></argsstring>
-        <name>showTokensAndExit</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="70" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="70" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00194_1abef6bf44ae4792d7644b1c02de625208" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.VerifyOptions.showParseTreeAndExit</definition>
-        <argsstring></argsstring>
-        <name>showParseTreeAndExit</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="73" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="73" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00194_1af9b6917244075618720f2a90bbe6ef56" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.VerifyOptions.compileAndExit</definition>
-        <argsstring></argsstring>
-        <name>compileAndExit</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="76" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="76" bodyend="-1"/>
-        <referencedby refid="a00197_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00328" startline="338" endline="386">Yarn.YarnSpinnerConsole.Verify</referencedby>
-      </memberdef>
-      <memberdef kind="property" id="a00194_1a062775744f2d7144527fa3bca4b9b3ce" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.VerifyOptions.listVariables</definition>
-        <argsstring></argsstring>
-        <name>listVariables</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="79" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="79" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00105_1a7e43c3b73722956cb0f5d507e4eef527" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.ExecutionOptions.stringTable</definition>
-        <argsstring></argsstring>
-        <name>stringTable</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="57" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="57" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00105_1af4c0062a1d46281d377f87084fde374e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.ExecutionOptions.onlyConsiderNode</definition>
-        <argsstring></argsstring>
-        <name>onlyConsiderNode</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="61" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00105_1ad97950e47ce2aaeb598295b7c3c44b13" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.ExecutionOptions.experimental</definition>
-        <argsstring></argsstring>
-        <name>experimental</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="63" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="63" bodyend="-1"/>
-        <referencedby refid="a00197_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00328" startline="388" endline="516">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
-      </memberdef>
-      <memberdef kind="property" id="a00043_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.BaseOptions.showDebuggingInfo</definition>
-        <argsstring></argsstring>
-        <name>showDebuggingInfo</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="42" bodyend="-1"/>
-        <referencedby refid="a00197_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00328" startline="388" endline="516">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
-      </memberdef>
-      <memberdef kind="property" id="a00043_1ada4d83d1756918f362d55f6649b82b17" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.BaseOptions.verbose</definition>
-        <argsstring></argsstring>
-        <name>verbose</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="46" bodyend="-1"/>
-        <referencedby refid="a00107_1aa72838be584177b5592c31d73c0febdb" compoundref="a00326" startline="144" endline="185">Yarn.FileFormatConverter.ConvertNodesInFile</referencedby>
-        <referencedby refid="a00171_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00330" startline="12" endline="124">Yarn.TableGenerator.GenerateTables</referencedby>
-      </memberdef>
-      <memberdef kind="property" id="a00043_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>IList&lt; string &gt;</type>
-        <definition>IList&lt;string&gt; Yarn.BaseOptions.files</definition>
-        <argsstring></argsstring>
-        <name>files</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="49" bodyend="-1"/>
-        <referencedby refid="a00197_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00328" startline="275" endline="336">Yarn.YarnSpinnerConsole.Run</referencedby>
-        <referencedby refid="a00197_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00328" startline="338" endline="386">Yarn.YarnSpinnerConsole.Verify</referencedby>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00194" kind="file">
+    <compoundname>LICENSE.md</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1777">
-        <label>Yarn.VerifyOptions</label>
-        <link refid="a00194"/>
-        <childnode refid="1778" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1778">
-        <label>ExecutionOptions</label>
-        <link refid="a00105"/>
-        <childnode refid="1779" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1779">
-        <label>BaseOptions</label>
-        <link refid="a00043"/>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="1780">
-        <label>Yarn.VerifyOptions</label>
-        <link refid="a00194"/>
-        <childnode refid="1781" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1781">
-        <label>ExecutionOptions</label>
-        <link refid="a00105"/>
-        <childnode refid="1782" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1782">
-        <label>BaseOptions</label>
-        <link refid="a00043"/>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="68" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="67" bodyend="80"/>
-    <listofallmembers>
-      <member refid="a00194_1af9b6917244075618720f2a90bbe6ef56" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>compileAndExit</name></member>
-      <member refid="a00105_1ad97950e47ce2aaeb598295b7c3c44b13" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>experimental</name></member>
-      <member refid="a00043_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>files</name></member>
-      <member refid="a00194_1a062775744f2d7144527fa3bca4b9b3ce" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>listVariables</name></member>
-      <member refid="a00105_1af4c0062a1d46281d377f87084fde374e" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>onlyConsiderNode</name></member>
-      <member refid="a00043_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>showDebuggingInfo</name></member>
-      <member refid="a00194_1abef6bf44ae4792d7644b1c02de625208" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>showParseTreeAndExit</name></member>
-      <member refid="a00194_1ab1a387df201e3e136c15e5744219628d" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>showTokensAndExit</name></member>
-      <member refid="a00105_1a7e43c3b73722956cb0f5d507e4eef527" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>stringTable</name></member>
-      <member refid="a00043_1ada4d83d1756918f362d55f6649b82b17" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>verbose</name></member>
-    </listofallmembers>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">The<sp/>MIT<sp/>License<sp/>(MIT)</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">Copyright<sp/>(c)<sp/>2015-2017<sp/>Secret<sp/>Lab<sp/>Pty.<sp/>Ltd.<sp/>and<sp/>Yarn<sp/>Spinner<sp/>contributors.</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Permission<sp/>is<sp/>hereby<sp/>granted,<sp/>free<sp/>of<sp/>charge,<sp/>to<sp/>any<sp/>person<sp/>obtaining<sp/>a<sp/>copy</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">of<sp/>this<sp/>software<sp/>and<sp/>associated<sp/>documentation<sp/>files<sp/>(the<sp/>&quot;Software&quot;),<sp/>to<sp/>deal</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">in<sp/>the<sp/>Software<sp/>without<sp/>restriction,<sp/>including<sp/>without<sp/>limitation<sp/>the<sp/>rights</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">to<sp/>use,<sp/>copy,<sp/>modify,<sp/>merge,<sp/>publish,<sp/>distribute,<sp/>sublicense,<sp/>and/or<sp/>sell</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">copies<sp/>of<sp/>the<sp/>Software,<sp/>and<sp/>to<sp/>permit<sp/>persons<sp/>to<sp/>whom<sp/>the<sp/>Software<sp/>is</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">furnished<sp/>to<sp/>do<sp/>so,<sp/>subject<sp/>to<sp/>the<sp/>following<sp/>conditions:</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">The<sp/>above<sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>shall<sp/>be<sp/>included<sp/>in<sp/>all</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">copies<sp/>or<sp/>substantial<sp/>portions<sp/>of<sp/>the<sp/>Software.</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;,<sp/>WITHOUT<sp/>WARRANTY<sp/>OF<sp/>ANY<sp/>KIND,<sp/>EXPRESS<sp/>OR</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">IMPLIED,<sp/>INCLUDING<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO<sp/>THE<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>AND<sp/>NONINFRINGEMENT.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">AUTHORS<sp/>OR<sp/>COPYRIGHT<sp/>HOLDERS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>CLAIM,<sp/>DAMAGES<sp/>OR<sp/>OTHER</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">LIABILITY,<sp/>WHETHER<sp/>IN<sp/>AN<sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>TORT<sp/>OR<sp/>OTHERWISE,<sp/>ARISING<sp/>FROM,</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">OUT<sp/>OF<sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>SOFTWARE<sp/>OR<sp/>THE<sp/>USE<sp/>OR<sp/>OTHER<sp/>DEALINGS<sp/>IN<sp/>THE</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">SOFTWARE.</highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/LICENSE.md"/>
   </compounddef>
 </doxygen>

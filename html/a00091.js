@@ -1,19 +1,9 @@
 var a00091 =
 [
-    [ "DefaultVariable", "a00091.html#a00379", [
-      [ "name", "a00091.html#a609feaa53936e7dc42248ff2ba68454a", null ],
-      [ "type", "a00091.html#a904347efdca12f40243c7dedb646153d", null ],
-      [ "value", "a00091.html#a0f00ecb21b58aa754a4bbb61edf62818", null ]
-    ] ],
-    [ "Awake", "a00091.html#ab6a56afc687455f360876eff67891163", null ],
-    [ "Clear", "a00091.html#a0ce614bee8d5b220500fb765390b4ca3", null ],
-    [ "GetNumber", "a00091.html#add85a45dd65a5d4bd41c9d5ce5f77d19", null ],
-    [ "GetValue", "a00091.html#a741593be1a299dcc2136f05b9b4a995a", null ],
-    [ "ResetToDefaults", "a00091.html#a3a05d66cdacadb2e9b618cd0aef45f84", null ],
-    [ "SetNumber", "a00091.html#ac0d2f2e081944ad197992a26ad1a833c", null ],
-    [ "SetValue", "a00091.html#ac4265c1c9da485f13a6b05784b0f668d", null ],
-    [ "Update", "a00091.html#af646a17cfd63039a25149f8fc0776dcb", null ],
-    [ "debugTextView", "a00091.html#a9893656e3683711eb78441b30c52a600", null ],
-    [ "defaultVariables", "a00091.html#a464c8a4ff6a3c624602d0adc55dfc59a", null ],
-    [ "variables", "a00091.html#a4a4fec7b4ad707cd0603393dd57de96c", null ]
+    [ "DialogueComplete", "a00091.html#aecc60aee9e9386da1f71fb183f43c52d", null ],
+    [ "DialogueStarted", "a00091.html#af9d88ca81ac536d43046ca6572e3ff54", null ],
+    [ "NodeComplete", "a00091.html#a2900548a0704d39d4502a153945f4bef", null ],
+    [ "RunCommand", "a00091.html#a3dffe84b9e7a10fdec6749baf697d111", null ],
+    [ "RunLine", "a00091.html#a754c6dd0bc67895d11f878fe4477d698", null ],
+    [ "RunOptions", "a00091.html#ac5b29079f638f2ceb078627ef1e60004", null ]
 ];

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ITypeConverter.cs Source File</title>
+<title>YarnSpinner: Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,38 +105,83 @@ $(document).ready(function(){initNavTree('a00278_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">ITypeConverter.cs</div>  </div>
+<div class="title">SpriteSwitcher.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00278.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using</span> System.Globalization;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>CsvHelper.TypeConversion</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="a00125.html">   13</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">interface </span><a class="code" href="a00125.html">ITypeConverter</a></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordtype">string</span> ConvertToString( <a class="code" href="a00180.html">TypeConverterOptions</a> options, <span class="keywordtype">object</span> value );</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">object</span> ConvertFromString( <a class="code" href="a00180.html">TypeConverterOptions</a> options, <span class="keywordtype">string</span> text );</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordtype">bool</span> CanConvertFrom( Type type );</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">bool</span> CanConvertTo( Type type );</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
-<div class="ttc" id="a00125_html"><div class="ttname"><a href="a00125.html">CsvHelper.TypeConversion.ITypeConverter</a></div><div class="ttdoc">Converts objects to and from strings. </div><div class="ttdef"><b>Definition:</b> <a href="a00278_source.html#l00013">ITypeConverter.cs:13</a></div></div>
-<div class="ttc" id="a00180_html"><div class="ttname"><a href="a00180.html">CsvHelper.TypeConversion.TypeConverterOptions</a></div><div class="ttdoc">Options used when doing type conversion. </div><div class="ttdef"><b>Definition:</b> <a href="a00285_source.html#l00015">TypeConverterOptions.cs:15</a></div></div>
+<a href="a00278.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">The MIT License (MIT)</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">in the Software without restriction, including without limitation the rights</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">copies of the Software, and to permit persons to whom the Software is</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">furnished to do so, subject to the following conditions:</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">The above copyright notice and this permission notice shall be included in all</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">copies or substantial portions of the Software.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">SOFTWARE.</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">using</span> UnityEngine;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">using</span> System.Collections;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">namespace </span>Yarn.Unity.Example {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    [RequireComponent (typeof (SpriteRenderer))]</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="a00146.html">   34</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00146.html">SpriteSwitcher</a> : MonoBehaviour {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        [System.Serializable]</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="a00146.html">   37</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">struct </span><a class="code" href="a00146.html#a00354">SpriteInfo</a> {</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="a00146.html#a3f5bca2fff413dfe075c1fcf7e58369c">   38</a></span>&#160;            <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code" href="a00146.html#a3f5bca2fff413dfe075c1fcf7e58369c">name</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="a00146.html#adc58df011dc2841837b6cf775b372061">   39</a></span>&#160;            <span class="keyword">public</span> Sprite <a class="code" href="a00146.html#adc58df011dc2841837b6cf775b372061">sprite</a>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        }</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="a00146.html#a1e85d9f4f6b33ca7ae638cce2eb704aa">   42</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00146.html#a00354">SpriteInfo</a>[] <a class="code" href="a00146.html#a1e85d9f4f6b33ca7ae638cce2eb704aa">sprites</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        [YarnCommand(<span class="stringliteral">&quot;setsprite&quot;</span>)]</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="a00146.html#ac26718b713f342f3de8f3e569c5b62da">   46</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00146.html#ac26718b713f342f3de8f3e569c5b62da">UseSprite</a>(<span class="keywordtype">string</span> spriteName) {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            Sprite s = null;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keywordflow">foreach</span>(var info <span class="keywordflow">in</span> sprites) {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="keywordflow">if</span> (info.name == spriteName) {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                    s = info.sprite;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;             }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">if</span> (s == null) {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                Debug.LogErrorFormat(<span class="stringliteral">&quot;Can&#39;t find sprite named {0}!&quot;</span>, spriteName);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            GetComponent&lt;SpriteRenderer&gt;().sprite = s;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
+<div class="ttc" id="a00146_html_a00354"><div class="ttname"><a href="a00146.html#a00354">Yarn.Unity.Example.SpriteSwitcher.SpriteInfo</a></div><div class="ttdef"><b>Definition:</b> <a href="a00278_source.html#l00037">SpriteSwitcher.cs:37</a></div></div>
+<div class="ttc" id="a00146_html_a3f5bca2fff413dfe075c1fcf7e58369c"><div class="ttname"><a href="a00146.html#a3f5bca2fff413dfe075c1fcf7e58369c">Yarn.Unity.Example.SpriteSwitcher.SpriteInfo.name</a></div><div class="ttdeci">string name</div><div class="ttdef"><b>Definition:</b> <a href="a00278_source.html#l00038">SpriteSwitcher.cs:38</a></div></div>
+<div class="ttc" id="a00146_html"><div class="ttname"><a href="a00146.html">Yarn.Unity.Example.SpriteSwitcher</a></div><div class="ttdoc">Attach SpriteSwitcher to game object. </div><div class="ttdef"><b>Definition:</b> <a href="a00278_source.html#l00034">SpriteSwitcher.cs:34</a></div></div>
+<div class="ttc" id="a00146_html_ac26718b713f342f3de8f3e569c5b62da"><div class="ttname"><a href="a00146.html#ac26718b713f342f3de8f3e569c5b62da">Yarn.Unity.Example.SpriteSwitcher.UseSprite</a></div><div class="ttdeci">void UseSprite(string spriteName)</div><div class="ttdoc">Create a command to use on a sprite. </div><div class="ttdef"><b>Definition:</b> <a href="a00278_source.html#l00046">SpriteSwitcher.cs:46</a></div></div>
+<div class="ttc" id="a00146_html_adc58df011dc2841837b6cf775b372061"><div class="ttname"><a href="a00146.html#adc58df011dc2841837b6cf775b372061">Yarn.Unity.Example.SpriteSwitcher.SpriteInfo.sprite</a></div><div class="ttdeci">Sprite sprite</div><div class="ttdef"><b>Definition:</b> <a href="a00278_source.html#l00039">SpriteSwitcher.cs:39</a></div></div>
+<div class="ttc" id="a00146_html_a1e85d9f4f6b33ca7ae638cce2eb704aa"><div class="ttname"><a href="a00146.html#a1e85d9f4f6b33ca7ae638cce2eb704aa">Yarn.Unity.Example.SpriteSwitcher.sprites</a></div><div class="ttdeci">SpriteInfo[] sprites</div><div class="ttdef"><b>Definition:</b> <a href="a00278_source.html#l00042">SpriteSwitcher.cs:42</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_5c139b908ad2613e3ef99ee52a122286.html">TypeConversion</a></li><li class="navelem"><a class="el" href="a00278.html">ITypeConverter.cs</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:22 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_3d328b3dca154a477d99beb656992be2.html">Unity</a></li><li class="navelem"><a class="el" href="dir_3b33dffaa21a2ac6f7978a949ffd4e41.html">Assets</a></li><li class="navelem"><a class="el" href="dir_534ffb376c3707ccb35d3c2c883b31fc.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="dir_cb74ec5eb9eec574588e588dd5bf23e1.html">Examples</a></li><li class="navelem"><a class="el" href="dir_a23f776b0598015baa200eafeed2b13c.html">DemoScripts</a></li><li class="navelem"><a class="el" href="a00278.html">SpriteSwitcher.cs</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:44 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

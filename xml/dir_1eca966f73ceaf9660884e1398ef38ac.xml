@@ -2,26 +2,24 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_1eca966f73ceaf9660884e1398ef38ac" kind="dir">
     <compoundname>YarnSpinner</compoundname>
+    <innerdir refid="dir_a555ed209f3713798e5905e3d3cb40ce">YarnSpinner/ANTLR</innerdir>
     <innerdir refid="dir_27b0c1af8c4e705ac80588c758eab39a">YarnSpinner/Properties</innerdir>
-    <innerfile refid="a00305">Analyser.cs</innerfile>
-    <innerfile refid="a00306">AntlrCompiler.cs</innerfile>
-    <innerfile refid="a00307">Compiler.cs</innerfile>
-    <innerfile refid="a00308">Dialogue.cs</innerfile>
-    <innerfile refid="a00309">ErrorListener.cs</innerfile>
-    <innerfile refid="a00310">GlobalSuppressions.cs</innerfile>
-    <innerfile refid="a00313">Lexer.cs</innerfile>
-    <innerfile refid="a00314">Library.cs</innerfile>
-    <innerfile refid="a00315">Loader.cs</innerfile>
-    <innerfile refid="a00316">Parser.cs</innerfile>
-    <innerfile refid="a00317">Program.cs</innerfile>
-    <innerfile refid="a00318">Value.cs</innerfile>
-    <innerfile refid="a00319">VirtualMachine.cs</innerfile>
-    <innerfile refid="a00320">YarnSpinnerLexer.cs</innerfile>
-    <innerfile refid="a00321">YarnSpinnerParser.cs</innerfile>
-    <innerfile refid="a00322">YarnSpinnerParserBaseListener.cs</innerfile>
-    <innerfile refid="a00323">YarnSpinnerParserBaseVisitor.cs</innerfile>
-    <innerfile refid="a00324">YarnSpinnerParserListener.cs</innerfile>
-    <innerfile refid="a00325">YarnSpinnerParserVisitor.cs</innerfile>
+    <innerfile refid="a00279">Analyser.cs</innerfile>
+    <innerfile refid="a00281">Compiler.cs</innerfile>
+    <innerfile refid="a00282">Dialogue.cs</innerfile>
+    <innerfile refid="a00283">ErrorListener.cs</innerfile>
+    <innerfile refid="a00284">GlobalSuppressions.cs</innerfile>
+    <innerfile refid="a00287">Library.cs</innerfile>
+    <innerfile refid="a00288">Loader.cs</innerfile>
+    <innerfile refid="a00289">Program.cs</innerfile>
+    <innerfile refid="a00290">Value.cs</innerfile>
+    <innerfile refid="a00291">VirtualMachine.cs</innerfile>
+    <innerfile refid="a00292">YarnSpinnerLexer.cs</innerfile>
+    <innerfile refid="a00293">YarnSpinnerParser.cs</innerfile>
+    <innerfile refid="a00294">YarnSpinnerParserBaseListener.cs</innerfile>
+    <innerfile refid="a00295">YarnSpinnerParserBaseVisitor.cs</innerfile>
+    <innerfile refid="a00296">YarnSpinnerParserListener.cs</innerfile>
+    <innerfile refid="a00297">YarnSpinnerParserVisitor.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

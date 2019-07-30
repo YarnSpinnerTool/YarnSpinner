@@ -1,699 +1,812 @@
-\hypertarget{a00089}{\section{Csv\-Helper.\-Configuration.\-Default\-Csv\-Class\-Map$<$ T $>$ Class Template Reference}
-\label{a00089}\index{Csv\-Helper.\-Configuration.\-Default\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper.\-Configuration.\-Default\-Csv\-Class\-Map$<$ T $>$}}
+\hypertarget{a00089}{\section{Yarn.\-Unity.\-Dialogue\-Runner Class Reference}
+\label{a00089}\index{Yarn.\-Unity.\-Dialogue\-Runner@{Yarn.\-Unity.\-Dialogue\-Runner}}
 }
 
 
-A default Csv\-Class\-Map\{\-T\} that can be used to create a class map dynamically.  
+Dialogue\-Runners act as the interface between your game and \hyperlink{a00344}{Yarn\-Spinner}.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Configuration.\-Default\-Csv\-Class\-Map$<$ T $>$\-:
+Inheritance diagram for Yarn.\-Unity.\-Dialogue\-Runner\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=232pt]{a00509}
+\includegraphics[width=216pt]{a00686}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Configuration.\-Default\-Csv\-Class\-Map$<$ T $>$\-:
+Collaboration diagram for Yarn.\-Unity.\-Dialogue\-Runner\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{a00510}
+\includegraphics[width=350pt]{a00687}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual void \hyperlink{a00063_a983d792ae80f888958037eea306b143a}{Construct\-Using} (Expression$<$ Func$<$ T $>$$>$ expression)
-\begin{DoxyCompactList}\small\item\em Constructs the row object using the given expression. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00072}{Csv\-Property\-Map} \hyperlink{a00063_aa3395a5f657f0dd7c8fe6a0fbf5a03cb}{Map} (Expression$<$ Func$<$ T, object $>$$>$ expression)
-\begin{DoxyCompactList}\small\item\em Maps a property to a C\-S\-V field. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00077}{Csv\-Property\-Reference\-Map} \hyperlink{a00063_a20365b78c96ac29e3261bcde30e0d746}{References$<$ T\-Class\-Map $>$} (Expression$<$ Func$<$ T, object $>$$>$ expression, params object\mbox{[}$\,$\mbox{]} constructor\-Args)
-\begin{DoxyCompactList}\small\item\em Maps a property to another class map. \end{DoxyCompactList}\item 
-virtual void \hyperlink{a00062_a83de9d28160d0d3da1e017df554a9481}{Create\-Map} ()
-\begin{DoxyCompactList}\small\item\em Called to create the mappings. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00072}{Csv\-Property\-Map} \hyperlink{a00062_abab2b5cd5a290fd5d17116430b084420}{Property\-Map$<$ T $>$} (Expression$<$ Func$<$ T, object $>$$>$ expression)
-\begin{DoxyCompactList}\small\item\em Gets the property map for the given property expression. \end{DoxyCompactList}\item 
-virtual void \hyperlink{a00062_aec2097b09baaaac45171f91592af439d}{Auto\-Map} (bool ignore\-References=false, bool prefix\-Reference\-Headers=false)
-\begin{DoxyCompactList}\small\item\em Auto maps all properties for the given type. If a property is mapped again it will override the existing map. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Protected Member Functions}
+void \hyperlink{a00089_a88d161b1be7c99b1e202e6ae9e0d1e73}{Add\-Script} (string text)
+\begin{DoxyCompactList}\small\item\em Add a string of text to a script. \end{DoxyCompactList}\item 
+void \hyperlink{a00089_a2fd7f165afff0b8bc2004f10ce4537dd}{Add\-Script} (Text\-Asset asset)
+\begin{DoxyCompactList}\small\item\em Add a Text\-Asset to a script. \end{DoxyCompactList}\item 
+void \hyperlink{a00089_a2e9d9472b4dba699ef72ab558c89e009}{Add\-String\-Table} (Dictionary$<$ string, string $>$ string\-Table)
+\begin{DoxyCompactList}\small\item\em Loads a string table, replacing any existing strings with the same key. \end{DoxyCompactList}\item 
+void \hyperlink{a00089_a08d4eb5038b23aad6d59d74ac89806a9}{Add\-String\-Table} (string text)
+\begin{DoxyCompactList}\small\item\em Add a string of text to a table. \end{DoxyCompactList}\item 
+void \hyperlink{a00089_abc595a490988ca712d37af540c2e0df9}{Add\-String\-Table} (Text\-Asset text)
+\begin{DoxyCompactList}\small\item\em Add a Text\-Asset to a table. \end{DoxyCompactList}\item 
+void \hyperlink{a00089_ac08900ac15b3ca90446b9454c7fd117e}{Reset\-Dialogue} ()
+\begin{DoxyCompactList}\small\item\em Destroy the variable store and start again. \end{DoxyCompactList}\item 
+void \hyperlink{a00089_ab083d0ac60b41958b591c632e3c3a53e}{Start\-Dialogue} ()
+\begin{DoxyCompactList}\small\item\em Start the dialogue. \end{DoxyCompactList}\item 
+void \hyperlink{a00089_abda765c6804853e264282a0f45920cd3}{Start\-Dialogue} (string \hyperlink{a00089_a61c92b8d2228d01d8ac123b73bbb41a0}{start\-Node})
+\begin{DoxyCompactList}\small\item\em Start the dialogue from a given node. \end{DoxyCompactList}\item 
+void \hyperlink{a00089_a09f5769c0c0921a21e659fed0af09c01}{Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear the dialogue system. \end{DoxyCompactList}\item 
+void \hyperlink{a00089_af94e66876098f8b187181014973645e6}{Stop} ()
+\begin{DoxyCompactList}\small\item\em Stop the dialogue. \end{DoxyCompactList}\item 
+bool \hyperlink{a00089_aadf7711b9ba101d6ce8ba491d9c5a4c3}{Node\-Exists} (string node\-Name)
+\begin{DoxyCompactList}\small\item\em Test to see if a node name exists. \end{DoxyCompactList}\item 
+I\-Enumerator \hyperlink{a00089_a83e4b881e8359b22d2d9efc3237699b6}{Dispatch\-Command} (string command, System.\-Action$<$ bool $>$ has\-Valid\-Command)
+\begin{DoxyCompactList}\small\item\em commands that can be automatically dispatched look like this\-: C\-O\-M\-M\-A\-N\-D\-N\-A\-M\-E O\-B\-J\-E\-C\-T\-N\-A\-M\-E    ... \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-virtual \hyperlink{a00077}{Csv\-Property\-Reference\-Map} \hyperlink{a00063_a68caeee244e978110a2acae6d3042fc3}{References} (Type type, Expression$<$ Func$<$ T, object $>$$>$ expression, params object\mbox{[}$\,$\mbox{]} constructor\-Args)
-\begin{DoxyCompactList}\small\item\em Maps a property to another class map. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Package Functions}
-\begin{DoxyCompactItemize}
+Text\-Asset\mbox{[}$\,$\mbox{]} \hyperlink{a00089_a71eae33d06990a3aec5d444fae017492}{source\-Text}
+\begin{DoxyCompactList}\small\item\em The J\-S\-O\-N files to load the conversation from. \end{DoxyCompactList}\item 
+\hyperlink{a00127_a00350}{Localised\-String\-Group}\mbox{[}$\,$\mbox{]} \hyperlink{a00089_a4d00a0671c2966b88d1c806c675fe915}{string\-Groups}
+\begin{DoxyCompactList}\small\item\em The group of J\-S\-O\-N files to be used for this language. \end{DoxyCompactList}\item 
+bool \hyperlink{a00089_a3e093d36845924378a8b2fd9ea3ac73d}{should\-Override\-Language} = false
+\begin{DoxyCompactList}\small\item\em Language debugging options. \end{DoxyCompactList}\item 
+System\-Language \hyperlink{a00089_ad12db159fc3df0819d5b594c33fba834}{override\-Language} = System\-Language.\-English
 \item 
-int \hyperlink{a00062_a708c455aa7f78a26b55dafc46a587ec3}{Get\-Max\-Index} ()
-\begin{DoxyCompactList}\small\item\em Get the largest index for the properties and references. \end{DoxyCompactList}\item 
-int \hyperlink{a00062_ac6c1e8ae1d049bd0ef09e7c2d99fbe55}{Re\-Index} (int index\-Start=0)
-\begin{DoxyCompactList}\small\item\em Resets the indexes based on the given start index. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Static Package Functions}
-\begin{DoxyCompactItemize}
-\item 
-static void \hyperlink{a00062_a16b5bb84064e86c2b319348d8a42693d}{Auto\-Map\-Internal} (\hyperlink{a00062}{Csv\-Class\-Map} map, bool ignore\-References, bool prefix\-Reference\-Headers, Linked\-List$<$ Type $>$ map\-Parents, int index\-Start=0)
-\begin{DoxyCompactList}\small\item\em Auto maps the given map and checks for circular references as it goes. \end{DoxyCompactList}\item 
-static bool \hyperlink{a00062_a4b2f3fc2e0670d17566b4705b7b622aa}{Check\-For\-Circular\-Reference} (Type type, Linked\-List$<$ Type $>$ map\-Parents)
-\begin{DoxyCompactList}\small\item\em Checks for circular references. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00168}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour} \hyperlink{a00089_a6cca3d33f8b0ce3e750caed9fd8fc734}{variable\-Storage}
+\begin{DoxyCompactList}\small\item\em Our variable storage. \end{DoxyCompactList}\item 
+\hyperlink{a00091}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour} \hyperlink{a00089_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogue\-U\-I}
+\begin{DoxyCompactList}\small\item\em The object that will handle the actual display and user input. \end{DoxyCompactList}\item 
+string \hyperlink{a00089_a61c92b8d2228d01d8ac123b73bbb41a0}{start\-Node} = \hyperlink{a00088_a1b643f15f734090e6a58cbf13dafd28f}{Yarn.\-Dialogue.\-D\-E\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-R\-T}
+\begin{DoxyCompactList}\small\item\em Which node to start from. \end{DoxyCompactList}\item 
+bool \hyperlink{a00089_a6476a987f9788dba653976bcbe72980c}{start\-Automatically} = true
+\begin{DoxyCompactList}\small\item\em Whether we should start dialogue when the scene starts. \end{DoxyCompactList}\item 
+bool \hyperlink{a00089_a6aac5e877d5396a8141da5e85243f462}{automatic\-Commands} = true
+\end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-virtual New\-Expression \hyperlink{a00062_ae8038b36db7584ef1a73852fcc46404b}{Constructor}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the constructor expression. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00073}{Csv\-Property\-Map\-Collection} \hyperlink{a00062_a9580e897abcba144f3101eb983348e25}{Property\-Maps}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em The class property mappings. \end{DoxyCompactList}\item 
-virtual List\\*
-$<$ \hyperlink{a00077}{Csv\-Property\-Reference\-Map} $>$ \hyperlink{a00062_a6dfbf8f743b16d2ec83edef865ea2d9e}{Reference\-Maps}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em The class property reference mappings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+bool \hyperlink{a00089_a9eb0fd7b600a4667595042832af1d655}{is\-Dialogue\-Running}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Tests to see if the dialogue is running. \end{DoxyCompactList}\item 
+\hyperlink{a00088}{Dialogue} \hyperlink{a00089_a4f9712a847ca6d53ec8d2dd64dfcffd8}{dialogue}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+string \hyperlink{a00089_a8589c66769e89906eaff3c2263bdad5d}{current\-Node\-Name}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Return the current node name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00089_a18eb3750a0161dbfc20d7eb39e151b6c}{Start} ()
+\begin{DoxyCompactList}\small\item\em Start the dialogue. \end{DoxyCompactList}\item 
+I\-Enumerator \hyperlink{a00089_adf4e816844b7d9ab4ed99265fd3f3ea9}{Run\-Dialogue} (string \hyperlink{a00089_a61c92b8d2228d01d8ac123b73bbb41a0}{start\-Node}=\char`\"{}Start\char`\"{})
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00088}{Dialogue} \hyperlink{a00089_a822055443227d3b76c6a8fb509812820}{\-\_\-dialogue}
+\begin{DoxyCompactList}\small\item\em Our conversation engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-A default Csv\-Class\-Map\{\-T\} that can be used to create a class map dynamically. 
+Dialogue\-Runners act as the interface between your game and \hyperlink{a00344}{Yarn\-Spinner}. 
 
+Make our menu item slightly nicer looking 
 
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & \\
-\hline
-\end{DoxyTemplParams}
-
-
-Definition at line 14 of file Default\-Csv\-Class\-Map`1.\-cs.
+Definition at line 45 of file Dialogue\-Runner.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00062_aec2097b09baaaac45171f91592af439d}{\index{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}!Auto\-Map@{Auto\-Map}}
-\index{Auto\-Map@{Auto\-Map}!CsvHelper::Configuration::DefaultCsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Auto\-Map}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Auto\-Map (
+\hypertarget{a00089_a88d161b1be7c99b1e202e6ae9e0d1e73}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Add\-Script@{Add\-Script}}
+\index{Add\-Script@{Add\-Script}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Add\-Script}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Add\-Script (
 \begin{DoxyParamCaption}
-\item[{bool}]{ignore\-References = {\ttfamily false}, }
-\item[{bool}]{prefix\-Reference\-Headers = {\ttfamily false}}
+\item[{string}]{text}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00062_aec2097b09baaaac45171f91592af439d}
+)}}\label{a00089_a88d161b1be7c99b1e202e6ae9e0d1e73}
 
 
-Auto maps all properties for the given type. If a property is mapped again it will override the existing map. 
+Add a string of text to a script. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em ignore\-References} & A value indicating if references should be ignored when auto mapping. True to ignore references, otherwise false.\\
-\hline
-{\em prefix\-Reference\-Headers} & A value indicating if headers of reference properties should get prefixed by the parent property name. True to prefix, otherwise false.\\
-\hline
-\end{DoxyParams}
 
-
-Definition at line 92 of file Csv\-Class\-Map.\-cs.
+Definition at line 143 of file Dialogue\-Runner.\-cs.
 
 
 \begin{DoxyCode}
-93         \{
-94             var mapParents = \textcolor{keyword}{new} LinkedList<Type>();
-95             \hyperlink{a00062_a16b5bb84064e86c2b319348d8a42693d}{AutoMapInternal}( \textcolor{keyword}{this}, ignoreReferences, prefixReferenceHeaders, mapParents );
-96         \}
+143                                            \{
+144             dialogue.LoadString(text);
+145         \}
 \end{DoxyCode}
-\hypertarget{a00062_a16b5bb84064e86c2b319348d8a42693d}{\index{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}!Auto\-Map\-Internal@{Auto\-Map\-Internal}}
-\index{Auto\-Map\-Internal@{Auto\-Map\-Internal}!CsvHelper::Configuration::DefaultCsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Auto\-Map\-Internal}]{\setlength{\rightskip}{0pt plus 5cm}static void Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Auto\-Map\-Internal (
+\hypertarget{a00089_a2fd7f165afff0b8bc2004f10ce4537dd}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Add\-Script@{Add\-Script}}
+\index{Add\-Script@{Add\-Script}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Add\-Script}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Add\-Script (
 \begin{DoxyParamCaption}
-\item[{{\bf Csv\-Class\-Map}}]{map, }
-\item[{bool}]{ignore\-References, }
-\item[{bool}]{prefix\-Reference\-Headers, }
-\item[{Linked\-List$<$ Type $>$}]{map\-Parents, }
-\item[{int}]{index\-Start = {\ttfamily 0}}
+\item[{Text\-Asset}]{asset}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00062_a16b5bb84064e86c2b319348d8a42693d}
+)}}\label{a00089_a2fd7f165afff0b8bc2004f10ce4537dd}
 
 
-Auto maps the given map and checks for circular references as it goes. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em map} & The map to auto map.\\
-\hline
-{\em ignore\-References} & A value indicating if references should be ignored when auto mapping. True to ignore references, otherwise false.\\
-\hline
-{\em prefix\-Reference\-Headers} & A value indicating if headers of reference properties should get prefixed by the parent property name. True to prefix, otherwise false.\\
-\hline
-{\em map\-Parents} & The list of parents for the map.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 153 of file Csv\-Class\-Map.\-cs.
+Add a Text\-Asset to a script. 
 
 
 
-References Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance().
+Definition at line 148 of file Dialogue\-Runner.\-cs.
 
 
 \begin{DoxyCode}
-154         \{
-155             var type = map.GetType().GetTypeInfo().BaseType.GetGenericArguments()[0];
-156             \textcolor{keywordflow}{if}( typeof( IEnumerable ).IsAssignableFrom( type ) )
-157             \{
-158                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvConfigurationException( \textcolor{stringliteral}{"Types that inherit IEnumerable cannot be auto mapped.
-       "} +
-159                                                      \textcolor{stringliteral}{"Did you accidentally call GetRecord or WriteRecord
-       which "} +
-160                                                      \textcolor{stringliteral}{"acts on a single record instead of calling GetRecords
-       or "} +
-161                                                      \textcolor{stringliteral}{"WriteRecords which acts on a list of records?"} );
-162             \}
+148                                                \{
+149             dialogue.LoadString(asset.text);
+150         \}
+\end{DoxyCode}
+\hypertarget{a00089_a2e9d9472b4dba699ef72ab558c89e009}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Add\-String\-Table@{Add\-String\-Table}}
+\index{Add\-String\-Table@{Add\-String\-Table}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Add\-String\-Table}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Add\-String\-Table (
+\begin{DoxyParamCaption}
+\item[{Dictionary$<$ string, string $>$}]{string\-Table}
+\end{DoxyParamCaption}
+)}}\label{a00089_a2e9d9472b4dba699ef72ab558c89e009}
+
+
+Loads a string table, replacing any existing strings with the same key. 
+
+
+
+Definition at line 154 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+154                                                                           \{
+155             dialogue.AddStringTable(stringTable);
+156         \}
+\end{DoxyCode}
+\hypertarget{a00089_a08d4eb5038b23aad6d59d74ac89806a9}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Add\-String\-Table@{Add\-String\-Table}}
+\index{Add\-String\-Table@{Add\-String\-Table}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Add\-String\-Table}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Add\-String\-Table (
+\begin{DoxyParamCaption}
+\item[{string}]{text}
+\end{DoxyParamCaption}
+)}}\label{a00089_a08d4eb5038b23aad6d59d74ac89806a9}
+
+
+Add a string of text to a table. 
+
+
+
+Definition at line 159 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+159                                                 \{
+160 
+161             \textcolor{comment}{// Create the dictionary that will contain these values}
+162             var stringTable = \textcolor{keyword}{new} Dictionary<string,string>();
 163 
-164             var properties = type.GetProperties( BindingFlags.Instance | BindingFlags.Public );
-165             \textcolor{keywordflow}{foreach}( var property \textcolor{keywordflow}{in} properties )
-166             \{
-167                 var typeConverterType = TypeConverterFactory.GetConverter( property.PropertyType ).GetType(
-      );
-168                 \textcolor{keywordflow}{if}( typeConverterType == typeof( \hyperlink{a00101}{EnumerableConverter} ) )
-169                 \{
-170                     \textcolor{comment}{// The IEnumerable converter just throws an exception so skip it.}
-171                     \textcolor{keywordflow}{continue};
-172                 \}
-173 
-174                 var isDefaultConverter = typeConverterType == typeof( 
-      \hyperlink{a00090}{DefaultTypeConverter} );
-175                 var hasDefaultConstructor = property.PropertyType.GetConstructor( \textcolor{keyword}{new} Type[0] ) != null;
-176                 \textcolor{keywordflow}{if}( isDefaultConverter && hasDefaultConstructor )
-177                 \{
-178                     \textcolor{keywordflow}{if}( ignoreReferences )
-179                     \{
-180                         \textcolor{keywordflow}{continue};
-181                     \}
-182 
-183                     \textcolor{comment}{// If the type is not one covered by our type converters}
-184                     \textcolor{comment}{// and it has a parameterless constructor, create a}
-185                     \textcolor{comment}{// reference map for it.}
-186                     \textcolor{keywordflow}{if}( \hyperlink{a00062_a4b2f3fc2e0670d17566b4705b7b622aa}{CheckForCircularReference}( property.PropertyType, 
-      mapParents ) )
-187                     \{
-188                         \textcolor{keywordflow}{continue};
-189                     \}
-190 
-191                     mapParents.AddLast( type );
-192                     var refMapType = typeof( DefaultCsvClassMap<> ).MakeGenericType( property.PropertyType 
-      );
-193                     var refMap = (\hyperlink{a00062_affc5ae8f2b0406d496bcbdf246da6210}{CsvClassMap})ReflectionHelper.CreateInstance( refMapType );
-194                     \hyperlink{a00062_a16b5bb84064e86c2b319348d8a42693d}{AutoMapInternal}( refMap, \textcolor{keyword}{false}, prefixReferenceHeaders, mapParents, map.
-      GetMaxIndex() + 1 );
-195 
-196                     \textcolor{keywordflow}{if}( refMap.PropertyMaps.Count > 0 || refMap.ReferenceMaps.Count > 0 )
-197                     \{
-198                         var referenceMap = \textcolor{keyword}{new} CsvPropertyReferenceMap( property, refMap );
-199                         \textcolor{keywordflow}{if}( prefixReferenceHeaders )
-200                         \{
-201                             referenceMap.Prefix();
-202                         \}
-203 
-204                         map.ReferenceMaps.Add( referenceMap );
-205                     \}
-206                 \}
-207                 \textcolor{keywordflow}{else}
-208                 \{
-209                     var propertyMap = \textcolor{keyword}{new} CsvPropertyMap( property );
-210                     propertyMap.Data.Index = map.GetMaxIndex() + 1;
-211                     \textcolor{keywordflow}{if}( propertyMap.Data.TypeConverter.CanConvertFrom( typeof( \textcolor{keywordtype}{string} ) ) ||
-212                         propertyMap.Data.TypeConverter.CanConvertTo( typeof( \textcolor{keywordtype}{string} ) ) && !
-      isDefaultConverter )
-213                     \{
-214                         \textcolor{comment}{// Only add the property map if it can be converted later on.}
-215                         \textcolor{comment}{// If the property will use the default converter, don't add it because}
-216                         \textcolor{comment}{// we don't want the .ToString() value to be used when auto mapping.}
-217                         map.PropertyMaps.Add( propertyMap );
-218                     \}
-219                 \}
-220             \}
-221 
-222             map.ReIndex( indexStart );
-223         \}
+164             \textcolor{keyword}{using} (var reader = \textcolor{keyword}{new} System.IO.StringReader(text)) \{
+165                 \textcolor{keyword}{using} (var csv = \textcolor{keyword}{new} \hyperlink{a00074}{CsvHelper.CsvReader}(reader)) \{
+166 
+167                     var records = csv.GetRecords<\hyperlink{a00126}{Yarn.LocalisedLine}>();
+168 
+169                     \textcolor{keywordflow}{foreach} (var record \textcolor{keywordflow}{in} records) \{
+170                         stringTable[record.LineCode] = record.LineText;
+171                     \}
+172 
+173                 \}
+174             \}
+175 
+176             \hyperlink{a00089_a2e9d9472b4dba699ef72ab558c89e009}{AddStringTable}(stringTable);
+177 
+178         \}
 \end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00062_a16b5bb84064e86c2b319348d8a42693d_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00062_a4b2f3fc2e0670d17566b4705b7b622aa}{\index{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}!Check\-For\-Circular\-Reference@{Check\-For\-Circular\-Reference}}
-\index{Check\-For\-Circular\-Reference@{Check\-For\-Circular\-Reference}!CsvHelper::Configuration::DefaultCsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Check\-For\-Circular\-Reference}]{\setlength{\rightskip}{0pt plus 5cm}static bool Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Check\-For\-Circular\-Reference (
+\hypertarget{a00089_abc595a490988ca712d37af540c2e0df9}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Add\-String\-Table@{Add\-String\-Table}}
+\index{Add\-String\-Table@{Add\-String\-Table}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Add\-String\-Table}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Add\-String\-Table (
 \begin{DoxyParamCaption}
-\item[{Type}]{type, }
-\item[{Linked\-List$<$ Type $>$}]{map\-Parents}
+\item[{Text\-Asset}]{text}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00062_a4b2f3fc2e0670d17566b4705b7b622aa}
+)}}\label{a00089_abc595a490988ca712d37af540c2e0df9}
 
 
-Checks for circular references. 
+Add a Text\-Asset to a table. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em type} & The type to check for.\\
-\hline
-{\em map\-Parents} & The list of parents to check against.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A value indicating if a circular reference was found. True if a circular reference was found, otherwise false.
-\end{DoxyReturn}
 
-
-Definition at line 232 of file Csv\-Class\-Map.\-cs.
+Definition at line 181 of file Dialogue\-Runner.\-cs.
 
 
 \begin{DoxyCode}
-233         \{
-234             \textcolor{keywordflow}{if}( mapParents.Count == 0 )
-235             \{
-236                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-237             \}
+181                                                    \{
+182             \hyperlink{a00089_a2e9d9472b4dba699ef72ab558c89e009}{AddStringTable}(text.text);
+183         \}
+\end{DoxyCode}
+\hypertarget{a00089_a09f5769c0c0921a21e659fed0af09c01}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Clear@{Clear}}
+\index{Clear@{Clear}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00089_a09f5769c0c0921a21e659fed0af09c01}
+
+
+Clear the dialogue system. 
+
+
+
+Definition at line 268 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+268                             \{
+269 
+270             \textcolor{keywordflow}{if} (\hyperlink{a00089_a9eb0fd7b600a4667595042832af1d655}{isDialogueRunning}) \{
+271                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.InvalidOperationException(\textcolor{stringliteral}{"You cannot clear the dialogue system while a
+       dialogue is running."});
+272             \}
+273 
+274             dialogue.UnloadAll();
+275         \}
+\end{DoxyCode}
+\hypertarget{a00089_a83e4b881e8359b22d2d9efc3237699b6}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Dispatch\-Command@{Dispatch\-Command}}
+\index{Dispatch\-Command@{Dispatch\-Command}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Dispatch\-Command}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerator Yarn.\-Unity.\-Dialogue\-Runner.\-Dispatch\-Command (
+\begin{DoxyParamCaption}
+\item[{string}]{command, }
+\item[{System.\-Action$<$ bool $>$}]{has\-Valid\-Command}
+\end{DoxyParamCaption}
+)}}\label{a00089_a83e4b881e8359b22d2d9efc3237699b6}
+
+
+commands that can be automatically dispatched look like this\-: C\-O\-M\-M\-A\-N\-D\-N\-A\-M\-E O\-B\-J\-E\-C\-T\-N\-A\-M\-E    ... 
+
+We can dispatch this command if\-:
+\begin{DoxyEnumerate}
+\item it has at least 2 words
+\item the second word is the name of an object
+\item that object has components that have methods with the Yarn\-Command attribute that have the correct command\-String set 
+\end{DoxyEnumerate}
+
+Definition at line 303 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+303                                                                                                 \{
+304 
+305             var words = command.Split(\textcolor{charliteral}{' '});
+306 
+307             \textcolor{comment}{// need 2 parameters in order to have both a command name}
+308             \textcolor{comment}{// and the name of an object to find}
+309             \textcolor{keywordflow}{if} (words.Length < 2)
+310             \{
+311                 hasValidCommand(\textcolor{keyword}{false});
+312                 yield \textcolor{keywordflow}{break};
+313             \}
+314 
+315             var commandName = words[0];
+316 
+317             var objectName = words[1];
+318 
+319             var sceneObject = GameObject.Find(objectName);
+320 
+321             \textcolor{comment}{// If we can't find an object, we can't dispatch a command}
+322             \textcolor{keywordflow}{if} (sceneObject == null)
+323             \{
+324                 hasValidCommand(\textcolor{keyword}{false});
+325                 yield \textcolor{keywordflow}{break};
+326             \}
+327 
+328             \textcolor{keywordtype}{int} numberOfMethodsFound = 0;
+329             List<string[]> errorValues = \textcolor{keyword}{new} List<string[]>();
+330 
+331             List<string> parameters;
+332 
+333             \textcolor{keywordflow}{if} (words.Length > 2) \{
+334                 parameters = \textcolor{keyword}{new} List<string>(words);
+335                 parameters.RemoveRange(0, 2);
+336             \} \textcolor{keywordflow}{else} \{
+337                 parameters = \textcolor{keyword}{new} List<string>();
+338             \}
+339 
+340             \textcolor{comment}{// Find every MonoBehaviour (or subclass) on the object}
+341             \textcolor{keywordflow}{foreach} (var component \textcolor{keywordflow}{in} sceneObject.GetComponents<MonoBehaviour>()) \{
+342                 var type = component.GetType();
+343 
+344                 \textcolor{comment}{// Find every method in this component}
+345                 \textcolor{keywordflow}{foreach} (var method \textcolor{keywordflow}{in} type.GetMethods()) \{
+346 
+347                     \textcolor{comment}{// Find the YarnCommand attributes on this method}
+348                     var attributes = (YarnCommandAttribute[]) method.GetCustomAttributes(typeof(
+      YarnCommandAttribute), \textcolor{keyword}{true});
+349 
+350                     \textcolor{comment}{// Find the YarnCommand whose commandString is equal to the command name}
+351                     \textcolor{keywordflow}{foreach} (var attribute \textcolor{keywordflow}{in} attributes) \{
+352                         \textcolor{keywordflow}{if} (attribute.commandString == commandName) \{
+353 
+354 
+355                             var methodParameters = method.GetParameters();
+356                             \textcolor{keywordtype}{bool} paramsMatch = \textcolor{keyword}{false};
+357                             \textcolor{comment}{// Check if this is a params array}
+358                             \textcolor{keywordflow}{if} (methodParameters.Length == 1 && methodParameters[0].ParameterType.
+      IsAssignableFrom(typeof(\textcolor{keywordtype}{string}[])))
+359                                 \{
+360                                     \textcolor{comment}{// Cool, we can send the command!}
+361                                     \textcolor{comment}{// Yield if this is a Coroutine}
+362                                     \textcolor{keywordtype}{string}[][] paramWrapper = \textcolor{keyword}{new} \textcolor{keywordtype}{string}[1][];
+363                                     paramWrapper[0] = parameters.ToArray();
+364                                     \textcolor{keywordflow}{if} (method.ReturnType == typeof(IEnumerator))
+365                                     \{
+366                                         yield \textcolor{keywordflow}{return} StartCoroutine((IEnumerator)method.Invoke(component, 
+      paramWrapper));
+367                                     \}
+368                                     \textcolor{keywordflow}{else}
+369                                     \{
+370                                         method.Invoke(component, paramWrapper);
+371                                     \}
+372                                     numberOfMethodsFound++;
+373                                     paramsMatch = \textcolor{keyword}{true};
+374 
+375                             \}
+376                             \textcolor{comment}{// Otherwise, verify that this method has the right number of parameters}
+377                             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (methodParameters.Length == parameters.Count)
+378                             \{
+379                                 paramsMatch = \textcolor{keyword}{true};
+380                                 \textcolor{keywordflow}{foreach} (var paramInfo \textcolor{keywordflow}{in} methodParameters)
+381                                 \{
+382                                     \textcolor{keywordflow}{if} (!paramInfo.ParameterType.IsAssignableFrom(typeof(\textcolor{keywordtype}{string})))
+383                                     \{
+384                                         Debug.LogErrorFormat(sceneObject, \textcolor{stringliteral}{"Method \(\backslash\)"\{0\}\(\backslash\)" wants to respond
+       to Yarn command \(\backslash\)"\{1\}\(\backslash\)", but not all of its parameters are strings!"}, method.Name, commandName);
+385                                         paramsMatch = \textcolor{keyword}{false};
+386                                         \textcolor{keywordflow}{break};
+387                                     \}
+388                                 \}
+389                                 \textcolor{keywordflow}{if} (paramsMatch)
+390                                 \{
+391                                     \textcolor{comment}{// Cool, we can send the command!}
+392                                     \textcolor{comment}{// Yield if this is a Coroutine}
+393                                     \textcolor{keywordflow}{if} (method.ReturnType == typeof(IEnumerator))
+394                                     \{
+395                                         yield \textcolor{keywordflow}{return} StartCoroutine((IEnumerator)method.Invoke(component, 
+      parameters.ToArray()));
+396                                     \}
+397                                     \textcolor{keywordflow}{else}
+398                                     \{
+399                                         method.Invoke(component, parameters.ToArray());
+400                                     \}
+401                                     numberOfMethodsFound++;
+402                                 \}
+403                             \}
+404                             \textcolor{comment}{//parameters are invalid, but name matches.}
+405                             \textcolor{keywordflow}{if} (!paramsMatch)
+406                             \{
+407                                 \textcolor{comment}{//save this error in case a matching command is never found.}
+408                                 errorValues.Add(\textcolor{keyword}{new} \textcolor{keywordtype}{string}[] \{ method.Name, commandName, 
+      methodParameters.Length.ToString(), parameters.Count.ToString() \});
+409                             \}
+410                         \}
+411                     \}
+412                 \}
+413             \}
+414 
+415             \textcolor{comment}{// Warn if we found multiple things that could respond}
+416             \textcolor{comment}{// to this command.}
+417             \textcolor{keywordflow}{if} (numberOfMethodsFound > 1) \{
+418                 Debug.LogWarningFormat(sceneObject, \textcolor{stringliteral}{"The command \(\backslash\)"\{0\}\(\backslash\)" found \{1\} targets. "} +
+419                     \textcolor{stringliteral}{"You should only have one - check your scripts."}, command, numberOfMethodsFound);
+420             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (numberOfMethodsFound == 0) \{
+421                 \textcolor{comment}{//list all of the near-miss methods only if a proper match is not found, but
+       correctly-named methods are.}
+422                 \textcolor{keywordflow}{foreach} (\textcolor{keywordtype}{string}[] errorVal \textcolor{keywordflow}{in} errorValues) \{
+423                     Debug.LogErrorFormat(sceneObject, \textcolor{stringliteral}{"Method \(\backslash\)"\{0\}\(\backslash\)" wants to respond to Yarn command \(\backslash\)"
+      \{1\}\(\backslash\)", but it has a different number of parameters (\{2\}) to those provided (\{3\}), or is not a string array!"}, 
+      errorVal[0], errorVal[1], errorVal[2], errorVal[3]);
+424                 \}
+425             \}
+426 
+427             hasValidCommand(numberOfMethodsFound > 0);
+428         \}
+\end{DoxyCode}
+\hypertarget{a00089_aadf7711b9ba101d6ce8ba491d9c5a4c3}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Node\-Exists@{Node\-Exists}}
+\index{Node\-Exists@{Node\-Exists}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Node\-Exists}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-Node\-Exists (
+\begin{DoxyParamCaption}
+\item[{string}]{node\-Name}
+\end{DoxyParamCaption}
+)}}\label{a00089_aadf7711b9ba101d6ce8ba491d9c5a4c3}
+
+
+Test to see if a node name exists. 
+
+
+
+Definition at line 284 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+284                                                 \{
+285             \textcolor{keywordflow}{return} dialogue.NodeExists(nodeName);
+286         \}
+\end{DoxyCode}
+\hypertarget{a00089_ac08900ac15b3ca90446b9454c7fd117e}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Reset\-Dialogue@{Reset\-Dialogue}}
+\index{Reset\-Dialogue@{Reset\-Dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Reset\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Reset\-Dialogue (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00089_ac08900ac15b3ca90446b9454c7fd117e}
+
+
+Destroy the variable store and start again. 
+
+
+
+Definition at line 186 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+187         \{
+188             variableStorage.ResetToDefaults ();
+189             \hyperlink{a00089_ab083d0ac60b41958b591c632e3c3a53e}{StartDialogue} ();
+190         \}
+\end{DoxyCode}
+\hypertarget{a00089_adf4e816844b7d9ab4ed99265fd3f3ea9}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Run\-Dialogue@{Run\-Dialogue}}
+\index{Run\-Dialogue@{Run\-Dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Run\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerator Yarn.\-Unity.\-Dialogue\-Runner.\-Run\-Dialogue (
+\begin{DoxyParamCaption}
+\item[{string}]{start\-Node = {\ttfamily \char`\"{}Start\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00089_adf4e816844b7d9ab4ed99265fd3f3ea9}
+
+
+Definition at line 209 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+210         \{
+211             \textcolor{comment}{// Mark that we're in conversation.}
+212             \hyperlink{a00089_a9eb0fd7b600a4667595042832af1d655}{isDialogueRunning} = \textcolor{keyword}{true};
+213 
+214             \textcolor{comment}{// Signal that we're starting up.}
+215             yield \textcolor{keywordflow}{return} StartCoroutine(this.\hyperlink{a00089_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
+      \hyperlink{a00091_af9d88ca81ac536d43046ca6572e3ff54}{DialogueStarted}());
+216 
+217             \textcolor{comment}{// Get lines, options and commands from the Dialogue object,}
+218             \textcolor{comment}{// one at a time.}
+219             \textcolor{keywordflow}{foreach} (Yarn.Dialogue.RunnerResult step in \hyperlink{a00089_a4f9712a847ca6d53ec8d2dd64dfcffd8}{dialogue}.\hyperlink{a00088_aead84ee50cb113ca45724894290ce9c2}{Run}(
+      \hyperlink{a00089_a61c92b8d2228d01d8ac123b73bbb41a0}{startNode})) \{
+220 
+221                 \textcolor{keywordflow}{if} (step is Yarn.Dialogue.LineResult) \{
+222 
+223                     \textcolor{comment}{// Wait for line to finish displaying}
+224                     var lineResult = step as \hyperlink{a00124}{Yarn.Dialogue.LineResult};
+225                     yield \textcolor{keywordflow}{return} StartCoroutine (this.\hyperlink{a00089_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
+      \hyperlink{a00091_a754c6dd0bc67895d11f878fe4477d698}{RunLine} (lineResult.line));
+226 
+227                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (step is Yarn.Dialogue.OptionSetResult) \{
+228 
+229                     \textcolor{comment}{// Wait for user to finish picking an option}
+230                     var optionSetResult = step as \hyperlink{a00134}{Yarn.Dialogue.OptionSetResult}
+      ;
+231                     yield \textcolor{keywordflow}{return} StartCoroutine (
+232                         this.\hyperlink{a00089_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.\hyperlink{a00091_ac5b29079f638f2ceb078627ef1e60004}{RunOptions} (
+233                         optionSetResult.options,
+234                         optionSetResult.setSelectedOptionDelegate
+235                     ));
+236 
+237                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (step is Yarn.Dialogue.CommandResult) \{
 238 
-239             var node = mapParents.Last;
-240             \textcolor{keywordflow}{while}( \textcolor{keyword}{true} )
-241             \{
-242                 \textcolor{keywordflow}{if}( node.Value == type )
-243                 \{
-244                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-245                 \}
-246 
-247                 node = node.Previous;
-248                 \textcolor{keywordflow}{if}( node == null )
-249                 \{
-250                     \textcolor{keywordflow}{break};
-251                 \}
-252             \}
-253 
-254             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-255         \}
+239                     \textcolor{comment}{// Wait for command to finish running}
+240 
+241                     var commandResult = step as \hyperlink{a00049}{Yarn.Dialogue.CommandResult};
+242 
+243                     \textcolor{keywordtype}{bool} hasValidCommand = \textcolor{keyword}{false};
+244                     yield \textcolor{keywordflow}{return} \hyperlink{a00089_a83e4b881e8359b22d2d9efc3237699b6}{DispatchCommand}(commandResult.command.text, (status) => \{ 
+      hasValidCommand = status; \});
+245                     \textcolor{keywordflow}{if} (!hasValidCommand)
+246                     \{
+247                         yield \textcolor{keywordflow}{return} StartCoroutine(this.\hyperlink{a00089_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
+      \hyperlink{a00091_a3dffe84b9e7a10fdec6749baf697d111}{RunCommand}(commandResult.command));
+248                     \}
+249 
+250                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(step is Yarn.Dialogue.NodeCompleteResult) \{
+251 
+252                     \textcolor{comment}{// Wait for post-node action}
+253                     var nodeResult = step as \hyperlink{a00130}{Yarn.Dialogue.NodeCompleteResult}
+      ;
+254                     yield \textcolor{keywordflow}{return} StartCoroutine (this.\hyperlink{a00089_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
+      \hyperlink{a00091_a2900548a0704d39d4502a153945f4bef}{NodeComplete} (nodeResult.nextNode));
+255                 \}
+256             \}
+257 
+258             \textcolor{comment}{// No more results! The dialogue is done.}
+259             yield \textcolor{keywordflow}{return} StartCoroutine (this.\hyperlink{a00089_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
+      \hyperlink{a00091_aecc60aee9e9386da1f71fb183f43c52d}{DialogueComplete} ());
+260 
+261             \textcolor{comment}{// Clear the 'is running' flag. We do this after DialogueComplete returns,}
+262             \textcolor{comment}{// to allow time for any animations that might run while transitioning}
+263             \textcolor{comment}{// out of a conversation (ie letterboxing going away, etc)}
+264             \hyperlink{a00089_a9eb0fd7b600a4667595042832af1d655}{isDialogueRunning} = \textcolor{keyword}{false};
+265         \}
 \end{DoxyCode}
-\hypertarget{a00063_a983d792ae80f888958037eea306b143a}{\index{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}!Construct\-Using@{Construct\-Using}}
-\index{Construct\-Using@{Construct\-Using}!CsvHelper::Configuration::DefaultCsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Construct\-Using}]{\setlength{\rightskip}{0pt plus 5cm}virtual void {\bf Csv\-Helper.\-Configuration.\-Csv\-Class\-Map}$<$ T $>$.Construct\-Using (
-\begin{DoxyParamCaption}
-\item[{Expression$<$ Func$<$ T $>$$>$}]{expression}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00063_a983d792ae80f888958037eea306b143a}
-
-
-Constructs the row object using the given expression. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em expression} & The expression.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 26 of file Csv\-Class\-Map`1.\-cs.
-
-
-\begin{DoxyCode}
-27         \{
-28             \hyperlink{a00062_ae8038b36db7584ef1a73852fcc46404b}{Constructor} = ReflectionHelper.GetConstructor( expression );
-29         \}
-\end{DoxyCode}
-\hypertarget{a00062_a83de9d28160d0d3da1e017df554a9481}{\index{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}!Create\-Map@{Create\-Map}}
-\index{Create\-Map@{Create\-Map}!CsvHelper::Configuration::DefaultCsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Create\-Map}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Create\-Map (
+\hypertarget{a00089_a18eb3750a0161dbfc20d7eb39e151b6c}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Start@{Start}}
+\index{Start@{Start}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Start}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Start (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00062_a83de9d28160d0d3da1e017df554a9481}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00089_a18eb3750a0161dbfc20d7eb39e151b6c}
 
 
-Called to create the mappings. 
+Start the dialogue. 
 
 
 
-Definition at line 28 of file Csv\-Class\-Map.\-cs.
-
-
-\begin{DoxyCode}
-28 \{\}
-\end{DoxyCode}
-\hypertarget{a00062_a708c455aa7f78a26b55dafc46a587ec3}{\index{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}!Get\-Max\-Index@{Get\-Max\-Index}}
-\index{Get\-Max\-Index@{Get\-Max\-Index}!CsvHelper::Configuration::DefaultCsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Get\-Max\-Index}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Get\-Max\-Index (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00062_a708c455aa7f78a26b55dafc46a587ec3}
-
-
-Get the largest index for the properties and references. 
-
-\begin{DoxyReturn}{Returns}
-The max index.
-\end{DoxyReturn}
-
-
-Definition at line 103 of file Csv\-Class\-Map.\-cs.
+Definition at line 98 of file Dialogue\-Runner.\-cs.
 
 
 \begin{DoxyCode}
-104         \{
-105             \textcolor{keywordflow}{if}( \hyperlink{a00062_a9580e897abcba144f3101eb983348e25}{PropertyMaps}.\hyperlink{a00073_a45cac3a36ac638d4d4b723b7ceb93b5c}{Count} == 0 && \hyperlink{a00062_a6dfbf8f743b16d2ec83edef865ea2d9e}{ReferenceMaps}.Count == 0 )
-106             \{
-107                 \textcolor{keywordflow}{return} -1;
-108             \}
-109 
-110             var indexes = \textcolor{keyword}{new} List<int>();
-111             \textcolor{keywordflow}{if}( \hyperlink{a00062_a9580e897abcba144f3101eb983348e25}{PropertyMaps}.\hyperlink{a00073_a45cac3a36ac638d4d4b723b7ceb93b5c}{Count} > 0 )
-112             \{
-113                 indexes.Add( PropertyMaps.Max( pm => pm.Data.Index ) );
-114             \}
-115             indexes.AddRange( ReferenceMaps.Select( referenceMap => referenceMap.GetMaxIndex() ) );
-116 
-117             \textcolor{keywordflow}{return} indexes.Max();
-118         \}
-\end{DoxyCode}
-\hypertarget{a00063_aa3395a5f657f0dd7c8fe6a0fbf5a03cb}{\index{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}!Map@{Map}}
-\index{Map@{Map}!CsvHelper::Configuration::DefaultCsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Map}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} {\bf Csv\-Helper.\-Configuration.\-Csv\-Class\-Map}$<$ T $>$.Map (
-\begin{DoxyParamCaption}
-\item[{Expression$<$ Func$<$ T, object $>$$>$}]{expression}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00063_aa3395a5f657f0dd7c8fe6a0fbf5a03cb}
-
-
-Maps a property to a C\-S\-V field. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em expression} & The property to map.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The property mapping.
-\end{DoxyReturn}
-
-
-Definition at line 36 of file Csv\-Class\-Map`1.\-cs.
-
-
-\begin{DoxyCode}
-37         \{
-38             var \textcolor{keyword}{property} = ReflectionHelper.GetProperty( expression );
-39 
-40             var existingMap = PropertyMaps.SingleOrDefault( m =>
-41                 m.Data.Property == \textcolor{keyword}{property}
-42                 || m.Data.Property.Name == property.Name
-43                 && ( m.Data.Property.DeclaringType.GetTypeInfo().IsAssignableFrom( property.DeclaringType.
-      GetTypeInfo() ) || property.DeclaringType.IsAssignableFrom( m.Data.Property.DeclaringType ) ) );
-44             \textcolor{keywordflow}{if}( existingMap != null )
-45             \{
-46                 \textcolor{keywordflow}{return} existingMap;
-47             \}
-48 
-49             var propertyMap = \textcolor{keyword}{new} CsvPropertyMap( property );
-50             propertyMap.Data.Index = \hyperlink{a00062_a708c455aa7f78a26b55dafc46a587ec3}{GetMaxIndex}() + 1;
-51             PropertyMaps.Add( propertyMap );
-52 
-53             \textcolor{keywordflow}{return} propertyMap;
-54         \}
-\end{DoxyCode}
-\hypertarget{a00062_abab2b5cd5a290fd5d17116430b084420}{\index{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}!Property\-Map$<$ T $>$@{Property\-Map$<$ T $>$}}
-\index{Property\-Map$<$ T $>$@{Property\-Map$<$ T $>$}!CsvHelper::Configuration::DefaultCsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Property\-Map$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Property\-Map$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{Expression$<$ Func$<$ T, object $>$$>$}]{expression}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00062_abab2b5cd5a290fd5d17116430b084420}
-
-
-Gets the property map for the given property expression. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type of the class the property belongs to.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em expression} & The property expression.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The \hyperlink{a00072}{Csv\-Property\-Map} for the given expression.
-\end{DoxyReturn}
-
-
-Definition at line 63 of file Csv\-Class\-Map.\-cs.
-
-
-\begin{DoxyCode}
-64         \{
-65             var \textcolor{keyword}{property} = ReflectionHelper.GetProperty( expression );
-66 
-67             var existingMap = PropertyMaps.SingleOrDefault( m =>
-68                 m.Data.Property == \textcolor{keyword}{property}
-69                 || m.Data.Property.Name == property.Name
-70                 && ( m.Data.Property.DeclaringType.IsAssignableFrom( property.DeclaringType ) || property.
-      DeclaringType.IsAssignableFrom( m.Data.Property.DeclaringType ) ) );
-71             \textcolor{keywordflow}{if}( existingMap != null )
-72             \{
-73                 \textcolor{keywordflow}{return} existingMap;
-74             \}
-75 
-76             var propertyMap = \textcolor{keyword}{new} CsvPropertyMap( property );
-77             propertyMap.Data.Index = \hyperlink{a00062_a708c455aa7f78a26b55dafc46a587ec3}{GetMaxIndex}() + 1;
-78             PropertyMaps.Add( propertyMap );
-79 
-80             \textcolor{keywordflow}{return} propertyMap;
-81         \}
-\end{DoxyCode}
-\hypertarget{a00063_a68caeee244e978110a2acae6d3042fc3}{\index{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}!References@{References}}
-\index{References@{References}!CsvHelper::Configuration::DefaultCsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{References}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Reference\-Map} {\bf Csv\-Helper.\-Configuration.\-Csv\-Class\-Map}$<$ T $>$.References (
-\begin{DoxyParamCaption}
-\item[{Type}]{type, }
-\item[{Expression$<$ Func$<$ T, object $>$$>$}]{expression, }
-\item[{params object\mbox{[}$\,$\mbox{]}}]{constructor\-Args}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00063_a68caeee244e978110a2acae6d3042fc3}
-
-
-Maps a property to another class map. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-{\em expression} & The expression.\\
-\hline
-{\em constructor\-Args} & Constructor arguments used to create the reference map.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The reference mapping for the property
-\end{DoxyReturn}
-
-
-Definition at line 93 of file Csv\-Class\-Map`1.\-cs.
-
-
-
-References Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance().
-
-
-\begin{DoxyCode}
-94         \{
-95             var \textcolor{keyword}{property} = ReflectionHelper.GetProperty( expression );
-96             var existingMap = ReferenceMaps.SingleOrDefault( m =>
-97                 m.Data.Property == \textcolor{keyword}{property}
-98                 || m.Data.Property.Name == property.Name
-99                 && ( m.Data.Property.DeclaringType.IsAssignableFrom( property.DeclaringType ) || property.
-      DeclaringType.IsAssignableFrom( m.Data.Property.DeclaringType ) ) );
-100             \textcolor{keywordflow}{if}( existingMap != null )
-101             \{
-102                 \textcolor{keywordflow}{return} existingMap;
-103             \}
-104 
-105             var map = (\hyperlink{a00062_affc5ae8f2b0406d496bcbdf246da6210}{CsvClassMap})ReflectionHelper.CreateInstance( type, constructorArgs );
-106             map.CreateMap();
-107             map.ReIndex( \hyperlink{a00062_a708c455aa7f78a26b55dafc46a587ec3}{GetMaxIndex}() + 1 );
-108             var reference = \textcolor{keyword}{new} CsvPropertyReferenceMap( property, map );
-109             ReferenceMaps.Add( reference );
-110 
-111             \textcolor{keywordflow}{return} reference;
-112         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00063_a68caeee244e978110a2acae6d3042fc3_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00063_a20365b78c96ac29e3261bcde30e0d746}{\index{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}!References$<$ T\-Class\-Map $>$@{References$<$ T\-Class\-Map $>$}}
-\index{References$<$ T\-Class\-Map $>$@{References$<$ T\-Class\-Map $>$}!CsvHelper::Configuration::DefaultCsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{References$<$ T\-Class\-Map $>$}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Reference\-Map} {\bf Csv\-Helper.\-Configuration.\-Csv\-Class\-Map}$<$ T $>$.{\bf References}$<$ T\-Class\-Map $>$ (
-\begin{DoxyParamCaption}
-\item[{Expression$<$ Func$<$ T, object $>$$>$}]{expression, }
-\item[{params object\mbox{[}$\,$\mbox{]}}]{constructor\-Args}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00063_a20365b78c96ac29e3261bcde30e0d746}
-
-
-Maps a property to another class map. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T\-Class\-Map} & The type of the class map.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em expression} & The expression.\\
-\hline
-{\em constructor\-Args} & Constructor arguments used to create the reference map.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The reference mapping for the property.
-\end{DoxyReturn}
-\begin{Desc}
-\item[Type Constraints]\begin{description}
-\item[{\em T\-Class\-Map} : {\em Csv\-Class\-Map}]\end{description}
-\end{Desc}
-
-
-Definition at line 63 of file Csv\-Class\-Map`1.\-cs.
-
-
-\begin{DoxyCode}
-63                                                                                                            
-                                                           : \hyperlink{a00062_affc5ae8f2b0406d496bcbdf246da6210}{CsvClassMap}
-64         \{
-65             var \textcolor{keyword}{property} = ReflectionHelper.GetProperty( expression );
-66 
-67             var existingMap = ReferenceMaps.SingleOrDefault( m =>
-68                 m.Data.Property == \textcolor{keyword}{property}
-69                 || m.Data.Property.Name == property.Name
-70                 && ( m.Data.Property.DeclaringType.IsAssignableFrom( property.DeclaringType ) || property.
-      DeclaringType.IsAssignableFrom( m.Data.Property.DeclaringType ) ) );
-71             \textcolor{keywordflow}{if}( existingMap != null )
-72             \{
-73                 \textcolor{keywordflow}{return} existingMap;
-74             \}
-75 
-76             var map = ReflectionHelper.CreateInstance<TClassMap>( constructorArgs );
-77             map.CreateMap();
-78             map.ReIndex( \hyperlink{a00062_a708c455aa7f78a26b55dafc46a587ec3}{GetMaxIndex}() + 1 );
-79             var reference = \textcolor{keyword}{new} CsvPropertyReferenceMap( property, map );
-80             ReferenceMaps.Add( reference );
-81 
-82             \textcolor{keywordflow}{return} reference;
-83         \}
-\end{DoxyCode}
-\hypertarget{a00062_ac6c1e8ae1d049bd0ef09e7c2d99fbe55}{\index{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}!Re\-Index@{Re\-Index}}
-\index{Re\-Index@{Re\-Index}!CsvHelper::Configuration::DefaultCsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Re\-Index}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Re\-Index (
-\begin{DoxyParamCaption}
-\item[{int}]{index\-Start = {\ttfamily 0}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00062_ac6c1e8ae1d049bd0ef09e7c2d99fbe55}
-
-
-Resets the indexes based on the given start index. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em index\-Start} & The index start.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The last index + 1.
-\end{DoxyReturn}
-
-
-Definition at line 125 of file Csv\-Class\-Map.\-cs.
-
-
-\begin{DoxyCode}
-126         \{
-127             \textcolor{keywordflow}{foreach}( var propertyMap \textcolor{keywordflow}{in} \hyperlink{a00062_a9580e897abcba144f3101eb983348e25}{PropertyMaps} )
-128             \{
-129                 \textcolor{keywordflow}{if}( !propertyMap.Data.IsIndexSet )
-130                 \{
-131                     propertyMap.Data.Index = indexStart + propertyMap.Data.Index;
-132                 \}
-133             \}
-134 
-135             \textcolor{keywordflow}{foreach}( var referenceMap \textcolor{keywordflow}{in} \hyperlink{a00062_a6dfbf8f743b16d2ec83edef865ea2d9e}{ReferenceMaps} )
-136             \{
-137                 indexStart = referenceMap.Data.Mapping.ReIndex( indexStart );
+99         \{
+100             \textcolor{comment}{// Ensure that we have our Implementation object}
+101             \textcolor{keywordflow}{if} (\hyperlink{a00089_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI} == null) \{
+102                 Debug.LogError (\textcolor{stringliteral}{"Implementation was not set! Can't run the dialogue!"});
+103                 \textcolor{keywordflow}{return};
+104             \}
+105 
+106             \textcolor{comment}{// And that we have our variable storage object}
+107             \textcolor{keywordflow}{if} (\hyperlink{a00089_a6cca3d33f8b0ce3e750caed9fd8fc734}{variableStorage} == null) \{
+108                 Debug.LogError (\textcolor{stringliteral}{"Variable storage was not set! Can't run the dialogue!"});
+109                 \textcolor{keywordflow}{return};
+110             \}
+111 
+112             \textcolor{comment}{// Ensure that the variable storage has the right stuff in it}
+113             variableStorage.ResetToDefaults ();
+114 
+115             \textcolor{comment}{// Load all scripts}
+116             \textcolor{keywordflow}{if} (\hyperlink{a00089_a71eae33d06990a3aec5d444fae017492}{sourceText} != null) \{
+117                 \textcolor{keywordflow}{foreach} (var source \textcolor{keywordflow}{in} \hyperlink{a00089_a71eae33d06990a3aec5d444fae017492}{sourceText}) \{
+118                     \textcolor{comment}{// load and compile the text}
+119                     dialogue.LoadString (source.text, source.name);
+120                 \}
+121             \}
+122 
+123             \textcolor{keywordflow}{if} (\hyperlink{a00089_a6476a987f9788dba653976bcbe72980c}{startAutomatically}) \{
+124                 \hyperlink{a00089_ab083d0ac60b41958b591c632e3c3a53e}{StartDialogue}();
+125             \}
+126 
+127             \textcolor{keywordflow}{if} (\hyperlink{a00089_a4d00a0671c2966b88d1c806c675fe915}{stringGroups} != null) \{
+128                 \textcolor{comment}{// Load the string table for this language, if appropriate}
+129                 var stringsGroup = \textcolor{keyword}{new} List<LocalisedStringGroup>(\hyperlink{a00089_a4d00a0671c2966b88d1c806c675fe915}{stringGroups}).Find(
+130                     entry => entry.language == (\hyperlink{a00089_a3e093d36845924378a8b2fd9ea3ac73d}{shouldOverrideLanguage} ? 
+      \hyperlink{a00089_ad12db159fc3df0819d5b594c33fba834}{overrideLanguage} : Application.systemLanguage)
+131                 );
+132 
+133                 \textcolor{keywordflow}{if} (stringsGroup != null) \{
+134                     \textcolor{keywordflow}{foreach} (var table \textcolor{keywordflow}{in} stringsGroup.stringFiles) \{
+135                         this.AddStringTable(table.text);
+136                     \}
+137                 \}
 138             \}
 139 
-140             \textcolor{keywordflow}{return} indexStart;
-141         \}
+140         \}
 \end{DoxyCode}
+\hypertarget{a00089_ab083d0ac60b41958b591c632e3c3a53e}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Start\-Dialogue@{Start\-Dialogue}}
+\index{Start\-Dialogue@{Start\-Dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Start\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Start\-Dialogue (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00089_ab083d0ac60b41958b591c632e3c3a53e}
+
+
+Start the dialogue. 
+
+
+
+Definition at line 193 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+193                                      \{
+194             \hyperlink{a00089_ab083d0ac60b41958b591c632e3c3a53e}{StartDialogue}(\hyperlink{a00089_a61c92b8d2228d01d8ac123b73bbb41a0}{startNode});
+195         \}
+\end{DoxyCode}
+\hypertarget{a00089_abda765c6804853e264282a0f45920cd3}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Start\-Dialogue@{Start\-Dialogue}}
+\index{Start\-Dialogue@{Start\-Dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Start\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Start\-Dialogue (
+\begin{DoxyParamCaption}
+\item[{string}]{start\-Node}
+\end{DoxyParamCaption}
+)}}\label{a00089_abda765c6804853e264282a0f45920cd3}
+
+
+Start the dialogue from a given node. 
+
+
+
+Definition at line 198 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+199         \{
+200 
+201             \textcolor{comment}{// Stop any processes that might be running already}
+202             StopAllCoroutines ();
+203             dialogueUI.StopAllCoroutines ();
+204 
+205             \textcolor{comment}{// Get it going}
+206             StartCoroutine (\hyperlink{a00089_adf4e816844b7d9ab4ed99265fd3f3ea9}{RunDialogue} (\hyperlink{a00089_a61c92b8d2228d01d8ac123b73bbb41a0}{startNode}));
+207         \}
+\end{DoxyCode}
+\hypertarget{a00089_af94e66876098f8b187181014973645e6}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Stop@{Stop}}
+\index{Stop@{Stop}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Stop}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00089_af94e66876098f8b187181014973645e6}
+
+
+Stop the dialogue. 
+
+
+
+Definition at line 278 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+278                            \{
+279             \hyperlink{a00089_a9eb0fd7b600a4667595042832af1d655}{isDialogueRunning} = \textcolor{keyword}{false};
+280             dialogue.Stop();
+281         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00089_a822055443227d3b76c6a8fb509812820}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!\-\_\-dialogue@{\-\_\-dialogue}}
+\index{\-\_\-dialogue@{\-\_\-dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{\-\_\-dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn.\-Unity.\-Dialogue\-Runner.\-\_\-dialogue\hspace{0.3cm}{\ttfamily [private]}}}\label{a00089_a822055443227d3b76c6a8fb509812820}
+
+
+Our conversation engine. 
+
+Automatically created on first access 
+
+Definition at line 78 of file Dialogue\-Runner.\-cs.
+
+\hypertarget{a00089_a6aac5e877d5396a8141da5e85243f462}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!automatic\-Commands@{automatic\-Commands}}
+\index{automatic\-Commands@{automatic\-Commands}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{automatic\-Commands}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-automatic\-Commands = true}}\label{a00089_a6aac5e877d5396a8141da5e85243f462}
+
+
+Definition at line 73 of file Dialogue\-Runner.\-cs.
+
+\hypertarget{a00089_ac87fdc65b0be57868f80c0fcd62ffd6d}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!dialogue\-U\-I@{dialogue\-U\-I}}
+\index{dialogue\-U\-I@{dialogue\-U\-I}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{dialogue\-U\-I}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour} Yarn.\-Unity.\-Dialogue\-Runner.\-dialogue\-U\-I}}\label{a00089_ac87fdc65b0be57868f80c0fcd62ffd6d}
+
+
+The object that will handle the actual display and user input. 
+
+
+
+Definition at line 62 of file Dialogue\-Runner.\-cs.
+
+\hypertarget{a00089_ad12db159fc3df0819d5b594c33fba834}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!override\-Language@{override\-Language}}
+\index{override\-Language@{override\-Language}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{override\-Language}]{\setlength{\rightskip}{0pt plus 5cm}System\-Language Yarn.\-Unity.\-Dialogue\-Runner.\-override\-Language = System\-Language.\-English}}\label{a00089_ad12db159fc3df0819d5b594c33fba834}
+
+
+Definition at line 56 of file Dialogue\-Runner.\-cs.
+
+\hypertarget{a00089_a3e093d36845924378a8b2fd9ea3ac73d}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!should\-Override\-Language@{should\-Override\-Language}}
+\index{should\-Override\-Language@{should\-Override\-Language}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{should\-Override\-Language}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-should\-Override\-Language = false}}\label{a00089_a3e093d36845924378a8b2fd9ea3ac73d}
+
+
+Language debugging options. 
+
+
+
+Definition at line 54 of file Dialogue\-Runner.\-cs.
+
+\hypertarget{a00089_a71eae33d06990a3aec5d444fae017492}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!source\-Text@{source\-Text}}
+\index{source\-Text@{source\-Text}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{source\-Text}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Asset \mbox{[}$\,$\mbox{]} Yarn.\-Unity.\-Dialogue\-Runner.\-source\-Text}}\label{a00089_a71eae33d06990a3aec5d444fae017492}
+
+
+The J\-S\-O\-N files to load the conversation from. 
+
+
+
+Definition at line 48 of file Dialogue\-Runner.\-cs.
+
+\hypertarget{a00089_a6476a987f9788dba653976bcbe72980c}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!start\-Automatically@{start\-Automatically}}
+\index{start\-Automatically@{start\-Automatically}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{start\-Automatically}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-start\-Automatically = true}}\label{a00089_a6476a987f9788dba653976bcbe72980c}
+
+
+Whether we should start dialogue when the scene starts. 
+
+
+
+Definition at line 68 of file Dialogue\-Runner.\-cs.
+
+\hypertarget{a00089_a61c92b8d2228d01d8ac123b73bbb41a0}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!start\-Node@{start\-Node}}
+\index{start\-Node@{start\-Node}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{start\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Dialogue\-Runner.\-start\-Node = {\bf Yarn.\-Dialogue.\-D\-E\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-R\-T}}}\label{a00089_a61c92b8d2228d01d8ac123b73bbb41a0}
+
+
+Which node to start from. 
+
+
+
+Definition at line 65 of file Dialogue\-Runner.\-cs.
+
+\hypertarget{a00089_a4d00a0671c2966b88d1c806c675fe915}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!string\-Groups@{string\-Groups}}
+\index{string\-Groups@{string\-Groups}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{string\-Groups}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Localised\-String\-Group} \mbox{[}$\,$\mbox{]} Yarn.\-Unity.\-Dialogue\-Runner.\-string\-Groups}}\label{a00089_a4d00a0671c2966b88d1c806c675fe915}
+
+
+The group of J\-S\-O\-N files to be used for this language. 
+
+
+
+Definition at line 51 of file Dialogue\-Runner.\-cs.
+
+\hypertarget{a00089_a6cca3d33f8b0ce3e750caed9fd8fc734}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!variable\-Storage@{variable\-Storage}}
+\index{variable\-Storage@{variable\-Storage}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{variable\-Storage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Unity.\-Variable\-Storage\-Behaviour} Yarn.\-Unity.\-Dialogue\-Runner.\-variable\-Storage}}\label{a00089_a6cca3d33f8b0ce3e750caed9fd8fc734}
+
+
+Our variable storage. 
+
+
+
+Definition at line 59 of file Dialogue\-Runner.\-cs.
+
 
 
 \subsection{Property Documentation}
-\hypertarget{a00062_ae8038b36db7584ef1a73852fcc46404b}{\index{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}!Constructor@{Constructor}}
-\index{Constructor@{Constructor}!CsvHelper::Configuration::DefaultCsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Constructor}]{\setlength{\rightskip}{0pt plus 5cm}virtual New\-Expression Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Constructor\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00062_ae8038b36db7584ef1a73852fcc46404b}
+\hypertarget{a00089_a8589c66769e89906eaff3c2263bdad5d}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!current\-Node\-Name@{current\-Node\-Name}}
+\index{current\-Node\-Name@{current\-Node\-Name}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{current\-Node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Dialogue\-Runner.\-current\-Node\-Name\hspace{0.3cm}{\ttfamily [get]}}}\label{a00089_a8589c66769e89906eaff3c2263bdad5d}
 
 
-Gets the constructor expression. 
-
-
-
-Definition at line 33 of file Csv\-Class\-Map.\-cs.
+Return the current node name. 
 
 
 
-Referenced by Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Register\-Class\-Map().
+Definition at line 289 of file Dialogue\-Runner.\-cs.
 
-\hypertarget{a00062_a9580e897abcba144f3101eb983348e25}{\index{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}!Property\-Maps@{Property\-Maps}}
-\index{Property\-Maps@{Property\-Maps}!CsvHelper::Configuration::DefaultCsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Property\-Maps}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map\-Collection} Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Property\-Maps\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [inherited]}}}\label{a00062_a9580e897abcba144f3101eb983348e25}
-
-
-The class property mappings. 
+\hypertarget{a00089_a4f9712a847ca6d53ec8d2dd64dfcffd8}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!dialogue@{dialogue}}
+\index{dialogue@{dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn.\-Unity.\-Dialogue\-Runner.\-dialogue\hspace{0.3cm}{\ttfamily [get]}}}\label{a00089_a4f9712a847ca6d53ec8d2dd64dfcffd8}
 
 
+Definition at line 79 of file Dialogue\-Runner.\-cs.
 
-Definition at line 39 of file Csv\-Class\-Map.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Reader.\-Create\-Property\-Bindings\-For\-Mapping(), Csv\-Helper.\-Csv\-Writer.\-Create\-Property\-Expression(), and Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Register\-Class\-Map().
-
-\hypertarget{a00062_a6dfbf8f743b16d2ec83edef865ea2d9e}{\index{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}!Reference\-Maps@{Reference\-Maps}}
-\index{Reference\-Maps@{Reference\-Maps}!CsvHelper::Configuration::DefaultCsvClassMap< T >@{Csv\-Helper\-::\-Configuration\-::\-Default\-Csv\-Class\-Map$<$ T $>$}}
-\subsubsection[{Reference\-Maps}]{\setlength{\rightskip}{0pt plus 5cm}virtual List$<${\bf Csv\-Property\-Reference\-Map}$>$ Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Reference\-Maps\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [inherited]}}}\label{a00062_a6dfbf8f743b16d2ec83edef865ea2d9e}
+\hypertarget{a00089_a9eb0fd7b600a4667595042832af1d655}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!is\-Dialogue\-Running@{is\-Dialogue\-Running}}
+\index{is\-Dialogue\-Running@{is\-Dialogue\-Running}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{is\-Dialogue\-Running}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-is\-Dialogue\-Running\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00089_a9eb0fd7b600a4667595042832af1d655}
 
 
-The class property reference mappings. 
+Tests to see if the dialogue is running. 
 
 
 
-Definition at line 47 of file Csv\-Class\-Map.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Register\-Class\-Map().
+Definition at line 71 of file Dialogue\-Runner.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00233}{Default\-Csv\-Class\-Map`1.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn\-Spinner/\-Code/\hyperlink{a00269}{Dialogue\-Runner.\-cs}\end{DoxyCompactItemize}

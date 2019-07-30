@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: README.md Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('a00210.html','');});
+$(document).ready(function(){initNavTree('a00210_source.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -105,72 +105,48 @@ $(document).ready(function(){initNavTree('a00210.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">README.md</div>  </div>
+<div class="title">CsvBadDataException.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00210.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Yarn Spinner</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;&lt;img src=<span class="stringliteral">&quot;Documentation/YarnSpinnerLogo.png&quot;</span> alt=<span class="stringliteral">&quot;Yarn Spinner logo&quot;</span> width=<span class="stringliteral">&quot;100px;&quot;</span> align=<span class="stringliteral">&quot;right&quot;</span>&gt;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;**[Yarn](https:<span class="comment">//github.com/infiniteammoinc/Yarn)** is a language that&#39;s designed to make it *super easy* to create interactive dialogue for games. Yarn&#39;s similar in style to [Twine](http://twinery.org), so if you already know that, you&#39;ll be right at home! If you don&#39;t, that&#39;s cool - Yarn&#39;s [syntax](Documentation/YarnSpinner-Dialogue/Yarn-Syntax.md) is extremely minimal, and there&#39;s not much there to learn. The Yarn language is used in a number of cool games, including [Night In The Woods](http://nightinthewoods.com) and [Knights and Bikes](http://foamswordgames.com/knights).</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;&gt; **New!** Join our [narrative game development](http:<span class="comment">//lab.to/narrativegamedev) Slack!</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;&gt;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;&gt; **New!** Continual integration [API documentation](https:<span class="comment">//thesecretlab.github.io/YarnSpinner/html/) now available.</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;**Yarn Spinner** interprets the Yarn language, and is written in [C#](https:<span class="comment">//en.wikipedia.org/wiki/C_Sharp_%28programming_language%29). Yarn Spinner is designed to be easy to add to [Unity](http://www.unity3d.com) games, but it&#39;s also intended for use in other contexts as well.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;&gt; ***Important:*** Yarn Spinner is still under development, and we haven<span class="stringliteral">&#39;t made our 1.0 release yet. It&#39;</span>s *probably* fine to use right now, but there are a few bits and pieces that might change between now and first release.</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;[![Build Status](https:<span class="comment">//travis-ci.org/thesecretlab/YarnSpinner.svg?branch=master)](https://travis-ci.org/thesecretlab/YarnSpinner)</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;&lt;img src=<span class="stringliteral">&quot;https://dl.dropbox.com/s/wcd7rspsdi6ifxk/NITW-Promo-Screenshot.jpg&quot;</span> title=<span class="stringliteral">&quot;Night in the Woods&quot;</span> style=<span class="stringliteral">&quot;width: 80%; margin: 0 auto;&quot;</span> /&gt;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;&gt; (Image from <span class="stringliteral">&quot;[Night in the Woods](http://nightinthewoods.com)&quot;</span> by Scott Benson, Bethany Hockenberry and Alec Holowka. Used with permission.)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">## Quick Start - Documentation</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;* <a class="code" href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">If</a> you<span class="stringliteral">&#39;re already familiar with Unity, we recommend you head straight to our [Yarn Spinner With Unity Quickstart](Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-QuickStart.md) document.</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="stringliteral">## What To Do Next</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="stringliteral">* Learn how to [build Yarn Spinner from source.](Documentation/YarnSpinner-Programming/Building.md)</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="stringliteral">* Learn more about [Yarn](https://github.com/infiniteammoinc/Yarn), and the Yarn editor.</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="stringliteral">* Learn more about [writing dialogue in Yarn.](Documentation/YarnSpinner-Dialogue/README.md)</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="stringliteral">* Learn about using [Yarn Spinner in your Unity game.](Documentation/YarnSpinner-Unity/README.md)</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="stringliteral">* If you&#39;</span>re unfamiliar with Unity, refer to our [Yarn Spinner With Unity Step by Step](Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-StepByStep.md) document.</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;* We have some information that may be of assistance in <span class="keyword">using</span> [Yarn Spinner With Unity](Documentation/YarnSpinner-with-Unity/README.md) on your system.</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;* Follow Yarn Spinner on Twitter: [http:<span class="comment">//twitter.com/YarnSpinnerTool](http://twitter.com/YarnSpinnerTool)</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">## License</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;Yarn Spinner is available under the [MIT License](LICENSE.md). This means that you can use it in any commercial or noncommercial project. The only requirement is that you need to include attribution in your game<span class="stringliteral">&#39;s docs. A credit would be very, very nice, too, but isn&#39;</span>t required. If you<span class="stringliteral">&#39;d like to know more about what this license lets you do tldrlegal.com have a [very nice write up about the MIT license](https://tldrlegal.com/license/mit-license) that you might find useful.</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="stringliteral">## Made by Secret Lab!</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="stringliteral">Yarn Spinner was originally created by [Secret Lab](http://secretlab.com.au), an Australian game dev studio. [Come say hi](https://twitter.com/thesecretlab)! You can visit the [Yarn Spinner page](http://www.secretlab.com.au/yarnspinner) on the Secret Lab website for a little more info, and to donate to Yarn Spinner open source development at Secret Lab.</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="stringliteral">The awesome [logo](Documentation/YarnSpinnerLogo.png) was made by the excellent [Rex Smeal](https://twitter.com/RexSmeal), and is under the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="stringliteral">## Help Us Make Yarn Spinner!</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="stringliteral">Yarn Spinner needs your help to be as awesome as it can be! You don&#39;</span>t have to be a coder to help out - we<span class="stringliteral">&#39;d love to have your help in improving our [documentation](Documentation/README.md), in spreading the word, and in finding bugs.</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="stringliteral">* Our [issues page](https://github.com/thesecretlab/YarnSpinner/issues) contains a list of things we&#39;</span>d love your help in improving.</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;* Join our discussion on Slack by requesting an invite to our [narrative game development](http:<span class="comment">//lab.to/narrativegamedev) channel.</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;* Read our [API documentation](https:<span class="comment">//thesecretlab.github.io/YarnSpinner/html/)</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;* Follow Yarn Spinner on Twitter: [http:<span class="comment">//twitter.com/YarnSpinnerTool](http://twitter.com/YarnSpinnerTool)</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;If you want to contribute to Yarn Spinner (!!), [go read our contributor<span class="stringliteral">&#39;s guide!](CONTRIBUTING.md)</span></div>
-<div class="ttc" id="a00053_html_a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639"><div class="ttname"><a href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">Yarn.If</a></div></div>
+<a href="a00210.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#if !COREFX</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System.Runtime.Serialization;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span>CsvHelper</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#if !COREFX &amp;&amp; !PCL</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span>    [Serializable]</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00056.html">   18</a></span>&#160;<span class="preprocessor"></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00056.html">CsvBadDataException</a> : <a class="code" href="a00063.html">CsvHelperException</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    {</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="a00056.html#a337ebca212c62127ba837ae726a0cc3a">   23</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00056.html#a337ebca212c62127ba837ae726a0cc3a">CsvBadDataException</a>() {}</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="a00056.html#a31da9e807053a75e8bd252aa792269eb">   30</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00056.html#a31da9e807053a75e8bd252aa792269eb">CsvBadDataException</a>( <span class="keywordtype">string</span> message ) : base( message ) {}</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="a00056.html#a2c210cf80604e58ffecc177f6f7c2547">   39</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00056.html#a2c210cf80604e58ffecc177f6f7c2547">CsvBadDataException</a>( <span class="keywordtype">string</span> message, Exception innerException ) : base( message, innerException ) { }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#if !PCL &amp;&amp; !COREFX</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span>        <span class="keyword">public</span> <a class="code" href="a00056.html#a337ebca212c62127ba837ae726a0cc3a">CsvBadDataException</a>( SerializationInfo info, StreamingContext context ) : base( info, context ) {}</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor"></span>    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
+<div class="ttc" id="a00056_html"><div class="ttname"><a href="a00056.html">CsvHelper.CsvBadDataException</a></div><div class="ttdoc">Represents errors that occur due to bad data. </div><div class="ttdef"><b>Definition:</b> <a href="a00210_source.html#l00018">CsvBadDataException.cs:18</a></div></div>
+<div class="ttc" id="a00056_html_a31da9e807053a75e8bd252aa792269eb"><div class="ttname"><a href="a00056.html#a31da9e807053a75e8bd252aa792269eb">CsvHelper.CsvBadDataException.CsvBadDataException</a></div><div class="ttdeci">CsvBadDataException(string message)</div><div class="ttdoc">Initializes a new instance of the CsvBadDataException class with a specified error message...</div><div class="ttdef"><b>Definition:</b> <a href="a00210_source.html#l00030">CsvBadDataException.cs:30</a></div></div>
+<div class="ttc" id="a00056_html_a2c210cf80604e58ffecc177f6f7c2547"><div class="ttname"><a href="a00056.html#a2c210cf80604e58ffecc177f6f7c2547">CsvHelper.CsvBadDataException.CsvBadDataException</a></div><div class="ttdeci">CsvBadDataException(string message, Exception innerException)</div><div class="ttdoc">Initializes a new instance of the CsvBadDataException class with a specified error message and a refe...</div><div class="ttdef"><b>Definition:</b> <a href="a00210_source.html#l00039">CsvBadDataException.cs:39</a></div></div>
+<div class="ttc" id="a00063_html"><div class="ttname"><a href="a00063.html">CsvHelper.CsvHelperException</a></div><div class="ttdoc">Represents errors that occur in CsvHelper. </div><div class="ttdef"><b>Definition:</b> <a href="a00212_source.html#l00018">CsvHelperException.cs:18</a></div></div>
+<div class="ttc" id="a00056_html_a337ebca212c62127ba837ae726a0cc3a"><div class="ttname"><a href="a00056.html#a337ebca212c62127ba837ae726a0cc3a">CsvHelper.CsvBadDataException.CsvBadDataException</a></div><div class="ttdeci">CsvBadDataException()</div><div class="ttdoc">Initializes a new instance of the CsvBadDataException class. </div><div class="ttdef"><b>Definition:</b> <a href="a00210_source.html#l00023">CsvBadDataException.cs:23</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00210.html">README.md</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:22 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00210.html">CsvBadDataException.cs</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:44 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

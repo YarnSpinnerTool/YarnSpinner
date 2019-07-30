@@ -1,33 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00340" kind="namespace">
-    <compoundname>CsvHelper</compoundname>
-    <innerclass refid="a00061" prot="public">CsvHelper::CsvBadDataException</innerclass>
-    <innerclass refid="a00067" prot="public">CsvHelper::CsvFactory</innerclass>
-    <innerclass refid="a00068" prot="public">CsvHelper::CsvHelperException</innerclass>
-    <innerclass refid="a00069" prot="public">CsvHelper::CsvMissingFieldException</innerclass>
-    <innerclass refid="a00070" prot="public">CsvHelper::CsvParser</innerclass>
-    <innerclass refid="a00071" prot="public">CsvHelper::CsvParserException</innerclass>
-    <innerclass refid="a00079" prot="public">CsvHelper::CsvReader</innerclass>
-    <innerclass refid="a00080" prot="public">CsvHelper::CsvReaderException</innerclass>
-    <innerclass refid="a00081" prot="public">CsvHelper::CsvSerializer</innerclass>
-    <innerclass refid="a00083" prot="public">CsvHelper::CsvWriter</innerclass>
-    <innerclass refid="a00084" prot="public">CsvHelper::CsvWriterException</innerclass>
-    <innerclass refid="a00104" prot="package">CsvHelper::ExceptionHelper</innerclass>
-    <innerclass refid="a00114" prot="public">CsvHelper::ICsvFactory</innerclass>
-    <innerclass refid="a00115" prot="public">CsvHelper::ICsvParser</innerclass>
-    <innerclass refid="a00116" prot="public">CsvHelper::ICsvReader</innerclass>
-    <innerclass refid="a00117" prot="public">CsvHelper::ICsvReaderRow</innerclass>
-    <innerclass refid="a00118" prot="public">CsvHelper::ICsvSerializer</innerclass>
-    <innerclass refid="a00119" prot="public">CsvHelper::ICsvWriter</innerclass>
-    <innerclass refid="a00157" prot="package">CsvHelper::ReflectionHelper</innerclass>
-    <innerclass refid="a00170" prot="package">CsvHelper::StringHelper</innerclass>
-    <innernamespace refid="a00341">CsvHelper::Configuration</innernamespace>
-    <innernamespace refid="a00342">CsvHelper::TypeConversion</innernamespace>
+    <compoundname>UnityEngine::Serialization</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="[generated]" line="1" column="1"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/NPC.cs" line="29" column="1"/>
   </compounddef>
 </doxygen>

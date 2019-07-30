@@ -1,8 +1,6 @@
 var a00123 =
 [
-    [ "CanConvertFrom", "a00123.html#ad5fc1d8a5eb73fb4588e7cdc66bd2d89", null ],
-    [ "CanConvertFrom", "a00123.html#a470d21adaa704eb281250dbd112ff91a", null ],
-    [ "CanConvertTo", "a00123.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
-    [ "ConvertFromString", "a00123.html#a392314cc9b5f5b4ad176d0f1a99af32f", null ],
-    [ "ConvertToString", "a00123.html#a36cb2f9b24f15a671293f3a722324c27", null ]
+    [ "LineInfo", "a00123.html#a15924fb79c648f2089ff0db955679dd9", null ],
+    [ "lineNumber", "a00123.html#a7165cafce64a3deafc41b2090ddf8d0e", null ],
+    [ "nodeName", "a00123.html#a5a91331fb123e29d71d69e096f943c2f", null ]
 ];

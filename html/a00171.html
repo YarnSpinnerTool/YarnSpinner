@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.TableGenerator Class Reference</title>
+<title>YarnSpinner: Yarn.YarnException Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,82 +107,70 @@ $(document).ready(function(){initNavTree('a00171.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pac-static-methods">Static Package Functions</a> &#124;
-<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
-<a href="a00765.html">List of all members</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="a00572.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.TableGenerator Class Reference</div>  </div>
+<div class="title">Yarn.YarnException Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents things that can go wrong while loading or running a dialogue.  
+ <a href="a00171.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.TableGenerator:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.YarnException:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00766.png" border="0" usemap="#_yarn_8_table_generator_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_table_generator_coll__map" id="_yarn_8_table_generator_coll__map">
+<div class="center"><img src="a00573.png" border="0" usemap="#_yarn_8_yarn_exception_inherit__map" alt="Inheritance graph"/></div>
+<map name="_yarn_8_yarn_exception_inherit__map" id="_yarn_8_yarn_exception_inherit__map">
 </map>
 </div>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-static-methods"></a>
-Static Package Functions</h2></td></tr>
-<tr class="memitem:a1d65ef643c3f3495cf9480f86172ff87"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00171.html#a1d65ef643c3f3495cf9480f86172ff87">GenerateTables</a> (<a class="el" href="a00109.html">GenerateTableOptions</a> options)</td></tr>
-<tr class="separator:a1d65ef643c3f3495cf9480f86172ff87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
-Static Private Member Functions</h2></td></tr>
-<tr class="memitem:ac03637d16d3512258c997b9a21af6c42"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00171.html#ac03637d16d3512258c997b9a21af6c42">CreateCSVRow</a> (params string[] entries)</td></tr>
-<tr class="separator:ac03637d16d3512258c997b9a21af6c42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa16da6b6810ce3a5fd2a7920de6322ef"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00171.html#aa16da6b6810ce3a5fd2a7920de6322ef">CreateCSVRow</a> (KeyValuePair&lt; string, string &gt; entry)</td></tr>
-<tr class="separator:aa16da6b6810ce3a5fd2a7920de6322ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="a00330_source.html#l00010">10</a> of file <a class="el" href="a00330_source.html">TableGenerator.cs</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ac03637d16d3512258c997b9a21af6c42"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static string Yarn.TableGenerator.CreateCSVRow </td>
-          <td>(</td>
-          <td class="paramtype">params string[]&#160;</td>
-          <td class="paramname"><em>entries</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00330_source.html#l00126">126</a> of file <a class="el" href="a00330_source.html">TableGenerator.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00330_source.html#l00130">Yarn.TableGenerator.CreateCSVRow()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                                                             {</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            <span class="keywordflow">return</span> string.Join (<span class="stringliteral">&quot;,&quot;</span>, entries);</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        }</div>
-</div><!-- fragment -->
-<p><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.YarnException:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00171_ac03637d16d3512258c997b9a21af6c42_icgraph.png" border="0" usemap="#a00171_ac03637d16d3512258c997b9a21af6c42_icgraph" alt=""/></div>
-<map name="a00171_ac03637d16d3512258c997b9a21af6c42_icgraph" id="a00171_ac03637d16d3512258c997b9a21af6c42_icgraph">
-<area shape="rect" id="node2" href="a00171.html#aa16da6b6810ce3a5fd2a7920de6322ef" title="Yarn.TableGenerator.Create\lCSVRow" alt="" coords="241,5,426,46"/></map>
+<div class="center"><img src="a00574.png" border="0" usemap="#_yarn_8_yarn_exception_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_yarn_exception_coll__map" id="_yarn_8_yarn_exception_coll__map">
+</map>
 </div>
-</p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:aa4a1dc51efdfa238aad7f20d76710fd1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00171.html#aa4a1dc51efdfa238aad7f20d76710fd1">YarnException</a> (string message)</td></tr>
+<tr class="separator:aa4a1dc51efdfa238aad7f20d76710fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a4230584809bc10d063385a96cc23aeb8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00171.html#a4230584809bc10d063385a96cc23aeb8">YarnException</a> (SerializationInfo serializationInfo, StreamingContext streamingContext)</td></tr>
+<tr class="separator:a4230584809bc10d063385a96cc23aeb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents things that can go wrong while loading or running a dialogue. </p>
 
+<p>Definition at line <a class="el" href="a00282_source.html#l00037">37</a> of file <a class="el" href="a00282_source.html">Dialogue.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aa4a1dc51efdfa238aad7f20d76710fd1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Yarn.YarnException.YarnException </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00282_source.html#l00038">38</a> of file <a class="el" href="a00282_source.html">Dialogue.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;: base(message) {}</div>
+</div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="aa16da6b6810ce3a5fd2a7920de6322ef"></a>
+<a class="anchor" id="a4230584809bc10d063385a96cc23aeb8"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -190,212 +178,45 @@ Static Private Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static string Yarn.TableGenerator.CreateCSVRow </td>
+          <td class="memname">Yarn.YarnException.YarnException </td>
           <td>(</td>
-          <td class="paramtype">KeyValuePair&lt; string, string &gt;&#160;</td>
-          <td class="paramname"><em>entry</em></td><td>)</td>
-          <td></td>
+          <td class="paramtype">SerializationInfo&#160;</td>
+          <td class="paramname"><em>serializationInfo</em>, </td>
         </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00330_source.html#l00130">130</a> of file <a class="el" href="a00330_source.html">TableGenerator.cs</a>.</p>
-
-<p>References <a class="el" href="a00330_source.html#l00126">Yarn.TableGenerator.CreateCSVRow()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                                                                       {</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="a00171.html#ac03637d16d3512258c997b9a21af6c42">CreateCSVRow</a> (<span class="keyword">new</span> <span class="keywordtype">string</span>[] { entry.Key, entry.Value });</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        }</div>
-<div class="ttc" id="a00171_html_ac03637d16d3512258c997b9a21af6c42"><div class="ttname"><a href="a00171.html#ac03637d16d3512258c997b9a21af6c42">Yarn.TableGenerator.CreateCSVRow</a></div><div class="ttdeci">static string CreateCSVRow(params string[] entries)</div><div class="ttdef"><b>Definition:</b> <a href="a00330_source.html#l00126">TableGenerator.cs:126</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00171_aa16da6b6810ce3a5fd2a7920de6322ef_cgraph.png" border="0" usemap="#a00171_aa16da6b6810ce3a5fd2a7920de6322ef_cgraph" alt=""/></div>
-<map name="a00171_aa16da6b6810ce3a5fd2a7920de6322ef_cgraph" id="a00171_aa16da6b6810ce3a5fd2a7920de6322ef_cgraph">
-<area shape="rect" id="node2" href="a00171.html#ac03637d16d3512258c997b9a21af6c42" title="Yarn.TableGenerator.Create\lCSVRow" alt="" coords="241,5,426,46"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a1d65ef643c3f3495cf9480f86172ff87"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
         <tr>
-          <td class="memname">static int Yarn.TableGenerator.GenerateTables </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00109.html">GenerateTableOptions</a>&#160;</td>
-          <td class="paramname"><em>options</em></td><td>)</td>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">StreamingContext&#160;</td>
+          <td class="paramname"><em>streamingContext</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">package</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00330_source.html#l00012">12</a> of file <a class="el" href="a00330_source.html">TableGenerator.cs</a>.</p>
-
-<p>References <a class="el" href="a00328_source.html#l00273">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</a>, <a class="el" href="a00328_source.html#l00114">Yarn.GenerateTableOptions.onlyUseTag</a>, and <a class="el" href="a00328_source.html#l00046">Yarn.BaseOptions.verbose</a>.</p>
-
-<p>Referenced by <a class="el" href="a00328_source.html#l00244">Yarn.YarnSpinnerConsole.Main()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            YarnSpinnerConsole.CheckFileList(options.files, <a class="code" href="a00197.html#a0979de7ea02c8c0375b8220a12e6575e">YarnSpinnerConsole.ALLOWED_EXTENSIONS</a>);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <span class="keywordflow">if</span> (options.<a class="code" href="a00043.html#ada4d83d1756918f362d55f6649b82b17">verbose</a> &amp;&amp; options.<a class="code" href="a00109.html#a8b30c1b7fb1b74eae455a568c1024b3d">onlyUseTag</a> != null) {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                YarnSpinnerConsole.Note(string.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;Only using lines from nodes tagged \&quot;{0}\&quot;&quot;</span>, options.onlyUseTag));</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            }</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keywordtype">bool</span> linesWereUntagged = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">foreach</span> (var file <span class="keywordflow">in</span> options.<a class="code" href="a00043.html#aa93cbb1bc1d5328e0a417012621e92d2">files</a>) {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                var dialogue = YarnSpinnerConsole.CreateDialogueForUtilities();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                dialogue.LoadFile (file);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                var stringTable = dialogue.GetStringTable ();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                var emittedStringTable = <span class="keyword">new</span> Dictionary&lt;string,string&gt; ();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                var anyLinesAreUntagged = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordflow">foreach</span> (var entry <span class="keywordflow">in</span> stringTable) {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                    <span class="comment">// If options.onlyUseTag is set, we skip all lines in nodes that</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                    <span class="comment">// don&#39;t have that tag.</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                    <span class="keywordflow">if</span> (options.<a class="code" href="a00109.html#a8b30c1b7fb1b74eae455a568c1024b3d">onlyUseTag</a> != null) {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                        <span class="comment">// Find the tags for the node that this string is in</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                        <a class="code" href="a00133.html">LineInfo</a> stringInfo;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                        <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                            stringInfo = dialogue.program.lineInfo[entry.Key];</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                        } <span class="keywordflow">catch</span> (KeyNotFoundException) {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                            YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;{0}: lineInfo table does not contain an entry for line {1} (\&quot;{2}\&quot;)&quot;</span>, file, entry.Key, entry.Value));</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                            <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                        }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                        <a class="code" href="a00053.html#a00382">Node</a> node;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                        <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                            node = dialogue.program.nodes[stringInfo.nodeName];</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                        } <span class="keywordflow">catch</span> (KeyNotFoundException) {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                            YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;{0}: Line {1}&#39;s lineInfo claims that the line originates in node {2}, but this node is not present in this program.&quot;</span>, file, entry.Key, stringInfo.nodeName));</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                            <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                        }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                        var tags = node.tags;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                        <span class="comment">// If the tags don&#39;t include the one we&#39;re looking for,</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        <span class="comment">// skip this line</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                        <span class="keywordflow">if</span> (tags.FindIndex(i =&gt; i == options.<a class="code" href="a00109.html#a8b30c1b7fb1b74eae455a568c1024b3d">onlyUseTag</a>) == -1) {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                        }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                    }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                    <span class="keywordflow">if</span> (entry.Key.StartsWith(<span class="stringliteral">&quot;line:&quot;</span>, StringComparison.InvariantCulture) == <span class="keyword">false</span>) {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                        anyLinesAreUntagged = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                        emittedStringTable [entry.Key] = entry.Value;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                    }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="keywordflow">if</span> (anyLinesAreUntagged) {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                    YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;Untagged lines in {0}&quot;</span>, file));</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                    linesWereUntagged = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                <span class="comment">// Generate the CSV</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                <span class="keyword">using</span> (var w = <span class="keyword">new</span> System.IO.StringWriter()) {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                    <span class="keyword">using</span> (var csv = <span class="keyword">new</span> <a class="code" href="a00083.html">CsvWriter</a>(w)) {</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                        csv.WriteHeader&lt;<a class="code" href="a00136.html">LocalisedLine</a>&gt;();</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                        <span class="keywordflow">foreach</span> (var entry <span class="keywordflow">in</span> emittedStringTable)</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                        {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                            var l = <span class="keyword">new</span> <a class="code" href="a00136.html">LocalisedLine</a>();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                            l.LineCode = entry.Key;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                            l.LineText = entry.Value;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                            l.Comment = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                            csv.WriteRecord(l);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                        }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                        var dir = System.IO.Path.GetDirectoryName(file);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                        var fileName = System.IO.Path.GetFileNameWithoutExtension(file);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                        fileName += <span class="stringliteral">&quot;_lines.csv&quot;</span>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                        var filePath = System.IO.Path.Combine(dir, fileName);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                        System.IO.File.WriteAllText(filePath, w.ToString());</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                        <span class="keywordflow">if</span> (options.<a class="code" href="a00043.html#ada4d83d1756918f362d55f6649b82b17">verbose</a>)</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                        {</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                            YarnSpinnerConsole.Note(<span class="stringliteral">&quot;Wrote &quot;</span> + filePath);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                        }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                    }</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                }</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            }</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <span class="keywordflow">if</span> (linesWereUntagged) {</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                YarnSpinnerConsole.Warn(<span class="stringliteral">&quot;Some lines were not tagged, so they weren&#39;t added to the &quot;</span> +</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                               <span class="stringliteral">&quot;string file. Use this tool&#39;s &#39;generate&#39; action to add them.&quot;</span>);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            }</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        }</div>
-<div class="ttc" id="a00109_html_a8b30c1b7fb1b74eae455a568c1024b3d"><div class="ttname"><a href="a00109.html#a8b30c1b7fb1b74eae455a568c1024b3d">Yarn.GenerateTableOptions.onlyUseTag</a></div><div class="ttdeci">string onlyUseTag</div><div class="ttdef"><b>Definition:</b> <a href="a00328_source.html#l00114">Main.cs:114</a></div></div>
-<div class="ttc" id="a00043_html_ada4d83d1756918f362d55f6649b82b17"><div class="ttname"><a href="a00043.html#ada4d83d1756918f362d55f6649b82b17">Yarn.BaseOptions.verbose</a></div><div class="ttdeci">bool verbose</div><div class="ttdef"><b>Definition:</b> <a href="a00328_source.html#l00046">Main.cs:46</a></div></div>
-<div class="ttc" id="a00053_html_a00382"><div class="ttname"><a href="a00053.html#a00382">Yarn.Node</a></div><div class="ttdef"><b>Definition:</b> <a href="a00317_source.html#l00252">Program.cs:252</a></div></div>
-<div class="ttc" id="a00083_html"><div class="ttname"><a href="a00083.html">CsvHelper.CsvWriter</a></div><div class="ttdoc">Used to write CSV files. </div><div class="ttdef"><b>Definition:</b> <a href="a00245_source.html#l00024">CsvWriter.cs:24</a></div></div>
-<div class="ttc" id="a00197_html_a0979de7ea02c8c0375b8220a12e6575e"><div class="ttname"><a href="a00197.html#a0979de7ea02c8c0375b8220a12e6575e">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</a></div><div class="ttdeci">static List&lt; string &gt; ALLOWED_EXTENSIONS</div><div class="ttdef"><b>Definition:</b> <a href="a00328_source.html#l00273">Main.cs:273</a></div></div>
-<div class="ttc" id="a00043_html_aa93cbb1bc1d5328e0a417012621e92d2"><div class="ttname"><a href="a00043.html#aa93cbb1bc1d5328e0a417012621e92d2">Yarn.BaseOptions.files</a></div><div class="ttdeci">IList&lt; string &gt; files</div><div class="ttdef"><b>Definition:</b> <a href="a00328_source.html#l00049">Main.cs:49</a></div></div>
-<div class="ttc" id="a00133_html"><div class="ttname"><a href="a00133.html">Yarn.LineInfo</a></div><div class="ttdef"><b>Definition:</b> <a href="a00317_source.html#l00071">Program.cs:71</a></div></div>
-<div class="ttc" id="a00136_html"><div class="ttname"><a href="a00136.html">Yarn.LocalisedLine</a></div><div class="ttdoc">A line, localised into the current locale. </div><div class="ttdef"><b>Definition:</b> <a href="a00308_source.html#l00094">Dialogue.cs:94</a></div></div>
+<p>Definition at line <a class="el" href="a00282_source.html#l00040">40</a> of file <a class="el" href="a00282_source.html">Dialogue.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;: base(serializationInfo, streamingContext) {}</div>
 </div><!-- fragment -->
-<p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00171_a1d65ef643c3f3495cf9480f86172ff87_icgraph.png" border="0" usemap="#a00171_a1d65ef643c3f3495cf9480f86172ff87_icgraph" alt=""/></div>
-<map name="a00171_a1d65ef643c3f3495cf9480f86172ff87_icgraph" id="a00171_a1d65ef643c3f3495cf9480f86172ff87_icgraph">
-<area shape="rect" id="node2" href="a00197.html#a1d71ff2eb190449ea1d42ce86f44489f" title="Yarn.YarnSpinnerConsole.Main" alt="" coords="254,12,458,39"/></map>
-</div>
-</p>
-
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>YarnSpinnerConsole/<a class="el" href="a00330_source.html">TableGenerator.cs</a></li>
+<li>YarnSpinner/<a class="el" href="a00282_source.html">Dialogue.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00053.html">Yarn</a></li><li class="navelem"><a class="el" href="a00171.html">TableGenerator</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:26 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00048.html">Yarn</a></li><li class="navelem"><a class="el" href="a00171.html">YarnException</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:47 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

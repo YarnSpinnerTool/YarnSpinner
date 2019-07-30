@@ -1,158 +1,93 @@
-\hypertarget{a00102}{\section{Yarn.\-Error\-Listener Class Reference}
-\label{a00102}\index{Yarn.\-Error\-Listener@{Yarn.\-Error\-Listener}}
+\hypertarget{a00102}{\section{Yarn.\-Generate\-Table\-Options Class Reference}
+\label{a00102}\index{Yarn.\-Generate\-Table\-Options@{Yarn.\-Generate\-Table\-Options}}
 }
 
 
-Inheritance diagram for Yarn.\-Error\-Listener\-:
+Inheritance diagram for Yarn.\-Generate\-Table\-Options\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=174pt]{a00640}
+\includegraphics[width=216pt]{a00657}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Error\-Listener\-:
+Collaboration diagram for Yarn.\-Generate\-Table\-Options\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=235pt]{a00641}
+\includegraphics[width=216pt]{a00658}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-override void \hyperlink{a00102_a47fb9f6d50aa6a4e4796dea10b237fe4}{Syntax\-Error} (System.\-I\-O.\-Text\-Writer output, I\-Recognizer recognizer, \hyperlink{a00322_ae3d87b0b748ea892bff48f60862e182d}{I\-Token} offending\-Symbol, int line, int char\-Position\-In\-Line, string msg, Recognition\-Exception e)
-\end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{a00102}{Error\-Listener} \hyperlink{a00102_a47b8f4f1d414afa1ea6067218c7ee34d}{Instance}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
+string \hyperlink{a00102_a8b30c1b7fb1b74eae455a568c1024b3d}{only\-Use\-Tag}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-\hyperlink{a00102_a1f0cc41aac10bd8a2402355534c1123c}{Error\-Listener} ()
-\end{DoxyCompactItemize}
-\subsection*{Static Private Attributes}
-\begin{DoxyCompactItemize}
+bool \hyperlink{a00040_a89964ea17bd19caf00cb5bff563ed01c}{show\-Debugging\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-static readonly \hyperlink{a00102}{Error\-Listener} \hyperlink{a00102_a9421873edea84c51d5905f5a24c62479}{instance} = new \hyperlink{a00102}{Error\-Listener}()
+bool \hyperlink{a00040_ada4d83d1756918f362d55f6649b82b17}{verbose}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+I\-List$<$ string $>$ \hyperlink{a00040_aa93cbb1bc1d5328e0a417012621e92d2}{files}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 9 of file Error\-Listener.\-cs.
-
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00102_a1f0cc41aac10bd8a2402355534c1123c}{\index{Yarn\-::\-Error\-Listener@{Yarn\-::\-Error\-Listener}!Error\-Listener@{Error\-Listener}}
-\index{Error\-Listener@{Error\-Listener}!Yarn::ErrorListener@{Yarn\-::\-Error\-Listener}}
-\subsubsection[{Error\-Listener}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Error\-Listener.\-Error\-Listener (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00102_a1f0cc41aac10bd8a2402355534c1123c}
-
-
-Definition at line 12 of file Error\-Listener.\-cs.
-
-
-\begin{DoxyCode}
-12 \{\}
-\end{DoxyCode}
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00102_a47fb9f6d50aa6a4e4796dea10b237fe4}{\index{Yarn\-::\-Error\-Listener@{Yarn\-::\-Error\-Listener}!Syntax\-Error@{Syntax\-Error}}
-\index{Syntax\-Error@{Syntax\-Error}!Yarn::ErrorListener@{Yarn\-::\-Error\-Listener}}
-\subsubsection[{Syntax\-Error}]{\setlength{\rightskip}{0pt plus 5cm}override void Yarn.\-Error\-Listener.\-Syntax\-Error (
-\begin{DoxyParamCaption}
-\item[{System.\-I\-O.\-Text\-Writer}]{output, }
-\item[{I\-Recognizer}]{recognizer, }
-\item[{{\bf I\-Token}}]{offending\-Symbol, }
-\item[{int}]{line, }
-\item[{int}]{char\-Position\-In\-Line, }
-\item[{string}]{msg, }
-\item[{Recognition\-Exception}]{e}
-\end{DoxyParamCaption}
-)}}\label{a00102_a47fb9f6d50aa6a4e4796dea10b237fe4}
-
-
-Definition at line 21 of file Error\-Listener.\-cs.
-
-
-\begin{DoxyCode}
-22         \{
-23             StringBuilder builder = \textcolor{keyword}{new} StringBuilder();
-24 
-25             \textcolor{comment}{// the human readable message}
-26             \textcolor{keywordtype}{object}[] format = \textcolor{keyword}{new} \textcolor{keywordtype}{object}[] \{ line, charPositionInLine + 1 \};
-27             builder.AppendFormat(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Error on line \{0\} at position \{1\}:\(\backslash\)n"}, format
-      );
-28             \textcolor{comment}{// the actual error message}
-29             builder.AppendLine(msg);
-30 
-31             \textcolor{comment}{// the line with the error on it}
-32             \textcolor{keywordtype}{string} input = offendingSymbol.TokenSource.InputStream.ToString();
-33             \textcolor{keywordtype}{string}[] lines = input.Split(\textcolor{charliteral}{'\(\backslash\)n'});
-34             \textcolor{keywordtype}{string} errorLine = lines[line - 1];
-35             builder.AppendLine(errorLine);
-36 
-37             \textcolor{comment}{// adding indicator symbols pointing out where the error is on the line}
-38             \textcolor{keywordtype}{int} start = offendingSymbol.StartIndex;
-39             \textcolor{keywordtype}{int} stop = offendingSymbol.StopIndex;
-40             \textcolor{keywordflow}{if} (start >= 0 && stop >= 0)
-41             \{
-42                 \textcolor{comment}{// the end point of the error in "line space"}
-43                 \textcolor{keywordtype}{int} end = (stop - start) + charPositionInLine + 1;
-44                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < end; i++)
-45                 \{
-46                     \textcolor{comment}{// move over until we are at the point we need to be}
-47                     \textcolor{keywordflow}{if} (i >= charPositionInLine && i < end)
-48                     \{
-49                         builder.Append(\textcolor{stringliteral}{"^"});
-50                     \}
-51                     \textcolor{keywordflow}{else}
-52                     \{
-53                         builder.Append(\textcolor{stringliteral}{" "});
-54                     \}
-55                 \}
-56             \}
-57             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} \hyperlink{a00149}{Yarn.ParseException}(builder.ToString());
-58         \}
-\end{DoxyCode}
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00102_a9421873edea84c51d5905f5a24c62479}{\index{Yarn\-::\-Error\-Listener@{Yarn\-::\-Error\-Listener}!instance@{instance}}
-\index{instance@{instance}!Yarn::ErrorListener@{Yarn\-::\-Error\-Listener}}
-\subsubsection[{instance}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Error\-Listener} Yarn.\-Error\-Listener.\-instance = new {\bf Error\-Listener}()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00102_a9421873edea84c51d5905f5a24c62479}
-
-
-Definition at line 11 of file Error\-Listener.\-cs.
+Definition at line 110 of file Main.\-cs.
 
 
 
 \subsection{Property Documentation}
-\hypertarget{a00102_a47b8f4f1d414afa1ea6067218c7ee34d}{\index{Yarn\-::\-Error\-Listener@{Yarn\-::\-Error\-Listener}!Instance@{Instance}}
-\index{Instance@{Instance}!Yarn::ErrorListener@{Yarn\-::\-Error\-Listener}}
-\subsubsection[{Instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Error\-Listener} Yarn.\-Error\-Listener.\-Instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00102_a47b8f4f1d414afa1ea6067218c7ee34d}
+\hypertarget{a00040_aa93cbb1bc1d5328e0a417012621e92d2}{\index{Yarn\-::\-Generate\-Table\-Options@{Yarn\-::\-Generate\-Table\-Options}!files@{files}}
+\index{files@{files}!Yarn::GenerateTableOptions@{Yarn\-::\-Generate\-Table\-Options}}
+\subsubsection[{files}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Base\-Options.\-files\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00040_aa93cbb1bc1d5328e0a417012621e92d2}
 
 
-Definition at line 14 of file Error\-Listener.\-cs.
+Definition at line 49 of file Main.\-cs.
 
 
 
-Referenced by Yarn.\-Loader.\-Load().
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run(), and Yarn.\-Yarn\-Spinner\-Console.\-Verify().
+
+\hypertarget{a00102_a8b30c1b7fb1b74eae455a568c1024b3d}{\index{Yarn\-::\-Generate\-Table\-Options@{Yarn\-::\-Generate\-Table\-Options}!only\-Use\-Tag@{only\-Use\-Tag}}
+\index{only\-Use\-Tag@{only\-Use\-Tag}!Yarn::GenerateTableOptions@{Yarn\-::\-Generate\-Table\-Options}}
+\subsubsection[{only\-Use\-Tag}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Generate\-Table\-Options.\-only\-Use\-Tag\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00102_a8b30c1b7fb1b74eae455a568c1024b3d}
+
+
+Definition at line 113 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-Table\-Generator.\-Generate\-Tables().
+
+\hypertarget{a00040_a89964ea17bd19caf00cb5bff563ed01c}{\index{Yarn\-::\-Generate\-Table\-Options@{Yarn\-::\-Generate\-Table\-Options}!show\-Debugging\-Info@{show\-Debugging\-Info}}
+\index{show\-Debugging\-Info@{show\-Debugging\-Info}!Yarn::GenerateTableOptions@{Yarn\-::\-Generate\-Table\-Options}}
+\subsubsection[{show\-Debugging\-Info}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-show\-Debugging\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00040_a89964ea17bd19caf00cb5bff563ed01c}
+
+
+Definition at line 42 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
+
+\hypertarget{a00040_ada4d83d1756918f362d55f6649b82b17}{\index{Yarn\-::\-Generate\-Table\-Options@{Yarn\-::\-Generate\-Table\-Options}!verbose@{verbose}}
+\index{verbose@{verbose}!Yarn::GenerateTableOptions@{Yarn\-::\-Generate\-Table\-Options}}
+\subsubsection[{verbose}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-verbose\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00040_ada4d83d1756918f362d55f6649b82b17}
+
+
+Definition at line 46 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Table\-Generator.\-Generate\-Tables().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00309}{Error\-Listener.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner\-Console/\hyperlink{a00300}{Main.\-cs}\end{DoxyCompactItemize}

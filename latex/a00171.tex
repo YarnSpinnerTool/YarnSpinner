@@ -1,258 +1,84 @@
-\hypertarget{a00171}{\section{Yarn.\-Table\-Generator Class Reference}
-\label{a00171}\index{Yarn.\-Table\-Generator@{Yarn.\-Table\-Generator}}
+\hypertarget{a00171}{\section{Yarn.\-Yarn\-Exception Class Reference}
+\label{a00171}\index{Yarn.\-Yarn\-Exception@{Yarn.\-Yarn\-Exception}}
 }
 
 
-Collaboration diagram for Yarn.\-Table\-Generator\-:
+Represents things that can go wrong while loading or running a dialogue.  
+
+
+
+
+Inheritance diagram for Yarn.\-Yarn\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=186pt]{a00766}
+\includegraphics[width=184pt]{a00573}
 \end{center}
 \end{figure}
-\subsection*{Static Package Functions}
+
+
+Collaboration diagram for Yarn.\-Yarn\-Exception\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{a00574}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static int \hyperlink{a00171_a1d65ef643c3f3495cf9480f86172ff87}{Generate\-Tables} (\hyperlink{a00109}{Generate\-Table\-Options} options)
+\hyperlink{a00171_aa4a1dc51efdfa238aad7f20d76710fd1}{Yarn\-Exception} (string message)
 \end{DoxyCompactItemize}
-\subsection*{Static Private Member Functions}
+\subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static string \hyperlink{a00171_ac03637d16d3512258c997b9a21af6c42}{Create\-C\-S\-V\-Row} (params string\mbox{[}$\,$\mbox{]} entries)
-\item 
-static string \hyperlink{a00171_aa16da6b6810ce3a5fd2a7920de6322ef}{Create\-C\-S\-V\-Row} (Key\-Value\-Pair$<$ string, string $>$ entry)
+\hyperlink{a00171_a4230584809bc10d063385a96cc23aeb8}{Yarn\-Exception} (Serialization\-Info serialization\-Info, Streaming\-Context streaming\-Context)
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Represents things that can go wrong while loading or running a dialogue. 
+
+Definition at line 37 of file Dialogue.\-cs.
 
 
-Definition at line 10 of file Table\-Generator.\-cs.
 
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00171_ac03637d16d3512258c997b9a21af6c42}{\index{Yarn\-::\-Table\-Generator@{Yarn\-::\-Table\-Generator}!Create\-C\-S\-V\-Row@{Create\-C\-S\-V\-Row}}
-\index{Create\-C\-S\-V\-Row@{Create\-C\-S\-V\-Row}!Yarn::TableGenerator@{Yarn\-::\-Table\-Generator}}
-\subsubsection[{Create\-C\-S\-V\-Row}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-Table\-Generator.\-Create\-C\-S\-V\-Row (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00171_aa4a1dc51efdfa238aad7f20d76710fd1}{\index{Yarn\-::\-Yarn\-Exception@{Yarn\-::\-Yarn\-Exception}!Yarn\-Exception@{Yarn\-Exception}}
+\index{Yarn\-Exception@{Yarn\-Exception}!Yarn::YarnException@{Yarn\-::\-Yarn\-Exception}}
+\subsubsection[{Yarn\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Yarn\-Exception.\-Yarn\-Exception (
 \begin{DoxyParamCaption}
-\item[{params string\mbox{[}$\,$\mbox{]}}]{entries}
+\item[{string}]{message}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00171_ac03637d16d3512258c997b9a21af6c42}
+)}}\label{a00171_aa4a1dc51efdfa238aad7f20d76710fd1}
 
 
-Definition at line 126 of file Table\-Generator.\-cs.
-
-
-
-Referenced by Yarn.\-Table\-Generator.\-Create\-C\-S\-V\-Row().
+Definition at line 38 of file Dialogue.\-cs.
 
 
 \begin{DoxyCode}
-126                                                              \{
-127             \textcolor{keywordflow}{return} string.Join (\textcolor{stringliteral}{","}, entries);
-128         \}
+38 : base(message) \{\}
 \end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00171_ac03637d16d3512258c997b9a21af6c42_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00171_aa16da6b6810ce3a5fd2a7920de6322ef}{\index{Yarn\-::\-Table\-Generator@{Yarn\-::\-Table\-Generator}!Create\-C\-S\-V\-Row@{Create\-C\-S\-V\-Row}}
-\index{Create\-C\-S\-V\-Row@{Create\-C\-S\-V\-Row}!Yarn::TableGenerator@{Yarn\-::\-Table\-Generator}}
-\subsubsection[{Create\-C\-S\-V\-Row}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-Table\-Generator.\-Create\-C\-S\-V\-Row (
+\hypertarget{a00171_a4230584809bc10d063385a96cc23aeb8}{\index{Yarn\-::\-Yarn\-Exception@{Yarn\-::\-Yarn\-Exception}!Yarn\-Exception@{Yarn\-Exception}}
+\index{Yarn\-Exception@{Yarn\-Exception}!Yarn::YarnException@{Yarn\-::\-Yarn\-Exception}}
+\subsubsection[{Yarn\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Yarn\-Exception.\-Yarn\-Exception (
 \begin{DoxyParamCaption}
-\item[{Key\-Value\-Pair$<$ string, string $>$}]{entry}
+\item[{Serialization\-Info}]{serialization\-Info, }
+\item[{Streaming\-Context}]{streaming\-Context}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00171_aa16da6b6810ce3a5fd2a7920de6322ef}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{a00171_a4230584809bc10d063385a96cc23aeb8}
 
 
-Definition at line 130 of file Table\-Generator.\-cs.
-
-
-
-References Yarn.\-Table\-Generator.\-Create\-C\-S\-V\-Row().
+Definition at line 40 of file Dialogue.\-cs.
 
 
 \begin{DoxyCode}
-130                                                                        \{
-131             \textcolor{keywordflow}{return} \hyperlink{a00171_ac03637d16d3512258c997b9a21af6c42}{CreateCSVRow} (\textcolor{keyword}{new} \textcolor{keywordtype}{string}[] \{ entry.Key, entry.Value \});
-132         \}
+40 : base(serializationInfo, streamingContext) \{\}
 \end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00171_aa16da6b6810ce3a5fd2a7920de6322ef_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00171_a1d65ef643c3f3495cf9480f86172ff87}{\index{Yarn\-::\-Table\-Generator@{Yarn\-::\-Table\-Generator}!Generate\-Tables@{Generate\-Tables}}
-\index{Generate\-Tables@{Generate\-Tables}!Yarn::TableGenerator@{Yarn\-::\-Table\-Generator}}
-\subsubsection[{Generate\-Tables}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-Table\-Generator.\-Generate\-Tables (
-\begin{DoxyParamCaption}
-\item[{{\bf Generate\-Table\-Options}}]{options}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00171_a1d65ef643c3f3495cf9480f86172ff87}
-
-
-Definition at line 12 of file Table\-Generator.\-cs.
-
-
-
-References Yarn.\-Yarn\-Spinner\-Console.\-A\-L\-L\-O\-W\-E\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N\-S, Yarn.\-Generate\-Table\-Options.\-only\-Use\-Tag, and Yarn.\-Base\-Options.\-verbose.
-
-
-
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Main().
-
-
-\begin{DoxyCode}
-13         \{
-14 
-15             YarnSpinnerConsole.CheckFileList(options.files, 
-      \hyperlink{a00197_a0979de7ea02c8c0375b8220a12e6575e}{YarnSpinnerConsole.ALLOWED\_EXTENSIONS});
-16 
-17             \textcolor{keywordflow}{if} (options.\hyperlink{a00043_ada4d83d1756918f362d55f6649b82b17}{verbose} && options.\hyperlink{a00109_a8b30c1b7fb1b74eae455a568c1024b3d}{onlyUseTag} != null) \{
-18                 YarnSpinnerConsole.Note(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Only using lines from
-       nodes tagged \(\backslash\)"\{0\}\(\backslash\)""}, options.onlyUseTag));
-19             \}
-20 
-21             \textcolor{keywordtype}{bool} linesWereUntagged = \textcolor{keyword}{false};
-22 
-23             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.\hyperlink{a00043_aa93cbb1bc1d5328e0a417012621e92d2}{files}) \{
-24 
-25                 var dialogue = YarnSpinnerConsole.CreateDialogueForUtilities();
-26 
-27                 dialogue.LoadFile (file);
-28 
-29                 var stringTable = dialogue.GetStringTable ();
-30 
-31                 var emittedStringTable = \textcolor{keyword}{new} Dictionary<string,string> ();
-32 
-33                 var anyLinesAreUntagged = \textcolor{keyword}{false};
-34 
-35                 \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} stringTable) \{
-36 
-37                     \textcolor{comment}{// If options.onlyUseTag is set, we skip all lines in nodes that}
-38                     \textcolor{comment}{// don't have that tag.}
-39                     \textcolor{keywordflow}{if} (options.\hyperlink{a00109_a8b30c1b7fb1b74eae455a568c1024b3d}{onlyUseTag} != null) \{
-40 
-41                         \textcolor{comment}{// Find the tags for the node that this string is in}
-42                         \hyperlink{a00133}{LineInfo} stringInfo;
-43 
-44                         \textcolor{keywordflow}{try} \{
-45                             stringInfo = dialogue.program.lineInfo[entry.Key];
-46                         \} \textcolor{keywordflow}{catch} (KeyNotFoundException) \{
-47                             YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"\{0\}:
-       lineInfo table does not contain an entry for line \{1\} (\(\backslash\)"\{2\}\(\backslash\)")"}, file, entry.Key, entry.Value));
-48                             \textcolor{keywordflow}{return} 1;
-49                         \}
-50 
-51                         \hyperlink{a00053_a00382}{Node} node;
-52 
-53                         \textcolor{keywordflow}{try} \{
-54                             node = dialogue.program.nodes[stringInfo.nodeName];
-55                         \} \textcolor{keywordflow}{catch} (KeyNotFoundException) \{
-56                             YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"\{0\}: Line
-       \{1\}'s lineInfo claims that the line originates in node \{2\}, but this node is not present in this program."}, 
-      file, entry.Key, stringInfo.nodeName));
-57                             \textcolor{keywordflow}{return} 1;
-58                         \}
-59 
-60 
-61                         var tags = node.tags;
-62 
-63                         \textcolor{comment}{// If the tags don't include the one we're looking for,}
-64                         \textcolor{comment}{// skip this line}
-65                         \textcolor{keywordflow}{if} (tags.FindIndex(i => i == options.\hyperlink{a00109_a8b30c1b7fb1b74eae455a568c1024b3d}{onlyUseTag}) == -1) \{
-66                             \textcolor{keywordflow}{continue};
-67                         \}
-68 
-69                     \}
-70 
-71                     \textcolor{keywordflow}{if} (entry.Key.StartsWith(\textcolor{stringliteral}{"line:"}, StringComparison.InvariantCulture) == \textcolor{keyword}{false}) \{
-72                         anyLinesAreUntagged = \textcolor{keyword}{true};
-73                     \} \textcolor{keywordflow}{else} \{
-74                         emittedStringTable [entry.Key] = entry.Value;
-75                     \}
-76                 \}
-77 
-78                 \textcolor{keywordflow}{if} (anyLinesAreUntagged) \{
-79                     YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Untagged lines in
-       \{0\}"}, file));
-80                     linesWereUntagged = \textcolor{keyword}{true};
-81                 \}
-82 
-83                 \textcolor{comment}{// Generate the CSV}
-84 
-85                 \textcolor{keyword}{using} (var w = \textcolor{keyword}{new} System.IO.StringWriter()) \{
-86                     \textcolor{keyword}{using} (var csv = \textcolor{keyword}{new} \hyperlink{a00083}{CsvWriter}(w)) \{
-87 
-88                         csv.WriteHeader<\hyperlink{a00136}{LocalisedLine}>();
-89 
-90                         \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} emittedStringTable)
-91                         \{
-92 
-93                             var l = \textcolor{keyword}{new} \hyperlink{a00136}{LocalisedLine}();
-94                             l.LineCode = entry.Key;
-95                             l.LineText = entry.Value;
-96                             l.Comment = \textcolor{stringliteral}{""};
-97 
-98                             csv.WriteRecord(l);
-99                         \}
-100 
-101                         var dir = System.IO.Path.GetDirectoryName(file);
-102                         var fileName = System.IO.Path.GetFileNameWithoutExtension(file);
-103                         fileName += \textcolor{stringliteral}{"\_lines.csv"};
-104                         var filePath = System.IO.Path.Combine(dir, fileName);
-105 
-106                         System.IO.File.WriteAllText(filePath, w.ToString());
-107 
-108                         \textcolor{keywordflow}{if} (options.\hyperlink{a00043_ada4d83d1756918f362d55f6649b82b17}{verbose})
-109                         \{
-110                             YarnSpinnerConsole.Note(\textcolor{stringliteral}{"Wrote "} + filePath);
-111                         \}
-112                     \}
-113                 \}
-114 
-115             \}
-116 
-117             \textcolor{keywordflow}{if} (linesWereUntagged) \{
-118                 YarnSpinnerConsole.Warn(\textcolor{stringliteral}{"Some lines were not tagged, so they weren't added to the "} +
-119                                \textcolor{stringliteral}{"string file. Use this tool's 'generate' action to add them."});
-120             \}
-121 
-122             \textcolor{keywordflow}{return} 0;
-123 
-124         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00171_a1d65ef643c3f3495cf9480f86172ff87_icgraph}
-\end{center}
-\end{figure}
-
-
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner\-Console/\hyperlink{a00330}{Table\-Generator.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00282}{Dialogue.\-cs}\end{DoxyCompactItemize}

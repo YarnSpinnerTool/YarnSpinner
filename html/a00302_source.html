@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Unity/Assets/YarnSpinner/Examples/DemoScripts/NPC.cs Source File</title>
+<title>YarnSpinner: YarnSpinnerTests/DialogueTests.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,76 +105,194 @@ $(document).ready(function(){initNavTree('a00302_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">NPC.cs</div>  </div>
+<div class="title">DialogueTests.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00302.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">The MIT License (MIT)</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">in the Software without restriction, including without limitation the rights</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">copies of the Software, and to permit persons to whom the Software is</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">furnished to do so, subject to the following conditions:</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">The above copyright notice and this permission notice shall be included in all</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">copies or substantial portions of the Software.</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">SOFTWARE.</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">*/</span></div>
+<a href="a00302.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">using</span> NUnit.Framework;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using</span> System;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">using</span> System.Collections;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> Yarn;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using</span> System.IO;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">using</span> System.Linq;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="a00345.html">    9</a></span>&#160;<span class="keyword">namespace </span>YarnSpinner.Tests</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="a00090.html">   13</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00090.html">DialogueTests</a> : <a class="code" href="a00152.html">TestBase</a></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        [SetUp]</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="a00090.html#a49813a64c710540348c15365a672e675">   16</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">new</span> <span class="keywordtype">void</span> <a class="code" href="a00090.html#a49813a64c710540348c15365a672e675">Init</a>()</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            base.Init();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        }</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        [Test]</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="a00090.html#a9d4171827bf3eba4c6ae52760a475f45">   23</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00090.html#a9d4171827bf3eba4c6ae52760a475f45">TestNodeExists</a> ()</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            var path = Path.Combine(UnityDemoScriptsPath, <span class="stringliteral">&quot;Sally.yarn.txt&quot;</span>);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">using</span> UnityEngine;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">using</span> System.Collections;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">using</span> UnityEngine.Serialization;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">namespace </span>Yarn.Unity.Example {</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="a00143.html">   33</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00143.html">NPC</a> : MonoBehaviour {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="a00143.html#a418ea7095bd8201559ed392f07905ca3">   35</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">string</span> characterName = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            dialogue.LoadFile (path);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            Assert.True (dialogue.NodeExists (<span class="stringliteral">&quot;Sally&quot;</span>));</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="comment">// Test clearing everything</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            dialogue.UnloadAll ();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="comment">// Load an empty node</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            dialogue.LoadString(<span class="stringliteral">&quot;// Test, this is empty&quot;</span>);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        [FormerlySerializedAs(<span class="stringliteral">&quot;startNode&quot;</span>)]</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="a00143.html#a64f4f1fb66b2046a674e3ebf3b9fdb56">   38</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">string</span> talkToNode = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        [Header(<span class="stringliteral">&quot;Optional&quot;</span>)]</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="a00143.html#a63145fb6ddf357e604d71bac04ca8a60">   41</a></span>&#160;        <span class="keyword">public</span> TextAsset <a class="code" href="a00143.html#a63145fb6ddf357e604d71bac04ca8a60">scriptToLoad</a>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="comment">// Use this for initialization</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="a00143.html#a0bf37075312ea87c2e329cc363a328a6">   44</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="a00143.html#a0bf37075312ea87c2e329cc363a328a6">Start</a> () {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">if</span> (scriptToLoad != null) {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                FindObjectOfType&lt;<a class="code" href="a00095.html">Yarn.Unity.DialogueRunner</a>&gt;().AddScript(scriptToLoad);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">// Update is called once per frame</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="a00143.html#ab1bea5afabd1c2e1e991063b1579d062">   52</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="a00143.html#ab1bea5afabd1c2e1e991063b1579d062">Update</a> () {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
-<div class="ttc" id="a00143_html_a0bf37075312ea87c2e329cc363a328a6"><div class="ttname"><a href="a00143.html#a0bf37075312ea87c2e329cc363a328a6">Yarn.Unity.Example.NPC.Start</a></div><div class="ttdeci">void Start()</div><div class="ttdef"><b>Definition:</b> <a href="a00302_source.html#l00044">NPC.cs:44</a></div></div>
-<div class="ttc" id="a00143_html"><div class="ttname"><a href="a00143.html">Yarn.Unity.Example.NPC</a></div><div class="ttdef"><b>Definition:</b> <a href="a00302_source.html#l00033">NPC.cs:33</a></div></div>
-<div class="ttc" id="a00143_html_ab1bea5afabd1c2e1e991063b1579d062"><div class="ttname"><a href="a00143.html#ab1bea5afabd1c2e1e991063b1579d062">Yarn.Unity.Example.NPC.Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition:</b> <a href="a00302_source.html#l00052">NPC.cs:52</a></div></div>
-<div class="ttc" id="a00143_html_a63145fb6ddf357e604d71bac04ca8a60"><div class="ttname"><a href="a00143.html#a63145fb6ddf357e604d71bac04ca8a60">Yarn.Unity.Example.NPC.scriptToLoad</a></div><div class="ttdeci">TextAsset scriptToLoad</div><div class="ttdef"><b>Definition:</b> <a href="a00302_source.html#l00041">NPC.cs:41</a></div></div>
-<div class="ttc" id="a00095_html"><div class="ttname"><a href="a00095.html">Yarn.Unity.DialogueRunner</a></div><div class="ttdoc">DialogueRunners act as the interface between your game and YarnSpinner. </div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00045">DialogueRunner.cs:45</a></div></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            Assert.False (dialogue.NodeExists (<span class="stringliteral">&quot;Sally&quot;</span>));</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        [Test]</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="a00090.html#a40b0efb3cac1715b44640c29988139f1">   42</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00090.html#a40b0efb3cac1715b44640c29988139f1">TestAnalysis</a>() </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            ICollection&lt;<a class="code" href="a00087.html">Yarn.Analysis.Diagnosis</a>&gt; diagnoses;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <a class="code" href="a00054.html">Yarn.Analysis.Context</a> context;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="comment">// this script has the following variables:</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="comment">// $foo is read from and written to</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="comment">// $bar is written to but never read</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="comment">// $bas is read from but never written to</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="comment">// this means that there should be two diagnosis results</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            var script = <span class="stringliteral">&quot;// testing\n&lt;&lt;set $foo to 1&gt;&gt;&lt;&lt;set $bar to $foo&gt;&gt;&lt;&lt;set $bar to $bas&gt;&gt;&quot;</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            context = <span class="keyword">new</span> <a class="code" href="a00054.html">Yarn.Analysis.Context</a> (typeof(Yarn.Analysis.UnusedVariableChecker));</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            dialogue.LoadString (script);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            dialogue.Analyse (context);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            diagnoses = <span class="keyword">new</span> List&lt;<a class="code" href="a00087.html">Yarn.Analysis.Diagnosis</a>&gt;(context.FinishAnalysis ());</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            Assert.AreEqual (2, diagnoses.Count);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            dialogue.UnloadAll ();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            context = <span class="keyword">new</span> <a class="code" href="a00054.html">Yarn.Analysis.Context</a> (typeof(Yarn.Analysis.UnusedVariableChecker));</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, <span class="stringliteral">&quot;Ship.yarn.txt&quot;</span>));</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, <span class="stringliteral">&quot;Sally.yarn.txt&quot;</span>));</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            dialogue.Analyse (context);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            diagnoses = <span class="keyword">new</span> List&lt;<a class="code" href="a00087.html">Yarn.Analysis.Diagnosis</a>&gt;(context.FinishAnalysis ());</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="comment">// This script should contain no unused variables</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            Assert.IsEmpty (diagnoses);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        [Test]</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="a00090.html#a111f0f8418baaeaf83cfb422c90210e0">   76</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00090.html#a111f0f8418baaeaf83cfb422c90210e0">TestDumpingCode</a>()</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            var path = Path.Combine(TestDataPath, <span class="stringliteral">&quot;Example.yarn.txt&quot;</span>);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            dialogue.LoadFile (path);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            var byteCode = dialogue.GetByteCode ();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            Assert.NotNull (byteCode);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        [Test]</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="a00090.html#a013d5e3847b9d716b39aa925d70b99fd">   88</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00090.html#a013d5e3847b9d716b39aa925d70b99fd">TestMissingNode</a>()</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            var path = Path.Combine (TestDataPath, <span class="stringliteral">&quot;TestCases&quot;</span>, <span class="stringliteral">&quot;Smileys.node&quot;</span>);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            dialogue.LoadFile (path);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            errorsCauseFailures = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordflow">foreach</span> (var result <span class="keywordflow">in</span> dialogue.Run(<span class="stringliteral">&quot;THIS NODE DOES NOT EXIST&quot;</span>)) {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        [Test]</div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="a00090.html#afbb342ea64e33ee19d42a6a2c949592a">  101</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00090.html#afbb342ea64e33ee19d42a6a2c949592a">TestGettingCurrentNodeName</a>()  {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, <span class="stringliteral">&quot;Sally.yarn.txt&quot;</span>));</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="comment">// dialogue should not be running yet</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            Assert.IsNull (dialogue.currentNode);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            <span class="keywordflow">foreach</span> (var result <span class="keywordflow">in</span> dialogue.Run(<span class="stringliteral">&quot;Sally&quot;</span>)) {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                <span class="comment">// Should now be in the node we requested</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                Assert.AreEqual (dialogue.currentNode, <span class="stringliteral">&quot;Sally&quot;</span>);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                <span class="comment">// Stop immediately</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                dialogue.Stop ();</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="comment">// Current node should now be null</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            Assert.IsNull (dialogue.currentNode);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        [Test]</div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="a00090.html#a16ed34de323da529e1a17670f556791c">  120</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00090.html#a16ed34de323da529e1a17670f556791c">TestGettingRawSource</a>() {</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            dialogue.LoadFile (Path.Combine(TestDataPath, <span class="stringliteral">&quot;Example.yarn.txt&quot;</span>));</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            var source = dialogue.GetTextForNode (<span class="stringliteral">&quot;LearnMore&quot;</span>);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            Assert.IsNotNull (source);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            Assert.AreEqual (source, <span class="stringliteral">&quot;A: HAHAHA&quot;</span>);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        }</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        [Test]</div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="a00090.html#abb7bc5876ca4f37e93c6ac40bbd0e3b7">  131</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00090.html#abb7bc5876ca4f37e93c6ac40bbd0e3b7">TestGettingTags</a>() {</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            dialogue.LoadFile (Path.Combine(TestDataPath, <span class="stringliteral">&quot;Example.yarn.txt&quot;</span>));</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            var source = dialogue.GetTagsForNode (<span class="stringliteral">&quot;LearnMore&quot;</span>);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            Assert.IsNotNull (source);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            Assert.IsNotEmpty (source);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            Assert.AreEqual (source.First(), <span class="stringliteral">&quot;rawText&quot;</span>);</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        }</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        [Test]</div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="a00090.html#a9c0d2732044b273929dbce35358a1906">  145</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00090.html#a9c0d2732044b273929dbce35358a1906">TestNodeVistation</a>() {</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            dialogue.LoadFile(Path.Combine(TestDataPath, <span class="stringliteral">&quot;Example.yarn.txt&quot;</span>));</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            <span class="keywordflow">foreach</span> (var result <span class="keywordflow">in</span> dialogue.Run(<span class="stringliteral">&quot;Leave&quot;</span>)) {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                HandleResult (result);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            }</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            Assert.Contains(<span class="stringliteral">&quot;Leave&quot;</span>, dialogue.visitedNodes.ToList());</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="comment">// Override the visitedNodes list</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            dialogue.visitedNodes = <span class="keyword">new</span> <span class="keywordtype">string</span>[]{ <span class="stringliteral">&quot;LearnMore&quot;</span> };</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            Assert.Contains(<span class="stringliteral">&quot;LearnMore&quot;</span>, dialogue.visitedNodes.ToList());</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        }</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;}</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
+<div class="ttc" id="a00090_html_a49813a64c710540348c15365a672e675"><div class="ttname"><a href="a00090.html#a49813a64c710540348c15365a672e675">YarnSpinner.Tests.DialogueTests.Init</a></div><div class="ttdeci">new void Init()</div><div class="ttdef"><b>Definition:</b> <a href="a00302_source.html#l00016">DialogueTests.cs:16</a></div></div>
+<div class="ttc" id="a00087_html"><div class="ttname"><a href="a00087.html">Yarn.Analysis.Diagnosis</a></div><div class="ttdef"><b>Definition:</b> <a href="a00279_source.html#l00007">Analyser.cs:7</a></div></div>
+<div class="ttc" id="a00090_html"><div class="ttname"><a href="a00090.html">YarnSpinner.Tests.DialogueTests</a></div><div class="ttdef"><b>Definition:</b> <a href="a00302_source.html#l00013">DialogueTests.cs:13</a></div></div>
+<div class="ttc" id="a00090_html_a16ed34de323da529e1a17670f556791c"><div class="ttname"><a href="a00090.html#a16ed34de323da529e1a17670f556791c">YarnSpinner.Tests.DialogueTests.TestGettingRawSource</a></div><div class="ttdeci">void TestGettingRawSource()</div><div class="ttdef"><b>Definition:</b> <a href="a00302_source.html#l00120">DialogueTests.cs:120</a></div></div>
+<div class="ttc" id="a00090_html_afbb342ea64e33ee19d42a6a2c949592a"><div class="ttname"><a href="a00090.html#afbb342ea64e33ee19d42a6a2c949592a">YarnSpinner.Tests.DialogueTests.TestGettingCurrentNodeName</a></div><div class="ttdeci">void TestGettingCurrentNodeName()</div><div class="ttdef"><b>Definition:</b> <a href="a00302_source.html#l00101">DialogueTests.cs:101</a></div></div>
+<div class="ttc" id="a00090_html_a9d4171827bf3eba4c6ae52760a475f45"><div class="ttname"><a href="a00090.html#a9d4171827bf3eba4c6ae52760a475f45">YarnSpinner.Tests.DialogueTests.TestNodeExists</a></div><div class="ttdeci">void TestNodeExists()</div><div class="ttdef"><b>Definition:</b> <a href="a00302_source.html#l00023">DialogueTests.cs:23</a></div></div>
+<div class="ttc" id="a00054_html"><div class="ttname"><a href="a00054.html">Yarn.Analysis.Context</a></div><div class="ttdef"><b>Definition:</b> <a href="a00279_source.html#l00082">Analyser.cs:82</a></div></div>
+<div class="ttc" id="a00090_html_a40b0efb3cac1715b44640c29988139f1"><div class="ttname"><a href="a00090.html#a40b0efb3cac1715b44640c29988139f1">YarnSpinner.Tests.DialogueTests.TestAnalysis</a></div><div class="ttdeci">void TestAnalysis()</div><div class="ttdef"><b>Definition:</b> <a href="a00302_source.html#l00042">DialogueTests.cs:42</a></div></div>
+<div class="ttc" id="a00152_html"><div class="ttname"><a href="a00152.html">YarnSpinner.Tests.TestBase</a></div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00014">TestBase.cs:14</a></div></div>
+<div class="ttc" id="a00090_html_a111f0f8418baaeaf83cfb422c90210e0"><div class="ttname"><a href="a00090.html#a111f0f8418baaeaf83cfb422c90210e0">YarnSpinner.Tests.DialogueTests.TestDumpingCode</a></div><div class="ttdeci">void TestDumpingCode()</div><div class="ttdef"><b>Definition:</b> <a href="a00302_source.html#l00076">DialogueTests.cs:76</a></div></div>
+<div class="ttc" id="a00090_html_abb7bc5876ca4f37e93c6ac40bbd0e3b7"><div class="ttname"><a href="a00090.html#abb7bc5876ca4f37e93c6ac40bbd0e3b7">YarnSpinner.Tests.DialogueTests.TestGettingTags</a></div><div class="ttdeci">void TestGettingTags()</div><div class="ttdef"><b>Definition:</b> <a href="a00302_source.html#l00131">DialogueTests.cs:131</a></div></div>
+<div class="ttc" id="a00090_html_a013d5e3847b9d716b39aa925d70b99fd"><div class="ttname"><a href="a00090.html#a013d5e3847b9d716b39aa925d70b99fd">YarnSpinner.Tests.DialogueTests.TestMissingNode</a></div><div class="ttdeci">void TestMissingNode()</div><div class="ttdef"><b>Definition:</b> <a href="a00302_source.html#l00088">DialogueTests.cs:88</a></div></div>
+<div class="ttc" id="a00090_html_a9c0d2732044b273929dbce35358a1906"><div class="ttname"><a href="a00090.html#a9c0d2732044b273929dbce35358a1906">YarnSpinner.Tests.DialogueTests.TestNodeVistation</a></div><div class="ttdeci">void TestNodeVistation()</div><div class="ttdef"><b>Definition:</b> <a href="a00302_source.html#l00145">DialogueTests.cs:145</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_3d328b3dca154a477d99beb656992be2.html">Unity</a></li><li class="navelem"><a class="el" href="dir_3b33dffaa21a2ac6f7978a949ffd4e41.html">Assets</a></li><li class="navelem"><a class="el" href="dir_534ffb376c3707ccb35d3c2c883b31fc.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="dir_cb74ec5eb9eec574588e588dd5bf23e1.html">Examples</a></li><li class="navelem"><a class="el" href="dir_a23f776b0598015baa200eafeed2b13c.html">DemoScripts</a></li><li class="navelem"><a class="el" href="a00302.html">NPC.cs</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:22 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_2870522f32e1cc12c0615fa0200eb498.html">YarnSpinnerTests</a></li><li class="navelem"><a class="el" href="a00302.html">DialogueTests.cs</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:44 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

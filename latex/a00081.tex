@@ -1,362 +1,235 @@
-\hypertarget{a00081}{\section{Csv\-Helper.\-Csv\-Serializer Class Reference}
-\label{a00081}\index{Csv\-Helper.\-Csv\-Serializer@{Csv\-Helper.\-Csv\-Serializer}}
+\hypertarget{a00081}{\section{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter Class Reference}
+\label{a00081}\index{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}}
 }
 
 
-Defines methods used to serialize data into a C\-S\-V file.  
+Converts a Date\-Time\-Offset to and from a string.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Csv\-Serializer\-:
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=204pt]{a00446}
+\includegraphics[width=220pt]{a00495}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Csv\-Serializer\-:
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{a00447}
+\includegraphics[width=220pt]{a00496}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00081_a74ea10f7aaea0a478087d8ff6182f38c}{Csv\-Serializer} (Text\-Writer \hyperlink{a00081_adfb235fa2c868fc79c0376fd12fda767}{writer})
-\begin{DoxyCompactList}\small\item\em Creates a new serializer using the given Text\-Writer. \end{DoxyCompactList}\item 
-\hyperlink{a00081_ab14fe4a4f630ce97d57c27e2ee050fac}{Csv\-Serializer} (Text\-Writer \hyperlink{a00081_adfb235fa2c868fc79c0376fd12fda767}{writer}, \hyperlink{a00065}{Csv\-Configuration} \hyperlink{a00081_ae8c56ff97c0a797245f2205c486833ea}{configuration})
-\begin{DoxyCompactList}\small\item\em Creates a new serializer using the given Text\-Writer and Csv\-Configuration. \end{DoxyCompactList}\item 
-void \hyperlink{a00081_aefad906acd048863d3dd414651a44793}{Write} (string\mbox{[}$\,$\mbox{]} record)
-\begin{DoxyCompactList}\small\item\em Writes a record to the C\-S\-V file. \end{DoxyCompactList}\item 
-void \hyperlink{a00081_a9d0e8b3508b377a7f978da2394b09e36}{Dispose} ()
-\begin{DoxyCompactList}\small\item\em Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Protected Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-virtual void \hyperlink{a00081_a0be3b74ca7606e27fd16441ecc988f0b}{Dispose} (bool disposing)
-\begin{DoxyCompactList}\small\item\em Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. \end{DoxyCompactList}\item 
-virtual void \hyperlink{a00081_ae14e1913a4e76faf97484c1bde339143}{Check\-Disposed} ()
-\begin{DoxyCompactList}\small\item\em Checks if the instance has been disposed of. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00065}{Csv\-Configuration} \hyperlink{a00081_a2ae1b1a629b707fbfb7d636989442f34}{Configuration}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-bool \hyperlink{a00081_a2687885dae7f7b0eec3c2db81c05f7e4}{disposed}
-\item 
-readonly \hyperlink{a00065}{Csv\-Configuration} \hyperlink{a00081_ae8c56ff97c0a797245f2205c486833ea}{configuration}
-\item 
-Text\-Writer \hyperlink{a00081_adfb235fa2c868fc79c0376fd12fda767}{writer}
-\end{DoxyCompactItemize}
+override object \hyperlink{a00081_aa69835fc086d80a8eabe7ac50cb92f47}{Convert\-From\-String} (\hyperlink{a00156}{Type\-Converter\-Options} options, string text)
+\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
+override bool \hyperlink{a00081_a82a8cf4b77600ef49da60deb0c24a708}{Can\-Convert\-From} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual string \hyperlink{a00084_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00156}{Type\-Converter\-Options} options, object value)
+\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00084_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Defines methods used to serialize data into a C\-S\-V file. 
+Converts a Date\-Time\-Offset to and from a string. 
 
 
 
-Definition at line 14 of file Csv\-Serializer.\-cs.
+Definition at line 14 of file Date\-Time\-Offset\-Converter.\-cs.
 
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00081_a74ea10f7aaea0a478087d8ff6182f38c}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Csv\-Serializer@{Csv\-Serializer}}
-\index{Csv\-Serializer@{Csv\-Serializer}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{Csv\-Serializer}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Serializer.\-Csv\-Serializer (
-\begin{DoxyParamCaption}
-\item[{Text\-Writer}]{writer}
-\end{DoxyParamCaption}
-)}}\label{a00081_a74ea10f7aaea0a478087d8ff6182f38c}
-
-
-Creates a new serializer using the given Text\-Writer. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em writer} & The Text\-Writer to write the C\-S\-V file data to.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 32 of file Csv\-Serializer.\-cs.
-
-
-\begin{DoxyCode}
-32 : \textcolor{keyword}{this}( \hyperlink{a00081_adfb235fa2c868fc79c0376fd12fda767}{writer}, \textcolor{keyword}{new} \hyperlink{a00065}{CsvConfiguration}() ) \{\}
-\end{DoxyCode}
-\hypertarget{a00081_ab14fe4a4f630ce97d57c27e2ee050fac}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Csv\-Serializer@{Csv\-Serializer}}
-\index{Csv\-Serializer@{Csv\-Serializer}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{Csv\-Serializer}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Serializer.\-Csv\-Serializer (
-\begin{DoxyParamCaption}
-\item[{Text\-Writer}]{writer, }
-\item[{{\bf Csv\-Configuration}}]{configuration}
-\end{DoxyParamCaption}
-)}}\label{a00081_ab14fe4a4f630ce97d57c27e2ee050fac}
-
-
-Creates a new serializer using the given Text\-Writer and Csv\-Configuration. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em writer} & The Text\-Writer to write the C\-S\-V file data to.\\
-\hline
-{\em configuration} & The configuration.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 40 of file Csv\-Serializer.\-cs.
-
-
-
-References Csv\-Helper.\-Csv\-Serializer.\-configuration, and Csv\-Helper.\-Csv\-Serializer.\-writer.
-
-
-\begin{DoxyCode}
-41         \{
-42             \textcolor{keywordflow}{if}( \hyperlink{a00081_adfb235fa2c868fc79c0376fd12fda767}{writer} == null )
-43             \{
-44                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"writer"} );
-45             \}
-46 
-47             \textcolor{keywordflow}{if}( configuration == null )
-48             \{
-49                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"configuration"} );
-50             \}
-51 
-52             this.writer = \hyperlink{a00081_adfb235fa2c868fc79c0376fd12fda767}{writer};
-53             this.configuration = \hyperlink{a00081_ae8c56ff97c0a797245f2205c486833ea}{configuration};
-54         \}
-\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00081_ae14e1913a4e76faf97484c1bde339143}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Check\-Disposed@{Check\-Disposed}}
-\index{Check\-Disposed@{Check\-Disposed}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{Check\-Disposed}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Serializer.\-Check\-Disposed (
+\hypertarget{a00081_a82a8cf4b77600ef49da60deb0c24a708}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter.\-Can\-Convert\-From (
 \begin{DoxyParamCaption}
-{}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00081_ae14e1913a4e76faf97484c1bde339143}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_a82a8cf4b77600ef49da60deb0c24a708}
 
 
-Checks if the instance has been disposed of. 
-
-
-\begin{DoxyExceptions}{Exceptions}
-{\em Object\-Disposed\-Exception} & \\
-\hline
-\end{DoxyExceptions}
-
-
-Definition at line 105 of file Csv\-Serializer.\-cs.
-
-
-
-References Csv\-Helper.\-Csv\-Serializer.\-disposed.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Serializer.\-Write().
-
-
-\begin{DoxyCode}
-106         \{
-107             \textcolor{keywordflow}{if}( \hyperlink{a00081_a2687885dae7f7b0eec3c2db81c05f7e4}{disposed} )
-108             \{
-109                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ObjectDisposedException( GetType().ToString() );
-110             \}
-111         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00081_ae14e1913a4e76faf97484c1bde339143_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00081_a9d0e8b3508b377a7f978da2394b09e36}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Dispose@{Dispose}}
-\index{Dispose@{Dispose}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Csv\-Serializer.\-Dispose (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00081_a9d0e8b3508b377a7f978da2394b09e36}
-
-
-Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. 
-
-$<$filterpriority$>$2$<$/filterpriority$>$ 
-
-Definition at line 72 of file Csv\-Serializer.\-cs.
-
-
-\begin{DoxyCode}
-73         \{
-74             \hyperlink{a00081_a9d0e8b3508b377a7f978da2394b09e36}{Dispose}( \textcolor{keyword}{true} );
-75             GC.SuppressFinalize( this );
-76         \}
-\end{DoxyCode}
-\hypertarget{a00081_a0be3b74ca7606e27fd16441ecc988f0b}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Dispose@{Dispose}}
-\index{Dispose@{Dispose}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Serializer.\-Dispose (
-\begin{DoxyParamCaption}
-\item[{bool}]{disposing}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00081_a0be3b74ca7606e27fd16441ecc988f0b}
-
-
-Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. 
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em disposing} & True if the instance needs to be disposed of.\\
+{\em type} & The type.\\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
 
 
-Definition at line 82 of file Csv\-Serializer.\-cs.
+Reimplemented from \hyperlink{a00084_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
 
 
 
-References Csv\-Helper.\-Csv\-Serializer.\-disposed, and Csv\-Helper.\-Csv\-Serializer.\-writer.
+Definition at line 49 of file Date\-Time\-Offset\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-83         \{
-84             \textcolor{keywordflow}{if}( \hyperlink{a00081_a2687885dae7f7b0eec3c2db81c05f7e4}{disposed} )
-85             \{
-86                 \textcolor{keywordflow}{return};
-87             \}
-88 
-89             \textcolor{keywordflow}{if}( disposing )
-90             \{
-91                 \textcolor{keywordflow}{if}( \hyperlink{a00081_adfb235fa2c868fc79c0376fd12fda767}{writer} != null )
-92                 \{
-93                     writer.Dispose();
-94                 \}
-95             \}
-96 
-97             \hyperlink{a00081_a2687885dae7f7b0eec3c2db81c05f7e4}{disposed} = \textcolor{keyword}{true};
-98             \hyperlink{a00081_adfb235fa2c868fc79c0376fd12fda767}{writer} = null;
-99         \}
+50         \{
+51             \textcolor{comment}{// We only care about strings.}
+52             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+53         \}
 \end{DoxyCode}
-\hypertarget{a00081_aefad906acd048863d3dd414651a44793}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Write@{Write}}
-\index{Write@{Write}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{Write}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Csv\-Serializer.\-Write (
+\hypertarget{a00084_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
+\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
+\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
 \begin{DoxyParamCaption}
-\item[{string\mbox{[}$\,$\mbox{]}}]{record}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)}}\label{a00081_aefad906acd048863d3dd414651a44793}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00084_acb65bd8c8199d88d5b1629ae35d18514}
 
 
-Writes a record to the C\-S\-V file. 
+Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em record} & The record to write.\\
+{\em type} & The type.\\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
 
 
-Implements \hyperlink{a00118_a0b442858eef85b7d933662359646fd0b}{Csv\-Helper.\-I\-Csv\-Serializer}.
+Implements \hyperlink{a00117_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-Definition at line 60 of file Csv\-Serializer.\-cs.
+Reimplemented in \hyperlink{a00095_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
 
 
 
-References Csv\-Helper.\-Csv\-Serializer.\-Check\-Disposed().
+Definition at line 69 of file Default\-Type\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-61         \{
-62             \hyperlink{a00081_ae14e1913a4e76faf97484c1bde339143}{CheckDisposed}();
-63 
-64             var recordString = string.Join( configuration.Delimiter, record );
-65             writer.WriteLine( recordString );
-66         \}
+70         \{
+71             \textcolor{comment}{// We only care about strings.}
+72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+73         \}
 \end{DoxyCode}
+\hypertarget{a00081_aa69835fc086d80a8eabe7ac50cb92f47}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
+\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
+\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter.\-Convert\-From\-String (
+\begin{DoxyParamCaption}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{string}]{text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00081_aa69835fc086d80a8eabe7ac50cb92f47}
 
 
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00081_aefad906acd048863d3dd414651a44793_cgraph}
-\end{center}
-\end{figure}
+Converts the string to an object. 
 
 
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em text} & The string to convert to an object.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The object created from the string.
+\end{DoxyReturn}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00081_ae8c56ff97c0a797245f2205c486833ea}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!configuration@{configuration}}
-\index{configuration@{configuration}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{configuration}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Csv\-Configuration} Csv\-Helper.\-Csv\-Serializer.\-configuration\hspace{0.3cm}{\ttfamily [private]}}}\label{a00081_ae8c56ff97c0a797245f2205c486833ea}
-
-
-Definition at line 17 of file Csv\-Serializer.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Serializer.\-Csv\-Serializer().
-
-\hypertarget{a00081_a2687885dae7f7b0eec3c2db81c05f7e4}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!disposed@{disposed}}
-\index{disposed@{disposed}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{disposed}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-Csv\-Serializer.\-disposed\hspace{0.3cm}{\ttfamily [private]}}}\label{a00081_a2687885dae7f7b0eec3c2db81c05f7e4}
-
-
-Definition at line 16 of file Csv\-Serializer.\-cs.
+Reimplemented from \hyperlink{a00084_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
 
 
 
-Referenced by Csv\-Helper.\-Csv\-Serializer.\-Check\-Disposed(), and Csv\-Helper.\-Csv\-Serializer.\-Dispose().
-
-\hypertarget{a00081_adfb235fa2c868fc79c0376fd12fda767}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!writer@{writer}}
-\index{writer@{writer}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{writer}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Writer Csv\-Helper.\-Csv\-Serializer.\-writer\hspace{0.3cm}{\ttfamily [private]}}}\label{a00081_adfb235fa2c868fc79c0376fd12fda767}
-
-
-Definition at line 18 of file Csv\-Serializer.\-cs.
+Definition at line 22 of file Date\-Time\-Offset\-Converter.\-cs.
 
 
 
-Referenced by Csv\-Helper.\-Csv\-Serializer.\-Csv\-Serializer(), and Csv\-Helper.\-Csv\-Serializer.\-Dispose().
+References Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info.
+
+
+\begin{DoxyCode}
+23         \{
+24             \textcolor{keywordflow}{if}( text == null )
+25             \{
+26                 \textcolor{keywordflow}{return} base.ConvertFromString( options, null );
+27             \}
+28 
+29             \textcolor{keywordflow}{if}( text.Trim().Length == 0 )
+30             \{
+31                 \textcolor{keywordflow}{return} DateTimeOffset.MinValue;
+32             \}
+33 
+34             var formatProvider = (IFormatProvider)options.CultureInfo.GetFormat( typeof( DateTimeFormatInfo
+       ) ) ?? options.CultureInfo;
+35             var dateTimeStyle = options.DateTimeStyle ?? DateTimeStyles.None;
+36 
+37             \textcolor{keywordflow}{return} string.IsNullOrEmpty( options.Format )
+38                 ? DateTimeOffset.Parse( text, formatProvider, dateTimeStyle )
+39                 : DateTimeOffset.ParseExact( text, options.Format, formatProvider, dateTimeStyle );
+40         \}
+\end{DoxyCode}
+\hypertarget{a00084_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
+\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
+\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
+\begin{DoxyParamCaption}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{object}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00084_a36cb2f9b24f15a671293f3a722324c27}
+
+
+Converts the object to a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em value} & The object to convert to a string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the object.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00117_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-\subsection{Property Documentation}
-\hypertarget{a00081_a2ae1b1a629b707fbfb7d636989442f34}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Configuration@{Configuration}}
-\index{Configuration@{Configuration}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{Configuration}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Configuration} Csv\-Helper.\-Csv\-Serializer.\-Configuration\hspace{0.3cm}{\ttfamily [get]}}}\label{a00081_a2ae1b1a629b707fbfb7d636989442f34}
-
-
-Gets the configuration. 
+Reimplemented in \hyperlink{a00133_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00095_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
 
 
 
-Definition at line 24 of file Csv\-Serializer.\-cs.
+Definition at line 21 of file Default\-Type\-Converter.\-cs.
 
+
+\begin{DoxyCode}
+22         \{
+23             \textcolor{keywordflow}{if}( value == null )
+24             \{
+25                 \textcolor{keywordflow}{return} string.Empty;
+26             \}
+27 
+28             var formattable = value as IFormattable;
+29             \textcolor{keywordflow}{if}( formattable != null )
+30             \{
+31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
+32             \}
+33 
+34             \textcolor{keywordflow}{return} value.ToString();
+35         \}
+\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00244}{Csv\-Serializer.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00242}{Date\-Time\-Offset\-Converter.\-cs}\end{DoxyCompactItemize}

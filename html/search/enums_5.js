@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['severity',['Severity',['../a00093.html#a227813cbc8fa03c3448a612ffc909d1c',1,'Yarn::Analysis::Diagnosis']]],
-  ['state',['State',['../a00051.html#ab24848d7951ce44eb3c7768c6ee10385',1,'Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult']]]
+  ['tokentype',['TokenType',['../a00048.html#a301aa7c866593a5b625a8fc158bbeace',1,'Yarn']]],
+  ['type',['Type',['../a00165.html#ad5aaf60ee4504608fcc2ffadefa14884',1,'Yarn::Value']]]
 ];

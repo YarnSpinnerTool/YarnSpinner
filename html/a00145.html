@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.Parser.Operator Class Reference</title>
+<title>YarnSpinner: Yarn.VirtualMachine Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -108,134 +108,182 @@ $(document).ready(function(){initNavTree('a00145.html','');});
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pac-types">Package Types</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pac-methods">Package Functions</a> &#124;
-<a href="#pac-static-methods">Static Package Functions</a> &#124;
-<a href="#pac-attribs">Package Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
-<a href="a00691.html">List of all members</a>  </div>
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="a00633.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Parser.Operator Class Reference</div>  </div>
+<div class="title">Yarn.VirtualMachine Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.Parser.Operator:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.VirtualMachine:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00692.png" border="0" usemap="#_yarn_8_parser_8_operator_inherit__map" alt="Inheritance graph"/></div>
-<map name="_yarn_8_parser_8_operator_inherit__map" id="_yarn_8_parser_8_operator_inherit__map">
-<area shape="rect" id="node2" href="a00150.html" title="{ParseNode\n|~ parent\l~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="17,5,137,171"/></map>
-</div>
-<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Parser.Operator:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00693.png" border="0" usemap="#_yarn_8_parser_8_operator_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_parser_8_operator_coll__map" id="_yarn_8_parser_8_operator_coll__map">
-<area shape="rect" id="node2" href="a00150.html" title="{ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="24,222,144,373"/><area shape="rect" id="node3" href="a00150.html" title="{Yarn.Parser.ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="4,6,163,157"/></map>
+<div class="center"><img src="a00634.png" border="0" usemap="#_yarn_8_virtual_machine_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_virtual_machine_coll__map" id="_yarn_8_virtual_machine_coll__map">
+<area shape="rect" id="node2" href="a00088.html" title="The Dialogue class is the main thing that clients will use. " alt="" coords="202,685,408,1056"/><area shape="rect" id="node5" href="a00125.html" title="{Yarn.Loader\n|+ program\l|+ Loader()\l+ Load()\l~ GetNodesFromText()\l~ GetFormatFromFileName()\l&#45; preprocessor()\l}" alt="" coords="210,1120,400,1256"/><area shape="rect" id="node3" href="a00121.html" title="{Yarn.Library\n|&#45; functions\l|+ GetFunction()\l+ ImportLibrary()\l+ RegisterFunction()\l+ RegisterFunction()\l+ RegisterFunction()\l+ FunctionExists()\l+ DeregisterFunction()\l}" alt="" coords="5,375,157,540"/><area shape="rect" id="node4" href="a00138.html" title="{Yarn.Program\n|+ untaggedStrings\l~ strings\l~ lineInfo\l~ nodes\l&#45; stringCount\l|+ LoadStrings()\l+ RegisterString()\l+ GetString()\l+ DumpCode()\l+ GetTextForNode()\l+ GetTagsForNode()\l+ Include()\l}" alt="" coords="143,5,285,229"/><area shape="rect" id="node6" href="a00167.html" title="Where we turn to for storing and loading variable data. " alt="" coords="522,389,667,525"/><area shape="rect" id="node7" href="a00048.html#a00351" title="{Yarn.Node\n|+ instructions\l+ name\l+ sourceTextStringID\l+ labels\l+ tags\l|}" alt="" coords="315,49,461,185"/><area shape="rect" id="node8" href="a00148.html" title="{Yarn.VirtualMachine.State\n|+ currentNodeName\l+ programCounter\l+ currentOptions\l&#45; stack\l|+ PushValue()\l+ PopValue()\l+ PeekValue()\l+ ClearStack()\l}" alt="" coords="486,35,660,200"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00146.html">OperatorInfo</a></td></tr>
+<tr class="memitem:a00353"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a00353">SpecialVariables</a></td></tr>
+<tr class="separator:a00353"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00148.html">State</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:add28fa9c8a45ca579e84d05920bbc42d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#add28fa9c8a45ca579e84d05920bbc42d">ExecutionState</a> { <a class="el" href="a00145.html#add28fa9c8a45ca579e84d05920bbc42dac23e2b09ebe6bf4cb5e2a9abe85c0be2">ExecutionState.Stopped</a>, 
+<a class="el" href="a00145.html#add28fa9c8a45ca579e84d05920bbc42da74a2a0b3a4597e7a50714f9cea34772b">ExecutionState.WaitingOnOptionSelection</a>, 
+<a class="el" href="a00145.html#add28fa9c8a45ca579e84d05920bbc42da5bda814c4aedb126839228f1a3d92f09">ExecutionState.Running</a>
+ }</td></tr>
+<tr class="separator:add28fa9c8a45ca579e84d05920bbc42d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a054f36c80d5eeacd569a8859f599af67"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a054f36c80d5eeacd569a8859f599af67">TagsToString</a> (int indentLevel)</td></tr>
-<tr class="separator:a054f36c80d5eeacd569a8859f599af67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18c67cb16090d0889bb9d6c8c6c565f8"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a18c67cb16090d0889bb9d6c8c6c565f8">ToString</a> ()</td></tr>
-<tr class="separator:a18c67cb16090d0889bb9d6c8c6c565f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac9ec1011ea2c01460044d7c8355f398"><td class="memItemLeft" align="right" valign="top">delegate void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#aac9ec1011ea2c01460044d7c8355f398">LineHandler</a> (<a class="el" href="a00124.html">Dialogue.LineResult</a> line)</td></tr>
+<tr class="separator:aac9ec1011ea2c01460044d7c8355f398"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78dfd54b743e53078eed19ab7be2b6cf"><td class="memItemLeft" align="right" valign="top">delegate void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a78dfd54b743e53078eed19ab7be2b6cf">OptionsHandler</a> (<a class="el" href="a00134.html">Dialogue.OptionSetResult</a> options)</td></tr>
+<tr class="separator:a78dfd54b743e53078eed19ab7be2b6cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b57359378059b134ba76acddafd8d81"><td class="memItemLeft" align="right" valign="top">delegate void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a1b57359378059b134ba76acddafd8d81">CommandHandler</a> (<a class="el" href="a00049.html">Dialogue.CommandResult</a> command)</td></tr>
+<tr class="separator:a1b57359378059b134ba76acddafd8d81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bf3aa51578847c18191fec665a840f9"><td class="memItemLeft" align="right" valign="top">delegate void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a5bf3aa51578847c18191fec665a840f9">NodeCompleteHandler</a> (<a class="el" href="a00130.html">Dialogue.NodeCompleteResult</a> complete)</td></tr>
+<tr class="separator:a5bf3aa51578847c18191fec665a840f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6364593ea1115d65e34b343422cfbbbd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a6364593ea1115d65e34b343422cfbbbd">SetNode</a> (string nodeName)</td></tr>
+<tr class="separator:a6364593ea1115d65e34b343422cfbbbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78b8c4078471af59ba505c28824d84d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a78b8c4078471af59ba505c28824d84d1">Stop</a> ()</td></tr>
+<tr class="separator:a78b8c4078471af59ba505c28824d84d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-types"></a>
-Package Types</h2></td></tr>
-<tr class="memitem:a83fa1b8db0e6678006920812b6f33f62"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a> { <a class="el" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62a945d5e233cf7d6240f6b783b36a374ff">Associativity.Left</a>, 
-<a class="el" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62a92b09c7c48c520c3c55e497875da437c">Associativity.Right</a>, 
-<a class="el" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62a6adf97f83acf6453d4a6a4b1070f3754">Associativity.None</a>
- }</td></tr>
-<tr class="separator:a83fa1b8db0e6678006920812b6f33f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a29b30454f068fc7e107d48bff4346fd9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00145.html#aac9ec1011ea2c01460044d7c8355f398">LineHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a29b30454f068fc7e107d48bff4346fd9">lineHandler</a></td></tr>
+<tr class="separator:a29b30454f068fc7e107d48bff4346fd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd25fe2e3aa90dc87ba25d9af904465b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00145.html#a78dfd54b743e53078eed19ab7be2b6cf">OptionsHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#acd25fe2e3aa90dc87ba25d9af904465b">optionsHandler</a></td></tr>
+<tr class="separator:acd25fe2e3aa90dc87ba25d9af904465b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab89b02227b92c74552f719afd47848e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00145.html#a1b57359378059b134ba76acddafd8d81">CommandHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#ab89b02227b92c74552f719afd47848e4">commandHandler</a></td></tr>
+<tr class="separator:ab89b02227b92c74552f719afd47848e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5129c63e67e2d4e2780d86b8351320a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00145.html#a5bf3aa51578847c18191fec665a840f9">NodeCompleteHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a5129c63e67e2d4e2780d86b8351320a2">nodeCompleteHandler</a></td></tr>
+<tr class="separator:a5129c63e67e2d4e2780d86b8351320a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-methods"></a>
 Package Functions</h2></td></tr>
-<tr class="memitem:a171027dbddf208784c824ae7fe72cb71"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a171027dbddf208784c824ae7fe72cb71">Operator</a> (<a class="el" href="a00150.html">ParseNode</a> <a class="el" href="a00150.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a>, <a class="el" href="a00053.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> t, <a class="el" href="a00151.html">Parser</a> p)</td></tr>
-<tr class="separator:a171027dbddf208784c824ae7fe72cb71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50f9f95cd7aefe2a601a7d5b5ee7801a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a50f9f95cd7aefe2a601a7d5b5ee7801a">Operator</a> (<a class="el" href="a00150.html">ParseNode</a> <a class="el" href="a00150.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a>, <a class="el" href="a00151.html">Parser</a> p)</td></tr>
-<tr class="separator:a50f9f95cd7aefe2a601a7d5b5ee7801a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c2ad7c4d6837ffc7b5325bbb8330c51"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a0c2ad7c4d6837ffc7b5325bbb8330c51">PrintTree</a> (int indentLevel)</td></tr>
-<tr class="separator:a0c2ad7c4d6837ffc7b5325bbb8330c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a580e520a29444fc23ac3660cbe514a09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00140.html">Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a580e520a29444fc23ac3660cbe514a09">NodeParent</a> ()</td></tr>
-<tr class="separator:a580e520a29444fc23ac3660cbe514a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-static-methods"></a>
-Static Package Functions</h2></td></tr>
-<tr class="memitem:a871e7b4652c48f456647d3950ac37531"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="a00146.html">OperatorInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a871e7b4652c48f456647d3950ac37531">InfoForOperator</a> (<a class="el" href="a00053.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> op)</td></tr>
-<tr class="separator:a871e7b4652c48f456647d3950ac37531"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77a9edf71f86263e1695869e69505007"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a77a9edf71f86263e1695869e69505007">IsOperator</a> (<a class="el" href="a00053.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> type)</td></tr>
-<tr class="separator:a77a9edf71f86263e1695869e69505007"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-attribs"></a>
-Package Attributes</h2></td></tr>
-<tr class="memitem:af313a82103fcc2ff5a177dbb06b92f7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00150.html">ParseNode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a></td></tr>
-<tr class="separator:af313a82103fcc2ff5a177dbb06b92f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18b493382de0fde5b4299c1bd2250075"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a18b493382de0fde5b4299c1bd2250075">lineNumber</a></td></tr>
-<tr class="separator:a18b493382de0fde5b4299c1bd2250075"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58b3a15788fd2d4127d73619dc6d04ae"><td class="memItemLeft" align="right" valign="top">string[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a58b3a15788fd2d4127d73619dc6d04ae">tags</a> = {}</td></tr>
-<tr class="separator:a58b3a15788fd2d4127d73619dc6d04ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefa64c4353e5c261f1189649638e49a6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#aefa64c4353e5c261f1189649638e49a6">VirtualMachine</a> (<a class="el" href="a00088.html">Dialogue</a> d, <a class="el" href="a00138.html">Program</a> p)</td></tr>
+<tr class="separator:aefa64c4353e5c261f1189649638e49a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3cc0337914b9f66454a3d52208dba5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#af3cc0337914b9f66454a3d52208dba5f">RunNext</a> ()</td></tr>
+<tr class="memdesc:af3cc0337914b9f66454a3d52208dba5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the next instruction in the current node.  <a href="#af3cc0337914b9f66454a3d52208dba5f">More...</a><br/></td></tr>
+<tr class="separator:af3cc0337914b9f66454a3d52208dba5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af613c8b2d098678b6ea05b509c0a0cb6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#af613c8b2d098678b6ea05b509c0a0cb6">FindInstructionPointForLabel</a> (string labelName)</td></tr>
+<tr class="memdesc:af613c8b2d098678b6ea05b509c0a0cb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks up the instruction number for a named label in the current node.  <a href="#af613c8b2d098678b6ea05b509c0a0cb6">More...</a><br/></td></tr>
+<tr class="separator:af613c8b2d098678b6ea05b509c0a0cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2caf9ca4f00cdcbd58983be7c106971"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#ad2caf9ca4f00cdcbd58983be7c106971">RunInstruction</a> (<a class="el" href="a00113.html">Instruction</a> i)</td></tr>
+<tr class="separator:ad2caf9ca4f00cdcbd58983be7c106971"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:ac2de2f59be0e69b316627a4de16fadd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00053.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#ac2de2f59be0e69b316627a4de16fadd3">operatorType</a><code> [get, set]</code></td></tr>
-<tr class="separator:ac2de2f59be0e69b316627a4de16fadd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8a4bb1b46dbc3d1b7708e78a2d97e1c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="a00053.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#ad8a4bb1b46dbc3d1b7708e78a2d97e1c">OperatorTypes</a><code> [get]</code></td></tr>
-<tr class="separator:ad8a4bb1b46dbc3d1b7708e78a2d97e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3afe8360a344c16c21213edb3641481"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#ab3afe8360a344c16c21213edb3641481">currentNodeName</a><code> [get]</code></td></tr>
+<tr class="separator:ab3afe8360a344c16c21213edb3641481"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66491da06023dabfb63d09e6ccbba74f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00145.html#add28fa9c8a45ca579e84d05920bbc42d">ExecutionState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a66491da06023dabfb63d09e6ccbba74f">executionState</a><code> [get, set]</code></td></tr>
+<tr class="separator:a66491da06023dabfb63d09e6ccbba74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a3ba945c66cb8ba031357a1771453f82b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a3ba945c66cb8ba031357a1771453f82b">ResetState</a> ()</td></tr>
+<tr class="memdesc:a3ba945c66cb8ba031357a1771453f82b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the state of the VM.  <a href="#a3ba945c66cb8ba031357a1771453f82b">More...</a><br/></td></tr>
+<tr class="separator:a3ba945c66cb8ba031357a1771453f82b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac506426c503da5f033247c29e11c5e82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00088.html">Dialogue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#ac506426c503da5f033247c29e11c5e82">dialogue</a></td></tr>
+<tr class="separator:ac506426c503da5f033247c29e11c5e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2695dbfe3d9df7ffa3f13ad2231217fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00138.html">Program</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a2695dbfe3d9df7ffa3f13ad2231217fb">program</a></td></tr>
+<tr class="separator:a2695dbfe3d9df7ffa3f13ad2231217fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70f2ce6201cdd2430ceaa764ac614ca0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00148.html">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">state</a> = new <a class="el" href="a00148.html">State</a>()</td></tr>
+<tr class="separator:a70f2ce6201cdd2430ceaa764ac614ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a408485a00c7cc558428c86ed9dd04fca"><td class="memItemLeft" align="right" valign="top">Random&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a408485a00c7cc558428c86ed9dd04fca">random</a> = new Random()</td></tr>
+<tr class="separator:a408485a00c7cc558428c86ed9dd04fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ae362616d85f028b7ec3230388926f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00145.html#add28fa9c8a45ca579e84d05920bbc42d">ExecutionState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#a0ae362616d85f028b7ec3230388926f4">_executionState</a></td></tr>
+<tr class="separator:a0ae362616d85f028b7ec3230388926f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7594e14981ad75cecea3b2e7dcf895c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00048.html#a00351">Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html#ab7594e14981ad75cecea3b2e7dcf895c">currentNode</a></td></tr>
+<tr class="separator:ab7594e14981ad75cecea3b2e7dcf895c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="a00316_source.html#l01145">1145</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
-</div><h2 class="groupheader">Member Enumeration Documentation</h2>
-<a class="anchor" id="a83fa1b8db0e6678006920812b6f33f62"></a>
+<p>Definition at line <a class="el" href="a00291_source.html#l00007">7</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
+</div><hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="a00353" id="a00353"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62">Yarn.Parser.Operator.Associativity</a></td>
+          <td class="memname">class Yarn::VirtualMachine::SpecialVariables</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+<div class="textblock">
+<p>Definition at line <a class="el" href="a00291_source.html#l00049">49</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
+</div><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.VirtualMachine.SpecialVariables:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00365.png" border="0" usemap="#_yarn_8_virtual_machine_8_special_variables_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_virtual_machine_8_special_variables_coll__map" id="_yarn_8_virtual_machine_8_special_variables_coll__map">
+</map>
+</div>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a83fa1b8db0e6678006920812b6f33f62a945d5e233cf7d6240f6b783b36a374ff"></a>Left</em>&#160;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a83fa1b8db0e6678006920812b6f33f62a92b09c7c48c520c3c55e497875da437c"></a>Right</em>&#160;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a83fa1b8db0e6678006920812b6f33f62a6adf97f83acf6453d4a6a4b1070f3754"></a>None</em>&#160;</td><td class="fielddoc">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="aecbb8ab9becd96457d836100b2818078"></a>const string</td>
+<td class="fieldname">
+ShuffleOptions</td>
+<td class="fielddoc">
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="a00316_source.html#l01148">1148</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160;                                        {</div>
-<div class="line"><a name="l01149"></a><span class="lineno"> 1149</span>&#160;                <a class="code" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62a945d5e233cf7d6240f6b783b36a374ff">Left</a>, <span class="comment">// resolve leftmost operand first</span></div>
-<div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;                <a class="code" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62a92b09c7c48c520c3c55e497875da437c">Right</a>, <span class="comment">// resolve rightmost operand first</span></div>
-<div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;                <a class="code" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62a6adf97f83acf6453d4a6a4b1070f3754">None</a> <span class="comment">// special-case (like &quot;(&quot;, &quot;)&quot;, &quot;,&quot;</span></div>
-<div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160;            }</div>
-<div class="ttc" id="a00145_html_a83fa1b8db0e6678006920812b6f33f62a6adf97f83acf6453d4a6a4b1070f3754"><div class="ttname"><a href="a00145.html#a83fa1b8db0e6678006920812b6f33f62a6adf97f83acf6453d4a6a4b1070f3754">Yarn.Parser.Operator.None</a></div></div>
-<div class="ttc" id="a00145_html_a83fa1b8db0e6678006920812b6f33f62a945d5e233cf7d6240f6b783b36a374ff"><div class="ttname"><a href="a00145.html#a83fa1b8db0e6678006920812b6f33f62a945d5e233cf7d6240f6b783b36a374ff">Yarn.Parser.Operator.Left</a></div></div>
-<div class="ttc" id="a00145_html_a83fa1b8db0e6678006920812b6f33f62a92b09c7c48c520c3c55e497875da437c"><div class="ttname"><a href="a00145.html#a83fa1b8db0e6678006920812b6f33f62a92b09c7c48c520c3c55e497875da437c">Yarn.Parser.Operator.Right</a></div></div>
+</div>
+</div>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="add28fa9c8a45ca579e84d05920bbc42d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="a00145.html#add28fa9c8a45ca579e84d05920bbc42d">Yarn.VirtualMachine.ExecutionState</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="add28fa9c8a45ca579e84d05920bbc42dac23e2b09ebe6bf4cb5e2a9abe85c0be2"></a>Stopped</em>&#160;</td><td class="fielddoc">
+<p>Stopped. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="add28fa9c8a45ca579e84d05920bbc42da74a2a0b3a4597e7a50714f9cea34772b"></a>WaitingOnOptionSelection</em>&#160;</td><td class="fielddoc">
+<p>Waiting on option selection. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="add28fa9c8a45ca579e84d05920bbc42da5bda814c4aedb126839228f1a3d92f09"></a>Running</em>&#160;</td><td class="fielddoc">
+<p>Running. </p>
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="a00291_source.html#l00088">88</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                                   {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <a class="code" href="a00145.html#add28fa9c8a45ca579e84d05920bbc42dac23e2b09ebe6bf4cb5e2a9abe85c0be2">Stopped</a>,</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <a class="code" href="a00145.html#add28fa9c8a45ca579e84d05920bbc42da74a2a0b3a4597e7a50714f9cea34772b">WaitingOnOptionSelection</a>,</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <a class="code" href="a00145.html#add28fa9c8a45ca579e84d05920bbc42da5bda814c4aedb126839228f1a3d92f09">Running</a></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
+<div class="ttc" id="a00145_html_add28fa9c8a45ca579e84d05920bbc42da5bda814c4aedb126839228f1a3d92f09"><div class="ttname"><a href="a00145.html#add28fa9c8a45ca579e84d05920bbc42da5bda814c4aedb126839228f1a3d92f09">Yarn.VirtualMachine.Running</a></div><div class="ttdoc">Running. </div></div>
+<div class="ttc" id="a00145_html_add28fa9c8a45ca579e84d05920bbc42da74a2a0b3a4597e7a50714f9cea34772b"><div class="ttname"><a href="a00145.html#add28fa9c8a45ca579e84d05920bbc42da74a2a0b3a4597e7a50714f9cea34772b">Yarn.VirtualMachine.WaitingOnOptionSelection</a></div><div class="ttdoc">Waiting on option selection. </div></div>
+<div class="ttc" id="a00145_html_add28fa9c8a45ca579e84d05920bbc42dac23e2b09ebe6bf4cb5e2a9abe85c0be2"><div class="ttname"><a href="a00145.html#add28fa9c8a45ca579e84d05920bbc42dac23e2b09ebe6bf4cb5e2a9abe85c0be2">Yarn.VirtualMachine.Stopped</a></div><div class="ttdoc">Stopped. </div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a171027dbddf208784c824ae7fe72cb71"></a>
+<a class="anchor" id="aefa64c4353e5c261f1189649638e49a6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -243,21 +291,15 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Yarn.Parser.Operator.Operator </td>
+          <td class="memname">Yarn.VirtualMachine.VirtualMachine </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00150.html">ParseNode</a>&#160;</td>
-          <td class="paramname"><em>parent</em>, </td>
+          <td class="paramtype"><a class="el" href="a00088.html">Dialogue</a>&#160;</td>
+          <td class="paramname"><em>d</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="a00053.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>&#160;</td>
-          <td class="paramname"><em>t</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00151.html">Parser</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="a00138.html">Program</a>&#160;</td>
           <td class="paramname"><em>p</em>&#160;</td>
         </tr>
         <tr>
@@ -273,63 +315,38 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00316_source.html#l01241">1241</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00291_source.html#l00053">53</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
 
-<p>References <a class="el" href="a00316_source.html#l01146">Yarn.Parser.Operator.operatorType</a>.</p>
-<div class="fragment"><div class="line"><a name="l01241"></a><span class="lineno"> 1241</span>&#160;                                                                       : base(<a class="code" href="a00150.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a>, p) {</div>
-<div class="line"><a name="l01242"></a><span class="lineno"> 1242</span>&#160;                <a class="code" href="a00145.html#ac2de2f59be0e69b316627a4de16fadd3">operatorType</a> = t;</div>
-<div class="line"><a name="l01243"></a><span class="lineno"> 1243</span>&#160;            }</div>
-<div class="ttc" id="a00145_html_ac2de2f59be0e69b316627a4de16fadd3"><div class="ttname"><a href="a00145.html#ac2de2f59be0e69b316627a4de16fadd3">Yarn.Parser.Operator.operatorType</a></div><div class="ttdeci">TokenType operatorType</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l01146">Parser.cs:1146</a></div></div>
-<div class="ttc" id="a00150_html_af313a82103fcc2ff5a177dbb06b92f7b"><div class="ttname"><a href="a00150.html#af313a82103fcc2ff5a177dbb06b92f7b">Yarn.Parser.ParseNode.parent</a></div><div class="ttdeci">ParseNode parent</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l00059">Parser.cs:59</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a50f9f95cd7aefe2a601a7d5b5ee7801a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Yarn.Parser.Operator.Operator </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00150.html">ParseNode</a>&#160;</td>
-          <td class="paramname"><em>parent</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00151.html">Parser</a>&#160;</td>
-          <td class="paramname"><em>p</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00316_source.html#l01245">1245</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
-
-<p>References <a class="el" href="a00316_source.html#l01146">Yarn.Parser.Operator.operatorType</a>, and <a class="el" href="a00316_source.html#l01212">Yarn.Parser.Operator.OperatorTypes</a>.</p>
-<div class="fragment"><div class="line"><a name="l01245"></a><span class="lineno"> 1245</span>&#160;                                                          : base(<a class="code" href="a00150.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a>, p) {</div>
-<div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;                <a class="code" href="a00145.html#ac2de2f59be0e69b316627a4de16fadd3">operatorType</a> = p.ExpectSymbol(<a class="code" href="a00145.html#ad8a4bb1b46dbc3d1b7708e78a2d97e1c">Operator.OperatorTypes</a>).type;</div>
-<div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160;            }</div>
-<div class="ttc" id="a00145_html_ac2de2f59be0e69b316627a4de16fadd3"><div class="ttname"><a href="a00145.html#ac2de2f59be0e69b316627a4de16fadd3">Yarn.Parser.Operator.operatorType</a></div><div class="ttdeci">TokenType operatorType</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l01146">Parser.cs:1146</a></div></div>
-<div class="ttc" id="a00145_html_ad8a4bb1b46dbc3d1b7708e78a2d97e1c"><div class="ttname"><a href="a00145.html#ad8a4bb1b46dbc3d1b7708e78a2d97e1c">Yarn.Parser.Operator.OperatorTypes</a></div><div class="ttdeci">static TokenType[] OperatorTypes</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l01212">Parser.cs:1212</a></div></div>
-<div class="ttc" id="a00150_html_af313a82103fcc2ff5a177dbb06b92f7b"><div class="ttname"><a href="a00150.html#af313a82103fcc2ff5a177dbb06b92f7b">Yarn.Parser.ParseNode.parent</a></div><div class="ttdeci">ParseNode parent</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l00059">Parser.cs:59</a></div></div>
+<p>References <a class="el" href="a00291_source.html#l00075">Yarn.VirtualMachine.dialogue</a>, <a class="el" href="a00291_source.html#l00077">Yarn.VirtualMachine.program</a>, and <a class="el" href="a00291_source.html#l00078">Yarn.VirtualMachine.state</a>.</p>
+<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <a class="code" href="a00145.html#a2695dbfe3d9df7ffa3f13ad2231217fb">program</a> = p;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <a class="code" href="a00145.html#ac506426c503da5f033247c29e11c5e82">dialogue</a> = d;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <a class="code" href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">state</a> = <span class="keyword">new</span> State ();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
+<div class="ttc" id="a00145_html_a70f2ce6201cdd2430ceaa764ac614ca0"><div class="ttname"><a href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">Yarn.VirtualMachine.state</a></div><div class="ttdeci">State state</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00078">VirtualMachine.cs:78</a></div></div>
+<div class="ttc" id="a00145_html_ac506426c503da5f033247c29e11c5e82"><div class="ttname"><a href="a00145.html#ac506426c503da5f033247c29e11c5e82">Yarn.VirtualMachine.dialogue</a></div><div class="ttdeci">Dialogue dialogue</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00075">VirtualMachine.cs:75</a></div></div>
+<div class="ttc" id="a00145_html_a2695dbfe3d9df7ffa3f13ad2231217fb"><div class="ttname"><a href="a00145.html#a2695dbfe3d9df7ffa3f13ad2231217fb">Yarn.VirtualMachine.program</a></div><div class="ttdeci">Program program</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00077">VirtualMachine.cs:77</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a871e7b4652c48f456647d3950ac37531"></a>
+<a class="anchor" id="a1b57359378059b134ba76acddafd8d81"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">delegate void Yarn.VirtualMachine.CommandHandler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00049.html">Dialogue.CommandResult</a>&#160;</td>
+          <td class="paramname"><em>command</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af613c8b2d098678b6ea05b509c0a0cb6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -337,114 +354,105 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="a00146.html">OperatorInfo</a> Yarn.Parser.Operator.InfoForOperator </td>
+          <td class="memname">int Yarn.VirtualMachine.FindInstructionPointForLabel </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00053.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>&#160;</td>
-          <td class="paramname"><em>op</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>labelName</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">package</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00316_source.html#l01166">1166</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+<p>Looks up the instruction number for a named label in the current node. </p>
 
-<p>References <a class="el" href="a00316_source.html#l01212">Yarn.Parser.Operator.OperatorTypes</a>.</p>
-<div class="fragment"><div class="line"><a name="l01166"></a><span class="lineno"> 1166</span>&#160;                                                                       {</div>
-<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160;                <span class="keywordflow">if</span> (Array.IndexOf(<a class="code" href="a00145.html#ad8a4bb1b46dbc3d1b7708e78a2d97e1c">OperatorTypes</a>, op) == -1) {</div>
-<div class="line"><a name="l01168"></a><span class="lineno"> 1168</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> ParseException (op.ToString () + <span class="stringliteral">&quot; is not a valid operator&quot;</span>);</div>
-<div class="line"><a name="l01169"></a><span class="lineno"> 1169</span>&#160;                }</div>
-<div class="line"><a name="l01170"></a><span class="lineno"> 1170</span>&#160;</div>
-<div class="line"><a name="l01171"></a><span class="lineno"> 1171</span>&#160;                <span class="comment">// Determine the precendence, associativity and</span></div>
-<div class="line"><a name="l01172"></a><span class="lineno"> 1172</span>&#160;                <span class="comment">// number of operands that each operator has.</span></div>
-<div class="line"><a name="l01173"></a><span class="lineno"> 1173</span>&#160;                <span class="keywordflow">switch</span> (op) {</div>
-<div class="line"><a name="l01174"></a><span class="lineno"> 1174</span>&#160;</div>
-<div class="line"><a name="l01175"></a><span class="lineno"> 1175</span>&#160;                <span class="keywordflow">case</span> TokenType.Not:</div>
-<div class="line"><a name="l01176"></a><span class="lineno"> 1176</span>&#160;                <span class="keywordflow">case</span> TokenType.UnaryMinus:</div>
-<div class="line"><a name="l01177"></a><span class="lineno"> 1177</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">new</span> OperatorInfo (<a class="code" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a>.Right, 30, 1);</div>
-<div class="line"><a name="l01178"></a><span class="lineno"> 1178</span>&#160;</div>
-<div class="line"><a name="l01179"></a><span class="lineno"> 1179</span>&#160;                <span class="keywordflow">case</span> TokenType.Multiply:</div>
-<div class="line"><a name="l01180"></a><span class="lineno"> 1180</span>&#160;                <span class="keywordflow">case</span> TokenType.Divide:</div>
-<div class="line"><a name="l01181"></a><span class="lineno"> 1181</span>&#160;                <span class="keywordflow">case</span> TokenType.Modulo:</div>
-<div class="line"><a name="l01182"></a><span class="lineno"> 1182</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">new</span> OperatorInfo(<a class="code" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a>.Left, 20,2);</div>
-<div class="line"><a name="l01183"></a><span class="lineno"> 1183</span>&#160;                <span class="keywordflow">case</span> TokenType.Add:</div>
-<div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160;                <span class="keywordflow">case</span> TokenType.Minus:</div>
-<div class="line"><a name="l01185"></a><span class="lineno"> 1185</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">new</span> OperatorInfo(<a class="code" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a>.Left, 15,2);</div>
-<div class="line"><a name="l01186"></a><span class="lineno"> 1186</span>&#160;                <span class="keywordflow">case</span> TokenType.GreaterThan:</div>
-<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;                <span class="keywordflow">case</span> TokenType.LessThan:</div>
-<div class="line"><a name="l01188"></a><span class="lineno"> 1188</span>&#160;                <span class="keywordflow">case</span> TokenType.GreaterThanOrEqualTo:</div>
-<div class="line"><a name="l01189"></a><span class="lineno"> 1189</span>&#160;                <span class="keywordflow">case</span> TokenType.LessThanOrEqualTo:</div>
-<div class="line"><a name="l01190"></a><span class="lineno"> 1190</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">new</span> OperatorInfo(<a class="code" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a>.Left, 10,2);</div>
-<div class="line"><a name="l01191"></a><span class="lineno"> 1191</span>&#160;                <span class="keywordflow">case</span> TokenType.EqualTo:</div>
-<div class="line"><a name="l01192"></a><span class="lineno"> 1192</span>&#160;                <span class="keywordflow">case</span> TokenType.EqualToOrAssign:</div>
-<div class="line"><a name="l01193"></a><span class="lineno"> 1193</span>&#160;                <span class="keywordflow">case</span> TokenType.NotEqualTo:</div>
-<div class="line"><a name="l01194"></a><span class="lineno"> 1194</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">new</span> OperatorInfo(<a class="code" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a>.Left, 5,2);</div>
-<div class="line"><a name="l01195"></a><span class="lineno"> 1195</span>&#160;                <span class="keywordflow">case</span> TokenType.And:</div>
-<div class="line"><a name="l01196"></a><span class="lineno"> 1196</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">new</span> OperatorInfo(<a class="code" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a>.Left, 4,2);</div>
-<div class="line"><a name="l01197"></a><span class="lineno"> 1197</span>&#160;                <span class="keywordflow">case</span> TokenType.Or:</div>
-<div class="line"><a name="l01198"></a><span class="lineno"> 1198</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">new</span> OperatorInfo(<a class="code" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a>.Left, 3,2);</div>
-<div class="line"><a name="l01199"></a><span class="lineno"> 1199</span>&#160;                <span class="keywordflow">case</span> TokenType.Xor:</div>
-<div class="line"><a name="l01200"></a><span class="lineno"> 1200</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">new</span> OperatorInfo(<a class="code" href="a00145.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a>.Left, 2,2);</div>
-<div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;</div>
-<div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160;                }</div>
-<div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException (<span class="stringliteral">&quot;Unknown operator &quot;</span> + op.ToString());</div>
-<div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160;</div>
-<div class="line"><a name="l01205"></a><span class="lineno"> 1205</span>&#160;            }</div>
-<div class="ttc" id="a00145_html_ad8a4bb1b46dbc3d1b7708e78a2d97e1c"><div class="ttname"><a href="a00145.html#ad8a4bb1b46dbc3d1b7708e78a2d97e1c">Yarn.Parser.Operator.OperatorTypes</a></div><div class="ttdeci">static TokenType[] OperatorTypes</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l01212">Parser.cs:1212</a></div></div>
-<div class="ttc" id="a00145_html_a83fa1b8db0e6678006920812b6f33f62"><div class="ttname"><a href="a00145.html#a83fa1b8db0e6678006920812b6f33f62">Yarn.Parser.Operator.Associativity</a></div><div class="ttdeci">Associativity</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l01148">Parser.cs:1148</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a77a9edf71f86263e1695869e69505007"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static bool Yarn.Parser.Operator.IsOperator </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00053.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">package</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>Definition at line <a class="el" href="a00291_source.html#l00164">164</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
 
-<p>Definition at line <a class="el" href="a00316_source.html#l01207">1207</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+<p>References <a class="el" href="a00291_source.html#l00110">Yarn.VirtualMachine.currentNode</a>, <a class="el" href="a00291_source.html#l00013">Yarn.VirtualMachine.State.currentNodeName</a>, <a class="el" href="a00289_source.html#l00224">Yarn.Node.labels</a>, and <a class="el" href="a00291_source.html#l00078">Yarn.VirtualMachine.state</a>.</p>
 
-<p>References <a class="el" href="a00316_source.html#l01212">Yarn.Parser.Operator.OperatorTypes</a>.</p>
-
-<p>Referenced by <a class="el" href="a00316_source.html#l00773">Yarn.Parser.Expression.Parse()</a>, and <a class="el" href="a00316_source.html#l01047">Yarn.Parser.Expression.ShouldApplyPrecedence()</a>.</p>
-<div class="fragment"><div class="line"><a name="l01207"></a><span class="lineno"> 1207</span>&#160;                                                            {</div>
-<div class="line"><a name="l01208"></a><span class="lineno"> 1208</span>&#160;                <span class="keywordflow">return</span> Array.IndexOf (<a class="code" href="a00145.html#ad8a4bb1b46dbc3d1b7708e78a2d97e1c">OperatorTypes</a>, type) != -1;</div>
-<div class="line"><a name="l01209"></a><span class="lineno"> 1209</span>&#160;            }</div>
-<div class="ttc" id="a00145_html_ad8a4bb1b46dbc3d1b7708e78a2d97e1c"><div class="ttname"><a href="a00145.html#ad8a4bb1b46dbc3d1b7708e78a2d97e1c">Yarn.Parser.Operator.OperatorTypes</a></div><div class="ttdeci">static TokenType[] OperatorTypes</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l01212">Parser.cs:1212</a></div></div>
+<p>Referenced by <a class="el" href="a00291_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                                                                    {</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00145.html#ab7594e14981ad75cecea3b2e7dcf895c">currentNode</a>.<a class="code" href="a00048.html#a9afa49f4fbc72e806a0210cb4198f12e">labels</a>.ContainsKey(labelName) == <span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                <span class="comment">// Couldn&#39;t find the node..</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> IndexOutOfRangeException (<span class="stringliteral">&quot;Unknown label &quot;</span> +</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                    labelName + <span class="stringliteral">&quot; in node &quot;</span> + <a class="code" href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">state</a>.<a class="code" href="a00148.html#a86f481fad527f719b49f8fee6ff79764">currentNodeName</a>);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            }</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            <span class="keywordflow">return</span> currentNode.labels [labelName];</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        }</div>
+<div class="ttc" id="a00048_html_a9afa49f4fbc72e806a0210cb4198f12e"><div class="ttname"><a href="a00048.html#a9afa49f4fbc72e806a0210cb4198f12e">Yarn.Node.labels</a></div><div class="ttdeci">Dictionary&lt; string, int &gt; labels</div><div class="ttdef"><b>Definition:</b> <a href="a00289_source.html#l00224">Program.cs:224</a></div></div>
+<div class="ttc" id="a00145_html_a70f2ce6201cdd2430ceaa764ac614ca0"><div class="ttname"><a href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">Yarn.VirtualMachine.state</a></div><div class="ttdeci">State state</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00078">VirtualMachine.cs:78</a></div></div>
+<div class="ttc" id="a00145_html_ab7594e14981ad75cecea3b2e7dcf895c"><div class="ttname"><a href="a00145.html#ab7594e14981ad75cecea3b2e7dcf895c">Yarn.VirtualMachine.currentNode</a></div><div class="ttdeci">Node currentNode</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00110">VirtualMachine.cs:110</a></div></div>
+<div class="ttc" id="a00148_html_a86f481fad527f719b49f8fee6ff79764"><div class="ttname"><a href="a00148.html#a86f481fad527f719b49f8fee6ff79764">Yarn.VirtualMachine.State.currentNodeName</a></div><div class="ttdeci">string currentNodeName</div><div class="ttdoc">The name of the node that we&#39;re currently in. </div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00013">VirtualMachine.cs:13</a></div></div>
 </div><!-- fragment -->
 <p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00145_a77a9edf71f86263e1695869e69505007_icgraph.png" border="0" usemap="#a00145_a77a9edf71f86263e1695869e69505007_icgraph" alt=""/></div>
-<map name="a00145_a77a9edf71f86263e1695869e69505007_icgraph" id="a00145_a77a9edf71f86263e1695869e69505007_icgraph">
-<area shape="rect" id="node2" href="a00106.html#a686da57aaf67d50d2832f9ee0028a979" title="Yarn.Parser.Expression.Parse" alt="" coords="518,5,717,32"/><area shape="rect" id="node3" href="a00106.html#a5004a8eaa00b2b55856ecb4f339033fb" title="Yarn.Parser.Expression.Should\lApplyPrecedence" alt="" coords="265,27,469,69"/></map>
+<div class="center"><img src="a00145_af613c8b2d098678b6ea05b509c0a0cb6_icgraph.png" border="0" usemap="#a00145_af613c8b2d098678b6ea05b509c0a0cb6_icgraph" alt=""/></div>
+<map name="a00145_af613c8b2d098678b6ea05b509c0a0cb6_icgraph" id="a00145_af613c8b2d098678b6ea05b509c0a0cb6_icgraph">
+<area shape="rect" id="node2" href="a00145.html#ad2caf9ca4f00cdcbd58983be7c106971" title="Yarn.VirtualMachine.RunInstruction" alt="" coords="222,12,450,39"/><area shape="rect" id="node3" href="a00145.html#af3cc0337914b9f66454a3d52208dba5f" title="Executes the next instruction in the current node. " alt="" coords="499,12,693,39"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a580e520a29444fc23ac3660cbe514a09"></a>
+<a class="anchor" id="aac9ec1011ea2c01460044d7c8355f398"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">delegate void Yarn.VirtualMachine.LineHandler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00124.html">Dialogue.LineResult</a>&#160;</td>
+          <td class="paramname"><em>line</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5bf3aa51578847c18191fec665a840f9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">delegate void Yarn.VirtualMachine.NodeCompleteHandler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00130.html">Dialogue.NodeCompleteResult</a>&#160;</td>
+          <td class="paramname"><em>complete</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a78dfd54b743e53078eed19ab7be2b6cf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">delegate void Yarn.VirtualMachine.OptionsHandler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00134.html">Dialogue.OptionSetResult</a>&#160;</td>
+          <td class="paramname"><em>options</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3ba945c66cb8ba031357a1771453f82b"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -452,7 +460,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00140.html">Node</a> Yarn.Parser.ParseNode.NodeParent </td>
+          <td class="memname">void Yarn.VirtualMachine.ResetState </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -460,42 +468,37 @@ Properties</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00316_source.html#l00101">101</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+<p>Reset the state of the VM. </p>
 
-<p>Referenced by <a class="el" href="a00316_source.html#l00374">Yarn.Parser.ShortcutOption.ShortcutOption()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                                       {</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                var node = <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                <span class="keywordflow">do</span> {</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                    <span class="keywordflow">if</span> (node is Node) {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                        <span class="keywordflow">return</span> node as Node;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                    }</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                    node = node.parent;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                } <span class="keywordflow">while</span> (node</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                    != null);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                <span class="keywordflow">return</span> null;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            }</div>
+<p>Definition at line <a class="el" href="a00291_source.html#l00061">61</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
+
+<p>References <a class="el" href="a00291_source.html#l00078">Yarn.VirtualMachine.state</a>.</p>
+
+<p>Referenced by <a class="el" href="a00291_source.html#l00112">Yarn.VirtualMachine.SetNode()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                          {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <a class="code" href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">state</a> = <span class="keyword">new</span> State();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
+<div class="ttc" id="a00145_html_a70f2ce6201cdd2430ceaa764ac614ca0"><div class="ttname"><a href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">Yarn.VirtualMachine.state</a></div><div class="ttdeci">State state</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00078">VirtualMachine.cs:78</a></div></div>
 </div><!-- fragment -->
 <p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00150_a580e520a29444fc23ac3660cbe514a09_icgraph.png" border="0" usemap="#a00150_a580e520a29444fc23ac3660cbe514a09_icgraph" alt=""/></div>
-<map name="a00150_a580e520a29444fc23ac3660cbe514a09_icgraph" id="a00150_a580e520a29444fc23ac3660cbe514a09_icgraph">
-<area shape="rect" id="node2" href="a00161.html#a2c80b137d65f31b24533987233074605" title="Yarn.Parser.ShortcutOption.\lShortcutOption" alt="" coords="248,5,435,46"/></map>
+<div class="center"><img src="a00145_a3ba945c66cb8ba031357a1771453f82b_icgraph.png" border="0" usemap="#a00145_a3ba945c66cb8ba031357a1771453f82b_icgraph" alt=""/></div>
+<map name="a00145_a3ba945c66cb8ba031357a1771453f82b_icgraph" id="a00145_a3ba945c66cb8ba031357a1771453f82b_icgraph">
+<area shape="rect" id="node2" href="a00145.html#a6364593ea1115d65e34b343422cfbbbd" title="Yarn.VirtualMachine.SetNode" alt="" coords="232,31,427,57"/><area shape="rect" id="node3" href="a00088.html#aead84ee50cb113ca45724894290ce9c2" title="Use this in a for&#45;each construct; each time you iterate over it, you&#39;ll get a line, command, or set of options. " alt="" coords="523,5,655,32"/><area shape="rect" id="node6" href="a00145.html#ad2caf9ca4f00cdcbd58983be7c106971" title="Yarn.VirtualMachine.RunInstruction" alt="" coords="475,56,703,83"/><area shape="rect" id="node4" href="a00172.html#a1b974c55540795a9e643c2ec055fbd51" title="Yarn.YarnSpinnerConsole.Run" alt="" coords="752,5,952,32"/><area shape="rect" id="node5" href="a00172.html#a1d71ff2eb190449ea1d42ce86f44489f" title="Yarn.YarnSpinnerConsole.Main" alt="" coords="1001,5,1205,32"/><area shape="rect" id="node7" href="a00145.html#af3cc0337914b9f66454a3d52208dba5f" title="Executes the next instruction in the current node. " alt="" coords="755,56,949,83"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a0c2ad7c4d6837ffc7b5325bbb8330c51"></a>
+<a class="anchor" id="ad2caf9ca4f00cdcbd58983be7c106971"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -503,113 +506,355 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">override string Yarn.Parser.Operator.PrintTree </td>
+          <td class="memname">void Yarn.VirtualMachine.RunInstruction </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>indentLevel</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="a00113.html">Instruction</a>&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+<ul>
+<li>Label</li>
+</ul>
+<p>No-op, used as a destination for JumpTo and Jump.</p>
+<ul>
+<li>JumpTo</li>
+</ul>
+<p>Jumps to a named label</p>
+<ul>
+<li>RunLine</li>
+</ul>
+<p>Looks up a string from the string table and passes it to the client as a line</p>
+<ul>
+<li>RunCommand</li>
+</ul>
+<p>Passes a string to the client as a custom command</p>
+<ul>
+<li>PushString</li>
+</ul>
+<p>Pushes a string value onto the stack. The operand is an index into the string table, so that's looked up first.</p>
+<ul>
+<li>PushNumber</li>
+</ul>
+<p>Pushes a number onto the stack.</p>
+<ul>
+<li>PushBool</li>
+</ul>
+<p>Pushes a boolean value onto the stack.</p>
+<ul>
+<li>PushNull</li>
+</ul>
+<p>Pushes a null value onto the stack.</p>
+<ul>
+<li>JumpIfFalse</li>
+</ul>
+<p>Jumps to a named label if the value on the top of the stack evaluates to the boolean value 'false'.</p>
+<ul>
+<li>Jump</li>
+</ul>
+<p>Jumps to a label whose name is on the stack.</p>
+<ul>
+<li>Pop</li>
+</ul>
+<p>Pops a value from the stack.</p>
+<ul>
+<li>CallFunc</li>
+</ul>
+<p>Call a function, whose parameters are expected to be on the stack. Pushes the function's return value, if it returns one.</p>
+<ul>
+<li>PushVariable</li>
+</ul>
+<p>Get the contents of a variable, push that onto the stack.</p>
+<ul>
+<li>StoreVariable</li>
+</ul>
+<p>Store the top value on the stack in a variable.</p>
+<ul>
+<li>Stop</li>
+</ul>
+<p>Immediately stop execution, and report that fact.</p>
+<ul>
+<li>RunNode</li>
+</ul>
+<p>Run a node</p>
+<ul>
+<li>AddOption</li>
+</ul>
+<p>Add an option to the current state.</p>
+<ul>
+<li>ShowOptions</li>
+</ul>
+<p>If we have no options to show, immediately stop.</p>
+<p>If we have a single option, and it has no label, select it immediately and continue execution</p>
+<ul>
+<li><p class="startli">default</p>
+<p class="startli">Whoa, no idea what bytecode this is. Stop the program and throw an exception.</p>
+</li>
+</ul>
 
-<p>Implements <a class="el" href="a00150.html#a0d6611653f20c2e4d90a97a96c657137">Yarn.Parser.ParseNode</a>.</p>
+<p>Definition at line <a class="el" href="a00291_source.html#l00176">176</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
 
-<p>Definition at line <a class="el" href="a00316_source.html#l01249">1249</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+<p>References <a class="el" href="a00291_source.html#l00072">Yarn.VirtualMachine.commandHandler</a>, <a class="el" href="a00282_source.html#l00133">Yarn.Dialogue.continuity</a>, <a class="el" href="a00291_source.html#l00019">Yarn.VirtualMachine.State.currentOptions</a>, <a class="el" href="a00291_source.html#l00075">Yarn.VirtualMachine.dialogue</a>, <a class="el" href="a00291_source.html#l00098">Yarn.VirtualMachine.executionState</a>, <a class="el" href="a00291_source.html#l00164">Yarn.VirtualMachine.FindInstructionPointForLabel()</a>, <a class="el" href="a00287_source.html#l00097">Yarn.Library.GetFunction()</a>, <a class="el" href="a00167.html#accab1fc5c8fc353dbfc53ca0f4029576">Yarn.VariableStorage.GetValue()</a>, <a class="el" href="a00282_source.html#l00202">Yarn.Dialogue.library</a>, <a class="el" href="a00291_source.html#l00070">Yarn.VirtualMachine.lineHandler</a>, <a class="el" href="a00291_source.html#l00073">Yarn.VirtualMachine.nodeCompleteHandler</a>, <a class="el" href="a00290_source.html#l00009">Yarn.Value.NULL</a>, <a class="el" href="a00289_source.html#l00232">Yarn.Instruction.operandA</a>, <a class="el" href="a00289_source.html#l00231">Yarn.Instruction.operation</a>, <a class="el" href="a00291_source.html#l00071">Yarn.VirtualMachine.optionsHandler</a>, <a class="el" href="a00291_source.html#l00039">Yarn.VirtualMachine.State.PeekValue()</a>, <a class="el" href="a00291_source.html#l00034">Yarn.VirtualMachine.State.PopValue()</a>, <a class="el" href="a00291_source.html#l00080">Yarn.VirtualMachine.random</a>, <a class="el" href="a00291_source.html#l00112">Yarn.VirtualMachine.SetNode()</a>, <a class="el" href="a00167.html#aa90ff61224432c5ed3ce72199c55f440">Yarn.VariableStorage.SetValue()</a>, <a class="el" href="a00291_source.html#l00050">Yarn.VirtualMachine.SpecialVariables.ShuffleOptions</a>, and <a class="el" href="a00291_source.html#l00078">Yarn.VirtualMachine.state</a>.</p>
 
-<p>References <a class="el" href="a00316_source.html#l01146">Yarn.Parser.Operator.operatorType</a>, and <a class="el" href="a00316_source.html#l00041">Yarn.Parser.Tab()</a>.</p>
-<div class="fragment"><div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;            {</div>
-<div class="line"><a name="l01251"></a><span class="lineno"> 1251</span>&#160;                <span class="keywordflow">return</span> <a class="code" href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel, <a class="code" href="a00145.html#ac2de2f59be0e69b316627a4de16fadd3">operatorType</a>.ToString ());</div>
-<div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160;            }</div>
-<div class="ttc" id="a00145_html_ac2de2f59be0e69b316627a4de16fadd3"><div class="ttname"><a href="a00145.html#ac2de2f59be0e69b316627a4de16fadd3">Yarn.Parser.Operator.operatorType</a></div><div class="ttdeci">TokenType operatorType</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l01146">Parser.cs:1146</a></div></div>
-<div class="ttc" id="a00151_html_aa8fa36b46de12a1c561d77b99c4b9ae3"><div class="ttname"><a href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Yarn.Parser.Tab</a></div><div class="ttdeci">static string Tab(int indentLevel, string input, bool newLine=true)</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l00041">Parser.cs:41</a></div></div>
+<p>Referenced by <a class="el" href="a00291_source.html#l00138">Yarn.VirtualMachine.RunNext()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                                                    {</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            <span class="keywordflow">switch</span> (i.operation) {</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            <span class="keywordflow">case</span> ByteCode.Label:</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            <span class="keywordflow">case</span> ByteCode.JumpTo:</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                state.programCounter = <a class="code" href="a00145.html#af613c8b2d098678b6ea05b509c0a0cb6">FindInstructionPointForLabel</a> ((<span class="keywordtype">string</span>)i.operandA);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            <span class="keywordflow">case</span> ByteCode.RunLine:</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                var lineText = program.GetString ((string)i.operandA);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                <span class="keywordflow">if</span> (lineText == null) {</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                    dialogue.LogErrorMessage(<span class="stringliteral">&quot;No loaded string table includes line &quot;</span> + i.operandA);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                }</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                <a class="code" href="a00145.html#a29b30454f068fc7e107d48bff4346fd9">lineHandler</a> (<span class="keyword">new</span> Dialogue.LineResult (lineText));</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            <span class="keywordflow">case</span> ByteCode.RunCommand:</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                <a class="code" href="a00145.html#ab89b02227b92c74552f719afd47848e4">commandHandler</a> (</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                    <span class="keyword">new</span> Dialogue.CommandResult ((<span class="keywordtype">string</span>)i.operandA)</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                );</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            <span class="keywordflow">case</span> ByteCode.PushString:</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                state.PushValue (program.GetString ((string)i.operandA));</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="keywordflow">case</span> ByteCode.PushNumber:</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                state.PushValue (Convert.ToSingle(i.operandA, CultureInfo.InvariantCulture));</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            <span class="keywordflow">case</span> ByteCode.PushBool:</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                state.PushValue (Convert.ToBoolean(i.operandA, CultureInfo.InvariantCulture));</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            <span class="keywordflow">case</span> ByteCode.PushNull:</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;                state.PushValue (<a class="code" href="a00165.html#a1ed2964965baca8621c45efa23f37660">Value.NULL</a>);</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            <span class="keywordflow">case</span> ByteCode.JumpIfFalse:</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">state</a>.<a class="code" href="a00148.html#a54fd5b64ec94e937e771846167242dc2">PeekValue</a> ().AsBool == <span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                    state.programCounter = <a class="code" href="a00145.html#af613c8b2d098678b6ea05b509c0a0cb6">FindInstructionPointForLabel</a> ((<span class="keywordtype">string</span>)i.operandA);</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                }</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;            <span class="keywordflow">case</span> ByteCode.Jump:</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                var jumpDestination = state.PeekValue ().AsString;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                state.programCounter = <a class="code" href="a00145.html#af613c8b2d098678b6ea05b509c0a0cb6">FindInstructionPointForLabel</a> (jumpDestination);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;            <span class="keywordflow">case</span> ByteCode.Pop:</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                state.PopValue ();</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            <span class="keywordflow">case</span> ByteCode.CallFunc:</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                var functionName = (string)i.operandA;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                var <span class="keyword">function</span> = <a class="code" href="a00145.html#ac506426c503da5f033247c29e11c5e82">dialogue</a>.<a class="code" href="a00088.html#ae660d4cfb6e296358d2f61d8ee74c66a">library</a>.<a class="code" href="a00121.html#aacfb1f00ad8aa3921941b8d8af0960e0">GetFunction</a> (functionName);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                {</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                    var paramCount = function.paramCount;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                    <span class="comment">// If this function takes &quot;-1&quot; parameters, it is variadic.</span></div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                    <span class="comment">// Expect the compiler to have placed the number of parameters</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                    <span class="comment">// actually passed at the top of the stack.</span></div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                    <span class="keywordflow">if</span> (paramCount == -1) {</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                        paramCount = (int)<a class="code" href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">state</a>.<a class="code" href="a00148.html#a36881a888ea2839d74c3d4e7c199f4ee">PopValue</a> ().AsNumber;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                    }</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                    Value result;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                    <span class="keywordflow">if</span> (paramCount == 0) {</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                        result = function.Invoke();</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                        <span class="comment">// Get the parameters, which were pushed in reverse</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                        Value[] parameters = <span class="keyword">new</span> Value[paramCount];</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> param = paramCount - 1; param &gt;= 0; param--) {</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                            parameters [param] = state.PopValue ();</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                        }</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                        <span class="comment">// Invoke the function</span></div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                        result = function.InvokeWithArray (parameters);</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                    }</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                    <span class="comment">// If the function returns a value, push it</span></div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                    <span class="keywordflow">if</span> (<span class="keyword">function</span>.returnsValue) {</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;                        state.PushValue (result);</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                    }</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                }</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            <span class="keywordflow">case</span> ByteCode.PushVariable:</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                var variableName = (string)i.operandA;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                var loadedValue = <a class="code" href="a00145.html#ac506426c503da5f033247c29e11c5e82">dialogue</a>.<a class="code" href="a00088.html#ae94eaa4b03b432422f5d205fabe37ff5">continuity</a>.<a class="code" href="a00167.html#accab1fc5c8fc353dbfc53ca0f4029576">GetValue</a> (variableName);</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                state.PushValue (loadedValue);</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;            <span class="keywordflow">case</span> ByteCode.StoreVariable:</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                var topValue = state.PeekValue ();</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                var destinationVariableName = (string)i.operandA;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                <a class="code" href="a00145.html#ac506426c503da5f033247c29e11c5e82">dialogue</a>.<a class="code" href="a00088.html#ae94eaa4b03b432422f5d205fabe37ff5">continuity</a>.<a class="code" href="a00167.html#aa90ff61224432c5ed3ce72199c55f440">SetValue</a> (destinationVariableName, topValue);</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            <span class="keywordflow">case</span> ByteCode.Stop:</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                <a class="code" href="a00145.html#a5129c63e67e2d4e2780d86b8351320a2">nodeCompleteHandler</a> (<span class="keyword">new</span> Dialogue.NodeCompleteResult (null));</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                <a class="code" href="a00145.html#a66491da06023dabfb63d09e6ccbba74f">executionState</a> = ExecutionState.Stopped;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            <span class="keywordflow">case</span> ByteCode.RunNode:</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                <span class="keywordtype">string</span> nodeName;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty((<span class="keywordtype">string</span>) i.operandA)) {</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;                    <span class="comment">// Get a string from the stack, and jump to a node with that name.</span></div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                     nodeName = state.PeekValue ().AsString;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                    <span class="comment">// jump straight to the node</span></div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;                    nodeName = (string)i.operandA;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                }</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                <a class="code" href="a00145.html#a5129c63e67e2d4e2780d86b8351320a2">nodeCompleteHandler</a> (<span class="keyword">new</span> Dialogue.NodeCompleteResult (nodeName));</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                <a class="code" href="a00145.html#a6364593ea1115d65e34b343422cfbbbd">SetNode</a> (nodeName);</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            <span class="keywordflow">case</span> ByteCode.AddOption:</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;                state.currentOptions.Add (<span class="keyword">new</span> KeyValuePair&lt;string, string&gt; ((string)i.operandA, (<span class="keywordtype">string</span>)i.operandB));</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;            <span class="keywordflow">case</span> ByteCode.ShowOptions:</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">state</a>.<a class="code" href="a00148.html#ab816dfea32ecda23282700f01454e0a9">currentOptions</a>.Count == 0) {</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                    <a class="code" href="a00145.html#a5129c63e67e2d4e2780d86b8351320a2">nodeCompleteHandler</a>(<span class="keyword">new</span> Dialogue.NodeCompleteResult(null));</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                    executionState = ExecutionState.Stopped;</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;                }</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">state</a>.<a class="code" href="a00148.html#ab816dfea32ecda23282700f01454e0a9">currentOptions</a>.Count == 1 &amp;&amp; <a class="code" href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">state</a>.<a class="code" href="a00148.html#ab816dfea32ecda23282700f01454e0a9">currentOptions</a>[0].Key == null) {</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                    var destinationNode = state.currentOptions[0].Value;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                    state.PushValue(destinationNode);</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                    state.currentOptions.Clear();</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                }</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00145.html#ac506426c503da5f033247c29e11c5e82">dialogue</a>.<a class="code" href="a00088.html#ae94eaa4b03b432422f5d205fabe37ff5">continuity</a>.<a class="code" href="a00167.html#accab1fc5c8fc353dbfc53ca0f4029576">GetValue</a>(SpecialVariables.ShuffleOptions).AsBool) {</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;                    <span class="comment">// Shuffle the dialog options if needed</span></div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                    var n = state.currentOptions.Count;</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;                    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> opt1 = 0; opt1 &lt; n; opt1++) {</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                        <span class="keywordtype">int</span> opt2 = opt1 + (int)(<a class="code" href="a00145.html#a408485a00c7cc558428c86ed9dd04fca">random</a>.NextDouble () * (n - opt1)); <span class="comment">// r.Next(0, state.currentOptions.Count-1);</span></div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                        var temp = state.currentOptions [opt2];</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;                        state.currentOptions [opt2] = state.currentOptions [opt1];</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                        state.currentOptions [opt1] = temp;</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;                    }</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                }</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;                <span class="comment">// Otherwise, present the list of options to the user and let them pick</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;                var optionStrings = <span class="keyword">new</span> List&lt;string&gt; ();</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;                <span class="keywordflow">foreach</span> (var option <span class="keywordflow">in</span> <a class="code" href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">state</a>.<a class="code" href="a00148.html#ab816dfea32ecda23282700f01454e0a9">currentOptions</a>) {</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;                    optionStrings.Add (program.GetString (option.Key));</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;                }</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                <span class="comment">// We can&#39;t continue until our client tell us which option to pick</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;                executionState = ExecutionState.WaitingOnOptionSelection;</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;                <span class="comment">// Pass the options set to the client, as well as a delegate for them to call when the</span></div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                <span class="comment">// user has made a selection</span></div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;                <a class="code" href="a00145.html#acd25fe2e3aa90dc87ba25d9af904465b">optionsHandler</a> (<span class="keyword">new</span> Dialogue.OptionSetResult (optionStrings, delegate (<span class="keywordtype">int</span> selectedOption) {</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;                    <span class="comment">// we now know what number option was selected; push the corresponding node name</span></div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;                    <span class="comment">// to the stack</span></div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;                    var destinationNode = state.currentOptions[selectedOption].Value;</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                    state.PushValue(destinationNode);</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;                    <span class="comment">// We no longer need the accumulated list of options; clear it so that it&#39;s</span></div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                    <span class="comment">// ready for the next one</span></div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;                    state.currentOptions.Clear();</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;                    <span class="comment">// We can now also keep running</span></div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;                    executionState = ExecutionState.Running;</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;                }));</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;                executionState = ExecutionState.Stopped;</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentOutOfRangeException ();</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;            }</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;        }</div>
+<div class="ttc" id="a00145_html_a70f2ce6201cdd2430ceaa764ac614ca0"><div class="ttname"><a href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">Yarn.VirtualMachine.state</a></div><div class="ttdeci">State state</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00078">VirtualMachine.cs:78</a></div></div>
+<div class="ttc" id="a00145_html_a408485a00c7cc558428c86ed9dd04fca"><div class="ttname"><a href="a00145.html#a408485a00c7cc558428c86ed9dd04fca">Yarn.VirtualMachine.random</a></div><div class="ttdeci">Random random</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00080">VirtualMachine.cs:80</a></div></div>
+<div class="ttc" id="a00145_html_a29b30454f068fc7e107d48bff4346fd9"><div class="ttname"><a href="a00145.html#a29b30454f068fc7e107d48bff4346fd9">Yarn.VirtualMachine.lineHandler</a></div><div class="ttdeci">LineHandler lineHandler</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00070">VirtualMachine.cs:70</a></div></div>
+<div class="ttc" id="a00148_html_a36881a888ea2839d74c3d4e7c199f4ee"><div class="ttname"><a href="a00148.html#a36881a888ea2839d74c3d4e7c199f4ee">Yarn.VirtualMachine.State.PopValue</a></div><div class="ttdeci">Value PopValue()</div><div class="ttdoc">Pop a value from the stack. </div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00034">VirtualMachine.cs:34</a></div></div>
+<div class="ttc" id="a00148_html_a54fd5b64ec94e937e771846167242dc2"><div class="ttname"><a href="a00148.html#a54fd5b64ec94e937e771846167242dc2">Yarn.VirtualMachine.State.PeekValue</a></div><div class="ttdeci">Value PeekValue()</div><div class="ttdoc">Peek at a value from the stack. </div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00039">VirtualMachine.cs:39</a></div></div>
+<div class="ttc" id="a00145_html_ac506426c503da5f033247c29e11c5e82"><div class="ttname"><a href="a00145.html#ac506426c503da5f033247c29e11c5e82">Yarn.VirtualMachine.dialogue</a></div><div class="ttdeci">Dialogue dialogue</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00075">VirtualMachine.cs:75</a></div></div>
+<div class="ttc" id="a00145_html_ab89b02227b92c74552f719afd47848e4"><div class="ttname"><a href="a00145.html#ab89b02227b92c74552f719afd47848e4">Yarn.VirtualMachine.commandHandler</a></div><div class="ttdeci">CommandHandler commandHandler</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00072">VirtualMachine.cs:72</a></div></div>
+<div class="ttc" id="a00088_html_ae660d4cfb6e296358d2f61d8ee74c66a"><div class="ttname"><a href="a00088.html#ae660d4cfb6e296358d2f61d8ee74c66a">Yarn.Dialogue.library</a></div><div class="ttdeci">Library library</div><div class="ttdoc">The library contains all of the functions and operators we know about. </div><div class="ttdef"><b>Definition:</b> <a href="a00282_source.html#l00202">Dialogue.cs:202</a></div></div>
+<div class="ttc" id="a00145_html_acd25fe2e3aa90dc87ba25d9af904465b"><div class="ttname"><a href="a00145.html#acd25fe2e3aa90dc87ba25d9af904465b">Yarn.VirtualMachine.optionsHandler</a></div><div class="ttdeci">OptionsHandler optionsHandler</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00071">VirtualMachine.cs:71</a></div></div>
+<div class="ttc" id="a00121_html_aacfb1f00ad8aa3921941b8d8af0960e0"><div class="ttname"><a href="a00121.html#aacfb1f00ad8aa3921941b8d8af0960e0">Yarn.Library.GetFunction</a></div><div class="ttdeci">FunctionInfo GetFunction(string name)</div><div class="ttdef"><b>Definition:</b> <a href="a00287_source.html#l00097">Library.cs:97</a></div></div>
+<div class="ttc" id="a00165_html_a1ed2964965baca8621c45efa23f37660"><div class="ttname"><a href="a00165.html#a1ed2964965baca8621c45efa23f37660">Yarn.Value.NULL</a></div><div class="ttdeci">static readonly Value NULL</div><div class="ttdef"><b>Definition:</b> <a href="a00290_source.html#l00009">Value.cs:9</a></div></div>
+<div class="ttc" id="a00145_html_af613c8b2d098678b6ea05b509c0a0cb6"><div class="ttname"><a href="a00145.html#af613c8b2d098678b6ea05b509c0a0cb6">Yarn.VirtualMachine.FindInstructionPointForLabel</a></div><div class="ttdeci">int FindInstructionPointForLabel(string labelName)</div><div class="ttdoc">Looks up the instruction number for a named label in the current node. </div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00164">VirtualMachine.cs:164</a></div></div>
+<div class="ttc" id="a00145_html_a5129c63e67e2d4e2780d86b8351320a2"><div class="ttname"><a href="a00145.html#a5129c63e67e2d4e2780d86b8351320a2">Yarn.VirtualMachine.nodeCompleteHandler</a></div><div class="ttdeci">NodeCompleteHandler nodeCompleteHandler</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00073">VirtualMachine.cs:73</a></div></div>
+<div class="ttc" id="a00145_html_a6364593ea1115d65e34b343422cfbbbd"><div class="ttname"><a href="a00145.html#a6364593ea1115d65e34b343422cfbbbd">Yarn.VirtualMachine.SetNode</a></div><div class="ttdeci">bool SetNode(string nodeName)</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00112">VirtualMachine.cs:112</a></div></div>
+<div class="ttc" id="a00167_html_accab1fc5c8fc353dbfc53ca0f4029576"><div class="ttname"><a href="a00167.html#accab1fc5c8fc353dbfc53ca0f4029576">Yarn.VariableStorage.GetValue</a></div><div class="ttdeci">Value GetValue(string variableName)</div></div>
+<div class="ttc" id="a00088_html_ae94eaa4b03b432422f5d205fabe37ff5"><div class="ttname"><a href="a00088.html#ae94eaa4b03b432422f5d205fabe37ff5">Yarn.Dialogue.continuity</a></div><div class="ttdeci">VariableStorage continuity</div><div class="ttdef"><b>Definition:</b> <a href="a00282_source.html#l00133">Dialogue.cs:133</a></div></div>
+<div class="ttc" id="a00167_html_aa90ff61224432c5ed3ce72199c55f440"><div class="ttname"><a href="a00167.html#aa90ff61224432c5ed3ce72199c55f440">Yarn.VariableStorage.SetValue</a></div><div class="ttdeci">void SetValue(string variableName, Value value)</div></div>
+<div class="ttc" id="a00148_html_ab816dfea32ecda23282700f01454e0a9"><div class="ttname"><a href="a00148.html#ab816dfea32ecda23282700f01454e0a9">Yarn.VirtualMachine.State.currentOptions</a></div><div class="ttdeci">List&lt; KeyValuePair&lt; string, string &gt; &gt; currentOptions</div><div class="ttdoc">List of options, where each option = &lt;string id, destination node&gt; </div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00019">VirtualMachine.cs:19</a></div></div>
+<div class="ttc" id="a00145_html_a66491da06023dabfb63d09e6ccbba74f"><div class="ttname"><a href="a00145.html#a66491da06023dabfb63d09e6ccbba74f">Yarn.VirtualMachine.executionState</a></div><div class="ttdeci">ExecutionState executionState</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00098">VirtualMachine.cs:98</a></div></div>
 </div><!-- fragment -->
 <p><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00145_a0c2ad7c4d6837ffc7b5325bbb8330c51_cgraph.png" border="0" usemap="#a00145_a0c2ad7c4d6837ffc7b5325bbb8330c51_cgraph" alt=""/></div>
-<map name="a00145_a0c2ad7c4d6837ffc7b5325bbb8330c51_cgraph" id="a00145_a0c2ad7c4d6837ffc7b5325bbb8330c51_cgraph">
-<area shape="rect" id="node2" href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3" title="Yarn.Parser.Tab" alt="" coords="256,5,373,32"/></map>
+<div class="center"><img src="a00145_ad2caf9ca4f00cdcbd58983be7c106971_cgraph.png" border="0" usemap="#a00145_ad2caf9ca4f00cdcbd58983be7c106971_cgraph" alt=""/></div>
+<map name="a00145_ad2caf9ca4f00cdcbd58983be7c106971_cgraph" id="a00145_ad2caf9ca4f00cdcbd58983be7c106971_cgraph">
+<area shape="rect" id="node2" href="a00145.html#af613c8b2d098678b6ea05b509c0a0cb6" title="Looks up the instruction number for a named label in the current node. " alt="" coords="296,5,464,46"/><area shape="rect" id="node3" href="a00121.html#aacfb1f00ad8aa3921941b8d8af0960e0" title="Yarn.Library.GetFunction" alt="" coords="297,71,463,97"/><area shape="rect" id="node4" href="a00167.html#accab1fc5c8fc353dbfc53ca0f4029576" title="Yarn.VariableStorage.Get\lValue" alt="" coords="295,122,465,163"/><area shape="rect" id="node5" href="a00148.html#a54fd5b64ec94e937e771846167242dc2" title="Peek at a value from the stack. " alt="" coords="291,187,469,229"/><area shape="rect" id="node6" href="a00148.html#a36881a888ea2839d74c3d4e7c199f4ee" title="Pop a value from the stack. " alt="" coords="291,253,469,294"/><area shape="rect" id="node7" href="a00145.html#a6364593ea1115d65e34b343422cfbbbd" title="Yarn.VirtualMachine.SetNode" alt="" coords="283,319,477,345"/><area shape="rect" id="node9" href="a00167.html#aa90ff61224432c5ed3ce72199c55f440" title="Yarn.VariableStorage.Set\lValue" alt="" coords="295,370,465,411"/><area shape="rect" id="node8" href="a00145.html#a3ba945c66cb8ba031357a1771453f82b" title="Reset the state of the VM. " alt="" coords="525,311,704,353"/></map>
 </div>
 </p>
 
-</div>
-</div>
-<a class="anchor" id="a054f36c80d5eeacd569a8859f599af67"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string Yarn.Parser.ParseNode.TagsToString </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>indentLevel</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00316_source.html#l00079">79</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
-
-<p>References <a class="el" href="a00316_source.html#l00041">Yarn.Parser.Tab()</a>, and <a class="el" href="a00316_source.html#l00077">Yarn.Parser.ParseNode.tags</a>.</p>
-
-<p>Referenced by <a class="el" href="a00316_source.html#l00227">Yarn.Parser.Statement.PrintTree()</a>, and <a class="el" href="a00316_source.html#l00410">Yarn.Parser.ShortcutOption.PrintTree()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00150.html#a58b3a15788fd2d4127d73619dc6d04ae">tags</a>.Length &gt; 0) {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                    var s = <span class="keyword">new</span> StringBuilder ();</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                    s.Append (<a class="code" href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel + 1, <span class="stringliteral">&quot;Tags:&quot;</span>));</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                    <span class="keywordflow">foreach</span> (var tag <span class="keywordflow">in</span> this.<a class="code" href="a00150.html#a58b3a15788fd2d4127d73619dc6d04ae">tags</a>) {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                        s.Append(<a class="code" href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel + 2, <span class="stringliteral">&quot;#&quot;</span> + tag));</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                    }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                    <span class="keywordflow">return</span> s.ToString ();</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                    <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                }</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            }</div>
-<div class="ttc" id="a00150_html_a58b3a15788fd2d4127d73619dc6d04ae"><div class="ttname"><a href="a00150.html#a58b3a15788fd2d4127d73619dc6d04ae">Yarn.Parser.ParseNode.tags</a></div><div class="ttdeci">string[] tags</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l00077">Parser.cs:77</a></div></div>
-<div class="ttc" id="a00151_html_aa8fa36b46de12a1c561d77b99c4b9ae3"><div class="ttname"><a href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Yarn.Parser.Tab</a></div><div class="ttdeci">static string Tab(int indentLevel, string input, bool newLine=true)</div><div class="ttdef"><b>Definition:</b> <a href="a00316_source.html#l00041">Parser.cs:41</a></div></div>
-</div><!-- fragment -->
 <p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00150_a054f36c80d5eeacd569a8859f599af67_cgraph.png" border="0" usemap="#a00150_a054f36c80d5eeacd569a8859f599af67_cgraph" alt=""/></div>
-<map name="a00150_a054f36c80d5eeacd569a8859f599af67_cgraph" id="a00150_a054f36c80d5eeacd569a8859f599af67_cgraph">
-<area shape="rect" id="node2" href="a00151.html#aa8fa36b46de12a1c561d77b99c4b9ae3" title="Yarn.Parser.Tab" alt="" coords="248,12,365,39"/></map>
-</div>
-</p>
-
-<p><div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00150_a054f36c80d5eeacd569a8859f599af67_icgraph.png" border="0" usemap="#a00150_a054f36c80d5eeacd569a8859f599af67_icgraph" alt=""/></div>
-<map name="a00150_a054f36c80d5eeacd569a8859f599af67_icgraph" id="a00150_a054f36c80d5eeacd569a8859f599af67_icgraph">
-<area shape="rect" id="node2" href="a00168.html#aaac6d1e0c3b31f33e1c6f964c205153e" title="Yarn.Parser.Statement.PrintTree" alt="" coords="249,5,461,32"/><area shape="rect" id="node3" href="a00161.html#a529a2ef1aa6d7226db4ea7f3ea92b8c2" title="Yarn.Parser.ShortcutOption.\lPrintTree" alt="" coords="261,57,448,98"/></map>
+<div class="center"><img src="a00145_ad2caf9ca4f00cdcbd58983be7c106971_icgraph.png" border="0" usemap="#a00145_ad2caf9ca4f00cdcbd58983be7c106971_icgraph" alt=""/></div>
+<map name="a00145_ad2caf9ca4f00cdcbd58983be7c106971_icgraph" id="a00145_ad2caf9ca4f00cdcbd58983be7c106971_icgraph">
+<area shape="rect" id="node2" href="a00145.html#af3cc0337914b9f66454a3d52208dba5f" title="Executes the next instruction in the current node. " alt="" coords="283,5,477,32"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a18c67cb16090d0889bb9d6c8c6c565f8"></a>
+<a class="anchor" id="af3cc0337914b9f66454a3d52208dba5f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -617,7 +862,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">override string Yarn.Parser.ParseNode.ToString </td>
+          <td class="memname">void Yarn.VirtualMachine.RunNext </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -625,20 +870,157 @@ Properties</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00316_source.html#l00095">95</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            {</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                <span class="keywordflow">return</span> this.GetType ().Name;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            }</div>
+<p>Executes the next instruction in the current node. </p>
+
+<p>Definition at line <a class="el" href="a00291_source.html#l00138">138</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
+
+<p>References <a class="el" href="a00291_source.html#l00110">Yarn.VirtualMachine.currentNode</a>, <a class="el" href="a00291_source.html#l00098">Yarn.VirtualMachine.executionState</a>, <a class="el" href="a00289_source.html#l00216">Yarn.Node.instructions</a>, <a class="el" href="a00291_source.html#l00073">Yarn.VirtualMachine.nodeCompleteHandler</a>, <a class="el" href="a00291_source.html#l00016">Yarn.VirtualMachine.State.programCounter</a>, <a class="el" href="a00291_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>, and <a class="el" href="a00291_source.html#l00078">Yarn.VirtualMachine.state</a>.</p>
+<div class="fragment"><div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                                {</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00145.html#a66491da06023dabfb63d09e6ccbba74f">executionState</a> == <a class="code" href="a00145.html#add28fa9c8a45ca579e84d05920bbc42d">ExecutionState</a>.WaitingOnOptionSelection) {</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                dialogue.LogErrorMessage (<span class="stringliteral">&quot;Cannot continue running dialogue. Still waiting on option selection.&quot;</span>);</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                <a class="code" href="a00145.html#a66491da06023dabfb63d09e6ccbba74f">executionState</a> = ExecutionState.Stopped;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            }</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00145.html#a66491da06023dabfb63d09e6ccbba74f">executionState</a> == <a class="code" href="a00145.html#add28fa9c8a45ca579e84d05920bbc42d">ExecutionState</a>.Stopped)</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                <a class="code" href="a00145.html#a66491da06023dabfb63d09e6ccbba74f">executionState</a> = ExecutionState.Running;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            Instruction currentInstruction = currentNode.instructions [state.programCounter];</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            <a class="code" href="a00145.html#ad2caf9ca4f00cdcbd58983be7c106971">RunInstruction</a> (currentInstruction);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            state.programCounter++;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">state</a>.<a class="code" href="a00148.html#a2c76546b54b4fb573d7f14d79ce230a3">programCounter</a> &gt;= <a class="code" href="a00145.html#ab7594e14981ad75cecea3b2e7dcf895c">currentNode</a>.<a class="code" href="a00048.html#a156723a9252b62d288ddf611939ea7c3">instructions</a>.Count) {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                <a class="code" href="a00145.html#a66491da06023dabfb63d09e6ccbba74f">executionState</a> = ExecutionState.Stopped;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                <a class="code" href="a00145.html#a5129c63e67e2d4e2780d86b8351320a2">nodeCompleteHandler</a>(<span class="keyword">new</span> Dialogue.NodeCompleteResult(null));</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                dialogue.LogDebugMessage (<span class="stringliteral">&quot;Run complete.&quot;</span>);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            }</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        }</div>
+<div class="ttc" id="a00145_html_a70f2ce6201cdd2430ceaa764ac614ca0"><div class="ttname"><a href="a00145.html#a70f2ce6201cdd2430ceaa764ac614ca0">Yarn.VirtualMachine.state</a></div><div class="ttdeci">State state</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00078">VirtualMachine.cs:78</a></div></div>
+<div class="ttc" id="a00148_html_a2c76546b54b4fb573d7f14d79ce230a3"><div class="ttname"><a href="a00148.html#a2c76546b54b4fb573d7f14d79ce230a3">Yarn.VirtualMachine.State.programCounter</a></div><div class="ttdeci">int programCounter</div><div class="ttdoc">The instruction number in the current node. </div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00016">VirtualMachine.cs:16</a></div></div>
+<div class="ttc" id="a00145_html_ad2caf9ca4f00cdcbd58983be7c106971"><div class="ttname"><a href="a00145.html#ad2caf9ca4f00cdcbd58983be7c106971">Yarn.VirtualMachine.RunInstruction</a></div><div class="ttdeci">void RunInstruction(Instruction i)</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00176">VirtualMachine.cs:176</a></div></div>
+<div class="ttc" id="a00145_html_ab7594e14981ad75cecea3b2e7dcf895c"><div class="ttname"><a href="a00145.html#ab7594e14981ad75cecea3b2e7dcf895c">Yarn.VirtualMachine.currentNode</a></div><div class="ttdeci">Node currentNode</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00110">VirtualMachine.cs:110</a></div></div>
+<div class="ttc" id="a00145_html_add28fa9c8a45ca579e84d05920bbc42d"><div class="ttname"><a href="a00145.html#add28fa9c8a45ca579e84d05920bbc42d">Yarn.VirtualMachine.ExecutionState</a></div><div class="ttdeci">ExecutionState</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00088">VirtualMachine.cs:88</a></div></div>
+<div class="ttc" id="a00145_html_a5129c63e67e2d4e2780d86b8351320a2"><div class="ttname"><a href="a00145.html#a5129c63e67e2d4e2780d86b8351320a2">Yarn.VirtualMachine.nodeCompleteHandler</a></div><div class="ttdeci">NodeCompleteHandler nodeCompleteHandler</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00073">VirtualMachine.cs:73</a></div></div>
+<div class="ttc" id="a00048_html_a156723a9252b62d288ddf611939ea7c3"><div class="ttname"><a href="a00048.html#a156723a9252b62d288ddf611939ea7c3">Yarn.Node.instructions</a></div><div class="ttdeci">List&lt; Instruction &gt; instructions</div><div class="ttdef"><b>Definition:</b> <a href="a00289_source.html#l00216">Program.cs:216</a></div></div>
+<div class="ttc" id="a00145_html_a66491da06023dabfb63d09e6ccbba74f"><div class="ttname"><a href="a00145.html#a66491da06023dabfb63d09e6ccbba74f">Yarn.VirtualMachine.executionState</a></div><div class="ttdeci">ExecutionState executionState</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00098">VirtualMachine.cs:98</a></div></div>
+</div><!-- fragment -->
+<p><div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00145_af3cc0337914b9f66454a3d52208dba5f_cgraph.png" border="0" usemap="#a00145_af3cc0337914b9f66454a3d52208dba5f_cgraph" alt=""/></div>
+<map name="a00145_af3cc0337914b9f66454a3d52208dba5f_cgraph" id="a00145_af3cc0337914b9f66454a3d52208dba5f_cgraph">
+<area shape="rect" id="node2" href="a00145.html#ad2caf9ca4f00cdcbd58983be7c106971" title="Yarn.VirtualMachine.RunInstruction" alt="" coords="249,195,477,221"/><area shape="rect" id="node3" href="a00145.html#af613c8b2d098678b6ea05b509c0a0cb6" title="Looks up the instruction number for a named label in the current node. " alt="" coords="539,5,707,46"/><area shape="rect" id="node4" href="a00121.html#aacfb1f00ad8aa3921941b8d8af0960e0" title="Yarn.Library.GetFunction" alt="" coords="539,71,706,97"/><area shape="rect" id="node5" href="a00167.html#accab1fc5c8fc353dbfc53ca0f4029576" title="Yarn.VariableStorage.Get\lValue" alt="" coords="537,122,708,163"/><area shape="rect" id="node6" href="a00148.html#a54fd5b64ec94e937e771846167242dc2" title="Peek at a value from the stack. " alt="" coords="533,187,712,229"/><area shape="rect" id="node7" href="a00148.html#a36881a888ea2839d74c3d4e7c199f4ee" title="Pop a value from the stack. " alt="" coords="533,253,712,294"/><area shape="rect" id="node8" href="a00145.html#a6364593ea1115d65e34b343422cfbbbd" title="Yarn.VirtualMachine.SetNode" alt="" coords="525,319,720,345"/><area shape="rect" id="node10" href="a00167.html#aa90ff61224432c5ed3ce72199c55f440" title="Yarn.VariableStorage.Set\lValue" alt="" coords="538,370,707,411"/><area shape="rect" id="node9" href="a00145.html#a3ba945c66cb8ba031357a1771453f82b" title="Reset the state of the VM. " alt="" coords="768,311,947,353"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a6364593ea1115d65e34b343422cfbbbd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Yarn.VirtualMachine.SetNode </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>nodeName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00291_source.html#l00112">112</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
+
+<p>References <a class="el" href="a00291_source.html#l00110">Yarn.VirtualMachine.currentNode</a>, <a class="el" href="a00291_source.html#l00098">Yarn.VirtualMachine.executionState</a>, <a class="el" href="a00289_source.html#l00053">Yarn.Program.nodes</a>, <a class="el" href="a00291_source.html#l00077">Yarn.VirtualMachine.program</a>, <a class="el" href="a00291_source.html#l00061">Yarn.VirtualMachine.ResetState()</a>, and <a class="el" href="a00291_source.html#l00050">Yarn.VirtualMachine.SpecialVariables.ShuffleOptions</a>.</p>
+
+<p>Referenced by <a class="el" href="a00282_source.html#l00340">Yarn.Dialogue.Run()</a>, and <a class="el" href="a00291_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                                             {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00145.html#a2695dbfe3d9df7ffa3f13ad2231217fb">program</a>.<a class="code" href="a00138.html#a3f4928a577c88263ad016be259b175c4">nodes</a>.ContainsKey(nodeName) == <span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                var error = <span class="stringliteral">&quot;No node named &quot;</span> + nodeName;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                dialogue.LogErrorMessage(error);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <a class="code" href="a00145.html#a66491da06023dabfb63d09e6ccbba74f">executionState</a> = ExecutionState.Stopped;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            dialogue.LogDebugMessage (<span class="stringliteral">&quot;Running node &quot;</span> + nodeName);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            <span class="comment">// Clear the special variables</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            dialogue.continuity.SetValue(<a class="code" href="a00145.html#aecbb8ab9becd96457d836100b2818078">SpecialVariables.ShuffleOptions</a>, <span class="keyword">new</span> Value(<span class="keyword">false</span>));</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            <a class="code" href="a00145.html#ab7594e14981ad75cecea3b2e7dcf895c">currentNode</a> = program.nodes [nodeName];</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            <a class="code" href="a00145.html#a3ba945c66cb8ba031357a1771453f82b">ResetState</a> ();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            state.currentNodeName = nodeName;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        }</div>
+<div class="ttc" id="a00145_html_aecbb8ab9becd96457d836100b2818078"><div class="ttname"><a href="a00145.html#aecbb8ab9becd96457d836100b2818078">Yarn.VirtualMachine.SpecialVariables.ShuffleOptions</a></div><div class="ttdeci">const string ShuffleOptions</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00050">VirtualMachine.cs:50</a></div></div>
+<div class="ttc" id="a00145_html_ab7594e14981ad75cecea3b2e7dcf895c"><div class="ttname"><a href="a00145.html#ab7594e14981ad75cecea3b2e7dcf895c">Yarn.VirtualMachine.currentNode</a></div><div class="ttdeci">Node currentNode</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00110">VirtualMachine.cs:110</a></div></div>
+<div class="ttc" id="a00145_html_a2695dbfe3d9df7ffa3f13ad2231217fb"><div class="ttname"><a href="a00145.html#a2695dbfe3d9df7ffa3f13ad2231217fb">Yarn.VirtualMachine.program</a></div><div class="ttdeci">Program program</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00077">VirtualMachine.cs:77</a></div></div>
+<div class="ttc" id="a00138_html_a3f4928a577c88263ad016be259b175c4"><div class="ttname"><a href="a00138.html#a3f4928a577c88263ad016be259b175c4">Yarn.Program.nodes</a></div><div class="ttdeci">Dictionary&lt; string, Node &gt; nodes</div><div class="ttdef"><b>Definition:</b> <a href="a00289_source.html#l00053">Program.cs:53</a></div></div>
+<div class="ttc" id="a00145_html_a66491da06023dabfb63d09e6ccbba74f"><div class="ttname"><a href="a00145.html#a66491da06023dabfb63d09e6ccbba74f">Yarn.VirtualMachine.executionState</a></div><div class="ttdeci">ExecutionState executionState</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00098">VirtualMachine.cs:98</a></div></div>
+<div class="ttc" id="a00145_html_a3ba945c66cb8ba031357a1771453f82b"><div class="ttname"><a href="a00145.html#a3ba945c66cb8ba031357a1771453f82b">Yarn.VirtualMachine.ResetState</a></div><div class="ttdeci">void ResetState()</div><div class="ttdoc">Reset the state of the VM. </div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00061">VirtualMachine.cs:61</a></div></div>
+</div><!-- fragment -->
+<p><div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00145_a6364593ea1115d65e34b343422cfbbbd_cgraph.png" border="0" usemap="#a00145_a6364593ea1115d65e34b343422cfbbbd_cgraph" alt=""/></div>
+<map name="a00145_a6364593ea1115d65e34b343422cfbbbd_cgraph" id="a00145_a6364593ea1115d65e34b343422cfbbbd_cgraph">
+<area shape="rect" id="node2" href="a00145.html#a3ba945c66cb8ba031357a1771453f82b" title="Reset the state of the VM. " alt="" coords="248,5,427,46"/></map>
+</div>
+</p>
+
+<p><div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00145_a6364593ea1115d65e34b343422cfbbbd_icgraph.png" border="0" usemap="#a00145_a6364593ea1115d65e34b343422cfbbbd_icgraph" alt=""/></div>
+<map name="a00145_a6364593ea1115d65e34b343422cfbbbd_icgraph" id="a00145_a6364593ea1115d65e34b343422cfbbbd_icgraph">
+<area shape="rect" id="node2" href="a00088.html#aead84ee50cb113ca45724894290ce9c2" title="Use this in a for&#45;each construct; each time you iterate over it, you&#39;ll get a line, command, or set of options. " alt="" coords="297,5,429,32"/><area shape="rect" id="node5" href="a00145.html#ad2caf9ca4f00cdcbd58983be7c106971" title="Yarn.VirtualMachine.RunInstruction" alt="" coords="249,56,477,83"/><area shape="rect" id="node3" href="a00172.html#a1b974c55540795a9e643c2ec055fbd51" title="Yarn.YarnSpinnerConsole.Run" alt="" coords="525,5,725,32"/><area shape="rect" id="node4" href="a00172.html#a1d71ff2eb190449ea1d42ce86f44489f" title="Yarn.YarnSpinnerConsole.Main" alt="" coords="774,5,978,32"/><area shape="rect" id="node6" href="a00145.html#af3cc0337914b9f66454a3d52208dba5f" title="Executes the next instruction in the current node. " alt="" coords="528,56,723,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a78b8c4078471af59ba505c28824d84d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Yarn.VirtualMachine.Stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00291_source.html#l00133">133</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
+
+<p>References <a class="el" href="a00291_source.html#l00098">Yarn.VirtualMachine.executionState</a>.</p>
+<div class="fragment"><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                           {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            <a class="code" href="a00145.html#a66491da06023dabfb63d09e6ccbba74f">executionState</a> = ExecutionState.Stopped;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        }</div>
+<div class="ttc" id="a00145_html_a66491da06023dabfb63d09e6ccbba74f"><div class="ttname"><a href="a00145.html#a66491da06023dabfb63d09e6ccbba74f">Yarn.VirtualMachine.executionState</a></div><div class="ttdeci">ExecutionState executionState</div><div class="ttdef"><b>Definition:</b> <a href="a00291_source.html#l00098">VirtualMachine.cs:98</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a18b493382de0fde5b4299c1bd2250075"></a>
+<a class="anchor" id="a0ae362616d85f028b7ec3230388926f4"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -646,23 +1028,37 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Yarn.Parser.ParseNode.lineNumber</td>
+          <td class="memname"><a class="el" href="a00145.html#add28fa9c8a45ca579e84d05920bbc42d">ExecutionState</a> Yarn.VirtualMachine._executionState</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00316_source.html#l00062">62</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00316_source.html#l00066">Yarn.Parser.ParseNode.ParseNode()</a>.</p>
+<p>Definition at line <a class="el" href="a00291_source.html#l00097">97</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af313a82103fcc2ff5a177dbb06b92f7b"></a>
+<a class="anchor" id="ab89b02227b92c74552f719afd47848e4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00145.html#a1b57359378059b134ba76acddafd8d81">CommandHandler</a> Yarn.VirtualMachine.commandHandler</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00291_source.html#l00072">72</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00291_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab7594e14981ad75cecea3b2e7dcf895c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -670,23 +1066,23 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00150.html">ParseNode</a> Yarn.Parser.ParseNode.parent</td>
+          <td class="memname"><a class="el" href="a00048.html#a00351">Node</a> Yarn.VirtualMachine.currentNode</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00316_source.html#l00059">59</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00291_source.html#l00110">110</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00316_source.html#l00066">Yarn.Parser.ParseNode.ParseNode()</a>.</p>
+<p>Referenced by <a class="el" href="a00291_source.html#l00164">Yarn.VirtualMachine.FindInstructionPointForLabel()</a>, <a class="el" href="a00291_source.html#l00138">Yarn.VirtualMachine.RunNext()</a>, and <a class="el" href="a00291_source.html#l00112">Yarn.VirtualMachine.SetNode()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a58b3a15788fd2d4127d73619dc6d04ae"></a>
+<a class="anchor" id="ac506426c503da5f033247c29e11c5e82"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -694,24 +1090,144 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string [] Yarn.Parser.ParseNode.tags = {}</td>
+          <td class="memname"><a class="el" href="a00088.html">Dialogue</a> Yarn.VirtualMachine.dialogue</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00316_source.html#l00077">77</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00291_source.html#l00075">75</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00316_source.html#l00374">Yarn.Parser.ShortcutOption.ShortcutOption()</a>, <a class="el" href="a00316_source.html#l00187">Yarn.Parser.Statement.Statement()</a>, and <a class="el" href="a00316_source.html#l00079">Yarn.Parser.ParseNode.TagsToString()</a>.</p>
+<p>Referenced by <a class="el" href="a00291_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>, and <a class="el" href="a00291_source.html#l00053">Yarn.VirtualMachine.VirtualMachine()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a29b30454f068fc7e107d48bff4346fd9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00145.html#aac9ec1011ea2c01460044d7c8355f398">LineHandler</a> Yarn.VirtualMachine.lineHandler</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00291_source.html#l00070">70</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00291_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5129c63e67e2d4e2780d86b8351320a2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00145.html#a5bf3aa51578847c18191fec665a840f9">NodeCompleteHandler</a> Yarn.VirtualMachine.nodeCompleteHandler</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00291_source.html#l00073">73</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00291_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>, and <a class="el" href="a00291_source.html#l00138">Yarn.VirtualMachine.RunNext()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acd25fe2e3aa90dc87ba25d9af904465b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00145.html#a78dfd54b743e53078eed19ab7be2b6cf">OptionsHandler</a> Yarn.VirtualMachine.optionsHandler</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00291_source.html#l00071">71</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00291_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2695dbfe3d9df7ffa3f13ad2231217fb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00138.html">Program</a> Yarn.VirtualMachine.program</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00291_source.html#l00077">77</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00291_source.html#l00112">Yarn.VirtualMachine.SetNode()</a>, and <a class="el" href="a00291_source.html#l00053">Yarn.VirtualMachine.VirtualMachine()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a408485a00c7cc558428c86ed9dd04fca"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Random Yarn.VirtualMachine.random = new Random()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00291_source.html#l00080">80</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00291_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a70f2ce6201cdd2430ceaa764ac614ca0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00148.html">State</a> Yarn.VirtualMachine.state = new <a class="el" href="a00148.html">State</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00291_source.html#l00078">78</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00291_source.html#l00164">Yarn.VirtualMachine.FindInstructionPointForLabel()</a>, <a class="el" href="a00291_source.html#l00061">Yarn.VirtualMachine.ResetState()</a>, <a class="el" href="a00291_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>, <a class="el" href="a00291_source.html#l00138">Yarn.VirtualMachine.RunNext()</a>, and <a class="el" href="a00291_source.html#l00053">Yarn.VirtualMachine.VirtualMachine()</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
-<a class="anchor" id="ac2de2f59be0e69b316627a4de16fadd3"></a>
+<a class="anchor" id="ab3afe8360a344c16c21213edb3641481"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -719,23 +1235,21 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00053.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> Yarn.Parser.Operator.operatorType</td>
+          <td class="memname">string Yarn.VirtualMachine.currentNodeName</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">package</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00316_source.html#l01146">1146</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00316_source.html#l01241">Yarn.Parser.Operator.Operator()</a>, and <a class="el" href="a00316_source.html#l01249">Yarn.Parser.Operator.PrintTree()</a>.</p>
+<p>Definition at line <a class="el" href="a00291_source.html#l00082">82</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad8a4bb1b46dbc3d1b7708e78a2d97e1c"></a>
+<a class="anchor" id="a66491da06023dabfb63d09e6ccbba74f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -743,32 +1257,32 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00053.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> [] Yarn.Parser.Operator.OperatorTypes</td>
+          <td class="memname"><a class="el" href="a00145.html#add28fa9c8a45ca579e84d05920bbc42d">ExecutionState</a> Yarn.VirtualMachine.executionState</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span><span class="mlabel">package</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00316_source.html#l01212">1212</a> of file <a class="el" href="a00316_source.html">Parser.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00291_source.html#l00098">98</a> of file <a class="el" href="a00291_source.html">VirtualMachine.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00316_source.html#l01166">Yarn.Parser.Operator.InfoForOperator()</a>, <a class="el" href="a00316_source.html#l01207">Yarn.Parser.Operator.IsOperator()</a>, <a class="el" href="a00316_source.html#l01245">Yarn.Parser.Operator.Operator()</a>, and <a class="el" href="a00316_source.html#l00773">Yarn.Parser.Expression.Parse()</a>.</p>
+<p>Referenced by <a class="el" href="a00282_source.html#l00340">Yarn.Dialogue.Run()</a>, <a class="el" href="a00291_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>, <a class="el" href="a00291_source.html#l00138">Yarn.VirtualMachine.RunNext()</a>, <a class="el" href="a00291_source.html#l00112">Yarn.VirtualMachine.SetNode()</a>, and <a class="el" href="a00291_source.html#l00133">Yarn.VirtualMachine.Stop()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="a00316_source.html">Parser.cs</a></li>
+<li>YarnSpinner/<a class="el" href="a00291_source.html">VirtualMachine.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00053.html">Yarn</a></li><li class="navelem"><a class="el" href="a00151.html">Parser</a></li><li class="navelem"><a class="el" href="a00145.html">Operator</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:25 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00048.html">Yarn</a></li><li class="navelem"><a class="el" href="a00145.html">VirtualMachine</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:47 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

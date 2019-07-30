@@ -1,11 +1,5 @@
 var a00137 =
 [
-    [ "Example", "a00373.html", "a00373" ],
-    [ "LocalisedStringGroup", "a00137.html#a00381", "a00137_a00381_dup" ],
-    [ "DialogueRunner", "a00095.html", "a00095" ],
-    [ "YarnCommandAttribute", "a00195.html", "a00195" ],
-    [ "DialogueUIBehaviour", "a00097.html", "a00097" ],
-    [ "VariableStorageBehaviour", "a00193.html", "a00193" ],
-    [ "YarnSpinnerEditorWindow", "a00188.html", "a00188" ],
-    [ "Icons", "a00113.html", "a00113" ]
+    [ "x", "a00137.html#a6b40110781090293fbcd2d6f7695ae4d", null ],
+    [ "y", "a00137.html#a390d560bd9faa3a32d8a0489c69be9e0", null ]
 ];

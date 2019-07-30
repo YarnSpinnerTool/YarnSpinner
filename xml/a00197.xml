@@ -1,265 +1,91 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00197" kind="class" prot="public">
-    <compoundname>Yarn::YarnSpinnerConsole</compoundname>
-    <innerclass refid="a00058" prot="package">Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</innerclass>
-      <sectiondef kind="package-static-attrib">
-      <memberdef kind="variable" id="a00197_1a0979de7ea02c8c0375b8220a12e6575e" prot="package" static="yes" mutable="no">
-        <type>List&lt; string &gt;</type>
-        <definition>List&lt;string&gt; Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</definition>
-        <argsstring></argsstring>
-        <name>ALLOWED_EXTENSIONS</name>
-        <initializer>= new List&lt;string&gt;(new string[] { &quot;.json&quot;, &quot;.node&quot;, &quot;.yarn.bytes&quot;, &quot;.yarn.txt&quot; })</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="273" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="273" bodyend="-1"/>
-        <referencedby refid="a00132_1aa2b8af349e709b8a45d42af5146ca848" compoundref="a00327" startline="12" endline="210">Yarn.LineAdder.AddLines</referencedby>
-        <referencedby refid="a00107_1aa4db4ccac799c5f047a8b1a9efbe109d" compoundref="a00326" startline="11" endline="29">Yarn.FileFormatConverter.ConvertFormat</referencedby>
-        <referencedby refid="a00155_1a3679a1f144471ea411fed34f6a79a18d" compoundref="a00329" startline="10" endline="50">Yarn.ProgramExporter.Export</referencedby>
-        <referencedby refid="a00171_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00330" startline="12" endline="124">Yarn.TableGenerator.GenerateTables</referencedby>
-        <referencedby refid="a00197_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00328" startline="275" endline="336">Yarn.YarnSpinnerConsole.Run</referencedby>
-        <referencedby refid="a00197_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00328" startline="338" endline="386">Yarn.YarnSpinnerConsole.Verify</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-static-func">
-      <memberdef kind="function" id="a00197_1aff69d6e16dddb077f87a616a57cd3c66" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00094" kindref="compound">Dialogue</ref></type>
-        <definition>static Dialogue Yarn.YarnSpinnerConsole.CreateDialogueForUtilities</definition>
-        <argsstring>()</argsstring>
-        <name>CreateDialogueForUtilities</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="145" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="145" bodyend="165"/>
-      </memberdef>
-      <memberdef kind="function" id="a00197_1ad77564b25725a771f0fd4da430582e6f" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void Yarn.YarnSpinnerConsole.CheckFileList</definition>
-        <argsstring>(IList&lt; string &gt; paths, List&lt; string &gt; allowedExtensions)</argsstring>
-        <name>CheckFileList</name>
-        <param>
-          <type>IList&lt; string &gt;</type>
-          <declname>paths</declname>
-        </param>
-        <param>
-          <type>List&lt; string &gt;</type>
-          <declname>allowedExtensions</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="206" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="206" bodyend="243"/>
-        <references refid="a00197_1a2f63f9f5b7634cb50ee75ff2eb18b137" compoundref="a00328" startline="167" endline="179">Yarn.YarnSpinnerConsole.Error</references>
-        <references refid="a00197_1a979bb6f049b6c5294f745a19e24ddd9d" compoundref="a00328" startline="195" endline="204">Yarn.YarnSpinnerConsole.Warn</references>
-        <referencedby refid="a00197_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00328" startline="275" endline="336">Yarn.YarnSpinnerConsole.Run</referencedby>
-        <referencedby refid="a00197_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00328" startline="338" endline="386">Yarn.YarnSpinnerConsole.Verify</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00197_1aab244361a510cee18ad2f636d110e0d5" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00094" kindref="compound">Dialogue</ref></type>
-        <definition>static Dialogue Yarn.YarnSpinnerConsole.CreateDialogue</definition>
-        <argsstring>(ExecutionOptions options, ConsoleRunnerImplementation impl)</argsstring>
-        <name>CreateDialogue</name>
-        <param>
-          <type><ref refid="a00105" kindref="compound">ExecutionOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type><ref refid="a00058" kindref="compound">ConsoleRunnerImplementation</ref></type>
-          <declname>impl</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="388" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="388" bodyend="516"/>
-        <references refid="a00189_1a5805faef3b3d376090ff096d6dd6c064" compoundref="a00318" startline="64">Yarn.Value.AsBool</references>
-        <references refid="a00197_1a2f63f9f5b7634cb50ee75ff2eb18b137" compoundref="a00328" startline="167" endline="179">Yarn.YarnSpinnerConsole.Error</references>
-        <references refid="a00105_1ad97950e47ce2aaeb598295b7c3c44b13" compoundref="a00328" startline="63">Yarn.ExecutionOptions.experimental</references>
-        <references refid="a00197_1a939cc9e943c574b36c6af93e9c772702" compoundref="a00328" startline="181" endline="193">Yarn.YarnSpinnerConsole.Note</references>
-        <references refid="a00043_1a89964ea17bd19caf00cb5bff563ed01c" compoundref="a00328" startline="42">Yarn.BaseOptions.showDebuggingInfo</references>
-        <references refid="a00197_1a979bb6f049b6c5294f745a19e24ddd9d" compoundref="a00328" startline="195" endline="204">Yarn.YarnSpinnerConsole.Warn</references>
-        <referencedby refid="a00197_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00328" startline="275" endline="336">Yarn.YarnSpinnerConsole.Run</referencedby>
-        <referencedby refid="a00197_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00328" startline="338" endline="386">Yarn.YarnSpinnerConsole.Verify</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="a00197_1a2f63f9f5b7634cb50ee75ff2eb18b137" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void Yarn.YarnSpinnerConsole.Error</definition>
-        <argsstring>(params string[] messages)</argsstring>
-        <name>Error</name>
-        <param>
-          <type>params string[]</type>
-          <declname>messages</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="167" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="167" bodyend="179"/>
-        <referencedby refid="a00197_1ad77564b25725a771f0fd4da430582e6f" compoundref="a00328" startline="206" endline="243">Yarn.YarnSpinnerConsole.CheckFileList</referencedby>
-        <referencedby refid="a00197_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00328" startline="388" endline="516">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
-        <referencedby refid="a00058_1a925ecf432875c3831adc1a9959db8b46" compoundref="a00328" startline="665" endline="668">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.HandleErrorMessage</referencedby>
-        <referencedby refid="a00058_1aef048f9dbd90258eacc2886aa48ef6af" compoundref="a00328" startline="645" endline="658">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunCommand</referencedby>
-        <referencedby refid="a00058_1a13bc6c3a8ba43223a20befae50dbbcb4" compoundref="a00328" startline="546" endline="564">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunLine</referencedby>
-        <referencedby refid="a00058_1a62674694fa65e5ae8c0c0da4fbceda51" compoundref="a00328" startline="566" endline="643">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunOptions</referencedby>
-        <referencedby refid="a00197_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00328" startline="338" endline="386">Yarn.YarnSpinnerConsole.Verify</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00197_1a939cc9e943c574b36c6af93e9c772702" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void Yarn.YarnSpinnerConsole.Note</definition>
-        <argsstring>(params string[] messages)</argsstring>
-        <name>Note</name>
-        <param>
-          <type>params string[]</type>
-          <declname>messages</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="181" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="181" bodyend="193"/>
-        <referencedby refid="a00197_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00328" startline="388" endline="516">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
-        <referencedby refid="a00058_1ab656ffe1f6e66f2e6d2cb3e970f54b90" compoundref="a00328" startline="670" endline="673">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.HandleDebugMessage</referencedby>
-        <referencedby refid="a00058_1a62674694fa65e5ae8c0c0da4fbceda51" compoundref="a00328" startline="566" endline="643">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunOptions</referencedby>
-        <referencedby refid="a00197_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00328" startline="338" endline="386">Yarn.YarnSpinnerConsole.Verify</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00197_1a979bb6f049b6c5294f745a19e24ddd9d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void Yarn.YarnSpinnerConsole.Warn</definition>
-        <argsstring>(params string[] messages)</argsstring>
-        <name>Warn</name>
-        <param>
-          <type>params string[]</type>
-          <declname>messages</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="195" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="195" bodyend="204"/>
-        <referencedby refid="a00197_1ad77564b25725a771f0fd4da430582e6f" compoundref="a00328" startline="206" endline="243">Yarn.YarnSpinnerConsole.CheckFileList</referencedby>
-        <referencedby refid="a00197_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00328" startline="388" endline="516">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
-        <referencedby refid="a00197_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00328" startline="275" endline="336">Yarn.YarnSpinnerConsole.Run</referencedby>
-        <referencedby refid="a00197_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00328" startline="338" endline="386">Yarn.YarnSpinnerConsole.Verify</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00197_1a1d71ff2eb190449ea1d42ce86f44489f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void Yarn.YarnSpinnerConsole.Main</definition>
-        <argsstring>(string[] args)</argsstring>
-        <name>Main</name>
-        <param>
-          <type>string[]</type>
-          <declname>args</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="244" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="244" bodyend="271"/>
-        <references refid="a00132_1aa2b8af349e709b8a45d42af5146ca848" compoundref="a00327" startline="12" endline="210">Yarn.LineAdder.AddLines</references>
-        <references refid="a00107_1aa4db4ccac799c5f047a8b1a9efbe109d" compoundref="a00326" startline="11" endline="29">Yarn.FileFormatConverter.ConvertFormat</references>
-        <references refid="a00155_1a3679a1f144471ea411fed34f6a79a18d" compoundref="a00329" startline="10" endline="50">Yarn.ProgramExporter.Export</references>
-        <references refid="a00171_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00330" startline="12" endline="124">Yarn.TableGenerator.GenerateTables</references>
-        <references refid="a00197_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00328" startline="275" endline="336">Yarn.YarnSpinnerConsole.Run</references>
-        <references refid="a00197_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00328" startline="338" endline="386">Yarn.YarnSpinnerConsole.Verify</references>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-static-func">
-      <memberdef kind="function" id="a00197_1a1b974c55540795a9e643c2ec055fbd51" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>int</type>
-        <definition>static int Yarn.YarnSpinnerConsole.Run</definition>
-        <argsstring>(RunOptions options)</argsstring>
-        <name>Run</name>
-        <param>
-          <type><ref refid="a00159" kindref="compound">RunOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="275" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="275" bodyend="336"/>
-        <references refid="a00197_1a0979de7ea02c8c0375b8220a12e6575e" compoundref="a00328" startline="273">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</references>
-        <references refid="a00197_1ad77564b25725a771f0fd4da430582e6f" compoundref="a00328" startline="206" endline="243">Yarn.YarnSpinnerConsole.CheckFileList</references>
-        <references refid="a00197_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00328" startline="388" endline="516">Yarn.YarnSpinnerConsole.CreateDialogue</references>
-        <references refid="a00043_1aa93cbb1bc1d5328e0a417012621e92d2" compoundref="a00328" startline="49">Yarn.BaseOptions.files</references>
-        <references refid="a00094_1aead84ee50cb113ca45724894290ce9c2" compoundref="a00308" startline="387" endline="447">Yarn.Dialogue.Run</references>
-        <references refid="a00159_1a4b385e83338d14947c4d840d2d1ee266" compoundref="a00328" startline="87">Yarn.RunOptions.waitForInput</references>
-        <references refid="a00197_1a979bb6f049b6c5294f745a19e24ddd9d" compoundref="a00328" startline="195" endline="204">Yarn.YarnSpinnerConsole.Warn</references>
-        <referencedby refid="a00197_1a1d71ff2eb190449ea1d42ce86f44489f" compoundref="a00328" startline="244" endline="271">Yarn.YarnSpinnerConsole.Main</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00197_1a029a5624e7cc3a16ae586b64f13049de" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>int</type>
-        <definition>static int Yarn.YarnSpinnerConsole.Verify</definition>
-        <argsstring>(VerifyOptions options)</argsstring>
-        <name>Verify</name>
-        <param>
-          <type><ref refid="a00194" kindref="compound">VerifyOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="338" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="338" bodyend="386"/>
-        <references refid="a00197_1a0979de7ea02c8c0375b8220a12e6575e" compoundref="a00328" startline="273">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</references>
-        <references refid="a00197_1ad77564b25725a771f0fd4da430582e6f" compoundref="a00328" startline="206" endline="243">Yarn.YarnSpinnerConsole.CheckFileList</references>
-        <references refid="a00194_1af9b6917244075618720f2a90bbe6ef56" compoundref="a00328" startline="76">Yarn.VerifyOptions.compileAndExit</references>
-        <references refid="a00197_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00328" startline="388" endline="516">Yarn.YarnSpinnerConsole.CreateDialogue</references>
-        <references refid="a00197_1a2f63f9f5b7634cb50ee75ff2eb18b137" compoundref="a00328" startline="167" endline="179">Yarn.YarnSpinnerConsole.Error</references>
-        <references refid="a00043_1aa93cbb1bc1d5328e0a417012621e92d2" compoundref="a00328" startline="49">Yarn.BaseOptions.files</references>
-        <references refid="a00197_1a939cc9e943c574b36c6af93e9c772702" compoundref="a00328" startline="181" endline="193">Yarn.YarnSpinnerConsole.Note</references>
-        <references refid="a00197_1a979bb6f049b6c5294f745a19e24ddd9d" compoundref="a00328" startline="195" endline="204">Yarn.YarnSpinnerConsole.Warn</references>
-        <referencedby refid="a00197_1a1d71ff2eb190449ea1d42ce86f44489f" compoundref="a00328" startline="244" endline="271">Yarn.YarnSpinnerConsole.Main</referencedby>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00197" kind="file">
+    <compoundname>CsvClassMapCollection.cs</compoundname>
+    <innerclass refid="a00059" prot="public">CsvHelper::Configuration::CsvClassMapCollection</innerclass>
+    <innernamespace refid="a00312">CsvHelper::Configuration</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1801">
-        <label>Yarn.YarnSpinnerConsole</label>
-        <link refid="a00197"/>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="143" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="142" bodyend="702"/>
-    <listofallmembers>
-      <member refid="a00197_1a0979de7ea02c8c0375b8220a12e6575e" prot="package" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>ALLOWED_EXTENSIONS</name></member>
-      <member refid="a00197_1ad77564b25725a771f0fd4da430582e6f" prot="package" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>CheckFileList</name></member>
-      <member refid="a00197_1aab244361a510cee18ad2f636d110e0d5" prot="package" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>CreateDialogue</name></member>
-      <member refid="a00197_1aff69d6e16dddb077f87a616a57cd3c66" prot="package" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>CreateDialogueForUtilities</name></member>
-      <member refid="a00197_1a2f63f9f5b7634cb50ee75ff2eb18b137" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>Error</name></member>
-      <member refid="a00197_1a1d71ff2eb190449ea1d42ce86f44489f" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>Main</name></member>
-      <member refid="a00197_1a939cc9e943c574b36c6af93e9c772702" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>Note</name></member>
-      <member refid="a00197_1a1b974c55540795a9e643c2ec055fbd51" prot="private" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>Run</name></member>
-      <member refid="a00197_1a029a5624e7cc3a16ae586b64f13049de" prot="private" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>Verify</name></member>
-      <member refid="a00197_1a979bb6f049b6c5294f745a19e24ddd9d" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>Warn</name></member>
-    </listofallmembers>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>Copyright<sp/>2009-2015<sp/>Josh<sp/>Close<sp/>and<sp/>Contributors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>a<sp/>part<sp/>of<sp/>CsvHelper<sp/>and<sp/>is<sp/>dual<sp/>licensed<sp/>under<sp/>MS-PL<sp/>and<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>LICENSE.txt<sp/>for<sp/>details<sp/>or<sp/>visit<sp/>http://www.opensource.org/licenses/ms-pl.html<sp/>for<sp/>MS-PL<sp/>and<sp/>http://opensource.org/licenses/Apache-2.0<sp/>for<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>http://csvhelper.com</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!NET_2_0</highlight></codeline>
+<codeline lineno="6"><highlight class="preprocessor"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections.Generic;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Linq;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Reflection;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">CsvHelper.Configuration</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="16" refid="a00059" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="a00059" kindref="compound">CsvClassMapCollection</ref></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="18" refid="a00059_1a6402d0986ae539363780f34eefd5fa99" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>readonly<sp/>Dictionary&lt;Type,<sp/>CsvClassMap&gt;<sp/>data<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Dictionary&lt;Type,<sp/>CsvClassMap&gt;();</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="a00057" kindref="compound">CsvClassMap</ref><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">[Type<sp/>type]</highlight></codeline>
+<codeline lineno="29" refid="a00059_1a58c95d5126b396fcf3f58d7daa59646e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>map<sp/>=<sp/>data.Keys</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.Where(<sp/>k<sp/>=&gt;<sp/>k.IsAssignableFrom(<sp/>type<sp/>)<sp/>)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.Select(<sp/>k<sp/>=&gt;<sp/>data[k]<sp/>).FirstOrDefault();</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>map;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="a00059_1ac75513617b6c256c3d693adf4482e1ed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="a00058" kindref="compound">CsvClassMap&lt;T&gt;</ref><sp/>Find&lt;T&gt;()</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="a00058" kindref="compound">CsvClassMap&lt;T&gt;</ref>)</highlight><highlight class="keyword">this</highlight><highlight class="normal">[typeof(<sp/>T<sp/>)];</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="a00059_1aab6a14a4c1a614fac511ddd6af2c9e40" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">internal</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a00059_1aab6a14a4c1a614fac511ddd6af2c9e40" kindref="member">Add</ref>(<sp/><ref refid="a00057" kindref="compound">CsvClassMap</ref><sp/>map<sp/>)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>type<sp/>=<sp/>GetGenericCsvClassMapType(<sp/>map.GetType()<sp/>).GetGenericArguments().First();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>data.ContainsKey(<sp/>type<sp/>)<sp/>)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[type]<sp/>=<sp/>map;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data.Add(<sp/>type,<sp/>map<sp/>);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="a00059_1a0b18f7ab62839aa354021986e5a2ef96" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">internal</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a00059_1a0b18f7ab62839aa354021986e5a2ef96" kindref="member">Remove</ref>(<sp/>Type<sp/>classMapType<sp/>)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>!typeof(<sp/><ref refid="a00057" kindref="compound">CsvClassMap</ref><sp/>).IsAssignableFrom(<sp/>classMapType<sp/>)<sp/>)</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>ArgumentException(<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>class<sp/>map<sp/>type<sp/>must<sp/>inherit<sp/>from<sp/>CsvClassMap.&quot;</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>type<sp/>=<sp/>GetGenericCsvClassMapType(<sp/>classMapType<sp/>).GetGenericArguments().First();</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data.Remove(<sp/>type<sp/>);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="a00059_1a91718f9b6527a7f833393d24587716cc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">internal</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a00059_1a91718f9b6527a7f833393d24587716cc" kindref="member">Clear</ref>()</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data.Clear();</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="a00059_1a73e02f782a0c35347d7d035bec5deb99" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Type<sp/><ref refid="a00059_1a73e02f782a0c35347d7d035bec5deb99" kindref="member">GetGenericCsvClassMapType</ref>(<sp/>Type<sp/>type<sp/>)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>type.GetTypeInfo().IsGenericType<sp/>&amp;&amp;<sp/>type.GetGenericTypeDefinition()<sp/>==<sp/>typeof(<sp/><ref refid="a00057" kindref="compound">CsvClassMap&lt;&gt;</ref><sp/>)<sp/>)</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>type;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>GetGenericCsvClassMapType(<sp/>type.GetTypeInfo().BaseType<sp/>);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>!NET_2_0</highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMapCollection.cs"/>
   </compounddef>
 </doxygen>

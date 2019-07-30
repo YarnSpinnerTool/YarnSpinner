@@ -1,8 +1,8 @@
-This document talks about how to use \hyperlink{a00053}{Yarn} if you're using it to write content. It doesn't talk about how to integrate \hyperlink{a00053}{Yarn} Spinner into your project; for that, see \href{../YarnSpinner-Unity}{\tt \char`\"{}\-Using Yarn Spinner in your Unity game\char`\"{}}.
+This document talks about how to use \hyperlink{a00048}{Yarn} if you're using it to write content. It doesn't talk about how to integrate \hyperlink{a00048}{Yarn} Spinner into your project; for that, see \href{../YarnSpinner-Unity}{\tt \char`\"{}\-Using Yarn Spinner in your Unity game\char`\"{}}.
 
 \subsection*{Lines}
 
-\hyperlink{a00053}{Yarn} lets you define multiple chunks of dialogue that are linked together. Each chunk is called a {\itshape node}.
+\hyperlink{a00048}{Yarn} lets you define multiple chunks of dialogue that are linked together. Each chunk is called a {\itshape node}.
 
 Nodes are filled with different kinds of text. The simplest is lines of dialogue, which look like this\-: ``` Alice\-: Hey, I'm a character speaking in a dialogue! Bob\-: Wild! ``` Each line is delivered to your game one at a time.
 
@@ -10,15 +10,15 @@ Nodes are filled with different kinds of text. The simplest is lines of dialogue
 
 To link a node to another node, you provide {\itshape options}. Options look like this\-: ``` \mbox{[}\mbox{[}Go to the woods$\vert$\-Go\-To\-Woods\mbox{]}\mbox{]} \mbox{[}\mbox{[}Go back to the city$\vert$\-Go\-To\-City\mbox{]}\mbox{]} ``{\ttfamily  Options have two parts\-: the label, which is shown to the user, and the name of the node that we should link to when the user selects the option. The label and the node name are separated by a vertical bar (}$\vert$`).
 
-You don't have to provide the label. Instead, you can just provide the node name, like so\-: ``` \mbox{[}\mbox{[}Go\-To\-City\mbox{]}\mbox{]} ``` If an option has no label, \hyperlink{a00053}{Yarn} will automatically jump to that node when that line is run, and it won't show options to the player.
+You don't have to provide the label. Instead, you can just provide the node name, like so\-: ``` \mbox{[}\mbox{[}Go\-To\-City\mbox{]}\mbox{]} ``` If an option has no label, \hyperlink{a00048}{Yarn} will automatically jump to that node when that line is run, and it won't show options to the player.
 
 When all of the lines in a node have been displayed, the dialogue system gives your game the list of available options. You then let the user choose an option, and then continue loading lines of dialogue, one at a time.
 
-If there are no options when we reach the end of a node, then we've reached the end of a conversation, and \hyperlink{a00053}{Yarn} Spinner will let your game know.
+If there are no options when we reach the end of a node, then we've reached the end of a conversation, and \hyperlink{a00048}{Yarn} Spinner will let your game know.
 
 \subsection*{Shortcut Options}
 
-Sometimes, you'll want to add little branches to your conversation, but you don't want to create separate nodes for them. Instead, you can use {\itshape shortcut options}\-: ``` Mae\-: What did you say to her? -\/$>$ Nothing. Mae\-: Oh, man. Maybe you should have. -\/$>$ That she was an idiot. Mae\-: Hah! I bet that pissed her off. Mae\-: Anyway, I'd better get going. ``` When this is run, \hyperlink{a00053}{Yarn} Spinner will behave just as if you'd broken all of this up into multiple nodes.
+Sometimes, you'll want to add little branches to your conversation, but you don't want to create separate nodes for them. Instead, you can use {\itshape shortcut options}\-: ``` Mae\-: What did you say to her? -\/$>$ Nothing. Mae\-: Oh, man. Maybe you should have. -\/$>$ That she was an idiot. Mae\-: Hah! I bet that pissed her off. Mae\-: Anyway, I'd better get going. ``` When this is run, \hyperlink{a00048}{Yarn} Spinner will behave just as if you'd broken all of this up into multiple nodes.
 
 You can also attach conditions to shortcut options, which will make them only appear if a certain condition passes\-: ``` Bob\-: What would you like? -\/$>$ A burger. $<$$<$if \$money $>$= 5$>$$>$ Bob\-: Nice. Enjoy! -\/$>$ A soda. $<$$<$if \$money $>$= 2$>$$>$ Bob\-: Yum! -\/$>$ Nothing. Bob\-: Thanks for coming! ``` Note that in the last example, there wasn't any attached text. If the player selected the last option (\char`\"{}\-Nothing.\char`\"{}), then the next line to appear would be \char`\"{}\-Bob\-: Thanks for coming!\char`\"{}
 
@@ -30,13 +30,13 @@ In addition to showing lines of dialogue, your game will probably want to run ac
 
 Commands look like this\-: ``` $<$$<$move alice=\char`\"{}\char`\"{} to=\char`\"{}\char`\"{} under\-\_\-bridge$>$=\char`\"{}\char`\"{}$>$$>$ ``` Any text inside the double-\/chevrons will be sent directly to your game as a string. It's up to you to decide what to do with that string.
 
-\hyperlink{a00053}{Yarn} has a special command, called {\ttfamily stop}. If you include {\ttfamily $<$$<$stop$>$$>$} in your node, \hyperlink{a00053}{Yarn} will stop the entire conversation when it reaches it.
+\hyperlink{a00048}{Yarn} has a special command, called {\ttfamily stop}. If you include {\ttfamily $<$$<$stop$>$$>$} in your node, \hyperlink{a00048}{Yarn} will stop the entire conversation when it reaches it.
 
 \subsection*{Variables and If statements}
 
 You can store numbers in variables. To do this, use the {\ttfamily set} command\-: ``` $<$$<$set \$door\-\_\-unlocked to 1$>$$>$ ``{\ttfamily  You can check the value of a variable using the}if{\ttfamily command\-: }`` $<$$<$if \$door\-\_\-unlocked is 1$>$$>$ The door is unlocked! (This will only appear if \$door\-\_\-unlocked is equal to 1.) $<$$<$endif$>$$>$ ``` \subsection*{Expressions}
 
-Maths is easy in \hyperlink{a00053}{Yarn}. ``` $<$$<$ set \$number\-\_\-of\-\_\-stars\-\_\-collected = 1 $>$$>$ $<$$<$ set \$number\-\_\-of\-\_\-stars\-\_\-collected = \$number\-\_\-of\-\_\-stars\-\_\-collected + 1 $>$$>$ ``` \begin{quotation}
+Maths is easy in \hyperlink{a00048}{Yarn}. ``` $<$$<$ set \$number\-\_\-of\-\_\-stars\-\_\-collected = 1 $>$$>$ $<$$<$ set \$number\-\_\-of\-\_\-stars\-\_\-collected = \$number\-\_\-of\-\_\-stars\-\_\-collected + 1 $>$$>$ ``` \begin{quotation}
 $\ast$$\ast$$\ast$\-Note\-:$\ast$$\ast$$\ast$ {\ttfamily to} and {\ttfamily =} are synonyms. It is up to you which you use. However it is strongly recommended to maintain consistency through your Dialogue for readability purposes. At the end of this document, you will find a \href{#operator-synonyms}{\tt list of operator synonyms}.
 
 \end{quotation}
@@ -44,7 +44,7 @@ $\ast$$\ast$$\ast$\-Note\-:$\ast$$\ast$$\ast$ {\ttfamily to} and {\ttfamily =} a
 
 \href{https://en.wikipedia.org/wiki/Order_of_operations}{\tt Order of operations} is as expected, but usage of brackets is encouraged for readability purposes. ``` $<$$<$ set \$globular\-\_\-clusters\-\_\-collected = 2 $>$$>$ $<$$<$ set \$number\-\_\-of\-\_\-stars\-\_\-collected = \$number\-\_\-of\-\_\-stars\-\_\-collected + ( \$globular\-\_\-clusters\-\_\-collected $\ast$ 1000 ) $>$$>$ ``{\ttfamily  You can also do maths inside an}if{\ttfamily command. For example\-: }`` $<$$<$if \$number\-\_\-of\-\_\-stars\-\_\-collected $>$ 5$>$$>$ You have more than 5 stars! $<$$<$endif$>$$>$ ``` You can also get fancier, and do stuff like this\-: ``` $<$$<$if \$hostages\-\_\-saved == \$number\-\_\-of\-\_\-hostages and \$time\-\_\-remaining $>$ 0$>$$>$ You win the game! $<$$<$elseif \$hostages\-\_\-saved $<$ \$number\-\_\-of\-\_\-hostages and \$time\-\_\-remaining $>$ 0$>$$>$ You need to rescue more hostages! $<$$<$elseif \$bomb\-\_\-has\-\_\-exploded == 0$>$$>$ You failed to rescue the hostages before time ran out! $<$$<$endif$>$$>$ ``` \subsection*{Types}
 
-There are four different types of value in \hyperlink{a00053}{Yarn}\-: strings, numbers, \href{http://eesemi.com/boolean.htm}{\tt booleans}, and {\ttfamily null}.
+There are four different types of value in \hyperlink{a00048}{Yarn}\-: strings, numbers, \href{http://eesemi.com/boolean.htm}{\tt booleans}, and {\ttfamily null}.
 
 
 \begin{DoxyItemize}
@@ -54,13 +54,13 @@ There are four different types of value in \hyperlink{a00053}{Yarn}\-: strings, 
 \item {\ttfamily null} means no value.
 \end{DoxyItemize}
 
-\hyperlink{a00053}{Yarn} will automatically convert between types for you. For example\-: ``` $<$$<$if \char`\"{}hi\char`\"{} == \char`\"{}hi\char`\"{}$>$$>$ The two strings are the same! $<$$<$endif$>$$>$
+\hyperlink{a00048}{Yarn} will automatically convert between types for you. For example\-: ``` $<$$<$if \char`\"{}hi\char`\"{} == \char`\"{}hi\char`\"{}$>$$>$ The two strings are the same! $<$$<$endif$>$$>$
 
 $<$$<$if 1+1+\char`\"{}hi\char`\"{} == \char`\"{}2hi\char`\"{}$>$$>$ Strings get joined together with other values! $<$$<$endif$>$$>$ ```
 
 \subsection*{Functions}
 
-You can call functions in your {\ttfamily if} commands. For example, \hyperlink{a00053}{Yarn} Spinner provides a function called {\ttfamily visited}, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. ``` $<$$<$if visited(\char`\"{}\-Go\-To\-City\char`\"{})$>$$>$ We have gone to the city before! $<$$<$endif$>$$>$ ``` You can't define your own functions inside \hyperlink{a00053}{Yarn} itself, but they can be added at run-\/time. See ../\-Yarn\-Spinner-\/\-Programming/\-Extending.md \char`\"{}\char`\"{}Extending \hyperlink{a00053}{Yarn} Spinner\char`\"{}\char`\"{} for more info.
+You can call functions in your {\ttfamily if} commands. For example, \hyperlink{a00048}{Yarn} Spinner provides a function called {\ttfamily visited}, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. ``` $<$$<$if visited(\char`\"{}\-Go\-To\-City\char`\"{})$>$$>$ We have gone to the city before! $<$$<$endif$>$$>$ ``` You can't define your own functions inside \hyperlink{a00048}{Yarn} itself, but they can be added at run-\/time. See ../\-Yarn\-Spinner-\/\-Programming/\-Extending.md \char`\"{}\char`\"{}Extending \hyperlink{a00048}{Yarn} Spinner\char`\"{}\char`\"{} for more info.
 
 \subsection*{Operator synonyms}
 

@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00160" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::SByteConverter</compoundname>
-    <basecompoundref refid="a00090" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
+    <compoundname>CsvHelper::TypeConversion::UInt16Converter</compoundname>
+    <basecompoundref refid="a00084" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00160_1ad16aeb03f418c89b3f78e95b46a46b40" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="a00160_1a796e0b7b57d69abee122947166b45a9a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.SByteConverter.ConvertFromString</definition>
+        <definition>override object CsvHelper.TypeConversion.UInt16Converter.ConvertFromString</definition>
         <argsstring>(TypeConverterOptions options, string text)</argsstring>
         <name>ConvertFromString</name>
-        <reimplements refid="a00090_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
+        <reimplements refid="a00084_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
         <param>
-          <type><ref refid="a00180" kindref="compound">TypeConverterOptions</ref></type>
+          <type><ref refid="a00156" kindref="compound">TypeConverterOptions</ref></type>
           <declname>options</declname>
         </param>
         <param>
@@ -40,12 +40,12 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/SByteConverter.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/SByteConverter.cs" bodystart="20" bodyend="31"/>
-        <references refid="a00180_1af6bc545680b477abf9178eb4755572b1" compoundref="a00285" startline="23">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" bodystart="20" bodyend="31"/>
+        <references refid="a00156_1af6bc545680b477abf9178eb4755572b1" compoundref="a00259" startline="23">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</references>
       </memberdef>
-      <memberdef kind="function" id="a00160_1a8f6d23460e0ddfe883cc06ded76bf633" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00160_1a202a9c2413a59423a51b439eab84a3bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.SByteConverter.CanConvertFrom</definition>
+        <definition>override bool CsvHelper.TypeConversion.UInt16Converter.CanConvertFrom</definition>
         <argsstring>(System.Type type)</argsstring>
         <name>CanConvertFrom</name>
         <param>
@@ -67,18 +67,18 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/SByteConverter.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/SByteConverter.cs" bodystart="40" bodyend="44"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" bodystart="40" bodyend="44"/>
       </memberdef>
-      <memberdef kind="function" id="a00090_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="a00084_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>string</type>
         <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
         <argsstring>(TypeConverterOptions options, object value)</argsstring>
         <name>ConvertToString</name>
-        <reimplements refid="a00125_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
-        <reimplementedby refid="a00101_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="a00144_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
+        <reimplements refid="a00117_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
+        <reimplementedby refid="a00095_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
+        <reimplementedby refid="a00133_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
         <param>
-          <type><ref refid="a00180" kindref="compound">TypeConverterOptions</ref></type>
+          <type><ref refid="a00156" kindref="compound">TypeConverterOptions</ref></type>
           <declname>options</declname>
         </param>
         <param>
@@ -109,20 +109,20 @@
         </inbodydescription>
         <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
       </memberdef>
-      <memberdef kind="function" id="a00090_1a470d21adaa704eb281250dbd112ff91a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="a00084_1a470d21adaa704eb281250dbd112ff91a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>bool</type>
         <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertFrom</definition>
         <argsstring>(Type type)</argsstring>
         <name>CanConvertFrom</name>
-        <reimplements refid="a00125_1ae1ad863656f4fa96bd846a41344c9349">CanConvertFrom</reimplements>
-        <reimplementedby refid="a00174_1ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00048_1a74a66b405f6c18e69b9fd23a1dea91b0">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00086_1af44239d3bd014b1423fa80f7440bbd25">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00087_1a82a8cf4b77600ef49da60deb0c24a708">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00101_1af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00100_1a31af8209aad64ed11d949586075c244a">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00047_1a0be20573af4ee53409bb437125a64268">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00144_1ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</reimplementedby>
+        <reimplements refid="a00117_1ae1ad863656f4fa96bd846a41344c9349">CanConvertFrom</reimplements>
+        <reimplementedby refid="a00154_1ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00044_1a74a66b405f6c18e69b9fd23a1dea91b0">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00080_1af44239d3bd014b1423fa80f7440bbd25">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00081_1a82a8cf4b77600ef49da60deb0c24a708">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00095_1af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00094_1a31af8209aad64ed11d949586075c244a">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00043_1a0be20573af4ee53409bb437125a64268">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00133_1ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</reimplementedby>
         <param>
           <type>Type</type>
           <declname>type</declname>
@@ -144,13 +144,13 @@
         </inbodydescription>
         <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="55" bodyend="60"/>
       </memberdef>
-      <memberdef kind="function" id="a00090_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="a00084_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>bool</type>
         <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
         <argsstring>(Type type)</argsstring>
         <name>CanConvertTo</name>
-        <reimplements refid="a00125_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="a00101_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
+        <reimplements refid="a00117_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
+        <reimplementedby refid="a00095_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
         <param>
           <type>Type</type>
           <declname>type</declname>
@@ -174,52 +174,52 @@
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Converts a SByte to and from a string. </para>    </briefdescription>
+<para>Converts a UInt16 to and from a string. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1627">
+      <node id="1501">
         <label>ITypeConverter</label>
-        <link refid="a00125"/>
+        <link refid="a00117"/>
       </node>
-      <node id="1626">
+      <node id="1500">
         <label>DefaultTypeConverter</label>
-        <link refid="a00090"/>
-        <childnode refid="1627" relation="public-inheritance">
+        <link refid="a00084"/>
+        <childnode refid="1501" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1625">
-        <label>CsvHelper.TypeConversion.SByteConverter</label>
+      <node id="1499">
+        <label>CsvHelper.TypeConversion.UInt16Converter</label>
         <link refid="a00160"/>
-        <childnode refid="1626" relation="public-inheritance">
+        <childnode refid="1500" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1630">
+      <node id="1504">
         <label>ITypeConverter</label>
-        <link refid="a00125"/>
+        <link refid="a00117"/>
       </node>
-      <node id="1629">
+      <node id="1503">
         <label>DefaultTypeConverter</label>
-        <link refid="a00090"/>
-        <childnode refid="1630" relation="public-inheritance">
+        <link refid="a00084"/>
+        <childnode refid="1504" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1628">
-        <label>CsvHelper.TypeConversion.SByteConverter</label>
+      <node id="1502">
+        <label>CsvHelper.TypeConversion.UInt16Converter</label>
         <link refid="a00160"/>
-        <childnode refid="1629" relation="public-inheritance">
+        <childnode refid="1503" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/SByteConverter.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/SByteConverter.cs" bodystart="12" bodyend="45"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" bodystart="12" bodyend="45"/>
     <listofallmembers>
-      <member refid="a00160_1a8f6d23460e0ddfe883cc06ded76bf633" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::SByteConverter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00090_1a470d21adaa704eb281250dbd112ff91a" prot="public" virt="virtual" ambiguityscope="CsvHelper::TypeConversion::DefaultTypeConverter."><scope>CsvHelper::TypeConversion::SByteConverter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00090_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::SByteConverter</scope><name>CanConvertTo</name></member>
-      <member refid="a00160_1ad16aeb03f418c89b3f78e95b46a46b40" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::SByteConverter</scope><name>ConvertFromString</name></member>
-      <member refid="a00090_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::SByteConverter</scope><name>ConvertToString</name></member>
+      <member refid="a00160_1a202a9c2413a59423a51b439eab84a3bd" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::UInt16Converter</scope><name>CanConvertFrom</name></member>
+      <member refid="a00084_1a470d21adaa704eb281250dbd112ff91a" prot="public" virt="virtual" ambiguityscope="CsvHelper::TypeConversion::DefaultTypeConverter."><scope>CsvHelper::TypeConversion::UInt16Converter</scope><name>CanConvertFrom</name></member>
+      <member refid="a00084_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::UInt16Converter</scope><name>CanConvertTo</name></member>
+      <member refid="a00160_1a796e0b7b57d69abee122947166b45a9a" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::UInt16Converter</scope><name>ConvertFromString</name></member>
+      <member refid="a00084_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::UInt16Converter</scope><name>ConvertToString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -1,289 +1,161 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00091" kind="class" prot="public">
-    <compoundname>ExampleVariableStorage</compoundname>
-    <basecompoundref refid="a00193" prot="public" virt="non-virtual">Yarn.Unity.VariableStorageBehaviour</basecompoundref>
-    <innerclass refid="a00379" prot="public">ExampleVariableStorage::DefaultVariable</innerclass>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00091_1a4a4fec7b4ad707cd0603393dd57de96c" prot="private" static="no" mutable="no">
-        <type>Dictionary&lt; string, <ref refid="a00189" kindref="compound">Yarn.Value</ref> &gt;</type>
-        <definition>Dictionary&lt;string, Yarn.Value&gt; ExampleVariableStorage.variables</definition>
-        <argsstring></argsstring>
-        <name>variables</name>
-        <initializer>= new Dictionary&lt;string, <ref refid="a00189" kindref="compound">Yarn.Value</ref>&gt; ()</initializer>
-        <briefdescription>
-<para>Where we actually keeping our variables. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="38" bodyend="-1"/>
-        <referencedby refid="a00091_1a741593be1a299dcc2136f05b9b4a995a" compoundref="a00300" startline="125" endline="132">GetValue</referencedby>
-        <referencedby refid="a00091_1ac4265c1c9da485f13a6b05784b0f668d" compoundref="a00300" startline="118" endline="122">SetValue</referencedby>
-        <referencedby refid="a00091_1af646a17cfd63039a25149f8fc0776dcb" compoundref="a00300" startline="141" endline="152">Update</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00091_1a464c8a4ff6a3c624602d0adc55dfc59a" prot="public" static="no" mutable="no">
-        <type><ref refid="a00379" kindref="compound">DefaultVariable</ref>[]</type>
-        <definition>DefaultVariable [] ExampleVariableStorage.defaultVariables</definition>
-        <argsstring></argsstring>
-        <name>defaultVariables</name>
-        <briefdescription>
-<para>Our list of default variables, for debugging. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="54" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="54" bodyend="-1"/>
-        <referencedby refid="a00091_1a3a05d66cdacadb2e9b618cd0aef45f84" compoundref="a00300" startline="67" endline="115">ResetToDefaults</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00091_1a9893656e3683711eb78441b30c52a600" prot="public" static="no" mutable="no">
-        <type>UnityEngine.UI.Text</type>
-        <definition>UnityEngine.UI.Text ExampleVariableStorage.debugTextView</definition>
-        <argsstring></argsstring>
-        <name>debugTextView</name>
-        <briefdescription>
-<para>A UI.Text that can show the current list of all variables. Optional. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="58" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="58" bodyend="-1"/>
-        <referencedby refid="a00091_1af646a17cfd63039a25149f8fc0776dcb" compoundref="a00300" startline="141" endline="152">Update</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="a00091_1ab6a56afc687455f360876eff67891163" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void ExampleVariableStorage.Awake</definition>
-        <argsstring>()</argsstring>
-        <name>Awake</name>
-        <briefdescription>
-<para>Reset to our default values when the game starts. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="61" bodyend="64"/>
-        <references refid="a00091_1a3a05d66cdacadb2e9b618cd0aef45f84" compoundref="a00300" startline="67" endline="115">ResetToDefaults</references>
-      </memberdef>
-      <memberdef kind="function" id="a00091_1af646a17cfd63039a25149f8fc0776dcb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void ExampleVariableStorage.Update</definition>
-        <argsstring>()</argsstring>
-        <name>Update</name>
-        <briefdescription>
-<para>If we have a debug view, show the list of all variables in it. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="141" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="141" bodyend="152"/>
-        <references refid="a00091_1a9893656e3683711eb78441b30c52a600" compoundref="a00300" startline="58">debugTextView</references>
-        <references refid="a00091_1a4a4fec7b4ad707cd0603393dd57de96c" compoundref="a00300" startline="38">variables</references>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00091" kind="class" prot="public" abstract="yes">
+    <compoundname>Yarn::Unity::DialogueUIBehaviour</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <derivedcompoundref refid="a00153" prot="public" virt="non-virtual">TestDialogueUIBehaviour</derivedcompoundref>
+    <derivedcompoundref refid="a00097" prot="public" virt="non-virtual">Yarn.Unity.Example.ExampleDialogueUI</derivedcompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00091_1a3a05d66cdacadb2e9b618cd0aef45f84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override void</type>
-        <definition>override void ExampleVariableStorage.ResetToDefaults</definition>
+      <memberdef kind="function" id="a00091_1af9d88ca81ac536d43046ca6572e3ff54" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>IEnumerator</type>
+        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueStarted</definition>
         <argsstring>()</argsstring>
-        <name>ResetToDefaults</name>
-        <reimplements refid="a00193_1a33fcbff56561e53e0a70b59c56f0c3af">ResetToDefaults</reimplements>
+        <name>DialogueStarted</name>
+        <reimplementedby refid="a00097_1a313283f6c53354b54f25898eb436eba0">DialogueStarted</reimplementedby>
         <briefdescription>
-<para>Erase all variables and reset to default values. </para>        </briefdescription>
+<para>A conversation has started. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="67" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="67" bodyend="115"/>
-        <references refid="a00091_1a0ce614bee8d5b220500fb765390b4ca3" compoundref="a00300" startline="135" endline="138">Clear</references>
-        <references refid="a00091_1a464c8a4ff6a3c624602d0adc55dfc59a" compoundref="a00300" startline="54">defaultVariables</references>
-        <references refid="a00091_1ac4265c1c9da485f13a6b05784b0f668d" compoundref="a00300" startline="118" endline="122">SetValue</references>
-        <referencedby refid="a00091_1ab6a56afc687455f360876eff67891163" compoundref="a00300" startline="61" endline="64">Awake</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="454" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="454" bodyend="457"/>
       </memberdef>
-      <memberdef kind="function" id="a00091_1ac4265c1c9da485f13a6b05784b0f668d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override void</type>
-        <definition>override void ExampleVariableStorage.SetValue</definition>
-        <argsstring>(string variableName, Yarn.Value value)</argsstring>
-        <name>SetValue</name>
-        <reimplements refid="a00193_1a25f979b062d63c9e886fe7070ce4561b">SetValue</reimplements>
+      <memberdef kind="function" id="a00091_1a754c6dd0bc67895d11f878fe4477d698" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract IEnumerator</type>
+        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunLine</definition>
+        <argsstring>(Yarn.Line line)</argsstring>
+        <name>RunLine</name>
+        <reimplementedby refid="a00097_1a109aeedc5206dcbc4f629638b7830030">RunLine</reimplementedby>
+        <param>
+          <type><ref refid="a00349" kindref="compound">Yarn.Line</ref></type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+<para>Display a line. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="460" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00091_1ac5b29079f638f2ceb078627ef1e60004" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract IEnumerator</type>
+        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunOptions</definition>
+        <argsstring>(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser)</argsstring>
+        <name>RunOptions</name>
+        <reimplementedby refid="a00097_1aaa93672700a456e66c694636460a58f4">RunOptions</reimplementedby>
+        <param>
+          <type><ref refid="a00352" kindref="compound">Yarn.Options</ref></type>
+          <declname>optionsCollection</declname>
+        </param>
+        <param>
+          <type><ref refid="a00048_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">Yarn.OptionChooser</ref></type>
+          <declname>optionChooser</declname>
+        </param>
+        <briefdescription>
+<para>Display the options, and call the optionChooser when done. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="463" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00091_1a3dffe84b9e7a10fdec6749baf697d111" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract IEnumerator</type>
+        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunCommand</definition>
+        <argsstring>(Yarn.Command command)</argsstring>
+        <name>RunCommand</name>
+        <reimplementedby refid="a00097_1a7f84b1e7d3c9c1f7507d143e11ba8075">RunCommand</reimplementedby>
+        <param>
+          <type><ref refid="a00346" kindref="compound">Yarn.Command</ref></type>
+          <declname>command</declname>
+        </param>
+        <briefdescription>
+<para>Perform some game-specific command. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="467" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00091_1a2900548a0704d39d4502a153945f4bef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>IEnumerator</type>
+        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.NodeComplete</definition>
+        <argsstring>(string nextNode)</argsstring>
+        <name>NodeComplete</name>
         <param>
           <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type><ref refid="a00189" kindref="compound">Yarn.Value</ref></type>
-          <declname>value</declname>
+          <declname>nextNode</declname>
         </param>
         <briefdescription>
-<para>Set a variable&apos;s value. </para>        </briefdescription>
+<para>The node has ended. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="118" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="118" bodyend="122"/>
-        <references refid="a00091_1a4a4fec7b4ad707cd0603393dd57de96c" compoundref="a00300" startline="38">variables</references>
-        <referencedby refid="a00091_1a3a05d66cdacadb2e9b618cd0aef45f84" compoundref="a00300" startline="67" endline="115">ResetToDefaults</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="470" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="470" bodyend="473"/>
       </memberdef>
-      <memberdef kind="function" id="a00091_1a741593be1a299dcc2136f05b9b4a995a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override <ref refid="a00189" kindref="compound">Yarn.Value</ref></type>
-        <definition>override Yarn.Value ExampleVariableStorage.GetValue</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetValue</name>
-        <reimplements refid="a00193_1ac6ebafcbebc2b2d71eba8562490a2f1e">GetValue</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <briefdescription>
-<para>Get a variable&apos;s value. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="125" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="125" bodyend="132"/>
-        <references refid="a00091_1a4a4fec7b4ad707cd0603393dd57de96c" compoundref="a00300" startline="38">variables</references>
-      </memberdef>
-      <memberdef kind="function" id="a00091_1a0ce614bee8d5b220500fb765390b4ca3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override void</type>
-        <definition>override void ExampleVariableStorage.Clear</definition>
+      <memberdef kind="function" id="a00091_1aecc60aee9e9386da1f71fb183f43c52d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>IEnumerator</type>
+        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueComplete</definition>
         <argsstring>()</argsstring>
-        <name>Clear</name>
-        <reimplements refid="a00193_1a587fe10b367ace190e10f3bcb590a53c">Clear</reimplements>
+        <name>DialogueComplete</name>
+        <reimplementedby refid="a00097_1a1f2a08baacc25aea09af8e60eb5d3eb1">DialogueComplete</reimplementedby>
         <briefdescription>
-<para>Erase all variables. </para>        </briefdescription>
+<para>The conversation has ended. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="135" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="135" bodyend="138"/>
-        <referencedby refid="a00091_1a3a05d66cdacadb2e9b618cd0aef45f84" compoundref="a00300" startline="67" endline="115">ResetToDefaults</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00193_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.SetNumber</definition>
-        <argsstring>(string variableName, float number)</argsstring>
-        <name>SetNumber</name>
-        <reimplements refid="a00192_1aa28c3694f985cf73489efc301b9d41dd">SetNumber</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>number</declname>
-        </param>
-        <briefdescription>
-<para>Not implemented here. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="487" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="487" bodyend="490"/>
-      </memberdef>
-      <memberdef kind="function" id="a00193_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>float</type>
-        <definition>virtual float Yarn.Unity.VariableStorageBehaviour.GetNumber</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetNumber</name>
-        <reimplements refid="a00192_1a04b061c52d8ac814ce559da5286fbc71">GetNumber</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <briefdescription>
-<para>Not implemented here. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="493" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="493" bodyend="496"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="476" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="476" bodyend="479"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>An extremely simple implementation of DialogueUnityVariableStorage, which just stores everything in a Dictionary. </para>    </briefdescription>
+<para>Scripts that can act as the UI for the conversation should subclass this. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1329">
-        <label>VariableStorageBehaviour</label>
-        <link refid="a00193"/>
-        <childnode refid="1330" relation="public-inheritance">
-        </childnode>
-        <childnode refid="1331" relation="public-inheritance">
+      <node id="1148">
+        <label>Yarn.Unity.Example.ExampleDialogueUI</label>
+        <link refid="a00097"/>
+        <childnode refid="1145" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1328">
-        <label>ExampleVariableStorage</label>
+      <node id="1145">
+        <label>Yarn.Unity.DialogueUIBehaviour</label>
         <link refid="a00091"/>
-        <childnode refid="1329" relation="public-inheritance">
+        <childnode refid="1146" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1331">
-        <label>Yarn::VariableStorage</label>
-        <link refid="a00192"/>
-      </node>
-      <node id="1330">
+      <node id="1146">
         <label>MonoBehaviour</label>
+      </node>
+      <node id="1147">
+        <label>TestDialogueUIBehaviour</label>
+        <link refid="a00153"/>
+        <childnode refid="1145" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1333">
-        <label>VariableStorageBehaviour</label>
-        <link refid="a00193"/>
-        <childnode refid="1334" relation="public-inheritance">
-        </childnode>
-        <childnode refid="1335" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1332">
-        <label>ExampleVariableStorage</label>
+      <node id="1149">
+        <label>Yarn.Unity.DialogueUIBehaviour</label>
         <link refid="a00091"/>
-        <childnode refid="1333" relation="public-inheritance">
-        </childnode>
-        <childnode refid="1336" relation="usage">
-          <edgelabel>+defaultVariables</edgelabel>
-        </childnode>
-        <childnode refid="1338" relation="usage">
-          <edgelabel>+debugTextView</edgelabel>
+        <childnode refid="1150" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1335">
-        <label>Yarn::VariableStorage</label>
-        <link refid="a00192"/>
-      </node>
-      <node id="1338">
-        <label>UnityEngine</label>
-      </node>
-      <node id="1336">
-        <label>ExampleVariableStorage.DefaultVariable</label>
-        <link refid="a00379"/>
-        <childnode refid="1337" relation="usage">
-          <edgelabel>+type</edgelabel>
-        </childnode>
-      </node>
-      <node id="1334">
+      <node id="1150">
         <label>MonoBehaviour</label>
       </node>
-      <node id="1337">
-        <label>Yarn</label>
-      </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="34" bodyend="154"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="452" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="451" bodyend="480"/>
     <listofallmembers>
-      <member refid="a00091_1ab6a56afc687455f360876eff67891163" prot="private" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>Awake</name></member>
-      <member refid="a00091_1a0ce614bee8d5b220500fb765390b4ca3" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>Clear</name></member>
-      <member refid="a00091_1a9893656e3683711eb78441b30c52a600" prot="public" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>debugTextView</name></member>
-      <member refid="a00091_1a464c8a4ff6a3c624602d0adc55dfc59a" prot="public" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>defaultVariables</name></member>
-      <member refid="a00193_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>GetNumber</name></member>
-      <member refid="a00091_1a741593be1a299dcc2136f05b9b4a995a" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>GetValue</name></member>
-      <member refid="a00091_1a3a05d66cdacadb2e9b618cd0aef45f84" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>ResetToDefaults</name></member>
-      <member refid="a00193_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>SetNumber</name></member>
-      <member refid="a00091_1ac4265c1c9da485f13a6b05784b0f668d" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>SetValue</name></member>
-      <member refid="a00091_1af646a17cfd63039a25149f8fc0776dcb" prot="private" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>Update</name></member>
-      <member refid="a00091_1a4a4fec7b4ad707cd0603393dd57de96c" prot="private" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>variables</name></member>
+      <member refid="a00091_1aecc60aee9e9386da1f71fb183f43c52d" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>DialogueComplete</name></member>
+      <member refid="a00091_1af9d88ca81ac536d43046ca6572e3ff54" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>DialogueStarted</name></member>
+      <member refid="a00091_1a2900548a0704d39d4502a153945f4bef" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>NodeComplete</name></member>
+      <member refid="a00091_1a3dffe84b9e7a10fdec6749baf697d111" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunCommand</name></member>
+      <member refid="a00091_1a754c6dd0bc67895d11f878fe4477d698" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunLine</name></member>
+      <member refid="a00091_1ac5b29079f638f2ceb078627ef1e60004" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunOptions</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

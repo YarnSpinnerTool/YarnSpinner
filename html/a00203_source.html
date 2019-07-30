@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: CODE_OF_CONDUCT.md Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapData.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('a00203.html','');});
+$(document).ready(function(){initNavTree('a00203_source.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -105,92 +105,89 @@ $(document).ready(function(){initNavTree('a00203.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">CODE_OF_CONDUCT.md</div>  </div>
+<div class="title">CsvPropertyMapData.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00203.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Contributor Covenant Code of Conduct</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">## Our Pledge</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;In the interest of fostering an open and welcoming environment, we as</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;contributors and maintainers pledge to making participation in our project and</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;our community a harassment-free experience <span class="keywordflow">for</span> everyone, regardless of age, body</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;size, disability, ethnicity, sex characteristics, gender identity and expression,</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;level of experience, education, socio-economic status, nationality, personal</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;appearance, race, religion, or sexual identity and orientation.</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;## Our Standards</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;Examples of behavior that contributes to creating a positive environment</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;include:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;* Using welcoming and inclusive language</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;* Being respectful of differing viewpoints and experiences</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;* Gracefully accepting constructive criticism</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;* Focusing on what is best <span class="keywordflow">for</span> the community</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;* Showing empathy towards other community members</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;Examples of unacceptable behavior by participants include:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;* The use of sexualized language or imagery and unwelcome sexual attention or</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; advances</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;* Trolling, insulting/derogatory comments, and personal or political attacks</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;* Public or <span class="keyword">private</span> harassment</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;* Publishing others<span class="stringliteral">&#39; private information, such as a physical or electronic</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="stringliteral"> address, without explicit permission</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="stringliteral">* Other conduct which could reasonably be considered inappropriate in a</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="stringliteral"> professional setting</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="stringliteral">## Our Responsibilities</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="stringliteral">Project maintainers are responsible for clarifying the standards of acceptable</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="stringliteral">behavior and are expected to take appropriate and fair corrective action in</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="stringliteral">response to any instances of unacceptable behavior.</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="stringliteral">Project maintainers have the right and responsibility to remove, edit, or</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="stringliteral">reject comments, commits, code, wiki edits, issues, and other contributions</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="stringliteral">that are not aligned to this Code of Conduct, or to ban temporarily or</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="stringliteral">permanently any contributor for other behaviors that they deem inappropriate,</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="stringliteral">threatening, offensive, or harmful.</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="stringliteral">## Scope</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="stringliteral">This Code of Conduct applies both within project spaces and in public spaces</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="stringliteral">when an individual is representing the project or its community. Examples of</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="stringliteral">representing a project or community include using an official project e-mail</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="stringliteral">address, posting via an official social media account, or acting as an appointed</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="stringliteral">representative at an online or offline event. Representation of a project may be</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="stringliteral">further defined and clarified by project maintainers.</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="stringliteral">## Enforcement</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="stringliteral">Instances of abusive, harassing, or otherwise unacceptable behavior may be</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="stringliteral">reported by contacting the project team at yarnspinner@secretlab.com.au. All</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="stringliteral">complaints will be reviewed and investigated and will result in a response that</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="stringliteral">is deemed necessary and appropriate to the circumstances. The project team is</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="stringliteral">obligated to maintain confidentiality with regard to the reporter of an incident.</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="stringliteral">Further details of specific enforcement policies may be posted separately.</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="stringliteral">Project maintainers who do not follow or enforce the Code of Conduct in good</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="stringliteral">faith may face temporary or permanent repercussions as determined by other</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="stringliteral">members of the project&#39;</span>s leadership.</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;## Attribution</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;available at https:<span class="comment">//www.contributor-covenant.org/version/1/4/code-of-conduct.html</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;[homepage]: https:<span class="comment">//www.contributor-covenant.org</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;For answers to common questions about <span class="keyword">this</span> code of conduct, see</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;https:<span class="comment">//www.contributor-covenant.org/faq</span></div>
+<a href="a00203.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#if !NET_2_0</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System.Linq.Expressions;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">using</span> System.Reflection;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">using</span> CsvHelper.TypeConversion;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span>CsvHelper.Configuration</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="a00070.html">   15</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00070.html">CsvPropertyMapData</a></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    {</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="a00070.html#acb636e590836496473e867897ab79d97">   17</a></span>&#160;        <span class="keyword">private</span> readonly <a class="code" href="a00071.html">CsvPropertyNameCollection</a> names = <span class="keyword">new</span> <a class="code" href="a00071.html">CsvPropertyNameCollection</a>();</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00070.html#a6dfbe771775d4c0d785847b7f0d2299c">   18</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">int</span> index = -1;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="a00070.html#a77d34f2e73ad23e07eb38ee5ecceadf8">   19</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">object</span> <a class="code" href="a00070.html#a77d34f2e73ad23e07eb38ee5ecceadf8">defaultValue</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00070.html#a0ca8b71605ad4490ea143c24c8adb1f8">   20</a></span>&#160;        <span class="keyword">private</span> readonly <a class="code" href="a00156.html">TypeConverterOptions</a> typeConverterOptions = <span class="keyword">new</span> <a class="code" href="a00156.html">TypeConverterOptions</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="a00070.html#ad8f34e4f5081de744efc703640e3b7d2">   26</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> PropertyInfo Property { <span class="keyword">get</span>; <span class="keyword">private</span> set; }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00071.html">CsvPropertyNameCollection</a> Names</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="a00070.html#ad37a07fbc2781cdb1dce5cb6fcf953d9">   32</a></span>&#160;        {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> names; }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="a00070.html#acf816322908241de17cad1d9a66add43">   41</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">int</span> NameIndex { <span class="keyword">get</span>; set; }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="a00070.html#a4edc08c491e692d4b187c4e436a0a216">   48</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsNameSet { <span class="keyword">get</span>; set; }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">int</span> Index</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="a00070.html#a14a0ca66dd60cf7685ac511906b04927">   54</a></span>&#160;        {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> index; }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            set { index = value; }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="a00070.html#a6af03961e4cab7536aca530902fe4e43">   64</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsIndexSet { <span class="keyword">get</span>; set; }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="a00070.html#a5d282b88e912b3909072dff40a205f8b">   69</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00117.html">ITypeConverter</a> TypeConverter { <span class="keyword">get</span>; set; }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00156.html">TypeConverterOptions</a> <a class="code" href="a00156.html">TypeConverterOptions</a></div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="a00070.html#ad0d40cffbecb6c5e43d6aae27c97a214">   75</a></span>&#160;        {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> typeConverterOptions; }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="a00070.html#a98ca8f9b7cc478644de267d44c6647b7">   82</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> Ignore { <span class="keyword">get</span>; set; }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">object</span> Default</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="a00070.html#a3740c3b2f1e6e74349ac5fdf1ec0fce8">   88</a></span>&#160;        {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> defaultValue; }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            set</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                defaultValue = value;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                IsDefaultSet = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="a00070.html#a3b9322c5f0b85df6a3d7662265c75151">  102</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsDefaultSet { <span class="keyword">get</span>; set; }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="a00070.html#a1ae48223a4f425b7b315c6ae3235b4c1">  108</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> Expression ConvertExpression { <span class="keyword">get</span>; set; }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="a00070.html#a1a1424683bea80f373e3ea80ae6e39c7">  114</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00070.html#a1a1424683bea80f373e3ea80ae6e39c7">CsvPropertyMapData</a>( PropertyInfo property )</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            Property = property;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#endif // !NET_2_0</span></div>
+<div class="ttc" id="a00070_html_a1a1424683bea80f373e3ea80ae6e39c7"><div class="ttname"><a href="a00070.html#a1a1424683bea80f373e3ea80ae6e39c7">CsvHelper.Configuration.CsvPropertyMapData.CsvPropertyMapData</a></div><div class="ttdeci">CsvPropertyMapData(PropertyInfo property)</div><div class="ttdoc">Initializes a new instance of the CsvPropertyMapData class. </div><div class="ttdef"><b>Definition:</b> <a href="a00203_source.html#l00114">CsvPropertyMapData.cs:114</a></div></div>
+<div class="ttc" id="a00070_html_a77d34f2e73ad23e07eb38ee5ecceadf8"><div class="ttname"><a href="a00070.html#a77d34f2e73ad23e07eb38ee5ecceadf8">CsvHelper.Configuration.CsvPropertyMapData.defaultValue</a></div><div class="ttdeci">object defaultValue</div><div class="ttdef"><b>Definition:</b> <a href="a00203_source.html#l00019">CsvPropertyMapData.cs:19</a></div></div>
+<div class="ttc" id="a00156_html"><div class="ttname"><a href="a00156.html">CsvHelper.TypeConversion.TypeConverterOptions</a></div><div class="ttdoc">Options used when doing type conversion. </div><div class="ttdef"><b>Definition:</b> <a href="a00259_source.html#l00015">TypeConverterOptions.cs:15</a></div></div>
+<div class="ttc" id="a00070_html"><div class="ttname"><a href="a00070.html">CsvHelper.Configuration.CsvPropertyMapData</a></div><div class="ttdoc">The configured data for the property map. </div><div class="ttdef"><b>Definition:</b> <a href="a00203_source.html#l00015">CsvPropertyMapData.cs:15</a></div></div>
+<div class="ttc" id="a00117_html"><div class="ttname"><a href="a00117.html">CsvHelper.TypeConversion.ITypeConverter</a></div><div class="ttdoc">Converts objects to and from strings. </div><div class="ttdef"><b>Definition:</b> <a href="a00252_source.html#l00013">ITypeConverter.cs:13</a></div></div>
+<div class="ttc" id="a00071_html"><div class="ttname"><a href="a00071.html">CsvHelper.Configuration.CsvPropertyNameCollection</a></div><div class="ttdoc">A collection that holds property names. </div><div class="ttdef"><b>Definition:</b> <a href="a00204_source.html#l00014">CsvPropertyNameCollection.cs:14</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00203.html">CODE_OF_CONDUCT.md</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:22 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_3401b88f0a1c00c4409faa11193eadf6.html">Configuration</a></li><li class="navelem"><a class="el" href="a00203.html">CsvPropertyMapData.cs</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:44 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

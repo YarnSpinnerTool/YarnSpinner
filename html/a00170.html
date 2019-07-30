@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: CsvHelper.StringHelper Class Reference</title>
+<title>YarnSpinner: Yarn.Unity.YarnCommandAttribute Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,37 +107,75 @@ $(document).ready(function(){initNavTree('a00170.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="a00476.html">List of all members</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="a00688.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">CsvHelper.StringHelper Class Reference</div>  </div>
+<div class="title">Yarn.Unity.YarnCommandAttribute Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Common string tasks.  
+<p>Apply this attribute to methods in your scripts to expose them to <a class="el" href="a00048.html">Yarn</a>.  
  <a href="a00170.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for CsvHelper.StringHelper:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.Unity.YarnCommandAttribute:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00477.png" border="0" usemap="#_csv_helper_8_string_helper_coll__map" alt="Collaboration graph"/></div>
-<map name="_csv_helper_8_string_helper_coll__map" id="_csv_helper_8_string_helper_coll__map">
+<div class="center"><img src="a00689.png" border="0" usemap="#_yarn_8_unity_8_yarn_command_attribute_inherit__map" alt="Inheritance graph"/></div>
+<map name="_yarn_8_unity_8_yarn_command_attribute_inherit__map" id="_yarn_8_unity_8_yarn_command_attribute_inherit__map">
+</map>
+</div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Unity.YarnCommandAttribute:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00690.png" border="0" usemap="#_yarn_8_unity_8_yarn_command_attribute_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_unity_8_yarn_command_attribute_coll__map" id="_yarn_8_unity_8_yarn_command_attribute_coll__map">
 </map>
 </div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a40c715a7ebf19c7053c7b10f2b3df80f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#a40c715a7ebf19c7053c7b10f2b3df80f">IsNullOrWhiteSpace</a> (string s)</td></tr>
-<tr class="memdesc:a40c715a7ebf19c7053c7b10f2b3df80f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests is a string is null or whitespace.  <a href="#a40c715a7ebf19c7053c7b10f2b3df80f">More...</a><br/></td></tr>
-<tr class="separator:a40c715a7ebf19c7053c7b10f2b3df80f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a9c0d57cd72c091f63895944959e98330"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#a9c0d57cd72c091f63895944959e98330">YarnCommandAttribute</a> (string <a class="el" href="a00170.html#a6d513a725c819ffcdaa9c5788472ec8d">commandString</a>)</td></tr>
+<tr class="separator:a9c0d57cd72c091f63895944959e98330"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a6d513a725c819ffcdaa9c5788472ec8d"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#a6d513a725c819ffcdaa9c5788472ec8d">commandString</a><code> [get, set]</code></td></tr>
+<tr class="separator:a6d513a725c819ffcdaa9c5788472ec8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Common string tasks. </p>
+<div class="textblock"><p>Apply this attribute to methods in your scripts to expose them to <a class="el" href="a00048.html">Yarn</a>. </p>
+<p>For example: [YarnCommand("dosomething")] void Foo() { do something! } </p>
 
-<p>Definition at line <a class="el" href="a00262_source.html#l00010">10</a> of file <a class="el" href="a00262_source.html">StringHelper.cs</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a40c715a7ebf19c7053c7b10f2b3df80f"></a>
+<p>Definition at line <a class="el" href="a00269_source.html#l00441">441</a> of file <a class="el" href="a00269_source.html">DialogueRunner.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a9c0d57cd72c091f63895944959e98330"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Yarn.Unity.YarnCommandAttribute.YarnCommandAttribute </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>commandString</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00269_source.html#l00445">445</a> of file <a class="el" href="a00269_source.html">DialogueRunner.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;                                                          {</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;            this.commandString = <a class="code" href="a00170.html#a6d513a725c819ffcdaa9c5788472ec8d">commandString</a>;</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;        }</div>
+<div class="ttc" id="a00170_html_a6d513a725c819ffcdaa9c5788472ec8d"><div class="ttname"><a href="a00170.html#a6d513a725c819ffcdaa9c5788472ec8d">Yarn.Unity.YarnCommandAttribute.commandString</a></div><div class="ttdeci">string commandString</div><div class="ttdef"><b>Definition:</b> <a href="a00269_source.html#l00443">DialogueRunner.cs:443</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a class="anchor" id="a6d513a725c819ffcdaa9c5788472ec8d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -145,72 +183,30 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static bool CsvHelper.StringHelper.IsNullOrWhiteSpace </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
-          <td></td>
+          <td class="memname">string Yarn.Unity.YarnCommandAttribute.commandString</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Tests is a string is null or whitespace. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>The string to test.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the string is null or whitespace, otherwise false.</dd></dl>
-
-<p>Definition at line <a class="el" href="a00262_source.html#l00017">17</a> of file <a class="el" href="a00262_source.html">StringHelper.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00242_source.html#l01163">CsvHelper.CsvReader.GetEmtpyStringMethod()</a>, and <a class="el" href="a00242_source.html#l00747">CsvHelper.CsvReader.TryGetField&lt; T &gt;()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keywordflow">if</span>( s == null )</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            }</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">for</span>( var i = 0; i &lt; s.Length; i++ )</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="keywordflow">if</span>( !<span class="keywordtype">char</span>.IsWhiteSpace( s[i] ) )</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                }</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        }</div>
-</div><!-- fragment -->
-<p><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00170_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph.png" border="0" usemap="#a00170_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph" alt=""/></div>
-<map name="a00170_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph" id="a00170_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph">
-<area shape="rect" id="node2" href="a00079.html#ad1d1cde1588bb56eca326d5d92592956" title="Gets a function to test for an empty string. Will check CsvConfiguration.TrimFields when making its d..." alt="" coords="230,5,447,46"/><area shape="rect" id="node4" href="a00079.html#aa8622306f74940386663fa4020eb8971" title="Gets the field converted to Type T at position (column) index using the specified ITypeConverter..." alt="" coords="239,70,438,111"/><area shape="rect" id="node3" href="a00079.html#a236f07d2376cb1b18e9550ccc3968728" title="Determines whether the current record is empty. A record is considered empty if all fields are empty..." alt="" coords="496,5,707,46"/></map>
-</div>
-</p>
+<p>Definition at line <a class="el" href="a00269_source.html#l00443">443</a> of file <a class="el" href="a00269_source.html">DialogueRunner.cs</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/<a class="el" href="a00262_source.html">StringHelper.cs</a></li>
+<li>Unity/Assets/YarnSpinner/Code/<a class="el" href="a00269_source.html">DialogueRunner.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00340.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00170.html">StringHelper</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:24 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00048.html">Yarn</a></li><li class="navelem"><a class="el" href="a00127.html">Unity</a></li><li class="navelem"><a class="el" href="a00170.html">YarnCommandAttribute</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:47 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -1,14 +1,11 @@
 var a00148 =
 [
-    [ "OptionStatement", "a00148.html#ad18938712d01cf71edbc75d4974cd0e0", null ],
-    [ "CanParse", "a00148.html#a1ffeca22df52451120cb362f90fd4e9f", null ],
-    [ "NodeParent", "a00148.html#a580e520a29444fc23ac3660cbe514a09", null ],
-    [ "PrintTree", "a00148.html#aafba8c941dbd3d0ef841ac9d472e1ba3", null ],
-    [ "TagsToString", "a00148.html#a054f36c80d5eeacd569a8859f599af67", null ],
-    [ "ToString", "a00148.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
-    [ "lineNumber", "a00148.html#a18b493382de0fde5b4299c1bd2250075", null ],
-    [ "parent", "a00148.html#af313a82103fcc2ff5a177dbb06b92f7b", null ],
-    [ "tags", "a00148.html#a58b3a15788fd2d4127d73619dc6d04ae", null ],
-    [ "destination", "a00148.html#abbe56fba06169901508e6c659f06c236", null ],
-    [ "label", "a00148.html#a7f27d78e67fed6992767e995e70fc468", null ]
+    [ "ClearStack", "a00148.html#a9c787097fbbbbf1680e4960cda092535", null ],
+    [ "PeekValue", "a00148.html#a54fd5b64ec94e937e771846167242dc2", null ],
+    [ "PopValue", "a00148.html#a36881a888ea2839d74c3d4e7c199f4ee", null ],
+    [ "PushValue", "a00148.html#aace44f5b85b9f746fede834becda4a8e", null ],
+    [ "currentNodeName", "a00148.html#a86f481fad527f719b49f8fee6ff79764", null ],
+    [ "currentOptions", "a00148.html#ab816dfea32ecda23282700f01454e0a9", null ],
+    [ "programCounter", "a00148.html#a2c76546b54b4fb573d7f14d79ce230a3", null ],
+    [ "stack", "a00148.html#a0bc84abf38b3ff31cbb47363b851c233", null ]
 ];

@@ -2,19 +2,19 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_3401b88f0a1c00c4409faa11193eadf6" kind="dir">
     <compoundname>packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration</compoundname>
-    <innerfile refid="a00221">CsvClassMap.cs</innerfile>
-    <innerfile refid="a00222">CsvClassMap`1.cs</innerfile>
-    <innerfile refid="a00223">CsvClassMapCollection.cs</innerfile>
-    <innerfile refid="a00224">CsvConfiguration.cs</innerfile>
-    <innerfile refid="a00225">CsvConfigurationException.cs</innerfile>
-    <innerfile refid="a00226">CsvPropertyMap.cs</innerfile>
-    <innerfile refid="a00227">CsvPropertyMapCollection.cs</innerfile>
-    <innerfile refid="a00228">CsvPropertyMapComparer.cs</innerfile>
-    <innerfile refid="a00229">CsvPropertyMapData.cs</innerfile>
-    <innerfile refid="a00230">CsvPropertyNameCollection.cs</innerfile>
-    <innerfile refid="a00231">CsvPropertyReferenceMap.cs</innerfile>
-    <innerfile refid="a00232">CsvPropertyReferenceMapData.cs</innerfile>
-    <innerfile refid="a00233">DefaultCsvClassMap`1.cs</innerfile>
+    <innerfile refid="a00195">CsvClassMap.cs</innerfile>
+    <innerfile refid="a00196">CsvClassMap`1.cs</innerfile>
+    <innerfile refid="a00197">CsvClassMapCollection.cs</innerfile>
+    <innerfile refid="a00198">CsvConfiguration.cs</innerfile>
+    <innerfile refid="a00199">CsvConfigurationException.cs</innerfile>
+    <innerfile refid="a00200">CsvPropertyMap.cs</innerfile>
+    <innerfile refid="a00201">CsvPropertyMapCollection.cs</innerfile>
+    <innerfile refid="a00202">CsvPropertyMapComparer.cs</innerfile>
+    <innerfile refid="a00203">CsvPropertyMapData.cs</innerfile>
+    <innerfile refid="a00204">CsvPropertyNameCollection.cs</innerfile>
+    <innerfile refid="a00205">CsvPropertyReferenceMap.cs</innerfile>
+    <innerfile refid="a00206">CsvPropertyReferenceMapData.cs</innerfile>
+    <innerfile refid="a00207">DefaultCsvClassMap`1.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

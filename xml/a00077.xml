@@ -1,171 +1,168 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00077" kind="class" prot="public">
-    <compoundname>CsvHelper::Configuration::CsvPropertyReferenceMap</compoundname>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00077_1aa6926229eec915aa6a71c9ee603064f5" prot="private" static="no" mutable="no">
-        <type>readonly <ref refid="a00078" kindref="compound">CsvPropertyReferenceMapData</ref></type>
-        <definition>readonly CsvPropertyReferenceMapData CsvHelper.Configuration.CsvPropertyReferenceMap.data</definition>
-        <argsstring></argsstring>
-        <name>data</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="16" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00077_1a1bf8b55373206c0dc378c8f7247bf149" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>PropertyInfo</type>
-        <definition>PropertyInfo CsvHelper.Configuration.CsvPropertyReferenceMap.Property</definition>
-        <argsstring></argsstring>
-        <name>Property</name>
-        <briefdescription>
-<para>Gets the property. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="23" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00077_1a555d8d59960792aa556002a1a1b942f9" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type><ref refid="a00062" kindref="compound">CsvClassMap</ref></type>
-        <definition>CsvClassMap CsvHelper.Configuration.CsvPropertyReferenceMap.Mapping</definition>
-        <argsstring></argsstring>
-        <name>Mapping</name>
-        <briefdescription>
-<para>Gets the mapping. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="31" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="32" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00077_1aa83ef91c4eb293a9d035013c8b4af016" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type><ref refid="a00078" kindref="compound">CsvPropertyReferenceMapData</ref></type>
-        <definition>CsvPropertyReferenceMapData CsvHelper.Configuration.CsvPropertyReferenceMap.Data</definition>
-        <argsstring></argsstring>
-        <name>Data</name>
-        <briefdescription>
-<para>Gets the property reference map data. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="40" bodyend="-1"/>
-        <referencedby refid="a00079_1a85552a491d9d488db0516324e9870998" compoundref="a00242" startline="1606" endline="1615">CsvHelper.CsvReader.CanRead</referencedby>
-      </memberdef>
-      </sectiondef>
+    <compoundname>CsvHelper::TypeConversion::CsvTypeConverterException</compoundname>
+    <basecompoundref refid="a00063" prot="public" virt="non-virtual">CsvHelper.CsvHelperException</basecompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00077_1a02823d2439667bca75233abbe81651ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00077_1af2278af1cb915e9b8485c005148c430b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>CsvHelper.Configuration.CsvPropertyReferenceMap.CsvPropertyReferenceMap</definition>
-        <argsstring>(PropertyInfo property, CsvClassMap mapping)</argsstring>
-        <name>CsvPropertyReferenceMap</name>
+        <definition>CsvHelper.TypeConversion.CsvTypeConverterException.CsvTypeConverterException</definition>
+        <argsstring>()</argsstring>
+        <name>CsvTypeConverterException</name>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="a00077" kindref="compound">CsvTypeConverterException</ref> class. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="a00077_1a4e4e9bdf9280d14be37fc42d887b7360" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.TypeConversion.CsvTypeConverterException.CsvTypeConverterException</definition>
+        <argsstring>(string message)</argsstring>
+        <name>CsvTypeConverterException</name>
         <param>
-          <type>PropertyInfo</type>
-          <declname>property</declname>
-        </param>
-        <param>
-          <type><ref refid="a00062" kindref="compound">CsvClassMap</ref></type>
-          <declname>mapping</declname>
+          <type>string</type>
+          <declname>message</declname>
         </param>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="a00077" kindref="compound">CsvPropertyReferenceMap</ref> class. </para>        </briefdescription>
+<para>Initializes a new instance of the <ref refid="a00077" kindref="compound">CsvTypeConverterException</ref> class with a specified error message. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>property</parametername>
+<parametername>message</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The property.</para></parameterdescription>
+<para>The message that describes the error.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" line="27" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="a00077_1afbea8720637f53c27ef4a9ca99c41955" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.TypeConversion.CsvTypeConverterException.CsvTypeConverterException</definition>
+        <argsstring>(string message, Exception innerException)</argsstring>
+        <name>CsvTypeConverterException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>Exception</type>
+          <declname>innerException</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="a00077" kindref="compound">CsvTypeConverterException</ref> class with a specified error message and a reference to the inner exception that is the cause of this exception. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The error message that explains the reason for the exception.</para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>mapping</parametername>
+<parametername>innerException</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The <ref refid="a00062" kindref="compound">CsvClassMap</ref> to use for the reference map.</para></parameterdescription>
+<para>The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="49" bodyend="57"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" bodystart="36" bodyend="36"/>
       </memberdef>
-      <memberdef kind="function" id="a00077_1a0ed653de99ec2251fd99837740693789" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00077" kindref="compound">CsvPropertyReferenceMap</ref></type>
-        <definition>CsvPropertyReferenceMap CsvHelper.Configuration.CsvPropertyReferenceMap.Prefix</definition>
-        <argsstring>(string prefix=null)</argsstring>
-        <name>Prefix</name>
+      <memberdef kind="function" id="a00077_1a118ca20beb2ce0c2b4591502a52b0163" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.TypeConversion.CsvTypeConverterException.CsvTypeConverterException</definition>
+        <argsstring>(SerializationInfo info, StreamingContext context)</argsstring>
+        <name>CsvTypeConverterException</name>
         <param>
-          <type>string</type>
-          <declname>prefix</declname>
-          <defval>null</defval>
+          <type>SerializationInfo</type>
+          <declname>info</declname>
+        </param>
+        <param>
+          <type>StreamingContext</type>
+          <declname>context</declname>
         </param>
         <briefdescription>
-<para>Appends a prefix to the header of each field of the reference property </para>        </briefdescription>
+<para>Initializes a new instance of the <ref refid="a00077" kindref="compound">CsvTypeConverterException</ref> class with serialized data. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>prefix</parametername>
+<parametername>info</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The prefix to be prepended to headers of each reference property</para></parameterdescription>
+<para>The SerializationInfo that holds the serialized object data about the exception being thrown.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The StreamingContext that contains contextual information about the source or destination.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The current <ref refid="a00077" kindref="compound">CsvPropertyReferenceMap</ref></para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="64" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="64" bodyend="74"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00077_1a1e879f9a6ed84415ac52c44f1f086606" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>int</type>
-        <definition>int CsvHelper.Configuration.CsvPropertyReferenceMap.GetMaxIndex</definition>
-        <argsstring>()</argsstring>
-        <name>GetMaxIndex</name>
-        <briefdescription>
-<para>Get the largest index for the properties and references. </para>        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>The max index.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="81" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="81" bodyend="84"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" line="45" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" bodystart="45" bodyend="45"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Mapping info for a reference property mapping to a class. </para>    </briefdescription>
+<para>Represents errors that occur while reading a CSV file. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1141">
-        <label>CsvHelper.Configuration.CsvPropertyReferenceMapData</label>
-        <link refid="a00078"/>
-      </node>
-      <node id="1140">
-        <label>CsvHelper.Configuration.CsvPropertyReferenceMap</label>
+    <inheritancegraph>
+      <node id="1030">
+        <label>CsvHelper.TypeConversion.CsvTypeConverterException</label>
         <link refid="a00077"/>
-        <childnode refid="1141" relation="usage">
-          <edgelabel>-data</edgelabel>
+        <childnode refid="1031" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1032">
+        <label>Exception</label>
+      </node>
+      <node id="1031">
+        <label>CsvHelperException</label>
+        <link refid="a00063"/>
+        <childnode refid="1032" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1033">
+        <label>CsvHelper.TypeConversion.CsvTypeConverterException</label>
+        <link refid="a00077"/>
+        <childnode refid="1034" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1035">
+        <label>Exception</label>
+      </node>
+      <node id="1034">
+        <label>CsvHelperException</label>
+        <link refid="a00063"/>
+        <childnode refid="1035" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="14" bodyend="85"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" bodystart="15" bodyend="47"/>
     <listofallmembers>
-      <member refid="a00077_1a02823d2439667bca75233abbe81651ff" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMap</scope><name>CsvPropertyReferenceMap</name></member>
-      <member refid="a00077_1aa6926229eec915aa6a71c9ee603064f5" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMap</scope><name>data</name></member>
-      <member refid="a00077_1aa83ef91c4eb293a9d035013c8b4af016" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMap</scope><name>Data</name></member>
-      <member refid="a00077_1a1e879f9a6ed84415ac52c44f1f086606" prot="package" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMap</scope><name>GetMaxIndex</name></member>
-      <member refid="a00077_1a555d8d59960792aa556002a1a1b942f9" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMap</scope><name>Mapping</name></member>
-      <member refid="a00077_1a0ed653de99ec2251fd99837740693789" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMap</scope><name>Prefix</name></member>
-      <member refid="a00077_1a1bf8b55373206c0dc378c8f7247bf149" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMap</scope><name>Property</name></member>
+      <member refid="a00063_1a83571967535529f42bb42b33684e4631" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00063_1a47cbed4fb25c42fd548282b3f8652290" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00063_1ac97c52774cb49f7e5d855b7586cdfa1d" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00063_1a1194d6917d1b52a8e15e3701a6e8264d" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00077_1af2278af1cb915e9b8485c005148c430b" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvTypeConverterException</name></member>
+      <member refid="a00077_1a4e4e9bdf9280d14be37fc42d887b7360" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvTypeConverterException</name></member>
+      <member refid="a00077_1afbea8720637f53c27ef4a9ca99c41955" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvTypeConverterException</name></member>
+      <member refid="a00077_1a118ca20beb2ce0c2b4591502a52b0163" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvTypeConverterException</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

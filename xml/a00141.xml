@@ -1,76 +1,53 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00141" kind="class" prot="public">
-    <compoundname>Yarn::Dialogue::NodeCompleteResult</compoundname>
-    <basecompoundref refid="a00158" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00141_1ad48b37b51066b94cd48c58626ac0e774" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Dialogue.NodeCompleteResult.nextNode</definition>
-        <argsstring></argsstring>
-        <name>nextNode</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="185" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="185" bodyend="-1"/>
-        <referencedby refid="a00141_1a88c81469a69987c05aa92780c5a5c1f9" compoundref="a00308" startline="187" endline="189">Yarn.Dialogue.NodeCompleteResult.NodeCompleteResult</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00141_1a88c81469a69987c05aa92780c5a5c1f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Dialogue.NodeCompleteResult.NodeCompleteResult</definition>
-        <argsstring>(string nextNode)</argsstring>
-        <name>NodeCompleteResult</name>
-        <param>
-          <type>string</type>
-          <declname>nextNode</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="187" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="187" bodyend="189"/>
-        <references refid="a00141_1ad48b37b51066b94cd48c58626ac0e774" compoundref="a00308" startline="185">Yarn.Dialogue.NodeCompleteResult.nextNode</references>
-      </memberdef>
-      </sectiondef>
+    <compoundname>Yarn::Dialogue::RunnerResult</compoundname>
+    <derivedcompoundref refid="a00049" prot="public" virt="non-virtual">Yarn.Dialogue.CommandResult</derivedcompoundref>
+    <derivedcompoundref refid="a00124" prot="public" virt="non-virtual">Yarn.Dialogue.LineResult</derivedcompoundref>
+    <derivedcompoundref refid="a00130" prot="public" virt="non-virtual">Yarn.Dialogue.NodeCompleteResult</derivedcompoundref>
+    <derivedcompoundref refid="a00134" prot="public" virt="non-virtual">Yarn.Dialogue.OptionSetResult</derivedcompoundref>
     <briefdescription>
-<para>We&apos;ve reached the end of this node. </para>    </briefdescription>
+<para>We&apos;ll ask this object for the state of variables. </para>    </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para>Represents something for the end user (&quot;client&quot;) of the <ref refid="a00088" kindref="compound">Dialogue</ref> class to do. </para>    </detaileddescription>
     <inheritancegraph>
-      <node id="1533">
-        <label>Yarn.Dialogue.NodeCompleteResult</label>
-        <link refid="a00141"/>
-        <childnode refid="1534" relation="public-inheritance">
+      <node id="1417">
+        <label>Yarn.Dialogue.LineResult</label>
+        <link refid="a00124"/>
+        <childnode refid="1415" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1534">
-        <label>RunnerResult</label>
-        <link refid="a00158"/>
+      <node id="1418">
+        <label>Yarn.Dialogue.NodeCompleteResult</label>
+        <link refid="a00130"/>
+        <childnode refid="1415" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1416">
+        <label>Yarn.Dialogue.CommandResult</label>
+        <link refid="a00049"/>
+        <childnode refid="1415" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1415">
+        <label>Yarn.Dialogue.RunnerResult</label>
+        <link refid="a00141"/>
+      </node>
+      <node id="1419">
+        <label>Yarn.Dialogue.OptionSetResult</label>
+        <link refid="a00134"/>
+        <childnode refid="1415" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1535">
-        <label>Yarn.Dialogue.NodeCompleteResult</label>
+      <node id="1420">
+        <label>Yarn.Dialogue.RunnerResult</label>
         <link refid="a00141"/>
-        <childnode refid="1536" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1536">
-        <label>RunnerResult</label>
-        <link refid="a00158"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="184" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="184" bodyend="190"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="137" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="137" bodyend="137"/>
     <listofallmembers>
-      <member refid="a00141_1ad48b37b51066b94cd48c58626ac0e774" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::NodeCompleteResult</scope><name>nextNode</name></member>
-      <member refid="a00141_1a88c81469a69987c05aa92780c5a5c1f9" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::NodeCompleteResult</scope><name>NodeCompleteResult</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

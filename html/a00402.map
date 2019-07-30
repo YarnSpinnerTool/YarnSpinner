@@ -1,5 +1,3 @@
-<map id="IYarnSpinnerParserListener" name="IYarnSpinnerParserListener">
-<area shape="rect" id="node3" href="$a00198.html" title="This class provides an empty implementation of IYarnSpinnerParserListener, which can be extended to c..." alt="" coords="62,403,268,627"/>
-<area shape="rect" id="node4" href="$a00040.html" title="{Yarn.AntlrCompiler\n|+ program\l~ flags\l~ currentNode\l~ library\l~ rawTextNode\l&#45; labelCount\l|+ EnterNode()\l+ ExitNode()\l+ EnterHeader()\l+ EnterHeader_title()\l+ EnterHeader_tag()\l+ ExitHeader()\l+ EnterBody()\l+ ExitBody()\l~ AntlrCompiler()\l~ RegisterLabel()\l~ Emit()\l~ GetLineID()\l~ Compile()\l&#45; Emit()\l}" alt="" coords="5,675,147,1016"/>
-<area shape="rect" id="node5" href="$a00111.html" title="{Yarn.GraphListener\n|+ graph\l&#45; currentNode\l|+ EnterHeader_title()\l+ ExitOption_statement()\l}" alt="" coords="172,792,340,899"/>
+<map id="CsvHelper.CsvParser" name="CsvHelper.CsvParser">
+<area shape="rect" id="node2" href="$a00108.html" title="Defines methods used the parse a CSV file. " alt="" coords="50,131,160,282"/>
 </map>

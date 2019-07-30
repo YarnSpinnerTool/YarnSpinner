@@ -1,4 +1,4 @@
-This document is intended to act as a comprehensive and concise reference for \hyperlink{a00053}{Yarn} syntax and structure, for use by programmers and content creators. It assumes a working knowledge of modern programming/scripting languages. For a more thorough explanation of \hyperlink{a00053}{Yarn} usage, see the \hyperlink{a00213}{General Usage Guide}
+This document is intended to act as a comprehensive and concise reference for \hyperlink{a00048}{Yarn} syntax and structure, for use by programmers and content creators. It assumes a working knowledge of modern programming/scripting languages. For a more thorough explanation of \hyperlink{a00048}{Yarn} usage, see the \hyperlink{a00187}{General Usage Guide}
 
 \subsection*{Table of Contents}
 
@@ -22,19 +22,19 @@ This document is intended to act as a comprehensive and concise reference for \h
 
 \subsubsection*{Nodes}
 
-Nodes act as containers for \hyperlink{a00053}{Yarn} script, and must have unique titles. The script in the body of a node is processed line by line.
+Nodes act as containers for \hyperlink{a00048}{Yarn} script, and must have unique titles. The script in the body of a node is processed line by line.
 
-A node's header contains its metadata -\/ by default, \hyperlink{a00053}{Yarn} only uses the {\ttfamily title} field, but can be extended to use arbitrary fields.
+A node's header contains its metadata -\/ by default, \hyperlink{a00048}{Yarn} only uses the {\ttfamily title} field, but can be extended to use arbitrary fields.
 
 ``` title\-: Example\-Node\-Name \subsection*{tags\-: foo, bar }
 
-\hyperlink{a00053}{Yarn} content goes here. This is the second line. 
+\hyperlink{a00048}{Yarn} content goes here. This is the second line. 
 
  ```
 
 A script file can contain multiple nodes. In this case, nodes are delineated using three equals ({\ttfamily =}) characters.
 
-Additionally, \hyperlink{a00053}{Yarn} can check if a node has been visited by calling {\ttfamily visited(\char`\"{}\-Node\-Name\char`\"{})} in an {\ttfamily if} statement (i.\-e. {\ttfamily $<$$<$if visited(\char`\"{}\-Node\-Name\char`\"{}) == true$>$$>$}).
+Additionally, \hyperlink{a00048}{Yarn} can check if a node has been visited by calling {\ttfamily visited(\char`\"{}\-Node\-Name\char`\"{})} in an {\ttfamily if} statement (i.\-e. {\ttfamily $<$$<$if visited(\char`\"{}\-Node\-Name\char`\"{}) == true$>$$>$}).
 
 \subsubsection*{Links Between Nodes}
 
@@ -42,11 +42,11 @@ Nodes link to other nodes through {\itshape options}. An option is composed of a
 
 ``` \mbox{[}\mbox{[}A Link To A Node$\vert$\-Node1\mbox{]}\mbox{]} ```
 
-If a node link with no label is provided ({\ttfamily \mbox{[}\mbox{[}Node1\mbox{]}\mbox{]}}), \hyperlink{a00053}{Yarn} will automatically navigate to the linked node.
+If a node link with no label is provided ({\ttfamily \mbox{[}\mbox{[}Node1\mbox{]}\mbox{]}}), \hyperlink{a00048}{Yarn} will automatically navigate to the linked node.
 
 \paragraph*{Menu Syntax}
 
-Shortcut options allow for small branches in \hyperlink{a00053}{Yarn} scripts without requiring extra nodes. Shortcut option sets allow for an arbitrary number of sub-\/branches, but it's recommended that users stick to as few as possible for the sake of script readability.
+Shortcut options allow for small branches in \hyperlink{a00048}{Yarn} scripts without requiring extra nodes. Shortcut option sets allow for an arbitrary number of sub-\/branches, but it's recommended that users stick to as few as possible for the sake of script readability.
 
 ``` Mae\-: What did you say to her? -\/$>$ Nothing. Mae\-: Oh, man. Maybe you should have. -\/$>$ That she was a jerk. Mae\-: Hah! I bet that pissed her off. Mae\-: How'd she react? -\/$>$ She didn't. Mae\-: Booooo. That's boring. -\/$>$ Furiously. Mae\-: That's what I like to hear! Mae\-: Anyway, I'd better get going. ```
 
@@ -72,9 +72,9 @@ Variable names must start with a {\ttfamily \$} character.
 
 \paragraph*{Variable Types}
 
-There are four different types of variable in \hyperlink{a00053}{Yarn}\-: strings, floating-\/point numbers, \href{http://eesemi.com/boolean.htm}{\tt booleans}, and {\ttfamily null}.
+There are four different types of variable in \hyperlink{a00048}{Yarn}\-: strings, floating-\/point numbers, \href{http://eesemi.com/boolean.htm}{\tt booleans}, and {\ttfamily null}.
 
-\hyperlink{a00053}{Yarn} will automatically convert between types. For example\-:
+\hyperlink{a00048}{Yarn} will automatically convert between types. For example\-:
 
 ``` $<$$<$if \char`\"{}hi\char`\"{} == \char`\"{}hi\char`\"{}$>$$>$ The two strings are the same! $<$$<$endif$>$$>$
 
@@ -82,7 +82,7 @@ $<$$<$if 1+1+\char`\"{}hi\char`\"{} == \char`\"{}2hi\char`\"{}$>$$>$ Strings get
 
 \paragraph*{If/\-Else Statements}
 
-\hyperlink{a00053}{Yarn} supports standard if/else/elseif statements.
+\hyperlink{a00048}{Yarn} supports standard if/else/elseif statements.
 
 ``` $<$$<$if \char`\"{}hi\char`\"{} == \char`\"{}hi\char`\"{}$>$$>$ The two strings are the same! $<$$<$endif$>$$>$ ```
 
@@ -110,4 +110,4 @@ $\vert$ {\ttfamily or} $\vert$ {\ttfamily $\vert$$\vert$} $\vert$ $\vert$ {\ttfa
 
 \subsection*{Commands and Functions}
 
-By default, \hyperlink{a00053}{Yarn} Spinner includes a {\ttfamily visited()} function, used to check whether a node has been entered. ``` $<$$<$if visited(\char`\"{}\-Go\-To\-City\char`\"{})$>$$>$ We have gone to the city before! $<$$<$endif$>$$>$ ``` Additional functions and commands can be added at run-\/time. See ../\-Yarn\-Spinner-\/\-Programming/\-Extending.md \char`\"{}\char`\"{}Extending \hyperlink{a00053}{Yarn} Spinner\char`\"{}\char`\"{} for more info. 
+By default, \hyperlink{a00048}{Yarn} Spinner includes a {\ttfamily visited()} function, used to check whether a node has been entered. ``` $<$$<$if visited(\char`\"{}\-Go\-To\-City\char`\"{})$>$$>$ We have gone to the city before! $<$$<$endif$>$$>$ ``` Additional functions and commands can be added at run-\/time. See ../\-Yarn\-Spinner-\/\-Programming/\-Extending.md \char`\"{}\char`\"{}Extending \hyperlink{a00048}{Yarn} Spinner\char`\"{}\char`\"{} for more info. 

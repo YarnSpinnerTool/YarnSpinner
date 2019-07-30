@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/SByteConverter.cs Source File</title>
+<title>YarnSpinner: YarnSpinner/ANTLR/preprocessor.py Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,52 +105,109 @@ $(document).ready(function(){initNavTree('a00280_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">SByteConverter.cs</div>  </div>
+<div class="title">preprocessor.py</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00280.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System.Globalization;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>CsvHelper.TypeConversion</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="a00160.html">   12</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00160.html">SByteConverter</a> : <a class="code" href="a00090.html">DefaultTypeConverter</a></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00160.html#ad16aeb03f418c89b3f78e95b46a46b40">   20</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">object</span> <a class="code" href="a00160.html#ad16aeb03f418c89b3f78e95b46a46b40">ConvertFromString</a>( <a class="code" href="a00180.html">TypeConverterOptions</a> options, <span class="keywordtype">string</span> text )</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            var numberStyle = options.NumberStyle ?? NumberStyles.Integer;</div>
+<a href="a00280.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="a00321.html">    1</a></span>&#160;<span class="comment"># this does a few things</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"># first it replaces all \r\n with \n</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"># it replaces all tabs with 4 spaces</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"># it works out the indent/dedent levels and adds in symbols as necessary</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"># it saves it back out as a new file</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"># this isn&#39;t a clever tool, it is designed to make it easy for ANTLR to do its job afterwards</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"># as such it does no processing other than the minimum required to get ANTLR going</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> sys</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"># this is probably over-documented and under-pythonic but I want it this way to make future porting simple</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"># at this point I think that&#39;s more useful</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">#opening the yarn file in a mode that I think strips out \r\n and uses \n in its place</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;with open(sys.argv[1], <span class="stringliteral">&#39;rU&#39;</span>) <span class="keyword">as</span> yarn:</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="comment"># for holding the finalised lines</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="a00321.html#a3766d6a1d728423223fa0743ba62011f">   16</a></span>&#160;    output_lines = []</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="comment"># A stack to keep info on how deep in we currently are</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment"># is made up of Tuples of the indentation depth and whether we emitted an indent token</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="comment"># has a default value of (0,False) so we can&#39;t fall off the end of the stack</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00321.html#a00fba9ee9674b2513dbe28eab795b734">   20</a></span>&#160;    indents = [(0,<span class="keyword">False</span>)]</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment"># var for determing if we are in a mode where we need to track indentation</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="a00321.html#afa485f45ab87bc0f06c1dfc46737c057">   22</a></span>&#160;    shouldTrackNextIndentation = <span class="keyword">False</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            sbyte sb;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">if</span>( sbyte.TryParse( text, numberStyle, options.<a class="code" href="a00180.html#af6bc545680b477abf9178eb4755572b1">CultureInfo</a>, out sb ) )</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordflow">return</span> sb;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            }</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordflow">return</span> base.ConvertFromString( options, text );</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="a00160.html#a8f6d23460e0ddfe883cc06ded76bf633">   40</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">bool</span> <a class="code" href="a00160.html#a8f6d23460e0ddfe883cc06ded76bf633">CanConvertFrom</a>( System.Type type )</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="comment">// We only care about strings.</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keywordflow">return</span> type == typeof( <span class="keywordtype">string</span> );</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
-<div class="ttc" id="a00180_html_af6bc545680b477abf9178eb4755572b1"><div class="ttname"><a href="a00180.html#af6bc545680b477abf9178eb4755572b1">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</a></div><div class="ttdeci">CultureInfo CultureInfo</div><div class="ttdoc">Gets or sets the culture info. </div><div class="ttdef"><b>Definition:</b> <a href="a00285_source.html#l00023">TypeConverterOptions.cs:23</a></div></div>
-<div class="ttc" id="a00090_html"><div class="ttname"><a href="a00090.html">CsvHelper.TypeConversion.DefaultTypeConverter</a></div><div class="ttdoc">Converts an object to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00270_source.html#l00013">DefaultTypeConverter.cs:13</a></div></div>
-<div class="ttc" id="a00160_html_a8f6d23460e0ddfe883cc06ded76bf633"><div class="ttname"><a href="a00160.html#a8f6d23460e0ddfe883cc06ded76bf633">CsvHelper.TypeConversion.SByteConverter.CanConvertFrom</a></div><div class="ttdeci">override bool CanConvertFrom(System.Type type)</div><div class="ttdoc">Determines whether this instance [can convert from] the specified type. </div><div class="ttdef"><b>Definition:</b> <a href="a00280_source.html#l00040">SByteConverter.cs:40</a></div></div>
-<div class="ttc" id="a00160_html_ad16aeb03f418c89b3f78e95b46a46b40"><div class="ttname"><a href="a00160.html#ad16aeb03f418c89b3f78e95b46a46b40">CsvHelper.TypeConversion.SByteConverter.ConvertFromString</a></div><div class="ttdeci">override object ConvertFromString(TypeConverterOptions options, string text)</div><div class="ttdoc">Converts the string to an object. </div><div class="ttdef"><b>Definition:</b> <a href="a00280_source.html#l00020">SByteConverter.cs:20</a></div></div>
-<div class="ttc" id="a00160_html"><div class="ttname"><a href="a00160.html">CsvHelper.TypeConversion.SByteConverter</a></div><div class="ttdoc">Converts a SByte to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00280_source.html#l00012">SByteConverter.cs:12</a></div></div>
-<div class="ttc" id="a00180_html"><div class="ttname"><a href="a00180.html">CsvHelper.TypeConversion.TypeConverterOptions</a></div><div class="ttdoc">Options used when doing type conversion. </div><div class="ttdef"><b>Definition:</b> <a href="a00285_source.html#l00015">TypeConverterOptions.cs:15</a></div></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment"># our INDENT and DEDENT symbols</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment"># bell and vertical tab</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment"># these fill the role of { and } in other languages</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="a00321.html#ae3f2190a793ab77428838e58e0e83676">   27</a></span>&#160;    INDENT = <span class="stringliteral">&#39;\a&#39;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="a00321.html#a83653c3e52fa74614e655a91ad2b7181">   28</a></span>&#160;    DEDENT = <span class="stringliteral">&#39;\v&#39;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment"># for debugging purposes, it is REALLY hard to see \a and \v</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">if</span> len(sys.argv) == 3 <span class="keywordflow">and</span> sys.argv[2] == <span class="stringliteral">&quot;debug&quot;</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        INDENT = <span class="stringliteral">&#39;{&#39;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        DEDENT = <span class="stringliteral">&#39;}&#39;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment"># the option symbol, just to avoid typos</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="a00321.html#a7ca2dc5371587b21476669a45af013cd">   35</a></span>&#160;    OPTION = <span class="stringliteral">&quot;-&gt;&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment"># tracker for which line we are currently on</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="a00321.html#ac7b4a28b6670884cd095cd684a452c94">   38</a></span>&#160;    line_count = 1</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment"># reading in each line (delineated by a \n) of the yarn file</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">for</span> line <span class="keywordflow">in</span> yarn:</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="comment"># replacing \t with 4 spaces</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="a00321.html#acab50490b6d7a9dc2bb935ad4ffe2eff">   42</a></span>&#160;        tweaked_line = line.replace(<span class="stringliteral">&#39;\t&#39;</span>,<span class="stringliteral">&#39;    &#39;</span>)</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="comment"># stripping off the newline because it makes things a bit cleaner when it comes time to add in INDENT/DEDENT</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        tweaked_line = tweaked_line.rstrip(<span class="stringliteral">&#39;\n&#39;</span>)</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="comment"># counting the number of spaces at the start of the current line</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="a00321.html#a0e59365a4aa5811f6495b92a51e23573">   47</a></span>&#160;        thisIndentation = len(tweaked_line) - len(tweaked_line.lstrip(<span class="stringliteral">&#39; &#39;</span>))</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="comment"># checking that the line starts with an -&gt;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="a00321.html#abf34284b1c9a00275810e5c13a4dcea2">   50</a></span>&#160;        is_option = tweaked_line.strip().startswith(OPTION)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment"># the top of the indent stack</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="a00321.html#ade44b858578c3eab7b6f90030a0e3ea1">   52</a></span>&#160;        previousIndentation = indents[-1]</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="comment"># if we are in a state where we need to worry about indentation (eg recently emited a token or saw an -&gt;)</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="comment"># and our indentation is deeper than the previous level</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">if</span> shouldTrackNextIndentation <span class="keywordflow">and</span> thisIndentation &gt; previousIndentation[0]:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            indents.append((thisIndentation,<span class="keyword">True</span>))</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="comment"># adding the indent to the line above (personal preference really...)</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keywordflow">if</span> len(output_lines) == 0:</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                tweaked_line = INDENT + tweaked_line</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                output_lines[-1] += INDENT</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="comment"># turning off tracking as we have emitted the indent</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            shouldTrackNextIndentation = <span class="keyword">False</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="comment"># if our indentation is less than the previous</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="comment"># we have finished with the current block</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">elif</span> thisIndentation &lt; previousIndentation[0]:</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">while</span> thisIndentation &lt; indents[-1][0]:</div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="a00321.html#a8b7e5c0b2c6870eaa8f9454b4f33678b">   70</a></span>&#160;                topLevel = indents.pop()</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <span class="keywordflow">if</span> topLevel[1]:</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                    <span class="keywordflow">if</span> len(output_lines) == 0:</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                        tweaked_line = DEDENT + tweaked_line</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                        output_lines[-1] += DEDENT</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="comment"># otherwise we just disable tracking</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            shouldTrackNextIndentation = <span class="keyword">False</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="comment"># if we are an option we need to enable tracking</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">if</span> is_option:</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            shouldTrackNextIndentation = <span class="keyword">True</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">if</span> indents[-1][0] &lt; thisIndentation:</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                indents.append((thisIndentation,<span class="keyword">False</span>))</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="comment"># debugging string</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="comment">#print(str(line_count) + &quot;: stack &quot; + str(indents))</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        output_lines.append(tweaked_line)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        line_count += 1</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"># saving the processed Yarn file back out and joining the lines back together with \n&#39;s</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="a00321.html#a3da6d48778c7b08a040bf24377f67792">   92</a></span>&#160;output = open(<span class="stringliteral">&#39;processed.yarn&#39;</span>, <span class="stringliteral">&#39;w&#39;</span>)</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;output.write(<span class="stringliteral">&#39;\n&#39;</span>.join(output_lines))</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_5c139b908ad2613e3ef99ee52a122286.html">TypeConversion</a></li><li class="navelem"><a class="el" href="a00280.html">SByteConverter.cs</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:22 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="dir_a555ed209f3713798e5905e3d3cb40ce.html">ANTLR</a></li><li class="navelem"><a class="el" href="a00280.html">preprocessor.py</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:44 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

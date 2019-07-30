@@ -1,222 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00181" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::TypeConverterOptionsFactory</compoundname>
-      <sectiondef kind="private-static-attrib">
-      <memberdef kind="variable" id="a00181_1abef552dcc7a0c631d09fa8f2ea5fead4" prot="private" static="yes" mutable="no">
-        <type>readonly Dictionary&lt; Type, <ref refid="a00180" kindref="compound">TypeConverterOptions</ref> &gt;</type>
-        <definition>readonly Dictionary&lt;Type, TypeConverterOptions&gt; CsvHelper.TypeConversion.TypeConverterOptionsFactory.typeConverterOptions</definition>
-        <argsstring></argsstring>
-        <name>typeConverterOptions</name>
-        <initializer>= new Dictionary&lt;Type, <ref refid="a00180" kindref="compound">TypeConverterOptions</ref>&gt;()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" bodystart="15" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00181_1aeea3952a7ac1a8cb0291db079800ead4" prot="private" static="yes" mutable="no">
-        <type>readonly object</type>
-        <definition>readonly object CsvHelper.TypeConversion.TypeConverterOptionsFactory.locker</definition>
-        <argsstring></argsstring>
-        <name>locker</name>
-        <initializer>= new object()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" bodystart="16" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="a00181_1a3f70014574bc374acbe8a152e9e741f2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void CsvHelper.TypeConversion.TypeConverterOptionsFactory.AddOptions</definition>
-        <argsstring>(Type type, TypeConverterOptions options)</argsstring>
-        <name>AddOptions</name>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <param>
-          <type><ref refid="a00180" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <briefdescription>
-<para>Adds the <ref refid="a00180" kindref="compound">TypeConverterOptions</ref> for the given Type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type the options are for.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" bodystart="23" bodyend="39"/>
-      </memberdef>
-      <memberdef kind="function" id="a00181_1ab65b57d4c987d39e33bc136dfd5cb989" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void CsvHelper.TypeConversion.TypeConverterOptionsFactory.AddOptions&lt; T &gt;</definition>
-        <argsstring>(TypeConverterOptions options)</argsstring>
-        <name>AddOptions&lt; T &gt;</name>
-        <param>
-          <type><ref refid="a00180" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <briefdescription>
-<para>Adds the <ref refid="a00180" kindref="compound">TypeConverterOptions</ref> for the given Type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type the options are for.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" bodystart="46" bodyend="49"/>
-      </memberdef>
-      <memberdef kind="function" id="a00181_1af5ceccd212df16bb55cf90cdcd76c286" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void CsvHelper.TypeConversion.TypeConverterOptionsFactory.RemoveOptions</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>RemoveOptions</name>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Removes the <ref refid="a00180" kindref="compound">TypeConverterOptions</ref> for the given type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type to remove the options for.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" bodystart="55" bodyend="66"/>
-      </memberdef>
-      <memberdef kind="function" id="a00181_1a201c3cd79a7bfe46424929150f2b84d8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void CsvHelper.TypeConversion.TypeConverterOptionsFactory.RemoveOptions&lt; T &gt;</definition>
-        <argsstring>()</argsstring>
-        <name>RemoveOptions&lt; T &gt;</name>
-        <briefdescription>
-<para>Removes the <ref refid="a00180" kindref="compound">TypeConverterOptions</ref> for the given type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type to remove the options for.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" line="72" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" bodystart="72" bodyend="75"/>
-      </memberdef>
-      <memberdef kind="function" id="a00181_1a2958beb79bb066c2b99c9fc97be9043d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00180" kindref="compound">TypeConverterOptions</ref></type>
-        <definition>static TypeConverterOptions CsvHelper.TypeConversion.TypeConverterOptionsFactory.GetOptions</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>GetOptions</name>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Get the <ref refid="a00180" kindref="compound">TypeConverterOptions</ref> for the given Type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type the options are for.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The options for the given type.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" line="82" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" bodystart="82" bodyend="101"/>
-      </memberdef>
-      <memberdef kind="function" id="a00181_1abff68f203e82218e5d9d316a81d90157" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00180" kindref="compound">TypeConverterOptions</ref></type>
-        <definition>static TypeConverterOptions CsvHelper.TypeConversion.TypeConverterOptionsFactory.GetOptions&lt; T &gt;</definition>
-        <argsstring>()</argsstring>
-        <name>GetOptions&lt; T &gt;</name>
-        <briefdescription>
-<para>Get the <ref refid="a00180" kindref="compound">TypeConverterOptions</ref> for the given Type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type the options are for.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The options for the given type.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" line="108" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" bodystart="108" bodyend="111"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00181" kind="file">
+    <compoundname>README.md</compoundname>
     <briefdescription>
-<para>Creates <ref refid="a00180" kindref="compound">TypeConverterOptions</ref>. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1719">
-        <label>CsvHelper.TypeConversion.TypeConverterOptionsFactory</label>
-        <link refid="a00181"/>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptionsFactory.cs" bodystart="13" bodyend="112"/>
-    <listofallmembers>
-      <member refid="a00181_1a3f70014574bc374acbe8a152e9e741f2" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptionsFactory</scope><name>AddOptions</name></member>
-      <member refid="a00181_1ab65b57d4c987d39e33bc136dfd5cb989" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptionsFactory</scope><name>AddOptions&lt; T &gt;</name></member>
-      <member refid="a00181_1a2958beb79bb066c2b99c9fc97be9043d" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptionsFactory</scope><name>GetOptions</name></member>
-      <member refid="a00181_1abff68f203e82218e5d9d316a81d90157" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptionsFactory</scope><name>GetOptions&lt; T &gt;</name></member>
-      <member refid="a00181_1aeea3952a7ac1a8cb0291db079800ead4" prot="private" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptionsFactory</scope><name>locker</name></member>
-      <member refid="a00181_1af5ceccd212df16bb55cf90cdcd76c286" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptionsFactory</scope><name>RemoveOptions</name></member>
-      <member refid="a00181_1a201c3cd79a7bfe46424929150f2b84d8" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptionsFactory</scope><name>RemoveOptions&lt; T &gt;</name></member>
-      <member refid="a00181_1abef552dcc7a0c631d09fa8f2ea5fead4" prot="private" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptionsFactory</scope><name>typeConverterOptions</name></member>
-    </listofallmembers>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Yarn<sp/>Dialogue</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">Yarn<sp/>Dialogue<sp/>is<sp/>designed<sp/>to<sp/>be<sp/>accessible<sp/>to<sp/>writers<sp/>who<sp/>have<sp/>little<sp/>or<sp/>no<sp/>programming<sp/>knowledge.<sp/>It<sp/>makes<sp/>no<sp/>assumptions<sp/>about<sp/>how<sp/>your<sp/>game<sp/>presents<sp/>dialogue<sp/>to<sp/>the<sp/>player,<sp/>or<sp/>about<sp/>how<sp/>the<sp/>player<sp/>chooses<sp/>their<sp/>responses.<sp/>These<sp/>tasks<sp/>are<sp/>left<sp/>to<sp/>the<sp/>game<sp/>production<sp/>team,<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>programming<sp/>and<sp/>design<sp/>tools<sp/>such<sp/>as<sp/>Unity3D<sp/>and<sp/>C#.</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">##<sp/>Tutorials</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Simple<sp/>Dialogue<sp/>Tutorial</highlight></codeline>
+<codeline lineno="8"><highlight class="preprocessor"></highlight><highlight class="normal">In<sp/>[our<sp/>simple<sp/>dialogue<sp/>tutorial](Simple-Dialogue-Tutorial.md),<sp/>we<sp/>create<sp/>a<sp/>simple<sp/>piece<sp/>of<sp/>Dialogue<sp/>that<sp/>demonstrates<sp/>basic<sp/>Yarn<sp/>functionality.<sp/></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">###<sp/>Complex<sp/>Dialogue<sp/>Tutorial</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">In<sp/>the<sp/>[complex<sp/>dialogue<sp/>tutorial](Complex-Dialogue-Tutorial.md),<sp/>we<sp/>create<sp/>a<sp/>slightly<sp/>more<sp/>complex<sp/>piece<sp/>of<sp/>Dialogue.<sp/>This<sp/>example<sp/>demonstrates<sp/>more<sp/>advanced<sp/>Yarn<sp/>functionality,<sp/>such<sp/>as<sp/>commands,<sp/>variables,<sp/>and<sp/>logic<sp/>statements.<sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Reference<sp/>Documentation</highlight></codeline>
+<codeline lineno="14"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>General<sp/>Usage<sp/>Guide</highlight></codeline>
+<codeline lineno="16"><highlight class="preprocessor"></highlight><highlight class="normal">The<sp/>[general<sp/>usage](General-Usage.md)<sp/>page<sp/>describes<sp/>most<sp/>features<sp/>of<sp/>the<sp/>Yarn<sp/>Language.<sp/>It<sp/>also<sp/>contains<sp/>small<sp/>Dialogue<sp/>snippets,<sp/>as<sp/>well<sp/>as<sp/>tips<sp/>and<sp/>suggestions.</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">###<sp/>Syntax<sp/>Reference</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">The<sp/>[syntax<sp/>reference](Yarn-Syntax.md)<sp/>page<sp/>contains<sp/>a<sp/>comprehensive<sp/>list<sp/>of<sp/>Yarn<sp/>syntax<sp/>and<sp/>commands<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>quick<sp/>reference.</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">###<sp/>Localization</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">The<sp/>[localization](Dialogue-Localization.md)<sp/>page<sp/>describes<sp/>how<sp/>localization<sp/>(translating<sp/>the<sp/>text<sp/>into<sp/>other<sp/>languages)<sp/>takes<sp/>place.</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">&gt;<sp/>***Note:***<sp/>It<sp/>is<sp/>currently<sp/>a<sp/>requirement<sp/>that<sp/>a<sp/>programmer<sp/>run<sp/>a<sp/>special<sp/>tool<sp/>across<sp/>the<sp/>Dialogue<sp/>to<sp/>produce<sp/>the<sp/>files<sp/>to<sp/>be<sp/>translated.</highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Dialogue/README.md"/>
   </compounddef>
 </doxygen>

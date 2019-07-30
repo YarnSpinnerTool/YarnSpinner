@@ -1,9 +1,0 @@
-<map id="CsvHelper.CsvParser.Read" name="CsvHelper.CsvParser.Read">
-<area shape="rect" id="node2" href="$a00070.html#a294664b81d5e4e61289785fa2c1c5820" title="Checks if the instance has been disposed of. " alt="" coords="249,5,441,46"/>
-<area shape="rect" id="node3" href="$a00070.html#a47414bb437abd9918ff4501beaa9ff1c" title="Reads the Excel seperator and sets it to the delimiter. " alt="" coords="253,70,438,111"/>
-<area shape="rect" id="node4" href="$a00070.html#a5420fbd5e54c6ed9a856f2d92e610957" title="Reads the next line. " alt="" coords="241,136,450,163"/>
-<area shape="rect" id="node5" href="$a00070.html#ac425b45e53d095d825f0fa8a52041a69" title="Gets the current character from the buffer while advancing the buffer if it ran out. " alt="" coords="499,111,701,137"/>
-<area shape="rect" id="node6" href="$a00070.html#a5ccc63fca7b292e0a313ccf81c5ac48c" title="Adds the field to the current record. " alt="" coords="749,55,955,97"/>
-<area shape="rect" id="node7" href="$a00070.html#a699a73656cc4d6b06df34b37460a0963" title="Appends the current buffer data to the field. " alt="" coords="753,123,951,165"/>
-<area shape="rect" id="node8" href="$a00070.html#a80b65e1df274bb8ef11d8bc5ba142982" title="Updates the byte position using the data from the reader buffer. " alt="" coords="754,194,950,235"/>
-</map>

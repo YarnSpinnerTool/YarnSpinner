@@ -1,274 +1,153 @@
-\hypertarget{a00075}{\section{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data Class Reference}
-\label{a00075}\index{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data@{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data}}
+\hypertarget{a00075}{\section{Csv\-Helper.\-Csv\-Reader\-Exception Class Reference}
+\label{a00075}\index{Csv\-Helper.\-Csv\-Reader\-Exception@{Csv\-Helper.\-Csv\-Reader\-Exception}}
 }
 
 
-The configured data for the property map.  
+Represents errors that occur while reading a C\-S\-V file.  
 
 
 
 
-Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data\-:
+Inheritance diagram for Csv\-Helper.\-Csv\-Reader\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00500}
+\includegraphics[width=238pt]{a00411}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Csv\-Helper.\-Csv\-Reader\-Exception\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{a00412}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00075_a1a1424683bea80f373e3ea80ae6e39c7}{Csv\-Property\-Map\-Data} (Property\-Info property)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00075}{Csv\-Property\-Map\-Data} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-virtual Property\-Info \hyperlink{a00075_ad8f34e4f5081de744efc703640e3b7d2}{Property}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the Property\-Info that the data is associated with. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00076}{Csv\-Property\-Name\-Collection} \hyperlink{a00075_ad37a07fbc2781cdb1dce5cb6fcf953d9}{Names}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the list of column names. \end{DoxyCompactList}\item 
-virtual int \hyperlink{a00075_acf816322908241de17cad1d9a66add43}{Name\-Index}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the index of the name. This is used if there are multiple columns with the same names. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00075_a4edc08c491e692d4b187c4e436a0a216}{Is\-Name\-Set}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating if the name was explicitly set. True if it was explicity set, otherwise false. \end{DoxyCompactList}\item 
-virtual int \hyperlink{a00075_a14a0ca66dd60cf7685ac511906b04927}{Index}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the column index. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00075_a6af03961e4cab7536aca530902fe4e43}{Is\-Index\-Set}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating if the index was explicitly set. True if it was explicitly set, otherwise false. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00125}{I\-Type\-Converter} \hyperlink{a00075_a5d282b88e912b3909072dff40a205f8b}{Type\-Converter}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the type converter. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00180}{Type\-Converter\-Options} \hyperlink{a00075_ad0d40cffbecb6c5e43d6aae27c97a214}{Type\-Converter\-Options}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the type converter options. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00075_a98ca8f9b7cc478644de267d44c6647b7}{Ignore}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating whether the field should be ignored. \end{DoxyCompactList}\item 
-virtual object \hyperlink{a00075_a3740c3b2f1e6e74349ac5fdf1ec0fce8}{Default}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the default value used when a C\-S\-V field is empty. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00075_a3b9322c5f0b85df6a3d7662265c75151}{Is\-Default\-Set}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating whether this instance is default value set. the default value was explicitly set. True if it was explicitly set, otherwise false. \end{DoxyCompactList}\item 
-virtual Expression \hyperlink{a00075_a1ae48223a4f425b7b315c6ae3235b4c1}{Convert\-Expression}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the expression used to convert data in the row to the property. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-readonly \hyperlink{a00076}{Csv\-Property\-Name\-Collection} \hyperlink{a00075_acb636e590836496473e867897ab79d97}{names} = new \hyperlink{a00076}{Csv\-Property\-Name\-Collection}()
-\item 
-int \hyperlink{a00075_a6dfbe771775d4c0d785847b7f0d2299c}{index} = -\/1
-\item 
-object \hyperlink{a00075_a77d34f2e73ad23e07eb38ee5ecceadf8}{default\-Value}
-\item 
-readonly \hyperlink{a00180}{Type\-Converter\-Options} \hyperlink{a00075_a0ca8b71605ad4490ea143c24c8adb1f8}{type\-Converter\-Options} = new \hyperlink{a00180}{Type\-Converter\-Options}()
-\end{DoxyCompactItemize}
+\hyperlink{a00075_a92ea35129f92f260c5327bbc3fd330df}{Csv\-Reader\-Exception} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00075}{Csv\-Reader\-Exception} class. \end{DoxyCompactList}\item 
+\hyperlink{a00075_abb4803417d6a479385872b608f1791e5}{Csv\-Reader\-Exception} (string message)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00075}{Csv\-Reader\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
+\hyperlink{a00075_a4507583f079e40d454285c1e4f161aeb}{Csv\-Reader\-Exception} (string message, Exception inner\-Exception)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00075}{Csv\-Reader\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
+\hyperlink{a00075_aefa7020d5317878f91b9f43d3e1475be}{Csv\-Reader\-Exception} (Serialization\-Info info, Streaming\-Context context)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00075}{Csv\-Reader\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The configured data for the property map. 
+Represents errors that occur while reading a C\-S\-V file. 
 
 
 
-Definition at line 15 of file Csv\-Property\-Map\-Data.\-cs.
+Definition at line 18 of file Csv\-Reader\-Exception.\-cs.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00075_a1a1424683bea80f373e3ea80ae6e39c7}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Csv\-Property\-Map\-Data@{Csv\-Property\-Map\-Data}}
-\index{Csv\-Property\-Map\-Data@{Csv\-Property\-Map\-Data}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Csv\-Property\-Map\-Data}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Csv\-Property\-Map\-Data (
+\hypertarget{a00075_a92ea35129f92f260c5327bbc3fd330df}{\index{Csv\-Helper\-::\-Csv\-Reader\-Exception@{Csv\-Helper\-::\-Csv\-Reader\-Exception}!Csv\-Reader\-Exception@{Csv\-Reader\-Exception}}
+\index{Csv\-Reader\-Exception@{Csv\-Reader\-Exception}!CsvHelper::CsvReaderException@{Csv\-Helper\-::\-Csv\-Reader\-Exception}}
+\subsubsection[{Csv\-Reader\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Reader\-Exception.\-Csv\-Reader\-Exception (
 \begin{DoxyParamCaption}
-\item[{Property\-Info}]{property}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00075_a1a1424683bea80f373e3ea80ae6e39c7}
+)}}\label{a00075_a92ea35129f92f260c5327bbc3fd330df}
 
 
-Initializes a new instance of the \hyperlink{a00075}{Csv\-Property\-Map\-Data} class. 
+Initializes a new instance of the \hyperlink{a00075}{Csv\-Reader\-Exception} class. 
+
+
+
+Definition at line 23 of file Csv\-Reader\-Exception.\-cs.
+
+
+\begin{DoxyCode}
+23 \{\}
+\end{DoxyCode}
+\hypertarget{a00075_abb4803417d6a479385872b608f1791e5}{\index{Csv\-Helper\-::\-Csv\-Reader\-Exception@{Csv\-Helper\-::\-Csv\-Reader\-Exception}!Csv\-Reader\-Exception@{Csv\-Reader\-Exception}}
+\index{Csv\-Reader\-Exception@{Csv\-Reader\-Exception}!CsvHelper::CsvReaderException@{Csv\-Helper\-::\-Csv\-Reader\-Exception}}
+\subsubsection[{Csv\-Reader\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Reader\-Exception.\-Csv\-Reader\-Exception (
+\begin{DoxyParamCaption}
+\item[{string}]{message}
+\end{DoxyParamCaption}
+)}}\label{a00075_abb4803417d6a479385872b608f1791e5}
+
+
+Initializes a new instance of the \hyperlink{a00075}{Csv\-Reader\-Exception} class with a specified error message. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em property} & The property.\\
+{\em message} & The message that describes the error.\\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 114 of file Csv\-Property\-Map\-Data.\-cs.
+Definition at line 30 of file Csv\-Reader\-Exception.\-cs.
 
 
 \begin{DoxyCode}
-115         \{
-116             \hyperlink{a00075_ad8f34e4f5081de744efc703640e3b7d2}{Property} = property;
-117         \}
+30 : base( message ) \{\}
 \end{DoxyCode}
+\hypertarget{a00075_a4507583f079e40d454285c1e4f161aeb}{\index{Csv\-Helper\-::\-Csv\-Reader\-Exception@{Csv\-Helper\-::\-Csv\-Reader\-Exception}!Csv\-Reader\-Exception@{Csv\-Reader\-Exception}}
+\index{Csv\-Reader\-Exception@{Csv\-Reader\-Exception}!CsvHelper::CsvReaderException@{Csv\-Helper\-::\-Csv\-Reader\-Exception}}
+\subsubsection[{Csv\-Reader\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Reader\-Exception.\-Csv\-Reader\-Exception (
+\begin{DoxyParamCaption}
+\item[{string}]{message, }
+\item[{Exception}]{inner\-Exception}
+\end{DoxyParamCaption}
+)}}\label{a00075_a4507583f079e40d454285c1e4f161aeb}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00075_a77d34f2e73ad23e07eb38ee5ecceadf8}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!default\-Value@{default\-Value}}
-\index{default\-Value@{default\-Value}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{default\-Value}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-default\-Value\hspace{0.3cm}{\ttfamily [private]}}}\label{a00075_a77d34f2e73ad23e07eb38ee5ecceadf8}
+Initializes a new instance of the \hyperlink{a00075}{Csv\-Reader\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
 
 
-Definition at line 19 of file Csv\-Property\-Map\-Data.\-cs.
+\begin{DoxyParams}{Parameters}
+{\em message} & The error message that explains the reason for the exception.\\
+\hline
+{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
+\hline
+\end{DoxyParams}
 
-\hypertarget{a00075_a6dfbe771775d4c0d785847b7f0d2299c}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!index@{index}}
-\index{index@{index}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{index}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-index = -\/1\hspace{0.3cm}{\ttfamily [private]}}}\label{a00075_a6dfbe771775d4c0d785847b7f0d2299c}
 
+Definition at line 39 of file Csv\-Reader\-Exception.\-cs.
 
-Definition at line 18 of file Csv\-Property\-Map\-Data.\-cs.
 
-\hypertarget{a00075_acb636e590836496473e867897ab79d97}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!names@{names}}
-\index{names@{names}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{names}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Csv\-Property\-Name\-Collection} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-names = new {\bf Csv\-Property\-Name\-Collection}()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00075_acb636e590836496473e867897ab79d97}
+\begin{DoxyCode}
+39 : base( message, innerException ) \{ \}
+\end{DoxyCode}
+\hypertarget{a00075_aefa7020d5317878f91b9f43d3e1475be}{\index{Csv\-Helper\-::\-Csv\-Reader\-Exception@{Csv\-Helper\-::\-Csv\-Reader\-Exception}!Csv\-Reader\-Exception@{Csv\-Reader\-Exception}}
+\index{Csv\-Reader\-Exception@{Csv\-Reader\-Exception}!CsvHelper::CsvReaderException@{Csv\-Helper\-::\-Csv\-Reader\-Exception}}
+\subsubsection[{Csv\-Reader\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Reader\-Exception.\-Csv\-Reader\-Exception (
+\begin{DoxyParamCaption}
+\item[{Serialization\-Info}]{info, }
+\item[{Streaming\-Context}]{context}
+\end{DoxyParamCaption}
+)}}\label{a00075_aefa7020d5317878f91b9f43d3e1475be}
 
 
-Definition at line 17 of file Csv\-Property\-Map\-Data.\-cs.
+Initializes a new instance of the \hyperlink{a00075}{Csv\-Reader\-Exception} class with serialized data. 
 
-\hypertarget{a00075_a0ca8b71605ad4490ea143c24c8adb1f8}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!type\-Converter\-Options@{type\-Converter\-Options}}
-\index{type\-Converter\-Options@{type\-Converter\-Options}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{type\-Converter\-Options}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Type\-Converter\-Options} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-type\-Converter\-Options = new {\bf Type\-Converter\-Options}()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00075_a0ca8b71605ad4490ea143c24c8adb1f8}
 
+\begin{DoxyParams}{Parameters}
+{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
+\hline
+{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
+\hline
+\end{DoxyParams}
 
-Definition at line 20 of file Csv\-Property\-Map\-Data.\-cs.
 
+Definition at line 48 of file Csv\-Reader\-Exception.\-cs.
 
 
-\subsection{Property Documentation}
-\hypertarget{a00075_a1ae48223a4f425b7b315c6ae3235b4c1}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Convert\-Expression@{Convert\-Expression}}
-\index{Convert\-Expression@{Convert\-Expression}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Convert\-Expression}]{\setlength{\rightskip}{0pt plus 5cm}virtual Expression Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Convert\-Expression\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00075_a1ae48223a4f425b7b315c6ae3235b4c1}
-
-
-Gets or sets the expression used to convert data in the row to the property. 
-
-
-
-Definition at line 108 of file Csv\-Property\-Map\-Data.\-cs.
-
-\hypertarget{a00075_a3740c3b2f1e6e74349ac5fdf1ec0fce8}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Default@{Default}}
-\index{Default@{Default}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Default}]{\setlength{\rightskip}{0pt plus 5cm}virtual object Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Default\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00075_a3740c3b2f1e6e74349ac5fdf1ec0fce8}
-
-
-Gets or sets the default value used when a C\-S\-V field is empty. 
-
-
-
-Definition at line 88 of file Csv\-Property\-Map\-Data.\-cs.
-
-\hypertarget{a00075_a98ca8f9b7cc478644de267d44c6647b7}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Ignore@{Ignore}}
-\index{Ignore@{Ignore}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Ignore}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Ignore\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00075_a98ca8f9b7cc478644de267d44c6647b7}
-
-
-Gets or sets a value indicating whether the field should be ignored. 
-
-
-
-Definition at line 82 of file Csv\-Property\-Map\-Data.\-cs.
-
-\hypertarget{a00075_a14a0ca66dd60cf7685ac511906b04927}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Index@{Index}}
-\index{Index@{Index}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Index}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Index\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00075_a14a0ca66dd60cf7685ac511906b04927}
-
-
-Gets or sets the column index. 
-
-
-
-Definition at line 54 of file Csv\-Property\-Map\-Data.\-cs.
-
-\hypertarget{a00075_a3b9322c5f0b85df6a3d7662265c75151}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Is\-Default\-Set@{Is\-Default\-Set}}
-\index{Is\-Default\-Set@{Is\-Default\-Set}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Is\-Default\-Set}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Is\-Default\-Set\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00075_a3b9322c5f0b85df6a3d7662265c75151}
-
-
-Gets or sets a value indicating whether this instance is default value set. the default value was explicitly set. True if it was explicitly set, otherwise false. 
-
-
-
-Definition at line 102 of file Csv\-Property\-Map\-Data.\-cs.
-
-\hypertarget{a00075_a6af03961e4cab7536aca530902fe4e43}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Is\-Index\-Set@{Is\-Index\-Set}}
-\index{Is\-Index\-Set@{Is\-Index\-Set}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Is\-Index\-Set}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Is\-Index\-Set\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00075_a6af03961e4cab7536aca530902fe4e43}
-
-
-Gets or sets a value indicating if the index was explicitly set. True if it was explicitly set, otherwise false. 
-
-
-
-Definition at line 64 of file Csv\-Property\-Map\-Data.\-cs.
-
-\hypertarget{a00075_a4edc08c491e692d4b187c4e436a0a216}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Is\-Name\-Set@{Is\-Name\-Set}}
-\index{Is\-Name\-Set@{Is\-Name\-Set}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Is\-Name\-Set}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Is\-Name\-Set\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00075_a4edc08c491e692d4b187c4e436a0a216}
-
-
-Gets or sets a value indicating if the name was explicitly set. True if it was explicity set, otherwise false. 
-
-
-
-Definition at line 48 of file Csv\-Property\-Map\-Data.\-cs.
-
-\hypertarget{a00075_acf816322908241de17cad1d9a66add43}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Name\-Index@{Name\-Index}}
-\index{Name\-Index@{Name\-Index}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Name\-Index}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Name\-Index\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00075_acf816322908241de17cad1d9a66add43}
-
-
-Gets or sets the index of the name. This is used if there are multiple columns with the same names. 
-
-
-
-Definition at line 41 of file Csv\-Property\-Map\-Data.\-cs.
-
-\hypertarget{a00075_ad37a07fbc2781cdb1dce5cb6fcf953d9}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Names@{Names}}
-\index{Names@{Names}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Names}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Name\-Collection} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Names\hspace{0.3cm}{\ttfamily [get]}}}\label{a00075_ad37a07fbc2781cdb1dce5cb6fcf953d9}
-
-
-Gets the list of column names. 
-
-
-
-Definition at line 32 of file Csv\-Property\-Map\-Data.\-cs.
-
-\hypertarget{a00075_ad8f34e4f5081de744efc703640e3b7d2}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Property@{Property}}
-\index{Property@{Property}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Property}]{\setlength{\rightskip}{0pt plus 5cm}virtual Property\-Info Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Property\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00075_ad8f34e4f5081de744efc703640e3b7d2}
-
-
-Gets the Property\-Info that the data is associated with. 
-
-
-
-Definition at line 26 of file Csv\-Property\-Map\-Data.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Reader.\-Can\-Read(), and Csv\-Helper.\-Csv\-Writer.\-Can\-Write().
-
-\hypertarget{a00075_a5d282b88e912b3909072dff40a205f8b}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Type\-Converter@{Type\-Converter}}
-\index{Type\-Converter@{Type\-Converter}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Type\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Type\-Converter} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Type\-Converter\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00075_a5d282b88e912b3909072dff40a205f8b}
-
-
-Gets or sets the type converter. 
-
-
-
-Definition at line 69 of file Csv\-Property\-Map\-Data.\-cs.
-
-\hypertarget{a00075_ad0d40cffbecb6c5e43d6aae27c97a214}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Type\-Converter\-Options@{Type\-Converter\-Options}}
-\index{Type\-Converter\-Options@{Type\-Converter\-Options}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Type\-Converter\-Options}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Type\-Converter\-Options} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Type\-Converter\-Options\hspace{0.3cm}{\ttfamily [get]}}}\label{a00075_ad0d40cffbecb6c5e43d6aae27c97a214}
-
-
-Gets or sets the type converter options. 
-
-
-
-Definition at line 75 of file Csv\-Property\-Map\-Data.\-cs.
-
+\begin{DoxyCode}
+48 : base( info, context ) \{ \}
+\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00229}{Csv\-Property\-Map\-Data.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00217}{Csv\-Reader\-Exception.\-cs}\end{DoxyCompactItemize}

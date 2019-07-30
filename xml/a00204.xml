@@ -1,50 +1,77 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00204" kind="file">
-    <compoundname>CONTRIBUTING.md</compoundname>
+    <compoundname>CsvPropertyNameCollection.cs</compoundname>
+    <innerclass refid="a00071" prot="public">CsvHelper::Configuration::CsvPropertyNameCollection</innerclass>
+    <innernamespace refid="a00312">CsvHelper::Configuration</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#<sp/>Contributing<sp/>to<sp/>Yarn<sp/>Spinner</highlight></codeline>
-<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal">Hi<sp/>there!<sp/>We</highlight><highlight class="stringliteral">&apos;re<sp/>thrilled<sp/>that<sp/>you&apos;</highlight><highlight class="normal">d<sp/>like<sp/>to<sp/>contribute<sp/>to<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>project.<sp/>Your<sp/>help<sp/>is<sp/>essential<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>keeping<sp/>it<sp/>great.</highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">##<sp/>How<sp/>to<sp/>send<sp/>in<sp/>your<sp/>contributions</highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal">There<sp/>are<sp/>many<sp/>ways<sp/>you<sp/>can<sp/>send<sp/>your<sp/>contributions<sp/>to<sp/>Yarn<sp/>Spinner.<sp/>You<sp/>can<sp/>either<sp/>**report<sp/>a<sp/>bug**,<sp/>or<sp/>you<sp/>can<sp/>make<sp/>the<sp/>changes<sp/>yourself<sp/>and<sp/>**submit<sp/>a<sp/>pull<sp/>request**!</highlight></codeline>
+<codeline lineno="1"><highlight class="comment">//<sp/>Copyright<sp/>2009-2015<sp/>Josh<sp/>Close<sp/>and<sp/>Contributors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>a<sp/>part<sp/>of<sp/>CsvHelper<sp/>and<sp/>is<sp/>dual<sp/>licensed<sp/>under<sp/>MS-PL<sp/>and<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>LICENSE.txt<sp/>for<sp/>details<sp/>or<sp/>visit<sp/>http://www.opensource.org/licenses/ms-pl.html<sp/>for<sp/>MS-PL<sp/>and<sp/>http://opensource.org/licenses/Apache-2.0<sp/>for<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>http://csvhelper.com</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!NET_2_0</highlight></codeline>
+<codeline lineno="6"><highlight class="preprocessor"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections.Generic;</highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Reporting<sp/>bugs<sp/>and<sp/>opening<sp/>issues</highlight></codeline>
-<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal">Please<sp/>[report<sp/>bugs](https:</highlight><highlight class="comment">//github.com/thesecretlab/YarnSpinner/issues)<sp/>and<sp/>open<sp/>issues<sp/>generously.<sp/>Don&apos;t<sp/>be<sp/>afraid<sp/>that<sp/>your<sp/>idea<sp/>is<sp/>silly,<sp/>or<sp/>you&apos;re<sp/>reporting<sp/>a<sp/>duplicate.<sp/>We&apos;re<sp/>happy<sp/>to<sp/>hear<sp/>from<sp/>you.<sp/>Seriously.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal">&gt;<sp/>***Please<sp/>Note:***<sp/>Yarn<sp/>Spinner<sp/>is<sp/>written<sp/>by<sp/>volunteers.<sp/><ref refid="a00053_1a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639" kindref="member">If</ref><sp/>you<sp/>encounter<sp/>a<sp/>problem<sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>it,<sp/>we</highlight><highlight class="stringliteral">&apos;ll<sp/>do<sp/>our<sp/>best<sp/>to<sp/>help<sp/>you,<sp/>but<sp/>neither<sp/>the<sp/>authors,<sp/>or<sp/>Secret<sp/>Lab<sp/>Pty.<sp/>Ltd.<sp/>can<sp/>offer<sp/>any<sp/>support.</highlight></codeline>
-<codeline lineno="14"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="15"><highlight class="stringliteral">###<sp/>Submitting<sp/>a<sp/>pull<sp/>request</highlight></codeline>
-<codeline lineno="16"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="17"><highlight class="stringliteral">*<sp/>[Fork](https://github.com/thesecretlab/YarnSpinner/fork)<sp/>and<sp/>clone<sp/>the<sp/>repository</highlight></codeline>
-<codeline lineno="18"><highlight class="stringliteral">*<sp/>Create<sp/>a<sp/>new<sp/>branch:<sp/>git<sp/>checkout<sp/>-b<sp/>my-branch-name</highlight></codeline>
-<codeline lineno="19"><highlight class="stringliteral">*<sp/>Make<sp/>your<sp/>changes</highlight></codeline>
-<codeline lineno="20"><highlight class="stringliteral">*<sp/>Push<sp/>to<sp/>your<sp/>fork<sp/>and<sp/>[submit<sp/>a<sp/>pull<sp/>request](https://github.com/thesecretlab/YarnSpinner/compare)</highlight></codeline>
-<codeline lineno="21"><highlight class="stringliteral">*<sp/>Pat<sp/>your<sp/>self<sp/>on<sp/>the<sp/>back<sp/>and<sp/>wait<sp/>for<sp/>your<sp/>pull<sp/>request<sp/>to<sp/>be<sp/>reviewed.</highlight></codeline>
-<codeline lineno="22"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="23"><highlight class="stringliteral">If<sp/>you&apos;</highlight><highlight class="normal">re<sp/>unfamiliar<sp/>with<sp/>how<sp/>pull<sp/>requests<sp/>work,<sp/>[GitHub</highlight><highlight class="stringliteral">&apos;s<sp/>documentation<sp/>on<sp/>them](https://help.github.com/articles/using-pull-requests/)<sp/>is<sp/>very<sp/>good.</highlight></codeline>
-<codeline lineno="24"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="25"><highlight class="stringliteral">Here<sp/>are<sp/>a<sp/>few<sp/>things<sp/>you<sp/>can<sp/>do<sp/>that<sp/>will<sp/>increase<sp/>the<sp/>likelihood<sp/>of<sp/>your<sp/>pull<sp/>request<sp/>being<sp/>accepted:</highlight></codeline>
-<codeline lineno="26"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="27"><highlight class="stringliteral">*<sp/>Update<sp/>the<sp/>documentation<sp/>as<sp/>necessary,<sp/>as<sp/>well<sp/>as<sp/>making<sp/>code<sp/>changes.</highlight></codeline>
-<codeline lineno="28"><highlight class="stringliteral">*<sp/>Keep<sp/>your<sp/>change<sp/>as<sp/>focused<sp/>as<sp/>possible.<sp/>If<sp/>there<sp/>are<sp/>multiple<sp/>changes<sp/>you<sp/>would<sp/>like<sp/>to<sp/>make<sp/>that<sp/>are<sp/>not<sp/>dependent<sp/>upon<sp/>each<sp/>other,<sp/>consider<sp/>submitting<sp/>them<sp/>as<sp/>separate<sp/>pull<sp/>requests.</highlight></codeline>
-<codeline lineno="29"><highlight class="stringliteral">*<sp/>[Write<sp/>a<sp/>good<sp/>commit<sp/>message](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).</highlight></codeline>
-<codeline lineno="30"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="31"><highlight class="stringliteral">###<sp/>Branches</highlight></codeline>
-<codeline lineno="32"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="33"><highlight class="stringliteral">All<sp/>of<sp/>Yarn<sp/>Spinner&apos;</highlight><highlight class="normal">s<sp/>in-progress<sp/>work<sp/>happens<sp/>on<sp/>the<sp/>`development`<sp/>branch.<sp/>When<sp/>we<sp/>make<sp/>a<sp/>release,<sp/>we<sp/>merge<sp/>from<sp/>`development`<sp/>into<sp/>`master`.<sp/>This<sp/>means<sp/>that<sp/>`master`<sp/>is<sp/>always<sp/>in<sp/>a<sp/>releasable<sp/>state.</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">CsvHelper.Configuration</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="14" refid="a00071" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="a00071" kindref="compound">CsvPropertyNameCollection</ref><sp/>:<sp/>IEnumerable&lt;string&gt;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="16" refid="a00071_1a41eb6804d8afe8d674e64d71f66962ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>readonly<sp/>List&lt;string&gt;<sp/>names<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>List&lt;string&gt;();</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">[</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index]</highlight></codeline>
+<codeline lineno="25" refid="a00071_1acdce91a755be3bec6218e3d82f4dfe82" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Prefix<sp/>+<sp/>names[index];<sp/>}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>set<sp/>{<sp/>names[index]<sp/>=<sp/>value;<sp/>}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="a00071_1ab8f3256d8435a1c93f0280064aa3ff06" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>Prefix<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>set;<sp/>}</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal">###<sp/>Code<sp/>and<sp/>other<sp/>contributions</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal">Contributions<sp/>to<sp/>Yarn<sp/>Spinner<sp/>(via<sp/>pull<sp/>request<sp/>or<sp/>otherwise)<sp/>must<sp/>be<sp/>licensed<sp/>under<sp/>the<sp/>MIT<sp/>license.</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>List&lt;string&gt;<sp/>Names</highlight></codeline>
+<codeline lineno="40" refid="a00071_1a1aa06a47337f6ab576b23fe63854dcbe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>names;<sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Count</highlight></codeline>
+<codeline lineno="48" refid="a00071_1a4b7b56286ad80183e1a33554a49eefa1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>names.Count;<sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="a00071_1ad7b7d11d5814bcce5ed38e054ef71b4e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a00071_1ad7b7d11d5814bcce5ed38e054ef71b4e" kindref="member">Add</ref>(<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>name<sp/>)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>names.Add(<sp/>name<sp/>);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="a00071_1abec990435c8dccfb4553602b89f93201" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a00071_1abec990435c8dccfb4553602b89f93201" kindref="member">Clear</ref>()</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>names.Clear();</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="a00071_1ac568746273968080890abca50b882802" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a00071_1ac568746273968080890abca50b882802" kindref="member">AddRange</ref>(<sp/>IEnumerable&lt;string&gt;<sp/>names<sp/>)</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.names.AddRange(<sp/>names<sp/>);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="a00071_1a61b6a80e51d06f17d0043ec6aef89f1b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>IEnumerator&lt;string&gt;<sp/><ref refid="a00071_1a61b6a80e51d06f17d0043ec6aef89f1b" kindref="member">GetEnumerator</ref>()</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(<sp/>var<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>names.Count;<sp/>i++<sp/>)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>yield<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">[i];</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="a00071_1a76b5c67fcecf55dbdd4b680cde1a78f7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>IEnumerator<sp/>IEnumerable.GetEnumerator()</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>names.GetEnumerator();</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>!NET_2_0</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/CONTRIBUTING.md"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs"/>
   </compounddef>
 </doxygen>

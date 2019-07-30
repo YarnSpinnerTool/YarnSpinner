@@ -1,8 +1,6 @@
 var a00122 =
 [
-    [ "CanConvertFrom", "a00122.html#a4040b7e66af082f1a57b65c20877dd7f", null ],
-    [ "CanConvertFrom", "a00122.html#a470d21adaa704eb281250dbd112ff91a", null ],
-    [ "CanConvertTo", "a00122.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
-    [ "ConvertFromString", "a00122.html#aff576c6ca9bb1942fb17e385befb0197", null ],
-    [ "ConvertToString", "a00122.html#a36cb2f9b24f15a671293f3a722324c27", null ]
+    [ "AddLines", "a00122.html#aa2b8af349e709b8a45d42af5146ca848", null ],
+    [ "GenerateString", "a00122.html#a91ad68b679bd3b0bd89fe92ea5068688", null ],
+    [ "random", "a00122.html#ad887744b1b813fc081be814958742c37", null ]
 ];

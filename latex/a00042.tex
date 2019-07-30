@@ -1,40 +1,2263 @@
-\hypertarget{a00042}{\section{Yarn.\-Analysis.\-A\-S\-T\-Analyser Class Reference}
-\label{a00042}\index{Yarn.\-Analysis.\-A\-S\-T\-Analyser@{Yarn.\-Analysis.\-A\-S\-T\-Analyser}}
+\hypertarget{a00042}{\section{Yarn.\-Body\-Visitor Class Reference}
+\label{a00042}\index{Yarn.\-Body\-Visitor@{Yarn.\-Body\-Visitor}}
 }
 
 
-Collaboration diagram for Yarn.\-Analysis.\-A\-S\-T\-Analyser\-:
+Inheritance diagram for Yarn.\-Body\-Visitor\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=218pt]{a00772}
+\includegraphics[height=550pt]{a00565}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Body\-Visitor\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00566}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-abstract I\-Enumerable$<$ \hyperlink{a00093}{Diagnosis} $>$ \hyperlink{a00042_a07bb220dead44ed12c8842de706ecdf7}{Diagnose} (\hyperlink{a00140}{Yarn.\-Parser.\-Node} node)
+\hyperlink{a00042_a5e7bb3df2a227e122fe88ca6f6e7ee7c}{Body\-Visitor} (\hyperlink{a00051}{Compiler} \hyperlink{a00042_a3b2c1a4c669262fd5475d7a4af2a72be}{compiler})
+\item 
+override int \hyperlink{a00042_a0469d0cd00e8737385144157d7dbc436}{Visit\-Line\-\_\-statement} (Yarn\-Spinner\-Parser.\-Line\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-line\-\_\-statement. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_abf95a48291ee85c0f9327f0c3ed3dc3c}{Visit\-Option\-\_\-statement} (Yarn\-Spinner\-Parser.\-Option\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-option\-\_\-statement. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_a8d47becbb77d7c75a2d9e6aa777fd5df}{Visit\-Set\-\_\-statement} (Yarn\-Spinner\-Parser.\-Set\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-set\-\_\-statement. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_a1974944d85b5250c60a4ffc07f958cd0}{Visit\-Action\-\_\-statement} (Yarn\-Spinner\-Parser.\-Action\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-action\-\_\-statement. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_aa30d181ed0c8b5ea56912db147b35091}{Visit\-Function\-\_\-statement} (Yarn\-Spinner\-Parser.\-Function\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-function\-\_\-statement. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_adaf7ebcc18546fc41a78928606fae5cb}{Visit\-Function} (Yarn\-Spinner\-Parser.\-Function\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-function. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_ae2d46c57ab716ded9d7f66cfb7a20a03}{Visit\-If\-\_\-statement} (Yarn\-Spinner\-Parser.\-If\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-statement. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_ad1576a22d74304c3155a0c2fa91be5b9}{Visit\-Shortcut\-\_\-statement} (Yarn\-Spinner\-Parser.\-Shortcut\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-statement. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_a51f5522367e1b35dbe15abd3363a7c4b}{Visit\-Exp\-Parens} (Yarn\-Spinner\-Parser.\-Exp\-Parens\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Parens} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_aa6e290a205fcacca64071255c1901161}{Visit\-Exp\-Negative} (Yarn\-Spinner\-Parser.\-Exp\-Negative\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Negative} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_af5870b979203df0e9bc78dd3d8c41b27}{Visit\-Exp\-Not} (Yarn\-Spinner\-Parser.\-Exp\-Not\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Not} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_ac820130b8eb85146442f4124d5212877}{Visit\-Exp\-Value} (Yarn\-Spinner\-Parser.\-Exp\-Value\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Value} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_a305e4197937bc3b6336592b61ba01eca}{Visit\-Exp\-Mult\-Div\-Mod} (Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_a5eb6df63b55c3ba8e8568d8b0ebd0369}{Visit\-Exp\-Add\-Sub} (Yarn\-Spinner\-Parser.\-Exp\-Add\-Sub\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Add\-Sub} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_a3e2bd74ec27b6e603b075e0468db3fb5}{Visit\-Exp\-Comparison} (Yarn\-Spinner\-Parser.\-Exp\-Comparison\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Comparison} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_ae5da558219f42b518a5483f7f794ed0a}{Visit\-Exp\-Equality} (Yarn\-Spinner\-Parser.\-Exp\-Equality\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Equality} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_a19491adb347becea5f216e805763f582}{Visit\-Exp\-And\-Or\-Xor} (Yarn\-Spinner\-Parser.\-Exp\-And\-Or\-Xor\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-And\-Or\-Xor} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_ab073a73cd379ee0130e2588c08573345}{Visit\-Exp\-Mult\-Div\-Mod\-Equals} (Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Equals\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_a573f37ce6260e0f112d3c6210fadf638}{Visit\-Exp\-Plus\-Minus\-Equals} (Yarn\-Spinner\-Parser.\-Exp\-Plus\-Minus\-Equals\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily exp\-Plus\-Minus\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_aa9e7f9f7310448cb44d0acb88512bc71}{Visit\-Value\-Var} (Yarn\-Spinner\-Parser.\-Value\-Var\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily value\-Var} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_a2acb075ab60f6aca5319dce40074880f}{Visit\-Value\-Number} (Yarn\-Spinner\-Parser.\-Value\-Number\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily value\-Number} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_ab627c2664656eedcefd9c2be4231cc51}{Visit\-Value\-True} (Yarn\-Spinner\-Parser.\-Value\-True\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily value\-True} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_a35ff313be01c2bb671f4d20917a27aae}{Visit\-Value\-False} (Yarn\-Spinner\-Parser.\-Value\-False\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily value\-False} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_a884faf4566a71978ca12e671988c740b}{Visit\-Variable} (Yarn\-Spinner\-Parser.\-Variable\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-variable. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_a33229651713a1b788e8841added0e2db}{Visit\-Value\-String} (Yarn\-Spinner\-Parser.\-Value\-String\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily value\-String} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_aa2c789583bec673fa64cbf141eae19aa}{Visit\-Value\-Func} (Yarn\-Spinner\-Parser.\-Value\-Func\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily value\-Func} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+override int \hyperlink{a00042_a888533459a53d98ff4891ca5aa21763c}{Visit\-Value\-Null} (Yarn\-Spinner\-Parser.\-Value\-Null\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by the {\ttfamily value\-Null} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_ad2daefa4c88b72128606682d094e2485}{Visit\-Dialogue} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Dialogue\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-dialogue. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_a45882fee8dd45b1a7a04d000be825dce}{Visit\-Node} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Node\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-node. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_a08145c313b49a2c5e1a9d4a607f1a57c}{Visit\-Header} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_a3c54ba6115ce150b2303f3bd37754269}{Visit\-Header\-\_\-title} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-title\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-title. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_a0b88799d0a6f7c51d51403bc6f60c01e}{Visit\-Header\-\_\-tag} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-tag\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-tag. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_aa553a267b8ce2984ed2a80a1d28aae9c}{Visit\-Header\-\_\-line} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-line\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-line. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_a3b84a7518f955a935b1ac327e568f29d}{Visit\-Body} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Body\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-body. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_a6856fdb64dfc47bb9f1650683a1ccf97}{Visit\-Statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-statement. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_a167e9a44ea7d404370390528fdd70115}{Visit\-Shortcut} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_a4a4adcbdf2ba70878b015aa47d54b398}{Visit\-Shortcut\-\_\-conditional} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-conditional\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-conditional. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_a34e4b7e3d1c1c78dab3d017632cdca1f}{Visit\-Shortcut\-\_\-text} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-text\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-text. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_a6b9c14146ced835495bb48bc5c63ebb5}{Visit\-If\-\_\-clause} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-If\-\_\-clause\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-clause. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_aa646fda5f6cd91b1e8e6be24e686a25a}{Visit\-Else\-\_\-if\-\_\-clause} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-if\-\_\-clause\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-if\-\_\-clause. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_acb4799ad5491a7c3f35b8851dc4745e3}{Visit\-Else\-\_\-clause} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-clause\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-clause. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_ac8a0d095d59f4ef49178ba70353fe9a6}{Visit\-Text} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Text\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-text. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_a9400d1b4e26fb2b640320da88ba787d6}{Visit\-Hashtag\-\_\-block} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-\_\-block\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag\-\_\-block. \end{DoxyCompactList}\item 
+virtual Result \hyperlink{a00174_a36bcc3e07dedf9354a2c9967cde577d2}{Visit\-Hashtag} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-Context context)
+\begin{DoxyCompactList}\small\item\em Visit a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00042_a5f246aeaea2ba795d78abb0f8918cca4}{generate\-Clause} (string jump\-Label, Yarn\-Spinner\-Parser.\-Statement\-Context\mbox{[}$\,$\mbox{]} children, Yarn\-Spinner\-Parser.\-Expression\-Context expression)
+\item 
+void \hyperlink{a00042_afb8e572f8ba0a50f7e9ea480c24831e7}{generic\-Exp\-Visitor} (Yarn\-Spinner\-Parser.\-Expression\-Context left, Yarn\-Spinner\-Parser.\-Expression\-Context right, int op)
+\item 
+void \hyperlink{a00042_a7abaef665ca4e60e37ba8942a41a0551}{op\-Equals} (string var\-Name, Yarn\-Spinner\-Parser.\-Expression\-Context expression, int op)
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00051}{Compiler} \hyperlink{a00042_a3b2c1a4c669262fd5475d7a4af2a72be}{compiler}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{a00042_a88cf0e74393aa67719a08e1332c6e62e}{Handle\-Function} (string function\-Name, Yarn\-Spinner\-Parser.\-Expression\-Context\mbox{[}$\,$\mbox{]} parameters)
+\item 
+string \hyperlink{a00042_ad8448dacbbd94adebf38c29c3f50e499}{Shortcut\-Text} (Yarn\-Spinner\-Parser.\-Shortcut\-\_\-text\-Context context)
+\item 
+void \hyperlink{a00042_a3a8fcf4591bdb2213bc48260645fdcba}{load\-Operators} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Dictionary$<$ int, \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} $>$ \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens} = new Dictionary$<$int, \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}$>$()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 147 of file Analyser.\-cs.
+Definition at line 349 of file Compiler.\-cs.
 
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00042_a5e7bb3df2a227e122fe88ca6f6e7ee7c}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Body\-Visitor@{Body\-Visitor}}
+\index{Body\-Visitor@{Body\-Visitor}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Body\-Visitor}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Body\-Visitor.\-Body\-Visitor (
+\begin{DoxyParamCaption}
+\item[{{\bf Compiler}}]{compiler}
+\end{DoxyParamCaption}
+)}}\label{a00042_a5e7bb3df2a227e122fe88ca6f6e7ee7c}
+
+
+Definition at line 353 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Body\-Visitor.\-compiler.
+
+
+\begin{DoxyCode}
+354         \{
+355             this.compiler = \hyperlink{a00042_a3b2c1a4c669262fd5475d7a4af2a72be}{compiler};
+356             this.loadOperators();
+357         \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00042_a07bb220dead44ed12c8842de706ecdf7}{\index{Yarn\-::\-Analysis\-::\-A\-S\-T\-Analyser@{Yarn\-::\-Analysis\-::\-A\-S\-T\-Analyser}!Diagnose@{Diagnose}}
-\index{Diagnose@{Diagnose}!Yarn::Analysis::ASTAnalyser@{Yarn\-::\-Analysis\-::\-A\-S\-T\-Analyser}}
-\subsubsection[{Diagnose}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerable$<${\bf Diagnosis}$>$ Yarn.\-Analysis.\-A\-S\-T\-Analyser.\-Diagnose (
+\hypertarget{a00042_a5f246aeaea2ba795d78abb0f8918cca4}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!generate\-Clause@{generate\-Clause}}
+\index{generate\-Clause@{generate\-Clause}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{generate\-Clause}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Body\-Visitor.\-generate\-Clause (
 \begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Parser.\-Node}}]{node}
+\item[{string}]{jump\-Label, }
+\item[{Yarn\-Spinner\-Parser.\-Statement\-Context\mbox{[}$\,$\mbox{]}}]{children, }
+\item[{Yarn\-Spinner\-Parser.\-Expression\-Context}]{expression}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00042_a07bb220dead44ed12c8842de706ecdf7}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00042_a5f246aeaea2ba795d78abb0f8918cca4}
+
+
+Definition at line 565 of file Compiler.\-cs.
+
+
+
+Referenced by Yarn.\-Body\-Visitor.\-Visit\-If\-\_\-statement().
+
+
+\begin{DoxyCode}
+566         \{
+567             \textcolor{keywordtype}{string} endOfClauseLabel = compiler.RegisterLabel(\textcolor{stringliteral}{"skipclause"});
+568 
+569             \textcolor{comment}{// handling the expression (if it has one)}
+570             \textcolor{comment}{// will only be called on ifs and elseifs}
+571             \textcolor{keywordflow}{if} (expression != null)
+572             \{
+573                 Visit(expression);
+574                 compiler.Emit(ByteCode.JumpIfFalse, endOfClauseLabel);
+575             \}
+576 
+577             \textcolor{comment}{// running through all of the children statements}
+578             \textcolor{keywordflow}{foreach} (var child \textcolor{keywordflow}{in} children)
+579             \{
+580                 Visit(child);
+581             \}
+582 
+583             compiler.Emit(ByteCode.JumpTo, jumpLabel);
+584 
+585             \textcolor{keywordflow}{if} (expression != null)
+586             \{
+587                 compiler.Emit(ByteCode.Label, endOfClauseLabel);
+588                 compiler.Emit(ByteCode.Pop);
+589             \}
+590         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00042_a5f246aeaea2ba795d78abb0f8918cca4_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00042_afb8e572f8ba0a50f7e9ea480c24831e7}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!generic\-Exp\-Visitor@{generic\-Exp\-Visitor}}
+\index{generic\-Exp\-Visitor@{generic\-Exp\-Visitor}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{generic\-Exp\-Visitor}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Body\-Visitor.\-generic\-Exp\-Visitor (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Expression\-Context}]{left, }
+\item[{Yarn\-Spinner\-Parser.\-Expression\-Context}]{right, }
+\item[{int}]{op}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00042_afb8e572f8ba0a50f7e9ea480c24831e7}
+
+
+Definition at line 713 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Body\-Visitor.\-tokens.
+
+
+
+Referenced by Yarn.\-Body\-Visitor.\-Visit\-Exp\-Add\-Sub(), Yarn.\-Body\-Visitor.\-Visit\-Exp\-And\-Or\-Xor(), Yarn.\-Body\-Visitor.\-Visit\-Exp\-Comparison(), Yarn.\-Body\-Visitor.\-Visit\-Exp\-Equality(), and Yarn.\-Body\-Visitor.\-Visit\-Exp\-Mult\-Div\-Mod().
+
+
+\begin{DoxyCode}
+714         \{
+715             Visit(left);
+716             Visit(right);
+717 
+718             \textcolor{comment}{// TODO: temp operator call}
+719             compiler.Emit(ByteCode.CallFunc, \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[op].ToString());
+720         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00042_afb8e572f8ba0a50f7e9ea480c24831e7_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00042_a88cf0e74393aa67719a08e1332c6e62e}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Handle\-Function@{Handle\-Function}}
+\index{Handle\-Function@{Handle\-Function}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Handle\-Function}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Body\-Visitor.\-Handle\-Function (
+\begin{DoxyParamCaption}
+\item[{string}]{function\-Name, }
+\item[{Yarn\-Spinner\-Parser.\-Expression\-Context\mbox{[}$\,$\mbox{]}}]{parameters}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00042_a88cf0e74393aa67719a08e1332c6e62e}
+
+
+Definition at line 494 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Function\-Info.\-param\-Count.
+
+
+\begin{DoxyCode}
+495         \{
+496             \textcolor{comment}{// this will throw an exception if it doesn't exist}
+497             FunctionInfo functionInfo = compiler.library.GetFunction(functionName);
+498 
+499             \textcolor{comment}{// if the function is not variadic we need to check it has the right number of params}
+500             \textcolor{keywordflow}{if} (functionInfo.paramCount != -1)
+501             \{
+502                 \textcolor{keywordflow}{if} (parameters.Length != functionInfo.paramCount)
+503                 \{
+504                     \textcolor{comment}{// invalid function, return false}
+505                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+506                 \}
+507             \}
+508 
+509             \textcolor{comment}{// generate the instructions for all of the parameters}
+510             \textcolor{keywordflow}{foreach} (var parameter \textcolor{keywordflow}{in} parameters)
+511             \{
+512                 Visit(parameter);
+513             \}
+514 
+515             \textcolor{comment}{// if the function is variadic we push the parameter number onto the stack}
+516             \textcolor{comment}{// variadic functions are those with paramCount of -1}
+517             \textcolor{keywordflow}{if} (functionInfo.paramCount == -1)
+518             \{
+519                 compiler.Emit(ByteCode.PushNumber, parameters.Length);
+520             \}
+521 
+522             \textcolor{comment}{// then call the function itself}
+523             compiler.Emit(ByteCode.CallFunc, functionName);
+524             \textcolor{comment}{// everything went fine, return true}
+525             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+526         \}
+\end{DoxyCode}
+\hypertarget{a00042_a3a8fcf4591bdb2213bc48260645fdcba}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!load\-Operators@{load\-Operators}}
+\index{load\-Operators@{load\-Operators}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{load\-Operators}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Body\-Visitor.\-load\-Operators (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00042_a3a8fcf4591bdb2213bc48260645fdcba}
+
+
+Definition at line 864 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Body\-Visitor.\-tokens.
+
+
+\begin{DoxyCode}
+865         \{
+866             \textcolor{comment}{// operators for the standard expressions}
+867             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_LOGICAL\_LESS\_THAN\_EQUALS] = TokenType.LessThanOrEqualTo;
+868             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_LOGICAL\_GREATER\_THAN\_EQUALS] = 
+      TokenType.GreaterThanOrEqualTo;
+869             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_LOGICAL\_LESS] = TokenType.LessThan;
+870             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_LOGICAL\_GREATER] = TokenType.GreaterThan;
+871 
+872             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_LOGICAL\_EQUALS] = TokenType.EqualTo;
+873             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_LOGICAL\_NOT\_EQUALS] = TokenType.NotEqualTo;
+874 
+875             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_LOGICAL\_AND] = TokenType.And;
+876             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_LOGICAL\_OR] = TokenType.Or;
+877             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_LOGICAL\_XOR] = TokenType.Xor;
+878 
+879             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_MATHS\_ADDITION] = TokenType.Add;
+880             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_MATHS\_SUBTRACTION] = TokenType.Minus;
+881             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_MATHS\_MULTIPLICATION] = TokenType.Multiply;
+882             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_MATHS\_DIVISION] = TokenType.Divide;
+883             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_MATHS\_MODULUS] = TokenType.Modulo;
+884             \textcolor{comment}{// operators for the set expressions}
+885             \textcolor{comment}{// these map directly to the operator if they didn't have the =}
+886             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_MATHS\_ADDITION\_EQUALS] = TokenType.Add;
+887             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_MATHS\_SUBTRACTION\_EQUALS] = TokenType.Minus;
+888             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_MATHS\_MULTIPLICATION\_EQUALS] = TokenType.Multiply;
+889             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_MATHS\_DIVISION\_EQUALS] = TokenType.Divide;
+890             \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[YarnSpinnerLexer.OPERATOR\_MATHS\_MODULUS\_EQUALS] = TokenType.Modulo;
+891         \}
+\end{DoxyCode}
+\hypertarget{a00042_a7abaef665ca4e60e37ba8942a41a0551}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!op\-Equals@{op\-Equals}}
+\index{op\-Equals@{op\-Equals}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{op\-Equals}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Body\-Visitor.\-op\-Equals (
+\begin{DoxyParamCaption}
+\item[{string}]{var\-Name, }
+\item[{Yarn\-Spinner\-Parser.\-Expression\-Context}]{expression, }
+\item[{int}]{op}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00042_a7abaef665ca4e60e37ba8942a41a0551}
+
+
+Definition at line 765 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Body\-Visitor.\-tokens.
+
+
+
+Referenced by Yarn.\-Body\-Visitor.\-Visit\-Exp\-Mult\-Div\-Mod\-Equals(), and Yarn.\-Body\-Visitor.\-Visit\-Exp\-Plus\-Minus\-Equals().
+
+
+\begin{DoxyCode}
+766         \{
+767             \textcolor{comment}{// Get the current value of the variable}
+768             compiler.Emit(ByteCode.PushVariable, varName);
+769 
+770             \textcolor{comment}{// run the expression}
+771             Visit(expression);
+772 
+773             \textcolor{comment}{// Stack now contains [currentValue, expressionValue]}
+774 
+775             \textcolor{comment}{// now we evaluate the operator}
+776             \textcolor{comment}{// op will match to one of + - / * %}
+777             compiler.Emit(ByteCode.CallFunc, \hyperlink{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{tokens}[op].ToString());
+778 
+779             \textcolor{comment}{// Stack now has the destination value}
+780             \textcolor{comment}{// now store the variable and clean up the stack}
+781             compiler.Emit(ByteCode.StoreVariable, varName);
+782             compiler.Emit(ByteCode.Pop);
+783         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00042_a7abaef665ca4e60e37ba8942a41a0551_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00042_ad8448dacbbd94adebf38c29c3f50e499}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Shortcut\-Text@{Shortcut\-Text}}
+\index{Shortcut\-Text@{Shortcut\-Text}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Shortcut\-Text}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Body\-Visitor.\-Shortcut\-Text (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Shortcut\-\_\-text\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00042_ad8448dacbbd94adebf38c29c3f50e499}
+
+
+Definition at line 594 of file Compiler.\-cs.
+
+
+
+Referenced by Yarn.\-Body\-Visitor.\-Visit\-Shortcut\-\_\-statement().
+
+
+\begin{DoxyCode}
+595         \{
+596             \textcolor{keywordflow}{return} context.SHORTCUT\_TEXT().GetText().Trim();
+597         \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00042_ad8448dacbbd94adebf38c29c3f50e499_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00042_a1974944d85b5250c60a4ffc07f958cd0}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Action\-\_\-statement@{Visit\-Action\-\_\-statement}}
+\index{Visit\-Action\-\_\-statement@{Visit\-Action\-\_\-statement}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Action\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Action\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Action\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_a1974944d85b5250c60a4ffc07f958cd0}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-action\-\_\-statement. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a2007b8ca6078d351b39ad4df496dd00d}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 448 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+449         \{
+450             \textcolor{keywordtype}{char}[] trimming = \{ \textcolor{charliteral}{'<'}, \textcolor{charliteral}{'>'} \};
+451             \textcolor{keywordtype}{string} action = context.GetText().Trim(trimming);
+452 
+453             \textcolor{comment}{// TODO: look into replacing this as it seems a bit odd}
+454             \textcolor{keywordflow}{switch} (action)
+455             \{
+456                 \textcolor{keywordflow}{case} \textcolor{stringliteral}{"stop"}:
+457                     compiler.Emit(ByteCode.Stop);
+458                     \textcolor{keywordflow}{break};
+459                 \textcolor{keywordflow}{case} \textcolor{stringliteral}{"shuffleNextOptions"}:
+460                     compiler.Emit(ByteCode.PushBool, \textcolor{keyword}{true});
+461                     compiler.Emit(ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
+462                     compiler.Emit(ByteCode.Pop);
+463                     compiler.flags.DisableShuffleOptionsAfterNextSet = \textcolor{keyword}{true};
+464                     \textcolor{keywordflow}{break};
+465                 \textcolor{keywordflow}{default}:
+466                     compiler.Emit(ByteCode.RunCommand, action);
+467                     \textcolor{keywordflow}{break};
+468             \}
+469 
+470             \textcolor{keywordflow}{return} 0;
+471         \}
+\end{DoxyCode}
+\hypertarget{a00174_a3b84a7518f955a935b1ac327e568f29d}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Body@{Visit\-Body}}
+\index{Visit\-Body@{Visit\-Body}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Body}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Body (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Body\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_a3b84a7518f955a935b1ac327e568f29d}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-body. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_ab308423e3e80579ec8bac951788f988b}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 105 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+105 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00174_ad2daefa4c88b72128606682d094e2485}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Dialogue@{Visit\-Dialogue}}
+\index{Visit\-Dialogue@{Visit\-Dialogue}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Dialogue (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Dialogue\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_ad2daefa4c88b72128606682d094e2485}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-dialogue. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_ac2d13d69995b3a8bf8c0733341d0c72e}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 45 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+45 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00174_acb4799ad5491a7c3f35b8851dc4745e3}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Else\-\_\-clause@{Visit\-Else\-\_\-clause}}
+\index{Visit\-Else\-\_\-clause@{Visit\-Else\-\_\-clause}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Else\-\_\-clause}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Else\-\_\-clause (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-clause\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_acb4799ad5491a7c3f35b8851dc4745e3}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-clause. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_a0e4ddbac78cfa60c490d8a85f39093fd}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 195 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+195 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00174_aa646fda5f6cd91b1e8e6be24e686a25a}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Else\-\_\-if\-\_\-clause@{Visit\-Else\-\_\-if\-\_\-clause}}
+\index{Visit\-Else\-\_\-if\-\_\-clause@{Visit\-Else\-\_\-if\-\_\-clause}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Else\-\_\-if\-\_\-clause}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Else\-\_\-if\-\_\-clause (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-if\-\_\-clause\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_aa646fda5f6cd91b1e8e6be24e686a25a}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-if\-\_\-clause. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_a03d1e78faa25780e97fe6e643c0ffe8b}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 185 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+185 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00042_a5eb6df63b55c3ba8e8568d8b0ebd0369}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Exp\-Add\-Sub@{Visit\-Exp\-Add\-Sub}}
+\index{Visit\-Exp\-Add\-Sub@{Visit\-Exp\-Add\-Sub}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Exp\-Add\-Sub}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Exp\-Add\-Sub (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Exp\-Add\-Sub\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_a5eb6df63b55c3ba8e8568d8b0ebd0369}
+
+
+Visit a parse tree produced by the {\ttfamily exp\-Add\-Sub} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_ab13841b276eed71099a86898cccacd99}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 729 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Body\-Visitor.\-generic\-Exp\-Visitor().
+
+
+\begin{DoxyCode}
+730         \{
+731             \hyperlink{a00042_afb8e572f8ba0a50f7e9ea480c24831e7}{genericExpVisitor}(context.expression(0), context.expression(1), context.op.
+      Type);
+732 
+733             \textcolor{keywordflow}{return} 0;
+734         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00042_a5eb6df63b55c3ba8e8568d8b0ebd0369_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00042_a19491adb347becea5f216e805763f582}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Exp\-And\-Or\-Xor@{Visit\-Exp\-And\-Or\-Xor}}
+\index{Visit\-Exp\-And\-Or\-Xor@{Visit\-Exp\-And\-Or\-Xor}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Exp\-And\-Or\-Xor}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Exp\-And\-Or\-Xor (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Exp\-And\-Or\-Xor\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_a19491adb347becea5f216e805763f582}
+
+
+Visit a parse tree produced by the {\ttfamily exp\-And\-Or\-Xor} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a39ca6a0cef25c14575a6e28e8e9e8745}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 750 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Body\-Visitor.\-generic\-Exp\-Visitor().
+
+
+\begin{DoxyCode}
+751         \{
+752             \hyperlink{a00042_afb8e572f8ba0a50f7e9ea480c24831e7}{genericExpVisitor}(context.expression(0), context.expression(1), context.op.
+      Type);
+753 
+754             \textcolor{keywordflow}{return} 0;
+755         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00042_a19491adb347becea5f216e805763f582_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00042_a3e2bd74ec27b6e603b075e0468db3fb5}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Exp\-Comparison@{Visit\-Exp\-Comparison}}
+\index{Visit\-Exp\-Comparison@{Visit\-Exp\-Comparison}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Exp\-Comparison}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Exp\-Comparison (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Exp\-Comparison\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_a3e2bd74ec27b6e603b075e0468db3fb5}
+
+
+Visit a parse tree produced by the {\ttfamily exp\-Comparison} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_aa3e8b61abdf6737bb2f2ebbb302f10dc}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 736 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Body\-Visitor.\-generic\-Exp\-Visitor().
+
+
+\begin{DoxyCode}
+737         \{
+738             \hyperlink{a00042_afb8e572f8ba0a50f7e9ea480c24831e7}{genericExpVisitor}(context.expression(0), context.expression(1), context.op.
+      Type);
+739 
+740             \textcolor{keywordflow}{return} 0;
+741         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00042_a3e2bd74ec27b6e603b075e0468db3fb5_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00042_ae5da558219f42b518a5483f7f794ed0a}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Exp\-Equality@{Visit\-Exp\-Equality}}
+\index{Visit\-Exp\-Equality@{Visit\-Exp\-Equality}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Exp\-Equality}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Exp\-Equality (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Exp\-Equality\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_ae5da558219f42b518a5483f7f794ed0a}
+
+
+Visit a parse tree produced by the {\ttfamily exp\-Equality} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_ae1ab6fcbc8f14f578dc3e9f2f16be450}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 743 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Body\-Visitor.\-generic\-Exp\-Visitor().
+
+
+\begin{DoxyCode}
+744         \{
+745             \hyperlink{a00042_afb8e572f8ba0a50f7e9ea480c24831e7}{genericExpVisitor}(context.expression(0), context.expression(1), context.op.
+      Type);
+746 
+747             \textcolor{keywordflow}{return} 0;
+748         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00042_ae5da558219f42b518a5483f7f794ed0a_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00042_a305e4197937bc3b6336592b61ba01eca}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Exp\-Mult\-Div\-Mod@{Visit\-Exp\-Mult\-Div\-Mod}}
+\index{Visit\-Exp\-Mult\-Div\-Mod@{Visit\-Exp\-Mult\-Div\-Mod}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Exp\-Mult\-Div\-Mod}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Exp\-Mult\-Div\-Mod (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_a305e4197937bc3b6336592b61ba01eca}
+
+
+Visit a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_ae585d346692cb437d1fc433cb3e2070f}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 722 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Body\-Visitor.\-generic\-Exp\-Visitor().
+
+
+\begin{DoxyCode}
+723         \{
+724             \hyperlink{a00042_afb8e572f8ba0a50f7e9ea480c24831e7}{genericExpVisitor}(context.expression(0), context.expression(1), context.op.
+      Type);
+725 
+726             \textcolor{keywordflow}{return} 0;
+727         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00042_a305e4197937bc3b6336592b61ba01eca_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00042_ab073a73cd379ee0130e2588c08573345}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Exp\-Mult\-Div\-Mod\-Equals@{Visit\-Exp\-Mult\-Div\-Mod\-Equals}}
+\index{Visit\-Exp\-Mult\-Div\-Mod\-Equals@{Visit\-Exp\-Mult\-Div\-Mod\-Equals}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Exp\-Mult\-Div\-Mod\-Equals}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Exp\-Mult\-Div\-Mod\-Equals (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Equals\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_ab073a73cd379ee0130e2588c08573345}
+
+
+Visit a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a288f0fef2f1dde71faacfceddee9b954}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 785 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Body\-Visitor.\-op\-Equals().
+
+
+\begin{DoxyCode}
+786         \{
+787             \textcolor{comment}{// call the helper to deal with this}
+788             \hyperlink{a00042_a7abaef665ca4e60e37ba8942a41a0551}{opEquals}(context.variable().GetText(), context.expression(), context.op.Type);
+789             \textcolor{keywordflow}{return} 0;
+790         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00042_ab073a73cd379ee0130e2588c08573345_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00042_aa6e290a205fcacca64071255c1901161}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Exp\-Negative@{Visit\-Exp\-Negative}}
+\index{Visit\-Exp\-Negative@{Visit\-Exp\-Negative}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Exp\-Negative}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Exp\-Negative (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Exp\-Negative\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_aa6e290a205fcacca64071255c1901161}
+
+
+Visit a parse tree produced by the {\ttfamily exp\-Negative} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a6992d2e7a09d1e9e6c3f6f1ebfa686a6}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 683 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+684         \{
+685             Visit(context.expression());
+686 
+687             \textcolor{comment}{// TODO: temp operator call}
+688             compiler.Emit(ByteCode.CallFunc, TokenType.UnaryMinus.ToString());
+689 
+690             \textcolor{keywordflow}{return} 0;
+691         \}
+\end{DoxyCode}
+\hypertarget{a00042_af5870b979203df0e9bc78dd3d8c41b27}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Exp\-Not@{Visit\-Exp\-Not}}
+\index{Visit\-Exp\-Not@{Visit\-Exp\-Not}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Exp\-Not}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Exp\-Not (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Exp\-Not\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_af5870b979203df0e9bc78dd3d8c41b27}
+
+
+Visit a parse tree produced by the {\ttfamily exp\-Not} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a2b3a3e9b5395b0311e644146a896a21a}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 693 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+694         \{
+695             Visit(context.expression());
+696 
+697             \textcolor{comment}{// TODO: temp operator call}
+698             compiler.Emit(ByteCode.CallFunc, TokenType.Not.ToString());
+699 
+700             \textcolor{keywordflow}{return} 0;
+701         \}
+\end{DoxyCode}
+\hypertarget{a00042_a51f5522367e1b35dbe15abd3363a7c4b}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Exp\-Parens@{Visit\-Exp\-Parens}}
+\index{Visit\-Exp\-Parens@{Visit\-Exp\-Parens}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Exp\-Parens}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Exp\-Parens (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Exp\-Parens\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_a51f5522367e1b35dbe15abd3363a7c4b}
+
+
+Visit a parse tree produced by the {\ttfamily exp\-Parens} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a55fe0021b48203160ea72d53e2f97dd8}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 678 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+679         \{
+680             \textcolor{keywordflow}{return} Visit(context.expression());
+681         \}
+\end{DoxyCode}
+\hypertarget{a00042_a573f37ce6260e0f112d3c6210fadf638}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Exp\-Plus\-Minus\-Equals@{Visit\-Exp\-Plus\-Minus\-Equals}}
+\index{Visit\-Exp\-Plus\-Minus\-Equals@{Visit\-Exp\-Plus\-Minus\-Equals}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Exp\-Plus\-Minus\-Equals}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Exp\-Plus\-Minus\-Equals (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Exp\-Plus\-Minus\-Equals\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_a573f37ce6260e0f112d3c6210fadf638}
+
+
+Visit a parse tree produced by the {\ttfamily exp\-Plus\-Minus\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a824ff62e60e13295f2fae5e96c573f0e}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 792 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Body\-Visitor.\-op\-Equals().
+
+
+\begin{DoxyCode}
+793         \{
+794             \textcolor{comment}{// call the helper to deal with this}
+795             \hyperlink{a00042_a7abaef665ca4e60e37ba8942a41a0551}{opEquals}(context.variable().GetText(), context.expression(), context.op.Type);
+796 
+797             \textcolor{keywordflow}{return} 0;
+798         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00042_a573f37ce6260e0f112d3c6210fadf638_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00042_ac820130b8eb85146442f4124d5212877}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Exp\-Value@{Visit\-Exp\-Value}}
+\index{Visit\-Exp\-Value@{Visit\-Exp\-Value}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Exp\-Value}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Exp\-Value (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Exp\-Value\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_ac820130b8eb85146442f4124d5212877}
+
+
+Visit a parse tree produced by the {\ttfamily exp\-Value} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a54fd207b9821555dbbd9f41d82ccab00}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 703 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+704         \{
+705             \textcolor{keywordflow}{return} Visit(context.value());
+706         \}
+\end{DoxyCode}
+\hypertarget{a00042_adaf7ebcc18546fc41a78928606fae5cb}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Function@{Visit\-Function}}
+\index{Visit\-Function@{Visit\-Function}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Function}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Function (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Function\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_adaf7ebcc18546fc41a78928606fae5cb}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-function. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_aa7cf0de1076cfa2e859cbd0ba92226ab}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 528 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+529         \{
+530             \textcolor{keywordtype}{string} functionName = context.FUNC\_ID().GetText();
+531 
+532             this.HandleFunction(functionName, context.expression());
+533 
+534             \textcolor{keywordflow}{return} 0;
+535         \}
+\end{DoxyCode}
+\hypertarget{a00042_aa30d181ed0c8b5ea56912db147b35091}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Function\-\_\-statement@{Visit\-Function\-\_\-statement}}
+\index{Visit\-Function\-\_\-statement@{Visit\-Function\-\_\-statement}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Function\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Function\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Function\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_aa30d181ed0c8b5ea56912db147b35091}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-function\-\_\-statement. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a41ebea13c8b494629f3854ac3b02acb1}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 477 of file Compiler.\-cs.
+
+
+
+References preprocessor.\-output.
+
+
+\begin{DoxyCode}
+478         \{
+479             \textcolor{keywordtype}{char}[] lTrim = \{ \textcolor{charliteral}{'<'} \};
+480             \textcolor{keywordtype}{char}[] rTrim = \{ \textcolor{charliteral}{'('} \};
+481             \textcolor{keywordtype}{string} functionName = context.GetChild(0).GetText().TrimStart(lTrim).TrimEnd(rTrim);
+482 
+483             var \hyperlink{a00321_a3da6d48778c7b08a040bf24377f67792}{output} = this.HandleFunction(functionName, context.expression());
+484             \textcolor{comment}{// failed to handle the function}
+485             \textcolor{keywordflow}{if} (\hyperlink{a00321_a3da6d48778c7b08a040bf24377f67792}{output} == \textcolor{keyword}{false})
+486             \{
+487                 Yarn.ParseException.Make(context, \textcolor{stringliteral}{"Invalid number of parameters for "} + functionName);
+488             \}
+489 
+490             \textcolor{keywordflow}{return} 0;
+491         \}
+\end{DoxyCode}
+\hypertarget{a00174_a36bcc3e07dedf9354a2c9967cde577d2}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Hashtag@{Visit\-Hashtag}}
+\index{Visit\-Hashtag@{Visit\-Hashtag}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Hashtag}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Hashtag (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_a36bcc3e07dedf9354a2c9967cde577d2}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_a5a9eb068239ecf7a9f22efcbab257c26}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 285 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+285 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00174_a9400d1b4e26fb2b640320da88ba787d6}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Hashtag\-\_\-block@{Visit\-Hashtag\-\_\-block}}
+\index{Visit\-Hashtag\-\_\-block@{Visit\-Hashtag\-\_\-block}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Hashtag\-\_\-block}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Hashtag\-\_\-block (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-\_\-block\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_a9400d1b4e26fb2b640320da88ba787d6}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag\-\_\-block. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_a899c6a6b0bf44607a125f5b34cc25263}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 275 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+275 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00174_a08145c313b49a2c5e1a9d4a607f1a57c}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Header@{Visit\-Header}}
+\index{Visit\-Header@{Visit\-Header}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Header}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Header (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_a08145c313b49a2c5e1a9d4a607f1a57c}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_a24b0bc51bfd9d2fbdd2a4f0211b92e72}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 65 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+65 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00174_aa553a267b8ce2984ed2a80a1d28aae9c}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Header\-\_\-line@{Visit\-Header\-\_\-line}}
+\index{Visit\-Header\-\_\-line@{Visit\-Header\-\_\-line}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Header\-\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Header\-\_\-line (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-line\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_aa553a267b8ce2984ed2a80a1d28aae9c}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-line. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_a1a51687aef1d08ea7230e6a41d7cf61a}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 95 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+95 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00174_a0b88799d0a6f7c51d51403bc6f60c01e}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Header\-\_\-tag@{Visit\-Header\-\_\-tag}}
+\index{Visit\-Header\-\_\-tag@{Visit\-Header\-\_\-tag}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Header\-\_\-tag}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Header\-\_\-tag (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-tag\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_a0b88799d0a6f7c51d51403bc6f60c01e}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-tag. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_a0a1489c13aa25b6d92dcc064298e618e}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 85 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+85 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00174_a3c54ba6115ce150b2303f3bd37754269}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Header\-\_\-title@{Visit\-Header\-\_\-title}}
+\index{Visit\-Header\-\_\-title@{Visit\-Header\-\_\-title}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Header\-\_\-title}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Header\-\_\-title (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-title\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_a3c54ba6115ce150b2303f3bd37754269}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-title. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_a2f554200966a70217bcb285ad4176d03}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 75 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+75 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00174_a6b9c14146ced835495bb48bc5c63ebb5}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-If\-\_\-clause@{Visit\-If\-\_\-clause}}
+\index{Visit\-If\-\_\-clause@{Visit\-If\-\_\-clause}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-If\-\_\-clause}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-If\-\_\-clause (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-If\-\_\-clause\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_a6b9c14146ced835495bb48bc5c63ebb5}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-clause. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_a3069b103a0f46e9d5353822d5042ecc5}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 175 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+175 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00042_ae2d46c57ab716ded9d7f66cfb7a20a03}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-If\-\_\-statement@{Visit\-If\-\_\-statement}}
+\index{Visit\-If\-\_\-statement@{Visit\-If\-\_\-statement}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-If\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-If\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-If\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_ae2d46c57ab716ded9d7f66cfb7a20a03}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-statement. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a005f9655da52de2581762a4b61912ecd}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 539 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Body\-Visitor.\-generate\-Clause().
+
+
+\begin{DoxyCode}
+540         \{
+541             \textcolor{comment}{// label to give us a jump point for when the if finishes}
+542             \textcolor{keywordtype}{string} endOfIfStatementLabel = compiler.RegisterLabel(\textcolor{stringliteral}{"endif"});
+543 
+544             \textcolor{comment}{// handle the if}
+545             var ifClause = context.if\_clause();
+546             \hyperlink{a00042_a5f246aeaea2ba795d78abb0f8918cca4}{generateClause}(endOfIfStatementLabel, ifClause.statement(), ifClause.expression()
+      );
+547 
+548             \textcolor{comment}{// all elseifs}
+549             \textcolor{keywordflow}{foreach} (var elseIfClause \textcolor{keywordflow}{in} context.else\_if\_clause())
+550             \{
+551                 \hyperlink{a00042_a5f246aeaea2ba795d78abb0f8918cca4}{generateClause}(endOfIfStatementLabel, elseIfClause.statement(), 
+      elseIfClause.expression());
+552             \}
+553 
+554             \textcolor{comment}{// the else, if there is one}
+555             var elseClause = context.else\_clause();
+556             \textcolor{keywordflow}{if} (elseClause != null)
+557             \{
+558                 \hyperlink{a00042_a5f246aeaea2ba795d78abb0f8918cca4}{generateClause}(endOfIfStatementLabel, elseClause.statement(), null);
+559             \}
+560 
+561             compiler.Emit(ByteCode.Label, endOfIfStatementLabel);
+562 
+563             \textcolor{keywordflow}{return} 0;
+564         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00042_ae2d46c57ab716ded9d7f66cfb7a20a03_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00042_a0469d0cd00e8737385144157d7dbc436}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Line\-\_\-statement@{Visit\-Line\-\_\-statement}}
+\index{Visit\-Line\-\_\-statement@{Visit\-Line\-\_\-statement}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Line\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Line\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Line\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_a0469d0cd00e8737385144157d7dbc436}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-line\-\_\-statement. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a8439dc653550b8522eaf97298b54c0c4}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 360 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+361         \{
+362             \textcolor{comment}{// grabbing the line of text and stripping off any "'s if they had them}
+363             \textcolor{keywordtype}{string} lineText = context.text().GetText().Trim(\textcolor{charliteral}{'"'});
+364 
+365             \textcolor{comment}{// getting the lineID from the hashtags if it has one}
+366             \textcolor{keywordtype}{string} lineID = compiler.GetLineID(context.hashtag\_block());
+367 
+368             \textcolor{comment}{// technically this only gets the line the statement started on}
+369             \textcolor{keywordtype}{int} lineNumber = context.Start.Line;
+370 
+371             \textcolor{comment}{// TODO: why is this called num?}
+372             \textcolor{keywordtype}{string} num = compiler.program.RegisterString(lineText, compiler.currentNode.name, lineID, 
+      lineNumber, \textcolor{keyword}{true});
+373 
+374             compiler.Emit(ByteCode.RunLine, num);
+375 
+376             \textcolor{keywordflow}{return} 0;
+377         \}
+\end{DoxyCode}
+\hypertarget{a00174_a45882fee8dd45b1a7a04d000be825dce}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Node@{Visit\-Node}}
+\index{Visit\-Node@{Visit\-Node}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Node}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Node (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Node\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_a45882fee8dd45b1a7a04d000be825dce}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-node. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_a59c84bd2dbaab540b8db77eb20e67be6}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 55 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+55 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00042_abf95a48291ee85c0f9327f0c3ed3dc3c}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Option\-\_\-statement@{Visit\-Option\-\_\-statement}}
+\index{Visit\-Option\-\_\-statement@{Visit\-Option\-\_\-statement}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Option\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Option\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Option\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_abf95a48291ee85c0f9327f0c3ed3dc3c}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-option\-\_\-statement. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a2d06e22c32b7bb86030fe40224f8a3f2}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 381 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+382         \{
+383             \textcolor{comment}{// if it is a split style option}
+384             \textcolor{keywordflow}{if} (context.OPTION\_LINK() != null)
+385             \{
+386                 \textcolor{keywordtype}{string} destination = context.OPTION\_LINK().GetText();
+387                 \textcolor{keywordtype}{string} label = context.OPTION\_TEXT().GetText();
+388 
+389                 \textcolor{keywordtype}{int} lineNumber = context.Start.Line;
+390 
+391                 \textcolor{comment}{// getting the lineID from the hashtags if it has one}
+392                 \textcolor{keywordtype}{string} lineID = compiler.GetLineID(context.hashtag\_block());
+393 
+394                 \textcolor{keywordtype}{string} stringID = compiler.program.RegisterString(label, compiler.currentNode.name, lineID,
+       lineNumber, \textcolor{keyword}{true});
+395                 compiler.Emit(ByteCode.AddOption, stringID, destination);
+396             \}
+397             \textcolor{keywordflow}{else}
+398             \{
+399                 \textcolor{keywordtype}{string} destination = context.OPTION\_TEXT().GetText();
+400                 compiler.Emit(ByteCode.RunNode, destination);
+401             \}
+402             \textcolor{keywordflow}{return} 0;
+403         \}
+\end{DoxyCode}
+\hypertarget{a00042_a8d47becbb77d7c75a2d9e6aa777fd5df}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Set\-\_\-statement@{Visit\-Set\-\_\-statement}}
+\index{Visit\-Set\-\_\-statement@{Visit\-Set\-\_\-statement}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Set\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Set\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Set\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_a8d47becbb77d7c75a2d9e6aa777fd5df}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-set\-\_\-statement. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a8d1aa112df14a3492905930adcb664b5}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 410 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+411         \{
+412             \textcolor{comment}{// if it is the first form}
+413             \textcolor{comment}{// a regular << SET $varName TO expression >>}
+414             \textcolor{keywordflow}{if} (context.variable() != null)
+415             \{
+416                 \textcolor{comment}{// add the expression (whatever it resolves to)}
+417                 Visit(context.expression());
+418 
+419                 \textcolor{comment}{// now store the variable and clean up the stack}
+420                 \textcolor{keywordtype}{string} variableName = context.variable().GetText();
+421                 compiler.Emit(ByteCode.StoreVariable, variableName);
+422                 compiler.Emit(ByteCode.Pop);
+423             \}
+424             \textcolor{comment}{// it is the second form}
+425             \textcolor{keywordflow}{else}
+426             \{
+427                 \textcolor{comment}{// checking the expression is of the correct form}
+428                 var expression = context.expression();
+429                 \textcolor{comment}{// TODO: is there really no more elegant way of doing this?!}
+430                 \textcolor{keywordflow}{if} (expression is YarnSpinnerParser.ExpMultDivModEqualsContext ||
+431                     expression is YarnSpinnerParser.ExpPlusMinusEqualsContext)
+432                 \{
+433                     \textcolor{comment}{// run the expression, it handles it from here}
+434                     Visit(expression);
+435                 \}
+436                 \textcolor{keywordflow}{else}
+437                 \{
+438                     \textcolor{comment}{// throw an error}
+439                     \textcolor{keywordflow}{throw} Yarn.ParseException.Make(context,\textcolor{stringliteral}{"Invalid expression inside assignment statement"}
+      );
+440                 \}
+441             \}
+442 
+443             \textcolor{keywordflow}{return} 0;
+444         \}
+\end{DoxyCode}
+\hypertarget{a00174_a167e9a44ea7d404370390528fdd70115}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Shortcut@{Visit\-Shortcut}}
+\index{Visit\-Shortcut@{Visit\-Shortcut}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Shortcut}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Shortcut (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_a167e9a44ea7d404370390528fdd70115}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_a7b5a47e26ccf33cd524062dbb98a0830}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 135 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+135 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00174_a4a4adcbdf2ba70878b015aa47d54b398}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Shortcut\-\_\-conditional@{Visit\-Shortcut\-\_\-conditional}}
+\index{Visit\-Shortcut\-\_\-conditional@{Visit\-Shortcut\-\_\-conditional}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Shortcut\-\_\-conditional}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Shortcut\-\_\-conditional (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-conditional\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_a4a4adcbdf2ba70878b015aa47d54b398}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-conditional. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_a2d05d4bf6c088ca182a3017e1431be72}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 145 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+145 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00042_ad1576a22d74304c3155a0c2fa91be5b9}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Shortcut\-\_\-statement@{Visit\-Shortcut\-\_\-statement}}
+\index{Visit\-Shortcut\-\_\-statement@{Visit\-Shortcut\-\_\-statement}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Shortcut\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Shortcut\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Shortcut\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_ad1576a22d74304c3155a0c2fa91be5b9}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-statement. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a8299d25bc796f9c126635cf72aa3ea12}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 600 of file Compiler.\-cs.
+
+
+
+References Yarn.\-Body\-Visitor.\-compiler, Yarn.\-Compiler.\-Compile\-Flags.\-Disable\-Shuffle\-Options\-After\-Next\-Set, Yarn.\-Compiler.\-flags, and Yarn.\-Body\-Visitor.\-Shortcut\-Text().
+
+
+\begin{DoxyCode}
+601         \{
+602             \textcolor{keywordtype}{string} endOfGroupLabel = compiler.RegisterLabel(\textcolor{stringliteral}{"group\_end"});
+603 
+604             var labels = \textcolor{keyword}{new} List<string>();
+605 
+606             \textcolor{keywordtype}{int} optionCount = 0;
+607 
+608             \textcolor{keywordflow}{foreach} (var shortcut \textcolor{keywordflow}{in} context.shortcut())
+609             \{
+610                 \textcolor{keywordtype}{string} optionDestinationLabel = compiler.RegisterLabel(\textcolor{stringliteral}{"option\_"} + (optionCount + 1));
+611                 labels.Add(optionDestinationLabel);
+612 
+613                 \textcolor{keywordtype}{string} endOfClauseLabel = null;
+614                 \textcolor{keywordflow}{if} (shortcut.shortcut\_conditional() != null)
+615                 \{
+616                     endOfClauseLabel = compiler.RegisterLabel(\textcolor{stringliteral}{"conditional\_"} + optionCount);
+617 
+618                     Visit(shortcut.shortcut\_conditional().expression());
+619 
+620                     compiler.Emit(ByteCode.JumpIfFalse, endOfClauseLabel);
+621                 \}
+622 
+623                 \textcolor{comment}{// getting the lineID from the hashtags if it has one}
+624                 \textcolor{keywordtype}{string} lineID = compiler.GetLineID(shortcut.hashtag\_block());
+625 
+626                 \textcolor{keywordtype}{string} shortcutLine = \hyperlink{a00042_ad8448dacbbd94adebf38c29c3f50e499}{ShortcutText}(shortcut.shortcut\_text());
+627                 \textcolor{keywordtype}{string} labelStringID = compiler.program.RegisterString(shortcutLine, 
+      compiler.currentNode.name, lineID, shortcut.Start.Line, \textcolor{keyword}{true});
+628 
+629                 compiler.Emit(ByteCode.AddOption, labelStringID, optionDestinationLabel);
+630 
+631                 \textcolor{keywordflow}{if} (shortcut.shortcut\_conditional() != null)
+632                 \{
+633                     compiler.Emit(ByteCode.Label, endOfClauseLabel);
+634                     compiler.Emit(ByteCode.Pop);
+635                 \}
+636                 optionCount++;
+637             \}
+638 
+639             compiler.Emit(ByteCode.ShowOptions);
+640 
+641             \textcolor{comment}{// TODO: investigate a cleaner way because this is odd...}
+642             \textcolor{keywordflow}{if} (\hyperlink{a00042_a3b2c1a4c669262fd5475d7a4af2a72be}{compiler}.\hyperlink{a00051_a541022d89bcf9bc8f794eb6d6b438d08}{flags}.\hyperlink{a00051_a8b49bb7763ff477cba21d7c771ef3ed0}{DisableShuffleOptionsAfterNextSet}
+       == \textcolor{keyword}{true})
+643             \{
+644                 compiler.Emit(ByteCode.PushBool, \textcolor{keyword}{false});
+645                 compiler.Emit(ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
+646                 compiler.Emit(ByteCode.Pop);
+647                 compiler.flags.DisableShuffleOptionsAfterNextSet = \textcolor{keyword}{false};
+648             \}
+649 
+650             compiler.Emit(ByteCode.Jump);
+651 
+652             optionCount = 0;
+653             \textcolor{keywordflow}{foreach} (var shortcut \textcolor{keywordflow}{in} context.shortcut())
+654             \{
+655                 compiler.Emit(ByteCode.Label, labels[optionCount]);
+656 
+657                 \textcolor{comment}{// running through all the children statements of the shortcut}
+658                 \textcolor{keywordflow}{foreach} (var child \textcolor{keywordflow}{in} shortcut.statement())
+659                 \{
+660                     Visit(child);
+661                 \}
+662 
+663                 compiler.Emit(ByteCode.JumpTo, endOfGroupLabel);
+664 
+665                 optionCount++;
+666             \}
+667 
+668             compiler.Emit(ByteCode.Label, endOfGroupLabel);
+669             compiler.Emit(ByteCode.Pop);
+670 
+671             \textcolor{keywordflow}{return} 0;
+672         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00042_ad1576a22d74304c3155a0c2fa91be5b9_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00174_a34e4b7e3d1c1c78dab3d017632cdca1f}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Shortcut\-\_\-text@{Visit\-Shortcut\-\_\-text}}
+\index{Visit\-Shortcut\-\_\-text@{Visit\-Shortcut\-\_\-text}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Shortcut\-\_\-text}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Shortcut\-\_\-text (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-text\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_a34e4b7e3d1c1c78dab3d017632cdca1f}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-text. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_adb7363aa1905c378122a785a4f1a8475}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 155 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+155 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00174_a6856fdb64dfc47bb9f1650683a1ccf97}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Statement@{Visit\-Statement}}
+\index{Visit\-Statement@{Visit\-Statement}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Statement (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_a6856fdb64dfc47bb9f1650683a1ccf97}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-statement. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_a2122e68c51db45bb8cb757cfd2af7683}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 115 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+115 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00174_ac8a0d095d59f4ef49178ba70353fe9a6}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Text@{Visit\-Text}}
+\index{Visit\-Text@{Visit\-Text}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Text}]{\setlength{\rightskip}{0pt plus 5cm}virtual Result Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$.Visit\-Text (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Text\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00174_ac8a0d095d59f4ef49178ba70353fe9a6}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-text. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Implements \hyperlink{a00119_acd505d5a1c6c6ac264f44d23f0684ffa}{I\-Yarn\-Spinner\-Parser\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 255 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+
+\begin{DoxyCode}
+255 \{ \textcolor{keywordflow}{return} VisitChildren(context); \}
+\end{DoxyCode}
+\hypertarget{a00042_a35ff313be01c2bb671f4d20917a27aae}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Value\-False@{Visit\-Value\-False}}
+\index{Visit\-Value\-False@{Visit\-Value\-False}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Value\-False}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Value\-False (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Value\-False\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_a35ff313be01c2bb671f4d20917a27aae}
+
+
+Visit a parse tree produced by the {\ttfamily value\-False} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_aec30451186238928bd135298139b94e9}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 823 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+824         \{
+825             compiler.Emit(ByteCode.PushBool, \textcolor{keyword}{false});
+826             \textcolor{keywordflow}{return} 0;
+827         \}
+\end{DoxyCode}
+\hypertarget{a00042_aa2c789583bec673fa64cbf141eae19aa}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Value\-Func@{Visit\-Value\-Func}}
+\index{Visit\-Value\-Func@{Visit\-Value\-Func}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Value\-Func}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Value\-Func (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Value\-Func\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_aa2c789583bec673fa64cbf141eae19aa}
+
+
+Visit a parse tree produced by the {\ttfamily value\-Func} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a48cbb1894a0d0232f8961361344a6728}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 848 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+849         \{
+850             Visit(context.function());
+851 
+852             \textcolor{keywordflow}{return} 0;
+853         \}
+\end{DoxyCode}
+\hypertarget{a00042_a888533459a53d98ff4891ca5aa21763c}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Value\-Null@{Visit\-Value\-Null}}
+\index{Visit\-Value\-Null@{Visit\-Value\-Null}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Value\-Null}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Value\-Null (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Value\-Null\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_a888533459a53d98ff4891ca5aa21763c}
+
+
+Visit a parse tree produced by the {\ttfamily value\-Null} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_adc657b05087e7cdeff4b38fe7bd440f5}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 855 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+856         \{
+857             compiler.Emit(ByteCode.PushNull);
+858             \textcolor{keywordflow}{return} 0;
+859         \}
+\end{DoxyCode}
+\hypertarget{a00042_a2acb075ab60f6aca5319dce40074880f}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Value\-Number@{Visit\-Value\-Number}}
+\index{Visit\-Value\-Number@{Visit\-Value\-Number}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Value\-Number}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Value\-Number (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Value\-Number\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_a2acb075ab60f6aca5319dce40074880f}
+
+
+Visit a parse tree produced by the {\ttfamily value\-Number} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_abf395acc2fa3c6eab664d211c8afa8fd}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 810 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+811         \{
+812             \textcolor{keywordtype}{float} number = float.Parse(context.BODY\_NUMBER().GetText(), CultureInfo.InvariantCulture);
+813             compiler.Emit(ByteCode.PushNumber, number);
+814 
+815             \textcolor{keywordflow}{return} 0;
+816         \}
+\end{DoxyCode}
+\hypertarget{a00042_a33229651713a1b788e8841added0e2db}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Value\-String@{Visit\-Value\-String}}
+\index{Visit\-Value\-String@{Visit\-Value\-String}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Value\-String}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Value\-String (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Value\-String\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_a33229651713a1b788e8841added0e2db}
+
+
+Visit a parse tree produced by the {\ttfamily value\-String} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a190b9ce38685ffe5b2ce451f9afed24b}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 835 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+836         \{
+837             \textcolor{comment}{// stripping the " off the front and back}
+838             \textcolor{comment}{// actually is this what we want?}
+839             \textcolor{keywordtype}{string} stringVal = context.COMMAND\_STRING().GetText().Trim(\textcolor{charliteral}{'"'});
+840 
+841             \textcolor{keywordtype}{int} lineNumber = context.Start.Line;
+842             \textcolor{keywordtype}{string} \textcolor{keywordtype}{id} = compiler.program.RegisterString(stringVal, compiler.currentNode.name, null, 
+      lineNumber, \textcolor{keyword}{false});
+843             compiler.Emit(ByteCode.PushString, id);
+844 
+845             \textcolor{keywordflow}{return} 0;
+846         \}
+\end{DoxyCode}
+\hypertarget{a00042_ab627c2664656eedcefd9c2be4231cc51}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Value\-True@{Visit\-Value\-True}}
+\index{Visit\-Value\-True@{Visit\-Value\-True}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Value\-True}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Value\-True (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Value\-True\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_ab627c2664656eedcefd9c2be4231cc51}
+
+
+Visit a parse tree produced by the {\ttfamily value\-True} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_ad42a85096cd1000bac437166c879f0ec}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 817 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+818         \{
+819             compiler.Emit(ByteCode.PushBool, \textcolor{keyword}{true});
+820 
+821             \textcolor{keywordflow}{return} 0;
+822         \}
+\end{DoxyCode}
+\hypertarget{a00042_aa9e7f9f7310448cb44d0acb88512bc71}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Value\-Var@{Visit\-Value\-Var}}
+\index{Visit\-Value\-Var@{Visit\-Value\-Var}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Value\-Var}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Value\-Var (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Value\-Var\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_aa9e7f9f7310448cb44d0acb88512bc71}
+
+
+Visit a parse tree produced by the {\ttfamily value\-Var} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a206d2a25cd566e2209fd4cedfae312c9}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 806 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+807         \{
+808             \textcolor{keywordflow}{return} Visit(context.variable());
+809         \}
+\end{DoxyCode}
+\hypertarget{a00042_a884faf4566a71978ca12e671988c740b}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!Visit\-Variable@{Visit\-Variable}}
+\index{Visit\-Variable@{Visit\-Variable}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{Visit\-Variable}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Body\-Visitor.\-Visit\-Variable (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Variable\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_a884faf4566a71978ca12e671988c740b}
+
+
+Visit a parse tree produced by Yarn\-Spinner\-Parser.\-variable. 
+
+The default implementation returns the result of calling Abstract\-Parse\-Tree\-Visitor\{\-Result\}.\-Visit\-Children(\-I\-Rule\-Node) on {\itshape context} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+$<$return$>$The visitor result.$<$/return$>$ 
+
+Reimplemented from \hyperlink{a00174_a51d3d21fc833b5b4676ac84a46cdef87}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}.
+
+
+
+Definition at line 828 of file Compiler.\-cs.
+
+
+\begin{DoxyCode}
+829         \{
+830             \textcolor{keywordtype}{string} variableName = context.VAR\_ID().GetText();
+831             compiler.Emit(ByteCode.PushVariable, variableName);
+832 
+833             \textcolor{keywordflow}{return} 0;
+834         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00042_a3b2c1a4c669262fd5475d7a4af2a72be}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!compiler@{compiler}}
+\index{compiler@{compiler}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{compiler}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Compiler} Yarn.\-Body\-Visitor.\-compiler\hspace{0.3cm}{\ttfamily [package]}}}\label{a00042_a3b2c1a4c669262fd5475d7a4af2a72be}
+
+
+Definition at line 351 of file Compiler.\-cs.
+
+
+
+Referenced by Yarn.\-Body\-Visitor.\-Body\-Visitor(), and Yarn.\-Body\-Visitor.\-Visit\-Shortcut\-\_\-statement().
+
+\hypertarget{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}{\index{Yarn\-::\-Body\-Visitor@{Yarn\-::\-Body\-Visitor}!tokens@{tokens}}
+\index{tokens@{tokens}!Yarn::BodyVisitor@{Yarn\-::\-Body\-Visitor}}
+\subsubsection[{tokens}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$int, {\bf Token\-Type}$>$ Yarn.\-Body\-Visitor.\-tokens = new Dictionary$<$int, {\bf Token\-Type}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00042_ab8aa4dbe47a807e3d973df2b85e3fffc}
+
+
+Definition at line 863 of file Compiler.\-cs.
+
+
+
+Referenced by Yarn.\-Body\-Visitor.\-generic\-Exp\-Visitor(), Yarn.\-Body\-Visitor.\-load\-Operators(), and Yarn.\-Body\-Visitor.\-op\-Equals().
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00305}{Analyser.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00281}{Compiler.\-cs}\end{DoxyCompactItemize}

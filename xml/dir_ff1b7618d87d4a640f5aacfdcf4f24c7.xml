@@ -8,26 +8,26 @@
     <innerdir refid="dir_48a1716f11dda95e9025da5db297b66f">packages/CsvHelper.2.16.0.0/src/CsvHelper/MissingFromPcl</innerdir>
     <innerdir refid="dir_4c151e014849d6a3fd7578456f95c583">packages/CsvHelper.2.16.0.0/src/CsvHelper/Properties</innerdir>
     <innerdir refid="dir_5c139b908ad2613e3ef99ee52a122286">packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion</innerdir>
-    <innerfile refid="a00236">CsvBadDataException.cs</innerfile>
-    <innerfile refid="a00237">CsvFactory.cs</innerfile>
-    <innerfile refid="a00238">CsvHelperException.cs</innerfile>
-    <innerfile refid="a00239">CsvMissingFieldException.cs</innerfile>
-    <innerfile refid="a00240">CsvParser.cs</innerfile>
-    <innerfile refid="a00241">CsvParserException.cs</innerfile>
-    <innerfile refid="a00242">CsvReader.cs</innerfile>
-    <innerfile refid="a00243">CsvReaderException.cs</innerfile>
-    <innerfile refid="a00244">CsvSerializer.cs</innerfile>
-    <innerfile refid="a00245">CsvWriter.cs</innerfile>
-    <innerfile refid="a00246">CsvWriterException.cs</innerfile>
-    <innerfile refid="a00247">ExceptionHelper.cs</innerfile>
-    <innerfile refid="a00248">ICsvFactory.cs</innerfile>
-    <innerfile refid="a00249">ICsvParser.cs</innerfile>
-    <innerfile refid="a00250">ICsvReader.cs</innerfile>
-    <innerfile refid="a00251">ICsvReaderRow.cs</innerfile>
-    <innerfile refid="a00252">ICsvSerializer.cs</innerfile>
-    <innerfile refid="a00253">ICsvWriter.cs</innerfile>
-    <innerfile refid="a00261">ReflectionHelper.cs</innerfile>
-    <innerfile refid="a00262">StringHelper.cs</innerfile>
+    <innerfile refid="a00210">CsvBadDataException.cs</innerfile>
+    <innerfile refid="a00211">CsvFactory.cs</innerfile>
+    <innerfile refid="a00212">CsvHelperException.cs</innerfile>
+    <innerfile refid="a00213">CsvMissingFieldException.cs</innerfile>
+    <innerfile refid="a00214">CsvParser.cs</innerfile>
+    <innerfile refid="a00215">CsvParserException.cs</innerfile>
+    <innerfile refid="a00216">CsvReader.cs</innerfile>
+    <innerfile refid="a00217">CsvReaderException.cs</innerfile>
+    <innerfile refid="a00218">CsvSerializer.cs</innerfile>
+    <innerfile refid="a00219">CsvWriter.cs</innerfile>
+    <innerfile refid="a00220">CsvWriterException.cs</innerfile>
+    <innerfile refid="a00221">ExceptionHelper.cs</innerfile>
+    <innerfile refid="a00222">ICsvFactory.cs</innerfile>
+    <innerfile refid="a00223">ICsvParser.cs</innerfile>
+    <innerfile refid="a00224">ICsvReader.cs</innerfile>
+    <innerfile refid="a00225">ICsvReaderRow.cs</innerfile>
+    <innerfile refid="a00226">ICsvSerializer.cs</innerfile>
+    <innerfile refid="a00227">ICsvWriter.cs</innerfile>
+    <innerfile refid="a00235">ReflectionHelper.cs</innerfile>
+    <innerfile refid="a00236">StringHelper.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

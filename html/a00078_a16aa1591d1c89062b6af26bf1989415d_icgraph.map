@@ -1,0 +1,3 @@
+<map id="CsvHelper.CsvWriter.ClearRecordCache" name="CsvHelper.CsvWriter.ClearRecordCache">
+<area shape="rect" id="node2" href="$a00078.html#a11eb73c5fcd65642b4b4959a7200ba96" title="Clears the record cache for the given type. After ICsvWriter.WriteRecord{T} is called the first time..." alt="" coords="238,5,421,46"/>
+</map>

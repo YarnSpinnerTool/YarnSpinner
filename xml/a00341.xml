@@ -1,24 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00341" kind="namespace">
-    <compoundname>CsvHelper::Configuration</compoundname>
-    <innerclass refid="a00062" prot="public">CsvHelper::Configuration::CsvClassMap</innerclass>
-    <innerclass refid="a00063" prot="public">CsvHelper::Configuration::CsvClassMap&lt; T &gt;</innerclass>
-    <innerclass refid="a00064" prot="public">CsvHelper::Configuration::CsvClassMapCollection</innerclass>
-    <innerclass refid="a00065" prot="public">CsvHelper::Configuration::CsvConfiguration</innerclass>
-    <innerclass refid="a00066" prot="public">CsvHelper::Configuration::CsvConfigurationException</innerclass>
-    <innerclass refid="a00072" prot="public">CsvHelper::Configuration::CsvPropertyMap</innerclass>
-    <innerclass refid="a00073" prot="public">CsvHelper::Configuration::CsvPropertyMapCollection</innerclass>
-    <innerclass refid="a00074" prot="package">CsvHelper::Configuration::CsvPropertyMapComparer</innerclass>
-    <innerclass refid="a00075" prot="public">CsvHelper::Configuration::CsvPropertyMapData</innerclass>
-    <innerclass refid="a00076" prot="public">CsvHelper::Configuration::CsvPropertyNameCollection</innerclass>
-    <innerclass refid="a00077" prot="public">CsvHelper::Configuration::CsvPropertyReferenceMap</innerclass>
-    <innerclass refid="a00078" prot="public">CsvHelper::Configuration::CsvPropertyReferenceMapData</innerclass>
-    <innerclass refid="a00089" prot="public">CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</innerclass>
+    <compoundname>UnityEngine::UI</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="15" column="1"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleDialogueUI.cs" line="29" column="1"/>
   </compounddef>
 </doxygen>

@@ -1,4 +1,4 @@
-\hyperlink{a00053}{Yarn} Spinner provides tools to help convert your game in to any language you like. This is achieved by usage of the \href{../YarnSpinnerConsole}{\tt Yarn\-Spinner\-Console} tool. At the moment, this tool is not available standalone and needs to be ../\-Yarn\-Spinner-\/\-Programming/\-Building.md \char`\"{}built from source\char`\"{}.
+\hyperlink{a00048}{Yarn} Spinner provides tools to help convert your game in to any language you like. This is achieved by usage of the \href{../YarnSpinnerConsole}{\tt Yarn\-Spinner\-Console} tool. At the moment, this tool is not available standalone and needs to be ../\-Yarn\-Spinner-\/\-Programming/\-Building.md \char`\"{}built from source\char`\"{}.
 
 \subsection*{Localisation procedure}
 
@@ -6,7 +6,7 @@
 \begin{DoxyEnumerate}
 \item We first use the tool to place unique {\bfseries taglines} on each line of text that the end user will see. To do this, we execute the tool with the {\bfseries taglines} command, eg\-: {\ttfamily Yarn\-Spinner\-Console.\-exe taglines My\-Yarn\-File.\-yarn.\-txt}.
 \item Next, we use the tool to generate a file of strings ({\bfseries genstrings}) in '\href{https://en.wikipedia.org/wiki/Comma-separated_values}{\tt comma separated value}' (csv) format. {\ttfamily Yarn\-Spinner\-Console.\-exe genstrings My\-Yarn\-File.\-yarn.\-txt} will generate a file, (in this example My\-Yarn\-F\-Ile.\-yarn\-\_\-lines.\-csv), that can then distributed to translators. It is recommended that this file first be renamed using a language identifier before distribution, eg ``` My\-Yarn\-F\-Ile.\-yarn\-\_\-lines.\-en\-A\-U.\-csv My\-Yarn\-F\-Ile.\-yarn\-\_\-lines.\-pt\-T\-L.\-csv ```
-\item When the file is returned from translators, we then use \hyperlink{a00053}{Yarn} Spinner's Dialogue\-Runner inside Unity to set String Groups for the required language.
+\item When the file is returned from translators, we then use \hyperlink{a00048}{Yarn} Spinner's Dialogue\-Runner inside Unity to set String Groups for the required language.
 \end{DoxyEnumerate}
 
 \subsection*{Footnotes}
@@ -14,6 +14,6 @@
 
 \begin{DoxyItemize}
 \item While not essential that all files follow a standard, but highly recommended that consistency of format be used across all localisation files within a project eg \href{https://www.iso.org/obp/ui/#iso:std:iso-iec:15897:ed-2:v1:en}{\tt I\-S\-O-\/15897}
-\item Originally, \hyperlink{a00053}{Yarn} Spinner used .json format. The \hyperlink{a00053}{Yarn} Spinner Console can convert this json format to the new improved text format\-: {\ttfamily Yarn\-Spinner\-Console.\-exe convert -\/-\/yarn Ship.\-json}
+\item Originally, \hyperlink{a00048}{Yarn} Spinner used .json format. The \hyperlink{a00048}{Yarn} Spinner Console can convert this json format to the new improved text format\-: {\ttfamily Yarn\-Spinner\-Console.\-exe convert -\/-\/yarn Ship.\-json}
 \item Command reference is available for Yarn\-Spinner\-Console.\-exe by either running it with no arguments or by utilising the help command ({\ttfamily Yarn\-Spinner\-Console.\-exe help}). Help for each command is available by using 'help command' (eg {\ttfamily Yarn\-Spinnder\-Console.\-exe help compile}) 
 \end{DoxyItemize}

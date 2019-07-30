@@ -1,77 +1,129 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00099" kind="struct" prot="private">
-    <compoundname>Yarn::Loader::EmissionTuple</compoundname>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00099_1ad3d26f07b18e91e1ba31ba3b5d6923db" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Loader.EmissionTuple.depth</definition>
+  <compounddef id="a00099" kind="class" prot="public">
+    <compoundname>Yarn::ExecutionOptions</compoundname>
+    <basecompoundref refid="a00040" prot="public" virt="non-virtual">Yarn.BaseOptions</basecompoundref>
+    <derivedcompoundref refid="a00142" prot="public" virt="non-virtual">Yarn.RunOptions</derivedcompoundref>
+    <derivedcompoundref refid="a00169" prot="public" virt="non-virtual">Yarn.VerifyOptions</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00099_1a7e43c3b73722956cb0f5d507e4eef527" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.ExecutionOptions.stringTable</definition>
         <argsstring></argsstring>
-        <name>depth</name>
+        <name>stringTable</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="98" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="98" bodyend="-1"/>
-        <referencedby refid="a00099_1a79857a881f3e1bab47a2cee5007e62a2" compoundref="a00315" startline="100" endline="104">Yarn.Loader.EmissionTuple.EmissionTuple</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="57" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="57" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="a00099_1a5916dbbd4d2e24ddfd02b0afdea290bf" prot="public" static="no" mutable="no">
+      <memberdef kind="property" id="a00099_1af4c0062a1d46281d377f87084fde374e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.ExecutionOptions.onlyConsiderNode</definition>
+        <argsstring></argsstring>
+        <name>onlyConsiderNode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00040_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
         <type>bool</type>
-        <definition>bool Yarn.Loader.EmissionTuple.emitted</definition>
+        <definition>bool Yarn.BaseOptions.showDebuggingInfo</definition>
         <argsstring></argsstring>
-        <name>emitted</name>
+        <name>showDebuggingInfo</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="99" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="99" bodyend="-1"/>
-        <referencedby refid="a00099_1a79857a881f3e1bab47a2cee5007e62a2" compoundref="a00315" startline="100" endline="104">Yarn.Loader.EmissionTuple.EmissionTuple</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="42" bodyend="-1"/>
+        <referencedby refid="a00172_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00300" startline="383" endline="501">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00099_1a79857a881f3e1bab47a2cee5007e62a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Loader.EmissionTuple.EmissionTuple</definition>
-        <argsstring>(int depth, bool emitted)</argsstring>
-        <name>EmissionTuple</name>
-        <param>
-          <type>int</type>
-          <declname>depth</declname>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>emitted</declname>
-        </param>
+      <memberdef kind="property" id="a00040_1ada4d83d1756918f362d55f6649b82b17" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.BaseOptions.verbose</definition>
+        <argsstring></argsstring>
+        <name>verbose</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="100" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="100" bodyend="104"/>
-        <references refid="a00099_1ad3d26f07b18e91e1ba31ba3b5d6923db" compoundref="a00315" startline="98">Yarn.Loader.EmissionTuple.depth</references>
-        <references refid="a00099_1a5916dbbd4d2e24ddfd02b0afdea290bf" compoundref="a00315" startline="99">Yarn.Loader.EmissionTuple.emitted</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="46" bodyend="-1"/>
+        <referencedby refid="a00100_1aa72838be584177b5592c31d73c0febdb" compoundref="a00298" startline="119" endline="160">Yarn.FileFormatConverter.ConvertNodesInFile</referencedby>
+        <referencedby refid="a00151_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00301" startline="12" endline="124">Yarn.TableGenerator.GenerateTables</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="a00040_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>IList&lt; string &gt;</type>
+        <definition>IList&lt;string&gt; Yarn.BaseOptions.files</definition>
+        <argsstring></argsstring>
+        <name>files</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="49" bodyend="-1"/>
+        <referencedby refid="a00172_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00300" startline="270" endline="331">Yarn.YarnSpinnerConsole.Run</referencedby>
+        <referencedby refid="a00172_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00300" startline="333" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1303">
-        <label>Yarn.Loader.EmissionTuple</label>
+    <inheritancegraph>
+      <node id="1198">
+        <label>Yarn.RunOptions</label>
+        <link refid="a00142"/>
+        <childnode refid="1196" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1199">
+        <label>Yarn.VerifyOptions</label>
+        <link refid="a00169"/>
+        <childnode refid="1196" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1196">
+        <label>Yarn.ExecutionOptions</label>
         <link refid="a00099"/>
+        <childnode refid="1197" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1197">
+        <label>BaseOptions</label>
+        <link refid="a00040"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1200">
+        <label>Yarn.ExecutionOptions</label>
+        <link refid="a00099"/>
+        <childnode refid="1201" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1201">
+        <label>BaseOptions</label>
+        <link refid="a00040"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="97" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="96" bodyend="105"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="54" bodyend="63"/>
     <listofallmembers>
-      <member refid="a00099_1ad3d26f07b18e91e1ba31ba3b5d6923db" prot="public" virt="non-virtual"><scope>Yarn::Loader::EmissionTuple</scope><name>depth</name></member>
-      <member refid="a00099_1a79857a881f3e1bab47a2cee5007e62a2" prot="public" virt="non-virtual"><scope>Yarn::Loader::EmissionTuple</scope><name>EmissionTuple</name></member>
-      <member refid="a00099_1a5916dbbd4d2e24ddfd02b0afdea290bf" prot="public" virt="non-virtual"><scope>Yarn::Loader::EmissionTuple</scope><name>emitted</name></member>
+      <member refid="a00040_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>files</name></member>
+      <member refid="a00099_1af4c0062a1d46281d377f87084fde374e" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>onlyConsiderNode</name></member>
+      <member refid="a00040_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>showDebuggingInfo</name></member>
+      <member refid="a00099_1a7e43c3b73722956cb0f5d507e4eef527" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>stringTable</name></member>
+      <member refid="a00040_1ada4d83d1756918f362d55f6649b82b17" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>verbose</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

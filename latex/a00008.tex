@@ -1,10 +1,163 @@
-The following people have contributed to the development of \hyperlink{a00053}{Yarn} Spinner. If you submit a pull request, please add your name to the list below.
+So this is a W\-I\-P parser/lexer for \hyperlink{a00344}{Yarn\-Spinner} written in A\-N\-T\-L\-R with that plan being that it will eventually replace the hand made one currently in use.
+
+{\bfseries T\-H\-I\-S I\-S A\-L\-L S\-T\-I\-L\-L W\-O\-R\-K I\-N P\-R\-O\-G\-R\-E\-S\-S A\-N\-D O\-P\-E\-N T\-O C\-H\-A\-N\-G\-E}
+
+For discussion on this jump into the \#yarnspinner channel on the \href{https://narrativegamedev.slack.com/}{\tt Narrative Game Development} slack.
+
+I thought it might be worth documenting what this W\-I\-P version does/doesn't do and why it is that way, should make moving forward a bit simpler. Additionally because we are doing this I think it is a good time to open up discussion about the syntax design of \hyperlink{a00344}{Yarn\-Spinner}.
+
+I am of the opinion that the syntax should be changed as it currently grew organically rather than by design. That doesn't mean what it currently is is garbage or that is worth throwing out the design already done as there is a L\-O\-T of great stuff in there. This is also N\-O\-T me saying how it should be done, this is just how I am doing it and ideally forms the beginning of a discussion around the future of \hyperlink{a00344}{Yarn\-Spinner} syntax and features.
+
+\subsection*{using the A\-N\-T\-R\-L compiler}
+
+This is now partially built into \hyperlink{a00344}{Yarn\-Spinner}. {\ttfamily Dialogue} objects have an {\ttfamily experimental\-Mode} bool flag that if set to true, they will use the A\-N\-T\-L\-R compiler. This can only be done on objects using the yarn.\-txt format, all others will fail to parse. To use this you will need to install A\-N\-T\-L\-R on your system and run it across the grammar files. At this point in time the output of A\-N\-T\-L\-R is not stored in source control (and probably never should be).
+
+Assuming you have an alias for antlr already set up, to generate the files you will need the command is as follows\-: ``` antlr -\/\-Dlanguage=C\-Sharp -\/visitor $\ast$.g4 ```
+
+Then copy these into the \hyperlink{a00344}{Yarn\-Spinner} project.
+
+\subsection*{{\ttfamily =} is for assignment and assignment alone}
+
+In a language that doesn't have operator overloading, and pretty much always defines a new keyword for new functionality, we have this single case where {\ttfamily =} can be used for comparison and equality. This is a peeve of mine because it complicates design and implementation for, what is in my mind, a tiny feature, so I just took that feature out.
+
+\subsubsection*{Reasons to keep old style}
 
 
 \begin{DoxyItemize}
-\item 20??-\/ongoing\-: Secret Lab Team -\/ Dr Jon Manning and Dr Paris Buttfield-\/\-Addison \href{mailto:lab@secretlab.com.au}{\tt lab@secretlab.\-com.\-au}
-\item 2017\-: Rev Peter Lawler \href{mailto:relwalretep@gmail.com}{\tt relwalretep@gmail.\-com}
-\item 2017\-: Dr Tim 'Mc\-Jones' Nugent \href{mailto:tim@lonely.coffee}{\tt tim@lonely.\-coffee}
-\item 2018\-: Damon 'demanrisu' Reece \href{mailto:de@coy.ninja}{\tt de@coy.\-ninja}
-\item 2019\-: Tamme Schichler \href{mailto:tamme@schichler.dev}{\tt tamme@schichler.\-dev} 
+\item Backwards compatibility
+\item Initially makes more sense than {\ttfamily ==} (subjective)
+\end{DoxyItemize}
+
+\subsubsection*{Reasons to change}
+
+
+\begin{DoxyItemize}
+\item easy enough to explain to people where to use {\ttfamily ==} vs. {\ttfamily =}
+\item limit confusion for users if they see dialogue using {\ttfamily ==} and {\ttfamily =}
+\item avoid arguments around \char`\"{}well we already have overloading on =\char`\"{} for future syntax
+\item closer to existing programming languages
+\item already have {\ttfamily is} keyword if people really don't like {\ttfamily ==}
+\end{DoxyItemize}
+
+\subsection*{The {\ttfamily -\/$>$} shortcut syntax}
+
+Shortcuts are now implemented using a two stage approach, where the \hyperlink{a00048}{Yarn} files are run through a preprocessor (the reference preprocesser and one used for tests is currently written in Python, the one inside the project is written in C\#) to add in indents and dedents to build up the blocks for shortcuts.
+
+Due to the nature of A\-N\-T\-L\-R and Yarn\-Spinners rather unusual approach to whitespace this was found to be the simplest approach as it means there is no code in the grammar file itself. There is now however an extra step and the preprocessor will need to be ported to each language. It was done this way as the preprocessor itself is quite straightforward compared to what the extra code in the grammar would be.
+
+A side-\/effect of this is that a symbol had to be chosen to represent the indents/dedents. I went with the {\ttfamily \textbackslash{}a} or bell for indents (playing the role {\ttfamily \{} normally does) and {\ttfamily \textbackslash{}v} or vertical tab for dedent ({\ttfamily \}} equivalent). Both of these were chosen as they are invisible (somewhat) and unlikely (especially in the case of bell) to be used in existing \hyperlink{a00048}{Yarn} files, additionally as control characters they don't limit the amount of available characters in text lines. This does mean however if someone was using either of those two in their \hyperlink{a00048}{Yarn} files their files won't parse correctly.
+
+While this works this also allows for an opportunity to discuss the {\ttfamily -\/$>$} syntax. It currently has remarkably flexible rules around the whitespace, such that it allows structures that would break in almost any other whitespace programming language. Is this something worth changing?
+
+Options to change include\-:
+
+
+\begin{DoxyItemize}
+\item Locking down the syntax a bit more so that whitespace rules are enforced more than currently, Python offers a guideline for how this would look.
+\item Using the use of a {\ttfamily \{ \}} (or something similar) syntax for the {\ttfamily -\/$>$} code blocks.
+\item Using a close tag similar to {\ttfamily $<$$<$endif$>$$>$} perhaps {\ttfamily $<$-\/}.
+\end{DoxyItemize}
+
+At this stage it isn't worth changing as it is currently working fine, but this is something to consider going forward. It might well be worth changing the ident and dedent characters to $^\wedge$\mbox{]} and $^\wedge$$^\wedge$ (Group Separator and Record Separator) as these are {\itshape more} invisible than bell and vertical tab and semantically make more sense and are in even less use than bell or vertical tab.
+
+\subsubsection*{Reasons to keep to old style}
+
+
+\begin{DoxyItemize}
+\item Backwards compatibility
+\item More obvious (subjective)
+\item easier to write
+\end{DoxyItemize}
+
+\subsubsection*{Reasons to change to new style}
+
+
+\begin{DoxyItemize}
+\item Easier to parse
+\item Allows for single line shortcuts eg -\/$>$etc \{-\/$>$etcetc\}
+\end{DoxyItemize}
+
+\subsection*{Comments can't go inline a command}
+
+For example the following doesn't work
+
+``` $<$$<$set \$foo = 2 + 1 $\ast$ (2 + 1) // quick explanation why you would do this, seriously explain this, this seems weird to break this statement up... \begin{quotation}
+\begin{quotation}
+
+
+\end{quotation}
+
+
+\end{quotation}
+```
+
+Purely an implementation issue, I see literally no reason this shouldn't happen, just saying that it is that case for now.
+
+\subsection*{Option parsing is far from ideal}
+
+Because the structure of the option syntax is {\ttfamily \mbox{[}\mbox{[}free text $\vert$ node\-Name\mbox{]}\mbox{]}}, when creating single structure option {\ttfamily \mbox{[}\mbox{[}node\-Name\mbox{]}\mbox{]}} this is not being correctly identified as an option link but instead as an option text. This isn't really a huge issue and it doesn't impact the implementation of the A\-N\-T\-L\-R compiler, it just looks messy to me.
+
+Options are to change the syntax. My suggestion to change the syntax so that it goes {\ttfamily \mbox{[}\mbox{[}node\-Name $\vert$ free text\mbox{]}\mbox{]}}, this makes it easier to parse. This also makes more semantic sense to me as the link to the node is more important than the dialogue line that triggers it.
+
+\subsubsection*{Reasons to keep to the old style}
+
+
+\begin{DoxyItemize}
+\item backwards compatibility
+\end{DoxyItemize}
+
+\subsubsection*{Reasons to change to the new style}
+
+
+\begin{DoxyItemize}
+\item easier to parse
+\item makes more sense start with the link (subjective)
+\end{DoxyItemize}
+
+\subsection*{Keywords are allowed to be upper or lower case}
+
+Keywords like {\ttfamily else}, {\ttfamily endif}, {\ttfamily is}, etc etc are allowed in either all upper (eg {\ttfamily S\-E\-T}) or all lower (eg {\ttfamily set}) case. This is something I did quickly as it took almost zero effort to do and personally makes sense.
+
+The question is, is it worth keeping this, picking a single case approach, extending it to allowed mixed case (eg {\ttfamily e\-N\-Di\-F}), extending to allow Titled case (eg {\ttfamily True}, {\ttfamily true}, {\ttfamily T\-R\-U\-E} all being valid but {\ttfamily t\-Rue} not valid)?
+
+\subsection*{functions vs actions vs commands}
+
+As it currently stands \hyperlink{a00344}{Yarn\-Spinner} has three different ways of controlling the game and dialogue.
+
+Commands use a keyword (like {\ttfamily if} or {\ttfamily set}) and are followed by an expression\-: {\ttfamily $<$$<$if expression$>$$>$}
+
+Actions allow for the dialogue to send a message back to the game and don't use keywords and are allowed most text\-: {\ttfamily $<$$<$unlock\-Achievement do\-A\-Thing$>$$>$}
+
+Functions don't use keywords and return as an expression and can influence both the game and the dialogue (depending how used)\-: {\ttfamily $<$$<$assert(1 $<$ 3)$>$$>$}
+
+This is not only messy in my mind from a readability perspective it also makes it trickier to parse. We have 3 uses of the {\ttfamily $<$$<$$>$$>$} syntax, one of which has keywords to control and two which are determined entirely on the text inside. The commands impact the dialogue, functions impact \hyperlink{a00344}{Yarn\-Spinner} itself, and actions impact the game. In my mind these are completely unrelated to each other in functionality yet share a very common syntax, leading to confusion or small typos resulting in unexpected behaviour, eg\-:
+
+
+\begin{DoxyItemize}
+\item should {\ttfamily $<$$<$if 5$>$$>$} be a command or an action?
+\item is {\ttfamily $<$$<$hello there()$>$$>$} a function or an action?
+\item how is {\ttfamily $<$$<$assert(2 $<$ 3)$>$$>$} different from {\ttfamily $<$$<$assert 2 $<$ 3$>$$>$}?
+\end{DoxyItemize}
+
+These are easily answered and understandable from my perspective but I believe the point should be to minimise the amount of specialised knowledge needed, and overloading syntax is the opposite of that. While these can be fixed with warning and error messages it does feel a bit like something that should be investigated if this is the right way moving forward. I would change this either so everything has a keyword to control its functionality, or change the {\ttfamily $<$$<$$>$$>$} so that the different capabilities use different syntax.
+
+\subsection*{Identifiers}
+
+The rules around what can be identifiers are effectively arbitrary, as it currently stands they can be any upper or lower a-\/z, any numbers, and the \-\_\- symbol. This also somewhat ties into almost everything else that can have generic text, i.\-e do we allow arbitrary text inside actions or does it have to conform to a pattern? What should and shouldn't be allowed as identifiers and why?
+
+\subsection*{Headers}
+
+As it currently stands the allowed headers are {\ttfamily title} (required) and {\ttfamily tags}, {\ttfamily position}, and {\ttfamily color\-I\-D} all being optional. Because of a combination of my hesitance to in line code, and A\-N\-T\-L\-R4 syntax there is nothing stopping you putting as many of the optional headers in as you want. When it comes time to compile the \hyperlink{a00048}{Yarn} files the compiler will complain about this but the parser will not.
+
+This is another area that needs to be discussed, not everything can be done in A\-N\-T\-L\-R, in places where it can be solved with in lining code we need to work out some rules for when we should and should not do this. As it currently stands there are no code sections in the the grammar. This is partially due to my experience with A\-N\-T\-L\-R and partially due to my unwillingness to add code, as each part of code is something that will have to be ported when the time comes, this feels messy and against the spirit of A\-N\-T\-L\-R to me.
+
+With that said, some things will be M\-U\-C\-H easier to do with in line code and can likely be written in a way that is either applicable to multiple target languages or simple enough that tweaking it won't be a problem, this is all an area we need to look at as we head forward.
+
+This also opens up the question of what are allowed in headers.
+
+
+\begin{DoxyItemize}
+\item What headers should be mandatory?
+\item Can you define your own headers?
+\item What value can each header support? 
 \end{DoxyItemize}

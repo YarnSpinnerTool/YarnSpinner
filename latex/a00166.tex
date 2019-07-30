@@ -1,367 +1,132 @@
-\hypertarget{a00166}{\section{Yarn.\-Dialogue.\-Standard\-Library Class Reference}
-\label{a00166}\index{Yarn.\-Dialogue.\-Standard\-Library@{Yarn.\-Dialogue.\-Standard\-Library}}
+\hypertarget{a00166}{\section{Yarn.\-Analysis.\-Variable\-Lister Class Reference}
+\label{a00166}\index{Yarn.\-Analysis.\-Variable\-Lister@{Yarn.\-Analysis.\-Variable\-Lister}}
 }
 
 
-The standard, built-\/in library of functions and operators.  
-
-
-
-
-Inheritance diagram for Yarn.\-Dialogue.\-Standard\-Library\-:
+Inheritance diagram for Yarn.\-Analysis.\-Variable\-Lister\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=228pt]{a00637}
+\includegraphics[width=220pt]{a00680}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Dialogue.\-Standard\-Library\-:
+Collaboration diagram for Yarn.\-Analysis.\-Variable\-Lister\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=228pt]{a00638}
+\includegraphics[width=220pt]{a00681}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00166_a1bf2ea2b59a842bafffec78667a86b19}{Standard\-Library} ()
+override void \hyperlink{a00166_a980f0e64bc5ad171c35ec19bdf838b5c}{Diagnose} (\hyperlink{a00138}{Program} program)
 \item 
-\hyperlink{a00108}{Function\-Info} \hyperlink{a00131_aacfb1f00ad8aa3921941b8d8af0960e0}{Get\-Function} (string name)
+override I\-Enumerable$<$ \hyperlink{a00087}{Diagnosis} $>$ \hyperlink{a00166_ab84e7a8e68740379dee12a51dca69b07}{Gather\-Diagnoses} ()
 \item 
-void \hyperlink{a00131_ab42a4fd30a72156cafa685f959deef78}{Import\-Library} (\hyperlink{a00131}{Library} other\-Library)
+abstract void \hyperlink{a00050_aba4a36cb823b11ee491074e26477d084}{Diagnose} (\hyperlink{a00138}{Yarn.\-Program} program)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00131_a001ab29d21fe7db10fc9c250914287f9}{Register\-Function} (\hyperlink{a00108}{Function\-Info} function)
-\item 
-void \hyperlink{a00131_a2a698de0b528b2bac17bd85f57d45d4b}{Register\-Function} (string name, int parameter\-Count, \hyperlink{a00053_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} implementation)
-\item 
-void \hyperlink{a00131_a6820eaa082077f16496effbc9041b7ad}{Register\-Function} (string name, int parameter\-Count, \hyperlink{a00053_ae0be2e5cf13d5779816102439e61ff1a}{Function} implementation)
-\item 
-bool \hyperlink{a00131_a6c9a1cc3e25b6aae25e210d8a0d68c09}{Function\-Exists} (string name)
-\item 
-void \hyperlink{a00131_a47d1b3664733207d5cda15f4a4a7af7a}{Deregister\-Function} (string name)
+Hash\-Set$<$ string $>$ \hyperlink{a00166_a64ed6c3394c474b6cf5804a35f560746}{variables} = new Hash\-Set$<$string$>$()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The standard, built-\/in library of functions and operators. 
-
-Definition at line 624 of file Dialogue.\-cs.
 
 
+Definition at line 152 of file Analyser.\-cs.
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00166_a1bf2ea2b59a842bafffec78667a86b19}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Standard\-Library@{Standard\-Library}}
-\index{Standard\-Library@{Standard\-Library}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
-\subsubsection[{Standard\-Library}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Dialogue.\-Standard\-Library.\-Standard\-Library (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00166_a1bf2ea2b59a842bafffec78667a86b19}
-
-
-Definition at line 626 of file Dialogue.\-cs.
-
-
-\begin{DoxyCode}
-626                                      \{
-627 
-628 \textcolor{preprocessor}{                #region Operators}
-629 \textcolor{preprocessor}{}
-630                 this.RegisterFunction(TokenType.Add.ToString(), 2, delegate(Value[] parameters) \{
-631                     \textcolor{keywordflow}{return} parameters[0] + parameters[1];
-632                 \});
-633 
-634                 this.RegisterFunction(TokenType.Minus.ToString(), 2, delegate(Value[] parameters) \{
-635                     \textcolor{keywordflow}{return} parameters[0] - parameters[1];
-636                 \});
-637 
-638                 this.RegisterFunction(TokenType.UnaryMinus.ToString(), 1, delegate(Value[] parameters) \{
-639                     \textcolor{keywordflow}{return} -parameters[0];
-640                 \});
-641 
-642                 this.RegisterFunction(TokenType.Divide.ToString(), 2, delegate(Value[] parameters) \{
-643                     \textcolor{keywordflow}{return} parameters[0] / parameters[1];
-644                 \});
-645 
-646                 this.RegisterFunction(TokenType.Multiply.ToString(), 2, delegate(Value[] parameters) \{
-647                     \textcolor{keywordflow}{return} parameters[0] * parameters[1];
-648                 \});
-649 
-650                 this.RegisterFunction(TokenType.Modulo.ToString(), 2, delegate(Value[] parameters) \{
-651                     \textcolor{keywordflow}{return} parameters[0] % parameters[1];
-652                 \});
-653 
-654                 this.RegisterFunction(TokenType.EqualTo.ToString(), 2, delegate(Value[] parameters) \{
-655                     \textcolor{keywordflow}{return} parameters[0].Equals( parameters[1] );
-656                 \});
-657 
-658                 this.RegisterFunction(TokenType.NotEqualTo.ToString(), 2, delegate(Value[] parameters) \{
-659 
-660                     \textcolor{comment}{// Return the logical negative of the == operator's result}
-661                     var equalTo = this.GetFunction(TokenType.EqualTo.ToString());
-662 
-663                     \textcolor{keywordflow}{return} !equalTo.Invoke(parameters).AsBool;
-664                 \});
-665 
-666                 this.RegisterFunction(TokenType.GreaterThan.ToString(), 2, delegate(Value[] parameters) \{
-667                     \textcolor{keywordflow}{return} parameters[0] > parameters[1];
-668                 \});
-669 
-670                 this.RegisterFunction(TokenType.GreaterThanOrEqualTo.ToString(), 2, delegate(Value[] 
-      parameters) \{
-671                     \textcolor{keywordflow}{return} parameters[0] >= parameters[1];
-672                 \});
-673 
-674                 this.RegisterFunction(TokenType.LessThan.ToString(), 2, delegate(Value[] parameters) \{
-675                     \textcolor{keywordflow}{return} parameters[0] < parameters[1];
-676                 \});
-677 
-678                 this.RegisterFunction(TokenType.LessThanOrEqualTo.ToString(), 2, delegate(Value[] 
-      parameters) \{
-679                     \textcolor{keywordflow}{return} parameters[0] <= parameters[1];
-680                 \});
-681 
-682                 this.RegisterFunction(TokenType.And.ToString(), 2, delegate(Value[] parameters) \{
-683                     \textcolor{keywordflow}{return} parameters[0].AsBool && parameters[1].AsBool;
-684                 \});
-685 
-686                 this.RegisterFunction(TokenType.Or.ToString(), 2, delegate(Value[] parameters) \{
-687                     \textcolor{keywordflow}{return} parameters[0].AsBool || parameters[1].AsBool;
-688                 \});
-689 
-690                 this.RegisterFunction(TokenType.Xor.ToString(), 2, delegate(Value[] parameters) \{
-691                     \textcolor{keywordflow}{return} parameters[0].AsBool ^ parameters[1].AsBool;
-692                 \});
-693 
-694                 this.RegisterFunction(TokenType.Not.ToString(), 1, delegate(Value[] parameters) \{
-695                     \textcolor{keywordflow}{return} !parameters[0].AsBool;
-696                 \});
-697 
-698 \textcolor{preprocessor}{                #endregion Operators}
-699 \textcolor{preprocessor}{}            \}
-\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00131_a47d1b3664733207d5cda15f4a4a7af7a}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Deregister\-Function@{Deregister\-Function}}
-\index{Deregister\-Function@{Deregister\-Function}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
-\subsubsection[{Deregister\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Deregister\-Function (
+\hypertarget{a00050_aba4a36cb823b11ee491074e26477d084}{\index{Yarn\-::\-Analysis\-::\-Variable\-Lister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}!Diagnose@{Diagnose}}
+\index{Diagnose@{Diagnose}!Yarn::Analysis::VariableLister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}}
+\subsubsection[{Diagnose}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Analysis.\-Compiled\-Program\-Analyser.\-Diagnose (
 \begin{DoxyParamCaption}
-\item[{string}]{name}
+\item[{{\bf Yarn.\-Program}}]{program}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00131_a47d1b3664733207d5cda15f4a4a7af7a}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [inherited]}}}\label{a00050_aba4a36cb823b11ee491074e26477d084}
+\hypertarget{a00166_a980f0e64bc5ad171c35ec19bdf838b5c}{\index{Yarn\-::\-Analysis\-::\-Variable\-Lister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}!Diagnose@{Diagnose}}
+\index{Diagnose@{Diagnose}!Yarn::Analysis::VariableLister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}}
+\subsubsection[{Diagnose}]{\setlength{\rightskip}{0pt plus 5cm}override void Yarn.\-Analysis.\-Variable\-Lister.\-Diagnose (
+\begin{DoxyParamCaption}
+\item[{{\bf Program}}]{program}
+\end{DoxyParamCaption}
+)}}\label{a00166_a980f0e64bc5ad171c35ec19bdf838b5c}
 
 
-Definition at line 132 of file Library.\-cs.
-
-
-
-References Yarn.\-Library.\-functions.
+Definition at line 155 of file Analyser.\-cs.
 
 
 \begin{DoxyCode}
-132                                                     \{
-133             \textcolor{keywordflow}{if} (\hyperlink{a00131_a2fcc78a63963be5320cf09783b66fab6}{functions}.ContainsKey(name))
-134                 \hyperlink{a00131_a2fcc78a63963be5320cf09783b66fab6}{functions}.Remove (name);
-135         \}
+156         \{
+157             \textcolor{comment}{// In each node, find all reads and writes to variables}
+158             \textcolor{keywordflow}{foreach} (var nodeInfo \textcolor{keywordflow}{in} program.nodes)
+159             \{
+160 
+161                 var nodeName = nodeInfo.Key;
+162                 var theNode = nodeInfo.Value;
+163 
+164                 \textcolor{keywordflow}{foreach} (var instruction \textcolor{keywordflow}{in} theNode.instructions)
+165                 \{
+166 
+167                     \textcolor{keywordflow}{switch} (instruction.operation)
+168                     \{
+169                         \textcolor{keywordflow}{case} ByteCode.PushVariable:
+170                         \textcolor{keywordflow}{case} ByteCode.StoreVariable:
+171                             variables.Add((string)instruction.operandA);
+172                             \textcolor{keywordflow}{break};
+173                     \}
+174                 \}
+175             \}
+176         \}
 \end{DoxyCode}
-\hypertarget{a00131_a6c9a1cc3e25b6aae25e210d8a0d68c09}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Function\-Exists@{Function\-Exists}}
-\index{Function\-Exists@{Function\-Exists}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
-\subsubsection[{Function\-Exists}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Library.\-Function\-Exists (
+\hypertarget{a00166_ab84e7a8e68740379dee12a51dca69b07}{\index{Yarn\-::\-Analysis\-::\-Variable\-Lister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}!Gather\-Diagnoses@{Gather\-Diagnoses}}
+\index{Gather\-Diagnoses@{Gather\-Diagnoses}!Yarn::Analysis::VariableLister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}}
+\subsubsection[{Gather\-Diagnoses}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerable$<${\bf Diagnosis}$>$ Yarn.\-Analysis.\-Variable\-Lister.\-Gather\-Diagnoses (
 \begin{DoxyParamCaption}
-\item[{string}]{name}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00131_a6c9a1cc3e25b6aae25e210d8a0d68c09}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00166_ab84e7a8e68740379dee12a51dca69b07}
 
 
-Definition at line 128 of file Library.\-cs.
+Implements \hyperlink{a00050_afe059a2ceeabe50380b000420e512bd6}{Yarn.\-Analysis.\-Compiled\-Program\-Analyser}.
+
+
+
+Definition at line 178 of file Analyser.\-cs.
 
 
 \begin{DoxyCode}
-128                                                 \{
-129             \textcolor{keywordflow}{return} functions.ContainsKey (name);
-130         \}
-\end{DoxyCode}
-\hypertarget{a00131_aacfb1f00ad8aa3921941b8d8af0960e0}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Get\-Function@{Get\-Function}}
-\index{Get\-Function@{Get\-Function}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
-\subsubsection[{Get\-Function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Function\-Info} Yarn.\-Library.\-Get\-Function (
-\begin{DoxyParamCaption}
-\item[{string}]{name}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00131_aacfb1f00ad8aa3921941b8d8af0960e0}
-
-
-Definition at line 97 of file Library.\-cs.
-
-
-
-References Yarn.\-Library.\-functions.
-
-
-
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
-
-
-\begin{DoxyCode}
-97                                                      \{
-98             \textcolor{keywordflow}{try} \{
-99                 \textcolor{keywordflow}{return} \hyperlink{a00131_a2fcc78a63963be5320cf09783b66fab6}{functions} [name];
-100             \} \textcolor{keywordflow}{catch} (KeyNotFoundException) \{
-101                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (name + \textcolor{stringliteral}{" is not a valid function"});
-102             \}
-103         \}
+179         \{
+180             var diagnoses = \textcolor{keyword}{new} List<Diagnosis>();
+181 
+182             \textcolor{keywordflow}{foreach} (var variable \textcolor{keywordflow}{in} \hyperlink{a00166_a64ed6c3394c474b6cf5804a35f560746}{variables}) \{
+183                 var d = \textcolor{keyword}{new} Diagnosis(\textcolor{stringliteral}{"Script uses variable "} + variable, Diagnosis.Severity.Note);
+184                 diagnoses.Add(d);
+185             \}
+186 
+187             \textcolor{keywordflow}{return} diagnoses;
+188         \}
 \end{DoxyCode}
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00131_aacfb1f00ad8aa3921941b8d8af0960e0_icgraph}
-\end{center}
-\end{figure}
+\subsection{Member Data Documentation}
+\hypertarget{a00166_a64ed6c3394c474b6cf5804a35f560746}{\index{Yarn\-::\-Analysis\-::\-Variable\-Lister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}!variables@{variables}}
+\index{variables@{variables}!Yarn::Analysis::VariableLister@{Yarn\-::\-Analysis\-::\-Variable\-Lister}}
+\subsubsection[{variables}]{\setlength{\rightskip}{0pt plus 5cm}Hash\-Set$<$string$>$ Yarn.\-Analysis.\-Variable\-Lister.\-variables = new Hash\-Set$<$string$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00166_a64ed6c3394c474b6cf5804a35f560746}
 
 
-\hypertarget{a00131_ab42a4fd30a72156cafa685f959deef78}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Import\-Library@{Import\-Library}}
-\index{Import\-Library@{Import\-Library}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
-\subsubsection[{Import\-Library}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Import\-Library (
-\begin{DoxyParamCaption}
-\item[{{\bf Library}}]{other\-Library}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00131_ab42a4fd30a72156cafa685f959deef78}
-
-
-Definition at line 108 of file Library.\-cs.
-
-
-
-References Yarn.\-Library.\-functions.
-
-
-\begin{DoxyCode}
-108                                                         \{
-109             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} otherLibrary.functions) \{
-110                 \hyperlink{a00131_a2fcc78a63963be5320cf09783b66fab6}{functions} [entry.Key] = entry.Value;
-111             \}
-112         \}
-\end{DoxyCode}
-\hypertarget{a00131_a001ab29d21fe7db10fc9c250914287f9}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Register\-Function@{Register\-Function}}
-\index{Register\-Function@{Register\-Function}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
-\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
-\begin{DoxyParamCaption}
-\item[{{\bf Function\-Info}}]{function}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00131_a001ab29d21fe7db10fc9c250914287f9}
-
-
-Definition at line 114 of file Library.\-cs.
-
-
-
-References Yarn.\-Library.\-functions.
-
-
-
-Referenced by Yarn.\-Library.\-Register\-Function().
-
-
-\begin{DoxyCode}
-114                                                             \{
-115             \hyperlink{a00131_a2fcc78a63963be5320cf09783b66fab6}{functions} [function.name] = \textcolor{keyword}{function};
-116         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00131_a001ab29d21fe7db10fc9c250914287f9_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00131_a2a698de0b528b2bac17bd85f57d45d4b}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Register\-Function@{Register\-Function}}
-\index{Register\-Function@{Register\-Function}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
-\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{parameter\-Count, }
-\item[{{\bf Returning\-Function}}]{implementation}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00131_a2a698de0b528b2bac17bd85f57d45d4b}
-
-
-Definition at line 118 of file Library.\-cs.
-
-
-
-References Yarn.\-Library.\-Register\-Function().
-
-
-\begin{DoxyCode}
-118                                                                                                         \{
-119             var info = \textcolor{keyword}{new} FunctionInfo (name, parameterCount, implementation);
-120             \hyperlink{a00131_a001ab29d21fe7db10fc9c250914287f9}{RegisterFunction} (info);
-121         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00131_a2a698de0b528b2bac17bd85f57d45d4b_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00131_a6820eaa082077f16496effbc9041b7ad}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Register\-Function@{Register\-Function}}
-\index{Register\-Function@{Register\-Function}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
-\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{parameter\-Count, }
-\item[{{\bf Function}}]{implementation}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00131_a6820eaa082077f16496effbc9041b7ad}
-
-
-Definition at line 123 of file Library.\-cs.
-
-
-
-References Yarn.\-Library.\-Register\-Function().
-
-
-\begin{DoxyCode}
-123                                                                                                \{
-124             var info = \textcolor{keyword}{new} FunctionInfo (name, parameterCount, implementation);
-125             \hyperlink{a00131_a001ab29d21fe7db10fc9c250914287f9}{RegisterFunction} (info);
-126         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00131_a6820eaa082077f16496effbc9041b7ad_cgraph}
-\end{center}
-\end{figure}
-
+Definition at line 153 of file Analyser.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00308}{Dialogue.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00279}{Analyser.\-cs}\end{DoxyCompactItemize}

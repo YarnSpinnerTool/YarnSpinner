@@ -1,5 +1,6 @@
 var a00134 =
 [
-    [ "LineResult", "a00134.html#ad91ff667246e8c4ac0492cedea34b524", null ],
-    [ "line", "a00134.html#abfbb0ea840b02acd0ecdc72c5b120257", null ]
+    [ "OptionSetResult", "a00134.html#a934c02fb1047ffd05b2b5a9c6fcd7acb", null ],
+    [ "options", "a00134.html#abda9c3047ff9d3c3ec5540566a239315", null ],
+    [ "setSelectedOptionDelegate", "a00134.html#a6f2683598cf0f62b76bb864640cc79dd", null ]
 ];

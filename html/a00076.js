@@ -1,13 +1,13 @@
 var a00076 =
 [
-    [ "Add", "a00076.html#ad7b7d11d5814bcce5ed38e054ef71b4e", null ],
-    [ "AddRange", "a00076.html#ac568746273968080890abca50b882802", null ],
-    [ "Clear", "a00076.html#abec990435c8dccfb4553602b89f93201", null ],
-    [ "GetEnumerator", "a00076.html#a61b6a80e51d06f17d0043ec6aef89f1b", null ],
-    [ "GetEnumerator", "a00076.html#a76b5c67fcecf55dbdd4b680cde1a78f7", null ],
-    [ "names", "a00076.html#a41eb6804d8afe8d674e64d71f66962ce", null ],
-    [ "Count", "a00076.html#a4b7b56286ad80183e1a33554a49eefa1", null ],
-    [ "Names", "a00076.html#a1aa06a47337f6ab576b23fe63854dcbe", null ],
-    [ "Prefix", "a00076.html#ab8f3256d8435a1c93f0280064aa3ff06", null ],
-    [ "this[int index]", "a00076.html#acdce91a755be3bec6218e3d82f4dfe82", null ]
+    [ "CsvSerializer", "a00076.html#a74ea10f7aaea0a478087d8ff6182f38c", null ],
+    [ "CsvSerializer", "a00076.html#ab14fe4a4f630ce97d57c27e2ee050fac", null ],
+    [ "CheckDisposed", "a00076.html#ae14e1913a4e76faf97484c1bde339143", null ],
+    [ "Dispose", "a00076.html#a9d0e8b3508b377a7f978da2394b09e36", null ],
+    [ "Dispose", "a00076.html#a0be3b74ca7606e27fd16441ecc988f0b", null ],
+    [ "Write", "a00076.html#aefad906acd048863d3dd414651a44793", null ],
+    [ "configuration", "a00076.html#ae8c56ff97c0a797245f2205c486833ea", null ],
+    [ "disposed", "a00076.html#a2687885dae7f7b0eec3c2db81c05f7e4", null ],
+    [ "writer", "a00076.html#adfb235fa2c868fc79c0376fd12fda767", null ],
+    [ "Configuration", "a00076.html#a2ae1b1a629b707fbfb7d636989442f34", null ]
 ];

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Documentation/YarnSpinner-Unity/README.md Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('a00209.html','');});
+$(document).ready(function(){initNavTree('a00209_source.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -105,62 +105,51 @@ $(document).ready(function(){initNavTree('a00209.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Documentation/YarnSpinner-Unity/README.md</div>  </div>
+<div class="title">TypeInfo.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00209.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Using Yarn Spinner in your Unity game</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">### Style Guide</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;`Inline Code` contain <span class="keywordtype">short</span> snippets of code <span class="keywordflow">for</span> your project</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    Code Blocks contain segments or chunks of code <span class="keywordflow">for</span> your project</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;**Bold indicate actions (Select menu item, copying file, etc.)**</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;***Bold italic text indicates emphasis***</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;&gt; Blockquotes contain essential information</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">## Tutorial</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;&gt; ***Note:*** This tutorial assumes that you know a little bit about [Unity](http:<span class="comment">//www.unity3d.com). In particular, it is helpful that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don&#39;t know these things, please refer to [Unity&#39;s documentation](http://unity3d.com/learn). We recommend their [tutorials](https://unity3d.com/learn/tutorials/), starting with the [Roll-a-ball tutorial](https://unity3d.com/learn/tutorials/projects/roll-ball-tutorial). It is also helpful if you know a little about the [Yarn Editor](https://github.com/InfiniteAmmoInc/Yarn).</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">## Yarn Spinner Quick Start</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<a class="code" href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">If</a> you<span class="stringliteral">&#39;re already familiar with Unity and the Yarn Editor, we have a [Unity Quickstart](YarnSpinner-with-Unity-QuickStart.md) guide.</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="stringliteral">## Step by Step</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="stringliteral">If you&#39;</span>ve not done much more than install Unity and the Yarn Editor, confirmed that menu and dialogue functions of these applications appear operational and gone through the Unity [Roll-a-ball tutorial](https:<span class="comment">//unity3d.com/learn/tutorials/projects/roll-ball-tutorial), our [Step By Step](YarnSpinner-with-Unity-StepByStep.md) guide is intended to walk you through the creation of a very basic game using Yarn Spinner.</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">## Tips during Unity install</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">### Windows</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;* <a class="code" href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">If</a> you install to Unity the <span class="keywordflow">default</span> file location, find the temp folder the installer has executed from and back it up before it completes installing.</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;* <a class="code" href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">If</a> you decide to install Visual Studio seperately, be aware that there are files from <span class="keyword">this</span> program that insist on being installed on the C:\ drive and that your development experience may be restricted.</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;### Mac</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;(This space left intentionally blank)</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">### Linux</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;* Unity is only officially supported on Ubuntu. YarnSpinner is built on Ubuntu. However, we use Debian <span class="keywordflow">for</span> some of our development and testing.</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;* Unity <span class="keywordflow">for</span> Linux is not available in formal release and we are not actively pursuing <span class="keyword">this</span> platform, however we are very enthusastic about <span class="keyword">this</span> future prospect. We have confirmed that Yarnspinner works with the current 5.6 release of [Unity <span class="keywordflow">for</span> Linux](https:<span class="comment">//forum.unity3d.com/threads/unity-on-linux-release-notes-and-known-issues.350256/), although this has only been tested with our example Unity code on Debian Stretch (amd64 architecture).</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;* npm is needed <span class="keywordflow">for</span> Unity. It is available in Debian Jessie, however it is not available in Debian Stretch. For Debian Stretch or later releases, or other Debian derived distributions, please refer to the [nodejs.org website](https:<span class="comment">//nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions).</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;* Some 32bit support is required to run Unity. <a class="code" href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">If</a> you are running a 64bit environment, please refer to your distribution<span class="stringliteral">&#39;s documentation on how to do this. Once you have that enabled, ensure lib32gcc1, lib32stdc++6 and libc6-i386 are installed (eg, `sudo apt install lib32gcc1 lib32stdc++6 libc6-i386`)</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="stringliteral">* We encourge Linux users to test Yarnspinner using the [Monodevelop FlatPak](http://www.monodevelop.com/download/linux/). Although FlatPak is designed to be Linux agnostic, we are currently utilising Gnome3 on Debian Stretch for desktop development purposes. Your mileage may vary on other Linux combinations and flavours, we are eager to receive your feedback.</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="stringliteral"></span></div>
-<div class="ttc" id="a00053_html_a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639"><div class="ttname"><a href="a00053.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">Yarn.If</a></div></div>
+<a href="a00209.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#if !COREFX &amp;&amp; !NET_4_5</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">namespace </span>System.Reflection</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="a00159.html">    6</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00159.html">TypeInfo</a></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    {</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="a00159.html#a71c4f4b000d08808c8965222d4ba1b8d">    8</a></span>&#160;        <span class="keyword">private</span> readonly Type <a class="code" href="a00159.html#a71c4f4b000d08808c8965222d4ba1b8d">type</a>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="a00159.html#a8bb78c2b0377f57dba1a3e2031216029">   10</a></span>&#160;        <span class="keyword">public</span> Type BaseType =&gt; type.BaseType;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="a00159.html#a6ae2d0f4c557010a075a6fecab18fbb5">   12</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">bool</span> IsClass =&gt; type.IsClass;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="a00159.html#a6a532f6a581b3280d1837fc242f314af">   14</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">bool</span> IsGenericType =&gt; type.IsGenericType;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="a00159.html#ab38ba26ebc21ec6fb908b74eede99a5c">   16</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">bool</span> IsPrimitive =&gt; type.IsPrimitive;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00159.html#ae2255904b8743c47a185d62909404aed">   18</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">bool</span> IsValueType =&gt; type.IsValueType;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00159.html#ae2bbf4462c274977b6df5c994808cc39">   20</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00159.html#ae2bbf4462c274977b6df5c994808cc39">TypeInfo</a>( Type type )</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            this.type = type;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="a00159.html#a8c74647f572e998dd7e843a752d5234d">   25</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code" href="a00159.html#a8c74647f572e998dd7e843a752d5234d">IsAssignableFrom</a>( <a class="code" href="a00159.html">TypeInfo</a> typeInfo )</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keywordflow">return</span> type.IsAssignableFrom( typeInfo.type );</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif // !COREFX &amp;&amp; !NET_4_5</span></div>
+<div class="ttc" id="a00159_html_a8c74647f572e998dd7e843a752d5234d"><div class="ttname"><a href="a00159.html#a8c74647f572e998dd7e843a752d5234d">System.Reflection.TypeInfo.IsAssignableFrom</a></div><div class="ttdeci">bool IsAssignableFrom(TypeInfo typeInfo)</div><div class="ttdef"><b>Definition:</b> <a href="a00209_source.html#l00025">TypeInfo.cs:25</a></div></div>
+<div class="ttc" id="a00159_html"><div class="ttname"><a href="a00159.html">System.Reflection.TypeInfo</a></div><div class="ttdef"><b>Definition:</b> <a href="a00209_source.html#l00006">TypeInfo.cs:6</a></div></div>
+<div class="ttc" id="a00159_html_ae2bbf4462c274977b6df5c994808cc39"><div class="ttname"><a href="a00159.html#ae2bbf4462c274977b6df5c994808cc39">System.Reflection.TypeInfo.TypeInfo</a></div><div class="ttdeci">TypeInfo(Type type)</div><div class="ttdef"><b>Definition:</b> <a href="a00209_source.html#l00020">TypeInfo.cs:20</a></div></div>
+<div class="ttc" id="a00159_html_a71c4f4b000d08808c8965222d4ba1b8d"><div class="ttname"><a href="a00159.html#a71c4f4b000d08808c8965222d4ba1b8d">System.Reflection.TypeInfo.type</a></div><div class="ttdeci">readonly Type type</div><div class="ttdef"><b>Definition:</b> <a href="a00209_source.html#l00008">TypeInfo.cs:8</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00209.html">README.md</a></li>
-    <li class="footer">Generated on Mon Jul 29 2019 09:27:22 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_71f81168fdb7d447b41a115f71f5eda9.html">CoreFxCompatibility</a></li><li class="navelem"><a class="el" href="a00209.html">TypeInfo.cs</a></li>
+    <li class="footer">Generated on Tue Jul 30 2019 05:06:44 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
