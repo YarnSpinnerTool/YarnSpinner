@@ -289,7 +289,7 @@ namespace Yarn
                 }
                 var name = entry[0];
 
-                impl.SetNumber(name, value);
+                impl.SetValue(name, value);
             }
 
             if (options.automaticallySelectFirstOption == true)
@@ -657,14 +657,17 @@ namespace Yarn
                 Note(message);
             }
 
-            public virtual void SetNumber(string variableName, float number)
+            public virtual void SetValue(string variableName, float floatValue)
             {
-                variableStore.SetValue(variableName, new Value(number));
+                variableStore.SetValue(variableName, floatValue);
             }
-
-            public virtual float GetNumber(string variableName)
+            public virtual void SetValue(string variableName, string stringValue)
             {
-                return variableStore.GetValue(variableName).AsNumber;
+                variableStore.SetValue(variableName, stringValue);
+            }
+            public virtual void SetValue(string variableName, bool boolValue)
+            {
+                variableStore.SetValue(variableName, boolValue);
             }
 
             public virtual void SetValue(string variableName, Value value)
