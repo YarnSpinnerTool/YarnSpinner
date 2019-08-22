@@ -32,7 +32,7 @@
       <CustomCommands>
         <Command>
           <type>AfterBuild</type>
-          <command>cp ${TargetPath} "Unity/Assets/Yarn Spinner/Code/" </command>
+          <command>cp ${TargetPath} "Unity/Assets/YarnSpinner/Code/" </command>
           <workingdir>${SolutionDir}</workingdir>
         </Command>
       </CustomCommands>
