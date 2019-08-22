@@ -77,17 +77,17 @@ namespace Yarn {
     public abstract class BaseVariableStorage : VariableStorage {
         public virtual void SetValue(string variableName, string stringValue)
         {
-            Value val = Yarn.Value(stringValue);
+            Value val = new Yarn.Value(stringValue);
             SetValue(variableName, val);
         }
         public virtual void SetValue(string variableName, float floatValue)
         {
-            Value val = Yarn.Value(floatValue);
+            Value val = new Yarn.Value(floatValue);
             SetValue(variableName, val);
         }
         public virtual void SetValue(string variableName, bool boolValue)
         {
-            Value val = Yarn.Value(boolValue);
+            Value val = new Yarn.Value(boolValue);
             SetValue(variableName, val);
         }
 
@@ -120,17 +120,17 @@ namespace Yarn {
         public override void SetValue(string variableName, string stringValue)
         {
             Value strVal = new Yarn.Value(stringValue);
-            variables[variables] = strVal;
+            variables[variableName] = strVal;
         }
         public override void SetValue(string variableName, float floatValue)
         {
             Value fltVal = new Yarn.Value(floatValue);
-            variables[variables] = fltVal;
+            variables[variableName] = fltVal;
         }
         public override void SetValue(string variableName, bool boolValue)
         {
             Value boolVal = new Yarn.Value(boolValue);
-            variables[variables] = boolVal;
+            variables[variableName] = boolVal;
         }
 
         public override Value GetValue(string variableName)
