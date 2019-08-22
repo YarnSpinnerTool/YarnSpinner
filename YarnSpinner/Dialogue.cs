@@ -63,23 +63,32 @@ namespace Yarn {
 
     /// Where we turn to for storing and loading variable data.
     public interface VariableStorage {
-
-        [Obsolete] void SetNumber(string variableName, float number);
-        [Obsolete] float GetNumber(string variableName);
         void SetValue(string variableName, Value value);
+
+        // some convenience setters
+        void SetValue(string variableName, string stringValue);
+        void SetValue(string variableName, float floatValue);
+        void SetValue(string variableName, bool boolValue);
+
         Value GetValue(string variableName);
         void Clear();
     }
 
     public abstract class BaseVariableStorage : VariableStorage {
-        [Obsolete]
-        public void SetNumber(string variableName, float number) {
-            this.SetValue(variableName, new Value(number));
+        public virtual void SetValue(string variableName, string stringValue)
+        {
+            Value val = Yarn.Value(stringValue);
+            SetValue(variableName, val);
         }
-
-        [Obsolete]
-        public float GetNumber(string variableName) {
-            return this.GetValue(variableName).AsNumber;
+        public virtual void SetValue(string variableName, float floatValue)
+        {
+            Value val = Yarn.Value(floatValue);
+            SetValue(variableName, val);
+        }
+        public virtual void SetValue(string variableName, bool boolValue)
+        {
+            Value val = Yarn.Value(boolValue);
+            SetValue(variableName, val);
         }
 
         public abstract void SetValue(string variableName, Value value);
@@ -106,6 +115,22 @@ namespace Yarn {
         public override void SetValue(string variableName, Value value)
         {
             variables[variableName] = value;
+        }
+
+        public override void SetValue(string variableName, string stringValue)
+        {
+            Value strVal = new Yarn.Value(stringValue);
+            variables[variables] = strVal;
+        }
+        public override void SetValue(string variableName, float floatValue)
+        {
+            Value fltVal = new Yarn.Value(floatValue);
+            variables[variables] = fltVal;
+        }
+        public override void SetValue(string variableName, bool boolValue)
+        {
+            Value boolVal = new Yarn.Value(boolValue);
+            variables[variables] = boolVal;
         }
 
         public override Value GetValue(string variableName)
