@@ -2,26 +2,22 @@
 
 <img src="Documentation/YarnSpinnerLogo.png" alt="Yarn Spinner logo" width="100px;" align="right">
 
-**[Yarn](https://github.com/infiniteammoinc/Yarn)** is a language that's designed to make it *super easy* to create interactive dialogue for games. Yarn's similar in style to [Twine](http://twinery.org), so if you already know that, you'll be right at home! If you don't, that's cool - Yarn's [syntax](Documentation/YarnSpinner-Dialogue/Yarn-Syntax.md) is extremely minimal, and there's not much there to learn. The Yarn language is used in a number of cool games, including [Night In The Woods](http://nightinthewoods.com) and [Knights and Bikes](http://foamswordgames.com/knights).
+**Yarn Spinner** is a tool for creating interactive dialogue for games. Yarn's similar in style to [Twine](http://twinery.org), so if you already know that, you'll be right at home! If you don't, that's cool - Yarn's [syntax](Documentation/YarnSpinner-Dialogue/Yarn-Syntax.md) is extremely minimal, and there's not much there to learn. 
 
 > **New!** Join our [narrative game development](http://lab.to/narrativegamedev) Slack!
 >
 > **New!** Continual integration [API documentation](https://thesecretlab.github.io/YarnSpinner/html/) now available.
 
-**Yarn Spinner** interprets the Yarn language, and is written in [C#](https://en.wikipedia.org/wiki/C_Sharp_%28programming_language%29). Yarn Spinner is designed to be easy to add to [Unity](http://www.unity3d.com) games, but it's also intended for use in other contexts as well.
+Yarn Spinner is written in [C#](https://en.wikipedia.org/wiki/C_Sharp_%28programming_language%29). Yarn Spinner is designed to be easy to add to [Unity](http://www.unity3d.com) games, but it's also intended for use in other contexts as well.
 
 > ***Important:*** Yarn Spinner is still under development, and we haven't made our 1.0 release yet. It's *probably* fine to use right now, but there are a few bits and pieces that might change between now and first release.
 
 [![Build Status](https://travis-ci.org/thesecretlab/YarnSpinner.svg?branch=master)](https://travis-ci.org/thesecretlab/YarnSpinner)
 
-<img src="https://dl.dropbox.com/s/wcd7rspsdi6ifxk/NITW-Promo-Screenshot.jpg" title="Night in the Woods" style="width: 80%; margin: 0 auto;" />
-
-> (Image from "[Night in the Woods](http://nightinthewoods.com)" by Scott Benson, Bethany Hockenberry and Alec Holowka. Used with permission.)
-
-
 ## Quick Start - Documentation
 
 * If you're already familiar with Unity, we recommend you head straight to our [Yarn Spinner With Unity Quickstart](Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-QuickStart.md) document.
+
 ## What To Do Next
 
 * Learn how to [build Yarn Spinner from source.](Documentation/YarnSpinner-Programming/Building.md)
