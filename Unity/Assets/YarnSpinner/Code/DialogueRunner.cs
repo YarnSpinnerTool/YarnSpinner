@@ -482,28 +482,27 @@ namespace Yarn.Unity
     /// Scripts that can act as a variable storage should subclass this
     public abstract class VariableStorageBehaviour : MonoBehaviour, Yarn.VariableStorage
     {
-
-        /// Not implemented here
-        public virtual void SetNumber (string variableName, float number)
-        {
-            throw new System.NotImplementedException ();
-        }
-
-        /// Not implemented here
-        public virtual float GetNumber (string variableName)
-        {
-            throw new System.NotImplementedException ();
-        }
-
         /// Get a value
-        public virtual Value GetValue(string variableName) {
-            return new Yarn.Value(this.GetNumber(variableName));
+        public abstract Value GetValue(string variableName);
+
+        public virtual void SetValue(string variableName, float floatValue)
+        {
+            Value value = new Yarn.Value(floatValue);
+            this.SetValue(variableName, value);
+        }
+        public virtual void SetValue(string variableName, bool stringValue)
+        {
+            Value value = new Yarn.Value(stringValue);
+            this.SetValue(variableName, value);
+        }
+        public virtual void SetValue(string variableName, string boolValue)
+        {
+            Value value = new Yarn.Value(boolValue);
+            this.SetValue(variableName, value);
         }
 
         /// Set a value
-        public virtual void SetValue(string variableName, Value value) {
-            this.SetNumber(variableName, value.AsNumber);
-        }
+        public abstract void SetValue(string variableName, Value value);
 
         /// Not implemented here
         public virtual void Clear ()
