@@ -42,17 +42,18 @@ As such, there is a lot of wonky code and half-finished concepts which users cur
 
 ### Goal
 
-To add in the most requested feature: string interpolation! This means being able to write lines something like `Hello, ${playerName}`, and have the line appear as "Hello, Sally".
+To add in the two most requested features: string interpolation, and localisation! String interpolation means being able to write lines something like `Hello, ${playerName}`, and have the line appear as "Hello, Sally"; localisation means being able to translate your game's content into multiple languages, keeping in mind the different rules that languages have regarding things like how words are pluralised, how grammatical gender works, and more.
 
 ### Motivation
 
-By far the most requested feature, string interpolation has been put off due to concerns about implementation, in a nutshell to do "proper" interpolation is far from trivial.
-This release will have no other features beyond those necessary to support interpolation as we want to ensure this is reliable.
-We are also concerned as to how many bugs this may cause in existing games, so moving carefully here.
+By far the most requested feature, string interpolation has been put off due to concerns about implementation, in a nutshell to do "proper" interpolation is far from trivial. We're also very aware of the requirements of people who are releasing their games on storefronts that require localisation.
+
+This release will have no other features beyond those necessary to support interpolation and localisation features, as we want to ensure this is reliable. We are also concerned as to how many bugs this may cause in existing games, so we're moving carefully here.
 
 ### Features
 
 - String interpolation
+- Localisation support
 - Updated examples
 - Updated documentation
 
