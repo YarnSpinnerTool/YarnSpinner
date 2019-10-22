@@ -58,29 +58,25 @@ init_build () {
 	    \?)
 		HELP=true ;;
         esac
-    XBUILD_ARGS="/verbosity:${VERBOSITY} /p:Configuration=${CONFIGURATION}"
+    DOTNET_BUILD_ARGS="-c ${CONFIGURATION}"
+    # DOTNET_BUILD_ARGS="/verbosity:${VERBOSITY} /p:Configuration=${CONFIGURATION} /debug:embedded"
     if [ "${OSTYPE}" = "linux-gnu" ]; then
         FAILED_PREREQ=""
-        if [ ! $(which msbuild) ]; then
-            echo "msbuild not installed or not in \$PATH"
-            FAILED_PREREQ="true"
-        fi
-        if [ ! $(which nuget) ]; then
-            echo "nuget not installed or not in \$PATH"
+        if [ ! $(which dotnet) ]; then
+            echo "dotnet not installed or not in \$PATH"
             FAILED_PREREQ="true"
         fi
         if [ -n "${FAILED_PREREQ}" ]; then
             echo "Failed pre-requisite checks, aborting"
             exit 1
-        fi
-        XBUILD_ARGS="${XBUILD_ARGS} /p:TargetFrameworkVersion=v4.5"
+        fi        
     fi
 done
 }
 
 clean_yarnspinner () {
-    if [ -f YarnSpinner/bin/${CONFIGURATION}/YarnSpinner.dll ]; then
-        msbuild ${XBUILD_ARGS} /target:clean YarnSpinner.sln
+    if [ -f YarnSpinner/bin/${CONFIGURATION}/netcoreapp2.0/YarnSpinner.dll ]; then
+        dotnet clean        
     fi
     echo "Cleaning documentation"
     rm -fvr Documentation/{docbook,html,latex,rtf,xml}
@@ -89,18 +85,18 @@ clean_yarnspinner () {
 
 
 build_yarnspinner () {
-    nuget restore YarnSpinner.sln
-    msbuild ${XBUILD_ARGS} YarnSpinner.sln
+    dotnet restore
+    dotnet build ${DOTNET_BUILD_ARGS} YarnSpinner.sln
 
     if [ $? -ne 0 ]; then
-        echo "Error during: msbuild ${XBUILD_ARGS}"
+        echo "Error during: xbuild ${DOTNET_BUILD_ARGS}"
         exit 1
     fi
 
     # this is an appalling test for not windows or osx and with unity
     if [ "${OSTYPE}" != "linux-gnu" ]; then
         OUTPUT_DLL="YarnSpinner.dll"
-        BUILD_DIR="YarnSpinner/bin/${CONFIGURATION}/"
+        BUILD_DIR="YarnSpinner/bin/${CONFIGURATION}/netcoreapp2.0"
         UNITY_DIR="Unity/Assets/YarnSpinner/Code/"
 
         if [ -f "$BUILD_DIR/$OUTPUT_DLL" ]; then
@@ -132,14 +128,13 @@ build_native () {
 }
 
 unit_tests () (
-    if [ -r ./YarnSpinnerTests/bin/${CONFIGURATION}/YarnSpinnerTests.dll ]; then
-        if [ ! $(which nuget) ]; then
-            echo "nuget not installed or not in \$PATH"
+    if [ -r ./YarnSpinner.Tests/bin/${CONFIGURATION}/netcoreapp2.0/YarnSpinner.Tests.dll ]; then
+        if [ ! $(which dotnet) ]; then
+            echo "dotnet not installed or not in \$PATH"
             exit 1
         fi
-        nuget restore YarnSpinner.sln
-        nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory testrunner
-        mono ./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.dll
+        dotnet restore YarnSpinner.sln
+        dotnet test
     else
         echo "Failed to find unit tests; exiting"; exit 1
     fi

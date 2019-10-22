@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 
+using System.Runtime.CompilerServices;
+[assembly:InternalsVisibleTo("YarnSpinner.Tests")]
+
 namespace Yarn.Analysis
 {
     public class Diagnosis {

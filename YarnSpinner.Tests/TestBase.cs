@@ -31,7 +31,7 @@ namespace YarnSpinner.Tests
             get {
                 var path = Assembly.GetCallingAssembly().Location.Split(Path.DirectorySeparatorChar).ToList();
 
-                var index = path.FindIndex(x => x == "YarnSpinnerTests");
+                var index = path.FindIndex(x => x == "YarnSpinner.Tests");
 
                 if (index == -1)
                 {
