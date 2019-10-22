@@ -44,10 +44,10 @@ namespace Yarn.Unity
     [AddComponentMenu("Scripts/Yarn Spinner/Dialogue Runner")]
     public class DialogueRunner : MonoBehaviour
     {
-        /// The JSON files to load the conversation from
+        /// The source files to load the conversation from
         public TextAsset[] sourceText;
 
-        /// The group of JSON files to be used for this language
+        /// The group of source files to be used for this language
         public LocalisedStringGroup[] stringGroups;
 
         /// Language debugging options

@@ -292,7 +292,7 @@ namespace Yarn {
             return format;
         }
 
-        // Given either Twine, JSON or XML input, return an array
+        // Given source code input, return an array
         // containing info about the nodes in that file
         internal NodeInfo[] GetNodesFromText(string text, NodeFormat format)
         {

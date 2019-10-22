@@ -100,13 +100,13 @@ namespace YarnSpinner.Tests
             }
         }
 
-        // Returns the list of node, json and yarn.txt files in the
+        // Returns the list of .node and yarn.txt files in the
         // Tests/TestCases directory.
         public static IEnumerable<string> FileSources() {
 
             var directory = "TestCases";
 
-            var allowedExtensions = new[] { ".node", ".json", ".txt" };
+            var allowedExtensions = new[] { ".node", ".txt" };
 
             var path = Path.Combine(TestDataPath, directory);
 
