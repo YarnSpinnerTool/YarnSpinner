@@ -1,52 +1,19 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00129" kind="class" prot="public">
-    <compoundname>MobileOnly</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="a00129_1acfb1b3a9c8f62b30300331fb84752022" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void MobileOnly.Awake</definition>
-        <argsstring>()</argsstring>
-        <name>Awake</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" bodystart="10" bodyend="18"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00129" kind="namespace">
+    <compoundname>Yarn::Unity</compoundname>
+    <innerclass refid="a00353" prot="public">Yarn::Unity::LocalisedStringGroup</innerclass>
+    <innerclass refid="a00091" prot="public">Yarn::Unity::DialogueRunner</innerclass>
+    <innerclass refid="a00172" prot="public">Yarn::Unity::YarnCommandAttribute</innerclass>
+    <innerclass refid="a00093" prot="public">Yarn::Unity::DialogueUIBehaviour</innerclass>
+    <innerclass refid="a00170" prot="public">Yarn::Unity::VariableStorageBehaviour</innerclass>
+    <innerclass refid="a00166" prot="public">Yarn::Unity::YarnSpinnerEditorWindow</innerclass>
+    <innerclass refid="a00108" prot="package">Yarn::Unity::Icons</innerclass>
+    <innernamespace refid="a00346">Yarn::Unity::Example</innernamespace>
     <briefdescription>
-<para>Removes an object from the scene when the game is running on a non-mobile platform. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1360">
-        <label>MobileOnly</label>
-        <link refid="a00129"/>
-        <childnode refid="1361" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1361">
-        <label>MonoBehaviour</label>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="1362">
-        <label>MobileOnly</label>
-        <link refid="a00129"/>
-        <childnode refid="1363" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1363">
-        <label>MonoBehaviour</label>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" line="7" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" bodystart="7" bodyend="20"/>
-    <listofallmembers>
-      <member refid="a00129_1acfb1b3a9c8f62b30300331fb84752022" prot="private" virt="non-virtual"><scope>MobileOnly</scope><name>Awake</name></member>
-    </listofallmembers>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="34" column="1"/>
   </compounddef>
 </doxygen>

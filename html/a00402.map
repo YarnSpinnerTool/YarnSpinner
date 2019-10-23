@@ -1,3 +1,4 @@
-<map id="CsvHelper.CsvParser" name="CsvHelper.CsvParser">
-<area shape="rect" id="node2" href="$a00108.html" title="Defines methods used the parse a CSV file. " alt="" coords="50,131,160,282"/>
+<map id="CsvHelper.CsvMissingFieldException" name="CsvHelper.CsvMissingFieldException">
+<area shape="rect" id="node2" href="$a00077.html" title="Represents errors that occur while reading a CSV file. " alt="" coords="21,302,187,423"/>
+<area shape="rect" id="node3" href="$a00065.html" title="Represents errors that occur in CsvHelper. " alt="" coords="23,131,185,253"/>
 </map>

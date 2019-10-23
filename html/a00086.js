@@ -1,7 +1,7 @@
 var a00086 =
 [
-    [ "Deprecation", "a00086.html#ae80171841e97a48611c51a9a574a2fc0", null ],
-    [ "methodName", "a00086.html#a61605b2d0a17dfdf9c62952270d44fbd", null ],
-    [ "type", "a00086.html#a750904df254223bf3131c39017f90a0b", null ],
-    [ "usageNotes", "a00086.html#ac23509be7ae6b43a3e2154dd430954a7", null ]
+    [ "CanConvertFrom", "a00086.html#a470d21adaa704eb281250dbd112ff91a", null ],
+    [ "CanConvertTo", "a00086.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
+    [ "ConvertFromString", "a00086.html#a804ea00060e1de70e5151f90d3bfce9b", null ],
+    [ "ConvertToString", "a00086.html#a36cb2f9b24f15a671293f3a722324c27", null ]
 ];

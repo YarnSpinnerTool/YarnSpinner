@@ -1,149 +1,80 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00148" kind="class" prot="package">
-    <compoundname>Yarn::VirtualMachine::State</compoundname>
+  <compounddef id="a00148" kind="class" prot="public">
+    <compoundname>Yarn::Unity::Example::SpriteSwitcher</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <innerclass refid="a00357" prot="public">Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</innerclass>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00148_1a86f481fad527f719b49f8fee6ff79764" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.VirtualMachine.State.currentNodeName</definition>
+      <memberdef kind="variable" id="a00148_1a1e85d9f4f6b33ca7ae638cce2eb704aa" prot="public" static="no" mutable="no">
+        <type><ref refid="a00357" kindref="compound">SpriteInfo</ref>[]</type>
+        <definition>SpriteInfo [] Yarn.Unity.Example.SpriteSwitcher.sprites</definition>
         <argsstring></argsstring>
-        <name>currentNodeName</name>
+        <name>sprites</name>
         <briefdescription>
-<para>The name of the node that we&apos;re currently in. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="13" bodyend="-1"/>
-        <referencedby refid="a00145_1af613c8b2d098678b6ea05b509c0a0cb6" compoundref="a00291" startline="164" endline="174">Yarn.VirtualMachine.FindInstructionPointForLabel</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00148_1a2c76546b54b4fb573d7f14d79ce230a3" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.VirtualMachine.State.programCounter</definition>
-        <argsstring></argsstring>
-        <name>programCounter</name>
-        <initializer>= 0</initializer>
-        <briefdescription>
-<para>The instruction number in the current node. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="16" bodyend="-1"/>
-        <referencedby refid="a00145_1af3cc0337914b9f66454a3d52208dba5f" compoundref="a00291" startline="138" endline="161">Yarn.VirtualMachine.RunNext</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00148_1ab816dfea32ecda23282700f01454e0a9" prot="public" static="no" mutable="no">
-        <type>List&lt; KeyValuePair&lt; string, string &gt; &gt;</type>
-        <definition>List&lt;KeyValuePair&lt;string,string&gt; &gt; Yarn.VirtualMachine.State.currentOptions</definition>
-        <argsstring></argsstring>
-        <name>currentOptions</name>
-        <initializer>= new List&lt;KeyValuePair&lt;string, string&gt;&gt;()</initializer>
-        <briefdescription>
-<para>List of options, where each option = &lt;string id, destination node&gt; </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="19" bodyend="-1"/>
-        <referencedby refid="a00145_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00291" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00148_1a0bc84abf38b3ff31cbb47363b851c233" prot="private" static="no" mutable="no">
-        <type>Stack&lt; <ref refid="a00165" kindref="compound">Value</ref> &gt;</type>
-        <definition>Stack&lt;Value&gt; Yarn.VirtualMachine.State.stack</definition>
-        <argsstring></argsstring>
-        <name>stack</name>
-        <initializer>= new Stack&lt;<ref refid="a00165" kindref="compound">Value</ref>&gt;()</initializer>
-        <briefdescription>
-<para>The value stack. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="22" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="42" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="42" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00148_1aace44f5b85b9f746fede834becda4a8e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00148_1ac26718b713f342f3de8f3e569c5b62da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>void Yarn.VirtualMachine.State.PushValue</definition>
-        <argsstring>(object o)</argsstring>
-        <name>PushValue</name>
+        <definition>void Yarn.Unity.Example.SpriteSwitcher.UseSprite</definition>
+        <argsstring>(string spriteName)</argsstring>
+        <name>UseSprite</name>
         <param>
-          <type>object</type>
-          <declname>o</declname>
+          <type>string</type>
+          <declname>spriteName</declname>
         </param>
         <briefdescription>
-<para>Methods for working with the stack. </para>        </briefdescription>
+<para>Create a command to use on a sprite. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="25" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="25" bodyend="31"/>
-      </memberdef>
-      <memberdef kind="function" id="a00148_1a36881a888ea2839d74c3d4e7c199f4ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00165" kindref="compound">Value</ref></type>
-        <definition>Value Yarn.VirtualMachine.State.PopValue</definition>
-        <argsstring>()</argsstring>
-        <name>PopValue</name>
-        <briefdescription>
-<para>Pop a value from the stack. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="34" bodyend="36"/>
-        <referencedby refid="a00145_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00291" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00148_1a54fd5b64ec94e937e771846167242dc2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00165" kindref="compound">Value</ref></type>
-        <definition>Value Yarn.VirtualMachine.State.PeekValue</definition>
-        <argsstring>()</argsstring>
-        <name>PeekValue</name>
-        <briefdescription>
-<para>Peek at a value from the stack. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="39" bodyend="41"/>
-        <referencedby refid="a00145_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00291" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00148_1a9c787097fbbbbf1680e4960cda092535" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.VirtualMachine.State.ClearStack</definition>
-        <argsstring>()</argsstring>
-        <name>ClearStack</name>
-        <briefdescription>
-<para>Clear the stack. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="44" bodyend="46"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="46" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="46" bodyend="61"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Attach <ref refid="a00148" kindref="compound">SpriteSwitcher</ref> to game object. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1453">
-        <label>Yarn.VirtualMachine.State</label>
+    <inheritancegraph>
+      <node id="1443">
+        <label>Yarn.Unity.Example.SpriteSwitcher</label>
         <link refid="a00148"/>
+        <childnode refid="1444" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1444">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1445">
+        <label>Yarn.Unity.Example.SpriteSwitcher</label>
+        <link refid="a00148"/>
+        <childnode refid="1446" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1447" relation="usage">
+          <edgelabel>+sprites</edgelabel>
+        </childnode>
+      </node>
+      <node id="1447">
+        <label>Yarn.Unity.Example.SpriteSwitcher.SpriteInfo</label>
+        <link refid="a00357"/>
+      </node>
+      <node id="1446">
+        <label>MonoBehaviour</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="10" bodyend="47"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="34" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="34" bodyend="62"/>
     <listofallmembers>
-      <member refid="a00148_1a9c787097fbbbbf1680e4960cda092535" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>ClearStack</name></member>
-      <member refid="a00148_1a86f481fad527f719b49f8fee6ff79764" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>currentNodeName</name></member>
-      <member refid="a00148_1ab816dfea32ecda23282700f01454e0a9" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>currentOptions</name></member>
-      <member refid="a00148_1a54fd5b64ec94e937e771846167242dc2" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>PeekValue</name></member>
-      <member refid="a00148_1a36881a888ea2839d74c3d4e7c199f4ee" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>PopValue</name></member>
-      <member refid="a00148_1a2c76546b54b4fb573d7f14d79ce230a3" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>programCounter</name></member>
-      <member refid="a00148_1aace44f5b85b9f746fede834becda4a8e" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>PushValue</name></member>
-      <member refid="a00148_1a0bc84abf38b3ff31cbb47363b851c233" prot="private" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>stack</name></member>
+      <member refid="a00148_1a1e85d9f4f6b33ca7ae638cce2eb704aa" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher</scope><name>sprites</name></member>
+      <member refid="a00148_1ac26718b713f342f3de8f3e569c5b62da" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher</scope><name>UseSprite</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

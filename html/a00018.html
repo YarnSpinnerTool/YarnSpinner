@@ -99,10 +99,10 @@ $(document).ready(function(){initNavTree('a00018.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title"><a class="el" href="a00048.html">Yarn</a> Quick Reference </div>  </div>
+<div class="title"><a class="el" href="a00050.html">Yarn</a> Quick Reference </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This document is intended to act as a comprehensive and concise reference for <a class="el" href="a00048.html">Yarn</a> syntax and structure, for use by programmers and content creators. It assumes a working knowledge of modern programming/scripting languages. For a more thorough explanation of <a class="el" href="a00048.html">Yarn</a> usage, see the <a class="el" href="a00187.html">General Usage Guide</a></p>
+<div class="textblock"><p>This document is intended to act as a comprehensive and concise reference for <a class="el" href="a00050.html">Yarn</a> syntax and structure, for use by programmers and content creators. It assumes a working knowledge of modern programming/scripting languages. For a more thorough explanation of <a class="el" href="a00050.html">Yarn</a> usage, see the <a class="el" href="a00189.html">General Usage Guide</a></p>
 <h2>Table of Contents</h2>
 <ul>
 <li><a href="#nodes">Nodes</a></li>
@@ -121,21 +121,21 @@ $(document).ready(function(){initNavTree('a00018.html','');});
 <li><a href="#commands-and-functions">Commands and Functions</a></li>
 </ul>
 <h3>Nodes</h3>
-<p>Nodes act as containers for <a class="el" href="a00048.html">Yarn</a> script, and must have unique titles. The script in the body of a node is processed line by line.</p>
-<p>A node's header contains its metadata - by default, <a class="el" href="a00048.html">Yarn</a> only uses the <code>title</code> field, but can be extended to use arbitrary fields.</p>
+<p>Nodes act as containers for <a class="el" href="a00050.html">Yarn</a> script, and must have unique titles. The script in the body of a node is processed line by line.</p>
+<p>A node's header contains its metadata - by default, <a class="el" href="a00050.html">Yarn</a> only uses the <code>title</code> field, but can be extended to use arbitrary fields.</p>
 <p>``` title: ExampleNodeName </p>
 <h2>tags: foo, bar </h2>
-<p><a class="el" href="a00048.html">Yarn</a> content goes here. This is the second line. </p>
+<p><a class="el" href="a00050.html">Yarn</a> content goes here. This is the second line. </p>
 <hr/>
 <p> ```</p>
 <p>A script file can contain multiple nodes. In this case, nodes are delineated using three equals (<code>=</code>) characters.</p>
-<p>Additionally, <a class="el" href="a00048.html">Yarn</a> can check if a node has been visited by calling <code>visited("NodeName")</code> in an <code>if</code> statement (i.e. <code>&lt;&lt;if visited("NodeName") == true&gt;&gt;</code>).</p>
+<p>Additionally, <a class="el" href="a00050.html">Yarn</a> can check if a node has been visited by calling <code>visited("NodeName")</code> in an <code>if</code> statement (i.e. <code>&lt;&lt;if visited("NodeName") == true&gt;&gt;</code>).</p>
 <h3>Links Between Nodes</h3>
 <p>Nodes link to other nodes through <em>options</em>. An option is composed of a label (optional) and a node name separated by a vertical bar (<code>|</code>), like so:</p>
 <p>``` [[A Link To A Node|Node1]] ```</p>
-<p>If a node link with no label is provided (<code>[[Node1]]</code>), <a class="el" href="a00048.html">Yarn</a> will automatically navigate to the linked node.</p>
+<p>If a node link with no label is provided (<code>[[Node1]]</code>), <a class="el" href="a00050.html">Yarn</a> will automatically navigate to the linked node.</p>
 <h4>Menu Syntax</h4>
-<p>Shortcut options allow for small branches in <a class="el" href="a00048.html">Yarn</a> scripts without requiring extra nodes. Shortcut option sets allow for an arbitrary number of sub-branches, but it's recommended that users stick to as few as possible for the sake of script readability.</p>
+<p>Shortcut options allow for small branches in <a class="el" href="a00050.html">Yarn</a> scripts without requiring extra nodes. Shortcut option sets allow for an arbitrary number of sub-branches, but it's recommended that users stick to as few as possible for the sake of script readability.</p>
 <p>``` Mae: What did you say to her? -&gt; Nothing. Mae: Oh, man. Maybe you should have. -&gt; That she was a jerk. Mae: Hah! I bet that pissed her off. Mae: How'd she react? -&gt; She didn't. Mae: Booooo. That's boring. -&gt; Furiously. Mae: That's what I like to hear! Mae: Anyway, I'd better get going. ```</p>
 <p>Additionally, shortcut options can utilize conditional logic, commands and functions (detailed below), and can include standard node links. If a condition is attached to a shortcut option, the option will only appear to the reader if the condition passes:</p>
 <p>``` Bob: What would you like? -&gt; A burger. &lt;&lt;if $money &gt; 5&gt;&gt; Bob: Nice. Enjoy! [[AteABurger]] -&gt; A soda. &lt;&lt;if $money &gt; 2&gt;&gt; Bob: Yum! [[DrankASoda]] -&gt; Nothing. Bob: Okay. Bob: Thanks for coming! ```</p>
@@ -148,12 +148,12 @@ $(document).ready(function(){initNavTree('a00018.html','');});
 <p>This statement serves to set a variable's value. No declarative statement is required; setting a variable's value brings it into existence.</p>
 <p>Variable names must start with a <code>$</code> character.</p>
 <h4>Variable Types</h4>
-<p>There are four different types of variable in <a class="el" href="a00048.html">Yarn</a>: strings, floating-point numbers, <a href="http://eesemi.com/boolean.htm">booleans</a>, and <code>null</code>.</p>
-<p><a class="el" href="a00048.html">Yarn</a> will automatically convert between types. For example:</p>
+<p>There are four different types of variable in <a class="el" href="a00050.html">Yarn</a>: strings, floating-point numbers, <a href="http://eesemi.com/boolean.htm">booleans</a>, and <code>null</code>.</p>
+<p><a class="el" href="a00050.html">Yarn</a> will automatically convert between types. For example:</p>
 <p>``` &lt;&lt;if "hi" == "hi"&gt;&gt; The two strings are the same! &lt;&lt;endif&gt;&gt;</p>
 <p>&lt;&lt;if 1+1+"hi" == "2hi"&gt;&gt; Strings get joined together with other values! &lt;&lt;endif&gt;&gt; ```</p>
 <h4>If/Else Statements</h4>
-<p><a class="el" href="a00048.html">Yarn</a> supports standard if/else/elseif statements.</p>
+<p><a class="el" href="a00050.html">Yarn</a> supports standard if/else/elseif statements.</p>
 <p>``` &lt;&lt;if "hi" == "hi"&gt;&gt; The two strings are the same! &lt;&lt;endif&gt;&gt; ```</p>
 <p>``` &lt;&lt;if $variable == 1&gt;&gt; Success! &lt;&lt;elseif $variable == "hello"&gt;&gt; Success...? &lt;&lt;else&gt;&gt; No success. :( &lt;&lt;endif&gt;&gt; ```</p>
 <h4>Operator Synonyms</h4>
@@ -177,13 +177,13 @@ $(document).ready(function(){initNavTree('a00018.html','');});
 </table>
 <p>| <code>or</code> | <code>||</code> | | <code>leq</code> | <code>&lt;=</code> | | <code>geq</code> | <code>&gt;=</code> | | <code>eq</code> | <code>==</code> | | <code>is</code> | <code>==</code> | | <code>neq</code> | <code>!=</code> | | <code>not</code> | <code>!</code> |</p>
 <h2>Commands and Functions</h2>
-<p>By default, <a class="el" href="a00048.html">Yarn</a> Spinner includes a <code>visited()</code> function, used to check whether a node has been entered. ``` &lt;&lt;if visited("GoToCity")&gt;&gt; We have gone to the city before! &lt;&lt;endif&gt;&gt; ``` Additional functions and commands can be added at run-time. See ../YarnSpinner-Programming/Extending.md ""Extending <a class="el" href="a00048.html">Yarn</a> Spinner"" for more info. </p>
+<p>By default, <a class="el" href="a00050.html">Yarn</a> Spinner includes a <code>visited()</code> function, used to check whether a node has been entered. ``` &lt;&lt;if visited("GoToCity")&gt;&gt; We have gone to the city before! &lt;&lt;endif&gt;&gt; ``` Additional functions and commands can be added at run-time. See ../YarnSpinner-Programming/Extending.md ""Extending <a class="el" href="a00050.html">Yarn</a> Spinner"" for more info. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Aug 28 2019 22:42:48 for YarnSpinner by
+    <li class="footer">Generated on Wed Oct 23 2019 00:35:56 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

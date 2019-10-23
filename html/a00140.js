@@ -1,10 +1,15 @@
 var a00140 =
 [
-    [ "CreateInstance", "a00140.html#a9b8690ff760f41b0a7ef46626949c777", null ],
-    [ "CreateInstance< T >", "a00140.html#a45f0f552711f33392f33693a88fb20b3", null ],
-    [ "GetAttribute< T >", "a00140.html#aadf73df00d450ae49ceb8d78ac254b6d", null ],
-    [ "GetAttributes< T >", "a00140.html#adb0641e341c8468906b175f3f982ab6b", null ],
-    [ "GetConstructor< T >", "a00140.html#a7f2e39949787d37053702e7ea547ee69", null ],
-    [ "GetMemberExpression< TModel, T >", "a00140.html#ab462ff86486973f2eee6785bed535cdc", null ],
-    [ "GetProperty< TModel >", "a00140.html#afaa6e2741145eabea34c625684fb4636", null ]
+    [ "DumpCode", "a00140.html#a2f5bb468ce53eb7bbe647e3c11ddbb61", null ],
+    [ "GetString", "a00140.html#a14737b93594c4aab25c59cb0a3c918f7", null ],
+    [ "GetTagsForNode", "a00140.html#a116312a32b20bc18e09f90c9c92a079f", null ],
+    [ "GetTextForNode", "a00140.html#aad8029f37832ff1985fad6a31e51afd8", null ],
+    [ "Include", "a00140.html#afd3385ca1f7589b3b9dae3646e4fee84", null ],
+    [ "LoadStrings", "a00140.html#a977d1ed02e3f6f39d30dfea1663e7927", null ],
+    [ "RegisterString", "a00140.html#a9baf491479375aa8c3aa2b0c31cf0932", null ],
+    [ "lineInfo", "a00140.html#a0d4da395947767b4a1eaaff8a9842adc", null ],
+    [ "nodes", "a00140.html#a3f4928a577c88263ad016be259b175c4", null ],
+    [ "stringCount", "a00140.html#a8ef1d10094ef00311aade6715ba78ec7", null ],
+    [ "strings", "a00140.html#a59263e00cecfe36d9881b4c30b048f09", null ],
+    [ "untaggedStrings", "a00140.html#aa8fedbfceaf931d1da3f600eaab6ae87", null ]
 ];

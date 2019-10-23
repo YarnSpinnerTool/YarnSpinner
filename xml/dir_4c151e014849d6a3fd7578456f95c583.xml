@@ -2,11 +2,11 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_4c151e014849d6a3fd7578456f95c583" kind="dir">
     <compoundname>packages/CsvHelper.2.16.0.0/src/CsvHelper/Properties</compoundname>
-    <innerfile refid="a00232">AssemblyInfo.cs</innerfile>
+    <innerfile refid="a00234">AssemblyInfo.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Properties/"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Properties/"/>
   </compounddef>
 </doxygen>

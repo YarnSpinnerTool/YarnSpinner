@@ -1,189 +1,182 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00043" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::BooleanConverter</compoundname>
-    <basecompoundref refid="a00084" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
+  <compounddef id="a00043" kind="class" prot="public" abstract="yes">
+    <compoundname>Yarn::BaseVariableStorage</compoundname>
+    <basecompoundref refid="a00169" prot="public" virt="non-virtual">Yarn.VariableStorage</basecompoundref>
+    <derivedcompoundref refid="a00130" prot="public" virt="non-virtual">Yarn.MemoryVariableStore</derivedcompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00043_1abc77c631974272fd1dfe3fe4fcc3bf28" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.BooleanConverter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplements refid="a00084_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
+      <memberdef kind="function" id="a00043_1a5b4ab9cb87b92b0881cbad4a9a09f4b3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.BaseVariableStorage.SetValue</definition>
+        <argsstring>(string variableName, string stringValue)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00169_1a412078d8e228f3e288e00f227ef4b4f5">SetValue</reimplements>
+        <reimplementedby refid="a00130_1a381b389cb7c60c42f5bb2e9136c3f19d">SetValue</reimplementedby>
         <param>
-          <type><ref refid="a00156" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
+          <type>string</type>
+          <declname>variableName</declname>
         </param>
         <param>
           <type>string</type>
-          <declname>text</declname>
+          <declname>stringValue</declname>
         </param>
         <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/BooleanConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/BooleanConverter.cs" bodystart="21" bodyend="60"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="78" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="78" bodyend="82"/>
+        <referencedby refid="a00043_1a05be55e20a0ba7614f5f2695359756de" compoundref="a00285" startline="83" endline="87">Yarn.BaseVariableStorage.SetValue</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00043_1a0be20573af4ee53409bb437125a64268" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.BooleanConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplements refid="a00084_1a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</reimplements>
+      <memberdef kind="function" id="a00043_1a05be55e20a0ba7614f5f2695359756de" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.BaseVariableStorage.SetValue</definition>
+        <argsstring>(string variableName, float floatValue)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00169_1af0ffa5fc7773a4a5dc8e33d992421931">SetValue</reimplements>
+        <reimplementedby refid="a00130_1a810e94d390a6de1012eb77cb51963688">SetValue</reimplementedby>
         <param>
-          <type>Type</type>
-          <declname>type</declname>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>floatValue</declname>
         </param>
         <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/BooleanConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/BooleanConverter.cs" bodystart="69" bodyend="73"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="83" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="83" bodyend="87"/>
+        <references refid="a00043_1a5b4ab9cb87b92b0881cbad4a9a09f4b3" compoundref="a00285" startline="78" endline="82">Yarn.BaseVariableStorage.SetValue</references>
       </memberdef>
-      <memberdef kind="function" id="a00084_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>string</type>
-        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplements refid="a00117_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
-        <reimplementedby refid="a00095_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="a00133_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
+      <memberdef kind="function" id="a00043_1aa65aa327c08a1ff3287ced01bb765271" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.BaseVariableStorage.SetValue</definition>
+        <argsstring>(string variableName, bool boolValue)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00169_1ab25eb0424a6e9d5819d0c7cc2035811b">SetValue</reimplements>
+        <reimplementedby refid="a00130_1ae7d221c8347f380fe0b79a7ba434764c">SetValue</reimplementedby>
         <param>
-          <type><ref refid="a00156" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
+          <type>string</type>
+          <declname>variableName</declname>
         </param>
         <param>
-          <type>object</type>
+          <type>bool</type>
+          <declname>boolValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="88" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="88" bodyend="92"/>
+        <references refid="a00043_1a5b4ab9cb87b92b0881cbad4a9a09f4b3" compoundref="a00285" startline="78" endline="82">Yarn.BaseVariableStorage.SetValue</references>
+      </memberdef>
+      <memberdef kind="function" id="a00043_1a1c57d6d208b78abec0a670396771448e" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Yarn.BaseVariableStorage.SetValue</definition>
+        <argsstring>(string variableName, Value value)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00169_1aa90ff61224432c5ed3ce72199c55f440">SetValue</reimplements>
+        <reimplementedby refid="a00130_1a653a459811e5c19549f4b31269093ef5">SetValue</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type><ref refid="a00167" kindref="compound">Value</ref></type>
           <declname>value</declname>
         </param>
         <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="94" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="a00084_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplements refid="a00117_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="a00095_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
+      <memberdef kind="function" id="a00043_1a13b142df804d9842e97e628e252928e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract <ref refid="a00167" kindref="compound">Value</ref></type>
+        <definition>abstract Value Yarn.BaseVariableStorage.GetValue</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetValue</name>
+        <reimplements refid="a00169_1accab1fc5c8fc353dbfc53ca0f4029576">GetValue</reimplements>
+        <reimplementedby refid="a00130_1a0ce77e8245c504a777540e359704aa2a">GetValue</reimplementedby>
         <param>
-          <type>Type</type>
-          <declname>type</declname>
+          <type>string</type>
+          <declname>variableName</declname>
         </param>
         <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="95" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00043_1a7e45c37f3662ce9f2643e306bb2b3adc" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Yarn.BaseVariableStorage.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <reimplements refid="a00169_1af98c1e41f351cb96e13f668ca2fd9d92">Clear</reimplements>
+        <reimplementedby refid="a00130_1aa6d243e7ef02b91f793a221f509dae69">Clear</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="96" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Converts a Boolean to and from a string. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="847">
-        <label>ITypeConverter</label>
-        <link refid="a00117"/>
+      <node id="824">
+        <label>VariableStorage</label>
+        <link refid="a00169"/>
       </node>
-      <node id="846">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00084"/>
-        <childnode refid="847" relation="public-inheritance">
+      <node id="825">
+        <label>Yarn.MemoryVariableStore</label>
+        <link refid="a00130"/>
+        <childnode refid="823" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="845">
-        <label>CsvHelper.TypeConversion.BooleanConverter</label>
+      <node id="823">
+        <label>Yarn.BaseVariableStorage</label>
         <link refid="a00043"/>
-        <childnode refid="846" relation="public-inheritance">
+        <childnode refid="824" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="850">
-        <label>ITypeConverter</label>
-        <link refid="a00117"/>
+      <node id="827">
+        <label>VariableStorage</label>
+        <link refid="a00169"/>
       </node>
-      <node id="849">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00084"/>
-        <childnode refid="850" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="848">
-        <label>CsvHelper.TypeConversion.BooleanConverter</label>
+      <node id="826">
+        <label>Yarn.BaseVariableStorage</label>
         <link refid="a00043"/>
-        <childnode refid="849" relation="public-inheritance">
+        <childnode refid="827" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/BooleanConverter.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/BooleanConverter.cs" bodystart="13" bodyend="74"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="77" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="77" bodyend="97"/>
     <listofallmembers>
-      <member refid="a00043_1a0be20573af4ee53409bb437125a64268" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::BooleanConverter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00084_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::BooleanConverter</scope><name>CanConvertTo</name></member>
-      <member refid="a00043_1abc77c631974272fd1dfe3fe4fcc3bf28" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::BooleanConverter</scope><name>ConvertFromString</name></member>
-      <member refid="a00084_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::BooleanConverter</scope><name>ConvertToString</name></member>
+      <member refid="a00043_1a7e45c37f3662ce9f2643e306bb2b3adc" prot="public" virt="pure-virtual"><scope>Yarn::BaseVariableStorage</scope><name>Clear</name></member>
+      <member refid="a00043_1a13b142df804d9842e97e628e252928e8" prot="public" virt="pure-virtual"><scope>Yarn::BaseVariableStorage</scope><name>GetValue</name></member>
+      <member refid="a00043_1a5b4ab9cb87b92b0881cbad4a9a09f4b3" prot="public" virt="virtual"><scope>Yarn::BaseVariableStorage</scope><name>SetValue</name></member>
+      <member refid="a00043_1a05be55e20a0ba7614f5f2695359756de" prot="public" virt="virtual"><scope>Yarn::BaseVariableStorage</scope><name>SetValue</name></member>
+      <member refid="a00043_1aa65aa327c08a1ff3287ced01bb765271" prot="public" virt="virtual"><scope>Yarn::BaseVariableStorage</scope><name>SetValue</name></member>
+      <member refid="a00043_1a1c57d6d208b78abec0a670396771448e" prot="public" virt="pure-virtual"><scope>Yarn::BaseVariableStorage</scope><name>SetValue</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

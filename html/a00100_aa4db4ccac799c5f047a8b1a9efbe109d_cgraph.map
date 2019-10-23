@@ -1,6 +1,0 @@
-<map id="Yarn.FileFormatConverter.ConvertFormat" name="Yarn.FileFormatConverter.ConvertFormat">
-<area shape="rect" id="node2" href="$a00100.html#a1e6cd39b0c813f21da278367dcff76d2" title="Yarn.FileFormatConverter.\lConvertToYarn" alt="" coords="229,70,405,111"/>
-<area shape="rect" id="node3" href="$a00125.html#a080b2d6b7553c178007c04297d50e9da" title="Yarn.Loader.GetFormatFrom\lFileName" alt="" coords="454,5,642,46"/>
-<area shape="rect" id="node4" href="$a00100.html#aa72838be584177b5592c31d73c0febdb" title="Yarn.FileFormatConverter.\lConvertNodesInFile" alt="" coords="460,70,636,111"/>
-<area shape="rect" id="node5" href="$a00100.html#a282f283f02c9b1d3e53d813ec2f35233" title="Yarn.FileFormatConverter.\lConvertNodesToYarnText" alt="" coords="460,135,636,177"/>
-</map>

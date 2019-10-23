@@ -1,184 +1,209 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00169" kind="class" prot="public">
-    <compoundname>Yarn::VerifyOptions</compoundname>
-    <basecompoundref refid="a00099" prot="public" virt="non-virtual">Yarn.ExecutionOptions</basecompoundref>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00169_1ab1a387df201e3e136c15e5744219628d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.VerifyOptions.showTokensAndExit</definition>
-        <argsstring></argsstring>
-        <name>showTokensAndExit</name>
+  <compounddef id="a00169" kind="interface" prot="public">
+    <compoundname>Yarn::VariableStorage</compoundname>
+    <derivedcompoundref refid="a00043" prot="public" virt="non-virtual">Yarn.BaseVariableStorage</derivedcompoundref>
+    <derivedcompoundref refid="a00170" prot="public" virt="non-virtual">Yarn.Unity.VariableStorageBehaviour</derivedcompoundref>
+    <derivedcompoundref refid="a00055" prot="public" virt="non-virtual">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00169_1aa90ff61224432c5ed3ce72199c55f440" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.VariableStorage.SetValue</definition>
+        <argsstring>(string variableName, Value value)</argsstring>
+        <name>SetValue</name>
+        <reimplementedby refid="a00043_1a1c57d6d208b78abec0a670396771448e">SetValue</reimplementedby>
+        <reimplementedby refid="a00130_1a653a459811e5c19549f4b31269093ef5">SetValue</reimplementedby>
+        <reimplementedby refid="a00087_1ac4265c1c9da485f13a6b05784b0f668d">SetValue</reimplementedby>
+        <reimplementedby refid="a00170_1af524fea535a8de76d845bdb06c9cb0c2">SetValue</reimplementedby>
+        <reimplementedby refid="a00055_1ab6312d89b626ca803a74a9181286d608">SetValue</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type><ref refid="a00167" kindref="compound">Value</ref></type>
+          <declname>value</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="69" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="66" column="1"/>
+        <referencedby refid="a00147_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00294" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
       </memberdef>
-      <memberdef kind="property" id="a00169_1abef6bf44ae4792d7644b1c02de625208" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.VerifyOptions.showParseTreeAndExit</definition>
-        <argsstring></argsstring>
-        <name>showParseTreeAndExit</name>
+      <memberdef kind="function" id="a00169_1a412078d8e228f3e288e00f227ef4b4f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.VariableStorage.SetValue</definition>
+        <argsstring>(string variableName, string stringValue)</argsstring>
+        <name>SetValue</name>
+        <reimplementedby refid="a00043_1a5b4ab9cb87b92b0881cbad4a9a09f4b3">SetValue</reimplementedby>
+        <reimplementedby refid="a00130_1a381b389cb7c60c42f5bb2e9136c3f19d">SetValue</reimplementedby>
+        <reimplementedby refid="a00170_1a25df235b5446e93d5236a5fd5c17f6dd">SetValue</reimplementedby>
+        <reimplementedby refid="a00055_1ab9e0c7e52efd43d767c79085806195ec">SetValue</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>stringValue</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="72" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="72" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="69" column="1"/>
       </memberdef>
-      <memberdef kind="property" id="a00169_1af9b6917244075618720f2a90bbe6ef56" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.VerifyOptions.compileAndExit</definition>
-        <argsstring></argsstring>
-        <name>compileAndExit</name>
+      <memberdef kind="function" id="a00169_1af0ffa5fc7773a4a5dc8e33d992421931" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.VariableStorage.SetValue</definition>
+        <argsstring>(string variableName, float floatValue)</argsstring>
+        <name>SetValue</name>
+        <reimplementedby refid="a00043_1a05be55e20a0ba7614f5f2695359756de">SetValue</reimplementedby>
+        <reimplementedby refid="a00130_1a810e94d390a6de1012eb77cb51963688">SetValue</reimplementedby>
+        <reimplementedby refid="a00170_1a869fa2dfd390c1ec63735b5763ba4d77">SetValue</reimplementedby>
+        <reimplementedby refid="a00055_1afbf35444dc4e3dcef57746803ad432db">SetValue</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>floatValue</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="75" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="75" bodyend="-1"/>
-        <referencedby refid="a00172_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00300" startline="333" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="70" column="1"/>
       </memberdef>
-      <memberdef kind="property" id="a00169_1a062775744f2d7144527fa3bca4b9b3ce" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.VerifyOptions.listVariables</definition>
-        <argsstring></argsstring>
-        <name>listVariables</name>
+      <memberdef kind="function" id="a00169_1ab25eb0424a6e9d5819d0c7cc2035811b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.VariableStorage.SetValue</definition>
+        <argsstring>(string variableName, bool boolValue)</argsstring>
+        <name>SetValue</name>
+        <reimplementedby refid="a00043_1aa65aa327c08a1ff3287ced01bb765271">SetValue</reimplementedby>
+        <reimplementedby refid="a00130_1ae7d221c8347f380fe0b79a7ba434764c">SetValue</reimplementedby>
+        <reimplementedby refid="a00170_1a08ff36ec352a979b5db074f66ec9e189">SetValue</reimplementedby>
+        <reimplementedby refid="a00055_1abeda3f7eb2611b48abfed778c6c37e6e">SetValue</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>boolValue</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="78" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="78" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="71" column="1"/>
       </memberdef>
-      <memberdef kind="property" id="a00099_1a7e43c3b73722956cb0f5d507e4eef527" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.ExecutionOptions.stringTable</definition>
-        <argsstring></argsstring>
-        <name>stringTable</name>
+      <memberdef kind="function" id="a00169_1accab1fc5c8fc353dbfc53ca0f4029576" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="a00167" kindref="compound">Value</ref></type>
+        <definition>Value Yarn.VariableStorage.GetValue</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetValue</name>
+        <reimplementedby refid="a00043_1a13b142df804d9842e97e628e252928e8">GetValue</reimplementedby>
+        <reimplementedby refid="a00087_1a741593be1a299dcc2136f05b9b4a995a">GetValue</reimplementedby>
+        <reimplementedby refid="a00130_1a0ce77e8245c504a777540e359704aa2a">GetValue</reimplementedby>
+        <reimplementedby refid="a00170_1ac981277018fe74c14491800caf29a7c5">GetValue</reimplementedby>
+        <reimplementedby refid="a00055_1a66fc86080cd452079f5adf15e97c8e41">GetValue</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="57" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="57" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="73" column="1"/>
+        <referencedby refid="a00147_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00294" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
       </memberdef>
-      <memberdef kind="property" id="a00099_1af4c0062a1d46281d377f87084fde374e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.ExecutionOptions.onlyConsiderNode</definition>
-        <argsstring></argsstring>
-        <name>onlyConsiderNode</name>
+      <memberdef kind="function" id="a00169_1af98c1e41f351cb96e13f668ca2fd9d92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.VariableStorage.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <reimplementedby refid="a00043_1a7e45c37f3662ce9f2643e306bb2b3adc">Clear</reimplementedby>
+        <reimplementedby refid="a00087_1a0ce614bee8d5b220500fb765390b4ca3">Clear</reimplementedby>
+        <reimplementedby refid="a00130_1aa6d243e7ef02b91f793a221f509dae69">Clear</reimplementedby>
+        <reimplementedby refid="a00170_1a587fe10b367ace190e10f3bcb590a53c">Clear</reimplementedby>
+        <reimplementedby refid="a00055_1a082617cf099d13cb4338935020ced764">Clear</reimplementedby>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="61" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00040_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.BaseOptions.showDebuggingInfo</definition>
-        <argsstring></argsstring>
-        <name>showDebuggingInfo</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="42" bodyend="-1"/>
-        <referencedby refid="a00172_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00300" startline="383" endline="501">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
-      </memberdef>
-      <memberdef kind="property" id="a00040_1ada4d83d1756918f362d55f6649b82b17" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.BaseOptions.verbose</definition>
-        <argsstring></argsstring>
-        <name>verbose</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="46" bodyend="-1"/>
-        <referencedby refid="a00100_1aa72838be584177b5592c31d73c0febdb" compoundref="a00298" startline="119" endline="160">Yarn.FileFormatConverter.ConvertNodesInFile</referencedby>
-        <referencedby refid="a00151_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00301" startline="12" endline="124">Yarn.TableGenerator.GenerateTables</referencedby>
-      </memberdef>
-      <memberdef kind="property" id="a00040_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>IList&lt; string &gt;</type>
-        <definition>IList&lt;string&gt; Yarn.BaseOptions.files</definition>
-        <argsstring></argsstring>
-        <name>files</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="49" bodyend="-1"/>
-        <referencedby refid="a00172_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00300" startline="270" endline="331">Yarn.YarnSpinnerConsole.Run</referencedby>
-        <referencedby refid="a00172_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00300" startline="333" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="74" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Where we turn to for storing and loading variable data. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1547">
-        <label>Yarn.VerifyOptions</label>
+      <node id="1537">
+        <label>ExampleVariableStorage</label>
+        <link refid="a00087"/>
+        <childnode refid="1536" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1536">
+        <label>Yarn.Unity.VariableStorageBehaviour</label>
+        <link refid="a00170"/>
+        <childnode refid="1533" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1538">
+        <label>Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</label>
+        <link refid="a00055"/>
+        <childnode refid="1533" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1535">
+        <label>Yarn.MemoryVariableStore</label>
+        <link refid="a00130"/>
+        <childnode refid="1534" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1534">
+        <label>Yarn.BaseVariableStorage</label>
+        <link refid="a00043"/>
+        <childnode refid="1533" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1533">
+        <label>Yarn.VariableStorage</label>
         <link refid="a00169"/>
-        <childnode refid="1548" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1548">
-        <label>ExecutionOptions</label>
-        <link refid="a00099"/>
-        <childnode refid="1549" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1549">
-        <label>BaseOptions</label>
-        <link refid="a00040"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1550">
-        <label>Yarn.VerifyOptions</label>
+      <node id="1539">
+        <label>Yarn.VariableStorage</label>
         <link refid="a00169"/>
-        <childnode refid="1551" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1551">
-        <label>ExecutionOptions</label>
-        <link refid="a00099"/>
-        <childnode refid="1552" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1552">
-        <label>BaseOptions</label>
-        <link refid="a00040"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="67" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="66" bodyend="79"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="65" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="65" bodyend="75"/>
     <listofallmembers>
-      <member refid="a00169_1af9b6917244075618720f2a90bbe6ef56" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>compileAndExit</name></member>
-      <member refid="a00040_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>files</name></member>
-      <member refid="a00169_1a062775744f2d7144527fa3bca4b9b3ce" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>listVariables</name></member>
-      <member refid="a00099_1af4c0062a1d46281d377f87084fde374e" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>onlyConsiderNode</name></member>
-      <member refid="a00040_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>showDebuggingInfo</name></member>
-      <member refid="a00169_1abef6bf44ae4792d7644b1c02de625208" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>showParseTreeAndExit</name></member>
-      <member refid="a00169_1ab1a387df201e3e136c15e5744219628d" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>showTokensAndExit</name></member>
-      <member refid="a00099_1a7e43c3b73722956cb0f5d507e4eef527" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>stringTable</name></member>
-      <member refid="a00040_1ada4d83d1756918f362d55f6649b82b17" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>verbose</name></member>
+      <member refid="a00169_1af98c1e41f351cb96e13f668ca2fd9d92" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>Clear</name></member>
+      <member refid="a00169_1accab1fc5c8fc353dbfc53ca0f4029576" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>GetValue</name></member>
+      <member refid="a00169_1aa90ff61224432c5ed3ce72199c55f440" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>SetValue</name></member>
+      <member refid="a00169_1a412078d8e228f3e288e00f227ef4b4f5" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>SetValue</name></member>
+      <member refid="a00169_1af0ffa5fc7773a4a5dc8e33d992421931" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>SetValue</name></member>
+      <member refid="a00169_1ab25eb0424a6e9d5819d0c7cc2035811b" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>SetValue</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

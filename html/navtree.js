@@ -20,6 +20,7 @@ var NAVTREE =
     [ "Microsoft", "a00034.html", null ],
     [ "Microsoft", "a00036.html", null ],
     [ "Microsoft", "a00038.html", null ],
+    [ "Yarn Spinner Road Map", "a00040.html", null ],
     [ "Packages", null, [
       [ "Packages", "namespaces.html", "namespaces" ],
       [ "Package Functions", "namespacemembers.html", [
@@ -57,14 +58,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "a00002.html",
-"a00052.html#a89964ea17bd19caf00cb5bff563ed01c",
-"a00070.html#a1a1424683bea80f373e3ea80ae6e39c7",
-"a00087.html",
-"a00104.html#ab9705313017584f8f466e481ae4cdcfc",
-"a00118.html#a88efcd53a74110abd0000e4b7d6c4691",
-"a00145.html",
-"a00169.html#ab1a387df201e3e136c15e5744219628d",
-"a00237.html",
+"a00053.html#afdedf143e349fc3d45837f63bfecc1c8",
+"a00072.html",
+"a00088.html#a61605b2d0a17dfdf9c62952270d44fbd",
+"a00106.html#aad83c1dbc65e88ec66978ffc6fe96a5f",
+"a00120.html#a85594bae18a4106a5765e2a77e319e06",
+"a00146.html#a36cb2f9b24f15a671293f3a722324c27",
+"a00170.html#ac981277018fe74c14491800caf29a7c5",
+"a00235_source.html",
 "a00345.html"
 ];
 

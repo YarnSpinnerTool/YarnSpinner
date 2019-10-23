@@ -1,315 +1,267 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00140" kind="class" prot="package">
-    <compoundname>CsvHelper::ReflectionHelper</compoundname>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="a00140_1a45f0f552711f33392f33693a88fb20b3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>T</type>
-        <definition>static T CsvHelper.ReflectionHelper.CreateInstance&lt; T &gt;</definition>
-        <argsstring>(params object[] args)</argsstring>
-        <name>CreateInstance&lt; T &gt;</name>
-        <param>
-          <type>params object[]</type>
-          <declname>args</declname>
-        </param>
+    <compoundname>Yarn::Program</compoundname>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="a00140_1a59263e00cecfe36d9881b4c30b048f09" prot="package" static="no" mutable="no">
+        <type>Dictionary&lt; string, string &gt;</type>
+        <definition>Dictionary&lt;string, string&gt; Yarn.Program.strings</definition>
+        <argsstring></argsstring>
+        <name>strings</name>
+        <initializer>= new Dictionary&lt;string, string&gt;()</initializer>
         <briefdescription>
-<para>Creates an instance of type T. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type of instance to create.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>args</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The constructor arguments.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>A new instance of type T.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" line="27" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" bodystart="27" bodyend="34"/>
-        <references refid="a00140_1a9b8690ff760f41b0a7ef46626949c777" compoundref="a00235" startline="42" endline="62">CsvHelper.ReflectionHelper.CreateInstance</references>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="50" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="50" bodyend="-1"/>
+        <referencedby refid="a00140_1a2f5bb468ce53eb7bbe647e3c11ddbb61" compoundref="a00292" startline="123" endline="175">Yarn.Program.DumpCode</referencedby>
+        <referencedby refid="a00140_1afd3385ca1f7589b3b9dae3646e4fee84" compoundref="a00292" startline="187" endline="210">Yarn.Program.Include</referencedby>
+        <referencedby refid="a00140_1a977d1ed02e3f6f39d30dfea1663e7927" compoundref="a00292" startline="86" endline="92">Yarn.Program.LoadStrings</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00140_1a9b8690ff760f41b0a7ef46626949c777" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>object</type>
-        <definition>static object CsvHelper.ReflectionHelper.CreateInstance</definition>
-        <argsstring>(Type type, params object[] args)</argsstring>
-        <name>CreateInstance</name>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <param>
-          <type>params object[]</type>
-          <declname>args</declname>
-        </param>
+      <memberdef kind="variable" id="a00140_1a0d4da395947767b4a1eaaff8a9842adc" prot="package" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="a00125" kindref="compound">LineInfo</ref> &gt;</type>
+        <definition>Dictionary&lt;string, LineInfo&gt; Yarn.Program.lineInfo</definition>
+        <argsstring></argsstring>
+        <name>lineInfo</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="a00125" kindref="compound">LineInfo</ref>&gt;()</initializer>
         <briefdescription>
-<para>Creates an instance of the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type of instance to create.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>args</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The constructor arguments.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>A new instance of the specified type.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" bodystart="42" bodyend="62"/>
-        <referencedby refid="a00060_1ad9c837ded7144bbd2f5a991dc1ae68c1" compoundref="a00198" startline="533" endline="540">CsvHelper.Configuration.CsvConfiguration.AutoMap</referencedby>
-        <referencedby refid="a00057_1a16b5bb84064e86c2b319348d8a42693d" compoundref="a00195" startline="153" endline="223">CsvHelper.Configuration.CsvClassMap.AutoMapInternal</referencedby>
-        <referencedby refid="a00140_1a45f0f552711f33392f33693a88fb20b3" compoundref="a00235" startline="27" endline="34">CsvHelper.ReflectionHelper.CreateInstance&lt; T &gt;</referencedby>
-        <referencedby refid="a00058_1a68caeee244e978110a2acae6d3042fc3" compoundref="a00196" startline="93" endline="112">CsvHelper.Configuration.CsvClassMap&lt; T &gt;.References</referencedby>
-        <referencedby refid="a00060_1adf4b355d089af6f33b90f17a689b0084" compoundref="a00198" startline="462" endline="473">CsvHelper.Configuration.CsvConfiguration.RegisterClassMap</referencedby>
-        <referencedby refid="a00067_1a129110c34e2c12709f25948794390f97" compoundref="a00200" startline="142" endline="146">CsvHelper.Configuration.CsvPropertyMap.TypeConverter&lt; T &gt;</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="51" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="51" bodyend="-1"/>
+        <referencedby refid="a00140_1a2f5bb468ce53eb7bbe647e3c11ddbb61" compoundref="a00292" startline="123" endline="175">Yarn.Program.DumpCode</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00140_1aadf73df00d450ae49ceb8d78ac254b6d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>T</type>
-        <definition>static T CsvHelper.ReflectionHelper.GetAttribute&lt; T &gt;</definition>
-        <argsstring>(PropertyInfo property, bool inherit)</argsstring>
-        <name>GetAttribute&lt; T &gt;</name>
-        <param>
-          <type>PropertyInfo</type>
-          <declname>property</declname>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>inherit</declname>
-        </param>
+      <memberdef kind="variable" id="a00140_1a3f4928a577c88263ad016be259b175c4" prot="package" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="a00354" kindref="compound">Node</ref> &gt;</type>
+        <definition>Dictionary&lt;string, Node&gt; Yarn.Program.nodes</definition>
+        <argsstring></argsstring>
+        <name>nodes</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="a00354" kindref="compound">Node</ref>&gt;()</initializer>
         <briefdescription>
-<para>Gets the first attribute of type T on property. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Type of attribute to get.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>property</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The PropertyInfo to get the attribute from.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>inherit</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>True to search inheritance tree, otherwise false.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The first attribute of type T, otherwise null.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" line="72" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" bodystart="72" bodyend="81"/>
-      </memberdef>
-      <memberdef kind="function" id="a00140_1adb0641e341c8468906b175f3f982ab6b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>T[]</type>
-        <definition>static T [] CsvHelper.ReflectionHelper.GetAttributes&lt; T &gt;</definition>
-        <argsstring>(PropertyInfo property, bool inherit)</argsstring>
-        <name>GetAttributes&lt; T &gt;</name>
-        <param>
-          <type>PropertyInfo</type>
-          <declname>property</declname>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>inherit</declname>
-        </param>
-        <briefdescription>
-<para>Gets the attributes of type T on property. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Type of attribute to get.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>property</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The PropertyInfo to get the attribute from.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>inherit</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>True to search inheritance tree, otherwise false.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The attributes of type T.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" line="90" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" bodystart="90" bodyend="94"/>
-      </memberdef>
-      <memberdef kind="function" id="a00140_1a7f2e39949787d37053702e7ea547ee69" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>NewExpression</type>
-        <definition>static NewExpression CsvHelper.ReflectionHelper.GetConstructor&lt; T &gt;</definition>
-        <argsstring>(Expression&lt; Func&lt; T &gt;&gt; expression)</argsstring>
-        <name>GetConstructor&lt; T &gt;</name>
-        <param>
-          <type>Expression&lt; Func&lt; T &gt;&gt;</type>
-          <declname>expression</declname>
-        </param>
-        <briefdescription>
-<para>Gets the constructor NewExpression from the give Expression. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The Type of the object that will be constructed.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>expression</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The constructor Expression.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>A constructor NewExpression.</para></simplesect>
-<parameterlist kind="exception"><parameteritem>
-<parameternamelist>
-<parametername>System.ArgumentException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Not a constructor expression.;expression</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" line="103" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" bodystart="103" bodyend="112"/>
-      </memberdef>
-      <memberdef kind="function" id="a00140_1afaa6e2741145eabea34c625684fb4636" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>PropertyInfo</type>
-        <definition>static PropertyInfo CsvHelper.ReflectionHelper.GetProperty&lt; TModel &gt;</definition>
-        <argsstring>(Expression&lt; Func&lt; TModel, object &gt;&gt; expression)</argsstring>
-        <name>GetProperty&lt; TModel &gt;</name>
-        <param>
-          <type>Expression&lt; Func&lt; TModel, object &gt;&gt;</type>
-          <declname>expression</declname>
-        </param>
-        <briefdescription>
-<para>Gets the property from the expression. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>TModel</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type of the model.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>expression</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The expression.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The PropertyInfo for the expression.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" line="120" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" bodystart="120" bodyend="130"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="53" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="53" bodyend="-1"/>
+        <referencedby refid="a00140_1a2f5bb468ce53eb7bbe647e3c11ddbb61" compoundref="a00292" startline="123" endline="175">Yarn.Program.DumpCode</referencedby>
+        <referencedby refid="a00090_1a20ef38a17e4a346de3b572b85052c1d1" compoundref="a00285" startline="489" endline="502">Yarn.Dialogue.GetTagsForAllNodes</referencedby>
+        <referencedby refid="a00140_1a116312a32b20bc18e09f90c9c92a079f" compoundref="a00292" startline="182" endline="185">Yarn.Program.GetTagsForNode</referencedby>
+        <referencedby refid="a00090_1ab85166316a6c5aadce336316406ed164" compoundref="a00285" startline="505" endline="515">Yarn.Dialogue.GetTagsForNode</referencedby>
+        <referencedby refid="a00090_1a7c83b1fe5474a6610d39eb525f6fc9ce" compoundref="a00285" startline="461" endline="474">Yarn.Dialogue.GetTextForAllNodes</referencedby>
+        <referencedby refid="a00140_1aad8029f37832ff1985fad6a31e51afd8" compoundref="a00292" startline="177" endline="180">Yarn.Program.GetTextForNode</referencedby>
+        <referencedby refid="a00090_1a594641914a2b59cc5231645273d18e82" compoundref="a00285" startline="477" endline="487">Yarn.Dialogue.GetTextForNode</referencedby>
+        <referencedby refid="a00140_1afd3385ca1f7589b3b9dae3646e4fee84" compoundref="a00292" startline="187" endline="210">Yarn.Program.Include</referencedby>
+        <referencedby refid="a00090_1a93bb76a1f9a4058f225ff4cee97483c6" compoundref="a00285" startline="555" endline="567">Yarn.Dialogue.NodeExists</referencedby>
+        <referencedby refid="a00147_1a6364593ea1115d65e34b343422cfbbbd" compoundref="a00294" startline="112" endline="131">Yarn.VirtualMachine.SetNode</referencedby>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="private-static-func">
-      <memberdef kind="function" id="a00140_1ab462ff86486973f2eee6785bed535cdc" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>MemberExpression</type>
-        <definition>static MemberExpression CsvHelper.ReflectionHelper.GetMemberExpression&lt; TModel, T &gt;</definition>
-        <argsstring>(Expression&lt; Func&lt; TModel, T &gt;&gt; expression)</argsstring>
-        <name>GetMemberExpression&lt; TModel, T &gt;</name>
-        <param>
-          <type>Expression&lt; Func&lt; TModel, T &gt;&gt;</type>
-          <declname>expression</declname>
-        </param>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00140_1aa8fedbfceaf931d1da3f600eaab6ae87" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>Dictionary&lt; string, string &gt;</type>
+        <definition>Dictionary&lt;string, string&gt; Yarn.Program.untaggedStrings</definition>
+        <argsstring></argsstring>
+        <name>untaggedStrings</name>
         <briefdescription>
-<para>Gets the member expression. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>TModel</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type of the model.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>T</parametername>
-</parameternamelist>
-<parameterdescription>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>expression</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The expression.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para></para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" line="139" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" bodystart="139" bodyend="158"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="63" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00140_1a8ef1d10094ef00311aade6715ba78ec7" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.Program.stringCount</definition>
+        <argsstring></argsstring>
+        <name>stringCount</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="80" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="80" bodyend="-1"/>
+        <referencedby refid="a00140_1a9baf491479375aa8c3aa2b0c31cf0932" compoundref="a00292" startline="94" endline="114">Yarn.Program.RegisterString</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00140_1a977d1ed02e3f6f39d30dfea1663e7927" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Program.LoadStrings</definition>
+        <argsstring>(Dictionary&lt; string, string &gt; newStrings)</argsstring>
+        <name>LoadStrings</name>
+        <param>
+          <type>Dictionary&lt; string, string &gt;</type>
+          <declname>newStrings</declname>
+        </param>
+        <briefdescription>
+<para>Loads a new string table into the program. </para>        </briefdescription>
+        <detaileddescription>
+<para>The string table is merged with any existing strings, with the new table taking precedence over the old. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="86" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="86" bodyend="92"/>
+        <references refid="a00140_1a59263e00cecfe36d9881b4c30b048f09" compoundref="a00292" startline="50">Yarn.Program.strings</references>
+      </memberdef>
+      <memberdef kind="function" id="a00140_1a9baf491479375aa8c3aa2b0c31cf0932" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Program.RegisterString</definition>
+        <argsstring>(string theString, string nodeName, string lineID, int lineNumber, bool localisable)</argsstring>
+        <name>RegisterString</name>
+        <param>
+          <type>string</type>
+          <declname>theString</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>nodeName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>lineID</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>lineNumber</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>localisable</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="94" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="94" bodyend="114"/>
+        <references refid="a00140_1a8ef1d10094ef00311aade6715ba78ec7" compoundref="a00292" startline="80">Yarn.Program.stringCount</references>
+      </memberdef>
+      <memberdef kind="function" id="a00140_1a14737b93594c4aab25c59cb0a3c918f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Program.GetString</definition>
+        <argsstring>(string key)</argsstring>
+        <name>GetString</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="116" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="116" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="a00140_1a2f5bb468ce53eb7bbe647e3c11ddbb61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Program.DumpCode</definition>
+        <argsstring>(Library l)</argsstring>
+        <name>DumpCode</name>
+        <param>
+          <type><ref refid="a00123" kindref="compound">Library</ref></type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="123" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="123" bodyend="175"/>
+        <references refid="a00140_1a0d4da395947767b4a1eaaff8a9842adc" compoundref="a00292" startline="51">Yarn.Program.lineInfo</references>
+        <references refid="a00140_1a3f4928a577c88263ad016be259b175c4" compoundref="a00292" startline="53">Yarn.Program.nodes</references>
+        <references refid="a00140_1a59263e00cecfe36d9881b4c30b048f09" compoundref="a00292" startline="50">Yarn.Program.strings</references>
+      </memberdef>
+      <memberdef kind="function" id="a00140_1aad8029f37832ff1985fad6a31e51afd8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Program.GetTextForNode</definition>
+        <argsstring>(string nodeName)</argsstring>
+        <name>GetTextForNode</name>
+        <param>
+          <type>string</type>
+          <declname>nodeName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="177" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="177" bodyend="180"/>
+        <references refid="a00140_1a3f4928a577c88263ad016be259b175c4" compoundref="a00292" startline="53">Yarn.Program.nodes</references>
+      </memberdef>
+      <memberdef kind="function" id="a00140_1a116312a32b20bc18e09f90c9c92a079f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerable&lt; string &gt;</type>
+        <definition>IEnumerable&lt;string&gt; Yarn.Program.GetTagsForNode</definition>
+        <argsstring>(string nodeName)</argsstring>
+        <name>GetTagsForNode</name>
+        <param>
+          <type>string</type>
+          <declname>nodeName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="182" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="182" bodyend="185"/>
+        <references refid="a00140_1a3f4928a577c88263ad016be259b175c4" compoundref="a00292" startline="53">Yarn.Program.nodes</references>
+      </memberdef>
+      <memberdef kind="function" id="a00140_1afd3385ca1f7589b3b9dae3646e4fee84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Program.Include</definition>
+        <argsstring>(Program otherProgram)</argsstring>
+        <name>Include</name>
+        <param>
+          <type><ref refid="a00140" kindref="compound">Program</ref></type>
+          <declname>otherProgram</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="187" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="187" bodyend="210"/>
+        <references refid="a00140_1a3f4928a577c88263ad016be259b175c4" compoundref="a00292" startline="53">Yarn.Program.nodes</references>
+        <references refid="a00140_1a59263e00cecfe36d9881b4c30b048f09" compoundref="a00292" startline="50">Yarn.Program.strings</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Common reflection tasks. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="1414">
-        <label>CsvHelper.ReflectionHelper</label>
+      <node id="1400">
+        <label>Yarn.Program</label>
         <link refid="a00140"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ReflectionHelper.cs" bodystart="19" bodyend="160"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="48" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="47" bodyend="211"/>
     <listofallmembers>
-      <member refid="a00140_1a9b8690ff760f41b0a7ef46626949c777" prot="public" virt="non-virtual"><scope>CsvHelper::ReflectionHelper</scope><name>CreateInstance</name></member>
-      <member refid="a00140_1a45f0f552711f33392f33693a88fb20b3" prot="public" virt="non-virtual"><scope>CsvHelper::ReflectionHelper</scope><name>CreateInstance&lt; T &gt;</name></member>
-      <member refid="a00140_1aadf73df00d450ae49ceb8d78ac254b6d" prot="public" virt="non-virtual"><scope>CsvHelper::ReflectionHelper</scope><name>GetAttribute&lt; T &gt;</name></member>
-      <member refid="a00140_1adb0641e341c8468906b175f3f982ab6b" prot="public" virt="non-virtual"><scope>CsvHelper::ReflectionHelper</scope><name>GetAttributes&lt; T &gt;</name></member>
-      <member refid="a00140_1a7f2e39949787d37053702e7ea547ee69" prot="public" virt="non-virtual"><scope>CsvHelper::ReflectionHelper</scope><name>GetConstructor&lt; T &gt;</name></member>
-      <member refid="a00140_1ab462ff86486973f2eee6785bed535cdc" prot="private" virt="non-virtual"><scope>CsvHelper::ReflectionHelper</scope><name>GetMemberExpression&lt; TModel, T &gt;</name></member>
-      <member refid="a00140_1afaa6e2741145eabea34c625684fb4636" prot="public" virt="non-virtual"><scope>CsvHelper::ReflectionHelper</scope><name>GetProperty&lt; TModel &gt;</name></member>
+      <member refid="a00140_1a2f5bb468ce53eb7bbe647e3c11ddbb61" prot="public" virt="non-virtual"><scope>Yarn::Program</scope><name>DumpCode</name></member>
+      <member refid="a00140_1a14737b93594c4aab25c59cb0a3c918f7" prot="public" virt="non-virtual"><scope>Yarn::Program</scope><name>GetString</name></member>
+      <member refid="a00140_1a116312a32b20bc18e09f90c9c92a079f" prot="public" virt="non-virtual"><scope>Yarn::Program</scope><name>GetTagsForNode</name></member>
+      <member refid="a00140_1aad8029f37832ff1985fad6a31e51afd8" prot="public" virt="non-virtual"><scope>Yarn::Program</scope><name>GetTextForNode</name></member>
+      <member refid="a00140_1afd3385ca1f7589b3b9dae3646e4fee84" prot="public" virt="non-virtual"><scope>Yarn::Program</scope><name>Include</name></member>
+      <member refid="a00140_1a0d4da395947767b4a1eaaff8a9842adc" prot="package" virt="non-virtual"><scope>Yarn::Program</scope><name>lineInfo</name></member>
+      <member refid="a00140_1a977d1ed02e3f6f39d30dfea1663e7927" prot="public" virt="non-virtual"><scope>Yarn::Program</scope><name>LoadStrings</name></member>
+      <member refid="a00140_1a3f4928a577c88263ad016be259b175c4" prot="package" virt="non-virtual"><scope>Yarn::Program</scope><name>nodes</name></member>
+      <member refid="a00140_1a9baf491479375aa8c3aa2b0c31cf0932" prot="public" virt="non-virtual"><scope>Yarn::Program</scope><name>RegisterString</name></member>
+      <member refid="a00140_1a8ef1d10094ef00311aade6715ba78ec7" prot="private" virt="non-virtual"><scope>Yarn::Program</scope><name>stringCount</name></member>
+      <member refid="a00140_1a59263e00cecfe36d9881b4c30b048f09" prot="package" virt="non-virtual"><scope>Yarn::Program</scope><name>strings</name></member>
+      <member refid="a00140_1aa8fedbfceaf931d1da3f600eaab6ae87" prot="package" virt="non-virtual"><scope>Yarn::Program</scope><name>untaggedStrings</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

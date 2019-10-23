@@ -1,8 +1,13 @@
 var a00073 =
 [
-    [ "CsvPropertyReferenceMapData", "a00073.html#ad6fe2913932a9fe434f8a908dec30e8b", null ],
-    [ "prefix", "a00073.html#a24263cbdacd2dd0db9bbe22676a6d989", null ],
-    [ "Mapping", "a00073.html#af2343065df03de92b6b9803ed2bb4f87", null ],
-    [ "Prefix", "a00073.html#a687fe65f1a2b4301f283e9333c282f9c", null ],
-    [ "Property", "a00073.html#a5386ac40fb3ea290944f05cbee99bfcb", null ]
+    [ "Add", "a00073.html#ad7b7d11d5814bcce5ed38e054ef71b4e", null ],
+    [ "AddRange", "a00073.html#ac568746273968080890abca50b882802", null ],
+    [ "Clear", "a00073.html#abec990435c8dccfb4553602b89f93201", null ],
+    [ "GetEnumerator", "a00073.html#a61b6a80e51d06f17d0043ec6aef89f1b", null ],
+    [ "GetEnumerator", "a00073.html#a76b5c67fcecf55dbdd4b680cde1a78f7", null ],
+    [ "names", "a00073.html#a41eb6804d8afe8d674e64d71f66962ce", null ],
+    [ "Count", "a00073.html#a4b7b56286ad80183e1a33554a49eefa1", null ],
+    [ "Names", "a00073.html#a1aa06a47337f6ab576b23fe63854dcbe", null ],
+    [ "Prefix", "a00073.html#ab8f3256d8435a1c93f0280064aa3ff06", null ],
+    [ "this[int index]", "a00073.html#acdce91a755be3bec6218e3d82f4dfe82", null ]
 ];

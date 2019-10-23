@@ -2,17 +2,17 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_a23f776b0598015baa200eafeed2b13c" kind="dir">
     <compoundname>Unity/Assets/YarnSpinner/Examples/DemoScripts</compoundname>
-    <innerfile refid="a00272">CameraFollow.cs</innerfile>
-    <innerfile refid="a00273">ExampleDialogueUI.cs</innerfile>
-    <innerfile refid="a00274">ExampleVariableStorage.cs</innerfile>
-    <innerfile refid="a00275">MobileOnly.cs</innerfile>
-    <innerfile refid="a00276">NPC.cs</innerfile>
-    <innerfile refid="a00277">PlayerCharacter.cs</innerfile>
-    <innerfile refid="a00278">SpriteSwitcher.cs</innerfile>
+    <innerfile refid="a00275">CameraFollow.cs</innerfile>
+    <innerfile refid="a00276">ExampleDialogueUI.cs</innerfile>
+    <innerfile refid="a00277">ExampleVariableStorage.cs</innerfile>
+    <innerfile refid="a00278">MobileOnly.cs</innerfile>
+    <innerfile refid="a00279">NPC.cs</innerfile>
+    <innerfile refid="a00280">PlayerCharacter.cs</innerfile>
+    <innerfile refid="a00281">SpriteSwitcher.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/"/>
   </compounddef>
 </doxygen>

@@ -1,9 +1,2 @@
-<map id="Yarn.VirtualMachine" name="Yarn.VirtualMachine">
-<area shape="rect" id="node2" href="$a00088.html" title="The Dialogue class is the main thing that clients will use. " alt="" coords="202,685,408,1056"/>
-<area shape="rect" id="node5" href="$a00125.html" title="{Yarn.Loader\n|+ program\l|+ Loader()\l+ Load()\l~ GetNodesFromText()\l~ GetFormatFromFileName()\l&#45; preprocessor()\l}" alt="" coords="210,1120,400,1256"/>
-<area shape="rect" id="node3" href="$a00121.html" title="{Yarn.Library\n|&#45; functions\l|+ GetFunction()\l+ ImportLibrary()\l+ RegisterFunction()\l+ RegisterFunction()\l+ RegisterFunction()\l+ FunctionExists()\l+ DeregisterFunction()\l}" alt="" coords="5,375,157,540"/>
-<area shape="rect" id="node4" href="$a00138.html" title="{Yarn.Program\n|+ untaggedStrings\l~ strings\l~ lineInfo\l~ nodes\l&#45; stringCount\l|+ LoadStrings()\l+ RegisterString()\l+ GetString()\l+ DumpCode()\l+ GetTextForNode()\l+ GetTagsForNode()\l+ Include()\l}" alt="" coords="143,5,285,229"/>
-<area shape="rect" id="node6" href="$a00167.html" title="Where we turn to for storing and loading variable data. " alt="" coords="522,389,667,525"/>
-<area shape="rect" id="node7" href="$a00048.html#a00351" title="{Yarn.Node\n|+ instructions\l+ name\l+ sourceTextStringID\l+ labels\l+ tags\l|}" alt="" coords="315,49,461,185"/>
-<area shape="rect" id="node8" href="$a00148.html" title="{Yarn.VirtualMachine.State\n|+ currentNodeName\l+ programCounter\l+ currentOptions\l&#45; stack\l|+ PushValue()\l+ PopValue()\l+ PeekValue()\l+ ClearStack()\l}" alt="" coords="486,35,660,200"/>
+<map id="Yarn.Value" name="Yarn.Value">
 </map>

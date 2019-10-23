@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Documentation/YarnSpinner-Dialogue/Dialogue-Localization.md Source File</title>
+<title>YarnSpinner: README.md Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,37 +105,72 @@ $(document).ready(function(){initNavTree('a00186.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Documentation/YarnSpinner-Dialogue/Dialogue-Localization.md</div>  </div>
+<div class="title">README.md</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00186.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Localization</span></div>
+<a href="a00186.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Yarn Spinner</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;Yarn Spinner provides tools to help convert your game in to any language you like. This is achieved by usage of the [YarnSpinnerConsole](../YarnSpinnerConsole) tool. At the moment, <span class="keyword">this</span> tool is not available standalone and needs to be [built from source](../YarnSpinner-Programming/Building.md).</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;&lt;img src=<span class="stringliteral">&quot;Documentation/YarnSpinnerLogo.png&quot;</span> alt=<span class="stringliteral">&quot;Yarn Spinner logo&quot;</span> width=<span class="stringliteral">&quot;100px;&quot;</span> align=<span class="stringliteral">&quot;right&quot;</span>&gt;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;## Localisation procedure</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;**Yarn Spinner** is a tool <span class="keywordflow">for</span> creating interactive dialogue <span class="keywordflow">for</span> games. Yarn<span class="stringliteral">&#39;s similar in style to [Twine](http://twinery.org), so if you already know that, you&#39;</span>ll be right at home! <a class="code" href="a00050.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">If</a> you don<span class="stringliteral">&#39;t, that&#39;</span>s cool - Yarn<span class="stringliteral">&#39;s [syntax](Documentation/YarnSpinner-Dialogue/Yarn-Syntax.md) is extremely minimal, and there&#39;</span>s not much there to learn. </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;1. We first use the tool to place unique **taglines** on each line of text that the end user will see. To <span class="keywordflow">do</span> <span class="keyword">this</span>, we execute the tool with the **taglines** command, eg:  `YarnSpinnerConsole.exe taglines MyYarnFile.yarn.txt`.</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;2. Next, we use the tool to generate a file of strings (**genstrings**) in &#39;[comma separated value](https:<span class="comment">//en.wikipedia.org/wiki/Comma-separated_values)&#39; (csv) format. `YarnSpinnerConsole.exe genstrings MyYarnFile.yarn.txt` will generate a file, (in this example MyYarnFIle.yarn_lines.csv), that can then distributed to translators. It is recommended that this file first be renamed using a language identifier before distribution, eg</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    ```</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    MyYarnFIle.yarn_lines.enAU.csv</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    MyYarnFIle.yarn_lines.ptTL.csv</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    ```</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;3. When the file is returned from translators, we then use Yarn Spinner&#39;s DialogueRunner inside Unity to set String Groups for the required language.</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;&lt;!-- Placeholder for image of DialogueRunner --&gt;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">## Footnotes</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"></span>* While not essential that all files follow a standard, but highly recommended that consistency of format be used across all localisation files within a project eg [ISO-15897](https:<span class="comment">//www.iso.org/obp/ui/#iso:std:iso-iec:15897:ed-2:v1:en)</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;* Originally, Yarn Spinner used .json format. The Yarn Spinner Console can convert <span class="keyword">this</span> json format to the <span class="keyword">new</span> improved text format: `YarnSpinnerConsole.exe convert --yarn Ship.json`</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;* Command reference is available <span class="keywordflow">for</span> YarnSpinnerConsole.exe by either running it with no arguments or by utilising the help command (`YarnSpinnerConsole.exe help`). Help <span class="keywordflow">for each</span> command is available by <span class="keyword">using</span> <span class="stringliteral">&#39;help command&#39;</span> (eg `YarnSpinnderConsole.exe help compile`)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;&gt; **New!** Join our [narrative game development](http:<span class="comment">//lab.to/narrativegamedev) Slack!</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;&gt;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;&gt; **New!** Continual integration [API documentation](https:<span class="comment">//thesecretlab.github.io/YarnSpinner/html/) now available.</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;Yarn Spinner is written in [C#](https:<span class="comment">//en.wikipedia.org/wiki/C_Sharp_%28programming_language%29). Yarn Spinner is designed to be easy to add to [Unity](http://www.unity3d.com) games, but it&#39;s also intended for use in other contexts as well.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;&gt; ***Important:*** Yarn Spinner is still under development, and we haven<span class="stringliteral">&#39;t made our 1.0 release yet. It&#39;</span>s *probably* fine to use right now, but there are a few bits and pieces that might change between now and first release.</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;[![Build Status](https:<span class="comment">//travis-ci.org/thesecretlab/YarnSpinner.svg?branch=master)](https://travis-ci.org/thesecretlab/YarnSpinner)</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">## Quick Start - Documentation</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;* <a class="code" href="a00050.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">If</a> you<span class="stringliteral">&#39;re already familiar with Unity, we recommend you head straight to our [Yarn Spinner With Unity Quickstart](Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-QuickStart.md) document.</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="stringliteral">## What To Do Next</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="stringliteral">* Learn how to [build Yarn Spinner from source.](Documentation/YarnSpinner-Programming/Building.md)</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="stringliteral">* Learn more about [Yarn](https://github.com/infiniteammoinc/Yarn), and the Yarn editor.</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="stringliteral">* Learn more about [writing dialogue in Yarn.](Documentation/YarnSpinner-Dialogue/README.md)</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="stringliteral">* Learn about using [Yarn Spinner in your Unity game.](Documentation/YarnSpinner-Unity/README.md)</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="stringliteral">* If you&#39;</span>re unfamiliar with Unity, refer to our [Yarn Spinner With Unity Step by Step](Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-StepByStep.md) document.</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;* We have some information that may be of assistance in <span class="keyword">using</span> [Yarn Spinner With Unity](Documentation/YarnSpinner-with-Unity/README.md) on your system.</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;* Follow Yarn Spinner on Twitter: [http:<span class="comment">//twitter.com/YarnSpinnerTool](http://twitter.com/YarnSpinnerTool)</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">## License</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;Yarn Spinner is available under the [MIT License](LICENSE.md). This means that you can use it in any commercial or noncommercial project. The only requirement is that you need to include attribution in your game<span class="stringliteral">&#39;s docs. A credit would be very, very nice, too, but isn&#39;</span>t required. If you<span class="stringliteral">&#39;d like to know more about what this license lets you do tldrlegal.com have a [very nice write up about the MIT license](https://tldrlegal.com/license/mit-license) that you might find useful.</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="stringliteral">## Made by Secret Lab!</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="stringliteral">Yarn Spinner was originally created by [Secret Lab](http://secretlab.com.au), an Australian game dev studio. [Come say hi](https://twitter.com/thesecretlab)! You can visit the [Yarn Spinner page](http://www.secretlab.com.au/yarnspinner) on the Secret Lab website for a little more info, and to donate to Yarn Spinner open source development at Secret Lab.</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="stringliteral">The [logo](Documentation/YarnSpinnerLogo.png) was made by [Cecile Richard](https://www.cecile-richard.com/).</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="stringliteral">&lt;a href=&quot;https://gamecenter.nyu.edu/&quot;&gt;&lt;img src=&quot;Documentation/NYUGameCenter.png&quot; alt=&quot;NYU Game Center logo&quot; width=&quot;100px;&quot; align=&quot;right&quot;&gt;&lt;/a&gt;</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="stringliteral">Yarn Spinner&#39;</span>s development is made possible in part by [NYU Game Center](https:<span class="comment">//gamecenter.nyu.edu/). </span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;## Help Us Make Yarn Spinner!</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;Yarn Spinner needs your help to be as awesome as it can be! You don<span class="stringliteral">&#39;t have to be a coder to help out - we&#39;</span>d love to have your help in improving our [documentation](Documentation/README.md), in spreading the word, and in finding bugs.</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;* Our [issues page](https:<span class="comment">//github.com/thesecretlab/YarnSpinner/issues) contains a list of things we&#39;d love your help in improving.</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;* Join our discussion on Slack by requesting an invite to our [narrative game development](http:<span class="comment">//lab.to/narrativegamedev) channel.</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;* Read our [API documentation](https:<span class="comment">//thesecretlab.github.io/YarnSpinner/html/)</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;* Follow Yarn Spinner on Twitter: [http:<span class="comment">//twitter.com/YarnSpinnerTool](http://twitter.com/YarnSpinnerTool)</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<a class="code" href="a00050.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">If</a> you want to contribute to Yarn Spinner (!!), [go read our contributor<span class="stringliteral">&#39;s guide!](CONTRIBUTING.md)</span></div>
+<div class="ttc" id="a00050_html_a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639"><div class="ttname"><a href="a00050.html#a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639">Yarn.If</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00186.html">Dialogue-Localization.md</a></li>
-    <li class="footer">Generated on Wed Aug 28 2019 22:42:47 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00186.html">README.md</a></li>
+    <li class="footer">Generated on Wed Oct 23 2019 00:35:55 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

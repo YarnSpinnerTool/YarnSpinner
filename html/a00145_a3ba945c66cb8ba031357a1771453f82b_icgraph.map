@@ -1,8 +1,0 @@
-<map id="Yarn.VirtualMachine.ResetState" name="Yarn.VirtualMachine.ResetState">
-<area shape="rect" id="node2" href="$a00145.html#a6364593ea1115d65e34b343422cfbbbd" title="Yarn.VirtualMachine.SetNode" alt="" coords="232,31,427,57"/>
-<area shape="rect" id="node3" href="$a00088.html#aead84ee50cb113ca45724894290ce9c2" title="Use this in a for&#45;each construct; each time you iterate over it, you&#39;ll get a line, command, or set of options. " alt="" coords="523,5,655,32"/>
-<area shape="rect" id="node6" href="$a00145.html#ad2caf9ca4f00cdcbd58983be7c106971" title="Yarn.VirtualMachine.RunInstruction" alt="" coords="475,56,703,83"/>
-<area shape="rect" id="node4" href="$a00172.html#a1b974c55540795a9e643c2ec055fbd51" title="Yarn.YarnSpinnerConsole.Run" alt="" coords="752,5,952,32"/>
-<area shape="rect" id="node5" href="$a00172.html#a1d71ff2eb190449ea1d42ce86f44489f" title="Yarn.YarnSpinnerConsole.Main" alt="" coords="1001,5,1205,32"/>
-<area shape="rect" id="node7" href="$a00145.html#af3cc0337914b9f66454a3d52208dba5f" title="Executes the next instruction in the current node. " alt="" coords="755,56,949,83"/>
-</map>

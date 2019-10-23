@@ -1,7 +1,5 @@
 var a00113 =
 [
-    [ "ToString", "a00113.html#a939d511f211e8a61cfbca902e802564f", null ],
-    [ "operandA", "a00113.html#ab5d386faa0d3dbc23db80f8e62706afd", null ],
-    [ "operandB", "a00113.html#a56348c6fe7eb919b7277afc06e5b224a", null ],
-    [ "operation", "a00113.html#a566bf5f7198cc353ea5c3710cb3a31cb", null ]
+    [ "Write", "a00113.html#a0b442858eef85b7d933662359646fd0b", null ],
+    [ "Configuration", "a00113.html#a54d241fe87517707b6f85c30fe8b3a95", null ]
 ];

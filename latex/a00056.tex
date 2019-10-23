@@ -1,153 +1,169 @@
-\hypertarget{a00056}{\section{Csv\-Helper.\-Csv\-Bad\-Data\-Exception Class Reference}
-\label{a00056}\index{Csv\-Helper.\-Csv\-Bad\-Data\-Exception@{Csv\-Helper.\-Csv\-Bad\-Data\-Exception}}
+\hypertarget{a00056}{\section{Yarn.\-Analysis.\-Context Class Reference}
+\label{a00056}\index{Yarn.\-Analysis.\-Context@{Yarn.\-Analysis.\-Context}}
 }
 
 
-Represents errors that occur due to bad data.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Csv\-Bad\-Data\-Exception\-:
+Collaboration diagram for Yarn.\-Analysis.\-Context\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=246pt]{a00390}
-\end{center}
-\end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-Csv\-Bad\-Data\-Exception\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=246pt]{a00391}
+\includegraphics[width=214pt]{a00678}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00056_a337ebca212c62127ba837ae726a0cc3a}{Csv\-Bad\-Data\-Exception} ()
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00056}{Csv\-Bad\-Data\-Exception} class. \end{DoxyCompactList}\item 
-\hyperlink{a00056_a31da9e807053a75e8bd252aa792269eb}{Csv\-Bad\-Data\-Exception} (string message)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00056}{Csv\-Bad\-Data\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
-\hyperlink{a00056_a2c210cf80604e58ffecc177f6f7c2547}{Csv\-Bad\-Data\-Exception} (string message, Exception inner\-Exception)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00056}{Csv\-Bad\-Data\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
-\hyperlink{a00056_abe956c9c100374953fd899bef2f2489f}{Csv\-Bad\-Data\-Exception} (Serialization\-Info info, Streaming\-Context context)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00063}{Csv\-Helper\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00056_a8e2c56843e8d374b0f90e23326d8d14a}{Context} ()
+\item 
+\hyperlink{a00056_ad5f41fb64637c4938bce811153492731}{Context} (params Type\mbox{[}$\,$\mbox{]} types)
+\item 
+I\-Enumerable$<$ \hyperlink{a00089}{Diagnosis} $>$ \hyperlink{a00056_a1eadea062a5899a64d00ea0172cbbb43}{Finish\-Analysis} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00056_a60255a6d54f296d199507acef251244c}{Add\-Program\-To\-Analysis} (\hyperlink{a00140}{Program} program)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+I\-Enumerable$<$ Type $>$ \hyperlink{a00056_afdf24f2512251c2203ba1bde8f4a0f90}{default\-Analyser\-Classes}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+I\-Enumerable$<$ Type $>$ \hyperlink{a00056_ad06829cf848a5936db5724ebced758ec}{\-\_\-default\-Analyser\-Classes}
+\item 
+List$<$ \hyperlink{a00052}{Compiled\-Program\-Analyser} $>$ \hyperlink{a00056_aa5c7eaa90ad9c47969a3b336080d8991}{analysers}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Represents errors that occur due to bad data. 
 
 
-
-Definition at line 18 of file Csv\-Bad\-Data\-Exception.\-cs.
+Definition at line 82 of file Analyser.\-cs.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00056_a337ebca212c62127ba837ae726a0cc3a}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
-\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
-\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\hypertarget{a00056_a8e2c56843e8d374b0f90e23326d8d14a}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!Context@{Context}}
+\index{Context@{Context}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{Context}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Analysis.\-Context.\-Context (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00056_a337ebca212c62127ba837ae726a0cc3a}
+)}}\label{a00056_a8e2c56843e8d374b0f90e23326d8d14a}
 
 
-Initializes a new instance of the \hyperlink{a00056}{Csv\-Bad\-Data\-Exception} class. 
-
-
-
-Definition at line 23 of file Csv\-Bad\-Data\-Exception.\-cs.
+Definition at line 111 of file Analyser.\-cs.
 
 
 \begin{DoxyCode}
-23 \{\}
+112         \{
+113             \hyperlink{a00056_aa5c7eaa90ad9c47969a3b336080d8991}{analysers} = \textcolor{keyword}{new} List<CompiledProgramAnalyser> ();
+114 
+115             \textcolor{keywordflow}{foreach} (var analyserType \textcolor{keywordflow}{in} \hyperlink{a00056_afdf24f2512251c2203ba1bde8f4a0f90}{defaultAnalyserClasses}) \{
+116                 analysers.Add((CompiledProgramAnalyser)Activator.CreateInstance (analyserType));
+117             \}
+118 
+119         \}
 \end{DoxyCode}
-\hypertarget{a00056_a31da9e807053a75e8bd252aa792269eb}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
-\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
-\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\hypertarget{a00056_ad5f41fb64637c4938bce811153492731}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!Context@{Context}}
+\index{Context@{Context}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{Context}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Analysis.\-Context.\-Context (
 \begin{DoxyParamCaption}
-\item[{string}]{message}
+\item[{params Type\mbox{[}$\,$\mbox{]}}]{types}
 \end{DoxyParamCaption}
-)}}\label{a00056_a31da9e807053a75e8bd252aa792269eb}
+)}}\label{a00056_ad5f41fb64637c4938bce811153492731}
 
 
-Initializes a new instance of the \hyperlink{a00056}{Csv\-Bad\-Data\-Exception} class with a specified error message. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em message} & The message that describes the error.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 30 of file Csv\-Bad\-Data\-Exception.\-cs.
+Definition at line 121 of file Analyser.\-cs.
 
 
 \begin{DoxyCode}
-30 : base( message ) \{\}
+121                                             \{
+122             \hyperlink{a00056_aa5c7eaa90ad9c47969a3b336080d8991}{analysers} = \textcolor{keyword}{new} List<CompiledProgramAnalyser> ();
+123 
+124             \textcolor{keywordflow}{foreach} (var analyserType \textcolor{keywordflow}{in} types) \{
+125                 analysers.Add((CompiledProgramAnalyser)Activator.CreateInstance (analyserType));
+126             \}
+127         \}
 \end{DoxyCode}
-\hypertarget{a00056_a2c210cf80604e58ffecc177f6f7c2547}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
-\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
-\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00056_a60255a6d54f296d199507acef251244c}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!Add\-Program\-To\-Analysis@{Add\-Program\-To\-Analysis}}
+\index{Add\-Program\-To\-Analysis@{Add\-Program\-To\-Analysis}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{Add\-Program\-To\-Analysis}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Analysis.\-Context.\-Add\-Program\-To\-Analysis (
 \begin{DoxyParamCaption}
-\item[{string}]{message, }
-\item[{Exception}]{inner\-Exception}
+\item[{{\bf Program}}]{program}
 \end{DoxyParamCaption}
-)}}\label{a00056_a2c210cf80604e58ffecc177f6f7c2547}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00056_a60255a6d54f296d199507acef251244c}
 
 
-Initializes a new instance of the \hyperlink{a00056}{Csv\-Bad\-Data\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em message} & The error message that explains the reason for the exception.\\
-\hline
-{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 39 of file Csv\-Bad\-Data\-Exception.\-cs.
+Definition at line 129 of file Analyser.\-cs.
 
 
 \begin{DoxyCode}
-39 : base( message, innerException ) \{ \}
+129                                                             \{
+130             \textcolor{keywordflow}{foreach} (var analyser \textcolor{keywordflow}{in} \hyperlink{a00056_aa5c7eaa90ad9c47969a3b336080d8991}{analysers}) \{
+131                 analyser.Diagnose (program);
+132             \}
+133         \}
 \end{DoxyCode}
-\hypertarget{a00056_abe956c9c100374953fd899bef2f2489f}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
-\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
-\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\hypertarget{a00056_a1eadea062a5899a64d00ea0172cbbb43}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!Finish\-Analysis@{Finish\-Analysis}}
+\index{Finish\-Analysis@{Finish\-Analysis}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{Finish\-Analysis}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Diagnosis}$>$ Yarn.\-Analysis.\-Context.\-Finish\-Analysis (
 \begin{DoxyParamCaption}
-\item[{Serialization\-Info}]{info, }
-\item[{Streaming\-Context}]{context}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00056_abe956c9c100374953fd899bef2f2489f}
+)}}\label{a00056_a1eadea062a5899a64d00ea0172cbbb43}
 
 
-Initializes a new instance of the \hyperlink{a00063}{Csv\-Helper\-Exception} class with serialized data. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
-\hline
-{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 48 of file Csv\-Bad\-Data\-Exception.\-cs.
+Definition at line 135 of file Analyser.\-cs.
 
 
 \begin{DoxyCode}
-48 : base( info, context ) \{\}
+135                                                        \{
+136             List<Diagnosis> diagnoses = \textcolor{keyword}{new} List<Diagnosis> ();
+137 
+138             \textcolor{keywordflow}{foreach} (var analyser \textcolor{keywordflow}{in} \hyperlink{a00056_aa5c7eaa90ad9c47969a3b336080d8991}{analysers}) \{
+139                 diagnoses.AddRange (analyser.GatherDiagnoses ());
+140             \}
+141 
+142             \textcolor{keywordflow}{return} diagnoses;
+143         \}
 \end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00056_ad06829cf848a5936db5724ebced758ec}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!\-\_\-default\-Analyser\-Classes@{\-\_\-default\-Analyser\-Classes}}
+\index{\-\_\-default\-Analyser\-Classes@{\-\_\-default\-Analyser\-Classes}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{\-\_\-default\-Analyser\-Classes}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<$Type$>$ Yarn.\-Analysis.\-Context.\-\_\-default\-Analyser\-Classes\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_ad06829cf848a5936db5724ebced758ec}
+
+
+Definition at line 84 of file Analyser.\-cs.
+
+\hypertarget{a00056_aa5c7eaa90ad9c47969a3b336080d8991}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!analysers@{analysers}}
+\index{analysers@{analysers}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{analysers}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Compiled\-Program\-Analyser}$>$ Yarn.\-Analysis.\-Context.\-analysers\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_aa5c7eaa90ad9c47969a3b336080d8991}
+
+
+Definition at line 109 of file Analyser.\-cs.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{a00056_afdf24f2512251c2203ba1bde8f4a0f90}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!default\-Analyser\-Classes@{default\-Analyser\-Classes}}
+\index{default\-Analyser\-Classes@{default\-Analyser\-Classes}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{default\-Analyser\-Classes}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<$Type$>$ Yarn.\-Analysis.\-Context.\-default\-Analyser\-Classes\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [package]}}}\label{a00056_afdf24f2512251c2203ba1bde8f4a0f90}
+
+
+Definition at line 85 of file Analyser.\-cs.
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00210}{Csv\-Bad\-Data\-Exception.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00282}{Analyser.\-cs}\end{DoxyCompactItemize}

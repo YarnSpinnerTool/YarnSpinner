@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['addlabelsoptions',['AddLabelsOptions',['../a00039.html',1,'Yarn']]]
+  ['addlabelsoptions',['AddLabelsOptions',['../a00041.html',1,'Yarn']]]
 ];

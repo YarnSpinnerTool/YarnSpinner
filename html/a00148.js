@@ -1,11 +1,9 @@
 var a00148 =
 [
-    [ "ClearStack", "a00148.html#a9c787097fbbbbf1680e4960cda092535", null ],
-    [ "PeekValue", "a00148.html#a54fd5b64ec94e937e771846167242dc2", null ],
-    [ "PopValue", "a00148.html#a36881a888ea2839d74c3d4e7c199f4ee", null ],
-    [ "PushValue", "a00148.html#aace44f5b85b9f746fede834becda4a8e", null ],
-    [ "currentNodeName", "a00148.html#a86f481fad527f719b49f8fee6ff79764", null ],
-    [ "currentOptions", "a00148.html#ab816dfea32ecda23282700f01454e0a9", null ],
-    [ "programCounter", "a00148.html#a2c76546b54b4fb573d7f14d79ce230a3", null ],
-    [ "stack", "a00148.html#a0bc84abf38b3ff31cbb47363b851c233", null ]
+    [ "SpriteInfo", "a00148.html#a00357", [
+      [ "name", "a00148.html#a3f5bca2fff413dfe075c1fcf7e58369c", null ],
+      [ "sprite", "a00148.html#adc58df011dc2841837b6cf775b372061", null ]
+    ] ],
+    [ "UseSprite", "a00148.html#ac26718b713f342f3de8f3e569c5b62da", null ],
+    [ "sprites", "a00148.html#a1e85d9f4f6b33ca7ae638cce2eb704aa", null ]
 ];

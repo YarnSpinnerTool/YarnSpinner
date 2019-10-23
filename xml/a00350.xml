@@ -1,33 +1,22 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00350" kind="class" prot="public">
-    <compoundname>Yarn::Unity::LocalisedStringGroup</compoundname>
+  <compounddef id="a00350" kind="struct" prot="package">
+    <compoundname>Yarn::Compiler::CompileFlags</compoundname>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00350_1a395d808fa32cb4fe68a62d7852534e1a" prot="public" static="no" mutable="no">
-        <type>SystemLanguage</type>
-        <definition>SystemLanguage Yarn.Unity.LocalisedStringGroup.language</definition>
+      <memberdef kind="variable" id="a00350_1a8b49bb7763ff477cba21d7c771ef3ed0" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Compiler.CompileFlags.DisableShuffleOptionsAfterNextSet</definition>
         <argsstring></argsstring>
-        <name>language</name>
+        <name>DisableShuffleOptionsAfterNextSet</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="38" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00350_1a636624112fd57fedda96d485d20e6b9e" prot="public" static="no" mutable="no">
-        <type>TextAsset[]</type>
-        <definition>TextAsset [] Yarn.Unity.LocalisedStringGroup.stringFiles</definition>
-        <argsstring></argsstring>
-        <name>stringFiles</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="39" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" line="114" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="114" bodyend="-1"/>
+        <referencedby refid="a00053_1acec9f57d3785de7fad1e8cac5b286ccf" compoundref="a00284" startline="300" endline="343">Yarn.Compiler.ExitBody</referencedby>
+        <referencedby refid="a00044_1ad1576a22d74304c3155a0c2fa91be5b9" compoundref="a00284" startline="600" endline="672">Yarn.BodyVisitor.VisitShortcut_statement</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -35,15 +24,14 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="1353">
-        <label>Yarn.Unity.LocalisedStringGroup</label>
+      <node id="882">
+        <label>Yarn.Compiler.CompileFlags</label>
         <link refid="a00350"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="37" bodyend="40"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" line="111" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="110" bodyend="115"/>
     <listofallmembers>
-      <member refid="a00350_1a395d808fa32cb4fe68a62d7852534e1a" prot="public" virt="non-virtual"><scope>Yarn::Unity::LocalisedStringGroup</scope><name>language</name></member>
-      <member refid="a00350_1a636624112fd57fedda96d485d20e6b9e" prot="public" virt="non-virtual"><scope>Yarn::Unity::LocalisedStringGroup</scope><name>stringFiles</name></member>
+      <member refid="a00350_1a8b49bb7763ff477cba21d7c771ef3ed0" prot="public" virt="non-virtual"><scope>Yarn::Compiler::CompileFlags</scope><name>DisableShuffleOptionsAfterNextSet</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

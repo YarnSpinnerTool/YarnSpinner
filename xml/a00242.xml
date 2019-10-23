@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00242" kind="file">
-    <compoundname>DateTimeOffsetConverter.cs</compoundname>
-    <innerclass refid="a00081" prot="public">CsvHelper::TypeConversion::DateTimeOffsetConverter</innerclass>
-    <innernamespace refid="a00313">CsvHelper::TypeConversion</innernamespace>
+    <compoundname>CsvTypeConverterException.cs</compoundname>
+    <innerclass refid="a00079" prot="public">CsvHelper::TypeConversion::CsvTypeConverterException</innerclass>
+    <innernamespace refid="a00316">CsvHelper::TypeConversion</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -13,42 +13,27 @@
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>a<sp/>part<sp/>of<sp/>CsvHelper<sp/>and<sp/>is<sp/>dual<sp/>licensed<sp/>under<sp/>MS-PL<sp/>and<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>LICENSE.txt<sp/>for<sp/>details<sp/>or<sp/>visit<sp/>http://www.opensource.org/licenses/ms-pl.html<sp/>for<sp/>MS-PL<sp/>and<sp/>http://opensource.org/licenses/Apache-2.0<sp/>for<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>http://csvhelper.com</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Globalization;</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">CsvHelper.TypeConversion</highlight></codeline>
-<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="14" refid="a00081" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="a00081" kindref="compound">DateTimeOffsetConverter</ref><sp/>:<sp/><ref refid="a00084" kindref="compound">DefaultTypeConverter</ref></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="22" refid="a00081_1aa69835fc086d80a8eabe7ac50cb92f47" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/><ref refid="a00081_1aa69835fc086d80a8eabe7ac50cb92f47" kindref="member">ConvertFromString</ref>(<sp/><ref refid="a00156" kindref="compound">TypeConverterOptions</ref><sp/>options,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>text<sp/>)</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>text<sp/>==<sp/>null<sp/>)</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>base.ConvertFromString(<sp/>options,<sp/>null<sp/>);</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!COREFX</highlight></codeline>
+<codeline lineno="7"><highlight class="preprocessor"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Runtime.Serialization;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="9"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">CsvHelper.TypeConversion</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15" refid="a00079" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="a00079" kindref="compound">CsvTypeConverterException</ref><sp/>:<sp/><ref refid="a00065" kindref="compound">CsvHelperException</ref></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="20" refid="a00079_1af2278af1cb915e9b8485c005148c430b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00079_1af2278af1cb915e9b8485c005148c430b" kindref="member">CsvTypeConverterException</ref>()<sp/>{}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="a00079_1a4e4e9bdf9280d14be37fc42d887b7360" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00079_1a4e4e9bdf9280d14be37fc42d887b7360" kindref="member">CsvTypeConverterException</ref>(<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>message<sp/>)<sp/>:<sp/>base(<sp/>message<sp/>)<sp/>{}</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>text.Trim().Length<sp/>==<sp/>0<sp/>)</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DateTimeOffset.MinValue;</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>formatProvider<sp/>=<sp/>(IFormatProvider)options.<ref refid="a00156_1af6bc545680b477abf9178eb4755572b1" kindref="member">CultureInfo</ref>.GetFormat(<sp/>typeof(<sp/>DateTimeFormatInfo<sp/>)<sp/>)<sp/>??<sp/>options.CultureInfo;</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>dateTimeStyle<sp/>=<sp/>options.DateTimeStyle<sp/>??<sp/>DateTimeStyles.None;</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>string.IsNullOrEmpty(<sp/>options.Format<sp/>)</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>?<sp/>DateTimeOffset.Parse(<sp/>text,<sp/>formatProvider,<sp/>dateTimeStyle<sp/>)</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>DateTimeOffset.ParseExact(<sp/>text,<sp/>options.Format,<sp/>formatProvider,<sp/>dateTimeStyle<sp/>);</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49" refid="a00081_1a82a8cf4b77600ef49da60deb0c24a708" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="a00081_1a82a8cf4b77600ef49da60deb0c24a708" kindref="member">CanConvertFrom</ref>(<sp/>Type<sp/>type<sp/>)</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>only<sp/>care<sp/>about<sp/>strings.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>type<sp/>==<sp/>typeof(<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>);</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="36" refid="a00079_1afbea8720637f53c27ef4a9ca99c41955" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00079_1afbea8720637f53c27ef4a9ca99c41955" kindref="member">CsvTypeConverterException</ref>(<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>message,<sp/>Exception<sp/>innerException<sp/>)<sp/>:<sp/>base(<sp/>message,<sp/>innerException<sp/>)<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!PCL<sp/>&amp;&amp;<sp/>!COREFX</highlight></codeline>
+<codeline lineno="39"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00079" kindref="compound">CsvTypeConverterException</ref>(<sp/>SerializationInfo<sp/>info,<sp/>StreamingContext<sp/>context<sp/>)<sp/>:<sp/>base(<sp/>info,<sp/>context<sp/>)<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="47"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs"/>
   </compounddef>
 </doxygen>

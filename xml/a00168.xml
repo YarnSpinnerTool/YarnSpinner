@@ -1,175 +1,108 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00168" kind="class" prot="public" abstract="yes">
-    <compoundname>Yarn::Unity::VariableStorageBehaviour</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
-    <basecompoundref refid="a00167" prot="public" virt="non-virtual">Yarn.VariableStorage</basecompoundref>
-    <derivedcompoundref refid="a00085" prot="public" virt="non-virtual">ExampleVariableStorage</derivedcompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00168_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.SetNumber</definition>
-        <argsstring>(string variableName, float number)</argsstring>
-        <name>SetNumber</name>
-        <reimplements refid="a00167_1aa28c3694f985cf73489efc301b9d41dd">SetNumber</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>number</declname>
-        </param>
-        <briefdescription>
-<para>Not implemented here. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="487" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="487" bodyend="490"/>
-      </memberdef>
-      <memberdef kind="function" id="a00168_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>float</type>
-        <definition>virtual float Yarn.Unity.VariableStorageBehaviour.GetNumber</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetNumber</name>
-        <reimplements refid="a00167_1a04b061c52d8ac814ce559da5286fbc71">GetNumber</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <briefdescription>
-<para>Not implemented here. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="493" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="493" bodyend="496"/>
-      </memberdef>
-      <memberdef kind="function" id="a00168_1ac6ebafcbebc2b2d71eba8562490a2f1e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="a00165" kindref="compound">Value</ref></type>
-        <definition>virtual Value Yarn.Unity.VariableStorageBehaviour.GetValue</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetValue</name>
-        <reimplements refid="a00167_1accab1fc5c8fc353dbfc53ca0f4029576">GetValue</reimplements>
-        <reimplementedby refid="a00085_1a741593be1a299dcc2136f05b9b4a995a">GetValue</reimplementedby>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <briefdescription>
-<para>Get a value. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="499" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="499" bodyend="501"/>
-      </memberdef>
-      <memberdef kind="function" id="a00168_1a25f979b062d63c9e886fe7070ce4561b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.SetValue</definition>
-        <argsstring>(string variableName, Value value)</argsstring>
-        <name>SetValue</name>
-        <reimplements refid="a00167_1aa90ff61224432c5ed3ce72199c55f440">SetValue</reimplements>
-        <reimplementedby refid="a00085_1ac4265c1c9da485f13a6b05784b0f668d">SetValue</reimplementedby>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type><ref refid="a00165" kindref="compound">Value</ref></type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-<para>Set a value. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="504" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="504" bodyend="506"/>
-      </memberdef>
-      <memberdef kind="function" id="a00168_1a587fe10b367ace190e10f3bcb590a53c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.Clear</definition>
-        <argsstring>()</argsstring>
-        <name>Clear</name>
-        <reimplements refid="a00167_1af98c1e41f351cb96e13f668ca2fd9d92">Clear</reimplements>
-        <reimplementedby refid="a00085_1a0ce614bee8d5b220500fb765390b4ca3">Clear</reimplementedby>
-        <briefdescription>
-<para>Not implemented here. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="509" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="509" bodyend="512"/>
-      </memberdef>
-      <memberdef kind="function" id="a00168_1a33fcbff56561e53e0a70b59c56f0c3af" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract void</type>
-        <definition>abstract void Yarn.Unity.VariableStorageBehaviour.ResetToDefaults</definition>
-        <argsstring>()</argsstring>
-        <name>ResetToDefaults</name>
-        <reimplementedby refid="a00085_1a3a05d66cdacadb2e9b618cd0aef45f84">ResetToDefaults</reimplementedby>
+  <compounddef id="a00168" kind="class" prot="package" abstract="yes">
+    <compoundname>Yarn::Analysis::VariableLister</compoundname>
+    <basecompoundref refid="a00052" prot="public" virt="non-virtual">Yarn.Analysis.CompiledProgramAnalyser</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00168_1a64ed6c3394c474b6cf5804a35f560746" prot="private" static="no" mutable="no">
+        <type>HashSet&lt; string &gt;</type>
+        <definition>HashSet&lt;string&gt; Yarn.Analysis.VariableLister.variables</definition>
+        <argsstring></argsstring>
+        <name>variables</name>
+        <initializer>= new HashSet&lt;string&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="514" column="1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Analyser.cs" line="153" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00168_1a980f0e64bc5ad171c35ec19bdf838b5c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void Yarn.Analysis.VariableLister.Diagnose</definition>
+        <argsstring>(Program program)</argsstring>
+        <name>Diagnose</name>
+        <param>
+          <type><ref refid="a00140" kindref="compound">Program</ref></type>
+          <declname>program</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Analyser.cs" line="155" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="155" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="a00168_1ab84e7a8e68740379dee12a51dca69b07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override IEnumerable&lt; <ref refid="a00089" kindref="compound">Diagnosis</ref> &gt;</type>
+        <definition>override IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.VariableLister.GatherDiagnoses</definition>
+        <argsstring>()</argsstring>
+        <name>GatherDiagnoses</name>
+        <reimplements refid="a00052_1afe059a2ceeabe50380b000420e512bd6">GatherDiagnoses</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Analyser.cs" line="178" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="178" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="a00052_1aba4a36cb823b11ee491074e26477d084" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Yarn.Analysis.CompiledProgramAnalyser.Diagnose</definition>
+        <argsstring>(Yarn.Program program)</argsstring>
+        <name>Diagnose</name>
+        <param>
+          <type><ref refid="a00140" kindref="compound">Yarn.Program</ref></type>
+          <declname>program</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Analyser.cs" line="148" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Scripts that can act as a variable storage should subclass this. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1543">
-        <label>ExampleVariableStorage</label>
-        <link refid="a00085"/>
-        <childnode refid="1540" relation="public-inheritance">
-        </childnode>
+      <node id="1530">
+        <label>CompiledProgramAnalyser</label>
+        <link refid="a00052"/>
       </node>
-      <node id="1542">
-        <label>Yarn::VariableStorage</label>
-        <link refid="a00167"/>
-      </node>
-      <node id="1540">
-        <label>Yarn.Unity.VariableStorageBehaviour</label>
+      <node id="1529">
+        <label>Yarn.Analysis.VariableLister</label>
         <link refid="a00168"/>
-        <childnode refid="1541" relation="public-inheritance">
+        <childnode refid="1530" relation="public-inheritance">
         </childnode>
-        <childnode refid="1542" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1541">
-        <label>MonoBehaviour</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1546">
-        <label>Yarn::VariableStorage</label>
-        <link refid="a00167"/>
+      <node id="1532">
+        <label>CompiledProgramAnalyser</label>
+        <link refid="a00052"/>
       </node>
-      <node id="1544">
-        <label>Yarn.Unity.VariableStorageBehaviour</label>
+      <node id="1531">
+        <label>Yarn.Analysis.VariableLister</label>
         <link refid="a00168"/>
-        <childnode refid="1545" relation="public-inheritance">
+        <childnode refid="1532" relation="public-inheritance">
         </childnode>
-        <childnode refid="1546" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1545">
-        <label>MonoBehaviour</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="484" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="483" bodyend="516"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Analyser.cs" line="152" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="152" bodyend="189"/>
     <listofallmembers>
-      <member refid="a00168_1a587fe10b367ace190e10f3bcb590a53c" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>Clear</name></member>
-      <member refid="a00168_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>GetNumber</name></member>
-      <member refid="a00168_1ac6ebafcbebc2b2d71eba8562490a2f1e" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>GetValue</name></member>
-      <member refid="a00168_1a33fcbff56561e53e0a70b59c56f0c3af" prot="public" virt="pure-virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>ResetToDefaults</name></member>
-      <member refid="a00168_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>SetNumber</name></member>
-      <member refid="a00168_1a25f979b062d63c9e886fe7070ce4561b" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>SetValue</name></member>
+      <member refid="a00168_1a980f0e64bc5ad171c35ec19bdf838b5c" prot="public" virt="non-virtual"><scope>Yarn::Analysis::VariableLister</scope><name>Diagnose</name></member>
+      <member refid="a00052_1aba4a36cb823b11ee491074e26477d084" prot="public" virt="pure-virtual" ambiguityscope="Yarn::Analysis::CompiledProgramAnalyser."><scope>Yarn::Analysis::VariableLister</scope><name>Diagnose</name></member>
+      <member refid="a00168_1ab84e7a8e68740379dee12a51dca69b07" prot="public" virt="virtual"><scope>Yarn::Analysis::VariableLister</scope><name>GatherDiagnoses</name></member>
+      <member refid="a00168_1a64ed6c3394c474b6cf5804a35f560746" prot="private" virt="non-virtual"><scope>Yarn::Analysis::VariableLister</scope><name>variables</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

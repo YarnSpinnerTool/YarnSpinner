@@ -1,572 +1,88 @@
-\hypertarget{a00125}{\section{Yarn.\-Loader Class Reference}
-\label{a00125}\index{Yarn.\-Loader@{Yarn.\-Loader}}
+\hypertarget{a00125}{\section{Yarn.\-Line\-Info Struct Reference}
+\label{a00125}\index{Yarn.\-Line\-Info@{Yarn.\-Line\-Info}}
 }
 
 
-Collaboration diagram for Yarn.\-Loader\-:
+Collaboration diagram for Yarn.\-Line\-Info\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00614}
+\includegraphics[width=154pt]{a00628}
 \end{center}
 \end{figure}
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{a00093}{Emission\-Tuple}
-\item 
-struct \hyperlink{a00131}{Node\-Info}
-\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00125_a1972fc413e1679ecbe91eef536ca8479}{Loader} (\hyperlink{a00088}{Dialogue} \hyperlink{a00125_a89d1f29eba1c52c96c62a4cfe7859a1d}{dialogue})
-\item 
-\hyperlink{a00138}{Program} \hyperlink{a00125_a228e10256dddbcc17c231d08b3b2140b}{Load} (string text, \hyperlink{a00121}{Library} library, string file\-Name, \hyperlink{a00138}{Program} include\-Program, bool show\-Tokens, bool show\-Parse\-Tree, string only\-Consider\-Node, \hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272f}{Node\-Format} format)
+\hyperlink{a00125_a15924fb79c648f2089ff0db955679dd9}{Line\-Info} (string \hyperlink{a00125_a5a91331fb123e29d71d69e096f943c2f}{node\-Name}, int \hyperlink{a00125_a7165cafce64a3deafc41b2090ddf8d0e}{line\-Number})
 \end{DoxyCompactItemize}
-\subsection*{Package Functions}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00131}{Node\-Info}\mbox{[}$\,$\mbox{]} \hyperlink{a00125_a0aa76ba9366b44bf78198a78ea958c9c}{Get\-Nodes\-From\-Text} (string text, \hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272f}{Node\-Format} format)
-\end{DoxyCompactItemize}
-\subsection*{Static Package Functions}
-\begin{DoxyCompactItemize}
+int \hyperlink{a00125_a7165cafce64a3deafc41b2090ddf8d0e}{line\-Number}
 \item 
-static \hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272f}{Node\-Format} \hyperlink{a00125_a080b2d6b7553c178007c04297d50e9da}{Get\-Format\-From\-File\-Name} (string file\-Name)
-\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00138}{Program} \hyperlink{a00125_a6d8296076823c0c082df9024367f4860}{program}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-string \hyperlink{a00125_a0b09a29edd2ed13d52203f1b71a47081}{preprocessor} (string node\-Text)
-\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00088}{Dialogue} \hyperlink{a00125_a89d1f29eba1c52c96c62a4cfe7859a1d}{dialogue}
+string \hyperlink{a00125_a5a91331fb123e29d71d69e096f943c2f}{node\-Name}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 52 of file Loader.\-cs.
+Definition at line 35 of file Program.\-cs.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00125_a1972fc413e1679ecbe91eef536ca8479}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!Loader@{Loader}}
-\index{Loader@{Loader}!Yarn::Loader@{Yarn\-::\-Loader}}
-\subsubsection[{Loader}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Loader.\-Loader (
+\hypertarget{a00125_a15924fb79c648f2089ff0db955679dd9}{\index{Yarn\-::\-Line\-Info@{Yarn\-::\-Line\-Info}!Line\-Info@{Line\-Info}}
+\index{Line\-Info@{Line\-Info}!Yarn::LineInfo@{Yarn\-::\-Line\-Info}}
+\subsubsection[{Line\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Line\-Info.\-Line\-Info (
 \begin{DoxyParamCaption}
-\item[{{\bf Dialogue}}]{dialogue}
+\item[{string}]{node\-Name, }
+\item[{int}]{line\-Number}
 \end{DoxyParamCaption}
-)}}\label{a00125_a1972fc413e1679ecbe91eef536ca8479}
+)}}\label{a00125_a15924fb79c648f2089ff0db955679dd9}
 
 
-Definition at line 59 of file Loader.\-cs.
+Definition at line 40 of file Program.\-cs.
 
 
 
-References Yarn.\-Loader.\-dialogue.
+References Yarn.\-Line\-Info.\-line\-Number, and Yarn.\-Line\-Info.\-node\-Name.
 
 
 \begin{DoxyCode}
-59                                          \{
-60             \textcolor{keywordflow}{if} (\hyperlink{a00125_a89d1f29eba1c52c96c62a4cfe7859a1d}{dialogue} == null)
-61                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException (nameof(\hyperlink{a00125_a89d1f29eba1c52c96c62a4cfe7859a1d}{dialogue}));
-62 
-63             this.dialogue = \hyperlink{a00125_a89d1f29eba1c52c96c62a4cfe7859a1d}{dialogue};
-64 
-65         \}
+41         \{
+42             this.nodeName = \hyperlink{a00125_a5a91331fb123e29d71d69e096f943c2f}{nodeName};
+43             this.lineNumber = \hyperlink{a00125_a7165cafce64a3deafc41b2090ddf8d0e}{lineNumber};
+44         \}
 \end{DoxyCode}
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00125_a080b2d6b7553c178007c04297d50e9da}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!Get\-Format\-From\-File\-Name@{Get\-Format\-From\-File\-Name}}
-\index{Get\-Format\-From\-File\-Name@{Get\-Format\-From\-File\-Name}!Yarn::Loader@{Yarn\-::\-Loader}}
-\subsubsection[{Get\-Format\-From\-File\-Name}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Node\-Format} Yarn.\-Loader.\-Get\-Format\-From\-File\-Name (
-\begin{DoxyParamCaption}
-\item[{string}]{file\-Name}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00125_a080b2d6b7553c178007c04297d50e9da}
-
-
-Definition at line 277 of file Loader.\-cs.
-
-
-
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn(), and Yarn.\-Loader.\-Load().
-
-
-\begin{DoxyCode}
-278         \{
-279             \hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272f}{NodeFormat} format;
-280             \textcolor{keywordflow}{if} (fileName.EndsWith(\textcolor{stringliteral}{".yarn.txt"}, StringComparison.OrdinalIgnoreCase))
-281             \{
-282                 format = NodeFormat.Text;
-283             \}
-284             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (fileName.EndsWith(\textcolor{stringliteral}{".node"}, StringComparison.OrdinalIgnoreCase))
-285             \{
-286                 format = NodeFormat.SingleNodeText;
-287             \}
-288             \textcolor{keywordflow}{else} \{
-289                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} FormatException(\textcolor{keywordtype}{string}.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Unknown file format
-       for file '\{0\}'"}, fileName));
-290             \}
-291 
-292             \textcolor{keywordflow}{return} format;
-293         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00125_a080b2d6b7553c178007c04297d50e9da_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00125_a0aa76ba9366b44bf78198a78ea958c9c}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!Get\-Nodes\-From\-Text@{Get\-Nodes\-From\-Text}}
-\index{Get\-Nodes\-From\-Text@{Get\-Nodes\-From\-Text}!Yarn::Loader@{Yarn\-::\-Loader}}
-\subsubsection[{Get\-Nodes\-From\-Text}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node\-Info} \mbox{[}$\,$\mbox{]} Yarn.\-Loader.\-Get\-Nodes\-From\-Text (
-\begin{DoxyParamCaption}
-\item[{string}]{text, }
-\item[{{\bf Node\-Format}}]{format}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00125_a0aa76ba9366b44bf78198a78ea958c9c}
-
-
-Definition at line 297 of file Loader.\-cs.
-
-
-\begin{DoxyCode}
-298         \{
-299             \textcolor{comment}{// All the nodes we found in this file}
-300             var nodes = \textcolor{keyword}{new} List<NodeInfo> ();
-301 
-302             \textcolor{keywordflow}{switch} (format)
-303             \{
-304                 \textcolor{keywordflow}{case} NodeFormat.SingleNodeText:
-305                     \textcolor{comment}{// If it starts with a comment, treat it as a single-node file}
-306                     var nodeInfo = \textcolor{keyword}{new} NodeInfo();
-307                     nodeInfo.title = \textcolor{stringliteral}{"Start"};
-308                     nodeInfo.body = text;
-309                     nodes.Add(nodeInfo);
-310                     \textcolor{keywordflow}{break};                
-311                 \textcolor{keywordflow}{case} NodeFormat.Text:
-312 
-313                     \textcolor{comment}{// check for the existence of at least one "---"+newline sentinel, which divides}
-314                     \textcolor{comment}{// the headers from the body}
-315 
-316                     \textcolor{comment}{// we use a regex to match either \(\backslash\)r\(\backslash\)n or \(\backslash\)n line endings}
-317                     \textcolor{keywordflow}{if} (System.Text.RegularExpressions.Regex.IsMatch(text, \textcolor{stringliteral}{"---.?\(\backslash\)n"}) == \textcolor{keyword}{false}) \{
-318                         dialogue.LogErrorMessage(\textcolor{stringliteral}{"Error parsing input: text appears corrupt (no header
-       sentinel)"});
-319                         \textcolor{keywordflow}{break};
-320                     \}
-321 
-322                     var headerRegex = \textcolor{keyword}{new} System.Text.RegularExpressions.Regex(\textcolor{stringliteral}{"(?<field>.*): *(?<value>.*)
-      "});
-323 
-324                     var nodeProperties = typeof(NodeInfo).GetProperties();
-325 
-326                     \textcolor{keywordtype}{int} lineNumber = 0;
-327 
-328                     \textcolor{keyword}{using} (var reader = \textcolor{keyword}{new} System.IO.StringReader(text))
-329                     \{
-330                         \textcolor{keywordtype}{string} line;
-331                         \textcolor{keywordflow}{while} ((line = reader.ReadLine()) != null)
-332                         \{
-333 
-334                             \textcolor{comment}{// Create a new node}
-335                             NodeInfo node = \textcolor{keyword}{new} NodeInfo();
-336 
-337                             \textcolor{comment}{// Read header lines}
-338                             \textcolor{keywordflow}{do}
-339                             \{
-340                                 lineNumber++;
-341 
-342                                 \textcolor{comment}{// skip empty lines}
-343                                 \textcolor{keywordflow}{if} (line.Length == 0)
-344                                 \{
-345                                     \textcolor{keywordflow}{continue};
-346                                 \}
-347 
-348                                 \textcolor{comment}{// Attempt to parse the header}
-349                                 var headerMatches = headerRegex.Match(line);
-350 
-351                                 \textcolor{keywordflow}{if} (headerMatches == null)
-352                                 \{
-353                                     dialogue.LogErrorMessage(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"
-      Line \{0\}: Can't parse header '\{1\}'"}, lineNumber, line));
-354                                     \textcolor{keywordflow}{continue};
-355                                 \}
-356 
-357                                 var field = headerMatches.Groups[\textcolor{stringliteral}{"field"}].Value;
-358                                 var value = headerMatches.Groups[\textcolor{stringliteral}{"value"}].Value;
-359 
-360                                 \textcolor{comment}{// Attempt to set the appropriate property using this field}
-361                                 \textcolor{keywordflow}{foreach} (var property \textcolor{keywordflow}{in} nodeProperties)
-362                                 \{
-363                                     \textcolor{keywordflow}{if} (property.Name != field) \{
-364                                         \textcolor{keywordflow}{continue};
-365                                     \}
-366 
-367                                     \textcolor{comment}{// skip properties that can't be written to}
-368                                     \textcolor{keywordflow}{if} (property.CanWrite == \textcolor{keyword}{false})
-369                                     \{
-370                                         \textcolor{keywordflow}{continue};
-371                                     \}
-372                                     \textcolor{keywordflow}{try}
-373                                     \{
-374                                         var propertyType = property.PropertyType;
-375                                         \textcolor{keywordtype}{object} convertedValue;
-376                                         \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(\textcolor{keywordtype}{string})))
-377                                         \{
-378                                             convertedValue = value;
-379                                         \}
-380                                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(\textcolor{keywordtype}{int})))
-381                                         \{
-382                                             convertedValue = int.Parse(value, CultureInfo.InvariantCulture)
-      ;
-383                                         \}
-384                                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(NodeInfo.Position)))
-385                                         \{
-386                                             var components = value.Split(\textcolor{charliteral}{','});
-387 
-388                                             \textcolor{comment}{// we expect 2 components: x and y}
-389                                             \textcolor{keywordflow}{if} (components.Length != 2)
-390                                             \{
-391                                                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} FormatException();
-392                                             \}
-393 
-394                                             var position = \textcolor{keyword}{new} NodeInfo.Position();
-395                                             position.x = int.Parse(components[0], 
-      CultureInfo.InvariantCulture);
-396                                             position.y = int.Parse(components[1], 
-      CultureInfo.InvariantCulture);
-397 
-398                                             convertedValue = position;
-399                                         \}
-400                                         \textcolor{keywordflow}{else} \{
-401                                             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} NotSupportedException();
-402                                         \}
-403                                         \textcolor{comment}{// we need to box this because structs are value types,}
-404                                         \textcolor{comment}{// so calling SetValue using 'node' would just modify a copy of
-       'node'}
-405                                         \textcolor{keywordtype}{object} box = node;
-406                                         property.SetValue(box, convertedValue, null);
-407                                         node = (NodeInfo)box;
-408                                         \textcolor{keywordflow}{break};
-409                                     \}
-410                                     \textcolor{keywordflow}{catch} (FormatException)
-411                                     \{
-412                                         dialogue.LogErrorMessage(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{
-      "\{0\}: Error setting '\{1\}': invalid value '\{2\}'"}, lineNumber, field, value));
-413                                     \}
-414                                     \textcolor{keywordflow}{catch} (NotSupportedException)
-415                                     \{
-416                                         dialogue.LogErrorMessage(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{
-      "\{0\}: Error setting '\{1\}': This property cannot be set"}, lineNumber, field));
-417                                     \}
-418                                 \}
-419                             \} \textcolor{keywordflow}{while} ((line = reader.ReadLine()) != \textcolor{stringliteral}{"---"});
-420 
-421                             lineNumber++;
-422 
-423                             \textcolor{comment}{// We're past the header; read the body}
-424 
-425                             var lines = \textcolor{keyword}{new} List<string>();
-426 
-427                             \textcolor{comment}{// Read header lines until we hit the end of node sentinel or the end of the
-       file}
-428                             \textcolor{keywordflow}{while} ((line = reader.ReadLine()) != \textcolor{stringliteral}{"==="} && line != null)
-429                             \{
-430                                 lineNumber++;
-431                                 lines.Add(line);
-432                             \}
-433                             \textcolor{comment}{// We're done reading the lines! Zip 'em up into a string and}
-434                             \textcolor{comment}{// store it in the body}
-435                             node.body = string.Join(\textcolor{stringliteral}{"\(\backslash\)n"}, lines.ToArray());
-436 
-437                             \textcolor{comment}{// And add this node to the list}
-438                             nodes.Add(node);
-439 
-440                             \textcolor{comment}{// And now we're ready to move on to the next line!}
-441 
-442                         \}
-443                     \}
-444                     \textcolor{keywordflow}{break};
-445                 \textcolor{keywordflow}{default}:
-446                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException(\textcolor{stringliteral}{"Unknown format "} + format.ToString());
-447             \}
-448 
-449             \textcolor{comment}{// hooray we're done}
-450             \textcolor{keywordflow}{return} nodes.ToArray();
-451         \}
-\end{DoxyCode}
-\hypertarget{a00125_a228e10256dddbcc17c231d08b3b2140b}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!Load@{Load}}
-\index{Load@{Load}!Yarn::Loader@{Yarn\-::\-Loader}}
-\subsubsection[{Load}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Program} Yarn.\-Loader.\-Load (
-\begin{DoxyParamCaption}
-\item[{string}]{text, }
-\item[{{\bf Library}}]{library, }
-\item[{string}]{file\-Name, }
-\item[{{\bf Program}}]{include\-Program, }
-\item[{bool}]{show\-Tokens, }
-\item[{bool}]{show\-Parse\-Tree, }
-\item[{string}]{only\-Consider\-Node, }
-\item[{{\bf Node\-Format}}]{format}
-\end{DoxyParamCaption}
-)}}\label{a00125_a228e10256dddbcc17c231d08b3b2140b}
-
-
-Definition at line 194 of file Loader.\-cs.
-
-
-
-References Yarn.\-Loader.\-Get\-Format\-From\-File\-Name(), Yarn.\-Error\-Listener.\-Instance, and Yarn.\-Loader.\-preprocessor().
-
-
-\begin{DoxyCode}
-195         \{
-196             \textcolor{keywordflow}{if} (format == \hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272f}{NodeFormat}.Unknown)
-197             \{
-198                 format = \hyperlink{a00125_a080b2d6b7553c178007c04297d50e9da}{GetFormatFromFileName}(fileName);
-199             \}
-200 
-201             \textcolor{comment}{// currently experimental node can only be used on yarn.txt yarn files and single nodes}
-202             \textcolor{keywordflow}{if} (format != \hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272f}{NodeFormat}.Text && format != \hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272f}{NodeFormat}.SingleNodeText)
-203             \{
-204                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidDataException($\textcolor{stringliteral}{"Invalid node format \{format\}"});
-205             \}
-206             \textcolor{comment}{// this isn't the greatest...}
-207             \textcolor{keywordflow}{if} (format == \hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272f}{NodeFormat}.SingleNodeText)
-208             \{
-209                 \textcolor{comment}{// it is just the body}
-210                 \textcolor{comment}{// need to add a dummy header and body delimiters}
-211                 StringBuilder builder = \textcolor{keyword}{new} StringBuilder();
-212                 builder.Append(\textcolor{stringliteral}{"title:Start\(\backslash\)n"});
-213                 builder.Append(\textcolor{stringliteral}{"---\(\backslash\)n"});
-214                 builder.Append(text);
-215                 builder.Append(\textcolor{stringliteral}{"\(\backslash\)n===\(\backslash\)n"});
-216                 text = builder.ToString();
-217             \}
-218 
-219             \textcolor{keywordtype}{string} inputString = \hyperlink{a00125_a0b09a29edd2ed13d52203f1b71a47081}{preprocessor}(text);
-220             ICharStream input = CharStreams.fromstring(inputString);
-221 
-222             YarnSpinnerLexer lexer = \textcolor{keyword}{new} YarnSpinnerLexer(input);
-223             CommonTokenStream tokens = \textcolor{keyword}{new} CommonTokenStream(lexer);
-224 
-225             YarnSpinnerParser parser = \textcolor{keyword}{new} YarnSpinnerParser(tokens);
-226             \textcolor{comment}{// turning off the normal error listener and using ours}
-227             parser.RemoveErrorListeners();
-228             parser.AddErrorListener(\hyperlink{a00096_a47b8f4f1d414afa1ea6067218c7ee34d}{ErrorListener.Instance});
-229 
-230             IParseTree tree = parser.dialogue();
-231             Compiler compiler = \textcolor{keyword}{new} Compiler(library);
-232             compiler.Compile(tree);
-233 
-234             \textcolor{comment}{// merging in the other program if requested}
-235             \textcolor{keywordflow}{if} (includeProgram != null)
-236             \{
-237                 compiler.program.Include(includeProgram);
-238             \}
-239 
-240             \textcolor{keywordflow}{return} compiler.program;
-241         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00125_a228e10256dddbcc17c231d08b3b2140b_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00125_a0b09a29edd2ed13d52203f1b71a47081}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!preprocessor@{preprocessor}}
-\index{preprocessor@{preprocessor}!Yarn::Loader@{Yarn\-::\-Loader}}
-\subsubsection[{preprocessor}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Loader.\-preprocessor (
-\begin{DoxyParamCaption}
-\item[{string}]{node\-Text}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00125_a0b09a29edd2ed13d52203f1b71a47081}
-
-
-Definition at line 82 of file Loader.\-cs.
-
-
-
-References preprocessor.\-D\-E\-D\-E\-N\-T, preprocessor.\-I\-N\-D\-E\-N\-T, preprocessor.\-indents, preprocessor.\-O\-P\-T\-I\-O\-N, preprocessor.\-should\-Track\-Next\-Indentation, and preprocessor.\-top\-Level.
-
-
-
-Referenced by Yarn.\-Loader.\-Load().
-
-
-\begin{DoxyCode}
-83         \{
-84             \textcolor{keywordtype}{string} processed = null;
-85 
-86             \textcolor{keyword}{using} (StringReader reader = \textcolor{keyword}{new} StringReader(nodeText))
-87             \{
-88                 \textcolor{comment}{// a list to hold outputLines once they have been cleaned up}
-89                 List<string> outputLines = \textcolor{keyword}{new} List<string>();
-90 
-91                 \textcolor{comment}{// a stack to keep track of how far indented we are}
-92                 \textcolor{comment}{// made up of ints and bools}
-93                 \textcolor{comment}{// ints track the depth, bool tracks if we emitted an indent token}
-94                 \textcolor{comment}{// starts with 0 and false so we can never fall off the end of the stack}
-95                 Stack<EmissionTuple> \hyperlink{a00321_a00fba9ee9674b2513dbe28eab795b734}{indents} = \textcolor{keyword}{new} Stack<EmissionTuple>();
-96                 indents.Push(\textcolor{keyword}{new} EmissionTuple(0, \textcolor{keyword}{false}));
-97 
-98                 \textcolor{comment}{// a bool to determine if we are in a mode where we need to track indents}
-99                 \textcolor{keywordtype}{bool} \hyperlink{a00321_afa485f45ab87bc0f06c1dfc46737c057}{shouldTrackNextIndentation} = \textcolor{keyword}{false};
-100 
-101                 \textcolor{keywordtype}{char} \hyperlink{a00321_ae3f2190a793ab77428838e58e0e83676}{INDENT} = \textcolor{charliteral}{'\(\backslash\)a'};
-102                 \textcolor{keywordtype}{char} \hyperlink{a00321_a83653c3e52fa74614e655a91ad2b7181}{DEDENT} = \textcolor{charliteral}{'\(\backslash\)v'};
-103                 \textcolor{comment}{//string INDENT = "\{";}
-104                 \textcolor{comment}{//string DEDENT = "\}";}
-105 
-106                 \textcolor{keywordtype}{string} \hyperlink{a00321_a7ca2dc5371587b21476669a45af013cd}{OPTION} = \textcolor{stringliteral}{"->"};
-107 
-108                 \textcolor{keywordtype}{string} line;
-109                 \textcolor{keywordflow}{while} ((line = reader.ReadLine()) != null)
-110                 \{
-111                     \textcolor{comment}{// replacing \(\backslash\)t with 4 spaces}
-112                     \textcolor{keywordtype}{string} tweakedLine = line.Replace(\textcolor{stringliteral}{"\(\backslash\)t"}, \textcolor{stringliteral}{"    "});
-113                     \textcolor{comment}{// stripping of any trailing newlines, will add them back in later}
-114                     tweakedLine = tweakedLine.TrimEnd(\textcolor{charliteral}{'\(\backslash\)r'}, \textcolor{charliteral}{'\(\backslash\)n'});
-115 
-116                     \textcolor{comment}{// getting the number of indents on this line}
-117                     \textcolor{keywordtype}{int} lineIndent = tweakedLine.TakeWhile(Char.IsWhiteSpace).Count();
-118 
-119                     \textcolor{comment}{// working out if it is an option (ie does it start with ->)}
-120                     \textcolor{keywordtype}{bool} isOption = tweakedLine.TrimStart(\textcolor{charliteral}{' '}).StartsWith(OPTION, StringComparison.
-      InvariantCulture);
-121 
-122                     \textcolor{comment}{// are we in a state where we need to track indents?}
-123                     var previous = indents.Peek();
-124                     \textcolor{keywordflow}{if} (shouldTrackNextIndentation && (lineIndent > previous.depth))
-125                     \{
-126                         indents.Push(\textcolor{keyword}{new} EmissionTuple(lineIndent, \textcolor{keyword}{true}));
-127                         \textcolor{comment}{// adding an indent to the stream}
-128                         \textcolor{comment}{// tries to add it to the end of the previous line where possible}
-129                         \textcolor{keywordflow}{if} (outputLines.Count == 0)
-130                         \{
-131                             tweakedLine = INDENT + tweakedLine;
-132                         \}
-133                         \textcolor{keywordflow}{else}
-134                         \{
-135                             outputLines[outputLines.Count - 1] = outputLines[outputLines.Count - 1] + 
-      \hyperlink{a00321_ae3f2190a793ab77428838e58e0e83676}{INDENT};
-136                         \}
-137 
-138                         shouldTrackNextIndentation = \textcolor{keyword}{false};
-139                     \}
-140                     \textcolor{comment}{// have we finished with the current block of statements}
-141                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (lineIndent < previous.depth)
-142                     \{
-143                         \textcolor{keywordflow}{while} (lineIndent < indents.Peek().depth)
-144                         \{
-145                             var \hyperlink{a00321_a8b7e5c0b2c6870eaa8f9454b4f33678b}{topLevel} = indents.Pop();
-146 
-147                             \textcolor{keywordflow}{if} (topLevel.emitted)
-148                             \{
-149                                 \textcolor{comment}{// adding dedents}
-150                                 \textcolor{keywordflow}{if} (outputLines.Count == 0)
-151                                 \{
-152                                     tweakedLine = DEDENT + tweakedLine;
-153                                 \}
-154                                 \textcolor{keywordflow}{else}
-155                                 \{
-156                                     outputLines[outputLines.Count - 1] = outputLines[outputLines.Count - 1]
-       + \hyperlink{a00321_a83653c3e52fa74614e655a91ad2b7181}{DEDENT};
-157                                 \}
-158                             \}
-159                         \}
-160                     \}
-161                     \textcolor{keywordflow}{else}
-162                     \{
-163                         shouldTrackNextIndentation = \textcolor{keyword}{false};
-164                     \}
-165 
-166                     \textcolor{comment}{// do we need to track the indents for the next statement?}
-167                     \textcolor{keywordflow}{if} (isOption)
-168                     \{
-169                         shouldTrackNextIndentation = \textcolor{keyword}{true};
-170                         \textcolor{keywordflow}{if} (indents.Peek().depth < lineIndent)
-171                         \{
-172                             indents.Push(\textcolor{keyword}{new} EmissionTuple(lineIndent, \textcolor{keyword}{false}));
-173                         \}
-174                     \}
-175                     outputLines.Add(tweakedLine);
-176                 \}
-177                 \textcolor{comment}{// mash it all back together now}
-178                 StringBuilder builder = \textcolor{keyword}{new} StringBuilder();
-179                 \textcolor{keywordflow}{foreach} (\textcolor{keywordtype}{string} outLine \textcolor{keywordflow}{in} outputLines)
-180                 \{
-181                     builder.Append(outLine);
-182                     builder.Append(\textcolor{stringliteral}{"\(\backslash\)n"});
-183                 \}
-184                 processed = builder.ToString();
-185             \}
-186 
-187             \textcolor{keywordflow}{return} processed;
-188         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=338pt]{a00125_a0b09a29edd2ed13d52203f1b71a47081_icgraph}
-\end{center}
-\end{figure}
-
-
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00125_a89d1f29eba1c52c96c62a4cfe7859a1d}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!dialogue@{dialogue}}
-\index{dialogue@{dialogue}!Yarn::Loader@{Yarn\-::\-Loader}}
-\subsubsection[{dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn.\-Loader.\-dialogue\hspace{0.3cm}{\ttfamily [private]}}}\label{a00125_a89d1f29eba1c52c96c62a4cfe7859a1d}
+\hypertarget{a00125_a7165cafce64a3deafc41b2090ddf8d0e}{\index{Yarn\-::\-Line\-Info@{Yarn\-::\-Line\-Info}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::LineInfo@{Yarn\-::\-Line\-Info}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Line\-Info.\-line\-Number}}\label{a00125_a7165cafce64a3deafc41b2090ddf8d0e}
 
 
-Definition at line 54 of file Loader.\-cs.
-
-
-
-Referenced by Yarn.\-Loader.\-Loader().
+Definition at line 37 of file Program.\-cs.
 
 
 
-\subsection{Property Documentation}
-\hypertarget{a00125_a6d8296076823c0c082df9024367f4860}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!program@{program}}
-\index{program@{program}!Yarn::Loader@{Yarn\-::\-Loader}}
-\subsubsection[{program}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Program} Yarn.\-Loader.\-program\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00125_a6d8296076823c0c082df9024367f4860}
+Referenced by Yarn.\-Line\-Info.\-Line\-Info().
+
+\hypertarget{a00125_a5a91331fb123e29d71d69e096f943c2f}{\index{Yarn\-::\-Line\-Info@{Yarn\-::\-Line\-Info}!node\-Name@{node\-Name}}
+\index{node\-Name@{node\-Name}!Yarn::LineInfo@{Yarn\-::\-Line\-Info}}
+\subsubsection[{node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Line\-Info.\-node\-Name}}\label{a00125_a5a91331fb123e29d71d69e096f943c2f}
 
 
-Definition at line 56 of file Loader.\-cs.
+Definition at line 38 of file Program.\-cs.
 
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+Referenced by Yarn.\-Line\-Info.\-Line\-Info().
+
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00288}{Loader.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00292}{Program.\-cs}\end{DoxyCompactItemize}

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: YarnSpinner/YarnSpinnerParserVisitor.cs File Reference</title>
+<title>YarnSpinner: YarnSpinner/YarnSpinnerParserBaseListener.cs File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -108,7 +108,7 @@ $(document).ready(function(){initNavTree('a00297.html','');});
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
-<div class="title">YarnSpinnerParserVisitor.cs File Reference</div>  </div>
+<div class="title">YarnSpinnerParserBaseListener.cs File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -116,27 +116,75 @@ $(document).ready(function(){initNavTree('a00297.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html">IYarnSpinnerParserVisitor&lt; Result &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This interface defines a complete generic visitor for a parse tree produced by YarnSpinnerParser.  <a href="a00119.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00175.html">YarnSpinnerParserBaseListener</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class provides an empty implementation of <a class="el" href="a00120.html" title="This interface defines a complete listener for a parse tree produced by YarnSpinnerParser. ">IYarnSpinnerParserListener</a>, which can be extended to create a listener which only needs to handle a subset of the available methods.  <a href="a00175.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:af5d51a3c18761c8348444279f29c7007"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00297.html#af5d51a3c18761c8348444279f29c7007">IErrorNode</a> = Antlr4.Runtime.Tree.IErrorNode</td></tr>
+<tr class="separator:af5d51a3c18761c8348444279f29c7007"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72f9ef657b5686a84acec94a9d7302d1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00297.html#a72f9ef657b5686a84acec94a9d7302d1">ITerminalNode</a> = Antlr4.Runtime.Tree.ITerminalNode</td></tr>
+<tr class="separator:a72f9ef657b5686a84acec94a9d7302d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3d87b0b748ea892bff48f60862e182d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00297.html#ae3d87b0b748ea892bff48f60862e182d">IToken</a> = Antlr4.Runtime.IToken</td></tr>
 <tr class="separator:ae3d87b0b748ea892bff48f60862e182d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e45f8222713cb764832fd3c69d0268f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00297.html#a7e45f8222713cb764832fd3c69d0268f">ParserRuleContext</a> = Antlr4.Runtime.ParserRuleContext</td></tr>
+<tr class="separator:a7e45f8222713cb764832fd3c69d0268f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="af5d51a3c18761c8348444279f29c7007"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="a00297.html#af5d51a3c18761c8348444279f29c7007">IErrorNode</a> =  Antlr4.Runtime.Tree.IErrorNode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00297_source.html#l00024">24</a> of file <a class="el" href="a00297_source.html">YarnSpinnerParserBaseListener.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a72f9ef657b5686a84acec94a9d7302d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="a00297.html#a72f9ef657b5686a84acec94a9d7302d1">ITerminalNode</a> =  Antlr4.Runtime.Tree.ITerminalNode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00297_source.html#l00025">25</a> of file <a class="el" href="a00297_source.html">YarnSpinnerParserBaseListener.cs</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ae3d87b0b748ea892bff48f60862e182d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="a00294.html#ae3d87b0b748ea892bff48f60862e182d">IToken</a> =  Antlr4.Runtime.IToken</td>
+          <td class="memname">using <a class="el" href="a00297.html#ae3d87b0b748ea892bff48f60862e182d">IToken</a> =  Antlr4.Runtime.IToken</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00297_source.html#l00024">24</a> of file <a class="el" href="a00297_source.html">YarnSpinnerParserVisitor.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00297_source.html#l00026">26</a> of file <a class="el" href="a00297_source.html">YarnSpinnerParserBaseListener.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7e45f8222713cb764832fd3c69d0268f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="a00297.html#a7e45f8222713cb764832fd3c69d0268f">ParserRuleContext</a> =  Antlr4.Runtime.ParserRuleContext</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00297_source.html#l00027">27</a> of file <a class="el" href="a00297_source.html">YarnSpinnerParserBaseListener.cs</a>.</p>
 
 </div>
 </div>
@@ -145,8 +193,8 @@ Typedefs</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00297.html">YarnSpinnerParserVisitor.cs</a></li>
-    <li class="footer">Generated on Wed Aug 28 2019 22:42:48 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00297.html">YarnSpinnerParserBaseListener.cs</a></li>
+    <li class="footer">Generated on Wed Oct 23 2019 00:35:55 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

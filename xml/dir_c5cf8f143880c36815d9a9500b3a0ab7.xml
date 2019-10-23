@@ -2,12 +2,12 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_c5cf8f143880c36815d9a9500b3a0ab7" kind="dir">
     <compoundname>Unity/Assets/YarnSpinner/Code/Editor</compoundname>
-    <innerfile refid="a00270">YarnSpinnerEditorWindow.cs</innerfile>
-    <innerfile refid="a00271">YarnSpinnerTests.cs</innerfile>
+    <innerfile refid="a00273">YarnSpinnerEditorWindow.cs</innerfile>
+    <innerfile refid="a00274">YarnSpinnerTests.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/"/>
   </compounddef>
 </doxygen>

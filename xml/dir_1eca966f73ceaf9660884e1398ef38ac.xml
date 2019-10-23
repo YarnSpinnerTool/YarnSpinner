@@ -4,26 +4,26 @@
     <compoundname>YarnSpinner</compoundname>
     <innerdir refid="dir_a555ed209f3713798e5905e3d3cb40ce">YarnSpinner/ANTLR</innerdir>
     <innerdir refid="dir_27b0c1af8c4e705ac80588c758eab39a">YarnSpinner/Properties</innerdir>
-    <innerfile refid="a00279">Analyser.cs</innerfile>
-    <innerfile refid="a00281">Compiler.cs</innerfile>
-    <innerfile refid="a00282">Dialogue.cs</innerfile>
-    <innerfile refid="a00283">ErrorListener.cs</innerfile>
-    <innerfile refid="a00284">GlobalSuppressions.cs</innerfile>
-    <innerfile refid="a00287">Library.cs</innerfile>
-    <innerfile refid="a00288">Loader.cs</innerfile>
-    <innerfile refid="a00289">Program.cs</innerfile>
-    <innerfile refid="a00290">Value.cs</innerfile>
-    <innerfile refid="a00291">VirtualMachine.cs</innerfile>
-    <innerfile refid="a00292">YarnSpinnerLexer.cs</innerfile>
-    <innerfile refid="a00293">YarnSpinnerParser.cs</innerfile>
-    <innerfile refid="a00294">YarnSpinnerParserBaseListener.cs</innerfile>
-    <innerfile refid="a00295">YarnSpinnerParserBaseVisitor.cs</innerfile>
-    <innerfile refid="a00296">YarnSpinnerParserListener.cs</innerfile>
-    <innerfile refid="a00297">YarnSpinnerParserVisitor.cs</innerfile>
+    <innerfile refid="a00282">Analyser.cs</innerfile>
+    <innerfile refid="a00284">Compiler.cs</innerfile>
+    <innerfile refid="a00285">Dialogue.cs</innerfile>
+    <innerfile refid="a00286">ErrorListener.cs</innerfile>
+    <innerfile refid="a00287">GlobalSuppressions.cs</innerfile>
+    <innerfile refid="a00290">Library.cs</innerfile>
+    <innerfile refid="a00291">Loader.cs</innerfile>
+    <innerfile refid="a00292">Program.cs</innerfile>
+    <innerfile refid="a00293">Value.cs</innerfile>
+    <innerfile refid="a00294">VirtualMachine.cs</innerfile>
+    <innerfile refid="a00295">YarnSpinnerLexer.cs</innerfile>
+    <innerfile refid="a00296">YarnSpinnerParser.cs</innerfile>
+    <innerfile refid="a00297">YarnSpinnerParserBaseListener.cs</innerfile>
+    <innerfile refid="a00298">YarnSpinnerParserBaseVisitor.cs</innerfile>
+    <innerfile refid="a00299">YarnSpinnerParserListener.cs</innerfile>
+    <innerfile refid="a00300">YarnSpinnerParserVisitor.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/"/>
   </compounddef>
 </doxygen>

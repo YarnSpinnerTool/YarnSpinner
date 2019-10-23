@@ -1,95 +1,89 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00113" kind="struct" prot="public">
-    <compoundname>Yarn::Instruction</compoundname>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00113_1a566bf5f7198cc353ea5c3710cb3a31cb" prot="public" static="no" mutable="no">
-        <type><ref refid="a00048_1ad5dfb6ee68ca7469623ad3e459f98894" kindref="member">ByteCode</ref></type>
-        <definition>ByteCode Yarn.Instruction.operation</definition>
+  <compounddef id="a00113" kind="interface" prot="public">
+    <compoundname>CsvHelper::ICsvSerializer</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IDisposable</basecompoundref>
+    <derivedcompoundref refid="a00078" prot="public" virt="non-virtual">CsvHelper.CsvSerializer</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00113_1a54d241fe87517707b6f85c30fe8b3a95" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type><ref refid="a00062" kindref="compound">CsvConfiguration</ref></type>
+        <definition>CsvConfiguration CsvHelper.ICsvSerializer.Configuration</definition>
         <argsstring></argsstring>
-        <name>operation</name>
+        <name>Configuration</name>
         <briefdescription>
-        </briefdescription>
+<para>Gets the configuration. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="231" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="231" bodyend="-1"/>
-        <referencedby refid="a00145_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00291" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
-        <referencedby refid="a00113_1a939d511f211e8a61cfbca902e802564f" compoundref="a00289" startline="235" endline="324">Yarn.Instruction.ToString</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00113_1ab5d386faa0d3dbc23db80f8e62706afd" prot="public" static="no" mutable="no">
-        <type>object</type>
-        <definition>object Yarn.Instruction.operandA</definition>
-        <argsstring></argsstring>
-        <name>operandA</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="232" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="232" bodyend="-1"/>
-        <referencedby refid="a00145_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00291" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
-        <referencedby refid="a00113_1a939d511f211e8a61cfbca902e802564f" compoundref="a00289" startline="235" endline="324">Yarn.Instruction.ToString</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00113_1a56348c6fe7eb919b7277afc06e5b224a" prot="public" static="no" mutable="no">
-        <type>object</type>
-        <definition>object Yarn.Instruction.operandB</definition>
-        <argsstring></argsstring>
-        <name>operandB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="233" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="233" bodyend="-1"/>
-        <referencedby refid="a00113_1a939d511f211e8a61cfbca902e802564f" compoundref="a00289" startline="235" endline="324">Yarn.Instruction.ToString</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvSerializer.cs" line="18" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvSerializer.cs" bodystart="18" bodyend="-1"/>
+        <referencedby refid="a00080_1a7f0a2275eca1400653e40d729be6d474" compoundref="a00221" startline="80" endline="94">CsvHelper.CsvWriter.CsvWriter</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00113_1a939d511f211e8a61cfbca902e802564f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
-        <definition>string Yarn.Instruction.ToString</definition>
-        <argsstring>(Program p, Library l)</argsstring>
-        <name>ToString</name>
+      <memberdef kind="function" id="a00113_1a0b442858eef85b7d933662359646fd0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvSerializer.Write</definition>
+        <argsstring>(string[] record)</argsstring>
+        <name>Write</name>
+        <reimplementedby refid="a00078_1aefad906acd048863d3dd414651a44793">Write</reimplementedby>
         <param>
-          <type><ref refid="a00138" kindref="compound">Program</ref></type>
-          <declname>p</declname>
-        </param>
-        <param>
-          <type><ref refid="a00121" kindref="compound">Library</ref></type>
-          <declname>l</declname>
+          <type>string[]</type>
+          <declname>record</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Writes a record to the CSV file. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>record</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The record to write.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="235" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="235" bodyend="324"/>
-        <references refid="a00113_1ab5d386faa0d3dbc23db80f8e62706afd" compoundref="a00289" startline="232">Yarn.Instruction.operandA</references>
-        <references refid="a00113_1a56348c6fe7eb919b7277afc06e5b224a" compoundref="a00289" startline="233">Yarn.Instruction.operandB</references>
-        <references refid="a00113_1a566bf5f7198cc353ea5c3710cb3a31cb" compoundref="a00289" startline="231">Yarn.Instruction.operation</references>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvSerializer.cs" line="24" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Defines methods used to serialize data into a CSV file. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1259">
-        <label>Yarn.Instruction</label>
+    <inheritancegraph>
+      <node id="1250">
+        <label>CsvHelper.CsvSerializer</label>
+        <link refid="a00078"/>
+        <childnode refid="1248" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1248">
+        <label>CsvHelper.ICsvSerializer</label>
         <link refid="a00113"/>
+        <childnode refid="1249" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1249">
+        <label>IDisposable</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1251">
+        <label>CsvHelper.ICsvSerializer</label>
+        <link refid="a00113"/>
+        <childnode refid="1252" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1252">
+        <label>IDisposable</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="230" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="229" bodyend="325"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvSerializer.cs" line="14" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvSerializer.cs" bodystart="13" bodyend="25"/>
     <listofallmembers>
-      <member refid="a00113_1ab5d386faa0d3dbc23db80f8e62706afd" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>operandA</name></member>
-      <member refid="a00113_1a56348c6fe7eb919b7277afc06e5b224a" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>operandB</name></member>
-      <member refid="a00113_1a566bf5f7198cc353ea5c3710cb3a31cb" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>operation</name></member>
-      <member refid="a00113_1a939d511f211e8a61cfbca902e802564f" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>ToString</name></member>
+      <member refid="a00113_1a54d241fe87517707b6f85c30fe8b3a95" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvSerializer</scope><name>Configuration</name></member>
+      <member refid="a00113_1a0b442858eef85b7d933662359646fd0b" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvSerializer</scope><name>Write</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

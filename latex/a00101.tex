@@ -1,308 +1,98 @@
-\hypertarget{a00101}{\section{Yarn.\-Function\-Info Class Reference}
-\label{a00101}\index{Yarn.\-Function\-Info@{Yarn.\-Function\-Info}}
+\hypertarget{a00101}{\section{Yarn.\-Execution\-Options Class Reference}
+\label{a00101}\index{Yarn.\-Execution\-Options@{Yarn.\-Execution\-Options}}
 }
 
 
-Collaboration diagram for Yarn.\-Function\-Info\-:
+Inheritance diagram for Yarn.\-Execution\-Options\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=222pt]{a00609}
+\includegraphics[width=350pt]{a00648}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00165}{Value} \hyperlink{a00101_ab400ac66785d7df2e3fc0f3ce3796044}{Invoke} (params \hyperlink{a00165}{Value}\mbox{[}$\,$\mbox{]} parameters)
-\item 
-\hyperlink{a00165}{Value} \hyperlink{a00101_a3ce11058d35232907a738de4bb094c67}{Invoke\-With\-Array} (\hyperlink{a00165}{Value}\mbox{[}$\,$\mbox{]} parameters)
-\end{DoxyCompactItemize}
-\subsection*{Package Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00101_a93457cd0e838cb2ef59cc2a3a46ce758}{Function\-Info} (string \hyperlink{a00101_adb38e83e3c1597b553aeff14bef5bfcb}{name}, int \hyperlink{a00101_aa8527de9e4f153b05164ccaf167c3186}{param\-Count}, \hyperlink{a00048_ae0be2e5cf13d5779816102439e61ff1a}{Function} implementation)
-\item 
-\hyperlink{a00101_a41d97c09da25caede70cb734d18113b9}{Function\-Info} (string \hyperlink{a00101_adb38e83e3c1597b553aeff14bef5bfcb}{name}, int \hyperlink{a00101_aa8527de9e4f153b05164ccaf167c3186}{param\-Count}, \hyperlink{a00048_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} implementation)
-\item 
-bool \hyperlink{a00101_a1ed09ff8aafa230a0d2bbc23cd6cd763}{Is\-Parameter\-Count\-Correct} (int parameter\-Count)
-\end{DoxyCompactItemize}
+
+
+Collaboration diagram for Yarn.\-Execution\-Options\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{a00649}
+\end{center}
+\end{figure}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00101_adb38e83e3c1597b553aeff14bef5bfcb}{name}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+string \hyperlink{a00101_a7e43c3b73722956cb0f5d507e4eef527}{string\-Table}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-int \hyperlink{a00101_aa8527de9e4f153b05164ccaf167c3186}{param\-Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+string \hyperlink{a00101_af4c0062a1d46281d377f87084fde374e}{only\-Consider\-Node}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-\hyperlink{a00048_ae0be2e5cf13d5779816102439e61ff1a}{Function} \hyperlink{a00101_a1dd2f9d11614a2fce170b3f3eecdb5f9}{function}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+bool \hyperlink{a00042_a89964ea17bd19caf00cb5bff563ed01c}{show\-Debugging\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-\hyperlink{a00048_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} \hyperlink{a00101_a8b6e0e5a875c427a1d947f3c52c308ca}{returning\-Function}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+bool \hyperlink{a00042_ada4d83d1756918f362d55f6649b82b17}{verbose}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-bool \hyperlink{a00101_acaff044276aa230de7c0b27dd5267bc7}{returns\-Value}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+I\-List$<$ string $>$ \hyperlink{a00042_aa93cbb1bc1d5328e0a417012621e92d2}{files}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 12 of file Library.\-cs.
-
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00101_a93457cd0e838cb2ef59cc2a3a46ce758}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Function\-Info@{Function\-Info}}
-\index{Function\-Info@{Function\-Info}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{Function\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Function\-Info.\-Function\-Info (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{param\-Count, }
-\item[{{\bf Function}}]{implementation}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00101_a93457cd0e838cb2ef59cc2a3a46ce758}
-
-
-Definition at line 68 of file Library.\-cs.
-
-
-
-References Yarn.\-Function\-Info.\-name, and Yarn.\-Function\-Info.\-param\-Count.
-
-
-\begin{DoxyCode}
-68                                                                                     \{
-69             this.name = \hyperlink{a00101_adb38e83e3c1597b553aeff14bef5bfcb}{name};
-70             this.paramCount = \hyperlink{a00101_aa8527de9e4f153b05164ccaf167c3186}{paramCount};
-71             this.function = implementation;
-72             this.returningFunction = null;
-73         \}
-\end{DoxyCode}
-\hypertarget{a00101_a41d97c09da25caede70cb734d18113b9}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Function\-Info@{Function\-Info}}
-\index{Function\-Info@{Function\-Info}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{Function\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Function\-Info.\-Function\-Info (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{param\-Count, }
-\item[{{\bf Returning\-Function}}]{implementation}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00101_a41d97c09da25caede70cb734d18113b9}
-
-
-Definition at line 75 of file Library.\-cs.
-
-
-
-References Yarn.\-Function\-Info.\-name, and Yarn.\-Function\-Info.\-param\-Count.
-
-
-\begin{DoxyCode}
-75                                                                                              \{
-76             this.name = \hyperlink{a00101_adb38e83e3c1597b553aeff14bef5bfcb}{name};
-77             this.paramCount = \hyperlink{a00101_aa8527de9e4f153b05164ccaf167c3186}{paramCount};
-78             this.returningFunction = implementation;
-79             this.function = null;
-80         \}
-\end{DoxyCode}
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00101_ab400ac66785d7df2e3fc0f3ce3796044}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Invoke@{Invoke}}
-\index{Invoke@{Invoke}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{Invoke}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Function\-Info.\-Invoke (
-\begin{DoxyParamCaption}
-\item[{params {\bf Value}\mbox{[}$\,$\mbox{]}}]{parameters}
-\end{DoxyParamCaption}
-)}}\label{a00101_ab400ac66785d7df2e3fc0f3ce3796044}
-
-
-Definition at line 35 of file Library.\-cs.
-
-
-
-References Yarn.\-Function\-Info.\-Invoke\-With\-Array().
-
-
-\begin{DoxyCode}
-35                                                        \{
-36             \textcolor{keywordflow}{return} \hyperlink{a00101_a3ce11058d35232907a738de4bb094c67}{InvokeWithArray}(parameters);
-37         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00101_ab400ac66785d7df2e3fc0f3ce3796044_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00101_a3ce11058d35232907a738de4bb094c67}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Invoke\-With\-Array@{Invoke\-With\-Array}}
-\index{Invoke\-With\-Array@{Invoke\-With\-Array}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{Invoke\-With\-Array}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Function\-Info.\-Invoke\-With\-Array (
-\begin{DoxyParamCaption}
-\item[{{\bf Value}\mbox{[}$\,$\mbox{]}}]{parameters}
-\end{DoxyParamCaption}
-)}}\label{a00101_a3ce11058d35232907a738de4bb094c67}
-
-
-Definition at line 39 of file Library.\-cs.
-
-
-
-References Yarn.\-Function\-Info.\-Is\-Parameter\-Count\-Correct(), Yarn.\-Value.\-N\-U\-L\-L, Yarn.\-Function\-Info.\-returning\-Function, and Yarn.\-Function\-Info.\-returns\-Value.
-
-
-
-Referenced by Yarn.\-Function\-Info.\-Invoke().
-
-
-\begin{DoxyCode}
-39                                                          \{
-40 
-41             \textcolor{keywordtype}{int} length;
-42 
-43             \textcolor{keywordflow}{if} (parameters != null)
-44                 length = parameters.Length;
-45             \textcolor{keywordflow}{else}
-46                 length = 0;
-47 
-48             \textcolor{keywordflow}{if} (\hyperlink{a00101_a1ed09ff8aafa230a0d2bbc23cd6cd763}{IsParameterCountCorrect} (length)) \{
-49                 \textcolor{keywordflow}{if} (\hyperlink{a00101_acaff044276aa230de7c0b27dd5267bc7}{returnsValue}) \{
-50                     \textcolor{keywordflow}{return} \textcolor{keyword}{new} Value(\hyperlink{a00101_a8b6e0e5a875c427a1d947f3c52c308ca}{returningFunction} (parameters));
-51                 \} \textcolor{keywordflow}{else} \{
-52                     \textcolor{keyword}{function} (parameters);
-53                     \textcolor{keywordflow}{return} \hyperlink{a00165_a1ed2964965baca8621c45efa23f37660}{Value.NULL}; \textcolor{comment}{// a null Value}
-54                 \}
-55             \} \textcolor{keywordflow}{else} \{
-56                 \textcolor{keywordtype}{string} error = string.Format (CultureInfo.CurrentCulture,
-57                     \textcolor{stringliteral}{"Incorrect number of parameters for function \{0\} (expected \{1\}, got \{2\}"},
-58                     this.name,
-59                     this.paramCount,
-60                     parameters.Length);
-61 
-62                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (error);
-63             \}
-64         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00101_a3ce11058d35232907a738de4bb094c67_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00101_a3ce11058d35232907a738de4bb094c67_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00101_a1ed09ff8aafa230a0d2bbc23cd6cd763}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Is\-Parameter\-Count\-Correct@{Is\-Parameter\-Count\-Correct}}
-\index{Is\-Parameter\-Count\-Correct@{Is\-Parameter\-Count\-Correct}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{Is\-Parameter\-Count\-Correct}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Function\-Info.\-Is\-Parameter\-Count\-Correct (
-\begin{DoxyParamCaption}
-\item[{int}]{parameter\-Count}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00101_a1ed09ff8aafa230a0d2bbc23cd6cd763}
-
-
-Definition at line 82 of file Library.\-cs.
-
-
-
-References Yarn.\-Function\-Info.\-param\-Count.
-
-
-
-Referenced by Yarn.\-Function\-Info.\-Invoke\-With\-Array().
-
-
-\begin{DoxyCode}
-83         \{
-84             \textcolor{keywordflow}{return} \hyperlink{a00101_aa8527de9e4f153b05164ccaf167c3186}{paramCount} == parameterCount || \hyperlink{a00101_aa8527de9e4f153b05164ccaf167c3186}{paramCount} == -1;
-85         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00101_a1ed09ff8aafa230a0d2bbc23cd6cd763_icgraph}
-\end{center}
-\end{figure}
-
+Definition at line 54 of file Main.\-cs.
 
 
 
 \subsection{Property Documentation}
-\hypertarget{a00101_a1dd2f9d11614a2fce170b3f3eecdb5f9}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!function@{function}}
-\index{function@{function}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Function} Yarn.\-Function\-Info.\-function\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00101_a1dd2f9d11614a2fce170b3f3eecdb5f9}
+\hypertarget{a00042_aa93cbb1bc1d5328e0a417012621e92d2}{\index{Yarn\-::\-Execution\-Options@{Yarn\-::\-Execution\-Options}!files@{files}}
+\index{files@{files}!Yarn::ExecutionOptions@{Yarn\-::\-Execution\-Options}}
+\subsubsection[{files}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Base\-Options.\-files\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00042_aa93cbb1bc1d5328e0a417012621e92d2}
 
 
-Definition at line 25 of file Library.\-cs.
-
-\hypertarget{a00101_adb38e83e3c1597b553aeff14bef5bfcb}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!name@{name}}
-\index{name@{name}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Function\-Info.\-name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00101_adb38e83e3c1597b553aeff14bef5bfcb}
-
-
-Definition at line 15 of file Library.\-cs.
+Definition at line 49 of file Main.\-cs.
 
 
 
-Referenced by Yarn.\-Function\-Info.\-Function\-Info().
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run(), and Yarn.\-Yarn\-Spinner\-Console.\-Verify().
 
-\hypertarget{a00101_aa8527de9e4f153b05164ccaf167c3186}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!param\-Count@{param\-Count}}
-\index{param\-Count@{param\-Count}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{param\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Function\-Info.\-param\-Count\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00101_aa8527de9e4f153b05164ccaf167c3186}
-
-
-Definition at line 19 of file Library.\-cs.
+\hypertarget{a00101_af4c0062a1d46281d377f87084fde374e}{\index{Yarn\-::\-Execution\-Options@{Yarn\-::\-Execution\-Options}!only\-Consider\-Node@{only\-Consider\-Node}}
+\index{only\-Consider\-Node@{only\-Consider\-Node}!Yarn::ExecutionOptions@{Yarn\-::\-Execution\-Options}}
+\subsubsection[{only\-Consider\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Execution\-Options.\-only\-Consider\-Node\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00101_af4c0062a1d46281d377f87084fde374e}
 
 
+Definition at line 61 of file Main.\-cs.
 
-Referenced by Yarn.\-Function\-Info.\-Function\-Info(), Yarn.\-Body\-Visitor.\-Handle\-Function(), and Yarn.\-Function\-Info.\-Is\-Parameter\-Count\-Correct().
-
-\hypertarget{a00101_a8b6e0e5a875c427a1d947f3c52c308ca}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!returning\-Function@{returning\-Function}}
-\index{returning\-Function@{returning\-Function}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{returning\-Function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Returning\-Function} Yarn.\-Function\-Info.\-returning\-Function\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00101_a8b6e0e5a875c427a1d947f3c52c308ca}
+\hypertarget{a00042_a89964ea17bd19caf00cb5bff563ed01c}{\index{Yarn\-::\-Execution\-Options@{Yarn\-::\-Execution\-Options}!show\-Debugging\-Info@{show\-Debugging\-Info}}
+\index{show\-Debugging\-Info@{show\-Debugging\-Info}!Yarn::ExecutionOptions@{Yarn\-::\-Execution\-Options}}
+\subsubsection[{show\-Debugging\-Info}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-show\-Debugging\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00042_a89964ea17bd19caf00cb5bff563ed01c}
 
 
-Definition at line 26 of file Library.\-cs.
+Definition at line 42 of file Main.\-cs.
 
 
 
-Referenced by Yarn.\-Function\-Info.\-Invoke\-With\-Array().
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
 
-\hypertarget{a00101_acaff044276aa230de7c0b27dd5267bc7}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!returns\-Value@{returns\-Value}}
-\index{returns\-Value@{returns\-Value}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{returns\-Value}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Function\-Info.\-returns\-Value\hspace{0.3cm}{\ttfamily [get]}}}\label{a00101_acaff044276aa230de7c0b27dd5267bc7}
-
-
-Definition at line 29 of file Library.\-cs.
+\hypertarget{a00101_a7e43c3b73722956cb0f5d507e4eef527}{\index{Yarn\-::\-Execution\-Options@{Yarn\-::\-Execution\-Options}!string\-Table@{string\-Table}}
+\index{string\-Table@{string\-Table}!Yarn::ExecutionOptions@{Yarn\-::\-Execution\-Options}}
+\subsubsection[{string\-Table}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Execution\-Options.\-string\-Table\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00101_a7e43c3b73722956cb0f5d507e4eef527}
 
 
+Definition at line 57 of file Main.\-cs.
 
-Referenced by Yarn.\-Function\-Info.\-Invoke\-With\-Array().
+\hypertarget{a00042_ada4d83d1756918f362d55f6649b82b17}{\index{Yarn\-::\-Execution\-Options@{Yarn\-::\-Execution\-Options}!verbose@{verbose}}
+\index{verbose@{verbose}!Yarn::ExecutionOptions@{Yarn\-::\-Execution\-Options}}
+\subsubsection[{verbose}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-verbose\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00042_ada4d83d1756918f362d55f6649b82b17}
+
+
+Definition at line 46 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Table\-Generator.\-Generate\-Tables().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00287}{Library.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner\-Console/\hyperlink{a00303}{Main.\-cs}\end{DoxyCompactItemize}

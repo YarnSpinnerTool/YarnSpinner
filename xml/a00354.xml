@@ -1,11 +1,28 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00354" kind="struct" prot="public">
-    <compoundname>Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</compoundname>
+  <compounddef id="a00354" kind="class" prot="package">
+    <compoundname>Yarn::Node</compoundname>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00354_1a3f5bca2fff413dfe075c1fcf7e58369c" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="a00354_1a156723a9252b62d288ddf611939ea7c3" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="a00115" kindref="compound">Instruction</ref> &gt;</type>
+        <definition>List&lt;Instruction&gt; Yarn.Node.instructions</definition>
+        <argsstring></argsstring>
+        <name>instructions</name>
+        <initializer>= new List&lt;<ref refid="a00115" kindref="compound">Instruction</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="216" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="216" bodyend="-1"/>
+        <referencedby refid="a00053_1a774e8c143cdda0584fcfdda98626a83c" compoundref="a00284" startline="143" endline="157">Yarn.Compiler.Emit</referencedby>
+        <referencedby refid="a00053_1acec9f57d3785de7fad1e8cac5b286ccf" compoundref="a00284" startline="300" endline="343">Yarn.Compiler.ExitBody</referencedby>
+        <referencedby refid="a00147_1af3cc0337914b9f66454a3d52208dba5f" compoundref="a00294" startline="138" endline="161">Yarn.VirtualMachine.RunNext</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00354_1a107b0de3fcfc65e99913edc01b5ce9db" prot="public" static="no" mutable="no">
         <type>string</type>
-        <definition>string Yarn.Unity.Example.SpriteSwitcher.SpriteInfo.name</definition>
+        <definition>string Yarn.Node.name</definition>
         <argsstring></argsstring>
         <name>name</name>
         <briefdescription>
@@ -14,20 +31,49 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="38" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="218" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="218" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="a00354_1adc58df011dc2841837b6cf775b372061" prot="public" static="no" mutable="no">
-        <type>Sprite</type>
-        <definition>Sprite Yarn.Unity.Example.SpriteSwitcher.SpriteInfo.sprite</definition>
+      <memberdef kind="variable" id="a00354_1a09c6af5b50925d0876283b84281b3ed4" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Node.sourceTextStringID</definition>
         <argsstring></argsstring>
-        <name>sprite</name>
+        <name>sourceTextStringID</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>the entry in the program&apos;s string table that contains the original text of this node; null if this is not available </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="222" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00354_1a9afa49f4fbc72e806a0210cb4198f12e" prot="public" static="no" mutable="no">
+        <type>Dictionary&lt; string, int &gt;</type>
+        <definition>Dictionary&lt;string, int&gt; Yarn.Node.labels</definition>
+        <argsstring></argsstring>
+        <name>labels</name>
+        <initializer>= new Dictionary&lt;string, int&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="39" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="224" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="224" bodyend="-1"/>
+        <referencedby refid="a00147_1af613c8b2d098678b6ea05b509c0a0cb6" compoundref="a00294" startline="164" endline="174">Yarn.VirtualMachine.FindInstructionPointForLabel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00354_1a811086feceebbe79a74eba071c1d516b" prot="public" static="no" mutable="no">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; Yarn.Node.tags</definition>
+        <argsstring></argsstring>
+        <name>tags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="226" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="226" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -35,15 +81,18 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="1442">
-        <label>Yarn.Unity.Example.SpriteSwitcher.SpriteInfo</label>
+      <node id="1365">
+        <label>Yarn.Node</label>
         <link refid="a00354"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="37" bodyend="40"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="214" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="213" bodyend="227"/>
     <listofallmembers>
-      <member refid="a00354_1a3f5bca2fff413dfe075c1fcf7e58369c" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</scope><name>name</name></member>
-      <member refid="a00354_1adc58df011dc2841837b6cf775b372061" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</scope><name>sprite</name></member>
+      <member refid="a00354_1a156723a9252b62d288ddf611939ea7c3" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>instructions</name></member>
+      <member refid="a00354_1a9afa49f4fbc72e806a0210cb4198f12e" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>labels</name></member>
+      <member refid="a00354_1a107b0de3fcfc65e99913edc01b5ce9db" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>name</name></member>
+      <member refid="a00354_1a09c6af5b50925d0876283b84281b3ed4" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>sourceTextStringID</name></member>
+      <member refid="a00354_1a811086feceebbe79a74eba071c1d516b" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>tags</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

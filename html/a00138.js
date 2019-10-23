@@ -1,15 +1,11 @@
 var a00138 =
 [
-    [ "DumpCode", "a00138.html#a2f5bb468ce53eb7bbe647e3c11ddbb61", null ],
-    [ "GetString", "a00138.html#a14737b93594c4aab25c59cb0a3c918f7", null ],
-    [ "GetTagsForNode", "a00138.html#a116312a32b20bc18e09f90c9c92a079f", null ],
-    [ "GetTextForNode", "a00138.html#aad8029f37832ff1985fad6a31e51afd8", null ],
-    [ "Include", "a00138.html#afd3385ca1f7589b3b9dae3646e4fee84", null ],
-    [ "LoadStrings", "a00138.html#a977d1ed02e3f6f39d30dfea1663e7927", null ],
-    [ "RegisterString", "a00138.html#a9baf491479375aa8c3aa2b0c31cf0932", null ],
-    [ "lineInfo", "a00138.html#a0d4da395947767b4a1eaaff8a9842adc", null ],
-    [ "nodes", "a00138.html#a3f4928a577c88263ad016be259b175c4", null ],
-    [ "stringCount", "a00138.html#a8ef1d10094ef00311aade6715ba78ec7", null ],
-    [ "strings", "a00138.html#a59263e00cecfe36d9881b4c30b048f09", null ],
-    [ "untaggedStrings", "a00138.html#aa8fedbfceaf931d1da3f600eaab6ae87", null ]
+    [ "CheckForNearbyNPC", "a00138.html#a574b6d984b8671c7a780d3d10e040a9b", null ],
+    [ "OnDrawGizmosSelected", "a00138.html#a9e83ec3c6e45ee4dd17215e3030f6403", null ],
+    [ "Update", "a00138.html#a8e78b2dc1cd221fb9d05b89e70155df4", null ],
+    [ "interactionRadius", "a00138.html#af89807d2195915ee9a0c42317e110fc6", null ],
+    [ "maxPosition", "a00138.html#ada9dd748a1d89a7f9b12ac8967a07ae6", null ],
+    [ "minPosition", "a00138.html#ac025d4f4afaf854f8256e0d2d03e5b52", null ],
+    [ "moveSpeed", "a00138.html#adc602a4b2c7e44e4b15a11f1ffcf07e4", null ],
+    [ "movementFromButtons", "a00138.html#a7bcde19f080bfd09bbc833b8fb555cf7", null ]
 ];

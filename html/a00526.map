@@ -1,2 +1,4 @@
-<map id="CsvHelper.TypeConversion.ITypeConverter" name="CsvHelper.TypeConversion.ITypeConverter">
+<map id="CsvHelper.TypeConversion.Int64Converter" name="CsvHelper.TypeConversion.Int64Converter">
+<area shape="rect" id="node2" href="$a00086.html" title="Converts an object to and from a string. " alt="" coords="23,177,175,298"/>
+<area shape="rect" id="node3" href="$a00119.html" title="Converts objects to and from strings. " alt="" coords="23,6,175,127"/>
 </map>

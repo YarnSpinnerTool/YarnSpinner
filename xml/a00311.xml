@@ -1,33 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00311" kind="namespace">
-    <compoundname>CsvHelper</compoundname>
-    <innerclass refid="a00056" prot="public">CsvHelper::CsvBadDataException</innerclass>
-    <innerclass refid="a00062" prot="public">CsvHelper::CsvFactory</innerclass>
-    <innerclass refid="a00063" prot="public">CsvHelper::CsvHelperException</innerclass>
-    <innerclass refid="a00064" prot="public">CsvHelper::CsvMissingFieldException</innerclass>
-    <innerclass refid="a00065" prot="public">CsvHelper::CsvParser</innerclass>
-    <innerclass refid="a00066" prot="public">CsvHelper::CsvParserException</innerclass>
-    <innerclass refid="a00074" prot="public">CsvHelper::CsvReader</innerclass>
-    <innerclass refid="a00075" prot="public">CsvHelper::CsvReaderException</innerclass>
-    <innerclass refid="a00076" prot="public">CsvHelper::CsvSerializer</innerclass>
-    <innerclass refid="a00078" prot="public">CsvHelper::CsvWriter</innerclass>
-    <innerclass refid="a00079" prot="public">CsvHelper::CsvWriterException</innerclass>
-    <innerclass refid="a00098" prot="package">CsvHelper::ExceptionHelper</innerclass>
-    <innerclass refid="a00107" prot="public">CsvHelper::ICsvFactory</innerclass>
-    <innerclass refid="a00108" prot="public">CsvHelper::ICsvParser</innerclass>
-    <innerclass refid="a00109" prot="public">CsvHelper::ICsvReader</innerclass>
-    <innerclass refid="a00110" prot="public">CsvHelper::ICsvReaderRow</innerclass>
-    <innerclass refid="a00111" prot="public">CsvHelper::ICsvSerializer</innerclass>
-    <innerclass refid="a00112" prot="public">CsvHelper::ICsvWriter</innerclass>
-    <innerclass refid="a00140" prot="package">CsvHelper::ReflectionHelper</innerclass>
-    <innerclass refid="a00150" prot="package">CsvHelper::StringHelper</innerclass>
-    <innernamespace refid="a00312">CsvHelper::Configuration</innernamespace>
-    <innernamespace refid="a00313">CsvHelper::TypeConversion</innernamespace>
+    <compoundname>Antlr4::Runtime::Misc</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="[generated]" line="1" column="1"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" line="4" column="1"/>
   </compounddef>
 </doxygen>

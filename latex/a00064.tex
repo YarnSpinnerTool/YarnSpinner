@@ -1,153 +1,302 @@
-\hypertarget{a00064}{\section{Csv\-Helper.\-Csv\-Missing\-Field\-Exception Class Reference}
-\label{a00064}\index{Csv\-Helper.\-Csv\-Missing\-Field\-Exception@{Csv\-Helper.\-Csv\-Missing\-Field\-Exception}}
+\hypertarget{a00064}{\section{Csv\-Helper.\-Csv\-Factory Class Reference}
+\label{a00064}\index{Csv\-Helper.\-Csv\-Factory@{Csv\-Helper.\-Csv\-Factory}}
 }
 
 
-Represents an error caused because a field is missing in the header while reading a C\-S\-V file.  
+Creates \hyperlink{a00314}{Csv\-Helper} classes.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Csv\-Missing\-Field\-Exception\-:
+Inheritance diagram for Csv\-Helper.\-Csv\-Factory\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=228pt]{a00399}
+\includegraphics[width=196pt]{a00396}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Csv\-Missing\-Field\-Exception\-:
+Collaboration diagram for Csv\-Helper.\-Csv\-Factory\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=228pt]{a00400}
+\includegraphics[width=196pt]{a00397}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00064_ac65429fd7aadcadd7d362722f7a3cab7}{Csv\-Missing\-Field\-Exception} ()
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00064}{Csv\-Missing\-Field\-Exception} class. \end{DoxyCompactList}\item 
-\hyperlink{a00064_aa0b611d59d2c9c47047de427b35cf6a7}{Csv\-Missing\-Field\-Exception} (string message)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00064}{Csv\-Missing\-Field\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
-\hyperlink{a00064_a1a6eb7ea392bc14d0da95e447ac001dc}{Csv\-Missing\-Field\-Exception} (string message, Exception inner\-Exception)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00064}{Csv\-Missing\-Field\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
-\hyperlink{a00064_a867cc21f971ca654865f2cce8e1b971d}{Csv\-Missing\-Field\-Exception} (Serialization\-Info info, Streaming\-Context context)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00064}{Csv\-Missing\-Field\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual \hyperlink{a00110}{I\-Csv\-Parser} \hyperlink{a00064_a741fb4a1622778af65bfa27606bf6f25}{Create\-Parser} (Text\-Reader reader, \hyperlink{a00062}{Csv\-Configuration} configuration)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00110}{I\-Csv\-Parser}. \end{DoxyCompactList}\item 
+virtual \hyperlink{a00110}{I\-Csv\-Parser} \hyperlink{a00064_a07665ae71961a161552189877d11a5be}{Create\-Parser} (Text\-Reader reader)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00110}{I\-Csv\-Parser}. \end{DoxyCompactList}\item 
+virtual \hyperlink{a00111}{I\-Csv\-Reader} \hyperlink{a00064_a12b1358fc847e407519a76b7fe003a34}{Create\-Reader} (Text\-Reader reader, \hyperlink{a00062}{Csv\-Configuration} configuration)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00111}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
+virtual \hyperlink{a00111}{I\-Csv\-Reader} \hyperlink{a00064_a77bcca4ad5023f5628c519c2914da5bb}{Create\-Reader} (Text\-Reader reader)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00111}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
+virtual \hyperlink{a00111}{I\-Csv\-Reader} \hyperlink{a00064_a4e7e06df9265cbd53219c964424cec1e}{Create\-Reader} (\hyperlink{a00110}{I\-Csv\-Parser} parser)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00111}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
+virtual \hyperlink{a00114}{I\-Csv\-Writer} \hyperlink{a00064_a6bfe534b70ff92ea3809f1a372d160cc}{Create\-Writer} (Text\-Writer writer, \hyperlink{a00062}{Csv\-Configuration} configuration)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00114}{I\-Csv\-Writer}. \end{DoxyCompactList}\item 
+virtual \hyperlink{a00114}{I\-Csv\-Writer} \hyperlink{a00064_a0cec3a639b206f2d88debdc50413202a}{Create\-Writer} (Text\-Writer writer)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00114}{I\-Csv\-Writer}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Represents an error caused because a field is missing in the header while reading a C\-S\-V file. 
+Creates \hyperlink{a00314}{Csv\-Helper} classes. 
 
 
 
-Definition at line 19 of file Csv\-Missing\-Field\-Exception.\-cs.
+Definition at line 13 of file Csv\-Factory.\-cs.
 
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00064_ac65429fd7aadcadd7d362722f7a3cab7}{\index{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}!Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}}
-\index{Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}!CsvHelper::CsvMissingFieldException@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}}
-\subsubsection[{Csv\-Missing\-Field\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Missing\-Field\-Exception.\-Csv\-Missing\-Field\-Exception (
+\subsection{Member Function Documentation}
+\hypertarget{a00064_a741fb4a1622778af65bfa27606bf6f25}{\index{Csv\-Helper\-::\-Csv\-Factory@{Csv\-Helper\-::\-Csv\-Factory}!Create\-Parser@{Create\-Parser}}
+\index{Create\-Parser@{Create\-Parser}!CsvHelper::CsvFactory@{Csv\-Helper\-::\-Csv\-Factory}}
+\subsubsection[{Create\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Csv\-Parser} Csv\-Helper.\-Csv\-Factory.\-Create\-Parser (
 \begin{DoxyParamCaption}
-{}
+\item[{Text\-Reader}]{reader, }
+\item[{{\bf Csv\-Configuration}}]{configuration}
 \end{DoxyParamCaption}
-)}}\label{a00064_ac65429fd7aadcadd7d362722f7a3cab7}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a741fb4a1622778af65bfa27606bf6f25}
 
 
-Initializes a new instance of the \hyperlink{a00064}{Csv\-Missing\-Field\-Exception} class. 
-
-
-
-Definition at line 24 of file Csv\-Missing\-Field\-Exception.\-cs.
-
-
-\begin{DoxyCode}
-24 \{\}
-\end{DoxyCode}
-\hypertarget{a00064_aa0b611d59d2c9c47047de427b35cf6a7}{\index{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}!Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}}
-\index{Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}!CsvHelper::CsvMissingFieldException@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}}
-\subsubsection[{Csv\-Missing\-Field\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Missing\-Field\-Exception.\-Csv\-Missing\-Field\-Exception (
-\begin{DoxyParamCaption}
-\item[{string}]{message}
-\end{DoxyParamCaption}
-)}}\label{a00064_aa0b611d59d2c9c47047de427b35cf6a7}
-
-
-Initializes a new instance of the \hyperlink{a00064}{Csv\-Missing\-Field\-Exception} class with a specified error message. 
+Creates an \hyperlink{a00110}{I\-Csv\-Parser}. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em message} & The message that describes the error.\\
+{\em reader} & The text reader to use for the csv parser.\\
+\hline
+{\em configuration} & The configuration to use for the csv parser.\\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created parser.
+\end{DoxyReturn}
 
 
-Definition at line 31 of file Csv\-Missing\-Field\-Exception.\-cs.
+Implements \hyperlink{a00109_a9b68cbd7292c76037959d51ecc7c374d}{Csv\-Helper.\-I\-Csv\-Factory}.
+
+
+
+Definition at line 21 of file Csv\-Factory.\-cs.
 
 
 \begin{DoxyCode}
-31 : base( message ) \{\}
+22         \{
+23             \textcolor{keywordflow}{return} \textcolor{keyword}{new} CsvParser( reader, configuration );
+24         \}
 \end{DoxyCode}
-\hypertarget{a00064_a1a6eb7ea392bc14d0da95e447ac001dc}{\index{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}!Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}}
-\index{Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}!CsvHelper::CsvMissingFieldException@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}}
-\subsubsection[{Csv\-Missing\-Field\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Missing\-Field\-Exception.\-Csv\-Missing\-Field\-Exception (
+\hypertarget{a00064_a07665ae71961a161552189877d11a5be}{\index{Csv\-Helper\-::\-Csv\-Factory@{Csv\-Helper\-::\-Csv\-Factory}!Create\-Parser@{Create\-Parser}}
+\index{Create\-Parser@{Create\-Parser}!CsvHelper::CsvFactory@{Csv\-Helper\-::\-Csv\-Factory}}
+\subsubsection[{Create\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Csv\-Parser} Csv\-Helper.\-Csv\-Factory.\-Create\-Parser (
 \begin{DoxyParamCaption}
-\item[{string}]{message, }
-\item[{Exception}]{inner\-Exception}
+\item[{Text\-Reader}]{reader}
 \end{DoxyParamCaption}
-)}}\label{a00064_a1a6eb7ea392bc14d0da95e447ac001dc}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a07665ae71961a161552189877d11a5be}
 
 
-Initializes a new instance of the \hyperlink{a00064}{Csv\-Missing\-Field\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
+Creates an \hyperlink{a00110}{I\-Csv\-Parser}. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em message} & The error message that explains the reason for the exception.\\
-\hline
-{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
+{\em reader} & The text reader to use for the csv parser.\\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created parser.
+\end{DoxyReturn}
 
 
-Definition at line 40 of file Csv\-Missing\-Field\-Exception.\-cs.
+Implements \hyperlink{a00109_ab085a057f1b80ebf03ed2247d8759314}{Csv\-Helper.\-I\-Csv\-Factory}.
+
+
+
+Definition at line 31 of file Csv\-Factory.\-cs.
 
 
 \begin{DoxyCode}
-40 : base( message, innerException ) \{ \}
+32         \{
+33             \textcolor{keywordflow}{return} \textcolor{keyword}{new} CsvParser( reader );
+34         \}
 \end{DoxyCode}
-\hypertarget{a00064_a867cc21f971ca654865f2cce8e1b971d}{\index{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}!Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}}
-\index{Csv\-Missing\-Field\-Exception@{Csv\-Missing\-Field\-Exception}!CsvHelper::CsvMissingFieldException@{Csv\-Helper\-::\-Csv\-Missing\-Field\-Exception}}
-\subsubsection[{Csv\-Missing\-Field\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Missing\-Field\-Exception.\-Csv\-Missing\-Field\-Exception (
+\hypertarget{a00064_a12b1358fc847e407519a76b7fe003a34}{\index{Csv\-Helper\-::\-Csv\-Factory@{Csv\-Helper\-::\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
+\index{Create\-Reader@{Create\-Reader}!CsvHelper::CsvFactory@{Csv\-Helper\-::\-Csv\-Factory}}
+\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Csv\-Reader} Csv\-Helper.\-Csv\-Factory.\-Create\-Reader (
 \begin{DoxyParamCaption}
-\item[{Serialization\-Info}]{info, }
-\item[{Streaming\-Context}]{context}
+\item[{Text\-Reader}]{reader, }
+\item[{{\bf Csv\-Configuration}}]{configuration}
 \end{DoxyParamCaption}
-)}}\label{a00064_a867cc21f971ca654865f2cce8e1b971d}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a12b1358fc847e407519a76b7fe003a34}
 
 
-Initializes a new instance of the \hyperlink{a00064}{Csv\-Missing\-Field\-Exception} class with serialized data. 
+Creates an \hyperlink{a00111}{I\-Csv\-Reader}. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
+{\em reader} & The text reader to use for the csv reader.\\
 \hline
-{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
+{\em configuration} & The configuration to use for the reader.\\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created reader.
+\end{DoxyReturn}
 
 
-Definition at line 49 of file Csv\-Missing\-Field\-Exception.\-cs.
+Implements \hyperlink{a00109_ade2a6e776fad6aa36c201901d6427058}{Csv\-Helper.\-I\-Csv\-Factory}.
+
+
+
+Definition at line 42 of file Csv\-Factory.\-cs.
 
 
 \begin{DoxyCode}
-49 : base( info, context ) \{ \}
+43         \{
+44             \textcolor{keywordflow}{return} \textcolor{keyword}{new} CsvReader( reader, configuration );
+45         \}
+\end{DoxyCode}
+\hypertarget{a00064_a77bcca4ad5023f5628c519c2914da5bb}{\index{Csv\-Helper\-::\-Csv\-Factory@{Csv\-Helper\-::\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
+\index{Create\-Reader@{Create\-Reader}!CsvHelper::CsvFactory@{Csv\-Helper\-::\-Csv\-Factory}}
+\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Csv\-Reader} Csv\-Helper.\-Csv\-Factory.\-Create\-Reader (
+\begin{DoxyParamCaption}
+\item[{Text\-Reader}]{reader}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a77bcca4ad5023f5628c519c2914da5bb}
+
+
+Creates an \hyperlink{a00111}{I\-Csv\-Reader}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reader} & The text reader to use for the csv reader.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created reader.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00109_ae1ebb61244b36ddecb986d047ac9c217}{Csv\-Helper.\-I\-Csv\-Factory}.
+
+
+
+Definition at line 52 of file Csv\-Factory.\-cs.
+
+
+\begin{DoxyCode}
+53         \{
+54             \textcolor{keywordflow}{return} \textcolor{keyword}{new} CsvReader( reader );
+55         \}
+\end{DoxyCode}
+\hypertarget{a00064_a4e7e06df9265cbd53219c964424cec1e}{\index{Csv\-Helper\-::\-Csv\-Factory@{Csv\-Helper\-::\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
+\index{Create\-Reader@{Create\-Reader}!CsvHelper::CsvFactory@{Csv\-Helper\-::\-Csv\-Factory}}
+\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Csv\-Reader} Csv\-Helper.\-Csv\-Factory.\-Create\-Reader (
+\begin{DoxyParamCaption}
+\item[{{\bf I\-Csv\-Parser}}]{parser}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a4e7e06df9265cbd53219c964424cec1e}
+
+
+Creates an \hyperlink{a00111}{I\-Csv\-Reader}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parser} & The parser used to create the reader.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created reader.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00109_af5b755ba2825f781d501402f1d765b33}{Csv\-Helper.\-I\-Csv\-Factory}.
+
+
+
+Definition at line 62 of file Csv\-Factory.\-cs.
+
+
+\begin{DoxyCode}
+63         \{
+64             \textcolor{keywordflow}{return} \textcolor{keyword}{new} CsvReader( parser );
+65         \}
+\end{DoxyCode}
+\hypertarget{a00064_a6bfe534b70ff92ea3809f1a372d160cc}{\index{Csv\-Helper\-::\-Csv\-Factory@{Csv\-Helper\-::\-Csv\-Factory}!Create\-Writer@{Create\-Writer}}
+\index{Create\-Writer@{Create\-Writer}!CsvHelper::CsvFactory@{Csv\-Helper\-::\-Csv\-Factory}}
+\subsubsection[{Create\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Csv\-Writer} Csv\-Helper.\-Csv\-Factory.\-Create\-Writer (
+\begin{DoxyParamCaption}
+\item[{Text\-Writer}]{writer, }
+\item[{{\bf Csv\-Configuration}}]{configuration}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a6bfe534b70ff92ea3809f1a372d160cc}
+
+
+Creates an \hyperlink{a00114}{I\-Csv\-Writer}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & The text writer to use for the csv writer.\\
+\hline
+{\em configuration} & The configuration to use for the writer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created writer.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00109_ae77852d2702bc2caad76c045a538933e}{Csv\-Helper.\-I\-Csv\-Factory}.
+
+
+
+Definition at line 73 of file Csv\-Factory.\-cs.
+
+
+\begin{DoxyCode}
+74         \{
+75             \textcolor{keywordflow}{return} \textcolor{keyword}{new} CsvWriter( writer, configuration );
+76         \}
+\end{DoxyCode}
+\hypertarget{a00064_a0cec3a639b206f2d88debdc50413202a}{\index{Csv\-Helper\-::\-Csv\-Factory@{Csv\-Helper\-::\-Csv\-Factory}!Create\-Writer@{Create\-Writer}}
+\index{Create\-Writer@{Create\-Writer}!CsvHelper::CsvFactory@{Csv\-Helper\-::\-Csv\-Factory}}
+\subsubsection[{Create\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Csv\-Writer} Csv\-Helper.\-Csv\-Factory.\-Create\-Writer (
+\begin{DoxyParamCaption}
+\item[{Text\-Writer}]{writer}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a0cec3a639b206f2d88debdc50413202a}
+
+
+Creates an \hyperlink{a00114}{I\-Csv\-Writer}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & The text writer to use for the csv writer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created writer.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00109_ab6df59078b6245e653c06c00358b402a}{Csv\-Helper.\-I\-Csv\-Factory}.
+
+
+
+Definition at line 83 of file Csv\-Factory.\-cs.
+
+
+\begin{DoxyCode}
+84         \{
+85             \textcolor{keywordflow}{return} \textcolor{keyword}{new} CsvWriter( writer );
+86         \}
 \end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00213}{Csv\-Missing\-Field\-Exception.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00213}{Csv\-Factory.\-cs}\end{DoxyCompactItemize}

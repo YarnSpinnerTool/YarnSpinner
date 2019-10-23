@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: LICENSE.md Source File</title>
+<title>YarnSpinner: Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-QuickStart.md Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,37 +105,47 @@ $(document).ready(function(){initNavTree('a00194.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">LICENSE.md</div>  </div>
+<div class="title">Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-QuickStart.md</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00194.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;The MIT License (MIT)</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;Permission is hereby granted, free of charge, to any person obtaining a copy</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;of this software and associated documentation files (the &quot;Software&quot;), to deal</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;in the Software without restriction, including without limitation the rights</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;copies of the Software, and to permit persons to whom the Software is</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;furnished to do so, subject to the following conditions:</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;The above copyright notice and this permission notice shall be included in all</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;copies or substantial portions of the Software.</div>
+<a href="a00194.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Quickstart to Using Yarn Spinner in your Unity game</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">### Style Guide</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;`Inline Code` contain <span class="keywordtype">short</span> snippets of code <span class="keywordflow">for</span> your project</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    Code Blocks contain segments or chunks of code <span class="keywordflow">for</span> your project</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;**Bold indicate actions (Select menu item, copying file, etc.)**</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;***Bold italic text indicates emphasis***</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;&gt; Blockquotes contain essential information</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;SOFTWARE.</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">## Tutorial</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;&gt; ***Note:*** This tutorial assumes that you know a little bit about [Unity](http:<span class="comment">//www.unity3d.com). In particular, it is helpful that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don&#39;t know these things, please refer to [Unity&#39;s documentation](http://unity3d.com/learn).</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">## Yarn Spinner Quick Start</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;Here<span class="stringliteral">&#39;s how to quickly jump in to Yarn Spinner if you&#39;</span>re already familiar with Unity.</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;* **Download** [the YarnSpinner package](https:<span class="comment">//github.com/thesecretlab/YarnSpinner/releases) into your Unity project.</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;* **Import** the <span class="keyword">package </span>into your project.</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;* Inside the YarnSpinner folder, **open the `Examples/Yarn Spinner Basic Example` scene.**</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;* **Start the game.**</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;* **Play through the dialogue.**</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;Once you&#39;ve played with it, open the Example Script file in the [Yarn Editor](http:<span class="comment">//github.com/infiniteammoinc/Yarn), (it&#39;s in the `Examples/Demo Assets` folder), and make some changes to the script. Once you&#39;ve done that, take a look at how `Code/DialogueRunner.cs`, `Examples/Demo Scripts/ExampleDialogueUI.cs` and `Examples/Demo Scripts/ExampleVariableStorage.cs` work. You can also [add your own functions to Yarn](../YarnSpinner-Programming/Extending.md).</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00194.html">LICENSE.md</a></li>
-    <li class="footer">Generated on Wed Aug 28 2019 22:42:47 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00194.html">YarnSpinner-with-Unity-QuickStart.md</a></li>
+    <li class="footer">Generated on Wed Oct 23 2019 00:35:55 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

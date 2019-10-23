@@ -1,0 +1,5 @@
+<map id="CsvHelper.CsvReader.ReadHeader" name="CsvHelper.CsvReader.ReadHeader">
+<area shape="rect" id="node2" href="$a00076.html#af1f0d4d722e93df9da30fe60b89ff2d6" title="Advances the reader to the next record. If HasHeaderRecord is true (true by default), the first record of the CSV file will be automatically read in as the header record and the second record will be returned. " alt="" coords="243,31,432,57"/>
+<area shape="rect" id="node3" href="$a00076.html#aaa94b8f27e410194fbaadd75f38b030e" title="Gets all the records in the CSV file and converts each to Type T. The Read method should not be used ..." alt="" coords="497,5,725,32"/>
+<area shape="rect" id="node4" href="$a00076.html#afed61bbcd2a120487498acd36e6ae2f2" title="Gets all the records in the CSV file and converts each to Type T. The Read method should not be used ..." alt="" coords="481,56,741,83"/>
+</map>

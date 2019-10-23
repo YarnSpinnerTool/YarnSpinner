@@ -1,691 +1,263 @@
-\hypertarget{a00048}{\section{Package Yarn}
-\label{a00048}\index{Yarn@{Yarn}}
+\hypertarget{a00048}{\section{Csv\-Helper.\-Type\-Conversion.\-Char\-Converter Class Reference}
+\label{a00048}\index{Csv\-Helper.\-Type\-Conversion.\-Char\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Char\-Converter}}
 }
-\subsection*{Namespaces}
-\begin{DoxyCompactItemize}
-\item 
-package \hyperlink{a00342}{Analysis}
-\item 
-package \hyperlink{a00127}{Unity}
-\end{DoxyCompactItemize}
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \hyperlink{a00051}{Compiler}
-\item 
-class \hyperlink{a00042}{Body\-Visitor}
-\item 
-class \hyperlink{a00103}{Graph}
-\item 
-class \hyperlink{a00104}{Graph\-Listener}
-\item 
-class \hyperlink{a00171}{Yarn\-Exception}
-\begin{DoxyCompactList}\small\item\em Represents things that can go wrong while loading or running a dialogue. \end{DoxyCompactList}\item 
-struct \hyperlink{a00048_a00349}{Line}
-\begin{DoxyCompactList}\small\item\em Information about stuff that the client should handle.  \hyperlink{a00048_a00349}{More...}\end{DoxyCompactList}\item 
-struct \hyperlink{a00048_a00352}{Options}
-\item 
-struct \hyperlink{a00048_a00346}{Command}
-\item 
-interface \hyperlink{a00167}{Variable\-Storage}
-\begin{DoxyCompactList}\small\item\em Where we turn to for storing and loading variable data. \end{DoxyCompactList}\item 
-class \hyperlink{a00041}{Base\-Variable\-Storage}
-\item 
-class \hyperlink{a00126}{Localised\-Line}
-\begin{DoxyCompactList}\small\item\em A line, localised into the current locale. \end{DoxyCompactList}\item 
-class \hyperlink{a00128}{Memory\-Variable\-Store}
-\begin{DoxyCompactList}\small\item\em Very simple continuity class that keeps all variables in memory. \end{DoxyCompactList}\item 
-class \hyperlink{a00088}{Dialogue}
-\begin{DoxyCompactList}\small\item\em The \hyperlink{a00088}{Dialogue} class is the main thing that clients will use. \end{DoxyCompactList}\item 
-class \hyperlink{a00096}{Error\-Listener}
-\item 
-class \hyperlink{a00101}{Function\-Info}
-\item 
-class \hyperlink{a00121}{Library}
-\item 
-class \hyperlink{a00125}{Loader}
-\item 
-class \hyperlink{a00135}{Parse\-Exception}
-\item 
-struct \hyperlink{a00123}{Line\-Info}
-\item 
-class \hyperlink{a00138}{Program}
-\item 
-class \hyperlink{a00048_a00351}{Node}
-\item 
-struct \hyperlink{a00113}{Instruction}
-\item 
-class \hyperlink{a00165}{Value}
-\item 
-class \hyperlink{a00145}{Virtual\-Machine}
-\item 
-class \hyperlink{a00100}{File\-Format\-Converter}
-\item 
-class \hyperlink{a00122}{Line\-Adder}
-\item 
-class \hyperlink{a00040}{Base\-Options}
-\item 
-class \hyperlink{a00099}{Execution\-Options}
-\item 
-class \hyperlink{a00169}{Verify\-Options}
-\item 
-class \hyperlink{a00142}{Run\-Options}
-\item 
-class \hyperlink{a00052}{Compile\-Options}
-\item 
-class \hyperlink{a00102}{Generate\-Table\-Options}
-\item 
-class \hyperlink{a00039}{Add\-Labels\-Options}
-\item 
-class \hyperlink{a00055}{Convert\-Format\-Options}
-\item 
-class \hyperlink{a00172}{Yarn\-Spinner\-Console}
-\item 
-class \hyperlink{a00151}{Table\-Generator}
-\end{DoxyCompactItemize}
-\subsection*{Enumerations}
-\begin{DoxyCompactItemize}
-\item 
-enum \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} \{ \\*
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceace9a733c2ae3f8b704aec91f551b2bcc}{Token\-Type.\-Whitespace}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea497470e76a40fc53e14c0df9b4e4ec9f}{Token\-Type.\-Indent}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea675b39ecba872a6cf58d578781bf5216}{Token\-Type.\-Dedent}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea5d8c95ca9e91a87bd9c90b0f309fd740}{Token\-Type.\-End\-Of\-Line}, 
-\\*
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea571dd25ea11480e6fe93f07a27059fbd}{Token\-Type.\-End\-Of\-Input}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceab2ee912b91d69b435159c7c3f6df7f5f}{Token\-Type.\-Number}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{Token\-Type.\-String}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea9979cf260fa3a9c811b668e217a37e21}{Token\-Type.\-Tag\-Marker}, 
-\\*
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea2fb334b031e5462b88186810b5dba5ee}{Token\-Type.\-Begin\-Command}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea6d879fc3833a8dc8742400a3c76b56fd}{Token\-Type.\-End\-Command}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9}{Token\-Type.\-Variable}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea07001155edc33437d76742b7ac124529}{Token\-Type.\-Shortcut\-Option}, 
-\\*
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaf6500edfd37e45de2894dc48866dca81}{Token\-Type.\-Option\-Start}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceabbf373bbaabc962ed2d5f5cec1ebd49b}{Token\-Type.\-Option\-Delimit}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea2c617506a5bd9d900fd650a4bee0e626}{Token\-Type.\-Option\-End}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639}{Token\-Type.\-If}, 
-\\*
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaea5b66107aeb6829d789adefcfaac6eb}{Token\-Type.\-Else\-If}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea6a0053231db40a4539b8f783a719a54a}{Token\-Type.\-Else}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceade360e1624063d8b9de7d2c411a960d8}{Token\-Type.\-End\-If}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea5d5b78699e57104f2fa03bbdf7b9197b}{Token\-Type.\-Set}, 
-\\*
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaf827cf462f62848df37c5e1e94a4da74}{Token\-Type.\-True}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaf8320b26d30ab433c5a54546d21f414c}{Token\-Type.\-False}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceabbb93ef26e3c101ff11cdd21cab08a94}{Token\-Type.\-Null}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaf02071a8b56c676adabcad98429fa14e}{Token\-Type.\-Left\-Paren}, 
-\\*
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea2d7e137ea20e2c01ce105573d47ce525}{Token\-Type.\-Right\-Paren}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea58be47db9455679e6a44df2eff9c9fa6}{Token\-Type.\-Comma}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea0242c502bd906e05171e64bad31c7c21}{Token\-Type.\-Equal\-To}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaf6d044fe1f01fb0c956b80099e2a3072}{Token\-Type.\-Greater\-Than}, 
-\\*
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea96b5d5dce523a30ceae47db080d8af48}{Token\-Type.\-Greater\-Than\-Or\-Equal\-To}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceac6d9d7bb9939f62f01c80f8b1251501c}{Token\-Type.\-Less\-Than}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea67827f79b05c979b2378e9514bb7e741}{Token\-Type.\-Less\-Than\-Or\-Equal\-To}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea0961129d84d9d8f6aa4138a3e5022a1d}{Token\-Type.\-Not\-Equal\-To}, 
-\\*
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea3a2d5fe857d8f9541136a124c2edec6c}{Token\-Type.\-Or}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceac33315685a0cba3ce53be378b3c7874b}{Token\-Type.\-And}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea76feb79109026728a20736a8c6504548}{Token\-Type.\-Xor}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaa74c05d080620f087c4e523977230666}{Token\-Type.\-Not}, 
-\\*
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea9f086f3b58f1b290002de301d3a7ab24}{Token\-Type.\-Equal\-To\-Or\-Assign}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea87c80963dae5cd099e3a377e4d314b20}{Token\-Type.\-Unary\-Minus}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9}{Token\-Type.\-Add}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea453fb623e752c5993f65bc410fd74fe5}{Token\-Type.\-Minus}, 
-\\*
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceae257376d913f3b53cbb4a9b19d770648}{Token\-Type.\-Multiply}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea0b914e196182d02615487e9793ecff3d}{Token\-Type.\-Divide}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea4cde2424cf960a70b7fc5fda1119143d}{Token\-Type.\-Modulo}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceab055bb9ca4c2fabe4be4aa6e9e3278c6}{Token\-Type.\-Add\-Assign}, 
-\\*
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceab05d460746c046306a3b74039a9977ba}{Token\-Type.\-Minus\-Assign}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea7c3dfbd9bd6620d1cde7bbad4750a9c4}{Token\-Type.\-Multiply\-Assign}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea60776f3f45a828ebfd062b8ad8118b38}{Token\-Type.\-Divide\-Assign}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea0be8406951cdfda82f00f79328cf4efc}{Token\-Type.\-Comment}, 
-\\*
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea29ee5d1ebcc033234938a5234f1f2075}{Token\-Type.\-Identifier}, 
-\hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675}{Token\-Type.\-Text}
- \}
-\item 
-enum \hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272f}{Node\-Format} \{ \hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272fa88183b946cc5f0e8c96b2e66e1c74a7e}{Node\-Format.\-Unknown}, 
-\hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272faceeb33da53902872b63956f8df786cd8}{Node\-Format.\-Single\-Node\-Text}, 
-\hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272fa9dffbf69ffba8bc38bc4e01abf4b1675}{Node\-Format.\-Text}
- \}
-\item 
-enum \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894}{Byte\-Code} \{ \\*
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894ab021df6aac4654c454f46c77646e745f}{Byte\-Code.\-Label}, 
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894acd664ebca0b52a8f2ece7d0767bacb49}{Byte\-Code.\-Jump\-To}, 
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a101f693f72287a2819a364f64ca1c0ed}{Byte\-Code.\-Jump}, 
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a005c6df9c6edea5516e29d96571fbbbc}{Byte\-Code.\-Run\-Line}, 
-\\*
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a64d231d79e9f7640a4572f7ae75aa226}{Byte\-Code.\-Run\-Command}, 
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a0e6a6b9eb32a4d55f277d45eff74250d}{Byte\-Code.\-Add\-Option}, 
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a658963e1a47a5018fd1e6fbc2af804f7}{Byte\-Code.\-Show\-Options}, 
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a3e7800d36ccb7bfe6c463bbe7db7e41a}{Byte\-Code.\-Push\-String}, 
-\\*
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a29c8f5d9d5088ada190ccd9c21c31f33}{Byte\-Code.\-Push\-Number}, 
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894af698d0b66ccf00f7d362c039949d1b80}{Byte\-Code.\-Push\-Bool}, 
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894acf728db6b8e47e735666156aec7ae755}{Byte\-Code.\-Push\-Null}, 
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894af8bbf32f00c942d974ade428e24b021f}{Byte\-Code.\-Jump\-If\-False}, 
-\\*
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a0ae61bd0474e04c9f1195d4baa0213a0}{Byte\-Code.\-Pop}, 
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a3b5e7e8300dc6e4b78cb865c5b10f01a}{Byte\-Code.\-Call\-Func}, 
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894ab8c46f65015a178516fadbb5ad6c2038}{Byte\-Code.\-Push\-Variable}, 
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a872dc050abaff4beb46e70dadd4088c2}{Byte\-Code.\-Store\-Variable}, 
-\\*
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a11a755d598c0c417f9a36758c3da7481}{Byte\-Code.\-Stop}, 
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894ae956bcf888278c168ee9b106927ff6ac}{Byte\-Code.\-Run\-Node}
- \}
-\end{DoxyCompactItemize}
-\subsection*{Functions}
-\begin{DoxyCompactItemize}
-\item 
-delegate void \hyperlink{a00048_a39866cbb03c03a35805d598b5d4ad553}{Option\-Chooser} (int selected\-Option\-Index)
-\begin{DoxyCompactList}\small\item\em Option\-Choosers let the client tell the \hyperlink{a00088}{Dialogue} about what response option the user selected. \end{DoxyCompactList}\item 
-delegate void \hyperlink{a00048_a1e50031b945a3a2afafee6f590730568}{Logger} (string message)
-\begin{DoxyCompactList}\small\item\em Loggers let the client send output to a console, for both debugging and error logging. \end{DoxyCompactList}\item 
-delegate Object \hyperlink{a00048_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} (params \hyperlink{a00165}{Value}\mbox{[}$\,$\mbox{]} parameters)
-\item 
-delegate void \hyperlink{a00048_ae0be2e5cf13d5779816102439e61ff1a}{Function} (params \hyperlink{a00165}{Value}\mbox{[}$\,$\mbox{]} parameters)
-\end{DoxyCompactItemize}
 
 
-\subsection{Class Documentation}
-\index{Yarn\-::\-Line@{Yarn\-::\-Line}}\label{a00349}
-\hypertarget{a00048_a00349}{}
-\subsubsection{struct Yarn\-:\-:Line}
-Information about stuff that the client should handle. 
-
-(Currently this just wraps a single field, but doing it like this gives us the option to add more stuff later without breaking the A\-P\-I.) 
-
-Definition at line 59 of file Dialogue.\-cs.
+Converts a Char to and from a string.  
 
 
 
-Collaboration diagram for Yarn.\-Line\-:
+
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Char\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=136pt]{a00361}
+\includegraphics[width=220pt]{a00489}
 \end{center}
 \end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00048_a81d1f04bbb4cf6642d2bd685bda1da20}{string}\label{a00048_a81d1f04bbb4cf6642d2bd685bda1da20}
-&
-text&
-\\
-\hline
-
-\end{DoxyFields}
-\index{Yarn\-::\-Options@{Yarn\-::\-Options}}\label{a00352}
-\hypertarget{a00048_a00352}{}
-\subsubsection{struct Yarn\-:\-:Options}
 
 
-Definition at line 60 of file Dialogue.\-cs.
-
-
-
-Collaboration diagram for Yarn.\-Options\-:
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Char\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=154pt]{a00362}
+\includegraphics[width=220pt]{a00490}
 \end{center}
 \end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00048_ae8c616d923ceeeed192a9436c55d9917}{I\-List$<$ string $>$}\label{a00048_ae8c616d923ceeeed192a9436c55d9917}
-&
-options&
-\\
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override object \hyperlink{a00048_a7cf201b75714eccdc084b6cc3161bf29}{Convert\-From\-String} (\hyperlink{a00158}{Type\-Converter\-Options} options, string text)
+\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
+override bool \hyperlink{a00048_ab0ccecf34e8ba3710cc61ad643028a34}{Can\-Convert\-From} (System.\-Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual string \hyperlink{a00086_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00158}{Type\-Converter\-Options} options, object value)
+\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00086_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00086_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Converts a Char to and from a string. 
+
+
+
+Definition at line 12 of file Char\-Converter.\-cs.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00048_ab0ccecf34e8ba3710cc61ad643028a34}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Char\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Char\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::CharConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Char\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Char\-Converter.\-Can\-Convert\-From (
+\begin{DoxyParamCaption}
+\item[{System.\-Type}]{type}
+\end{DoxyParamCaption}
+)}}\label{a00048_ab0ccecf34e8ba3710cc61ad643028a34}
+
+
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
 \hline
-
-\end{DoxyFields}
-\index{Yarn\-::\-Command@{Yarn\-::\-Command}}\label{a00346}
-\hypertarget{a00048_a00346}{}
-\subsubsection{struct Yarn\-:\-:Command}
-
-
-Definition at line 61 of file Dialogue.\-cs.
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
 
 
-
-Collaboration diagram for Yarn.\-Command\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=164pt]{a00363}
-\end{center}
-\end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00048_a8564e5104566e145f5d917ec846444d9}{string}\label{a00048_a8564e5104566e145f5d917ec846444d9}
-&
-text&
-\\
-\hline
-
-\end{DoxyFields}
-\index{Yarn\-::\-Node@{Yarn\-::\-Node}}\label{a00351}
-\hypertarget{a00048_a00351}{}
-\subsubsection{class Yarn\-:\-:Node}
-
-
-Definition at line 213 of file Program.\-cs.
-
-
-
-Collaboration diagram for Yarn.\-Node\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=190pt]{a00364}
-\end{center}
-\end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00048_a156723a9252b62d288ddf611939ea7c3}{List$<$ \hyperlink{a00113}{Instruction} $>$}\label{a00048_a156723a9252b62d288ddf611939ea7c3}
-&
-instructions&
-\\
-\hline
-
-\hypertarget{a00048_a9afa49f4fbc72e806a0210cb4198f12e}{Dictionary$<$ string, int $>$}\label{a00048_a9afa49f4fbc72e806a0210cb4198f12e}
-&
-labels&
-\\
-\hline
-
-\hypertarget{a00048_a107b0de3fcfc65e99913edc01b5ce9db}{string}\label{a00048_a107b0de3fcfc65e99913edc01b5ce9db}
-&
-name&
-\\
-\hline
-
-\hypertarget{a00048_a09c6af5b50925d0876283b84281b3ed4}{string}\label{a00048_a09c6af5b50925d0876283b84281b3ed4}
-&
-source\-Text\-String\-I\-D&
-the entry in the program's string table that contains the original text of this node; null if this is not available \\
-\hline
-
-\hypertarget{a00048_a811086feceebbe79a74eba071c1d516b}{List$<$ string $>$}\label{a00048_a811086feceebbe79a74eba071c1d516b}
-&
-tags&
-\\
-\hline
-
-\end{DoxyFields}
-
-
-\subsection{Enumeration Type Documentation}
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894}{\index{Yarn@{Yarn}!Byte\-Code@{Byte\-Code}}
-\index{Byte\-Code@{Byte\-Code}!Yarn@{Yarn}}
-\subsubsection[{Byte\-Code}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Byte\-Code}\hspace{0.3cm}{\ttfamily [package]}}}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894}
-\begin{Desc}
-\item[Enumerator]\par
-\begin{description}
-\index{Label@{Label}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Label@{Label}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894ab021df6aac4654c454f46c77646e745f}{Label}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894ab021df6aac4654c454f46c77646e745f}
-}]op\-A = string\-: label name \index{Jump\-To@{Jump\-To}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Jump\-To@{Jump\-To}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894acd664ebca0b52a8f2ece7d0767bacb49}{Jump\-To}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894acd664ebca0b52a8f2ece7d0767bacb49}
-}]op\-A = string\-: label name \index{Jump@{Jump}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Jump@{Jump}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894a101f693f72287a2819a364f64ca1c0ed}{Jump}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894a101f693f72287a2819a364f64ca1c0ed}
-}]peek string from stack and jump to that label \index{Run\-Line@{Run\-Line}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Run\-Line@{Run\-Line}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894a005c6df9c6edea5516e29d96571fbbbc}{Run\-Line}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894a005c6df9c6edea5516e29d96571fbbbc}
-}]op\-A = int\-: string number \index{Run\-Command@{Run\-Command}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Run\-Command@{Run\-Command}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894a64d231d79e9f7640a4572f7ae75aa226}{Run\-Command}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894a64d231d79e9f7640a4572f7ae75aa226}
-}]op\-A = string\-: command text \index{Add\-Option@{Add\-Option}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Add\-Option@{Add\-Option}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894a0e6a6b9eb32a4d55f277d45eff74250d}{Add\-Option}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894a0e6a6b9eb32a4d55f277d45eff74250d}
-}]op\-A = int\-: string number for option to add \index{Show\-Options@{Show\-Options}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Show\-Options@{Show\-Options}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894a658963e1a47a5018fd1e6fbc2af804f7}{Show\-Options}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894a658963e1a47a5018fd1e6fbc2af804f7}
-}]present the current list of options, then clear the list; most recently selected option will be on the top of the stack \index{Push\-String@{Push\-String}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Push\-String@{Push\-String}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894a3e7800d36ccb7bfe6c463bbe7db7e41a}{Push\-String}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894a3e7800d36ccb7bfe6c463bbe7db7e41a}
-}]op\-A = int\-: string number in table; push string to stack \index{Push\-Number@{Push\-Number}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Push\-Number@{Push\-Number}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894a29c8f5d9d5088ada190ccd9c21c31f33}{Push\-Number}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894a29c8f5d9d5088ada190ccd9c21c31f33}
-}]op\-A = float\-: number to push to stack \index{Push\-Bool@{Push\-Bool}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Push\-Bool@{Push\-Bool}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894af698d0b66ccf00f7d362c039949d1b80}{Push\-Bool}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894af698d0b66ccf00f7d362c039949d1b80}
-}]op\-A = int (0 or 1)\-: bool to push to stack \index{Push\-Null@{Push\-Null}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Push\-Null@{Push\-Null}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894acf728db6b8e47e735666156aec7ae755}{Push\-Null}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894acf728db6b8e47e735666156aec7ae755}
-}]pushes a null value onto the stack \index{Jump\-If\-False@{Jump\-If\-False}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Jump\-If\-False@{Jump\-If\-False}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894af8bbf32f00c942d974ade428e24b021f}{Jump\-If\-False}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894af8bbf32f00c942d974ade428e24b021f}
-}]op\-A = string\-: label name if top of stack is not null, zero or false, jumps to that label \index{Pop@{Pop}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Pop@{Pop}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894a0ae61bd0474e04c9f1195d4baa0213a0}{Pop}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894a0ae61bd0474e04c9f1195d4baa0213a0}
-}]discard top of stack \index{Call\-Func@{Call\-Func}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Call\-Func@{Call\-Func}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894a3b5e7e8300dc6e4b78cb865c5b10f01a}{Call\-Func}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894a3b5e7e8300dc6e4b78cb865c5b10f01a}
-}]op\-A = string; looks up function, pops as many arguments as needed, result is pushed to stack \index{Push\-Variable@{Push\-Variable}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Push\-Variable@{Push\-Variable}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894ab8c46f65015a178516fadbb5ad6c2038}{Push\-Variable}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894ab8c46f65015a178516fadbb5ad6c2038}
-}]op\-A = name of variable to get value of and push to stack \index{Store\-Variable@{Store\-Variable}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Store\-Variable@{Store\-Variable}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894a872dc050abaff4beb46e70dadd4088c2}{Store\-Variable}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894a872dc050abaff4beb46e70dadd4088c2}
-}]op\-A = name of variable to store top of stack in \index{Stop@{Stop}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Stop@{Stop}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894a11a755d598c0c417f9a36758c3da7481}{Stop}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894a11a755d598c0c417f9a36758c3da7481}
-}]stops execution \index{Run\-Node@{Run\-Node}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Run\-Node@{Run\-Node}}\item[{\em 
-\hypertarget{a00048_ad5dfb6ee68ca7469623ad3e459f98894ae956bcf888278c168ee9b106927ff6ac}{Run\-Node}\label{a00048_ad5dfb6ee68ca7469623ad3e459f98894ae956bcf888278c168ee9b106927ff6ac}
-}]run the node whose name is at the top of the stack \end{description}
-\end{Desc}
-
-
-Definition at line 327 of file Program.\-cs.
+Definition at line 43 of file Char\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-328     \{
-329 
-331         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894ab021df6aac4654c454f46c77646e745f}{Label},
-333         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894acd664ebca0b52a8f2ece7d0767bacb49}{JumpTo},
-335         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a101f693f72287a2819a364f64ca1c0ed}{Jump},
-337         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a005c6df9c6edea5516e29d96571fbbbc}{RunLine},
-339         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a64d231d79e9f7640a4572f7ae75aa226}{RunCommand},
-341         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a0e6a6b9eb32a4d55f277d45eff74250d}{AddOption},
-343         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a658963e1a47a5018fd1e6fbc2af804f7}{ShowOptions},
-345         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a3e7800d36ccb7bfe6c463bbe7db7e41a}{PushString},
-347         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a29c8f5d9d5088ada190ccd9c21c31f33}{PushNumber},
-349         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894af698d0b66ccf00f7d362c039949d1b80}{PushBool},
-351         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894acf728db6b8e47e735666156aec7ae755}{PushNull},
-353         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894af8bbf32f00c942d974ade428e24b021f}{JumpIfFalse},
-355         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a0ae61bd0474e04c9f1195d4baa0213a0}{Pop},
-357         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a3b5e7e8300dc6e4b78cb865c5b10f01a}{CallFunc},
-359         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894ab8c46f65015a178516fadbb5ad6c2038}{PushVariable},
-361         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a872dc050abaff4beb46e70dadd4088c2}{StoreVariable},
-363         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894a11a755d598c0c417f9a36758c3da7481}{Stop},
-365         \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894ae956bcf888278c168ee9b106927ff6ac}{RunNode}
-366 
-367     \}
+44         \{
+45             \textcolor{comment}{// We only care about strings.}
+46             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+47         \}
 \end{DoxyCode}
-\hypertarget{a00048_ad7ebb46e7309ead8767383a672b3272f}{\index{Yarn@{Yarn}!Node\-Format@{Node\-Format}}
-\index{Node\-Format@{Node\-Format}!Yarn@{Yarn}}
-\subsubsection[{Node\-Format}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Node\-Format}}}\label{a00048_ad7ebb46e7309ead8767383a672b3272f}
-\begin{Desc}
-\item[Enumerator]\par
-\begin{description}
-\index{Unknown@{Unknown}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Unknown@{Unknown}}\item[{\em 
-\hypertarget{a00048_ad7ebb46e7309ead8767383a672b3272fa88183b946cc5f0e8c96b2e66e1c74a7e}{Unknown}\label{a00048_ad7ebb46e7309ead8767383a672b3272fa88183b946cc5f0e8c96b2e66e1c74a7e}
-}]\index{Single\-Node\-Text@{Single\-Node\-Text}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Single\-Node\-Text@{Single\-Node\-Text}}\item[{\em 
-\hypertarget{a00048_ad7ebb46e7309ead8767383a672b3272faceeb33da53902872b63956f8df786cd8}{Single\-Node\-Text}\label{a00048_ad7ebb46e7309ead8767383a672b3272faceeb33da53902872b63956f8df786cd8}
-}]\index{Text@{Text}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Text@{Text}}\item[{\em 
-\hypertarget{a00048_ad7ebb46e7309ead8767383a672b3272fa9dffbf69ffba8bc38bc4e01abf4b1675}{Text}\label{a00048_ad7ebb46e7309ead8767383a672b3272fa9dffbf69ffba8bc38bc4e01abf4b1675}
-}]\end{description}
-\end{Desc}
+\hypertarget{a00086_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Char\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Char\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::CharConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Char\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00086_a470d21adaa704eb281250dbd112ff91a}
 
 
-Definition at line 42 of file Loader.\-cs.
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00119_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00135_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00045_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00096_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00097_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00083_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00082_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00046_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00156_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
+
+
+
+Definition at line 55 of file Default\-Type\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-43     \{
-44         \hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272fa88183b946cc5f0e8c96b2e66e1c74a7e}{Unknown}, \textcolor{comment}{// an unknown type}
-45 
-46         \hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272faceeb33da53902872b63956f8df786cd8}{SingleNodeText}, \textcolor{comment}{// a plain text file containing a single node with no metadata}
-47 
-48         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675}{Text}, \textcolor{comment}{//  a text file containing multiple nodes with metadata}
-49 
-50     \}
+56         \{
+57             \textcolor{comment}{// The default convert doesn't know how to}
+58             \textcolor{comment}{// convert from any type.}
+59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+60         \}
 \end{DoxyCode}
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeace}{\index{Yarn@{Yarn}!Token\-Type@{Token\-Type}}
-\index{Token\-Type@{Token\-Type}!Yarn@{Yarn}}
-\subsubsection[{Token\-Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Token\-Type}\hspace{0.3cm}{\ttfamily [package]}}}\label{a00048_a301aa7c866593a5b625a8fc158bbeace}
-\begin{Desc}
-\item[Enumerator]\par
-\begin{description}
-\index{Whitespace@{Whitespace}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Whitespace@{Whitespace}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceace9a733c2ae3f8b704aec91f551b2bcc}{Whitespace}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceace9a733c2ae3f8b704aec91f551b2bcc}
-}]\index{Indent@{Indent}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Indent@{Indent}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea497470e76a40fc53e14c0df9b4e4ec9f}{Indent}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea497470e76a40fc53e14c0df9b4e4ec9f}
-}]\index{Dedent@{Dedent}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Dedent@{Dedent}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea675b39ecba872a6cf58d578781bf5216}{Dedent}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea675b39ecba872a6cf58d578781bf5216}
-}]\index{End\-Of\-Line@{End\-Of\-Line}!Yarn@{Yarn}}\index{Yarn@{Yarn}!End\-Of\-Line@{End\-Of\-Line}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea5d8c95ca9e91a87bd9c90b0f309fd740}{End\-Of\-Line}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea5d8c95ca9e91a87bd9c90b0f309fd740}
-}]\index{End\-Of\-Input@{End\-Of\-Input}!Yarn@{Yarn}}\index{Yarn@{Yarn}!End\-Of\-Input@{End\-Of\-Input}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea571dd25ea11480e6fe93f07a27059fbd}{End\-Of\-Input}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea571dd25ea11480e6fe93f07a27059fbd}
-}]\index{Number@{Number}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Number@{Number}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceab2ee912b91d69b435159c7c3f6df7f5f}{Number}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceab2ee912b91d69b435159c7c3f6df7f5f}
-}]\index{String@{String}!Yarn@{Yarn}}\index{Yarn@{Yarn}!String@{String}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}
-}]\index{Tag\-Marker@{Tag\-Marker}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Tag\-Marker@{Tag\-Marker}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea9979cf260fa3a9c811b668e217a37e21}{Tag\-Marker}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea9979cf260fa3a9c811b668e217a37e21}
-}]\index{Begin\-Command@{Begin\-Command}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Begin\-Command@{Begin\-Command}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea2fb334b031e5462b88186810b5dba5ee}{Begin\-Command}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea2fb334b031e5462b88186810b5dba5ee}
-}]\index{End\-Command@{End\-Command}!Yarn@{Yarn}}\index{Yarn@{Yarn}!End\-Command@{End\-Command}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea6d879fc3833a8dc8742400a3c76b56fd}{End\-Command}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea6d879fc3833a8dc8742400a3c76b56fd}
-}]\index{Variable@{Variable}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Variable@{Variable}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9}{Variable}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9}
-}]\index{Shortcut\-Option@{Shortcut\-Option}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Shortcut\-Option@{Shortcut\-Option}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea07001155edc33437d76742b7ac124529}{Shortcut\-Option}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea07001155edc33437d76742b7ac124529}
-}]\index{Option\-Start@{Option\-Start}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Option\-Start@{Option\-Start}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceaf6500edfd37e45de2894dc48866dca81}{Option\-Start}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceaf6500edfd37e45de2894dc48866dca81}
-}]\index{Option\-Delimit@{Option\-Delimit}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Option\-Delimit@{Option\-Delimit}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceabbf373bbaabc962ed2d5f5cec1ebd49b}{Option\-Delimit}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceabbf373bbaabc962ed2d5f5cec1ebd49b}
-}]\index{Option\-End@{Option\-End}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Option\-End@{Option\-End}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea2c617506a5bd9d900fd650a4bee0e626}{Option\-End}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea2c617506a5bd9d900fd650a4bee0e626}
-}]\index{If@{If}!Yarn@{Yarn}}\index{Yarn@{Yarn}!If@{If}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639}{If}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639}
-}]\index{Else\-If@{Else\-If}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Else\-If@{Else\-If}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceaea5b66107aeb6829d789adefcfaac6eb}{Else\-If}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceaea5b66107aeb6829d789adefcfaac6eb}
-}]\index{Else@{Else}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Else@{Else}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea6a0053231db40a4539b8f783a719a54a}{Else}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea6a0053231db40a4539b8f783a719a54a}
-}]\index{End\-If@{End\-If}!Yarn@{Yarn}}\index{Yarn@{Yarn}!End\-If@{End\-If}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceade360e1624063d8b9de7d2c411a960d8}{End\-If}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceade360e1624063d8b9de7d2c411a960d8}
-}]\index{Set@{Set}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Set@{Set}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea5d5b78699e57104f2fa03bbdf7b9197b}{Set}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea5d5b78699e57104f2fa03bbdf7b9197b}
-}]\index{True@{True}!Yarn@{Yarn}}\index{Yarn@{Yarn}!True@{True}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceaf827cf462f62848df37c5e1e94a4da74}{True}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceaf827cf462f62848df37c5e1e94a4da74}
-}]\index{False@{False}!Yarn@{Yarn}}\index{Yarn@{Yarn}!False@{False}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceaf8320b26d30ab433c5a54546d21f414c}{False}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceaf8320b26d30ab433c5a54546d21f414c}
-}]\index{Null@{Null}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Null@{Null}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceabbb93ef26e3c101ff11cdd21cab08a94}{Null}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceabbb93ef26e3c101ff11cdd21cab08a94}
-}]\index{Left\-Paren@{Left\-Paren}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Left\-Paren@{Left\-Paren}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceaf02071a8b56c676adabcad98429fa14e}{Left\-Paren}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceaf02071a8b56c676adabcad98429fa14e}
-}]\index{Right\-Paren@{Right\-Paren}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Right\-Paren@{Right\-Paren}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea2d7e137ea20e2c01ce105573d47ce525}{Right\-Paren}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea2d7e137ea20e2c01ce105573d47ce525}
-}]\index{Comma@{Comma}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Comma@{Comma}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea58be47db9455679e6a44df2eff9c9fa6}{Comma}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea58be47db9455679e6a44df2eff9c9fa6}
-}]\index{Equal\-To@{Equal\-To}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Equal\-To@{Equal\-To}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea0242c502bd906e05171e64bad31c7c21}{Equal\-To}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea0242c502bd906e05171e64bad31c7c21}
-}]\index{Greater\-Than@{Greater\-Than}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Greater\-Than@{Greater\-Than}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceaf6d044fe1f01fb0c956b80099e2a3072}{Greater\-Than}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceaf6d044fe1f01fb0c956b80099e2a3072}
-}]\index{Greater\-Than\-Or\-Equal\-To@{Greater\-Than\-Or\-Equal\-To}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Greater\-Than\-Or\-Equal\-To@{Greater\-Than\-Or\-Equal\-To}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea96b5d5dce523a30ceae47db080d8af48}{Greater\-Than\-Or\-Equal\-To}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea96b5d5dce523a30ceae47db080d8af48}
-}]\index{Less\-Than@{Less\-Than}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Less\-Than@{Less\-Than}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceac6d9d7bb9939f62f01c80f8b1251501c}{Less\-Than}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceac6d9d7bb9939f62f01c80f8b1251501c}
-}]\index{Less\-Than\-Or\-Equal\-To@{Less\-Than\-Or\-Equal\-To}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Less\-Than\-Or\-Equal\-To@{Less\-Than\-Or\-Equal\-To}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea67827f79b05c979b2378e9514bb7e741}{Less\-Than\-Or\-Equal\-To}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea67827f79b05c979b2378e9514bb7e741}
-}]\index{Not\-Equal\-To@{Not\-Equal\-To}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Not\-Equal\-To@{Not\-Equal\-To}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea0961129d84d9d8f6aa4138a3e5022a1d}{Not\-Equal\-To}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea0961129d84d9d8f6aa4138a3e5022a1d}
-}]\index{Or@{Or}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Or@{Or}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea3a2d5fe857d8f9541136a124c2edec6c}{Or}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea3a2d5fe857d8f9541136a124c2edec6c}
-}]\index{And@{And}!Yarn@{Yarn}}\index{Yarn@{Yarn}!And@{And}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceac33315685a0cba3ce53be378b3c7874b}{And}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceac33315685a0cba3ce53be378b3c7874b}
-}]\index{Xor@{Xor}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Xor@{Xor}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea76feb79109026728a20736a8c6504548}{Xor}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea76feb79109026728a20736a8c6504548}
-}]\index{Not@{Not}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Not@{Not}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceaa74c05d080620f087c4e523977230666}{Not}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceaa74c05d080620f087c4e523977230666}
-}]\index{Equal\-To\-Or\-Assign@{Equal\-To\-Or\-Assign}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Equal\-To\-Or\-Assign@{Equal\-To\-Or\-Assign}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea9f086f3b58f1b290002de301d3a7ab24}{Equal\-To\-Or\-Assign}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea9f086f3b58f1b290002de301d3a7ab24}
-}]\index{Unary\-Minus@{Unary\-Minus}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Unary\-Minus@{Unary\-Minus}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea87c80963dae5cd099e3a377e4d314b20}{Unary\-Minus}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea87c80963dae5cd099e3a377e4d314b20}
-}]\index{Add@{Add}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Add@{Add}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9}{Add}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9}
-}]\index{Minus@{Minus}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Minus@{Minus}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea453fb623e752c5993f65bc410fd74fe5}{Minus}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea453fb623e752c5993f65bc410fd74fe5}
-}]\index{Multiply@{Multiply}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Multiply@{Multiply}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceae257376d913f3b53cbb4a9b19d770648}{Multiply}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceae257376d913f3b53cbb4a9b19d770648}
-}]\index{Divide@{Divide}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Divide@{Divide}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea0b914e196182d02615487e9793ecff3d}{Divide}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea0b914e196182d02615487e9793ecff3d}
-}]\index{Modulo@{Modulo}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Modulo@{Modulo}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea4cde2424cf960a70b7fc5fda1119143d}{Modulo}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea4cde2424cf960a70b7fc5fda1119143d}
-}]\index{Add\-Assign@{Add\-Assign}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Add\-Assign@{Add\-Assign}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceab055bb9ca4c2fabe4be4aa6e9e3278c6}{Add\-Assign}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceab055bb9ca4c2fabe4be4aa6e9e3278c6}
-}]\index{Minus\-Assign@{Minus\-Assign}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Minus\-Assign@{Minus\-Assign}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeaceab05d460746c046306a3b74039a9977ba}{Minus\-Assign}\label{a00048_a301aa7c866593a5b625a8fc158bbeaceab05d460746c046306a3b74039a9977ba}
-}]\index{Multiply\-Assign@{Multiply\-Assign}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Multiply\-Assign@{Multiply\-Assign}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea7c3dfbd9bd6620d1cde7bbad4750a9c4}{Multiply\-Assign}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea7c3dfbd9bd6620d1cde7bbad4750a9c4}
-}]\index{Divide\-Assign@{Divide\-Assign}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Divide\-Assign@{Divide\-Assign}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea60776f3f45a828ebfd062b8ad8118b38}{Divide\-Assign}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea60776f3f45a828ebfd062b8ad8118b38}
-}]\index{Comment@{Comment}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Comment@{Comment}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea0be8406951cdfda82f00f79328cf4efc}{Comment}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea0be8406951cdfda82f00f79328cf4efc}
-}]\index{Identifier@{Identifier}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Identifier@{Identifier}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea29ee5d1ebcc033234938a5234f1f2075}{Identifier}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea29ee5d1ebcc033234938a5234f1f2075}
-}]\index{Text@{Text}!Yarn@{Yarn}}\index{Yarn@{Yarn}!Text@{Text}}\item[{\em 
-\hypertarget{a00048_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675}{Text}\label{a00048_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675}
-}]\end{description}
-\end{Desc}
+\hypertarget{a00086_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Char\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Char\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
+\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::CharConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Char\-Converter}}
+\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00086_acb65bd8c8199d88d5b1629ae35d18514}
 
 
-Definition at line 11 of file Compiler.\-cs.
+Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00119_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00097_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+
+
+Definition at line 69 of file Default\-Type\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-11                             \{
-12 
-13 
-14         \textcolor{comment}{// Special tokens}
-15         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceace9a733c2ae3f8b704aec91f551b2bcc}{Whitespace},
-16         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea497470e76a40fc53e14c0df9b4e4ec9f}{Indent},
-17         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea675b39ecba872a6cf58d578781bf5216}{Dedent},
-18         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea5d8c95ca9e91a87bd9c90b0f309fd740}{EndOfLine},
-19         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea571dd25ea11480e6fe93f07a27059fbd}{EndOfInput},
-20 
-21         \textcolor{comment}{// Numbers. Everybody loves a number}
-22         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceab2ee912b91d69b435159c7c3f6df7f5f}{Number},
-23 
-24         \textcolor{comment}{// Strings. Everybody also loves a string}
-25         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String},
+70         \{
+71             \textcolor{comment}{// We only care about strings.}
+72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+73         \}
+\end{DoxyCode}
+\hypertarget{a00048_a7cf201b75714eccdc084b6cc3161bf29}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Char\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Char\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
+\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::CharConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Char\-Converter}}
+\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Char\-Converter.\-Convert\-From\-String (
+\begin{DoxyParamCaption}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{string}]{text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00048_a7cf201b75714eccdc084b6cc3161bf29}
+
+
+Converts the string to an object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em text} & The string to convert to an object.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The object created from the string.
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{a00086_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+
+
+
+Definition at line 20 of file Char\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+21         \{
+22             \textcolor{keywordflow}{if}( text != null && text.Length > 1 )
+23             \{
+24                 text = text.Trim();
+25             \}
 26 
-27         \textcolor{comment}{// '#'}
-28         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea9979cf260fa3a9c811b668e217a37e21}{TagMarker},
-29 
-30         \textcolor{comment}{// Command syntax ("<<foo>>")}
-31         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea2fb334b031e5462b88186810b5dba5ee}{BeginCommand},
-32         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea6d879fc3833a8dc8742400a3c76b56fd}{EndCommand},
+27             \textcolor{keywordtype}{char} c;
+28             \textcolor{keywordflow}{if}( \textcolor{keywordtype}{char}.TryParse( text, out c ) )
+29             \{
+30                 \textcolor{keywordflow}{return} c;
+31             \}
+32 
+33             \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
+34         \}
+\end{DoxyCode}
+\hypertarget{a00086_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Char\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Char\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
+\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::CharConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Char\-Converter}}
+\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
+\begin{DoxyParamCaption}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{object}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00086_a36cb2f9b24f15a671293f3a722324c27}
+
+
+Converts the object to a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em value} & The object to convert to a string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the object.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00119_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00135_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00097_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+
+
+Definition at line 21 of file Default\-Type\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+22         \{
+23             \textcolor{keywordflow}{if}( value == null )
+24             \{
+25                 \textcolor{keywordflow}{return} string.Empty;
+26             \}
+27 
+28             var formattable = value as IFormattable;
+29             \textcolor{keywordflow}{if}( formattable != null )
+30             \{
+31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
+32             \}
 33 
-34         \textcolor{comment}{// Variables ("$foo")}
-35         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9}{Variable},
-36 
-37         \textcolor{comment}{// Shortcut syntax ("->")}
-38         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea07001155edc33437d76742b7ac124529}{ShortcutOption},
-39 
-40         \textcolor{comment}{// Option syntax ("[[Let's go here|Destination]]")}
-41         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaf6500edfd37e45de2894dc48866dca81}{OptionStart}, \textcolor{comment}{// [[}
-42         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceabbf373bbaabc962ed2d5f5cec1ebd49b}{OptionDelimit}, \textcolor{comment}{// |}
-43         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea2c617506a5bd9d900fd650a4bee0e626}{OptionEnd}, \textcolor{comment}{// ]]}
-44 
-45         \textcolor{comment}{// Command types (specially recognised command word)}
-46         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639}{If},
-47         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaea5b66107aeb6829d789adefcfaac6eb}{ElseIf},
-48         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea6a0053231db40a4539b8f783a719a54a}{Else},
-49         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceade360e1624063d8b9de7d2c411a960d8}{EndIf},
-50         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea5d5b78699e57104f2fa03bbdf7b9197b}{Set},
-51 
-52         \textcolor{comment}{// Boolean values}
-53         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaf827cf462f62848df37c5e1e94a4da74}{True},
-54         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaf8320b26d30ab433c5a54546d21f414c}{False},
-55 
-56         \textcolor{comment}{// The null value}
-57         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceabbb93ef26e3c101ff11cdd21cab08a94}{Null},
-58 
-59         \textcolor{comment}{// Parentheses}
-60         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaf02071a8b56c676adabcad98429fa14e}{LeftParen},
-61         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea2d7e137ea20e2c01ce105573d47ce525}{RightParen},
-62 
-63         \textcolor{comment}{// Parameter delimiters}
-64         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea58be47db9455679e6a44df2eff9c9fa6}{Comma},
-65 
-66         \textcolor{comment}{// Operators}
-67         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea0242c502bd906e05171e64bad31c7c21}{EqualTo}, \textcolor{comment}{// ==, eq, is}
-68         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaf6d044fe1f01fb0c956b80099e2a3072}{GreaterThan}, \textcolor{comment}{// >, gt}
-69         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea96b5d5dce523a30ceae47db080d8af48}{GreaterThanOrEqualTo}, \textcolor{comment}{// >=, gte}
-70         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceac6d9d7bb9939f62f01c80f8b1251501c}{LessThan}, \textcolor{comment}{// <, lt}
-71         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea67827f79b05c979b2378e9514bb7e741}{LessThanOrEqualTo}, \textcolor{comment}{// <=, lte}
-72         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea0961129d84d9d8f6aa4138a3e5022a1d}{NotEqualTo}, \textcolor{comment}{// !=, neq}
-73 
-74         \textcolor{comment}{// Logical operators}
-75         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea3a2d5fe857d8f9541136a124c2edec6c}{Or}, \textcolor{comment}{// ||, or}
-76         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceac33315685a0cba3ce53be378b3c7874b}{And}, \textcolor{comment}{// &&, and}
-77         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea76feb79109026728a20736a8c6504548}{Xor}, \textcolor{comment}{// ^, xor}
-78         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaa74c05d080620f087c4e523977230666}{Not}, \textcolor{comment}{// !, not}
-79 
-80         \textcolor{comment}{// this guy's special because '=' can mean either 'equal to'}
-81         \textcolor{comment}{// or 'becomes' depending on context}
-82         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea9f086f3b58f1b290002de301d3a7ab24}{EqualToOrAssign}, \textcolor{comment}{// =, to}
-83 
-84         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea87c80963dae5cd099e3a377e4d314b20}{UnaryMinus}, \textcolor{comment}{// -; this is differentiated from Minus}
-85                     \textcolor{comment}{// when parsing expressions}
-86 
-87         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9}{Add}, \textcolor{comment}{// +}
-88         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea453fb623e752c5993f65bc410fd74fe5}{Minus}, \textcolor{comment}{// -}
-89         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceae257376d913f3b53cbb4a9b19d770648}{Multiply}, \textcolor{comment}{// *}
-90         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea0b914e196182d02615487e9793ecff3d}{Divide}, \textcolor{comment}{// /}
-91         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea4cde2424cf960a70b7fc5fda1119143d}{Modulo}, \textcolor{comment}{// %}
-92 
-93         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceab055bb9ca4c2fabe4be4aa6e9e3278c6}{AddAssign}, \textcolor{comment}{// +=}
-94         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeaceab05d460746c046306a3b74039a9977ba}{MinusAssign}, \textcolor{comment}{// -=}
-95         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea7c3dfbd9bd6620d1cde7bbad4750a9c4}{MultiplyAssign}, \textcolor{comment}{// *=}
-96         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea60776f3f45a828ebfd062b8ad8118b38}{DivideAssign}, \textcolor{comment}{// /=}
-97 
-98         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea0be8406951cdfda82f00f79328cf4efc}{Comment}, \textcolor{comment}{// a run of text that we ignore}
-99 
-100         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea29ee5d1ebcc033234938a5234f1f2075}{Identifier}, \textcolor{comment}{// a single word (used for functions)}
-101 
-102         \hyperlink{a00048_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675}{Text} \textcolor{comment}{// a run of text until we hit other syntax}
-103     \}
+34             \textcolor{keywordflow}{return} value.ToString();
+35         \}
 \end{DoxyCode}
 
 
-\subsection{Function Documentation}
-\hypertarget{a00048_ae0be2e5cf13d5779816102439e61ff1a}{\index{Yarn@{Yarn}!Function@{Function}}
-\index{Function@{Function}!Yarn@{Yarn}}
-\subsubsection[{Function}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Yarn.\-Function (
-\begin{DoxyParamCaption}
-\item[{params Value\mbox{[}$\,$\mbox{]}}]{parameters}
-\end{DoxyParamCaption}
-)}}\label{a00048_ae0be2e5cf13d5779816102439e61ff1a}
-\hypertarget{a00048_a1e50031b945a3a2afafee6f590730568}{\index{Yarn@{Yarn}!Logger@{Logger}}
-\index{Logger@{Logger}!Yarn@{Yarn}}
-\subsubsection[{Logger}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Yarn.\-Logger (
-\begin{DoxyParamCaption}
-\item[{string}]{message}
-\end{DoxyParamCaption}
-)}}\label{a00048_a1e50031b945a3a2afafee6f590730568}
-
-
-Loggers let the client send output to a console, for both debugging and error logging. 
-
-\hypertarget{a00048_a39866cbb03c03a35805d598b5d4ad553}{\index{Yarn@{Yarn}!Option\-Chooser@{Option\-Chooser}}
-\index{Option\-Chooser@{Option\-Chooser}!Yarn@{Yarn}}
-\subsubsection[{Option\-Chooser}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Yarn.\-Option\-Chooser (
-\begin{DoxyParamCaption}
-\item[{int}]{selected\-Option\-Index}
-\end{DoxyParamCaption}
-)}}\label{a00048_a39866cbb03c03a35805d598b5d4ad553}
-
-
-Option\-Choosers let the client tell the \hyperlink{a00088}{Dialogue} about what response option the user selected. 
-
-\hypertarget{a00048_a5177bf74fbfe7303fac9d8236c2e514b}{\index{Yarn@{Yarn}!Returning\-Function@{Returning\-Function}}
-\index{Returning\-Function@{Returning\-Function}!Yarn@{Yarn}}
-\subsubsection[{Returning\-Function}]{\setlength{\rightskip}{0pt plus 5cm}delegate Object Yarn.\-Returning\-Function (
-\begin{DoxyParamCaption}
-\item[{params Value\mbox{[}$\,$\mbox{]}}]{parameters}
-\end{DoxyParamCaption}
-)}}\label{a00048_a5177bf74fbfe7303fac9d8236c2e514b}
-
-
-Referenced by Yarn.\-Dialogue.\-Dialogue().
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00048_a5177bf74fbfe7303fac9d8236c2e514b_icgraph}
-\end{center}
-\end{figure}
-
-
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00241}{Char\-Converter.\-cs}\end{DoxyCompactItemize}

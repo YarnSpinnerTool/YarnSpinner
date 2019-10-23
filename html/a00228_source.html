@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/MissingFrom20/Delegates.cs Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvSerializer.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,26 +105,36 @@ $(document).ready(function(){initNavTree('a00228_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Delegates.cs</div>  </div>
+<div class="title">ICsvSerializer.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00228.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#if NET_2_0</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"></span><span class="keyword">namespace </span>System</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">public</span> delegate TResult Func&lt;in T, out TResult&gt;( T arg );</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using</span> CsvHelper.Configuration;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>CsvHelper</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="a00113.html">   13</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">interface </span><a class="code" href="a00113.html">ICsvSerializer</a> : IDisposable</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00113.html#a54d241fe87517707b6f85c30fe8b3a95">   18</a></span>&#160;        <a class="code" href="a00062.html">CsvConfiguration</a> <a class="code" href="a00113.html#a54d241fe87517707b6f85c30fe8b3a95">Configuration</a> { <span class="keyword">get</span>; }</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="a00113.html#a0b442858eef85b7d933662359646fd0b">Write</a>( <span class="keywordtype">string</span>[] record );</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
+<div class="ttc" id="a00113_html_a0b442858eef85b7d933662359646fd0b"><div class="ttname"><a href="a00113.html#a0b442858eef85b7d933662359646fd0b">CsvHelper.ICsvSerializer.Write</a></div><div class="ttdeci">void Write(string[] record)</div><div class="ttdoc">Writes a record to the CSV file. </div></div>
+<div class="ttc" id="a00062_html"><div class="ttname"><a href="a00062.html">CsvHelper.Configuration.CsvConfiguration</a></div><div class="ttdoc">Configuration used for reading and writing CSV data. </div><div class="ttdef"><b>Definition:</b> <a href="a00200_source.html#l00018">CsvConfiguration.cs:18</a></div></div>
+<div class="ttc" id="a00113_html_a54d241fe87517707b6f85c30fe8b3a95"><div class="ttname"><a href="a00113.html#a54d241fe87517707b6f85c30fe8b3a95">CsvHelper.ICsvSerializer.Configuration</a></div><div class="ttdeci">CsvConfiguration Configuration</div><div class="ttdoc">Gets the configuration. </div><div class="ttdef"><b>Definition:</b> <a href="a00228_source.html#l00018">ICsvSerializer.cs:18</a></div></div>
+<div class="ttc" id="a00113_html"><div class="ttname"><a href="a00113.html">CsvHelper.ICsvSerializer</a></div><div class="ttdoc">Defines methods used to serialize data into a CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00228_source.html#l00013">ICsvSerializer.cs:13</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_38e4794d63a36822bec31892cd916c51.html">MissingFrom20</a></li><li class="navelem"><a class="el" href="a00228.html">Delegates.cs</a></li>
-    <li class="footer">Generated on Wed Aug 28 2019 22:42:47 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00228.html">ICsvSerializer.cs</a></li>
+    <li class="footer">Generated on Wed Oct 23 2019 00:35:55 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/Properties/AssemblyInfo.cs Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/MissingFromPcl/EnumerableExtensions.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,66 +105,33 @@ $(document).ready(function(){initNavTree('a00232_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">AssemblyInfo.cs</div>  </div>
+<div class="title">EnumerableExtensions.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00232.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System.Reflection;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using</span> System.Runtime.CompilerServices;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">using</span> System.Runtime.InteropServices;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// General Information about an assembly is controlled through the following </span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// set of attributes. Change these attribute values to modify the information</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// associated with an assembly.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;[assembly: AssemblyTitle( <span class="stringliteral">&quot;CsvHelper&quot;</span> )]</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;[assembly: AssemblyDescription( <span class="stringliteral">&quot;A library for reading and writing CSV files. Extremely fast, flexible, and easy to use. Supports reading and writing of custom class objects.&quot;</span> )]</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;[assembly: AssemblyConfiguration( <span class="stringliteral">&quot;&quot;</span> )]</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;[assembly: AssemblyCompany( <span class="stringliteral">&quot;Josh Close&quot;</span> )]</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;[assembly: AssemblyProduct( <span class="stringliteral">&quot;CsvHelper&quot;</span> )]</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;[assembly: AssemblyCopyright( <span class="stringliteral">&quot;Copyright © Josh Close 2009-2016&quot;</span> )]</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;[assembly: AssemblyTrademark( <span class="stringliteral">&quot;&quot;</span> )]</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;[assembly: AssemblyCulture( <span class="stringliteral">&quot;&quot;</span> )]</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#if !PCL</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"></span><span class="comment">// Setting ComVisible to false makes the types in this assembly not visible </span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">// to COM components.  If you need to access a type in this assembly from </span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">// COM, set the ComVisible attribute to true on that type.</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;[assembly: ComVisible( <span class="keyword">false</span> )]</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">// The following GUID is for the ID of the typelib if this project is exposed to COM</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;[assembly: Guid( <span class="stringliteral">&quot;2bff163b-a135-4068-be75-9a9464f3250f&quot;</span> )]</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">// Version information for an assembly consists of the following four values:</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">//      Major Version</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">//      Minor Version </span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">//      Build Number</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">//      Revision</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">// You can specify all the values or you can default the Build and Revision Numbers </span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">// by using the &#39;*&#39; as shown below:</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">// DO NOT update this.</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;[assembly: AssemblyVersion( <span class="stringliteral">&quot;2.0.0.0&quot;</span> )]</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">// Update this.</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;[assembly: AssemblyFileVersion( <span class="stringliteral">&quot;2.16.0.0&quot;</span> )]</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;[assembly: InternalsVisibleTo( <span class="stringliteral">&quot;CsvHelper.Tests, PublicKey=00240000048000009400000006020000002400005253413100040000010001000db97564beef98ad18a76ba31f769fab92b14341c9c37ed12f8004bb2a1a7fe42ad829b0e285915a816f05a32325c5e0ba83bd69d8f4d26a0785ccf446749842ad038f7325601a99c59a323dfa7ecf210139159da0aad1822b5d9c9be6d914ecbaa8b8c908c4af798a89b8777010971d81975079a49662ced398c742ff186a94&quot;</span> )]</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;[assembly: InternalsVisibleTo( <span class="stringliteral">&quot;CsvHelper20.Tests, PublicKey=00240000048000009400000006020000002400005253413100040000010001000db97564beef98ad18a76ba31f769fab92b14341c9c37ed12f8004bb2a1a7fe42ad829b0e285915a816f05a32325c5e0ba83bd69d8f4d26a0785ccf446749842ad038f7325601a99c59a323dfa7ecf210139159da0aad1822b5d9c9be6d914ecbaa8b8c908c4af798a89b8777010971d81975079a49662ced398c742ff186a94&quot;</span> )]</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;[assembly: InternalsVisibleTo( <span class="stringliteral">&quot;CsvHelper35.Tests, PublicKey=00240000048000009400000006020000002400005253413100040000010001000db97564beef98ad18a76ba31f769fab92b14341c9c37ed12f8004bb2a1a7fe42ad829b0e285915a816f05a32325c5e0ba83bd69d8f4d26a0785ccf446749842ad038f7325601a99c59a323dfa7ecf210139159da0aad1822b5d9c9be6d914ecbaa8b8c908c4af798a89b8777010971d81975079a49662ced398c742ff186a94&quot;</span> )]</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;[assembly: InternalsVisibleTo( <span class="stringliteral">&quot;CsvHelperPcl.Tests, PublicKey=00240000048000009400000006020000002400005253413100040000010001000db97564beef98ad18a76ba31f769fab92b14341c9c37ed12f8004bb2a1a7fe42ad829b0e285915a816f05a32325c5e0ba83bd69d8f4d26a0785ccf446749842ad038f7325601a99c59a323dfa7ecf210139159da0aad1822b5d9c9be6d914ecbaa8b8c908c4af798a89b8777010971d81975079a49662ced398c742ff186a94&quot;</span> )]</div>
+<a href="a00232.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#if PCL</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">using</span> System.Linq;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System.Text;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>System.Linq</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">class </span>EnumerableExtensions</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    {</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> All( <span class="keyword">this</span> <span class="keywordtype">string</span> s, Func&lt;char, bool&gt; predicate )</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <span class="keywordflow">return</span> s.Cast&lt;<span class="keywordtype">char</span>&gt;().All( predicate );</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        }</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    }</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_4c151e014849d6a3fd7578456f95c583.html">Properties</a></li><li class="navelem"><a class="el" href="a00232.html">AssemblyInfo.cs</a></li>
-    <li class="footer">Generated on Wed Aug 28 2019 22:42:47 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_48a1716f11dda95e9025da5db297b66f.html">MissingFromPcl</a></li><li class="navelem"><a class="el" href="a00232.html">EnumerableExtensions.cs</a></li>
+    <li class="footer">Generated on Wed Oct 23 2019 00:35:55 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

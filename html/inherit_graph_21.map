@@ -1,6 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$a00118.html" title="This interface defines a complete listener for a parse tree produced by YarnSpinnerParser. " alt="" coords="187,31,368,57"/>
-<area shape="rect" id="node3" href="$a00173.html" title="This class provides an empty implementation of IYarnSpinnerParserListener, which can be extended to c..." alt="" coords="417,31,623,57"/>
-<area shape="rect" id="node4" href="$a00051.html" title="Yarn.Compiler" alt="" coords="687,5,793,32"/>
-<area shape="rect" id="node5" href="$a00104.html" title="Yarn.GraphListener" alt="" coords="673,56,807,83"/>
+<area shape="rect" id="node2" href="$a00120.html" title="This interface defines a complete listener for a parse tree produced by YarnSpinnerParser. " alt="" coords="187,31,368,57"/>
+<area shape="rect" id="node3" href="$a00175.html" title="This class provides an empty implementation of IYarnSpinnerParserListener, which can be extended to c..." alt="" coords="417,31,623,57"/>
+<area shape="rect" id="node4" href="$a00053.html" title="Yarn.Compiler" alt="" coords="687,5,793,32"/>
+<area shape="rect" id="node5" href="$a00106.html" title="Yarn.GraphListener" alt="" coords="673,56,807,83"/>
 </map>

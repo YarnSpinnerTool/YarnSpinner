@@ -1,190 +1,93 @@
-\hypertarget{a00113}{\section{Yarn.\-Instruction Struct Reference}
-\label{a00113}\index{Yarn.\-Instruction@{Yarn.\-Instruction}}
+\hypertarget{a00113}{\section{Csv\-Helper.\-I\-Csv\-Serializer Interface Reference}
+\label{a00113}\index{Csv\-Helper.\-I\-Csv\-Serializer@{Csv\-Helper.\-I\-Csv\-Serializer}}
 }
 
 
-Collaboration diagram for Yarn.\-Instruction\-:
+Defines methods used to serialize data into a C\-S\-V file.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-I\-Csv\-Serializer\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=166pt]{a00629}
+\includegraphics[width=208pt]{a00440}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Csv\-Helper.\-I\-Csv\-Serializer\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{a00441}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00113_a939d511f211e8a61cfbca902e802564f}{To\-String} (\hyperlink{a00138}{Program} p, \hyperlink{a00121}{Library} l)
-\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+void \hyperlink{a00113_a0b442858eef85b7d933662359646fd0b}{Write} (string\mbox{[}$\,$\mbox{]} record)
+\begin{DoxyCompactList}\small\item\em Writes a record to the C\-S\-V file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894}{Byte\-Code} \hyperlink{a00113_a566bf5f7198cc353ea5c3710cb3a31cb}{operation}
-\item 
-object \hyperlink{a00113_ab5d386faa0d3dbc23db80f8e62706afd}{operand\-A}
-\item 
-object \hyperlink{a00113_a56348c6fe7eb919b7277afc06e5b224a}{operand\-B}
-\end{DoxyCompactItemize}
+\hyperlink{a00062}{Csv\-Configuration} \hyperlink{a00113_a54d241fe87517707b6f85c30fe8b3a95}{Configuration}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Defines methods used to serialize data into a C\-S\-V file. 
 
 
-Definition at line 229 of file Program.\-cs.
+
+Definition at line 13 of file I\-Csv\-Serializer.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00113_a939d511f211e8a61cfbca902e802564f}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Instruction@{Yarn\-::\-Instruction}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Instruction.\-To\-String (
+\hypertarget{a00113_a0b442858eef85b7d933662359646fd0b}{\index{Csv\-Helper\-::\-I\-Csv\-Serializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}!Write@{Write}}
+\index{Write@{Write}!CsvHelper::ICsvSerializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}}
+\subsubsection[{Write}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Serializer.\-Write (
 \begin{DoxyParamCaption}
-\item[{{\bf Program}}]{p, }
-\item[{{\bf Library}}]{l}
+\item[{string\mbox{[}$\,$\mbox{]}}]{record}
 \end{DoxyParamCaption}
-)}}\label{a00113_a939d511f211e8a61cfbca902e802564f}
+)}}\label{a00113_a0b442858eef85b7d933662359646fd0b}
 
 
-Definition at line 235 of file Program.\-cs.
+Writes a record to the C\-S\-V file. 
 
 
-
-References Yarn.\-Instruction.\-operand\-A, Yarn.\-Instruction.\-operand\-B, and Yarn.\-Instruction.\-operation.
-
-
-\begin{DoxyCode}
-236         \{
-237 
-238             \textcolor{comment}{// Labels are easy: just dump out the name}
-239             \textcolor{keywordflow}{if} (\hyperlink{a00113_a566bf5f7198cc353ea5c3710cb3a31cb}{operation} == \hyperlink{a00048_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label)
-240             \{
-241                 \textcolor{keywordflow}{return} \hyperlink{a00113_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} + \textcolor{stringliteral}{":"};
-242             \}
-243 
-244             \textcolor{comment}{// Convert the operands to strings}
-245             var opAString = \hyperlink{a00113_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} != null ? Convert.ToString(\hyperlink{a00113_ab5d386faa0d3dbc23db80f8e62706afd}{operandA}, 
-      CultureInfo.InvariantCulture) : \textcolor{stringliteral}{""};
-246             var opBString = \hyperlink{a00113_a56348c6fe7eb919b7277afc06e5b224a}{operandB} != null ? Convert.ToString(\hyperlink{a00113_a56348c6fe7eb919b7277afc06e5b224a}{operandB}, 
-      CultureInfo.InvariantCulture) : \textcolor{stringliteral}{""};
-247 
-248             \textcolor{comment}{// Generate a comment, if the instruction warrants it}
-249             \textcolor{keywordtype}{string} comment = \textcolor{stringliteral}{""};
-250 
-251             \textcolor{comment}{// Stack manipulation comments}
-252             var pops = 0;
-253             var pushes = 0;
-254 
-255             \textcolor{keywordflow}{switch} (\hyperlink{a00113_a566bf5f7198cc353ea5c3710cb3a31cb}{operation})
-256             \{
-257 
-258                 \textcolor{comment}{// These operations all push a single value to the stack}
-259                 \textcolor{keywordflow}{case} ByteCode.PushBool:
-260                 \textcolor{keywordflow}{case} ByteCode.PushNull:
-261                 \textcolor{keywordflow}{case} ByteCode.PushNumber:
-262                 \textcolor{keywordflow}{case} ByteCode.PushString:
-263                 \textcolor{keywordflow}{case} ByteCode.PushVariable:
-264                 \textcolor{keywordflow}{case} ByteCode.ShowOptions:
-265                     pushes = 1;
-266                     \textcolor{keywordflow}{break};
-267 
-268                 \textcolor{comment}{// Functions pop 0 or more values, and pop 0 or 1}
-269                 \textcolor{keywordflow}{case} ByteCode.CallFunc:
-270                     var \textcolor{keyword}{function} = l.GetFunction((string)operandA);
-271 
-272                     pops = function.paramCount;
-273 
-274                     \textcolor{keywordflow}{if} (\textcolor{keyword}{function}.returnsValue)
-275                         pushes = 1;
-276 
-277 
-278                     \textcolor{keywordflow}{break};
-279 
-280                 \textcolor{comment}{// Pop always pops a single value}
-281                 \textcolor{keywordflow}{case} ByteCode.Pop:
-282                     pops = 1;
-283                     \textcolor{keywordflow}{break};
-284 
-285                 \textcolor{comment}{// Switching to a different node will always clear the stack}
-286                 \textcolor{keywordflow}{case} ByteCode.RunNode:
-287                     comment += \textcolor{stringliteral}{"Clears stack"};
-288                     \textcolor{keywordflow}{break};
-289             \}
-290 
-291             \textcolor{comment}{// If we had any pushes or pops, report them}
-292 
-293             \textcolor{keywordflow}{if} (pops > 0 && pushes > 0)
-294                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pops \{0\}, Pushes \{1\}"}, pops, pushes
-      );
-295             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pops > 0)
-296                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pops \{0\}"}, pops);
-297             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pushes > 0)
-298                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pushes \{0\}"}, pushes);
-299 
-300             \textcolor{comment}{// String lookup comments}
-301             \textcolor{keywordflow}{switch} (\hyperlink{a00113_a566bf5f7198cc353ea5c3710cb3a31cb}{operation})
-302             \{
-303                 \textcolor{keywordflow}{case} ByteCode.PushString:
-304                 \textcolor{keywordflow}{case} ByteCode.RunLine:
-305                 \textcolor{keywordflow}{case} ByteCode.AddOption:
-306 
-307                     \textcolor{comment}{// Add the string for this option, if it has one}
-308                     \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{string})operandA != null)
-309                     \{
-310                         var text = p.GetString((string)operandA);
-311                         comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\(\backslash\)"\{0\}\(\backslash\)""}, text);
-312                     \}
-313 
-314                     \textcolor{keywordflow}{break};
-315 
-316             \}
-317 
-318             \textcolor{keywordflow}{if} (comment != \textcolor{stringliteral}{""})
-319             \{
-320                 comment = \textcolor{stringliteral}{"; "} + comment;
-321             \}
-322 
-323             \textcolor{keywordflow}{return} string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0,-15\} \{1,-10\} \{2,-10\} \{3, -10\}"}, 
-      operation.ToString(), opAString, opBString, comment);
-324         \}
-\end{DoxyCode}
+\begin{DoxyParams}{Parameters}
+{\em record} & The record to write.\\
+\hline
+\end{DoxyParams}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00113_ab5d386faa0d3dbc23db80f8e62706afd}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operand\-A@{operand\-A}}
-\index{operand\-A@{operand\-A}!Yarn::Instruction@{Yarn\-::\-Instruction}}
-\subsubsection[{operand\-A}]{\setlength{\rightskip}{0pt plus 5cm}object Yarn.\-Instruction.\-operand\-A}}\label{a00113_ab5d386faa0d3dbc23db80f8e62706afd}
-
-
-Definition at line 232 of file Program.\-cs.
+Implemented in \hyperlink{a00078_aefad906acd048863d3dd414651a44793}{Csv\-Helper.\-Csv\-Serializer}.
 
 
 
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction(), and Yarn.\-Instruction.\-To\-String().
-
-\hypertarget{a00113_a56348c6fe7eb919b7277afc06e5b224a}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operand\-B@{operand\-B}}
-\index{operand\-B@{operand\-B}!Yarn::Instruction@{Yarn\-::\-Instruction}}
-\subsubsection[{operand\-B}]{\setlength{\rightskip}{0pt plus 5cm}object Yarn.\-Instruction.\-operand\-B}}\label{a00113_a56348c6fe7eb919b7277afc06e5b224a}
-
-
-Definition at line 233 of file Program.\-cs.
+\subsection{Property Documentation}
+\hypertarget{a00113_a54d241fe87517707b6f85c30fe8b3a95}{\index{Csv\-Helper\-::\-I\-Csv\-Serializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}!Configuration@{Configuration}}
+\index{Configuration@{Configuration}!CsvHelper::ICsvSerializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}}
+\subsubsection[{Configuration}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Configuration} Csv\-Helper.\-I\-Csv\-Serializer.\-Configuration\hspace{0.3cm}{\ttfamily [get]}}}\label{a00113_a54d241fe87517707b6f85c30fe8b3a95}
 
 
-
-Referenced by Yarn.\-Instruction.\-To\-String().
-
-\hypertarget{a00113_a566bf5f7198cc353ea5c3710cb3a31cb}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operation@{operation}}
-\index{operation@{operation}!Yarn::Instruction@{Yarn\-::\-Instruction}}
-\subsubsection[{operation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Byte\-Code} Yarn.\-Instruction.\-operation}}\label{a00113_a566bf5f7198cc353ea5c3710cb3a31cb}
-
-
-Definition at line 231 of file Program.\-cs.
+Gets the configuration. 
 
 
 
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction(), and Yarn.\-Instruction.\-To\-String().
+Definition at line 18 of file I\-Csv\-Serializer.\-cs.
 
 
 
-The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Csv\-Writer().
+
+
+
+The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00289}{Program.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00228}{I\-Csv\-Serializer.\-cs}\end{DoxyCompactItemize}

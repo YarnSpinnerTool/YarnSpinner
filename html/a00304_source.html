@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: YarnSpinnerTests/ProjectTests.cs Source File</title>
+<title>YarnSpinner: YarnSpinnerConsole/TableGenerator.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,95 +105,163 @@ $(document).ready(function(){initNavTree('a00304_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">ProjectTests.cs</div>  </div>
+<div class="title">TableGenerator.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00304.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">using</span> NUnit.Framework;</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using</span> System;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">using</span> System.IO;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">using</span> System.Collections;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using</span> Yarn;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>YarnSpinner.Tests</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="a00139.html">   12</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00139.html">ProjectTests</a> : <a class="code" href="a00152.html">TestBase</a></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        [SetUp]</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="a00139.html#a09fb3b241843b94176be710e4a2a6833">   16</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">new</span> <span class="keywordtype">void</span> <a class="code" href="a00139.html#a09fb3b241843b94176be710e4a2a6833">Init</a>()</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            base.Init();            </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        }</div>
+<a href="a00304.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using</span> Yarn;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">using</span> CsvHelper;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">using</span> System.Globalization;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>Yarn</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="a00153.html">   10</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="a00153.html">TableGenerator</a></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    {</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="a00153.html#a1d65ef643c3f3495cf9480f86172ff87">   12</a></span>&#160;        <span class="keyword">static</span> <span class="keyword">internal</span> <span class="keywordtype">int</span> <a class="code" href="a00153.html#a1d65ef643c3f3495cf9480f86172ff87">GenerateTables</a> (<a class="code" href="a00104.html">GenerateTableOptions</a> options)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            YarnSpinnerConsole.CheckFileList(options.files, <a class="code" href="a00174.html#a0979de7ea02c8c0375b8220a12e6575e">YarnSpinnerConsole.ALLOWED_EXTENSIONS</a>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <span class="keywordflow">if</span> (options.<a class="code" href="a00042.html#ada4d83d1756918f362d55f6649b82b17">verbose</a> &amp;&amp; options.<a class="code" href="a00104.html#a8b30c1b7fb1b74eae455a568c1024b3d">onlyUseTag</a> != null) {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                YarnSpinnerConsole.Note(string.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;Only using lines from nodes tagged \&quot;{0}\&quot;&quot;</span>, options.onlyUseTag));</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            }</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        [Test]</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="a00139.html#a7d3dccb3f5ddf0b24e65782b7af15369">   22</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00139.html#a7d3dccb3f5ddf0b24e65782b7af15369">TestLoadingSingleFile</a>()</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            var path = Path.Combine(TestDataPath, <span class="stringliteral">&quot;Projects&quot;</span>, <span class="stringliteral">&quot;Basic&quot;</span>, <span class="stringliteral">&quot;Test.yarn.txt&quot;</span>);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="comment">// high-level test: load the file, verify it has the nodes we want,</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="comment">// and run one</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            dialogue.LoadFile(path);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            Assert.AreEqual(3, dialogue.program.nodes.Count);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            Assert.True(dialogue.NodeExists(<span class="stringliteral">&quot;TestNode&quot;</span>));</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            Assert.True(dialogue.NodeExists(<span class="stringliteral">&quot;AnotherTestNode&quot;</span>));</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            Assert.True(dialogue.NodeExists(<span class="stringliteral">&quot;ThirdNode&quot;</span>));</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="comment">// execute a node</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            var secondNodeName = <span class="stringliteral">&quot;AnotherTestNode&quot;</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            ExpectLine(<span class="stringliteral">&quot;This is a second test node!&quot;</span>);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="comment">// we are now expecting a node</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            Assert.IsTrue(this.isExpectingLine);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            RunStandardTestcase(secondNodeName);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="comment">// the line should have run, so this property should become true</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            Assert.IsFalse(this.isExpectingLine);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="comment">// and the variable $x should now have a value</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            Assert.AreEqual(23, (int)dialogue.continuity.GetValue(<span class="stringliteral">&quot;$x&quot;</span>).AsNumber);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keywordtype">bool</span> linesWereUntagged = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">foreach</span> (var file <span class="keywordflow">in</span> options.files) {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                var dialogue = YarnSpinnerConsole.CreateDialogueForUtilities();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                dialogue.LoadFile (file);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                var stringTable = dialogue.GetStringTable ();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                var emittedStringTable = <span class="keyword">new</span> Dictionary&lt;string,string&gt; ();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                var anyLinesAreUntagged = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordflow">foreach</span> (var entry <span class="keywordflow">in</span> stringTable) {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                    <span class="comment">// If options.onlyUseTag is set, we skip all lines in nodes that</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                    <span class="comment">// don&#39;t have that tag.</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                    <span class="keywordflow">if</span> (options.onlyUseTag != null) {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                        <span class="comment">// Find the tags for the node that this string is in</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                        <a class="code" href="a00125.html">LineInfo</a> stringInfo;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                        <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                            stringInfo = dialogue.program.lineInfo[entry.Key];</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                        } <span class="keywordflow">catch</span> (KeyNotFoundException) {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                            YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;{0}: lineInfo table does not contain an entry for line {1} (\&quot;{2}\&quot;)&quot;</span>, file, entry.Key, entry.Value));</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                            <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                        }</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="comment">// Next, we&#39;ll do a lower-level test, verifying that properties are loaded correctly</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                        <a class="code" href="a00050.html#a00354">Node</a> node;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="comment">// manually load the NodeInfos and verify data</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            var text = File.ReadAllText(path);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            var nodes = dialogue.loader.GetNodesFromText(text, NodeFormat.Text);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="comment">// first node has a colorID</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            Assert.AreEqual(3, nodes[0].colorID);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                        <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                            node = dialogue.program.nodes[stringInfo.nodeName];</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                        } <span class="keywordflow">catch</span> (KeyNotFoundException) {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                            YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;{0}: Line {1}&#39;s lineInfo claims that the line originates in node {2}, but this node is not present in this program.&quot;</span>, file, entry.Key, stringInfo.nodeName));</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                            <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                        }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="comment">// second node has got a position defined</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            var position = nodes[1].position;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            Assert.AreEqual(2, position.x);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            Assert.AreEqual(4, position.y);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="comment">// third node has tags</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            var expectedTags = <span class="keyword">new</span> List&lt;string&gt;(<span class="keyword">new</span> <span class="keywordtype">string</span>[] { <span class="stringliteral">&quot;multiple&quot;</span>, <span class="stringliteral">&quot;tags!&quot;</span>});</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                        var tags = node.tags;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                        <span class="comment">// If the tags don&#39;t include the one we&#39;re looking for,</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        <span class="comment">// skip this line</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                        <span class="keywordflow">if</span> (tags.FindIndex(i =&gt; i == options.onlyUseTag) == -1) {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                        }</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            Assert.AreEqual(expectedTags, nodes[2].tagsList);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                    }</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="comment">// the third node&#39;s body is empty</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            Assert.IsEmpty(nodes[2].body);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
-<div class="ttc" id="a00139_html"><div class="ttname"><a href="a00139.html">YarnSpinner.Tests.ProjectTests</a></div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00012">ProjectTests.cs:12</a></div></div>
-<div class="ttc" id="a00139_html_a7d3dccb3f5ddf0b24e65782b7af15369"><div class="ttname"><a href="a00139.html#a7d3dccb3f5ddf0b24e65782b7af15369">YarnSpinner.Tests.ProjectTests.TestLoadingSingleFile</a></div><div class="ttdeci">void TestLoadingSingleFile()</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00022">ProjectTests.cs:22</a></div></div>
-<div class="ttc" id="a00139_html_a09fb3b241843b94176be710e4a2a6833"><div class="ttname"><a href="a00139.html#a09fb3b241843b94176be710e4a2a6833">YarnSpinner.Tests.ProjectTests.Init</a></div><div class="ttdeci">new void Init()</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00016">ProjectTests.cs:16</a></div></div>
-<div class="ttc" id="a00152_html"><div class="ttname"><a href="a00152.html">YarnSpinner.Tests.TestBase</a></div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00014">TestBase.cs:14</a></div></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                    <span class="keywordflow">if</span> (entry.Key.StartsWith(<span class="stringliteral">&quot;line:&quot;</span>, StringComparison.InvariantCulture) == <span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                        anyLinesAreUntagged = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                        emittedStringTable [entry.Key] = entry.Value;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                    }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="keywordflow">if</span> (anyLinesAreUntagged) {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                    YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;Untagged lines in {0}&quot;</span>, file));</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                    linesWereUntagged = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                <span class="comment">// Generate the CSV</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                <span class="keyword">using</span> (var w = <span class="keyword">new</span> System.IO.StringWriter()) {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                    <span class="keyword">using</span> (var csv = <span class="keyword">new</span> <a class="code" href="a00080.html">CsvWriter</a>(w)) {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                        csv.WriteHeader&lt;<a class="code" href="a00128.html">LocalisedLine</a>&gt;();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                        <span class="keywordflow">foreach</span> (var entry <span class="keywordflow">in</span> emittedStringTable)</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                        {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                            var l = <span class="keyword">new</span> <a class="code" href="a00128.html">LocalisedLine</a>();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                            l.LineCode = entry.Key;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                            l.LineText = entry.Value;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                            l.Comment = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                            csv.WriteRecord(l);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                        }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                        var dir = System.IO.Path.GetDirectoryName(file);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                        var fileName = System.IO.Path.GetFileNameWithoutExtension(file);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                        fileName += <span class="stringliteral">&quot;_lines.csv&quot;</span>;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                        var filePath = System.IO.Path.Combine(dir, fileName);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                        System.IO.File.WriteAllText(filePath, w.ToString());</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                        <span class="keywordflow">if</span> (options.verbose)</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                        {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                            YarnSpinnerConsole.Note(<span class="stringliteral">&quot;Wrote &quot;</span> + filePath);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                        }</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                    }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <span class="keywordflow">if</span> (linesWereUntagged) {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                YarnSpinnerConsole.Warn(<span class="stringliteral">&quot;Some lines were not tagged, so they weren&#39;t added to the &quot;</span> +</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                               <span class="stringliteral">&quot;string file. Use this tool&#39;s &#39;generate&#39; action to add them.&quot;</span>);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            }</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        }</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="a00153.html#ac03637d16d3512258c997b9a21af6c42">  126</a></span>&#160;        <span class="keyword">static</span> <span class="keywordtype">string</span> <a class="code" href="a00153.html#ac03637d16d3512258c997b9a21af6c42">CreateCSVRow</a> (params <span class="keywordtype">string</span>[] entries) {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            <span class="keywordflow">return</span> string.Join (<span class="stringliteral">&quot;,&quot;</span>, entries);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        }</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="a00153.html#aa16da6b6810ce3a5fd2a7920de6322ef">  130</a></span>&#160;        <span class="keyword">static</span> <span class="keywordtype">string</span> <a class="code" href="a00153.html#aa16da6b6810ce3a5fd2a7920de6322ef">CreateCSVRow</a> (KeyValuePair&lt;string,string&gt; entry) {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="a00153.html#ac03637d16d3512258c997b9a21af6c42">CreateCSVRow</a> (<span class="keyword">new</span> <span class="keywordtype">string</span>[] { entry.Key, entry.Value });</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;}</div>
+<div class="ttc" id="a00153_html_aa16da6b6810ce3a5fd2a7920de6322ef"><div class="ttname"><a href="a00153.html#aa16da6b6810ce3a5fd2a7920de6322ef">Yarn.TableGenerator.CreateCSVRow</a></div><div class="ttdeci">static string CreateCSVRow(KeyValuePair&lt; string, string &gt; entry)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00130">TableGenerator.cs:130</a></div></div>
+<div class="ttc" id="a00174_html_a0979de7ea02c8c0375b8220a12e6575e"><div class="ttname"><a href="a00174.html#a0979de7ea02c8c0375b8220a12e6575e">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</a></div><div class="ttdeci">static List&lt; string &gt; ALLOWED_EXTENSIONS</div><div class="ttdef"><b>Definition:</b> <a href="a00303_source.html#l00268">Main.cs:268</a></div></div>
+<div class="ttc" id="a00042_html_ada4d83d1756918f362d55f6649b82b17"><div class="ttname"><a href="a00042.html#ada4d83d1756918f362d55f6649b82b17">Yarn.BaseOptions.verbose</a></div><div class="ttdeci">bool verbose</div><div class="ttdef"><b>Definition:</b> <a href="a00303_source.html#l00046">Main.cs:46</a></div></div>
+<div class="ttc" id="a00104_html_a8b30c1b7fb1b74eae455a568c1024b3d"><div class="ttname"><a href="a00104.html#a8b30c1b7fb1b74eae455a568c1024b3d">Yarn.GenerateTableOptions.onlyUseTag</a></div><div class="ttdeci">string onlyUseTag</div><div class="ttdef"><b>Definition:</b> <a href="a00303_source.html#l00113">Main.cs:113</a></div></div>
+<div class="ttc" id="a00050_html_a00354"><div class="ttname"><a href="a00050.html#a00354">Yarn.Node</a></div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00213">Program.cs:213</a></div></div>
+<div class="ttc" id="a00125_html"><div class="ttname"><a href="a00125.html">Yarn.LineInfo</a></div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00035">Program.cs:35</a></div></div>
+<div class="ttc" id="a00153_html_a1d65ef643c3f3495cf9480f86172ff87"><div class="ttname"><a href="a00153.html#a1d65ef643c3f3495cf9480f86172ff87">Yarn.TableGenerator.GenerateTables</a></div><div class="ttdeci">static int GenerateTables(GenerateTableOptions options)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00012">TableGenerator.cs:12</a></div></div>
+<div class="ttc" id="a00153_html"><div class="ttname"><a href="a00153.html">Yarn.TableGenerator</a></div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00010">TableGenerator.cs:10</a></div></div>
+<div class="ttc" id="a00128_html"><div class="ttname"><a href="a00128.html">Yarn.LocalisedLine</a></div><div class="ttdoc">A line, localised into the current locale. </div><div class="ttdef"><b>Definition:</b> <a href="a00285_source.html#l00103">Dialogue.cs:103</a></div></div>
+<div class="ttc" id="a00080_html"><div class="ttname"><a href="a00080.html">CsvHelper.CsvWriter</a></div><div class="ttdoc">Used to write CSV files. </div><div class="ttdef"><b>Definition:</b> <a href="a00221_source.html#l00024">CsvWriter.cs:24</a></div></div>
+<div class="ttc" id="a00153_html_ac03637d16d3512258c997b9a21af6c42"><div class="ttname"><a href="a00153.html#ac03637d16d3512258c997b9a21af6c42">Yarn.TableGenerator.CreateCSVRow</a></div><div class="ttdeci">static string CreateCSVRow(params string[] entries)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00126">TableGenerator.cs:126</a></div></div>
+<div class="ttc" id="a00104_html"><div class="ttname"><a href="a00104.html">Yarn.GenerateTableOptions</a></div><div class="ttdef"><b>Definition:</b> <a href="a00303_source.html#l00110">Main.cs:110</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_2870522f32e1cc12c0615fa0200eb498.html">YarnSpinnerTests</a></li><li class="navelem"><a class="el" href="a00304.html">ProjectTests.cs</a></li>
-    <li class="footer">Generated on Wed Aug 28 2019 22:42:48 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_6f181b52275ac94c00a65cc257010ba9.html">YarnSpinnerConsole</a></li><li class="navelem"><a class="el" href="a00304.html">TableGenerator.cs</a></li>
+    <li class="footer">Generated on Wed Oct 23 2019 00:35:55 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

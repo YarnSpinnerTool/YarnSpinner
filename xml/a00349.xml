@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00349" kind="struct" prot="public">
-    <compoundname>Yarn::Line</compoundname>
+    <compoundname>Yarn::Command</compoundname>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00349_1a81d1f04bbb4cf6642d2bd685bda1da20" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="a00349_1a8564e5104566e145f5d917ec846444d9" prot="public" static="no" mutable="no">
         <type>string</type>
-        <definition>string Yarn.Line.text</definition>
+        <definition>string Yarn.Command.text</definition>
         <argsstring></argsstring>
         <name>text</name>
         <briefdescription>
@@ -14,22 +14,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="59" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="59" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="61" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="61" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Information about stuff that the client should handle. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
-<para>(Currently this just wraps a single field, but doing it like this gives us the option to add more stuff later without breaking the API.) </para>    </detaileddescription>
+    </detaileddescription>
     <collaborationgraph>
-      <node id="1331">
-        <label>Yarn.Line</label>
+      <node id="871">
+        <label>Yarn.Command</label>
         <link refid="a00349"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="59" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="59" bodyend="59"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="61" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="61" bodyend="61"/>
     <listofallmembers>
-      <member refid="a00349_1a81d1f04bbb4cf6642d2bd685bda1da20" prot="public" virt="non-virtual"><scope>Yarn::Line</scope><name>text</name></member>
+      <member refid="a00349_1a8564e5104566e145f5d917ec846444d9" prot="public" virt="non-virtual"><scope>Yarn::Command</scope><name>text</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

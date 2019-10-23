@@ -17,22 +17,22 @@ Blockquotes contain essential information
 \subsection*{Tutorial}
 
 \begin{quotation}
-$\ast$$\ast$$\ast$\-Note\-:$\ast$$\ast$$\ast$ This tutorial assumes that you know nothing about writing code, in particular how to use \href{http://www.unity3d.com}{\tt Unity} or the \hyperlink{a00048}{Yarn} Editor. You do not need to know how to use those tools to write \hyperlink{a00048}{Yarn} Dialogue. It is required that you know how to create a text file (.txt), which is different to a .doc, .docx, .rtf etc. document, in whatever text editor you are most comfortable using. Please refer to your friendly local computer expert if you are unsure how to do this. As you learn more about \hyperlink{a00048}{Yarn} Dialogue, you may find the \hyperlink{a00048}{Yarn} Editor useful as you progress with your authoring. It is a text editor that is designed to make \hyperlink{a00048}{Yarn} Dialogue easier to create.
+$\ast$$\ast$$\ast$\-Note\-:$\ast$$\ast$$\ast$ This tutorial assumes that you know nothing about writing code, in particular how to use \href{http://www.unity3d.com}{\tt Unity} or the \hyperlink{a00050}{Yarn} Editor. You do not need to know how to use those tools to write \hyperlink{a00050}{Yarn} Dialogue. It is required that you know how to create a text file (.txt), which is different to a .doc, .docx, .rtf etc. document, in whatever text editor you are most comfortable using. Please refer to your friendly local computer expert if you are unsure how to do this. As you learn more about \hyperlink{a00050}{Yarn} Dialogue, you may find the \hyperlink{a00050}{Yarn} Editor useful as you progress with your authoring. It is a text editor that is designed to make \hyperlink{a00050}{Yarn} Dialogue easier to create.
 
 \end{quotation}
 
 
-\subsection*{Introducing \hyperlink{a00048}{Yarn} Dialogue}
+\subsection*{Introducing \hyperlink{a00050}{Yarn} Dialogue}
 
-\hyperlink{a00048}{Yarn} Dialogue is designed for Authors who have little or no programming knowledge. It makes no assumptions about how your game presents resultant text to the player, or about how the player chooses their responses. These tasks are left to the game production team, using programming and design tools such as Unity3\-D and C\#.
+\hyperlink{a00050}{Yarn} Dialogue is designed for Authors who have little or no programming knowledge. It makes no assumptions about how your game presents resultant text to the player, or about how the player chooses their responses. These tasks are left to the game production team, using programming and design tools such as Unity3\-D and C\#.
 
 \subsubsection*{Simple Example Script}
 
-We will create the essential \hyperlink{a00048}{Yarn} Dialogue for the \href{../Unity/Assets/YarnSpinner/Examples/DemoAssets/SimpleExampleScript.yarn.txt}{\tt Simple Example Dialogue}. We will start off with the text as presented by the ingame characters, add in choices which are essentially what the player says to the characters, and have the characters react to the choices.
+We will create the essential \hyperlink{a00050}{Yarn} Dialogue for the \href{../Unity/Assets/YarnSpinner/Examples/DemoAssets/SimpleExampleScript.yarn.txt}{\tt Simple Example Dialogue}. We will start off with the text as presented by the ingame characters, add in choices which are essentially what the player says to the characters, and have the characters react to the choices.
 
-Each section of text in \hyperlink{a00048}{Yarn} Dialogue is known as a $\ast$$\ast$$\ast$node$\ast$$\ast$$\ast$.
+Each section of text in \hyperlink{a00050}{Yarn} Dialogue is known as a $\ast$$\ast$$\ast$node$\ast$$\ast$$\ast$.
 
-A $\ast$$\ast$$\ast$node$\ast$$\ast$$\ast$ consists of $\ast$$\ast$$\ast$header data$\ast$$\ast$$\ast$ and $\ast$$\ast$$\ast$body data$\ast$$\ast$$\ast$. The header data provides information about the body data, and the body data contains \hyperlink{a00048}{Yarn} Dialogue and options relating to the Dialogue.
+A $\ast$$\ast$$\ast$node$\ast$$\ast$$\ast$ consists of $\ast$$\ast$$\ast$header data$\ast$$\ast$$\ast$ and $\ast$$\ast$$\ast$body data$\ast$$\ast$$\ast$. The header data provides information about the body data, and the body data contains \hyperlink{a00050}{Yarn} Dialogue and options relating to the Dialogue.
 
 In this example, our first node commences with two characters, A and B.
 
@@ -45,7 +45,7 @@ Node titles are case sensitive. The titles $\ast$$\ast$$\ast$start$\ast$$\ast$$\
 
 
 \begin{quotation}
-There is no default title. You will need to ensure that your game programmers know which node your game starts on, as it may not necessarily be the first node in your \hyperlink{a00048}{Yarn} Dialogue file.
+There is no default title. You will need to ensure that your game programmers know which node your game starts on, as it may not necessarily be the first node in your \hyperlink{a00050}{Yarn} Dialogue file.
 
 \end{quotation}
 
@@ -64,7 +64,7 @@ A\-: Hey, I'm a character in a script! \section*{B\-: And I am too! You are talk
 
 ```
 
-Congratulations, you've just written your very first piece of \hyperlink{a00048}{Yarn} Dialogue!
+Congratulations, you've just written your very first piece of \hyperlink{a00050}{Yarn} Dialogue!
 
 \subsubsection*{Adding Options and Replies}
 
@@ -74,7 +74,7 @@ The next step we'll take is to add in some options to present to the player. We 
 
 We add this after the A and B character Dialogue, but before the ending tag. ``` -\/$>$ What's going on -\/$>$ Um ok ```
 
-Our \hyperlink{a00048}{Yarn} Dialogue now reads as like this\-: ``` \subsection*{title\-: start }
+Our \hyperlink{a00050}{Yarn} Dialogue now reads as like this\-: ``` \subsection*{title\-: start }
 
 A\-: Hey, I'm a character in a script! B\-: And I am too! You are talking to me! -\/$>$ What's going on \section*{-\/$>$ Um ok }
 
@@ -82,7 +82,7 @@ A\-: Hey, I'm a character in a script! B\-: And I am too! You are talking to me!
 
 \paragraph*{Replies}
 
-Options aren't really that useful without a $\ast$$\ast$$\ast$reply$\ast$$\ast$$\ast$. Replies are indented with four spaces. ``` A\-: Why this is a demo of the script system! B\-: And you're in it! ``` The reply is placed immediately after the option to which it is connected. We'll add the above replies to the first option, resulting in our \hyperlink{a00048}{Yarn} Dialogue now looking like this\-: ``` \subsection*{title\-: start }
+Options aren't really that useful without a $\ast$$\ast$$\ast$reply$\ast$$\ast$$\ast$. Replies are indented with four spaces. ``` A\-: Why this is a demo of the script system! B\-: And you're in it! ``` The reply is placed immediately after the option to which it is connected. We'll add the above replies to the first option, resulting in our \hyperlink{a00050}{Yarn} Dialogue now looking like this\-: ``` \subsection*{title\-: start }
 
 A\-: Hey, I'm a character in a script! B\-: And I am too! You are talking to me! -\/$>$ What's going on A\-: Why this is a demo of the script system! B\-: And you're in it! \section*{-\/$>$ Um ok }
 
@@ -130,7 +130,7 @@ A\-: Oh, goodbye! \section*{B\-: You'll be back soon! }
 
 ```
 
-Our final \hyperlink{a00048}{Yarn} Dialogue file will read such\-: ``` \subsection*{title\-: Start }
+Our final \hyperlink{a00050}{Yarn} Dialogue file will read such\-: ``` \subsection*{title\-: Start }
 
 A\-: Hey, I'm a character in a script! B\-: And I am too! You are talking to me! -\/$>$ What's going on A\-: Why this is a demo of the script system! B\-: And you're in it! -\/$>$ Um ok A\-: How delightful! B\-: What would you prefer to do next? \mbox{[}\mbox{[}Leave$\vert$\-Leave\mbox{]}\mbox{]} \section*{\mbox{[}\mbox{[}Learn more$\vert$\-Learn\-More\mbox{]}\mbox{]} }
 
@@ -146,8 +146,8 @@ A\-: Oh, goodbye! \section*{B\-: You'll be back soon! }
 
 \subsection*{Live example}
 
-We have a fully parsed version of the above \hyperlink{a00048}{Yarn} Dialogue available in our Unity examples directory as \href{../Unity/Assets/YarnSpinner/Examples/DemoAssets/SimpleExampleScript.yarn.txt}{\tt Simple Example Script}. Please note this differs from the above \hyperlink{a00048}{Yarn} Dialogue in a couple of minor, yet important points\-:
+We have a fully parsed version of the above \hyperlink{a00050}{Yarn} Dialogue available in our Unity examples directory as \href{../Unity/Assets/YarnSpinner/Examples/DemoAssets/SimpleExampleScript.yarn.txt}{\tt Simple Example Script}. Please note this differs from the above \hyperlink{a00050}{Yarn} Dialogue in a couple of minor, yet important points\-:
 \begin{DoxyItemize}
-\item Extra header tags for colour and position of the Dialogue within the \hyperlink{a00048}{Yarn} Editor, and not for within the game environment. Text placement, colourising, and font selection is considered to be the domain of design and programming and thus outside the scope of Dialogue.
-\item Translation tags to aide with localization These differences are generally created by programmers. It is envisaged that in the future they will be automatically generated by a \hyperlink{a00048}{Yarn} Dialogue editor. 
+\item Extra header tags for colour and position of the Dialogue within the \hyperlink{a00050}{Yarn} Editor, and not for within the game environment. Text placement, colourising, and font selection is considered to be the domain of design and programming and thus outside the scope of Dialogue.
+\item Translation tags to aide with localization These differences are generally created by programmers. It is envisaged that in the future they will be automatically generated by a \hyperlink{a00050}{Yarn} Dialogue editor. 
 \end{DoxyItemize}

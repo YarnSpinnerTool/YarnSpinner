@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.Unity.YarnCommandAttribute Class Reference</title>
+<title>YarnSpinner: Yarn.Unity.VariableStorageBehaviour Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -108,74 +108,59 @@ $(document).ready(function(){initNavTree('a00170.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#properties">Properties</a> &#124;
-<a href="a00688.html">List of all members</a>  </div>
+<a href="a00697.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Unity.YarnCommandAttribute Class Reference</div>  </div>
+<div class="title">Yarn.Unity.VariableStorageBehaviour Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Apply this attribute to methods in your scripts to expose them to <a class="el" href="a00048.html">Yarn</a>.  
+<p>Scripts that can act as a variable storage should subclass this.  
  <a href="a00170.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.Unity.YarnCommandAttribute:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.Unity.VariableStorageBehaviour:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00689.png" border="0" usemap="#_yarn_8_unity_8_yarn_command_attribute_inherit__map" alt="Inheritance graph"/></div>
-<map name="_yarn_8_unity_8_yarn_command_attribute_inherit__map" id="_yarn_8_unity_8_yarn_command_attribute_inherit__map">
-</map>
+<div class="center"><img src="a00698.png" border="0" usemap="#_yarn_8_unity_8_variable_storage_behaviour_inherit__map" alt="Inheritance graph"/></div>
+<map name="_yarn_8_unity_8_variable_storage_behaviour_inherit__map" id="_yarn_8_unity_8_variable_storage_behaviour_inherit__map">
+<area shape="rect" id="node4" href="a00087.html" title="An extremely simple implementation of DialogueUnityVariableStorage, which just stores everything in a..." alt="" coords="56,435,220,615"/><area shape="rect" id="node3" href="a00169.html" title="Where we turn to for storing and loading variable data. " alt="" coords="141,6,289,157"/></map>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Unity.YarnCommandAttribute:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Unity.VariableStorageBehaviour:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00690.png" border="0" usemap="#_yarn_8_unity_8_yarn_command_attribute_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_unity_8_yarn_command_attribute_coll__map" id="_yarn_8_unity_8_yarn_command_attribute_coll__map">
-</map>
+<div class="center"><img src="a00699.png" border="0" usemap="#_yarn_8_unity_8_variable_storage_behaviour_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_unity_8_variable_storage_behaviour_coll__map" id="_yarn_8_unity_8_variable_storage_behaviour_coll__map">
+<area shape="rect" id="node3" href="a00169.html" title="Where we turn to for storing and loading variable data. " alt="" coords="141,6,289,157"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9c0d57cd72c091f63895944959e98330"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#a9c0d57cd72c091f63895944959e98330">YarnCommandAttribute</a> (string <a class="el" href="a00170.html#a6d513a725c819ffcdaa9c5788472ec8d">commandString</a>)</td></tr>
-<tr class="separator:a9c0d57cd72c091f63895944959e98330"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
-Properties</h2></td></tr>
-<tr class="memitem:a6d513a725c819ffcdaa9c5788472ec8d"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#a6d513a725c819ffcdaa9c5788472ec8d">commandString</a><code> [get, set]</code></td></tr>
-<tr class="separator:a6d513a725c819ffcdaa9c5788472ec8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac981277018fe74c14491800caf29a7c5"><td class="memItemLeft" align="right" valign="top">abstract <a class="el" href="a00167.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#ac981277018fe74c14491800caf29a7c5">GetValue</a> (string variableName)</td></tr>
+<tr class="memdesc:ac981277018fe74c14491800caf29a7c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a value.  <a href="#ac981277018fe74c14491800caf29a7c5">More...</a><br/></td></tr>
+<tr class="separator:ac981277018fe74c14491800caf29a7c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a869fa2dfd390c1ec63735b5763ba4d77"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#a869fa2dfd390c1ec63735b5763ba4d77">SetValue</a> (string variableName, float floatValue)</td></tr>
+<tr class="separator:a869fa2dfd390c1ec63735b5763ba4d77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08ff36ec352a979b5db074f66ec9e189"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#a08ff36ec352a979b5db074f66ec9e189">SetValue</a> (string variableName, bool stringValue)</td></tr>
+<tr class="separator:a08ff36ec352a979b5db074f66ec9e189"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25df235b5446e93d5236a5fd5c17f6dd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#a25df235b5446e93d5236a5fd5c17f6dd">SetValue</a> (string variableName, string boolValue)</td></tr>
+<tr class="separator:a25df235b5446e93d5236a5fd5c17f6dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af524fea535a8de76d845bdb06c9cb0c2"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#af524fea535a8de76d845bdb06c9cb0c2">SetValue</a> (string variableName, <a class="el" href="a00167.html">Value</a> value)</td></tr>
+<tr class="memdesc:af524fea535a8de76d845bdb06c9cb0c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a value.  <a href="#af524fea535a8de76d845bdb06c9cb0c2">More...</a><br/></td></tr>
+<tr class="separator:af524fea535a8de76d845bdb06c9cb0c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a587fe10b367ace190e10f3bcb590a53c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#a587fe10b367ace190e10f3bcb590a53c">Clear</a> ()</td></tr>
+<tr class="memdesc:a587fe10b367ace190e10f3bcb590a53c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not implemented here.  <a href="#a587fe10b367ace190e10f3bcb590a53c">More...</a><br/></td></tr>
+<tr class="separator:a587fe10b367ace190e10f3bcb590a53c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33fcbff56561e53e0a70b59c56f0c3af"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html#a33fcbff56561e53e0a70b59c56f0c3af">ResetToDefaults</a> ()</td></tr>
+<tr class="separator:a33fcbff56561e53e0a70b59c56f0c3af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Apply this attribute to methods in your scripts to expose them to <a class="el" href="a00048.html">Yarn</a>. </p>
-<p>For example: [YarnCommand("dosomething")] void Foo() { do something! } </p>
+<div class="textblock"><p>Scripts that can act as a variable storage should subclass this. </p>
 
-<p>Definition at line <a class="el" href="a00269_source.html#l00441">441</a> of file <a class="el" href="a00269_source.html">DialogueRunner.cs</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a9c0d57cd72c091f63895944959e98330"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Yarn.Unity.YarnCommandAttribute.YarnCommandAttribute </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>commandString</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00269_source.html#l00445">445</a> of file <a class="el" href="a00269_source.html">DialogueRunner.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;                                                          {</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;            this.commandString = <a class="code" href="a00170.html#a6d513a725c819ffcdaa9c5788472ec8d">commandString</a>;</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;        }</div>
-<div class="ttc" id="a00170_html_a6d513a725c819ffcdaa9c5788472ec8d"><div class="ttname"><a href="a00170.html#a6d513a725c819ffcdaa9c5788472ec8d">Yarn.Unity.YarnCommandAttribute.commandString</a></div><div class="ttdeci">string commandString</div><div class="ttdef"><b>Definition:</b> <a href="a00269_source.html#l00443">DialogueRunner.cs:443</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Property Documentation</h2>
-<a class="anchor" id="a6d513a725c819ffcdaa9c5788472ec8d"></a>
+<p>Definition at line <a class="el" href="a00272_source.html#l00483">483</a> of file <a class="el" href="a00272_source.html">DialogueRunner.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a587fe10b367ace190e10f3bcb590a53c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -183,30 +168,266 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string Yarn.Unity.YarnCommandAttribute.commandString</td>
+          <td class="memname">virtual void Yarn.Unity.VariableStorageBehaviour.Clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00269_source.html#l00443">443</a> of file <a class="el" href="a00269_source.html">DialogueRunner.cs</a>.</p>
+<p>Not implemented here. </p>
+
+<p>Implements <a class="el" href="a00169.html#af98c1e41f351cb96e13f668ca2fd9d92">Yarn.VariableStorage</a>.</p>
+
+<p>Reimplemented in <a class="el" href="a00087.html#a0ce614bee8d5b220500fb765390b4ca3">ExampleVariableStorage</a>.</p>
+
+<p>Definition at line <a class="el" href="a00272_source.html#l00508">508</a> of file <a class="el" href="a00272_source.html">DialogueRunner.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;        {</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> System.NotImplementedException ();</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ac981277018fe74c14491800caf29a7c5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract <a class="el" href="a00167.html">Value</a> Yarn.Unity.VariableStorageBehaviour.GetValue </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>variableName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a value. </p>
+
+<p>Implements <a class="el" href="a00169.html#accab1fc5c8fc353dbfc53ca0f4029576">Yarn.VariableStorage</a>.</p>
+
+<p>Implemented in <a class="el" href="a00087.html#a741593be1a299dcc2136f05b9b4a995a">ExampleVariableStorage</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a33fcbff56561e53e0a70b59c56f0c3af"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract void Yarn.Unity.VariableStorageBehaviour.ResetToDefaults </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="a00087.html#a3a05d66cdacadb2e9b618cd0aef45f84">ExampleVariableStorage</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a869fa2dfd390c1ec63735b5763ba4d77"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Yarn.Unity.VariableStorageBehaviour.SetValue </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>variableName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>floatValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="a00169.html#af0ffa5fc7773a4a5dc8e33d992421931">Yarn.VariableStorage</a>.</p>
+
+<p>Definition at line <a class="el" href="a00272_source.html#l00488">488</a> of file <a class="el" href="a00272_source.html">DialogueRunner.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;        {</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;            Value value = <span class="keyword">new</span> <a class="code" href="a00167.html">Yarn.Value</a>(floatValue);</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;            this.SetValue(variableName, value);</div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;        }</div>
+<div class="ttc" id="a00167_html"><div class="ttname"><a href="a00167.html">Yarn.Value</a></div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00008">Value.cs:8</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a08ff36ec352a979b5db074f66ec9e189"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Yarn.Unity.VariableStorageBehaviour.SetValue </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>variableName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>stringValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="a00169.html#ab25eb0424a6e9d5819d0c7cc2035811b">Yarn.VariableStorage</a>.</p>
+
+<p>Definition at line <a class="el" href="a00272_source.html#l00493">493</a> of file <a class="el" href="a00272_source.html">DialogueRunner.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;        {</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;            Value value = <span class="keyword">new</span> <a class="code" href="a00167.html">Yarn.Value</a>(stringValue);</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;            this.SetValue(variableName, value);</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;        }</div>
+<div class="ttc" id="a00167_html"><div class="ttname"><a href="a00167.html">Yarn.Value</a></div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00008">Value.cs:8</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a25df235b5446e93d5236a5fd5c17f6dd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Yarn.Unity.VariableStorageBehaviour.SetValue </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>variableName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>boolValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="a00169.html#a412078d8e228f3e288e00f227ef4b4f5">Yarn.VariableStorage</a>.</p>
+
+<p>Definition at line <a class="el" href="a00272_source.html#l00498">498</a> of file <a class="el" href="a00272_source.html">DialogueRunner.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;        {</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;            Value value = <span class="keyword">new</span> <a class="code" href="a00167.html">Yarn.Value</a>(boolValue);</div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;            this.SetValue(variableName, value);</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;        }</div>
+<div class="ttc" id="a00167_html"><div class="ttname"><a href="a00167.html">Yarn.Value</a></div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00008">Value.cs:8</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="af524fea535a8de76d845bdb06c9cb0c2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract void Yarn.Unity.VariableStorageBehaviour.SetValue </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>variableName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00167.html">Value</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set a value. </p>
+
+<p>Implements <a class="el" href="a00169.html#aa90ff61224432c5ed3ce72199c55f440">Yarn.VariableStorage</a>.</p>
+
+<p>Implemented in <a class="el" href="a00087.html#ac4265c1c9da485f13a6b05784b0f668d">ExampleVariableStorage</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Unity/Assets/YarnSpinner/Code/<a class="el" href="a00269_source.html">DialogueRunner.cs</a></li>
+<li>Unity/Assets/YarnSpinner/Code/<a class="el" href="a00272_source.html">DialogueRunner.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00048.html">Yarn</a></li><li class="navelem"><a class="el" href="a00127.html">Unity</a></li><li class="navelem"><a class="el" href="a00170.html">YarnCommandAttribute</a></li>
-    <li class="footer">Generated on Wed Aug 28 2019 22:42:51 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00050.html">Yarn</a></li><li class="navelem"><a class="el" href="a00129.html">Unity</a></li><li class="navelem"><a class="el" href="a00170.html">VariableStorageBehaviour</a></li>
+    <li class="footer">Generated on Wed Oct 23 2019 00:35:58 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

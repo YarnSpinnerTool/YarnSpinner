@@ -1,257 +1,145 @@
-\hypertarget{a00105}{\section{Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter Class Reference}
-\label{a00105}\index{Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter}}
+\hypertarget{a00105}{\section{Yarn.\-Graph Class Reference}
+\label{a00105}\index{Yarn.\-Graph@{Yarn.\-Graph}}
 }
 
 
-Converts a Guid to and from a string.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter\-:
+Collaboration diagram for Yarn.\-Graph\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00513}
-\end{center}
-\end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=220pt]{a00514}
+\includegraphics[width=156pt]{a00571}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override object \hyperlink{a00105_ad00786c329498785bbb77407ea023877}{Convert\-From\-String} (\hyperlink{a00156}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00105_a0a4f9bd355387b70241a9d5f92c7b0ef}{Can\-Convert\-From} (System.\-Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual string \hyperlink{a00084_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00156}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00084_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00084_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{a00105_aeb75730e40484ccdf56e805e6dea22a1}{edge} (\hyperlink{a00050_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} source, \hyperlink{a00050_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} target)
+\item 
+\hyperlink{a00050_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} \hyperlink{a00105_aa1f89fd1a2dd058002251dfd6411b905}{to\-Dot} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Array\-List$<$ \hyperlink{a00050_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} $>$ \hyperlink{a00105_a506df6f737a41748c01239bdea5d82b1}{nodes} = new Array\-List$<$\hyperlink{a00050_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String}$>$()
+\item 
+Multi\-Map$<$ \hyperlink{a00050_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String}, \hyperlink{a00050_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} $>$ \hyperlink{a00105_a8adf7c937ab5c584b49698283e3da150}{edges} = new Multi\-Map$<$\hyperlink{a00050_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String}, \hyperlink{a00050_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String}$>$()
+\item 
+string \hyperlink{a00105_a8605f1ec5a4e9cfd07d3ac2be042dac6}{graph\-Name} = \char`\"{}G\char`\"{}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Converts a Guid to and from a string. 
 
 
-
-Definition at line 13 of file Guid\-Converter.\-cs.
+Definition at line 894 of file Compiler.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00105_a0a4f9bd355387b70241a9d5f92c7b0ef}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::GuidConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00105_aeb75730e40484ccdf56e805e6dea22a1}{\index{Yarn\-::\-Graph@{Yarn\-::\-Graph}!edge@{edge}}
+\index{edge@{edge}!Yarn::Graph@{Yarn\-::\-Graph}}
+\subsubsection[{edge}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Graph.\-edge (
 \begin{DoxyParamCaption}
-\item[{System.\-Type}]{type}
+\item[{{\bf String}}]{source, }
+\item[{{\bf String}}]{target}
 \end{DoxyParamCaption}
-)}}\label{a00105_a0a4f9bd355387b70241a9d5f92c7b0ef}
+)}}\label{a00105_aeb75730e40484ccdf56e805e6dea22a1}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Definition at line 38 of file Guid\-Converter.\-cs.
+Definition at line 900 of file Compiler.\-cs.
 
 
 \begin{DoxyCode}
-39         \{
-40             \textcolor{comment}{// We only care about strings.}
-41             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-42         \}
+901         \{
+902             edges.Map(source, target);
+903         \}
 \end{DoxyCode}
-\hypertarget{a00084_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::GuidConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00105_aa1f89fd1a2dd058002251dfd6411b905}{\index{Yarn\-::\-Graph@{Yarn\-::\-Graph}!to\-Dot@{to\-Dot}}
+\index{to\-Dot@{to\-Dot}!Yarn::Graph@{Yarn\-::\-Graph}}
+\subsubsection[{to\-Dot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Yarn.\-Graph.\-to\-Dot (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00084_a470d21adaa704eb281250dbd112ff91a}
+)}}\label{a00105_aa1f89fd1a2dd058002251dfd6411b905}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00117_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Definition at line 904 of file Compiler.\-cs.
 
 
 
-Reimplemented in \hyperlink{a00133_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00043_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00094_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00095_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00081_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00080_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00044_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00154_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
-
-
-
-Definition at line 55 of file Default\-Type\-Converter.\-cs.
+References Yarn.\-Graph.\-edges, Yarn.\-Graph.\-graph\-Name, Yarn.\-Graph.\-nodes, preprocessor.\-output, and Yarn.\-String.
 
 
 \begin{DoxyCode}
-56         \{
-57             \textcolor{comment}{// The default convert doesn't know how to}
-58             \textcolor{comment}{// convert from any type.}
-59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-60         \}
+905         \{
+906             StringBuilder buf = \textcolor{keyword}{new} StringBuilder();
+907             buf.AppendFormat(\textcolor{stringliteral}{"digraph \{0\} "},\hyperlink{a00105_a8605f1ec5a4e9cfd07d3ac2be042dac6}{graphName});
+908             buf.Append(\textcolor{stringliteral}{"\{\(\backslash\)n"});
+909             buf.Append(\textcolor{stringliteral}{"  "});
+910             \textcolor{keywordflow}{foreach} (\hyperlink{a00050_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} node \textcolor{keywordflow}{in} \hyperlink{a00105_a506df6f737a41748c01239bdea5d82b1}{nodes})
+911             \{ \textcolor{comment}{// print all nodes first}
+912                 buf.Append(node);
+913                 buf.Append(\textcolor{stringliteral}{"; "});
+914             \}
+915             buf.Append(\textcolor{stringliteral}{"\(\backslash\)n"});
+916             \textcolor{keywordflow}{foreach} (\hyperlink{a00050_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} src \textcolor{keywordflow}{in} \hyperlink{a00105_a8adf7c937ab5c584b49698283e3da150}{edges}.Keys)
+917             \{
+918                 IList<string> \hyperlink{a00324_a3da6d48778c7b08a040bf24377f67792}{output};
+919                 \textcolor{keywordflow}{if} (\hyperlink{a00105_a8adf7c937ab5c584b49698283e3da150}{edges}.TryGetValue(src, out output))
+920                 \{
+921                     \textcolor{keywordflow}{foreach} (\hyperlink{a00050_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} trg \textcolor{keywordflow}{in} output)
+922                     \{
+923                         buf.Append(\textcolor{stringliteral}{"  "});
+924                         buf.Append(src);
+925                         buf.Append(\textcolor{stringliteral}{" -> "});
+926                         buf.Append(trg);
+927                         buf.Append(\textcolor{stringliteral}{";\(\backslash\)n"});
+928                     \}
+929                 \}
+930             \}
+931             buf.Append(\textcolor{stringliteral}{"\}\(\backslash\)n"});
+932             \textcolor{keywordflow}{return} buf.ToString();
+933         \}
 \end{DoxyCode}
-\hypertarget{a00084_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::GuidConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
-\begin{DoxyParamCaption}
-\item[{Type}]{type}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00084_acb65bd8c8199d88d5b1629ae35d18514}
 
 
-Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
+\subsection{Member Data Documentation}
+\hypertarget{a00105_a8adf7c937ab5c584b49698283e3da150}{\index{Yarn\-::\-Graph@{Yarn\-::\-Graph}!edges@{edges}}
+\index{edges@{edges}!Yarn::Graph@{Yarn\-::\-Graph}}
+\subsubsection[{edges}]{\setlength{\rightskip}{0pt plus 5cm}Multi\-Map$<${\bf String}, {\bf String}$>$ Yarn.\-Graph.\-edges = new Multi\-Map$<${\bf String}, {\bf String}$>$()}}\label{a00105_a8adf7c937ab5c584b49698283e3da150}
 
 
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00117_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Definition at line 897 of file Compiler.\-cs.
 
 
 
-Reimplemented in \hyperlink{a00095_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+Referenced by Yarn.\-Graph.\-to\-Dot().
+
+\hypertarget{a00105_a8605f1ec5a4e9cfd07d3ac2be042dac6}{\index{Yarn\-::\-Graph@{Yarn\-::\-Graph}!graph\-Name@{graph\-Name}}
+\index{graph\-Name@{graph\-Name}!Yarn::Graph@{Yarn\-::\-Graph}}
+\subsubsection[{graph\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Graph.\-graph\-Name = \char`\"{}G\char`\"{}}}\label{a00105_a8605f1ec5a4e9cfd07d3ac2be042dac6}
+
+
+Definition at line 898 of file Compiler.\-cs.
 
 
 
-Definition at line 69 of file Default\-Type\-Converter.\-cs.
+Referenced by Yarn.\-Graph.\-to\-Dot().
+
+\hypertarget{a00105_a506df6f737a41748c01239bdea5d82b1}{\index{Yarn\-::\-Graph@{Yarn\-::\-Graph}!nodes@{nodes}}
+\index{nodes@{nodes}!Yarn::Graph@{Yarn\-::\-Graph}}
+\subsubsection[{nodes}]{\setlength{\rightskip}{0pt plus 5cm}Array\-List$<${\bf String}$>$ Yarn.\-Graph.\-nodes = new Array\-List$<${\bf String}$>$()}}\label{a00105_a506df6f737a41748c01239bdea5d82b1}
 
 
-\begin{DoxyCode}
-70         \{
-71             \textcolor{comment}{// We only care about strings.}
-72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-73         \}
-\end{DoxyCode}
-\hypertarget{a00105_ad00786c329498785bbb77407ea023877}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::GuidConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter.\-Convert\-From\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{string}]{text}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00105_ad00786c329498785bbb77407ea023877}
-
-
-Converts the string to an object. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em text} & The string to convert to an object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The object created from the string.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00084_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Definition at line 896 of file Compiler.\-cs.
 
 
 
-Definition at line 21 of file Guid\-Converter.\-cs.
+Referenced by Yarn.\-Graph.\-to\-Dot().
 
-
-\begin{DoxyCode}
-22         \{
-23             \textcolor{keywordflow}{if}( text == null )
-24             \{
-25                 \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
-26             \}
-27 
-28             \textcolor{keywordflow}{return} \textcolor{keyword}{new} Guid( text );
-29         \}
-\end{DoxyCode}
-\hypertarget{a00084_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::GuidConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{object}]{value}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00084_a36cb2f9b24f15a671293f3a722324c27}
-
-
-Converts the object to a string. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em value} & The object to convert to a string.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The string representation of the object.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00117_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00133_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00095_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
-
-
-Definition at line 21 of file Default\-Type\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-22         \{
-23             \textcolor{keywordflow}{if}( value == null )
-24             \{
-25                 \textcolor{keywordflow}{return} string.Empty;
-26             \}
-27 
-28             var formattable = value as IFormattable;
-29             \textcolor{keywordflow}{if}( formattable != null )
-30             \{
-31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
-32             \}
-33 
-34             \textcolor{keywordflow}{return} value.ToString();
-35         \}
-\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00248}{Guid\-Converter.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00284}{Compiler.\-cs}\end{DoxyCompactItemize}

@@ -1,3 +1,4 @@
-<map id="Yarn.Dialogue.NodeCompleteResult" name="Yarn.Dialogue.NodeCompleteResult">
-<area shape="rect" id="node2" href="$a00141.html" title="We&#39;ll ask this object for the state of variables. " alt="" coords="51,5,153,83"/>
+<map id="Yarn.Dialogue.LineResult" name="Yarn.Dialogue.LineResult">
+<area shape="rect" id="node2" href="$a00143.html" title="We&#39;ll ask this object for the state of variables. " alt="" coords="5,5,107,83"/>
+<area shape="rect" id="node3" href="$a00050.html#a00352" title="Information about stuff that the client should handle. " alt="" coords="132,5,208,83"/>
 </map>

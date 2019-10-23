@@ -1,224 +1,112 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00105" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::GuidConverter</compoundname>
-    <basecompoundref refid="a00084" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00105_1ad00786c329498785bbb77407ea023877" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.GuidConverter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplements refid="a00084_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
-        <param>
-          <type><ref refid="a00156" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>text</declname>
-        </param>
+    <compoundname>Yarn::Graph</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00105_1a506df6f737a41748c01239bdea5d82b1" prot="public" static="no" mutable="no">
+        <type>ArrayList&lt; <ref refid="a00050_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref> &gt;</type>
+        <definition>ArrayList&lt;String&gt; Yarn.Graph.nodes</definition>
+        <argsstring></argsstring>
+        <name>nodes</name>
+        <initializer>= new ArrayList&lt;<ref refid="a00050_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref>&gt;()</initializer>
         <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/GuidConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/GuidConverter.cs" bodystart="21" bodyend="29"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" line="896" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="896" bodyend="-1"/>
+        <referencedby refid="a00105_1aa1f89fd1a2dd058002251dfd6411b905" compoundref="a00284" startline="904" endline="933">Yarn.Graph.toDot</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00105_1a0a4f9bd355387b70241a9d5f92c7b0ef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.GuidConverter.CanConvertFrom</definition>
-        <argsstring>(System.Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <param>
-          <type>System.Type</type>
-          <declname>type</declname>
-        </param>
+      <memberdef kind="variable" id="a00105_1a8adf7c937ab5c584b49698283e3da150" prot="public" static="no" mutable="no">
+        <type>MultiMap&lt; <ref refid="a00050_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref>, <ref refid="a00050_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref> &gt;</type>
+        <definition>MultiMap&lt;String, String&gt; Yarn.Graph.edges</definition>
+        <argsstring></argsstring>
+        <name>edges</name>
+        <initializer>= new MultiMap&lt;<ref refid="a00050_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref>, <ref refid="a00050_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref>&gt;()</initializer>
         <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/GuidConverter.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/GuidConverter.cs" bodystart="38" bodyend="42"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" line="897" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="897" bodyend="-1"/>
+        <referencedby refid="a00105_1aa1f89fd1a2dd058002251dfd6411b905" compoundref="a00284" startline="904" endline="933">Yarn.Graph.toDot</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00084_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="variable" id="a00105_1a8605f1ec5a4e9cfd07d3ac2be042dac6" prot="public" static="no" mutable="no">
         <type>string</type>
-        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplements refid="a00117_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
-        <reimplementedby refid="a00095_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="a00133_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
-        <param>
-          <type><ref refid="a00156" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>object</type>
-          <declname>value</declname>
-        </param>
+        <definition>string Yarn.Graph.graphName</definition>
+        <argsstring></argsstring>
+        <name>graphName</name>
+        <initializer>= &quot;G&quot;</initializer>
         <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" line="898" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="898" bodyend="-1"/>
+        <referencedby refid="a00105_1aa1f89fd1a2dd058002251dfd6411b905" compoundref="a00284" startline="904" endline="933">Yarn.Graph.toDot</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00084_1a470d21adaa704eb281250dbd112ff91a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplements refid="a00117_1ae1ad863656f4fa96bd846a41344c9349">CanConvertFrom</reimplements>
-        <reimplementedby refid="a00154_1ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00044_1a74a66b405f6c18e69b9fd23a1dea91b0">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00080_1af44239d3bd014b1423fa80f7440bbd25">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00081_1a82a8cf4b77600ef49da60deb0c24a708">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00095_1af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00094_1a31af8209aad64ed11d949586075c244a">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00043_1a0be20573af4ee53409bb437125a64268">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00133_1ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</reimplementedby>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00105_1aeb75730e40484ccdf56e805e6dea22a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Graph.edge</definition>
+        <argsstring>(String source, String target)</argsstring>
+        <name>edge</name>
         <param>
-          <type>Type</type>
-          <declname>type</declname>
+          <type><ref refid="a00050_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref></type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type><ref refid="a00050_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref></type>
+          <declname>target</declname>
         </param>
         <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="55" bodyend="60"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" line="900" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="900" bodyend="903"/>
       </memberdef>
-      <memberdef kind="function" id="a00084_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplements refid="a00117_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="a00095_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
+      <memberdef kind="function" id="a00105_1aa1f89fd1a2dd058002251dfd6411b905" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00050_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref></type>
+        <definition>String Yarn.Graph.toDot</definition>
+        <argsstring>()</argsstring>
+        <name>toDot</name>
         <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" line="904" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="904" bodyend="933"/>
+        <references refid="a00105_1a8adf7c937ab5c584b49698283e3da150" compoundref="a00284" startline="897">Yarn.Graph.edges</references>
+        <references refid="a00105_1a8605f1ec5a4e9cfd07d3ac2be042dac6" compoundref="a00284" startline="898">Yarn.Graph.graphName</references>
+        <references refid="a00105_1a506df6f737a41748c01239bdea5d82b1" compoundref="a00284" startline="896">Yarn.Graph.nodes</references>
+        <references refid="a00324_1a3da6d48778c7b08a040bf24377f67792" compoundref="a00283" startline="92">preprocessor.output</references>
+        <references refid="a00050_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">Yarn.String</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Converts a Guid to and from a string. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1223">
-        <label>ITypeConverter</label>
-        <link refid="a00117"/>
-      </node>
-      <node id="1222">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00084"/>
-        <childnode refid="1223" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1221">
-        <label>CsvHelper.TypeConversion.GuidConverter</label>
-        <link refid="a00105"/>
-        <childnode refid="1222" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1226">
-        <label>ITypeConverter</label>
-        <link refid="a00117"/>
-      </node>
-      <node id="1225">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00084"/>
-        <childnode refid="1226" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1224">
-        <label>CsvHelper.TypeConversion.GuidConverter</label>
+      <node id="1211">
+        <label>Yarn.Graph</label>
         <link refid="a00105"/>
-        <childnode refid="1225" relation="public-inheritance">
-        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/GuidConverter.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/GuidConverter.cs" bodystart="13" bodyend="43"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" line="895" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="894" bodyend="934"/>
     <listofallmembers>
-      <member refid="a00105_1a0a4f9bd355387b70241a9d5f92c7b0ef" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::GuidConverter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00084_1a470d21adaa704eb281250dbd112ff91a" prot="public" virt="virtual" ambiguityscope="CsvHelper::TypeConversion::DefaultTypeConverter."><scope>CsvHelper::TypeConversion::GuidConverter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00084_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::GuidConverter</scope><name>CanConvertTo</name></member>
-      <member refid="a00105_1ad00786c329498785bbb77407ea023877" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::GuidConverter</scope><name>ConvertFromString</name></member>
-      <member refid="a00084_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::GuidConverter</scope><name>ConvertToString</name></member>
+      <member refid="a00105_1aeb75730e40484ccdf56e805e6dea22a1" prot="public" virt="non-virtual"><scope>Yarn::Graph</scope><name>edge</name></member>
+      <member refid="a00105_1a8adf7c937ab5c584b49698283e3da150" prot="public" virt="non-virtual"><scope>Yarn::Graph</scope><name>edges</name></member>
+      <member refid="a00105_1a8605f1ec5a4e9cfd07d3ac2be042dac6" prot="public" virt="non-virtual"><scope>Yarn::Graph</scope><name>graphName</name></member>
+      <member refid="a00105_1a506df6f737a41748c01239bdea5d82b1" prot="public" virt="non-virtual"><scope>Yarn::Graph</scope><name>nodes</name></member>
+      <member refid="a00105_1aa1f89fd1a2dd058002251dfd6411b905" prot="public" virt="non-virtual"><scope>Yarn::Graph</scope><name>toDot</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

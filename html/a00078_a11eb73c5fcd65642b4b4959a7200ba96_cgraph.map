@@ -1,4 +1,0 @@
-<map id="CsvHelper.CsvWriter.ClearRecordCache&lt; T &gt;" name="CsvHelper.CsvWriter.ClearRecordCache&lt; T &gt;">
-<area shape="rect" id="node2" href="$a00078.html#a15e26ec8c5c935030677bee9a36d7c16" title="Checks if the instance has been disposed of. " alt="" coords="469,5,659,46"/>
-<area shape="rect" id="node3" href="$a00078.html#a16aa1591d1c89062b6af26bf1989415d" title="Clears the record cache for all types. After ICsvWriter.WriteRecord{T} is called the first time..." alt="" coords="238,34,421,75"/>
-</map>

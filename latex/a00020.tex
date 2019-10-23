@@ -1,16 +1,16 @@
 \begin{quotation}
-$\ast$$\ast$$\ast$\-Important\-:$\ast$$\ast$$\ast$ This document only matters to you if you want to build \hyperlink{a00048}{Yarn} Spinner from source. In almost all cases, you'll be totally fine with \href{https://github.com/thesecretlab/YarnSpinner/releases}{\tt downloading a build}, and using that in your project.
+$\ast$$\ast$$\ast$\-Important\-:$\ast$$\ast$$\ast$ This document only matters to you if you want to build \hyperlink{a00050}{Yarn} Spinner from source. In almost all cases, you'll be totally fine with \href{https://github.com/thesecretlab/YarnSpinner/releases}{\tt downloading a build}, and using that in your project.
 
 \end{quotation}
 
 
 \subsection*{Windows and Mac using Mono\-Develop}
 
-To build \hyperlink{a00048}{Yarn} Spinner on Windows or Mac, you'll need Mono\-Develop. You can \href{http://www.monodevelop.com/download/}{\tt download Mono\-Develop for your O\-S from the Mono\-Develop site}.
+To build \hyperlink{a00050}{Yarn} Spinner on Windows or Mac, you'll need Mono\-Develop. You can \href{http://www.monodevelop.com/download/}{\tt download Mono\-Develop for your O\-S from the Mono\-Develop site}.
 
 \subsection*{Linux}
 
-To build \hyperlink{a00048}{Yarn} Spinner on Linux, you can either
+To build \hyperlink{a00050}{Yarn} Spinner on Linux, you can either
 \begin{DoxyItemize}
 \item use \href{http://www.mono-project.com/docs/tools+libraries/tools/xbuild/}{\tt xbuild} and \href{http://www.nuget.org}{\tt nuget}.
 \item Then ensure you have the correct packages installed by nuget, {\ttfamily nuget restore Yarn\-Spinner.\-sln}.
@@ -30,9 +30,9 @@ To build \hyperlink{a00048}{Yarn} Spinner on Linux, you can either
 
 \subsection*{Building Documentation}
 
-\hyperlink{a00048}{Yarn} Spinner uses \href{https://www.stack.nl/~dimitri/doxygen}{\tt Doxygen} to generate \href{http://docbook.org/}{\tt Doc\-Book}, \href{https://en.wikipedia.org/wiki/HTML}{\tt H\-T\-M\-L}, \href{https://www.latex-project.org/help/documentation/}{\tt La\-Te\-X}, \href{https://en.wikipedia.org/wiki/Rich_Text_Format}{\tt R\-T\-F}, and \href{https://en.wikipedia.org/wiki/XML}{\tt X\-M\-L} documentation. \href{https://www.gnu.org/software/global/}{\tt G\-N\-U G\-L\-O\-B\-A\-L} is also used.
+\hyperlink{a00050}{Yarn} Spinner uses \href{https://www.stack.nl/~dimitri/doxygen}{\tt Doxygen} to generate \href{http://docbook.org/}{\tt Doc\-Book}, \href{https://en.wikipedia.org/wiki/HTML}{\tt H\-T\-M\-L}, \href{https://www.latex-project.org/help/documentation/}{\tt La\-Te\-X}, \href{https://en.wikipedia.org/wiki/Rich_Text_Format}{\tt R\-T\-F}, and \href{https://en.wikipedia.org/wiki/XML}{\tt X\-M\-L} documentation. \href{https://www.gnu.org/software/global/}{\tt G\-N\-U G\-L\-O\-B\-A\-L} is also used.
 
-Basic steps to clean out existing documentation, generate new documentation and check the new documentation for generation errors. Note that some ocurrences of the word 'error' will be due to classes/methods etc. of \hyperlink{a00344}{Yarn\-Spinner} itself and not an actual error in the documentation.
+Basic steps to clean out existing documentation, generate new documentation and check the new documentation for generation errors. Note that some ocurrences of the word 'error' will be due to classes/methods etc. of \hyperlink{a00347}{Yarn\-Spinner} itself and not an actual error in the documentation.
 
 ``` rm -\/fr Documentation/\{docbook,html,latex,rtf,xml\} doxygen Documentation/\-Doxyfile $>$ doxyoutput.\-txt 2$>$\&1 grep -\/i error doxyoutput.\-txt ```
 

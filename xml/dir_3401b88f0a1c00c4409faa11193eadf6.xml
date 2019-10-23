@@ -2,23 +2,23 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_3401b88f0a1c00c4409faa11193eadf6" kind="dir">
     <compoundname>packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration</compoundname>
-    <innerfile refid="a00195">CsvClassMap.cs</innerfile>
-    <innerfile refid="a00196">CsvClassMap`1.cs</innerfile>
-    <innerfile refid="a00197">CsvClassMapCollection.cs</innerfile>
-    <innerfile refid="a00198">CsvConfiguration.cs</innerfile>
-    <innerfile refid="a00199">CsvConfigurationException.cs</innerfile>
-    <innerfile refid="a00200">CsvPropertyMap.cs</innerfile>
-    <innerfile refid="a00201">CsvPropertyMapCollection.cs</innerfile>
-    <innerfile refid="a00202">CsvPropertyMapComparer.cs</innerfile>
-    <innerfile refid="a00203">CsvPropertyMapData.cs</innerfile>
-    <innerfile refid="a00204">CsvPropertyNameCollection.cs</innerfile>
-    <innerfile refid="a00205">CsvPropertyReferenceMap.cs</innerfile>
-    <innerfile refid="a00206">CsvPropertyReferenceMapData.cs</innerfile>
-    <innerfile refid="a00207">DefaultCsvClassMap`1.cs</innerfile>
+    <innerfile refid="a00197">CsvClassMap.cs</innerfile>
+    <innerfile refid="a00198">CsvClassMap`1.cs</innerfile>
+    <innerfile refid="a00199">CsvClassMapCollection.cs</innerfile>
+    <innerfile refid="a00200">CsvConfiguration.cs</innerfile>
+    <innerfile refid="a00201">CsvConfigurationException.cs</innerfile>
+    <innerfile refid="a00202">CsvPropertyMap.cs</innerfile>
+    <innerfile refid="a00203">CsvPropertyMapCollection.cs</innerfile>
+    <innerfile refid="a00204">CsvPropertyMapComparer.cs</innerfile>
+    <innerfile refid="a00205">CsvPropertyMapData.cs</innerfile>
+    <innerfile refid="a00206">CsvPropertyNameCollection.cs</innerfile>
+    <innerfile refid="a00207">CsvPropertyReferenceMap.cs</innerfile>
+    <innerfile refid="a00208">CsvPropertyReferenceMapData.cs</innerfile>
+    <innerfile refid="a00209">DefaultCsvClassMap`1.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/"/>
   </compounddef>
 </doxygen>

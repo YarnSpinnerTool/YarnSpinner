@@ -1,93 +1,61 @@
-\hypertarget{a00082}{\section{Csv\-Helper.\-Type\-Conversion.\-Decimal\-Converter Class Reference}
-\label{a00082}\index{Csv\-Helper.\-Type\-Conversion.\-Decimal\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Decimal\-Converter}}
+\hypertarget{a00082}{\section{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter Class Reference}
+\label{a00082}\index{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}}
 }
 
 
-Converts a Decimal to and from a string.  
+Converts a Date\-Time to and from a string.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Decimal\-Converter\-:
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00498}
+\includegraphics[width=220pt]{a00495}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Decimal\-Converter\-:
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00499}
+\includegraphics[width=220pt]{a00496}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override object \hyperlink{a00082_a07444e6f2bb1e49288f9de3b2407dc4f}{Convert\-From\-String} (\hyperlink{a00156}{Type\-Converter\-Options} options, string text)
+override object \hyperlink{a00082_a6b1b54cb2d1b200beb8fa3c63e4c064a}{Convert\-From\-String} (\hyperlink{a00158}{Type\-Converter\-Options} options, string text)
 \begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00082_aba0f1c085a1c33779ea791bb814b6aa5}{Can\-Convert\-From} (System.\-Type type)
+override bool \hyperlink{a00082_af44239d3bd014b1423fa80f7440bbd25}{Can\-Convert\-From} (Type type)
 \begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual string \hyperlink{a00084_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00156}{Type\-Converter\-Options} options, object value)
+virtual string \hyperlink{a00086_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00158}{Type\-Converter\-Options} options, object value)
 \begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00084_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00084_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
+virtual bool \hyperlink{a00086_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
 \begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Converts a Decimal to and from a string. 
+Converts a Date\-Time to and from a string. 
 
 
 
-Definition at line 12 of file Decimal\-Converter.\-cs.
+Definition at line 13 of file Date\-Time\-Converter.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00082_aba0f1c085a1c33779ea791bb814b6aa5}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Decimal\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Decimal\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::DecimalConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Decimal\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Decimal\-Converter.\-Can\-Convert\-From (
-\begin{DoxyParamCaption}
-\item[{System.\-Type}]{type}
-\end{DoxyParamCaption}
-)}}\label{a00082_aba0f1c085a1c33779ea791bb814b6aa5}
-
-
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Definition at line 40 of file Decimal\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-41         \{
-42             \textcolor{comment}{// We only care about strings.}
-43             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-44         \}
-\end{DoxyCode}
-\hypertarget{a00084_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Decimal\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Decimal\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::DecimalConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Decimal\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00082_af44239d3bd014b1423fa80f7440bbd25}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::DateTimeConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter.\-Can\-Convert\-From (
 \begin{DoxyParamCaption}
 \item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00084_a470d21adaa704eb281250dbd112ff91a}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00082_af44239d3bd014b1423fa80f7440bbd25}
 
 
 Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
@@ -102,31 +70,26 @@ Determines whether this instance \mbox{[}can convert from\mbox{]} the specified 
 \end{DoxyReturn}
 
 
-Implements \hyperlink{a00117_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Reimplemented from \hyperlink{a00086_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
 
 
 
-Reimplemented in \hyperlink{a00133_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00043_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00094_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00095_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00081_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00080_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00044_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00154_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
-
-
-
-Definition at line 55 of file Default\-Type\-Converter.\-cs.
+Definition at line 48 of file Date\-Time\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-56         \{
-57             \textcolor{comment}{// The default convert doesn't know how to}
-58             \textcolor{comment}{// convert from any type.}
-59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-60         \}
+49         \{
+50             \textcolor{comment}{// We only care about strings.}
+51             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+52         \}
 \end{DoxyCode}
-\hypertarget{a00084_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Decimal\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Decimal\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::DecimalConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Decimal\-Converter}}
+\hypertarget{a00086_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
+\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::DateTimeConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Converter}}
 \subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
 \begin{DoxyParamCaption}
 \item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00084_acb65bd8c8199d88d5b1629ae35d18514}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00086_acb65bd8c8199d88d5b1629ae35d18514}
 
 
 Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
@@ -141,11 +104,11 @@ Determines whether this instance \mbox{[}can convert to\mbox{]} the specified ty
 \end{DoxyReturn}
 
 
-Implements \hyperlink{a00117_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Implements \hyperlink{a00119_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-Reimplemented in \hyperlink{a00095_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+Reimplemented in \hyperlink{a00097_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
 
 
 
@@ -158,14 +121,14 @@ Definition at line 69 of file Default\-Type\-Converter.\-cs.
 72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
 73         \}
 \end{DoxyCode}
-\hypertarget{a00082_a07444e6f2bb1e49288f9de3b2407dc4f}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Decimal\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Decimal\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::DecimalConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Decimal\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Decimal\-Converter.\-Convert\-From\-String (
+\hypertarget{a00082_a6b1b54cb2d1b200beb8fa3c63e4c064a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
+\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::DateTimeConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Converter}}
+\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter.\-Convert\-From\-String (
 \begin{DoxyParamCaption}
 \item[{{\bf Type\-Converter\-Options}}]{options, }
 \item[{string}]{text}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00082_a07444e6f2bb1e49288f9de3b2407dc4f}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00082_a6b1b54cb2d1b200beb8fa3c63e4c064a}
 
 
 Converts the string to an object. 
@@ -182,11 +145,11 @@ The object created from the string.
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{a00084_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Reimplemented from \hyperlink{a00086_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
 
 
 
-Definition at line 20 of file Decimal\-Converter.\-cs.
+Definition at line 21 of file Date\-Time\-Converter.\-cs.
 
 
 
@@ -194,26 +157,34 @@ References Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-
 
 
 \begin{DoxyCode}
-21         \{
-22             var numberStyle = options.NumberStyle ?? NumberStyles.Float;
-23 
-24             decimal d;
-25             \textcolor{keywordflow}{if}( decimal.TryParse( text, numberStyle, options.CultureInfo, out d ) )
-26             \{
-27                 \textcolor{keywordflow}{return} d;
-28             \}
-29 
-30             \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
-31         \}
+22         \{
+23             \textcolor{keywordflow}{if}( text == null )
+24             \{
+25                 \textcolor{keywordflow}{return} base.ConvertFromString( options, null );
+26             \}
+27 
+28             \textcolor{keywordflow}{if}( text.Trim().Length == 0 )
+29             \{
+30                 \textcolor{keywordflow}{return} DateTime.MinValue;
+31             \}
+32 
+33             var formatProvider = (IFormatProvider)options.CultureInfo.GetFormat( typeof( DateTimeFormatInfo
+       ) ) ?? options.CultureInfo;
+34             var dateTimeStyle = options.DateTimeStyle ?? DateTimeStyles.None;
+35 
+36             \textcolor{keywordflow}{return} string.IsNullOrEmpty( options.Format )
+37                 ? DateTime.Parse( text, formatProvider, dateTimeStyle )
+38                 : DateTime.ParseExact( text, options.Format, formatProvider, dateTimeStyle );
+39         \}
 \end{DoxyCode}
-\hypertarget{a00084_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Decimal\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Decimal\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::DecimalConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Decimal\-Converter}}
+\hypertarget{a00086_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
+\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::DateTimeConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Converter}}
 \subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
 \begin{DoxyParamCaption}
 \item[{{\bf Type\-Converter\-Options}}]{options, }
 \item[{object}]{value}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00084_a36cb2f9b24f15a671293f3a722324c27}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00086_a36cb2f9b24f15a671293f3a722324c27}
 
 
 Converts the object to a string. 
@@ -230,11 +201,11 @@ The string representation of the object.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{a00117_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Implements \hyperlink{a00119_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-Reimplemented in \hyperlink{a00133_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00095_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+Reimplemented in \hyperlink{a00135_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00097_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
 
 
 
@@ -261,4 +232,4 @@ Definition at line 21 of file Default\-Type\-Converter.\-cs.
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00243}{Decimal\-Converter.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00243}{Date\-Time\-Converter.\-cs}\end{DoxyCompactItemize}

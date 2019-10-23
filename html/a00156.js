@@ -1,13 +1,7 @@
 var a00156 =
 [
-    [ "Merge", "a00156.html#a0532694cffc600fe984e10c7f1375e0a", null ],
-    [ "booleanFalseValues", "a00156.html#a1881a24e1731f70183fdff9c1612b7d5", null ],
-    [ "booleanTrueValues", "a00156.html#a326ff183b4992ab134f047e6866df092", null ],
-    [ "BooleanFalseValues", "a00156.html#a7735cd4046cf1b21f458aa96c616a01e", null ],
-    [ "BooleanTrueValues", "a00156.html#a73fe01941a8c2d3cfbd6fa4414e8d8e0", null ],
-    [ "CultureInfo", "a00156.html#af6bc545680b477abf9178eb4755572b1", null ],
-    [ "DateTimeStyle", "a00156.html#a53dd999cfdfad024682e67b6d5b1267e", null ],
-    [ "Format", "a00156.html#aadc0730de90844e29da6e1ae7fddc4bb", null ],
-    [ "NumberStyle", "a00156.html#a2bd83a5b0c0d94864ed09563dbab4a36", null ],
-    [ "TimeSpanStyle", "a00156.html#a5b94fd91ed938c9d0515a5ab419de8b8", null ]
+    [ "CanConvertFrom", "a00156.html#ae3f8d46f5176d2ae08ac3fcdda1951e7", null ],
+    [ "CanConvertTo", "a00156.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
+    [ "ConvertFromString", "a00156.html#a0f2536c88227a94822d0b7730eedf3eb", null ],
+    [ "ConvertToString", "a00156.html#a36cb2f9b24f15a671293f3a722324c27", null ]
 ];

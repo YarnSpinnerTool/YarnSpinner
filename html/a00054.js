@@ -1,10 +1,7 @@
 var a00054 =
 [
-    [ "Context", "a00054.html#a8e2c56843e8d374b0f90e23326d8d14a", null ],
-    [ "Context", "a00054.html#ad5f41fb64637c4938bce811153492731", null ],
-    [ "AddProgramToAnalysis", "a00054.html#a60255a6d54f296d199507acef251244c", null ],
-    [ "FinishAnalysis", "a00054.html#a1eadea062a5899a64d00ea0172cbbb43", null ],
-    [ "_defaultAnalyserClasses", "a00054.html#ad06829cf848a5936db5724ebced758ec", null ],
-    [ "analysers", "a00054.html#aa5c7eaa90ad9c47969a3b336080d8991", null ],
-    [ "defaultAnalyserClasses", "a00054.html#afdf24f2512251c2203ba1bde8f4a0f90", null ]
+    [ "files", "a00054.html#aa93cbb1bc1d5328e0a417012621e92d2", null ],
+    [ "format", "a00054.html#a9904ccfb1b0ff64df415c4fc9fe6eb1c", null ],
+    [ "showDebuggingInfo", "a00054.html#a89964ea17bd19caf00cb5bff563ed01c", null ],
+    [ "verbose", "a00054.html#ada4d83d1756918f362d55f6649b82b17", null ]
 ];

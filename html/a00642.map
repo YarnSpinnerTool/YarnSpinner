@@ -1,9 +1,0 @@
-<map id="Yarn.BaseOptions" name="Yarn.BaseOptions">
-<area shape="rect" id="node2" href="$a00039.html" title="{Yarn.AddLabelsOptions\n|+ dryRun\l+ onlyUseTag\l|}" alt="" coords="5,161,163,253"/>
-<area shape="rect" id="node3" href="$a00052.html" title="{Yarn.CompileOptions\n|+ format\l|}" alt="" coords="188,168,335,245"/>
-<area shape="rect" id="node4" href="$a00055.html" title="{Yarn.ConvertFormatOptions\n|+ convertToYarn\l+ outputDirectory\l|}" alt="" coords="359,161,544,253"/>
-<area shape="rect" id="node5" href="$a00099.html" title="{Yarn.ExecutionOptions\n|+ stringTable\l+ onlyConsiderNode\l|}" alt="" coords="569,161,724,253"/>
-<area shape="rect" id="node8" href="$a00102.html" title="{Yarn.GenerateTableOptions\n|+ onlyUseTag\l|}" alt="" coords="749,168,931,245"/>
-<area shape="rect" id="node6" href="$a00142.html" title="{Yarn.RunOptions\n|+ waitForInput\l+ startNode\l+ variables\l+ runTimes\l+ automaticallySelectFirst\lOption\l|}" alt="" coords="461,302,635,453"/>
-<area shape="rect" id="node7" href="$a00169.html" title="{Yarn.VerifyOptions\n|+ showTokensAndExit\l+ showParseTreeAndExit\l+ compileAndExit\l+ listVariables\l|}" alt="" coords="660,317,831,438"/>
-</map>

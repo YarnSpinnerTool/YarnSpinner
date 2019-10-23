@@ -2,37 +2,37 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_5c139b908ad2613e3ef99ee52a122286" kind="dir">
     <compoundname>packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion</compoundname>
-    <innerfile refid="a00237">BooleanConverter.cs</innerfile>
-    <innerfile refid="a00238">ByteConverter.cs</innerfile>
-    <innerfile refid="a00239">CharConverter.cs</innerfile>
-    <innerfile refid="a00240">CsvTypeConverterException.cs</innerfile>
-    <innerfile refid="a00241">DateTimeConverter.cs</innerfile>
-    <innerfile refid="a00242">DateTimeOffsetConverter.cs</innerfile>
-    <innerfile refid="a00243">DecimalConverter.cs</innerfile>
-    <innerfile refid="a00244">DefaultTypeConverter.cs</innerfile>
-    <innerfile refid="a00245">DoubleConverter.cs</innerfile>
-    <innerfile refid="a00246">EnumConverter.cs</innerfile>
-    <innerfile refid="a00247">EnumerableConverter.cs</innerfile>
-    <innerfile refid="a00248">GuidConverter.cs</innerfile>
-    <innerfile refid="a00249">Int16Converter.cs</innerfile>
-    <innerfile refid="a00250">Int32Converter.cs</innerfile>
-    <innerfile refid="a00251">Int64Converter.cs</innerfile>
-    <innerfile refid="a00252">ITypeConverter.cs</innerfile>
-    <innerfile refid="a00253">NullableConverter.cs</innerfile>
-    <innerfile refid="a00254">SByteConverter.cs</innerfile>
-    <innerfile refid="a00255">SingleConverter.cs</innerfile>
-    <innerfile refid="a00256">StringConverter.cs</innerfile>
-    <innerfile refid="a00257">TimeSpanConverter.cs</innerfile>
-    <innerfile refid="a00258">TypeConverterFactory.cs</innerfile>
-    <innerfile refid="a00259">TypeConverterOptions.cs</innerfile>
-    <innerfile refid="a00260">TypeConverterOptionsFactory.cs</innerfile>
-    <innerfile refid="a00261">UInt16Converter.cs</innerfile>
-    <innerfile refid="a00262">UInt32Converter.cs</innerfile>
-    <innerfile refid="a00263">UInt64Converter.cs</innerfile>
+    <innerfile refid="a00239">BooleanConverter.cs</innerfile>
+    <innerfile refid="a00240">ByteConverter.cs</innerfile>
+    <innerfile refid="a00241">CharConverter.cs</innerfile>
+    <innerfile refid="a00242">CsvTypeConverterException.cs</innerfile>
+    <innerfile refid="a00243">DateTimeConverter.cs</innerfile>
+    <innerfile refid="a00244">DateTimeOffsetConverter.cs</innerfile>
+    <innerfile refid="a00245">DecimalConverter.cs</innerfile>
+    <innerfile refid="a00246">DefaultTypeConverter.cs</innerfile>
+    <innerfile refid="a00247">DoubleConverter.cs</innerfile>
+    <innerfile refid="a00248">EnumConverter.cs</innerfile>
+    <innerfile refid="a00249">EnumerableConverter.cs</innerfile>
+    <innerfile refid="a00250">GuidConverter.cs</innerfile>
+    <innerfile refid="a00251">Int16Converter.cs</innerfile>
+    <innerfile refid="a00252">Int32Converter.cs</innerfile>
+    <innerfile refid="a00253">Int64Converter.cs</innerfile>
+    <innerfile refid="a00254">ITypeConverter.cs</innerfile>
+    <innerfile refid="a00255">NullableConverter.cs</innerfile>
+    <innerfile refid="a00256">SByteConverter.cs</innerfile>
+    <innerfile refid="a00257">SingleConverter.cs</innerfile>
+    <innerfile refid="a00258">StringConverter.cs</innerfile>
+    <innerfile refid="a00259">TimeSpanConverter.cs</innerfile>
+    <innerfile refid="a00260">TypeConverterFactory.cs</innerfile>
+    <innerfile refid="a00261">TypeConverterOptions.cs</innerfile>
+    <innerfile refid="a00262">TypeConverterOptionsFactory.cs</innerfile>
+    <innerfile refid="a00263">UInt16Converter.cs</innerfile>
+    <innerfile refid="a00264">UInt32Converter.cs</innerfile>
+    <innerfile refid="a00265">UInt64Converter.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/"/>
   </compounddef>
 </doxygen>

@@ -1,133 +1,101 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00054" kind="class" prot="public">
-    <compoundname>Yarn::Analysis::Context</compoundname>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00054_1ad06829cf848a5936db5724ebced758ec" prot="private" static="no" mutable="no">
-        <type>IEnumerable&lt; Type &gt;</type>
-        <definition>IEnumerable&lt;Type&gt; Yarn.Analysis.Context._defaultAnalyserClasses</definition>
-        <argsstring></argsstring>
-        <name>_defaultAnalyserClasses</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="84" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="84" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00054_1aa5c7eaa90ad9c47969a3b336080d8991" prot="private" static="no" mutable="no">
-        <type>List&lt; <ref refid="a00050" kindref="compound">CompiledProgramAnalyser</ref> &gt;</type>
-        <definition>List&lt;CompiledProgramAnalyser&gt; Yarn.Analysis.Context.analysers</definition>
-        <argsstring></argsstring>
-        <name>analysers</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="109" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="109" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+    <compoundname>Yarn::CompileOptions</compoundname>
+    <basecompoundref refid="a00042" prot="public" virt="non-virtual">Yarn.BaseOptions</basecompoundref>
       <sectiondef kind="property">
-      <memberdef kind="property" id="a00054_1afdf24f2512251c2203ba1bde8f4a0f90" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>IEnumerable&lt; Type &gt;</type>
-        <definition>IEnumerable&lt;Type&gt; Yarn.Analysis.Context.defaultAnalyserClasses</definition>
+      <memberdef kind="property" id="a00054_1a9904ccfb1b0ff64df415c4fc9fe6eb1c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="a00090_1a903f18cdcc66c28ceab5a43c41fe074d" kindref="member">Dialogue.CompiledFormat</ref></type>
+        <definition>Dialogue.CompiledFormat Yarn.CompileOptions.format</definition>
         <argsstring></argsstring>
-        <name>defaultAnalyserClasses</name>
+        <name>format</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="85" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="85" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="106" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="106" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00054_1a8e2c56843e8d374b0f90e23326d8d14a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Analysis.Context.Context</definition>
-        <argsstring>()</argsstring>
-        <name>Context</name>
+      <memberdef kind="property" id="a00042_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.BaseOptions.showDebuggingInfo</definition>
+        <argsstring></argsstring>
+        <name>showDebuggingInfo</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="111" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="111" bodyend="119"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="42" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="42" bodyend="-1"/>
+        <referencedby refid="a00174_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00303" startline="383" endline="501">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00054_1ad5f41fb64637c4938bce811153492731" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Analysis.Context.Context</definition>
-        <argsstring>(params Type[] types)</argsstring>
-        <name>Context</name>
-        <param>
-          <type>params Type[]</type>
-          <declname>types</declname>
-        </param>
+      <memberdef kind="property" id="a00042_1ada4d83d1756918f362d55f6649b82b17" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.BaseOptions.verbose</definition>
+        <argsstring></argsstring>
+        <name>verbose</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="121" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="121" bodyend="127"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="46" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="46" bodyend="-1"/>
+        <referencedby refid="a00102_1aa72838be584177b5592c31d73c0febdb" compoundref="a00301" startline="119" endline="160">Yarn.FileFormatConverter.ConvertNodesInFile</referencedby>
+        <referencedby refid="a00153_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00304" startline="12" endline="124">Yarn.TableGenerator.GenerateTables</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00054_1a1eadea062a5899a64d00ea0172cbbb43" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>IEnumerable&lt; <ref refid="a00087" kindref="compound">Diagnosis</ref> &gt;</type>
-        <definition>IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.Context.FinishAnalysis</definition>
-        <argsstring>()</argsstring>
-        <name>FinishAnalysis</name>
+      <memberdef kind="property" id="a00042_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>IList&lt; string &gt;</type>
+        <definition>IList&lt;string&gt; Yarn.BaseOptions.files</definition>
+        <argsstring></argsstring>
+        <name>files</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="135" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="135" bodyend="143"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00054_1a60255a6d54f296d199507acef251244c" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Analysis.Context.AddProgramToAnalysis</definition>
-        <argsstring>(Program program)</argsstring>
-        <name>AddProgramToAnalysis</name>
-        <param>
-          <type><ref refid="a00138" kindref="compound">Program</ref></type>
-          <declname>program</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="129" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="129" bodyend="133"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="49" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="49" bodyend="-1"/>
+        <referencedby refid="a00174_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00303" startline="270" endline="331">Yarn.YarnSpinnerConsole.Run</referencedby>
+        <referencedby refid="a00174_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00303" startline="333" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="904">
-        <label>Yarn.Analysis.Context</label>
+    <inheritancegraph>
+      <node id="883">
+        <label>Yarn.CompileOptions</label>
         <link refid="a00054"/>
+        <childnode refid="884" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="884">
+        <label>BaseOptions</label>
+        <link refid="a00042"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="885">
+        <label>Yarn.CompileOptions</label>
+        <link refid="a00054"/>
+        <childnode refid="886" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="886">
+        <label>BaseOptions</label>
+        <link refid="a00042"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="82" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="82" bodyend="145"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="104" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="103" bodyend="107"/>
     <listofallmembers>
-      <member refid="a00054_1ad06829cf848a5936db5724ebced758ec" prot="private" virt="non-virtual"><scope>Yarn::Analysis::Context</scope><name>_defaultAnalyserClasses</name></member>
-      <member refid="a00054_1a60255a6d54f296d199507acef251244c" prot="package" virt="non-virtual"><scope>Yarn::Analysis::Context</scope><name>AddProgramToAnalysis</name></member>
-      <member refid="a00054_1aa5c7eaa90ad9c47969a3b336080d8991" prot="private" virt="non-virtual"><scope>Yarn::Analysis::Context</scope><name>analysers</name></member>
-      <member refid="a00054_1a8e2c56843e8d374b0f90e23326d8d14a" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Context</scope><name>Context</name></member>
-      <member refid="a00054_1ad5f41fb64637c4938bce811153492731" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Context</scope><name>Context</name></member>
-      <member refid="a00054_1afdf24f2512251c2203ba1bde8f4a0f90" prot="package" virt="non-virtual"><scope>Yarn::Analysis::Context</scope><name>defaultAnalyserClasses</name></member>
-      <member refid="a00054_1a1eadea062a5899a64d00ea0172cbbb43" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Context</scope><name>FinishAnalysis</name></member>
+      <member refid="a00042_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" virt="non-virtual"><scope>Yarn::CompileOptions</scope><name>files</name></member>
+      <member refid="a00054_1a9904ccfb1b0ff64df415c4fc9fe6eb1c" prot="public" virt="non-virtual"><scope>Yarn::CompileOptions</scope><name>format</name></member>
+      <member refid="a00042_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" virt="non-virtual"><scope>Yarn::CompileOptions</scope><name>showDebuggingInfo</name></member>
+      <member refid="a00042_1ada4d83d1756918f362d55f6649b82b17" prot="public" virt="non-virtual"><scope>Yarn::CompileOptions</scope><name>verbose</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

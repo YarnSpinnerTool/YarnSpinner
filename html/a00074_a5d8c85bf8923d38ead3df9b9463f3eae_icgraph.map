@@ -1,9 +1,0 @@
-<map id="CsvHelper.CsvReader.CreatePropertyBindingsForMapping" name="CsvHelper.CsvReader.CreatePropertyBindingsForMapping">
-<area shape="rect" id="node2" href="$a00074.html#a40317e9dfefc684de48e8d2ad1bf4bcc" title="Creates the function for an object. " alt="" coords="251,38,448,79"/>
-<area shape="rect" id="node3" href="$a00074.html#afbdbf02b2d21a11d5eed9705be26f9e1" title="Creates the read record func for the given type if it doesn&#39;t already exist. " alt="" coords="496,38,693,79"/>
-<area shape="rect" id="node4" href="$a00074.html#a0273af46a69da3ce4af8ba4d4e0c3441" title="Gets the function delegate used to populate a custom class object with data from the reader..." alt="" coords="741,5,952,46"/>
-<area shape="rect" id="node5" href="$a00074.html#a80a053f470462225c390208e27a1132a" title="Gets the function delegate used to populate a custom class object with data from the reader..." alt="" coords="741,70,952,111"/>
-<area shape="rect" id="node6" href="$a00074.html#a722545ede4e575795ee9a73f6ada0ac7" title="Creates the record for the given type. " alt="" coords="1000,70,1197,111"/>
-<area shape="rect" id="node7" href="$a00074.html#a10680de48d9c21ef1792661947f9f601" title="Gets the record. " alt="" coords="1249,52,1471,79"/>
-<area shape="rect" id="node8" href="$a00074.html#aaa94b8f27e410194fbaadd75f38b030e" title="Gets all the records in the CSV file and converts each to Type T. The Read method should not be used ..." alt="" coords="1246,103,1474,129"/>
-</map>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: CsvHelper.StringHelper Class Reference</title>
+<title>YarnSpinner: Yarn.VirtualMachine.State Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,37 +107,237 @@ $(document).ready(function(){initNavTree('a00150.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="a00444.html">List of all members</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="a00638.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">CsvHelper.StringHelper Class Reference</div>  </div>
+<div class="title">Yarn.VirtualMachine.State Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Common string tasks.  
- <a href="a00150.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for CsvHelper.StringHelper:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.VirtualMachine.State:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00445.png" border="0" usemap="#_csv_helper_8_string_helper_coll__map" alt="Collaboration graph"/></div>
-<map name="_csv_helper_8_string_helper_coll__map" id="_csv_helper_8_string_helper_coll__map">
+<div class="center"><img src="a00639.png" border="0" usemap="#_yarn_8_virtual_machine_8_state_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_virtual_machine_8_state_coll__map" id="_yarn_8_virtual_machine_8_state_coll__map">
 </map>
 </div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a40c715a7ebf19c7053c7b10f2b3df80f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a40c715a7ebf19c7053c7b10f2b3df80f">IsNullOrWhiteSpace</a> (string s)</td></tr>
-<tr class="memdesc:a40c715a7ebf19c7053c7b10f2b3df80f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests is a string is null or whitespace.  <a href="#a40c715a7ebf19c7053c7b10f2b3df80f">More...</a><br/></td></tr>
-<tr class="separator:a40c715a7ebf19c7053c7b10f2b3df80f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:aace44f5b85b9f746fede834becda4a8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#aace44f5b85b9f746fede834becda4a8e">PushValue</a> (object o)</td></tr>
+<tr class="memdesc:aace44f5b85b9f746fede834becda4a8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Methods for working with the stack.  <a href="#aace44f5b85b9f746fede834becda4a8e">More...</a><br/></td></tr>
+<tr class="separator:aace44f5b85b9f746fede834becda4a8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36881a888ea2839d74c3d4e7c199f4ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00167.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a36881a888ea2839d74c3d4e7c199f4ee">PopValue</a> ()</td></tr>
+<tr class="memdesc:a36881a888ea2839d74c3d4e7c199f4ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop a value from the stack.  <a href="#a36881a888ea2839d74c3d4e7c199f4ee">More...</a><br/></td></tr>
+<tr class="separator:a36881a888ea2839d74c3d4e7c199f4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54fd5b64ec94e937e771846167242dc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00167.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a54fd5b64ec94e937e771846167242dc2">PeekValue</a> ()</td></tr>
+<tr class="memdesc:a54fd5b64ec94e937e771846167242dc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peek at a value from the stack.  <a href="#a54fd5b64ec94e937e771846167242dc2">More...</a><br/></td></tr>
+<tr class="separator:a54fd5b64ec94e937e771846167242dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c787097fbbbbf1680e4960cda092535"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a9c787097fbbbbf1680e4960cda092535">ClearStack</a> ()</td></tr>
+<tr class="memdesc:a9c787097fbbbbf1680e4960cda092535"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the stack.  <a href="#a9c787097fbbbbf1680e4960cda092535">More...</a><br/></td></tr>
+<tr class="separator:a9c787097fbbbbf1680e4960cda092535"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a86f481fad527f719b49f8fee6ff79764"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a86f481fad527f719b49f8fee6ff79764">currentNodeName</a></td></tr>
+<tr class="memdesc:a86f481fad527f719b49f8fee6ff79764"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the node that we're currently in.  <a href="#a86f481fad527f719b49f8fee6ff79764">More...</a><br/></td></tr>
+<tr class="separator:a86f481fad527f719b49f8fee6ff79764"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c76546b54b4fb573d7f14d79ce230a3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a2c76546b54b4fb573d7f14d79ce230a3">programCounter</a> = 0</td></tr>
+<tr class="memdesc:a2c76546b54b4fb573d7f14d79ce230a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The instruction number in the current node.  <a href="#a2c76546b54b4fb573d7f14d79ce230a3">More...</a><br/></td></tr>
+<tr class="separator:a2c76546b54b4fb573d7f14d79ce230a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab816dfea32ecda23282700f01454e0a9"><td class="memItemLeft" align="right" valign="top">List&lt; KeyValuePair&lt; string, <br class="typebreak"/>
+string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#ab816dfea32ecda23282700f01454e0a9">currentOptions</a> = new List&lt;KeyValuePair&lt;string, string&gt;&gt;()</td></tr>
+<tr class="memdesc:ab816dfea32ecda23282700f01454e0a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of options, where each option = &lt;string id, destination node&gt;  <a href="#ab816dfea32ecda23282700f01454e0a9">More...</a><br/></td></tr>
+<tr class="separator:ab816dfea32ecda23282700f01454e0a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a0bc84abf38b3ff31cbb47363b851c233"><td class="memItemLeft" align="right" valign="top">Stack&lt; <a class="el" href="a00167.html">Value</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a0bc84abf38b3ff31cbb47363b851c233">stack</a> = new Stack&lt;<a class="el" href="a00167.html">Value</a>&gt;()</td></tr>
+<tr class="memdesc:a0bc84abf38b3ff31cbb47363b851c233"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value stack.  <a href="#a0bc84abf38b3ff31cbb47363b851c233">More...</a><br/></td></tr>
+<tr class="separator:a0bc84abf38b3ff31cbb47363b851c233"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Common string tasks. </p>
-
-<p>Definition at line <a class="el" href="a00236_source.html#l00010">10</a> of file <a class="el" href="a00236_source.html">StringHelper.cs</a>.</p>
+<div class="textblock">
+<p>Definition at line <a class="el" href="a00294_source.html#l00010">10</a> of file <a class="el" href="a00294_source.html">VirtualMachine.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a40c715a7ebf19c7053c7b10f2b3df80f"></a>
+<a class="anchor" id="a9c787097fbbbbf1680e4960cda092535"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Yarn.VirtualMachine.State.ClearStack </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clear the stack. </p>
+
+<p>Definition at line <a class="el" href="a00294_source.html#l00044">44</a> of file <a class="el" href="a00294_source.html">VirtualMachine.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                                     {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                stack.Clear ();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a54fd5b64ec94e937e771846167242dc2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00167.html">Value</a> Yarn.VirtualMachine.State.PeekValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Peek at a value from the stack. </p>
+
+<p>Definition at line <a class="el" href="a00294_source.html#l00039">39</a> of file <a class="el" href="a00294_source.html">VirtualMachine.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00294_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                                     {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <span class="keywordflow">return</span> stack.Peek ();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            }</div>
+</div><!-- fragment -->
+<p><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00150_a54fd5b64ec94e937e771846167242dc2_icgraph.png" border="0" usemap="#a00150_a54fd5b64ec94e937e771846167242dc2_icgraph" alt=""/></div>
+<map name="a00150_a54fd5b64ec94e937e771846167242dc2_icgraph" id="a00150_a54fd5b64ec94e937e771846167242dc2_icgraph">
+<area shape="rect" id="node2" href="a00147.html#ad2caf9ca4f00cdcbd58983be7c106971" title="Yarn.VirtualMachine.RunInstruction" alt="" coords="233,12,461,39"/><area shape="rect" id="node3" href="a00147.html#af3cc0337914b9f66454a3d52208dba5f" title="Executes the next instruction in the current node. " alt="" coords="509,12,704,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a36881a888ea2839d74c3d4e7c199f4ee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00167.html">Value</a> Yarn.VirtualMachine.State.PopValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pop a value from the stack. </p>
+
+<p>Definition at line <a class="el" href="a00294_source.html#l00034">34</a> of file <a class="el" href="a00294_source.html">VirtualMachine.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00294_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                                    {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordflow">return</span> stack.Pop ();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            }</div>
+</div><!-- fragment -->
+<p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00150_a36881a888ea2839d74c3d4e7c199f4ee_icgraph.png" border="0" usemap="#a00150_a36881a888ea2839d74c3d4e7c199f4ee_icgraph" alt=""/></div>
+<map name="a00150_a36881a888ea2839d74c3d4e7c199f4ee_icgraph" id="a00150_a36881a888ea2839d74c3d4e7c199f4ee_icgraph">
+<area shape="rect" id="node2" href="a00147.html#ad2caf9ca4f00cdcbd58983be7c106971" title="Yarn.VirtualMachine.RunInstruction" alt="" coords="233,12,461,39"/><area shape="rect" id="node3" href="a00147.html#af3cc0337914b9f66454a3d52208dba5f" title="Executes the next instruction in the current node. " alt="" coords="509,12,704,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aace44f5b85b9f746fede834becda4a8e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Yarn.VirtualMachine.State.PushValue </td>
+          <td>(</td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>o</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Methods for working with the stack. </p>
+
+<p>Definition at line <a class="el" href="a00294_source.html#l00025">25</a> of file <a class="el" href="a00294_source.html">VirtualMachine.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                                            {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="keywordflow">if</span>( o is Value ) {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                    stack.Push(o as Value);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                    stack.Push (<span class="keyword">new</span> Value(o));</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a86f481fad527f719b49f8fee6ff79764"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Yarn.VirtualMachine.State.currentNodeName</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The name of the node that we're currently in. </p>
+
+<p>Definition at line <a class="el" href="a00294_source.html#l00013">13</a> of file <a class="el" href="a00294_source.html">VirtualMachine.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00294_source.html#l00164">Yarn.VirtualMachine.FindInstructionPointForLabel()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab816dfea32ecda23282700f01454e0a9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;KeyValuePair&lt;string,string&gt; &gt; Yarn.VirtualMachine.State.currentOptions = new List&lt;KeyValuePair&lt;string, string&gt;&gt;()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>List of options, where each option = &lt;string id, destination node&gt; </p>
+
+<p>Definition at line <a class="el" href="a00294_source.html#l00019">19</a> of file <a class="el" href="a00294_source.html">VirtualMachine.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00294_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2c76546b54b4fb573d7f14d79ce230a3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Yarn.VirtualMachine.State.programCounter = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The instruction number in the current node. </p>
+
+<p>Definition at line <a class="el" href="a00294_source.html#l00016">16</a> of file <a class="el" href="a00294_source.html">VirtualMachine.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00294_source.html#l00138">Yarn.VirtualMachine.RunNext()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0bc84abf38b3ff31cbb47363b851c233"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -145,72 +345,32 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static bool CsvHelper.StringHelper.IsNullOrWhiteSpace </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
-          <td></td>
+          <td class="memname">Stack&lt;<a class="el" href="a00167.html">Value</a>&gt; Yarn.VirtualMachine.State.stack = new Stack&lt;<a class="el" href="a00167.html">Value</a>&gt;()</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Tests is a string is null or whitespace. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>The string to test.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the string is null or whitespace, otherwise false.</dd></dl>
+<p>The value stack. </p>
 
-<p>Definition at line <a class="el" href="a00236_source.html#l00017">17</a> of file <a class="el" href="a00236_source.html">StringHelper.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00216_source.html#l01163">CsvHelper.CsvReader.GetEmtpyStringMethod()</a>, and <a class="el" href="a00216_source.html#l00747">CsvHelper.CsvReader.TryGetField&lt; T &gt;()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keywordflow">if</span>( s == null )</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            }</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">for</span>( var i = 0; i &lt; s.Length; i++ )</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="keywordflow">if</span>( !<span class="keywordtype">char</span>.IsWhiteSpace( s[i] ) )</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                }</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        }</div>
-</div><!-- fragment -->
-<p><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00150_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph.png" border="0" usemap="#a00150_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph" alt=""/></div>
-<map name="a00150_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph" id="a00150_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph">
-<area shape="rect" id="node2" href="a00074.html#ad1d1cde1588bb56eca326d5d92592956" title="Gets a function to test for an empty string. Will check CsvConfiguration.TrimFields when making its d..." alt="" coords="230,5,447,46"/><area shape="rect" id="node4" href="a00074.html#aa8622306f74940386663fa4020eb8971" title="Gets the field converted to Type T at position (column) index using the specified ITypeConverter..." alt="" coords="239,70,438,111"/><area shape="rect" id="node3" href="a00074.html#a236f07d2376cb1b18e9550ccc3968728" title="Determines whether the current record is empty. A record is considered empty if all fields are empty..." alt="" coords="496,5,707,46"/></map>
-</div>
-</p>
+<p>Definition at line <a class="el" href="a00294_source.html#l00022">22</a> of file <a class="el" href="a00294_source.html">VirtualMachine.cs</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/<a class="el" href="a00236_source.html">StringHelper.cs</a></li>
+<li>YarnSpinner/<a class="el" href="a00294_source.html">VirtualMachine.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00311.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00150.html">StringHelper</a></li>
-    <li class="footer">Generated on Wed Aug 28 2019 22:42:49 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00050.html">Yarn</a></li><li class="navelem"><a class="el" href="a00147.html">VirtualMachine</a></li><li class="navelem"><a class="el" href="a00150.html">State</a></li>
+    <li class="footer">Generated on Wed Oct 23 2019 00:35:58 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

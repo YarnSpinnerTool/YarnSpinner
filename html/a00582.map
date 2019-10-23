@@ -1,2 +1,4 @@
-<map id="Yarn.LocalisedLine" name="Yarn.LocalisedLine">
+<map id="Yarn.BaseVariableStorage" name="Yarn.BaseVariableStorage">
+<area shape="rect" id="node3" href="$a00130.html" title="Very simple continuity class that keeps all variables in memory. " alt="" coords="5,406,184,557"/>
+<area shape="rect" id="node2" href="$a00169.html" title="Where we turn to for storing and loading variable data. " alt="" coords="37,6,152,157"/>
 </map>

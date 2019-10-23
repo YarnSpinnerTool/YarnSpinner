@@ -1,49 +1,99 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00137" kind="struct" prot="public">
-    <compoundname>Yarn::Loader::NodeInfo::Position</compoundname>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00137_1a6b40110781090293fbcd2d6f7695ae4d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+  <compounddef id="a00137" kind="class" prot="package">
+    <compoundname>Yarn::ParseException</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Exception</basecompoundref>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="a00137_1ab335169367e64fd6d89d58b3ac573751" prot="package" static="no" mutable="no">
         <type>int</type>
-        <definition>int Yarn.Loader.NodeInfo.Position.x</definition>
+        <definition>int Yarn.ParseException.lineNumber</definition>
         <argsstring></argsstring>
-        <name>x</name>
+        <name>lineNumber</name>
+        <initializer>= 0</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="247" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="247" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="13" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="13" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="a00137_1a390d560bd9faa3a32d8a0489c69be9e0" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>int</type>
-        <definition>int Yarn.Loader.NodeInfo.Position.y</definition>
-        <argsstring></argsstring>
-        <name>y</name>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="a00137_1a0265905b09fbd675d40c452d9fc61207" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00137" kindref="compound">ParseException</ref></type>
+        <definition>static ParseException Yarn.ParseException.Make</definition>
+        <argsstring>(Antlr4.Runtime.ParserRuleContext context, string message)</argsstring>
+        <name>Make</name>
+        <param>
+          <type><ref refid="a00298_1a7e45f8222713cb764832fd3c69d0268f" kindref="member">Antlr4.Runtime.ParserRuleContext</ref></type>
+          <declname>context</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="248" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="248" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="15" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="15" bodyend="29"/>
+        <references refid="a00137_1aa3c4f5c8b0ae86097bbc46044df9f317" compoundref="a00292" startline="31" endline="31">Yarn.ParseException.ParseException</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="a00137_1aa3c4f5c8b0ae86097bbc46044df9f317" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.ParseException.ParseException</definition>
+        <argsstring>(string message)</argsstring>
+        <name>ParseException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="31" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="31" bodyend="31"/>
+        <referencedby refid="a00137_1a0265905b09fbd675d40c452d9fc61207" compoundref="a00292" startline="15" endline="29">Yarn.ParseException.Make</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1398">
-        <label>Yarn.Loader.NodeInfo.Position</label>
+    <inheritancegraph>
+      <node id="1389">
+        <label>Yarn.ParseException</label>
         <link refid="a00137"/>
+        <childnode refid="1390" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1390">
+        <label>Exception</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1391">
+        <label>Yarn.ParseException</label>
+        <link refid="a00137"/>
+        <childnode refid="1392" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1392">
+        <label>Exception</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="246" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="246" bodyend="249"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" line="11" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Program.cs" bodystart="10" bodyend="33"/>
     <listofallmembers>
-      <member refid="a00137_1a6b40110781090293fbcd2d6f7695ae4d" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo::Position</scope><name>x</name></member>
-      <member refid="a00137_1a390d560bd9faa3a32d8a0489c69be9e0" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo::Position</scope><name>y</name></member>
+      <member refid="a00137_1ab335169367e64fd6d89d58b3ac573751" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>lineNumber</name></member>
+      <member refid="a00137_1a0265905b09fbd675d40c452d9fc61207" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>Make</name></member>
+      <member refid="a00137_1aa3c4f5c8b0ae86097bbc46044df9f317" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>ParseException</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

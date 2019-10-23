@@ -1,136 +1,264 @@
-\hypertarget{a00146}{\section{Yarn.\-Unity.\-Example.\-Sprite\-Switcher Class Reference}
-\label{a00146}\index{Yarn.\-Unity.\-Example.\-Sprite\-Switcher@{Yarn.\-Unity.\-Example.\-Sprite\-Switcher}}
+\hypertarget{a00146}{\section{Csv\-Helper.\-Type\-Conversion.\-Single\-Converter Class Reference}
+\label{a00146}\index{Csv\-Helper.\-Type\-Conversion.\-Single\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Single\-Converter}}
 }
 
 
-Attach \hyperlink{a00146}{Sprite\-Switcher} to game object.  
+Converts a Float to and from a string.  
 
 
 
 
-Inheritance diagram for Yarn.\-Unity.\-Example.\-Sprite\-Switcher\-:
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Single\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=212pt]{a00719}
+\includegraphics[width=220pt]{a00537}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Unity.\-Example.\-Sprite\-Switcher\-:
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Single\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=315pt]{a00720}
+\includegraphics[width=220pt]{a00538}
 \end{center}
 \end{figure}
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{a00146_a00354}{Sprite\-Info}
-\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00146_ac26718b713f342f3de8f3e569c5b62da}{Use\-Sprite} (string sprite\-Name)
-\begin{DoxyCompactList}\small\item\em Create a command to use on a sprite. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00146_a00354}{Sprite\-Info}\mbox{[}$\,$\mbox{]} \hyperlink{a00146_a1e85d9f4f6b33ca7ae638cce2eb704aa}{sprites}
-\end{DoxyCompactItemize}
+override object \hyperlink{a00146_a5c8a692325c19551246a589e9ca4a1e1}{Convert\-From\-String} (\hyperlink{a00158}{Type\-Converter\-Options} options, string text)
+\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
+override bool \hyperlink{a00146_a49bc7b2d2d399343a21b691a026dbf99}{Can\-Convert\-From} (System.\-Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual string \hyperlink{a00086_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00158}{Type\-Converter\-Options} options, object value)
+\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00086_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00086_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Attach \hyperlink{a00146}{Sprite\-Switcher} to game object. 
-
-Definition at line 34 of file Sprite\-Switcher.\-cs.
+Converts a Float to and from a string. 
 
 
 
-\subsection{Class Documentation}
-\index{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher\-::\-Sprite\-Info@{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher\-::\-Sprite\-Info}}\label{a00354}
-\hypertarget{a00146_a00354}{}
-\subsubsection{struct Yarn\-:\-:Unity\-:\-:Example\-:\-:Sprite\-Switcher\-:\-:Sprite\-Info}
+Definition at line 12 of file Single\-Converter.\-cs.
 
-
-Definition at line 37 of file Sprite\-Switcher.\-cs.
-
-
-
-Collaboration diagram for Yarn.\-Unity.\-Example.\-Sprite\-Switcher.\-Sprite\-Info\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=212pt]{a00359}
-\end{center}
-\end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00146_a3f5bca2fff413dfe075c1fcf7e58369c}{string}\label{a00146_a3f5bca2fff413dfe075c1fcf7e58369c}
-&
-name&
-\\
-\hline
-
-\hypertarget{a00146_adc58df011dc2841837b6cf775b372061}{Sprite}\label{a00146_adc58df011dc2841837b6cf775b372061}
-&
-sprite&
-\\
-\hline
-
-\end{DoxyFields}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00146_ac26718b713f342f3de8f3e569c5b62da}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher@{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher}!Use\-Sprite@{Use\-Sprite}}
-\index{Use\-Sprite@{Use\-Sprite}!Yarn::Unity::Example::SpriteSwitcher@{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher}}
-\subsubsection[{Use\-Sprite}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Sprite\-Switcher.\-Use\-Sprite (
+\hypertarget{a00146_a49bc7b2d2d399343a21b691a026dbf99}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::SingleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Single\-Converter.\-Can\-Convert\-From (
 \begin{DoxyParamCaption}
-\item[{string}]{sprite\-Name}
+\item[{System.\-Type}]{type}
 \end{DoxyParamCaption}
-)}}\label{a00146_ac26718b713f342f3de8f3e569c5b62da}
+)}}\label{a00146_a49bc7b2d2d399343a21b691a026dbf99}
 
 
-Create a command to use on a sprite. 
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
 
 
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
 
-Definition at line 46 of file Sprite\-Switcher.\-cs.
+
+Definition at line 40 of file Single\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-46                                                  \{
-47 
-48             Sprite s = null;
-49             \textcolor{keywordflow}{foreach}(var info \textcolor{keywordflow}{in} \hyperlink{a00146_a1e85d9f4f6b33ca7ae638cce2eb704aa}{sprites}) \{
-50                 \textcolor{keywordflow}{if} (info.name == spriteName) \{
-51                     s = info.sprite;
-52                     \textcolor{keywordflow}{break};
-53                 \}
-54              \}
-55             \textcolor{keywordflow}{if} (s == null) \{
-56                 Debug.LogErrorFormat(\textcolor{stringliteral}{"Can't find sprite named \{0\}!"}, spriteName);
-57                 \textcolor{keywordflow}{return};
-58             \}
-59 
-60             GetComponent<SpriteRenderer>().sprite = s;
-61         \}
+41         \{
+42             \textcolor{comment}{// We only care about strings.}
+43             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+44         \}
 \end{DoxyCode}
+\hypertarget{a00086_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::SingleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00086_a470d21adaa704eb281250dbd112ff91a}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00146_a1e85d9f4f6b33ca7ae638cce2eb704aa}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher@{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher}!sprites@{sprites}}
-\index{sprites@{sprites}!Yarn::Unity::Example::SpriteSwitcher@{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher}}
-\subsubsection[{sprites}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Sprite\-Info} \mbox{[}$\,$\mbox{]} Yarn.\-Unity.\-Example.\-Sprite\-Switcher.\-sprites}}\label{a00146_a1e85d9f4f6b33ca7ae638cce2eb704aa}
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
 
 
-Definition at line 42 of file Sprite\-Switcher.\-cs.
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
 
+
+Implements \hyperlink{a00119_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00135_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00045_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00096_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00097_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00083_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00082_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00046_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00156_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
+
+
+
+Definition at line 55 of file Default\-Type\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+56         \{
+57             \textcolor{comment}{// The default convert doesn't know how to}
+58             \textcolor{comment}{// convert from any type.}
+59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+60         \}
+\end{DoxyCode}
+\hypertarget{a00086_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
+\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::SingleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}}
+\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00086_acb65bd8c8199d88d5b1629ae35d18514}
+
+
+Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00119_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00097_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+
+
+Definition at line 69 of file Default\-Type\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+70         \{
+71             \textcolor{comment}{// We only care about strings.}
+72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+73         \}
+\end{DoxyCode}
+\hypertarget{a00146_a5c8a692325c19551246a589e9ca4a1e1}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
+\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::SingleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}}
+\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Single\-Converter.\-Convert\-From\-String (
+\begin{DoxyParamCaption}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{string}]{text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00146_a5c8a692325c19551246a589e9ca4a1e1}
+
+
+Converts the string to an object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em text} & The string to convert to an object.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The object created from the string.
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{a00086_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+
+
+
+Definition at line 20 of file Single\-Converter.\-cs.
+
+
+
+References Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info.
+
+
+\begin{DoxyCode}
+21         \{
+22             var numberStyle = options.NumberStyle ?? NumberStyles.Float;
+23 
+24             \textcolor{keywordtype}{float} f;
+25             \textcolor{keywordflow}{if}( \textcolor{keywordtype}{float}.TryParse( text, numberStyle, options.CultureInfo, out f ) )
+26             \{
+27                 \textcolor{keywordflow}{return} f;
+28             \}
+29 
+30             \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
+31         \}
+\end{DoxyCode}
+\hypertarget{a00086_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
+\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::SingleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}}
+\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
+\begin{DoxyParamCaption}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{object}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00086_a36cb2f9b24f15a671293f3a722324c27}
+
+
+Converts the object to a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em value} & The object to convert to a string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the object.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00119_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00135_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00097_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+
+
+Definition at line 21 of file Default\-Type\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+22         \{
+23             \textcolor{keywordflow}{if}( value == null )
+24             \{
+25                 \textcolor{keywordflow}{return} string.Empty;
+26             \}
+27 
+28             var formattable = value as IFormattable;
+29             \textcolor{keywordflow}{if}( formattable != null )
+30             \{
+31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
+32             \}
+33 
+34             \textcolor{keywordflow}{return} value.ToString();
+35         \}
+\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00278}{Sprite\-Switcher.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00257}{Single\-Converter.\-cs}\end{DoxyCompactItemize}

@@ -1,204 +1,88 @@
-\hypertarget{a00095}{\section{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter Class Reference}
-\label{a00095}\index{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}}
+\hypertarget{a00095}{\section{Yarn.\-Loader.\-Emission\-Tuple Struct Reference}
+\label{a00095}\index{Yarn.\-Loader.\-Emission\-Tuple@{Yarn.\-Loader.\-Emission\-Tuple}}
 }
 
 
-Throws an exception when used. This is here so that it's apparent that there is no support for I\-Enumerable type coversion. A custom converter will need to be created to have a field convert to and from an I\-Enumerable.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter\-:
+Collaboration diagram for Yarn.\-Loader.\-Emission\-Tuple\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00510}
-\end{center}
-\end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=220pt]{a00511}
+\includegraphics[width=216pt]{a00619}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override object \hyperlink{a00095_a692617638507cd1033728d7f718fcd2a}{Convert\-From\-String} (\hyperlink{a00156}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Throws an exception. \end{DoxyCompactList}\item 
-override string \hyperlink{a00095_a7e07e9532857d748654d37db590a0e11}{Convert\-To\-String} (\hyperlink{a00156}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Throws an exception. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00095_af66a7c67041f4c8061aa66e9e36359cf}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00095_a44d625b44f770b945a29cd89e399f90f}{Can\-Convert\-To} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00095_a79857a881f3e1bab47a2cee5007e62a2}{Emission\-Tuple} (int \hyperlink{a00095_ad3d26f07b18e91e1ba31ba3b5d6923db}{depth}, bool \hyperlink{a00095_a5916dbbd4d2e24ddfd02b0afdea290bf}{emitted})
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{a00095_ad3d26f07b18e91e1ba31ba3b5d6923db}{depth}
+\item 
+bool \hyperlink{a00095_a5916dbbd4d2e24ddfd02b0afdea290bf}{emitted}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Throws an exception when used. This is here so that it's apparent that there is no support for I\-Enumerable type coversion. A custom converter will need to be created to have a field convert to and from an I\-Enumerable. 
+
+
+Definition at line 72 of file Loader.\-cs.
 
 
 
-Definition at line 16 of file Enumerable\-Converter.\-cs.
-
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00095_af66a7c67041f4c8061aa66e9e36359cf}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Can\-Convert\-From (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00095_a79857a881f3e1bab47a2cee5007e62a2}{\index{Yarn\-::\-Loader\-::\-Emission\-Tuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}!Emission\-Tuple@{Emission\-Tuple}}
+\index{Emission\-Tuple@{Emission\-Tuple}!Yarn::Loader::EmissionTuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}}
+\subsubsection[{Emission\-Tuple}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Loader.\-Emission\-Tuple.\-Emission\-Tuple (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{int}]{depth, }
+\item[{bool}]{emitted}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00095_af66a7c67041f4c8061aa66e9e36359cf}
+)}}\label{a00095_a79857a881f3e1bab47a2cee5007e62a2}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00084_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Definition at line 76 of file Loader.\-cs.
 
 
 
-Definition at line 51 of file Enumerable\-Converter.\-cs.
+References Yarn.\-Loader.\-Emission\-Tuple.\-depth, and Yarn.\-Loader.\-Emission\-Tuple.\-emitted.
 
 
 \begin{DoxyCode}
-52         \{
-53             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-54         \}
-\end{DoxyCode}
-\hypertarget{a00095_a44d625b44f770b945a29cd89e399f90f}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Can\-Convert\-To (
-\begin{DoxyParamCaption}
-\item[{Type}]{type}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00095_a44d625b44f770b945a29cd89e399f90f}
-
-
-Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00084_acb65bd8c8199d88d5b1629ae35d18514}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
-
-
-
-Definition at line 63 of file Enumerable\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-64         \{
-65             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-66         \}
-\end{DoxyCode}
-\hypertarget{a00095_a692617638507cd1033728d7f718fcd2a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Convert\-From\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{string}]{text}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00095_a692617638507cd1033728d7f718fcd2a}
-
-
-Throws an exception. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em text} & The string to convert to an object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The object created from the string.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00084_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
-
-
-
-Definition at line 24 of file Enumerable\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-25         \{
-26             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvTypeConverterException( \textcolor{stringliteral}{"Converting IEnumerable types is not supported for a
-       single field. "} +
-27                                                  \textcolor{stringliteral}{"If you want to do this, create your own ITypeConverter
-       and register "} +
-28                                                  \textcolor{stringliteral}{"it in the TypeConverterFactory by calling AddConverter."} 
-      );
-29         \}
-\end{DoxyCode}
-\hypertarget{a00095_a7e07e9532857d748654d37db590a0e11}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Convert\-To\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{object}]{value}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00095_a7e07e9532857d748654d37db590a0e11}
-
-
-Throws an exception. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em value} & The object to convert to a string.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The string representation of the object.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00084_a36cb2f9b24f15a671293f3a722324c27}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
-
-
-
-Definition at line 37 of file Enumerable\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-38         \{
-39             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvTypeConverterException( \textcolor{stringliteral}{"Converting IEnumerable types is not supported for a
-       single field. "} +
-40                                                  \textcolor{stringliteral}{"If you want to do this, create your own ITypeConverter
-       and register "} +
-41                                                  \textcolor{stringliteral}{"it in the TypeConverterFactory by calling AddConverter."} 
-      );
-42         \}
+77             \{
+78                 this.depth = \hyperlink{a00095_ad3d26f07b18e91e1ba31ba3b5d6923db}{depth};
+79                 this.emitted = \hyperlink{a00095_a5916dbbd4d2e24ddfd02b0afdea290bf}{emitted};
+80             \}
 \end{DoxyCode}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\subsection{Member Data Documentation}
+\hypertarget{a00095_ad3d26f07b18e91e1ba31ba3b5d6923db}{\index{Yarn\-::\-Loader\-::\-Emission\-Tuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}!depth@{depth}}
+\index{depth@{depth}!Yarn::Loader::EmissionTuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}}
+\subsubsection[{depth}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Loader.\-Emission\-Tuple.\-depth}}\label{a00095_ad3d26f07b18e91e1ba31ba3b5d6923db}
+
+
+Definition at line 74 of file Loader.\-cs.
+
+
+
+Referenced by Yarn.\-Loader.\-Emission\-Tuple.\-Emission\-Tuple().
+
+\hypertarget{a00095_a5916dbbd4d2e24ddfd02b0afdea290bf}{\index{Yarn\-::\-Loader\-::\-Emission\-Tuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}!emitted@{emitted}}
+\index{emitted@{emitted}!Yarn::Loader::EmissionTuple@{Yarn\-::\-Loader\-::\-Emission\-Tuple}}
+\subsubsection[{emitted}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Loader.\-Emission\-Tuple.\-emitted}}\label{a00095_a5916dbbd4d2e24ddfd02b0afdea290bf}
+
+
+Definition at line 75 of file Loader.\-cs.
+
+
+
+Referenced by Yarn.\-Loader.\-Emission\-Tuple.\-Emission\-Tuple().
+
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00247}{Enumerable\-Converter.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00291}{Loader.\-cs}\end{DoxyCompactItemize}

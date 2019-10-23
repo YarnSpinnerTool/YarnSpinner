@@ -1,0 +1,154 @@
+\hypertarget{a00324}{\section{preprocessor Namespace Reference}
+\label{a00324}\index{preprocessor@{preprocessor}}
+}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+list \hyperlink{a00324_a3766d6a1d728423223fa0743ba62011f}{output\-\_\-lines} = \mbox{[}$\,$\mbox{]}
+\item 
+list \hyperlink{a00324_a00fba9ee9674b2513dbe28eab795b734}{indents} = \mbox{[}(0,False)\mbox{]}
+\item 
+\hyperlink{a00324_afa485f45ab87bc0f06c1dfc46737c057}{should\-Track\-Next\-Indentation} = False
+\item 
+string \hyperlink{a00324_ae3f2190a793ab77428838e58e0e83676}{I\-N\-D\-E\-N\-T} = '\textbackslash{}a'
+\item 
+string \hyperlink{a00324_a83653c3e52fa74614e655a91ad2b7181}{D\-E\-D\-E\-N\-T} = '\textbackslash{}v'
+\item 
+string \hyperlink{a00324_a7ca2dc5371587b21476669a45af013cd}{O\-P\-T\-I\-O\-N} = \char`\"{}-\/$>$\char`\"{}
+\item 
+int \hyperlink{a00324_ac7b4a28b6670884cd095cd684a452c94}{line\-\_\-count} = 1
+\item 
+tuple \hyperlink{a00324_acab50490b6d7a9dc2bb935ad4ffe2eff}{tweaked\-\_\-line} = line.\-replace('\textbackslash{}t',' ')
+\item 
+tuple \hyperlink{a00324_a0e59365a4aa5811f6495b92a51e23573}{this\-Indentation} = len(\hyperlink{a00324_acab50490b6d7a9dc2bb935ad4ffe2eff}{tweaked\-\_\-line})
+\item 
+tuple \hyperlink{a00324_abf34284b1c9a00275810e5c13a4dcea2}{is\-\_\-option} = tweaked\-\_\-line.\-strip()
+\item 
+list \hyperlink{a00324_ade44b858578c3eab7b6f90030a0e3ea1}{previous\-Indentation} = \hyperlink{a00324_a00fba9ee9674b2513dbe28eab795b734}{indents}\mbox{[}-\/1\mbox{]}
+\item 
+tuple \hyperlink{a00324_a8b7e5c0b2c6870eaa8f9454b4f33678b}{top\-Level} = indents.\-pop()
+\item 
+tuple \hyperlink{a00324_a3da6d48778c7b08a040bf24377f67792}{output} = open('processed.\-yarn', 'w')
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\hypertarget{a00324_a83653c3e52fa74614e655a91ad2b7181}{\index{preprocessor@{preprocessor}!D\-E\-D\-E\-N\-T@{D\-E\-D\-E\-N\-T}}
+\index{D\-E\-D\-E\-N\-T@{D\-E\-D\-E\-N\-T}!preprocessor@{preprocessor}}
+\subsubsection[{D\-E\-D\-E\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}string preprocessor.\-D\-E\-D\-E\-N\-T = '\textbackslash{}v'}}\label{a00324_a83653c3e52fa74614e655a91ad2b7181}
+
+
+Definition at line 28 of file preprocessor.\-py.
+
+
+
+Referenced by Yarn.\-Loader.\-preprocessor().
+
+\hypertarget{a00324_ae3f2190a793ab77428838e58e0e83676}{\index{preprocessor@{preprocessor}!I\-N\-D\-E\-N\-T@{I\-N\-D\-E\-N\-T}}
+\index{I\-N\-D\-E\-N\-T@{I\-N\-D\-E\-N\-T}!preprocessor@{preprocessor}}
+\subsubsection[{I\-N\-D\-E\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}string preprocessor.\-I\-N\-D\-E\-N\-T = '\textbackslash{}a'}}\label{a00324_ae3f2190a793ab77428838e58e0e83676}
+
+
+Definition at line 27 of file preprocessor.\-py.
+
+
+
+Referenced by Yarn.\-Loader.\-preprocessor().
+
+\hypertarget{a00324_a00fba9ee9674b2513dbe28eab795b734}{\index{preprocessor@{preprocessor}!indents@{indents}}
+\index{indents@{indents}!preprocessor@{preprocessor}}
+\subsubsection[{indents}]{\setlength{\rightskip}{0pt plus 5cm}list preprocessor.\-indents = \mbox{[}(0,False)\mbox{]}}}\label{a00324_a00fba9ee9674b2513dbe28eab795b734}
+
+
+Definition at line 20 of file preprocessor.\-py.
+
+
+
+Referenced by Yarn.\-Loader.\-preprocessor().
+
+\hypertarget{a00324_abf34284b1c9a00275810e5c13a4dcea2}{\index{preprocessor@{preprocessor}!is\-\_\-option@{is\-\_\-option}}
+\index{is\-\_\-option@{is\-\_\-option}!preprocessor@{preprocessor}}
+\subsubsection[{is\-\_\-option}]{\setlength{\rightskip}{0pt plus 5cm}tuple preprocessor.\-is\-\_\-option = tweaked\-\_\-line.\-strip()}}\label{a00324_abf34284b1c9a00275810e5c13a4dcea2}
+
+
+Definition at line 50 of file preprocessor.\-py.
+
+\hypertarget{a00324_ac7b4a28b6670884cd095cd684a452c94}{\index{preprocessor@{preprocessor}!line\-\_\-count@{line\-\_\-count}}
+\index{line\-\_\-count@{line\-\_\-count}!preprocessor@{preprocessor}}
+\subsubsection[{line\-\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}int preprocessor.\-line\-\_\-count = 1}}\label{a00324_ac7b4a28b6670884cd095cd684a452c94}
+
+
+Definition at line 38 of file preprocessor.\-py.
+
+\hypertarget{a00324_a7ca2dc5371587b21476669a45af013cd}{\index{preprocessor@{preprocessor}!O\-P\-T\-I\-O\-N@{O\-P\-T\-I\-O\-N}}
+\index{O\-P\-T\-I\-O\-N@{O\-P\-T\-I\-O\-N}!preprocessor@{preprocessor}}
+\subsubsection[{O\-P\-T\-I\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}string preprocessor.\-O\-P\-T\-I\-O\-N = \char`\"{}-\/$>$\char`\"{}}}\label{a00324_a7ca2dc5371587b21476669a45af013cd}
+
+
+Definition at line 35 of file preprocessor.\-py.
+
+
+
+Referenced by Yarn.\-Loader.\-preprocessor().
+
+\hypertarget{a00324_a3da6d48778c7b08a040bf24377f67792}{\index{preprocessor@{preprocessor}!output@{output}}
+\index{output@{output}!preprocessor@{preprocessor}}
+\subsubsection[{output}]{\setlength{\rightskip}{0pt plus 5cm}tuple preprocessor.\-output = open('processed.\-yarn', 'w')}}\label{a00324_a3da6d48778c7b08a040bf24377f67792}
+
+
+Definition at line 92 of file preprocessor.\-py.
+
+
+
+Referenced by Yarn.\-Graph.\-to\-Dot(), and Yarn.\-Body\-Visitor.\-Visit\-Function\-\_\-statement().
+
+\hypertarget{a00324_a3766d6a1d728423223fa0743ba62011f}{\index{preprocessor@{preprocessor}!output\-\_\-lines@{output\-\_\-lines}}
+\index{output\-\_\-lines@{output\-\_\-lines}!preprocessor@{preprocessor}}
+\subsubsection[{output\-\_\-lines}]{\setlength{\rightskip}{0pt plus 5cm}list preprocessor.\-output\-\_\-lines = \mbox{[}$\,$\mbox{]}}}\label{a00324_a3766d6a1d728423223fa0743ba62011f}
+
+
+Definition at line 16 of file preprocessor.\-py.
+
+\hypertarget{a00324_ade44b858578c3eab7b6f90030a0e3ea1}{\index{preprocessor@{preprocessor}!previous\-Indentation@{previous\-Indentation}}
+\index{previous\-Indentation@{previous\-Indentation}!preprocessor@{preprocessor}}
+\subsubsection[{previous\-Indentation}]{\setlength{\rightskip}{0pt plus 5cm}list preprocessor.\-previous\-Indentation = {\bf indents}\mbox{[}-\/1\mbox{]}}}\label{a00324_ade44b858578c3eab7b6f90030a0e3ea1}
+
+
+Definition at line 52 of file preprocessor.\-py.
+
+\hypertarget{a00324_afa485f45ab87bc0f06c1dfc46737c057}{\index{preprocessor@{preprocessor}!should\-Track\-Next\-Indentation@{should\-Track\-Next\-Indentation}}
+\index{should\-Track\-Next\-Indentation@{should\-Track\-Next\-Indentation}!preprocessor@{preprocessor}}
+\subsubsection[{should\-Track\-Next\-Indentation}]{\setlength{\rightskip}{0pt plus 5cm}preprocessor.\-should\-Track\-Next\-Indentation = False}}\label{a00324_afa485f45ab87bc0f06c1dfc46737c057}
+
+
+Definition at line 22 of file preprocessor.\-py.
+
+
+
+Referenced by Yarn.\-Loader.\-preprocessor().
+
+\hypertarget{a00324_a0e59365a4aa5811f6495b92a51e23573}{\index{preprocessor@{preprocessor}!this\-Indentation@{this\-Indentation}}
+\index{this\-Indentation@{this\-Indentation}!preprocessor@{preprocessor}}
+\subsubsection[{this\-Indentation}]{\setlength{\rightskip}{0pt plus 5cm}tuple preprocessor.\-this\-Indentation = len({\bf tweaked\-\_\-line})}}\label{a00324_a0e59365a4aa5811f6495b92a51e23573}
+
+
+Definition at line 47 of file preprocessor.\-py.
+
+\hypertarget{a00324_a8b7e5c0b2c6870eaa8f9454b4f33678b}{\index{preprocessor@{preprocessor}!top\-Level@{top\-Level}}
+\index{top\-Level@{top\-Level}!preprocessor@{preprocessor}}
+\subsubsection[{top\-Level}]{\setlength{\rightskip}{0pt plus 5cm}tuple preprocessor.\-top\-Level = indents.\-pop()}}\label{a00324_a8b7e5c0b2c6870eaa8f9454b4f33678b}
+
+
+Definition at line 70 of file preprocessor.\-py.
+
+
+
+Referenced by Yarn.\-Loader.\-preprocessor().
+
+\hypertarget{a00324_acab50490b6d7a9dc2bb935ad4ffe2eff}{\index{preprocessor@{preprocessor}!tweaked\-\_\-line@{tweaked\-\_\-line}}
+\index{tweaked\-\_\-line@{tweaked\-\_\-line}!preprocessor@{preprocessor}}
+\subsubsection[{tweaked\-\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}tuple preprocessor.\-tweaked\-\_\-line = line.\-replace('\textbackslash{}t',' ')}}\label{a00324_acab50490b6d7a9dc2bb935ad4ffe2eff}
+
+
+Definition at line 42 of file preprocessor.\-py.
+

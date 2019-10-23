@@ -1,219 +1,129 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00101" kind="class" prot="public">
-    <compoundname>Yarn::FunctionInfo</compoundname>
+    <compoundname>Yarn::ExecutionOptions</compoundname>
+    <basecompoundref refid="a00042" prot="public" virt="non-virtual">Yarn.BaseOptions</basecompoundref>
+    <derivedcompoundref refid="a00144" prot="public" virt="non-virtual">Yarn.RunOptions</derivedcompoundref>
+    <derivedcompoundref refid="a00171" prot="public" virt="non-virtual">Yarn.VerifyOptions</derivedcompoundref>
       <sectiondef kind="property">
-      <memberdef kind="property" id="a00101_1adb38e83e3c1597b553aeff14bef5bfcb" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+      <memberdef kind="property" id="a00101_1a7e43c3b73722956cb0f5d507e4eef527" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
         <type>string</type>
-        <definition>string Yarn.FunctionInfo.name</definition>
+        <definition>string Yarn.ExecutionOptions.stringTable</definition>
         <argsstring></argsstring>
-        <name>name</name>
+        <name>stringTable</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="15" bodyend="-1"/>
-        <referencedby refid="a00101_1a93457cd0e838cb2ef59cc2a3a46ce758" compoundref="a00287" startline="68" endline="73">Yarn.FunctionInfo.FunctionInfo</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="57" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="57" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="a00101_1aa8527de9e4f153b05164ccaf167c3186" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>int</type>
-        <definition>int Yarn.FunctionInfo.paramCount</definition>
+      <memberdef kind="property" id="a00101_1af4c0062a1d46281d377f87084fde374e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.ExecutionOptions.onlyConsiderNode</definition>
         <argsstring></argsstring>
-        <name>paramCount</name>
+        <name>onlyConsiderNode</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="19" bodyend="-1"/>
-        <referencedby refid="a00101_1a93457cd0e838cb2ef59cc2a3a46ce758" compoundref="a00287" startline="68" endline="73">Yarn.FunctionInfo.FunctionInfo</referencedby>
-        <referencedby refid="a00042_1a88cf0e74393aa67719a08e1332c6e62e" compoundref="a00281" startline="494" endline="526">Yarn.BodyVisitor.HandleFunction</referencedby>
-        <referencedby refid="a00101_1a1ed09ff8aafa230a0d2bbc23cd6cd763" compoundref="a00287" startline="82" endline="85">Yarn.FunctionInfo.IsParameterCountCorrect</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="61" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="61" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="a00101_1a1dd2f9d11614a2fce170b3f3eecdb5f9" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type><ref refid="a00048_1ae0be2e5cf13d5779816102439e61ff1a" kindref="member">Function</ref></type>
-        <definition>Function Yarn.FunctionInfo.function</definition>
-        <argsstring></argsstring>
-        <name>function</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="25" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="25" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00101_1a8b6e0e5a875c427a1d947f3c52c308ca" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type><ref refid="a00048_1a5177bf74fbfe7303fac9d8236c2e514b" kindref="member">ReturningFunction</ref></type>
-        <definition>ReturningFunction Yarn.FunctionInfo.returningFunction</definition>
-        <argsstring></argsstring>
-        <name>returningFunction</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="26" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="26" bodyend="-1"/>
-        <referencedby refid="a00101_1a3ce11058d35232907a738de4bb094c67" compoundref="a00287" startline="39" endline="64">Yarn.FunctionInfo.InvokeWithArray</referencedby>
-      </memberdef>
-      <memberdef kind="property" id="a00101_1acaff044276aa230de7c0b27dd5267bc7" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+      <memberdef kind="property" id="a00042_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
         <type>bool</type>
-        <definition>bool Yarn.FunctionInfo.returnsValue</definition>
+        <definition>bool Yarn.BaseOptions.showDebuggingInfo</definition>
         <argsstring></argsstring>
-        <name>returnsValue</name>
+        <name>showDebuggingInfo</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="29" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="29" bodyend="-1"/>
-        <referencedby refid="a00101_1a3ce11058d35232907a738de4bb094c67" compoundref="a00287" startline="39" endline="64">Yarn.FunctionInfo.InvokeWithArray</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="42" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="42" bodyend="-1"/>
+        <referencedby refid="a00174_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00303" startline="383" endline="501">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00101_1ab400ac66785d7df2e3fc0f3ce3796044" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00165" kindref="compound">Value</ref></type>
-        <definition>Value Yarn.FunctionInfo.Invoke</definition>
-        <argsstring>(params Value[] parameters)</argsstring>
-        <name>Invoke</name>
-        <param>
-          <type>params <ref refid="a00165" kindref="compound">Value</ref>[]</type>
-          <declname>parameters</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="35" bodyend="37"/>
-        <references refid="a00101_1a3ce11058d35232907a738de4bb094c67" compoundref="a00287" startline="39" endline="64">Yarn.FunctionInfo.InvokeWithArray</references>
-      </memberdef>
-      <memberdef kind="function" id="a00101_1a3ce11058d35232907a738de4bb094c67" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00165" kindref="compound">Value</ref></type>
-        <definition>Value Yarn.FunctionInfo.InvokeWithArray</definition>
-        <argsstring>(Value[] parameters)</argsstring>
-        <name>InvokeWithArray</name>
-        <param>
-          <type><ref refid="a00165" kindref="compound">Value</ref>[]</type>
-          <declname>parameters</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="39" bodyend="64"/>
-        <references refid="a00101_1a1ed09ff8aafa230a0d2bbc23cd6cd763" compoundref="a00287" startline="82" endline="85">Yarn.FunctionInfo.IsParameterCountCorrect</references>
-        <references refid="a00165_1a1ed2964965baca8621c45efa23f37660" compoundref="a00290" startline="9">Yarn.Value.NULL</references>
-        <references refid="a00101_1a8b6e0e5a875c427a1d947f3c52c308ca" compoundref="a00287" startline="26">Yarn.FunctionInfo.returningFunction</references>
-        <references refid="a00101_1acaff044276aa230de7c0b27dd5267bc7" compoundref="a00287" startline="29">Yarn.FunctionInfo.returnsValue</references>
-        <referencedby refid="a00101_1ab400ac66785d7df2e3fc0f3ce3796044" compoundref="a00287" startline="35" endline="37">Yarn.FunctionInfo.Invoke</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00101_1a93457cd0e838cb2ef59cc2a3a46ce758" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.FunctionInfo.FunctionInfo</definition>
-        <argsstring>(string name, int paramCount, Function implementation)</argsstring>
-        <name>FunctionInfo</name>
-        <param>
-          <type>string</type>
-          <declname>name</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>paramCount</declname>
-        </param>
-        <param>
-          <type><ref refid="a00048_1ae0be2e5cf13d5779816102439e61ff1a" kindref="member">Function</ref></type>
-          <declname>implementation</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="68" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="68" bodyend="73"/>
-        <references refid="a00101_1adb38e83e3c1597b553aeff14bef5bfcb" compoundref="a00287" startline="15">Yarn.FunctionInfo.name</references>
-        <references refid="a00101_1aa8527de9e4f153b05164ccaf167c3186" compoundref="a00287" startline="19">Yarn.FunctionInfo.paramCount</references>
-      </memberdef>
-      <memberdef kind="function" id="a00101_1a41d97c09da25caede70cb734d18113b9" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.FunctionInfo.FunctionInfo</definition>
-        <argsstring>(string name, int paramCount, ReturningFunction implementation)</argsstring>
-        <name>FunctionInfo</name>
-        <param>
-          <type>string</type>
-          <declname>name</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>paramCount</declname>
-        </param>
-        <param>
-          <type><ref refid="a00048_1a5177bf74fbfe7303fac9d8236c2e514b" kindref="member">ReturningFunction</ref></type>
-          <declname>implementation</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="75" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="75" bodyend="80"/>
-        <references refid="a00101_1adb38e83e3c1597b553aeff14bef5bfcb" compoundref="a00287" startline="15">Yarn.FunctionInfo.name</references>
-        <references refid="a00101_1aa8527de9e4f153b05164ccaf167c3186" compoundref="a00287" startline="19">Yarn.FunctionInfo.paramCount</references>
-      </memberdef>
-      <memberdef kind="function" id="a00101_1a1ed09ff8aafa230a0d2bbc23cd6cd763" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="property" id="a00042_1ada4d83d1756918f362d55f6649b82b17" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
         <type>bool</type>
-        <definition>bool Yarn.FunctionInfo.IsParameterCountCorrect</definition>
-        <argsstring>(int parameterCount)</argsstring>
-        <name>IsParameterCountCorrect</name>
-        <param>
-          <type>int</type>
-          <declname>parameterCount</declname>
-        </param>
+        <definition>bool Yarn.BaseOptions.verbose</definition>
+        <argsstring></argsstring>
+        <name>verbose</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="82" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="82" bodyend="85"/>
-        <references refid="a00101_1aa8527de9e4f153b05164ccaf167c3186" compoundref="a00287" startline="19">Yarn.FunctionInfo.paramCount</references>
-        <referencedby refid="a00101_1a3ce11058d35232907a738de4bb094c67" compoundref="a00287" startline="39" endline="64">Yarn.FunctionInfo.InvokeWithArray</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="46" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="46" bodyend="-1"/>
+        <referencedby refid="a00102_1aa72838be584177b5592c31d73c0febdb" compoundref="a00301" startline="119" endline="160">Yarn.FileFormatConverter.ConvertNodesInFile</referencedby>
+        <referencedby refid="a00153_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00304" startline="12" endline="124">Yarn.TableGenerator.GenerateTables</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="a00042_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>IList&lt; string &gt;</type>
+        <definition>IList&lt;string&gt; Yarn.BaseOptions.files</definition>
+        <argsstring></argsstring>
+        <name>files</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="49" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="49" bodyend="-1"/>
+        <referencedby refid="a00174_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00303" startline="270" endline="331">Yarn.YarnSpinnerConsole.Run</referencedby>
+        <referencedby refid="a00174_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00303" startline="333" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1205">
-        <label>Yarn.FunctionInfo</label>
+    <inheritancegraph>
+      <node id="1198">
+        <label>Yarn.RunOptions</label>
+        <link refid="a00144"/>
+        <childnode refid="1196" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1199">
+        <label>Yarn.VerifyOptions</label>
+        <link refid="a00171"/>
+        <childnode refid="1196" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1196">
+        <label>Yarn.ExecutionOptions</label>
         <link refid="a00101"/>
+        <childnode refid="1197" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1197">
+        <label>BaseOptions</label>
+        <link refid="a00042"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1200">
+        <label>Yarn.ExecutionOptions</label>
+        <link refid="a00101"/>
+        <childnode refid="1201" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1201">
+        <label>BaseOptions</label>
+        <link refid="a00042"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="12" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="12" bodyend="87"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="55" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="54" bodyend="63"/>
     <listofallmembers>
-      <member refid="a00101_1a1dd2f9d11614a2fce170b3f3eecdb5f9" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>function</name></member>
-      <member refid="a00101_1a93457cd0e838cb2ef59cc2a3a46ce758" prot="package" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>FunctionInfo</name></member>
-      <member refid="a00101_1a41d97c09da25caede70cb734d18113b9" prot="package" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>FunctionInfo</name></member>
-      <member refid="a00101_1ab400ac66785d7df2e3fc0f3ce3796044" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>Invoke</name></member>
-      <member refid="a00101_1a3ce11058d35232907a738de4bb094c67" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>InvokeWithArray</name></member>
-      <member refid="a00101_1a1ed09ff8aafa230a0d2bbc23cd6cd763" prot="package" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>IsParameterCountCorrect</name></member>
-      <member refid="a00101_1adb38e83e3c1597b553aeff14bef5bfcb" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>name</name></member>
-      <member refid="a00101_1aa8527de9e4f153b05164ccaf167c3186" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>paramCount</name></member>
-      <member refid="a00101_1a8b6e0e5a875c427a1d947f3c52c308ca" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>returningFunction</name></member>
-      <member refid="a00101_1acaff044276aa230de7c0b27dd5267bc7" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>returnsValue</name></member>
+      <member refid="a00042_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>files</name></member>
+      <member refid="a00101_1af4c0062a1d46281d377f87084fde374e" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>onlyConsiderNode</name></member>
+      <member refid="a00042_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>showDebuggingInfo</name></member>
+      <member refid="a00101_1a7e43c3b73722956cb0f5d507e4eef527" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>stringTable</name></member>
+      <member refid="a00042_1ada4d83d1756918f362d55f6649b82b17" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>verbose</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

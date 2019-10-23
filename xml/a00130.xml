@@ -1,33 +1,40 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00130" kind="class" prot="public">
-    <compoundname>Yarn::Dialogue::NodeCompleteResult</compoundname>
-    <basecompoundref refid="a00141" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00130_1ad48b37b51066b94cd48c58626ac0e774" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Dialogue.NodeCompleteResult.nextNode</definition>
+    <compoundname>Yarn::MemoryVariableStore</compoundname>
+    <basecompoundref refid="a00043" prot="public" virt="non-virtual">Yarn.BaseVariableStorage</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00130_1aad18acd95297edb8ed496857337f8071" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="a00167" kindref="compound">Value</ref> &gt;</type>
+        <definition>Dictionary&lt;string, Value&gt; Yarn.MemoryVariableStore.variables</definition>
         <argsstring></argsstring>
-        <name>nextNode</name>
+        <name>variables</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="a00167" kindref="compound">Value</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="181" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="181" bodyend="-1"/>
-        <referencedby refid="a00130_1a88c81469a69987c05aa92780c5a5c1f9" compoundref="a00282" startline="183" endline="185">Yarn.Dialogue.NodeCompleteResult.NodeCompleteResult</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="113" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="113" bodyend="-1"/>
+        <referencedby refid="a00130_1a0ce77e8245c504a777540e359704aa2a" compoundref="a00285" startline="136" endline="146">Yarn.MemoryVariableStore.GetValue</referencedby>
+        <referencedby refid="a00130_1a653a459811e5c19549f4b31269093ef5" compoundref="a00285" startline="115" endline="118">Yarn.MemoryVariableStore.SetValue</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00130_1a88c81469a69987c05aa92780c5a5c1f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Dialogue.NodeCompleteResult.NodeCompleteResult</definition>
-        <argsstring>(string nextNode)</argsstring>
-        <name>NodeCompleteResult</name>
+      <memberdef kind="function" id="a00130_1a653a459811e5c19549f4b31269093ef5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Yarn.MemoryVariableStore.SetValue</definition>
+        <argsstring>(string variableName, Value value)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00043_1a1c57d6d208b78abec0a670396771448e">SetValue</reimplements>
         <param>
           <type>string</type>
-          <declname>nextNode</declname>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type><ref refid="a00167" kindref="compound">Value</ref></type>
+          <declname>value</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -35,42 +42,162 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="183" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="183" bodyend="185"/>
-        <references refid="a00130_1ad48b37b51066b94cd48c58626ac0e774" compoundref="a00282" startline="181">Yarn.Dialogue.NodeCompleteResult.nextNode</references>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="115" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="115" bodyend="118"/>
+        <references refid="a00130_1aad18acd95297edb8ed496857337f8071" compoundref="a00285" startline="113">Yarn.MemoryVariableStore.variables</references>
+      </memberdef>
+      <memberdef kind="function" id="a00130_1a381b389cb7c60c42f5bb2e9136c3f19d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Yarn.MemoryVariableStore.SetValue</definition>
+        <argsstring>(string variableName, string stringValue)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00043_1a5b4ab9cb87b92b0881cbad4a9a09f4b3">SetValue</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>stringValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="120" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="120" bodyend="124"/>
+        <references refid="a00130_1aad18acd95297edb8ed496857337f8071" compoundref="a00285" startline="113">Yarn.MemoryVariableStore.variables</references>
+      </memberdef>
+      <memberdef kind="function" id="a00130_1a810e94d390a6de1012eb77cb51963688" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Yarn.MemoryVariableStore.SetValue</definition>
+        <argsstring>(string variableName, float floatValue)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00043_1a05be55e20a0ba7614f5f2695359756de">SetValue</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>floatValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="125" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="125" bodyend="129"/>
+        <references refid="a00130_1aad18acd95297edb8ed496857337f8071" compoundref="a00285" startline="113">Yarn.MemoryVariableStore.variables</references>
+      </memberdef>
+      <memberdef kind="function" id="a00130_1ae7d221c8347f380fe0b79a7ba434764c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Yarn.MemoryVariableStore.SetValue</definition>
+        <argsstring>(string variableName, bool boolValue)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00043_1aa65aa327c08a1ff3287ced01bb765271">SetValue</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>boolValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="130" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="130" bodyend="134"/>
+        <references refid="a00130_1aad18acd95297edb8ed496857337f8071" compoundref="a00285" startline="113">Yarn.MemoryVariableStore.variables</references>
+      </memberdef>
+      <memberdef kind="function" id="a00130_1a0ce77e8245c504a777540e359704aa2a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override <ref refid="a00167" kindref="compound">Value</ref></type>
+        <definition>override Value Yarn.MemoryVariableStore.GetValue</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetValue</name>
+        <reimplements refid="a00043_1a13b142df804d9842e97e628e252928e8">GetValue</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="136" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="136" bodyend="146"/>
+        <references refid="a00167_1a1ed2964965baca8621c45efa23f37660" compoundref="a00293" startline="9">Yarn.Value.NULL</references>
+        <references refid="a00130_1aad18acd95297edb8ed496857337f8071" compoundref="a00285" startline="113">Yarn.MemoryVariableStore.variables</references>
+      </memberdef>
+      <memberdef kind="function" id="a00130_1aa6d243e7ef02b91f793a221f509dae69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Yarn.MemoryVariableStore.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <reimplements refid="a00043_1a7e45c37f3662ce9f2643e306bb2b3adc">Clear</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="148" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="148" bodyend="151"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>We&apos;ve reached the end of this node. </para>    </briefdescription>
+<para>Very simple continuity class that keeps all variables in memory. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1366">
-        <label>Yarn.Dialogue.NodeCompleteResult</label>
+      <node id="1356">
+        <label>VariableStorage</label>
+        <link refid="a00169"/>
+      </node>
+      <node id="1354">
+        <label>Yarn.MemoryVariableStore</label>
         <link refid="a00130"/>
-        <childnode refid="1367" relation="public-inheritance">
+        <childnode refid="1355" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1367">
-        <label>RunnerResult</label>
-        <link refid="a00141"/>
+      <node id="1355">
+        <label>Yarn::BaseVariableStorage</label>
+        <link refid="a00043"/>
+        <childnode refid="1356" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1368">
-        <label>Yarn.Dialogue.NodeCompleteResult</label>
+      <node id="1359">
+        <label>VariableStorage</label>
+        <link refid="a00169"/>
+      </node>
+      <node id="1357">
+        <label>Yarn.MemoryVariableStore</label>
         <link refid="a00130"/>
-        <childnode refid="1369" relation="public-inheritance">
+        <childnode refid="1358" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1369">
-        <label>RunnerResult</label>
-        <link refid="a00141"/>
+      <node id="1358">
+        <label>Yarn::BaseVariableStorage</label>
+        <link refid="a00043"/>
+        <childnode refid="1359" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="180" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="180" bodyend="186"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" line="112" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="111" bodyend="152"/>
     <listofallmembers>
-      <member refid="a00130_1ad48b37b51066b94cd48c58626ac0e774" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::NodeCompleteResult</scope><name>nextNode</name></member>
-      <member refid="a00130_1a88c81469a69987c05aa92780c5a5c1f9" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::NodeCompleteResult</scope><name>NodeCompleteResult</name></member>
+      <member refid="a00130_1aa6d243e7ef02b91f793a221f509dae69" prot="public" virt="virtual"><scope>Yarn::MemoryVariableStore</scope><name>Clear</name></member>
+      <member refid="a00130_1a0ce77e8245c504a777540e359704aa2a" prot="public" virt="virtual"><scope>Yarn::MemoryVariableStore</scope><name>GetValue</name></member>
+      <member refid="a00130_1a653a459811e5c19549f4b31269093ef5" prot="public" virt="virtual"><scope>Yarn::MemoryVariableStore</scope><name>SetValue</name></member>
+      <member refid="a00130_1a381b389cb7c60c42f5bb2e9136c3f19d" prot="public" virt="virtual"><scope>Yarn::MemoryVariableStore</scope><name>SetValue</name></member>
+      <member refid="a00130_1a810e94d390a6de1012eb77cb51963688" prot="public" virt="virtual"><scope>Yarn::MemoryVariableStore</scope><name>SetValue</name></member>
+      <member refid="a00130_1ae7d221c8347f380fe0b79a7ba434764c" prot="public" virt="virtual"><scope>Yarn::MemoryVariableStore</scope><name>SetValue</name></member>
+      <member refid="a00130_1aad18acd95297edb8ed496857337f8071" prot="private" virt="non-virtual"><scope>Yarn::MemoryVariableStore</scope><name>variables</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

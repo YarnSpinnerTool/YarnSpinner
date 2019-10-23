@@ -1,133 +1,187 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00271" kind="file">
-    <compoundname>YarnSpinnerTests.cs</compoundname>
-    <innerclass refid="a00153" prot="public">TestDialogueUIBehaviour</innerclass>
-    <innerclass refid="a00175" prot="public">YarnSpinnerTests</innerclass>
-    <innernamespace refid="a00319">NUnit::Framework</innernamespace>
+    <compoundname>ROADMAP.md</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEditor;</highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>NUnit.Framework;</highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections.Generic;</highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight></codeline>
-<codeline lineno="6" refid="a00153" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="a00153" kindref="compound">TestDialogueUIBehaviour</ref><sp/>:<sp/>Yarn.Unity.DialogueUIBehaviour<sp/>{</highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight></codeline>
-<codeline lineno="8" refid="a00153_1ab0f7b55e776ae494a651c845b496916c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Queue&lt;string&gt;<sp/><ref refid="a00153_1ab0f7b55e776ae494a651c845b496916c" kindref="member">expectedLines</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Queue&lt;string&gt;();</highlight></codeline>
-<codeline lineno="9" refid="a00153_1af51a4e0d00f92dcc991f6c1ac62ac8c3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a00153_1af51a4e0d00f92dcc991f6c1ac62ac8c3" kindref="member">ExpectLine</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>line)<sp/>{</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>expectedLines.Enqueue(line);</highlight></codeline>
-<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13" refid="a00153_1a94e4308d412945c977b2deb63f139009" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Queue&lt;string&gt;<sp/><ref refid="a00153_1a94e4308d412945c977b2deb63f139009" kindref="member">expectedOptions</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Queue&lt;string&gt;();</highlight></codeline>
-<codeline lineno="14" refid="a00153_1adc743ade599769e968fecea525add7b3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a00153_1adc743ade599769e968fecea525add7b3" kindref="member">SelectOption</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>option)<sp/>{</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>expectedOptions.Enqueue(option);</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Delegates<sp/>that<sp/>allow<sp/>this<sp/>behaviour<sp/>to<sp/>notify<sp/>the<sp/>test<sp/>of<sp/>events</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>delegate<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a00153_1ac6c30953edbd1cd4181e2a3854a1642b" kindref="member">LineHandler</ref>(Yarn.Line<sp/>line);</highlight></codeline>
-<codeline lineno="20" refid="a00153_1af87332992e1420a8b2047822fab2b03c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00153_1ac6c30953edbd1cd4181e2a3854a1642b" kindref="member">LineHandler</ref><sp/><ref refid="a00153_1af87332992e1420a8b2047822fab2b03c" kindref="member">lineHandler</ref>;</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>delegate<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a00153_1a7fe2e6bc2d5471d9af14a9d35de821bd" kindref="member">OptionsHandler</ref>(Yarn.Options<sp/>optionsCollection,<sp/>Yarn.OptionChooser<sp/>optionChooser);</highlight></codeline>
-<codeline lineno="23" refid="a00153_1adcbea72eb6f5ab305b3757789919f961" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00153_1a7fe2e6bc2d5471d9af14a9d35de821bd" kindref="member">OptionsHandler</ref><sp/><ref refid="a00153_1adcbea72eb6f5ab305b3757789919f961" kindref="member">optionsHandler</ref>;</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>delegate<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a00153_1afc93c5cf370b31eceab3671c9eca0d94" kindref="member">CommandHandler</ref><sp/>(Yarn.Command<sp/>command);</highlight></codeline>
-<codeline lineno="26" refid="a00153_1a5c2003ece8aeab171db3a749bef5f770" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00153_1afc93c5cf370b31eceab3671c9eca0d94" kindref="member">CommandHandler</ref><sp/><ref refid="a00153_1a5c2003ece8aeab171db3a749bef5f770" kindref="member">commandHandler</ref>;</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Yarn<sp/>Spinner<sp/>Road<sp/>Map</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">This<sp/>is<sp/>the<sp/>current<sp/>road<sp/>map<sp/>we<sp/>are<sp/>considering<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>the<sp/>future<sp/>of<sp/>Yarn<sp/>Spinner.</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">Nothing<sp/>in<sp/>here<sp/>is<sp/>fixed<sp/>and<sp/>reflects<sp/>what<sp/>we<sp/>believe<sp/>should<sp/>be<sp/>the<sp/>focus<sp/>of<sp/>development.</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">The<sp/>idea<sp/>of<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>document<sp/>is<sp/>to<sp/>both<sp/>give<sp/>us<sp/>something<sp/>to<sp/>help<sp/>plan<sp/>our<sp/>development<sp/>but<sp/>to<sp/>also<sp/>give<sp/>you<sp/>all<sp/>a<sp/>space<sp/>to<sp/>see<sp/>what<sp/>we<sp/>are<sp/>doing,<sp/>and<sp/>to<sp/>give<sp/>us<sp/>input<sp/>on<sp/>what<sp/>you<sp/>consider<sp/>important.</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">Let<sp/>us<sp/>know<sp/>what<sp/>you<sp/>think<sp/>about<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>road<sp/>map<sp/>either<sp/>in<sp/>the<sp/>[Slack](http:</highlight><highlight class="comment">//lab.to/narrativegamedev)<sp/>or<sp/>[here<sp/>on<sp/>the<sp/>GitHub<sp/>issue<sp/>we<sp/>created<sp/>about<sp/>the<sp/>road<sp/>map](https://github.com/YarnSpinnerTool/YarnSpinner/issues/183).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">**This<sp/>documents<sp/>was<sp/>last<sp/>edited<sp/>02/10/2019**</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>Releases</highlight></codeline>
+<codeline lineno="12"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">Here<sp/>are<sp/>the<sp/>main<sp/>releases<sp/>we</highlight><highlight class="stringliteral">&apos;re<sp/>currently<sp/>planning.</highlight></codeline>
+<codeline lineno="14"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="15"><highlight class="stringliteral">##<sp/>V1.0</highlight></codeline>
+<codeline lineno="16"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="17"><highlight class="stringliteral">###<sp/>Goal</highlight></codeline>
+<codeline lineno="18"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="19"><highlight class="stringliteral">To<sp/>make<sp/>it<sp/>easier<sp/>for<sp/>projects<sp/>to<sp/>spin<sp/>up<sp/>and<sp/>remain<sp/>compatible<sp/>with<sp/>core<sp/>Yarn<sp/>Spinner,<sp/>and<sp/>to<sp/>smooth<sp/>out<sp/>the<sp/>issues<sp/>of<sp/>getting<sp/>started<sp/>using<sp/>and<sp/>updating<sp/>Yarn<sp/>Spinner.</highlight></codeline>
+<codeline lineno="20"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="21"><highlight class="stringliteral">###<sp/>Motivation</highlight></codeline>
+<codeline lineno="22"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="23"><highlight class="stringliteral">Yarn<sp/>Spinner<sp/>has<sp/>been<sp/>in<sp/>a<sp/>lot<sp/>of<sp/>flux,<sp/>more<sp/>or<sp/>less<sp/>starting<sp/>as<sp/>a<sp/>spin-off<sp/>of<sp/>Night<sp/>In<sp/>The<sp/>Woods.<sp/>A<sp/>lot<sp/>of<sp/>it<sp/>was<sp/>heavily<sp/>tied<sp/>to<sp/>the<sp/>needs<sp/>and<sp/>deadlines<sp/>of<sp/>that<sp/>specific<sp/>game.</highlight></codeline>
+<codeline lineno="24"><highlight class="stringliteral">We&apos;</highlight><highlight class="normal">ve<sp/>been<sp/>working<sp/>to<sp/>make<sp/>it<sp/>more<sp/></highlight><highlight class="keyword">generic</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>_any_<sp/>narrative<sp/>game,<sp/>but<sp/>there<sp/>is<sp/>still<sp/>a<sp/>lot<sp/>of<sp/>connections<sp/>to<sp/>the<sp/>requirements<sp/>of<sp/>Night<sp/>In<sp/>The<sp/>Woods.</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">As<sp/>such,<sp/>there<sp/>is<sp/>a<sp/>lot<sp/>of<sp/>wonky<sp/>code<sp/>and<sp/>half-finished<sp/>concepts<sp/>which<sp/>users<sp/>currently<sp/>need<sp/>to<sp/>deal<sp/>with.<sp/>We<sp/>want<sp/>that<sp/>to<sp/>change<sp/>so<sp/>you<sp/>no<sp/>longer<sp/>have<sp/>to<sp/>deal<sp/>with<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>when<sp/>it<sp/>comes<sp/>time<sp/>to<sp/>update<sp/>or<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>started<sp/>with<sp/>Yarn<sp/>Spinner.</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">###<sp/>Features</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29" refid="a00153_1ae274e39b640908d04aacc6cf6624d9da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/>System.Collections.IEnumerator<sp/><ref refid="a00153_1ae274e39b640908d04aacc6cf6624d9da" kindref="member">RunLine</ref><sp/>(Yarn.Line<sp/>line)</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="a00153_1af87332992e1420a8b2047822fab2b03c" kindref="member">lineHandler</ref><sp/>!=<sp/>null)</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="a00153_1af87332992e1420a8b2047822fab2b03c" kindref="member">lineHandler</ref>(line);</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="a00153_1ab0f7b55e776ae494a651c845b496916c" kindref="member">expectedLines</ref>.Count<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Assert.AreEqual(expectedLines.Dequeue(),<sp/>line.text);</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>yield<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="40" refid="a00153_1ad2ac83f91814d8666482bf8b6f3721d1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/>System.Collections.IEnumerator<sp/><ref refid="a00153_1ad2ac83f91814d8666482bf8b6f3721d1" kindref="member">RunOptions</ref><sp/>(Yarn.Options<sp/>optionsCollection,<sp/>Yarn.OptionChooser<sp/>optionChooser)</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="a00153_1adcbea72eb6f5ab305b3757789919f961" kindref="member">optionsHandler</ref><sp/>!=<sp/>null)</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="a00153_1adcbea72eb6f5ab305b3757789919f961" kindref="member">optionsHandler</ref>(optionsCollection,<sp/>optionChooser);</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="a00153_1a94e4308d412945c977b2deb63f139009" kindref="member">expectedOptions</ref>.Count<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>selection<sp/>=<sp/>expectedOptions.Dequeue();</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>index<sp/>=<sp/>optionsCollection.options.IndexOf(selection);</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Assert.AreNotEqual(index,<sp/>-1,<sp/></highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>find<sp/>option<sp/>\&quot;{0}\&quot;&quot;</highlight><highlight class="normal">,<sp/>selection);</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Assert.Less(index,<sp/>optionsCollection.options.Count);</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>optionChooser(index);</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>yield<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="58" refid="a00153_1a01e67009071f9ee5ac5ef3c970cd3695" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/>System.Collections.IEnumerator<sp/><ref refid="a00153_1a01e67009071f9ee5ac5ef3c970cd3695" kindref="member">RunCommand</ref><sp/>(Yarn.Command<sp/>command)</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="a00153_1a5c2003ece8aeab171db3a749bef5f770" kindref="member">commandHandler</ref><sp/>!=<sp/>null)</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="a00153_1a5c2003ece8aeab171db3a749bef5f770" kindref="member">commandHandler</ref>(command);</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>yield<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="64"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"></highlight></codeline>
-<codeline lineno="66" refid="a00175" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="a00175" kindref="compound">YarnSpinnerTests</ref><sp/>{</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68" refid="a00175_1a9791840e0b5987e5bd09bce83ce2d8d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="a00089" kindref="compound">Yarn.Unity.DialogueRunner</ref><sp/><ref refid="a00175_1a9791840e0b5987e5bd09bce83ce2d8d9" kindref="member">dialogueRunner</ref>;</highlight></codeline>
-<codeline lineno="69" refid="a00175_1a27dbc8c3f7f23ce142d1d5d1fd3df8bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="a00168" kindref="compound">Yarn.Unity.VariableStorageBehaviour</ref><sp/><ref refid="a00175_1a27dbc8c3f7f23ce142d1d5d1fd3df8bc" kindref="member">variableStorage</ref>;</highlight></codeline>
-<codeline lineno="70" refid="a00175_1aace025d2a9a703154a1989c47b0a0737" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="a00153" kindref="compound">TestDialogueUIBehaviour</ref><sp/><ref refid="a00175_1aace025d2a9a703154a1989c47b0a0737" kindref="member">dialogueUI</ref>;</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>[<ref refid="a00175_1ad6e4c6a92bb5ed6187949264df6aaf1b" kindref="member">SetUp</ref>]</highlight></codeline>
-<codeline lineno="73" refid="a00175_1ad6e4c6a92bb5ed6187949264df6aaf1b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a00175_1ad6e4c6a92bb5ed6187949264df6aaf1b" kindref="member">SetUp</ref>()</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Arrange</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>the<sp/>dialogue<sp/>runner</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>dialogueHost<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>GameObject();</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="a00175_1a9791840e0b5987e5bd09bce83ce2d8d9" kindref="member">dialogueRunner</ref><sp/>=<sp/>dialogueHost.AddComponent&lt;<ref refid="a00089" kindref="compound">Yarn.Unity.DialogueRunner</ref>&gt;();</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>the<sp/>variable<sp/>storage</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//variableStorage<sp/>=<sp/>dialogueHost.AddComponent&lt;ExampleVariableStorage&gt;();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">-<sp/>Formal<sp/>Yarn<sp/>specification<sp/>created<sp/>and<sp/>frozen</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">-<sp/>Bytecode<sp/>format<sp/>freeze</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">-<sp/>Compiler<sp/>will<sp/>generate<sp/>bytecode<sp/>by<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal"><sp/>instead<sp/>of<sp/>parsing<sp/>the<sp/>dialogue<sp/>each<sp/>time</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">-<sp/>Default<sp/>to<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>`.yarn`<sp/>as<sp/>the<sp/>file<sp/>extension<sp/>in<sp/>preference<sp/>to<sp/>`.yarn.text`</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">-<sp/>VM<sp/>will<sp/>load<sp/>and<sp/>execute<sp/>compiled<sp/>bytecode</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">-<sp/>Unity<sp/>importer<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>`.yarn`<sp/>files<sp/>that<sp/>invokes<sp/>compiler<sp/>and<sp/>generates<sp/>bytecode<sp/>assets<sp/>(</highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>a<sp/>`.yarnc`<sp/>file<sp/>extension).</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">-<sp/>Implementation<sp/>of<sp/>a<sp/>barebones<sp/>Unity<sp/>prefab<sp/>(with<sp/>a<sp/>Canvas)<sp/>that<sp/>can<sp/>be<sp/>added<sp/>into<sp/>a<sp/>scene<sp/>to<sp/></highlight><highlight class="stringliteral">&quot;just<sp/>work&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">-<sp/>Rework<sp/>examples<sp/>to<sp/>be<sp/>designed<sp/>to<sp/>be<sp/>used<sp/>as<sp/>the<sp/>basis<sp/>of<sp/>your<sp/>own<sp/>game</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">-<sp/>Modify<sp/>example<sp/>dialogue<sp/>runner<sp/>and<sp/>variable<sp/>storage<sp/>to<sp/>be<sp/>the<sp/>base<sp/>form,<sp/>instead<sp/>of<sp/></highlight><highlight class="stringliteral">&quot;just&quot;</highlight><highlight class="normal"><sp/>examples</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">-<sp/>Syntax<sp/>highlighter<sp/>extension<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Visual<sp/>Studio<sp/>Code</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">-<sp/>New<sp/>documentation<sp/>site</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>V1.1</highlight></codeline>
+<codeline lineno="42"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Goal</highlight></codeline>
+<codeline lineno="44"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">To<sp/>add<sp/>in<sp/>the<sp/>two<sp/>most<sp/>requested<sp/>features:<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>interpolation,<sp/>and<sp/>localisation!<sp/><ref refid="a00050_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref><sp/>interpolation<sp/>means<sp/>being<sp/>able<sp/>to<sp/>write<sp/>lines<sp/>something<sp/>like<sp/>`Hello,<sp/>${playerName}`,<sp/>and<sp/>have<sp/>the<sp/>line<sp/>appear<sp/>as<sp/></highlight><highlight class="stringliteral">&quot;Hello,<sp/>Sally&quot;</highlight><highlight class="normal">;<sp/>localisation<sp/>means<sp/>being<sp/>able<sp/>to<sp/>translate<sp/>your<sp/>game</highlight><highlight class="stringliteral">&apos;s<sp/>content<sp/>into<sp/>multiple<sp/>languages,<sp/>keeping<sp/>in<sp/>mind<sp/>the<sp/>different<sp/>rules<sp/>that<sp/>languages<sp/>have<sp/>regarding<sp/>things<sp/>like<sp/>how<sp/>words<sp/>are<sp/>pluralised,<sp/>how<sp/>grammatical<sp/>gender<sp/>works,<sp/>and<sp/>more.</highlight></codeline>
+<codeline lineno="46"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="47"><highlight class="stringliteral">###<sp/>Motivation</highlight></codeline>
+<codeline lineno="48"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="49"><highlight class="stringliteral">By<sp/>far<sp/>the<sp/>most<sp/>requested<sp/>feature,<sp/>string<sp/>interpolation<sp/>has<sp/>been<sp/>put<sp/>off<sp/>due<sp/>to<sp/>concerns<sp/>about<sp/>implementation,<sp/>in<sp/>a<sp/>nutshell<sp/>to<sp/>do<sp/>&quot;proper&quot;<sp/>interpolation<sp/>is<sp/>far<sp/>from<sp/>trivial.<sp/>We&apos;</highlight><highlight class="normal">re<sp/>also<sp/>very<sp/>aware<sp/>of<sp/>the<sp/>requirements<sp/>of<sp/>people<sp/>who<sp/>are<sp/>releasing<sp/>their<sp/>games<sp/>on<sp/>storefronts<sp/>that<sp/>require<sp/>localisation.</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">This<sp/>release<sp/>will<sp/>have<sp/>no<sp/>other<sp/>features<sp/>beyond<sp/>those<sp/>necessary<sp/>to<sp/>support<sp/>interpolation<sp/>and<sp/>localisation<sp/>features,<sp/>as<sp/>we<sp/>want<sp/>to<sp/>ensure<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>is<sp/>reliable.<sp/>We<sp/>are<sp/>also<sp/>concerned<sp/>as<sp/>to<sp/>how<sp/>many<sp/>bugs<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>may<sp/>cause<sp/>in<sp/>existing<sp/>games,<sp/>so<sp/>we</highlight><highlight class="stringliteral">&apos;re<sp/>moving<sp/>carefully<sp/>here.</highlight></codeline>
+<codeline lineno="52"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="53"><highlight class="stringliteral">###<sp/>Features</highlight></codeline>
+<codeline lineno="54"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="55"><highlight class="stringliteral">-<sp/>String<sp/>interpolation</highlight></codeline>
+<codeline lineno="56"><highlight class="stringliteral">-<sp/>Localisation<sp/>support</highlight></codeline>
+<codeline lineno="57"><highlight class="stringliteral">-<sp/>Updated<sp/>examples</highlight></codeline>
+<codeline lineno="58"><highlight class="stringliteral">-<sp/>Updated<sp/>documentation</highlight></codeline>
+<codeline lineno="59"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="60"><highlight class="stringliteral">##<sp/>V1.2</highlight></codeline>
+<codeline lineno="61"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="62"><highlight class="stringliteral">###<sp/>Goal</highlight></codeline>
+<codeline lineno="63"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="64"><highlight class="stringliteral">To<sp/>add<sp/>in<sp/>initial<sp/>support<sp/>for<sp/>Unreal.</highlight></codeline>
+<codeline lineno="65"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="66"><highlight class="stringliteral">###<sp/>Motivation</highlight></codeline>
+<codeline lineno="67"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="68"><highlight class="stringliteral">Unreal<sp/>is<sp/>a<sp/>large<sp/>portion<sp/>of<sp/>the<sp/>games<sp/>community,<sp/>and<sp/>we&apos;</highlight><highlight class="normal">ve<sp/>been<sp/>asked<sp/>multiple<sp/>times<sp/>by<sp/>different<sp/>people<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>Unreal<sp/>is<sp/>supported.<sp/>We<sp/>want<sp/>to<sp/>be<sp/>able<sp/>to<sp/>say<sp/>yes<sp/>to<sp/>them.</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">This<sp/>is<sp/>not<sp/>to<sp/>say<sp/>it<sp/>will<sp/>be<sp/>as<sp/>featureful<sp/>as<sp/>the<sp/>Unity<sp/>version<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>V1.2,<sp/>although<sp/>the<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>term<sp/>goal<sp/>is<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>feature<sp/>parity.</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal">###<sp/>Features</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal">-<sp/>Create<sp/>an<sp/>Unreal<sp/>VM<sp/>capable<sp/>of<sp/>reading<sp/>compiled<sp/>Yarn<sp/>bytecode</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">-<sp/>Create<sp/>Unreal<sp/>Dialouge<sp/>Runners<sp/>and<sp/><ref refid="a00050_1a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9" kindref="member">Variable</ref><sp/>Storage</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">-<sp/>Create<sp/>examples<sp/>showing<sp/>how<sp/>to<sp/>use<sp/>Yarn<sp/>Spinner<sp/>in<sp/>Unreal.</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">-<sp/><ref refid="a00050_1a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9" kindref="member">Add</ref><sp/>documentation<sp/>on<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Yarn<sp/>Spinner<sp/>in<sp/>Unreal.</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal">##<sp/>V1.3</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal">###<sp/>Goal</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal">To<sp/>create<sp/>resources<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>developers<sp/>to<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>more<sp/>out<sp/>of<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Yarn<sp/>Spinner.</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"></highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Load<sp/>the<sp/>test<sp/>script</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>text<sp/>=<sp/>AssetDatabase.LoadAssetAtPath&lt;TextAsset&gt;(</highlight><highlight class="stringliteral">&quot;Assets/Yarn<sp/>Spinner/Examples/Demo<sp/>Assets/Space.json&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueRunner.AddScript(text);</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"></highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="a00175_1aace025d2a9a703154a1989c47b0a0737" kindref="member">dialogueUI</ref><sp/>=<sp/>dialogueHost.AddComponent&lt;<ref refid="a00153" kindref="compound">TestDialogueUIBehaviour</ref>&gt;();</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueRunner.dialogueUI<sp/>=<sp/><ref refid="a00175_1aace025d2a9a703154a1989c47b0a0737" kindref="member">dialogueUI</ref>;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal">###<sp/>Motivation</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal">At<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>point,<sp/>Yarn<sp/>Spinner<sp/>should<sp/>be<sp/>at<sp/>a<sp/>state<sp/>where<sp/>it<sp/>is<sp/>stable<sp/>to<sp/>use<sp/>and<sp/>easy<sp/>to<sp/>update.</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">The<sp/>intent<sp/>is<sp/>to<sp/>then<sp/>make<sp/>it<sp/>more<sp/>convenient<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>developers<sp/>to<sp/>integrate,<sp/>so<sp/>more<sp/>examples<sp/>and<sp/>ready<sp/>to<sp/>go<sp/>elements.</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal">###<sp/>Features</highlight></codeline>
 <codeline lineno="90"><highlight class="normal"></highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>[Test]</highlight></codeline>
-<codeline lineno="94" refid="a00175_1a60ab8ed8dc30ec30e74baa1916d47324" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a00175_1a60ab8ed8dc30ec30e74baa1916d47324" kindref="member">EditorTest</ref>()</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"></highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueUI.ExpectLine(</highlight><highlight class="stringliteral">&quot;Player:<sp/>Hey,<sp/>Sally.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueUI.ExpectLine(</highlight><highlight class="stringliteral">&quot;Sally:<sp/>Oh!<sp/>Hi.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueUI.ExpectLine(</highlight><highlight class="stringliteral">&quot;Sally:<sp/>You<sp/>snuck<sp/>up<sp/>on<sp/>me.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueUI.ExpectLine(</highlight><highlight class="stringliteral">&quot;Sally:<sp/>Don&apos;t<sp/>do<sp/>that.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueUI.SelectOption(</highlight><highlight class="stringliteral">&quot;Anything<sp/>exciting<sp/>happen<sp/>on<sp/>your<sp/>watch?&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">-<sp/>Modular<sp/>prefab<sp/>UI<sp/>elements<sp/>designed<sp/>to<sp/>work<sp/>out<sp/>of<sp/>the<sp/>both<sp/>with<sp/>Yarn<sp/>Spinner</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">-<sp/>More<sp/>examples<sp/>and<sp/>example<sp/>projects<sp/>demonstrating<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Yarn<sp/>in<sp/>different<sp/>forms</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">-<sp/><ref refid="a00050_1a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9" kindref="member">Add</ref><sp/>in<sp/>parsing<sp/>`.yarn`<sp/>files<sp/>into<sp/>Unreal</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>V1.4</highlight></codeline>
+<codeline lineno="96"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Goal</highlight></codeline>
+<codeline lineno="98"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal">Make<sp/>Yarn<sp/>more<sp/>accessible<sp/>from<sp/>your<sp/>existing<sp/>development<sp/>tools.</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal">###<sp/>Motivation</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"></highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueRunner.StartDialogue(</highlight><highlight class="stringliteral">&quot;Sally&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Talking<sp/>to<sp/>Sally<sp/>a<sp/>second<sp/>time<sp/>should<sp/>result<sp/>in<sp/>a<sp/>different<sp/>dialogue</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal">While<sp/>we<sp/>expect<sp/>the<sp/>[Yarn<sp/>editor](https:</highlight><highlight class="comment">//github.com/YarnSpinnerTool/YarnEditor)<sp/>will<sp/>remain<sp/>the<sp/>main<sp/>way<sp/>you<sp/>will<sp/>create<sp/>and<sp/>modify<sp/>Yarn<sp/>files,<sp/>there<sp/>are<sp/>always<sp/>more<sp/>workflows<sp/>that<sp/>need<sp/>support.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal">This<sp/>release<sp/>will<sp/>be<sp/>designed<sp/>to<sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>and<sp/>help<sp/>make<sp/>that<sp/>easier.</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal">###<sp/>Features</highlight></codeline>
 <codeline lineno="107"><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"></highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Act</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Try<sp/>to<sp/>rename<sp/>the<sp/>GameObject</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal">-<sp/>Merge<sp/>all<sp/>command<sp/>line<sp/>tool<sp/>functionality<sp/>into<sp/>the<sp/>Unity<sp/>and<sp/>Unreal<sp/>core</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">-<sp/>Create<sp/>a<sp/>[language<sp/>server<sp/>protocol](https:</highlight><highlight class="comment">//microsoft.github.io/language-server-protocol/)<sp/>server<sp/>for<sp/>Yarn</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal">-<sp/><ref refid="a00050_1a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9" kindref="member">Add</ref><sp/>diagnostics<sp/>and<sp/>debugging<sp/>features<sp/>to<sp/>a<sp/>VSCode<sp/>extension</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">-<sp/>Create<sp/>a<sp/>WebAssembly<sp/>compiler<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Yarn,<sp/>allowing<sp/>browsers<sp/>to<sp/>run<sp/>the<sp/>exact<sp/>same<sp/>code<sp/>to<sp/>compile<sp/>Yarn<sp/>as<sp/>is<sp/>used<sp/>in<sp/>Unity<sp/>and<sp/>Unreal</highlight></codeline>
 <codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Assert</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//The<sp/>object<sp/>has<sp/>a<sp/>new<sp/>name</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Assert.AreEqual(newGameObjectName,<sp/>gameObject.name);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="117"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>V1.5</highlight></codeline>
+<codeline lineno="114"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Goal</highlight></codeline>
+<codeline lineno="116"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal">To<sp/>put<sp/>Yarn<sp/>Spinner<sp/>in<sp/>a<sp/>place<sp/>where<sp/>it<sp/>will<sp/>be<sp/>capable<sp/>of<sp/>being<sp/>used<sp/>more<sp/>easily<sp/>and<sp/>in<sp/>multiple<sp/>places.</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal">###<sp/>Motivation</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal">We<sp/>want<sp/>Yarn<sp/>Spinner<sp/>to<sp/>be<sp/>easy<sp/>to<sp/>implement,<sp/>use,<sp/>and<sp/>port<sp/>to<sp/>as<sp/>many<sp/>places<sp/>as<sp/>possible.</highlight></codeline>
+<codeline lineno="122"><highlight class="normal">We<sp/>also<sp/>want<sp/>to<sp/>start<sp/>adding<sp/>in<sp/>support<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>any<sp/>additional<sp/>features<sp/>that<sp/>are<sp/>community<sp/>requested.</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal">###<sp/>Features</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal">-<sp/>Porting<sp/>guide<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>any<sp/>platform,<sp/>engine,<sp/>and<sp/>language</highlight></codeline>
+<codeline lineno="127"><highlight class="normal">-<sp/>Attributed<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>support<sp/>(such<sp/>as<sp/>`[b]</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>is<sp/>bold<sp/>text[/b]`)</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>FAQ</highlight></codeline>
+<codeline lineno="130"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal">*Hang<sp/>on<sp/>you<sp/>just<sp/>posted<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/>how<sp/>are<sp/>these<sp/>frequently<sp/>asked?*</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal">Ok<sp/>they<sp/>aren</highlight><highlight class="stringliteral">&apos;t,<sp/>but<sp/>I<sp/>have<sp/>tried<sp/>to<sp/>preempt<sp/>some<sp/>likely<sp/>questions.</highlight></codeline>
+<codeline lineno="134"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="135"><highlight class="stringliteral">*How<sp/>can<sp/>I<sp/>contact<sp/>you<sp/>privately<sp/>about<sp/>this?*</highlight></codeline>
+<codeline lineno="136"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="137"><highlight class="stringliteral">There<sp/>are<sp/>a<sp/>few<sp/>ways<sp/>you<sp/>can<sp/>reach<sp/>the<sp/>development<sp/>team<sp/>directly:</highlight></codeline>
+<codeline lineno="138"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="139"><highlight class="stringliteral">*<sp/>**Twitter**:</highlight></codeline>
+<codeline lineno="140"><highlight class="stringliteral">*<sp/>*<sp/>[@YarnSpinnerTool](https://twitter.com/YarnSpinnerTool)</highlight></codeline>
+<codeline lineno="141"><highlight class="stringliteral">*<sp/>*<sp/>[@desplesda](https://twitter.com/desplesda)</highlight></codeline>
+<codeline lineno="142"><highlight class="stringliteral">*<sp/>*<sp/>[@The_McJones](https://twitter.com/The_McJones)</highlight></codeline>
+<codeline lineno="143"><highlight class="stringliteral">*<sp/>**Email**:</highlight></codeline>
+<codeline lineno="144"><highlight class="stringliteral">*<sp/>*<sp/>yarnspinner@secretlab.com.au</highlight></codeline>
+<codeline lineno="145"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="146"><highlight class="stringliteral">*Why<sp/>are<sp/>there<sp/>no<sp/>dates<sp/>attached<sp/>to<sp/>the<sp/>releases?*</highlight></codeline>
+<codeline lineno="147"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="148"><highlight class="stringliteral">Yarn<sp/>Spinner<sp/>is<sp/>a<sp/>community<sp/>project<sp/>and<sp/>we<sp/>(as<sp/>in<sp/>@desplesda<sp/>and<sp/>@McJones)<sp/>as<sp/>the<sp/>main<sp/>devs<sp/>work<sp/>on<sp/>it<sp/>in<sp/>our<sp/>free<sp/>time<sp/>or<sp/>when<sp/>it<sp/>aligns<sp/>with<sp/>work.</highlight></codeline>
+<codeline lineno="149"><highlight class="stringliteral">Any<sp/>Yarn<sp/>Spinner<sp/>work<sp/>has<sp/>to<sp/>fit<sp/>around<sp/>our<sp/>own<sp/>work<sp/>and<sp/>as<sp/>such<sp/>would<sp/>be<sp/>the<sp/>first<sp/>candidates<sp/>to<sp/>be<sp/>dropped<sp/>if<sp/>we<sp/>need<sp/>more<sp/>time<sp/>for<sp/>work<sp/>or<sp/>our<sp/>own<sp/>sanity.</highlight></codeline>
+<codeline lineno="150"><highlight class="stringliteral">We<sp/>don&apos;</highlight><highlight class="normal">t<sp/>want<sp/>to<sp/>put<sp/>down<sp/>deadlines<sp/>that,<sp/>at<sp/>least<sp/>at<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>stage,<sp/>would<sp/>be<sp/>known<sp/>to<sp/>be<sp/>arbitrary.</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal">*I<sp/>think<sp/>Feature<sp/>X<sp/>is<sp/>the<sp/>most<sp/>important<sp/>and<sp/>you</highlight><highlight class="stringliteral">&apos;ve<sp/>not<sp/>got<sp/>it<sp/>listed,<sp/>what<sp/>gives?*</highlight></codeline>
+<codeline lineno="153"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="154"><highlight class="stringliteral">This<sp/>is<sp/>what<sp/>we<sp/>think<sp/>is<sp/>important,<sp/>but<sp/>we<sp/>want<sp/>to<sp/>know<sp/>what<sp/>**you**<sp/>think<sp/>is<sp/>important,<sp/>so<sp/>either<sp/>let<sp/>us<sp/>know<sp/>in<sp/>the<sp/>Slack<sp/>or<sp/>on<sp/>the<sp/>[issue<sp/>we<sp/>opened<sp/>about<sp/>the<sp/>road<sp/>map](https://github.com/YarnSpinnerTool/YarnSpinner/issues/183).</highlight></codeline>
+<codeline lineno="155"><highlight class="stringliteral">We<sp/>want<sp/>to<sp/>build<sp/>Yarn<sp/>Spinner<sp/>into<sp/>something<sp/>helpful<sp/>for<sp/>you<sp/>as<sp/>well<sp/>as<sp/>us.</highlight></codeline>
+<codeline lineno="156"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="157"><highlight class="stringliteral">*I<sp/>think<sp/>Feature<sp/>Y<sp/>is<sp/>the<sp/>most<sp/>important<sp/>but<sp/>you&apos;</highlight><highlight class="normal">ve<sp/>got<sp/>it<sp/>way<sp/>down<sp/>the<sp/>bottom<sp/>of<sp/>the<sp/>road<sp/>map,<sp/>what<sp/>gives*</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal">We</highlight><highlight class="stringliteral">&apos;ve<sp/>tried<sp/>to<sp/>group<sp/>the<sp/>road<sp/>map<sp/>releases<sp/>into<sp/>features<sp/>and<sp/>changes<sp/>in<sp/>a<sp/>manner<sp/>that<sp/>we<sp/>think<sp/>makes<sp/>sense,<sp/>but<sp/>we<sp/>want<sp/>your<sp/>feedback<sp/>on<sp/>this<sp/>stuff,<sp/>so<sp/>let<sp/>us<sp/>know.</highlight></codeline>
+<codeline lineno="160"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="161"><highlight class="stringliteral">*You&apos;</highlight><highlight class="normal">ve<sp/>mentioned<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>Slack<sp/>now<sp/>a<sp/>few<sp/>times,<sp/>how<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>I<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>in?*</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal">You<sp/>can<sp/>join<sp/>the<sp/>Narrative<sp/>Game<sp/>Dev<sp/>slack<sp/>[here](http:</highlight><highlight class="comment">//lab.to/narrativegamedev).<sp/>We<sp/>hope<sp/>to<sp/>see<sp/>you<sp/>there!</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal">*What<sp/>about<sp/>bug<sp/>fixes?<sp/>I<sp/>still<sp/>have<sp/>a<sp/>bug<sp/>you</highlight><highlight class="stringliteral">&apos;ve<sp/>not<sp/>fixed<sp/>yet!*</highlight></codeline>
+<codeline lineno="166"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="167"><highlight class="stringliteral">Throughout<sp/>all<sp/>of<sp/>the<sp/>releases<sp/>the<sp/>intent<sp/>is<sp/>to<sp/>try<sp/>and<sp/>keep<sp/>the<sp/>bugs<sp/>to<sp/>a<sp/>minimum.</highlight></codeline>
+<codeline lineno="168"><highlight class="stringliteral">Some<sp/>of<sp/>these<sp/>changes<sp/>are<sp/>intentionally<sp/>made<sp/>to<sp/>clean<sp/>up<sp/>some<sp/>of<sp/>the<sp/>cruft<sp/>we&apos;</highlight><highlight class="normal">ve<sp/>accumulated<sp/>that<sp/>make<sp/>bug<sp/>fixes<sp/>hard.</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal">*Why<sp/>does<sp/>the<sp/>road<sp/>map<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>less<sp/>detailed<sp/>the<sp/>longer<sp/>it<sp/>goes<sp/>on?*</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal">Some<sp/>of<sp/>these<sp/>changes<sp/>we<sp/>can<sp/>see<sp/>exactly<sp/>how<sp/>they<sp/>will<sp/>work<sp/>and<sp/>integrate,<sp/>others<sp/>will<sp/>need<sp/>to<sp/>change<sp/>as<sp/>we<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>closer.</highlight></codeline>
+<codeline lineno="173"><highlight class="normal">Later<sp/>releases<sp/>are<sp/>designed<sp/>to<sp/>have<sp/>much<sp/>larger<sp/>broad<sp/>strokes<sp/>of<sp/>features<sp/>instead<sp/>of<sp/>specifics<sp/>like<sp/>in<sp/>V1.0.</highlight></codeline>
+<codeline lineno="174"><highlight class="normal">As<sp/>a<sp/>release<sp/>comes<sp/>out<sp/>we<sp/>can<sp/>take<sp/>a<sp/>look<sp/>at<sp/>the<sp/>road<sp/>map<sp/>again,<sp/>work<sp/>out<sp/>what<sp/>features<sp/>and<sp/>needs<sp/>should<sp/>go<sp/>into<sp/>the<sp/>next<sp/>release<sp/>and<sp/>update<sp/>the<sp/>road<sp/>map<sp/>appropriately.</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/ROADMAP.md"/>
   </compounddef>
 </doxygen>

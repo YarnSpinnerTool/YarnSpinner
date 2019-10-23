@@ -1,5 +1,7 @@
 var a00098 =
 [
-    [ "AddExceptionDataMessage", "a00098.html#a7415ea84b6d462b9d61ecf2128282837", null ],
-    [ "GetErrorMessage", "a00098.html#a11e421dc9f9fdb2b72d060a24471b5be", null ]
+    [ "ErrorListener", "a00098.html#a1f0cc41aac10bd8a2402355534c1123c", null ],
+    [ "SyntaxError", "a00098.html#a47fb9f6d50aa6a4e4796dea10b237fe4", null ],
+    [ "instance", "a00098.html#a9421873edea84c51d5905f5a24c62479", null ],
+    [ "Instance", "a00098.html#a47b8f4f1d414afa1ea6067218c7ee34d", null ]
 ];

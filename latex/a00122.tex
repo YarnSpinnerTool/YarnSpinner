@@ -1,345 +1,439 @@
-\hypertarget{a00122}{\section{Yarn.\-Line\-Adder Class Reference}
-\label{a00122}\index{Yarn.\-Line\-Adder@{Yarn.\-Line\-Adder}}
+\hypertarget{a00122}{\section{Yarn\-Spinner.\-Tests.\-Language\-Tests Class Reference}
+\label{a00122}\index{Yarn\-Spinner.\-Tests.\-Language\-Tests@{Yarn\-Spinner.\-Tests.\-Language\-Tests}}
 }
 
 
-Collaboration diagram for Yarn.\-Line\-Adder\-:
+Inheritance diagram for Yarn\-Spinner.\-Tests.\-Language\-Tests\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=174pt]{a00640}
+\includegraphics[width=232pt]{a00728}
 \end{center}
 \end{figure}
-\subsection*{Static Package Functions}
+
+
+Collaboration diagram for Yarn\-Spinner.\-Tests.\-Language\-Tests\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00729}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static int \hyperlink{a00122_aa2b8af349e709b8a45d42af5146ca848}{Add\-Lines} (\hyperlink{a00039}{Add\-Labels\-Options} options)
+new void \hyperlink{a00122_ae0d1fb752df07e24b0d11db25e0c17c4}{Init} ()
+\item 
+void \hyperlink{a00122_a1d044fd44e610a35ef09d486eb06ee37}{Test\-Example\-Script} ()
+\item 
+void \hyperlink{a00122_a4da987e2dbc65b35cc6bd07392f71453}{Test\-Merging\-Nodes} ()
+\item 
+void \hyperlink{a00122_a6cc57344745b5fb315abdeacdd23b659}{Test\-End\-Of\-Notes\-With\-Options\-Not\-Added} ()
+\item 
+void \hyperlink{a00122_a1fb5f217de912475860fcde067418f83}{Test\-Sources} (string file)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static I\-Enumerable$<$ string $>$ \hyperlink{a00122_a81fdcef842cffe4cc0762f7b0b8dd25a}{File\-Sources} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00154_abffa134d40d72b21e6b35c3bf05fc53f}{Run\-Standard\-Testcase} (string node\-Name=\char`\"{}Start\char`\"{})
+\item 
+void \hyperlink{a00154_a7b525f85a26d7c942e1cbfa5d6453893}{Handle\-Result} (\hyperlink{a00143}{Yarn.\-Dialogue.\-Runner\-Result} result)
+\item 
+void \hyperlink{a00154_ac21a5082ddac1da9db17ae54038df44e}{Expect\-Line} (string line)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00169}{Variable\-Storage} \hyperlink{a00154_a23d59ace1516ca72924c6fe3feafd3f7}{storage} = new \hyperlink{a00130}{Memory\-Variable\-Store}()
+\item 
+\hyperlink{a00090}{Dialogue} \hyperlink{a00154_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}
+\item 
+bool \hyperlink{a00154_ac978fe85db843c51411f5517bdbe0eb8}{errors\-Cause\-Failures} = true
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+static string \hyperlink{a00154_ab1ad614f465a49447da31c4000ec6b3e}{Project\-Root\-Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static string \hyperlink{a00154_aa9b4d902d61adad7165154a265f69aa4}{Test\-Data\-Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static string \hyperlink{a00154_a39922286f6255e4fd0e433a4fc7521c4}{Unity\-Demo\-Scripts\-Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+bool \hyperlink{a00154_a47f35b8e8123ed9471883d02b8bc9f3e}{is\-Expecting\-Line}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \end{DoxyCompactItemize}
 \subsection*{Static Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static string \hyperlink{a00122_a91ad68b679bd3b0bd89fe92ea5068688}{Generate\-String} (List$<$ string $>$ existing\-Keys)
-\end{DoxyCompactItemize}
-\subsection*{Static Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-static Random \hyperlink{a00122_ad887744b1b813fc081be814958742c37}{random} = new Random()
+static I\-Enumerable$<$ string $>$ \hyperlink{a00122_ab217b54a696aa8c8b53989f4b71d99e7}{Get\-Files\-In\-Directory} (string path)
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 8 of file Line\-Adder.\-cs.
+Definition at line 13 of file Language\-Tests.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00122_aa2b8af349e709b8a45d42af5146ca848}{\index{Yarn\-::\-Line\-Adder@{Yarn\-::\-Line\-Adder}!Add\-Lines@{Add\-Lines}}
-\index{Add\-Lines@{Add\-Lines}!Yarn::LineAdder@{Yarn\-::\-Line\-Adder}}
-\subsubsection[{Add\-Lines}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-Line\-Adder.\-Add\-Lines (
+\hypertarget{a00154_ac21a5082ddac1da9db17ae54038df44e}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Expect\-Line@{Expect\-Line}}
+\index{Expect\-Line@{Expect\-Line}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Expect\-Line}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Test\-Base.\-Expect\-Line (
 \begin{DoxyParamCaption}
-\item[{{\bf Add\-Labels\-Options}}]{options}
+\item[{string}]{line}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00122_aa2b8af349e709b8a45d42af5146ca848}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00154_ac21a5082ddac1da9db17ae54038df44e}
 
 
-Definition at line 11 of file Line\-Adder.\-cs.
-
-
-
-References Yarn.\-Yarn\-Spinner\-Console.\-A\-L\-L\-O\-W\-E\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N\-S, and Yarn.\-Line\-Adder.\-Generate\-String().
-
-
-
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Main().
+Definition at line 170 of file Test\-Base.\-cs.
 
 
 \begin{DoxyCode}
-12         \{
-13 
-14             YarnSpinnerConsole.CheckFileList(options.files, 
-      \hyperlink{a00172_a0979de7ea02c8c0375b8220a12e6575e}{YarnSpinnerConsole.ALLOWED\_EXTENSIONS});
-15 
-16             var existingKeys = \textcolor{keyword}{new} List<string>();
-17 
-18             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.\hyperlink{a00040_aa93cbb1bc1d5328e0a417012621e92d2}{files})
-19             \{
-20 
-21                 \hyperlink{a00048_ad7ebb46e7309ead8767383a672b3272f}{NodeFormat} fileFormat;
-22                 \textcolor{keywordflow}{try}
-23                 \{
-24                     fileFormat = Loader.GetFormatFromFileName(file);
-25                 \}
-26                 \textcolor{keywordflow}{catch} (FormatException)
-27                 \{
-28                     fileFormat = NodeFormat.Unknown;
-29                 \}
-30 
-31                 \textcolor{keywordflow}{switch} (fileFormat)
-32                 \{
-33                     \textcolor{keywordflow}{case} NodeFormat.Text:
-34                         \textcolor{keywordflow}{break};
-35                     \textcolor{keywordflow}{default}:
-36                         YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Skipping file
-       \{0\}, which is in unsupported format '\{1\}'"}, file, fileFormat));
-37                         \textcolor{keywordflow}{continue};
-38                 \}
-39 
-40 
-41                 \hyperlink{a00088}{Dialogue} d = YarnSpinnerConsole.CreateDialogueForUtilities();
-42 
-43                 \textcolor{keywordflow}{try}
-44                 \{
-45                     \textcolor{comment}{// First, we need to ensure that this file compiles.}
-46                     d.LoadFile(file);
-47                 \}
-48 \textcolor{preprocessor}{#pragma warning disable CA1031 // Do not catch general exception types}
-49 \textcolor{preprocessor}{}                \textcolor{keywordflow}{catch}
-50                 \{
-51                     YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Skipping file \{0\}
-       due to compilation errors."}, file));
-52                     \textcolor{keywordflow}{continue};
-53                 \}
-54 \textcolor{preprocessor}{#pragma warning restore CA1031 // Do not catch general exception types}
-55 \textcolor{preprocessor}{}
-56                 Dictionary<string, LineInfo> linesWithNoTag = \textcolor{keyword}{new} Dictionary<string, LineInfo>();
-57 
-58                 \textcolor{comment}{// Filter the string info table to exclude lines that have a line code}
-59                 \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} d.GetStringInfoTable())
-60                 \{
-61                     \textcolor{keywordflow}{if} (entry.Key.StartsWith(\textcolor{stringliteral}{"line:"}, StringComparison.InvariantCulture) == \textcolor{keyword}{false})
-62                     \{
-63                         linesWithNoTag[entry.Key] = entry.Value;
-64                     \}
-65                 \}
-66 
-67                 \textcolor{keywordflow}{if} (linesWithNoTag.Count == 0)
-68                 \{
-69                     var message = string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"\{0\} had no untagged lines.
-       Either they're all tagged already, or it has no localisable text."}, file);
-70                     YarnSpinnerConsole.Note(message);
-71                     \textcolor{keywordflow}{continue};
-72                 \}
-73 
-74                 \textcolor{comment}{// We also need the raw NodeInfo structures contained within this file.}
-75                 \textcolor{comment}{// These contain the source code to what we just compiled.}
-76 
-77                 \hyperlink{a00131}{Loader.NodeInfo}[] nodeInfoList;
-78 
-79                 var nodeFormat = Loader.GetFormatFromFileName(file);
-80 
-81                 \textcolor{keyword}{using} (var reader = \textcolor{keyword}{new} System.IO.StreamReader(file))
-82                 \{
-83                     nodeInfoList = d.loader.GetNodesFromText(reader.ReadToEnd(), nodeFormat);
-84                 \}
-85 
-86                 \textcolor{comment}{// Convert this list into an easier-to-index dictionary}
-87                 var lineInfo = \textcolor{keyword}{new} Dictionary<string, \hyperlink{a00131}{Loader.NodeInfo}>();
-88 
-89                 \textcolor{keywordflow}{foreach} (var node \textcolor{keywordflow}{in} nodeInfoList)
-90                 \{
-91                     lineInfo[node.title] = node;
-92 
-93                 \}
-94 
-95                 \textcolor{comment}{// Make a list of line codes that we already know about.}
-96                 \textcolor{comment}{// This list will be updated as we tag lines, to prevent collisions.}
-97                 existingKeys.AddRange(lineInfo.Keys);
-98 
-99                 \textcolor{keywordtype}{bool} anyNodesModified = \textcolor{keyword}{false};
-100 
-101                 \textcolor{comment}{// We now have a list of all strings that do not have a string tag.}
-102                 \textcolor{comment}{// Add a new tag to these lines.}
-103                 \textcolor{keywordflow}{foreach} (var line \textcolor{keywordflow}{in} linesWithNoTag)
-104                 \{
-105 
-106                     \textcolor{comment}{// TODO: There's quite a bit of redundant work done here in each loop.}
-107                     \textcolor{comment}{// We're unzipping and re-combining the node for EACH line. Would be better}
-108                     \textcolor{comment}{// to do that only once.}
-109 
-110                     \textcolor{comment}{// Get the node that this line is in.}
-111                     var nodeInfo = lineInfo[line.Value.nodeName];
+170                                                \{
+171             \hyperlink{a00154_a3651ffb5425ab15bd1e42749347c1ee7}{nextExpectedLine} = line;
+172         \}
+\end{DoxyCode}
+\hypertarget{a00122_a81fdcef842cffe4cc0762f7b0b8dd25a}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!File\-Sources@{File\-Sources}}
+\index{File\-Sources@{File\-Sources}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{File\-Sources}]{\setlength{\rightskip}{0pt plus 5cm}static I\-Enumerable$<$string$>$ Yarn\-Spinner.\-Tests.\-Language\-Tests.\-File\-Sources (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00122_a81fdcef842cffe4cc0762f7b0b8dd25a}
+
+
+Definition at line 105 of file Language\-Tests.\-cs.
+
+
+\begin{DoxyCode}
+105                                                         \{
+106 
+107             var directory = \textcolor{stringliteral}{"TestCases"};
+108 
+109             var allowedExtensions = \textcolor{keyword}{new}[] \{ \textcolor{stringliteral}{".node"}, \textcolor{stringliteral}{".json"}, \textcolor{stringliteral}{".txt"} \};
+110 
+111             var path = Path.Combine(\hyperlink{a00154_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, directory);
 112 
-113                     \textcolor{comment}{// Is this line contained within a rawText node?}
-114                     \textcolor{keywordflow}{if} (nodeInfo.tagsList.FindIndex(i => i == \textcolor{stringliteral}{"rawText"}) != -1)
-115                     \{
-116                         \textcolor{comment}{// We don't need to add a tag to it - genstrings will export}
-117                         \textcolor{comment}{// the whole thing for us.}
-118                         \textcolor{keywordflow}{continue};
-119                     \}
-120 
-121                     \textcolor{comment}{// If we have a tag to consider, and this node doesn't have that tag,}
-122                     \textcolor{comment}{// continue}
-123                     \textcolor{keywordflow}{if} (options.\hyperlink{a00039_ab6162338f9606a836f3101fe0e228249}{onlyUseTag} != null)
-124                     \{
-125                         \textcolor{keywordflow}{if} (nodeInfo.tagsList.FindIndex(i => i == options.
-      \hyperlink{a00039_ab6162338f9606a836f3101fe0e228249}{onlyUseTag}) == -1)
-126                         \{
-127                             \textcolor{keywordflow}{continue};
-128                         \}
-129                     \}
-130 
-131 
-132                     \textcolor{comment}{// Split this node's source by newlines}
-133                     var lines = nodeInfo.body.Split(\textcolor{keyword}{new} \textcolor{keywordtype}{string}[] \{ \textcolor{stringliteral}{"\(\backslash\)r\(\backslash\)n"}, \textcolor{stringliteral}{"\(\backslash\)n"} \}, StringSplitOptions.None)
-      ;
-134 
-135                     \textcolor{comment}{// Get the original line}
-136                     var existingLine = lines[line.Value.lineNumber - 1];
-137 
-138                     \textcolor{comment}{// Generate a new tag for this line}
-139                     var newTag = \hyperlink{a00122_a91ad68b679bd3b0bd89fe92ea5068688}{GenerateString}(existingKeys);
-140 
-141                     \textcolor{comment}{// Remember that we've used this tag, to prevent it from being re-used}
-142                     existingKeys.Add(newTag);
-143 
-144                     \textcolor{keywordflow}{if} (options.\hyperlink{a00040_ada4d83d1756918f362d55f6649b82b17}{verbose})
-145                     \{
-146                         YarnSpinnerConsole.Note(string.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"Tagged line with
-       ID \(\backslash\)"\{0\}\(\backslash\)" in node \{1\}: \{2\}"}, newTag, nodeInfo.title, existingLine));
-147                     \}
-148 
-149                     \textcolor{comment}{// Re-write the line.}
-150                     var newLine = string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0\} #\{1\}"}, existingLine, 
-      newTag);
-151                     lines[line.Value.lineNumber - 1] = newLine;
-152 
-153 
-154                     \textcolor{comment}{// Pack this all back up into a single string}
-155                     nodeInfo.body = string.Join(\textcolor{stringliteral}{"\(\backslash\)n"}, lines);
-156 
-157                     \textcolor{comment}{// Put the updated node in the node collection.}
-158                     lineInfo[line.Value.nodeName] = nodeInfo;
-159 
-160                     anyNodesModified = \textcolor{keyword}{true};
-161 
-162                 \}
-163 
-164                 \textcolor{comment}{// If we didn't end up changing anything, don't modify the file}
-165                 \textcolor{keywordflow}{if} (anyNodesModified == \textcolor{keyword}{false})
-166                 \{
-167                     \textcolor{keywordflow}{continue};
-168                 \}
-169 
-170                 \textcolor{comment}{// All the nodes have been updated; save this back to disk.}
-171 
-172                 \textcolor{comment}{// Are we doing a dry run?}
-173                 \textcolor{keywordflow}{if} (options.\hyperlink{a00039_a5dc9d9db767738237e988f95fc0330f4}{dryRun})
-174                 \{
-175                     \textcolor{comment}{// Then bail out at this point, before we start}
-176                     \textcolor{comment}{// modifying files}
-177                     YarnSpinnerConsole.Note(\textcolor{stringliteral}{"Would have written to file "} + file);
-178                     \textcolor{keywordflow}{continue};
-179                 \}
-180 
-181                 var format = Loader.GetFormatFromFileName(file);
-182 
-183                 \textcolor{keywordflow}{switch} (format)
-184                 \{
-185                     \textcolor{keywordflow}{case} NodeFormat.Text:
-186                         \textcolor{keywordflow}{break};
-187                     \textcolor{keywordflow}{default}:
-188                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException();
-189                 \}
-190 
-191 
-192                 \textcolor{comment}{// Convert the nodes into the correct format}
-193                 var savedData = FileFormatConverter.ConvertNodes(lineInfo.Values, fileFormat);
-194 
-195 
-196                 \textcolor{comment}{// Write the file!}
-197                 \textcolor{keyword}{using} (var writer = \textcolor{keyword}{new} System.IO.StreamWriter(file))
-198                 \{
-199                     writer.Write(savedData);
-200                 \}
-201 
-202 
-203             \}
-204             \textcolor{keywordflow}{return} 0;
-205         \}
+113 
+114             var files = \hyperlink{a00122_ab217b54a696aa8c8b53989f4b71d99e7}{GetFilesInDirectory}(path);
+115 
+116             \textcolor{keywordflow}{return} files.Where(p => allowedExtensions.Contains(Path.GetExtension(p)))
+117                         .Select(p => Path.GetFileName(p));
+118         \}
 \end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00122_aa2b8af349e709b8a45d42af5146ca848_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00122_aa2b8af349e709b8a45d42af5146ca848_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00122_a91ad68b679bd3b0bd89fe92ea5068688}{\index{Yarn\-::\-Line\-Adder@{Yarn\-::\-Line\-Adder}!Generate\-String@{Generate\-String}}
-\index{Generate\-String@{Generate\-String}!Yarn::LineAdder@{Yarn\-::\-Line\-Adder}}
-\subsubsection[{Generate\-String}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-Line\-Adder.\-Generate\-String (
+\hypertarget{a00122_ab217b54a696aa8c8b53989f4b71d99e7}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Get\-Files\-In\-Directory@{Get\-Files\-In\-Directory}}
+\index{Get\-Files\-In\-Directory@{Get\-Files\-In\-Directory}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Get\-Files\-In\-Directory}]{\setlength{\rightskip}{0pt plus 5cm}static I\-Enumerable$<$string$>$ Yarn\-Spinner.\-Tests.\-Language\-Tests.\-Get\-Files\-In\-Directory (
 \begin{DoxyParamCaption}
-\item[{List$<$ string $>$}]{existing\-Keys}
+\item[{string}]{path}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00122_a91ad68b679bd3b0bd89fe92ea5068688}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00122_ab217b54a696aa8c8b53989f4b71d99e7}
 
 
-Definition at line 211 of file Line\-Adder.\-cs.
-
-
-
-Referenced by Yarn.\-Line\-Adder.\-Add\-Lines().
+Definition at line 122 of file Language\-Tests.\-cs.
 
 
 \begin{DoxyCode}
-211                                                                 \{
-212 
-213             \textcolor{keywordtype}{string} tag = null;
-214             \textcolor{keywordtype}{bool} isUnique = \textcolor{keyword}{true};
-215             \textcolor{keywordflow}{do}
-216             \{
-217                 tag = string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"line:\{0:x6\}"}, random.Next(0x1000000));
-218 
-219                 isUnique = existingKeys.FindIndex(i => i == tag) == -1;
-220 
-221             \} \textcolor{keywordflow}{while} (isUnique == \textcolor{keyword}{false});
-222 
-223             \textcolor{keywordflow}{return} tag;
-224         \}
+123         \{
+124             \textcolor{keywordflow}{try}
+125             \{
+126                 \textcolor{keywordflow}{return} Directory.EnumerateFiles(path);
+127             \}
+128             \textcolor{keywordflow}{catch} (DirectoryNotFoundException)
+129             \{
+130                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} \textcolor{keywordtype}{string}[] \{ \};
+131             \}
+132         \}
 \end{DoxyCode}
+\hypertarget{a00154_a7b525f85a26d7c942e1cbfa5d6453893}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Handle\-Result@{Handle\-Result}}
+\index{Handle\-Result@{Handle\-Result}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Handle\-Result}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Test\-Base.\-Handle\-Result (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Dialogue.\-Runner\-Result}}]{result}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00154_a7b525f85a26d7c942e1cbfa5d6453893}
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00122_a91ad68b679bd3b0bd89fe92ea5068688_icgraph}
-\end{center}
-\end{figure}
+Definition at line 122 of file Test\-Base.\-cs.
 
 
+\begin{DoxyCode}
+122                                                                        \{
+123 
+124             \textcolor{keywordflow}{if} (result is Yarn.Dialogue.LineResult) \{
+125                 var text = (result as \hyperlink{a00126}{Yarn.Dialogue.LineResult}).line.text;
+126 
+127                 Console.WriteLine(\textcolor{stringliteral}{"Line: "} + text);
+128 
+129                 \textcolor{keywordflow}{if} (\hyperlink{a00154_a47f35b8e8123ed9471883d02b8bc9f3e}{isExpectingLine}) \{
+130                     Assert.AreEqual (text, \hyperlink{a00154_a3651ffb5425ab15bd1e42749347c1ee7}{nextExpectedLine});
+131                 \}
+132 
+133             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (result is Yarn.Dialogue.OptionSetResult) \{
+134                 var options = (result as \hyperlink{a00136}{Yarn.Dialogue.OptionSetResult}).
+      options.options;
+135                 var optionCount = options.Count;
+136                 var resultDelegate = (result as Yarn.Dialogue.OptionSetResult).setSelectedOptionDelegate;
+137 
+138                 Console.WriteLine(\textcolor{stringliteral}{"Options:"});
+139                 \textcolor{keywordflow}{foreach} (var option \textcolor{keywordflow}{in} options) \{
+140                     Console.WriteLine(\textcolor{stringliteral}{" - "} + option);
+141                 \}
+142 
+143                 \textcolor{keywordflow}{if} (\hyperlink{a00154_aaabaf15249efe42f3d857129bdbc2864}{nextExpectedOptionCount} != -1) \{
+144                     Assert.AreEqual (\hyperlink{a00154_aaabaf15249efe42f3d857129bdbc2864}{nextExpectedOptionCount}, optionCount);
+145                 \}
+146 
+147                 \textcolor{keywordflow}{if} (\hyperlink{a00154_a343055fa693e9d5dfc1bdbfcd0f02676}{nextOptionToSelect} != -1) \{
+148                     resultDelegate (\hyperlink{a00154_a343055fa693e9d5dfc1bdbfcd0f02676}{nextOptionToSelect});
+149                 \} \textcolor{keywordflow}{else} \{
+150                     resultDelegate(0);
+151                 \}
+152             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (result is Yarn.Dialogue.CommandResult) \{
+153                 var commandText = (result as \hyperlink{a00051}{Yarn.Dialogue.CommandResult}).
+      command.text;
+154 
+155                 Console.WriteLine(\textcolor{stringliteral}{"Command: "} + commandText);
+156 
+157                 \textcolor{keywordflow}{if} (\hyperlink{a00154_a26fae5694fc06c3cdb12d3108dbc34de}{nextExpectedCommand} != null) \{
+158                     Assert.AreEqual (\hyperlink{a00154_a26fae5694fc06c3cdb12d3108dbc34de}{nextExpectedCommand}, commandText);
+159                 \}
+160             \}
+161 
+162             \textcolor{comment}{// Reset all 'expected' stuff}
+163             \hyperlink{a00154_a3651ffb5425ab15bd1e42749347c1ee7}{nextExpectedLine} = null;
+164             \hyperlink{a00154_a26fae5694fc06c3cdb12d3108dbc34de}{nextExpectedCommand} = null;
+165             \hyperlink{a00154_aaabaf15249efe42f3d857129bdbc2864}{nextExpectedOptionCount} = -1;
+166             \hyperlink{a00154_a343055fa693e9d5dfc1bdbfcd0f02676}{nextOptionToSelect} = -1;
+167 
+168         \}
+\end{DoxyCode}
+\hypertarget{a00122_ae0d1fb752df07e24b0d11db25e0c17c4}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Init@{Init}}
+\index{Init@{Init}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Init}]{\setlength{\rightskip}{0pt plus 5cm}new void Yarn\-Spinner.\-Tests.\-Language\-Tests.\-Init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00122_ae0d1fb752df07e24b0d11db25e0c17c4}
+
+
+Definition at line 16 of file Language\-Tests.\-cs.
+
+
+\begin{DoxyCode}
+16                                \{
+17             base.Init();
+18 
+19             \textcolor{comment}{// Register some additional functions}
+20             dialogue.library.RegisterFunction(\textcolor{stringliteral}{"add\_three\_operands"}, 3, delegate (
+      \hyperlink{a00167}{Value}[] parameters) \{
+21                 \textcolor{keywordflow}{return} parameters[0] + parameters[1] + parameters[2];
+22             \});
+23 
+24             dialogue.library.RegisterFunction(\textcolor{stringliteral}{"last\_value"}, -1, delegate (\hyperlink{a00167}{Value}[] parameters)
+25             \{
+26                 \textcolor{keywordflow}{return} parameters[parameters.Length - 1];
+27             \});
+28 
+29             
+30         \}
+\end{DoxyCode}
+\hypertarget{a00154_abffa134d40d72b21e6b35c3bf05fc53f}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Run\-Standard\-Testcase@{Run\-Standard\-Testcase}}
+\index{Run\-Standard\-Testcase@{Run\-Standard\-Testcase}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Run\-Standard\-Testcase}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Test\-Base.\-Run\-Standard\-Testcase (
+\begin{DoxyParamCaption}
+\item[{string}]{node\-Name = {\ttfamily \char`\"{}Start\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00154_abffa134d40d72b21e6b35c3bf05fc53f}
+
+
+Definition at line 116 of file Test\-Base.\-cs.
+
+
+\begin{DoxyCode}
+116                                                                       \{
+117             \textcolor{keywordflow}{foreach} (var result \textcolor{keywordflow}{in} \hyperlink{a00154_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}.\hyperlink{a00090_aead84ee50cb113ca45724894290ce9c2}{Run}(nodeName)) \{
+118                 \hyperlink{a00154_a7b525f85a26d7c942e1cbfa5d6453893}{HandleResult} (result);
+119             \}
+120         \}
+\end{DoxyCode}
+\hypertarget{a00122_a6cc57344745b5fb315abdeacdd23b659}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Test\-End\-Of\-Notes\-With\-Options\-Not\-Added@{Test\-End\-Of\-Notes\-With\-Options\-Not\-Added}}
+\index{Test\-End\-Of\-Notes\-With\-Options\-Not\-Added@{Test\-End\-Of\-Notes\-With\-Options\-Not\-Added}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Test\-End\-Of\-Notes\-With\-Options\-Not\-Added}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Language\-Tests.\-Test\-End\-Of\-Notes\-With\-Options\-Not\-Added (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00122_a6cc57344745b5fb315abdeacdd23b659}
+
+
+Definition at line 63 of file Language\-Tests.\-cs.
+
+
+\begin{DoxyCode}
+64         \{
+65             var path = Path.Combine(\hyperlink{a00154_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, \textcolor{stringliteral}{"SkippedOptions.node"});
+66             dialogue.LoadFile(path);
+67 
+68             \textcolor{keywordflow}{foreach} (var result \textcolor{keywordflow}{in} \hyperlink{a00154_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}.\hyperlink{a00090_aead84ee50cb113ca45724894290ce9c2}{Run}())
+69             \{
+70                 Assert.IsNotInstanceOf<\hyperlink{a00136}{Dialogue.OptionSetResult}>(result);
+71             \}
+72 
+73         \}
+\end{DoxyCode}
+\hypertarget{a00122_a1d044fd44e610a35ef09d486eb06ee37}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Test\-Example\-Script@{Test\-Example\-Script}}
+\index{Test\-Example\-Script@{Test\-Example\-Script}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Test\-Example\-Script}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Language\-Tests.\-Test\-Example\-Script (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00122_a1d044fd44e610a35ef09d486eb06ee37}
+
+
+Definition at line 33 of file Language\-Tests.\-cs.
+
+
+\begin{DoxyCode}
+34         \{
+35 
+36             \hyperlink{a00154_ac978fe85db843c51411f5517bdbe0eb8}{errorsCauseFailures} = \textcolor{keyword}{false};
+37             var path = Path.Combine(\hyperlink{a00154_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, \textcolor{stringliteral}{"Example.yarn.txt"});
+38             dialogue.LoadFile(path);
+39             \hyperlink{a00154_abffa134d40d72b21e6b35c3bf05fc53f}{RunStandardTestcase}();
+40         \}
+\end{DoxyCode}
+\hypertarget{a00122_a4da987e2dbc65b35cc6bd07392f71453}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Test\-Merging\-Nodes@{Test\-Merging\-Nodes}}
+\index{Test\-Merging\-Nodes@{Test\-Merging\-Nodes}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Test\-Merging\-Nodes}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Language\-Tests.\-Test\-Merging\-Nodes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00122_a4da987e2dbc65b35cc6bd07392f71453}
+
+
+Definition at line 43 of file Language\-Tests.\-cs.
+
+
+\begin{DoxyCode}
+44         \{
+45             var sallyPath = Path.Combine(\hyperlink{a00154_a39922286f6255e4fd0e433a4fc7521c4}{UnityDemoScriptsPath}, \textcolor{stringliteral}{"Sally.yarn.txt"});
+46             var examplePath = Path.Combine(\hyperlink{a00154_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, \textcolor{stringliteral}{"Example.yarn.txt"});
+47 
+48             dialogue.LoadFile(sallyPath);
+49             dialogue.LoadFile(examplePath);
+50 
+51             \textcolor{comment}{// Loading code with the same contents should throw}
+52             Assert.Throws<InvalidOperationException>(delegate ()
+53             \{
+54                 var path = Path.Combine(\hyperlink{a00154_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, \textcolor{stringliteral}{"Example.yarn.txt"});
+55                 dialogue.LoadFile(path);
+56                 \textcolor{keywordflow}{return};
+57             \});
+58         \}
+\end{DoxyCode}
+\hypertarget{a00122_a1fb5f217de912475860fcde067418f83}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Test\-Sources@{Test\-Sources}}
+\index{Test\-Sources@{Test\-Sources}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Test\-Sources}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Language\-Tests.\-Test\-Sources (
+\begin{DoxyParamCaption}
+\item[{string}]{file}
+\end{DoxyParamCaption}
+)}}\label{a00122_a1fb5f217de912475860fcde067418f83}
+
+
+Definition at line 77 of file Language\-Tests.\-cs.
+
+
+\begin{DoxyCode}
+77                                              \{
+78 
+79             storage.Clear();
+80             \textcolor{keywordtype}{bool} runTest = \textcolor{keyword}{true};
+81 
+82             var scriptFilePath = Path.Combine(\hyperlink{a00154_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, \textcolor{stringliteral}{"TestCases"}, file);
+83 
+84             \textcolor{comment}{// skipping the indentation test when using the ANTLR parser}
+85             \textcolor{comment}{// it can never pass}
+86             \textcolor{keywordflow}{if} (file == \textcolor{stringliteral}{"Indentation.node"})
+87             \{
+88                 runTest = \textcolor{keyword}{false};
+89             \}
+90 
+91             \textcolor{keywordflow}{if} (runTest)
+92             \{
+93                 dialogue.LoadFile(scriptFilePath);
+94 
+95                 \textcolor{comment}{// If this file contains a Start node, run the test case}
+96                 \textcolor{comment}{// (otherwise, we're just testing its parsability, which}
+97                 \textcolor{comment}{// we did in the last line)}
+98                 \textcolor{keywordflow}{if} (\hyperlink{a00154_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}.\hyperlink{a00090_a93bb76a1f9a4058f225ff4cee97483c6}{NodeExists}(\textcolor{stringliteral}{"Start"}))
+99                     \hyperlink{a00154_abffa134d40d72b21e6b35c3bf05fc53f}{RunStandardTestcase}();
+100             \}
+101         \}
+\end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00122_ad887744b1b813fc081be814958742c37}{\index{Yarn\-::\-Line\-Adder@{Yarn\-::\-Line\-Adder}!random@{random}}
-\index{random@{random}!Yarn::LineAdder@{Yarn\-::\-Line\-Adder}}
-\subsubsection[{random}]{\setlength{\rightskip}{0pt plus 5cm}Random Yarn.\-Line\-Adder.\-random = new Random()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00122_ad887744b1b813fc081be814958742c37}
+\hypertarget{a00154_a4cff5de56c4b8a91c76b6eb2d622a795}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!dialogue@{dialogue}}
+\index{dialogue@{dialogue}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn\-Spinner.\-Tests.\-Test\-Base.\-dialogue\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00154_a4cff5de56c4b8a91c76b6eb2d622a795}
 
 
-Definition at line 208 of file Line\-Adder.\-cs.
+Definition at line 24 of file Test\-Base.\-cs.
+
+\hypertarget{a00154_ac978fe85db843c51411f5517bdbe0eb8}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!errors\-Cause\-Failures@{errors\-Cause\-Failures}}
+\index{errors\-Cause\-Failures@{errors\-Cause\-Failures}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{errors\-Cause\-Failures}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn\-Spinner.\-Tests.\-Test\-Base.\-errors\-Cause\-Failures = true\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00154_ac978fe85db843c51411f5517bdbe0eb8}
+
+
+Definition at line 26 of file Test\-Base.\-cs.
+
+\hypertarget{a00154_a23d59ace1516ca72924c6fe3feafd3f7}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!storage@{storage}}
+\index{storage@{storage}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{storage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Variable\-Storage} Yarn\-Spinner.\-Tests.\-Test\-Base.\-storage = new {\bf Memory\-Variable\-Store}()\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00154_a23d59ace1516ca72924c6fe3feafd3f7}
+
+
+Definition at line 23 of file Test\-Base.\-cs.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{a00154_a47f35b8e8123ed9471883d02b8bc9f3e}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!is\-Expecting\-Line@{is\-Expecting\-Line}}
+\index{is\-Expecting\-Line@{is\-Expecting\-Line}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{is\-Expecting\-Line}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn\-Spinner.\-Tests.\-Test\-Base.\-is\-Expecting\-Line\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00154_a47f35b8e8123ed9471883d02b8bc9f3e}
+
+
+Definition at line 174 of file Test\-Base.\-cs.
+
+\hypertarget{a00154_ab1ad614f465a49447da31c4000ec6b3e}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Project\-Root\-Path@{Project\-Root\-Path}}
+\index{Project\-Root\-Path@{Project\-Root\-Path}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Project\-Root\-Path}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn\-Spinner.\-Tests.\-Test\-Base.\-Project\-Root\-Path\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [inherited]}}}\label{a00154_ab1ad614f465a49447da31c4000ec6b3e}
+
+
+Definition at line 30 of file Test\-Base.\-cs.
+
+\hypertarget{a00154_aa9b4d902d61adad7165154a265f69aa4}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Test\-Data\-Path@{Test\-Data\-Path}}
+\index{Test\-Data\-Path@{Test\-Data\-Path}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Test\-Data\-Path}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn\-Spinner.\-Tests.\-Test\-Base.\-Test\-Data\-Path\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [inherited]}}}\label{a00154_aa9b4d902d61adad7165154a265f69aa4}
+
+
+Definition at line 51 of file Test\-Base.\-cs.
+
+\hypertarget{a00154_a39922286f6255e4fd0e433a4fc7521c4}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Unity\-Demo\-Scripts\-Path@{Unity\-Demo\-Scripts\-Path}}
+\index{Unity\-Demo\-Scripts\-Path@{Unity\-Demo\-Scripts\-Path}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Unity\-Demo\-Scripts\-Path}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn\-Spinner.\-Tests.\-Test\-Base.\-Unity\-Demo\-Scripts\-Path\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [inherited]}}}\label{a00154_a39922286f6255e4fd0e433a4fc7521c4}
+
+
+Definition at line 59 of file Test\-Base.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner\-Console/\hyperlink{a00299}{Line\-Adder.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner\-Tests/\hyperlink{a00306}{Language\-Tests.\-cs}\end{DoxyCompactItemize}

@@ -1,162 +1,175 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00100" kind="class" prot="public">
-    <compoundname>Yarn::FileFormatConverter</compoundname>
-      <sectiondef kind="package-static-func">
-      <memberdef kind="function" id="a00100_1aa4db4ccac799c5f047a8b1a9efbe109d" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>int</type>
-        <definition>static int Yarn.FileFormatConverter.ConvertFormat</definition>
-        <argsstring>(ConvertFormatOptions options)</argsstring>
-        <name>ConvertFormat</name>
-        <param>
-          <type><ref refid="a00055" kindref="compound">ConvertFormatOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="10" bodyend="24"/>
-        <references refid="a00172_1a0979de7ea02c8c0375b8220a12e6575e" compoundref="a00300" startline="268">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</references>
-        <references refid="a00100_1a1e6cd39b0c813f21da278367dcff76d2" compoundref="a00298" startline="26" endline="39">Yarn.FileFormatConverter.ConvertToYarn</references>
-        <references refid="a00055_1a052d6f00647c503adc5a79a1ff92cdf4" compoundref="a00300" startline="131">Yarn.ConvertFormatOptions.convertToYarn</references>
-        <referencedby refid="a00172_1a1d71ff2eb190449ea1d42ce86f44489f" compoundref="a00300" startline="240" endline="266">Yarn.YarnSpinnerConsole.Main</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00100_1a85596df924468279b2dc44a9f31d8bad" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
-        <definition>static string Yarn.FileFormatConverter.ConvertNodes</definition>
-        <argsstring>(IEnumerable&lt; Loader.NodeInfo &gt; nodes, NodeFormat format)</argsstring>
-        <name>ConvertNodes</name>
-        <param>
-          <type>IEnumerable&lt; <ref refid="a00131" kindref="compound">Loader.NodeInfo</ref> &gt;</type>
-          <declname>nodes</declname>
-        </param>
-        <param>
-          <type><ref refid="a00048_1ad7ebb46e7309ead8767383a672b3272f" kindref="member">NodeFormat</ref></type>
-          <declname>format</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="41" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="41" bodyend="49"/>
-        <references refid="a00100_1a282f283f02c9b1d3e53d813ec2f35233" compoundref="a00298" startline="51" endline="114">Yarn.FileFormatConverter.ConvertNodesToYarnText</references>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-static-func">
-      <memberdef kind="function" id="a00100_1a1e6cd39b0c813f21da278367dcff76d2" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>int</type>
-        <definition>static int Yarn.FileFormatConverter.ConvertToYarn</definition>
-        <argsstring>(ConvertFormatOptions options)</argsstring>
-        <name>ConvertToYarn</name>
-        <param>
-          <type><ref refid="a00055" kindref="compound">ConvertFormatOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="26" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="26" bodyend="39"/>
-        <references refid="a00100_1aa72838be584177b5592c31d73c0febdb" compoundref="a00298" startline="119" endline="160">Yarn.FileFormatConverter.ConvertNodesInFile</references>
-        <references refid="a00100_1a282f283f02c9b1d3e53d813ec2f35233" compoundref="a00298" startline="51" endline="114">Yarn.FileFormatConverter.ConvertNodesToYarnText</references>
-        <references refid="a00125_1a080b2d6b7553c178007c04297d50e9da" compoundref="a00288" startline="277" endline="293">Yarn.Loader.GetFormatFromFileName</references>
-        <referencedby refid="a00100_1aa4db4ccac799c5f047a8b1a9efbe109d" compoundref="a00298" startline="10" endline="24">Yarn.FileFormatConverter.ConvertFormat</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00100_1a282f283f02c9b1d3e53d813ec2f35233" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
-        <definition>static string Yarn.FileFormatConverter.ConvertNodesToYarnText</definition>
-        <argsstring>(IEnumerable&lt; Loader.NodeInfo &gt; nodes)</argsstring>
-        <name>ConvertNodesToYarnText</name>
-        <param>
-          <type>IEnumerable&lt; <ref refid="a00131" kindref="compound">Loader.NodeInfo</ref> &gt;</type>
-          <declname>nodes</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="51" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="51" bodyend="114"/>
-        <referencedby refid="a00100_1a85596df924468279b2dc44a9f31d8bad" compoundref="a00298" startline="41" endline="49">Yarn.FileFormatConverter.ConvertNodes</referencedby>
-        <referencedby refid="a00100_1a1e6cd39b0c813f21da278367dcff76d2" compoundref="a00298" startline="26" endline="39">Yarn.FileFormatConverter.ConvertToYarn</referencedby>
-      </memberdef>
-      <memberdef kind="function" id="a00100_1aa72838be584177b5592c31d73c0febdb" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+  <compounddef id="a00100" kind="class" prot="package">
+    <compoundname>CsvHelper::ExceptionHelper</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="a00100_1a7415ea84b6d462b9d61ecf2128282837" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>static void Yarn.FileFormatConverter.ConvertNodesInFile</definition>
-        <argsstring>(ConvertFormatOptions options, string file, string fileExtension, ConvertNodesToText convert)</argsstring>
-        <name>ConvertNodesInFile</name>
+        <definition>static void CsvHelper.ExceptionHelper.AddExceptionDataMessage</definition>
+        <argsstring>(Exception exception, ICsvParser parser, Type type, Dictionary&lt; string, List&lt; int &gt;&gt; namedIndexes, int?currentIndex, string[] currentRecord)</argsstring>
+        <name>AddExceptionDataMessage</name>
         <param>
-          <type><ref refid="a00055" kindref="compound">ConvertFormatOptions</ref></type>
-          <declname>options</declname>
+          <type>Exception</type>
+          <declname>exception</declname>
         </param>
         <param>
-          <type>string</type>
-          <declname>file</declname>
+          <type><ref refid="a00110" kindref="compound">ICsvParser</ref></type>
+          <declname>parser</declname>
         </param>
         <param>
-          <type>string</type>
-          <declname>fileExtension</declname>
+          <type>Type</type>
+          <declname>type</declname>
         </param>
         <param>
-          <type><ref refid="a00100_1af9bd5d832fdd2bcbdc626d9f8632e05c" kindref="member">ConvertNodesToText</ref></type>
-          <declname>convert</declname>
+          <type>Dictionary&lt; string, List&lt; int &gt;&gt;</type>
+          <declname>namedIndexes</declname>
+        </param>
+        <param>
+          <type>int?</type>
+          <declname>currentIndex</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>currentRecord</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Adds <ref refid="a00314" kindref="compound">CsvHelper</ref> specific information to Exception.Data. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>exception</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exception to add the info to.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>parser</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parser.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of object that was being created in the <ref refid="a00076" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>namedIndexes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named indexes in the <ref refid="a00076" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current index of the <ref refid="a00076" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentRecord</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current record of the <ref refid="a00076" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="119" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="119" bodyend="160"/>
-        <references refid="a00040_1ada4d83d1756918f362d55f6649b82b17" compoundref="a00300" startline="46">Yarn.BaseOptions.verbose</references>
-        <referencedby refid="a00100_1a1e6cd39b0c813f21da278367dcff76d2" compoundref="a00298" startline="26" endline="39">Yarn.FileFormatConverter.ConvertToYarn</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" line="28" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" bodystart="28" bodyend="46"/>
+        <references refid="a00100_1a11e421dc9f9fdb2b72d060a24471b5be" compoundref="a00223" startline="57" endline="100">CsvHelper.ExceptionHelper.GetErrorMessage</references>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="a00100_1af9bd5d832fdd2bcbdc626d9f8632e05c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>delegate string</type>
-        <definition>delegate string Yarn.FileFormatConverter.ConvertNodesToText</definition>
-        <argsstring>(IEnumerable&lt; Loader.NodeInfo &gt; nodes)</argsstring>
-        <name>ConvertNodesToText</name>
+      <memberdef kind="function" id="a00100_1a11e421dc9f9fdb2b72d060a24471b5be" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string CsvHelper.ExceptionHelper.GetErrorMessage</definition>
+        <argsstring>(ICsvParser parser, Type type, Dictionary&lt; string, List&lt; int &gt;&gt; namedIndexes, int?currentIndex, string[] currentRecord)</argsstring>
+        <name>GetErrorMessage</name>
         <param>
-          <type>IEnumerable&lt; <ref refid="a00131" kindref="compound">Loader.NodeInfo</ref> &gt;</type>
-          <declname>nodes</declname>
+          <type><ref refid="a00110" kindref="compound">ICsvParser</ref></type>
+          <declname>parser</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>Dictionary&lt; string, List&lt; int &gt;&gt;</type>
+          <declname>namedIndexes</declname>
+        </param>
+        <param>
+          <type>int?</type>
+          <declname>currentIndex</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>currentRecord</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Gets <ref refid="a00314" kindref="compound">CsvHelper</ref> information to be added to an exception. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parser</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parser.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of object that was being created in the <ref refid="a00076" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>namedIndexes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named indexes in the <ref refid="a00076" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current index of the <ref refid="a00076" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentRecord</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current record of the <ref refid="a00076" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The <ref refid="a00314" kindref="compound">CsvHelper</ref> information.</para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="117" column="1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" line="57" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" bodystart="57" bodyend="100"/>
+        <referencedby refid="a00100_1a7415ea84b6d462b9d61ecf2128282837" compoundref="a00223" startline="28" endline="46">CsvHelper.ExceptionHelper.AddExceptionDataMessage</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Common exception tasks. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="1203">
-        <label>Yarn.FileFormatConverter</label>
+      <node id="1195">
+        <label>CsvHelper.ExceptionHelper</label>
         <link refid="a00100"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="8" bodyend="163"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" line="18" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" bodystart="17" bodyend="101"/>
     <listofallmembers>
-      <member refid="a00100_1aa4db4ccac799c5f047a8b1a9efbe109d" prot="package" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertFormat</name></member>
-      <member refid="a00100_1a85596df924468279b2dc44a9f31d8bad" prot="package" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodes</name></member>
-      <member refid="a00100_1aa72838be584177b5592c31d73c0febdb" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodesInFile</name></member>
-      <member refid="a00100_1af9bd5d832fdd2bcbdc626d9f8632e05c" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodesToText</name></member>
-      <member refid="a00100_1a282f283f02c9b1d3e53d813ec2f35233" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodesToYarnText</name></member>
-      <member refid="a00100_1a1e6cd39b0c813f21da278367dcff76d2" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertToYarn</name></member>
+      <member refid="a00100_1a7415ea84b6d462b9d61ecf2128282837" prot="public" virt="non-virtual"><scope>CsvHelper::ExceptionHelper</scope><name>AddExceptionDataMessage</name></member>
+      <member refid="a00100_1a11e421dc9f9fdb2b72d060a24471b5be" prot="public" virt="non-virtual"><scope>CsvHelper::ExceptionHelper</scope><name>GetErrorMessage</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs Source File</title>
+<title>YarnSpinner: ROADMAP.md Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('a00271_source.html','');});
+$(document).ready(function(){initNavTree('a00271.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -105,155 +105,193 @@ $(document).ready(function(){initNavTree('a00271_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">YarnSpinnerTests.cs</div>  </div>
+<div class="title">ROADMAP.md</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00271.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">using</span> UnityEngine;</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using</span> UnityEditor;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">using</span> NUnit.Framework;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="a00153.html">    6</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00153.html">TestDialogueUIBehaviour</a> : Yarn.Unity.DialogueUIBehaviour {</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="a00153.html#ab0f7b55e776ae494a651c845b496916c">    8</a></span>&#160;    <span class="keyword">private</span> Queue&lt;string&gt; <a class="code" href="a00153.html#ab0f7b55e776ae494a651c845b496916c">expectedLines</a> = <span class="keyword">new</span> Queue&lt;string&gt;();</div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="a00153.html#af51a4e0d00f92dcc991f6c1ac62ac8c3">    9</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00153.html#af51a4e0d00f92dcc991f6c1ac62ac8c3">ExpectLine</a>(<span class="keywordtype">string</span> line) {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        expectedLines.Enqueue(line);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    }</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="a00153.html#a94e4308d412945c977b2deb63f139009">   13</a></span>&#160;    <span class="keyword">private</span> Queue&lt;string&gt; <a class="code" href="a00153.html#a94e4308d412945c977b2deb63f139009">expectedOptions</a> = <span class="keyword">new</span> Queue&lt;string&gt;();</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="a00153.html#adc743ade599769e968fecea525add7b3">   14</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00153.html#adc743ade599769e968fecea525add7b3">SelectOption</a>(<span class="keywordtype">string</span> option) {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        expectedOptions.Enqueue(option);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    }</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">// Delegates that allow this behaviour to notify the test of events</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">public</span> delegate <span class="keywordtype">void</span> <a class="code" href="a00153.html#ac6c30953edbd1cd4181e2a3854a1642b">LineHandler</a>(Yarn.Line line);</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00153.html#af87332992e1420a8b2047822fab2b03c">   20</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="a00153.html#ac6c30953edbd1cd4181e2a3854a1642b">LineHandler</a> <a class="code" href="a00153.html#af87332992e1420a8b2047822fab2b03c">lineHandler</a>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">public</span> delegate <span class="keywordtype">void</span> <a class="code" href="a00153.html#a7fe2e6bc2d5471d9af14a9d35de821bd">OptionsHandler</a>(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser);</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="a00153.html#adcbea72eb6f5ab305b3757789919f961">   23</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="a00153.html#a7fe2e6bc2d5471d9af14a9d35de821bd">OptionsHandler</a> <a class="code" href="a00153.html#adcbea72eb6f5ab305b3757789919f961">optionsHandler</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">public</span> delegate <span class="keywordtype">void</span> <a class="code" href="a00153.html#afc93c5cf370b31eceab3671c9eca0d94">CommandHandler</a> (Yarn.Command command);</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="a00153.html#a5c2003ece8aeab171db3a749bef5f770">   26</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="a00153.html#afc93c5cf370b31eceab3671c9eca0d94">CommandHandler</a> <a class="code" href="a00153.html#a5c2003ece8aeab171db3a749bef5f770">commandHandler</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<a href="a00271.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Yarn Spinner Road Map</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;This is the current road map we are considering <span class="keywordflow">for</span> the future of Yarn Spinner.</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;Nothing in here is fixed and reflects what we believe should be the focus of development.</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;The idea of <span class="keyword">this</span> document is to both give us something to help plan our development but to also give you all a space to see what we are doing, and to give us input on what you consider important.</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;Let us know what you think about <span class="keyword">this</span> road map either in the [Slack](http:<span class="comment">//lab.to/narrativegamedev) or [here on the GitHub issue we created about the road map](https://github.com/YarnSpinnerTool/YarnSpinner/issues/183).</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;**This documents was last edited 02/10/2019**</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor"># Releases</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;Here are the main releases we<span class="stringliteral">&#39;re currently planning.</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="stringliteral">## V1.0</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="stringliteral">### Goal</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="stringliteral">To make it easier for projects to spin up and remain compatible with core Yarn Spinner, and to smooth out the issues of getting started using and updating Yarn Spinner.</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="stringliteral">### Motivation</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="stringliteral">Yarn Spinner has been in a lot of flux, more or less starting as a spin-off of Night In The Woods. A lot of it was heavily tied to the needs and deadlines of that specific game.</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="stringliteral">We&#39;</span>ve been working to make it more <span class="keyword">generic</span> <span class="keywordflow">for</span> _any_ narrative game, but there is still a lot of connections to the requirements of Night In The Woods.</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;As such, there is a lot of wonky code and half-finished concepts which users currently need to deal with. We want that to change so you no longer have to deal with <span class="keyword">this</span> when it comes time to update or <span class="keyword">get</span> started with Yarn Spinner.</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;### Features</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="a00153.html#ae274e39b640908d04aacc6cf6624d9da">   29</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">override</span> System.Collections.IEnumerator <a class="code" href="a00153.html#ae274e39b640908d04aacc6cf6624d9da">RunLine</a> (Yarn.Line line)</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    {</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="a00153.html#af87332992e1420a8b2047822fab2b03c">lineHandler</a> != null)</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <a class="code" href="a00153.html#af87332992e1420a8b2047822fab2b03c">lineHandler</a>(line);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="a00153.html#ab0f7b55e776ae494a651c845b496916c">expectedLines</a>.Count &gt; 0) {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            Assert.AreEqual(expectedLines.Dequeue(), line.text);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        }</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        yield <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="a00153.html#ad2ac83f91814d8666482bf8b6f3721d1">   40</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">override</span> System.Collections.IEnumerator <a class="code" href="a00153.html#ad2ac83f91814d8666482bf8b6f3721d1">RunOptions</a> (Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser)</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="a00153.html#adcbea72eb6f5ab305b3757789919f961">optionsHandler</a> != null)</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <a class="code" href="a00153.html#adcbea72eb6f5ab305b3757789919f961">optionsHandler</a>(optionsCollection, optionChooser);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="a00153.html#a94e4308d412945c977b2deb63f139009">expectedOptions</a>.Count &gt; 0) {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            var selection = expectedOptions.Dequeue();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            var index = optionsCollection.options.IndexOf(selection);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            Assert.AreNotEqual(index, -1, <span class="stringliteral">&quot;Failed to find option \&quot;{0}\&quot;&quot;</span>, selection);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            Assert.Less(index, optionsCollection.options.Count);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            optionChooser(index);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        yield <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="a00153.html#a01e67009071f9ee5ac5ef3c970cd3695">   58</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">override</span> System.Collections.IEnumerator <a class="code" href="a00153.html#a01e67009071f9ee5ac5ef3c970cd3695">RunCommand</a> (Yarn.Command command)</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="a00153.html#a5c2003ece8aeab171db3a749bef5f770">commandHandler</a> != null)</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <a class="code" href="a00153.html#a5c2003ece8aeab171db3a749bef5f770">commandHandler</a>(command);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        yield <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="a00175.html">   66</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00175.html">YarnSpinnerTests</a> {</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="a00175.html#a9791840e0b5987e5bd09bce83ce2d8d9">   68</a></span>&#160;    <a class="code" href="a00089.html">Yarn.Unity.DialogueRunner</a> <a class="code" href="a00175.html#a9791840e0b5987e5bd09bce83ce2d8d9">dialogueRunner</a>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="a00175.html#a27dbc8c3f7f23ce142d1d5d1fd3df8bc">   69</a></span>&#160;    <a class="code" href="a00168.html">Yarn.Unity.VariableStorageBehaviour</a> <a class="code" href="a00175.html#a27dbc8c3f7f23ce142d1d5d1fd3df8bc">variableStorage</a>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="a00175.html#aace025d2a9a703154a1989c47b0a0737">   70</a></span>&#160;    <a class="code" href="a00153.html">TestDialogueUIBehaviour</a> <a class="code" href="a00175.html#aace025d2a9a703154a1989c47b0a0737">dialogueUI</a>;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    [<a class="code" href="a00175.html#ad6e4c6a92bb5ed6187949264df6aaf1b">SetUp</a>]</div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="a00175.html#ad6e4c6a92bb5ed6187949264df6aaf1b">   73</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00175.html#ad6e4c6a92bb5ed6187949264df6aaf1b">SetUp</a>()</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="comment">//Arrange</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="comment">// Create the dialogue runner</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        var dialogueHost = <span class="keyword">new</span> GameObject();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="a00175.html#a9791840e0b5987e5bd09bce83ce2d8d9">dialogueRunner</a> = dialogueHost.AddComponent&lt;<a class="code" href="a00089.html">Yarn.Unity.DialogueRunner</a>&gt;();</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="comment">// Create the variable storage</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">//variableStorage = dialogueHost.AddComponent&lt;ExampleVariableStorage&gt;();</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;- Formal Yarn specification created and frozen</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;- Bytecode format freeze</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;- Compiler will generate bytecode by <span class="keywordflow">default</span> instead of parsing the dialogue each time</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;- Default to <span class="keyword">using</span> `.yarn` as the file extension in preference to `.yarn.text`</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;- VM will load and execute compiled bytecode</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;- Unity importer <span class="keywordflow">for</span> `.yarn` files that invokes compiler and generates bytecode assets (<span class="keyword">using</span> a `.yarnc` file extension).</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;- Implementation of a barebones Unity prefab (with a Canvas) that can be added into a scene to <span class="stringliteral">&quot;just work&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;- Rework examples to be designed to be used as the basis of your own game</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;- Modify example dialogue runner and variable storage to be the base form, instead of <span class="stringliteral">&quot;just&quot;</span> examples</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;- Syntax highlighter extension <span class="keywordflow">for</span> Visual Studio Code</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;- New documentation site</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">## V1.1</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">### Goal</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;To add in the two most requested features: <span class="keywordtype">string</span> interpolation, and localisation! <a class="code" href="a00050.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a> interpolation means being able to write lines something like `Hello, ${playerName}`, and have the line appear as <span class="stringliteral">&quot;Hello, Sally&quot;</span>; localisation means being able to translate your game<span class="stringliteral">&#39;s content into multiple languages, keeping in mind the different rules that languages have regarding things like how words are pluralised, how grammatical gender works, and more.</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="stringliteral">### Motivation</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="stringliteral">By far the most requested feature, string interpolation has been put off due to concerns about implementation, in a nutshell to do &quot;proper&quot; interpolation is far from trivial. We&#39;</span>re also very aware of the requirements of people who are releasing their games on storefronts that require localisation.</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;This release will have no other features beyond those necessary to support interpolation and localisation features, as we want to ensure <span class="keyword">this</span> is reliable. We are also concerned as to how many bugs <span class="keyword">this</span> may cause in existing games, so we<span class="stringliteral">&#39;re moving carefully here.</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="stringliteral">### Features</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="stringliteral">- String interpolation</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="stringliteral">- Localisation support</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="stringliteral">- Updated examples</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="stringliteral">- Updated documentation</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="stringliteral">## V1.2</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="stringliteral">### Goal</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="stringliteral">To add in initial support for Unreal.</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="stringliteral">### Motivation</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="stringliteral">Unreal is a large portion of the games community, and we&#39;</span>ve been asked multiple times by different people <span class="keywordflow">if</span> Unreal is supported. We want to be able to say yes to them.</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;This is not to say it will be as featureful as the Unity version <span class="keywordflow">for</span> V1.2, although the <span class="keywordtype">long</span> term goal is <span class="keywordflow">for</span> feature parity.</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;### Features</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;- Create an Unreal VM capable of reading compiled Yarn bytecode</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;- Create Unreal Dialouge Runners and <a class="code" href="a00050.html#a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9">Variable</a> Storage</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;- Create examples showing how to use Yarn Spinner in Unreal.</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;- <a class="code" href="a00050.html#a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9">Add</a> documentation on <span class="keyword">using</span> Yarn Spinner in Unreal.</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;## V1.3</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;### Goal</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;To create resources <span class="keywordflow">for</span> developers to <span class="keyword">get</span> more out of <span class="keyword">using</span> Yarn Spinner.</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="comment">// Load the test script</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        var text = AssetDatabase.LoadAssetAtPath&lt;TextAsset&gt;(<span class="stringliteral">&quot;Assets/Yarn Spinner/Examples/Demo Assets/Space.json&quot;</span>);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        dialogueRunner.AddScript(text);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="a00175.html#aace025d2a9a703154a1989c47b0a0737">dialogueUI</a> = dialogueHost.AddComponent&lt;<a class="code" href="a00153.html">TestDialogueUIBehaviour</a>&gt;();</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        dialogueRunner.dialogueUI = <a class="code" href="a00175.html#aace025d2a9a703154a1989c47b0a0737">dialogueUI</a>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;### Motivation</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;At <span class="keyword">this</span> point, Yarn Spinner should be at a state where it is stable to use and easy to update.</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;The intent is to then make it more convenient <span class="keywordflow">for</span> developers to integrate, so more examples and ready to go elements.</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;### Features</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    [Test]</div>
-<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="a00175.html#a60ab8ed8dc30ec30e74baa1916d47324">   94</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00175.html#a60ab8ed8dc30ec30e74baa1916d47324">EditorTest</a>()</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    {</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        dialogueUI.ExpectLine(<span class="stringliteral">&quot;Player: Hey, Sally.&quot;</span>);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        dialogueUI.ExpectLine(<span class="stringliteral">&quot;Sally: Oh! Hi.&quot;</span>);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        dialogueUI.ExpectLine(<span class="stringliteral">&quot;Sally: You snuck up on me.&quot;</span>);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        dialogueUI.ExpectLine(<span class="stringliteral">&quot;Sally: Don&#39;t do that.&quot;</span>);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        dialogueUI.SelectOption(<span class="stringliteral">&quot;Anything exciting happen on your watch?&quot;</span>);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;- Modular prefab UI elements designed to work out of the both with Yarn Spinner</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;- More examples and example projects demonstrating <span class="keyword">using</span> Yarn in different forms</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;- <a class="code" href="a00050.html#a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9">Add</a> in parsing `.yarn` files into Unreal</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">## V1.4</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">### Goal</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;Make Yarn more accessible from your existing development tools.</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;### Motivation</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        dialogueRunner.StartDialogue(<span class="stringliteral">&quot;Sally&quot;</span>);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="comment">// Talking to Sally a second time should result in a different dialogue</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;While we expect the [Yarn editor](https:<span class="comment">//github.com/YarnSpinnerTool/YarnEditor) will remain the main way you will create and modify Yarn files, there are always more workflows that need support.</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;This release will be designed to <span class="keywordflow">try</span> and help make that easier.</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;### Features</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="comment">//Act</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="comment">//Try to rename the GameObject</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;- Merge all command line tool functionality into the Unity and Unreal core</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;- Create a [language server protocol](https:<span class="comment">//microsoft.github.io/language-server-protocol/) server for Yarn</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;- <a class="code" href="a00050.html#a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9">Add</a> diagnostics and debugging features to a VSCode extension</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;- Create a WebAssembly compiler <span class="keywordflow">for</span> Yarn, allowing browsers to run the exact same code to compile Yarn as is used in Unity and Unreal</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="comment">//Assert</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="comment">//The object has a new name</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="comment">//Assert.AreEqual(newGameObjectName, gameObject.name);</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
-<div class="ttc" id="a00168_html"><div class="ttname"><a href="a00168.html">Yarn.Unity.VariableStorageBehaviour</a></div><div class="ttdoc">Scripts that can act as a variable storage should subclass this. </div><div class="ttdef"><b>Definition:</b> <a href="a00269_source.html#l00483">DialogueRunner.cs:483</a></div></div>
-<div class="ttc" id="a00153_html_ac6c30953edbd1cd4181e2a3854a1642b"><div class="ttname"><a href="a00153.html#ac6c30953edbd1cd4181e2a3854a1642b">TestDialogueUIBehaviour.LineHandler</a></div><div class="ttdeci">delegate void LineHandler(Yarn.Line line)</div></div>
-<div class="ttc" id="a00153_html_af51a4e0d00f92dcc991f6c1ac62ac8c3"><div class="ttname"><a href="a00153.html#af51a4e0d00f92dcc991f6c1ac62ac8c3">TestDialogueUIBehaviour.ExpectLine</a></div><div class="ttdeci">void ExpectLine(string line)</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00009">YarnSpinnerTests.cs:9</a></div></div>
-<div class="ttc" id="a00153_html_adc743ade599769e968fecea525add7b3"><div class="ttname"><a href="a00153.html#adc743ade599769e968fecea525add7b3">TestDialogueUIBehaviour.SelectOption</a></div><div class="ttdeci">void SelectOption(string option)</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00014">YarnSpinnerTests.cs:14</a></div></div>
-<div class="ttc" id="a00153_html_adcbea72eb6f5ab305b3757789919f961"><div class="ttname"><a href="a00153.html#adcbea72eb6f5ab305b3757789919f961">TestDialogueUIBehaviour.optionsHandler</a></div><div class="ttdeci">OptionsHandler optionsHandler</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00023">YarnSpinnerTests.cs:23</a></div></div>
-<div class="ttc" id="a00153_html_a7fe2e6bc2d5471d9af14a9d35de821bd"><div class="ttname"><a href="a00153.html#a7fe2e6bc2d5471d9af14a9d35de821bd">TestDialogueUIBehaviour.OptionsHandler</a></div><div class="ttdeci">delegate void OptionsHandler(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser)</div></div>
-<div class="ttc" id="a00153_html_a5c2003ece8aeab171db3a749bef5f770"><div class="ttname"><a href="a00153.html#a5c2003ece8aeab171db3a749bef5f770">TestDialogueUIBehaviour.commandHandler</a></div><div class="ttdeci">CommandHandler commandHandler</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00026">YarnSpinnerTests.cs:26</a></div></div>
-<div class="ttc" id="a00153_html_afc93c5cf370b31eceab3671c9eca0d94"><div class="ttname"><a href="a00153.html#afc93c5cf370b31eceab3671c9eca0d94">TestDialogueUIBehaviour.CommandHandler</a></div><div class="ttdeci">delegate void CommandHandler(Yarn.Command command)</div></div>
-<div class="ttc" id="a00153_html_af87332992e1420a8b2047822fab2b03c"><div class="ttname"><a href="a00153.html#af87332992e1420a8b2047822fab2b03c">TestDialogueUIBehaviour.lineHandler</a></div><div class="ttdeci">LineHandler lineHandler</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00020">YarnSpinnerTests.cs:20</a></div></div>
-<div class="ttc" id="a00153_html_a01e67009071f9ee5ac5ef3c970cd3695"><div class="ttname"><a href="a00153.html#a01e67009071f9ee5ac5ef3c970cd3695">TestDialogueUIBehaviour.RunCommand</a></div><div class="ttdeci">override System.Collections.IEnumerator RunCommand(Yarn.Command command)</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00058">YarnSpinnerTests.cs:58</a></div></div>
-<div class="ttc" id="a00175_html"><div class="ttname"><a href="a00175.html">YarnSpinnerTests</a></div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00066">YarnSpinnerTests.cs:66</a></div></div>
-<div class="ttc" id="a00153_html_ae274e39b640908d04aacc6cf6624d9da"><div class="ttname"><a href="a00153.html#ae274e39b640908d04aacc6cf6624d9da">TestDialogueUIBehaviour.RunLine</a></div><div class="ttdeci">override System.Collections.IEnumerator RunLine(Yarn.Line line)</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00029">YarnSpinnerTests.cs:29</a></div></div>
-<div class="ttc" id="a00175_html_a60ab8ed8dc30ec30e74baa1916d47324"><div class="ttname"><a href="a00175.html#a60ab8ed8dc30ec30e74baa1916d47324">YarnSpinnerTests.EditorTest</a></div><div class="ttdeci">void EditorTest()</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00094">YarnSpinnerTests.cs:94</a></div></div>
-<div class="ttc" id="a00175_html_a9791840e0b5987e5bd09bce83ce2d8d9"><div class="ttname"><a href="a00175.html#a9791840e0b5987e5bd09bce83ce2d8d9">YarnSpinnerTests.dialogueRunner</a></div><div class="ttdeci">Yarn.Unity.DialogueRunner dialogueRunner</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00068">YarnSpinnerTests.cs:68</a></div></div>
-<div class="ttc" id="a00153_html_ad2ac83f91814d8666482bf8b6f3721d1"><div class="ttname"><a href="a00153.html#ad2ac83f91814d8666482bf8b6f3721d1">TestDialogueUIBehaviour.RunOptions</a></div><div class="ttdeci">override System.Collections.IEnumerator RunOptions(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser)</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00040">YarnSpinnerTests.cs:40</a></div></div>
-<div class="ttc" id="a00153_html_a94e4308d412945c977b2deb63f139009"><div class="ttname"><a href="a00153.html#a94e4308d412945c977b2deb63f139009">TestDialogueUIBehaviour.expectedOptions</a></div><div class="ttdeci">Queue&lt; string &gt; expectedOptions</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00013">YarnSpinnerTests.cs:13</a></div></div>
-<div class="ttc" id="a00175_html_a27dbc8c3f7f23ce142d1d5d1fd3df8bc"><div class="ttname"><a href="a00175.html#a27dbc8c3f7f23ce142d1d5d1fd3df8bc">YarnSpinnerTests.variableStorage</a></div><div class="ttdeci">Yarn.Unity.VariableStorageBehaviour variableStorage</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00069">YarnSpinnerTests.cs:69</a></div></div>
-<div class="ttc" id="a00175_html_ad6e4c6a92bb5ed6187949264df6aaf1b"><div class="ttname"><a href="a00175.html#ad6e4c6a92bb5ed6187949264df6aaf1b">YarnSpinnerTests.SetUp</a></div><div class="ttdeci">void SetUp()</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00073">YarnSpinnerTests.cs:73</a></div></div>
-<div class="ttc" id="a00089_html"><div class="ttname"><a href="a00089.html">Yarn.Unity.DialogueRunner</a></div><div class="ttdoc">DialogueRunners act as the interface between your game and YarnSpinner. </div><div class="ttdef"><b>Definition:</b> <a href="a00269_source.html#l00045">DialogueRunner.cs:45</a></div></div>
-<div class="ttc" id="a00175_html_aace025d2a9a703154a1989c47b0a0737"><div class="ttname"><a href="a00175.html#aace025d2a9a703154a1989c47b0a0737">YarnSpinnerTests.dialogueUI</a></div><div class="ttdeci">TestDialogueUIBehaviour dialogueUI</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00070">YarnSpinnerTests.cs:70</a></div></div>
-<div class="ttc" id="a00153_html"><div class="ttname"><a href="a00153.html">TestDialogueUIBehaviour</a></div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00006">YarnSpinnerTests.cs:6</a></div></div>
-<div class="ttc" id="a00153_html_ab0f7b55e776ae494a651c845b496916c"><div class="ttname"><a href="a00153.html#ab0f7b55e776ae494a651c845b496916c">TestDialogueUIBehaviour.expectedLines</a></div><div class="ttdeci">Queue&lt; string &gt; expectedLines</div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00008">YarnSpinnerTests.cs:8</a></div></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">## V1.5</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">### Goal</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;To put Yarn Spinner in a place where it will be capable of being used more easily and in multiple places.</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;### Motivation</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;We want Yarn Spinner to be easy to implement, use, and port to as many places as possible.</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;We also want to start adding in support <span class="keywordflow">for</span> any additional features that are community requested.</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;### Features</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;- Porting guide <span class="keywordflow">for</span> any platform, engine, and language</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;- Attributed <span class="keywordtype">string</span> support (such as `[b]<span class="keyword">this</span> is bold text[/b]`)</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor"># FAQ</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;*Hang on you just posted <span class="keyword">this</span>, how are these frequently asked?*</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;Ok they aren<span class="stringliteral">&#39;t, but I have tried to preempt some likely questions.</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="stringliteral">*How can I contact you privately about this?*</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="stringliteral">There are a few ways you can reach the development team directly:</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="stringliteral">* **Twitter**:</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="stringliteral">* * [@YarnSpinnerTool](https://twitter.com/YarnSpinnerTool)</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="stringliteral">* * [@desplesda](https://twitter.com/desplesda)</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="stringliteral">* * [@The_McJones](https://twitter.com/The_McJones)</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="stringliteral">* **Email**:</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="stringliteral">* * yarnspinner@secretlab.com.au</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="stringliteral">*Why are there no dates attached to the releases?*</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="stringliteral">Yarn Spinner is a community project and we (as in @desplesda and @McJones) as the main devs work on it in our free time or when it aligns with work.</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="stringliteral">Any Yarn Spinner work has to fit around our own work and as such would be the first candidates to be dropped if we need more time for work or our own sanity.</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="stringliteral">We don&#39;</span>t want to put down deadlines that, at least at <span class="keyword">this</span> stage, would be known to be arbitrary.</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;*I think Feature X is the most important and you<span class="stringliteral">&#39;ve not got it listed, what gives?*</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="stringliteral">This is what we think is important, but we want to know what **you** think is important, so either let us know in the Slack or on the [issue we opened about the road map](https://github.com/YarnSpinnerTool/YarnSpinner/issues/183).</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="stringliteral">We want to build Yarn Spinner into something helpful for you as well as us.</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="stringliteral">*I think Feature Y is the most important but you&#39;</span>ve got it way down the bottom of the road map, what gives*</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;We<span class="stringliteral">&#39;ve tried to group the road map releases into features and changes in a manner that we think makes sense, but we want your feedback on this stuff, so let us know.</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="stringliteral">*You&#39;</span>ve mentioned <span class="keyword">this</span> Slack now a few times, how <span class="keywordflow">do</span> I <span class="keyword">get</span> in?*</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;You can join the Narrative Game Dev slack [here](http:<span class="comment">//lab.to/narrativegamedev). We hope to see you there!</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;*What about bug fixes? I still have a bug you<span class="stringliteral">&#39;ve not fixed yet!*</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="stringliteral">Throughout all of the releases the intent is to try and keep the bugs to a minimum.</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="stringliteral">Some of these changes are intentionally made to clean up some of the cruft we&#39;</span>ve accumulated that make bug fixes hard.</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;*Why does the road map <span class="keyword">get</span> less detailed the longer it goes on?*</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;Some of these changes we can see exactly how they will work and integrate, others will need to change as we <span class="keyword">get</span> closer.</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;Later releases are designed to have much larger broad strokes of features instead of specifics like in V1.0.</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;As a release comes out we can take a look at the road map again, work out what features and needs should go into the next release and update the road map appropriately.</div>
+<div class="ttc" id="a00050_html_a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9"><div class="ttname"><a href="a00050.html#a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9">Yarn.Variable</a></div></div>
+<div class="ttc" id="a00050_html_a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9"><div class="ttname"><a href="a00050.html#a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9">Yarn.Add</a></div></div>
+<div class="ttc" id="a00050_html_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98"><div class="ttname"><a href="a00050.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">Yarn.String</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_3d328b3dca154a477d99beb656992be2.html">Unity</a></li><li class="navelem"><a class="el" href="dir_3b33dffaa21a2ac6f7978a949ffd4e41.html">Assets</a></li><li class="navelem"><a class="el" href="dir_534ffb376c3707ccb35d3c2c883b31fc.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="dir_0cee4ee6e70061622c5e671fb48a3abe.html">Code</a></li><li class="navelem"><a class="el" href="dir_c5cf8f143880c36815d9a9500b3a0ab7.html">Editor</a></li><li class="navelem"><a class="el" href="a00271.html">YarnSpinnerTests.cs</a></li>
-    <li class="footer">Generated on Wed Aug 28 2019 22:42:48 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00271.html">ROADMAP.md</a></li>
+    <li class="footer">Generated on Wed Oct 23 2019 00:35:55 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

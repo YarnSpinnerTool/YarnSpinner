@@ -1,5 +1,0 @@
-<map id="CsvHelper.CsvReader.TryGetField&lt; T &gt;" name="CsvHelper.CsvReader.TryGetField&lt; T &gt;">
-<area shape="rect" id="node2" href="$a00074.html#a6fa45a46ed1322dc1872ca2321b5edbc" title="Checks if the instance has been disposed of. " alt="" coords="259,5,455,46"/>
-<area shape="rect" id="node3" href="$a00074.html#a2d9249171ed1568e45d152766d364c31" title="Checks if the reader has been read yet. " alt="" coords="259,70,455,111"/>
-<area shape="rect" id="node4" href="$a00074.html#a7e507d40e35fde7bf23e208be7be0884" title="Gets the index of the field at name if found. " alt="" coords="254,135,461,177"/>
-</map>

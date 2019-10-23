@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs Source File</title>
+<title>YarnSpinner: Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,37 +105,77 @@ $(document).ready(function(){initNavTree('a00275_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">MobileOnly.cs</div>  </div>
+<div class="title">CameraFollow.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00275.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">using</span> UnityEngine;</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using</span> System.Collections;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*** used to disable the mobile controls when running outside of a phone or WebGL platform.</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="a00129.html">    7</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00129.html">MobileOnly</a> : MonoBehaviour {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="comment">// Use this for initialization</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="a00129.html#acfb1b3a9c8f62b30300331fb84752022">   10</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="a00129.html#acfb1b3a9c8f62b30300331fb84752022">Awake</a> () {</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordflow">if</span> (Application.isMobilePlatform || Application.platform == RuntimePlatform.WebGLPlayer ) {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <span class="comment">// Hang around</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            Destroy(gameObject);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        }</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    }</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
-<div class="ttc" id="a00129_html_acfb1b3a9c8f62b30300331fb84752022"><div class="ttname"><a href="a00129.html#acfb1b3a9c8f62b30300331fb84752022">MobileOnly.Awake</a></div><div class="ttdeci">void Awake()</div><div class="ttdef"><b>Definition:</b> <a href="a00275_source.html#l00010">MobileOnly.cs:10</a></div></div>
-<div class="ttc" id="a00129_html"><div class="ttname"><a href="a00129.html">MobileOnly</a></div><div class="ttdoc">Removes an object from the scene when the game is running on a non-mobile platform. </div><div class="ttdef"><b>Definition:</b> <a href="a00275_source.html#l00007">MobileOnly.cs:7</a></div></div>
+<a href="a00275.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">The MIT License (MIT)</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">in the Software without restriction, including without limitation the rights</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">copies of the Software, and to permit persons to whom the Software is</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">furnished to do so, subject to the following conditions:</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">The above copyright notice and this permission notice shall be included in all</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">copies or substantial portions of the Software.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">SOFTWARE.</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">using</span> UnityEngine;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">using</span> System.Collections;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="a00346.html">   30</a></span>&#160;<span class="keyword">namespace </span>Yarn.Unity.Example {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="a00047.html">   37</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00047.html">CameraFollow</a> : MonoBehaviour {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="a00047.html#aa5d6958fb14a14ebb74e21c372fcca8b">   40</a></span>&#160;        <span class="keyword">public</span> Transform <a class="code" href="a00047.html#aa5d6958fb14a14ebb74e21c372fcca8b">target</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="a00047.html#a08c6f6c0ea423c21af99e4b5467d3c9b">   43</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">float</span> minPosition = -5.3f;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="a00047.html#abb0154dcbc2a7d43795beacd61a56de4">   46</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">float</span> maxPosition = 5.3f;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="a00047.html#a3d4f2efe9c2cee8c7ff797cac03f27ec">   49</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">float</span> moveSpeed = 1.0f;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">// Update is called once per frame</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="a00047.html#a592ddbf8e493bde0a6536c0234869217">   52</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="a00047.html#a592ddbf8e493bde0a6536c0234869217">Update</a> () {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordflow">if</span> (target == null) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            var newPosition = Vector3.Lerp(transform.position, target.position, moveSpeed * Time.deltaTime);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            newPosition.y = transform.position.y;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            newPosition.z = transform.position.z;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            transform.position = newPosition;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="ttc" id="a00047_html_aa5d6958fb14a14ebb74e21c372fcca8b"><div class="ttname"><a href="a00047.html#aa5d6958fb14a14ebb74e21c372fcca8b">Yarn.Unity.Example.CameraFollow.target</a></div><div class="ttdeci">Transform target</div><div class="ttdoc">Target of the camera. </div><div class="ttdef"><b>Definition:</b> <a href="a00275_source.html#l00040">CameraFollow.cs:40</a></div></div>
+<div class="ttc" id="a00047_html"><div class="ttname"><a href="a00047.html">Yarn.Unity.Example.CameraFollow</a></div><div class="ttdoc">Control the position of the camera and its behaviour. </div><div class="ttdef"><b>Definition:</b> <a href="a00275_source.html#l00037">CameraFollow.cs:37</a></div></div>
+<div class="ttc" id="a00047_html_a592ddbf8e493bde0a6536c0234869217"><div class="ttname"><a href="a00047.html#a592ddbf8e493bde0a6536c0234869217">Yarn.Unity.Example.CameraFollow.Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition:</b> <a href="a00275_source.html#l00052">CameraFollow.cs:52</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_3d328b3dca154a477d99beb656992be2.html">Unity</a></li><li class="navelem"><a class="el" href="dir_3b33dffaa21a2ac6f7978a949ffd4e41.html">Assets</a></li><li class="navelem"><a class="el" href="dir_534ffb376c3707ccb35d3c2c883b31fc.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="dir_cb74ec5eb9eec574588e588dd5bf23e1.html">Examples</a></li><li class="navelem"><a class="el" href="dir_a23f776b0598015baa200eafeed2b13c.html">DemoScripts</a></li><li class="navelem"><a class="el" href="a00275.html">MobileOnly.cs</a></li>
-    <li class="footer">Generated on Wed Aug 28 2019 22:42:48 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_3d328b3dca154a477d99beb656992be2.html">Unity</a></li><li class="navelem"><a class="el" href="dir_3b33dffaa21a2ac6f7978a949ffd4e41.html">Assets</a></li><li class="navelem"><a class="el" href="dir_534ffb376c3707ccb35d3c2c883b31fc.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="dir_cb74ec5eb9eec574588e588dd5bf23e1.html">Examples</a></li><li class="navelem"><a class="el" href="dir_a23f776b0598015baa200eafeed2b13c.html">DemoScripts</a></li><li class="navelem"><a class="el" href="a00275.html">CameraFollow.cs</a></li>
+    <li class="footer">Generated on Wed Oct 23 2019 00:35:55 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

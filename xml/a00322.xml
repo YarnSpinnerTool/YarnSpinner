@@ -1,86 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00322" kind="namespace">
-    <compoundname>std</compoundname>
-    <innerclass refid="a00734" prot="public">std::allocator</innerclass>
-    <innerclass refid="a00735" prot="public">std::array</innerclass>
-    <innerclass refid="a00736" prot="public">std::auto_ptr</innerclass>
-    <innerclass refid="a00737" prot="public">std::smart_ptr</innerclass>
-    <innerclass refid="a00738" prot="public">std::unique_ptr</innerclass>
-    <innerclass refid="a00739" prot="public">std::weak_ptr</innerclass>
-    <innerclass refid="a00740" prot="public">std::ios_base</innerclass>
-    <innerclass refid="a00741" prot="public">std::error_code</innerclass>
-    <innerclass refid="a00742" prot="public">std::error_category</innerclass>
-    <innerclass refid="a00743" prot="public">std::system_error</innerclass>
-    <innerclass refid="a00744" prot="public">std::error_condition</innerclass>
-    <innerclass refid="a00745" prot="public">std::thread</innerclass>
-    <innerclass refid="a00746" prot="public">std::basic_ios</innerclass>
-    <innerclass refid="a00747" prot="public">std::basic_istream</innerclass>
-    <innerclass refid="a00748" prot="public">std::basic_ostream</innerclass>
-    <innerclass refid="a00749" prot="public">std::basic_iostream</innerclass>
-    <innerclass refid="a00750" prot="public">std::basic_ifstream</innerclass>
-    <innerclass refid="a00751" prot="public">std::basic_ofstream</innerclass>
-    <innerclass refid="a00752" prot="public">std::basic_fstream</innerclass>
-    <innerclass refid="a00753" prot="public">std::basic_istringstream</innerclass>
-    <innerclass refid="a00754" prot="public">std::basic_ostringstream</innerclass>
-    <innerclass refid="a00755" prot="public">std::basic_stringstream</innerclass>
-    <innerclass refid="a00756" prot="public">std::ios</innerclass>
-    <innerclass refid="a00757" prot="public">std::wios</innerclass>
-    <innerclass refid="a00758" prot="public">std::istream</innerclass>
-    <innerclass refid="a00759" prot="public">std::wistream</innerclass>
-    <innerclass refid="a00760" prot="public">std::ostream</innerclass>
-    <innerclass refid="a00761" prot="public">std::wostream</innerclass>
-    <innerclass refid="a00762" prot="public">std::ifstream</innerclass>
-    <innerclass refid="a00763" prot="public">std::wifstream</innerclass>
-    <innerclass refid="a00764" prot="public">std::ofstream</innerclass>
-    <innerclass refid="a00765" prot="public">std::wofstream</innerclass>
-    <innerclass refid="a00766" prot="public">std::fstream</innerclass>
-    <innerclass refid="a00767" prot="public">std::wfstream</innerclass>
-    <innerclass refid="a00768" prot="public">std::istringstream</innerclass>
-    <innerclass refid="a00769" prot="public">std::wistringstream</innerclass>
-    <innerclass refid="a00770" prot="public">std::ostringstream</innerclass>
-    <innerclass refid="a00771" prot="public">std::wostringstream</innerclass>
-    <innerclass refid="a00772" prot="public">std::stringstream</innerclass>
-    <innerclass refid="a00773" prot="public">std::wstringstream</innerclass>
-    <innerclass refid="a00774" prot="public">std::basic_string</innerclass>
-    <innerclass refid="a00775" prot="public">std::string</innerclass>
-    <innerclass refid="a00776" prot="public">std::wstring</innerclass>
-    <innerclass refid="a00777" prot="public">std::complex</innerclass>
-    <innerclass refid="a00778" prot="public">std::bitset</innerclass>
-    <innerclass refid="a00779" prot="public">std::deque</innerclass>
-    <innerclass refid="a00780" prot="public">std::list</innerclass>
-    <innerclass refid="a00781" prot="public">std::forward_list</innerclass>
-    <innerclass refid="a00782" prot="public">std::map</innerclass>
-    <innerclass refid="a00783" prot="public">std::unordered_map</innerclass>
-    <innerclass refid="a00784" prot="public">std::multimap</innerclass>
-    <innerclass refid="a00785" prot="public">std::unordered_multimap</innerclass>
-    <innerclass refid="a00786" prot="public">std::set</innerclass>
-    <innerclass refid="a00787" prot="public">std::unordered_set</innerclass>
-    <innerclass refid="a00788" prot="public">std::multiset</innerclass>
-    <innerclass refid="a00789" prot="public">std::unordered_multiset</innerclass>
-    <innerclass refid="a00790" prot="public">std::vector</innerclass>
-    <innerclass refid="a00791" prot="public">std::queue</innerclass>
-    <innerclass refid="a00792" prot="public">std::priority_queue</innerclass>
-    <innerclass refid="a00793" prot="public">std::stack</innerclass>
-    <innerclass refid="a00794" prot="public">std::valarray</innerclass>
-    <innerclass refid="a00795" prot="public">std::exception</innerclass>
-    <innerclass refid="a00796" prot="public">std::bad_alloc</innerclass>
-    <innerclass refid="a00797" prot="public">std::bad_cast</innerclass>
-    <innerclass refid="a00798" prot="public">std::bad_typeid</innerclass>
-    <innerclass refid="a00799" prot="public">std::logic_error</innerclass>
-    <innerclass refid="a00800" prot="public">std::runtime_error</innerclass>
-    <innerclass refid="a00801" prot="public">std::bad_exception</innerclass>
-    <innerclass refid="a00802" prot="public">std::domain_error</innerclass>
-    <innerclass refid="a00803" prot="public">std::invalid_argument</innerclass>
-    <innerclass refid="a00804" prot="public">std::length_error</innerclass>
-    <innerclass refid="a00805" prot="public">std::out_of_range</innerclass>
-    <innerclass refid="a00806" prot="public">std::range_error</innerclass>
-    <innerclass refid="a00807" prot="public">std::overflow_error</innerclass>
-    <innerclass refid="a00808" prot="public">std::underflow_error</innerclass>
+    <compoundname>NUnit::Framework</compoundname>
     <briefdescription>
-<para>STL namespace. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="[STL]" line="1" column="1"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" line="3" column="1"/>
   </compounddef>
 </doxygen>

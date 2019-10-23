@@ -1,11 +1,13 @@
 var a00157 =
 [
-    [ "AddOptions", "a00157.html#a3f70014574bc374acbe8a152e9e741f2", null ],
-    [ "AddOptions< T >", "a00157.html#ab65b57d4c987d39e33bc136dfd5cb989", null ],
-    [ "GetOptions", "a00157.html#a2958beb79bb066c2b99c9fc97be9043d", null ],
-    [ "GetOptions< T >", "a00157.html#abff68f203e82218e5d9d316a81d90157", null ],
-    [ "RemoveOptions", "a00157.html#af5ceccd212df16bb55cf90cdcd76c286", null ],
-    [ "RemoveOptions< T >", "a00157.html#a201c3cd79a7bfe46424929150f2b84d8", null ],
-    [ "locker", "a00157.html#aeea3952a7ac1a8cb0291db079800ead4", null ],
-    [ "typeConverterOptions", "a00157.html#abef552dcc7a0c631d09fa8f2ea5fead4", null ]
+    [ "TypeConverterFactory", "a00157.html#aec2f01e01f95ff8c7a69ccaf991b6fa6", null ],
+    [ "AddConverter", "a00157.html#aea523d100f0064672767dfe2c912cfca", null ],
+    [ "AddConverter< T >", "a00157.html#a744e7c3cf7515bb75c21d8b3c3fcff0a", null ],
+    [ "CreateDefaultConverters", "a00157.html#af698f94f4d69a2d9a4f4fa8ad0e21619", null ],
+    [ "GetConverter", "a00157.html#a17b3c37c648e5f760a7724e1445ce7ae", null ],
+    [ "GetConverter< T >", "a00157.html#a0674e190f4bcf27b0bdbc7da7e8f3d0f", null ],
+    [ "RemoveConverter", "a00157.html#a1044dbab9820df273baea7ee68e6a813", null ],
+    [ "RemoveConverter< T >", "a00157.html#ad2d287cebc4bc88d2a6e1423059f05ae", null ],
+    [ "locker", "a00157.html#aae823641d64f44cf1a79573bb55a5090", null ],
+    [ "typeConverters", "a00157.html#a5229fe94e2acf6302b733c3d114f187e", null ]
 ];

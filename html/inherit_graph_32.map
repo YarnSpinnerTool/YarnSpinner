@@ -1,7 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$a00141.html" title="We&#39;ll ask this object for the state of variables. " alt="" coords="6,85,194,112"/>
-<area shape="rect" id="node2" href="$a00049.html" title="The client should run a command (it&#39;s up to them to parse the string) " alt="" coords="243,5,450,32"/>
-<area shape="rect" id="node3" href="$a00124.html" title="The client should run a line of dialogue. " alt="" coords="261,56,432,83"/>
-<area shape="rect" id="node4" href="$a00130.html" title="We&#39;ve reached the end of this node. " alt="" coords="249,107,444,149"/>
-<area shape="rect" id="node5" href="$a00134.html" title="The client should show a list of options, and call setSelectedOptionDelegate before asking for the ne..." alt="" coords="245,173,449,200"/>
+<area shape="rect" id="node1" href="$a00143.html" title="We&#39;ll ask this object for the state of variables. " alt="" coords="6,85,194,112"/>
+<area shape="rect" id="node2" href="$a00051.html" title="The client should run a command (it&#39;s up to them to parse the string) " alt="" coords="243,5,450,32"/>
+<area shape="rect" id="node3" href="$a00126.html" title="The client should run a line of dialogue. " alt="" coords="261,56,432,83"/>
+<area shape="rect" id="node4" href="$a00132.html" title="We&#39;ve reached the end of this node. " alt="" coords="249,107,444,149"/>
+<area shape="rect" id="node5" href="$a00136.html" title="The client should show a list of options, and call setSelectedOptionDelegate before asking for the ne..." alt="" coords="245,173,449,200"/>
 </map>

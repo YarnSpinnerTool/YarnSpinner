@@ -2,11 +2,11 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_a555ed209f3713798e5905e3d3cb40ce" kind="dir">
     <compoundname>YarnSpinner/ANTLR</compoundname>
-    <innerfile refid="a00280">preprocessor.py</innerfile>
+    <innerfile refid="a00283">preprocessor.py</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/ANTLR/"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/ANTLR/"/>
   </compounddef>
 </doxygen>

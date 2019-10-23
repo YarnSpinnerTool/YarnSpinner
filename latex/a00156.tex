@@ -1,250 +1,242 @@
-\hypertarget{a00156}{\section{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options Class Reference}
-\label{a00156}\index{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options@{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options}}
+\hypertarget{a00156}{\section{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter Class Reference}
+\label{a00156}\index{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}}
 }
 
 
-Options used when doing type conversion.  
+Converts a Time\-Span to and from a string.  
 
 
 
 
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-:
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00545}
+\includegraphics[width=220pt]{a00543}
 \end{center}
 \end{figure}
-\subsection*{Static Public Member Functions}
+
+
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{a00544}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{a00156}{Type\-Converter\-Options} \hyperlink{a00156_a0532694cffc600fe984e10c7f1375e0a}{Merge} (params \hyperlink{a00156}{Type\-Converter\-Options}\mbox{[}$\,$\mbox{]} sources)
-\begin{DoxyCompactList}\small\item\em Merges \hyperlink{a00156}{Type\-Converter\-Options} by applying the values of sources in order to a new \hyperlink{a00156}{Type\-Converter\-Options} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-Culture\-Info \hyperlink{a00156_af6bc545680b477abf9178eb4755572b1}{Culture\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the culture info. \end{DoxyCompactList}\item 
-Date\-Time\-Styles \hyperlink{a00156_a53dd999cfdfad024682e67b6d5b1267e}{Date\-Time\-Style}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the date time style. \end{DoxyCompactList}\item 
-Time\-Span\-Styles \hyperlink{a00156_a5b94fd91ed938c9d0515a5ab419de8b8}{Time\-Span\-Style}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the time span style. \end{DoxyCompactList}\item 
-Number\-Styles \hyperlink{a00156_a2bd83a5b0c0d94864ed09563dbab4a36}{Number\-Style}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the number style. \end{DoxyCompactList}\item 
-List$<$ string $>$ \hyperlink{a00156_a73fe01941a8c2d3cfbd6fa4414e8d8e0}{Boolean\-True\-Values}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the list of values that can be used to represent a boolean of true. \end{DoxyCompactList}\item 
-List$<$ string $>$ \hyperlink{a00156_a7735cd4046cf1b21f458aa96c616a01e}{Boolean\-False\-Values}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the list of values that can be used to represent a boolean of false. \end{DoxyCompactList}\item 
-string \hyperlink{a00156_aadc0730de90844e29da6e1ae7fddc4bb}{Format}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the string format. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-readonly List$<$ string $>$ \hyperlink{a00156_a326ff183b4992ab134f047e6866df092}{boolean\-True\-Values} = new List$<$string$>$ \{ \char`\"{}yes\char`\"{}, \char`\"{}y\char`\"{} \}
-\item 
-readonly List$<$ string $>$ \hyperlink{a00156_a1881a24e1731f70183fdff9c1612b7d5}{boolean\-False\-Values} = new List$<$string$>$ \{ \char`\"{}no\char`\"{}, \char`\"{}n\char`\"{} \}
-\end{DoxyCompactItemize}
+override bool \hyperlink{a00156_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Can\-Convert\-From} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+override object \hyperlink{a00156_a0f2536c88227a94822d0b7730eedf3eb}{Convert\-From\-String} (\hyperlink{a00158}{Type\-Converter\-Options} options, string text)
+\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
+virtual string \hyperlink{a00086_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00158}{Type\-Converter\-Options} options, object value)
+\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00086_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Options used when doing type conversion. 
+Converts a Time\-Span to and from a string. 
 
 
 
-Definition at line 15 of file Type\-Converter\-Options.\-cs.
+Definition at line 13 of file Time\-Span\-Converter.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00156_a0532694cffc600fe984e10c7f1375e0a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Merge@{Merge}}
-\index{Merge@{Merge}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
-\subsubsection[{Merge}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Type\-Converter\-Options} Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Merge (
+\hypertarget{a00156_ae3f8d46f5176d2ae08ac3fcdda1951e7}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::TimeSpanConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter.\-Can\-Convert\-From (
 \begin{DoxyParamCaption}
-\item[{params {\bf Type\-Converter\-Options}\mbox{[}$\,$\mbox{]}}]{sources}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00156_a0532694cffc600fe984e10c7f1375e0a}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00156_ae3f8d46f5176d2ae08ac3fcdda1951e7}
 
 
-Merges \hyperlink{a00156}{Type\-Converter\-Options} by applying the values of sources in order to a new \hyperlink{a00156}{Type\-Converter\-Options} instance. 
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em sources} & The sources that will be applied.\\
+{\em type} & The type.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A new instance of \hyperlink{a00156}{Type\-Converter\-Options} with the source applied to it.
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
 \end{DoxyReturn}
 
 
-Definition at line 71 of file Type\-Converter\-Options.\-cs.
+Reimplemented from \hyperlink{a00086_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+
+
+
+Definition at line 22 of file Time\-Span\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-72         \{
-73             var options = \textcolor{keyword}{new} TypeConverterOptions();
-74             \textcolor{keywordflow}{foreach}( var source \textcolor{keywordflow}{in} sources )
-75             \{
-76                 \textcolor{keywordflow}{if}( source == null )
-77                 \{
-78                     \textcolor{keywordflow}{continue};
-79                 \}
-80 
-81                 \textcolor{keywordflow}{if}( source.CultureInfo != null )
-82                 \{
-83                     options.CultureInfo = source.CultureInfo;
-84                 \}
-85 
-86                 \textcolor{keywordflow}{if}( source.DateTimeStyle != null )
-87                 \{
-88                     options.DateTimeStyle = source.DateTimeStyle;
-89                 \}
-90 
-91 \textcolor{preprocessor}{#if !NET\_2\_0 && !NET\_3\_5 && !PCL}
-92 \textcolor{preprocessor}{}                \textcolor{keywordflow}{if}( source.TimeSpanStyle != null )
-93                 \{
-94                     options.TimeSpanStyle = source.TimeSpanStyle;
-95                 \}
-96 \textcolor{preprocessor}{#endif}
-97 \textcolor{preprocessor}{}
-98                 \textcolor{keywordflow}{if}( source.NumberStyle != null )
-99                 \{
-100                     options.NumberStyle = source.NumberStyle;
-101                 \}
-102 
-103                 \textcolor{keywordflow}{if}( source.Format != null )
-104                 \{
-105                     options.Format = source.Format;
-106                 \}
-107 
-108                 \textcolor{keywordflow}{if}( !options.booleanTrueValues.SequenceEqual( source.booleanTrueValues ) )
-109                 \{
-110                     options.booleanTrueValues.Clear();
-111                     options.booleanTrueValues.AddRange( source.booleanTrueValues );
-112                 \}
-113 
-114                 \textcolor{keywordflow}{if}( !options.booleanFalseValues.SequenceEqual( source.booleanFalseValues ) )
-115                 \{
-116                     options.booleanFalseValues.Clear();
-117                     options.booleanFalseValues.AddRange( source.booleanFalseValues );
-118                 \}
-119             \}
-120 
-121             \textcolor{keywordflow}{return} options;
-122         \}
+23         \{
+24             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+25         \}
 \end{DoxyCode}
+\hypertarget{a00086_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
+\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::TimeSpanConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}}
+\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00086_acb65bd8c8199d88d5b1629ae35d18514}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00156_a1881a24e1731f70183fdff9c1612b7d5}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!boolean\-False\-Values@{boolean\-False\-Values}}
-\index{boolean\-False\-Values@{boolean\-False\-Values}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
-\subsubsection[{boolean\-False\-Values}]{\setlength{\rightskip}{0pt plus 5cm}readonly List$<$string$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-boolean\-False\-Values = new List$<$string$>$ \{ \char`\"{}no\char`\"{}, \char`\"{}n\char`\"{} \}\hspace{0.3cm}{\ttfamily [private]}}}\label{a00156_a1881a24e1731f70183fdff9c1612b7d5}
+Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
 
 
-Definition at line 18 of file Type\-Converter\-Options.\-cs.
-
-\hypertarget{a00156_a326ff183b4992ab134f047e6866df092}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!boolean\-True\-Values@{boolean\-True\-Values}}
-\index{boolean\-True\-Values@{boolean\-True\-Values}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
-\subsubsection[{boolean\-True\-Values}]{\setlength{\rightskip}{0pt plus 5cm}readonly List$<$string$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-boolean\-True\-Values = new List$<$string$>$ \{ \char`\"{}yes\char`\"{}, \char`\"{}y\char`\"{} \}\hspace{0.3cm}{\ttfamily [private]}}}\label{a00156_a326ff183b4992ab134f047e6866df092}
-
-
-Definition at line 17 of file Type\-Converter\-Options.\-cs.
-
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
 
 
-\subsection{Property Documentation}
-\hypertarget{a00156_a7735cd4046cf1b21f458aa96c616a01e}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Boolean\-False\-Values@{Boolean\-False\-Values}}
-\index{Boolean\-False\-Values@{Boolean\-False\-Values}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
-\subsubsection[{Boolean\-False\-Values}]{\setlength{\rightskip}{0pt plus 5cm}List$<$string$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Boolean\-False\-Values\hspace{0.3cm}{\ttfamily [get]}}}\label{a00156_a7735cd4046cf1b21f458aa96c616a01e}
-
-
-Gets the list of values that can be used to represent a boolean of false. 
+Implements \hyperlink{a00119_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-Definition at line 56 of file Type\-Converter\-Options.\-cs.
-
-\hypertarget{a00156_a73fe01941a8c2d3cfbd6fa4414e8d8e0}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Boolean\-True\-Values@{Boolean\-True\-Values}}
-\index{Boolean\-True\-Values@{Boolean\-True\-Values}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
-\subsubsection[{Boolean\-True\-Values}]{\setlength{\rightskip}{0pt plus 5cm}List$<$string$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Boolean\-True\-Values\hspace{0.3cm}{\ttfamily [get]}}}\label{a00156_a73fe01941a8c2d3cfbd6fa4414e8d8e0}
-
-
-Gets the list of values that can be used to represent a boolean of true. 
+Reimplemented in \hyperlink{a00097_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
 
 
 
-Definition at line 47 of file Type\-Converter\-Options.\-cs.
-
-\hypertarget{a00156_af6bc545680b477abf9178eb4755572b1}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Culture\-Info@{Culture\-Info}}
-\index{Culture\-Info@{Culture\-Info}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
-\subsubsection[{Culture\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Culture\-Info Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00156_af6bc545680b477abf9178eb4755572b1}
+Definition at line 69 of file Default\-Type\-Converter.\-cs.
 
 
-Gets or sets the culture info. 
+\begin{DoxyCode}
+70         \{
+71             \textcolor{comment}{// We only care about strings.}
+72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+73         \}
+\end{DoxyCode}
+\hypertarget{a00156_a0f2536c88227a94822d0b7730eedf3eb}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
+\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::TimeSpanConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}}
+\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter.\-Convert\-From\-String (
+\begin{DoxyParamCaption}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{string}]{text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00156_a0f2536c88227a94822d0b7730eedf3eb}
 
 
-
-Definition at line 23 of file Type\-Converter\-Options.\-cs.
-
+Converts the string to an object. 
 
 
-Referenced by Csv\-Helper.\-Type\-Conversion.\-Decimal\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-U\-Int64\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-U\-Int32\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-S\-Byte\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Single\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Int16\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-U\-Int16\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Int32\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Double\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter.\-Convert\-From\-String(), and Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter.\-Convert\-From\-String().
-
-\hypertarget{a00156_a53dd999cfdfad024682e67b6d5b1267e}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Date\-Time\-Style@{Date\-Time\-Style}}
-\index{Date\-Time\-Style@{Date\-Time\-Style}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
-\subsubsection[{Date\-Time\-Style}]{\setlength{\rightskip}{0pt plus 5cm}Date\-Time\-Styles Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Date\-Time\-Style\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00156_a53dd999cfdfad024682e67b6d5b1267e}
-
-
-Gets or sets the date time style. 
-
-
-
-Definition at line 28 of file Type\-Converter\-Options.\-cs.
-
-\hypertarget{a00156_aadc0730de90844e29da6e1ae7fddc4bb}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Format@{Format}}
-\index{Format@{Format}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
-\subsubsection[{Format}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Format\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00156_aadc0730de90844e29da6e1ae7fddc4bb}
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em text} & The string to convert to an object.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The object created from the string.
+\end{DoxyReturn}
 
 
-Gets or sets the string format. 
-
-
-
-Definition at line 63 of file Type\-Converter\-Options.\-cs.
+Reimplemented from \hyperlink{a00086_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
 
 
 
-Referenced by Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter.\-Convert\-From\-String().
-
-\hypertarget{a00156_a2bd83a5b0c0d94864ed09563dbab4a36}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Number\-Style@{Number\-Style}}
-\index{Number\-Style@{Number\-Style}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
-\subsubsection[{Number\-Style}]{\setlength{\rightskip}{0pt plus 5cm}Number\-Styles Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Number\-Style\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00156_a2bd83a5b0c0d94864ed09563dbab4a36}
-
-
-Gets or sets the number style. 
+Definition at line 33 of file Time\-Span\-Converter.\-cs.
 
 
 
-Definition at line 40 of file Type\-Converter\-Options.\-cs.
-
-\hypertarget{a00156_a5b94fd91ed938c9d0515a5ab419de8b8}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Time\-Span\-Style@{Time\-Span\-Style}}
-\index{Time\-Span\-Style@{Time\-Span\-Style}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
-\subsubsection[{Time\-Span\-Style}]{\setlength{\rightskip}{0pt plus 5cm}Time\-Span\-Styles Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Time\-Span\-Style\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00156_a5b94fd91ed938c9d0515a5ab419de8b8}
+References Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info, Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Format, and Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Time\-Span\-Style.
 
 
-Gets or sets the time span style. 
+\begin{DoxyCode}
+34         \{
+35             var formatProvider = (IFormatProvider)options.CultureInfo;
+36 
+37             TimeSpan span;
+38 
+39 #\textcolor{keywordflow}{if} !NET\_2\_0 && !NET\_3\_5 && !PCL
+40             var timeSpanStyle = options.TimeSpanStyle ?? TimeSpanStyles.None;
+41             \textcolor{keywordflow}{if}( !\textcolor{keywordtype}{string}.IsNullOrEmpty( options.Format ) && TimeSpan.TryParseExact( text, options.Format, 
+      formatProvider, timeSpanStyle, out span ) )
+42             \{
+43                 \textcolor{keywordflow}{return} span;
+44             \}
+45 
+46             \textcolor{keywordflow}{if}( \textcolor{keywordtype}{string}.IsNullOrEmpty( options.Format ) && TimeSpan.TryParse( text, formatProvider, out span
+       ) )
+47             \{
+48                 \textcolor{keywordflow}{return} span;
+49             \}
+50 \textcolor{preprocessor}{#else}
+51 \textcolor{preprocessor}{}            \textcolor{keywordflow}{if}( TimeSpan.TryParse( text, out span ) )
+52             \{
+53                 \textcolor{keywordflow}{return} span;
+54             \}
+55 \textcolor{preprocessor}{#endif}
+56 \textcolor{preprocessor}{}
+57             \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
+58         \}
+\end{DoxyCode}
+\hypertarget{a00086_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
+\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::TimeSpanConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}}
+\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
+\begin{DoxyParamCaption}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{object}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00086_a36cb2f9b24f15a671293f3a722324c27}
+
+
+Converts the object to a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em value} & The object to convert to a string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the object.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00119_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-Definition at line 34 of file Type\-Converter\-Options.\-cs.
+Reimplemented in \hyperlink{a00135_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00097_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
 
 
 
-Referenced by Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter.\-Convert\-From\-String().
+Definition at line 21 of file Default\-Type\-Converter.\-cs.
 
+
+\begin{DoxyCode}
+22         \{
+23             \textcolor{keywordflow}{if}( value == null )
+24             \{
+25                 \textcolor{keywordflow}{return} string.Empty;
+26             \}
+27 
+28             var formattable = value as IFormattable;
+29             \textcolor{keywordflow}{if}( formattable != null )
+30             \{
+31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
+32             \}
+33 
+34             \textcolor{keywordflow}{return} value.ToString();
+35         \}
+\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00259}{Type\-Converter\-Options.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00259}{Time\-Span\-Converter.\-cs}\end{DoxyCompactItemize}

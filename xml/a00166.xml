@@ -1,64 +1,162 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00166" kind="class" prot="package" abstract="yes">
-    <compoundname>Yarn::Analysis::VariableLister</compoundname>
-    <basecompoundref refid="a00050" prot="public" virt="non-virtual">Yarn.Analysis.CompiledProgramAnalyser</basecompoundref>
+  <compounddef id="a00166" kind="class" prot="public">
+    <compoundname>Yarn::Unity::YarnSpinnerEditorWindow</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">EditorWindow</basecompoundref>
+    <innerclass refid="a00049" prot="private">Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</innerclass>
+    <innerclass refid="a00088" prot="private">Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</innerclass>
+    <innerclass refid="a00358" prot="private">Yarn::Unity::YarnSpinnerEditorWindow::ValidationMessage</innerclass>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00166_1a64ed6c3394c474b6cf5804a35f560746" prot="private" static="no" mutable="no">
-        <type>HashSet&lt; string &gt;</type>
-        <definition>HashSet&lt;string&gt; Yarn.Analysis.VariableLister.variables</definition>
+      <memberdef kind="variable" id="a00166_1aa85ab7bd194e5425b991b9c216d4d10e" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="a00049" kindref="compound">CheckerResult</ref> &gt;</type>
+        <definition>List&lt;CheckerResult&gt; Yarn.Unity.YarnSpinnerEditorWindow.checkResults</definition>
         <argsstring></argsstring>
-        <name>variables</name>
-        <initializer>= new HashSet&lt;string&gt;()</initializer>
+        <name>checkResults</name>
+        <initializer>= new List&lt;<ref refid="a00049" kindref="compound">CheckerResult</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="153" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="153" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="68" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00166_1a25c92cbfdd09661a96714d05b14af886" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="a00089" kindref="compound">Yarn.Analysis.Diagnosis</ref> &gt;</type>
+        <definition>List&lt;Yarn.Analysis.Diagnosis&gt; Yarn.Unity.YarnSpinnerEditorWindow.diagnoses</definition>
+        <argsstring></argsstring>
+        <name>diagnoses</name>
+        <initializer>= new List&lt;<ref refid="a00089" kindref="compound">Yarn.Analysis.Diagnosis</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="72" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00166_1a2d9b9702b0980af9d4202aebd440124b" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 Yarn.Unity.YarnSpinnerEditorWindow.scrollPos</definition>
+        <argsstring></argsstring>
+        <name>scrollPos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="75" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00166_1a62a14b3fbaf2da41154ebad0eb7b6d3f" prot="private" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float Yarn.Unity.YarnSpinnerEditorWindow.timeBeforeProgressBar</definition>
+        <argsstring></argsstring>
+        <name>timeBeforeProgressBar</name>
+        <initializer>= 0.1f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="82" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="82" bodyend="-1"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00166_1a980f0e64bc5ad171c35ec19bdf838b5c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override void</type>
-        <definition>override void Yarn.Analysis.VariableLister.Diagnose</definition>
-        <argsstring>(Program program)</argsstring>
-        <name>Diagnose</name>
-        <param>
-          <type><ref refid="a00138" kindref="compound">Program</ref></type>
-          <declname>program</declname>
-        </param>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="a00166_1a7599a00e246791ee46a5c549a05975f3" prot="private" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Unity.YarnSpinnerEditorWindow.jsonRootPath</definition>
+        <argsstring></argsstring>
+        <name>jsonRootPath</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="155" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="155" bodyend="176"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="78" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="78" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="a00166_1ab84e7a8e68740379dee12a51dca69b07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override IEnumerable&lt; <ref refid="a00087" kindref="compound">Diagnosis</ref> &gt;</type>
-        <definition>override IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.VariableLister.GatherDiagnoses</definition>
+      <memberdef kind="variable" id="a00166_1a85f1c10b20b04052269b0ee2fb71c5af" prot="private" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Unity.YarnSpinnerEditorWindow.isJSONRootPathChosen</definition>
+        <argsstring></argsstring>
+        <name>isJSONRootPathChosen</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="79" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00166_1a406febf62d77eaabc235f6316e537345" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.UpdateYarnScriptList</definition>
         <argsstring>()</argsstring>
-        <name>GatherDiagnoses</name>
-        <reimplements refid="a00050_1afe059a2ceeabe50380b000420e512bd6">GatherDiagnoses</reimplements>
+        <name>UpdateYarnScriptList</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="178" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="178" bodyend="188"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="85" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="85" bodyend="108"/>
       </memberdef>
-      <memberdef kind="function" id="a00050_1aba4a36cb823b11ee491074e26477d084" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract void</type>
-        <definition>abstract void Yarn.Analysis.CompiledProgramAnalyser.Diagnose</definition>
-        <argsstring>(Yarn.Program program)</argsstring>
-        <name>Diagnose</name>
+      <memberdef kind="function" id="a00166_1aeba1f39189758bd91bdce298e8859947" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="117" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="117" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="a00166_1ae4faac1a6b0cc9710b20267dc4b88995" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.RefreshAllResults</definition>
+        <argsstring>()</argsstring>
+        <name>RefreshAllResults</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="128" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="128" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="a00166_1aec84840262ae8fd7d84605778de1dc39" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.OnGUI</definition>
+        <argsstring>()</argsstring>
+        <name>OnGUI</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="169" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="169" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="a00166_1a8f57c8688d68ae4a5ce708e665902bc0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void Yarn.Unity.YarnSpinnerEditorWindow.GUICallback</definition>
+        <argsstring>(int complete, int total)</argsstring>
+        <name>GUICallback</name>
         <param>
-          <type><ref refid="a00138" kindref="compound">Yarn.Program</ref></type>
-          <declname>program</declname>
+          <type>int</type>
+          <declname>complete</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>total</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -66,7 +164,97 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="148" column="1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="280" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00166_1a8e59ec20bd21bb1f8a6d4f02980f624b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.CheckAllFiles</definition>
+        <argsstring>(GUICallback callback=null)</argsstring>
+        <name>CheckAllFiles</name>
+        <param>
+          <type><ref refid="a00166_1a8f57c8688d68ae4a5ce708e665902bc0" kindref="member">GUICallback</ref></type>
+          <declname>callback</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="281" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="281" bodyend="338"/>
+      </memberdef>
+      <memberdef kind="function" id="a00166_1a6f2bf42b228ea29c6477e369226db8b6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00358" kindref="compound">ValidationMessage</ref>[]</type>
+        <definition>ValidationMessage [] Yarn.Unity.YarnSpinnerEditorWindow.ValidateFile</definition>
+        <argsstring>(TextAsset script, Analysis.Context analysisContext, out CheckerResult.State result)</argsstring>
+        <name>ValidateFile</name>
+        <param>
+          <type>TextAsset</type>
+          <declname>script</declname>
+        </param>
+        <param>
+          <type><ref refid="a00056" kindref="compound">Analysis.Context</ref></type>
+          <declname>analysisContext</declname>
+        </param>
+        <param>
+          <type>out <ref refid="a00049_1ab24848d7951ce44eb3c7768c6ee10385" kindref="member">CheckerResult.State</ref></type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="343" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="343" bodyend="402"/>
+      </memberdef>
+      <memberdef kind="function" id="a00166_1a9c207786c349120dc439bdce53072191" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerable&lt; <ref refid="a00089" kindref="compound">Yarn.Analysis.Diagnosis</ref> &gt;</type>
+        <definition>IEnumerable&lt;Yarn.Analysis.Diagnosis&gt; Yarn.Unity.YarnSpinnerEditorWindow.AnalyseEnvironment</definition>
+        <argsstring>()</argsstring>
+        <name>AnalyseEnvironment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="425" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="425" bodyend="469"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="a00166_1a2084e2ce6ccf18094a992985aa5330fb" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Yarn.Unity.YarnSpinnerEditorWindow.ShowWindow</definition>
+        <argsstring>()</argsstring>
+        <name>ShowWindow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="112" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="112" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="a00166_1a1a7e1a855bb2a9549eb1c0eb292c9b85" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Yarn.Unity.YarnSpinnerEditorWindow.DrawScriptGUI</definition>
+        <argsstring>(CheckerResult result)</argsstring>
+        <name>DrawScriptGUI</name>
+        <param>
+          <type><ref refid="a00049" kindref="compound">CheckerResult</ref></type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="238" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="238" bodyend="277"/>
+        <references refid="a00049_1a808a039e280cf875cb3c9e9385148498" compoundref="a00273" startline="46">Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.messages</references>
+        <references refid="a00049_1a7202b24bd068da24d7e28bec5668b13a" compoundref="a00273" startline="43">Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.state</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -74,35 +262,45 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1530">
-        <label>CompiledProgramAnalyser</label>
-        <link refid="a00050"/>
-      </node>
-      <node id="1529">
-        <label>Yarn.Analysis.VariableLister</label>
+      <node id="1572">
+        <label>Yarn.Unity.YarnSpinnerEditorWindow</label>
         <link refid="a00166"/>
-        <childnode refid="1530" relation="public-inheritance">
+        <childnode refid="1573" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="1573">
+        <label>EditorWindow</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1532">
-        <label>CompiledProgramAnalyser</label>
-        <link refid="a00050"/>
-      </node>
-      <node id="1531">
-        <label>Yarn.Analysis.VariableLister</label>
+      <node id="1574">
+        <label>Yarn.Unity.YarnSpinnerEditorWindow</label>
         <link refid="a00166"/>
-        <childnode refid="1532" relation="public-inheritance">
+        <childnode refid="1575" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="1575">
+        <label>EditorWindow</label>
+      </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="152" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="152" bodyend="189"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="34" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="34" bodyend="471"/>
     <listofallmembers>
-      <member refid="a00166_1a980f0e64bc5ad171c35ec19bdf838b5c" prot="public" virt="non-virtual"><scope>Yarn::Analysis::VariableLister</scope><name>Diagnose</name></member>
-      <member refid="a00050_1aba4a36cb823b11ee491074e26477d084" prot="public" virt="pure-virtual" ambiguityscope="Yarn::Analysis::CompiledProgramAnalyser."><scope>Yarn::Analysis::VariableLister</scope><name>Diagnose</name></member>
-      <member refid="a00166_1ab84e7a8e68740379dee12a51dca69b07" prot="public" virt="virtual"><scope>Yarn::Analysis::VariableLister</scope><name>GatherDiagnoses</name></member>
-      <member refid="a00166_1a64ed6c3394c474b6cf5804a35f560746" prot="private" virt="non-virtual"><scope>Yarn::Analysis::VariableLister</scope><name>variables</name></member>
+      <member refid="a00166_1a9c207786c349120dc439bdce53072191" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>AnalyseEnvironment</name></member>
+      <member refid="a00166_1a8e59ec20bd21bb1f8a6d4f02980f624b" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>CheckAllFiles</name></member>
+      <member refid="a00166_1aa85ab7bd194e5425b991b9c216d4d10e" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>checkResults</name></member>
+      <member refid="a00166_1a25c92cbfdd09661a96714d05b14af886" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>diagnoses</name></member>
+      <member refid="a00166_1a1a7e1a855bb2a9549eb1c0eb292c9b85" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>DrawScriptGUI</name></member>
+      <member refid="a00166_1a8f57c8688d68ae4a5ce708e665902bc0" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>GUICallback</name></member>
+      <member refid="a00166_1a85f1c10b20b04052269b0ee2fb71c5af" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>isJSONRootPathChosen</name></member>
+      <member refid="a00166_1a7599a00e246791ee46a5c549a05975f3" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>jsonRootPath</name></member>
+      <member refid="a00166_1aeba1f39189758bd91bdce298e8859947" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>OnEnable</name></member>
+      <member refid="a00166_1aec84840262ae8fd7d84605778de1dc39" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>OnGUI</name></member>
+      <member refid="a00166_1ae4faac1a6b0cc9710b20267dc4b88995" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>RefreshAllResults</name></member>
+      <member refid="a00166_1a2d9b9702b0980af9d4202aebd440124b" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>scrollPos</name></member>
+      <member refid="a00166_1a2084e2ce6ccf18094a992985aa5330fb" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>ShowWindow</name></member>
+      <member refid="a00166_1a62a14b3fbaf2da41154ebad0eb7b6d3f" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>timeBeforeProgressBar</name></member>
+      <member refid="a00166_1a406febf62d77eaabc235f6316e537345" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>UpdateYarnScriptList</name></member>
+      <member refid="a00166_1a6f2bf42b228ea29c6477e369226db8b6" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>ValidateFile</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

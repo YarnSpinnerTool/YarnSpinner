@@ -1,82 +1,208 @@
-\hypertarget{a00170}{\section{Yarn.\-Unity.\-Yarn\-Command\-Attribute Class Reference}
-\label{a00170}\index{Yarn.\-Unity.\-Yarn\-Command\-Attribute@{Yarn.\-Unity.\-Yarn\-Command\-Attribute}}
+\hypertarget{a00170}{\section{Yarn.\-Unity.\-Variable\-Storage\-Behaviour Class Reference}
+\label{a00170}\index{Yarn.\-Unity.\-Variable\-Storage\-Behaviour@{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}}
 }
 
 
-Apply this attribute to methods in your scripts to expose them to \hyperlink{a00048}{Yarn}.  
+Scripts that can act as a variable storage should subclass this.  
 
 
 
 
-Inheritance diagram for Yarn.\-Unity.\-Yarn\-Command\-Attribute\-:
+Inheritance diagram for Yarn.\-Unity.\-Variable\-Storage\-Behaviour\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=246pt]{a00689}
+\includegraphics[width=294pt]{a00698}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Unity.\-Yarn\-Command\-Attribute\-:
+Collaboration diagram for Yarn.\-Unity.\-Variable\-Storage\-Behaviour\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=246pt]{a00690}
+\includegraphics[width=294pt]{a00699}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00170_a9c0d57cd72c091f63895944959e98330}{Yarn\-Command\-Attribute} (string \hyperlink{a00170_a6d513a725c819ffcdaa9c5788472ec8d}{command\-String})
-\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
+abstract \hyperlink{a00167}{Value} \hyperlink{a00170_ac981277018fe74c14491800caf29a7c5}{Get\-Value} (string variable\-Name)
+\begin{DoxyCompactList}\small\item\em Get a value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00170_a869fa2dfd390c1ec63735b5763ba4d77}{Set\-Value} (string variable\-Name, float float\-Value)
 \item 
-string \hyperlink{a00170_a6d513a725c819ffcdaa9c5788472ec8d}{command\-String}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+virtual void \hyperlink{a00170_a08ff36ec352a979b5db074f66ec9e189}{Set\-Value} (string variable\-Name, bool string\-Value)
+\item 
+virtual void \hyperlink{a00170_a25df235b5446e93d5236a5fd5c17f6dd}{Set\-Value} (string variable\-Name, string bool\-Value)
+\item 
+abstract void \hyperlink{a00170_af524fea535a8de76d845bdb06c9cb0c2}{Set\-Value} (string variable\-Name, \hyperlink{a00167}{Value} value)
+\begin{DoxyCompactList}\small\item\em Set a value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00170_a587fe10b367ace190e10f3bcb590a53c}{Clear} ()
+\begin{DoxyCompactList}\small\item\em Not implemented here. \end{DoxyCompactList}\item 
+abstract void \hyperlink{a00170_a33fcbff56561e53e0a70b59c56f0c3af}{Reset\-To\-Defaults} ()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Apply this attribute to methods in your scripts to expose them to \hyperlink{a00048}{Yarn}. 
+Scripts that can act as a variable storage should subclass this. 
 
-For example\-: \mbox{[}Yarn\-Command(\char`\"{}dosomething\char`\"{})\mbox{]} void Foo() \{ do something! \} 
-
-Definition at line 441 of file Dialogue\-Runner.\-cs.
+Definition at line 483 of file Dialogue\-Runner.\-cs.
 
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00170_a9c0d57cd72c091f63895944959e98330}{\index{Yarn\-::\-Unity\-::\-Yarn\-Command\-Attribute@{Yarn\-::\-Unity\-::\-Yarn\-Command\-Attribute}!Yarn\-Command\-Attribute@{Yarn\-Command\-Attribute}}
-\index{Yarn\-Command\-Attribute@{Yarn\-Command\-Attribute}!Yarn::Unity::YarnCommandAttribute@{Yarn\-::\-Unity\-::\-Yarn\-Command\-Attribute}}
-\subsubsection[{Yarn\-Command\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Unity.\-Yarn\-Command\-Attribute.\-Yarn\-Command\-Attribute (
+\subsection{Member Function Documentation}
+\hypertarget{a00170_a587fe10b367ace190e10f3bcb590a53c}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Clear@{Clear}}
+\index{Clear@{Clear}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Clear (
 \begin{DoxyParamCaption}
-\item[{string}]{command\-String}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00170_a9c0d57cd72c091f63895944959e98330}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00170_a587fe10b367ace190e10f3bcb590a53c}
 
 
-Definition at line 445 of file Dialogue\-Runner.\-cs.
+Not implemented here. 
+
+
+
+Implements \hyperlink{a00169_af98c1e41f351cb96e13f668ca2fd9d92}{Yarn.\-Variable\-Storage}.
+
+
+
+Reimplemented in \hyperlink{a00087_a0ce614bee8d5b220500fb765390b4ca3}{Example\-Variable\-Storage}.
+
+
+
+Definition at line 508 of file Dialogue\-Runner.\-cs.
 
 
 \begin{DoxyCode}
-445                                                           \{
-446             this.commandString = \hyperlink{a00170_a6d513a725c819ffcdaa9c5788472ec8d}{commandString};
-447         \}
+509         \{
+510             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.NotImplementedException ();
+511         \}
 \end{DoxyCode}
+\hypertarget{a00170_ac981277018fe74c14491800caf29a7c5}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Get\-Value@{Get\-Value}}
+\index{Get\-Value@{Get\-Value}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
+\subsubsection[{Get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}abstract {\bf Value} Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Get\-Value (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00170_ac981277018fe74c14491800caf29a7c5}
 
 
-\subsection{Property Documentation}
-\hypertarget{a00170_a6d513a725c819ffcdaa9c5788472ec8d}{\index{Yarn\-::\-Unity\-::\-Yarn\-Command\-Attribute@{Yarn\-::\-Unity\-::\-Yarn\-Command\-Attribute}!command\-String@{command\-String}}
-\index{command\-String@{command\-String}!Yarn::Unity::YarnCommandAttribute@{Yarn\-::\-Unity\-::\-Yarn\-Command\-Attribute}}
-\subsubsection[{command\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Yarn\-Command\-Attribute.\-command\-String\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00170_a6d513a725c819ffcdaa9c5788472ec8d}
+Get a value. 
 
 
-Definition at line 443 of file Dialogue\-Runner.\-cs.
+
+Implements \hyperlink{a00169_accab1fc5c8fc353dbfc53ca0f4029576}{Yarn.\-Variable\-Storage}.
+
+
+
+Implemented in \hyperlink{a00087_a741593be1a299dcc2136f05b9b4a995a}{Example\-Variable\-Storage}.
+
+\hypertarget{a00170_a33fcbff56561e53e0a70b59c56f0c3af}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Reset\-To\-Defaults@{Reset\-To\-Defaults}}
+\index{Reset\-To\-Defaults@{Reset\-To\-Defaults}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
+\subsubsection[{Reset\-To\-Defaults}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Reset\-To\-Defaults (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00170_a33fcbff56561e53e0a70b59c56f0c3af}
+
+
+Implemented in \hyperlink{a00087_a3a05d66cdacadb2e9b618cd0aef45f84}{Example\-Variable\-Storage}.
+
+\hypertarget{a00170_a869fa2dfd390c1ec63735b5763ba4d77}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Set\-Value@{Set\-Value}}
+\index{Set\-Value@{Set\-Value}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
+\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Set\-Value (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{float}]{float\-Value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00170_a869fa2dfd390c1ec63735b5763ba4d77}
+
+
+Implements \hyperlink{a00169_af0ffa5fc7773a4a5dc8e33d992421931}{Yarn.\-Variable\-Storage}.
+
+
+
+Definition at line 488 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+489         \{
+490             Value value = \textcolor{keyword}{new} \hyperlink{a00167}{Yarn.Value}(floatValue);
+491             this.SetValue(variableName, value);
+492         \}
+\end{DoxyCode}
+\hypertarget{a00170_a08ff36ec352a979b5db074f66ec9e189}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Set\-Value@{Set\-Value}}
+\index{Set\-Value@{Set\-Value}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
+\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Set\-Value (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{bool}]{string\-Value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00170_a08ff36ec352a979b5db074f66ec9e189}
+
+
+Implements \hyperlink{a00169_ab25eb0424a6e9d5819d0c7cc2035811b}{Yarn.\-Variable\-Storage}.
+
+
+
+Definition at line 493 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+494         \{
+495             Value value = \textcolor{keyword}{new} \hyperlink{a00167}{Yarn.Value}(stringValue);
+496             this.SetValue(variableName, value);
+497         \}
+\end{DoxyCode}
+\hypertarget{a00170_a25df235b5446e93d5236a5fd5c17f6dd}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Set\-Value@{Set\-Value}}
+\index{Set\-Value@{Set\-Value}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
+\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Set\-Value (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{string}]{bool\-Value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00170_a25df235b5446e93d5236a5fd5c17f6dd}
+
+
+Implements \hyperlink{a00169_a412078d8e228f3e288e00f227ef4b4f5}{Yarn.\-Variable\-Storage}.
+
+
+
+Definition at line 498 of file Dialogue\-Runner.\-cs.
+
+
+\begin{DoxyCode}
+499         \{
+500             Value value = \textcolor{keyword}{new} \hyperlink{a00167}{Yarn.Value}(boolValue);
+501             this.SetValue(variableName, value);
+502         \}
+\end{DoxyCode}
+\hypertarget{a00170_af524fea535a8de76d845bdb06c9cb0c2}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Set\-Value@{Set\-Value}}
+\index{Set\-Value@{Set\-Value}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
+\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Set\-Value (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{{\bf Value}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00170_af524fea535a8de76d845bdb06c9cb0c2}
+
+
+Set a value. 
+
+
+
+Implements \hyperlink{a00169_aa90ff61224432c5ed3ce72199c55f440}{Yarn.\-Variable\-Storage}.
+
+
+
+Implemented in \hyperlink{a00087_ac4265c1c9da485f13a6b05784b0f668d}{Example\-Variable\-Storage}.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn\-Spinner/\-Code/\hyperlink{a00269}{Dialogue\-Runner.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn\-Spinner/\-Code/\hyperlink{a00272}{Dialogue\-Runner.\-cs}\end{DoxyCompactItemize}

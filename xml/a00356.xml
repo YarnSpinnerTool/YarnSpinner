@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00356" kind="class" prot="package">
+    <compoundname>Yarn::VirtualMachine::SpecialVariables</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00356_1aecbb8ab9becd96457d836100b2818078" prot="public" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string Yarn.VirtualMachine.SpecialVariables.ShuffleOptions</definition>
+        <argsstring></argsstring>
+        <name>ShuffleOptions</name>
+        <initializer>= &quot;$Yarn.ShuffleOptions&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="50" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="50" bodyend="-1"/>
+        <referencedby refid="a00147_1a6364593ea1115d65e34b343422cfbbbd" compoundref="a00294" startline="112" endline="131">Yarn.VirtualMachine.SetNode</referencedby>
+        <referencedby refid="a00147_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00294" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1440">
+        <label>Yarn.VirtualMachine.SpecialVariables</label>
+        <link refid="a00356"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="49" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="49" bodyend="51"/>
+    <listofallmembers>
+      <member refid="a00356_1aecbb8ab9becd96457d836100b2818078" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::SpecialVariables</scope><name>ShuffleOptions</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvHelperException.cs Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,7 +105,7 @@ $(document).ready(function(){initNavTree('a00212_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">CsvHelperException.cs</div>  </div>
+<div class="title">CsvBadDataException.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00212.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
@@ -122,30 +122,31 @@ $(document).ready(function(){initNavTree('a00212_source.html','');});
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#if !COREFX &amp;&amp; !PCL</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span>    [Serializable]</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00063.html">   18</a></span>&#160;<span class="preprocessor"></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00063.html">CsvHelperException</a> : Exception</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00058.html">   18</a></span>&#160;<span class="preprocessor"></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00058.html">CsvBadDataException</a> : <a class="code" href="a00065.html">CsvHelperException</a></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    {</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="a00063.html#a83571967535529f42bb42b33684e4631">   23</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00063.html#a83571967535529f42bb42b33684e4631">CsvHelperException</a>() {}</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="a00058.html#a337ebca212c62127ba837ae726a0cc3a">   23</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00058.html#a337ebca212c62127ba837ae726a0cc3a">CsvBadDataException</a>() {}</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="a00063.html#a47cbed4fb25c42fd548282b3f8652290">   30</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00063.html#a47cbed4fb25c42fd548282b3f8652290">CsvHelperException</a>( <span class="keywordtype">string</span> message ) : base( message ) {}</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="a00058.html#a31da9e807053a75e8bd252aa792269eb">   30</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00058.html#a31da9e807053a75e8bd252aa792269eb">CsvBadDataException</a>( <span class="keywordtype">string</span> message ) : base( message ) {}</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="a00063.html#ac97c52774cb49f7e5d855b7586cdfa1d">   39</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00063.html#ac97c52774cb49f7e5d855b7586cdfa1d">CsvHelperException</a>( <span class="keywordtype">string</span> message, Exception innerException ) : base( message, innerException ) { }</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="a00058.html#a2c210cf80604e58ffecc177f6f7c2547">   39</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00058.html#a2c210cf80604e58ffecc177f6f7c2547">CsvBadDataException</a>( <span class="keywordtype">string</span> message, Exception innerException ) : base( message, innerException ) { }</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#if !PCL &amp;&amp; !COREFX</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span>        <span class="keyword">public</span> <a class="code" href="a00063.html#a83571967535529f42bb42b33684e4631">CsvHelperException</a>( SerializationInfo info, StreamingContext context ) : base( info, context ) {}</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span>        <span class="keyword">public</span> <a class="code" href="a00058.html#a337ebca212c62127ba837ae726a0cc3a">CsvBadDataException</a>( SerializationInfo info, StreamingContext context ) : base( info, context ) {}</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor"></span>    }</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
-<div class="ttc" id="a00063_html_a83571967535529f42bb42b33684e4631"><div class="ttname"><a href="a00063.html#a83571967535529f42bb42b33684e4631">CsvHelper.CsvHelperException.CsvHelperException</a></div><div class="ttdeci">CsvHelperException()</div><div class="ttdoc">Initializes a new instance of the CsvHelperException class. </div><div class="ttdef"><b>Definition:</b> <a href="a00212_source.html#l00023">CsvHelperException.cs:23</a></div></div>
-<div class="ttc" id="a00063_html_a47cbed4fb25c42fd548282b3f8652290"><div class="ttname"><a href="a00063.html#a47cbed4fb25c42fd548282b3f8652290">CsvHelper.CsvHelperException.CsvHelperException</a></div><div class="ttdeci">CsvHelperException(string message)</div><div class="ttdoc">Initializes a new instance of the CsvHelperException class with a specified error message...</div><div class="ttdef"><b>Definition:</b> <a href="a00212_source.html#l00030">CsvHelperException.cs:30</a></div></div>
-<div class="ttc" id="a00063_html"><div class="ttname"><a href="a00063.html">CsvHelper.CsvHelperException</a></div><div class="ttdoc">Represents errors that occur in CsvHelper. </div><div class="ttdef"><b>Definition:</b> <a href="a00212_source.html#l00018">CsvHelperException.cs:18</a></div></div>
-<div class="ttc" id="a00063_html_ac97c52774cb49f7e5d855b7586cdfa1d"><div class="ttname"><a href="a00063.html#ac97c52774cb49f7e5d855b7586cdfa1d">CsvHelper.CsvHelperException.CsvHelperException</a></div><div class="ttdeci">CsvHelperException(string message, Exception innerException)</div><div class="ttdoc">Initializes a new instance of the CsvHelperException class with a specified error message and a refer...</div><div class="ttdef"><b>Definition:</b> <a href="a00212_source.html#l00039">CsvHelperException.cs:39</a></div></div>
+<div class="ttc" id="a00058_html_a2c210cf80604e58ffecc177f6f7c2547"><div class="ttname"><a href="a00058.html#a2c210cf80604e58ffecc177f6f7c2547">CsvHelper.CsvBadDataException.CsvBadDataException</a></div><div class="ttdeci">CsvBadDataException(string message, Exception innerException)</div><div class="ttdoc">Initializes a new instance of the CsvBadDataException class with a specified error message and a refe...</div><div class="ttdef"><b>Definition:</b> <a href="a00212_source.html#l00039">CsvBadDataException.cs:39</a></div></div>
+<div class="ttc" id="a00058_html"><div class="ttname"><a href="a00058.html">CsvHelper.CsvBadDataException</a></div><div class="ttdoc">Represents errors that occur due to bad data. </div><div class="ttdef"><b>Definition:</b> <a href="a00212_source.html#l00018">CsvBadDataException.cs:18</a></div></div>
+<div class="ttc" id="a00058_html_a337ebca212c62127ba837ae726a0cc3a"><div class="ttname"><a href="a00058.html#a337ebca212c62127ba837ae726a0cc3a">CsvHelper.CsvBadDataException.CsvBadDataException</a></div><div class="ttdeci">CsvBadDataException()</div><div class="ttdoc">Initializes a new instance of the CsvBadDataException class. </div><div class="ttdef"><b>Definition:</b> <a href="a00212_source.html#l00023">CsvBadDataException.cs:23</a></div></div>
+<div class="ttc" id="a00065_html"><div class="ttname"><a href="a00065.html">CsvHelper.CsvHelperException</a></div><div class="ttdoc">Represents errors that occur in CsvHelper. </div><div class="ttdef"><b>Definition:</b> <a href="a00214_source.html#l00018">CsvHelperException.cs:18</a></div></div>
+<div class="ttc" id="a00058_html_a31da9e807053a75e8bd252aa792269eb"><div class="ttname"><a href="a00058.html#a31da9e807053a75e8bd252aa792269eb">CsvHelper.CsvBadDataException.CsvBadDataException</a></div><div class="ttdeci">CsvBadDataException(string message)</div><div class="ttdoc">Initializes a new instance of the CsvBadDataException class with a specified error message...</div><div class="ttdef"><b>Definition:</b> <a href="a00212_source.html#l00030">CsvBadDataException.cs:30</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00212.html">CsvHelperException.cs</a></li>
-    <li class="footer">Generated on Wed Aug 28 2019 22:42:47 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00212.html">CsvBadDataException.cs</a></li>
+    <li class="footer">Generated on Wed Oct 23 2019 00:35:55 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

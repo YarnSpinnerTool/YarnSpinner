@@ -1,257 +1,367 @@
-\hypertarget{a00149}{\section{Csv\-Helper.\-Type\-Conversion.\-String\-Converter Class Reference}
-\label{a00149}\index{Csv\-Helper.\-Type\-Conversion.\-String\-Converter@{Csv\-Helper.\-Type\-Conversion.\-String\-Converter}}
+\hypertarget{a00149}{\section{Yarn.\-Dialogue.\-Standard\-Library Class Reference}
+\label{a00149}\index{Yarn.\-Dialogue.\-Standard\-Library@{Yarn.\-Dialogue.\-Standard\-Library}}
 }
 
 
-Converts a string to and from a string.  
+The standard, built-\/in library of functions and operators.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-String\-Converter\-:
+Inheritance diagram for Yarn.\-Dialogue.\-Standard\-Library\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00537}
+\includegraphics[width=228pt]{a00606}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-String\-Converter\-:
+Collaboration diagram for Yarn.\-Dialogue.\-Standard\-Library\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00538}
+\includegraphics[width=228pt]{a00607}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override object \hyperlink{a00149_a50bf35ff93e01df630a9c5e3c7b7569f}{Convert\-From\-String} (\hyperlink{a00156}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00149_a3e7f3959693638756bb98951fe8791f3}{Can\-Convert\-From} (System.\-Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual string \hyperlink{a00084_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00156}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00084_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00084_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00149_a1bf2ea2b59a842bafffec78667a86b19}{Standard\-Library} ()
+\item 
+\hyperlink{a00103}{Function\-Info} \hyperlink{a00123_aacfb1f00ad8aa3921941b8d8af0960e0}{Get\-Function} (string name)
+\item 
+void \hyperlink{a00123_ab42a4fd30a72156cafa685f959deef78}{Import\-Library} (\hyperlink{a00123}{Library} other\-Library)
+\item 
+void \hyperlink{a00123_a001ab29d21fe7db10fc9c250914287f9}{Register\-Function} (\hyperlink{a00103}{Function\-Info} function)
+\item 
+void \hyperlink{a00123_a2a698de0b528b2bac17bd85f57d45d4b}{Register\-Function} (string name, int parameter\-Count, \hyperlink{a00050_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} implementation)
+\item 
+void \hyperlink{a00123_a6820eaa082077f16496effbc9041b7ad}{Register\-Function} (string name, int parameter\-Count, \hyperlink{a00050_ae0be2e5cf13d5779816102439e61ff1a}{Function} implementation)
+\item 
+bool \hyperlink{a00123_a6c9a1cc3e25b6aae25e210d8a0d68c09}{Function\-Exists} (string name)
+\item 
+void \hyperlink{a00123_a47d1b3664733207d5cda15f4a4a7af7a}{Deregister\-Function} (string name)
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Converts a string to and from a string. 
+The standard, built-\/in library of functions and operators. 
+
+Definition at line 576 of file Dialogue.\-cs.
 
 
 
-Definition at line 12 of file String\-Converter.\-cs.
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00149_a1bf2ea2b59a842bafffec78667a86b19}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Standard\-Library@{Standard\-Library}}
+\index{Standard\-Library@{Standard\-Library}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
+\subsubsection[{Standard\-Library}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Dialogue.\-Standard\-Library.\-Standard\-Library (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00149_a1bf2ea2b59a842bafffec78667a86b19}
 
+
+Definition at line 578 of file Dialogue.\-cs.
+
+
+\begin{DoxyCode}
+578                                      \{
+579 
+580 \textcolor{preprocessor}{                #region Operators}
+581 \textcolor{preprocessor}{}
+582                 this.RegisterFunction(TokenType.Add.ToString(), 2, delegate(Value[] parameters) \{
+583                     \textcolor{keywordflow}{return} parameters[0] + parameters[1];
+584                 \});
+585 
+586                 this.RegisterFunction(TokenType.Minus.ToString(), 2, delegate(Value[] parameters) \{
+587                     \textcolor{keywordflow}{return} parameters[0] - parameters[1];
+588                 \});
+589 
+590                 this.RegisterFunction(TokenType.UnaryMinus.ToString(), 1, delegate(Value[] parameters) \{
+591                     \textcolor{keywordflow}{return} -parameters[0];
+592                 \});
+593 
+594                 this.RegisterFunction(TokenType.Divide.ToString(), 2, delegate(Value[] parameters) \{
+595                     \textcolor{keywordflow}{return} parameters[0] / parameters[1];
+596                 \});
+597 
+598                 this.RegisterFunction(TokenType.Multiply.ToString(), 2, delegate(Value[] parameters) \{
+599                     \textcolor{keywordflow}{return} parameters[0] * parameters[1];
+600                 \});
+601 
+602                 this.RegisterFunction(TokenType.Modulo.ToString(), 2, delegate(Value[] parameters) \{
+603                     \textcolor{keywordflow}{return} parameters[0] % parameters[1];
+604                 \});
+605 
+606                 this.RegisterFunction(TokenType.EqualTo.ToString(), 2, delegate(Value[] parameters) \{
+607                     \textcolor{keywordflow}{return} parameters[0].Equals( parameters[1] );
+608                 \});
+609 
+610                 this.RegisterFunction(TokenType.NotEqualTo.ToString(), 2, delegate(Value[] parameters) \{
+611 
+612                     \textcolor{comment}{// Return the logical negative of the == operator's result}
+613                     var equalTo = this.GetFunction(TokenType.EqualTo.ToString());
+614 
+615                     \textcolor{keywordflow}{return} !equalTo.Invoke(parameters).AsBool;
+616                 \});
+617 
+618                 this.RegisterFunction(TokenType.GreaterThan.ToString(), 2, delegate(Value[] parameters) \{
+619                     \textcolor{keywordflow}{return} parameters[0] > parameters[1];
+620                 \});
+621 
+622                 this.RegisterFunction(TokenType.GreaterThanOrEqualTo.ToString(), 2, delegate(Value[] 
+      parameters) \{
+623                     \textcolor{keywordflow}{return} parameters[0] >= parameters[1];
+624                 \});
+625 
+626                 this.RegisterFunction(TokenType.LessThan.ToString(), 2, delegate(Value[] parameters) \{
+627                     \textcolor{keywordflow}{return} parameters[0] < parameters[1];
+628                 \});
+629 
+630                 this.RegisterFunction(TokenType.LessThanOrEqualTo.ToString(), 2, delegate(Value[] 
+      parameters) \{
+631                     \textcolor{keywordflow}{return} parameters[0] <= parameters[1];
+632                 \});
+633 
+634                 this.RegisterFunction(TokenType.And.ToString(), 2, delegate(Value[] parameters) \{
+635                     \textcolor{keywordflow}{return} parameters[0].AsBool && parameters[1].AsBool;
+636                 \});
+637 
+638                 this.RegisterFunction(TokenType.Or.ToString(), 2, delegate(Value[] parameters) \{
+639                     \textcolor{keywordflow}{return} parameters[0].AsBool || parameters[1].AsBool;
+640                 \});
+641 
+642                 this.RegisterFunction(TokenType.Xor.ToString(), 2, delegate(Value[] parameters) \{
+643                     \textcolor{keywordflow}{return} parameters[0].AsBool ^ parameters[1].AsBool;
+644                 \});
+645 
+646                 this.RegisterFunction(TokenType.Not.ToString(), 1, delegate(Value[] parameters) \{
+647                     \textcolor{keywordflow}{return} !parameters[0].AsBool;
+648                 \});
+649 
+650 \textcolor{preprocessor}{                #endregion Operators}
+651 \textcolor{preprocessor}{}            \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00149_a3e7f3959693638756bb98951fe8791f3}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::StringConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-String\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00123_a47d1b3664733207d5cda15f4a4a7af7a}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Deregister\-Function@{Deregister\-Function}}
+\index{Deregister\-Function@{Deregister\-Function}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
+\subsubsection[{Deregister\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Deregister\-Function (
 \begin{DoxyParamCaption}
-\item[{System.\-Type}]{type}
+\item[{string}]{name}
 \end{DoxyParamCaption}
-)}}\label{a00149_a3e7f3959693638756bb98951fe8791f3}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00123_a47d1b3664733207d5cda15f4a4a7af7a}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+Definition at line 132 of file Library.\-cs.
 
 
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
 
-
-Definition at line 37 of file String\-Converter.\-cs.
+References Yarn.\-Library.\-functions.
 
 
 \begin{DoxyCode}
-38         \{
-39             \textcolor{comment}{// We only care about strings.}
-40             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-41         \}
+132                                                     \{
+133             \textcolor{keywordflow}{if} (\hyperlink{a00123_a2fcc78a63963be5320cf09783b66fab6}{functions}.ContainsKey(name))
+134                 \hyperlink{a00123_a2fcc78a63963be5320cf09783b66fab6}{functions}.Remove (name);
+135         \}
 \end{DoxyCode}
-\hypertarget{a00084_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::StringConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00123_a6c9a1cc3e25b6aae25e210d8a0d68c09}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Function\-Exists@{Function\-Exists}}
+\index{Function\-Exists@{Function\-Exists}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
+\subsubsection[{Function\-Exists}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Library.\-Function\-Exists (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{string}]{name}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00084_a470d21adaa704eb281250dbd112ff91a}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00123_a6c9a1cc3e25b6aae25e210d8a0d68c09}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00117_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00133_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00043_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00094_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00095_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00081_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00080_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00044_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00154_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
-
-
-
-Definition at line 55 of file Default\-Type\-Converter.\-cs.
+Definition at line 128 of file Library.\-cs.
 
 
 \begin{DoxyCode}
-56         \{
-57             \textcolor{comment}{// The default convert doesn't know how to}
-58             \textcolor{comment}{// convert from any type.}
-59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-60         \}
+128                                                 \{
+129             \textcolor{keywordflow}{return} functions.ContainsKey (name);
+130         \}
 \end{DoxyCode}
-\hypertarget{a00084_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::StringConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
+\hypertarget{a00123_aacfb1f00ad8aa3921941b8d8af0960e0}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Get\-Function@{Get\-Function}}
+\index{Get\-Function@{Get\-Function}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
+\subsubsection[{Get\-Function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Function\-Info} Yarn.\-Library.\-Get\-Function (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{string}]{name}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00084_acb65bd8c8199d88d5b1629ae35d18514}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00123_aacfb1f00ad8aa3921941b8d8af0960e0}
 
 
-Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00117_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Definition at line 97 of file Library.\-cs.
 
 
 
-Reimplemented in \hyperlink{a00095_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+References Yarn.\-Library.\-functions.
 
 
 
-Definition at line 69 of file Default\-Type\-Converter.\-cs.
+Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
 
 
 \begin{DoxyCode}
-70         \{
-71             \textcolor{comment}{// We only care about strings.}
-72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-73         \}
+97                                                      \{
+98             \textcolor{keywordflow}{try} \{
+99                 \textcolor{keywordflow}{return} \hyperlink{a00123_a2fcc78a63963be5320cf09783b66fab6}{functions} [name];
+100             \} \textcolor{keywordflow}{catch} (KeyNotFoundException) \{
+101                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (name + \textcolor{stringliteral}{" is not a valid function"});
+102             \}
+103         \}
 \end{DoxyCode}
-\hypertarget{a00149_a50bf35ff93e01df630a9c5e3c7b7569f}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::StringConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-String\-Converter.\-Convert\-From\-String (
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00123_aacfb1f00ad8aa3921941b8d8af0960e0_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00123_ab42a4fd30a72156cafa685f959deef78}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Import\-Library@{Import\-Library}}
+\index{Import\-Library@{Import\-Library}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
+\subsubsection[{Import\-Library}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Import\-Library (
 \begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{string}]{text}
+\item[{{\bf Library}}]{other\-Library}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00149_a50bf35ff93e01df630a9c5e3c7b7569f}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00123_ab42a4fd30a72156cafa685f959deef78}
 
 
-Converts the string to an object. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em text} & The string to convert to an object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The object created from the string.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00084_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Definition at line 108 of file Library.\-cs.
 
 
 
-Definition at line 20 of file String\-Converter.\-cs.
+References Yarn.\-Library.\-functions.
 
 
 \begin{DoxyCode}
-21         \{
-22             \textcolor{keywordflow}{if}( text == null )
-23             \{
-24                 \textcolor{keywordflow}{return} string.Empty;
-25             \}
-26 
-27             \textcolor{keywordflow}{return} text;
-28         \}
+108                                                         \{
+109             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} otherLibrary.functions) \{
+110                 \hyperlink{a00123_a2fcc78a63963be5320cf09783b66fab6}{functions} [entry.Key] = entry.Value;
+111             \}
+112         \}
 \end{DoxyCode}
-\hypertarget{a00084_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::StringConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-String\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
+\hypertarget{a00123_a001ab29d21fe7db10fc9c250914287f9}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Register\-Function@{Register\-Function}}
+\index{Register\-Function@{Register\-Function}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
+\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
 \begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{object}]{value}
+\item[{{\bf Function\-Info}}]{function}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00084_a36cb2f9b24f15a671293f3a722324c27}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00123_a001ab29d21fe7db10fc9c250914287f9}
 
 
-Converts the object to a string. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em value} & The object to convert to a string.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The string representation of the object.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00117_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Definition at line 114 of file Library.\-cs.
 
 
 
-Reimplemented in \hyperlink{a00133_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00095_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+References Yarn.\-Library.\-functions.
 
 
 
-Definition at line 21 of file Default\-Type\-Converter.\-cs.
+Referenced by Yarn.\-Library.\-Register\-Function().
 
 
 \begin{DoxyCode}
-22         \{
-23             \textcolor{keywordflow}{if}( value == null )
-24             \{
-25                 \textcolor{keywordflow}{return} string.Empty;
-26             \}
-27 
-28             var formattable = value as IFormattable;
-29             \textcolor{keywordflow}{if}( formattable != null )
-30             \{
-31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
-32             \}
-33 
-34             \textcolor{keywordflow}{return} value.ToString();
-35         \}
+114                                                             \{
+115             \hyperlink{a00123_a2fcc78a63963be5320cf09783b66fab6}{functions} [function.name] = \textcolor{keyword}{function};
+116         \}
 \end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00123_a001ab29d21fe7db10fc9c250914287f9_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00123_a2a698de0b528b2bac17bd85f57d45d4b}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Register\-Function@{Register\-Function}}
+\index{Register\-Function@{Register\-Function}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
+\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{parameter\-Count, }
+\item[{{\bf Returning\-Function}}]{implementation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00123_a2a698de0b528b2bac17bd85f57d45d4b}
+
+
+Definition at line 118 of file Library.\-cs.
+
+
+
+References Yarn.\-Library.\-Register\-Function().
+
+
+\begin{DoxyCode}
+118                                                                                                         \{
+119             var info = \textcolor{keyword}{new} FunctionInfo (name, parameterCount, implementation);
+120             \hyperlink{a00123_a001ab29d21fe7db10fc9c250914287f9}{RegisterFunction} (info);
+121         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00123_a2a698de0b528b2bac17bd85f57d45d4b_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00123_a6820eaa082077f16496effbc9041b7ad}{\index{Yarn\-::\-Dialogue\-::\-Standard\-Library@{Yarn\-::\-Dialogue\-::\-Standard\-Library}!Register\-Function@{Register\-Function}}
+\index{Register\-Function@{Register\-Function}!Yarn::Dialogue::StandardLibrary@{Yarn\-::\-Dialogue\-::\-Standard\-Library}}
+\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{parameter\-Count, }
+\item[{{\bf Function}}]{implementation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00123_a6820eaa082077f16496effbc9041b7ad}
+
+
+Definition at line 123 of file Library.\-cs.
+
+
+
+References Yarn.\-Library.\-Register\-Function().
+
+
+\begin{DoxyCode}
+123                                                                                                \{
+124             var info = \textcolor{keyword}{new} FunctionInfo (name, parameterCount, implementation);
+125             \hyperlink{a00123_a001ab29d21fe7db10fc9c250914287f9}{RegisterFunction} (info);
+126         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00123_a6820eaa082077f16496effbc9041b7ad_cgraph}
+\end{center}
+\end{figure}
+
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00256}{String\-Converter.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00285}{Dialogue.\-cs}\end{DoxyCompactItemize}

@@ -1,102 +1,162 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00102" kind="class" prot="public">
-    <compoundname>Yarn::GenerateTableOptions</compoundname>
-    <basecompoundref refid="a00040" prot="public" virt="non-virtual">Yarn.BaseOptions</basecompoundref>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00102_1a8b30c1b7fb1b74eae455a568c1024b3d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+    <compoundname>Yarn::FileFormatConverter</compoundname>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="a00102_1aa4db4ccac799c5f047a8b1a9efbe109d" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Yarn.FileFormatConverter.ConvertFormat</definition>
+        <argsstring>(ConvertFormatOptions options)</argsstring>
+        <name>ConvertFormat</name>
+        <param>
+          <type><ref refid="a00057" kindref="compound">ConvertFormatOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="10" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="10" bodyend="24"/>
+        <references refid="a00174_1a0979de7ea02c8c0375b8220a12e6575e" compoundref="a00303" startline="268">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</references>
+        <references refid="a00102_1a1e6cd39b0c813f21da278367dcff76d2" compoundref="a00301" startline="26" endline="39">Yarn.FileFormatConverter.ConvertToYarn</references>
+        <references refid="a00057_1a052d6f00647c503adc5a79a1ff92cdf4" compoundref="a00303" startline="131">Yarn.ConvertFormatOptions.convertToYarn</references>
+        <referencedby refid="a00174_1a1d71ff2eb190449ea1d42ce86f44489f" compoundref="a00303" startline="240" endline="266">Yarn.YarnSpinnerConsole.Main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00102_1a85596df924468279b2dc44a9f31d8bad" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>string</type>
-        <definition>string Yarn.GenerateTableOptions.onlyUseTag</definition>
-        <argsstring></argsstring>
-        <name>onlyUseTag</name>
+        <definition>static string Yarn.FileFormatConverter.ConvertNodes</definition>
+        <argsstring>(IEnumerable&lt; Loader.NodeInfo &gt; nodes, NodeFormat format)</argsstring>
+        <name>ConvertNodes</name>
+        <param>
+          <type>IEnumerable&lt; <ref refid="a00133" kindref="compound">Loader.NodeInfo</ref> &gt;</type>
+          <declname>nodes</declname>
+        </param>
+        <param>
+          <type><ref refid="a00050_1ad7ebb46e7309ead8767383a672b3272f" kindref="member">NodeFormat</ref></type>
+          <declname>format</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="113" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="113" bodyend="-1"/>
-        <referencedby refid="a00151_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00301" startline="12" endline="124">Yarn.TableGenerator.GenerateTables</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="41" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="41" bodyend="49"/>
+        <references refid="a00102_1a282f283f02c9b1d3e53d813ec2f35233" compoundref="a00301" startline="51" endline="114">Yarn.FileFormatConverter.ConvertNodesToYarnText</references>
       </memberdef>
-      <memberdef kind="property" id="a00040_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.BaseOptions.showDebuggingInfo</definition>
-        <argsstring></argsstring>
-        <name>showDebuggingInfo</name>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="a00102_1a1e6cd39b0c813f21da278367dcff76d2" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Yarn.FileFormatConverter.ConvertToYarn</definition>
+        <argsstring>(ConvertFormatOptions options)</argsstring>
+        <name>ConvertToYarn</name>
+        <param>
+          <type><ref refid="a00057" kindref="compound">ConvertFormatOptions</ref></type>
+          <declname>options</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="42" bodyend="-1"/>
-        <referencedby refid="a00172_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00300" startline="383" endline="501">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="26" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="26" bodyend="39"/>
+        <references refid="a00102_1aa72838be584177b5592c31d73c0febdb" compoundref="a00301" startline="119" endline="160">Yarn.FileFormatConverter.ConvertNodesInFile</references>
+        <references refid="a00102_1a282f283f02c9b1d3e53d813ec2f35233" compoundref="a00301" startline="51" endline="114">Yarn.FileFormatConverter.ConvertNodesToYarnText</references>
+        <references refid="a00127_1a080b2d6b7553c178007c04297d50e9da" compoundref="a00291" startline="277" endline="293">Yarn.Loader.GetFormatFromFileName</references>
+        <referencedby refid="a00102_1aa4db4ccac799c5f047a8b1a9efbe109d" compoundref="a00301" startline="10" endline="24">Yarn.FileFormatConverter.ConvertFormat</referencedby>
       </memberdef>
-      <memberdef kind="property" id="a00040_1ada4d83d1756918f362d55f6649b82b17" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.BaseOptions.verbose</definition>
-        <argsstring></argsstring>
-        <name>verbose</name>
+      <memberdef kind="function" id="a00102_1a282f283f02c9b1d3e53d813ec2f35233" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Yarn.FileFormatConverter.ConvertNodesToYarnText</definition>
+        <argsstring>(IEnumerable&lt; Loader.NodeInfo &gt; nodes)</argsstring>
+        <name>ConvertNodesToYarnText</name>
+        <param>
+          <type>IEnumerable&lt; <ref refid="a00133" kindref="compound">Loader.NodeInfo</ref> &gt;</type>
+          <declname>nodes</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="46" bodyend="-1"/>
-        <referencedby refid="a00100_1aa72838be584177b5592c31d73c0febdb" compoundref="a00298" startline="119" endline="160">Yarn.FileFormatConverter.ConvertNodesInFile</referencedby>
-        <referencedby refid="a00151_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00301" startline="12" endline="124">Yarn.TableGenerator.GenerateTables</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="51" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="51" bodyend="114"/>
+        <referencedby refid="a00102_1a85596df924468279b2dc44a9f31d8bad" compoundref="a00301" startline="41" endline="49">Yarn.FileFormatConverter.ConvertNodes</referencedby>
+        <referencedby refid="a00102_1a1e6cd39b0c813f21da278367dcff76d2" compoundref="a00301" startline="26" endline="39">Yarn.FileFormatConverter.ConvertToYarn</referencedby>
       </memberdef>
-      <memberdef kind="property" id="a00040_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>IList&lt; string &gt;</type>
-        <definition>IList&lt;string&gt; Yarn.BaseOptions.files</definition>
-        <argsstring></argsstring>
-        <name>files</name>
+      <memberdef kind="function" id="a00102_1aa72838be584177b5592c31d73c0febdb" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Yarn.FileFormatConverter.ConvertNodesInFile</definition>
+        <argsstring>(ConvertFormatOptions options, string file, string fileExtension, ConvertNodesToText convert)</argsstring>
+        <name>ConvertNodesInFile</name>
+        <param>
+          <type><ref refid="a00057" kindref="compound">ConvertFormatOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>fileExtension</declname>
+        </param>
+        <param>
+          <type><ref refid="a00102_1af9bd5d832fdd2bcbdc626d9f8632e05c" kindref="member">ConvertNodesToText</ref></type>
+          <declname>convert</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="49" bodyend="-1"/>
-        <referencedby refid="a00172_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00300" startline="270" endline="331">Yarn.YarnSpinnerConsole.Run</referencedby>
-        <referencedby refid="a00172_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00300" startline="333" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="119" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="119" bodyend="160"/>
+        <references refid="a00042_1ada4d83d1756918f362d55f6649b82b17" compoundref="a00303" startline="46">Yarn.BaseOptions.verbose</references>
+        <referencedby refid="a00102_1a1e6cd39b0c813f21da278367dcff76d2" compoundref="a00301" startline="26" endline="39">Yarn.FileFormatConverter.ConvertToYarn</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00102_1af9bd5d832fdd2bcbdc626d9f8632e05c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate string</type>
+        <definition>delegate string Yarn.FileFormatConverter.ConvertNodesToText</definition>
+        <argsstring>(IEnumerable&lt; Loader.NodeInfo &gt; nodes)</argsstring>
+        <name>ConvertNodesToText</name>
+        <param>
+          <type>IEnumerable&lt; <ref refid="a00133" kindref="compound">Loader.NodeInfo</ref> &gt;</type>
+          <declname>nodes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="117" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1206">
-        <label>Yarn.GenerateTableOptions</label>
-        <link refid="a00102"/>
-        <childnode refid="1207" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1207">
-        <label>BaseOptions</label>
-        <link refid="a00040"/>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1208">
-        <label>Yarn.GenerateTableOptions</label>
+      <node id="1203">
+        <label>Yarn.FileFormatConverter</label>
         <link refid="a00102"/>
-        <childnode refid="1209" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1209">
-        <label>BaseOptions</label>
-        <link refid="a00040"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="111" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="110" bodyend="114"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" line="9" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/FileFormatConverter.cs" bodystart="8" bodyend="163"/>
     <listofallmembers>
-      <member refid="a00040_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" virt="non-virtual"><scope>Yarn::GenerateTableOptions</scope><name>files</name></member>
-      <member refid="a00102_1a8b30c1b7fb1b74eae455a568c1024b3d" prot="public" virt="non-virtual"><scope>Yarn::GenerateTableOptions</scope><name>onlyUseTag</name></member>
-      <member refid="a00040_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" virt="non-virtual"><scope>Yarn::GenerateTableOptions</scope><name>showDebuggingInfo</name></member>
-      <member refid="a00040_1ada4d83d1756918f362d55f6649b82b17" prot="public" virt="non-virtual"><scope>Yarn::GenerateTableOptions</scope><name>verbose</name></member>
+      <member refid="a00102_1aa4db4ccac799c5f047a8b1a9efbe109d" prot="package" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertFormat</name></member>
+      <member refid="a00102_1a85596df924468279b2dc44a9f31d8bad" prot="package" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodes</name></member>
+      <member refid="a00102_1aa72838be584177b5592c31d73c0febdb" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodesInFile</name></member>
+      <member refid="a00102_1af9bd5d832fdd2bcbdc626d9f8632e05c" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodesToText</name></member>
+      <member refid="a00102_1a282f283f02c9b1d3e53d813ec2f35233" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertNodesToYarnText</name></member>
+      <member refid="a00102_1a1e6cd39b0c813f21da278367dcff76d2" prot="private" virt="non-virtual"><scope>Yarn::FileFormatConverter</scope><name>ConvertToYarn</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -1,9 +1,5 @@
 var a00100 =
 [
-    [ "ConvertFormat", "a00100.html#aa4db4ccac799c5f047a8b1a9efbe109d", null ],
-    [ "ConvertNodes", "a00100.html#a85596df924468279b2dc44a9f31d8bad", null ],
-    [ "ConvertNodesInFile", "a00100.html#aa72838be584177b5592c31d73c0febdb", null ],
-    [ "ConvertNodesToText", "a00100.html#af9bd5d832fdd2bcbdc626d9f8632e05c", null ],
-    [ "ConvertNodesToYarnText", "a00100.html#a282f283f02c9b1d3e53d813ec2f35233", null ],
-    [ "ConvertToYarn", "a00100.html#a1e6cd39b0c813f21da278367dcff76d2", null ]
+    [ "AddExceptionDataMessage", "a00100.html#a7415ea84b6d462b9d61ecf2128282837", null ],
+    [ "GetErrorMessage", "a00100.html#a11e421dc9f9fdb2b72d060a24471b5be", null ]
 ];

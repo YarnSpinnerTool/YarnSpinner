@@ -1,106 +1,52 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00131" kind="struct" prot="public">
-    <compoundname>Yarn::Loader::NodeInfo</compoundname>
-    <innerclass refid="a00137" prot="public">Yarn::Loader::NodeInfo::Position</innerclass>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00131_1aafc45bbc86a9acb9bdbcf7877695a96c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.Loader.NodeInfo.title</definition>
-        <argsstring></argsstring>
-        <name>title</name>
+  <compounddef id="a00131" kind="class" prot="public">
+    <compoundname>MobileOnly</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00131_1acfb1b3a9c8f62b30300331fb84752022" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MobileOnly.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="251" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="251" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00131_1a18a8b97f2173fbcf8f3077582cc6e96e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.Loader.NodeInfo.body</definition>
-        <argsstring></argsstring>
-        <name>body</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="252" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="252" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00131_1acd4d4915f6cc14f8b0f1f92d27da8b36" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.Loader.NodeInfo.tags</definition>
-        <argsstring></argsstring>
-        <name>tags</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="256" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="256" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00131_1a65f686e0170a9c50b97c4e4eedd1a093" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>int</type>
-        <definition>int Yarn.Loader.NodeInfo.colorID</definition>
-        <argsstring></argsstring>
-        <name>colorID</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="258" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="258" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00131_1ac368ed021558af21c4abed88042c1aa8" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type><ref refid="a00137" kindref="compound">Position</ref></type>
-        <definition>Position Yarn.Loader.NodeInfo.position</definition>
-        <argsstring></argsstring>
-        <name>position</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="259" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="259" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00131_1ab5010cc4c731e0da871e6002e5fb99a1" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>List&lt; string &gt;</type>
-        <definition>List&lt;string&gt; Yarn.Loader.NodeInfo.tagsList</definition>
-        <argsstring></argsstring>
-        <name>tagsList</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="262" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="263" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" line="10" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" bodystart="10" bodyend="18"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Removes an object from the scene when the game is running on a non-mobile platform. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1371">
-        <label>Yarn.Loader.NodeInfo</label>
+    <inheritancegraph>
+      <node id="1360">
+        <label>MobileOnly</label>
         <link refid="a00131"/>
+        <childnode refid="1361" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1361">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1362">
+        <label>MobileOnly</label>
+        <link refid="a00131"/>
+        <childnode refid="1363" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1363">
+        <label>MonoBehaviour</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="245" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="245" bodyend="275"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" line="7" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" bodystart="7" bodyend="20"/>
     <listofallmembers>
-      <member refid="a00131_1a18a8b97f2173fbcf8f3077582cc6e96e" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>body</name></member>
-      <member refid="a00131_1a65f686e0170a9c50b97c4e4eedd1a093" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>colorID</name></member>
-      <member refid="a00131_1ac368ed021558af21c4abed88042c1aa8" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>position</name></member>
-      <member refid="a00131_1acd4d4915f6cc14f8b0f1f92d27da8b36" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>tags</name></member>
-      <member refid="a00131_1ab5010cc4c731e0da871e6002e5fb99a1" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>tagsList</name></member>
-      <member refid="a00131_1aafc45bbc86a9acb9bdbcf7877695a96c" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>title</name></member>
+      <member refid="a00131_1acfb1b3a9c8f62b30300331fb84752022" prot="private" virt="non-virtual"><scope>MobileOnly</scope><name>Awake</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

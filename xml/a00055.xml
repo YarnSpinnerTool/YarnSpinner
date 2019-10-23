@@ -1,79 +1,370 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00055" kind="class" prot="public">
-    <compoundname>Yarn::ConvertFormatOptions</compoundname>
-    <basecompoundref refid="a00040" prot="public" virt="non-virtual">Yarn.BaseOptions</basecompoundref>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00055_1a052d6f00647c503adc5a79a1ff92cdf4" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+  <compounddef id="a00055" kind="class" prot="package">
+    <compoundname>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</compoundname>
+    <basecompoundref refid="a00169" prot="public" virt="non-virtual">Yarn.VariableStorage</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00055_1a90b0c755ea1d2f3ffaffa6cf18266709" prot="private" static="no" mutable="no">
         <type>bool</type>
-        <definition>bool Yarn.ConvertFormatOptions.convertToYarn</definition>
+        <definition>bool Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.waitForLines</definition>
         <argsstring></argsstring>
-        <name>convertToYarn</name>
+        <name>waitForLines</name>
+        <initializer>= false</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="131" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="131" bodyend="-1"/>
-        <referencedby refid="a00100_1aa4db4ccac799c5f047a8b1a9efbe109d" compoundref="a00298" startline="10" endline="24">Yarn.FileFormatConverter.ConvertFormat</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="507" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="507" bodyend="-1"/>
+        <referencedby refid="a00055_1a8a2687bbff3f09203c14fa505b06f505" compoundref="a00303" startline="525" endline="529">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.ConsoleRunnerImplementation</referencedby>
+        <referencedby refid="a00055_1a13bc6c3a8ba43223a20befae50dbbcb4" compoundref="a00303" startline="531" endline="549">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunLine</referencedby>
       </memberdef>
-      <memberdef kind="property" id="a00055_1ab636bde93c2204b2af1a9306560d9749" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+      <memberdef kind="variable" id="a00055_1a9907b805775d5837a900ddbd0a1739b7" prot="private" static="no" mutable="no">
+        <type><ref refid="a00130" kindref="compound">Yarn.MemoryVariableStore</ref></type>
+        <definition>Yarn.MemoryVariableStore Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.variableStore</definition>
+        <argsstring></argsstring>
+        <name>variableStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="509" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="509" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00055_1a2e17937195ecd64d5d867d958c45d2c3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.numberOfExpectedOptions</definition>
+        <argsstring></argsstring>
+        <name>numberOfExpectedOptions</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="513" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="513" bodyend="-1"/>
+        <referencedby refid="a00055_1a62674694fa65e5ae8c0c0da4fbceda51" compoundref="a00303" startline="551" endline="628">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunOptions</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00055_1a34886671e91a1bf3fc225eeb67baced1" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.autoSelectOptionNumber</definition>
+        <argsstring></argsstring>
+        <name>autoSelectOptionNumber</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="517" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="517" bodyend="-1"/>
+        <referencedby refid="a00055_1a62674694fa65e5ae8c0c0da4fbceda51" compoundref="a00303" startline="551" endline="628">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunOptions</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00055_1a33a44e39f2d90850cee234dfad50f2c5" prot="public" static="no" mutable="no">
         <type>string</type>
-        <definition>string Yarn.ConvertFormatOptions.outputDirectory</definition>
+        <definition>string Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.expectedNextLine</definition>
         <argsstring></argsstring>
-        <name>outputDirectory</name>
+        <name>expectedNextLine</name>
+        <initializer>= null</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="134" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="134" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="519" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="519" bodyend="-1"/>
+        <referencedby refid="a00055_1a13bc6c3a8ba43223a20befae50dbbcb4" compoundref="a00303" startline="531" endline="549">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunLine</referencedby>
       </memberdef>
-      <memberdef kind="property" id="a00040_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+      <memberdef kind="variable" id="a00055_1a3c7133c65dc7cf293f49b61426a0c4aa" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.expectedNextCommand</definition>
+        <argsstring></argsstring>
+        <name>expectedNextCommand</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="521" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="521" bodyend="-1"/>
+        <referencedby refid="a00055_1aef048f9dbd90258eacc2886aa48ef6af" compoundref="a00303" startline="630" endline="643">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunCommand</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00055_1a09a552ee9ff58cb3c995f8ecba1592b6" prot="public" static="no" mutable="no">
         <type>bool</type>
-        <definition>bool Yarn.BaseOptions.showDebuggingInfo</definition>
+        <definition>bool Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.autoSelectFirstOption</definition>
         <argsstring></argsstring>
-        <name>showDebuggingInfo</name>
+        <name>autoSelectFirstOption</name>
+        <initializer>= false</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="42" bodyend="-1"/>
-        <referencedby refid="a00172_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00300" startline="383" endline="501">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="523" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="523" bodyend="-1"/>
+        <referencedby refid="a00055_1a62674694fa65e5ae8c0c0da4fbceda51" compoundref="a00303" startline="551" endline="628">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunOptions</referencedby>
       </memberdef>
-      <memberdef kind="property" id="a00040_1ada4d83d1756918f362d55f6649b82b17" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.BaseOptions.verbose</definition>
-        <argsstring></argsstring>
-        <name>verbose</name>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00055_1a8a2687bbff3f09203c14fa505b06f505" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.ConsoleRunnerImplementation</definition>
+        <argsstring>(bool waitForLines=false)</argsstring>
+        <name>ConsoleRunnerImplementation</name>
+        <param>
+          <type>bool</type>
+          <declname>waitForLines</declname>
+          <defval>false</defval>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="46" bodyend="-1"/>
-        <referencedby refid="a00100_1aa72838be584177b5592c31d73c0febdb" compoundref="a00298" startline="119" endline="160">Yarn.FileFormatConverter.ConvertNodesInFile</referencedby>
-        <referencedby refid="a00151_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00301" startline="12" endline="124">Yarn.TableGenerator.GenerateTables</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="525" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="525" bodyend="529"/>
+        <references refid="a00055_1a90b0c755ea1d2f3ffaffa6cf18266709" compoundref="a00303" startline="507">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.waitForLines</references>
       </memberdef>
-      <memberdef kind="property" id="a00040_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>IList&lt; string &gt;</type>
-        <definition>IList&lt;string&gt; Yarn.BaseOptions.files</definition>
-        <argsstring></argsstring>
-        <name>files</name>
+      <memberdef kind="function" id="a00055_1a13bc6c3a8ba43223a20befae50dbbcb4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunLine</definition>
+        <argsstring>(Yarn.Line lineText)</argsstring>
+        <name>RunLine</name>
+        <param>
+          <type><ref refid="a00352" kindref="compound">Yarn.Line</ref></type>
+          <declname>lineText</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="49" bodyend="-1"/>
-        <referencedby refid="a00172_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00300" startline="270" endline="331">Yarn.YarnSpinnerConsole.Run</referencedby>
-        <referencedby refid="a00172_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00300" startline="333" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="531" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="531" bodyend="549"/>
+        <references refid="a00174_1a2f63f9f5b7634cb50ee75ff2eb18b137" compoundref="a00303" startline="163" endline="175">Yarn.YarnSpinnerConsole.Error</references>
+        <references refid="a00055_1a33a44e39f2d90850cee234dfad50f2c5" compoundref="a00303" startline="519">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.expectedNextLine</references>
+        <references refid="a00055_1a90b0c755ea1d2f3ffaffa6cf18266709" compoundref="a00303" startline="507">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.waitForLines</references>
+      </memberdef>
+      <memberdef kind="function" id="a00055_1a62674694fa65e5ae8c0c0da4fbceda51" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunOptions</definition>
+        <argsstring>(Options optionsGroup, OptionChooser optionChooser)</argsstring>
+        <name>RunOptions</name>
+        <param>
+          <type><ref refid="a00355" kindref="compound">Options</ref></type>
+          <declname>optionsGroup</declname>
+        </param>
+        <param>
+          <type><ref refid="a00050_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">OptionChooser</ref></type>
+          <declname>optionChooser</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="551" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="551" bodyend="628"/>
+        <references refid="a00055_1a09a552ee9ff58cb3c995f8ecba1592b6" compoundref="a00303" startline="523">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.autoSelectFirstOption</references>
+        <references refid="a00055_1a34886671e91a1bf3fc225eeb67baced1" compoundref="a00303" startline="517">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.autoSelectOptionNumber</references>
+        <references refid="a00174_1a2f63f9f5b7634cb50ee75ff2eb18b137" compoundref="a00303" startline="163" endline="175">Yarn.YarnSpinnerConsole.Error</references>
+        <references refid="a00174_1a939cc9e943c574b36c6af93e9c772702" compoundref="a00303" startline="177" endline="189">Yarn.YarnSpinnerConsole.Note</references>
+        <references refid="a00055_1a2e17937195ecd64d5d867d958c45d2c3" compoundref="a00303" startline="513">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.numberOfExpectedOptions</references>
+        <references refid="a00355_1ae8c616d923ceeeed192a9436c55d9917" compoundref="a00285" startline="60">Yarn.Options.options</references>
+      </memberdef>
+      <memberdef kind="function" id="a00055_1aef048f9dbd90258eacc2886aa48ef6af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunCommand</definition>
+        <argsstring>(string command)</argsstring>
+        <name>RunCommand</name>
+        <param>
+          <type>string</type>
+          <declname>command</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="630" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="630" bodyend="643"/>
+        <references refid="a00174_1a2f63f9f5b7634cb50ee75ff2eb18b137" compoundref="a00303" startline="163" endline="175">Yarn.YarnSpinnerConsole.Error</references>
+        <references refid="a00055_1a3c7133c65dc7cf293f49b61426a0c4aa" compoundref="a00303" startline="521">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.expectedNextCommand</references>
+      </memberdef>
+      <memberdef kind="function" id="a00055_1ad6299fd476e53164d9f97d324d8c5936" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.DialogueComplete</definition>
+        <argsstring>()</argsstring>
+        <name>DialogueComplete</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="645" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="645" bodyend="648"/>
+      </memberdef>
+      <memberdef kind="function" id="a00055_1a925ecf432875c3831adc1a9959db8b46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.HandleErrorMessage</definition>
+        <argsstring>(string error)</argsstring>
+        <name>HandleErrorMessage</name>
+        <param>
+          <type>string</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="650" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="650" bodyend="653"/>
+        <references refid="a00174_1a2f63f9f5b7634cb50ee75ff2eb18b137" compoundref="a00303" startline="163" endline="175">Yarn.YarnSpinnerConsole.Error</references>
+      </memberdef>
+      <memberdef kind="function" id="a00055_1ab656ffe1f6e66f2e6d2cb3e970f54b90" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.HandleDebugMessage</definition>
+        <argsstring>(string message)</argsstring>
+        <name>HandleDebugMessage</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="655" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="655" bodyend="658"/>
+        <references refid="a00174_1a939cc9e943c574b36c6af93e9c772702" compoundref="a00303" startline="177" endline="189">Yarn.YarnSpinnerConsole.Note</references>
+      </memberdef>
+      <memberdef kind="function" id="a00055_1afbf35444dc4e3dcef57746803ad432db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.SetValue</definition>
+        <argsstring>(string variableName, float floatValue)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00169_1af0ffa5fc7773a4a5dc8e33d992421931">SetValue</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>floatValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="660" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="660" bodyend="663"/>
+      </memberdef>
+      <memberdef kind="function" id="a00055_1ab9e0c7e52efd43d767c79085806195ec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.SetValue</definition>
+        <argsstring>(string variableName, string stringValue)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00169_1a412078d8e228f3e288e00f227ef4b4f5">SetValue</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>stringValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="664" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="664" bodyend="667"/>
+      </memberdef>
+      <memberdef kind="function" id="a00055_1abeda3f7eb2611b48abfed778c6c37e6e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.SetValue</definition>
+        <argsstring>(string variableName, bool boolValue)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00169_1ab25eb0424a6e9d5819d0c7cc2035811b">SetValue</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>boolValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="668" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="668" bodyend="671"/>
+      </memberdef>
+      <memberdef kind="function" id="a00055_1ab6312d89b626ca803a74a9181286d608" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.SetValue</definition>
+        <argsstring>(string variableName, Value value)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00169_1aa90ff61224432c5ed3ce72199c55f440">SetValue</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type><ref refid="a00167" kindref="compound">Value</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="673" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="673" bodyend="676"/>
+      </memberdef>
+      <memberdef kind="function" id="a00055_1a66fc86080cd452079f5adf15e97c8e41" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="a00167" kindref="compound">Value</ref></type>
+        <definition>virtual Value Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.GetValue</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetValue</name>
+        <reimplements refid="a00169_1accab1fc5c8fc353dbfc53ca0f4029576">GetValue</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="678" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="678" bodyend="681"/>
+      </memberdef>
+      <memberdef kind="function" id="a00055_1a082617cf099d13cb4338935020ced764" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <reimplements refid="a00169_1af98c1e41f351cb96e13f668ca2fd9d92">Clear</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="683" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="683" bodyend="686"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -81,36 +372,57 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="905">
-        <label>Yarn.ConvertFormatOptions</label>
-        <link refid="a00055"/>
-        <childnode refid="906" relation="public-inheritance">
-        </childnode>
+      <node id="899">
+        <label>Yarn::VariableStorage</label>
+        <link refid="a00169"/>
       </node>
-      <node id="906">
-        <label>BaseOptions</label>
-        <link refid="a00040"/>
+      <node id="898">
+        <label>Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</label>
+        <link refid="a00055"/>
+        <childnode refid="899" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="907">
-        <label>Yarn.ConvertFormatOptions</label>
+      <node id="901">
+        <label>Yarn::VariableStorage</label>
+        <link refid="a00169"/>
+      </node>
+      <node id="900">
+        <label>Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</label>
         <link refid="a00055"/>
-        <childnode refid="908" relation="public-inheritance">
+        <childnode refid="901" relation="public-inheritance">
+        </childnode>
+        <childnode refid="902" relation="usage">
+          <edgelabel>-variableStore</edgelabel>
         </childnode>
       </node>
-      <node id="908">
-        <label>BaseOptions</label>
-        <link refid="a00040"/>
+      <node id="902">
+        <label>Yarn</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="129" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="128" bodyend="135"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="505" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="504" bodyend="687"/>
     <listofallmembers>
-      <member refid="a00055_1a052d6f00647c503adc5a79a1ff92cdf4" prot="public" virt="non-virtual"><scope>Yarn::ConvertFormatOptions</scope><name>convertToYarn</name></member>
-      <member refid="a00040_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" virt="non-virtual"><scope>Yarn::ConvertFormatOptions</scope><name>files</name></member>
-      <member refid="a00055_1ab636bde93c2204b2af1a9306560d9749" prot="public" virt="non-virtual"><scope>Yarn::ConvertFormatOptions</scope><name>outputDirectory</name></member>
-      <member refid="a00040_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" virt="non-virtual"><scope>Yarn::ConvertFormatOptions</scope><name>showDebuggingInfo</name></member>
-      <member refid="a00040_1ada4d83d1756918f362d55f6649b82b17" prot="public" virt="non-virtual"><scope>Yarn::ConvertFormatOptions</scope><name>verbose</name></member>
+      <member refid="a00055_1a09a552ee9ff58cb3c995f8ecba1592b6" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>autoSelectFirstOption</name></member>
+      <member refid="a00055_1a34886671e91a1bf3fc225eeb67baced1" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>autoSelectOptionNumber</name></member>
+      <member refid="a00055_1a082617cf099d13cb4338935020ced764" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>Clear</name></member>
+      <member refid="a00055_1a8a2687bbff3f09203c14fa505b06f505" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>ConsoleRunnerImplementation</name></member>
+      <member refid="a00055_1ad6299fd476e53164d9f97d324d8c5936" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>DialogueComplete</name></member>
+      <member refid="a00055_1a3c7133c65dc7cf293f49b61426a0c4aa" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>expectedNextCommand</name></member>
+      <member refid="a00055_1a33a44e39f2d90850cee234dfad50f2c5" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>expectedNextLine</name></member>
+      <member refid="a00055_1a66fc86080cd452079f5adf15e97c8e41" prot="public" virt="virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>GetValue</name></member>
+      <member refid="a00055_1ab656ffe1f6e66f2e6d2cb3e970f54b90" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>HandleDebugMessage</name></member>
+      <member refid="a00055_1a925ecf432875c3831adc1a9959db8b46" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>HandleErrorMessage</name></member>
+      <member refid="a00055_1a2e17937195ecd64d5d867d958c45d2c3" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>numberOfExpectedOptions</name></member>
+      <member refid="a00055_1aef048f9dbd90258eacc2886aa48ef6af" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>RunCommand</name></member>
+      <member refid="a00055_1a13bc6c3a8ba43223a20befae50dbbcb4" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>RunLine</name></member>
+      <member refid="a00055_1a62674694fa65e5ae8c0c0da4fbceda51" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>RunOptions</name></member>
+      <member refid="a00055_1afbf35444dc4e3dcef57746803ad432db" prot="public" virt="virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>SetValue</name></member>
+      <member refid="a00055_1ab9e0c7e52efd43d767c79085806195ec" prot="public" virt="virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>SetValue</name></member>
+      <member refid="a00055_1abeda3f7eb2611b48abfed778c6c37e6e" prot="public" virt="virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>SetValue</name></member>
+      <member refid="a00055_1ab6312d89b626ca803a74a9181286d608" prot="public" virt="virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>SetValue</name></member>
+      <member refid="a00055_1a9907b805775d5837a900ddbd0a1739b7" prot="private" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>variableStore</name></member>
+      <member refid="a00055_1a90b0c755ea1d2f3ffaffa6cf18266709" prot="private" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>waitForLines</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

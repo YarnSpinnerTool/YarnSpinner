@@ -1,10 +1,20 @@
 var a00072 =
 [
-    [ "CsvPropertyReferenceMap", "a00072.html#a02823d2439667bca75233abbe81651ff", null ],
-    [ "GetMaxIndex", "a00072.html#a1e879f9a6ed84415ac52c44f1f086606", null ],
-    [ "Prefix", "a00072.html#a0ed653de99ec2251fd99837740693789", null ],
-    [ "data", "a00072.html#aa6926229eec915aa6a71c9ee603064f5", null ],
-    [ "Data", "a00072.html#aa83ef91c4eb293a9d035013c8b4af016", null ],
-    [ "Mapping", "a00072.html#a555d8d59960792aa556002a1a1b942f9", null ],
-    [ "Property", "a00072.html#a1bf8b55373206c0dc378c8f7247bf149", null ]
+    [ "CsvPropertyMapData", "a00072.html#a1a1424683bea80f373e3ea80ae6e39c7", null ],
+    [ "defaultValue", "a00072.html#a77d34f2e73ad23e07eb38ee5ecceadf8", null ],
+    [ "index", "a00072.html#a6dfbe771775d4c0d785847b7f0d2299c", null ],
+    [ "names", "a00072.html#acb636e590836496473e867897ab79d97", null ],
+    [ "typeConverterOptions", "a00072.html#a0ca8b71605ad4490ea143c24c8adb1f8", null ],
+    [ "ConvertExpression", "a00072.html#a1ae48223a4f425b7b315c6ae3235b4c1", null ],
+    [ "Default", "a00072.html#a3740c3b2f1e6e74349ac5fdf1ec0fce8", null ],
+    [ "Ignore", "a00072.html#a98ca8f9b7cc478644de267d44c6647b7", null ],
+    [ "Index", "a00072.html#a14a0ca66dd60cf7685ac511906b04927", null ],
+    [ "IsDefaultSet", "a00072.html#a3b9322c5f0b85df6a3d7662265c75151", null ],
+    [ "IsIndexSet", "a00072.html#a6af03961e4cab7536aca530902fe4e43", null ],
+    [ "IsNameSet", "a00072.html#a4edc08c491e692d4b187c4e436a0a216", null ],
+    [ "NameIndex", "a00072.html#acf816322908241de17cad1d9a66add43", null ],
+    [ "Names", "a00072.html#ad37a07fbc2781cdb1dce5cb6fcf953d9", null ],
+    [ "Property", "a00072.html#ad8f34e4f5081de744efc703640e3b7d2", null ],
+    [ "TypeConverter", "a00072.html#a5d282b88e912b3909072dff40a205f8b", null ],
+    [ "TypeConverterOptions", "a00072.html#ad0d40cffbecb6c5e43d6aae27c97a214", null ]
 ];

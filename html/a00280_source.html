@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: YarnSpinner/ANTLR/preprocessor.py Source File</title>
+<title>YarnSpinner: Unity/Assets/YarnSpinner/Examples/DemoScripts/PlayerCharacter.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,109 +105,114 @@ $(document).ready(function(){initNavTree('a00280_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">preprocessor.py</div>  </div>
+<div class="title">PlayerCharacter.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00280.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="a00321.html">    1</a></span>&#160;<span class="comment"># this does a few things</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"># first it replaces all \r\n with \n</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"># it replaces all tabs with 4 spaces</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"># it works out the indent/dedent levels and adds in symbols as necessary</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"># it saves it back out as a new file</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"># this isn&#39;t a clever tool, it is designed to make it easy for ANTLR to do its job afterwards</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"># as such it does no processing other than the minimum required to get ANTLR going</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> sys</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"># this is probably over-documented and under-pythonic but I want it this way to make future porting simple</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"># at this point I think that&#39;s more useful</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">#opening the yarn file in a mode that I think strips out \r\n and uses \n in its place</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;with open(sys.argv[1], <span class="stringliteral">&#39;rU&#39;</span>) <span class="keyword">as</span> yarn:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="comment"># for holding the finalised lines</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="a00321.html#a3766d6a1d728423223fa0743ba62011f">   16</a></span>&#160;    output_lines = []</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="comment"># A stack to keep info on how deep in we currently are</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment"># is made up of Tuples of the indentation depth and whether we emitted an indent token</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="comment"># has a default value of (0,False) so we can&#39;t fall off the end of the stack</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00321.html#a00fba9ee9674b2513dbe28eab795b734">   20</a></span>&#160;    indents = [(0,<span class="keyword">False</span>)]</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment"># var for determing if we are in a mode where we need to track indentation</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="a00321.html#afa485f45ab87bc0f06c1dfc46737c057">   22</a></span>&#160;    shouldTrackNextIndentation = <span class="keyword">False</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment"># our INDENT and DEDENT symbols</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment"># bell and vertical tab</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment"># these fill the role of { and } in other languages</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="a00321.html#ae3f2190a793ab77428838e58e0e83676">   27</a></span>&#160;    INDENT = <span class="stringliteral">&#39;\a&#39;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="a00321.html#a83653c3e52fa74614e655a91ad2b7181">   28</a></span>&#160;    DEDENT = <span class="stringliteral">&#39;\v&#39;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment"># for debugging purposes, it is REALLY hard to see \a and \v</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">if</span> len(sys.argv) == 3 <span class="keywordflow">and</span> sys.argv[2] == <span class="stringliteral">&quot;debug&quot;</span>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        INDENT = <span class="stringliteral">&#39;{&#39;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        DEDENT = <span class="stringliteral">&#39;}&#39;</span></div>
+<a href="a00280.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">The MIT License (MIT)</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">in the Software without restriction, including without limitation the rights</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">copies of the Software, and to permit persons to whom the Software is</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">furnished to do so, subject to the following conditions:</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">The above copyright notice and this permission notice shall be included in all</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">copies or substantial portions of the Software.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">SOFTWARE.</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">using</span> UnityEngine;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">using</span> System.Collections;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">namespace </span>Yarn.Unity.Example {</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="a00138.html">   32</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00138.html">PlayerCharacter</a> : MonoBehaviour {</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment"># the option symbol, just to avoid typos</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="a00321.html#a7ca2dc5371587b21476669a45af013cd">   35</a></span>&#160;    OPTION = <span class="stringliteral">&quot;-&gt;&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="a00138.html#ac025d4f4afaf854f8256e0d2d03e5b52">   34</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">float</span> minPosition = -5.3f;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="a00138.html#ada9dd748a1d89a7f9b12ac8967a07ae6">   35</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">float</span> maxPosition = 5.3f;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment"># tracker for which line we are currently on</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="a00321.html#ac7b4a28b6670884cd095cd684a452c94">   38</a></span>&#160;    line_count = 1</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment"># reading in each line (delineated by a \n) of the yarn file</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">for</span> line <span class="keywordflow">in</span> yarn:</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="comment"># replacing \t with 4 spaces</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="a00321.html#acab50490b6d7a9dc2bb935ad4ffe2eff">   42</a></span>&#160;        tweaked_line = line.replace(<span class="stringliteral">&#39;\t&#39;</span>,<span class="stringliteral">&#39;    &#39;</span>)</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="comment"># stripping off the newline because it makes things a bit cleaner when it comes time to add in INDENT/DEDENT</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        tweaked_line = tweaked_line.rstrip(<span class="stringliteral">&#39;\n&#39;</span>)</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="comment"># counting the number of spaces at the start of the current line</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="a00321.html#a0e59365a4aa5811f6495b92a51e23573">   47</a></span>&#160;        thisIndentation = len(tweaked_line) - len(tweaked_line.lstrip(<span class="stringliteral">&#39; &#39;</span>))</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="comment"># checking that the line starts with an -&gt;</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="a00321.html#abf34284b1c9a00275810e5c13a4dcea2">   50</a></span>&#160;        is_option = tweaked_line.strip().startswith(OPTION)</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment"># the top of the indent stack</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="a00321.html#ade44b858578c3eab7b6f90030a0e3ea1">   52</a></span>&#160;        previousIndentation = indents[-1]</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="a00138.html#adc602a4b2c7e44e4b15a11f1ffcf07e4">   37</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">float</span> moveSpeed = 1.0f;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="a00138.html#af89807d2195915ee9a0c42317e110fc6">   39</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">float</span> interactionRadius = 2.0f;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="a00138.html#a7bcde19f080bfd09bbc833b8fb555cf7">   41</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">float</span> movementFromButtons {<span class="keyword">get</span>;set;}</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="a00138.html#a9e83ec3c6e45ee4dd17215e3030f6403">   44</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="a00138.html#a9e83ec3c6e45ee4dd17215e3030f6403">OnDrawGizmosSelected</a>() {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            Gizmos.color = Color.blue;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="comment">// Flatten the sphere into a disk, which looks nicer in 2D games</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            Gizmos.matrix = Matrix4x4.TRS(transform.position, Quaternion.identity, <span class="keyword">new</span> Vector3(1,1,0));</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="comment">// Need to draw at position zero because we set position in the line above</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            Gizmos.DrawWireSphere(Vector3.zero, interactionRadius);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        }</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="comment"># if we are in a state where we need to worry about indentation (eg recently emited a token or saw an -&gt;)</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="comment"># and our indentation is deeper than the previous level</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">if</span> shouldTrackNextIndentation <span class="keywordflow">and</span> thisIndentation &gt; previousIndentation[0]:</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            indents.append((thisIndentation,<span class="keyword">True</span>))</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="comment"># adding the indent to the line above (personal preference really...)</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keywordflow">if</span> len(output_lines) == 0:</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                tweaked_line = INDENT + tweaked_line</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                output_lines[-1] += INDENT</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="comment"># turning off tracking as we have emitted the indent</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            shouldTrackNextIndentation = <span class="keyword">False</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="comment"># if our indentation is less than the previous</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="comment"># we have finished with the current block</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">elif</span> thisIndentation &lt; previousIndentation[0]:</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">while</span> thisIndentation &lt; indents[-1][0]:</div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="a00321.html#a8b7e5c0b2c6870eaa8f9454b4f33678b">   70</a></span>&#160;                topLevel = indents.pop()</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <span class="keywordflow">if</span> topLevel[1]:</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                    <span class="keywordflow">if</span> len(output_lines) == 0:</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                        tweaked_line = DEDENT + tweaked_line</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                    <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                        output_lines[-1] += DEDENT</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="comment"># otherwise we just disable tracking</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            shouldTrackNextIndentation = <span class="keyword">False</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="a00138.html#a8e78b2dc1cd221fb9d05b89e70155df4">   55</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="a00138.html#a8e78b2dc1cd221fb9d05b89e70155df4">Update</a> () {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="comment">// Remove all player control when we&#39;re in dialogue</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordflow">if</span> (FindObjectOfType&lt;DialogueRunner&gt;().isDialogueRunning == <span class="keyword">true</span>) {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="comment">// Move the player, clamping them to within the boundaries </span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="comment">// of the level.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            var movement = Input.GetAxis(<span class="stringliteral">&quot;Horizontal&quot;</span>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            movement += movementFromButtons;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            movement *= (moveSpeed * Time.deltaTime);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            var newPosition = transform.position;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            newPosition.x += movement;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            transform.position = newPosition;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="comment">// Detect if we want to start a conversation</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">if</span> (Input.GetKeyDown(KeyCode.Space)) {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                CheckForNearbyNPC ();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        }</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="comment"># if we are an option we need to enable tracking</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">if</span> is_option:</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            shouldTrackNextIndentation = <span class="keyword">True</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">if</span> indents[-1][0] &lt; thisIndentation:</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                indents.append((thisIndentation,<span class="keyword">False</span>))</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="comment"># debugging string</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="comment">#print(str(line_count) + &quot;: stack &quot; + str(indents))</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        output_lines.append(tweaked_line)</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        line_count += 1</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"># saving the processed Yarn file back out and joining the lines back together with \n&#39;s</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="a00321.html#a3da6d48778c7b08a040bf24377f67792">   92</a></span>&#160;output = open(<span class="stringliteral">&#39;processed.yarn&#39;</span>, <span class="stringliteral">&#39;w&#39;</span>)</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;output.write(<span class="stringliteral">&#39;\n&#39;</span>.join(output_lines))</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="a00138.html#a574b6d984b8671c7a780d3d10e040a9b">   84</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00138.html#a574b6d984b8671c7a780d3d10e040a9b">CheckForNearbyNPC</a> ()</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            var allParticipants = <span class="keyword">new</span> List&lt;NPC&gt; (FindObjectsOfType&lt;NPC&gt; ());</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            var target = allParticipants.Find (delegate (<a class="code" href="a00134.html">NPC</a> p) {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                <span class="keywordflow">return</span> string.IsNullOrEmpty (p.talkToNode) == <span class="keyword">false</span> &amp;&amp; <span class="comment">// has a conversation node?</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                (p.transform.position - <span class="keyword">this</span>.transform.position)<span class="comment">// is in range?</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                .magnitude &lt;= interactionRadius;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            });</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">if</span> (target != null) {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <span class="comment">// Kick off the dialogue at this node.</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                FindObjectOfType&lt;DialogueRunner&gt; ().StartDialogue (target.talkToNode);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
+<div class="ttc" id="a00138_html"><div class="ttname"><a href="a00138.html">Yarn.Unity.Example.PlayerCharacter</a></div><div class="ttdef"><b>Definition:</b> <a href="a00280_source.html#l00032">PlayerCharacter.cs:32</a></div></div>
+<div class="ttc" id="a00138_html_a574b6d984b8671c7a780d3d10e040a9b"><div class="ttname"><a href="a00138.html#a574b6d984b8671c7a780d3d10e040a9b">Yarn.Unity.Example.PlayerCharacter.CheckForNearbyNPC</a></div><div class="ttdeci">void CheckForNearbyNPC()</div><div class="ttdoc">Find all DialogueParticipants. </div><div class="ttdef"><b>Definition:</b> <a href="a00280_source.html#l00084">PlayerCharacter.cs:84</a></div></div>
+<div class="ttc" id="a00134_html"><div class="ttname"><a href="a00134.html">Yarn.Unity.Example.NPC</a></div><div class="ttdef"><b>Definition:</b> <a href="a00279_source.html#l00033">NPC.cs:33</a></div></div>
+<div class="ttc" id="a00138_html_a8e78b2dc1cd221fb9d05b89e70155df4"><div class="ttname"><a href="a00138.html#a8e78b2dc1cd221fb9d05b89e70155df4">Yarn.Unity.Example.PlayerCharacter.Update</a></div><div class="ttdeci">void Update()</div><div class="ttdoc">Update is called once per frame. </div><div class="ttdef"><b>Definition:</b> <a href="a00280_source.html#l00055">PlayerCharacter.cs:55</a></div></div>
+<div class="ttc" id="a00138_html_a9e83ec3c6e45ee4dd17215e3030f6403"><div class="ttname"><a href="a00138.html#a9e83ec3c6e45ee4dd17215e3030f6403">Yarn.Unity.Example.PlayerCharacter.OnDrawGizmosSelected</a></div><div class="ttdeci">void OnDrawGizmosSelected()</div><div class="ttdoc">Draw the range at which we&#39;ll start talking to people. </div><div class="ttdef"><b>Definition:</b> <a href="a00280_source.html#l00044">PlayerCharacter.cs:44</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="dir_a555ed209f3713798e5905e3d3cb40ce.html">ANTLR</a></li><li class="navelem"><a class="el" href="a00280.html">preprocessor.py</a></li>
-    <li class="footer">Generated on Wed Aug 28 2019 22:42:48 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_3d328b3dca154a477d99beb656992be2.html">Unity</a></li><li class="navelem"><a class="el" href="dir_3b33dffaa21a2ac6f7978a949ffd4e41.html">Assets</a></li><li class="navelem"><a class="el" href="dir_534ffb376c3707ccb35d3c2c883b31fc.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="dir_cb74ec5eb9eec574588e588dd5bf23e1.html">Examples</a></li><li class="navelem"><a class="el" href="dir_a23f776b0598015baa200eafeed2b13c.html">DemoScripts</a></li><li class="navelem"><a class="el" href="a00280.html">PlayerCharacter.cs</a></li>
+    <li class="footer">Generated on Wed Oct 23 2019 00:35:55 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

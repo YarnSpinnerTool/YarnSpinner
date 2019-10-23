@@ -1,121 +1,49 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00040" kind="class" prot="public">
-    <compoundname>Yarn::BaseOptions</compoundname>
-    <derivedcompoundref refid="a00039" prot="public" virt="non-virtual">Yarn.AddLabelsOptions</derivedcompoundref>
-    <derivedcompoundref refid="a00052" prot="public" virt="non-virtual">Yarn.CompileOptions</derivedcompoundref>
-    <derivedcompoundref refid="a00055" prot="public" virt="non-virtual">Yarn.ConvertFormatOptions</derivedcompoundref>
-    <derivedcompoundref refid="a00099" prot="public" virt="non-virtual">Yarn.ExecutionOptions</derivedcompoundref>
-    <derivedcompoundref refid="a00102" prot="public" virt="non-virtual">Yarn.GenerateTableOptions</derivedcompoundref>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00040_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.BaseOptions.showDebuggingInfo</definition>
-        <argsstring></argsstring>
-        <name>showDebuggingInfo</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="42" bodyend="-1"/>
-        <referencedby refid="a00172_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00300" startline="383" endline="501">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
-      </memberdef>
-      <memberdef kind="property" id="a00040_1ada4d83d1756918f362d55f6649b82b17" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.BaseOptions.verbose</definition>
-        <argsstring></argsstring>
-        <name>verbose</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="46" bodyend="-1"/>
-        <referencedby refid="a00100_1aa72838be584177b5592c31d73c0febdb" compoundref="a00298" startline="119" endline="160">Yarn.FileFormatConverter.ConvertNodesInFile</referencedby>
-        <referencedby refid="a00151_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00301" startline="12" endline="124">Yarn.TableGenerator.GenerateTables</referencedby>
-      </memberdef>
-      <memberdef kind="property" id="a00040_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>IList&lt; string &gt;</type>
-        <definition>IList&lt;string&gt; Yarn.BaseOptions.files</definition>
-        <argsstring></argsstring>
-        <name>files</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="49" bodyend="-1"/>
-        <referencedby refid="a00172_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00300" startline="270" endline="331">Yarn.YarnSpinnerConsole.Run</referencedby>
-        <referencedby refid="a00172_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00300" startline="333" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
-      </memberdef>
-      </sectiondef>
-    <briefdescription>
-    </briefdescription>
+  <compounddef id="a00040" kind="page">
+    <compoundname>md_ROADMAP</compoundname>
+    <title>Yarn Spinner Road Map</title>
     <detaileddescription>
-    </detaileddescription>
-    <inheritancegraph>
-      <node id="815">
-        <label>Yarn.AddLabelsOptions</label>
-        <link refid="a00039"/>
-        <childnode refid="814" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="819">
-        <label>Yarn.RunOptions</label>
-        <link refid="a00142"/>
-        <childnode refid="818" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="816">
-        <label>Yarn.CompileOptions</label>
-        <link refid="a00052"/>
-        <childnode refid="814" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="820">
-        <label>Yarn.VerifyOptions</label>
-        <link refid="a00169"/>
-        <childnode refid="818" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="821">
-        <label>Yarn.GenerateTableOptions</label>
-        <link refid="a00102"/>
-        <childnode refid="814" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="817">
-        <label>Yarn.ConvertFormatOptions</label>
-        <link refid="a00055"/>
-        <childnode refid="814" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="814">
-        <label>Yarn.BaseOptions</label>
-        <link refid="a00040"/>
-      </node>
-      <node id="818">
-        <label>Yarn.ExecutionOptions</label>
-        <link refid="a00099"/>
-        <childnode refid="814" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="822">
-        <label>Yarn.BaseOptions</label>
-        <link refid="a00040"/>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="39" bodyend="51"/>
-    <listofallmembers>
-      <member refid="a00040_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" virt="non-virtual"><scope>Yarn::BaseOptions</scope><name>files</name></member>
-      <member refid="a00040_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" virt="non-virtual"><scope>Yarn::BaseOptions</scope><name>showDebuggingInfo</name></member>
-      <member refid="a00040_1ada4d83d1756918f362d55f6649b82b17" prot="public" virt="non-virtual"><scope>Yarn::BaseOptions</scope><name>verbose</name></member>
-    </listofallmembers>
+<para>This is the current road map we are considering for the future of <ref refid="a00050" kindref="compound">Yarn</ref> Spinner. Nothing in here is fixed and reflects what we believe should be the focus of development. The idea of this document is to both give us something to help plan our development but to also give you all a space to see what we are doing, and to give us input on what you consider important.</para><para>Let us know what you think about this road map either in the <ulink url="http://lab.to/narrativegamedev">Slack</ulink> or <ulink url="https://github.com/YarnSpinnerTool/YarnSpinner/issues/183">here on the GitHub issue we created about the road map</ulink>.</para><para><bold>This documents was last edited 02/10/2019</bold></para><para><heading level="1">Releases</heading>
+</para><para>Here are the main releases we&apos;re currently planning.</para><para><heading level="2">V1.0</heading>
+</para><para><heading level="3">Goal</heading>
+</para><para>To make it easier for projects to spin up and remain compatible with core <ref refid="a00050" kindref="compound">Yarn</ref> Spinner, and to smooth out the issues of getting started using and updating <ref refid="a00050" kindref="compound">Yarn</ref> Spinner.</para><para><heading level="3">Motivation</heading>
+</para><para><ref refid="a00050" kindref="compound">Yarn</ref> Spinner has been in a lot of flux, more or less starting as a spin-off of Night In The Woods. A lot of it was heavily tied to the needs and deadlines of that specific game. We&apos;ve been working to make it more generic for <emphasis>any</emphasis> narrative game, but there is still a lot of connections to the requirements of Night In The Woods. As such, there is a lot of wonky code and half-finished concepts which users currently need to deal with. We want that to change so you no longer have to deal with this when it comes time to update or get started with <ref refid="a00050" kindref="compound">Yarn</ref> Spinner.</para><para><heading level="3">Features</heading>
+</para><para><itemizedlist>
+<listitem><para>Formal <ref refid="a00050" kindref="compound">Yarn</ref> specification created and frozen</para></listitem><listitem><para>Bytecode format freeze</para></listitem><listitem><para>Compiler will generate bytecode by default instead of parsing the dialogue each time</para></listitem><listitem><para>Default to using <computeroutput>.yarn</computeroutput> as the file extension in preference to <computeroutput>.yarn.text</computeroutput></para></listitem><listitem><para>VM will load and execute compiled bytecode</para></listitem><listitem><para>Unity importer for <computeroutput>.yarn</computeroutput> files that invokes compiler and generates bytecode assets (using a <computeroutput>.yarnc</computeroutput> file extension).</para></listitem><listitem><para>Implementation of a barebones Unity prefab (with a Canvas) that can be added into a scene to &quot;just work&quot;</para></listitem><listitem><para>Rework examples to be designed to be used as the basis of your own game</para></listitem><listitem><para>Modify example dialogue runner and variable storage to be the base form, instead of &quot;just&quot; examples</para></listitem><listitem><para>Syntax highlighter extension for Visual Studio Code</para></listitem><listitem><para>New documentation site</para></listitem></itemizedlist>
+</para><para><heading level="2">V1.1</heading>
+</para><para><heading level="3">Goal</heading>
+</para><para>To add in the two most requested features: string interpolation, and localisation! String interpolation means being able to write lines something like <computeroutput>Hello, ${playerName}</computeroutput>, and have the line appear as &quot;Hello, Sally&quot;; localisation means being able to translate your game&apos;s content into multiple languages, keeping in mind the different rules that languages have regarding things like how words are pluralised, how grammatical gender works, and more.</para><para><heading level="3">Motivation</heading>
+</para><para>By far the most requested feature, string interpolation has been put off due to concerns about implementation, in a nutshell to do &quot;proper&quot; interpolation is far from trivial. We&apos;re also very aware of the requirements of people who are releasing their games on storefronts that require localisation.</para><para>This release will have no other features beyond those necessary to support interpolation and localisation features, as we want to ensure this is reliable. We are also concerned as to how many bugs this may cause in existing games, so we&apos;re moving carefully here.</para><para><heading level="3">Features</heading>
+</para><para><itemizedlist>
+<listitem><para>String interpolation</para></listitem><listitem><para>Localisation support</para></listitem><listitem><para>Updated examples</para></listitem><listitem><para>Updated documentation</para></listitem></itemizedlist>
+</para><para><heading level="2">V1.2</heading>
+</para><para><heading level="3">Goal</heading>
+</para><para>To add in initial support for Unreal.</para><para><heading level="3">Motivation</heading>
+</para><para>Unreal is a large portion of the games community, and we&apos;ve been asked multiple times by different people if Unreal is supported. We want to be able to say yes to them. This is not to say it will be as featureful as the Unity version for V1.2, although the long term goal is for feature parity.</para><para><heading level="3">Features</heading>
+</para><para><itemizedlist>
+<listitem><para>Create an Unreal VM capable of reading compiled <ref refid="a00050" kindref="compound">Yarn</ref> bytecode</para></listitem><listitem><para>Create Unreal Dialouge Runners and Variable Storage</para></listitem><listitem><para>Create examples showing how to use <ref refid="a00050" kindref="compound">Yarn</ref> Spinner in Unreal.</para></listitem><listitem><para>Add documentation on using <ref refid="a00050" kindref="compound">Yarn</ref> Spinner in Unreal.</para></listitem></itemizedlist>
+</para><para><heading level="2">V1.3</heading>
+</para><para><heading level="3">Goal</heading>
+</para><para>To create resources for developers to get more out of using <ref refid="a00050" kindref="compound">Yarn</ref> Spinner.</para><para><heading level="3">Motivation</heading>
+</para><para>At this point, <ref refid="a00050" kindref="compound">Yarn</ref> Spinner should be at a state where it is stable to use and easy to update. The intent is to then make it more convenient for developers to integrate, so more examples and ready to go elements.</para><para><heading level="3">Features</heading>
+</para><para><itemizedlist>
+<listitem><para>Modular prefab UI elements designed to work out of the both with <ref refid="a00050" kindref="compound">Yarn</ref> Spinner</para></listitem><listitem><para>More examples and example projects demonstrating using <ref refid="a00050" kindref="compound">Yarn</ref> in different forms</para></listitem><listitem><para>Add in parsing <computeroutput>.yarn</computeroutput> files into Unreal</para></listitem></itemizedlist>
+</para><para><heading level="2">V1.4</heading>
+</para><para><heading level="3">Goal</heading>
+</para><para>Make <ref refid="a00050" kindref="compound">Yarn</ref> more accessible from your existing development tools.</para><para><heading level="3">Motivation</heading>
+</para><para>While we expect the <ulink url="https://github.com/YarnSpinnerTool/YarnEditor">Yarn editor</ulink> will remain the main way you will create and modify <ref refid="a00050" kindref="compound">Yarn</ref> files, there are always more workflows that need support. This release will be designed to try and help make that easier.</para><para><heading level="3">Features</heading>
+</para><para><itemizedlist>
+<listitem><para>Merge all command line tool functionality into the Unity and Unreal core</para></listitem><listitem><para>Create a <ulink url="https://microsoft.github.io/language-server-protocol/">language server protocol</ulink> server for <ref refid="a00050" kindref="compound">Yarn</ref></para></listitem><listitem><para>Add diagnostics and debugging features to a VSCode extension</para></listitem><listitem><para>Create a WebAssembly compiler for <ref refid="a00050" kindref="compound">Yarn</ref>, allowing browsers to run the exact same code to compile <ref refid="a00050" kindref="compound">Yarn</ref> as is used in Unity and Unreal</para></listitem></itemizedlist>
+</para><para><heading level="2">V1.5</heading>
+</para><para><heading level="3">Goal</heading>
+</para><para>To put <ref refid="a00050" kindref="compound">Yarn</ref> Spinner in a place where it will be capable of being used more easily and in multiple places.</para><para><heading level="3">Motivation</heading>
+</para><para>We want <ref refid="a00050" kindref="compound">Yarn</ref> Spinner to be easy to implement, use, and port to as many places as possible. We also want to start adding in support for any additional features that are community requested.</para><para><heading level="3">Features</heading>
+</para><para><itemizedlist>
+<listitem><para>Porting guide for any platform, engine, and language</para></listitem><listitem><para>Attributed string support (such as <computeroutput>[b]this is bold text[/b]</computeroutput>)</para></listitem></itemizedlist>
+</para><para><heading level="1">FAQ</heading>
+</para><para><emphasis>Hang on you just posted this, how are these frequently asked?</emphasis></para><para>Ok they aren&apos;t, but I have tried to preempt some likely questions.</para><para><emphasis>How can I contact you privately about this?</emphasis></para><para>There are a few ways you can reach the development team directly:</para><para><itemizedlist>
+<listitem><para><bold>Twitter</bold>:</para></listitem><listitem><para>* <ulink url="https://twitter.com/YarnSpinnerTool"></ulink></para></listitem><listitem><para>* <ulink url="https://twitter.com/desplesda"></ulink></para></listitem><listitem><para>* <ulink url="https://twitter.com/The_McJones"></ulink></para></listitem><listitem><para><bold>Email</bold>:</para></listitem><listitem><para>* <ulink url="mailto:yarnspinner@secretlab.com.au">yarnspinner@secretlab.com.au</ulink></para></listitem></itemizedlist>
+</para><para><emphasis>Why are there no dates attached to the releases?</emphasis></para><para><ref refid="a00050" kindref="compound">Yarn</ref> Spinner is a community project and we (as in  and ) as the main devs work on it in our free time or when it aligns with work. Any <ref refid="a00050" kindref="compound">Yarn</ref> Spinner work has to fit around our own work and as such would be the first candidates to be dropped if we need more time for work or our own sanity. We don&apos;t want to put down deadlines that, at least at this stage, would be known to be arbitrary.</para><para><emphasis>I think Feature X is the most important and you&apos;ve not got it listed, what gives?</emphasis></para><para>This is what we think is important, but we want to know what <bold>you</bold> think is important, so either let us know in the Slack or on the <ulink url="https://github.com/YarnSpinnerTool/YarnSpinner/issues/183">issue we opened about the road map</ulink>. We want to build <ref refid="a00050" kindref="compound">Yarn</ref> Spinner into something helpful for you as well as us.</para><para><emphasis>I think Feature Y is the most important but you&apos;ve got it way down the bottom of the road map, what gives</emphasis></para><para>We&apos;ve tried to group the road map releases into features and changes in a manner that we think makes sense, but we want your feedback on this stuff, so let us know.</para><para><emphasis>You&apos;ve mentioned this Slack now a few times, how do I get in?</emphasis></para><para>You can join the Narrative Game Dev slack <ulink url="http://lab.to/narrativegamedev">here</ulink>. We hope to see you there!</para><para><emphasis>What about bug fixes? I still have a bug you&apos;ve not fixed yet!</emphasis></para><para>Throughout all of the releases the intent is to try and keep the bugs to a minimum. Some of these changes are intentionally made to clean up some of the cruft we&apos;ve accumulated that make bug fixes hard.</para><para><emphasis>Why does the road map get less detailed the longer it goes on?</emphasis></para><para>Some of these changes we can see exactly how they will work and integrate, others will need to change as we get closer. Later releases are designed to have much larger broad strokes of features instead of specifics like in V1.0. As a release comes out we can take a look at the road map again, work out what features and needs should go into the next release and update the road map appropriately. </para>    </detaileddescription>
   </compounddef>
 </doxygen>

@@ -1,32 +1,43 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00170" kind="class" prot="public">
-    <compoundname>Yarn::Unity::YarnCommandAttribute</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">Attribute</basecompoundref>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00170_1a6d513a725c819ffcdaa9c5788472ec8d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.Unity.YarnCommandAttribute.commandString</definition>
-        <argsstring></argsstring>
-        <name>commandString</name>
+  <compounddef id="a00170" kind="class" prot="public" abstract="yes">
+    <compoundname>Yarn::Unity::VariableStorageBehaviour</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref refid="a00169" prot="public" virt="non-virtual">Yarn.VariableStorage</basecompoundref>
+    <derivedcompoundref refid="a00087" prot="public" virt="non-virtual">ExampleVariableStorage</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00170_1ac981277018fe74c14491800caf29a7c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract <ref refid="a00167" kindref="compound">Value</ref></type>
+        <definition>abstract Value Yarn.Unity.VariableStorageBehaviour.GetValue</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetValue</name>
+        <reimplements refid="a00169_1accab1fc5c8fc353dbfc53ca0f4029576">GetValue</reimplements>
+        <reimplementedby refid="a00087_1a741593be1a299dcc2136f05b9b4a995a">GetValue</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
         <briefdescription>
-        </briefdescription>
+<para>Get a value. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="443" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="443" bodyend="-1"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="486" column="1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00170_1a9c0d57cd72c091f63895944959e98330" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Unity.YarnCommandAttribute.YarnCommandAttribute</definition>
-        <argsstring>(string commandString)</argsstring>
-        <name>YarnCommandAttribute</name>
+      <memberdef kind="function" id="a00170_1a869fa2dfd390c1ec63735b5763ba4d77" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.SetValue</definition>
+        <argsstring>(string variableName, float floatValue)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00169_1af0ffa5fc7773a4a5dc8e33d992421931">SetValue</reimplements>
         <param>
           <type>string</type>
-          <declname>commandString</declname>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>floatValue</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -34,39 +45,158 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="445" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="445" bodyend="447"/>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="488" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="488" bodyend="492"/>
+      </memberdef>
+      <memberdef kind="function" id="a00170_1a08ff36ec352a979b5db074f66ec9e189" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.SetValue</definition>
+        <argsstring>(string variableName, bool stringValue)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00169_1ab25eb0424a6e9d5819d0c7cc2035811b">SetValue</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>stringValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="493" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="493" bodyend="497"/>
+      </memberdef>
+      <memberdef kind="function" id="a00170_1a25df235b5446e93d5236a5fd5c17f6dd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.SetValue</definition>
+        <argsstring>(string variableName, string boolValue)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00169_1a412078d8e228f3e288e00f227ef4b4f5">SetValue</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>boolValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="498" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="498" bodyend="502"/>
+      </memberdef>
+      <memberdef kind="function" id="a00170_1af524fea535a8de76d845bdb06c9cb0c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Yarn.Unity.VariableStorageBehaviour.SetValue</definition>
+        <argsstring>(string variableName, Value value)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00169_1aa90ff61224432c5ed3ce72199c55f440">SetValue</reimplements>
+        <reimplementedby refid="a00087_1ac4265c1c9da485f13a6b05784b0f668d">SetValue</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type><ref refid="a00167" kindref="compound">Value</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Set a value. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="505" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00170_1a587fe10b367ace190e10f3bcb590a53c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <reimplements refid="a00169_1af98c1e41f351cb96e13f668ca2fd9d92">Clear</reimplements>
+        <reimplementedby refid="a00087_1a0ce614bee8d5b220500fb765390b4ca3">Clear</reimplementedby>
+        <briefdescription>
+<para>Not implemented here. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="508" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="508" bodyend="511"/>
+      </memberdef>
+      <memberdef kind="function" id="a00170_1a33fcbff56561e53e0a70b59c56f0c3af" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Yarn.Unity.VariableStorageBehaviour.ResetToDefaults</definition>
+        <argsstring>()</argsstring>
+        <name>ResetToDefaults</name>
+        <reimplementedby refid="a00087_1a3a05d66cdacadb2e9b618cd0aef45f84">ResetToDefaults</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="513" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Apply this attribute to methods in your scripts to expose them to <ref refid="a00048" kindref="compound">Yarn</ref>. </para>    </briefdescription>
+<para>Scripts that can act as a variable storage should subclass this. </para>    </briefdescription>
     <detaileddescription>
-<para>For example: [YarnCommand(&quot;dosomething&quot;)] void Foo() { do something! } </para>    </detaileddescription>
+    </detaileddescription>
     <inheritancegraph>
-      <node id="1562">
-        <label>Yarn.Unity.YarnCommandAttribute</label>
-        <link refid="a00170"/>
-        <childnode refid="1563" relation="public-inheritance">
+      <node id="1543">
+        <label>ExampleVariableStorage</label>
+        <link refid="a00087"/>
+        <childnode refid="1540" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1563">
-        <label>System::Attribute</label>
+      <node id="1542">
+        <label>Yarn::VariableStorage</label>
+        <link refid="a00169"/>
+      </node>
+      <node id="1540">
+        <label>Yarn.Unity.VariableStorageBehaviour</label>
+        <link refid="a00170"/>
+        <childnode refid="1541" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1542" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1541">
+        <label>MonoBehaviour</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1564">
-        <label>Yarn.Unity.YarnCommandAttribute</label>
+      <node id="1546">
+        <label>Yarn::VariableStorage</label>
+        <link refid="a00169"/>
+      </node>
+      <node id="1544">
+        <label>Yarn.Unity.VariableStorageBehaviour</label>
         <link refid="a00170"/>
-        <childnode refid="1565" relation="public-inheritance">
+        <childnode refid="1545" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1546" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1565">
-        <label>System::Attribute</label>
+      <node id="1545">
+        <label>MonoBehaviour</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="442" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="441" bodyend="448"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="484" column="1" bodyfile="/home/travis/build/YarnSpinnerTool/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="483" bodyend="515"/>
     <listofallmembers>
-      <member refid="a00170_1a6d513a725c819ffcdaa9c5788472ec8d" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnCommandAttribute</scope><name>commandString</name></member>
-      <member refid="a00170_1a9c0d57cd72c091f63895944959e98330" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnCommandAttribute</scope><name>YarnCommandAttribute</name></member>
+      <member refid="a00170_1a587fe10b367ace190e10f3bcb590a53c" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>Clear</name></member>
+      <member refid="a00170_1ac981277018fe74c14491800caf29a7c5" prot="public" virt="pure-virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>GetValue</name></member>
+      <member refid="a00170_1a33fcbff56561e53e0a70b59c56f0c3af" prot="public" virt="pure-virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>ResetToDefaults</name></member>
+      <member refid="a00170_1a869fa2dfd390c1ec63735b5763ba4d77" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>SetValue</name></member>
+      <member refid="a00170_1a08ff36ec352a979b5db074f66ec9e189" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>SetValue</name></member>
+      <member refid="a00170_1a25df235b5446e93d5236a5fd5c17f6dd" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>SetValue</name></member>
+      <member refid="a00170_1af524fea535a8de76d845bdb06c9cb0c2" prot="public" virt="pure-virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>SetValue</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

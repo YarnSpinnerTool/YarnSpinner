@@ -3,15 +3,15 @@
   <compounddef id="dir_6f181b52275ac94c00a65cc257010ba9" kind="dir">
     <compoundname>YarnSpinnerConsole</compoundname>
     <innerdir refid="dir_c5b5245a8d866663393107841a0eecb5">YarnSpinnerConsole/Properties</innerdir>
-    <innerfile refid="a00298">FileFormatConverter.cs</innerfile>
-    <innerfile refid="a00285">GlobalSuppressions.cs</innerfile>
-    <innerfile refid="a00299">LineAdder.cs</innerfile>
-    <innerfile refid="a00300">Main.cs</innerfile>
-    <innerfile refid="a00301">TableGenerator.cs</innerfile>
+    <innerfile refid="a00301">FileFormatConverter.cs</innerfile>
+    <innerfile refid="a00288">GlobalSuppressions.cs</innerfile>
+    <innerfile refid="a00302">LineAdder.cs</innerfile>
+    <innerfile refid="a00303">Main.cs</innerfile>
+    <innerfile refid="a00304">TableGenerator.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/"/>
   </compounddef>
 </doxygen>

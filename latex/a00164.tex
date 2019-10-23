@@ -1,664 +1,264 @@
-\hypertarget{a00164}{\section{Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window Class Reference}
-\label{a00164}\index{Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window@{Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window}}
+\hypertarget{a00164}{\section{Csv\-Helper.\-Type\-Conversion.\-U\-Int64\-Converter Class Reference}
+\label{a00164}\index{Csv\-Helper.\-Type\-Conversion.\-U\-Int64\-Converter@{Csv\-Helper.\-Type\-Conversion.\-U\-Int64\-Converter}}
 }
 
 
-Inheritance diagram for Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window\-:
+Converts a U\-Int64 to and from a string.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-U\-Int64\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=224pt]{a00698}
+\includegraphics[width=220pt]{a00558}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window\-:
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-U\-Int64\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=224pt]{a00699}
+\includegraphics[width=220pt]{a00559}
 \end{center}
 \end{figure}
-\subsection*{Classes}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00047}{Checker\-Result}
-\item 
-struct \hyperlink{a00086}{Deprecation}
-\item 
-struct \hyperlink{a00164_a00355}{Validation\-Message}
-\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-void \hyperlink{a00164_a406febf62d77eaabc235f6316e537345}{Update\-Yarn\-Script\-List} ()
-\item 
-void \hyperlink{a00164_aeba1f39189758bd91bdce298e8859947}{On\-Enable} ()
-\item 
-void \hyperlink{a00164_ae4faac1a6b0cc9710b20267dc4b88995}{Refresh\-All\-Results} ()
-\item 
-void \hyperlink{a00164_aec84840262ae8fd7d84605778de1dc39}{On\-G\-U\-I} ()
-\item 
-delegate void \hyperlink{a00164_a8f57c8688d68ae4a5ce708e665902bc0}{G\-U\-I\-Callback} (int complete, int total)
-\item 
-void \hyperlink{a00164_a8e59ec20bd21bb1f8a6d4f02980f624b}{Check\-All\-Files} (\hyperlink{a00164_a8f57c8688d68ae4a5ce708e665902bc0}{G\-U\-I\-Callback} callback=null)
-\item 
-\hyperlink{a00164_a00355}{Validation\-Message}\mbox{[}$\,$\mbox{]} \hyperlink{a00164_a6f2bf42b228ea29c6477e369226db8b6}{Validate\-File} (Text\-Asset script, \hyperlink{a00054}{Analysis.\-Context} analysis\-Context, out \hyperlink{a00047_ab24848d7951ce44eb3c7768c6ee10385}{Checker\-Result.\-State} result)
-\item 
-I\-Enumerable\\*
-$<$ \hyperlink{a00087}{Yarn.\-Analysis.\-Diagnosis} $>$ \hyperlink{a00164_a9c207786c349120dc439bdce53072191}{Analyse\-Environment} ()
-\end{DoxyCompactItemize}
-\subsection*{Static Private Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-static void \hyperlink{a00164_a2084e2ce6ccf18094a992985aa5330fb}{Show\-Window} ()
-\item 
-static void \hyperlink{a00164_a1a7e1a855bb2a9549eb1c0eb292c9b85}{Draw\-Script\-G\-U\-I} (\hyperlink{a00047}{Checker\-Result} result)
-\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-List$<$ \hyperlink{a00047}{Checker\-Result} $>$ \hyperlink{a00164_aa85ab7bd194e5425b991b9c216d4d10e}{check\-Results} = new List$<$\hyperlink{a00047}{Checker\-Result}$>$()
-\item 
-List$<$ \hyperlink{a00087}{Yarn.\-Analysis.\-Diagnosis} $>$ \hyperlink{a00164_a25c92cbfdd09661a96714d05b14af886}{diagnoses} = new List$<$\hyperlink{a00087}{Yarn.\-Analysis.\-Diagnosis}$>$()
-\item 
-Vector2 \hyperlink{a00164_a2d9b9702b0980af9d4202aebd440124b}{scroll\-Pos}
-\item 
-const float \hyperlink{a00164_a62a14b3fbaf2da41154ebad0eb7b6d3f}{time\-Before\-Progress\-Bar} = 0.\-1f
-\end{DoxyCompactItemize}
-\subsection*{Static Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-static string \hyperlink{a00164_a7599a00e246791ee46a5c549a05975f3}{json\-Root\-Path}
-\item 
-static bool \hyperlink{a00164_a85f1c10b20b04052269b0ee2fb71c5af}{is\-J\-S\-O\-N\-Root\-Path\-Chosen} = false
-\end{DoxyCompactItemize}
+override object \hyperlink{a00164_a1d3e86ea3d34de0d47a365c9b8622eb7}{Convert\-From\-String} (\hyperlink{a00158}{Type\-Converter\-Options} options, string text)
+\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
+override bool \hyperlink{a00164_a3d9e9527b77fbf94786f2e5b8c4e5829}{Can\-Convert\-From} (System.\-Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual string \hyperlink{a00086_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00158}{Type\-Converter\-Options} options, object value)
+\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00086_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00086_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-
-
-Definition at line 34 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-
-
-\subsection{Class Documentation}
-\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Validation\-Message@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Validation\-Message}}\label{a00355}
-\hypertarget{a00164_a00355}{}
-\subsubsection{struct Yarn\-:\-:Unity\-:\-:Yarn\-Spinner\-Editor\-Window\-:\-:Validation\-Message}
-
-
-Definition at line 405 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+Converts a U\-Int64 to and from a string. 
 
 
 
-Collaboration diagram for Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Validation\-Message\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=224pt]{a00357}
-\end{center}
-\end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00164_a636dce6708e779c201fa5e7d01cf2955}{string}\label{a00164_a636dce6708e779c201fa5e7d01cf2955}
-&
-message&
-\\
-\hline
+Definition at line 12 of file U\-Int64\-Converter.\-cs.
 
-\hypertarget{a00164_a7d342190c7657fbbe85eb6fa66bcabb8}{Message\-Type}\label{a00164_a7d342190c7657fbbe85eb6fa66bcabb8}
-&
-type&
-\\
-\hline
-
-\end{DoxyFields}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00164_a9c207786c349120dc439bdce53072191}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!Analyse\-Environment@{Analyse\-Environment}}
-\index{Analyse\-Environment@{Analyse\-Environment}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{Analyse\-Environment}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Yarn.\-Analysis.\-Diagnosis}$>$ Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Analyse\-Environment (
+\hypertarget{a00164_a3d9e9527b77fbf94786f2e5b8c4e5829}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-U\-Int64\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-U\-Int64\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::UInt64Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-U\-Int64\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-U\-Int64\-Converter.\-Can\-Convert\-From (
 \begin{DoxyParamCaption}
-{}
+\item[{System.\-Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_a9c207786c349120dc439bdce53072191}
+)}}\label{a00164_a3d9e9527b77fbf94786f2e5b8c4e5829}
 
 
-Definition at line 425 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Definition at line 40 of file U\-Int64\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-426         \{
-427 
-428             var deprecations = \textcolor{keyword}{new} List<Deprecation>();
-429 
-430             deprecations.Add(\textcolor{keyword}{new} Deprecation(
-431                 typeof(Yarn.Unity.VariableStorageBehaviour),
-432                 \textcolor{stringliteral}{"SetNumber"},
-433                 \textcolor{stringliteral}{"This method is obsolete, and will not be called in future "} +
-434                 \textcolor{stringliteral}{"versions of Yarn Spinner. Use SetValue instead."}
-435             ));
-436 
-437             deprecations.Add(\textcolor{keyword}{new} Deprecation(
-438                 typeof(Yarn.Unity.VariableStorageBehaviour),
-439                 \textcolor{stringliteral}{"GetNumber"},
-440                 \textcolor{stringliteral}{"This method is obsolete, and will not be called in future "} +
-441                 \textcolor{stringliteral}{"versions of Yarn Spinner. Use GetValue instead."}
-442             ));
-443 
-444             var results = \textcolor{keyword}{new} List<\hyperlink{a00087}{Yarn.Analysis.Diagnosis}>();
-445 
-446             var assemblies = System.AppDomain.CurrentDomain.GetAssemblies();
-447 
-448 
-449             \textcolor{keywordflow}{foreach} (var assembly \textcolor{keywordflow}{in} assemblies) \{
-450                 \textcolor{keywordflow}{foreach} (var type \textcolor{keywordflow}{in} assembly.GetTypes()) \{
-451 
-452                     \textcolor{keywordflow}{foreach} (var deprecation \textcolor{keywordflow}{in} deprecations) \{
-453                         \textcolor{keywordflow}{if} (!type.IsSubclassOf (deprecation.type))
-454                             \textcolor{keywordflow}{continue};
-455 
-456                         \textcolor{keywordflow}{foreach} (var method \textcolor{keywordflow}{in} type.GetMethods ()) \{
-457                             \textcolor{keywordflow}{if} (method.Name == deprecation.methodName && method.DeclaringType == type) \{
-458                                 var message = \textcolor{stringliteral}{"\{0\} implements the \{1\} method. \{2\}"};
-459                                 message = string.Format (message, type.Name, deprecation.methodName, 
-      deprecation.usageNotes);
-460                                 var diagnosis = \textcolor{keyword}{new} \hyperlink{a00087}{Yarn.Analysis.Diagnosis} (message
-      , Yarn.Analysis.Diagnosis.Severity.Warning);
-461                                 results.Add (diagnosis);
-462                             \}
-463                         \}
-464 
-465                     \}
-466                 \}
-467             \}
-468             \textcolor{keywordflow}{return} results;
-469         \}
+41         \{
+42             \textcolor{comment}{// We only care about strings.}
+43             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+44         \}
 \end{DoxyCode}
-\hypertarget{a00164_a8e59ec20bd21bb1f8a6d4f02980f624b}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!Check\-All\-Files@{Check\-All\-Files}}
-\index{Check\-All\-Files@{Check\-All\-Files}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{Check\-All\-Files}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Check\-All\-Files (
+\hypertarget{a00086_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-U\-Int64\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-U\-Int64\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::UInt64Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-U\-Int64\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
 \begin{DoxyParamCaption}
-\item[{{\bf G\-U\-I\-Callback}}]{callback = {\ttfamily null}}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_a8e59ec20bd21bb1f8a6d4f02980f624b}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00086_a470d21adaa704eb281250dbd112ff91a}
 
 
-Definition at line 281 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00119_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00135_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00045_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00096_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00097_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00083_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00082_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00046_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00156_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
+
+
+
+Definition at line 55 of file Default\-Type\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-282         \{
-283 
-284             \textcolor{comment}{// The shared context for all script analysis.}
-285             var analysisContext = \textcolor{keyword}{new} \hyperlink{a00054}{Yarn.Analysis.Context}();
-286 
-287             \textcolor{comment}{// We shouldn't try to perform program analysis if}
-288             \textcolor{comment}{// any of the files fails to compile, because that}
-289             \textcolor{comment}{// analysis would be performed on incomplete data.}
-290             \textcolor{keywordtype}{bool} shouldPerformAnalysis = \textcolor{keyword}{true};
-291 
-292             \textcolor{comment}{// How many files have we finished checking?}
-293             \textcolor{keywordtype}{int} complete = 0;
-294 
-295             \textcolor{comment}{// Let's get started!}
-296 
-297             \textcolor{comment}{// First, ensure that we're looking at all of the scripts.}
-298             \hyperlink{a00164_a406febf62d77eaabc235f6316e537345}{UpdateYarnScriptList}();
-299 
-300             \textcolor{comment}{// Next, compile each one.}
-301             \textcolor{keywordflow}{foreach} (var result \textcolor{keywordflow}{in} \hyperlink{a00164_aa85ab7bd194e5425b991b9c216d4d10e}{checkResults}) \{
-302 
-303                 \textcolor{comment}{// Attempt to compile the file. Record any compiler messages.}
-304                 CheckerResult.State state;
-305 
-306                 var messages = \hyperlink{a00164_a6f2bf42b228ea29c6477e369226db8b6}{ValidateFile}(result.script, analysisContext, out state);
-307 
-308                 result.state = state;
-309                 result.messages = messages;
-310 
-311                 \textcolor{comment}{// Don't perform whole-program analysis if any file failed to compile}
-312                 \textcolor{keywordflow}{if} (result.state != CheckerResult.State.Passed) \{
-313                     shouldPerformAnalysis = \textcolor{keyword}{false};
-314                 \}
-315 
-316                 \textcolor{comment}{// We're done with it; if we have a callback to call after}
-317                 \textcolor{comment}{// each file is validated, do so.}
-318                 complete++;
-319 
-320                 \textcolor{keywordflow}{if} (callback != null)
-321                     callback(complete, checkResults.Count);
-322 
-323             \}
-324 
-325             var results = \textcolor{keyword}{new} List<\hyperlink{a00087}{Yarn.Analysis.Diagnosis}>();
-326 
-327             \textcolor{keywordflow}{if} (shouldPerformAnalysis) \{
-328                 var scriptAnalyses = analysisContext.FinishAnalysis ();
-329                 results.AddRange (scriptAnalyses);
-330             \}
-331 
-332 
-333             var environmentAnalyses = \hyperlink{a00164_a9c207786c349120dc439bdce53072191}{AnalyseEnvironment} ();
-334             results.AddRange (environmentAnalyses);
-335 
-336             \hyperlink{a00164_a25c92cbfdd09661a96714d05b14af886}{diagnoses} = results;
-337 
-338         \}
+56         \{
+57             \textcolor{comment}{// The default convert doesn't know how to}
+58             \textcolor{comment}{// convert from any type.}
+59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+60         \}
 \end{DoxyCode}
-\hypertarget{a00164_a1a7e1a855bb2a9549eb1c0eb292c9b85}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!Draw\-Script\-G\-U\-I@{Draw\-Script\-G\-U\-I}}
-\index{Draw\-Script\-G\-U\-I@{Draw\-Script\-G\-U\-I}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{Draw\-Script\-G\-U\-I}]{\setlength{\rightskip}{0pt plus 5cm}static void Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Draw\-Script\-G\-U\-I (
+\hypertarget{a00086_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-U\-Int64\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-U\-Int64\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
+\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::UInt64Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-U\-Int64\-Converter}}
+\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
 \begin{DoxyParamCaption}
-\item[{{\bf Checker\-Result}}]{result}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00164_a1a7e1a855bb2a9549eb1c0eb292c9b85}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00086_acb65bd8c8199d88d5b1629ae35d18514}
 
 
-Definition at line 238 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00119_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-References Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-messages, and Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-state.
+Reimplemented in \hyperlink{a00097_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+
+
+Definition at line 69 of file Default\-Type\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-239         \{
-240             \textcolor{keyword}{using} (\textcolor{keyword}{new} EditorGUILayout.HorizontalScope()) \{
-241                 \textcolor{comment}{// What icon should we use for this script?}
-242                 Texture image;
-243                 \textcolor{keywordflow}{switch} (result.state) \{
-244                 \textcolor{keywordflow}{case} CheckerResult.State.NotTested:
-245                     image = \hyperlink{a00106_ab8afce565cd2ad1543d1e32e7e589e77}{Icons.notTestedIcon};
-246                     \textcolor{keywordflow}{break};
-247                 \textcolor{keywordflow}{case} CheckerResult.State.Passed:
-248                     image = \hyperlink{a00106_aec8aea03eb6e31771ebc98e0611fff79}{Icons.successIcon};
-249                     \textcolor{keywordflow}{break};
-250                 \textcolor{keywordflow}{case} CheckerResult.State.Failed:
-251                     image = \hyperlink{a00106_aae7cc0e5016db04a90b2aa0e80957626}{Icons.failedIcon};
-252                     \textcolor{keywordflow}{break};
-253                 \textcolor{keywordflow}{default}:
-254                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.ArgumentOutOfRangeException ();
-255                 \}
-256 
-257                 \textcolor{comment}{// Draw the image and the label name}
-258                 EditorGUILayout.LabelField (\textcolor{keyword}{new} GUIContent (image), GUILayout.Width (20));
-259                 EditorGUILayout.LabelField (result.script.name);
-260 
-261             \}
-262 
-263             \textcolor{comment}{// Draw any messages resulting from this script}
-264             \textcolor{keywordflow}{if} (result.messages.Length > 0) \{
-265 
-266                 EditorGUI.indentLevel += 2;
-267 
-268                 \textcolor{keywordflow}{foreach} (var message \textcolor{keywordflow}{in} result.messages) \{
-269 
-270                     EditorGUILayout.HelpBox(message.message, message.type);
-271 
-272                 \}
-273 
-274                 EditorGUI.indentLevel -= 2;
-275             \}
-276 
-277         \}
+70         \{
+71             \textcolor{comment}{// We only care about strings.}
+72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+73         \}
 \end{DoxyCode}
-\hypertarget{a00164_a8f57c8688d68ae4a5ce708e665902bc0}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!G\-U\-I\-Callback@{G\-U\-I\-Callback}}
-\index{G\-U\-I\-Callback@{G\-U\-I\-Callback}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{G\-U\-I\-Callback}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-G\-U\-I\-Callback (
+\hypertarget{a00164_a1d3e86ea3d34de0d47a365c9b8622eb7}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-U\-Int64\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-U\-Int64\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
+\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::UInt64Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-U\-Int64\-Converter}}
+\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-U\-Int64\-Converter.\-Convert\-From\-String (
 \begin{DoxyParamCaption}
-\item[{int}]{complete, }
-\item[{int}]{total}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{string}]{text}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_a8f57c8688d68ae4a5ce708e665902bc0}
-\hypertarget{a00164_aeba1f39189758bd91bdce298e8859947}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!On\-Enable@{On\-Enable}}
-\index{On\-Enable@{On\-Enable}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{On\-Enable}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-On\-Enable (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_aeba1f39189758bd91bdce298e8859947}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00164_a1d3e86ea3d34de0d47a365c9b8622eb7}
 
 
-Definition at line 117 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+Converts the string to an object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em text} & The string to convert to an object.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The object created from the string.
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{a00086_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+
+
+
+Definition at line 20 of file U\-Int64\-Converter.\-cs.
+
+
+
+References Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info.
 
 
 \begin{DoxyCode}
-117                         \{
-118 
-119             \textcolor{comment}{// Set the window title}
-120             this.titleContent.text = \textcolor{stringliteral}{"Yarn Spinner"};
-121             this.titleContent.image = \hyperlink{a00106_aa78ab016ad041bc36850c8b20ba63972}{Icons.windowIcon};
-122 
-123             \textcolor{comment}{// Update the list of scripts known to the window}
-124             \textcolor{keywordflow}{if}(\hyperlink{a00164_a85f1c10b20b04052269b0ee2fb71c5af}{isJSONRootPathChosen})
-125                 \hyperlink{a00164_a406febf62d77eaabc235f6316e537345}{UpdateYarnScriptList}();
-126         \}
+21         \{
+22             var numberStyle = options.NumberStyle ?? NumberStyles.Integer;
+23 
+24             ulong ul;
+25             \textcolor{keywordflow}{if}( ulong.TryParse( text, numberStyle, options.CultureInfo, out ul ) )
+26             \{
+27                 \textcolor{keywordflow}{return} ul;
+28             \}
+29 
+30             \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
+31         \}
 \end{DoxyCode}
-\hypertarget{a00164_aec84840262ae8fd7d84605778de1dc39}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!On\-G\-U\-I@{On\-G\-U\-I}}
-\index{On\-G\-U\-I@{On\-G\-U\-I}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{On\-G\-U\-I}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-On\-G\-U\-I (
+\hypertarget{a00086_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-U\-Int64\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-U\-Int64\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
+\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::UInt64Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-U\-Int64\-Converter}}
+\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{object}]{value}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_aec84840262ae8fd7d84605778de1dc39}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00086_a36cb2f9b24f15a671293f3a722324c27}
 
 
-Definition at line 169 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+Converts the object to a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em value} & The object to convert to a string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the object.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00119_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00135_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00097_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+
+
+Definition at line 21 of file Default\-Type\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-169                      \{
-170 
-171             \textcolor{keyword}{using} (\textcolor{keyword}{new} EditorGUILayout.VerticalScope()) \{
-172                 EditorGUILayout.Space();
-173 
-174                 \textcolor{comment}{// Show list of folders}
-175                 GUILayout.Label(\textcolor{stringliteral}{"Root folder for scripts - Will search recursively"}, EditorStyles.boldLabel
-      );
-176                 GUILayout.BeginHorizontal();
-177                 \textcolor{keywordtype}{string} pathLabelTxt = \hyperlink{a00164_a85f1c10b20b04052269b0ee2fb71c5af}{isJSONRootPathChosen} ? 
-      \hyperlink{a00164_a7599a00e246791ee46a5c549a05975f3}{jsonRootPath} : \textcolor{stringliteral}{"***Select Path***"};
-178                 GUILayout.Label(pathLabelTxt, EditorStyles.helpBox);
-179                 \textcolor{keywordflow}{if}(GUILayout.Button(\textcolor{stringliteral}{"Choose Yarn Script Root Path"}))
-180                 \{
-181                     \textcolor{keywordtype}{string} folderPath = EditorUtility.OpenFolderPanel(\textcolor{stringliteral}{"Yarn Script Root Path"}, \textcolor{stringliteral}{""}, \textcolor{stringliteral}{""});
-182 
-183                     \textcolor{comment}{// Parse folder}
-184                     \hyperlink{a00164_a7599a00e246791ee46a5c549a05975f3}{jsonRootPath} = folderPath.Substring(Application.dataPath.ToCharArray().
-      Length-6);                    
-185                     
-186                     \hyperlink{a00164_a406febf62d77eaabc235f6316e537345}{UpdateYarnScriptList}();
-187                     \hyperlink{a00164_a85f1c10b20b04052269b0ee2fb71c5af}{isJSONRootPathChosen} = \textcolor{keyword}{true};                    
-188                 \}
-189                 GUILayout.EndHorizontal();
-190 
-191                 \textcolor{comment}{// Return if no path selected}
-192                 \textcolor{keywordflow}{if} (!\hyperlink{a00164_a85f1c10b20b04052269b0ee2fb71c5af}{isJSONRootPathChosen})
-193                     \textcolor{keywordflow}{return};
-194 
-195                 \textcolor{comment}{//EditorGUILayout.BeginHorizontal();}
-196                 \textcolor{keywordflow}{if} (GUILayout.Button(\textcolor{stringliteral}{"Refresh"})) \{
-197                     \hyperlink{a00164_ae4faac1a6b0cc9710b20267dc4b88995}{RefreshAllResults}();
-198                 \}
-199                 
-200                 EditorGUILayout.Space();
-201 
-202                 \textcolor{keyword}{using} (var scroll = \textcolor{keyword}{new} EditorGUILayout.ScrollViewScope(
-      \hyperlink{a00164_a2d9b9702b0980af9d4202aebd440124b}{scrollPos})) \{
-203                     \hyperlink{a00164_a2d9b9702b0980af9d4202aebd440124b}{scrollPos} = scroll.scrollPosition;
-204 
-205                     \textcolor{keywordflow}{foreach} (var result \textcolor{keywordflow}{in} \hyperlink{a00164_aa85ab7bd194e5425b991b9c216d4d10e}{checkResults}) \{
-206                         \hyperlink{a00164_a1a7e1a855bb2a9549eb1c0eb292c9b85}{DrawScriptGUI} (result);
-207                     \}
-208 
-209                     \textcolor{comment}{// Draw any diagnoses that resulted}
-210                     \textcolor{keywordflow}{foreach} (var diagnosis \textcolor{keywordflow}{in} \hyperlink{a00164_a25c92cbfdd09661a96714d05b14af886}{diagnoses}) \{
-211 
-212                         MessageType messageType;
-213 
-214                         \textcolor{keywordflow}{switch} (diagnosis.severity) \{
-215                         \textcolor{keywordflow}{case} Yarn.Analysis.Diagnosis.Severity.Error:
-216                             messageType = MessageType.Error;
-217                             \textcolor{keywordflow}{break};
-218                         \textcolor{keywordflow}{case} Yarn.Analysis.Diagnosis.Severity.Warning:
-219                             messageType = MessageType.Warning;
-220                             \textcolor{keywordflow}{break};
-221                         \textcolor{keywordflow}{case} Yarn.Analysis.Diagnosis.Severity.Note:
-222                             messageType = MessageType.Info;
-223                             \textcolor{keywordflow}{break};
-224                         \textcolor{keywordflow}{default}:
-225                             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.ArgumentOutOfRangeException ();
-226                         \}
-227 
-228                         EditorGUILayout.HelpBox(diagnosis.ToString(showSeverity:\textcolor{keyword}{false}), messageType);
-229                     \}
-230 
-231                 \}
-232 
-233             \}
-234 
-235 
-236         \}
+22         \{
+23             \textcolor{keywordflow}{if}( value == null )
+24             \{
+25                 \textcolor{keywordflow}{return} string.Empty;
+26             \}
+27 
+28             var formattable = value as IFormattable;
+29             \textcolor{keywordflow}{if}( formattable != null )
+30             \{
+31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
+32             \}
+33 
+34             \textcolor{keywordflow}{return} value.ToString();
+35         \}
 \end{DoxyCode}
-\hypertarget{a00164_ae4faac1a6b0cc9710b20267dc4b88995}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!Refresh\-All\-Results@{Refresh\-All\-Results}}
-\index{Refresh\-All\-Results@{Refresh\-All\-Results}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{Refresh\-All\-Results}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Refresh\-All\-Results (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_ae4faac1a6b0cc9710b20267dc4b88995}
-
-
-Definition at line 128 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-
-\begin{DoxyCode}
-128                                  \{
-129             \textcolor{comment}{// Start checking all files.}
-130 
-131             \textcolor{comment}{// First, record when we started - we need}
-132             \textcolor{comment}{// to know if it's time to show a progress}
-133             \textcolor{comment}{// dialogue}
-134             var startTime = EditorApplication.timeSinceStartup;
-135 
-136             \textcolor{comment}{// Have we presented a progress bar?}
-137             var progressBarVisible = \textcolor{keyword}{false};
-138 
-139             \textcolor{comment}{// Start checking all files; the delegate will be called}
-140             \textcolor{comment}{// after each file has been checked}
-141             \hyperlink{a00164_a8e59ec20bd21bb1f8a6d4f02980f624b}{CheckAllFiles}(delegate(\textcolor{keywordtype}{int} complete, \textcolor{keywordtype}{int} total) \{
-142 
-143                 \textcolor{comment}{// How long have we been at this?}
-144                 var timeSinceStart = EditorApplication.timeSinceStartup - startTime;
-145 
-146                 \textcolor{comment}{// If longer than 'timeBeforeProgressBar', show the progress bar}
-147                 \textcolor{keywordflow}{if} (timeSinceStart > \hyperlink{a00164_a62a14b3fbaf2da41154ebad0eb7b6d3f}{timeBeforeProgressBar}) \{
-148 
-149                     \textcolor{comment}{// Figure out how much of the progress bar should be filled}
-150                     var progress = (float)complete / (\textcolor{keywordtype}{float})total;
-151 
-152                     \textcolor{comment}{// Describe what we're doing}
-153                     var info = string.Format(\textcolor{stringliteral}{"Checking file \{0\} of \{1\}..."}, complete, total);
-154 
-155                     \textcolor{comment}{// Display or update the bar}
-156                     EditorUtility.DisplayProgressBar(\textcolor{stringliteral}{"Checking Yarn Files"}, info, progress);
-157 
-158                     \textcolor{comment}{// Record that we need to clear this bar}
-159                     progressBarVisible = \textcolor{keyword}{true};
-160                 \}
-161             \});
-162 
-163             \textcolor{comment}{// All done. Get rid of the progress bar if needed.}
-164             \textcolor{keywordflow}{if} (progressBarVisible) \{
-165                 EditorUtility.ClearProgressBar();
-166             \}
-167         \}
-\end{DoxyCode}
-\hypertarget{a00164_a2084e2ce6ccf18094a992985aa5330fb}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!Show\-Window@{Show\-Window}}
-\index{Show\-Window@{Show\-Window}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{Show\-Window}]{\setlength{\rightskip}{0pt plus 5cm}static void Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Show\-Window (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00164_a2084e2ce6ccf18094a992985aa5330fb}
-
-
-Definition at line 112 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-
-\begin{DoxyCode}
-112                                  \{
-113             EditorWindow.GetWindow<YarnSpinnerEditorWindow>();
-114         \}
-\end{DoxyCode}
-\hypertarget{a00164_a406febf62d77eaabc235f6316e537345}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!Update\-Yarn\-Script\-List@{Update\-Yarn\-Script\-List}}
-\index{Update\-Yarn\-Script\-List@{Update\-Yarn\-Script\-List}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{Update\-Yarn\-Script\-List}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Update\-Yarn\-Script\-List (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_a406febf62d77eaabc235f6316e537345}
-
-
-Definition at line 85 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-
-\begin{DoxyCode}
-85                                     \{
-86 
-87             \textcolor{comment}{// Clear the list of files}
-88             checkResults.Clear();
-89 
-90             \textcolor{comment}{// Clear the list of diagnoses}
-91             \hyperlink{a00164_a25c92cbfdd09661a96714d05b14af886}{diagnoses} = \textcolor{keyword}{new} List<\hyperlink{a00087}{Yarn.Analysis.Diagnosis}>();
-92 
-93             \textcolor{comment}{// Find all TextAssets}
-94             var list = AssetDatabase.FindAssets(\textcolor{stringliteral}{"t:textasset"}, \textcolor{keyword}{new} [] \{
-      \hyperlink{a00164_a7599a00e246791ee46a5c549a05975f3}{jsonRootPath}\});
-95 
-96             \textcolor{keywordflow}{foreach} (var guid \textcolor{keywordflow}{in} list) \{
-97 
-98                 \textcolor{comment}{// Filter the list to only include .json files}
-99                 var path = AssetDatabase.GUIDToAssetPath(guid);
-100                 \textcolor{keywordflow}{if} (path.EndsWith(\textcolor{stringliteral}{".yarn.txt"})) \{
-101                     var asset = AssetDatabase.LoadAssetAtPath<TextAsset>(path);
-102 
-103                     var newResult = \textcolor{keyword}{new} CheckerResult(asset);
-104 
-105                     checkResults.Add(newResult);
-106                 \}
-107             \}
-108         \}
-\end{DoxyCode}
-\hypertarget{a00164_a6f2bf42b228ea29c6477e369226db8b6}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!Validate\-File@{Validate\-File}}
-\index{Validate\-File@{Validate\-File}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{Validate\-File}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Validation\-Message} \mbox{[}$\,$\mbox{]} Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Validate\-File (
-\begin{DoxyParamCaption}
-\item[{Text\-Asset}]{script, }
-\item[{{\bf Analysis.\-Context}}]{analysis\-Context, }
-\item[{out {\bf Checker\-Result.\-State}}]{result}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_a6f2bf42b228ea29c6477e369226db8b6}
-
-
-Definition at line 343 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-
-\begin{DoxyCode}
-343                                                                                                            
-                        \{
-344 
-345             \textcolor{comment}{// The list of messages we got from the compiler.}
-346             var messageList = \textcolor{keyword}{new} List<ValidationMessage>();
-347 
-348             \textcolor{comment}{// A dummy variable storage; it won't be used, but Dialogue}
-349             \textcolor{comment}{// needs it.}
-350             var variableStorage = \textcolor{keyword}{new} \hyperlink{a00128}{Yarn.MemoryVariableStore}();
-351 
-352             \textcolor{comment}{// The Dialog object is the compiler.}
-353             var dialog = \textcolor{keyword}{new} Dialogue(variableStorage);
-354 
-355             \textcolor{comment}{// Whether compilation failed or not; this will be}
-356             \textcolor{comment}{// set to true if any error messages are returned.}
-357             \textcolor{keywordtype}{bool} failed = \textcolor{keyword}{false};
-358 
-359             \textcolor{comment}{// Called when we get an error message. Convert this}
-360             \textcolor{comment}{// message into a ValidationMessage and store it;}
-361             \textcolor{comment}{// additionally, mark that this file failed compilation}
-362             dialog.LogErrorMessage = delegate (\textcolor{keywordtype}{string} message) \{
-363                 var msg = \textcolor{keyword}{new} ValidationMessage();
-364                 msg.type = MessageType.Error;
-365                 msg.message = message;
-366                 messageList.Add(msg);
-367 
-368                 \textcolor{comment}{// any errors means this validation failed}
-369                 failed = \textcolor{keyword}{true};
-370             \};
-371 
-372             \textcolor{comment}{// Called when we get an error message. Convert this}
-373             \textcolor{comment}{// message into a ValidationMessage and store it}
-374             dialog.LogDebugMessage = delegate (\textcolor{keywordtype}{string} message) \{
-375                 var msg = \textcolor{keyword}{new} ValidationMessage();
-376                 msg.type = MessageType.Info;
-377                 msg.message = message;
-378                 messageList.Add(msg);
-379             \};
-380 
-381             \textcolor{comment}{// Attempt to compile this script. Any exceptions will result}
-382             \textcolor{comment}{// in an error message}
-383             \textcolor{keywordflow}{try} \{
-384                 dialog.LoadString(script.text,script.name);
-385             \} \textcolor{keywordflow}{catch} (System.Exception e) \{
-386                 dialog.LogErrorMessage(e.Message);
-387             \}
-388 
-389             \textcolor{comment}{// Once compilation has finished, run the analysis on it}
-390             dialog.Analyse(analysisContext);
-391 
-392             \textcolor{comment}{// Did it succeed or not?}
-393             \textcolor{keywordflow}{if} (failed) \{
-394                 result = CheckerResult.State.Failed;
-395             \} \textcolor{keywordflow}{else} \{
-396                 result = CheckerResult.State.Passed;
-397             \}
-398 
-399             \textcolor{comment}{// All done.}
-400             \textcolor{keywordflow}{return} messageList.ToArray();
-401 
-402         \}
-\end{DoxyCode}
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00164_aa85ab7bd194e5425b991b9c216d4d10e}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!check\-Results@{check\-Results}}
-\index{check\-Results@{check\-Results}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{check\-Results}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Checker\-Result}$>$ Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-check\-Results = new List$<${\bf Checker\-Result}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_aa85ab7bd194e5425b991b9c216d4d10e}
-
-
-Definition at line 68 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-\hypertarget{a00164_a25c92cbfdd09661a96714d05b14af886}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!diagnoses@{diagnoses}}
-\index{diagnoses@{diagnoses}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{diagnoses}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Yarn.\-Analysis.\-Diagnosis}$>$ Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-diagnoses = new List$<${\bf Yarn.\-Analysis.\-Diagnosis}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_a25c92cbfdd09661a96714d05b14af886}
-
-
-Definition at line 72 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-\hypertarget{a00164_a85f1c10b20b04052269b0ee2fb71c5af}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!is\-J\-S\-O\-N\-Root\-Path\-Chosen@{is\-J\-S\-O\-N\-Root\-Path\-Chosen}}
-\index{is\-J\-S\-O\-N\-Root\-Path\-Chosen@{is\-J\-S\-O\-N\-Root\-Path\-Chosen}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{is\-J\-S\-O\-N\-Root\-Path\-Chosen}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-is\-J\-S\-O\-N\-Root\-Path\-Chosen = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00164_a85f1c10b20b04052269b0ee2fb71c5af}
-
-
-Definition at line 79 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-\hypertarget{a00164_a7599a00e246791ee46a5c549a05975f3}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!json\-Root\-Path@{json\-Root\-Path}}
-\index{json\-Root\-Path@{json\-Root\-Path}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{json\-Root\-Path}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-json\-Root\-Path\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00164_a7599a00e246791ee46a5c549a05975f3}
-
-
-Definition at line 78 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-\hypertarget{a00164_a2d9b9702b0980af9d4202aebd440124b}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!scroll\-Pos@{scroll\-Pos}}
-\index{scroll\-Pos@{scroll\-Pos}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{scroll\-Pos}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-scroll\-Pos\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_a2d9b9702b0980af9d4202aebd440124b}
-
-
-Definition at line 75 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
-\hypertarget{a00164_a62a14b3fbaf2da41154ebad0eb7b6d3f}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!time\-Before\-Progress\-Bar@{time\-Before\-Progress\-Bar}}
-\index{time\-Before\-Progress\-Bar@{time\-Before\-Progress\-Bar}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{time\-Before\-Progress\-Bar}]{\setlength{\rightskip}{0pt plus 5cm}const float Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-time\-Before\-Progress\-Bar = 0.\-1f\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_a62a14b3fbaf2da41154ebad0eb7b6d3f}
-
-
-Definition at line 82 of file Yarn\-Spinner\-Editor\-Window.\-cs.
-
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn\-Spinner/\-Code/\-Editor/\hyperlink{a00270}{Yarn\-Spinner\-Editor\-Window.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00265}{U\-Int64\-Converter.\-cs}\end{DoxyCompactItemize}

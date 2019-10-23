@@ -1,38 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00313" kind="namespace">
-    <compoundname>CsvHelper::TypeConversion</compoundname>
-    <innerclass refid="a00043" prot="public">CsvHelper::TypeConversion::BooleanConverter</innerclass>
-    <innerclass refid="a00044" prot="public">CsvHelper::TypeConversion::ByteConverter</innerclass>
-    <innerclass refid="a00046" prot="public">CsvHelper::TypeConversion::CharConverter</innerclass>
-    <innerclass refid="a00077" prot="public">CsvHelper::TypeConversion::CsvTypeConverterException</innerclass>
-    <innerclass refid="a00080" prot="public">CsvHelper::TypeConversion::DateTimeConverter</innerclass>
-    <innerclass refid="a00081" prot="public">CsvHelper::TypeConversion::DateTimeOffsetConverter</innerclass>
-    <innerclass refid="a00082" prot="public">CsvHelper::TypeConversion::DecimalConverter</innerclass>
-    <innerclass refid="a00084" prot="public">CsvHelper::TypeConversion::DefaultTypeConverter</innerclass>
-    <innerclass refid="a00092" prot="public">CsvHelper::TypeConversion::DoubleConverter</innerclass>
-    <innerclass refid="a00094" prot="public">CsvHelper::TypeConversion::EnumConverter</innerclass>
-    <innerclass refid="a00095" prot="public">CsvHelper::TypeConversion::EnumerableConverter</innerclass>
-    <innerclass refid="a00105" prot="public">CsvHelper::TypeConversion::GuidConverter</innerclass>
-    <innerclass refid="a00114" prot="public">CsvHelper::TypeConversion::Int16Converter</innerclass>
-    <innerclass refid="a00115" prot="public">CsvHelper::TypeConversion::Int32Converter</innerclass>
-    <innerclass refid="a00116" prot="public">CsvHelper::TypeConversion::Int64Converter</innerclass>
-    <innerclass refid="a00117" prot="public">CsvHelper::TypeConversion::ITypeConverter</innerclass>
-    <innerclass refid="a00133" prot="public">CsvHelper::TypeConversion::NullableConverter</innerclass>
-    <innerclass refid="a00143" prot="public">CsvHelper::TypeConversion::SByteConverter</innerclass>
-    <innerclass refid="a00144" prot="public">CsvHelper::TypeConversion::SingleConverter</innerclass>
-    <innerclass refid="a00149" prot="public">CsvHelper::TypeConversion::StringConverter</innerclass>
-    <innerclass refid="a00154" prot="public">CsvHelper::TypeConversion::TimeSpanConverter</innerclass>
-    <innerclass refid="a00155" prot="public">CsvHelper::TypeConversion::TypeConverterFactory</innerclass>
-    <innerclass refid="a00156" prot="public">CsvHelper::TypeConversion::TypeConverterOptions</innerclass>
-    <innerclass refid="a00157" prot="public">CsvHelper::TypeConversion::TypeConverterOptionsFactory</innerclass>
-    <innerclass refid="a00160" prot="public">CsvHelper::TypeConversion::UInt16Converter</innerclass>
-    <innerclass refid="a00161" prot="public">CsvHelper::TypeConversion::UInt32Converter</innerclass>
-    <innerclass refid="a00162" prot="public">CsvHelper::TypeConversion::UInt64Converter</innerclass>
+    <compoundname>CommandLine</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/BooleanConverter.cs" line="9" column="1"/>
+    <location file="/home/travis/build/YarnSpinnerTool/YarnSpinner/YarnSpinnerConsole/Main.cs" line="31" column="1"/>
   </compounddef>
 </doxygen>

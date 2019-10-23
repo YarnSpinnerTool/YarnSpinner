@@ -1,80 +1,179 @@
-\hypertarget{a00040}{\section{Yarn.\-Base\-Options Class Reference}
-\label{a00040}\index{Yarn.\-Base\-Options@{Yarn.\-Base\-Options}}
-}
+This is the current road map we are considering for the future of \hyperlink{a00050}{Yarn} Spinner. Nothing in here is fixed and reflects what we believe should be the focus of development. The idea of this document is to both give us something to help plan our development but to also give you all a space to see what we are doing, and to give us input on what you consider important.
+
+Let us know what you think about this road map either in the \href{http://lab.to/narrativegamedev}{\tt Slack} or \href{https://github.com/YarnSpinnerTool/YarnSpinner/issues/183}{\tt here on the Git\-Hub issue we created about the road map}.
+
+{\bfseries This documents was last edited 02/10/2019}
+
+\section*{Releases}
+
+Here are the main releases we're currently planning.
+
+\subsection*{V1.\-0}
+
+\subsubsection*{Goal}
+
+To make it easier for projects to spin up and remain compatible with core \hyperlink{a00050}{Yarn} Spinner, and to smooth out the issues of getting started using and updating \hyperlink{a00050}{Yarn} Spinner.
+
+\subsubsection*{Motivation}
+
+\hyperlink{a00050}{Yarn} Spinner has been in a lot of flux, more or less starting as a spin-\/off of Night In The Woods. A lot of it was heavily tied to the needs and deadlines of that specific game. We've been working to make it more generic for {\itshape any} narrative game, but there is still a lot of connections to the requirements of Night In The Woods. As such, there is a lot of wonky code and half-\/finished concepts which users currently need to deal with. We want that to change so you no longer have to deal with this when it comes time to update or get started with \hyperlink{a00050}{Yarn} Spinner.
+
+\subsubsection*{Features}
 
 
-Inheritance diagram for Yarn.\-Base\-Options\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00642}
-\end{center}
-\end{figure}
+\begin{DoxyItemize}
+\item Formal \hyperlink{a00050}{Yarn} specification created and frozen
+\item Bytecode format freeze
+\item Compiler will generate bytecode by default instead of parsing the dialogue each time
+\item Default to using {\ttfamily .yarn} as the file extension in preference to {\ttfamily .yarn.\-text}
+\item V\-M will load and execute compiled bytecode
+\item Unity importer for {\ttfamily .yarn} files that invokes compiler and generates bytecode assets (using a {\ttfamily .yarnc} file extension).
+\item Implementation of a barebones Unity prefab (with a Canvas) that can be added into a scene to \char`\"{}just work\char`\"{}
+\item Rework examples to be designed to be used as the basis of your own game
+\item Modify example dialogue runner and variable storage to be the base form, instead of \char`\"{}just\char`\"{} examples
+\item Syntax highlighter extension for Visual Studio Code
+\item New documentation site
+\end{DoxyItemize}
+
+\subsection*{V1.\-1}
+
+\subsubsection*{Goal}
+
+To add in the two most requested features\-: string interpolation, and localisation! String interpolation means being able to write lines something like {\ttfamily Hello, \$\{player\-Name\}}, and have the line appear as \char`\"{}\-Hello, Sally\char`\"{}; localisation means being able to translate your game's content into multiple languages, keeping in mind the different rules that languages have regarding things like how words are pluralised, how grammatical gender works, and more.
+
+\subsubsection*{Motivation}
+
+By far the most requested feature, string interpolation has been put off due to concerns about implementation, in a nutshell to do \char`\"{}proper\char`\"{} interpolation is far from trivial. We're also very aware of the requirements of people who are releasing their games on storefronts that require localisation.
+
+This release will have no other features beyond those necessary to support interpolation and localisation features, as we want to ensure this is reliable. We are also concerned as to how many bugs this may cause in existing games, so we're moving carefully here.
+
+\subsubsection*{Features}
 
 
-Collaboration diagram for Yarn.\-Base\-Options\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=190pt]{a00643}
-\end{center}
-\end{figure}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-bool \hyperlink{a00040_a89964ea17bd19caf00cb5bff563ed01c}{show\-Debugging\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00040_ada4d83d1756918f362d55f6649b82b17}{verbose}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-I\-List$<$ string $>$ \hyperlink{a00040_aa93cbb1bc1d5328e0a417012621e92d2}{files}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\end{DoxyCompactItemize}
+\begin{DoxyItemize}
+\item String interpolation
+\item Localisation support
+\item Updated examples
+\item Updated documentation
+\end{DoxyItemize}
+
+\subsection*{V1.\-2}
+
+\subsubsection*{Goal}
+
+To add in initial support for Unreal.
+
+\subsubsection*{Motivation}
+
+Unreal is a large portion of the games community, and we've been asked multiple times by different people if Unreal is supported. We want to be able to say yes to them. This is not to say it will be as featureful as the Unity version for V1.\-2, although the long term goal is for feature parity.
+
+\subsubsection*{Features}
 
 
-\subsection{Detailed Description}
+\begin{DoxyItemize}
+\item Create an Unreal V\-M capable of reading compiled \hyperlink{a00050}{Yarn} bytecode
+\item Create Unreal Dialouge Runners and Variable Storage
+\item Create examples showing how to use \hyperlink{a00050}{Yarn} Spinner in Unreal.
+\item Add documentation on using \hyperlink{a00050}{Yarn} Spinner in Unreal.
+\end{DoxyItemize}
+
+\subsection*{V1.\-3}
+
+\subsubsection*{Goal}
+
+To create resources for developers to get more out of using \hyperlink{a00050}{Yarn} Spinner.
+
+\subsubsection*{Motivation}
+
+At this point, \hyperlink{a00050}{Yarn} Spinner should be at a state where it is stable to use and easy to update. The intent is to then make it more convenient for developers to integrate, so more examples and ready to go elements.
+
+\subsubsection*{Features}
 
 
-Definition at line 39 of file Main.\-cs.
+\begin{DoxyItemize}
+\item Modular prefab U\-I elements designed to work out of the both with \hyperlink{a00050}{Yarn} Spinner
+\item More examples and example projects demonstrating using \hyperlink{a00050}{Yarn} in different forms
+\item Add in parsing {\ttfamily .yarn} files into Unreal
+\end{DoxyItemize}
+
+\subsection*{V1.\-4}
+
+\subsubsection*{Goal}
+
+Make \hyperlink{a00050}{Yarn} more accessible from your existing development tools.
+
+\subsubsection*{Motivation}
+
+While we expect the \href{https://github.com/YarnSpinnerTool/YarnEditor}{\tt Yarn editor} will remain the main way you will create and modify \hyperlink{a00050}{Yarn} files, there are always more workflows that need support. This release will be designed to try and help make that easier.
+
+\subsubsection*{Features}
 
 
+\begin{DoxyItemize}
+\item Merge all command line tool functionality into the Unity and Unreal core
+\item Create a \href{https://microsoft.github.io/language-server-protocol/}{\tt language server protocol} server for \hyperlink{a00050}{Yarn}
+\item Add diagnostics and debugging features to a V\-S\-Code extension
+\item Create a Web\-Assembly compiler for \hyperlink{a00050}{Yarn}, allowing browsers to run the exact same code to compile \hyperlink{a00050}{Yarn} as is used in Unity and Unreal
+\end{DoxyItemize}
 
-\subsection{Property Documentation}
-\hypertarget{a00040_aa93cbb1bc1d5328e0a417012621e92d2}{\index{Yarn\-::\-Base\-Options@{Yarn\-::\-Base\-Options}!files@{files}}
-\index{files@{files}!Yarn::BaseOptions@{Yarn\-::\-Base\-Options}}
-\subsubsection[{files}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Base\-Options.\-files\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00040_aa93cbb1bc1d5328e0a417012621e92d2}
+\subsection*{V1.\-5}
 
+\subsubsection*{Goal}
 
-Definition at line 49 of file Main.\-cs.
+To put \hyperlink{a00050}{Yarn} Spinner in a place where it will be capable of being used more easily and in multiple places.
 
+\subsubsection*{Motivation}
 
+We want \hyperlink{a00050}{Yarn} Spinner to be easy to implement, use, and port to as many places as possible. We also want to start adding in support for any additional features that are community requested.
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run(), and Yarn.\-Yarn\-Spinner\-Console.\-Verify().
-
-\hypertarget{a00040_a89964ea17bd19caf00cb5bff563ed01c}{\index{Yarn\-::\-Base\-Options@{Yarn\-::\-Base\-Options}!show\-Debugging\-Info@{show\-Debugging\-Info}}
-\index{show\-Debugging\-Info@{show\-Debugging\-Info}!Yarn::BaseOptions@{Yarn\-::\-Base\-Options}}
-\subsubsection[{show\-Debugging\-Info}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-show\-Debugging\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00040_a89964ea17bd19caf00cb5bff563ed01c}
-
-
-Definition at line 42 of file Main.\-cs.
-
+\subsubsection*{Features}
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
+\begin{DoxyItemize}
+\item Porting guide for any platform, engine, and language
+\item Attributed string support (such as {\ttfamily \mbox{[}b\mbox{]}this is bold text\mbox{[}/b\mbox{]}})
+\end{DoxyItemize}
 
-\hypertarget{a00040_ada4d83d1756918f362d55f6649b82b17}{\index{Yarn\-::\-Base\-Options@{Yarn\-::\-Base\-Options}!verbose@{verbose}}
-\index{verbose@{verbose}!Yarn::BaseOptions@{Yarn\-::\-Base\-Options}}
-\subsubsection[{verbose}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-verbose\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00040_ada4d83d1756918f362d55f6649b82b17}
+\section*{F\-A\-Q}
+
+{\itshape Hang on you just posted this, how are these frequently asked?}
+
+Ok they aren't, but I have tried to preempt some likely questions.
+
+{\itshape How can I contact you privately about this?}
+
+There are a few ways you can reach the development team directly\-:
 
 
-Definition at line 46 of file Main.\-cs.
+\begin{DoxyItemize}
+\item {\bfseries Twitter}\-:
+\item $\ast$ \href{https://twitter.com/YarnSpinnerTool}{\tt }
+\item $\ast$ \href{https://twitter.com/desplesda}{\tt }
+\item $\ast$ \href{https://twitter.com/The_McJones}{\tt }
+\item {\bfseries Email}\-:
+\item $\ast$ \href{mailto:yarnspinner@secretlab.com.au}{\tt yarnspinner@secretlab.\-com.\-au}
+\end{DoxyItemize}
 
+{\itshape Why are there no dates attached to the releases?}
 
+\hyperlink{a00050}{Yarn} Spinner is a community project and we (as in  and ) as the main devs work on it in our free time or when it aligns with work. Any \hyperlink{a00050}{Yarn} Spinner work has to fit around our own work and as such would be the first candidates to be dropped if we need more time for work or our own sanity. We don't want to put down deadlines that, at least at this stage, would be known to be arbitrary.
 
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Table\-Generator.\-Generate\-Tables().
+{\itshape I think Feature X is the most important and you've not got it listed, what gives?}
 
+This is what we think is important, but we want to know what {\bfseries you} think is important, so either let us know in the Slack or on the \href{https://github.com/YarnSpinnerTool/YarnSpinner/issues/183}{\tt issue we opened about the road map}. We want to build \hyperlink{a00050}{Yarn} Spinner into something helpful for you as well as us.
 
+{\itshape I think Feature Y is the most important but you've got it way down the bottom of the road map, what gives}
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
-\item 
-Yarn\-Spinner\-Console/\hyperlink{a00300}{Main.\-cs}\end{DoxyCompactItemize}
+We've tried to group the road map releases into features and changes in a manner that we think makes sense, but we want your feedback on this stuff, so let us know.
+
+{\itshape You've mentioned this Slack now a few times, how do I get in?}
+
+You can join the Narrative Game Dev slack \href{http://lab.to/narrativegamedev}{\tt here}. We hope to see you there!
+
+{\itshape What about bug fixes? I still have a bug you've not fixed yet!}
+
+Throughout all of the releases the intent is to try and keep the bugs to a minimum. Some of these changes are intentionally made to clean up some of the cruft we've accumulated that make bug fixes hard.
+
+{\itshape Why does the road map get less detailed the longer it goes on?}
+
+Some of these changes we can see exactly how they will work and integrate, others will need to change as we get closer. Later releases are designed to have much larger broad strokes of features instead of specifics like in V1.\-0. As a release comes out we can take a look at the road map again, work out what features and needs should go into the next release and update the road map appropriately. 

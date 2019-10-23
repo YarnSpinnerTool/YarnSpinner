@@ -1,7 +1,0 @@
-<map id="CsvHelper.CsvReader.IsRecordEmpty" name="CsvHelper.CsvReader.IsRecordEmpty">
-<area shape="rect" id="node2" href="$a00074.html#a3b8db0163b61e20d56ed8626e21338d6" title="Checks if the current record should be skipped or not. " alt="" coords="265,34,463,75"/>
-<area shape="rect" id="node3" href="$a00074.html#a57ba5fa523de97bd2cf068973329090d" title="Reads the header field without reading the first row. " alt="" coords="512,5,701,46"/>
-<area shape="rect" id="node4" href="$a00074.html#af1f0d4d722e93df9da30fe60b89ff2d6" title="Advances the reader to the next record. If HasHeaderRecord is true (true by default), the first record of the CSV file will be automatically read in as the header record and the second record will be returned. " alt="" coords="749,41,939,68"/>
-<area shape="rect" id="node5" href="$a00074.html#afed61bbcd2a120487498acd36e6ae2f2" title="Gets all the records in the CSV file and converts each to Type T. The Read method should not be used ..." alt="" coords="987,16,1247,43"/>
-<area shape="rect" id="node6" href="$a00074.html#aaa94b8f27e410194fbaadd75f38b030e" title="Gets all the records in the CSV file and converts each to Type T. The Read method should not be used ..." alt="" coords="1003,67,1231,93"/>
-</map>

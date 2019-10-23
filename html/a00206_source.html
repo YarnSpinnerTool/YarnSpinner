@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,7 +105,7 @@ $(document).ready(function(){initNavTree('a00206_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">CsvPropertyReferenceMapData.cs</div>  </div>
+<div class="title">CsvPropertyNameCollection.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00206.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
@@ -113,50 +113,75 @@ $(document).ready(function(){initNavTree('a00206_source.html','');});
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#if !NET_2_0</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System.Reflection;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>CsvHelper.Configuration</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="a00073.html">   13</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00073.html">CsvPropertyReferenceMapData</a></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="a00073.html#a24263cbdacd2dd0db9bbe22676a6d989">   15</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">string</span> <a class="code" href="a00073.html#a24263cbdacd2dd0db9bbe22676a6d989">prefix</a>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">string</span> Prefix</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="a00073.html#a687fe65f1a2b4301f283e9333c282f9c">   21</a></span>&#160;        {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> prefix; }</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            set</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                prefix = value;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="keywordflow">foreach</span>( var propertyMap <span class="keywordflow">in</span> Mapping.PropertyMaps )</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                    propertyMap.Data.Names.Prefix = value;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                }</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="a00073.html#a5386ac40fb3ea290944f05cbee99bfcb">   37</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> PropertyInfo Property { <span class="keyword">get</span>; <span class="keyword">private</span> set; }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="a00073.html#af2343065df03de92b6b9803ed2bb4f87">   42</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00057.html">CsvClassMap</a> Mapping { <span class="keyword">get</span>; <span class="keyword">private</span> set; }</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System.Collections;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>CsvHelper.Configuration</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="a00073.html">   14</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00073.html">CsvPropertyNameCollection</a> : IEnumerable&lt;string&gt;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="a00073.html#a41eb6804d8afe8d674e64d71f66962ce">   16</a></span>&#160;        <span class="keyword">private</span> readonly List&lt;string&gt; names = <span class="keyword">new</span> List&lt;string&gt;();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">public</span> <span class="keywordtype">string</span> <span class="keyword">this</span>[<span class="keywordtype">int</span> index]</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="a00073.html#acdce91a755be3bec6218e3d82f4dfe82">   25</a></span>&#160;        {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> Prefix + names[index]; }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            set { names[index] = value; }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="a00073.html#ab8f3256d8435a1c93f0280064aa3ff06">   33</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">string</span> Prefix { <span class="keyword">get</span>; set; }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">public</span> List&lt;string&gt; Names</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="a00073.html#a1aa06a47337f6ab576b23fe63854dcbe">   40</a></span>&#160;        {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> names; }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="a00073.html#ad6fe2913932a9fe434f8a908dec30e8b">   49</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00073.html#ad6fe2913932a9fe434f8a908dec30e8b">CsvPropertyReferenceMapData</a>( PropertyInfo property, <a class="code" href="a00057.html">CsvClassMap</a> mapping )</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            Property = property;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            Mapping = mapping;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif // !NET_2_0</span></div>
-<div class="ttc" id="a00073_html_a24263cbdacd2dd0db9bbe22676a6d989"><div class="ttname"><a href="a00073.html#a24263cbdacd2dd0db9bbe22676a6d989">CsvHelper.Configuration.CsvPropertyReferenceMapData.prefix</a></div><div class="ttdeci">string prefix</div><div class="ttdef"><b>Definition:</b> <a href="a00206_source.html#l00015">CsvPropertyReferenceMapData.cs:15</a></div></div>
-<div class="ttc" id="a00073_html_ad6fe2913932a9fe434f8a908dec30e8b"><div class="ttname"><a href="a00073.html#ad6fe2913932a9fe434f8a908dec30e8b">CsvHelper.Configuration.CsvPropertyReferenceMapData.CsvPropertyReferenceMapData</a></div><div class="ttdeci">CsvPropertyReferenceMapData(PropertyInfo property, CsvClassMap mapping)</div><div class="ttdoc">Initializes a new instance of the CsvPropertyReferenceMapData class. </div><div class="ttdef"><b>Definition:</b> <a href="a00206_source.html#l00049">CsvPropertyReferenceMapData.cs:49</a></div></div>
-<div class="ttc" id="a00057_html"><div class="ttname"><a href="a00057.html">CsvHelper.Configuration.CsvClassMap</a></div><div class="ttdoc">Maps class properties to CSV fields. </div><div class="ttdef"><b>Definition:</b> <a href="a00195_source.html#l00019">CsvClassMap.cs:19</a></div></div>
-<div class="ttc" id="a00073_html"><div class="ttname"><a href="a00073.html">CsvHelper.Configuration.CsvPropertyReferenceMapData</a></div><div class="ttdoc">The configuration data for the reference map. </div><div class="ttdef"><b>Definition:</b> <a href="a00206_source.html#l00013">CsvPropertyReferenceMapData.cs:13</a></div></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">public</span> <span class="keywordtype">int</span> Count</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="a00073.html#a4b7b56286ad80183e1a33554a49eefa1">   48</a></span>&#160;        {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> names.Count; }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="a00073.html#ad7b7d11d5814bcce5ed38e054ef71b4e">   56</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00073.html#ad7b7d11d5814bcce5ed38e054ef71b4e">Add</a>( <span class="keywordtype">string</span> name )</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            names.Add( name );</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="a00073.html#abec990435c8dccfb4553602b89f93201">   64</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00073.html#abec990435c8dccfb4553602b89f93201">Clear</a>()</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            names.Clear();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="a00073.html#ac568746273968080890abca50b882802">   73</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00073.html#ac568746273968080890abca50b882802">AddRange</a>( IEnumerable&lt;string&gt; names )</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            this.names.AddRange( names );</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="a00073.html#a61b6a80e51d06f17d0043ec6aef89f1b">   85</a></span>&#160;        <span class="keyword">public</span> IEnumerator&lt;string&gt; <a class="code" href="a00073.html#a61b6a80e51d06f17d0043ec6aef89f1b">GetEnumerator</a>()</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keywordflow">for</span>( var i = 0; i &lt; names.Count; i++ )</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                yield <span class="keywordflow">return</span> <span class="keyword">this</span>[i];</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="a00073.html#a76b5c67fcecf55dbdd4b680cde1a78f7">  100</a></span>&#160;        IEnumerator IEnumerable.GetEnumerator()</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keywordflow">return</span> names.GetEnumerator();</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif // !NET_2_0</span></div>
+<div class="ttc" id="a00073_html_abec990435c8dccfb4553602b89f93201"><div class="ttname"><a href="a00073.html#abec990435c8dccfb4553602b89f93201">CsvHelper.Configuration.CsvPropertyNameCollection.Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdoc">Clears all names from the collection. </div><div class="ttdef"><b>Definition:</b> <a href="a00206_source.html#l00064">CsvPropertyNameCollection.cs:64</a></div></div>
+<div class="ttc" id="a00073_html_ad7b7d11d5814bcce5ed38e054ef71b4e"><div class="ttname"><a href="a00073.html#ad7b7d11d5814bcce5ed38e054ef71b4e">CsvHelper.Configuration.CsvPropertyNameCollection.Add</a></div><div class="ttdeci">void Add(string name)</div><div class="ttdoc">Adds the given name to the collection. </div><div class="ttdef"><b>Definition:</b> <a href="a00206_source.html#l00056">CsvPropertyNameCollection.cs:56</a></div></div>
+<div class="ttc" id="a00073_html_ac568746273968080890abca50b882802"><div class="ttname"><a href="a00073.html#ac568746273968080890abca50b882802">CsvHelper.Configuration.CsvPropertyNameCollection.AddRange</a></div><div class="ttdeci">void AddRange(IEnumerable&lt; string &gt; names)</div><div class="ttdoc">Adds a range of names to the collection. </div><div class="ttdef"><b>Definition:</b> <a href="a00206_source.html#l00073">CsvPropertyNameCollection.cs:73</a></div></div>
+<div class="ttc" id="a00073_html_a61b6a80e51d06f17d0043ec6aef89f1b"><div class="ttname"><a href="a00073.html#a61b6a80e51d06f17d0043ec6aef89f1b">CsvHelper.Configuration.CsvPropertyNameCollection.GetEnumerator</a></div><div class="ttdeci">IEnumerator&lt; string &gt; GetEnumerator()</div><div class="ttdoc">Returns an enumerator that iterates through the collection. </div><div class="ttdef"><b>Definition:</b> <a href="a00206_source.html#l00085">CsvPropertyNameCollection.cs:85</a></div></div>
+<div class="ttc" id="a00073_html"><div class="ttname"><a href="a00073.html">CsvHelper.Configuration.CsvPropertyNameCollection</a></div><div class="ttdoc">A collection that holds property names. </div><div class="ttdef"><b>Definition:</b> <a href="a00206_source.html#l00014">CsvPropertyNameCollection.cs:14</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_3401b88f0a1c00c4409faa11193eadf6.html">Configuration</a></li><li class="navelem"><a class="el" href="a00206.html">CsvPropertyReferenceMapData.cs</a></li>
-    <li class="footer">Generated on Wed Aug 28 2019 22:42:47 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_3401b88f0a1c00c4409faa11193eadf6.html">Configuration</a></li><li class="navelem"><a class="el" href="a00206.html">CsvPropertyNameCollection.cs</a></li>
+    <li class="footer">Generated on Wed Oct 23 2019 00:35:55 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

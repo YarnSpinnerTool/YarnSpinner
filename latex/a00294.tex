@@ -1,50 +1,45 @@
-\hypertarget{a00294}{\section{Yarn\-Spinner/\-Yarn\-Spinner\-Parser\-Base\-Listener.cs File Reference}
-\label{a00294}\index{Yarn\-Spinner/\-Yarn\-Spinner\-Parser\-Base\-Listener.\-cs@{Yarn\-Spinner/\-Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}}
+\hypertarget{a00294}{\section{Yarn\-Spinner/\-Virtual\-Machine.cs File Reference}
+\label{a00294}\index{Yarn\-Spinner/\-Virtual\-Machine.\-cs@{Yarn\-Spinner/\-Virtual\-Machine.\-cs}}
 }
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00173}{Yarn\-Spinner\-Parser\-Base\-Listener}
-\begin{DoxyCompactList}\small\item\em This class provides an empty implementation of \hyperlink{a00118}{I\-Yarn\-Spinner\-Parser\-Listener}, which can be extended to create a listener which only needs to handle a subset of the available methods. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Typedefs}
+class \hyperlink{a00147}{Yarn.\-Virtual\-Machine}
+\item 
+class \hyperlink{a00150}{Yarn.\-Virtual\-Machine.\-State}
+\item 
+class \hyperlink{a00147_a00356}{Yarn.\-Virtual\-Machine.\-Special\-Variables}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
-using \hyperlink{a00294_af5d51a3c18761c8348444279f29c7007}{I\-Error\-Node} = Antlr4.\-Runtime.\-Tree.\-I\-Error\-Node
-\item 
-using \hyperlink{a00294_a72f9ef657b5686a84acec94a9d7302d1}{I\-Terminal\-Node} = Antlr4.\-Runtime.\-Tree.\-I\-Terminal\-Node
-\item 
-using \hyperlink{a00294_ae3d87b0b748ea892bff48f60862e182d}{I\-Token} = Antlr4.\-Runtime.\-I\-Token
-\item 
-using \hyperlink{a00294_a7e45f8222713cb764832fd3c69d0268f}{Parser\-Rule\-Context} = Antlr4.\-Runtime.\-Parser\-Rule\-Context
+package \hyperlink{a00050}{Yarn}
 \end{DoxyCompactItemize}
 
 
-\subsection{Typedef Documentation}
-\hypertarget{a00294_af5d51a3c18761c8348444279f29c7007}{\index{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}!I\-Error\-Node@{I\-Error\-Node}}
-\index{I\-Error\-Node@{I\-Error\-Node}!YarnSpinnerParserBaseListener.cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}}
-\subsubsection[{I\-Error\-Node}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf I\-Error\-Node} =  Antlr4.\-Runtime.\-Tree.\-I\-Error\-Node}}\label{a00294_af5d51a3c18761c8348444279f29c7007}
+\subsection{Class Documentation}
+\index{Yarn\-::\-Virtual\-Machine\-::\-Special\-Variables@{Yarn\-::\-Virtual\-Machine\-::\-Special\-Variables}}\label{a00356}
+\hypertarget{a00147_a00356}{}
+\subsubsection{class Yarn\-:\-:Virtual\-Machine\-:\-:Special\-Variables}
 
 
-Definition at line 24 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
-
-\hypertarget{a00294_a72f9ef657b5686a84acec94a9d7302d1}{\index{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}!I\-Terminal\-Node@{I\-Terminal\-Node}}
-\index{I\-Terminal\-Node@{I\-Terminal\-Node}!YarnSpinnerParserBaseListener.cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}}
-\subsubsection[{I\-Terminal\-Node}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf I\-Terminal\-Node} =  Antlr4.\-Runtime.\-Tree.\-I\-Terminal\-Node}}\label{a00294_a72f9ef657b5686a84acec94a9d7302d1}
+Definition at line 49 of file Virtual\-Machine.\-cs.
 
 
-Definition at line 25 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
 
-\hypertarget{a00294_ae3d87b0b748ea892bff48f60862e182d}{\index{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}!I\-Token@{I\-Token}}
-\index{I\-Token@{I\-Token}!YarnSpinnerParserBaseListener.cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}}
-\subsubsection[{I\-Token}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf I\-Token} =  Antlr4.\-Runtime.\-I\-Token}}\label{a00294_ae3d87b0b748ea892bff48f60862e182d}
+Collaboration diagram for Yarn.\-Virtual\-Machine.\-Special\-Variables\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{a00368}
+\end{center}
+\end{figure}
+\begin{DoxyFields}{Class Members}
+\hypertarget{a00147_aecbb8ab9becd96457d836100b2818078}{const string}\label{a00147_aecbb8ab9becd96457d836100b2818078}
+&
+Shuffle\-Options&
+\\
+\hline
 
-
-Definition at line 26 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
-
-\hypertarget{a00294_a7e45f8222713cb764832fd3c69d0268f}{\index{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}!Parser\-Rule\-Context@{Parser\-Rule\-Context}}
-\index{Parser\-Rule\-Context@{Parser\-Rule\-Context}!YarnSpinnerParserBaseListener.cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}}
-\subsubsection[{Parser\-Rule\-Context}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf Parser\-Rule\-Context} =  Antlr4.\-Runtime.\-Parser\-Rule\-Context}}\label{a00294_a7e45f8222713cb764832fd3c69d0268f}
-
-
-Definition at line 27 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
-
+\end{DoxyFields}
