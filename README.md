@@ -38,7 +38,7 @@ Yarn Spinner was originally created by [Secret Lab](http://secretlab.com.au), an
 
 The [logo](Documentation/YarnSpinnerLogo.png) was made by [Cecile Richard](https://www.cecile-richard.com/).
 
-<a href="https://gamecenter.nyu.edu/"><img src="Documentation/NYUGameCenter.png" alt="NYU Game Center logo" width="100px;" align="right"></a>
+<a href="https://gamecenter.nyu.edu/"><img src="Documentation/NYUGameCenter.png" alt="NYU Game Center logo" width="250px;" align="right"></a>
 
 Yarn Spinner's development is made possible in part by [NYU Game Center](https://gamecenter.nyu.edu/). 
 
