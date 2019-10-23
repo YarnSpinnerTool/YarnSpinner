@@ -37,6 +37,8 @@ using System.IO;
 using System.Linq;
 using System.Globalization;
 
+using Yarn.Compiler;
+
 namespace Yarn {
 
     public enum NodeFormat
@@ -228,7 +230,7 @@ namespace Yarn {
             parser.AddErrorListener(ErrorListener.Instance);
 
             IParseTree tree = parser.dialogue();
-            Compiler compiler = new Compiler(library);
+            Yarn.Compiler.Compiler compiler = new Yarn.Compiler.Compiler(library);
             compiler.Compile(tree);
 
             // merging in the other program if requested

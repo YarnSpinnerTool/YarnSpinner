@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Globalization;
+using static Yarn.Compiler.Instruction.Types;
 
-namespace Yarn
+namespace Yarn.Compiler
 {
 	// An exception representing something going wrong during parsing
 	[Serializable]
@@ -29,28 +30,10 @@ namespace Yarn
         }
 
 		internal ParseException(string message) : base(message) { }
-
 	}
-
-	internal struct LineInfo
+	
+	public partial class Program
 	{
-		public int lineNumber;
-		public string nodeName;
-
-		public LineInfo(string nodeName, int lineNumber)
-		{
-			this.nodeName = nodeName;
-			this.lineNumber = lineNumber;
-		}
-	}
-
-	internal class Program
-	{
-
-		internal Dictionary<string, string> strings = new Dictionary<string, string>();
-		internal Dictionary<string, LineInfo> lineInfo = new Dictionary<string, LineInfo>();
-
-		internal Dictionary<string, Node> nodes = new Dictionary<string, Node>();
 
 		// When saving programs, we want to save only lines that do NOT have a line: key.
 		// This is because these lines will be loaded from a string table.
@@ -65,7 +48,7 @@ namespace Yarn
 			get
 			{
 				var result = new Dictionary<string, string>();
-				foreach (var line in strings)
+				foreach (var line in this.StringTable)
 				{
 					if (line.Key.StartsWith("line:", StringComparison.InvariantCulture))
 					{
@@ -83,11 +66,14 @@ namespace Yarn
 		/** The string table is merged with any existing strings,
          * with the new table taking precedence over the old.
          */
+		// TODO: this information relates to the execution of the program,
+		// and not to the program as stored on disk. Move this
+		// functinoality to the VM.
 		public void LoadStrings(Dictionary<string, string> newStrings)
 		{
 			foreach (var entry in newStrings)
 			{
-				strings[entry.Key] = entry.Value;
+				StringTable[entry.Key] = entry.Value;
 			}
 		}
 
@@ -102,12 +88,15 @@ namespace Yarn
 				key = lineID;
 
 			// It's not in the list; append it
-			strings.Add(key, theString);
+			StringTable.Add(key, theString);
 
 			if (localisable)
 			{
 				// Additionally, keep info about this string around
-				lineInfo.Add(key, new LineInfo(nodeName, lineNumber));
+				var lineInfo = new LineInfo();
+				lineInfo.NodeName = nodeName;
+				lineInfo.LineNumber = lineNumber;
+				this.LineInfo.Add(key, lineInfo);
 			}
 
 			return key;
@@ -116,7 +105,7 @@ namespace Yarn
 		public string GetString(string key)
 		{
 			string value = null;
-			strings.TryGetValue(key, out value);
+			StringTable.TryGetValue(key, out value);
 			return value;
 		}
 
@@ -125,16 +114,16 @@ namespace Yarn
 
 			var sb = new System.Text.StringBuilder();
 
-			foreach (var entry in nodes)
+			foreach (var entry in Nodes)
 			{
 				sb.AppendLine("Node " + entry.Key + ":");
 
 				int instructionCount = 0;
-				foreach (var instruction in entry.Value.instructions)
+				foreach (var instruction in entry.Value.Instructions)
 				{
 					string instructionText;
 
-					if (instruction.operation == ByteCode.Label)
+					if (instruction.Opcode == OpCode.Label)
 					{
 						instructionText = instruction.ToString(this, l);
 					}
@@ -145,7 +134,7 @@ namespace Yarn
 
 					string preface;
 
-					if (instructionCount % 5 == 0 || instructionCount == entry.Value.instructions.Count - 1)
+					if (instructionCount % 5 == 0 || instructionCount == entry.Value.Instructions.Count - 1)
 					{
 						preface = string.Format(CultureInfo.InvariantCulture, "{0,6}   ", instructionCount);
 					}
@@ -164,11 +153,11 @@ namespace Yarn
 
 			sb.AppendLine("String table:");
 
-			foreach (var entry in strings)
+			foreach (var entry in StringTable)
 			{
-				var lineInfo = this.lineInfo[entry.Key];
+				var lineInfo = this.LineInfo[entry.Key];
 
-                sb.AppendLine(string.Format(CultureInfo.InvariantCulture, "{0}: {1} ({2}:{3})", entry.Key, entry.Value, lineInfo.nodeName, lineInfo.lineNumber));
+                sb.AppendLine(string.Format(CultureInfo.InvariantCulture, "{0}: {1} ({2}:{3})", entry.Key, entry.Value, lineInfo.NodeName, lineInfo.LineNumber));
 			}
 
 			return sb.ToString();
@@ -176,74 +165,52 @@ namespace Yarn
 
 		public string GetTextForNode(string nodeName)
 		{
-			return this.GetString(nodes[nodeName].sourceTextStringID);
+			return this.GetString(Nodes[nodeName].SourceTextStringID);
 		}
 
 		public IEnumerable<string> GetTagsForNode(string nodeName)
 		{
-			return nodes[nodeName].tags;
+			return Nodes[nodeName].Tags;
 		}
 
+		// TODO: this behaviour belongs in the VM as a "load additional program" feature, not in the Program data object
 		public void Include(Program otherProgram)
 		{
-			foreach (var otherNodeName in otherProgram.nodes)
+			foreach (var otherNodeName in otherProgram.Nodes)
 			{
 
-				if (nodes.ContainsKey(otherNodeName.Key))
+				if (Nodes.ContainsKey(otherNodeName.Key))
 				{
 					throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "This program already contains a node named {0}", otherNodeName.Key));
 				}
 
-				nodes[otherNodeName.Key] = otherNodeName.Value;
+				Nodes[otherNodeName.Key] = otherNodeName.Value;
 			}
 
-			foreach (var otherString in otherProgram.strings)
+			foreach (var otherString in otherProgram.StringTable)
 			{
 
-				if (nodes.ContainsKey(otherString.Key))
+				if (Nodes.ContainsKey(otherString.Key))
 				{
 					throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "This program already contains a string with key {0}", otherString.Key));
 				}
 
-				strings[otherString.Key] = otherString.Value;
+				StringTable[otherString.Key] = otherString.Value;
 			}
 		}
 	}
 
-	internal class Node
+	public partial class Instruction
 	{
-
-		public List<Instruction> instructions = new List<Instruction>();
-
-		public string name;
-
-		/// the entry in the program's string table that contains
-		/// the original text of this node; null if this is not available
-		public string sourceTextStringID = null;
-
-		public Dictionary<string, int> labels = new Dictionary<string, int>();
-
-		public List<string> tags;
-	}
-
-	struct Instruction
-	{
-		public ByteCode operation;
-		public object operandA;
-		public object operandB;
-
+		
 		public string ToString(Program p, Library l)
 		{
 
 			// Labels are easy: just dump out the name
-			if (operation == ByteCode.Label)
+			if (Opcode == OpCode.Label)
 			{
-				return operandA + ":";
+				return Operands[0].StringValue + ":";
 			}
-
-			// Convert the operands to strings
-			var opAString = operandA != null ? Convert.ToString(operandA, CultureInfo.InvariantCulture) : "";
-			var opBString = operandB != null ? Convert.ToString(operandB, CultureInfo.InvariantCulture) : "";
 
 			// Generate a comment, if the instruction warrants it
 			string comment = "";
@@ -252,22 +219,22 @@ namespace Yarn
 			var pops = 0;
 			var pushes = 0;
 
-			switch (operation)
+			switch (Opcode)
 			{
 
 				// These operations all push a single value to the stack
-				case ByteCode.PushBool:
-				case ByteCode.PushNull:
-				case ByteCode.PushNumber:
-				case ByteCode.PushString:
-				case ByteCode.PushVariable:
-				case ByteCode.ShowOptions:
+				case OpCode.PushBool:
+				case OpCode.PushNull:
+				case OpCode.PushNumber:
+				case OpCode.PushString:
+				case OpCode.PushVariable:
+				case OpCode.ShowOptions:
 					pushes = 1;
 					break;
 
 				// Functions pop 0 or more values, and pop 0 or 1
-				case ByteCode.CallFunc:
-					var function = l.GetFunction((string)operandA);
+				case OpCode.CallFunc:
+					var function = l.GetFunction(Operands[0].StringValue);
 
 					pops = function.paramCount;
 
@@ -278,12 +245,12 @@ namespace Yarn
 					break;
 
 				// Pop always pops a single value
-				case ByteCode.Pop:
+				case OpCode.Pop:
 					pops = 1;
 					break;
 
 				// Switching to a different node will always clear the stack
-				case ByteCode.RunNode:
+				case OpCode.RunNode:
 					comment += "Clears stack";
 					break;
 			}
@@ -298,16 +265,16 @@ namespace Yarn
 				comment += string.Format(CultureInfo.InvariantCulture, "Pushes {0}", pushes);
 
 			// String lookup comments
-			switch (operation)
+			switch (Opcode)
 			{
-				case ByteCode.PushString:
-				case ByteCode.RunLine:
-				case ByteCode.AddOption:
+				case OpCode.PushString:
+				case OpCode.RunLine:
+				case OpCode.AddOption:
 
 					// Add the string for this option, if it has one
-					if ((string)operandA != null)
+					if (Operands[0].StringValue != "")
 					{
-						var text = p.GetString((string)operandA);
+						var text = p.GetString(Operands[0].StringValue);
 						comment += string.Format(CultureInfo.InvariantCulture, "\"{0}\"", text);
 					}
 
@@ -320,49 +287,17 @@ namespace Yarn
 				comment = "; " + comment;
 			}
 
-			return string.Format(CultureInfo.InvariantCulture, "{0,-15} {1,-10} {2,-10} {3, -10}", operation.ToString(), opAString, opBString, comment);
+			string opAString = Operands.Count > 0 ? Operands[0].ToString() : "";
+			string opBString = Operands.Count > 1 ? Operands[1].ToString() : "";
+
+			return string.Format(
+                CultureInfo.InvariantCulture,
+                "{0,-15} {1,-10} {2,-10} {3, -10}",
+                Opcode.ToString(),
+                opAString,
+                opBString,
+                comment);
 		}
 	}
 
-	internal enum ByteCode
-	{
-
-		/// opA = string: label name
-		Label,
-		/// opA = string: label name
-		JumpTo,
-		/// peek string from stack and jump to that label
-		Jump,
-		/// opA = int: string number
-		RunLine,
-		/// opA = string: command text
-		RunCommand,
-		/// opA = int: string number for option to add
-		AddOption,
-		/// present the current list of options, then clear the list; most recently selected option will be on the top of the stack
-		ShowOptions,
-		/// opA = int: string number in table; push string to stack
-		PushString,
-		/// opA = float: number to push to stack
-		PushNumber,
-		/// opA = int (0 or 1): bool to push to stack
-		PushBool,
-		/// pushes a null value onto the stack
-		PushNull,
-		/// opA = string: label name if top of stack is not null, zero or false, jumps to that label
-		JumpIfFalse,
-		/// discard top of stack
-		Pop,
-		/// opA = string; looks up function, pops as many arguments as needed, result is pushed to stack
-		CallFunc,
-		/// opA = name of variable to get value of and push to stack
-		PushVariable,
-		/// opA = name of variable to store top of stack in
-		StoreVariable,
-		/// stops execution
-		Stop,
-		/// run the node whose name is at the top of the stack
-		RunNode
-
-	}
 }

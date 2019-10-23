@@ -30,6 +30,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.Serialization;
 
+using Yarn.Compiler;
+
 namespace Yarn {
 
     /// Represents things that can go wrong while loading or running a dialogue.
@@ -443,7 +445,7 @@ namespace Yarn {
 
         public IEnumerable<string> allNodes {
             get {
-                return program.nodes.Keys;
+                return program.Nodes.Keys;
             }
         }
 
@@ -461,7 +463,7 @@ namespace Yarn {
         public Dictionary<string, string> GetTextForAllNodes() {
             var d = new Dictionary<string,string>();
 
-            foreach (var node in program.nodes) {
+            foreach (var node in program.Nodes) {
                 var text = program.GetTextForNode(node.Key);
 
                 if (text == null)
@@ -475,10 +477,10 @@ namespace Yarn {
 
         /// Returns the source code for the node 'nodeName', if that node was tagged with rawText.
         public string GetTextForNode(string nodeName) {
-            if (program.nodes.Count == 0) {
+            if (program.Nodes.Count == 0) {
                 LogErrorMessage ("No nodes are loaded!");
                 return null;
-            } else if (program.nodes.ContainsKey(nodeName)) {
+            } else if (program.Nodes.ContainsKey(nodeName)) {
                 return program.GetTextForNode (nodeName);
             } else {
                 LogErrorMessage ("No node named " + nodeName);
@@ -489,7 +491,7 @@ namespace Yarn {
 		public Dictionary<string, IEnumerable<string>> GetTagsForAllNodes() {
 			var d = new Dictionary<string,IEnumerable<string>>();
 
-			foreach (var node in program.nodes) {
+			foreach (var node in program.Nodes) {
 				var tags = program.GetTagsForNode(node.Key);
 
 				if (tags == null)
@@ -503,10 +505,10 @@ namespace Yarn {
 
 		/// Returns the tags for the node 'nodeName'.
 		public IEnumerable<string> GetTagsForNode(string nodeName) {
-			if (program.nodes.Count == 0) {
+			if (program.Nodes.Count == 0) {
 				LogErrorMessage ("No nodes are loaded!");
 				return null;
-			} else if (program.nodes.ContainsKey(nodeName)) {
+			} else if (program.Nodes.ContainsKey(nodeName)) {
 				return program.GetTagsForNode (nodeName);
 			} else {
 				LogErrorMessage ("No node named " + nodeName);
@@ -519,12 +521,12 @@ namespace Yarn {
             program.LoadStrings(stringTable);
         }
 
-        public Dictionary<string,string> GetStringTable() {
-            return program.strings;
+        public IDictionary<string,string> GetStringTable() {
+            return program.StringTable;
         }
 
-        internal Dictionary<string,LineInfo> GetStringInfoTable() {
-            return program.lineInfo;
+        internal IDictionary<string,LineInfo> GetStringInfoTable() {
+            return program.LineInfo;
         }
 
         public enum CompiledFormat
@@ -558,12 +560,12 @@ namespace Yarn {
                                  "have been compiled!");
                 return false;
             }
-            if (program.nodes == null || program.nodes.Count == 0) {
+            if (program.Nodes == null || program.Nodes.Count == 0) {
                 LogDebugMessage ("Called NodeExists, but there are zero nodes. " +
                                  "This may be an error.");
                 return false;
             }
-            return program.nodes.ContainsKey(nodeName);
+            return program.Nodes.ContainsKey(nodeName);
         }
 
         public void Analyse(Analysis.Context context) {

@@ -27,7 +27,7 @@ namespace YarnSpinner.Tests
             // and run one
             dialogue.LoadFile(path);
 
-            Assert.AreEqual(3, dialogue.program.nodes.Count);
+            Assert.AreEqual(3, dialogue.program.Nodes.Count);
 
             Assert.True(dialogue.NodeExists("TestNode"));
             Assert.True(dialogue.NodeExists("AnotherTestNode"));

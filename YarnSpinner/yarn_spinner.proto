@@ -1,0 +1,85 @@
+syntax = "proto3";
+package Yarn.Compiler;
+
+message Program {
+    string name = 1;
+    map<string, Node> nodes = 2;   
+	map<string, string> string_table = 3;
+	map<string, LineInfo> line_info = 4;
+}
+
+message LineInfo {
+	int32 line_number = 1;
+	string node_name = 2;
+}
+
+message Node {
+    string name = 1;
+    repeated Instruction instructions = 2;
+
+    // Offsets to instructions, relative to this node's position in the program
+	map<string, int32> labels = 3;
+	
+	repeated string tags = 4;
+
+	// the entry in the program's string table that contains
+	// the original text of this node; null if this is not available	
+	string sourceTextStringID = 5;
+}
+
+message Instruction {
+
+    enum OpCode {
+        
+		LABEL = 0; /// opA = string: label name
+		
+		JUMP_TO = 1; /// opA = string: label name
+		
+		JUMP = 2; /// peek string from stack and jump to that label
+		
+		RUN_LINE = 3; /// opA = int: string number
+		
+		RUN_COMMAND = 4; /// opA = string: command text
+		
+		ADD_OPTION = 5; /// opA = int: string number for option to add
+		
+		SHOW_OPTIONS = 6; /// present the current list of options, then clear the list; most recently selected option will be on the top of the stack
+		
+		PUSH_STRING = 7; /// opA = int: string number in table; push string to stack
+		
+		PUSH_NUMBER = 8; /// opA = float: number to push to stack
+		
+		PUSH_BOOL = 9; /// opA = int (0 or 1): bool to push to stack
+		
+		PUSH_NULL = 10; /// pushes a null value onto the stack
+		
+		JUMP_IF_FALSE = 11; /// opA = string: label name if top of stack is not null, zero or false, jumps to that label
+		
+		POP = 12; /// discard top of stack
+		
+		CALL_FUNC = 13; /// opA = string; looks up function, pops as many arguments as needed, result is pushed to stack
+		
+		PUSH_VARIABLE = 14; /// opA = name of variable to get value of and push to stack
+		
+		STORE_VARIABLE = 15; /// opA = name of variable to store top of stack in
+		
+		STOP = 16; /// stops execution
+		
+		RUN_NODE = 17; /// run the node whose name is at the top of the stack
+    }
+
+    OpCode opcode = 1;
+    repeated Operand operands = 2;
+}
+
+message Operand {
+    oneof value {
+		
+        int32 int_value = 1;
+        string string_value = 2;
+		bool bool_value = 3;
+		float float_value = 4;
+    }
+}
+
+

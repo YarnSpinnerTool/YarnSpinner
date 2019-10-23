@@ -54,7 +54,7 @@ namespace Yarn
                     }
                 }
             }
-            throw new Yarn.ParseException(builder.ToString());
+            throw new Yarn.Compiler.ParseException(builder.ToString());
         }
     }
 }

@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using System.Globalization;
 
+using Yarn.Compiler;
+
 using System.Runtime.CompilerServices;
+
+using static Yarn.Compiler.Instruction.Types;
+
 [assembly:InternalsVisibleTo("YarnSpinner.Tests")]
+
 
 namespace Yarn.Analysis
 {
@@ -148,30 +154,30 @@ namespace Yarn.Analysis
     }
     
     internal abstract class CompiledProgramAnalyser {
-        public abstract void Diagnose (Yarn.Program program);
+        public abstract void Diagnose (Yarn.Compiler.Program program);
         public abstract IEnumerable<Diagnosis> GatherDiagnoses();
     }
 
     internal class VariableLister : CompiledProgramAnalyser {
         HashSet<string> variables = new HashSet<string>();
 
-        public override void Diagnose(Program program)
+        public override void Diagnose(Yarn.Compiler.Program program)
         {
             // In each node, find all reads and writes to variables
-            foreach (var nodeInfo in program.nodes)
+            foreach (var nodeInfo in program.Nodes)
             {
 
                 var nodeName = nodeInfo.Key;
                 var theNode = nodeInfo.Value;
 
-                foreach (var instruction in theNode.instructions)
+                foreach (var instruction in theNode.Instructions)
                 {
 
-                    switch (instruction.operation)
+                    switch (instruction.Opcode)
                     {
-                        case ByteCode.PushVariable:
-                        case ByteCode.StoreVariable:
-                            variables.Add((string)instruction.operandA);
+                        case OpCode.PushVariable:
+                        case OpCode.StoreVariable:
+                            variables.Add(instruction.Operands[0].StringValue);
                             break;
                     }
                 }
@@ -200,19 +206,19 @@ namespace Yarn.Analysis
         {
 
             // In each node, find all reads and writes to variables
-            foreach (var nodeInfo in program.nodes) {
+            foreach (var nodeInfo in program.Nodes) {
 
                 var nodeName = nodeInfo.Key;
                 var theNode = nodeInfo.Value;
 
-                foreach (var instruction in theNode.instructions) {
+                foreach (var instruction in theNode.Instructions) {
 
-                    switch (instruction.operation) {
-                    case ByteCode.PushVariable:
-                        readVariables.Add ((string)instruction.operandA);
+                    switch (instruction.Opcode) {
+                    case OpCode.PushVariable:
+                        readVariables.Add (instruction.Operands[0].StringValue);
                         break;
-                    case ByteCode.StoreVariable:
-                        writtenVariables.Add ((string)instruction.operandA);
+                    case OpCode.StoreVariable:
+                        writtenVariables.Add (instruction.Operands[0].StringValue);
                         break;
                     }
                 }

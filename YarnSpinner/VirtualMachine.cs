@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 
+using Yarn.Compiler;
+
+using static Yarn.Compiler.Instruction.Types;
+
 namespace Yarn
 {
     internal class VirtualMachine
@@ -110,7 +114,7 @@ namespace Yarn
         Node currentNode;
 
         public bool SetNode(string nodeName) {
-            if (program.nodes.ContainsKey(nodeName) == false) {
+            if (program.Nodes.ContainsKey(nodeName) == false) {
 
                 var error = "No node named " + nodeName;
                 dialogue.LogErrorMessage(error);
@@ -123,7 +127,7 @@ namespace Yarn
             // Clear the special variables
             dialogue.continuity.SetValue(SpecialVariables.ShuffleOptions, new Value(false));
 
-            currentNode = program.nodes [nodeName];
+            currentNode = program.Nodes [nodeName];
             ResetState ();
             state.currentNodeName = nodeName;
 
@@ -146,13 +150,13 @@ namespace Yarn
             if (executionState == ExecutionState.Stopped)
                 executionState = ExecutionState.Running;
 
-            Instruction currentInstruction = currentNode.instructions [state.programCounter];
+            Instruction currentInstruction = currentNode.Instructions [state.programCounter];
 
             RunInstruction (currentInstruction);
 
             state.programCounter++;
 
-            if (state.programCounter >= currentNode.instructions.Count) {
+            if (state.programCounter >= currentNode.Instructions.Count) {
                 executionState = ExecutionState.Stopped;
                 nodeCompleteHandler(new Dialogue.NodeCompleteResult(null));
                 dialogue.LogDebugMessage ("Run complete.");
@@ -163,94 +167,94 @@ namespace Yarn
         /// Looks up the instruction number for a named label in the current node.
         internal int FindInstructionPointForLabel(string labelName) {
 
-            if (currentNode.labels.ContainsKey(labelName) == false) {
+            if (currentNode.Labels.ContainsKey(labelName) == false) {
                 // Couldn't find the node..
                 throw new IndexOutOfRangeException ("Unknown label " +
                     labelName + " in node " + state.currentNodeName);
             }
 
-            return currentNode.labels [labelName];
+            return currentNode.Labels [labelName];
 
         }
 
         internal void RunInstruction(Instruction i) {
-            switch (i.operation) {
-            case ByteCode.Label:
+            switch (i.Opcode) {
+            case OpCode.Label:
                 /// - Label
                 /** No-op, used as a destination for JumpTo and Jump.
                  */
                 break;
-            case ByteCode.JumpTo:
+            case OpCode.JumpTo:
                 /// - JumpTo
                 /** Jumps to a named label
                  */
-                state.programCounter = FindInstructionPointForLabel ((string)i.operandA);
+                state.programCounter = FindInstructionPointForLabel (i.Operands[0].StringValue);
 
                 break;
-            case ByteCode.RunLine:
+            case OpCode.RunLine:
                 /// - RunLine
                 /** Looks up a string from the string table and
                  *  passes it to the client as a line
                  */
-                var lineText = program.GetString ((string)i.operandA);
+                var lineText = program.GetString (i.Operands[0].StringValue);
 
                 if (lineText == null) {
-                    dialogue.LogErrorMessage("No loaded string table includes line " + i.operandA);
+                    dialogue.LogErrorMessage("No loaded string table includes line " + i.Operands[0].StringValue);
                     break;
                 }
 
                 lineHandler (new Dialogue.LineResult (lineText));
 
                 break;
-            case ByteCode.RunCommand:
+            case OpCode.RunCommand:
                 /// - RunCommand
                 /** Passes a string to the client as a custom command
                  */
                 commandHandler (
-                    new Dialogue.CommandResult ((string)i.operandA)
+                    new Dialogue.CommandResult (i.Operands[0].StringValue)
                 );
 
                 break;
-            case ByteCode.PushString:
+            case OpCode.PushString:
                 /// - PushString
                 /** Pushes a string value onto the stack. The operand is an index into
                  *  the string table, so that's looked up first.
                  */
-                state.PushValue (program.GetString ((string)i.operandA));
+                state.PushValue (program.GetString (i.Operands[0].StringValue));
 
                 break;
-            case ByteCode.PushNumber:
+            case OpCode.PushNumber:
                 /// - PushNumber
                 /** Pushes a number onto the stack.
                  */
-                state.PushValue (Convert.ToSingle(i.operandA, CultureInfo.InvariantCulture));
+                state.PushValue (i.Operands[0].FloatValue);
 
                 break;
-            case ByteCode.PushBool:
+            case OpCode.PushBool:
                 /// - PushBool
                 /** Pushes a boolean value onto the stack.
                  */
-                state.PushValue (Convert.ToBoolean(i.operandA, CultureInfo.InvariantCulture));
+                state.PushValue (i.Operands[0].BoolValue);
 
                 break;
-            case ByteCode.PushNull:
+            case OpCode.PushNull:
                 /// - PushNull
                 /** Pushes a null value onto the stack.
                  */
                 state.PushValue (Value.NULL);
 
                 break;
-            case ByteCode.JumpIfFalse:
+            case OpCode.JumpIfFalse:
                 /// - JumpIfFalse
                 /** Jumps to a named label if the value on the top of the stack
                  *  evaluates to the boolean value 'false'.
                  */
                 if (state.PeekValue ().AsBool == false) {
-                    state.programCounter = FindInstructionPointForLabel ((string)i.operandA);
+                    state.programCounter = FindInstructionPointForLabel (i.Operands[0].StringValue);
                 }
                 break;
 
-            case ByteCode.Jump:
+            case OpCode.Jump:
                 /// - Jump
                 /** Jumps to a label whose name is on the stack.
                  */
@@ -259,20 +263,20 @@ namespace Yarn
 
                 break;
 
-            case ByteCode.Pop:
+            case OpCode.Pop:
                 /// - Pop
                 /** Pops a value from the stack.
                  */
                 state.PopValue ();
                 break;
 
-            case ByteCode.CallFunc:
+            case OpCode.CallFunc:
                 /// - CallFunc
                 /** Call a function, whose parameters are expected to
                  *  be on the stack. Pushes the function's return value,
                  *  if it returns one.
                  */
-                var functionName = (string)i.operandA;
+                var functionName = i.Operands[0].StringValue;
 
                 var function = dialogue.library.GetFunction (functionName);
                 {
@@ -307,25 +311,25 @@ namespace Yarn
                 }
 
                 break;
-            case ByteCode.PushVariable:
+            case OpCode.PushVariable:
                 /// - PushVariable
                 /** Get the contents of a variable, push that onto the stack.
                  */
-                var variableName = (string)i.operandA;
+                var variableName = i.Operands[0].StringValue;
                 var loadedValue = dialogue.continuity.GetValue (variableName);
                 state.PushValue (loadedValue);
 
                 break;
-            case ByteCode.StoreVariable:
+            case OpCode.StoreVariable:
                 /// - StoreVariable
                 /** Store the top value on the stack in a variable.
                  */
                 var topValue = state.PeekValue ();
-                var destinationVariableName = (string)i.operandA;
+                var destinationVariableName = i.Operands[0].StringValue;
                 dialogue.continuity.SetValue (destinationVariableName, topValue);
 
                 break;
-            case ByteCode.Stop:
+            case OpCode.Stop:
                 /// - Stop
                 /** Immediately stop execution, and report that fact.
                  */
@@ -333,32 +337,32 @@ namespace Yarn
                 executionState = ExecutionState.Stopped;
 
                 break;
-            case ByteCode.RunNode:
+            case OpCode.RunNode:
                 /// - RunNode
                 /** Run a node
                  */
                 string nodeName;
 
-                if (string.IsNullOrEmpty((string) i.operandA)) {
+                if (string.IsNullOrEmpty(i.Operands[0].StringValue)) {
                     // Get a string from the stack, and jump to a node with that name.
                      nodeName = state.PeekValue ().AsString;
                 } else {
                     // jump straight to the node
-                    nodeName = (string)i.operandA;
+                    nodeName = i.Operands[0].StringValue;
                 }
 
                 nodeCompleteHandler (new Dialogue.NodeCompleteResult (nodeName));
                 SetNode (nodeName);
 
                 break;
-            case ByteCode.AddOption:
+            case OpCode.AddOption:
                 /// - AddOption
                 /** Add an option to the current state.
                  */
-                state.currentOptions.Add (new KeyValuePair<string, string> ((string)i.operandA, (string)i.operandB));
+                state.currentOptions.Add (new KeyValuePair<string, string> (i.Operands[0].StringValue, i.Operands[1].StringValue));
 
                 break;
-            case ByteCode.ShowOptions:
+            case OpCode.ShowOptions:
                 /// - ShowOptions
                 /** If we have no options to show, immediately stop.
                  */
@@ -419,7 +423,7 @@ namespace Yarn
                 break;
             default:
                 /// - default
-                /** Whoa, no idea what bytecode this is. Stop the program
+                /** Whoa, no idea what OpCode this is. Stop the program
                  * and throw an exception.
                 */
                 executionState = ExecutionState.Stopped;

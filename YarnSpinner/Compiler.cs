@@ -6,8 +6,29 @@ using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using System.Globalization;
 
-namespace Yarn
+using static Yarn.Compiler.Instruction.Types;
+
+namespace Yarn.Compiler
 {
+
+    public partial class Operand {
+        public Operand(bool value) : base() {
+            this.BoolValue = value;
+        }
+
+        public Operand(string value) : base() {
+            this.StringValue = value;
+        }
+
+        public Operand(float value) : base() {
+            this.FloatValue = value;
+        }
+
+        public Operand(int value) : base() {
+            this.IntValue = value;
+        }
+    }
+
     internal enum TokenType {
 
 
@@ -110,7 +131,7 @@ namespace Yarn
         internal struct CompileFlags
         {
             // should we emit code that turns (VAR_SHUFFLE_OPTIONS) off
-            // after the next RunOptions bytecode?
+            // after the next RunOptions OpCode?
             public bool DisableShuffleOptionsAfterNextSet;
         }
 
@@ -140,24 +161,38 @@ namespace Yarn
             return "L" + labelCount++ + commentary;
         }
         // creates the relevant instruction and adds it to the stack
-        void Emit(Node node, ByteCode code, object operandA = null, object operandB = null)
+        void Emit(Node node, OpCode code, Operand operandA = null, Operand operandB = null)
         {
             var instruction = new Instruction();
-            instruction.operation = code;
-            instruction.operandA = operandA;
-            instruction.operandB = operandB;
+            instruction.Opcode = code;
 
-            node.instructions.Add(instruction);
+            // TODO: replace the operandA and operandB parameters with a list, so that we don't need to do this check
+            // Can't have operand B be non-null while operand A is null
+            if (operandA == null && operandB != null)
+            {
+                throw new ArgumentNullException("operandA", "operandA cannot be null while operandB is not null");
+            }
 
-            if (code == ByteCode.Label)
+            if (operandA != null) {
+                instruction.Operands.Add(operandA);            
+            }
+
+            if (operandB != null) {
+                instruction.Operands.Add(operandB);
+            }
+
+            
+            node.Instructions.Add(instruction);
+
+            if (code == OpCode.Label)
             {
                 // Add this label to the label table
-                node.labels.Add((string)instruction.operandA, node.instructions.Count - 1);
+                node.Labels.Add((string)instruction.Operands[0].StringValue, node.Instructions.Count - 1);
             }
         }
         // exactly same as above but defaults to using currentNode
         // creates the relevant instruction and adds it to the stack
-        internal void Emit(ByteCode code, object operandA = null, object operandB = null)
+        internal void Emit(OpCode code, Operand operandA = null, Operand operandB = null)
         {
             this.Emit(this.currentNode, code, operandA, operandB);
         }
@@ -200,8 +235,8 @@ namespace Yarn
             if (currentNode != null)
             {
                 string newNode = context.header().header_title().TITLE_TEXT().GetText().Trim();
-                string message = string.Format(CultureInfo.CurrentCulture, "Discovered a new node {0} while {1} is still being parsed", newNode, currentNode.name);
-				throw new Yarn.ParseException(message);
+                string message = string.Format(CultureInfo.CurrentCulture, "Discovered a new node {0} while {1} is still being parsed", newNode, currentNode.Name);
+				throw new Yarn.Compiler.ParseException(message);
             }
             currentNode = new Node();
             rawTextNode = false;
@@ -211,7 +246,7 @@ namespace Yarn
         // wipe the var and make it ready to go again
         public override void ExitNode(YarnSpinnerParser.NodeContext context)
         {
-            program.nodes[currentNode.name] = currentNode;
+            program.Nodes[currentNode.Name] = currentNode;
             currentNode = null;
             rawTextNode = false;
         }
@@ -224,13 +259,13 @@ namespace Yarn
             if (context.header_tag().Length > 1)
             {
                 string message = string.Format(CultureInfo.CurrentCulture, "Too many header tags defined inside {0}", context.header_title().TITLE_TEXT().GetText().Trim());
-                throw new Yarn.ParseException(message);
+                throw new Yarn.Compiler.ParseException(message);
             }
         }
         // all we need to do is store the title as the name of the node
         public override void EnterHeader_title(YarnSpinnerParser.Header_titleContext context)
         {
-            currentNode.name = context.TITLE_TEXT().GetText().Trim();
+            currentNode.Name = context.TITLE_TEXT().GetText().Trim();
         }
         // parsing the header tags
         // will not enter if there aren't any
@@ -245,7 +280,7 @@ namespace Yarn
                 rawTextNode = true;
             }
             // storing the tags in the node
-            currentNode.tags = tags;
+            currentNode.Tags.Add(tags);
         }
         // have finished with the header
         // so about to enter the node body and all its statements
@@ -256,7 +291,9 @@ namespace Yarn
             // if this is flagged as a regular node
             if (!rawTextNode)
             {
-                Emit(currentNode, ByteCode.Label, RegisterLabel());
+                Operand labelOperand = new Operand();
+                labelOperand.StringValue = RegisterLabel();
+                Emit(currentNode, OpCode.Label, labelOperand);
             }
         }
 
@@ -289,7 +326,7 @@ namespace Yarn
 				int end = context.Stop.StopIndex - 4;
                 string body = context.Start.InputStream.GetText(new Interval(start, end));
 
-                currentNode.sourceTextStringID = program.RegisterString(body, currentNode.name, "line:" + currentNode.name, context.Start.Line, true);
+                currentNode.SourceTextStringID = program.RegisterString(body, currentNode.Name, "line:" + currentNode.Name, context.Start.Line, true);
 			}
         }
 
@@ -307,13 +344,13 @@ namespace Yarn
                 // TODO: A better solution would be for the parser to flag
                 // whether a node has Options at the end.
                 var hasRemainingOptions = false;
-                foreach (var instruction in currentNode.instructions)
+                foreach (var instruction in currentNode.Instructions)
                 {
-                    if (instruction.operation == ByteCode.AddOption)
+                    if (instruction.Opcode == OpCode.AddOption)
                     {
                         hasRemainingOptions = true;
                     }
-                    if (instruction.operation == ByteCode.ShowOptions)
+                    if (instruction.Opcode == OpCode.ShowOptions)
                     {
                         hasRemainingOptions = false;
                     }
@@ -322,22 +359,22 @@ namespace Yarn
                 // If this compiled node has no lingering options to show at the end of the node, then stop at the end
                 if (hasRemainingOptions == false)
                 {
-                    Emit(currentNode, ByteCode.Stop);
+                    Emit(currentNode, OpCode.Stop);
                 }
                 else
                 {
                     // Otherwise, show the accumulated nodes and then jump to the selected node
-                    Emit(currentNode, ByteCode.ShowOptions);
+                    Emit(currentNode, OpCode.ShowOptions);
 
                     if (flags.DisableShuffleOptionsAfterNextSet == true)
                     {
-                        Emit(currentNode, ByteCode.PushBool, false);
-                        Emit(currentNode, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
-                        Emit(currentNode, ByteCode.Pop);
+                        Emit(currentNode, OpCode.PushBool, new Operand(false));
+                        Emit(currentNode, OpCode.StoreVariable, new Operand(VirtualMachine.SpecialVariables.ShuffleOptions));
+                        Emit(currentNode, OpCode.Pop);
                         flags.DisableShuffleOptionsAfterNextSet = false;
                     }
 
-                    Emit(currentNode, ByteCode.RunNode);
+                    Emit(currentNode, OpCode.RunNode);
                 }
             }
         }
@@ -369,9 +406,9 @@ namespace Yarn
             int lineNumber = context.Start.Line;
 
             // TODO: why is this called num?
-            string num = compiler.program.RegisterString(lineText, compiler.currentNode.name, lineID, lineNumber, true);
+            string num = compiler.program.RegisterString(lineText, compiler.currentNode.Name, lineID, lineNumber, true);
 
-            compiler.Emit(ByteCode.RunLine, num);
+            compiler.Emit(OpCode.RunLine, new Operand(num));
 
             return 0;
         }
@@ -391,13 +428,13 @@ namespace Yarn
                 // getting the lineID from the hashtags if it has one
                 string lineID = compiler.GetLineID(context.hashtag_block());
 
-                string stringID = compiler.program.RegisterString(label, compiler.currentNode.name, lineID, lineNumber, true);
-                compiler.Emit(ByteCode.AddOption, stringID, destination);
+                string stringID = compiler.program.RegisterString(label, compiler.currentNode.Name, lineID, lineNumber, true);
+                compiler.Emit(OpCode.AddOption, new Operand(stringID), new Operand(destination));
             }
             else
             {
                 string destination = context.OPTION_TEXT().GetText();
-                compiler.Emit(ByteCode.RunNode, destination);
+                compiler.Emit(OpCode.RunNode, new Operand(destination));
             }
             return 0;
         }
@@ -418,8 +455,8 @@ namespace Yarn
 
                 // now store the variable and clean up the stack
                 string variableName = context.variable().GetText();
-                compiler.Emit(ByteCode.StoreVariable, variableName);
-                compiler.Emit(ByteCode.Pop);
+                compiler.Emit(OpCode.StoreVariable, new Operand(variableName));
+                compiler.Emit(OpCode.Pop);
             }
             // it is the second form
             else
@@ -436,7 +473,7 @@ namespace Yarn
                 else
                 {
                     // throw an error
-                    throw Yarn.ParseException.Make(context,"Invalid expression inside assignment statement");
+                    throw Yarn.Compiler.ParseException.Make(context,"Invalid expression inside assignment statement");
                 }
             }
 
@@ -454,16 +491,16 @@ namespace Yarn
             switch (action)
             {
                 case "stop":
-                    compiler.Emit(ByteCode.Stop);
+                    compiler.Emit(OpCode.Stop);
                     break;
                 case "shuffleNextOptions":
-                    compiler.Emit(ByteCode.PushBool, true);
-                    compiler.Emit(ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
-                    compiler.Emit(ByteCode.Pop);
+                    compiler.Emit(OpCode.PushBool, new Operand(true));
+                    compiler.Emit(OpCode.StoreVariable, new Operand(VirtualMachine.SpecialVariables.ShuffleOptions));
+                    compiler.Emit(OpCode.Pop);
                     compiler.flags.DisableShuffleOptionsAfterNextSet = true;
                     break;
                 default:
-                    compiler.Emit(ByteCode.RunCommand, action);
+                    compiler.Emit(OpCode.RunCommand, new Operand(action));
                     break;
             }
 
@@ -484,7 +521,7 @@ namespace Yarn
             // failed to handle the function
             if (output == false)
             {
-                Yarn.ParseException.Make(context, "Invalid number of parameters for " + functionName);
+                Yarn.Compiler.ParseException.Make(context, "Invalid number of parameters for " + functionName);
             }
 
             return 0;
@@ -516,11 +553,11 @@ namespace Yarn
 			// variadic functions are those with paramCount of -1
 			if (functionInfo.paramCount == -1)
 			{
-				compiler.Emit(ByteCode.PushNumber, parameters.Length);
+				compiler.Emit(OpCode.PushNumber, new Operand(parameters.Length));
 			}
 
 			// then call the function itself
-			compiler.Emit(ByteCode.CallFunc, functionName);
+			compiler.Emit(OpCode.CallFunc, new Operand(functionName));
             // everything went fine, return true
             return true;
         }
@@ -558,7 +595,7 @@ namespace Yarn
                 generateClause(endOfIfStatementLabel, elseClause.statement(), null);
             }
 
-            compiler.Emit(ByteCode.Label, endOfIfStatementLabel);
+            compiler.Emit(OpCode.Label, new Operand(endOfIfStatementLabel));
 
             return 0;
         }
@@ -571,7 +608,7 @@ namespace Yarn
             if (expression != null)
             {
                 Visit(expression);
-                compiler.Emit(ByteCode.JumpIfFalse, endOfClauseLabel);
+                compiler.Emit(OpCode.JumpIfFalse, new Operand(endOfClauseLabel));
             }
 
             // running through all of the children statements
@@ -580,12 +617,12 @@ namespace Yarn
                 Visit(child);
             }
 
-            compiler.Emit(ByteCode.JumpTo, jumpLabel);
+            compiler.Emit(OpCode.JumpTo, new Operand(jumpLabel));
 
             if (expression != null)
             {
-                compiler.Emit(ByteCode.Label, endOfClauseLabel);
-                compiler.Emit(ByteCode.Pop);
+                compiler.Emit(OpCode.Label, new Operand(endOfClauseLabel));
+                compiler.Emit(OpCode.Pop);
             }
         }
 
@@ -617,42 +654,42 @@ namespace Yarn
 
                     Visit(shortcut.shortcut_conditional().expression());
 
-                    compiler.Emit(ByteCode.JumpIfFalse, endOfClauseLabel);
+                    compiler.Emit(OpCode.JumpIfFalse, new Operand(endOfClauseLabel));
                 }
 
                 // getting the lineID from the hashtags if it has one
                 string lineID = compiler.GetLineID(shortcut.hashtag_block());
 
                 string shortcutLine = ShortcutText(shortcut.shortcut_text());
-                string labelStringID = compiler.program.RegisterString(shortcutLine, compiler.currentNode.name, lineID, shortcut.Start.Line, true);
+                string labelStringID = compiler.program.RegisterString(shortcutLine, compiler.currentNode.Name, lineID, shortcut.Start.Line, true);
 
-                compiler.Emit(ByteCode.AddOption, labelStringID, optionDestinationLabel);
+                compiler.Emit(OpCode.AddOption, new Operand(labelStringID), new Operand(optionDestinationLabel));
 
                 if (shortcut.shortcut_conditional() != null)
                 {
-                    compiler.Emit(ByteCode.Label, endOfClauseLabel);
-                    compiler.Emit(ByteCode.Pop);
+                    compiler.Emit(OpCode.Label, new Operand(endOfClauseLabel));
+                    compiler.Emit(OpCode.Pop);
                 }
                 optionCount++;
             }
 
-            compiler.Emit(ByteCode.ShowOptions);
+            compiler.Emit(OpCode.ShowOptions);
 
             // TODO: investigate a cleaner way because this is odd...
             if (compiler.flags.DisableShuffleOptionsAfterNextSet == true)
             {
-                compiler.Emit(ByteCode.PushBool, false);
-                compiler.Emit(ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
-                compiler.Emit(ByteCode.Pop);
+                compiler.Emit(OpCode.PushBool, new Operand(false));
+                compiler.Emit(OpCode.StoreVariable, new Operand(VirtualMachine.SpecialVariables.ShuffleOptions));
+                compiler.Emit(OpCode.Pop);
                 compiler.flags.DisableShuffleOptionsAfterNextSet = false;
             }
 
-            compiler.Emit(ByteCode.Jump);
+            compiler.Emit(OpCode.Jump);
 
             optionCount = 0;
             foreach (var shortcut in context.shortcut())
             {
-                compiler.Emit(ByteCode.Label, labels[optionCount]);
+                compiler.Emit(OpCode.Label, new Operand(labels[optionCount]));
 
                 // running through all the children statements of the shortcut
                 foreach (var child in shortcut.statement())
@@ -660,13 +697,13 @@ namespace Yarn
                     Visit(child);
                 }
 
-                compiler.Emit(ByteCode.JumpTo, endOfGroupLabel);
+                compiler.Emit(OpCode.JumpTo, new Operand(endOfGroupLabel));
 
                 optionCount++;
             }
 
-            compiler.Emit(ByteCode.Label, endOfGroupLabel);
-            compiler.Emit(ByteCode.Pop);
+            compiler.Emit(OpCode.Label, new Operand(endOfGroupLabel));
+            compiler.Emit(OpCode.Pop);
 
             return 0;
         }
@@ -685,7 +722,7 @@ namespace Yarn
             Visit(context.expression());
 
             // TODO: temp operator call
-            compiler.Emit(ByteCode.CallFunc, TokenType.UnaryMinus.ToString());
+            compiler.Emit(OpCode.CallFunc, new Operand(TokenType.UnaryMinus.ToString()));
 
             return 0;
         }
@@ -695,7 +732,7 @@ namespace Yarn
             Visit(context.expression());
 
             // TODO: temp operator call
-            compiler.Emit(ByteCode.CallFunc, TokenType.Not.ToString());
+            compiler.Emit(OpCode.CallFunc, new Operand(TokenType.Not.ToString()));
 
             return 0;
         }
@@ -716,7 +753,7 @@ namespace Yarn
             Visit(right);
 
             // TODO: temp operator call
-            compiler.Emit(ByteCode.CallFunc, tokens[op].ToString());
+            compiler.Emit(OpCode.CallFunc, new Operand(tokens[op].ToString()));
         }
         // * / %
         public override int VisitExpMultDivMod(YarnSpinnerParser.ExpMultDivModContext context)
@@ -765,7 +802,7 @@ namespace Yarn
         internal void opEquals(string varName, YarnSpinnerParser.ExpressionContext expression, int op)
         {
             // Get the current value of the variable
-            compiler.Emit(ByteCode.PushVariable, varName);
+            compiler.Emit(OpCode.PushVariable, new Operand(varName));
 
             // run the expression
             Visit(expression);
@@ -774,12 +811,12 @@ namespace Yarn
 
             // now we evaluate the operator
             // op will match to one of + - / * %
-            compiler.Emit(ByteCode.CallFunc, tokens[op].ToString());
+            compiler.Emit(OpCode.CallFunc, new Operand(tokens[op].ToString()));
 
             // Stack now has the destination value
             // now store the variable and clean up the stack
-            compiler.Emit(ByteCode.StoreVariable, varName);
-            compiler.Emit(ByteCode.Pop);
+            compiler.Emit(OpCode.StoreVariable, new Operand(varName));
+            compiler.Emit(OpCode.Pop);
         }
         // *= /= %=
         public override int VisitExpMultDivModEquals(YarnSpinnerParser.ExpMultDivModEqualsContext context)
@@ -810,25 +847,25 @@ namespace Yarn
         public override int VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
         {
             float number = float.Parse(context.BODY_NUMBER().GetText(), CultureInfo.InvariantCulture);
-            compiler.Emit(ByteCode.PushNumber, number);
+            compiler.Emit(OpCode.PushNumber, new Operand(number));
 
             return 0;
         }
         public override int VisitValueTrue(YarnSpinnerParser.ValueTrueContext context)
         {
-            compiler.Emit(ByteCode.PushBool, true);
+            compiler.Emit(OpCode.PushBool, new Operand(true));
 
             return 0;
         }
         public override int VisitValueFalse(YarnSpinnerParser.ValueFalseContext context)
         {
-            compiler.Emit(ByteCode.PushBool, false);
+            compiler.Emit(OpCode.PushBool, new Operand(false));
             return 0;
         }
         public override int VisitVariable(YarnSpinnerParser.VariableContext context)
         {
             string variableName = context.VAR_ID().GetText();
-            compiler.Emit(ByteCode.PushVariable, variableName);
+            compiler.Emit(OpCode.PushVariable, new Operand(variableName));
 
             return 0;
         }
@@ -839,8 +876,8 @@ namespace Yarn
             string stringVal = context.COMMAND_STRING().GetText().Trim('"');
 
             int lineNumber = context.Start.Line;
-            string id = compiler.program.RegisterString(stringVal, compiler.currentNode.name, null, lineNumber, false);
-            compiler.Emit(ByteCode.PushString, id);
+            string id = compiler.program.RegisterString(stringVal, compiler.currentNode.Name, null, lineNumber, false);
+            compiler.Emit(OpCode.PushString, new Operand(id));
 
             return 0;
         }
@@ -854,7 +891,7 @@ namespace Yarn
         // null value
         public override int VisitValueNull(YarnSpinnerParser.ValueNullContext context)
         {
-            compiler.Emit(ByteCode.PushNull);
+            compiler.Emit(OpCode.PushNull);
             return 0;
         }
 		#endregion
