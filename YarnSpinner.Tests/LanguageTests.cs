@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,9 +12,7 @@ namespace YarnSpinner.Tests
 
 	public class LanguageTests : TestBase
     {
-		[SetUp]
-        public new void Init() {
-            base.Init();
+		public LanguageTests() : base() {
 
             // Register some additional functions
             dialogue.library.RegisterFunction("add_three_operands", 3, delegate (Value[] parameters) {
@@ -29,7 +27,7 @@ namespace YarnSpinner.Tests
 			
 		}
 
-        [Test]
+        [Fact]
         public void TestExampleScript()
         {
 
@@ -39,7 +37,7 @@ namespace YarnSpinner.Tests
             RunStandardTestcase();
         }
 
-        [Test]
+        [Fact]
         public void TestMergingNodes()
         {
             var sallyPath = Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt");
@@ -59,7 +57,7 @@ namespace YarnSpinner.Tests
 
 
 
-        [Test]
+        [Fact]
         public void TestEndOfNotesWithOptionsNotAdded()
         {
             var path = Path.Combine(TestDataPath, "SkippedOptions.node");
@@ -67,13 +65,13 @@ namespace YarnSpinner.Tests
 
             foreach (var result in dialogue.Run())
             {
-                Assert.IsNotInstanceOf<Dialogue.OptionSetResult>(result);
+                Assert.IsNotType<Dialogue.OptionSetResult>(result);
             }
 
         }
 
         // Test every file in Tests/TestCases
-        [Test, TestCaseSource("FileSources")]
+        [Theory, MemberData(nameof(FileSources))]
         public void TestSources(string file) {
 
             storage.Clear();
@@ -102,7 +100,7 @@ namespace YarnSpinner.Tests
 
         // Returns the list of .node and yarn.txt files in the
         // Tests/TestCases directory.
-        public static IEnumerable<string> FileSources() {
+        public static IEnumerable<object[]> FileSources() {
 
             var directory = "TestCases";
 
@@ -114,7 +112,7 @@ namespace YarnSpinner.Tests
             var files = GetFilesInDirectory(path);
 
             return files.Where(p => allowedExtensions.Contains(Path.GetExtension(p)))
-                        .Select(p => Path.GetFileName(p));
+                        .Select(p => new[] {Path.GetFileName(p)});
         }
 
         // Returns the list of files in a directory. If that directory doesn't

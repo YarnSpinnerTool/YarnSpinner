@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,7 +35,7 @@ namespace YarnSpinner.Tests
 
                 if (index == -1)
                 {
-                    Assert.Fail("Not in a test directory; cannot get test data directory");
+                    throw new System.IO.DirectoryNotFoundException("Cannot find test data directory");                    
                 }
 
                 var testDataDirectory = path.Take(index).ToList();
@@ -64,8 +64,7 @@ namespace YarnSpinner.Tests
         }
 
 
-        [SetUp]
-        public void Init()
+        public TestBase()
         {
 
             dialogue = new Dialogue (storage);
@@ -81,16 +80,18 @@ namespace YarnSpinner.Tests
                 Console.WriteLine ("ERROR: " + message);
                 Console.ResetColor ();
 
-                if (errorsCauseFailures == true)
-                    Assert.Fail(message);
+                if (errorsCauseFailures == true) {
+                    Assert.NotNull(message);
+                }
+                    
             };
 
             dialogue.library.RegisterFunction ("assert", -1, delegate(Yarn.Value[] parameters) {
                 if (parameters[0].AsBool == false) {
                     if( parameters.Length > 1 && parameters[1].AsBool ) {
-                        Assert.Fail ("Assertion failed: " + parameters[1].AsString);
+                        Assert.NotNull ("Assertion failed: " + parameters[1].AsString);
                     } else {
-                        Assert.Fail ("Assertion failed");
+                        Assert.NotNull ("Assertion failed");
                     }
                 }
             });
@@ -127,7 +128,7 @@ namespace YarnSpinner.Tests
                 Console.WriteLine("Line: " + text);
 
                 if (isExpectingLine) {
-                    Assert.AreEqual (text, nextExpectedLine);
+                    Assert.Equal (text, nextExpectedLine);
                 }
 
             } else if (result is Yarn.Dialogue.OptionSetResult) {
@@ -141,7 +142,7 @@ namespace YarnSpinner.Tests
                 }
 
                 if (nextExpectedOptionCount != -1) {
-                    Assert.AreEqual (nextExpectedOptionCount, optionCount);
+                    Assert.Equal (nextExpectedOptionCount, optionCount);
                 }
 
                 if (nextOptionToSelect != -1) {
@@ -155,7 +156,7 @@ namespace YarnSpinner.Tests
                 Console.WriteLine("Command: " + commandText);
 
                 if (nextExpectedCommand != null) {
-                    Assert.AreEqual (nextExpectedCommand, commandText);
+                    Assert.Equal (nextExpectedCommand, commandText);
                 }
             }
 

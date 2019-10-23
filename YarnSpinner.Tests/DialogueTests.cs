@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,14 +12,7 @@ namespace YarnSpinner.Tests
 
     public class DialogueTests : TestBase
     {
-		[SetUp]
-		public new void Init()
-		{
-			base.Init();
-		}
-
-
-        [Test]
+        [Fact]
         public void TestNodeExists ()
         {
             var path = Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt");
@@ -38,7 +31,7 @@ namespace YarnSpinner.Tests
 
         }
 
-        [Test]
+        [Fact]
         public void TestAnalysis() 
         {
 
@@ -57,7 +50,7 @@ namespace YarnSpinner.Tests
             dialogue.Analyse (context);
             diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
 
-            Assert.AreEqual (2, diagnoses.Count);
+            Assert.Equal (2, diagnoses.Count);
 
             dialogue.UnloadAll ();
 
@@ -69,10 +62,10 @@ namespace YarnSpinner.Tests
             diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
 
             // This script should contain no unused variables
-            Assert.IsEmpty (diagnoses);
+            Assert.Empty (diagnoses);
         }
 
-        [Test]
+        [Fact]
         public void TestDumpingCode()
         {
 
@@ -84,7 +77,7 @@ namespace YarnSpinner.Tests
 
         }
 
-        [Test]
+        [Fact]
         public void TestMissingNode()
         {
             var path = Path.Combine (TestDataPath, "TestCases", "Smileys.node");
@@ -97,51 +90,51 @@ namespace YarnSpinner.Tests
             }
         }
 
-        [Test]
+        [Fact]
         public void TestGettingCurrentNodeName()  {
 
             dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt"));
 
             // dialogue should not be running yet
-            Assert.IsNull (dialogue.currentNode);
+            Assert.Null (dialogue.currentNode);
 
             foreach (var result in dialogue.Run("Sally")) {
                 // Should now be in the node we requested
-                Assert.AreEqual (dialogue.currentNode, "Sally");
+                Assert.Equal ("Sally", dialogue.currentNode);
                 // Stop immediately
                 dialogue.Stop ();
             }
 
             // Current node should now be null
-            Assert.IsNull (dialogue.currentNode);
+            Assert.Null (dialogue.currentNode);
         }
 
-        [Test]
+        [Fact]
         public void TestGettingRawSource() {
 
             dialogue.LoadFile (Path.Combine(TestDataPath, "Example.yarn.txt"));
 
             var source = dialogue.GetTextForNode ("LearnMore");
 
-            Assert.IsNotNull (source);
+            Assert.NotNull (source);
 
-            Assert.AreEqual (source, "A: HAHAHA");
+            Assert.Equal ("A: HAHAHA", source);
         }
-		[Test]
+		[Fact]
 		public void TestGettingTags() {
 
 			dialogue.LoadFile (Path.Combine(TestDataPath, "Example.yarn.txt"));
 
 			var source = dialogue.GetTagsForNode ("LearnMore");
 
-			Assert.IsNotNull (source);
+			Assert.NotNull (source);
 
-			Assert.IsNotEmpty (source);
+			Assert.NotEmpty (source);
 
-			Assert.AreEqual (source.First(), "rawText");
+			Assert.Equal ("rawText", source.First());
 		}
 
-        [Test]
+        [Fact]
         public void TestNodeVistation() {
 
             dialogue.LoadFile(Path.Combine(TestDataPath, "Example.yarn.txt"));
