@@ -227,7 +227,7 @@ namespace Yarn
                 /// - PushNumber
                 /** Pushes a number onto the stack.
                  */
-                state.PushValue (i.Operands[0].FloatValue);
+                state.PushValue (i.Operands[0].NumberValue);
 
                 break;
             case OpCode.PushBool:
@@ -343,7 +343,7 @@ namespace Yarn
                  */
                 string nodeName;
 
-                if (string.IsNullOrEmpty(i.Operands[0].StringValue)) {
+                if (i.Operands.Count == 0 || string.IsNullOrEmpty(i.Operands[0].StringValue)) {
                     // Get a string from the stack, and jump to a node with that name.
                      nodeName = state.PeekValue ().AsString;
                 } else {

@@ -48,9 +48,9 @@ namespace Yarn.Compiler {
             "VU1CRVIQCBINCglQVVNIX0JPT0wQCRINCglQVVNIX05VTEwQChIRCg1KVU1Q",
             "X0lGX0ZBTFNFEAsSBwoDUE9QEAwSDQoJQ0FMTF9GVU5DEA0SEQoNUFVTSF9W",
             "QVJJQUJMRRAOEhIKDlNUT1JFX1ZBUklBQkxFEA8SCAoEU1RPUBAQEgwKCFJV",
-            "Tl9OT0RFEBEibAoHT3BlcmFuZBITCglpbnRfdmFsdWUYASABKAVIABIWCgxz",
-            "dHJpbmdfdmFsdWUYAiABKAlIABIUCgpib29sX3ZhbHVlGAMgASgISAASFQoL",
-            "ZmxvYXRfdmFsdWUYBCABKAJIAEIHCgV2YWx1ZWIGcHJvdG8z"));
+            "Tl9OT0RFEBEiWAoHT3BlcmFuZBIWCgxzdHJpbmdfdmFsdWUYAiABKAlIABIU",
+            "Cgpib29sX3ZhbHVlGAMgASgISAASFgoMbnVtYmVyX3ZhbHVlGAQgASgCSABC",
+            "BwoFdmFsdWViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -58,7 +58,7 @@ namespace Yarn.Compiler {
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Compiler.LineInfo), global::Yarn.Compiler.LineInfo.Parser, new[]{ "LineNumber", "NodeName" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Compiler.Node), global::Yarn.Compiler.Node.Parser, new[]{ "Name", "Instructions", "Labels", "Tags", "SourceTextStringID" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Compiler.Instruction), global::Yarn.Compiler.Instruction.Parser, new[]{ "Opcode", "Operands" }, null, new[]{ typeof(global::Yarn.Compiler.Instruction.Types.OpCode) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Compiler.Operand), global::Yarn.Compiler.Operand.Parser, new[]{ "IntValue", "StringValue", "BoolValue", "FloatValue" }, new[]{ "Value" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Compiler.Operand), global::Yarn.Compiler.Operand.Parser, new[]{ "StringValue", "BoolValue", "NumberValue" }, new[]{ "Value" }, null, null, null)
           }));
     }
     #endregion
@@ -892,17 +892,14 @@ namespace Yarn.Compiler {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Operand(Operand other) : this() {
       switch (other.ValueCase) {
-        case ValueOneofCase.IntValue:
-          IntValue = other.IntValue;
-          break;
         case ValueOneofCase.StringValue:
           StringValue = other.StringValue;
           break;
         case ValueOneofCase.BoolValue:
           BoolValue = other.BoolValue;
           break;
-        case ValueOneofCase.FloatValue:
-          FloatValue = other.FloatValue;
+        case ValueOneofCase.NumberValue:
+          NumberValue = other.NumberValue;
           break;
       }
 
@@ -912,17 +909,6 @@ namespace Yarn.Compiler {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Operand Clone() {
       return new Operand(this);
-    }
-
-    /// <summary>Field number for the "int_value" field.</summary>
-    public const int IntValueFieldNumber = 1;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int IntValue {
-      get { return valueCase_ == ValueOneofCase.IntValue ? (int) value_ : 0; }
-      set {
-        value_ = value;
-        valueCase_ = ValueOneofCase.IntValue;
-      }
     }
 
     /// <summary>Field number for the "string_value" field.</summary>
@@ -947,14 +933,14 @@ namespace Yarn.Compiler {
       }
     }
 
-    /// <summary>Field number for the "float_value" field.</summary>
-    public const int FloatValueFieldNumber = 4;
+    /// <summary>Field number for the "number_value" field.</summary>
+    public const int NumberValueFieldNumber = 4;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float FloatValue {
-      get { return valueCase_ == ValueOneofCase.FloatValue ? (float) value_ : 0F; }
+    public float NumberValue {
+      get { return valueCase_ == ValueOneofCase.NumberValue ? (float) value_ : 0F; }
       set {
         value_ = value;
-        valueCase_ = ValueOneofCase.FloatValue;
+        valueCase_ = ValueOneofCase.NumberValue;
       }
     }
 
@@ -962,10 +948,9 @@ namespace Yarn.Compiler {
     /// <summary>Enum of possible cases for the "value" oneof.</summary>
     public enum ValueOneofCase {
       None = 0,
-      IntValue = 1,
       StringValue = 2,
       BoolValue = 3,
-      FloatValue = 4,
+      NumberValue = 4,
     }
     private ValueOneofCase valueCase_ = ValueOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -992,10 +977,9 @@ namespace Yarn.Compiler {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (IntValue != other.IntValue) return false;
       if (StringValue != other.StringValue) return false;
       if (BoolValue != other.BoolValue) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FloatValue, other.FloatValue)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(NumberValue, other.NumberValue)) return false;
       if (ValueCase != other.ValueCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1003,10 +987,9 @@ namespace Yarn.Compiler {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (valueCase_ == ValueOneofCase.IntValue) hash ^= IntValue.GetHashCode();
       if (valueCase_ == ValueOneofCase.StringValue) hash ^= StringValue.GetHashCode();
       if (valueCase_ == ValueOneofCase.BoolValue) hash ^= BoolValue.GetHashCode();
-      if (valueCase_ == ValueOneofCase.FloatValue) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FloatValue);
+      if (valueCase_ == ValueOneofCase.NumberValue) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(NumberValue);
       hash ^= (int) valueCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1021,10 +1004,6 @@ namespace Yarn.Compiler {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (valueCase_ == ValueOneofCase.IntValue) {
-        output.WriteRawTag(8);
-        output.WriteInt32(IntValue);
-      }
       if (valueCase_ == ValueOneofCase.StringValue) {
         output.WriteRawTag(18);
         output.WriteString(StringValue);
@@ -1033,9 +1012,9 @@ namespace Yarn.Compiler {
         output.WriteRawTag(24);
         output.WriteBool(BoolValue);
       }
-      if (valueCase_ == ValueOneofCase.FloatValue) {
+      if (valueCase_ == ValueOneofCase.NumberValue) {
         output.WriteRawTag(37);
-        output.WriteFloat(FloatValue);
+        output.WriteFloat(NumberValue);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1045,16 +1024,13 @@ namespace Yarn.Compiler {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (valueCase_ == ValueOneofCase.IntValue) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(IntValue);
-      }
       if (valueCase_ == ValueOneofCase.StringValue) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(StringValue);
       }
       if (valueCase_ == ValueOneofCase.BoolValue) {
         size += 1 + 1;
       }
-      if (valueCase_ == ValueOneofCase.FloatValue) {
+      if (valueCase_ == ValueOneofCase.NumberValue) {
         size += 1 + 4;
       }
       if (_unknownFields != null) {
@@ -1069,17 +1045,14 @@ namespace Yarn.Compiler {
         return;
       }
       switch (other.ValueCase) {
-        case ValueOneofCase.IntValue:
-          IntValue = other.IntValue;
-          break;
         case ValueOneofCase.StringValue:
           StringValue = other.StringValue;
           break;
         case ValueOneofCase.BoolValue:
           BoolValue = other.BoolValue;
           break;
-        case ValueOneofCase.FloatValue:
-          FloatValue = other.FloatValue;
+        case ValueOneofCase.NumberValue:
+          NumberValue = other.NumberValue;
           break;
       }
 
@@ -1094,10 +1067,6 @@ namespace Yarn.Compiler {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            IntValue = input.ReadInt32();
-            break;
-          }
           case 18: {
             StringValue = input.ReadString();
             break;
@@ -1107,7 +1076,7 @@ namespace Yarn.Compiler {
             break;
           }
           case 37: {
-            FloatValue = input.ReadFloat();
+            NumberValue = input.ReadFloat();
             break;
           }
         }

@@ -21,11 +21,7 @@ namespace Yarn.Compiler
         }
 
         public Operand(float value) : base() {
-            this.FloatValue = value;
-        }
-
-        public Operand(int value) : base() {
-            this.IntValue = value;
+            this.NumberValue = value;
         }
     }
 

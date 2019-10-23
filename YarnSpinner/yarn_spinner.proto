@@ -75,10 +75,9 @@ message Instruction {
 message Operand {
     oneof value {
 		
-        int32 int_value = 1;
         string string_value = 2;
 		bool bool_value = 3;
-		float float_value = 4;
+		float number_value = 4;
     }
 }
 
