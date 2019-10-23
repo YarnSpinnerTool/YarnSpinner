@@ -47,7 +47,7 @@
 <codeline lineno="38"><highlight class="stringliteral"></highlight></codeline>
 <codeline lineno="39"><highlight class="stringliteral">The<sp/>[logo](Documentation/YarnSpinnerLogo.png)<sp/>was<sp/>made<sp/>by<sp/>[Cecile<sp/>Richard](https://www.cecile-richard.com/).</highlight></codeline>
 <codeline lineno="40"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="41"><highlight class="stringliteral">&lt;a<sp/>href=&quot;https://gamecenter.nyu.edu/&quot;&gt;&lt;img<sp/>src=&quot;Documentation/NYUGameCenter.png&quot;<sp/>alt=&quot;NYU<sp/>Game<sp/>Center<sp/>logo&quot;<sp/>width=&quot;100px;&quot;<sp/>align=&quot;right&quot;&gt;&lt;/a&gt;</highlight></codeline>
+<codeline lineno="41"><highlight class="stringliteral">&lt;a<sp/>href=&quot;https://gamecenter.nyu.edu/&quot;&gt;&lt;img<sp/>src=&quot;Documentation/NYUGameCenter.png&quot;<sp/>alt=&quot;NYU<sp/>Game<sp/>Center<sp/>logo&quot;<sp/>width=&quot;250px;&quot;<sp/>align=&quot;right&quot;&gt;&lt;/a&gt;</highlight></codeline>
 <codeline lineno="42"><highlight class="stringliteral"></highlight></codeline>
 <codeline lineno="43"><highlight class="stringliteral">Yarn<sp/>Spinner&apos;</highlight><highlight class="normal">s<sp/>development<sp/>is<sp/>made<sp/>possible<sp/>in<sp/>part<sp/>by<sp/>[NYU<sp/>Game<sp/>Center](https:</highlight><highlight class="comment">//gamecenter.nyu.edu/).<sp/></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
