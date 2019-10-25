@@ -1,3 +1,5 @@
+title: Start
+---
 // Testing options
 
 // Expect 2 options (the second one in the following group of three
@@ -54,3 +56,4 @@ Bea: line text
 		option2.3
 		option2.4
 <<command1>>
+===

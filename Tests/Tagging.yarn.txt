@@ -1,3 +1,5 @@
+title: Start
+---
 // noodling around with some ideas for tagging lines of dialoge
 
 Mae: Omg harfest, right?  [vZDC]
@@ -25,3 +27,4 @@ Lori: Sure sure. [TlOr]
 Lori: ok seeya! [EhTw]
 Mae: seeya! [T8zo]
 Lori: (lori walks offscreen to the left) [pFBG]
+===

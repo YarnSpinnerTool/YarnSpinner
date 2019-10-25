@@ -6,6 +6,8 @@ using Yarn;
 using System.IO;
 using System.Linq;
 
+using Yarn.Compiler;
+
 namespace YarnSpinner.Tests
 {
 
@@ -33,7 +35,7 @@ namespace YarnSpinner.Tests
 
             errorsCauseFailures = false;
             var path = Path.Combine(TestDataPath, "Example.yarn.txt");
-            dialogue.LoadFile(path);
+            dialogue.LoadProgram(Compiler.CompileFile(path));
             RunStandardTestcase();
         }
 
@@ -43,15 +45,15 @@ namespace YarnSpinner.Tests
             var sallyPath = Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt");
             var examplePath = Path.Combine(TestDataPath, "Example.yarn.txt");
 
-            dialogue.LoadFile(sallyPath);
-            dialogue.LoadFile(examplePath);
+            var sally = Compiler.CompileFile(sallyPath);
+            var example = Compiler.CompileFile(examplePath);
 
+            var combinedWorking = Program.Combine(sally, example);
+            
             // Loading code with the same contents should throw
             Assert.Throws<InvalidOperationException>(delegate ()
             {
-                var path = Path.Combine(TestDataPath, "Example.yarn.txt");
-                dialogue.LoadFile(path);
-                return;
+                var combinedNotWorking = Program.Combine(sally, example, example);
             });
         }
 
@@ -60,8 +62,8 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestEndOfNotesWithOptionsNotAdded()
         {
-            var path = Path.Combine(TestDataPath, "SkippedOptions.node");
-            dialogue.LoadFile(path);
+            var path = Path.Combine(TestDataPath, "SkippedOptions.yarn.txt");
+            dialogue.LoadProgram(Compiler.CompileFile(path));
 
             foreach (var result in dialogue.Run())
             {
@@ -81,14 +83,15 @@ namespace YarnSpinner.Tests
 
             // skipping the indentation test when using the ANTLR parser
             // it can never pass
-            if (file == "Indentation.node")
+            if (file == "Indentation.yarn.txt")
             {
                 runTest = false;
             }
 
             if (runTest)
             {
-                dialogue.LoadFile(scriptFilePath);
+                var program = Compiler.CompileFile(scriptFilePath);
+                dialogue.LoadProgram(program);
 
                 // If this file contains a Start node, run the test case
                 // (otherwise, we're just testing its parsability, which

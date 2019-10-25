@@ -1,3 +1,5 @@
+title: Start
+---
 // Testing types
 
 <<assert ("test" == "test", "string equality")>>
@@ -12,3 +14,4 @@
 <<assert (1 lt 2, "lt test")>>
 <<assert (2 lte 2, "lte test")>>
 <<assert (2 gte 2, "gte test")>>
+===

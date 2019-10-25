@@ -25,12 +25,11 @@ SOFTWARE.
 */
 
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.Serialization;
-
-using Yarn.Compiler;
 
 namespace Yarn {
 
@@ -219,9 +218,6 @@ namespace Yarn {
         /// The node we start from.
         public const string DEFAULT_START = "Start";
 
-        /// The loader contains all of the nodes we're going to run.
-        internal Loader loader;
-
         /// The Program is the compiled Yarn program.
         internal Program program;
 
@@ -276,7 +272,6 @@ namespace Yarn {
 
         public Dialogue(Yarn.VariableStorage continuity) {
             this.continuity = continuity;
-            loader = new Loader (this);
             library = new Library ();
 
             library.ImportLibrary (new StandardLibrary ());
@@ -292,72 +287,19 @@ namespace Yarn {
 
         }
 
-        /// Load a file from disk.
-        public void LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
-
-            // Is this a compiled program file?
-            if (fileName.EndsWith(".yarn.bytes", StringComparison.InvariantCulture)) {
-
-                var bytes = System.IO.File.ReadAllBytes(fileName);
-                LoadCompiledProgram(bytes, fileName);
-
-                return;
-            } else {
-                // It's source code, either a single node in text form or a JSON file
-                string inputString;
-                using (System.IO.StreamReader reader = new System.IO.StreamReader(fileName))
-                {
-                    inputString = reader.ReadToEnd();
-                }
-
-                LoadString(inputString, fileName, showTokens, showParseTree, onlyConsiderNode);
-            }
-
+        public void LoadProgram(Program program) {
+            this.program = program;
         }
 
-        public void LoadCompiledProgram(byte[] bytes, string fileName, CompiledFormat format = LATEST_FORMAT)
-        {
+        /// Load a file from disk.
+        public void LoadProgram(string fileName) {
 
-            throw new NotImplementedException("Loading compiled programs is not currently implemented.");
+            var bytes = File.ReadAllBytes (fileName);
+
+            this.program = Program.Parser.ParseFrom(bytes);
             
         }
-
         
-        /// Ask the loader to parse a string.
-        /** Returns the number of nodes that were loaded.
-         */
-        public void LoadString(string text, string fileName="<input>", bool showTokens=false, bool showParseTree=false, string onlyConsiderNode=null) {
-
-            if (LogDebugMessage == null) {
-                throw new YarnException ("LogDebugMessage must be set before loading");
-            }
-
-            if (LogErrorMessage == null) {
-                throw new YarnException ("LogErrorMessage must be set before loading");
-            }
-
-            // Try to infer the type
-
-            NodeFormat format;
-
-            if (text.StartsWith("[", StringComparison.Ordinal)) {
-                // starts with a [? this is probably a JSON array, in which
-                // case we need to reject this.
-
-                throw new YarnException("This input appears to be a JSON file. Support for loading JSON was removed in version 1.0; please re-save your document as a Yarn text file.");
-                
-            } else if (text.Contains("---")) {
-                // contains a --- delimiter? probably multi node text
-                format = NodeFormat.Text;
-            } else {
-                // fall back to the single node format
-                format = NodeFormat.SingleNodeText;
-            }
-
-            program = loader.Load(text, library, fileName, program, showTokens, showParseTree, onlyConsiderNode, format);
-
-        }
-
         private VirtualMachine vm;
 
         // Executes a node.
@@ -529,13 +471,6 @@ namespace Yarn {
             return program.LineInfo;
         }
 
-        public enum CompiledFormat
-        {
-            V1
-        }
-
-        public const CompiledFormat LATEST_FORMAT = CompiledFormat.V1;
-        
         /// Unloads ALL nodes.
         public void UnloadAll(bool clearVisitedNodes = true) {
             if (clearVisitedNodes)
@@ -543,11 +478,6 @@ namespace Yarn {
 
             program = null;
 
-        }
-
-        [Obsolete("Calling Compile() is no longer necessary.")]
-        public String Compile() {
-            return program.DumpCode (library);
         }
 
         public String GetByteCode() {

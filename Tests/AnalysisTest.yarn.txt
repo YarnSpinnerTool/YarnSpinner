@@ -1,0 +1,8 @@
+title: Start
+---
+// testing
+
+<<set $foo to 1>>
+<<set $bar to $foo>>
+<<set $bar to $bas>>
+===

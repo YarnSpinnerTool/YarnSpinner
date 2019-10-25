@@ -1,3 +1,5 @@
+title: Start
+---
 // Testing smileys
 
 <<prepare_for_options(22, 0)>>
@@ -79,3 +81,4 @@ Mae: ~~
 -> Mae: / \ <<if true>>
 -> Mae: \ / <<if true>>
 -> Mae: ~~ <<if true>>
+===

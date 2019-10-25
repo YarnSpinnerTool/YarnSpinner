@@ -4,6 +4,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using Yarn;
+using Yarn.Compiler;
 
 namespace YarnSpinner.Tests
 {
@@ -17,9 +18,11 @@ namespace YarnSpinner.Tests
         {
             var path = Path.Combine(TestDataPath, "Projects", "Basic", "Test.yarn.txt");
 
+            var program = Compiler.CompileFile(path);
+
             // high-level test: load the file, verify it has the nodes we want,
             // and run one
-            dialogue.LoadFile(path);
+            dialogue.LoadProgram(program);
 
             Assert.Equal(3, dialogue.program.Nodes.Count);
 
@@ -41,29 +44,6 @@ namespace YarnSpinner.Tests
 
             // and the variable $x should now have a value
             Assert.Equal(23, (int)dialogue.continuity.GetValue("$x").AsNumber);
-
-            // Next, we'll do a lower-level test, verifying that properties are loaded correctly
-
-            // manually load the NodeInfos and verify data
-            var text = File.ReadAllText(path);
-
-            var nodes = dialogue.loader.GetNodesFromText(text, NodeFormat.Text);
-
-            // first node has a colorID
-            Assert.Equal(3, nodes[0].colorID);
-
-            // second node has got a position defined
-            var position = nodes[1].position;
-            Assert.Equal(2, position.x);
-            Assert.Equal(4, position.y);
-
-            // third node has tags
-            var expectedTags = new List<string>(new string[] { "multiple", "tags!"});
-
-            Assert.Equal(expectedTags, nodes[2].tagsList);
-
-            // the third node's body is empty
-            Assert.Empty(nodes[2].body);
         }
     }
 }

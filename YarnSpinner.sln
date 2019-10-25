@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YarnSpinner", "YarnSpinner\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YarnSpinner.Tests", "YarnSpinner.Tests\YarnSpinner.Tests.csproj", "{44B79FF6-8A67-4F4D-AFD0-A4304878E5AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YarnSpinner.Compiler", "YarnSpinner.Compiler\YarnSpinner.Compiler.csproj", "{CBFD3E89-DD32-4EC3-B3B8-3B8D3DBBC213}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{44B79FF6-8A67-4F4D-AFD0-A4304878E5AA}.Release|x64.Build.0 = Release|Any CPU
 		{44B79FF6-8A67-4F4D-AFD0-A4304878E5AA}.Release|x86.ActiveCfg = Release|Any CPU
 		{44B79FF6-8A67-4F4D-AFD0-A4304878E5AA}.Release|x86.Build.0 = Release|Any CPU
+		{CBFD3E89-DD32-4EC3-B3B8-3B8D3DBBC213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBFD3E89-DD32-4EC3-B3B8-3B8D3DBBC213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBFD3E89-DD32-4EC3-B3B8-3B8D3DBBC213}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CBFD3E89-DD32-4EC3-B3B8-3B8D3DBBC213}.Debug|x64.Build.0 = Debug|Any CPU
+		{CBFD3E89-DD32-4EC3-B3B8-3B8D3DBBC213}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CBFD3E89-DD32-4EC3-B3B8-3B8D3DBBC213}.Debug|x86.Build.0 = Debug|Any CPU
+		{CBFD3E89-DD32-4EC3-B3B8-3B8D3DBBC213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBFD3E89-DD32-4EC3-B3B8-3B8D3DBBC213}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBFD3E89-DD32-4EC3-B3B8-3B8D3DBBC213}.Release|x64.ActiveCfg = Release|Any CPU
+		{CBFD3E89-DD32-4EC3-B3B8-3B8D3DBBC213}.Release|x64.Build.0 = Release|Any CPU
+		{CBFD3E89-DD32-4EC3-B3B8-3B8D3DBBC213}.Release|x86.ActiveCfg = Release|Any CPU
+		{CBFD3E89-DD32-4EC3-B3B8-3B8D3DBBC213}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

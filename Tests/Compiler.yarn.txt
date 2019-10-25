@@ -1,3 +1,5 @@
+title: Start
+---
 // Compiler tests
 
 This is a line!
@@ -31,3 +33,4 @@ All done with the shortcut options!
 
 [[Option 1!|Option1]]
 [[Option 2!|Option2]]
+===

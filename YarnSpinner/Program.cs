@@ -2,35 +2,10 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Globalization;
-using static Yarn.Compiler.Instruction.Types;
+using static Yarn.Instruction.Types;
 
-namespace Yarn.Compiler
+namespace Yarn
 {
-	// An exception representing something going wrong during parsing
-	[Serializable]
-	internal class ParseException : Exception
-	{
-
-		internal int lineNumber = 0;
-
-        internal static ParseException Make(Antlr4.Runtime.ParserRuleContext context, string message)
-        {
-            int line = context.Start.Line;
-
-            // getting the text that has the issue inside
-			int start = context.Start.StartIndex;
-			int end = context.Stop.StopIndex;
-            string body = context.Start.InputStream.GetText(new Antlr4.Runtime.Misc.Interval(start, end));
-
-            string theMessage = string.Format(CultureInfo.CurrentCulture, "Error on line {0}\n{1}\n{2}", line,body,message);
-
-            var e = new ParseException(theMessage);
-            e.lineNumber = line;
-            return e;
-        }
-
-		internal ParseException(string message) : base(message) { }
-	}
 	
 	public partial class Program
 	{
@@ -174,29 +149,40 @@ namespace Yarn.Compiler
 		}
 
 		// TODO: this behaviour belongs in the VM as a "load additional program" feature, not in the Program data object
+		public static Program Combine(params Program[] programs) {
+			if (programs.Length == 0) {
+				throw new ArgumentException(nameof(programs), "At least one program must be provided.");				
+			}
+
+			var output = new Program();
+
+			foreach (var otherProgram in programs) {
+				foreach (var otherNodeName in otherProgram.Nodes) {
+
+					if (output.Nodes.ContainsKey(otherNodeName.Key))
+					{
+						throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "This program already contains a node named {0}", otherNodeName.Key));
+					}
+
+					output.Nodes[otherNodeName.Key] = otherNodeName.Value.Clone();
+				}
+
+				foreach (var otherString in otherProgram.StringTable) {
+
+					if (output.Nodes.ContainsKey(otherString.Key))
+					{
+						throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "This program already contains a string with key {0}", otherString.Key));
+					}
+
+					output.StringTable[otherString.Key] = otherString.Value;			
+				}				
+			}
+			return output;
+		}
+
 		public void Include(Program otherProgram)
 		{
-			foreach (var otherNodeName in otherProgram.Nodes)
-			{
-
-				if (Nodes.ContainsKey(otherNodeName.Key))
-				{
-					throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "This program already contains a node named {0}", otherNodeName.Key));
-				}
-
-				Nodes[otherNodeName.Key] = otherNodeName.Value;
-			}
-
-			foreach (var otherString in otherProgram.StringTable)
-			{
-
-				if (Nodes.ContainsKey(otherString.Key))
-				{
-					throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "This program already contains a string with key {0}", otherString.Key));
-				}
-
-				StringTable[otherString.Key] = otherString.Value;
-			}
+			
 		}
 	}
 

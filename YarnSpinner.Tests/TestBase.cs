@@ -177,6 +177,11 @@ namespace YarnSpinner.Tests
                 return nextExpectedLine != null;
             }
         }
+
+        protected string CreateTestNode(string source) {
+            return $"title: Start\n---\n{source}\n===";
+            
+        }
     }
 }
 

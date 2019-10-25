@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-using Yarn.Compiler;
+using Yarn;
 
 using System.Runtime.CompilerServices;
 
-using static Yarn.Compiler.Instruction.Types;
+using static Yarn.Instruction.Types;
 
 [assembly:InternalsVisibleTo("YarnSpinner.Tests")]
+[assembly:InternalsVisibleTo("YarnSpinner.Compiler")]
 
 
 namespace Yarn.Analysis
@@ -154,14 +155,14 @@ namespace Yarn.Analysis
     }
     
     internal abstract class CompiledProgramAnalyser {
-        public abstract void Diagnose (Yarn.Compiler.Program program);
+        public abstract void Diagnose (Yarn.Program program);
         public abstract IEnumerable<Diagnosis> GatherDiagnoses();
     }
 
     internal class VariableLister : CompiledProgramAnalyser {
         HashSet<string> variables = new HashSet<string>();
 
-        public override void Diagnose(Yarn.Compiler.Program program)
+        public override void Diagnose(Yarn.Program program)
         {
             // In each node, find all reads and writes to variables
             foreach (var nodeInfo in program.Nodes)

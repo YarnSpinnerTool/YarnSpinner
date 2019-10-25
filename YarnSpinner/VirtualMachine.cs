@@ -2,12 +2,121 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-using Yarn.Compiler;
-
-using static Yarn.Compiler.Instruction.Types;
+using static Yarn.Instruction.Types;
 
 namespace Yarn
 {
+    public partial class Operand {
+        // Define some convenience constructors for the Operand type, so
+        // that we don't need to have two separate steps for creating and
+        // then preparing the Operand
+        public Operand(bool value) : base() {
+            this.BoolValue = value;
+        }
+
+        public Operand(string value) : base() {
+            this.StringValue = value;
+        }
+
+        public Operand(float value) : base() {
+            this.NumberValue = value;
+        }
+    }
+
+    internal enum TokenType {
+
+
+        // Special tokens
+        Whitespace,
+        Indent,
+        Dedent,
+        EndOfLine,
+        EndOfInput,
+
+        // Numbers. Everybody loves a number
+        Number,
+
+        // Strings. Everybody also loves a string
+        String,
+
+        // '#'
+        TagMarker,
+
+        // Command syntax ("<<foo>>")
+        BeginCommand,
+        EndCommand,
+
+        // Variables ("$foo")
+        Variable,
+
+        // Shortcut syntax ("->")
+        ShortcutOption,
+
+        // Option syntax ("[[Let's go here|Destination]]")
+        OptionStart, // [[
+        OptionDelimit, // |
+        OptionEnd, // ]]
+
+        // Command types (specially recognised command word)
+        If,
+        ElseIf,
+        Else,
+        EndIf,
+        Set,
+
+        // Boolean values
+        True,
+        False,
+
+        // The null value
+        Null,
+
+        // Parentheses
+        LeftParen,
+        RightParen,
+
+        // Parameter delimiters
+        Comma,
+
+        // Operators
+        EqualTo, // ==, eq, is
+        GreaterThan, // >, gt
+        GreaterThanOrEqualTo, // >=, gte
+        LessThan, // <, lt
+        LessThanOrEqualTo, // <=, lte
+        NotEqualTo, // !=, neq
+
+        // Logical operators
+        Or, // ||, or
+        And, // &&, and
+        Xor, // ^, xor
+        Not, // !, not
+
+        // this guy's special because '=' can mean either 'equal to'
+        // or 'becomes' depending on context
+        EqualToOrAssign, // =, to
+
+        UnaryMinus, // -; this is differentiated from Minus
+                    // when parsing expressions
+
+        Add, // +
+        Minus, // -
+        Multiply, // *
+        Divide, // /
+        Modulo, // %
+
+        AddAssign, // +=
+        MinusAssign, // -=
+        MultiplyAssign, // *=
+        DivideAssign, // /=
+
+        Comment, // a run of text that we ignore
+
+        Identifier, // a single word (used for functions)
+
+        Text // a run of text until we hit other syntax
+    }
+
     internal class VirtualMachine
     {
 
@@ -281,22 +390,30 @@ namespace Yarn
                 var function = dialogue.library.GetFunction (functionName);
                 {
 
-                    var paramCount = function.paramCount;
+                    var expectedParamCount = function.paramCount;
 
-                    // If this function takes "-1" parameters, it is variadic.
                     // Expect the compiler to have placed the number of parameters
                     // actually passed at the top of the stack.
-                    if (paramCount == -1) {
-                        paramCount = (int)state.PopValue ().AsNumber;
+                    var actualParamCount = (int)state.PopValue ().AsNumber;
+
+                    // If a function indicates -1 parameters, it takes as
+                    // many parameters as it was given (i.e. it's a
+                    // variadic function)
+                    if (expectedParamCount == -1) {
+                        expectedParamCount = actualParamCount;
+                    }
+
+                    if (expectedParamCount != actualParamCount) {
+                        throw new InvalidOperationException($"Function {function.name} expected {expectedParamCount}, but received {actualParamCount}");
                     }
 
                     Value result;
-                    if (paramCount == 0) {
+                    if (actualParamCount == 0) {
                         result = function.Invoke();
                     } else {
                         // Get the parameters, which were pushed in reverse
-                        Value[] parameters = new Value[paramCount];
-                        for (int param = paramCount - 1; param >= 0; param--) {
+                        Value[] parameters = new Value[actualParamCount];
+                        for (int param = actualParamCount - 1; param >= 0; param--) {
                             parameters [param] = state.PopValue ();
                         }
 

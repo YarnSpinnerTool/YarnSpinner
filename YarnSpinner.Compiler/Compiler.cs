@@ -5,119 +5,16 @@ using Antlr4.Runtime.Misc;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using System.Globalization;
+using System.IO;
 
-using static Yarn.Compiler.Instruction.Types;
+using System.Linq;
+
+using static Yarn.Instruction.Types;
+
 
 namespace Yarn.Compiler
 {
-
-    public partial class Operand {
-        public Operand(bool value) : base() {
-            this.BoolValue = value;
-        }
-
-        public Operand(string value) : base() {
-            this.StringValue = value;
-        }
-
-        public Operand(float value) : base() {
-            this.NumberValue = value;
-        }
-    }
-
-    internal enum TokenType {
-
-
-        // Special tokens
-        Whitespace,
-        Indent,
-        Dedent,
-        EndOfLine,
-        EndOfInput,
-
-        // Numbers. Everybody loves a number
-        Number,
-
-        // Strings. Everybody also loves a string
-        String,
-
-        // '#'
-        TagMarker,
-
-        // Command syntax ("<<foo>>")
-        BeginCommand,
-        EndCommand,
-
-        // Variables ("$foo")
-        Variable,
-
-        // Shortcut syntax ("->")
-        ShortcutOption,
-
-        // Option syntax ("[[Let's go here|Destination]]")
-        OptionStart, // [[
-        OptionDelimit, // |
-        OptionEnd, // ]]
-
-        // Command types (specially recognised command word)
-        If,
-        ElseIf,
-        Else,
-        EndIf,
-        Set,
-
-        // Boolean values
-        True,
-        False,
-
-        // The null value
-        Null,
-
-        // Parentheses
-        LeftParen,
-        RightParen,
-
-        // Parameter delimiters
-        Comma,
-
-        // Operators
-        EqualTo, // ==, eq, is
-        GreaterThan, // >, gt
-        GreaterThanOrEqualTo, // >=, gte
-        LessThan, // <, lt
-        LessThanOrEqualTo, // <=, lte
-        NotEqualTo, // !=, neq
-
-        // Logical operators
-        Or, // ||, or
-        And, // &&, and
-        Xor, // ^, xor
-        Not, // !, not
-
-        // this guy's special because '=' can mean either 'equal to'
-        // or 'becomes' depending on context
-        EqualToOrAssign, // =, to
-
-        UnaryMinus, // -; this is differentiated from Minus
-                    // when parsing expressions
-
-        Add, // +
-        Minus, // -
-        Multiply, // *
-        Divide, // /
-        Modulo, // %
-
-        AddAssign, // +=
-        MinusAssign, // -=
-        MultiplyAssign, // *=
-        DivideAssign, // /=
-
-        Comment, // a run of text that we ignore
-
-        Identifier, // a single word (used for functions)
-
-        Text // a run of text until we hit other syntax
-    }
+    
     
     public class Compiler : YarnSpinnerParserBaseListener
     {
@@ -139,17 +36,162 @@ namespace Yarn.Compiler
 
         internal Node currentNode = null;
 
-        internal Library library;
-
         // this is used to determine if we are to do any parsing
         // or just dump the entire node body as raw text
         internal bool rawTextNode = false;
 
-        internal Compiler(Library library)
+        internal Compiler()
         {
-            program = new Program();
-            this.library = library;
+            program = new Program();            
         }
+
+        // the preprocessor that cleans up things to make it easier on ANTLR
+        // replaces \r\n with \n
+        // adds in INDENTS and DEDENTS where necessary
+        // replaces \t with four spaces
+        // takes in a string of yarn and returns a string the compiler can then use
+        
+        private static string PreprocessIndentationInSource(string nodeText)
+        {
+            string processed = null;
+
+            using (StringReader reader = new StringReader(nodeText))
+            {
+                // a list to hold outputLines once they have been cleaned up
+                List<string> outputLines = new List<string>();
+
+				// a stack to keep track of how far indented we are
+				// made up of ints and bools
+				// ints track the depth, bool tracks if we emitted an indent token
+				// starts with 0 and false so we can never fall off the end of the stack
+				var indents = new Stack<(int depth, bool emitted)>();
+				indents.Push((0, false));
+
+                // a bool to determine if we are in a mode where we need to track indents
+                bool shouldTrackNextIndentation = false;
+
+                char INDENT = '\a';
+                char DEDENT = '\v';
+                //string INDENT = "{";
+                //string DEDENT = "}";
+
+                string OPTION = "->";
+
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    // replacing \t with 4 spaces
+                    string tweakedLine = line.Replace("\t", "    ");
+                    // stripping of any trailing newlines, will add them back in later
+                    tweakedLine = tweakedLine.TrimEnd('\r', '\n');
+
+                    // getting the number of indents on this line
+                    int lineIndent = tweakedLine.TakeWhile(Char.IsWhiteSpace).Count();
+
+                    // working out if it is an option (ie does it start with ->)
+                    bool isOption = tweakedLine.TrimStart(' ').StartsWith(OPTION, StringComparison.InvariantCulture);
+
+                    // are we in a state where we need to track indents?
+                    var previous = indents.Peek();
+                    if (shouldTrackNextIndentation && (lineIndent > previous.depth))
+                    {
+                        indents.Push((lineIndent, true));
+                        // adding an indent to the stream
+                        // tries to add it to the end of the previous line where possible
+                        if (outputLines.Count == 0)
+                        {
+                            tweakedLine = INDENT + tweakedLine;
+                        }
+                        else
+                        {
+                            outputLines[outputLines.Count - 1] = outputLines[outputLines.Count - 1] + INDENT;
+                        }
+
+                        shouldTrackNextIndentation = false;
+                    }
+                    // have we finished with the current block of statements
+                    else if (lineIndent < previous.depth)
+                    {
+                        while (lineIndent < indents.Peek().depth)
+                        {
+                            var topLevel = indents.Pop();
+
+                            if (topLevel.emitted)
+                            {
+                                // adding dedents
+								if (outputLines.Count == 0)
+								{
+                                    tweakedLine = DEDENT + tweakedLine;
+								}
+								else
+								{
+                                    outputLines[outputLines.Count - 1] = outputLines[outputLines.Count - 1] + DEDENT;
+								}
+                            }
+                        }
+                    }
+                    else
+                    {
+                        shouldTrackNextIndentation = false;
+                    }
+
+                    // do we need to track the indents for the next statement?
+                    if (isOption)
+                    {
+                        shouldTrackNextIndentation = true;
+                        if (indents.Peek().depth < lineIndent)
+                        {
+                            indents.Push((lineIndent, false));
+                        }
+                    }
+                    outputLines.Add(tweakedLine);
+                }
+                // mash it all back together now
+                StringBuilder builder = new StringBuilder();
+                foreach (string outLine in outputLines)
+                {
+                    builder.Append(outLine);
+                    builder.Append("\n");
+                }
+                processed = builder.ToString();
+            }
+
+            return processed;
+        }
+
+        public static Program CompileFile(string path) {
+            var source = File.ReadAllText(path);
+
+            var fileName = System.IO.Path.GetFileNameWithoutExtension(path);
+
+            return CompileString(source, fileName);
+        }
+
+        // Given a bunch of raw text, load all nodes that were inside it.
+        public static Program CompileString(string text, string fileName)
+        {
+
+            string inputString = PreprocessIndentationInSource(text);
+            ICharStream input = CharStreams.fromstring(inputString);
+
+            YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+            YarnSpinnerParser parser = new YarnSpinnerParser(tokens);
+
+            // turning off the normal error listener and using ours
+            parser.RemoveErrorListeners();
+            parser.AddErrorListener(ErrorListener.Instance);
+
+            IParseTree tree = parser.dialogue();
+
+            Compiler compiler = new Compiler();
+
+            compiler.Compile(tree);
+
+            return compiler.program;
+        }
+
 
         // Generates a unique label name to use
         internal string RegisterLabel(string commentary = null)
@@ -232,7 +274,7 @@ namespace Yarn.Compiler
             {
                 string newNode = context.header().header_title().TITLE_TEXT().GetText().Trim();
                 string message = string.Format(CultureInfo.CurrentCulture, "Discovered a new node {0} while {1} is still being parsed", newNode, currentNode.Name);
-				throw new Yarn.Compiler.ParseException(message);
+				throw new ParseException(message);
             }
             currentNode = new Node();
             rawTextNode = false;
@@ -255,7 +297,7 @@ namespace Yarn.Compiler
             if (context.header_tag().Length > 1)
             {
                 string message = string.Format(CultureInfo.CurrentCulture, "Too many header tags defined inside {0}", context.header_title().TITLE_TEXT().GetText().Trim());
-                throw new Yarn.Compiler.ParseException(message);
+                throw new ParseException(message);
             }
         }
         // all we need to do is store the title as the name of the node
@@ -469,7 +511,7 @@ namespace Yarn.Compiler
                 else
                 {
                     // throw an error
-                    throw Yarn.Compiler.ParseException.Make(context,"Invalid expression inside assignment statement");
+                    throw ParseException.Make(context,"Invalid expression inside assignment statement");
                 }
             }
 
@@ -513,49 +555,24 @@ namespace Yarn.Compiler
             char[] rTrim = { '(' };
             string functionName = context.GetChild(0).GetText().TrimStart(lTrim).TrimEnd(rTrim);
 
-            var output = this.HandleFunction(functionName, context.expression());
-            // failed to handle the function
-            if (output == false)
-            {
-                Yarn.Compiler.ParseException.Make(context, "Invalid number of parameters for " + functionName);
-            }
-
+            this.HandleFunction(functionName, context.expression());
+            
             return 0;
         }
         // emits the required tokens for the function call
-        // returns a bool indicating if the function was valid
-        private bool HandleFunction(string functionName, YarnSpinnerParser.ExpressionContext[] parameters)
+        private void HandleFunction(string functionName, YarnSpinnerParser.ExpressionContext[] parameters)
         {
-			// this will throw an exception if it doesn't exist
-			FunctionInfo functionInfo = compiler.library.GetFunction(functionName);
-
-			// if the function is not variadic we need to check it has the right number of params
-			if (functionInfo.paramCount != -1)
-			{
-				if (parameters.Length != functionInfo.paramCount)
-				{
-                    // invalid function, return false
-                    return false;
-				}
-			}
-
 			// generate the instructions for all of the parameters
 			foreach (var parameter in parameters)
 			{
 				Visit(parameter);
 			}
 
-			// if the function is variadic we push the parameter number onto the stack
-			// variadic functions are those with paramCount of -1
-			if (functionInfo.paramCount == -1)
-			{
-				compiler.Emit(OpCode.PushNumber, new Operand(parameters.Length));
-			}
-
+			// push the number of parameters onto the stack
+			compiler.Emit(OpCode.PushNumber, new Operand(parameters.Length));
+			
 			// then call the function itself
-			compiler.Emit(OpCode.CallFunc, new Operand(functionName));
-            // everything went fine, return true
-            return true;
+			compiler.Emit(OpCode.CallFunc, new Operand(functionName));            
         }
         // handles emiting the correct instructions for the function
         public override int VisitFunction(YarnSpinnerParser.FunctionContext context)
@@ -728,6 +745,10 @@ namespace Yarn.Compiler
             Visit(context.expression());
 
             // TODO: temp operator call
+
+            // Indicate that we are pushing one parameter
+            compiler.Emit(OpCode.PushNumber, new Operand(1));
+
             compiler.Emit(OpCode.CallFunc, new Operand(TokenType.Not.ToString()));
 
             return 0;
@@ -749,6 +770,10 @@ namespace Yarn.Compiler
             Visit(right);
 
             // TODO: temp operator call
+
+            // Indicate that we are pushing two items for comparison
+            compiler.Emit(OpCode.PushNumber, new Operand(2));
+
             compiler.Emit(OpCode.CallFunc, new Operand(tokens[op].ToString()));
         }
         // * / %
@@ -804,6 +829,9 @@ namespace Yarn.Compiler
             Visit(expression);
 
             // Stack now contains [currentValue, expressionValue]
+
+            // Indicate that we are pushing two items for comparison
+            compiler.Emit(OpCode.PushNumber, new Operand(2));
 
             // now we evaluate the operator
             // op will match to one of + - / * %

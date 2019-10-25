@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\YarnSpinner\YarnSpinner.csproj" />
+    <ProjectReference Include="..\YarnSpinner.Compiler\YarnSpinner.Compiler.csproj" />
   </ItemGroup>
 
 </Project>

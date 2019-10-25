@@ -1,5 +1,5 @@
 syntax = "proto3";
-package Yarn.Compiler;
+package Yarn;
 
 message Program {
     string name = 1;
@@ -80,5 +80,3 @@ message Operand {
 		float number_value = 4;
     }
 }
-
-

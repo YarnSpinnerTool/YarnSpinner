@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using System.Globalization;
 
-namespace Yarn
+namespace Yarn.Compiler
 {
     public sealed class ErrorListener : BaseErrorListener
     {
@@ -54,7 +54,7 @@ namespace Yarn
                     }
                 }
             }
-            throw new Yarn.Compiler.ParseException(builder.ToString());
+            throw new ParseException(builder.ToString());
         }
     }
 }
