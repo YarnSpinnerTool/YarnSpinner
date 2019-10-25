@@ -47,8 +47,8 @@ namespace Yarn {
             "BwoDUE9QEAwSDQoJQ0FMTF9GVU5DEA0SEQoNUFVTSF9WQVJJQUJMRRAOEhIK",
             "DlNUT1JFX1ZBUklBQkxFEA8SCAoEU1RPUBAQEgwKCFJVTl9OT0RFEBEiWAoH",
             "T3BlcmFuZBIWCgxzdHJpbmdfdmFsdWUYAiABKAlIABIUCgpib29sX3ZhbHVl",
-            "GAMgASgISAASFgoMbnVtYmVyX3ZhbHVlGAQgASgCSABCBwoFdmFsdWViBnBy",
-            "b3RvMw=="));
+            "GAMgASgISAASFgoMbnVtYmVyX3ZhbHVlGAQgASgCSABCBwoFdmFsdWVCAkgC",
+            "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {

@@ -2,7 +2,8 @@ using System;
 using System.Globalization;
 
 namespace Yarn.Compiler {
-// An exception representing something going wrong during parsing
+    
+    // An exception representing something going wrong during parsing
 	[Serializable]
 	public sealed class ParseException : Exception
 	{
