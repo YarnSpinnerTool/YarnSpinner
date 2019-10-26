@@ -40,7 +40,8 @@ namespace Yarn.Unity
         public TextAsset[] stringFiles;
     }
 
-    /// DialogueRunners act as the interface between your game and YarnSpinner.
+    /// DialogueRunners act as the interface between your game and
+    /// YarnSpinner.
     /** Make our menu item slightly nicer looking */
     [AddComponentMenu("Scripts/Yarn Spinner/Dialogue Runner")]
     public class DialogueRunner : MonoBehaviour
@@ -78,7 +79,8 @@ namespace Yarn.Unity
         public Dialogue dialogue {
             get {
                 if (_dialogue == null) {
-                    // Create the main Dialogue runner, and pass our variableStorage to it
+                    // Create the main Dialogue runner, and pass our
+                    // variableStorage to it
                     _dialogue = new Yarn.Dialogue (variableStorage);
 
                     // Set up the logging system.
@@ -128,6 +130,10 @@ namespace Yarn.Unity
             (bool wasValidCommand, bool wasCoroutine) = DispatchCommand(command.Text);
             
             if (wasValidCommand) {
+                // We found an object and method to invoke as a Yarn
+                // command. It may or may not have been a coroutine; if it
+                // was a coroutine, we'll wait for it to complete before
+                // resuming execution.
                 if (wasCoroutine) {
                     // We're currently waiting for the coroutine to
                     // complete, which will take at least one frame to do.
@@ -139,11 +145,10 @@ namespace Yarn.Unity
                 }
             } else {
                 // We didn't find a method in our C# code to invoke. Pass
-                // it to the UI to handle.
+                // it to the UI to handle; it will determine whether we
+                // pause or continue.
                 return this.dialogueUI.RunCommand(command, _continue);            
             }
-
-            
         }
 
         private Dialogue.HandlerExecutionType HandleLine(Line line)
@@ -229,22 +234,11 @@ namespace Yarn.Unity
 
         private void ContinueDialogue()
         {
-            
-            this.dialogue.Continue();
-
-            // No more results! The dialogue is done.
-            //yield return StartCoroutine (this.dialogueUI.DialogueComplete ());
-
-            // Clear the 'is running' flag. We do this after DialogueComplete returns,
-            // to allow time for any animations that might run while transitioning
-            // out of a conversation (ie letterboxing going away, etc)
-            
+            this.dialogue.Continue();           
         }
 
         void RunDialogue (string startNode = "Start")
         {
-            // TODO: Provide handlers, start executing
-
             // Mark that we're in conversation.
             isDialogueRunning = true;
 
@@ -292,7 +286,8 @@ namespace Yarn.Unity
         /** We can dispatch this command if:
          * 1. it has at least 2 words
          * 2. the second word is the name of an object
-         * 3. that object has components that have methods with the YarnCommand attribute that have the correct commandString set
+         * 3. that object has components that have methods with the
+         *    YarnCommand attribute that have the correct commandString set
          */
         public (bool methodFound, bool isCoroutine) DispatchCommand(string command) {
 
@@ -341,7 +336,8 @@ namespace Yarn.Unity
                     // Find the YarnCommand attributes on this method
                     var attributes = (YarnCommandAttribute[]) method.GetCustomAttributes(typeof(YarnCommandAttribute), true);
 
-                    // Find the YarnCommand whose commandString is equal to the command name
+                    // Find the YarnCommand whose commandString is equal to
+                    // the command name
                     foreach (var attribute in attributes) {
                         if (attribute.commandString == commandName) {
 
@@ -349,10 +345,14 @@ namespace Yarn.Unity
                             var methodParameters = method.GetParameters();
                             bool paramsMatch = false;
                             // Check if this is a params array
-                            if (methodParameters.Length == 1 && methodParameters[0].ParameterType.IsAssignableFrom(typeof(string[])))
+                            if (methodParameters.Length == 1 && 
+                                methodParameters[0].ParameterType.IsAssignableFrom(typeof(string[])))
                                 {
                                     // Cool, we can send the command!
-                                    // Yield if this is a Coroutine
+
+                                    // If this is a coroutine, start it,
+                                    // and set a flag so that we know to
+                                    // wait for it to finish
                                     string[][] paramWrapper = new string[1][];
                                     paramWrapper[0] = parameters.ToArray();
                                     if (method.ReturnType == typeof(IEnumerator))
@@ -385,7 +385,10 @@ namespace Yarn.Unity
                                 if (paramsMatch)
                                 {
                                     // Cool, we can send the command!
-                                    // Yield if this is a Coroutine
+                                    
+                                    // If this is a coroutine, start it,
+                                    // and set a flag so that we know to
+                                    // wait for it to finish
                                     if (method.ReturnType == typeof(IEnumerator))
                                     {
                                         StartCoroutine(DoYarnCommand(component, method, parameters.ToArray()));
@@ -401,7 +404,8 @@ namespace Yarn.Unity
                             //parameters are invalid, but name matches.
                             if (!paramsMatch)
                             {
-                                //save this error in case a matching command is never found.
+                                //save this error in case a matching
+                                //command is never found.
                                 errorValues.Add(new string[] { method.Name, commandName, methodParameters.Length.ToString(), parameters.Count.ToString() });
                             }
                         }
@@ -409,13 +413,14 @@ namespace Yarn.Unity
                 }
             }
 
-            // Warn if we found multiple things that could respond
-            // to this command.
+            // Warn if we found multiple things that could respond to this
+            // command.
             if (numberOfMethodsFound > 1) {
                 Debug.LogWarningFormat(sceneObject, "The command \"{0}\" found {1} targets. " +
                     "You should only have one - check your scripts.", command, numberOfMethodsFound);
             } else if (numberOfMethodsFound == 0) {
-                //list all of the near-miss methods only if a proper match is not found, but correctly-named methods are.
+                //list all of the near-miss methods only if a proper match
+                //is not found, but correctly-named methods are.
                 foreach (string[] errorVal in errorValues) {
                     Debug.LogErrorFormat(sceneObject, "Method \"{0}\" wants to respond to Yarn command \"{1}\", but it has a different number of parameters ({2}) to those provided ({3}), or is not a string array!", errorVal[0], errorVal[1], errorVal[2], errorVal[3]);
                 }
@@ -464,7 +469,8 @@ namespace Yarn.Unity
         }
     }
 
-    /// Scripts that can act as the UI for the conversation should subclass this
+    /// Scripts that can act as the UI for the conversation should subclass
+    /// this
     public abstract class DialogueUIBehaviour : MonoBehaviour
     {
         /// A conversation has started.

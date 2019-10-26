@@ -34,16 +34,11 @@ namespace Yarn.Unity.Example {
     /// Displays dialogue lines to the player, and sends
     /// user choices back to the dialogue system.
 
-    /** Note that this is just one way of presenting the
-     * dialogue to the user. The only hard requirement
-     * is that you provide the RunLine, RunOptions, RunCommand
-     * and DialogueComplete coroutines; what they do is up to you.
-     */
     public class ExampleDialogueUI : Yarn.Unity.DialogueUIBehaviour
     {
 
         /// The object that contains the dialogue and the options.
-        /** This object will be enabled when conversation starts, and 
+        /** This object will be enabled when conversation starts, and
          * disabled when it ends.
          */
         public GameObject dialogueContainer;
@@ -82,14 +77,16 @@ namespace Yarn.Unity.Example {
                 continuePrompt.SetActive (false);
         }
 
-        /// Show a line of dialogue, gradually
         public override Dialogue.HandlerExecutionType RunLine (Yarn.Line line, System.Action onComplete)
         {
+            // Start displaying the line; it will call onComplete later
+            // which will tell the dialogue to continue
             StartCoroutine(DoRunLine(line, onComplete));
             return Dialogue.HandlerExecutionType.PauseExecution;
         }
 
-        public IEnumerator DoRunLine(Yarn.Line line, System.Action onComplete) {
+        /// Show a line of dialogue, gradually        
+        private IEnumerator DoRunLine(Yarn.Line line, System.Action onComplete) {
             // Show the text
             lineText.gameObject.SetActive (true);
 
@@ -135,7 +132,8 @@ namespace Yarn.Unity.Example {
 
         bool waitingForOptionSelection = false;
 
-        /// Show a list of options, and wait for the player to make a selection.
+        /// Show a list of options, and wait for the player to make a
+        /// selection.
         public  IEnumerator DoRunOptions (Yarn.OptionSet optionsCollection, System.Action<int> selectOption)
         {
             // Do a little bit of safety checking
@@ -163,7 +161,8 @@ namespace Yarn.Unity.Example {
                 i++;
             }
 
-            // Wait until the chooser has been used and then removed (see SetOption below)
+            // Wait until the chooser has been used and then removed (see
+            // SetOption below)
             while (waitingForOptionSelection) {
                 yield return null;
             }
