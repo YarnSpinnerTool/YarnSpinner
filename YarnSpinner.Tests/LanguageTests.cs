@@ -65,10 +65,12 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "SkippedOptions.yarn.txt");
             dialogue.LoadProgram(Compiler.CompileFile(path));
 
-            foreach (var result in dialogue.Run())
-            {
-                Assert.IsNotType<Dialogue.OptionSetResult>(result);
-            }
+            dialogue.optionsHandler = delegate (OptionSet optionSets) {
+                Assert.False(true, "Options should not be shown to the user in this test.");
+            };
+
+            dialogue.SetNode();
+            dialogue.Continue();
 
         }
 

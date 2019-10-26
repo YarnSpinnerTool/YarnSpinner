@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Yarn;
 using Yarn.Compiler;
+using System.Linq;
 
 namespace YarnSpinner.Tests
 {
@@ -24,7 +25,7 @@ namespace YarnSpinner.Tests
             // and run one
             dialogue.LoadProgram(program);
 
-            Assert.Equal(3, dialogue.program.Nodes.Count);
+            Assert.Equal(3, dialogue.allNodes.Count());
 
             Assert.True(dialogue.NodeExists("TestNode"));
             Assert.True(dialogue.NodeExists("AnotherTestNode"));
@@ -35,12 +36,12 @@ namespace YarnSpinner.Tests
             ExpectLine("This is a second test node!");
 
             // we are now expecting a node
-            Assert.True(this.isExpectingLine);
+            Assert.True(this.IsExpectingLine);
 
             RunStandardTestcase(secondNodeName);
 
             // the line should have run, so this property should become true
-            Assert.False(this.isExpectingLine);
+            Assert.False(this.IsExpectingLine);
 
             // and the variable $x should now have a value
             Assert.Equal(23, (int)dialogue.continuity.GetValue("$x").AsNumber);

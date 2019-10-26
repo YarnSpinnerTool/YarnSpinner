@@ -98,9 +98,8 @@ namespace YarnSpinner.Tests
 
             errorsCauseFailures = false;
 
-            foreach (var result in dialogue.Run("THIS NODE DOES NOT EXIST")) {
-
-            }
+            dialogue.SetNode("THIS NODE DOES NOT EXIST");
+            dialogue.Continue();
         }
 
         [Fact]
@@ -113,13 +112,10 @@ namespace YarnSpinner.Tests
             // dialogue should not be running yet
             Assert.Null (dialogue.currentNode);
 
-            foreach (var result in dialogue.Run("Sally")) {
-                // Should now be in the node we requested
-                Assert.Equal ("Sally", dialogue.currentNode);
-                // Stop immediately
-                dialogue.Stop ();
-            }
+            dialogue.SetNode("Sally");
+            Assert.Equal ("Sally", dialogue.currentNode);
 
+            dialogue.Stop();
             // Current node should now be null
             Assert.Null (dialogue.currentNode);
         }
@@ -153,27 +149,7 @@ namespace YarnSpinner.Tests
 			Assert.Equal ("rawText", source.First());
 		}
 
-        [Fact]
-        public void TestNodeVistation() {
-
-            string fileName = Path.Combine(TestDataPath, "Example.yarn.txt");
-
-            dialogue.LoadProgram(Compiler.CompileFile(fileName));
-
-            foreach (var result in dialogue.Run("Leave")) {
-                HandleResult (result);
-            }
-
-            Assert.Contains("Leave", dialogue.visitedNodes.ToList());
-
-            // Override the visitedNodes list
-            dialogue.visitedNodes = new string[]{ "LearnMore" };
-
-            Assert.Contains("LearnMore", dialogue.visitedNodes.ToList());
-
-        }
-
-
+        
     }
 }
 

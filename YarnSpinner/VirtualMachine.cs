@@ -158,39 +158,30 @@ namespace Yarn
                 stack.Clear ();
             }
         }
-
-        internal static class SpecialVariables {
-            public const string ShuffleOptions = "$Yarn.ShuffleOptions";
-        }
-
-        internal VirtualMachine (Dialogue d, Program p)
+        
+        internal VirtualMachine (Dialogue d)
         {
-            program = p;
             dialogue = d;
             state = new State ();
         }
 
         /// Reset the state of the VM
-        void ResetState() {
+        internal void ResetState() {
             state = new State();
         }
 
-        public delegate void LineHandler(Dialogue.LineResult line);
-        public delegate void OptionsHandler(Dialogue.OptionSetResult options);
-        public delegate void CommandHandler(Dialogue.CommandResult command);
-        public delegate void NodeCompleteHandler(Dialogue.NodeCompleteResult complete);
-
-        public LineHandler lineHandler;
-        public OptionsHandler optionsHandler;
-        public CommandHandler commandHandler;
-        public NodeCompleteHandler nodeCompleteHandler;
+        
+        public Dialogue.LineHandler lineHandler;
+        public Dialogue.OptionsHandler optionsHandler;
+        public Dialogue.CommandHandler commandHandler;
+        public Dialogue.NodeCompleteHandler nodeCompleteHandler;
+        public Dialogue.DialogueCompleteHandler dialogueCompleteHandler;
 
         private Dialogue dialogue;
 
-        private Program program;
-        private State state = new State();
+        internal Program Program { get; set; }
 
-        private Random random = new Random();
+        private State state = new State();
 
         public string currentNodeName {
             get {
@@ -203,6 +194,8 @@ namespace Yarn
             Stopped,
             /** Waiting on option selection */
             WaitingOnOptionSelection,
+            /** Suspended in the middle of execution */
+            Suspended,
             /** Running */
             Running
         }
@@ -223,7 +216,7 @@ namespace Yarn
         Node currentNode;
 
         public bool SetNode(string nodeName) {
-            if (program.Nodes.ContainsKey(nodeName) == false) {
+            if (Program.Nodes.ContainsKey(nodeName) == false) {
 
                 var error = "No node named " + nodeName;
                 dialogue.LogErrorMessage(error);
@@ -233,10 +226,7 @@ namespace Yarn
 
             dialogue.LogDebugMessage ("Running node " + nodeName);
 
-            // Clear the special variables
-            dialogue.continuity.SetValue(SpecialVariables.ShuffleOptions, new Value(false));
-
-            currentNode = program.Nodes [nodeName];
+            currentNode = Program.Nodes [nodeName];
             ResetState ();
             state.currentNodeName = nodeName;
 
@@ -247,30 +237,78 @@ namespace Yarn
             executionState = ExecutionState.Stopped;
         }
 
-        /// Executes the next instruction in the current node.
-        internal void RunNext() {
+        public void SetSelectedOption(int selectedOptionID) {
 
-            if (executionState == ExecutionState.WaitingOnOptionSelection) {
-                dialogue.LogErrorMessage ("Cannot continue running dialogue. Still waiting on option selection.");
-                executionState = ExecutionState.Stopped;
+            if (executionState != ExecutionState.WaitingOnOptionSelection) {
+                dialogue.LogErrorMessage(@"SetSelectedOption was called, but Dialogue wasn't waiting for a selection.
+                This method should only be called after the Dialogue is waiting for the user to select an option.");
                 return;
             }
 
-            if (executionState == ExecutionState.Stopped)
-                executionState = ExecutionState.Running;
+            // We now know what number option was selected; push the
+            // corresponding node name to the stack
+            var destinationNode = state.currentOptions[selectedOptionID].Value;
+            state.PushValue(destinationNode);
 
-            Instruction currentInstruction = currentNode.Instructions [state.programCounter];
+            // We no longer need the accumulated list of options; clear it
+            // so that it's ready for the next one
+            state.currentOptions.Clear();
 
-            RunInstruction (currentInstruction);
+            // We're no longer in the WaitingForOptions state; we are now
+            // instead Suspended
+            executionState = ExecutionState.Suspended;
+        }
+                    
 
-            state.programCounter++;
+        /// Resumes execution.inheritdoc
+        internal void Continue() {
 
-            if (state.programCounter >= currentNode.Instructions.Count) {
-                executionState = ExecutionState.Stopped;
-                nodeCompleteHandler(new Dialogue.NodeCompleteResult(null));
-                dialogue.LogDebugMessage ("Run complete.");
+            if (currentNode == null) {
+                dialogue.LogErrorMessage("Cannot continue running dialogue. No node has been selected.");
+                return;
             }
 
+            if (executionState == ExecutionState.WaitingOnOptionSelection) {
+                dialogue.LogErrorMessage ("Cannot continue running dialogue. Still waiting on option selection.");
+                return;
+            }
+
+            if (lineHandler == null) {
+                dialogue.LogErrorMessage ($"Cannot continue running dialogue. {nameof(lineHandler)} has not been set.");
+                return;
+            }
+
+            if (optionsHandler == null) {
+                dialogue.LogErrorMessage ($"Cannot continue running dialogue. {nameof(optionsHandler)} has not been set.");
+                return;
+            }
+
+            if (commandHandler == null) {
+                dialogue.LogErrorMessage ($"Cannot continue running dialogue. {nameof(commandHandler)} has not been set.");
+                return;
+            }
+
+            if (nodeCompleteHandler == null) {
+                dialogue.LogErrorMessage ($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");
+                return;
+            }
+
+            executionState = ExecutionState.Running;
+
+            // Execute instructions until something forces us to stop
+            while (executionState == ExecutionState.Running) {
+                Instruction currentInstruction = currentNode.Instructions [state.programCounter];
+
+                RunInstruction (currentInstruction);
+
+                state.programCounter++;
+
+                if (state.programCounter >= currentNode.Instructions.Count) {
+                    executionState = ExecutionState.Stopped;
+                    dialogueCompleteHandler();
+                    dialogue.LogDebugMessage ("Run complete.");
+                }
+            }
         }
 
         /// Looks up the instruction number for a named label in the current node.
@@ -278,273 +316,329 @@ namespace Yarn
 
             if (currentNode.Labels.ContainsKey(labelName) == false) {
                 // Couldn't find the node..
-                throw new IndexOutOfRangeException ("Unknown label " +
-                    labelName + " in node " + state.currentNodeName);
+                throw new IndexOutOfRangeException (
+                    $"Unknown label {labelName} in node {state.currentNodeName}"
+                );
             }
 
             return currentNode.Labels [labelName];
-
         }
 
-        internal void RunInstruction(Instruction i) {
-            switch (i.Opcode) {
-            case OpCode.Label:
-                /// - Label
-                /** No-op, used as a destination for JumpTo and Jump.
-                 */
-                break;
-            case OpCode.JumpTo:
-                /// - JumpTo
-                /** Jumps to a named label
-                 */
-                state.programCounter = FindInstructionPointForLabel (i.Operands[0].StringValue);
-
-                break;
-            case OpCode.RunLine:
-                /// - RunLine
-                /** Looks up a string from the string table and
-                 *  passes it to the client as a line
-                 */
-                var lineText = program.GetString (i.Operands[0].StringValue);
-
-                if (lineText == null) {
-                    dialogue.LogErrorMessage("No loaded string table includes line " + i.Operands[0].StringValue);
-                    break;
-                }
-
-                lineHandler (new Dialogue.LineResult (lineText));
-
-                break;
-            case OpCode.RunCommand:
-                /// - RunCommand
-                /** Passes a string to the client as a custom command
-                 */
-                commandHandler (
-                    new Dialogue.CommandResult (i.Operands[0].StringValue)
-                );
-
-                break;
-            case OpCode.PushString:
-                /// - PushString
-                /** Pushes a string value onto the stack. The operand is an index into
-                 *  the string table, so that's looked up first.
-                 */
-                state.PushValue (program.GetString (i.Operands[0].StringValue));
-
-                break;
-            case OpCode.PushNumber:
-                /// - PushNumber
-                /** Pushes a number onto the stack.
-                 */
-                state.PushValue (i.Operands[0].NumberValue);
-
-                break;
-            case OpCode.PushBool:
-                /// - PushBool
-                /** Pushes a boolean value onto the stack.
-                 */
-                state.PushValue (i.Operands[0].BoolValue);
-
-                break;
-            case OpCode.PushNull:
-                /// - PushNull
-                /** Pushes a null value onto the stack.
-                 */
-                state.PushValue (Value.NULL);
-
-                break;
-            case OpCode.JumpIfFalse:
-                /// - JumpIfFalse
-                /** Jumps to a named label if the value on the top of the stack
-                 *  evaluates to the boolean value 'false'.
-                 */
-                if (state.PeekValue ().AsBool == false) {
-                    state.programCounter = FindInstructionPointForLabel (i.Operands[0].StringValue);
-                }
-                break;
-
-            case OpCode.Jump:
-                /// - Jump
-                /** Jumps to a label whose name is on the stack.
-                 */
-                var jumpDestination = state.PeekValue ().AsString;
-                state.programCounter = FindInstructionPointForLabel (jumpDestination);
-
-                break;
-
-            case OpCode.Pop:
-                /// - Pop
-                /** Pops a value from the stack.
-                 */
-                state.PopValue ();
-                break;
-
-            case OpCode.CallFunc:
-                /// - CallFunc
-                /** Call a function, whose parameters are expected to
-                 *  be on the stack. Pushes the function's return value,
-                 *  if it returns one.
-                 */
-                var functionName = i.Operands[0].StringValue;
-
-                var function = dialogue.library.GetFunction (functionName);
-                {
-
-                    var expectedParamCount = function.paramCount;
-
-                    // Expect the compiler to have placed the number of parameters
-                    // actually passed at the top of the stack.
-                    var actualParamCount = (int)state.PopValue ().AsNumber;
-
-                    // If a function indicates -1 parameters, it takes as
-                    // many parameters as it was given (i.e. it's a
-                    // variadic function)
-                    if (expectedParamCount == -1) {
-                        expectedParamCount = actualParamCount;
+        internal void RunInstruction(Instruction i)
+        {
+            switch (i.Opcode)
+            {
+                case OpCode.Label:
+                    {
+                        /// - Label
+                        /** No-op, used as a destination for JumpTo and Jump.
+                         */
+                        break;
                     }
 
-                    if (expectedParamCount != actualParamCount) {
-                        throw new InvalidOperationException($"Function {function.name} expected {expectedParamCount}, but received {actualParamCount}");
+                case OpCode.JumpTo:
+                    {
+                        /// - JumpTo
+                        /** Jumps to a named label
+                         */
+                        state.programCounter = FindInstructionPointForLabel(i.Operands[0].StringValue);
+
+                        break;
                     }
 
-                    Value result;
-                    if (actualParamCount == 0) {
-                        result = function.Invoke();
-                    } else {
-                        // Get the parameters, which were pushed in reverse
-                        Value[] parameters = new Value[actualParamCount];
-                        for (int param = actualParamCount - 1; param >= 0; param--) {
-                            parameters [param] = state.PopValue ();
+                case OpCode.RunLine:
+                    {
+                        /// - RunLine
+                        /** Looks up a string from the string table and
+                         *  passes it to the client as a line
+                         */
+                        string stringKey = i.Operands[0].StringValue;
+
+                        var lineText = Program.GetString(stringKey);
+
+                        if (lineText == null)
+                        {
+                            dialogue.LogErrorMessage($"No loaded string table includes line {stringKey}");
+                            break;
                         }
 
-                        // Invoke the function
-                        result = function.InvokeWithArray (parameters);
+                        var pause = lineHandler(new Line(lineText));
+
+                        if (pause)
+                        {
+                            executionState = ExecutionState.Suspended;
+                        }
+
+                        break;
                     }
 
-                    // If the function returns a value, push it
-                    if (function.returnsValue) {
-                        state.PushValue (result);
+                case OpCode.RunCommand:
+                    {
+                        /// - RunCommand
+                        /** Passes a string to the client as a custom command
+                         */
+                        var pause = commandHandler(
+                            new Command(i.Operands[0].StringValue)
+                        );
+
+                        if (pause)
+                        {
+                            executionState = ExecutionState.Suspended;
+                        }
+
+                        break;
                     }
-                }
 
-                break;
-            case OpCode.PushVariable:
-                /// - PushVariable
-                /** Get the contents of a variable, push that onto the stack.
-                 */
-                var variableName = i.Operands[0].StringValue;
-                var loadedValue = dialogue.continuity.GetValue (variableName);
-                state.PushValue (loadedValue);
+                case OpCode.PushString:
+                    {
+                        /// - PushString
+                        /** Pushes a string value onto the stack. The operand is an index into
+                         *  the string table, so that's looked up first.
+                         */
+                        state.PushValue(Program.GetString(i.Operands[0].StringValue));
 
-                break;
-            case OpCode.StoreVariable:
-                /// - StoreVariable
-                /** Store the top value on the stack in a variable.
-                 */
-                var topValue = state.PeekValue ();
-                var destinationVariableName = i.Operands[0].StringValue;
-                dialogue.continuity.SetValue (destinationVariableName, topValue);
-
-                break;
-            case OpCode.Stop:
-                /// - Stop
-                /** Immediately stop execution, and report that fact.
-                 */
-                nodeCompleteHandler (new Dialogue.NodeCompleteResult (null));
-                executionState = ExecutionState.Stopped;
-
-                break;
-            case OpCode.RunNode:
-                /// - RunNode
-                /** Run a node
-                 */
-                string nodeName;
-
-                if (i.Operands.Count == 0 || string.IsNullOrEmpty(i.Operands[0].StringValue)) {
-                    // Get a string from the stack, and jump to a node with that name.
-                     nodeName = state.PeekValue ().AsString;
-                } else {
-                    // jump straight to the node
-                    nodeName = i.Operands[0].StringValue;
-                }
-
-                nodeCompleteHandler (new Dialogue.NodeCompleteResult (nodeName));
-                SetNode (nodeName);
-
-                break;
-            case OpCode.AddOption:
-                /// - AddOption
-                /** Add an option to the current state.
-                 */
-                state.currentOptions.Add (new KeyValuePair<string, string> (i.Operands[0].StringValue, i.Operands[1].StringValue));
-
-                break;
-            case OpCode.ShowOptions:
-                /// - ShowOptions
-                /** If we have no options to show, immediately stop.
-                 */
-                if (state.currentOptions.Count == 0) {
-                    nodeCompleteHandler(new Dialogue.NodeCompleteResult(null));
-                    executionState = ExecutionState.Stopped;
-                    break;
-                }
-
-                /** If we have a single option, and it has no label, select it immediately and continue execution
-                 */
-                if (state.currentOptions.Count == 1 && state.currentOptions[0].Key == null) {
-                    var destinationNode = state.currentOptions[0].Value;
-                    state.PushValue(destinationNode);
-                    state.currentOptions.Clear();
-                    break;
-                }
-
-                if (dialogue.continuity.GetValue(SpecialVariables.ShuffleOptions).AsBool) {
-                    // Shuffle the dialog options if needed
-                    var n = state.currentOptions.Count;
-                    for (int opt1 = 0; opt1 < n; opt1++) {
-                        int opt2 = opt1 + (int)(random.NextDouble () * (n - opt1)); // r.Next(0, state.currentOptions.Count-1);
-                        var temp = state.currentOptions [opt2];
-                        state.currentOptions [opt2] = state.currentOptions [opt1];
-                        state.currentOptions [opt1] = temp;
+                        break;
                     }
-                }
 
-                // Otherwise, present the list of options to the user and let them pick
-                var optionStrings = new List<string> ();
+                case OpCode.PushNumber:
+                    {
+                        /// - PushNumber
+                        /** Pushes a number onto the stack.
+                         */
+                        state.PushValue(i.Operands[0].NumberValue);
 
-                foreach (var option in state.currentOptions) {
-                    optionStrings.Add (program.GetString (option.Key));
-                }
+                        break;
+                    }
 
-                // We can't continue until our client tell us which option to pick
-                executionState = ExecutionState.WaitingOnOptionSelection;
+                case OpCode.PushBool:
+                    {
+                        /// - PushBool
+                        /** Pushes a boolean value onto the stack.
+                         */
+                        state.PushValue(i.Operands[0].BoolValue);
 
-                // Pass the options set to the client, as well as a delegate for them to call when the
-                // user has made a selection
-                optionsHandler (new Dialogue.OptionSetResult (optionStrings, delegate (int selectedOption) {
+                        break;
+                    }
 
-                    // we now know what number option was selected; push the corresponding node name
-                    // to the stack
-                    var destinationNode = state.currentOptions[selectedOption].Value;
-                    state.PushValue(destinationNode);
+                case OpCode.PushNull:
+                    {
+                        /// - PushNull
+                        /** Pushes a null value onto the stack.
+                         */
+                        state.PushValue(Value.NULL);
 
-                    // We no longer need the accumulated list of options; clear it so that it's
-                    // ready for the next one
-                    state.currentOptions.Clear();
+                        break;
+                    }
 
-                    // We can now also keep running
-                    executionState = ExecutionState.Running;
+                case OpCode.JumpIfFalse:
+                    {
+                        /// - JumpIfFalse
+                        /** Jumps to a named label if the value on the top of the stack
+                         *  evaluates to the boolean value 'false'.
+                         */
+                        if (state.PeekValue().AsBool == false)
+                        {
+                            state.programCounter = FindInstructionPointForLabel(i.Operands[0].StringValue);
+                        }
+                        break;
+                    }
 
-                }));
+                case OpCode.Jump:
+                    {/// - Jump
+                        /** Jumps to a label whose name is on the stack.
+                         */
+                        var jumpDestination = state.PeekValue().AsString;
+                        state.programCounter = FindInstructionPointForLabel(jumpDestination);
 
-                break;
-            default:
-                /// - default
-                /** Whoa, no idea what OpCode this is. Stop the program
-                 * and throw an exception.
-                */
-                executionState = ExecutionState.Stopped;
-                throw new ArgumentOutOfRangeException ();
+                        break;
+                    }
+
+                case OpCode.Pop:
+                    {
+                        /// - Pop
+                        /** Pops a value from the stack.
+                         */
+                        state.PopValue();
+                        break;
+                    }
+
+                case OpCode.CallFunc:
+                    {
+                        /// - CallFunc
+                        /** Call a function, whose parameters are expected to
+                         *  be on the stack. Pushes the function's return value,
+                         *  if it returns one.
+                         */
+                        var functionName = i.Operands[0].StringValue;
+
+                        var function = dialogue.library.GetFunction(functionName);
+                        {
+
+                            var expectedParamCount = function.paramCount;
+
+                            // Expect the compiler to have placed the number of parameters
+                            // actually passed at the top of the stack.
+                            var actualParamCount = (int)state.PopValue().AsNumber;
+
+                            // If a function indicates -1 parameters, it takes as
+                            // many parameters as it was given (i.e. it's a
+                            // variadic function)
+                            if (expectedParamCount == -1)
+                            {
+                                expectedParamCount = actualParamCount;
+                            }
+
+                            if (expectedParamCount != actualParamCount)
+                            {
+                                throw new InvalidOperationException($"Function {function.name} expected {expectedParamCount}, but received {actualParamCount}");
+                            }
+
+                            Value result;
+                            if (actualParamCount == 0)
+                            {
+                                result = function.Invoke();
+                            }
+                            else
+                            {
+                                // Get the parameters, which were pushed in reverse
+                                Value[] parameters = new Value[actualParamCount];
+                                for (int param = actualParamCount - 1; param >= 0; param--)
+                                {
+                                    parameters[param] = state.PopValue();
+                                }
+
+                                // Invoke the function
+                                result = function.InvokeWithArray(parameters);
+                            }
+
+                            // If the function returns a value, push it
+                            if (function.returnsValue)
+                            {
+                                state.PushValue(result);
+                            }
+                        }
+
+                        break;
+                    }
+
+                case OpCode.PushVariable:
+                    {
+                        /// - PushVariable
+                        /** Get the contents of a variable, push that onto the stack.
+                         */
+                        var variableName = i.Operands[0].StringValue;
+                        var loadedValue = dialogue.continuity.GetValue(variableName);
+                        state.PushValue(loadedValue);
+
+                        break;
+                    }
+
+                case OpCode.StoreVariable:
+                    {
+                        /// - StoreVariable
+                        /** Store the top value on the stack in a variable.
+                         */
+                        var topValue = state.PeekValue();
+                        var destinationVariableName = i.Operands[0].StringValue;
+                        dialogue.continuity.SetValue(destinationVariableName, topValue);
+
+                        break;
+                    }
+
+                case OpCode.Stop:
+                    {
+                        /// - Stop
+                        /** Immediately stop execution, and report that fact.
+                         */
+                        dialogueCompleteHandler();
+                        executionState = ExecutionState.Stopped;
+
+                        break;
+                    }
+
+                case OpCode.RunNode:
+                    {
+                        /// - RunNode
+                        /** Run a node
+                         */
+                        string nodeName;
+
+                        if (i.Operands.Count == 0 || string.IsNullOrEmpty(i.Operands[0].StringValue))
+                        {
+                            // Get a string from the stack, and jump to a node with that name.
+                            nodeName = state.PeekValue().AsString;
+                        }
+                        else
+                        {
+                            // jump straight to the node
+                            nodeName = i.Operands[0].StringValue;
+                        }
+
+                        nodeCompleteHandler(currentNode.Name);
+                        SetNode(nodeName);
+
+                        break;
+                    }
+
+                case OpCode.AddOption:
+                    {
+                        /// - AddOption
+                        /** Add an option to the current state.
+                         */
+                        state.currentOptions.Add(
+                            new KeyValuePair<string, string>(
+                                i.Operands[0].StringValue, // node name
+                                i.Operands[1].StringValue  // display string key
+                            )
+                        );
+
+                        break;
+                    }
+
+                case OpCode.ShowOptions:
+                    {
+                        /// - ShowOptions
+                        /** If we have no options to show, immediately stop.
+                         */
+                        if (state.currentOptions.Count == 0)
+                        {
+                            executionState = ExecutionState.Stopped;
+                            dialogueCompleteHandler();
+                            break;
+                        }
+
+                        // Present the list of options to the user and let them pick
+                        var optionChoices = new List<OptionSet.Option>();
+
+                        for (int optionIndex = 0; optionIndex < state.currentOptions.Count; optionIndex++)
+                        {
+                            var option = state.currentOptions[optionIndex];
+                            var line = new Line(Program.GetString(option.Key));
+                            optionChoices.Add(new OptionSet.Option(line, optionIndex));
+                        }
+
+                        // We can't continue until our client tell us which option to pick
+                        executionState = ExecutionState.WaitingOnOptionSelection;
+
+                        // Pass the options set to the client, as well as a delegate for them to call when the
+                        // user has made a selection
+
+                        optionsHandler(new OptionSet(optionChoices.ToArray()));
+
+                        break;
+                    }
+
+                default:
+                    {
+                        /// - default
+                        /** Whoa, no idea what OpCode this is. Stop the program
+                         * and throw an exception.
+                        */
+                        executionState = ExecutionState.Stopped;
+                        throw new ArgumentOutOfRangeException(
+                            $"Unknown opcode {i.Opcode}"
+                        );
+                    }
             }
         }
 

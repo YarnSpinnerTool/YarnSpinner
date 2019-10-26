@@ -19,17 +19,6 @@ namespace Yarn.Compiler
     public class Compiler : YarnSpinnerParserBaseListener
     {
 
-        
-
-        internal struct CompileFlags
-        {
-            // should we emit code that turns (VAR_SHUFFLE_OPTIONS) off
-            // after the next RunOptions OpCode?
-            public bool DisableShuffleOptionsAfterNextSet;
-        }
-
-        internal CompileFlags flags;
-
         private int labelCount = 0;
 
         internal Program program { get; private set; }
@@ -404,14 +393,9 @@ namespace Yarn.Compiler
                     // Otherwise, show the accumulated nodes and then jump to the selected node
                     Emit(currentNode, OpCode.ShowOptions);
 
-                    if (flags.DisableShuffleOptionsAfterNextSet == true)
-                    {
-                        Emit(currentNode, OpCode.PushBool, new Operand(false));
-                        Emit(currentNode, OpCode.StoreVariable, new Operand(VirtualMachine.SpecialVariables.ShuffleOptions));
-                        Emit(currentNode, OpCode.Pop);
-                        flags.DisableShuffleOptionsAfterNextSet = false;
-                    }
-
+                    // Showing options will make the execution stop; the
+                    // user will have invoked code that pushes the name of
+                    // a node onto the stack, which RunNode handles
                     Emit(currentNode, OpCode.RunNode);
                 }
             }
@@ -529,14 +513,10 @@ namespace Yarn.Compiler
             switch (action)
             {
                 case "stop":
+                    // "stop" is a special command that immediately stops
+                    // execution
                     compiler.Emit(OpCode.Stop);
-                    break;
-                case "shuffleNextOptions":
-                    compiler.Emit(OpCode.PushBool, new Operand(true));
-                    compiler.Emit(OpCode.StoreVariable, new Operand(VirtualMachine.SpecialVariables.ShuffleOptions));
-                    compiler.Emit(OpCode.Pop);
-                    compiler.flags.DisableShuffleOptionsAfterNextSet = true;
-                    break;
+                    break;                
                 default:
                     compiler.Emit(OpCode.RunCommand, new Operand(action));
                     break;
@@ -687,16 +667,7 @@ namespace Yarn.Compiler
             }
 
             compiler.Emit(OpCode.ShowOptions);
-
-            // TODO: investigate a cleaner way because this is odd...
-            if (compiler.flags.DisableShuffleOptionsAfterNextSet == true)
-            {
-                compiler.Emit(OpCode.PushBool, new Operand(false));
-                compiler.Emit(OpCode.StoreVariable, new Operand(VirtualMachine.SpecialVariables.ShuffleOptions));
-                compiler.Emit(OpCode.Pop);
-                compiler.flags.DisableShuffleOptionsAfterNextSet = false;
-            }
-
+            
             compiler.Emit(OpCode.Jump);
 
             optionCount = 0;

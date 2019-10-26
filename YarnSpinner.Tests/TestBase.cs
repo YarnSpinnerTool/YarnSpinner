@@ -109,36 +109,26 @@ namespace YarnSpinner.Tests
                 nextExpectedCommand = parameters[0].AsString;
             });
 
-            nextExpectedOptionCount = -1;
-            nextOptionToSelect = -1;
-        }
-
-
-        protected void RunStandardTestcase(string nodeName = "Start") {
-            foreach (var result in dialogue.Run(nodeName)) {
-                HandleResult (result);
-            }
-        }
-
-        protected void HandleResult(Yarn.Dialogue.RunnerResult result) {
-
-            if (result is Yarn.Dialogue.LineResult) {
-                var text = (result as Yarn.Dialogue.LineResult).line.text;
+            dialogue.lineHandler = delegate (Line line) {
+                var text = line.Text;
 
                 Console.WriteLine("Line: " + text);
 
-                if (isExpectingLine) {
+                if (IsExpectingLine) {
                     Assert.Equal (text, nextExpectedLine);
                 }
 
-            } else if (result is Yarn.Dialogue.OptionSetResult) {
-                var options = (result as Yarn.Dialogue.OptionSetResult).options.options;
-                var optionCount = options.Count;
-                var resultDelegate = (result as Yarn.Dialogue.OptionSetResult).setSelectedOptionDelegate;
+                nextExpectedLine = null;
+            
+                return false;
+            };
+
+            dialogue.optionsHandler = delegate (OptionSet optionSet) {
+                var optionCount = optionSet.Options.Length;
 
                 Console.WriteLine("Options:");
-                foreach (var option in options) {
-                    Console.WriteLine(" - " + option);
+                foreach (var option in optionSet.Options) {
+                    Console.WriteLine(" - " + option.Line);
                 }
 
                 if (nextExpectedOptionCount != -1) {
@@ -146,33 +136,47 @@ namespace YarnSpinner.Tests
                 }
 
                 if (nextOptionToSelect != -1) {
-                    resultDelegate (nextOptionToSelect);
+                    dialogue.SetSelectedOption(nextOptionToSelect);                    
                 } else {
-                    resultDelegate(0);
+                    dialogue.SetSelectedOption(0);                    
                 }
-            } else if (result is Yarn.Dialogue.CommandResult) {
-                var commandText = (result as Yarn.Dialogue.CommandResult).command.text;
 
-                Console.WriteLine("Command: " + commandText);
+                nextExpectedOptionCount = -1;
+                nextOptionToSelect = -1;
+            };
+
+            dialogue.commandHandler = delegate (Command command) {
+                Console.WriteLine("Command: " + command.Text);
 
                 if (nextExpectedCommand != null) {
-                    Assert.Equal (nextExpectedCommand, commandText);
+                    Assert.Equal (nextExpectedCommand, command.Text);
                 }
-            }
 
-            // Reset all 'expected' stuff
-            nextExpectedLine = null;
-            nextExpectedCommand = null;
-            nextExpectedOptionCount = -1;
-            nextOptionToSelect = -1;
+                return false;
+            };
 
+            dialogue.nodeCompleteHandler = (string nodeName) => false;
+
+            dialogue.dialogueCompleteHandler = () => {};
+
+        }
+
+
+        protected void RunStandardTestcase(string nodeName = "Start") {
+
+            dialogue.SetNode(nodeName);
+
+            do {
+                dialogue.Continue();
+            } while (dialogue.IsActive);
+            
         }
 
         protected void ExpectLine(string line) {
             nextExpectedLine = line;
         }
 
-        protected bool isExpectingLine {
+        protected bool IsExpectingLine {
             get {
                 return nextExpectedLine != null;
             }
