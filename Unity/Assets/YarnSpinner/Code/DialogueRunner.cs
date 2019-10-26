@@ -29,6 +29,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using CsvHelper;
+using System;
 
 namespace Yarn.Unity
 {
@@ -45,15 +46,7 @@ namespace Yarn.Unity
     public class DialogueRunner : MonoBehaviour
     {
         /// The source files to load the conversation from
-        public TextAsset[] sourceText;
-
-        /// The group of source files to be used for this language
-        public LocalisedStringGroup[] stringGroups;
-
-        /// Language debugging options
-        public bool shouldOverrideLanguage = false;
-
-        public SystemLanguage overrideLanguage = SystemLanguage.English;
+        public YarnProgram[] yarnScripts;
 
         /// Our variable storage
         public Yarn.Unity.VariableStorageBehaviour variableStorage;
@@ -72,6 +65,12 @@ namespace Yarn.Unity
 
         public bool automaticCommands = true;
 
+        private System.Action _continue;
+
+        private System.Action<int> _selectAction;
+
+        private HashSet<string> _visitedNodes = new HashSet<string>();
+        
         /// Our conversation engine
         /** Automatically created on first access
          */
@@ -89,9 +88,67 @@ namespace Yarn.Unity
                     _dialogue.LogErrorMessage = delegate (string message) {
                         Debug.LogError (message);
                     };
+
+                    _dialogue.library.RegisterFunction("visited", 1, delegate(Yarn.Value[] parameters) {
+                        var nodeName = parameters[0];
+                        return _visitedNodes.Contains(nodeName.AsString);
+                    });
+
+                    _dialogue.lineHandler = HandleLine;
+                    _dialogue.commandHandler = HandleCommand;
+                    _dialogue.optionsHandler = HandleOptions;
+                    _dialogue.nodeCompleteHandler = HandleNodeComplete;
+                    _dialogue.dialogueCompleteHandler = HandleDialogueComplete;
+                    
                 }
                 return _dialogue;
             }
+        }
+
+        private void HandleDialogueComplete()
+        {
+            isDialogueRunning = false;
+            this.dialogueUI.DialogueComplete();
+        }
+
+        private Dialogue.HandlerExecutionType HandleNodeComplete(string completedNodeName)
+        {
+            Debug.Log("Node complete: " + completedNodeName);
+            _visitedNodes.Add(completedNodeName);
+            return this.dialogueUI.NodeComplete(completedNodeName, _continue);            
+        }
+
+        private void HandleOptions(OptionSet options)
+        {
+            this.dialogueUI.RunOptions(options, _selectAction);
+        }
+
+        private Dialogue.HandlerExecutionType HandleCommand(Command command)
+        {
+            (bool wasValidCommand, bool wasCoroutine) = DispatchCommand(command.Text);
+            
+            if (wasValidCommand) {
+                if (wasCoroutine) {
+                    // We're currently waiting for the coroutine to
+                    // complete, which will take at least one frame to do.
+                    return Dialogue.HandlerExecutionType.PauseExecution;
+                } else {
+                    // The command was not a coroutine, and invoked
+                    // immediately. We therefore don't need to wait.
+                    return Dialogue.HandlerExecutionType.ContinueExecution;
+                }
+            } else {
+                // We didn't find a method in our C# code to invoke. Pass
+                // it to the UI to handle.
+                return this.dialogueUI.RunCommand(command, _continue);            
+            }
+
+            
+        }
+
+        private Dialogue.HandlerExecutionType HandleLine(Line line)
+        {
+            return this.dialogueUI.RunLine (line, _continue);            
         }
 
         /// Start the dialogue
@@ -112,74 +169,39 @@ namespace Yarn.Unity
             // Ensure that the variable storage has the right stuff in it
             variableStorage.ResetToDefaults ();
 
-            // Load all scripts
-            if (sourceText != null) {
-                foreach (var source in sourceText) {
-                    // load and compile the text
-                    dialogue.LoadString (source.text, source.name);
+            // Combine all scripts together and load them
+            if (yarnScripts != null && yarnScripts.Length > 0) {
+                
+                var compiledPrograms = new List<Program>();
+
+                foreach (var program in yarnScripts) {
+                    compiledPrograms.Add(program.GetProgram());
                 }
+
+                var combinedProgram = Program.Combine(compiledPrograms.ToArray());
+                
+                dialogue.SetProgram(combinedProgram);
             }
+
+            _continue = this.ContinueDialogue;
+
+            _selectAction = this.SelectedOption;
 
             if (startAutomatically) {
                 StartDialogue();
             }
-
-            if (stringGroups != null) {
-                // Load the string table for this language, if appropriate
-                var stringsGroup = new List<LocalisedStringGroup>(stringGroups).Find(
-                    entry => entry.language == (shouldOverrideLanguage ? overrideLanguage : Application.systemLanguage)
-                );
-
-                if (stringsGroup != null) {
-                    foreach (var table in stringsGroup.stringFiles) {
-                        this.AddStringTable(table.text);
-                    }
-                }
-            }
-
+            
         }
 
-        /// Add a string of text to a script
-        public void AddScript(string text) {
-            dialogue.LoadString(text);
+        internal void AddProgram(YarnProgram scriptToLoad)
+        {
+            this.dialogue.AddProgram(scriptToLoad.GetProgram());
         }
 
-        /// Add a TextAsset to a script
-        public void AddScript(TextAsset asset) {
-            dialogue.LoadString(asset.text);
-        }
-
-        /// Loads a string table, replacing any existing strings with the same
-        /// key.
-        public void AddStringTable(Dictionary<string,string> stringTable) {
-            dialogue.AddStringTable(stringTable);
-        }
-
-        /// Add a string of text to a table
-        public void AddStringTable(string text) {
-
-            // Create the dictionary that will contain these values
-            var stringTable = new Dictionary<string,string>();
-
-            using (var reader = new System.IO.StringReader(text)) {
-                using (var csv = new CsvHelper.CsvReader(reader)) {
-
-                    var records = csv.GetRecords<Yarn.LocalisedLine>();
-
-                    foreach (var record in records) {
-                        stringTable[record.LineCode] = record.LineText;
-                    }
-
-                }
-            }
-
-            AddStringTable(stringTable);
-
-        }
-
-        /// Add a TextAsset to a table
-        public void AddStringTable(TextAsset text) {
-            AddStringTable(text.text);
+        private void SelectedOption(int obj)
+        {
+            this.dialogue.SetSelectedOption(obj);
+            ContinueDialogue();
         }
 
         /// Destroy the variable store and start again
@@ -199,69 +221,41 @@ namespace Yarn.Unity
         {
 
             // Stop any processes that might be running already
-            StopAllCoroutines ();
             dialogueUI.StopAllCoroutines ();
 
             // Get it going
-            StartCoroutine (RunDialogue (startNode));
+            RunDialogue (startNode);
         }
 
-        IEnumerator RunDialogue (string startNode = "Start")
+        private void ContinueDialogue()
         {
-            // Mark that we're in conversation.
-            isDialogueRunning = true;
-
-            // Signal that we're starting up.
-            yield return StartCoroutine(this.dialogueUI.DialogueStarted());
-
-            // Get lines, options and commands from the Dialogue object,
-            // one at a time.
-            foreach (Yarn.Dialogue.RunnerResult step in dialogue.Run(startNode)) {
-
-                if (step is Yarn.Dialogue.LineResult) {
-
-                    // Wait for line to finish displaying
-                    var lineResult = step as Yarn.Dialogue.LineResult;
-                    yield return StartCoroutine (this.dialogueUI.RunLine (lineResult.line));
-
-                } else if (step is Yarn.Dialogue.OptionSetResult) {
-
-                    // Wait for user to finish picking an option
-                    var optionSetResult = step as Yarn.Dialogue.OptionSetResult;
-                    yield return StartCoroutine (
-                        this.dialogueUI.RunOptions (
-                        optionSetResult.options,
-                        optionSetResult.setSelectedOptionDelegate
-                    ));
-
-                } else if (step is Yarn.Dialogue.CommandResult) {
-
-                    // Wait for command to finish running
-
-                    var commandResult = step as Yarn.Dialogue.CommandResult;
-
-                    bool hasValidCommand = false;
-                    yield return DispatchCommand(commandResult.command.text, (status) => { hasValidCommand = status; });
-                    if (!hasValidCommand)
-                    {
-                        yield return StartCoroutine(this.dialogueUI.RunCommand(commandResult.command));
-                    }
-
-                } else if(step is Yarn.Dialogue.NodeCompleteResult) {
-
-                    // Wait for post-node action
-                    var nodeResult = step as Yarn.Dialogue.NodeCompleteResult;
-                    yield return StartCoroutine (this.dialogueUI.NodeComplete (nodeResult.nextNode));
-                }
-            }
+            
+            this.dialogue.Continue();
 
             // No more results! The dialogue is done.
-            yield return StartCoroutine (this.dialogueUI.DialogueComplete ());
+            //yield return StartCoroutine (this.dialogueUI.DialogueComplete ());
 
             // Clear the 'is running' flag. We do this after DialogueComplete returns,
             // to allow time for any animations that might run while transitioning
             // out of a conversation (ie letterboxing going away, etc)
-            isDialogueRunning = false;
+            
+        }
+
+        void RunDialogue (string startNode = "Start")
+        {
+            // TODO: Provide handlers, start executing
+
+            // Mark that we're in conversation.
+            isDialogueRunning = true;
+
+            // Signal that we're starting up.
+            this.dialogueUI.DialogueStarted();
+
+            this.dialogue.SetNode(startNode);
+
+            ContinueDialogue();
+            
+            
         }
 
         /// Clear the dialogue system
@@ -300,7 +294,7 @@ namespace Yarn.Unity
          * 2. the second word is the name of an object
          * 3. that object has components that have methods with the YarnCommand attribute that have the correct commandString set
          */
-        public IEnumerator DispatchCommand(string command, System.Action<bool> hasValidCommand) {
+        public (bool methodFound, bool isCoroutine) DispatchCommand(string command) {
 
             var words = command.Split(' ');
 
@@ -308,8 +302,7 @@ namespace Yarn.Unity
             // and the name of an object to find
             if (words.Length < 2)
             {
-                hasValidCommand(false);
-                yield break;
+                return (false, false);                
             }
 
             var commandName = words[0];
@@ -321,8 +314,7 @@ namespace Yarn.Unity
             // If we can't find an object, we can't dispatch a command
             if (sceneObject == null)
             {
-                hasValidCommand(false);
-                yield break;
+                return (false, false);                
             }
 
             int numberOfMethodsFound = 0;
@@ -336,6 +328,8 @@ namespace Yarn.Unity
             } else {
                 parameters = new List<string>();
             }
+
+            var startedCoroutine = false;
 
             // Find every MonoBehaviour (or subclass) on the object
             foreach (var component in sceneObject.GetComponents<MonoBehaviour>()) {
@@ -363,11 +357,13 @@ namespace Yarn.Unity
                                     paramWrapper[0] = parameters.ToArray();
                                     if (method.ReturnType == typeof(IEnumerator))
                                     {
-                                        yield return StartCoroutine((IEnumerator)method.Invoke(component, paramWrapper));
+                                        StartCoroutine(DoYarnCommand(component, method, paramWrapper)); 
+                                        startedCoroutine = true;
                                     }
                                     else
                                     {
-                                        method.Invoke(component, paramWrapper);
+                                        method.Invoke(component, paramWrapper);                                        
+
                                     }
                                     numberOfMethodsFound++;
                                     paramsMatch = true;
@@ -392,7 +388,8 @@ namespace Yarn.Unity
                                     // Yield if this is a Coroutine
                                     if (method.ReturnType == typeof(IEnumerator))
                                     {
-                                        yield return StartCoroutine((IEnumerator)method.Invoke(component, parameters.ToArray()));
+                                        StartCoroutine(DoYarnCommand(component, method, parameters.ToArray()));
+                                        startedCoroutine = true;
                                     }
                                     else
                                     {
@@ -424,10 +421,30 @@ namespace Yarn.Unity
                 }
             }
 
-            hasValidCommand(numberOfMethodsFound > 0);
+            var wasValidCommand = numberOfMethodsFound > 0;
+
+            return (wasValidCommand, startedCoroutine);
         }
 
+        IEnumerator DoYarnCommand(MonoBehaviour component, System.Reflection.MethodInfo method, string[][] parameters) {
+            // Wait for this command coroutine to complete
+            yield return StartCoroutine((IEnumerator)method.Invoke(component, parameters));
+
+            // And then continue running dialogue
+            ContinueDialogue();
+        }
+
+        IEnumerator DoYarnCommand(MonoBehaviour component, System.Reflection.MethodInfo method, string[] parameters) {
+            // Wait for this command coroutine to complete
+            yield return StartCoroutine((IEnumerator)method.Invoke(component, parameters));
+
+            // And then continue running dialogue
+            ContinueDialogue();
+        }
+        
     }
+
+    
 
     /// Apply this attribute to methods in your scripts to expose
     /// them to Yarn.
@@ -451,31 +468,30 @@ namespace Yarn.Unity
     public abstract class DialogueUIBehaviour : MonoBehaviour
     {
         /// A conversation has started.
-        public virtual IEnumerator DialogueStarted() {
-            // Default implementation does nothing.
-            yield break;
+        public virtual void DialogueStarted() {
+            // Default implementation does nothing.            
         }
 
         /// Display a line.
-        public abstract IEnumerator RunLine (Yarn.Line line);
+        public abstract Dialogue.HandlerExecutionType RunLine (Yarn.Line line, System.Action onLineComplete);
 
         /// Display the options, and call the optionChooser when done.
-        public abstract IEnumerator RunOptions (Yarn.Options optionsCollection,
-                                                Yarn.OptionChooser optionChooser);
+        public abstract void RunOptions (Yarn.OptionSet optionSet,
+                                                System.Action<int> onOptionSelected);
 
         /// Perform some game-specific command.
-        public abstract IEnumerator RunCommand (Yarn.Command command);
+        public abstract Dialogue.HandlerExecutionType RunCommand (Yarn.Command command, System.Action onCommandComplete);
 
         /// The node has ended.
-        public virtual IEnumerator NodeComplete(string nextNode) {
-            // Default implementation does nothing.
-            yield break;
+        public virtual Dialogue.HandlerExecutionType NodeComplete(string nextNode, System.Action onComplete) {
+            // Default implementation does nothing.  
+
+            return Dialogue.HandlerExecutionType.ContinueExecution;             
         }
 
         /// The conversation has ended.
-        public virtual IEnumerator DialogueComplete () {
-            // Default implementation does nothing.
-            yield break;
+        public virtual void DialogueComplete () {
+            // Default implementation does nothing.            
         }
     }
 

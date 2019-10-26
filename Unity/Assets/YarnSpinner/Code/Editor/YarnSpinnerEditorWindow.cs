@@ -381,7 +381,8 @@ namespace Yarn.Unity {
             // Attempt to compile this script. Any exceptions will result
             // in an error message
             try {
-                dialog.LoadString(script.text,script.name);
+                // TODO: update for Yarn 1.0
+                //dialog.LoadString(script.text,script.name);
             } catch (System.Exception e) {
                 dialog.LogErrorMessage(e.Message);
             }

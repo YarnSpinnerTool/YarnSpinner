@@ -21,7 +21,7 @@ namespace YarnSpinner.Tests
 
             var program = Compiler.CompileFile(path);
 
-            dialogue.LoadProgram (program);
+            dialogue.SetProgram (program);
 
             Assert.True (dialogue.NodeExists ("Sally"));
 
@@ -48,7 +48,7 @@ namespace YarnSpinner.Tests
 
             var program = Compiler.CompileFile(Path.Combine(TestDataPath, "AnalysisTest.yarn.txt"));
 
-            dialogue.LoadProgram(program);
+            dialogue.SetProgram(program);
             dialogue.Analyse (context);
             diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
 
@@ -63,7 +63,7 @@ namespace YarnSpinner.Tests
 
             var combinedProgram = Program.Combine(shipProgram, sallyProgram);
 
-            dialogue.LoadProgram (combinedProgram);
+            dialogue.SetProgram (combinedProgram);
             
             dialogue.Analyse (context);
             diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
@@ -80,7 +80,7 @@ namespace YarnSpinner.Tests
 
             var program = Compiler.CompileFile(path);
 
-            dialogue.LoadProgram (program);
+            dialogue.SetProgram (program);
 
             var byteCode = dialogue.GetByteCode ();
             Assert.NotNull (byteCode);
@@ -94,7 +94,7 @@ namespace YarnSpinner.Tests
 
             var program = Compiler.CompileFile(path);
 
-            dialogue.LoadProgram (program);
+            dialogue.SetProgram (program);
 
             errorsCauseFailures = false;
 
@@ -107,7 +107,7 @@ namespace YarnSpinner.Tests
 
             var program = Compiler.CompileFile(Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt"));
 
-            dialogue.LoadProgram (program);
+            dialogue.SetProgram (program);
 
             // dialogue should not be running yet
             Assert.Null (dialogue.currentNode);
@@ -126,7 +126,7 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "Example.yarn.txt");
 
             Program program = Compiler.CompileFile(path);
-            dialogue.LoadProgram (program);
+            dialogue.SetProgram (program);
 
             var source = dialogue.GetTextForNode ("LearnMore");
 
@@ -138,7 +138,7 @@ namespace YarnSpinner.Tests
 		public void TestGettingTags() {
 
             var path = Path.Combine(TestDataPath, "Example.yarn.txt");
-			dialogue.LoadProgram (Compiler.CompileFile(path));
+			dialogue.SetProgram (Compiler.CompileFile(path));
 
 			var source = dialogue.GetTagsForNode ("LearnMore");
 

@@ -35,7 +35,7 @@ namespace YarnSpinner.Tests
 
             errorsCauseFailures = false;
             var path = Path.Combine(TestDataPath, "Example.yarn.txt");
-            dialogue.LoadProgram(Compiler.CompileFile(path));
+            dialogue.SetProgram(Compiler.CompileFile(path));
             RunStandardTestcase();
         }
 
@@ -63,7 +63,7 @@ namespace YarnSpinner.Tests
         public void TestEndOfNotesWithOptionsNotAdded()
         {
             var path = Path.Combine(TestDataPath, "SkippedOptions.yarn.txt");
-            dialogue.LoadProgram(Compiler.CompileFile(path));
+            dialogue.SetProgram(Compiler.CompileFile(path));
 
             dialogue.optionsHandler = delegate (OptionSet optionSets) {
                 Assert.False(true, "Options should not be shown to the user in this test.");
@@ -93,7 +93,7 @@ namespace YarnSpinner.Tests
             if (runTest)
             {
                 var program = Compiler.CompileFile(scriptFilePath);
-                dialogue.LoadProgram(program);
+                dialogue.SetProgram(program);
 
                 // If this file contains a Start node, run the test case
                 // (otherwise, we're just testing its parsability, which

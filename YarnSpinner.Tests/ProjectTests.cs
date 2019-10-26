@@ -23,7 +23,7 @@ namespace YarnSpinner.Tests
 
             // high-level test: load the file, verify it has the nodes we want,
             // and run one
-            dialogue.LoadProgram(program);
+            dialogue.SetProgram(program);
 
             Assert.Equal(3, dialogue.allNodes.Count());
 

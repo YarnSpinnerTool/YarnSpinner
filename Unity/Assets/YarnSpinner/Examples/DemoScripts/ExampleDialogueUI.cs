@@ -54,11 +54,6 @@ namespace Yarn.Unity.Example {
         /// A UI element that appears after lines have finished appearing
         public GameObject continuePrompt;
 
-        /// A delegate (ie a function-stored-in-a-variable) that
-        /// we call to tell the dialogue system about what option
-        /// the user selected
-        private Yarn.OptionChooser SetSelectedOption;
-
         /// How quickly to show the text, in seconds per character
         [Tooltip("How quickly to show the text, in seconds per character")]
         public float textSpeed = 0.025f;
@@ -88,8 +83,13 @@ namespace Yarn.Unity.Example {
         }
 
         /// Show a line of dialogue, gradually
-        public override IEnumerator RunLine (Yarn.Line line)
+        public override Dialogue.HandlerExecutionType RunLine (Yarn.Line line, System.Action onComplete)
         {
+            StartCoroutine(DoRunLine(line, onComplete));
+            return Dialogue.HandlerExecutionType.PauseExecution;
+        }
+
+        public IEnumerator DoRunLine(Yarn.Line line, System.Action onComplete) {
             // Show the text
             lineText.gameObject.SetActive (true);
 
@@ -97,14 +97,14 @@ namespace Yarn.Unity.Example {
                 // Display the line one character at a time
                 var stringBuilder = new StringBuilder ();
 
-                foreach (char c in line.text) {
+                foreach (char c in line.Text) {
                     stringBuilder.Append (c);
                     lineText.text = stringBuilder.ToString ();
                     yield return new WaitForSeconds (textSpeed);
                 }
             } else {
                 // Display the line immediately if textSpeed == 0
-                lineText.text = line.text;
+                lineText.text = line.Text;
             }
 
             // Show the 'press any key' prompt when done, if we have one
@@ -124,32 +124,47 @@ namespace Yarn.Unity.Example {
 
             if (continuePrompt != null)
                 continuePrompt.SetActive (false);
+            
+            onComplete();
 
         }
 
+        public override void RunOptions (Yarn.OptionSet optionsCollection, System.Action<int> selectOption) {
+            StartCoroutine(DoRunOptions(optionsCollection, selectOption));
+        }
+
+        bool waitingForOptionSelection = false;
+
         /// Show a list of options, and wait for the player to make a selection.
-        public override IEnumerator RunOptions (Yarn.Options optionsCollection, 
-                                                Yarn.OptionChooser optionChooser)
+        public  IEnumerator DoRunOptions (Yarn.OptionSet optionsCollection, System.Action<int> selectOption)
         {
             // Do a little bit of safety checking
-            if (optionsCollection.options.Count > optionButtons.Count) {
+            if (optionsCollection.Options.Length > optionButtons.Count) {
                 Debug.LogWarning("There are more options to present than there are" +
                                  "buttons to present them in. This will cause problems.");
             }
 
             // Display each option in a button, and make it visible
             int i = 0;
-            foreach (var optionString in optionsCollection.options) {
+
+            waitingForOptionSelection = true;
+            
+            foreach (var optionString in optionsCollection.Options) {
                 optionButtons [i].gameObject.SetActive (true);
-                optionButtons [i].GetComponentInChildren<Text> ().text = optionString;
+
+                // When the button is selected, tell the dialogue about it
+                optionButtons [i].onClick.RemoveAllListeners();
+                optionButtons [i].onClick.AddListener(() => {
+                    waitingForOptionSelection = false;
+                    selectOption(optionString.ID);
+                });
+
+                optionButtons [i].GetComponentInChildren<Text> ().text = optionString.Line.Text;
                 i++;
             }
 
-            // Record that we're using it
-            SetSelectedOption = optionChooser;
-
             // Wait until the chooser has been used and then removed (see SetOption below)
-            while (SetSelectedOption != null) {
+            while (waitingForOptionSelection) {
                 yield return null;
             }
 
@@ -159,29 +174,23 @@ namespace Yarn.Unity.Example {
             }
         }
 
-        /// Called by buttons to make a selection.
-        public void SetOption (int selectedOption)
-        {
+        /// Run an internal command.
 
-            // Call the delegate to tell the dialogue system that we've
-            // selected an option.
-            SetSelectedOption (selectedOption);
-
-            // Now remove the delegate so that the loop in RunOptions will exit
-            SetSelectedOption = null; 
+        public override Dialogue.HandlerExecutionType RunCommand (Yarn.Command command, System.Action onComplete) {
+            StartCoroutine(DoRunCommand(command, onComplete));
+            return Dialogue.HandlerExecutionType.ContinueExecution;
         }
 
-        /// Run an internal command.
-        public override IEnumerator RunCommand (Yarn.Command command)
+        public IEnumerator DoRunCommand (Yarn.Command command, System.Action onComplete)
         {
             // "Perform" the command
-            Debug.Log ("Command: " + command.text);
+            Debug.Log ("Command: " + command.Text);
 
             yield break;
         }
 
         /// Called when the dialogue system has started running.
-        public override IEnumerator DialogueStarted ()
+        public override void DialogueStarted ()
         {
             Debug.Log ("Dialogue starting!");
 
@@ -192,13 +201,11 @@ namespace Yarn.Unity.Example {
             // Hide the game controls.
             if (gameControlsContainer != null) {
                 gameControlsContainer.gameObject.SetActive(false);
-            }
-
-            yield break;
+            }            
         }
 
         /// Called when the dialogue system has finished running.
-        public override IEnumerator DialogueComplete ()
+        public override void DialogueComplete ()
         {
             Debug.Log ("Complete!");
 
@@ -210,8 +217,6 @@ namespace Yarn.Unity.Example {
             if (gameControlsContainer != null) {
                 gameControlsContainer.gameObject.SetActive(true);
             }
-
-            yield break;
         }
 
     }

@@ -172,10 +172,15 @@ namespace Yarn {
 
         public bool IsActive => vm.executionState != VirtualMachine.ExecutionState.Stopped;
 
-        public delegate bool LineHandler(Line line);
+        public enum HandlerExecutionType {
+            PauseExecution,
+            ContinueExecution
+        }
+
+        public delegate HandlerExecutionType LineHandler(Line line);
         public delegate void OptionsHandler(OptionSet options);
-        public delegate bool CommandHandler(Command command);
-        public delegate bool NodeCompleteHandler(string completedNodeName);
+        public delegate HandlerExecutionType CommandHandler(Command command);
+        public delegate HandlerExecutionType NodeCompleteHandler(string completedNodeName);
         public delegate void DialogueCompleteHandler();
 
 
@@ -235,8 +240,19 @@ namespace Yarn {
         }
 
         /// Load a program object.
-        public void LoadProgram(Program program) {
+        public void SetProgram(Program program) {
             this.Program = program;
+        }
+
+        /// Merge a program into what's currently loaded.
+        public void AddProgram(Program program) {
+            if (this.Program == null) {
+                SetProgram(program);
+                return;
+            } else {
+                this.Program = Program.Combine(this.Program, program);
+            }
+            
         }
 
         /// Load a file from disk.

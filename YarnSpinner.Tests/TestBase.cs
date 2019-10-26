@@ -120,7 +120,7 @@ namespace YarnSpinner.Tests
 
                 nextExpectedLine = null;
             
-                return false;
+                return Dialogue.HandlerExecutionType.ContinueExecution;
             };
 
             dialogue.optionsHandler = delegate (OptionSet optionSet) {
@@ -152,10 +152,10 @@ namespace YarnSpinner.Tests
                     Assert.Equal (nextExpectedCommand, command.Text);
                 }
 
-                return false;
+                return Dialogue.HandlerExecutionType.ContinueExecution;
             };
 
-            dialogue.nodeCompleteHandler = (string nodeName) => false;
+            dialogue.nodeCompleteHandler = (string nodeName) => Dialogue.HandlerExecutionType.ContinueExecution;
 
             dialogue.dialogueCompleteHandler = () => {};
 

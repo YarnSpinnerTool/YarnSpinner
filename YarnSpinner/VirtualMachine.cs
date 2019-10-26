@@ -293,6 +293,11 @@ namespace Yarn
                 return;
             }
 
+            if (nodeCompleteHandler == null) {
+                dialogue.LogErrorMessage ($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");
+                return;
+            }
+
             executionState = ExecutionState.Running;
 
             // Execute instructions until something forces us to stop
@@ -304,6 +309,7 @@ namespace Yarn
                 state.programCounter++;
 
                 if (state.programCounter >= currentNode.Instructions.Count) {
+                    nodeCompleteHandler(currentNode.Name);
                     executionState = ExecutionState.Stopped;
                     dialogueCompleteHandler();
                     dialogue.LogDebugMessage ("Run complete.");
@@ -364,7 +370,7 @@ namespace Yarn
 
                         var pause = lineHandler(new Line(lineText));
 
-                        if (pause)
+                        if (pause == Dialogue.HandlerExecutionType.PauseExecution)
                         {
                             executionState = ExecutionState.Suspended;
                         }
@@ -381,7 +387,7 @@ namespace Yarn
                             new Command(i.Operands[0].StringValue)
                         );
 
-                        if (pause)
+                        if (pause == Dialogue.HandlerExecutionType.PauseExecution)
                         {
                             executionState = ExecutionState.Suspended;
                         }
@@ -550,6 +556,7 @@ namespace Yarn
                         /// - Stop
                         /** Immediately stop execution, and report that fact.
                          */
+                        nodeCompleteHandler(currentNode.Name);
                         dialogueCompleteHandler();
                         executionState = ExecutionState.Stopped;
 
@@ -574,8 +581,13 @@ namespace Yarn
                             nodeName = i.Operands[0].StringValue;
                         }
 
-                        nodeCompleteHandler(currentNode.Name);
+                        var pause = nodeCompleteHandler(currentNode.Name);
+                        
                         SetNode(nodeName);
+
+                        if (pause == Dialogue.HandlerExecutionType.PauseExecution) {
+                            executionState = ExecutionState.Suspended;
+                        }                        
 
                         break;
                     }
