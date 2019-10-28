@@ -26,17 +26,17 @@ As such, there is a lot of wonky code and half-finished concepts which users cur
 
 ### Features
 
-- Formal Yarn specification created and frozen
-- Bytecode format freeze
-- Compiler will generate bytecode by default instead of parsing the dialogue each time
-- Default to using `.yarn` as the file extension in preference to `.yarn.text`
-- VM will load and execute compiled bytecode
-- Unity importer for `.yarn` files that invokes compiler and generates bytecode assets (using a `.yarnc` file extension).
-- Implementation of a barebones Unity prefab (with a Canvas) that can be added into a scene to "just work"
-- Rework examples to be designed to be used as the basis of your own game
-- Modify example dialogue runner and variable storage to be the base form, instead of "just" examples
-- Syntax highlighter extension for Visual Studio Code
-- New documentation site
+- [ ] Formal Yarn specification created and frozen
+- [ ] Bytecode format freeze
+- [x] Compiler will generate bytecode by default instead of parsing the dialogue each time
+- [x] Default to using `.yarn` as the file extension in preference to `.yarn.text`
+- [x] VM will load and execute compiled bytecode
+- [x] Unity importer for `.yarn` files that invokes compiler and generates bytecode assets (using a `.yarnc` file extension).
+- [ ] Implementation of a barebones Unity prefab (with a Canvas) that can be added into a scene to "just work"
+- [ ] Rework examples to be designed to be used as the basis of your own game
+- [ ] Modify example dialogue runner and variable storage to be the base form, instead of "just" examples
+- [ ] Syntax highlighter extension for Visual Studio Code
+- [ ] New documentation site
 
 ## V1.1
 
