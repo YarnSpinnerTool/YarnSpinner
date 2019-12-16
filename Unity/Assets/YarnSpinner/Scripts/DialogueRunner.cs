@@ -71,6 +71,14 @@ namespace Yarn.Unity
         private System.Action<int> _selectAction;
 
         private HashSet<string> _visitedNodes = new HashSet<string>();
+
+        public delegate void CommandHandler(string[] parameters);
+        public delegate void BlockingCommandHandler(string[] parameters, System.Action onComplete);
+
+        /// Maps the names of commands to action delegates.
+        private Dictionary<string, CommandHandler> commandHandlers = new Dictionary<string, CommandHandler>();
+        private Dictionary<string, BlockingCommandHandler> blockingCommandHandlers = new Dictionary<string, BlockingCommandHandler>();
+
         
         /// Our conversation engine
         /** Automatically created on first access
@@ -101,10 +109,34 @@ namespace Yarn.Unity
                     _dialogue.optionsHandler = HandleOptions;
                     _dialogue.nodeCompleteHandler = HandleNodeComplete;
                     _dialogue.dialogueCompleteHandler = HandleDialogueComplete;
+
+                    AddCommandHandler("wait", HandleWaitCommand);
                     
                 }
                 return _dialogue;
             }
+        }
+
+        private void HandleWaitCommand(string[] parameters, System.Action onComplete)
+        {
+            if (parameters?.Length != 1) {
+                Debug.LogErrorFormat("<<wait>> command expects one parameter.");
+                onComplete();
+                return;
+            }
+
+            string durationString = parameters[0];
+            if (float.TryParse(durationString, out var duration) == false) {
+                Debug.LogErrorFormat($"<<wait>> failed to parse duration {durationString}");
+                onComplete();
+            }
+            StartCoroutine(DoHandleWait(duration, onComplete));
+        }
+
+        private IEnumerator DoHandleWait(float duration, Action onComplete)
+        {
+            yield return new WaitForSeconds(duration);
+            onComplete();
         }
 
         private void HandleDialogueComplete()
@@ -127,33 +159,112 @@ namespace Yarn.Unity
 
         private Dialogue.HandlerExecutionType HandleCommand(Command command)
         {
-            (bool wasValidCommand, bool wasCoroutine) = DispatchCommand(command.Text);
+            bool wasValidCommand;
+            Dialogue.HandlerExecutionType executionType;
+
+            (wasValidCommand, executionType) = DispatchCommandToGameObject(command);
             
             if (wasValidCommand) {
                 // We found an object and method to invoke as a Yarn
                 // command. It may or may not have been a coroutine; if it
-                // was a coroutine, we'll wait for it to complete before
-                // resuming execution.
-                if (wasCoroutine) {
-                    // We're currently waiting for the coroutine to
-                    // complete, which will take at least one frame to do.
-                    return Dialogue.HandlerExecutionType.PauseExecution;
+                // was a coroutine, executionType will be
+                // HandlerExecutionType.Pause, and we'll wait for it to
+                // complete before resuming execution.
+                return executionType;
+                
+            } 
+
+            // It wasn't found by looking in objects. Try looking in the
+            // command handlers.
+            (wasValidCommand, executionType) = DispatchCommandToRegisteredHandlers(command, _continue);   
+
+            if (wasValidCommand) {
+                // Either continue execution, or pause (in which case
+                // _continue will be called)
+                return executionType;
+            }
+
+            // We didn't find a method in our C# code to invoke. Pass it to
+            // the UI to handle; it will determine whether we pause or
+            // continue.
+            return this.dialogueUI.RunCommand(command, _continue);            
+            
+        }
+
+        public (bool commandWasFound, Dialogue.HandlerExecutionType executionType) DispatchCommandToRegisteredHandlers(Command command, System.Action onComplete) {
+
+            var commandTokens = command.Text.Split(new[] {' '}, System.StringSplitOptions.RemoveEmptyEntries);
+
+            Debug.Log($"Command: <<{command.Text}>>");
+
+            if (commandTokens.Length == 0) {
+                // Nothing to do
+                return (false, Dialogue.HandlerExecutionType.ContinueExecution);
+            }
+
+            var firstWord = commandTokens[0];
+
+            if (commandHandlers.ContainsKey(firstWord) == false && 
+                blockingCommandHandlers.ContainsKey(firstWord) == false) {
+
+                Debug.LogWarning($"Unknown command '{firstWord}'");
+                return (false, Dialogue.HandlerExecutionType.ContinueExecution);
+            }
+
+            // Single-word command, eg <<jump>>
+            if (commandTokens.Length == 1) {
+                if (commandHandlers.ContainsKey(firstWord)) {
+                    commandHandlers[firstWord](null);
+                    return (true, Dialogue.HandlerExecutionType.ContinueExecution);
                 } else {
-                    // The command was not a coroutine, and invoked
-                    // immediately. We therefore don't need to wait.
-                    return Dialogue.HandlerExecutionType.ContinueExecution;
+                    blockingCommandHandlers[firstWord](new string[] {}, onComplete);
+                    return (true, Dialogue.HandlerExecutionType.PauseExecution);
                 }
+            }
+
+            // Multi-word command, eg <<walk Mae left>>
+            var remainingWords = new string[commandTokens.Length - 1];
+
+            // Copy everything except the first word from the array
+            System.Array.Copy(commandTokens, 1, remainingWords, 0, remainingWords.Length);
+
+            if (commandHandlers.ContainsKey(firstWord)) {
+                commandHandlers[firstWord](remainingWords);
+                return (true, Dialogue.HandlerExecutionType.ContinueExecution);
             } else {
-                // We didn't find a method in our C# code to invoke. Pass
-                // it to the UI to handle; it will determine whether we
-                // pause or continue.
-                return this.dialogueUI.RunCommand(command, _continue);            
+                blockingCommandHandlers[firstWord](remainingWords, onComplete);
+                return (true, Dialogue.HandlerExecutionType.PauseExecution);
             }
         }
 
+        /// Forward the line to the dialogue UI.
         private Dialogue.HandlerExecutionType HandleLine(Line line)
         {
             return this.dialogueUI.RunLine (line, _continue);            
+        }
+
+        /// Adds a command handler. Yarn Spinner will continue execution after this handler is called.
+        public void AddCommandHandler(string commandName, CommandHandler handler) {
+            if (commandHandlers.ContainsKey(commandName) || blockingCommandHandlers.ContainsKey(commandName)) {
+                Debug.LogError($"Cannot add a command handler for {commandName}: one already exists");
+                return;
+            }
+            commandHandlers.Add(commandName, handler);
+        }
+
+        /// Adds a command handler. Yarn Spinner will pause execution after this handler is called.
+        public void AddCommandHandler(string commandName, BlockingCommandHandler handler) {
+            if (commandHandlers.ContainsKey(commandName) || blockingCommandHandlers.ContainsKey(commandName)) {
+                Debug.LogError($"Cannot add a command handler for {commandName}: one already exists");
+                return;
+            }
+            blockingCommandHandlers.Add(commandName, handler);
+        }
+
+        /// Removes a specific command handler.
+        public void RemoveCommandHandler(string commandName) {
+            commandHandlers.Remove(commandName);
+            blockingCommandHandlers.Remove(commandName);
         }
 
         /// Start the dialogue
@@ -289,15 +400,15 @@ namespace Yarn.Unity
          * 3. that object has components that have methods with the
          *    YarnCommand attribute that have the correct commandString set
          */
-        public (bool methodFound, bool isCoroutine) DispatchCommand(string command) {
+        public (bool methodFound, Dialogue.HandlerExecutionType executionType) DispatchCommandToGameObject(Command command) {
 
-            var words = command.Split(' ');
+            var words = command.Text.Split(' ');
 
             // need 2 parameters in order to have both a command name
             // and the name of an object to find
             if (words.Length < 2)
             {
-                return (false, false);                
+                return (false, Dialogue.HandlerExecutionType.ContinueExecution);                
             }
 
             var commandName = words[0];
@@ -309,7 +420,7 @@ namespace Yarn.Unity
             // If we can't find an object, we can't dispatch a command
             if (sceneObject == null)
             {
-                return (false, false);                
+                return (false, Dialogue.HandlerExecutionType.ContinueExecution);                
             }
 
             int numberOfMethodsFound = 0;
@@ -428,7 +539,14 @@ namespace Yarn.Unity
 
             var wasValidCommand = numberOfMethodsFound > 0;
 
-            return (wasValidCommand, startedCoroutine);
+            if (startedCoroutine) {
+                // Signal to the Dialogue that execution should wait. 
+                return (true, Dialogue.HandlerExecutionType.PauseExecution);
+            } else {
+                // This wasn't a coroutine, so no need to wait for it.
+                return (true, Dialogue.HandlerExecutionType.ContinueExecution);                
+            }
+            
         }
 
         IEnumerator DoYarnCommand(MonoBehaviour component, System.Reflection.MethodInfo method, string[][] parameters) {

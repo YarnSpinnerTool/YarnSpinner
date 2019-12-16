@@ -30,11 +30,11 @@ using UnityEngine.UI;
 using System.Text;
 using System.Collections.Generic;
 
-namespace Yarn.Unity.Example {
+namespace Yarn.Unity {
     /// Displays dialogue lines to the player, and sends
     /// user choices back to the dialogue system.
 
-    public class ExampleDialogueUI : Yarn.Unity.DialogueUIBehaviour
+    public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
     {
 
         /// The object that contains the dialogue and the options.
@@ -43,12 +43,6 @@ namespace Yarn.Unity.Example {
          */
         public GameObject dialogueContainer;
 
-        /// The UI element that displays lines
-        public Text lineText;
-
-        /// A UI element that appears after lines have finished appearing
-        public GameObject continuePrompt;
-
         /// How quickly to show the text, in seconds per character
         [Tooltip("How quickly to show the text, in seconds per character")]
         public float textSpeed = 0.025f;
@@ -56,25 +50,43 @@ namespace Yarn.Unity.Example {
         /// The buttons that let the user choose an option
         public List<Button> optionButtons;
 
-        /// Make it possible to temporarily disable the controls when
-        /// dialogue is active and to restore them when dialogue ends
-        public RectTransform gameControlsContainer;
+        // When true, the DialogueRunner is waiting for the user to
+        // indicate that they want to proceed to the next line.
+        private bool waitingForLineContinue = false;
 
+        // When true, the DialogueRunner is waiting for the user to press
+        // one of the option buttons.
+        private bool waitingForOptionSelection = false;      
+
+        public UnityEngine.Events.UnityEvent onDialogueStart;
+
+        public UnityEngine.Events.UnityEvent onDialogueEnd;  
+
+        public UnityEngine.Events.UnityEvent onLineStart;
+        public UnityEngine.Events.UnityEvent onLineFinishDisplaying;
+        public StringUnityEvent onLineUpdate;
+        public UnityEngine.Events.UnityEvent onLineEnd;
+
+        public UnityEngine.Events.UnityEvent onOptionsStart;
+        public UnityEngine.Events.UnityEvent onOptionsEnd;
+
+        public UnityEngine.Events.UnityEvent onCommand;
+
+        // A UnityEvent that takes a single string parameter. We need to
+        // create a concrete subclass in order for Unity to serialise the
+        // type correctly.
+        [System.Serializable]
+        public class StringUnityEvent : UnityEngine.Events.UnityEvent<string> { }
+        
         void Awake ()
         {
-            // Start by hiding the container, line and option buttons
+            // Start by hiding the container
             if (dialogueContainer != null)
                 dialogueContainer.SetActive(false);
-
-            lineText.gameObject.SetActive (false);
 
             foreach (var button in optionButtons) {
                 button.gameObject.SetActive (false);
             }
-
-            // Hide the continue prompt if it exists
-            if (continuePrompt != null)
-                continuePrompt.SetActive (false);
         }
 
         public override Dialogue.HandlerExecutionType RunLine (Yarn.Line line, System.Action onComplete)
@@ -87,8 +99,8 @@ namespace Yarn.Unity.Example {
 
         /// Show a line of dialogue, gradually        
         private IEnumerator DoRunLine(Yarn.Line line, System.Action onComplete) {
-            // Show the text
-            lineText.gameObject.SetActive (true);
+            
+            onLineStart?.Invoke();
 
             if (textSpeed > 0.0f) {
                 // Display the line one character at a time
@@ -96,20 +108,20 @@ namespace Yarn.Unity.Example {
 
                 foreach (char c in line.Text) {
                     stringBuilder.Append (c);
-                    lineText.text = stringBuilder.ToString ();
+                    onLineUpdate?.Invoke(stringBuilder.ToString ());
                     yield return new WaitForSeconds (textSpeed);
                 }
             } else {
-                // Display the line immediately if textSpeed == 0
-                lineText.text = line.Text;
+                // Display the line immediately if textSpeed <= 0
+                onLineUpdate?.Invoke(line.Text);
             }
 
-            // Show the 'press any key' prompt when done, if we have one
-            if (continuePrompt != null)
-                continuePrompt.SetActive (true);
+            waitingForLineContinue = true;
+
+            onLineFinishDisplaying?.Invoke();
 
             // Wait for any user input
-            while (Input.anyKeyDown == false) {
+            while (waitingForLineContinue) {
                 yield return null;
             }
 
@@ -117,11 +129,8 @@ namespace Yarn.Unity.Example {
             yield return new WaitForEndOfFrame();
 
             // Hide the text and prompt
-            lineText.gameObject.SetActive (false);
+            onLineEnd?.Invoke();
 
-            if (continuePrompt != null)
-                continuePrompt.SetActive (false);
-            
             onComplete();
 
         }
@@ -129,8 +138,6 @@ namespace Yarn.Unity.Example {
         public override void RunOptions (Yarn.OptionSet optionsCollection, System.Action<int> selectOption) {
             StartCoroutine(DoRunOptions(optionsCollection, selectOption));
         }
-
-        bool waitingForOptionSelection = false;
 
         /// Show a list of options, and wait for the player to make a
         /// selection.
@@ -161,20 +168,24 @@ namespace Yarn.Unity.Example {
                 i++;
             }
 
-            // Wait until the chooser has been used and then removed (see
-            // SetOption below)
+            onOptionsStart?.Invoke();
+
+            // Wait until the chooser has been used and then removed 
             while (waitingForOptionSelection) {
                 yield return null;
             }
 
+            
             // Hide all the buttons
             foreach (var button in optionButtons) {
                 button.gameObject.SetActive (false);
             }
+
+            onOptionsEnd?.Invoke();
+
         }
 
         /// Run an internal command.
-
         public override Dialogue.HandlerExecutionType RunCommand (Yarn.Command command, System.Action onComplete) {
             StartCoroutine(DoRunCommand(command, onComplete));
             return Dialogue.HandlerExecutionType.ContinueExecution;
@@ -191,31 +202,33 @@ namespace Yarn.Unity.Example {
         /// Called when the dialogue system has started running.
         public override void DialogueStarted ()
         {
-            Debug.Log ("Dialogue starting!");
-
             // Enable the dialogue controls.
             if (dialogueContainer != null)
                 dialogueContainer.SetActive(true);
 
-            // Hide the game controls.
-            if (gameControlsContainer != null) {
-                gameControlsContainer.gameObject.SetActive(false);
-            }            
+            onDialogueStart?.Invoke();            
         }
 
         /// Called when the dialogue system has finished running.
         public override void DialogueComplete ()
         {
-            Debug.Log ("Complete!");
+            onDialogueEnd?.Invoke();
 
             // Hide the dialogue interface.
             if (dialogueContainer != null)
                 dialogueContainer.SetActive(false);
+            
+        }
 
-            // Show the game controls.
-            if (gameControlsContainer != null) {
-                gameControlsContainer.gameObject.SetActive(true);
+        public void MarkLineComplete() {
+            if (waitingForLineContinue == false) {
+                Debug.LogWarning($"{nameof(MarkLineComplete)} was called, " + 
+                    $"but {nameof(DialogueRunner)} wasn't waiting for a line " + 
+                    "to be marked as read.");
+                return;
             }
+
+            waitingForLineContinue = false;
         }
 
     }

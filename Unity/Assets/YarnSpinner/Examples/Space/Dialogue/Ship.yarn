@@ -27,6 +27,7 @@ position: 721,130
     <<setsprite ShipFace happy>>
     Ship: She'll flay you alive!
     <<set $sally_warning to true>>
+    <<wait 1>>
     Player: Uh.
     <<setsprite ShipFace neutral>>
 <<endif>>
