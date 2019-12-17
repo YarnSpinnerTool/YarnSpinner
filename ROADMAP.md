@@ -6,7 +6,7 @@ The idea of this document is to both give us something to help plan our developm
 
 Let us know what you think about this road map either in the [Slack](http://lab.to/narrativegamedev) or [here on the GitHub issue we created about the road map](https://github.com/YarnSpinnerTool/YarnSpinner/issues/183).
 
-**This documents was last edited 27/10/2019**
+**This documents was last edited 17/12/2019**
 
 # Releases
 
@@ -26,15 +26,15 @@ As such, there is a lot of wonky code and half-finished concepts which users cur
 
 ### Features
 
-- [ ] Formal Yarn specification created and frozen
-- [ ] Bytecode format freeze
+- [x] Formal Yarn specification created and frozen
+- [x] Bytecode format freeze
 - [x] Compiler will generate bytecode by default instead of parsing the dialogue each time
 - [x] Default to using `.yarn` as the file extension in preference to `.yarn.text`
 - [x] VM will load and execute compiled bytecode
 - [x] Unity importer for `.yarn` files that invokes compiler and generates bytecode assets (using a `.yarnc` file extension).
-- [ ] Implementation of a barebones Unity prefab (with a Canvas) that can be added into a scene to "just work"
-- [ ] Rework examples to be designed to be used as the basis of your own game
-- [ ] Modify example dialogue runner and variable storage to be the base form, instead of "just" examples
+- [x] Implementation of a barebones Unity prefab (with a Canvas) that can be added into a scene to "just work"
+- [x] Rework examples to be designed to be used as the basis of your own game
+- [x] Modify example dialogue runner and variable storage to be the base form, instead of "just" examples
 - [ ] Syntax highlighter extension for Visual Studio Code
 - [ ] New documentation site
 
