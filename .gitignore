@@ -61,7 +61,8 @@ Builds/
 # WIP logo in .sketch form, will remove this when adding it
 *.sketch
 
-Unity/Assets/Yarn Spinner/Code/YarnSpinner.dll*
+Unity/Assets/YarnSpinner/Scripts/DLLs/*.dll*
+Unity/Assets/YarnSpinner/Scripts/DLLs/*.pdb*
 
 # NUnit test results
 TestResult.xml
