@@ -73,6 +73,9 @@ testrunner/
 # Unity Test Tools examples
 Unity/Assets/UnityTestTools*
 
+# Unity logs
+Unity/Logs
+
 # Unity package log
 export.log
 
