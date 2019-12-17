@@ -15,13 +15,15 @@ public class YarnProgram : ScriptableObject
     [HideInInspector]
     public byte[] compiledProgram;
 
+    [SerializeField]
+    public TextAsset baseLocalisationStringTable;
+
     // Deserializes a compiled Yarn program from the stored bytes in this
     // object.
     public Program GetProgram() {
         return Program.Parser.ParseFrom(compiledProgram);                
     } 
 }
-
 
 #if UNITY_EDITOR
 /// A custom editor that lists the nodes in the program.

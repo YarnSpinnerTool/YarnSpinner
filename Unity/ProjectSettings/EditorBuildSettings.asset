@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Yarn Spinner/Examples/Yarn Spinner Complex Example.unity
-  - enabled: 1
-    path: Assets/Yarn Spinner/Examples/Yarn Spinner Basic Example.unity
+    path: Assets/YarnSpinner/Examples/Space/Space.unity
+    guid: d8cedd83aff34492d9c72e0aecb98160
+  m_configObjects: {}

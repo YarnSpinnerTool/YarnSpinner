@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.7.2"/>
     <PackageReference Include="Google.Protobuf" Version="3.10.0"/>    
+    <PackageReference Include="CsvHelper" Version="12.2.2" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,84 +6,27 @@ using static Yarn.Instruction.Types;
 
 namespace Yarn
 {
+	public struct StringInfo {
+            public string text;
+            public string nodeName;
+            public int lineNumber;
+			public string fileName;
+			public bool isImplicitTag;
+
+            public StringInfo(string text, string fileName, string nodeName, int lineNumber, bool isImplicitTag)
+            {
+                this.text = text;
+                this.nodeName = nodeName;
+                this.lineNumber = lineNumber;
+				this.fileName = fileName;
+				this.isImplicitTag = isImplicitTag;
+            }
+        }
 	
 	public partial class Program
 	{
 
-		// When saving programs, we want to save only lines that do NOT have a line: key.
-		// This is because these lines will be loaded from a string table.
-		// However, because certain strings (like those used in expressions) won't have tags,
-		// they won't be included in generated string tables, so we need to export them here.
-
-		// We do this by NOT including the main strings list, and providing a property
-		// that gets serialised as "strings" in the output, which includes all untagged strings.
-
-		internal Dictionary<string, string> untaggedStrings
-		{
-			get
-			{
-				var result = new Dictionary<string, string>();
-				foreach (var line in this.StringTable)
-				{
-					if (line.Key.StartsWith("line:", StringComparison.InvariantCulture))
-					{
-						continue;
-					}
-					result.Add(line.Key, line.Value);
-				}
-				return result;
-			}
-		}
-
-		private int stringCount = 0;
-
-		/// Loads a new string table into the program.
-		/** The string table is merged with any existing strings,
-         * with the new table taking precedence over the old.
-         */
-		// TODO: this information relates to the execution of the program,
-		// and not to the program as stored on disk. Move this
-		// functinoality to the VM.
-		public void LoadStrings(Dictionary<string, string> newStrings)
-		{
-			foreach (var entry in newStrings)
-			{
-				StringTable[entry.Key] = entry.Value;
-			}
-		}
-
-		public string RegisterString(string theString, string nodeName, string lineID, int lineNumber, bool localisable)
-		{
-
-			string key;
-
-			if (lineID == null)
-				key = string.Format(CultureInfo.InvariantCulture, "{0}-{1}", nodeName, stringCount++);
-			else
-				key = lineID;
-
-			// It's not in the list; append it
-			StringTable.Add(key, theString);
-
-			if (localisable)
-			{
-				// Additionally, keep info about this string around
-				var lineInfo = new LineInfo();
-				lineInfo.NodeName = nodeName;
-				lineInfo.LineNumber = lineNumber;
-				this.LineInfo.Add(key, lineInfo);
-			}
-
-			return key;
-		}
-
-		public string GetString(string key)
-		{
-			string value = null;
-			StringTable.TryGetValue(key, out value);
-			return value;
-		}
-
+		
 		public string DumpCode(Library l)
 		{
 
@@ -98,15 +41,8 @@ namespace Yarn
 				{
 					string instructionText;
 
-					if (instruction.Opcode == OpCode.Label)
-					{
-						instructionText = instruction.ToString(this, l);
-					}
-					else
-					{
-						instructionText = "    " + instruction.ToString(this, l);
-					}
-
+					instructionText = "    " + instruction.ToString(this, l);
+					
 					string preface;
 
 					if (instructionCount % 5 == 0 || instructionCount == entry.Value.Instructions.Count - 1)
@@ -126,21 +62,8 @@ namespace Yarn
 				sb.AppendLine();
 			}
 
-			sb.AppendLine("String table:");
-
-			foreach (var entry in StringTable)
-			{
-				var lineInfo = this.LineInfo[entry.Key];
-
-                sb.AppendLine(string.Format(CultureInfo.InvariantCulture, "{0}: {1} ({2}:{3})", entry.Key, entry.Value, lineInfo.NodeName, lineInfo.LineNumber));
-			}
-
+			
 			return sb.ToString();
-		}
-
-		public string GetTextForNode(string nodeName)
-		{
-			return this.GetString(Nodes[nodeName].SourceTextStringID);
 		}
 
 		public IEnumerable<string> GetTagsForNode(string nodeName)
@@ -165,17 +88,7 @@ namespace Yarn
 					}
 
 					output.Nodes[otherNodeName.Key] = otherNodeName.Value.Clone();
-				}
-
-				foreach (var otherString in otherProgram.StringTable) {
-
-					if (output.Nodes.ContainsKey(otherString.Key))
-					{
-						throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "This program already contains a string with key {0}", otherString.Key));
-					}
-
-					output.StringTable[otherString.Key] = otherString.Value;			
-				}				
+				}		
 			}
 			return output;
 		}
@@ -192,12 +105,6 @@ namespace Yarn
 		public string ToString(Program p, Library l)
 		{
 
-			// Labels are easy: just dump out the name
-			if (Opcode == OpCode.Label)
-			{
-				return Operands[0].StringValue + ":";
-			}
-
 			// Generate a comment, if the instruction warrants it
 			string comment = "";
 
@@ -211,7 +118,7 @@ namespace Yarn
 				// These operations all push a single value to the stack
 				case OpCode.PushBool:
 				case OpCode.PushNull:
-				case OpCode.PushNumber:
+				case OpCode.PushFloat:
 				case OpCode.PushString:
 				case OpCode.PushVariable:
 				case OpCode.ShowOptions:
@@ -260,8 +167,7 @@ namespace Yarn
 					// Add the string for this option, if it has one
 					if (Operands[0].StringValue != "")
 					{
-						var text = p.GetString(Operands[0].StringValue);
-						comment += string.Format(CultureInfo.InvariantCulture, "\"{0}\"", text);
+						comment += string.Format(CultureInfo.InvariantCulture, "\"{0}\"", Operands[0].StringValue);
 					}
 
 					break;

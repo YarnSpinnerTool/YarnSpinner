@@ -19,6 +19,16 @@ namespace Yarn.Compiler
     public class Compiler : YarnSpinnerParserBaseListener
     {
 
+        public enum Status {
+            /// The compilation succeeded with no errors
+            Succeeded, 
+
+            /// The compilation succeeded, but some strings do not have string tags. 
+            SucceededUntaggedStrings,
+
+        }
+        // (compilation failures will result in an exception, so they don't get a Status)
+
         private int labelCount = 0;
 
         internal Program program { get; private set; }
@@ -29,9 +39,14 @@ namespace Yarn.Compiler
         // or just dump the entire node body as raw text
         internal bool rawTextNode = false;
 
-        internal Compiler()
+        internal string fileName;
+
+        private bool containsImplicitStringTags;
+
+        internal Compiler(string fileName)
         {
-            program = new Program();            
+            program = new Program();
+            this.fileName = fileName;            
         }
 
         // the preprocessor that cleans up things to make it easier on ANTLR
@@ -148,16 +163,17 @@ namespace Yarn.Compiler
             return processed;
         }
 
-        public static Program CompileFile(string path) {
+        public static Status CompileFile(string path, out Program program, out IDictionary<string,StringInfo> stringTable) {
             var source = File.ReadAllText(path);
 
             var fileName = System.IO.Path.GetFileNameWithoutExtension(path);
 
-            return CompileString(source, fileName);
+            return CompileString(source, fileName, out program, out stringTable);
+
         }
 
         // Given a bunch of raw text, load all nodes that were inside it.
-        public static Program CompileString(string text, string fileName)
+        public static Status CompileString(string text, string fileName, out Program program, out IDictionary<string,StringInfo> stringTable)
         {
 
             string inputString = PreprocessIndentationInSource(text);
@@ -174,12 +190,56 @@ namespace Yarn.Compiler
 
             IParseTree tree = parser.dialogue();
 
-            Compiler compiler = new Compiler();
+            Compiler compiler = new Compiler(fileName);
 
             compiler.Compile(tree);
 
-            return compiler.program;
+            program = compiler.program;
+            stringTable = compiler.StringTable;
+
+            if (compiler.containsImplicitStringTags) {
+                return Status.SucceededUntaggedStrings;
+            } else {
+                return Status.Succeeded;
+            }
         }
+
+        public Dictionary<string, StringInfo> StringTable = new Dictionary<string, StringInfo>();
+
+        int stringCount = 0;
+
+        public string RegisterString(string text, string nodeName, string lineID, int lineNumber)
+		{
+
+			string key;
+
+            bool isImplicit;
+
+			if (lineID == null) {
+				key = $"{fileName}-{nodeName}-{stringCount}";
+                
+                stringCount += 1;
+
+                // Note that we had to make up a tag for this string, which
+                // may not be the same on future compilations
+                containsImplicitStringTags = true;
+
+                isImplicit = true;
+            }
+			else {
+				key = lineID;
+
+                isImplicit = false;
+            }
+
+            var theString = new StringInfo(text, fileName, nodeName, lineNumber, isImplicit);
+            
+			// It's not in the list; append it
+			StringTable.Add(key, theString);
+
+			return key;
+		}
+
 
 
         // Generates a unique label name to use
@@ -210,12 +270,7 @@ namespace Yarn.Compiler
 
             
             node.Instructions.Add(instruction);
-
-            if (code == OpCode.Label)
-            {
-                // Add this label to the label table
-                node.Labels.Add((string)instruction.Operands[0].StringValue, node.Instructions.Count - 1);
-            }
+            
         }
         // exactly same as above but defaults to using currentNode
         // creates the relevant instruction and adds it to the stack
@@ -318,9 +373,8 @@ namespace Yarn.Compiler
             // if this is flagged as a regular node
             if (!rawTextNode)
             {
-                Operand labelOperand = new Operand();
-                labelOperand.StringValue = RegisterLabel();
-                Emit(currentNode, OpCode.Label, labelOperand);
+                // Add this label to the label table
+                currentNode.Labels.Add(RegisterLabel(), currentNode.Instructions.Count);                
             }
         }
 
@@ -353,7 +407,7 @@ namespace Yarn.Compiler
 				int end = context.Stop.StopIndex - 4;
                 string body = context.Start.InputStream.GetText(new Interval(start, end));
 
-                currentNode.SourceTextStringID = program.RegisterString(body, currentNode.Name, "line:" + currentNode.Name, context.Start.Line, true);
+                currentNode.SourceTextStringID = RegisterString(body, currentNode.Name, "line:" + currentNode.Name, context.Start.Line);
 			}
         }
 
@@ -427,10 +481,9 @@ namespace Yarn.Compiler
             // technically this only gets the line the statement started on
             int lineNumber = context.Start.Line;
 
-            // TODO: why is this called num?
-            string num = compiler.program.RegisterString(lineText, compiler.currentNode.Name, lineID, lineNumber, true);
+            string stringID = compiler.RegisterString(lineText, compiler.currentNode.Name, lineID, lineNumber);
 
-            compiler.Emit(OpCode.RunLine, new Operand(num));
+            compiler.Emit(OpCode.RunLine, new Operand(stringID));
 
             return 0;
         }
@@ -450,7 +503,7 @@ namespace Yarn.Compiler
                 // getting the lineID from the hashtags if it has one
                 string lineID = compiler.GetLineID(context.hashtag_block());
 
-                string stringID = compiler.program.RegisterString(label, compiler.currentNode.Name, lineID, lineNumber, true);
+                string stringID = compiler.RegisterString(label, compiler.currentNode.Name, lineID, lineNumber);
                 compiler.Emit(OpCode.AddOption, new Operand(stringID), new Operand(destination));
             }
             else
@@ -549,7 +602,7 @@ namespace Yarn.Compiler
 			}
 
 			// push the number of parameters onto the stack
-			compiler.Emit(OpCode.PushNumber, new Operand(parameters.Length));
+			compiler.Emit(OpCode.PushFloat, new Operand(parameters.Length));
 			
 			// then call the function itself
 			compiler.Emit(OpCode.CallFunc, new Operand(functionName));            
@@ -588,7 +641,7 @@ namespace Yarn.Compiler
                 generateClause(endOfIfStatementLabel, elseClause.statement(), null);
             }
 
-            compiler.Emit(OpCode.Label, new Operand(endOfIfStatementLabel));
+            compiler.currentNode.Labels.Add(endOfIfStatementLabel, compiler.currentNode.Instructions.Count);                
 
             return 0;
         }
@@ -614,7 +667,7 @@ namespace Yarn.Compiler
 
             if (expression != null)
             {
-                compiler.Emit(OpCode.Label, new Operand(endOfClauseLabel));
+                compiler.currentNode.Labels.Add(endOfClauseLabel, compiler.currentNode.Instructions.Count);                
                 compiler.Emit(OpCode.Pop);
             }
         }
@@ -654,13 +707,13 @@ namespace Yarn.Compiler
                 string lineID = compiler.GetLineID(shortcut.hashtag_block());
 
                 string shortcutLine = ShortcutText(shortcut.shortcut_text());
-                string labelStringID = compiler.program.RegisterString(shortcutLine, compiler.currentNode.Name, lineID, shortcut.Start.Line, true);
+                string labelStringID = compiler.RegisterString(shortcutLine, compiler.currentNode.Name, lineID, shortcut.Start.Line);
 
                 compiler.Emit(OpCode.AddOption, new Operand(labelStringID), new Operand(optionDestinationLabel));
 
                 if (shortcut.shortcut_conditional() != null)
                 {
-                    compiler.Emit(OpCode.Label, new Operand(endOfClauseLabel));
+                    compiler.currentNode.Labels.Add(endOfClauseLabel, compiler.currentNode.Instructions.Count);                
                     compiler.Emit(OpCode.Pop);
                 }
                 optionCount++;
@@ -673,8 +726,8 @@ namespace Yarn.Compiler
             optionCount = 0;
             foreach (var shortcut in context.shortcut())
             {
-                compiler.Emit(OpCode.Label, new Operand(labels[optionCount]));
-
+                compiler.currentNode.Labels.Add(labels[optionCount], compiler.currentNode.Instructions.Count);                
+                
                 // running through all the children statements of the shortcut
                 foreach (var child in shortcut.statement())
                 {
@@ -686,7 +739,7 @@ namespace Yarn.Compiler
                 optionCount++;
             }
 
-            compiler.Emit(OpCode.Label, new Operand(endOfGroupLabel));
+            compiler.currentNode.Labels.Add(endOfGroupLabel, compiler.currentNode.Instructions.Count);                
             compiler.Emit(OpCode.Pop);
 
             return 0;
@@ -718,7 +771,7 @@ namespace Yarn.Compiler
             // TODO: temp operator call
 
             // Indicate that we are pushing one parameter
-            compiler.Emit(OpCode.PushNumber, new Operand(1));
+            compiler.Emit(OpCode.PushFloat, new Operand(1));
 
             compiler.Emit(OpCode.CallFunc, new Operand(TokenType.Not.ToString()));
 
@@ -743,7 +796,7 @@ namespace Yarn.Compiler
             // TODO: temp operator call
 
             // Indicate that we are pushing two items for comparison
-            compiler.Emit(OpCode.PushNumber, new Operand(2));
+            compiler.Emit(OpCode.PushFloat, new Operand(2));
 
             compiler.Emit(OpCode.CallFunc, new Operand(tokens[op].ToString()));
         }
@@ -802,7 +855,7 @@ namespace Yarn.Compiler
             // Stack now contains [currentValue, expressionValue]
 
             // Indicate that we are pushing two items for comparison
-            compiler.Emit(OpCode.PushNumber, new Operand(2));
+            compiler.Emit(OpCode.PushFloat, new Operand(2));
 
             // now we evaluate the operator
             // op will match to one of + - / * %
@@ -842,7 +895,7 @@ namespace Yarn.Compiler
         public override int VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
         {
             float number = float.Parse(context.BODY_NUMBER().GetText(), CultureInfo.InvariantCulture);
-            compiler.Emit(OpCode.PushNumber, new Operand(number));
+            compiler.Emit(OpCode.PushFloat, new Operand(number));
 
             return 0;
         }
@@ -870,9 +923,7 @@ namespace Yarn.Compiler
             // actually is this what we want?
             string stringVal = context.COMMAND_STRING().GetText().Trim('"');
 
-            int lineNumber = context.Start.Line;
-            string id = compiler.program.RegisterString(stringVal, compiler.currentNode.Name, null, lineNumber, false);
-            compiler.Emit(OpCode.PushString, new Operand(id));
+            compiler.Emit(OpCode.PushString, new Operand(stringVal));
 
             return 0;
         }

@@ -35,25 +35,29 @@ namespace YarnSpinner.Tests
 
             errorsCauseFailures = false;
             var path = Path.Combine(TestDataPath, "Example.yarn.txt");
-            dialogue.SetProgram(Compiler.CompileFile(path));
+            
+            Compiler.CompileFile(path, out var program, out stringTable);
+
+            dialogue.SetProgram(program);
             RunStandardTestcase();
         }
 
         [Fact]
         public void TestMergingNodes()
         {
-            var sallyPath = Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt");
-            var examplePath = Path.Combine(TestDataPath, "Example.yarn.txt");
+            var sallyPath = Path.Combine(UnityDemoScriptsPath, "Sally.yarn");
+            var shipPath = Path.Combine(UnityDemoScriptsPath, "Ship.yarn");
 
-            var sally = Compiler.CompileFile(sallyPath);
-            var example = Compiler.CompileFile(examplePath);
+            Compiler.CompileFile(sallyPath, out var sally, out var sallyStringTable);
+            Compiler.CompileFile(shipPath, out var ship, out var shipStringTable);
 
-            var combinedWorking = Program.Combine(sally, example);
+
+            var combinedWorking = Program.Combine(sally, ship);
             
             // Loading code with the same contents should throw
             Assert.Throws<InvalidOperationException>(delegate ()
             {
-                var combinedNotWorking = Program.Combine(sally, example, example);
+                var combinedNotWorking = Program.Combine(sally, ship, ship);
             });
         }
 
@@ -63,7 +67,9 @@ namespace YarnSpinner.Tests
         public void TestEndOfNotesWithOptionsNotAdded()
         {
             var path = Path.Combine(TestDataPath, "SkippedOptions.yarn.txt");
-            dialogue.SetProgram(Compiler.CompileFile(path));
+            Compiler.CompileFile(path, out var program, out stringTable);
+
+            dialogue.SetProgram(program);
 
             dialogue.optionsHandler = delegate (OptionSet optionSets) {
                 Assert.False(true, "Options should not be shown to the user in this test.");
@@ -92,7 +98,7 @@ namespace YarnSpinner.Tests
 
             if (runTest)
             {
-                var program = Compiler.CompileFile(scriptFilePath);
+                Compiler.CompileFile(scriptFilePath, out var program, out stringTable);
                 dialogue.SetProgram(program);
 
                 // If this file contains a Start node, run the test case

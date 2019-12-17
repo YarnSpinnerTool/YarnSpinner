@@ -26,7 +26,7 @@ namespace Yarn
 
                 dialogue.LoadFile (file);
 
-                var stringTable = dialogue.GetStringTable ();
+                stringTable = dialogue.GetStringTable ();
 
                 var emittedStringTable = new Dictionary<string,string> ();
 

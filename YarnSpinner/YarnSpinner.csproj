@@ -4,7 +4,9 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
+  
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.10.0"/>
+    <PackageReference Include="Google.Protobuf" Version="3.10.0"/>    
+    
   </ItemGroup>
 </Project>

@@ -1,82 +1,133 @@
 syntax = "proto3";
 package Yarn;
 
+// A complete Yarn program.
 message Program {
-    string name = 1;
-    map<string, Node> nodes = 2;   
-	map<string, string> string_table = 3;
-	map<string, LineInfo> line_info = 4;
-}
 
-message LineInfo {
-	int32 line_number = 1;
-	string node_name = 2;
+	// The name of the program.
+	string name = 1;
+	
+	// The collection of nodes in this program.
+    map<string, Node> nodes = 2;   	
 }
 
 message Node {
-    string name = 1;
+	// The name of this node.
+	string name = 1;
+	
+	// The list of instructions in this node.
     repeated Instruction instructions = 2;
 
-    // Offsets to instructions, relative to this node's position in the program
+    // A jump table, mapping the names of labels to positions in the
+    // instructions list.
 	map<string, int32> labels = 3;
 	
 	repeated string tags = 4;
 
-	// the entry in the program's string table that contains
-	// the original text of this node; null if this is not available	
+	// the entry in the program's string table that contains the original
+	// text of this node; null if this is not available    
 	string sourceTextStringID = 5;
 }
 
 message Instruction {
 
-    enum OpCode {
-        
-		LABEL = 0; /// opA = string: label name
-		
-		JUMP_TO = 1; /// opA = string: label name
-		
-		JUMP = 2; /// peek string from stack and jump to that label
-		
-		RUN_LINE = 3; /// opA = int: string number
-		
-		RUN_COMMAND = 4; /// opA = string: command text
-		
-		ADD_OPTION = 5; /// opA = int: string number for option to add
-		
-		SHOW_OPTIONS = 6; /// present the current list of options, then clear the list; most recently selected option will be on the top of the stack
-		
-		PUSH_STRING = 7; /// opA = int: string number in table; push string to stack
-		
-		PUSH_NUMBER = 8; /// opA = float: number to push to stack
-		
-		PUSH_BOOL = 9; /// opA = int (0 or 1): bool to push to stack
-		
-		PUSH_NULL = 10; /// pushes a null value onto the stack
-		
-		JUMP_IF_FALSE = 11; /// opA = string: label name if top of stack is not null, zero or false, jumps to that label
-		
-		POP = 12; /// discard top of stack
-		
-		CALL_FUNC = 13; /// opA = string; looks up function, pops as many arguments as needed, result is pushed to stack
-		
-		PUSH_VARIABLE = 14; /// opA = name of variable to get value of and push to stack
-		
-		STORE_VARIABLE = 15; /// opA = name of variable to store top of stack in
-		
-		STOP = 16; /// stops execution
-		
-		RUN_NODE = 17; /// run the node whose name is at the top of the stack
-    }
+	// The operation that this instruction will perform.
+	OpCode opcode = 1;
 
-    OpCode opcode = 1;
+	// The list of operands, if any, that this instruction uses.
     repeated Operand operands = 2;
+
+    enum OpCode {
+		
+		// Jumps to a named position in the node.
+		// opA = string: label name
+		JUMP_TO = 0; 
+		
+		// Peeks a string from stack, and jumps to that named position in
+		// the node. 
+		// No operands.
+		JUMP = 1; 
+		
+		// Delivers a string ID to the client.
+		// opA = string: string ID
+		RUN_LINE = 2; 
+		
+		// Delivers a command to the client.
+		// opA = string: command text
+		RUN_COMMAND = 3; 
+		
+		// Adds an entry to the option list (see ShowOptions).
+		// opA = string: string ID for option to add
+		ADD_OPTION = 4; 
+		
+		// Presents the current list of options to the client, then clears
+		// the list. The most recently selected option will be on the top
+		// of the stack when execution resumes.
+		// No operands.
+		SHOW_OPTIONS = 5; 
+		
+		// Pushes a string onto the stack.
+		// opA = string: the string to push to the stack.
+		PUSH_STRING = 6; 
+		
+		// Pushes a floating point number onto the stack.
+		// opA = float: number to push to stack
+		PUSH_FLOAT = 7; 
+		
+		// Pushes a boolean onto the stack.
+		// opA = bool: the bool to push to stack
+		PUSH_BOOL = 8; 
+		
+		// Pushes a null value onto the stack.
+		// No operands.
+		PUSH_NULL = 9; 
+		
+		// Jumps to the named position in the the node, if the top of the
+		// stack is not null, zero or false.
+		// opA = string: label name 
+		JUMP_IF_FALSE = 10; 
+		
+		// Discards top of stack.
+		// No operands.
+		POP = 11; 
+		
+		// Calls a function in the client. Pops as many arguments as the
+		// client indicates the function receives, and the result (if any)
+		// is pushed to the stack.
+		
+		// opA = string: name of the function
+		CALL_FUNC = 12; 
+		
+		// Pushes the contents of a variable onto the stack.
+		// opA = name of variable 
+		PUSH_VARIABLE = 13; 
+		
+		// Stores the contents of the top of the stack in the named
+		// variable. 
+		// opA = name of variable
+		STORE_VARIABLE = 14; 
+		
+		// Stops execution of the program.
+		// No operands.
+		STOP = 15; 
+		
+		// Run the node whose name is at the top of the stack.
+		// No operands.
+		RUN_NODE = 16; 
+    }
 }
 
+// A value used by an Instruction.
 message Operand {
     oneof value {
 		
-        string string_value = 2;
-		bool bool_value = 3;
-		float number_value = 4;
+		// A string.
+		string string_value = 1;
+		
+		// A boolean (true or false).
+		bool bool_value = 2;
+
+		// A floating point number.
+		float float_value = 3;
     }
 }

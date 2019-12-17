@@ -110,7 +110,7 @@ namespace Yarn
                 functions [entry.Key] = entry.Value;
             }
         }
-
+        
         public void RegisterFunction(FunctionInfo function) {
             functions [function.name] = function;
         }

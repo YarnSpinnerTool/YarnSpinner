@@ -17,9 +17,9 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestNodeExists ()
         {
-            var path = Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt");
+            var path = Path.Combine(UnityDemoScriptsPath, "Sally.yarn");
 
-            var program = Compiler.CompileFile(path);
+            Compiler.CompileFile(path, out var program, out stringTable);
 
             dialogue.SetProgram (program);
 
@@ -46,7 +46,9 @@ namespace YarnSpinner.Tests
             // this means that there should be two diagnosis results
             context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
 
-            var program = Compiler.CompileFile(Path.Combine(TestDataPath, "AnalysisTest.yarn.txt"));
+            var path = Path.Combine(TestDataPath, "AnalysisTest.yarn.txt");
+
+            Compiler.CompileFile(path, out var program, out stringTable);
 
             dialogue.SetProgram(program);
             dialogue.Analyse (context);
@@ -58,8 +60,13 @@ namespace YarnSpinner.Tests
 
             context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
 
-            var shipProgram = Compiler.CompileFile(Path.Combine(UnityDemoScriptsPath, "Ship.yarn.txt"));
-            var sallyProgram = Compiler.CompileFile(Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt"));
+            string shipPath = Path.Combine(UnityDemoScriptsPath, "Ship.yarn");
+            Compiler.CompileFile(shipPath, out var shipProgram, out var shipStringTable);
+
+            string sallyPath = Path.Combine(UnityDemoScriptsPath, "Sally.yarn");
+            Compiler.CompileFile(sallyPath, out var sallyProgram, out var sallyStringTable);
+
+            stringTable = shipStringTable.Union(sallyStringTable).ToDictionary(k => k.Key, v => v.Value);            
 
             var combinedProgram = Program.Combine(shipProgram, sallyProgram);
 
@@ -78,7 +85,7 @@ namespace YarnSpinner.Tests
 
             var path = Path.Combine(TestDataPath, "Example.yarn.txt");
 
-            var program = Compiler.CompileFile(path);
+            Compiler.CompileFile(path, out var program, out stringTable);
 
             dialogue.SetProgram (program);
 
@@ -92,8 +99,8 @@ namespace YarnSpinner.Tests
         {
             var path = Path.Combine (TestDataPath, "TestCases", "Smileys.yarn.txt");
 
-            var program = Compiler.CompileFile(path);
-
+            Compiler.CompileFile(path, out var program, out stringTable);
+            
             dialogue.SetProgram (program);
 
             errorsCauseFailures = false;
@@ -105,8 +112,9 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestGettingCurrentNodeName()  {
 
-            var program = Compiler.CompileFile(Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt"));
-
+            string path = Path.Combine(UnityDemoScriptsPath, "Sally.yarn");
+            Compiler.CompileFile(path, out var program, out stringTable);
+            
             dialogue.SetProgram (program);
 
             // dialogue should not be running yet
@@ -125,10 +133,11 @@ namespace YarnSpinner.Tests
 
             var path = Path.Combine(TestDataPath, "Example.yarn.txt");
 
-            Program program = Compiler.CompileFile(path);
+            Compiler.CompileFile(path, out var program, out stringTable);
             dialogue.SetProgram (program);
 
-            var source = dialogue.GetTextForNode ("LearnMore");
+            var sourceID = dialogue.GetStringIDForNode ("LearnMore");
+            var source = stringTable[sourceID].text;
 
             Assert.NotNull (source);
 
@@ -138,7 +147,8 @@ namespace YarnSpinner.Tests
 		public void TestGettingTags() {
 
             var path = Path.Combine(TestDataPath, "Example.yarn.txt");
-			dialogue.SetProgram (Compiler.CompileFile(path));
+            Compiler.CompileFile(path, out var program, out stringTable);
+			dialogue.SetProgram (program);
 
 			var source = dialogue.GetTagsForNode ("LearnMore");
 

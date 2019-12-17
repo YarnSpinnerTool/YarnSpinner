@@ -1,8 +1,27 @@
 fileFormatVersion: 2
 guid: 24f22b038d584445ba4f43344cc5733d
-timeCreated: 1496809476
-licenseType: Pro
-TextScriptImporter:
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: en-AU
+  stringIDs:
+  - line:ship8
+  - line:ship9
+  - line:ship10
+  - line:ship11
+  - line:ship12
+  - line:ship13
+  - line:ship1
+  - line:ship3
+  - line:ship4
+  - line:ship5
+  - line:ship6
+  - line:ship7
+  compilationStatus: 0
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 

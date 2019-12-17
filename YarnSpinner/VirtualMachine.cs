@@ -19,7 +19,7 @@ namespace Yarn
         }
 
         public Operand(float value) : base() {
-            this.NumberValue = value;
+            this.FloatValue = value;
         }
     }
 
@@ -334,14 +334,6 @@ namespace Yarn
         {
             switch (i.Opcode)
             {
-                case OpCode.Label:
-                    {
-                        /// - Label
-                        /** No-op, used as a destination for JumpTo and Jump.
-                         */
-                        break;
-                    }
-
                 case OpCode.JumpTo:
                     {
                         /// - JumpTo
@@ -360,15 +352,7 @@ namespace Yarn
                          */
                         string stringKey = i.Operands[0].StringValue;
 
-                        var lineText = Program.GetString(stringKey);
-
-                        if (lineText == null)
-                        {
-                            dialogue.LogErrorMessage($"No loaded string table includes line {stringKey}");
-                            break;
-                        }
-
-                        var pause = lineHandler(new Line(lineText));
+                        var pause = lineHandler(new Line(stringKey));
 
                         if (pause == Dialogue.HandlerExecutionType.PauseExecution)
                         {
@@ -401,17 +385,17 @@ namespace Yarn
                         /** Pushes a string value onto the stack. The operand is an index into
                          *  the string table, so that's looked up first.
                          */
-                        state.PushValue(Program.GetString(i.Operands[0].StringValue));
+                        state.PushValue(i.Operands[0].StringValue);
 
                         break;
                     }
 
-                case OpCode.PushNumber:
+                case OpCode.PushFloat:
                     {
-                        /// - PushNumber
-                        /** Pushes a number onto the stack.
+                        /// - PushFloat
+                        /** Pushes a floating point onto the stack.
                          */
-                        state.PushValue(i.Operands[0].NumberValue);
+                        state.PushValue(i.Operands[0].FloatValue);
 
                         break;
                     }
@@ -625,7 +609,7 @@ namespace Yarn
                         for (int optionIndex = 0; optionIndex < state.currentOptions.Count; optionIndex++)
                         {
                             var option = state.currentOptions[optionIndex];
-                            var line = new Line(Program.GetString(option.Key));
+                            var line = new Line(option.Key);
                             optionChoices.Add(new OptionSet.Option(line, optionIndex));
                         }
 

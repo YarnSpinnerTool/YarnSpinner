@@ -70,7 +70,7 @@ namespace Yarn.Unity {
         public UnityEngine.Events.UnityEvent onOptionsStart;
         public UnityEngine.Events.UnityEvent onOptionsEnd;
 
-        public UnityEngine.Events.UnityEvent onCommand;
+        public StringUnityEvent onCommand;
 
         // A UnityEvent that takes a single string parameter. We need to
         // create a concrete subclass in order for Unity to serialise the
@@ -89,31 +89,38 @@ namespace Yarn.Unity {
             }
         }
 
-        public override Dialogue.HandlerExecutionType RunLine (Yarn.Line line, System.Action onComplete)
+        public override Dialogue.HandlerExecutionType RunLine (Yarn.Line line, IDictionary<string,string> strings, System.Action onComplete)
         {
             // Start displaying the line; it will call onComplete later
             // which will tell the dialogue to continue
-            StartCoroutine(DoRunLine(line, onComplete));
+            StartCoroutine(DoRunLine(line, strings, onComplete));
             return Dialogue.HandlerExecutionType.PauseExecution;
         }
 
         /// Show a line of dialogue, gradually        
-        private IEnumerator DoRunLine(Yarn.Line line, System.Action onComplete) {
+        private IEnumerator DoRunLine(Yarn.Line line, IDictionary<string,string> strings, System.Action onComplete) {
             
             onLineStart?.Invoke();
+
+            
+
+            if (strings.TryGetValue(line.ID, out var text) == false) {
+                Debug.LogWarning($"Line {line.ID} doesn't have any localised text.");
+                text = line.ID;
+            }
 
             if (textSpeed > 0.0f) {
                 // Display the line one character at a time
                 var stringBuilder = new StringBuilder ();
 
-                foreach (char c in line.Text) {
+                foreach (char c in text) {
                     stringBuilder.Append (c);
                     onLineUpdate?.Invoke(stringBuilder.ToString ());
                     yield return new WaitForSeconds (textSpeed);
                 }
             } else {
-                // Display the line immediately if textSpeed <= 0
-                onLineUpdate?.Invoke(line.Text);
+                // Display the entire line immediately if textSpeed <= 0
+                onLineUpdate?.Invoke(text);
             }
 
             waitingForLineContinue = true;
@@ -135,13 +142,13 @@ namespace Yarn.Unity {
 
         }
 
-        public override void RunOptions (Yarn.OptionSet optionsCollection, System.Action<int> selectOption) {
-            StartCoroutine(DoRunOptions(optionsCollection, selectOption));
+        public override void RunOptions (Yarn.OptionSet optionsCollection, IDictionary<string,string> strings, System.Action<int> selectOption) {
+            StartCoroutine(DoRunOptions(optionsCollection, strings, selectOption));
         }
 
         /// Show a list of options, and wait for the player to make a
         /// selection.
-        public  IEnumerator DoRunOptions (Yarn.OptionSet optionsCollection, System.Action<int> selectOption)
+        public  IEnumerator DoRunOptions (Yarn.OptionSet optionsCollection, IDictionary<string,string> strings, System.Action<int> selectOption)
         {
             // Do a little bit of safety checking
             if (optionsCollection.Options.Length > optionButtons.Count) {
@@ -164,7 +171,13 @@ namespace Yarn.Unity {
                     selectOption(optionString.ID);
                 });
 
-                optionButtons [i].GetComponentInChildren<Text> ().text = optionString.Line.Text;
+                if (strings.TryGetValue(optionString.Line.Text, out var optionText) == false) {
+                    Debug.LogWarning($"Option {optionString.Line.ID} doesn't have any localised text");
+                    optionText = optionString.Line.ID;
+                }
+
+                optionButtons [i].GetComponentInChildren<Text> ().text = optionText;
+
                 i++;
             }
 

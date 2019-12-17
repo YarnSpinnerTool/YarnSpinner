@@ -22,7 +22,8 @@ namespace YarnSpinner.Tests
 
         protected VariableStorage storage = new MemoryVariableStore();
         protected Dialogue dialogue;
-
+        protected IDictionary<string, Yarn.StringInfo> stringTable;
+        
         protected bool errorsCauseFailures = true;
 
         // Returns the path that contains the test case files.
@@ -59,7 +60,7 @@ namespace YarnSpinner.Tests
         {
             get
             {
-                return Path.Combine(ProjectRootPath, "Unity/Assets/YarnSpinner/Examples/DemoAssets/Space");
+                return Path.Combine(ProjectRootPath, "Unity/Assets/YarnSpinner/Examples/Space/Dialogue");
             }
         }
 
@@ -110,12 +111,16 @@ namespace YarnSpinner.Tests
             });
 
             dialogue.lineHandler = delegate (Line line) {
-                var text = line.Text;
+                var id = line.ID;
+
+                Assert.Contains(id, stringTable.Keys);
+
+                var text = stringTable[id].text;
 
                 Console.WriteLine("Line: " + text);
 
                 if (IsExpectingLine) {
-                    Assert.Equal (text, nextExpectedLine);
+                    Assert.Equal (nextExpectedLine, text);
                 }
 
                 nextExpectedLine = null;
@@ -161,7 +166,8 @@ namespace YarnSpinner.Tests
 
         }
 
-
+        // Executes the named node, and checks any assertions made during
+        // execution. Fails the test if an assertion made in Yarn fails.
         protected void RunStandardTestcase(string nodeName = "Start") {
 
             dialogue.SetNode(nodeName);

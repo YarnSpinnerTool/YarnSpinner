@@ -31,14 +31,10 @@ using System.Text.RegularExpressions;
 using CsvHelper;
 using System;
 
+using System.Globalization;
+
 namespace Yarn.Unity
 {
-
-    [System.Serializable]
-    public class LocalisedStringGroup {
-        public SystemLanguage language;
-        public TextAsset[] stringFiles;
-    }
 
     /// DialogueRunners act as the interface between your game and
     /// YarnSpinner.
@@ -79,6 +75,10 @@ namespace Yarn.Unity
         private Dictionary<string, CommandHandler> commandHandlers = new Dictionary<string, CommandHandler>();
         private Dictionary<string, BlockingCommandHandler> blockingCommandHandlers = new Dictionary<string, BlockingCommandHandler>();
 
+        public TextAsset[] stringTables;
+
+        // Maps string IDs received from Yarn Spinner to user-facing text
+        private Dictionary<string, string> strings = new Dictionary<string, string>();
         
         /// Our conversation engine
         /** Automatically created on first access
@@ -111,6 +111,10 @@ namespace Yarn.Unity
                     _dialogue.dialogueCompleteHandler = HandleDialogueComplete;
 
                     AddCommandHandler("wait", HandleWaitCommand);
+
+                    foreach (var stringTable in stringTables) {
+                        AddStringTable(stringTable);
+                    }
                     
                 }
                 return _dialogue;
@@ -154,7 +158,8 @@ namespace Yarn.Unity
 
         private void HandleOptions(OptionSet options)
         {
-            this.dialogueUI.RunOptions(options, _selectAction);
+            
+            this.dialogueUI.RunOptions(options, strings, _selectAction);
         }
 
         private Dialogue.HandlerExecutionType HandleCommand(Command command)
@@ -240,7 +245,7 @@ namespace Yarn.Unity
         /// Forward the line to the dialogue UI.
         private Dialogue.HandlerExecutionType HandleLine(Line line)
         {
-            return this.dialogueUI.RunLine (line, _continue);            
+            return this.dialogueUI.RunLine (line, strings, _continue);            
         }
 
         /// Adds a command handler. Yarn Spinner will continue execution after this handler is called.
@@ -309,25 +314,47 @@ namespace Yarn.Unity
             
         }
 
+        /// Adds a program and its base localisation string table
+        internal void Add(YarnProgram scriptToLoad)
+        {
+            AddProgram(scriptToLoad);
+            AddStringTable(scriptToLoad.baseLocalisationStringTable);
+        }
+
+        /// Adds a program, and all of its nodes
         internal void AddProgram(YarnProgram scriptToLoad)
         {
             this.dialogue.AddProgram(scriptToLoad.GetProgram());
         }
 
+        /// Adds a tagged string table
+        public void AddStringTable(TextAsset stringTableAsset) {
+            using (var reader = new System.IO.StringReader(stringTableAsset.text))
+            using (var csv = new CsvReader(reader)) {
+                csv.Read();
+                csv.ReadHeader();
+
+                while (csv.Read()) {
+                    strings.Add(csv.GetField("id"), csv.GetField("text"));
+                }
+            }
+        }
+
+        /// Indicates to the DialogueRunner that the user has selected an option
         private void SelectedOption(int obj)
         {
             this.dialogue.SetSelectedOption(obj);
             ContinueDialogue();
         }
 
-        /// Destroy the variable store and start again
+        /// Destroy the variable store and start the dialogue again
         public void ResetDialogue ()
         {
             variableStorage.ResetToDefaults ();
             StartDialogue ();
         }
 
-        /// Start the dialogue
+        /// Start the dialogue from the start node
         public void StartDialogue () {
             StartDialogue(startNode);
         }
@@ -391,6 +418,7 @@ namespace Yarn.Unity
             }
         }
 
+        
 
         /// commands that can be automatically dispatched look like this:
         /// COMMANDNAME OBJECTNAME <param> <param> <param> ...
@@ -597,10 +625,11 @@ namespace Yarn.Unity
         }
 
         /// Display a line.
-        public abstract Dialogue.HandlerExecutionType RunLine (Yarn.Line line, System.Action onLineComplete);
+        public abstract Dialogue.HandlerExecutionType RunLine (Yarn.Line line, IDictionary<string, string> strings, System.Action onLineComplete);
 
         /// Display the options, and call the optionChooser when done.
-        public abstract void RunOptions (Yarn.OptionSet optionSet,
+        public abstract void RunOptions (Yarn.OptionSet optionSet, 
+                                        IDictionary<string, string> strings,
                                                 System.Action<int> onOptionSelected);
 
         /// Perform some game-specific command.

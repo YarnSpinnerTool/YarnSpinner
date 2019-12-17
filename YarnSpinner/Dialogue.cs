@@ -42,12 +42,13 @@ namespace Yarn {
     }
 
     public struct Line {
-        public Line(string text) : this()
+        public Line(string stringID) : this()
         {
-            this.Text = text;            
+            this.ID = stringID;            
         }
 
-        public string Text { get; private set; }        
+        public string ID;
+        public string Text;
     }
 
     public struct OptionSet {
@@ -274,6 +275,10 @@ namespace Yarn {
         }
         
         public void Continue() {
+            if (vm.executionState == VirtualMachine.ExecutionState.Running) {
+                // Cannot 'continue' an already running VM.
+                return;
+            }
             vm.Continue();
         }
 
@@ -311,28 +316,13 @@ namespace Yarn {
             }
         }
 
-        public Dictionary<string, string> GetTextForAllNodes() {
-            var d = new Dictionary<string,string>();
-
-            foreach (var node in Program.Nodes) {
-                var text = Program.GetTextForNode(node.Key);
-
-                if (text == null)
-                    continue;
-
-                d [node.Key] = text;
-            }
-
-            return d;
-        }
-
         /// Returns the source code for the node 'nodeName', if that node was tagged with rawText.
-        public string GetTextForNode(string nodeName) {
+        public string GetStringIDForNode(string nodeName) {
             if (Program.Nodes.Count == 0) {
                 LogErrorMessage ("No nodes are loaded!");
                 return null;
             } else if (Program.Nodes.ContainsKey(nodeName)) {
-                return Program.GetTextForNode (nodeName);
+                return "line:" + nodeName;
             } else {
                 LogErrorMessage ("No node named " + nodeName);
                 return null;
@@ -366,19 +356,6 @@ namespace Yarn {
 				return null;
 			}
 		}
-
-        public void AddStringTable(Dictionary<string, string> stringTable)
-        {
-            Program.LoadStrings(stringTable);
-        }
-
-        public IDictionary<string,string> GetStringTable() {
-            return Program.StringTable;
-        }
-
-        internal IDictionary<string,LineInfo> GetStringInfoTable() {
-            return Program.LineInfo;
-        }
 
         /// Unloads ALL nodes.
         public void UnloadAll(bool clearVisitedNodes = true) {

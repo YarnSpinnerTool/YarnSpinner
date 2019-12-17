@@ -24,39 +24,31 @@ namespace Yarn {
     static YarnSpinnerReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChJ5YXJuX3NwaW5uZXIucHJvdG8SBFlhcm4i1QIKB1Byb2dyYW0SDAoEbmFt",
-            "ZRgBIAEoCRInCgVub2RlcxgCIAMoCzIYLllhcm4uUHJvZ3JhbS5Ob2Rlc0Vu",
-            "dHJ5EjQKDHN0cmluZ190YWJsZRgDIAMoCzIeLllhcm4uUHJvZ3JhbS5TdHJp",
-            "bmdUYWJsZUVudHJ5Ei4KCWxpbmVfaW5mbxgEIAMoCzIbLllhcm4uUHJvZ3Jh",
-            "bS5MaW5lSW5mb0VudHJ5GjgKCk5vZGVzRW50cnkSCwoDa2V5GAEgASgJEhkK",
-            "BXZhbHVlGAIgASgLMgouWWFybi5Ob2RlOgI4ARoyChBTdHJpbmdUYWJsZUVu",
-            "dHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEaPwoNTGluZUlu",
-            "Zm9FbnRyeRILCgNrZXkYASABKAkSHQoFdmFsdWUYAiABKAsyDi5ZYXJuLkxp",
-            "bmVJbmZvOgI4ASIyCghMaW5lSW5mbxITCgtsaW5lX251bWJlchgBIAEoBRIR",
-            "Cglub2RlX25hbWUYAiABKAkivgEKBE5vZGUSDAoEbmFtZRgBIAEoCRInCgxp",
-            "bnN0cnVjdGlvbnMYAiADKAsyES5ZYXJuLkluc3RydWN0aW9uEiYKBmxhYmVs",
-            "cxgDIAMoCzIWLllhcm4uTm9kZS5MYWJlbHNFbnRyeRIMCgR0YWdzGAQgAygJ",
-            "EhoKEnNvdXJjZVRleHRTdHJpbmdJRBgFIAEoCRotCgtMYWJlbHNFbnRyeRIL",
-            "CgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAU6AjgBIvACCgtJbnN0cnVjdGlv",
-            "bhIoCgZvcGNvZGUYASABKA4yGC5ZYXJuLkluc3RydWN0aW9uLk9wQ29kZRIf",
-            "CghvcGVyYW5kcxgCIAMoCzINLllhcm4uT3BlcmFuZCKVAgoGT3BDb2RlEgkK",
-            "BUxBQkVMEAASCwoHSlVNUF9UTxABEggKBEpVTVAQAhIMCghSVU5fTElORRAD",
-            "Eg8KC1JVTl9DT01NQU5EEAQSDgoKQUREX09QVElPThAFEhAKDFNIT1dfT1BU",
-            "SU9OUxAGEg8KC1BVU0hfU1RSSU5HEAcSDwoLUFVTSF9OVU1CRVIQCBINCglQ",
-            "VVNIX0JPT0wQCRINCglQVVNIX05VTEwQChIRCg1KVU1QX0lGX0ZBTFNFEAsS",
-            "BwoDUE9QEAwSDQoJQ0FMTF9GVU5DEA0SEQoNUFVTSF9WQVJJQUJMRRAOEhIK",
-            "DlNUT1JFX1ZBUklBQkxFEA8SCAoEU1RPUBAQEgwKCFJVTl9OT0RFEBEiWAoH",
-            "T3BlcmFuZBIWCgxzdHJpbmdfdmFsdWUYAiABKAlIABIUCgpib29sX3ZhbHVl",
-            "GAMgASgISAASFgoMbnVtYmVyX3ZhbHVlGAQgASgCSABCBwoFdmFsdWVCAkgC",
-            "YgZwcm90bzM="));
+            "ChJ5YXJuX3NwaW5uZXIucHJvdG8SBFlhcm4iegoHUHJvZ3JhbRIMCgRuYW1l",
+            "GAEgASgJEicKBW5vZGVzGAIgAygLMhguWWFybi5Qcm9ncmFtLk5vZGVzRW50",
+            "cnkaOAoKTm9kZXNFbnRyeRILCgNrZXkYASABKAkSGQoFdmFsdWUYAiABKAsy",
+            "Ci5ZYXJuLk5vZGU6AjgBIr4BCgROb2RlEgwKBG5hbWUYASABKAkSJwoMaW5z",
+            "dHJ1Y3Rpb25zGAIgAygLMhEuWWFybi5JbnN0cnVjdGlvbhImCgZsYWJlbHMY",
+            "AyADKAsyFi5ZYXJuLk5vZGUuTGFiZWxzRW50cnkSDAoEdGFncxgEIAMoCRIa",
+            "ChJzb3VyY2VUZXh0U3RyaW5nSUQYBSABKAkaLQoLTGFiZWxzRW50cnkSCwoD",
+            "a2V5GAEgASgJEg0KBXZhbHVlGAIgASgFOgI4ASLkAgoLSW5zdHJ1Y3Rpb24S",
+            "KAoGb3Bjb2RlGAEgASgOMhguWWFybi5JbnN0cnVjdGlvbi5PcENvZGUSHwoI",
+            "b3BlcmFuZHMYAiADKAsyDS5ZYXJuLk9wZXJhbmQiiQIKBk9wQ29kZRILCgdK",
+            "VU1QX1RPEAASCAoESlVNUBABEgwKCFJVTl9MSU5FEAISDwoLUlVOX0NPTU1B",
+            "TkQQAxIOCgpBRERfT1BUSU9OEAQSEAoMU0hPV19PUFRJT05TEAUSDwoLUFVT",
+            "SF9TVFJJTkcQBhIOCgpQVVNIX0ZMT0FUEAcSDQoJUFVTSF9CT09MEAgSDQoJ",
+            "UFVTSF9OVUxMEAkSEQoNSlVNUF9JRl9GQUxTRRAKEgcKA1BPUBALEg0KCUNB",
+            "TExfRlVOQxAMEhEKDVBVU0hfVkFSSUFCTEUQDRISCg5TVE9SRV9WQVJJQUJM",
+            "RRAOEggKBFNUT1AQDxIMCghSVU5fTk9ERRAQIlcKB09wZXJhbmQSFgoMc3Ry",
+            "aW5nX3ZhbHVlGAEgASgJSAASFAoKYm9vbF92YWx1ZRgCIAEoCEgAEhUKC2Zs",
+            "b2F0X3ZhbHVlGAMgASgCSABCBwoFdmFsdWViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Program), global::Yarn.Program.Parser, new[]{ "Name", "Nodes", "StringTable", "LineInfo" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, null, }),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.LineInfo), global::Yarn.LineInfo.Parser, new[]{ "LineNumber", "NodeName" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Program), global::Yarn.Program.Parser, new[]{ "Name", "Nodes" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Node), global::Yarn.Node.Parser, new[]{ "Name", "Instructions", "Labels", "Tags", "SourceTextStringID" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction), global::Yarn.Instruction.Parser, new[]{ "Opcode", "Operands" }, null, new[]{ typeof(global::Yarn.Instruction.Types.OpCode) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Operand), global::Yarn.Operand.Parser, new[]{ "StringValue", "BoolValue", "NumberValue" }, new[]{ "Value" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Operand), global::Yarn.Operand.Parser, new[]{ "StringValue", "BoolValue", "FloatValue" }, new[]{ "Value" }, null, null, null)
           }));
     }
     #endregion
@@ -90,8 +82,6 @@ namespace Yarn {
     public Program(Program other) : this() {
       name_ = other.name_;
       nodes_ = other.nodes_.Clone();
-      stringTable_ = other.stringTable_.Clone();
-      lineInfo_ = other.lineInfo_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -121,26 +111,6 @@ namespace Yarn {
       get { return nodes_; }
     }
 
-    /// <summary>Field number for the "string_table" field.</summary>
-    public const int StringTableFieldNumber = 3;
-    private static readonly pbc::MapField<string, string>.Codec _map_stringTable_codec
-        = new pbc::MapField<string, string>.Codec(pb::FieldCodec.ForString(10, ""), pb::FieldCodec.ForString(18, ""), 26);
-    private readonly pbc::MapField<string, string> stringTable_ = new pbc::MapField<string, string>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::MapField<string, string> StringTable {
-      get { return stringTable_; }
-    }
-
-    /// <summary>Field number for the "line_info" field.</summary>
-    public const int LineInfoFieldNumber = 4;
-    private static readonly pbc::MapField<string, global::Yarn.LineInfo>.Codec _map_lineInfo_codec
-        = new pbc::MapField<string, global::Yarn.LineInfo>.Codec(pb::FieldCodec.ForString(10, ""), pb::FieldCodec.ForMessage(18, global::Yarn.LineInfo.Parser), 34);
-    private readonly pbc::MapField<string, global::Yarn.LineInfo> lineInfo_ = new pbc::MapField<string, global::Yarn.LineInfo>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::MapField<string, global::Yarn.LineInfo> LineInfo {
-      get { return lineInfo_; }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as Program);
@@ -156,8 +126,6 @@ namespace Yarn {
       }
       if (Name != other.Name) return false;
       if (!Nodes.Equals(other.Nodes)) return false;
-      if (!StringTable.Equals(other.StringTable)) return false;
-      if (!LineInfo.Equals(other.LineInfo)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -166,8 +134,6 @@ namespace Yarn {
       int hash = 1;
       if (Name.Length != 0) hash ^= Name.GetHashCode();
       hash ^= Nodes.GetHashCode();
-      hash ^= StringTable.GetHashCode();
-      hash ^= LineInfo.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -186,8 +152,6 @@ namespace Yarn {
         output.WriteString(Name);
       }
       nodes_.WriteTo(output, _map_nodes_codec);
-      stringTable_.WriteTo(output, _map_stringTable_codec);
-      lineInfo_.WriteTo(output, _map_lineInfo_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -200,8 +164,6 @@ namespace Yarn {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
       }
       size += nodes_.CalculateSize(_map_nodes_codec);
-      size += stringTable_.CalculateSize(_map_stringTable_codec);
-      size += lineInfo_.CalculateSize(_map_lineInfo_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -217,8 +179,6 @@ namespace Yarn {
         Name = other.Name;
       }
       nodes_.Add(other.nodes_);
-      stringTable_.Add(other.stringTable_);
-      lineInfo_.Add(other.lineInfo_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -238,171 +198,6 @@ namespace Yarn {
             nodes_.AddEntriesFrom(input, _map_nodes_codec);
             break;
           }
-          case 26: {
-            stringTable_.AddEntriesFrom(input, _map_stringTable_codec);
-            break;
-          }
-          case 34: {
-            lineInfo_.AddEntriesFrom(input, _map_lineInfo_codec);
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class LineInfo : pb::IMessage<LineInfo> {
-    private static readonly pb::MessageParser<LineInfo> _parser = new pb::MessageParser<LineInfo>(() => new LineInfo());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<LineInfo> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Yarn.YarnSpinnerReflection.Descriptor.MessageTypes[1]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public LineInfo() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public LineInfo(LineInfo other) : this() {
-      lineNumber_ = other.lineNumber_;
-      nodeName_ = other.nodeName_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public LineInfo Clone() {
-      return new LineInfo(this);
-    }
-
-    /// <summary>Field number for the "line_number" field.</summary>
-    public const int LineNumberFieldNumber = 1;
-    private int lineNumber_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int LineNumber {
-      get { return lineNumber_; }
-      set {
-        lineNumber_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "node_name" field.</summary>
-    public const int NodeNameFieldNumber = 2;
-    private string nodeName_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string NodeName {
-      get { return nodeName_; }
-      set {
-        nodeName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as LineInfo);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(LineInfo other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (LineNumber != other.LineNumber) return false;
-      if (NodeName != other.NodeName) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (LineNumber != 0) hash ^= LineNumber.GetHashCode();
-      if (NodeName.Length != 0) hash ^= NodeName.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (LineNumber != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(LineNumber);
-      }
-      if (NodeName.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(NodeName);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (LineNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(LineNumber);
-      }
-      if (NodeName.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(NodeName);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(LineInfo other) {
-      if (other == null) {
-        return;
-      }
-      if (other.LineNumber != 0) {
-        LineNumber = other.LineNumber;
-      }
-      if (other.NodeName.Length != 0) {
-        NodeName = other.NodeName;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            LineNumber = input.ReadInt32();
-            break;
-          }
-          case 18: {
-            NodeName = input.ReadString();
-            break;
-          }
         }
       }
     }
@@ -417,7 +212,7 @@ namespace Yarn {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Yarn.YarnSpinnerReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Yarn.YarnSpinnerReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -450,6 +245,9 @@ namespace Yarn {
     /// <summary>Field number for the "name" field.</summary>
     public const int NameFieldNumber = 1;
     private string name_ = "";
+    /// <summary>
+    /// The name of this node.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Name {
       get { return name_; }
@@ -463,6 +261,9 @@ namespace Yarn {
     private static readonly pb::FieldCodec<global::Yarn.Instruction> _repeated_instructions_codec
         = pb::FieldCodec.ForMessage(18, global::Yarn.Instruction.Parser);
     private readonly pbc::RepeatedField<global::Yarn.Instruction> instructions_ = new pbc::RepeatedField<global::Yarn.Instruction>();
+    /// <summary>
+    /// The list of instructions in this node.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::Yarn.Instruction> Instructions {
       get { return instructions_; }
@@ -474,7 +275,8 @@ namespace Yarn {
         = new pbc::MapField<string, int>.Codec(pb::FieldCodec.ForString(10, ""), pb::FieldCodec.ForInt32(16, 0), 26);
     private readonly pbc::MapField<string, int> labels_ = new pbc::MapField<string, int>();
     /// <summary>
-    /// Offsets to instructions, relative to this node's position in the program
+    /// A jump table, mapping the names of labels to positions in the
+    /// instructions list.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::MapField<string, int> Labels {
@@ -495,8 +297,8 @@ namespace Yarn {
     public const int SourceTextStringIDFieldNumber = 5;
     private string sourceTextStringID_ = "";
     /// <summary>
-    /// the entry in the program's string table that contains
-    /// the original text of this node; null if this is not available	
+    /// the entry in the program's string table that contains the original
+    /// text of this node; null if this is not available    
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string SourceTextStringID {
@@ -641,7 +443,7 @@ namespace Yarn {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Yarn.YarnSpinnerReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Yarn.YarnSpinnerReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -670,7 +472,10 @@ namespace Yarn {
 
     /// <summary>Field number for the "opcode" field.</summary>
     public const int OpcodeFieldNumber = 1;
-    private global::Yarn.Instruction.Types.OpCode opcode_ = global::Yarn.Instruction.Types.OpCode.Label;
+    private global::Yarn.Instruction.Types.OpCode opcode_ = global::Yarn.Instruction.Types.OpCode.JumpTo;
+    /// <summary>
+    /// The operation that this instruction will perform.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Yarn.Instruction.Types.OpCode Opcode {
       get { return opcode_; }
@@ -684,6 +489,9 @@ namespace Yarn {
     private static readonly pb::FieldCodec<global::Yarn.Operand> _repeated_operands_codec
         = pb::FieldCodec.ForMessage(18, global::Yarn.Operand.Parser);
     private readonly pbc::RepeatedField<global::Yarn.Operand> operands_ = new pbc::RepeatedField<global::Yarn.Operand>();
+    /// <summary>
+    /// The list of operands, if any, that this instruction uses.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::Yarn.Operand> Operands {
       get { return operands_; }
@@ -710,7 +518,7 @@ namespace Yarn {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Opcode != global::Yarn.Instruction.Types.OpCode.Label) hash ^= Opcode.GetHashCode();
+      if (Opcode != global::Yarn.Instruction.Types.OpCode.JumpTo) hash ^= Opcode.GetHashCode();
       hash ^= operands_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -725,7 +533,7 @@ namespace Yarn {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Opcode != global::Yarn.Instruction.Types.OpCode.Label) {
+      if (Opcode != global::Yarn.Instruction.Types.OpCode.JumpTo) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Opcode);
       }
@@ -738,7 +546,7 @@ namespace Yarn {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Opcode != global::Yarn.Instruction.Types.OpCode.Label) {
+      if (Opcode != global::Yarn.Instruction.Types.OpCode.JumpTo) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Opcode);
       }
       size += operands_.CalculateSize(_repeated_operands_codec);
@@ -753,7 +561,7 @@ namespace Yarn {
       if (other == null) {
         return;
       }
-      if (other.Opcode != global::Yarn.Instruction.Types.OpCode.Label) {
+      if (other.Opcode != global::Yarn.Instruction.Types.OpCode.JumpTo) {
         Opcode = other.Opcode;
       }
       operands_.Add(other.operands_);
@@ -786,77 +594,94 @@ namespace Yarn {
     public static partial class Types {
       public enum OpCode {
         /// <summary>
-        //// opA = string: label name
+        /// Jumps to a named position in the node.
+        /// opA = string: label name
         /// </summary>
-        [pbr::OriginalName("LABEL")] Label = 0,
+        [pbr::OriginalName("JUMP_TO")] JumpTo = 0,
         /// <summary>
-        //// opA = string: label name
+        /// Peeks a string from stack, and jumps to that named position in
+        /// the node. 
+        /// No operands.
         /// </summary>
-        [pbr::OriginalName("JUMP_TO")] JumpTo = 1,
+        [pbr::OriginalName("JUMP")] Jump = 1,
         /// <summary>
-        //// peek string from stack and jump to that label
+        /// Delivers a string ID to the client.
+        /// opA = string: string ID
         /// </summary>
-        [pbr::OriginalName("JUMP")] Jump = 2,
+        [pbr::OriginalName("RUN_LINE")] RunLine = 2,
         /// <summary>
-        //// opA = int: string number
+        /// Delivers a command to the client.
+        /// opA = string: command text
         /// </summary>
-        [pbr::OriginalName("RUN_LINE")] RunLine = 3,
+        [pbr::OriginalName("RUN_COMMAND")] RunCommand = 3,
         /// <summary>
-        //// opA = string: command text
+        /// Adds an entry to the option list (see ShowOptions).
+        /// opA = string: string ID for option to add
         /// </summary>
-        [pbr::OriginalName("RUN_COMMAND")] RunCommand = 4,
+        [pbr::OriginalName("ADD_OPTION")] AddOption = 4,
         /// <summary>
-        //// opA = int: string number for option to add
+        /// Presents the current list of options to the client, then clears
+        /// the list. The most recently selected option will be on the top
+        /// of the stack when execution resumes.
+        /// No operands.
         /// </summary>
-        [pbr::OriginalName("ADD_OPTION")] AddOption = 5,
+        [pbr::OriginalName("SHOW_OPTIONS")] ShowOptions = 5,
         /// <summary>
-        //// present the current list of options, then clear the list; most recently selected option will be on the top of the stack
+        /// Pushes a string onto the stack.
+        /// opA = string: the string to push to the stack.
         /// </summary>
-        [pbr::OriginalName("SHOW_OPTIONS")] ShowOptions = 6,
+        [pbr::OriginalName("PUSH_STRING")] PushString = 6,
         /// <summary>
-        //// opA = int: string number in table; push string to stack
+        /// Pushes a floating point number onto the stack.
+        /// opA = float: number to push to stack
         /// </summary>
-        [pbr::OriginalName("PUSH_STRING")] PushString = 7,
+        [pbr::OriginalName("PUSH_FLOAT")] PushFloat = 7,
         /// <summary>
-        //// opA = float: number to push to stack
+        /// Pushes a boolean onto the stack.
+        /// opA = bool: the bool to push to stack
         /// </summary>
-        [pbr::OriginalName("PUSH_NUMBER")] PushNumber = 8,
+        [pbr::OriginalName("PUSH_BOOL")] PushBool = 8,
         /// <summary>
-        //// opA = int (0 or 1): bool to push to stack
+        /// Pushes a null value onto the stack.
+        /// No operands.
         /// </summary>
-        [pbr::OriginalName("PUSH_BOOL")] PushBool = 9,
+        [pbr::OriginalName("PUSH_NULL")] PushNull = 9,
         /// <summary>
-        //// pushes a null value onto the stack
+        /// Jumps to the named position in the the node, if the top of the
+        /// stack is not null, zero or false.
+        /// opA = string: label name 
         /// </summary>
-        [pbr::OriginalName("PUSH_NULL")] PushNull = 10,
+        [pbr::OriginalName("JUMP_IF_FALSE")] JumpIfFalse = 10,
         /// <summary>
-        //// opA = string: label name if top of stack is not null, zero or false, jumps to that label
+        /// Discards top of stack.
+        /// No operands.
         /// </summary>
-        [pbr::OriginalName("JUMP_IF_FALSE")] JumpIfFalse = 11,
+        [pbr::OriginalName("POP")] Pop = 11,
         /// <summary>
-        //// discard top of stack
+        /// opA = string: name of the function
         /// </summary>
-        [pbr::OriginalName("POP")] Pop = 12,
+        [pbr::OriginalName("CALL_FUNC")] CallFunc = 12,
         /// <summary>
-        //// opA = string; looks up function, pops as many arguments as needed, result is pushed to stack
+        /// Pushes the contents of a variable onto the stack.
+        /// opA = name of variable 
         /// </summary>
-        [pbr::OriginalName("CALL_FUNC")] CallFunc = 13,
+        [pbr::OriginalName("PUSH_VARIABLE")] PushVariable = 13,
         /// <summary>
-        //// opA = name of variable to get value of and push to stack
+        /// Stores the contents of the top of the stack in the named
+        /// variable. 
+        /// opA = name of variable
         /// </summary>
-        [pbr::OriginalName("PUSH_VARIABLE")] PushVariable = 14,
+        [pbr::OriginalName("STORE_VARIABLE")] StoreVariable = 14,
         /// <summary>
-        //// opA = name of variable to store top of stack in
+        /// Stops execution of the program.
+        /// No operands.
         /// </summary>
-        [pbr::OriginalName("STORE_VARIABLE")] StoreVariable = 15,
+        [pbr::OriginalName("STOP")] Stop = 15,
         /// <summary>
-        //// stops execution
+        /// Run the node whose name is at the top of the stack.
+        /// No operands.
         /// </summary>
-        [pbr::OriginalName("STOP")] Stop = 16,
-        /// <summary>
-        //// run the node whose name is at the top of the stack
-        /// </summary>
-        [pbr::OriginalName("RUN_NODE")] RunNode = 17,
+        [pbr::OriginalName("RUN_NODE")] RunNode = 16,
       }
 
     }
@@ -864,6 +689,9 @@ namespace Yarn {
 
   }
 
+  /// <summary>
+  /// A value used by an Instruction.
+  /// </summary>
   public sealed partial class Operand : pb::IMessage<Operand> {
     private static readonly pb::MessageParser<Operand> _parser = new pb::MessageParser<Operand>(() => new Operand());
     private pb::UnknownFieldSet _unknownFields;
@@ -872,7 +700,7 @@ namespace Yarn {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Yarn.YarnSpinnerReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Yarn.YarnSpinnerReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -896,8 +724,8 @@ namespace Yarn {
         case ValueOneofCase.BoolValue:
           BoolValue = other.BoolValue;
           break;
-        case ValueOneofCase.NumberValue:
-          NumberValue = other.NumberValue;
+        case ValueOneofCase.FloatValue:
+          FloatValue = other.FloatValue;
           break;
       }
 
@@ -910,7 +738,10 @@ namespace Yarn {
     }
 
     /// <summary>Field number for the "string_value" field.</summary>
-    public const int StringValueFieldNumber = 2;
+    public const int StringValueFieldNumber = 1;
+    /// <summary>
+    /// A string.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string StringValue {
       get { return valueCase_ == ValueOneofCase.StringValue ? (string) value_ : ""; }
@@ -921,7 +752,10 @@ namespace Yarn {
     }
 
     /// <summary>Field number for the "bool_value" field.</summary>
-    public const int BoolValueFieldNumber = 3;
+    public const int BoolValueFieldNumber = 2;
+    /// <summary>
+    /// A boolean (true or false).
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool BoolValue {
       get { return valueCase_ == ValueOneofCase.BoolValue ? (bool) value_ : false; }
@@ -931,14 +765,17 @@ namespace Yarn {
       }
     }
 
-    /// <summary>Field number for the "number_value" field.</summary>
-    public const int NumberValueFieldNumber = 4;
+    /// <summary>Field number for the "float_value" field.</summary>
+    public const int FloatValueFieldNumber = 3;
+    /// <summary>
+    /// A floating point number.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float NumberValue {
-      get { return valueCase_ == ValueOneofCase.NumberValue ? (float) value_ : 0F; }
+    public float FloatValue {
+      get { return valueCase_ == ValueOneofCase.FloatValue ? (float) value_ : 0F; }
       set {
         value_ = value;
-        valueCase_ = ValueOneofCase.NumberValue;
+        valueCase_ = ValueOneofCase.FloatValue;
       }
     }
 
@@ -946,9 +783,9 @@ namespace Yarn {
     /// <summary>Enum of possible cases for the "value" oneof.</summary>
     public enum ValueOneofCase {
       None = 0,
-      StringValue = 2,
-      BoolValue = 3,
-      NumberValue = 4,
+      StringValue = 1,
+      BoolValue = 2,
+      FloatValue = 3,
     }
     private ValueOneofCase valueCase_ = ValueOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -977,7 +814,7 @@ namespace Yarn {
       }
       if (StringValue != other.StringValue) return false;
       if (BoolValue != other.BoolValue) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(NumberValue, other.NumberValue)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FloatValue, other.FloatValue)) return false;
       if (ValueCase != other.ValueCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -987,7 +824,7 @@ namespace Yarn {
       int hash = 1;
       if (valueCase_ == ValueOneofCase.StringValue) hash ^= StringValue.GetHashCode();
       if (valueCase_ == ValueOneofCase.BoolValue) hash ^= BoolValue.GetHashCode();
-      if (valueCase_ == ValueOneofCase.NumberValue) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(NumberValue);
+      if (valueCase_ == ValueOneofCase.FloatValue) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FloatValue);
       hash ^= (int) valueCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1003,16 +840,16 @@ namespace Yarn {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (valueCase_ == ValueOneofCase.StringValue) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(10);
         output.WriteString(StringValue);
       }
       if (valueCase_ == ValueOneofCase.BoolValue) {
-        output.WriteRawTag(24);
+        output.WriteRawTag(16);
         output.WriteBool(BoolValue);
       }
-      if (valueCase_ == ValueOneofCase.NumberValue) {
-        output.WriteRawTag(37);
-        output.WriteFloat(NumberValue);
+      if (valueCase_ == ValueOneofCase.FloatValue) {
+        output.WriteRawTag(29);
+        output.WriteFloat(FloatValue);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1028,7 +865,7 @@ namespace Yarn {
       if (valueCase_ == ValueOneofCase.BoolValue) {
         size += 1 + 1;
       }
-      if (valueCase_ == ValueOneofCase.NumberValue) {
+      if (valueCase_ == ValueOneofCase.FloatValue) {
         size += 1 + 4;
       }
       if (_unknownFields != null) {
@@ -1049,8 +886,8 @@ namespace Yarn {
         case ValueOneofCase.BoolValue:
           BoolValue = other.BoolValue;
           break;
-        case ValueOneofCase.NumberValue:
-          NumberValue = other.NumberValue;
+        case ValueOneofCase.FloatValue:
+          FloatValue = other.FloatValue;
           break;
       }
 
@@ -1065,16 +902,16 @@ namespace Yarn {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 18: {
+          case 10: {
             StringValue = input.ReadString();
             break;
           }
-          case 24: {
+          case 16: {
             BoolValue = input.ReadBool();
             break;
           }
-          case 37: {
-            NumberValue = input.ReadFloat();
+          case 29: {
+            FloatValue = input.ReadFloat();
             break;
           }
         }

@@ -1,8 +1,37 @@
 fileFormatVersion: 2
 guid: 8b6ae1e8d32e840f0b3fd0b033e52253
-timeCreated: 1496809476
-licenseType: Pro
-TextScriptImporter:
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: en-AU
+  stringIDs:
+  - Sally-Sally-0
+  - Sally-Sally-1
+  - Sally-Sally-2
+  - Sally-Sally-3
+  - Sally-Sally-4
+  - Sally-Sally-5
+  - Sally-Sally-6
+  - Sally-Sally-7
+  - Sally-Sally-8
+  - Sally-Sally.Watch-9
+  - Sally-Sally.Watch-10
+  - Sally-Sally.Watch-11
+  - Sally-Sally.Watch-12
+  - Sally-Sally.Watch-13
+  - Sally-Sally.Exit-14
+  - Sally-Sally.Sorry-15
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 'Error on line 23 at position 1:
+
+    missing COMMAND_ENDIF at ''===''
+
+    ===
+
+    ^^^'
