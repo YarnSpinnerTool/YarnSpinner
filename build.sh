@@ -89,21 +89,19 @@ build_yarnspinner () {
     dotnet build ${DOTNET_BUILD_ARGS} YarnSpinner.sln
 
     if [ $? -ne 0 ]; then
-        echo "Error during: xbuild ${DOTNET_BUILD_ARGS}"
+        echo "Error during dotnet build ${DOTNET_BUILD_ARGS}"
         exit 1
     fi
 
     # this is an appalling test for not windows or osx and with unity
     if [ "${OSTYPE}" != "linux-gnu" ]; then
-        OUTPUT_DLL="YarnSpinner.dll"
-        BUILD_DIR="YarnSpinner/bin/${CONFIGURATION}/netcoreapp2.0"
-        UNITY_DIR="Unity/Assets/YarnSpinner/Code/"
+        BUILD_DIR="YarnSpinner.Compiler/bin/${CONFIGURATION}/netstandard2.0"
+        UNITY_DIR="Unity/Assets/YarnSpinner/Scripts/DLLs/"
 
-        if [ -f "$BUILD_DIR/$OUTPUT_DLL" ]; then
-            cp -v "$BUILD_DIR/$OUTPUT_DLL" "$UNITY_DIR/$OUTPUT_DLL"
-        else
-            echo "Install for Unity failed."
-            exit 1
+        cp -v "$BUILD_DIR/"*.dll "$UNITY_DIR"        
+
+        if [ -f "$UNITY_DIR/Microsoft.CSharp.dll" ]; then
+            rm "$UNITY_DIR/Microsoft.CSharp.dll"
         fi
     fi
 }

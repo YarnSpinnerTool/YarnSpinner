@@ -98,11 +98,14 @@ echo "Building Yarn Spinner..."
 if [ $SOURCE_BUILD == 1 ]; then
     echo "Removing YarnSpinner.dll..."
     # Remove the built DLL from the Unity project (we built it to ensure that it actually works)
-    rm -v "Unity/Assets/YarnSpinner/Code/YarnSpinner.dll"
+    rm -v "Unity/Assets/YarnSpinner/Scripts/DLLs/*.dll"
 
     echo "Copying Yarn Spinner source in..."
+    mkdir "Unity/Assets/YarnSpinner/Scripts/Source"
+    mkdir "Unity/Assets/YarnSpinner/Scripts/Source/Compiler"
     # Copy the source files in
-    cp -v YarnSpinner/*.cs "Unity/Assets/YarnSpinner/Code/"
+    cp -v YarnSpinner/*.cs "Unity/Assets/YarnSpinner/Scripts/Source"
+    cp -v YarnSpinner.Compiler/*.cs "Unity/Assets/YarnSpinner/Scripts/Source/Compiler"
 
 fi
 
