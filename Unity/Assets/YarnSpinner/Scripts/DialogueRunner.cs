@@ -66,8 +66,6 @@ namespace Yarn.Unity
 
         private System.Action<int> _selectAction;
 
-        private HashSet<string> _visitedNodes = new HashSet<string>();
-
         public delegate void CommandHandler(string[] parameters);
         public delegate void BlockingCommandHandler(string[] parameters, System.Action onComplete);
 
@@ -75,10 +73,22 @@ namespace Yarn.Unity
         private Dictionary<string, CommandHandler> commandHandlers = new Dictionary<string, CommandHandler>();
         private Dictionary<string, BlockingCommandHandler> blockingCommandHandlers = new Dictionary<string, BlockingCommandHandler>();
 
+        /// The list of TextAssets containing CSV string tables that we should load on start
         public TextAsset[] stringTables;
 
         // Maps string IDs received from Yarn Spinner to user-facing text
         private Dictionary<string, string> strings = new Dictionary<string, string>();
+
+        /// A type of UnityEvent that takes a single string parameter. 
+        ///
+        /// We need to create a concrete subclass in order for Unity to
+        /// serialise the type correctly.
+        [System.Serializable]
+        public class StringUnityEvent : UnityEngine.Events.UnityEvent<string> { }
+
+        /// A Unity event that receives the name of the node that just
+        /// finished running
+        [SerializeField] StringUnityEvent onNodeComplete;
         
         /// Our conversation engine
         /** Automatically created on first access
@@ -99,17 +109,19 @@ namespace Yarn.Unity
                         Debug.LogError (message);
                     };
 
-                    _dialogue.library.RegisterFunction("visited", 1, delegate(Yarn.Value[] parameters) {
-                        var nodeName = parameters[0];
-                        return _visitedNodes.Contains(nodeName.AsString);
-                    });
-
                     _dialogue.lineHandler = HandleLine;
                     _dialogue.commandHandler = HandleCommand;
                     _dialogue.optionsHandler = HandleOptions;
-                    _dialogue.nodeCompleteHandler = HandleNodeComplete;
+                    _dialogue.nodeCompleteHandler = (node) => { 
+                        onNodeComplete?.Invoke(node); 
+                        return Dialogue.HandlerExecutionType.ContinueExecution; 
+                    };
                     _dialogue.dialogueCompleteHandler = HandleDialogueComplete;
 
+                    // Yarn Spinner defines two built-in commands: "wait",
+                    // and "stop". Stop is defined inside the Virtual
+                    // Machine (the compiler traps it and makes it a
+                    // special case.) Wait is defined here in Unity.
                     AddCommandHandler("wait", HandleWaitCommand);
 
                     foreach (var stringTable in stringTables) {
@@ -147,13 +159,6 @@ namespace Yarn.Unity
         {
             isDialogueRunning = false;
             this.dialogueUI.DialogueComplete();
-        }
-
-        private Dialogue.HandlerExecutionType HandleNodeComplete(string completedNodeName)
-        {
-            Debug.Log("Node complete: " + completedNodeName);
-            _visitedNodes.Add(completedNodeName);
-            return this.dialogueUI.NodeComplete(completedNodeName, _continue);            
         }
 
         private void HandleOptions(OptionSet options)
@@ -592,12 +597,23 @@ namespace Yarn.Unity
             // And then continue running dialogue
             ContinueDialogue();
         }
+
+        // Expose the RegisterFunction methods from dialogue.library to Unity
+
+        /// Registers a new function that returns a value, so that it can
+        /// be called from Yarn scripts.
+        public void RegisterFunction(string name, int parameterCount, ReturningFunction implementation) {
+            dialogue.library.RegisterFunction(name, parameterCount, implementation);
+        }
+
+        /// Registers a new function that doesn't return a value, so that
+        /// it can be called from Yarn scripts.
+        public void RegisterFunction(string name, int parameterCount, Function implementation) {
+            dialogue.library.RegisterFunction(name, parameterCount, implementation);
+        }
         
     }
 
-    
-
-    /// Apply this attribute to methods in your scripts to expose
     /// them to Yarn.
 
     /** For example:

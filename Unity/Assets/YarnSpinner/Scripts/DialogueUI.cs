@@ -64,19 +64,13 @@ namespace Yarn.Unity {
 
         public UnityEngine.Events.UnityEvent onLineStart;
         public UnityEngine.Events.UnityEvent onLineFinishDisplaying;
-        public StringUnityEvent onLineUpdate;
+        public DialogueRunner.StringUnityEvent onLineUpdate;
         public UnityEngine.Events.UnityEvent onLineEnd;
 
         public UnityEngine.Events.UnityEvent onOptionsStart;
         public UnityEngine.Events.UnityEvent onOptionsEnd;
 
-        public StringUnityEvent onCommand;
-
-        // A UnityEvent that takes a single string parameter. We need to
-        // create a concrete subclass in order for Unity to serialise the
-        // type correctly.
-        [System.Serializable]
-        public class StringUnityEvent : UnityEngine.Events.UnityEvent<string> { }
+        public DialogueRunner.StringUnityEvent onCommand;
         
         void Awake ()
         {
@@ -101,8 +95,6 @@ namespace Yarn.Unity {
         private IEnumerator DoRunLine(Yarn.Line line, IDictionary<string,string> strings, System.Action onComplete) {
             
             onLineStart?.Invoke();
-
-            
 
             if (strings.TryGetValue(line.ID, out var text) == false) {
                 Debug.LogWarning($"Line {line.ID} doesn't have any localised text.");
