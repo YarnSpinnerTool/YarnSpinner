@@ -163,7 +163,7 @@ namespace Yarn.Unity {
                     selectOption(optionString.ID);
                 });
 
-                if (strings.TryGetValue(optionString.Line.Text, out var optionText) == false) {
+                if (strings.TryGetValue(optionString.Line.ID, out var optionText) == false) {
                     Debug.LogWarning($"Option {optionString.Line.ID} doesn't have any localised text");
                     optionText = optionString.Line.ID;
                 }

@@ -9,11 +9,11 @@ position: 721,130
     Player: How's space? #line:ship10
     Ship: Oh, man. #line:ship11
     <<setsprite ShipFace happy>>
-        Ship: It's HUGE! #line:ship12
+    Ship: It's HUGE! #line:ship12
     <<setsprite ShipFace neutral>>
 <<else>>
     <<setsprite ShipFace happy>>
-        Ship: Hey!! #line:ship13
+    Ship: Hey!! #line:ship13
     <<setsprite ShipFace neutral>>
 <<endif>>
 
