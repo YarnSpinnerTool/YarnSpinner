@@ -127,7 +127,11 @@ namespace Yarn.Unity
                     foreach (var stringTable in stringTables) {
                         AddStringTable(stringTable);
                     }
-                    
+
+                    _continue = this.ContinueDialogue;
+
+                    _selectAction = this.SelectedOption;
+        
                 }
                 return _dialogue;
             }
@@ -309,10 +313,7 @@ namespace Yarn.Unity
                 dialogue.SetProgram(combinedProgram);
             }
 
-            _continue = this.ContinueDialogue;
-
-            _selectAction = this.SelectedOption;
-
+            
             if (startAutomatically) {
                 StartDialogue();
             }
