@@ -27,8 +27,6 @@ OUTDIR="$(pwd)/Builds"
 
 NO_EXAMPLES=0
 
-SOURCE_BUILD=0
-
 CLEAN_ONLY=0
 
 COPY_ONLY=0
@@ -41,7 +39,6 @@ function show_help {
     echo "package.sh: Package Yarn Spinner into a .unitypackage for distribution"
     echo
     echo "Usage: package.sh [-hsSxcC]"
-    echo "  -s: Package the source code, not a built DLL"
     echo "  -S: Copy the files into the Unity project and exit"
     echo "  -c: Show the changes since the last tag and exit"
     echo "  -C: Clean the Unity project and exit"
@@ -64,12 +61,11 @@ function show_changes {
     fi
 }
 
-while getopts ":xhsScC" opt; do
+while getopts ":xhScC" opt; do
 
     case $opt in
        x) NO_EXAMPLES=1 ;;
        h) show_help ; exit 0 ;;
-       s) SOURCE_BUILD=1 ;;
        S) COPY_ONLY=1 ;;
        c) show_changes ; exit 0 ;;
        C) CLEAN_ONLY=1 ;;
@@ -95,20 +91,6 @@ fi
 echo "Building Yarn Spinner..."
 ./build.sh -b
 
-if [ $SOURCE_BUILD == 1 ]; then
-    echo "Removing YarnSpinner.dll..."
-    # Remove the built DLL from the Unity project (we built it to ensure that it actually works)
-    rm -v "Unity/Assets/YarnSpinner/Scripts/DLLs/*.dll"
-
-    echo "Copying Yarn Spinner source in..."
-    mkdir "Unity/Assets/YarnSpinner/Scripts/Source"
-    mkdir "Unity/Assets/YarnSpinner/Scripts/Source/Compiler"
-    # Copy the source files in
-    cp -v YarnSpinner/*.cs "Unity/Assets/YarnSpinner/Scripts/Source"
-    cp -v YarnSpinner.Compiler/*.cs "Unity/Assets/YarnSpinner/Scripts/Source/Compiler"
-
-fi
-
 if [ $COPY_ONLY == 1 ]; then
     exit 0;
 fi
@@ -122,10 +104,6 @@ FULL_VERSION=$(strip-v "$(git describe --tags --match 'v[0-9]*' --always --dirty
 
 if [ "$CURRENT_BRANCH_NAME" != "master" ]; then
     FULL_VERSION="$FULL_VERSION-$CURRENT_BRANCH_NAME"
-fi
-
-if [ $SOURCE_BUILD == 1 ]; then
-    FULL_VERSION="$FULL_VERSION-source"
 fi
 
 if [ $NO_EXAMPLES == 1 ]; then
