@@ -61,8 +61,8 @@ init_build () {
     XBUILD_ARGS="/verbosity:${VERBOSITY} /p:Configuration=${CONFIGURATION}"
     if [ "${OSTYPE}" = "linux-gnu" ]; then
         FAILED_PREREQ=""
-        if [ ! $(which xbuild) ]; then
-            echo "xbuild not installed or not in \$PATH"
+        if [ ! $(which msbuild) ]; then
+            echo "msbuild not installed or not in \$PATH"
             FAILED_PREREQ="true"
         fi
         if [ ! $(which nuget) ]; then
@@ -80,7 +80,7 @@ done
 
 clean_yarnspinner () {
     if [ -f YarnSpinner/bin/${CONFIGURATION}/YarnSpinner.dll ]; then
-        xbuild ${XBUILD_ARGS} /target:clean YarnSpinner.sln
+        msbuild ${XBUILD_ARGS} /target:clean YarnSpinner.sln
     fi
     echo "Cleaning documentation"
     rm -fvr Documentation/{docbook,html,latex,rtf,xml}
@@ -90,10 +90,10 @@ clean_yarnspinner () {
 
 build_yarnspinner () {
     nuget restore YarnSpinner.sln
-    xbuild ${XBUILD_ARGS} YarnSpinner.sln
+    msbuild ${XBUILD_ARGS} YarnSpinner.sln
 
     if [ $? -ne 0 ]; then
-        echo "Error during: xbuild ${XBUILD_ARGS}"
+        echo "Error during: msbuild ${XBUILD_ARGS}"
         exit 1
     fi
 

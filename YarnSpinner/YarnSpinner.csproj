@@ -14,7 +14,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Yarn</RootNamespace>
     <AssemblyName>YarnSpinner</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>  
     <ReleaseVersion>0.9</ReleaseVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -40,6 +40,7 @@
     <CodeAnalysisRuleSet>
     </CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
+    <TargetFrameworks>.NETFramework,Version=v3.5</TargetFrameworks>  
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
