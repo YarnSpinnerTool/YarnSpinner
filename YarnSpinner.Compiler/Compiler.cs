@@ -15,18 +15,19 @@ using static Yarn.Instruction.Types;
 namespace Yarn.Compiler
 {
     
+    public enum Status {
+        /// The compilation succeeded with no errors
+        Succeeded, 
+
+        /// The compilation succeeded, but some strings do not have string tags. 
+        SucceededUntaggedStrings,
+
+    }
     
     public class Compiler : YarnSpinnerParserBaseListener
     {
 
-        public enum Status {
-            /// The compilation succeeded with no errors
-            Succeeded, 
-
-            /// The compilation succeeded, but some strings do not have string tags. 
-            SucceededUntaggedStrings,
-
-        }
+        
         // (compilation failures will result in an exception, so they don't get a Status)
 
         private int labelCount = 0;

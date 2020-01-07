@@ -159,10 +159,10 @@ public class YarnImporter : ScriptedImporter
 
     public string[] stringIDs;
 
-    public bool AnyImplicitStringIDs => compilationStatus == Compiler.Status.SucceededUntaggedStrings;
+    public bool AnyImplicitStringIDs => compilationStatus == Status.SucceededUntaggedStrings;
     public bool StringsAvailable => stringIDs?.Length > 0;
 
-    public Compiler.Status compilationStatus;
+    public Status compilationStatus;
     
     public bool isSuccesfullyCompiled = false;
 
