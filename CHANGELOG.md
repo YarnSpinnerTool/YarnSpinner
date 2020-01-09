@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [1.0.1] - 2020-01-08
+
+A bugfix release.
+
+### Changed
+
+- Fixed an issue where the first instruction after an `if` statement, option, shortcut option or jump to another node could be skipped.
+
 ## [1.0.0] - 2020-01-07
 
 This is the first major release of Yarn Spinner. We're thrilled to bring this to you, and want to thank everyone who's helped us bring Yarn Spinner to this point.
