@@ -146,7 +146,13 @@ namespace Yarn.Unity
             }
 
             string durationString = parameters[0];
-            if (float.TryParse(durationString, out var duration) == false) {
+
+            if (float.TryParse(
+                durationString,
+                System.Globalization.NumberStyles.AllowDecimalPoint,
+                System.Globalization.CultureInfo.InvariantCulture,
+                out var duration) == false) {
+                    
                 Debug.LogErrorFormat($"<<wait>> failed to parse duration {durationString}");
                 onComplete();
             }
