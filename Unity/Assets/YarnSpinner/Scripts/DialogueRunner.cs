@@ -30,7 +30,6 @@ using System.Collections.Generic;
 using CsvHelper;
 using System;
 
-
 namespace Yarn.Unity
 {
 

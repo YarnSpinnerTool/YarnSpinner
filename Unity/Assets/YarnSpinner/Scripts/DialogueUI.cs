@@ -93,7 +93,6 @@ namespace Yarn.Unity {
 
         /// Show a line of dialogue, gradually        
         private IEnumerator DoRunLine(Yarn.Line line, IDictionary<string,string> strings, System.Action onComplete) {
-            
             onLineStart?.Invoke();
 
             if (strings.TryGetValue(line.ID, out var text) == false) {
