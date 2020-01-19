@@ -26,9 +26,7 @@ SOFTWARE.
 
 using UnityEngine;
 using UnityEditor;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace Yarn.Unity {
     public class YarnSpinnerEditorWindow : EditorWindow {

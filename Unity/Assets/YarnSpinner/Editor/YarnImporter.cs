@@ -1,18 +1,14 @@
 ﻿
-using UnityEngine;
-using UnityEditor;
+﻿using UnityEngine;
 using UnityEditor.Experimental.AssetImporters;
 using System.IO;
 
 using System.Linq;
 
+using System.Globalization;
 using Yarn;
 using Yarn.Compiler;
-using System.Globalization;
-using System.Collections.Generic;
 
-using CsvHelper;
-using System;
 [ScriptedImporter(1, new[] {"yarn", "yarnc"})]
 public class YarnImporter : ScriptedImporter
 {    
