@@ -30,7 +30,6 @@ using System.Collections.Generic;
 using CsvHelper;
 using System;
 
-
 namespace Yarn.Unity
 {
 
@@ -86,7 +85,6 @@ namespace Yarn.Unity
         /// A Unity event that receives the name of the node that just
         /// finished running
         [SerializeField] StringUnityEvent onNodeComplete;
-        
         /// Our conversation engine
         /** Automatically created on first access
          */

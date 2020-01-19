@@ -1,10 +1,7 @@
-﻿
 ﻿using UnityEngine;
 using UnityEditor.Experimental.AssetImporters;
 using System.IO;
-
 using System.Linq;
-
 using System.Globalization;
 using Yarn;
 using Yarn.Compiler;
@@ -12,9 +9,6 @@ using Yarn.Compiler;
 [ScriptedImporter(1, new[] {"yarn", "yarnc"})]
 public class YarnImporter : ScriptedImporter
 {    
-
-    
-
     // culture identifiers like en-US
     public string baseLanguageID;
 
@@ -132,11 +126,9 @@ public class YarnImporter : ScriptedImporter
 
                     stringIDs = lines.Select(l => l.id).ToArray();
 
-                    
                 }
             }
 
-            
 
         }
         catch (Yarn.Compiler.ParseException e)
