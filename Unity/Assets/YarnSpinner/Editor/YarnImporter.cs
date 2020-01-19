@@ -29,6 +29,9 @@ public class YarnImporter : ScriptedImporter
 
     public string compilationErrorMessage = null;
 
+    public TextAsset baseLanguage;
+    public YarnTranslation[] localizations = new YarnTranslation[0];
+
     private void OnValidate() {
         if (baseLanguageID == null) {
             baseLanguageID = CultureInfo.CurrentCulture.Name;
@@ -123,6 +126,8 @@ public class YarnImporter : ScriptedImporter
                         ctx.AddObjectToAsset("Strings", textAsset);
 
                         programContainer.baseLocalisationStringTable = textAsset;
+                        baseLanguage = textAsset;
+                        programContainer.localizations = localizations;
                     }
 
                     stringIDs = lines.Select(l => l.id).ToArray();

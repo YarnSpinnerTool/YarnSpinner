@@ -43,6 +43,8 @@ namespace Yarn.Unity
         /// The source files to load the conversation from
         public YarnProgram[] yarnScripts;
 
+        public string textLanguage;
+
         /// Our variable storage
         public Yarn.Unity.VariableStorageBehaviour variableStorage;
 
@@ -70,9 +72,6 @@ namespace Yarn.Unity
         /// Maps the names of commands to action delegates.
         private Dictionary<string, CommandHandler> commandHandlers = new Dictionary<string, CommandHandler>();
         private Dictionary<string, BlockingCommandHandler> blockingCommandHandlers = new Dictionary<string, BlockingCommandHandler>();
-
-        /// The list of TextAssets containing CSV string tables that we should load on start
-        public TextAsset[] stringTables;
 
         // Maps string IDs received from Yarn Spinner to user-facing text
         private Dictionary<string, string> strings = new Dictionary<string, string>();
@@ -122,8 +121,8 @@ namespace Yarn.Unity
                     // special case.) Wait is defined here in Unity.
                     AddCommandHandler("wait", HandleWaitCommand);
 
-                    foreach (var stringTable in stringTables) {
-                        AddStringTable(stringTable);
+                    foreach (var yarnScript in yarnScripts) {
+                        AddStringTable(yarnScript);
                     }
 
                     _continue = this.ContinueDialogue;
@@ -322,7 +321,7 @@ namespace Yarn.Unity
         internal void Add(YarnProgram scriptToLoad)
         {
             AddProgram(scriptToLoad);
-            AddStringTable(scriptToLoad.baseLocalisationStringTable);
+            AddStringTable(scriptToLoad);
         }
 
         /// Adds a program, and all of its nodes
@@ -331,9 +330,18 @@ namespace Yarn.Unity
             this.dialogue.AddProgram(scriptToLoad.GetProgram());
         }
 
-        /// Adds a tagged string table
-        public void AddStringTable(TextAsset stringTableAsset) {
-            using (var reader = new System.IO.StringReader(stringTableAsset.text))
+        /// Adds a tagged string table from the yarn asset depending on the variable "textLanguage"
+        public void AddStringTable(YarnProgram yarnScript) {
+
+            var textToLoad = new TextAsset();
+            if (yarnScript.localizations != null || yarnScript.localizations.Length > 0) {
+                textToLoad = Array.Find(yarnScript.localizations, element => element.languageName == textLanguage)?.text;
+            }
+            if (textToLoad == null || string.IsNullOrEmpty(textToLoad.text)) {
+                textToLoad = yarnScript.baseLocalisationStringTable;
+            }
+
+            using (var reader = new System.IO.StringReader(textToLoad.text))
             using (var csv = new CsvReader(reader)) {
                 csv.Read();
                 csv.ReadHeader();
