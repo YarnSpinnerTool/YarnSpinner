@@ -47,10 +47,15 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         YarnImporter yarnImporter = (target as YarnImporter);
 
         var cultures = cultureInfo.Select(c => $"{c.DisplayName}");
+        // Array of translations that have been added to this asset + base language
+        var culturesAvailableOnAsset = yarnImporter.localizations.
+            Select(element => element.languageName).
+            Append(cultureInfo[selectedLanguageIndex].Name).
+            OrderBy(element => element).
+            ToArray();
 
         selectedLanguageIndex = EditorGUILayout.Popup("Base Language", selectedLanguageIndex, cultures.ToArray());
         baseLanguageProp.stringValue = cultureInfo[selectedLanguageIndex].Name;
-        serializedObject.ApplyModifiedProperties();
 
         if (yarnImporter.isSuccesfullyCompiled == false) {
             EditorGUILayout.HelpBox(yarnImporter.compilationErrorMessage, MessageType.Error);
@@ -89,7 +94,17 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                 var asset = AssetDatabase.LoadAssetAtPath<TextAsset>(newStringsTablePath);
 
                 EditorGUIUtility.PingObject(asset);
-                serializedObject.ApplyModifiedProperties();
+
+                // Automatically add newly created translation csv file to yarn program
+                var localizationsIndex = System.Array.FindIndex(yarnImporter.localizations, element => element.languageName == selectedCulture.Name);
+                var localizationSerializedProperty = serializedObject.FindProperty("localizations");
+                if (localizationsIndex != -1) {
+                    localizationSerializedProperty.GetArrayElementAtIndex(localizationsIndex).FindPropertyRelative("text").objectReferenceValue = asset;
+                } else {
+                    localizationSerializedProperty.InsertArrayElementAtIndex(localizationSerializedProperty.arraySize);
+                    localizationSerializedProperty.GetArrayElementAtIndex(localizationSerializedProperty.arraySize-1).FindPropertyRelative("text").objectReferenceValue = asset;
+                    localizationSerializedProperty.GetArrayElementAtIndex(localizationSerializedProperty.arraySize-1).FindPropertyRelative("languageName").stringValue = selectedCulture.Name;
+                }
             }
         }
 
@@ -103,8 +118,19 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                 AddLineTagsToFile(yarnImporter.assetPath);
             }
         }
-        serializedObject.ApplyModifiedProperties();
+        // Localization list
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("localizations"), true);
+
+        var success = serializedObject.ApplyModifiedProperties();
+#if UNITY_2018
+        if (success) {
+            EditorUtility.SetDirty(target);
+            AssetDatabase.WriteImportSettingsIfDirty(AssetDatabase.GetAssetPath(target));
+        }
+#endif
+#if UNITY_2019_1_OR_NEWER
         ApplyRevertGUI();
+#endif
     }
 
     private void AddLineTagsToFile(string assetPath) {
