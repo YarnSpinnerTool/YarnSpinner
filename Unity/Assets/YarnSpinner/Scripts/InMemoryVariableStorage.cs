@@ -148,9 +148,28 @@ namespace Yarn.Unity {
             if (debugTextView != null) {
                 var stringBuilder = new System.Text.StringBuilder ();
                 foreach (KeyValuePair<string,Yarn.Value> item in variables) {
+                    string debugDescription;
+                    switch (item.Value.type) {
+                        case Value.Type.Bool:
+                            debugDescription = item.Value.AsBool.ToString();
+                            break;
+                        case Value.Type.Null:
+                            debugDescription = "null";
+                            break;
+                        case Value.Type.Number:
+                            debugDescription = item.Value.AsNumber.ToString();
+                            break;
+                        case Value.Type.String:
+                            debugDescription = $@"""{item.Value.AsString}""";
+                            break;
+                        default:
+                            debugDescription = "<unknown>";
+                            break;
+
+                    }
                     stringBuilder.AppendLine (string.Format ("{0} = {1}",
                                                             item.Key,
-                                                            item.Value));
+                                                            debugDescription));
                 }
                 debugTextView.text = stringBuilder.ToString ();
             }
