@@ -6,6 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Added a method for manually loading a string table as a dictionary to DialogueRunner
+
+### Changed
+
+- Made debug display in InMemoryVariableStorage slightly tidier
+- Made changing the InMemoryVariableStorage update its debug display's layout components
+- Made InMemoryVariableStorage's contents enumerable in a foreach loop
+- Fixed a bug where the Dialog will pause when a blocking command handler immediately calls its onComplete and returns
+- Fixed a bug where parsing the `<<wait>>` command's parameter was locale-specific (i.e. certain European locales parse decimal numbers as "1,0"), which meant that behaviour would vary based on the end-user's configuration.
+
+## [1.0.1] - 2020-01-08
+
+A bugfix release.
+
+### Changed
+
+- Fixed an issue where the first instruction after an `if` statement, option, shortcut option or jump to another node could be skipped.
+
 ## [1.0.0] - 2020-01-07
 
 This is the first major release of Yarn Spinner. We're thrilled to bring this to you, and want to thank everyone who's helped us bring Yarn Spinner to this point.
