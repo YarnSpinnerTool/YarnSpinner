@@ -89,6 +89,16 @@ namespace Yarn.Unity
         /// A Unity event that receives the name of the node that just
         /// finished running
         [SerializeField] StringUnityEvent onNodeComplete;
+
+        // A flag used to note when we call into a blocking command
+        // handler, but it calls its complete handler immediately -
+        // _before_ the Dialogue is told to pause. This out-of-order
+        // problem can lead to the Dialogue being stuck in a paused state.
+        // To solve this, this variable is set to false before any blocking
+        // command handler is called, and set to true when ContinueDialogue
+        // is called. If it's true after calling a blocking command
+        // handler, then the Dialogue is not told to pause.
+        private bool wasCompleteCalled = false;
         
         /// Our conversation engine
         /** Automatically created on first access
@@ -194,14 +204,27 @@ namespace Yarn.Unity
                 
             } 
 
+            wasCompleteCalled = false;
+
             // It wasn't found by looking in objects. Try looking in the
             // command handlers.
+            
             (wasValidCommand, executionType) = DispatchCommandToRegisteredHandlers(command, _continue);   
 
             if (wasValidCommand) {
-                // Either continue execution, or pause (in which case
-                // _continue will be called)
-                return executionType;
+
+                // This was a valid command. It returned either continue,
+                // or pause; if it returned pause, there's a chance that
+                // the command handler immediately called _continue, in
+                // which case we should not pause.
+                if (wasCompleteCalled) {
+                    return Dialogue.HandlerExecutionType.ContinueExecution;
+                } else {
+                    // Either continue execution, or pause (in which case
+                    // _continue will be called)
+                    return executionType;
+                }
+                
             }
 
             // We didn't find a method in our C# code to invoke. Pass it to
@@ -384,6 +407,7 @@ namespace Yarn.Unity
 
         private void ContinueDialogue()
         {
+            wasCompleteCalled = true;
             this.dialogue.Continue();           
         }
 
