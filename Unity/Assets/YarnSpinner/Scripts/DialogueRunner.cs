@@ -375,6 +375,12 @@ namespace Yarn.Unity
             }
         }
 
+        public void AddStringTable(IDictionary<string, Yarn.StringInfo> stringTable) {
+            foreach (var line in stringTable) {
+                strings.Add(line.Key, line.Value.text);
+            }
+        }
+
         /// Indicates to the DialogueRunner that the user has selected an option
         private void SelectedOption(int obj)
         {
