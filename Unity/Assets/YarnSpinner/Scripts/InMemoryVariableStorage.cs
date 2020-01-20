@@ -33,7 +33,7 @@ namespace Yarn.Unity {
 
     /// An extremely simple implementation of DialogueUnityVariableStorage,
     /// which just stores everything in a Dictionary in memory.
-    public class InMemoryVariableStorage : VariableStorageBehaviour
+    public class InMemoryVariableStorage : VariableStorageBehaviour, IEnumerable<KeyValuePair<string, Yarn.Value>>
     {
 
         /// Where we actually keeping our variables
@@ -156,5 +156,14 @@ namespace Yarn.Unity {
             }
         }
 
+        public IEnumerator<KeyValuePair<string, Value>> GetEnumerator()
+        {
+            return ((IEnumerable<KeyValuePair<string, Value>>)variables).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<KeyValuePair<string, Value>>)variables).GetEnumerator();
+        }
     }
 }
