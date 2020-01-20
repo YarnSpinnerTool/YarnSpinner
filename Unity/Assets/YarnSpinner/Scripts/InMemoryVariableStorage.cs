@@ -172,6 +172,7 @@ namespace Yarn.Unity {
                                                             debugDescription));
                 }
                 debugTextView.text = stringBuilder.ToString ();
+                debugTextView.SetAllDirty();
             }
         }
 
