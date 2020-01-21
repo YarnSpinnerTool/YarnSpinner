@@ -339,7 +339,7 @@ namespace Yarn
                         /// - JumpTo
                         /** Jumps to a named label
                          */
-                        state.programCounter = FindInstructionPointForLabel(i.Operands[0].StringValue);
+                        state.programCounter = FindInstructionPointForLabel(i.Operands[0].StringValue) - 1;
 
                         break;
                     }
@@ -428,7 +428,7 @@ namespace Yarn
                          */
                         if (state.PeekValue().AsBool == false)
                         {
-                            state.programCounter = FindInstructionPointForLabel(i.Operands[0].StringValue);
+                            state.programCounter = FindInstructionPointForLabel(i.Operands[0].StringValue) - 1;
                         }
                         break;
                     }
@@ -438,7 +438,7 @@ namespace Yarn
                         /** Jumps to a label whose name is on the stack.
                          */
                         var jumpDestination = state.PeekValue().AsString;
-                        state.programCounter = FindInstructionPointForLabel(jumpDestination);
+                        state.programCounter = FindInstructionPointForLabel(jumpDestination) - 1;
 
                         break;
                     }
@@ -568,6 +568,11 @@ namespace Yarn
                         var pause = nodeCompleteHandler(currentNode.Name);
                         
                         SetNode(nodeName);
+
+                        // Decrement program counter here, because it will
+                        // be incremented when this function returns, and
+                        // would mean skipping the first instruction
+                        state.programCounter -= 1; 
 
                         if (pause == Dialogue.HandlerExecutionType.PauseExecution) {
                             executionState = ExecutionState.Suspended;
