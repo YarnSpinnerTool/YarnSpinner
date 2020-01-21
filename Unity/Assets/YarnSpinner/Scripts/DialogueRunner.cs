@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 The MIT License (MIT)
 
@@ -450,6 +450,8 @@ namespace Yarn.Unity
                         voiceOvers.Add(line.linetag, language.audioClip);
                     }
                 }
+            }
+        }
 
         public void AddStringTable(IDictionary<string, Yarn.StringInfo> stringTable) {
             foreach (var line in stringTable) {
