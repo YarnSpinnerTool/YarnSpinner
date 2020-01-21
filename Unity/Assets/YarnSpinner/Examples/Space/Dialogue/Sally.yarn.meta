@@ -10,23 +10,23 @@ ScriptedImporter:
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
   baseLanguageID: en-AU
   stringIDs:
-  - Sally-Sally-0
-  - Sally-Sally-1
-  - Sally-Sally-2
-  - Sally-Sally-3
-  - Sally-Sally-4
-  - Sally-Sally-5
-  - Sally-Sally-6
-  - Sally-Sally-7
-  - Sally-Sally-8
-  - Sally-Sally.Watch-9
-  - Sally-Sally.Watch-10
-  - Sally-Sally.Watch-11
-  - Sally-Sally.Watch-12
-  - Sally-Sally.Watch-13
-  - Sally-Sally.Exit-14
-  - Sally-Sally.Sorry-15
-  compilationStatus: 1
+  - line:794945
+  - line:2dc39b
+  - line:34de2f
+  - line:dcc2bc
+  - line:a8e70c
+  - line:305cde
+  - line:5d7a7c
+  - line:0a7e39
+  - line:0facf7
+  - line:8c3f98
+  - line:24c418
+  - line:df4eaf
+  - line:1fea6c
+  - line:5df323
+  - line:60c282
+  - line:d7df49
+  compilationStatus: 0
   isSuccesfullyCompiled: 1
   compilationErrorMessage: 'Error on line 23 at position 1:
 
@@ -35,3 +35,8 @@ ScriptedImporter:
     ===
 
     ^^^'
+  baseLanguage: {fileID: 7128917941130120860, guid: 8b6ae1e8d32e840f0b3fd0b033e52253,
+    type: 3}
+  localizations:
+  - languageName: de
+    text: {fileID: 4900000, guid: 816b6de293b849a4fad13d5caca52524, type: 3}
