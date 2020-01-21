@@ -1,0 +1,65 @@
+fileFormatVersion: 2
+guid: 8145c244bd6668a44b6a1aed4910a096
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: de
+  stringIDs:
+  - line:0e3dc4b
+  - line:0967160
+  - line:04e806e
+  - line:0901fb2
+  compilationStatus: 0
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {fileID: 7128917941130120860, guid: 8145c244bd6668a44b6a1aed4910a096,
+    type: 3}
+  localizations:
+  - languageName: en
+    text: {fileID: 4900000, guid: b5c9c0c15d0507b4b8b2f22fe9537a80, type: 3}
+  voiceOvers:
+  - linetag: VoiceoverExampleDialogue-Start-0
+    languageToAudioclip: []
+  - linetag: VoiceoverExampleDialogue-Start-1
+    languageToAudioclip: []
+  - linetag: VoiceoverExampleDialogue-Start-2
+    languageToAudioclip: []
+  - linetag: VoiceoverExampleDialogue-Start-3
+    languageToAudioclip: []
+  - linetag: line:0e3dc4b
+    languageToAudioclip:
+    - language: af
+      audioClip: {instanceID: 0}
+    - language: de
+      audioClip: {fileID: 8300000, guid: 925ab48b6d0bd314f8d29fb0fcad02ef, type: 3}
+    - language: en
+      audioClip: {fileID: 8300000, guid: dbce673db3c96a24a948d24b4c61f462, type: 3}
+  - linetag: line:0967160
+    languageToAudioclip:
+    - language: af
+      audioClip: {instanceID: 0}
+    - language: de
+      audioClip: {fileID: 8300000, guid: 7c1a3502fb6e83e4287a5967faaab88d, type: 3}
+    - language: en
+      audioClip: {fileID: 8300000, guid: cb3a7dc09556e344191a02051b6c2e6c, type: 3}
+  - linetag: line:04e806e
+    languageToAudioclip:
+    - language: af
+      audioClip: {instanceID: 0}
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {instanceID: 0}
+  - linetag: line:0901fb2
+    languageToAudioclip:
+    - language: af
+      audioClip: {instanceID: 0}
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {instanceID: 0}

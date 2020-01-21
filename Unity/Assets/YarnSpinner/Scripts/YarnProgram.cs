@@ -20,6 +20,12 @@ public class YarnProgram : ScriptableObject
     [SerializeField][HideInInspector]
     public YarnTranslation[] localizations = new YarnTranslation[0];
 
+    /// <summary>
+    /// Available voiceovers of this yarn program
+    /// </summary>
+    [SerializeField][HideInInspector]
+    public LinetagToLanguage[] voiceOvers = new LinetagToLanguage[0];
+
     // Deserializes a compiled Yarn program from the stored bytes in this
     // object.
     public Program GetProgram() {
