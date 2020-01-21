@@ -33,7 +33,7 @@ namespace Yarn.Unity {
 
     /// An extremely simple implementation of DialogueUnityVariableStorage,
     /// which just stores everything in a Dictionary in memory.
-    public class InMemoryVariableStorage : VariableStorageBehaviour
+    public class InMemoryVariableStorage : VariableStorageBehaviour, IEnumerable<KeyValuePair<string, Yarn.Value>>
     {
 
         /// Where we actually keeping our variables
@@ -148,13 +148,42 @@ namespace Yarn.Unity {
             if (debugTextView != null) {
                 var stringBuilder = new System.Text.StringBuilder ();
                 foreach (KeyValuePair<string,Yarn.Value> item in variables) {
+                    string debugDescription;
+                    switch (item.Value.type) {
+                        case Value.Type.Bool:
+                            debugDescription = item.Value.AsBool.ToString();
+                            break;
+                        case Value.Type.Null:
+                            debugDescription = "null";
+                            break;
+                        case Value.Type.Number:
+                            debugDescription = item.Value.AsNumber.ToString();
+                            break;
+                        case Value.Type.String:
+                            debugDescription = $@"""{item.Value.AsString}""";
+                            break;
+                        default:
+                            debugDescription = "<unknown>";
+                            break;
+
+                    }
                     stringBuilder.AppendLine (string.Format ("{0} = {1}",
                                                             item.Key,
-                                                            item.Value));
+                                                            debugDescription));
                 }
                 debugTextView.text = stringBuilder.ToString ();
+                debugTextView.SetAllDirty();
             }
         }
 
+        public IEnumerator<KeyValuePair<string, Value>> GetEnumerator()
+        {
+            return ((IEnumerable<KeyValuePair<string, Value>>)variables).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<KeyValuePair<string, Value>>)variables).GetEnumerator();
+        }
     }
 }
