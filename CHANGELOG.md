@@ -17,6 +17,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Made InMemoryVariableStorage's contents enumerable in a foreach loop
 - Fixed a bug where the Dialog would pause when a blocking command handler immediately calls its onComplete and returns
 - Fixed a bug where parsing the `<<wait>>` command's parameter was locale-specific (i.e. certain European locales parse decimal numbers as "1,0"), which meant that behaviour would vary based on the end-user's configuration.
+- Fix a bug where manually-added functions would never run if the first parameter was the name of an object in the scene.
+- Improve the UI for managing localised lines (thanks to @Schroedingers-Cat)
 
 ## [1.0.1] - 2020-01-08
 
