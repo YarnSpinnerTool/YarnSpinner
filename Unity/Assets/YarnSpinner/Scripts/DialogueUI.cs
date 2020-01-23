@@ -50,13 +50,13 @@ namespace Yarn.Unity {
         /// The buttons that let the user choose an option
         public List<Button> optionButtons;
 
-        // When true, the DialogueRunner is waiting for the user to
-        // indicate that they want to proceed to the next line.
-        private bool waitingForLineContinue = false;
+        // When true, the user has indicated that they want to proceed to
+        // the next line.
+        private bool userRequestedNextLine = false;
 
         // When true, the DialogueRunner is waiting for the user to press
         // one of the option buttons.
-        private bool waitingForOptionSelection = false;      
+        private bool waitingForOptionSelection = false;     
 
         public UnityEngine.Events.UnityEvent onDialogueStart;
 
@@ -95,6 +95,8 @@ namespace Yarn.Unity {
         private IEnumerator DoRunLine(Yarn.Line line, IDictionary<string,string> strings, System.Action onComplete) {
             onLineStart?.Invoke();
 
+            userRequestedNextLine = false;
+            
             if (strings.TryGetValue(line.ID, out var text) == false) {
                 Debug.LogWarning($"Line {line.ID} doesn't have any localised text.");
                 text = line.ID;
@@ -107,6 +109,12 @@ namespace Yarn.Unity {
                 foreach (char c in text) {
                     stringBuilder.Append (c);
                     onLineUpdate?.Invoke(stringBuilder.ToString ());
+                    if (userRequestedNextLine) {
+                        // We've requested a skip of the entire line.
+                        // Display all of the text immediately.
+                        onLineUpdate?.Invoke(text);
+                        break;
+                    }
                     yield return new WaitForSeconds (textSpeed);
                 }
             } else {
@@ -114,12 +122,13 @@ namespace Yarn.Unity {
                 onLineUpdate?.Invoke(text);
             }
 
-            waitingForLineContinue = true;
+            // We're now waiting for the player to move on to the next line
+            userRequestedNextLine = false;
 
+            // Indicate to the rest of the game that the line has finished being delivered
             onLineFinishDisplaying?.Invoke();
 
-            // Wait for any user input
-            while (waitingForLineContinue) {
+            while (userRequestedNextLine == false) {
                 yield return null;
             }
 
@@ -225,14 +234,7 @@ namespace Yarn.Unity {
         }
 
         public void MarkLineComplete() {
-            if (waitingForLineContinue == false) {
-                Debug.LogWarning($"{nameof(MarkLineComplete)} was called, " + 
-                    $"but {nameof(DialogueRunner)} wasn't waiting for a line " + 
-                    "to be marked as read.");
-                return;
-            }
-
-            waitingForLineContinue = false;
+            userRequestedNextLine = true;
         }
 
     }
