@@ -614,6 +614,10 @@ namespace Yarn.Unity
 
             var wasValidCommand = numberOfMethodsFound > 0;
 
+            if (wasValidCommand == false) {
+                return (false, Dialogue.HandlerExecutionType.ContinueExecution);
+            }
+
             if (startedCoroutine) {
                 // Signal to the Dialogue that execution should wait. 
                 return (true, Dialogue.HandlerExecutionType.PauseExecution);
