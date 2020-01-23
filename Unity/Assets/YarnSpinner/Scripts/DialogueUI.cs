@@ -176,7 +176,15 @@ namespace Yarn.Unity {
                     optionText = optionString.Line.ID;
                 }
 
-                optionButtons [i].GetComponentInChildren<Text> ().text = optionText;
+                var unityText = optionButtons [i].GetComponentInChildren<Text> ();
+                if (unityText != null) {
+                    unityText.text = optionText;
+                }
+
+                var textMeshProText = optionButtons [i].GetComponentInChildren<TMPro.TMP_Text> ();
+                if (textMeshProText != null) {
+                    textMeshProText.text = optionText;
+                }
 
                 i++;
             }
