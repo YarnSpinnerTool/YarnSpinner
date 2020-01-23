@@ -54,6 +54,10 @@ namespace Yarn.Unity {
         // the next line.
         private bool userRequestedNextLine = false;
 
+        // The method that we should call when the user has chosen an
+        // option. Externally provided by the DialogueRunner.
+        private System.Action<int> currentOptionSelectionHandler;
+
         // When true, the DialogueRunner is waiting for the user to press
         // one of the option buttons.
         private bool waitingForOptionSelection = false;     
@@ -160,16 +164,15 @@ namespace Yarn.Unity {
             int i = 0;
 
             waitingForOptionSelection = true;
+
+            currentOptionSelectionHandler = selectOption;
             
             foreach (var optionString in optionsCollection.Options) {
                 optionButtons [i].gameObject.SetActive (true);
 
                 // When the button is selected, tell the dialogue about it
                 optionButtons [i].onClick.RemoveAllListeners();
-                optionButtons [i].onClick.AddListener(() => {
-                    waitingForOptionSelection = false;
-                    selectOption(optionString.ID);
-                });
+                optionButtons [i].onClick.AddListener(() => SelectOption(optionString.ID));
 
                 if (strings.TryGetValue(optionString.Line.ID, out var optionText) == false) {
                     Debug.LogWarning($"Option {optionString.Line.ID} doesn't have any localised text");
@@ -243,6 +246,15 @@ namespace Yarn.Unity {
 
         public void MarkLineComplete() {
             userRequestedNextLine = true;
+        }
+
+        public void SelectOption(int index) {
+            if (waitingForOptionSelection == false) {
+                Debug.LogWarning("An option was selected, but the dialogue UI was not expecting it.");
+                return;
+            }
+            waitingForOptionSelection = false;
+            currentOptionSelectionHandler?.Invoke(index);
         }
 
     }
