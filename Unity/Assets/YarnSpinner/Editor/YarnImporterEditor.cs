@@ -21,19 +21,19 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 
     public override void OnEnable() {
         base.OnEnable();
-            cultureInfo = CultureInfo.GetCultures(CultureTypes.AllCultures)
-                .Where(c => c.Name != "")
-                .Select(c => new Culture { Name = c.Name, DisplayName = c.DisplayName })
-                .Append(new Culture { Name = "mi", DisplayName = "Maori" })
-                .OrderBy(c => c.DisplayName)
-                .ToArray();
+        cultureInfo = CultureInfo.GetCultures(CultureTypes.AllCultures)
+            .Where(c => c.Name != "")
+            .Select(c => new Culture { Name = c.Name, DisplayName = c.DisplayName })
+            .Append(new Culture { Name = "mi", DisplayName = "Maori" })
+            .OrderBy(c => c.DisplayName)
+            .ToArray();
 
-            baseLanguageProp = serializedObject.FindProperty("baseLanguageID");
+        baseLanguageProp = serializedObject.FindProperty("baseLanguageID");
 
-            selectedLanguageIndex = cultureInfo.Select((culture, index) => new { culture, index })
-                .FirstOrDefault(pair => pair.culture.Name == baseLanguageProp.stringValue)
-                .index;
-            selectedNewTranslationLanguageIndex = selectedLanguageIndex;
+        selectedLanguageIndex = cultureInfo.Select((culture, index) => new { culture, index })
+            .FirstOrDefault(pair => pair.culture.Name == baseLanguageProp.stringValue)
+            .index;
+        selectedNewTranslationLanguageIndex = selectedLanguageIndex;
     }
 
     public override void OnDisable() {
