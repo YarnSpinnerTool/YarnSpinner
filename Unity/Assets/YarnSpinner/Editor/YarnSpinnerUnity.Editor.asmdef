@@ -1,5 +1,5 @@
 {
-    "name": "TheSecretLab.YarnSpinner.Editor",
+    "name": "YarnSpinnerUnity.Editor",
     "references": [
         "GUID:34aa492b82754644eac2f903cd496268"
     ],
