@@ -1,5 +1,5 @@
 {
-    "name": "TheSecretLab.YarnSpinner",
+    "name": "YarnSpinnerUnity",
     "references": [
         "GUID:bae83085c871e65499349309526e7f94"
     ],
@@ -16,6 +16,5 @@
             "expression": "2.0.0",
             "define": "FMOD_2_OR_NEWER"
         }
-    ],
-    "noEngineReferences": false
+    ]
 }
