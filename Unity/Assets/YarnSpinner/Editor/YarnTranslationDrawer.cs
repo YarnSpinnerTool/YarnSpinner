@@ -7,16 +7,6 @@ using UnityEngine;
 public class YarnTranslationDrawer : PropertyDrawer
 {
     /// <summary>
-    /// List of possible language display names for this translation.
-    /// </summary>
-    Culture[] cultureInfo = CultureInfo.GetCultures(CultureTypes.AllCultures)
-                .Where(c => c.Name != "")
-                .Select(c => new Culture { Name = c.Name, DisplayName = c.DisplayName })
-                .Append(new Culture { Name = "mi", DisplayName = "Maori" })
-                .OrderBy(c => c.DisplayName)
-                .ToArray();
-    
-    /// <summary>
     /// The index of the language display name associated with this translation
     /// </summary>
     private int selectedLanguageIndex;
@@ -28,12 +18,10 @@ public class YarnTranslationDrawer : PropertyDrawer
 		Rect contentPosition = position;
 		contentPosition.width *= 0.25f;
 		EditorGUI.indentLevel = 1;
-        var cultures = cultureInfo.Select(c => $"{c.Name}").ToArray();
-        var culturesDisplayNames = cultureInfo.Select(c => $"{c.DisplayName}").ToArray();
-        selectedLanguageIndex = EditorGUI.Popup(contentPosition, System.Array.IndexOf(cultures, property.FindPropertyRelative("languageName").stringValue), culturesDisplayNames);
+        selectedLanguageIndex = EditorGUI.Popup(contentPosition, System.Array.IndexOf(Cultures.AvailableCulturesNames, property.FindPropertyRelative("languageName").stringValue), Cultures.AvailableCulturesDisplayNames);
         // Apply changed language ID
         if (selectedLanguageIndex != -1) {
-            property.FindPropertyRelative("languageName").stringValue = cultures[selectedLanguageIndex];
+            property.FindPropertyRelative("languageName").stringValue = Cultures.AvailableCulturesNames[selectedLanguageIndex];
         }
 
         // The yarn translation file

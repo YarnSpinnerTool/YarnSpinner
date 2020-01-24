@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using UnityEditor.Experimental.AssetImporters;
-using System.Globalization;
 using System.Linq;
 using System.IO;
 
@@ -23,27 +22,16 @@ public class YarnImporterEditor : ScriptedImporterEditor {
     /// </summary>
     bool showVoiceovers = false;
 
-    // We use a custom type to refer to cultures, because certain cultures
-    // that we want to support don't exist in the .NET database (like Māori)
-    Culture[] cultureInfo;
-
     SerializedProperty baseLanguageProp;
 
     public override void OnEnable() {
         base.OnEnable();
-            cultureInfo = CultureInfo.GetCultures(CultureTypes.AllCultures)
-                .Where(c => c.Name != "")
-                .Select(c => new Culture { Name = c.Name, DisplayName = c.DisplayName })
-                .Append(new Culture { Name = "mi", DisplayName = "Maori" })
-                .OrderBy(c => c.DisplayName)
-                .ToArray();
+        baseLanguageProp = serializedObject.FindProperty("baseLanguageID");
 
-            baseLanguageProp = serializedObject.FindProperty("baseLanguageID");
-
-            selectedLanguageIndex = cultureInfo.Select((culture, index) => new { culture, index })
-                .FirstOrDefault(pair => pair.culture.Name == baseLanguageProp.stringValue)
-                .index;
-            selectedNewTranslationLanguageIndex = selectedLanguageIndex;
+        selectedLanguageIndex = Cultures.AvailableCultures.Select((culture, index) => new { culture, index })
+            .FirstOrDefault(pair => pair.culture.Name == baseLanguageProp.stringValue)
+            .index;
+        selectedNewTranslationLanguageIndex = selectedLanguageIndex;
     }
 
     public override void OnDisable() {
@@ -56,16 +44,15 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         EditorGUILayout.Space();
         YarnImporter yarnImporter = (target as YarnImporter);
 
-        var cultures = cultureInfo.Select(c => $"{c.DisplayName}");
         // Array of translations that have been added to this asset + base language
         var culturesAvailableOnAsset = yarnImporter.localizations.
             Select(element => element.languageName).
-            Append(cultureInfo[selectedLanguageIndex].Name).
+            Append(Cultures.AvailableCultures[selectedLanguageIndex].Name).
             OrderBy(element => element).
             ToArray();
 
-        selectedLanguageIndex = EditorGUILayout.Popup("Base Language", selectedLanguageIndex, cultures.ToArray());
-        baseLanguageProp.stringValue = cultureInfo[selectedLanguageIndex].Name;
+        selectedLanguageIndex = EditorGUILayout.Popup("Base Language", selectedLanguageIndex, Cultures.AvailableCulturesDisplayNames);
+        baseLanguageProp.stringValue = Cultures.AvailableCultures[selectedLanguageIndex].Name;
 
         if (yarnImporter.isSuccesfullyCompiled == false) {
             EditorGUILayout.HelpBox(yarnImporter.compilationErrorMessage, MessageType.Error);
@@ -79,7 +66,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         using (new EditorGUI.DisabledScope(!canCreateLocalisation))
         using (new EditorGUILayout.HorizontalScope()) {
 
-            selectedNewTranslationLanguageIndex = EditorGUILayout.Popup(selectedNewTranslationLanguageIndex, cultures.ToArray());
+            selectedNewTranslationLanguageIndex = EditorGUILayout.Popup(selectedNewTranslationLanguageIndex, Cultures.AvailableCulturesDisplayNames);
 
             if (GUILayout.Button("Create New Localisation", EditorStyles.miniButton)) {
                 var stringsTableText = AssetDatabase
@@ -88,7 +75,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                     .FirstOrDefault()?
                     .text ?? "";
 
-                var selectedCulture = cultureInfo[selectedNewTranslationLanguageIndex];
+                var selectedCulture = Cultures.AvailableCultures[selectedNewTranslationLanguageIndex];
 
                 var assetDirectory = Path.GetDirectoryName(yarnImporter.assetPath);
 
