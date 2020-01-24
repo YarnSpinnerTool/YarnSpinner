@@ -30,9 +30,16 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 
         baseLanguageProp = serializedObject.FindProperty("baseLanguageID");
 
-        selectedLanguageIndex = cultureInfo.Select((culture, index) => new { culture, index })
-            .FirstOrDefault(pair => pair.culture.Name == baseLanguageProp.stringValue)
-            .index;
+        if (string.IsNullOrEmpty(baseLanguageProp.stringValue)) {
+            selectedLanguageIndex = cultureInfo.
+                Select((culture, index) => new { culture, index })
+                .FirstOrDefault(element => element.culture.Name == CultureInfo.CurrentCulture.Name)
+                .index;
+        } else {
+            selectedLanguageIndex = cultureInfo.Select((culture, index) => new { culture, index })
+                .FirstOrDefault(pair => pair.culture.Name == baseLanguageProp.stringValue)
+                .index;
+        }
         selectedNewTranslationLanguageIndex = selectedLanguageIndex;
     }
 
