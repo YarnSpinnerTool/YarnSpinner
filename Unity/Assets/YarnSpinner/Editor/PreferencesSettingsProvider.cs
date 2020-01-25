@@ -2,7 +2,12 @@
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+#if UNITY_2018
+using UnityEngine.Experimental.UIElements;
+#endif
+#if UNITY_2019_1_OR_NEWER
 using UnityEngine.UIElements;
+#endif
 
 /// <summary>
 /// Yarn-related user preferences drawn in the "Preferences" window
