@@ -6,13 +6,33 @@ using System.Globalization;
 
 [Serializable]
 public class Preferences : ScriptableObject {
-
-    public string textLanguage;
-    public string audioLanguage;
+    [SerializeField]
+    private string textLanguage;
+    [SerializeField]
+    private string audioLanguage;
 
     private string _preferencesPath;
     private string textLanguageFromDisk;
     private string audioLanguageFromDisk;
+
+    private static Preferences _instance;
+    private static Preferences Instance {
+        get {
+            if (!_instance) {
+                _instance = CreateInstance<Preferences>();
+            }
+            return _instance;
+        }
+    }
+
+    public static string TextLanguage {
+        get => Instance.textLanguage;
+        set => Instance.textLanguage = value;
+    }
+    public static string AudioLanguage {
+        get => Instance.audioLanguage;
+        set => Instance.audioLanguage = value;
+    }
 
     private void Awake() {
         _preferencesPath = Application.persistentDataPath + "/preferences-language.json";

@@ -718,8 +718,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yarnScripts:
   - {fileID: 2480198943629176163, guid: 8145c244bd6668a44b6a1aed4910a096, type: 3}
-  textLanguage: de
-  audioLanguage: de
   variableStorage: {fileID: 627131078}
   dialogueUI: {fileID: 627131075}
   startNode: Start
