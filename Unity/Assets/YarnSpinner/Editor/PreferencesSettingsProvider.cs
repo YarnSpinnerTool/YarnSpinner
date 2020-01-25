@@ -31,7 +31,7 @@ class PreferencesSettingsProvider : SettingsProvider {
 
         // Draw text language popup
         var selectedTextLanguageIndex = -1;
-        var textLanguageProp = preferences.FindProperty("textLanguage");
+        var textLanguageProp = preferences.FindProperty("_textLanguage");
         var selectedTextLanguage = Cultures.AvailableCulturesNames
             .Select((name, index) => new { name, index })
             .FirstOrDefault(element => element.name == textLanguageProp.stringValue);
@@ -47,7 +47,7 @@ class PreferencesSettingsProvider : SettingsProvider {
 
         // Draw audio language popup
         var selectedAudioLanguageIndex = -1;
-        var audioLanguageProp = preferences.FindProperty("audioLanguage");
+        var audioLanguageProp = preferences.FindProperty("_audioLanguage");
         var selectedAudioLanguage = Cultures.AvailableCulturesNames
             .Select((name, index) => new { name, index })
             .FirstOrDefault(element => element.name == audioLanguageProp.stringValue);

@@ -7,14 +7,14 @@ using System.Globalization;
 [Serializable]
 public class Preferences : ScriptableObject {
     [SerializeField]
-    private string textLanguage;
+    private string _textLanguage;
     [SerializeField]
-    private string audioLanguage;
+    private string _audioLanguage;
 
     private string _preferencesPath;
-    private string textLanguageFromDisk;
-    private string audioLanguageFromDisk;
 
+    private string _textLanguageFromDisk;
+    private string _audioLanguageFromDisk;
     private static Preferences _instance;
     private static Preferences Instance {
         get {
@@ -26,12 +26,12 @@ public class Preferences : ScriptableObject {
     }
 
     public static string TextLanguage {
-        get => Instance.textLanguage;
-        set => Instance.textLanguage = value;
+        get => Instance._textLanguage;
+        set => Instance._textLanguage = value;
     }
     public static string AudioLanguage {
-        get => Instance.audioLanguage;
-        set => Instance.audioLanguage = value;
+        get => Instance._audioLanguage;
+        set => Instance._audioLanguage = value;
     }
 
     private void Awake() {
@@ -40,11 +40,11 @@ public class Preferences : ScriptableObject {
     }
 
     private void OnEnable() {
-        if (string.IsNullOrEmpty(Cultures.AvailableCulturesNames.FirstOrDefault(element => element == textLanguage))) {
-            textLanguage = CultureInfo.CurrentCulture.Name;
+        if (string.IsNullOrEmpty(Cultures.AvailableCulturesNames.FirstOrDefault(element => element == _textLanguage))) {
+            _textLanguage = CultureInfo.CurrentCulture.Name;
         }
-        if (string.IsNullOrEmpty(Cultures.AvailableCulturesNames.FirstOrDefault(element => element == audioLanguage))) {
-            audioLanguage = CultureInfo.CurrentCulture.Name;
+        if (string.IsNullOrEmpty(Cultures.AvailableCulturesNames.FirstOrDefault(element => element == _audioLanguage))) {
+            _audioLanguage = CultureInfo.CurrentCulture.Name;
         }
     }
 
@@ -54,7 +54,17 @@ public class Preferences : ScriptableObject {
         }
     }
 
+    private bool PreferencesChanged() {
+        if (_textLanguage != _textLanguageFromDisk) {
+            return true;
+        }
 
+        if (_audioLanguage != _audioLanguageFromDisk) {
+            return true;
+        }
+
+        return false;
+    }
     public void ReadPreferencesFromDisk() {
         // Check file's existence
         bool fileExists = File.Exists(_preferencesPath);
@@ -85,29 +95,29 @@ public class Preferences : ScriptableObject {
         }
 
         // Apply text language preference from file
-        if (!string.IsNullOrEmpty(textLanguage)) {
-            var matchingTextLanguage = Cultures.AvailableCulturesNames.FirstOrDefault(element => element == textLanguage);
+        if (!string.IsNullOrEmpty(_textLanguage)) {
+            var matchingTextLanguage = Cultures.AvailableCulturesNames.FirstOrDefault(element => element == _textLanguage);
+            _textLanguageFromDisk = matchingTextLanguage;
             if (!string.IsNullOrEmpty(matchingTextLanguage)) {
                 // Language ID from JSON found in available Cultures so apply
-                textLanguage = matchingTextLanguage;
+                _textLanguage = matchingTextLanguage;
             } else {
                 // Language ID from JSON was not found in available Cultures so reset
-                textLanguage = CultureInfo.CurrentCulture.Name;
+                _textLanguage = CultureInfo.CurrentCulture.Name;
             }
-            textLanguageFromDisk = textLanguage;
         }
 
         // Apply audio language preference from file
-        if (!string.IsNullOrEmpty(audioLanguage)) {
-            var matchingAudioLanguage = Cultures.AvailableCulturesNames.FirstOrDefault(element => element == audioLanguage);
+        if (!string.IsNullOrEmpty(_audioLanguage)) {
+            var matchingAudioLanguage = Cultures.AvailableCulturesNames.FirstOrDefault(element => element == _audioLanguage);
+            _audioLanguageFromDisk = matchingAudioLanguage;
             if (!string.IsNullOrEmpty(matchingAudioLanguage)) {
                 // Language ID from JSON found in available Cultures so apply
-                audioLanguage = matchingAudioLanguage;
+                _audioLanguage = matchingAudioLanguage;
             } else {
                 // Language ID from JSON was not found in available Cultures so reset
-                audioLanguage = CultureInfo.CurrentCulture.Name;
+                _audioLanguage = CultureInfo.CurrentCulture.Name;
             }
-            audioLanguageFromDisk = audioLanguage;
         }
     }
 
@@ -120,15 +130,4 @@ public class Preferences : ScriptableObject {
         }
     }
 
-    private bool PreferencesChanged() {
-        if (textLanguage != textLanguageFromDisk) {
-            return true;
-        }
-
-        if (audioLanguage != audioLanguageFromDisk) {
-            return true;
-        }
-
-        return false;
-    }
 }
