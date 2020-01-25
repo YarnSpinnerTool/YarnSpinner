@@ -10,33 +10,33 @@ using UnityEngine.UIElements;
 #endif
 
 /// <summary>
-/// Yarn-related user preferences drawn in the "Preferences" window
+/// Yarn-related user preferences shown in the "Preferences" window
 /// </summary>
 class PreferencesSettingsProvider : SettingsProvider {
     public PreferencesSettingsProvider(string path, SettingsScope scope = SettingsScope.User) : base(path, scope) { }
 
-    private SerializedObject preferences;
+    private SerializedObject _preferences;
 
     public override void OnActivate(string searchContext, VisualElement rootElement) {
-        preferences = new SerializedObject(ScriptableObject.CreateInstance<Preferences>());
+        _preferences = new SerializedObject(ScriptableObject.CreateInstance<Preferences>());
     }
 
     public override void OnDeactivate() {
-        if (preferences != null) {
-            Object.DestroyImmediate(preferences.targetObject);
+        if (_preferences != null) {
+            Object.DestroyImmediate(_preferences.targetObject);
         }
     }
 
     public override void OnGUI(string searchContext) {
-        if (preferences == null || preferences.targetObject == null) {
+        if (_preferences == null || _preferences.targetObject == null) {
             return;
         }
 
-        preferences.Update();
+        _preferences.Update();
 
         // Text language popup related things
         var selectedTextLanguageIndex = -1;
-        var textLanguageProp = preferences.FindProperty("_textLanguage");
+        var textLanguageProp = _preferences.FindProperty("_textLanguage");
         var selectedTextLanguage = Cultures.AvailableCulturesNames
             .Select((name, index) => new { name, index })
             .FirstOrDefault(element => element.name == textLanguageProp.stringValue);
@@ -53,7 +53,7 @@ class PreferencesSettingsProvider : SettingsProvider {
 
         // Audio language popup related things
         var selectedAudioLanguageIndex = -1;
-        var audioLanguageProp = preferences.FindProperty("_audioLanguage");
+        var audioLanguageProp = _preferences.FindProperty("_audioLanguage");
         var selectedAudioLanguage = Cultures.AvailableCulturesNames
             .Select((name, index) => new { name, index })
             .FirstOrDefault(element => element.name == audioLanguageProp.stringValue);
@@ -68,7 +68,7 @@ class PreferencesSettingsProvider : SettingsProvider {
             : System.Globalization.CultureInfo.CurrentCulture.Name;
 
 
-        preferences.ApplyModifiedProperties();
+        _preferences.ApplyModifiedProperties();
     }
 
     // Register the YarnSpinner user preferences in the "Preferences" window
