@@ -6,16 +6,47 @@ using System.Globalization;
 
 [Serializable]
 public class Preferences : ScriptableObject {
+    #region Properties
+    /// <summary>
+    /// The text language preferred by the user
+    /// </summary>
     [SerializeField]
     private string _textLanguage;
+
+    /// <summary>
+    /// The audio language preferred by the user
+    /// </summary>
     [SerializeField]
     private string _audioLanguage;
 
+    /// <summary>
+    /// The path to store the user preferences
+    /// </summary>
     private string _preferencesPath;
 
+    /// <summary>
+    /// The text language preference that was read from disk. 
+    /// Used to detect changes to reduce writing to disk.
+    /// </summary>
     private string _textLanguageFromDisk;
+
+    /// <summary>
+    /// The audio language preference that was read from disk. 
+    /// Used to detect changes to reduce writing to disk.
+    /// </summary>
     private string _audioLanguageFromDisk;
+
+    /// <summary>
+    /// Instance of this class (Singleton design pattern)
+    /// </summary>
     private static Preferences _instance;
+    #endregion
+
+    #region Accessors
+    /// <summary>
+    /// Makes sure that there's always an instance of this 
+    /// class alive upon access.
+    /// </summary>
     private static Preferences Instance {
         get {
             if (!_instance) {
@@ -25,15 +56,26 @@ public class Preferences : ScriptableObject {
         }
     }
 
+    /// <summary>
+    /// The text language preferred by the user. Changes will 
+    /// be written to disk during exit and ending playmode.
+    /// </summary>
     public static string TextLanguage {
         get => Instance._textLanguage;
         set => Instance._textLanguage = value;
     }
+
+    /// <summary>
+    /// The audio language preferred by the user. Changes will 
+    /// be written to disk during exit and ending playmode.
+    /// </summary>
     public static string AudioLanguage {
         get => Instance._audioLanguage;
         set => Instance._audioLanguage = value;
     }
+    #endregion
 
+    #region Private Methods
     private void Awake() {
         _preferencesPath = Application.persistentDataPath + "/preferences-language.json";
         ReadPreferencesFromDisk();
@@ -65,6 +107,12 @@ public class Preferences : ScriptableObject {
 
         return false;
     }
+    #endregion
+
+    #region Public Methods
+    /// <summary>
+    /// Read the user's language preferences from disk.
+    /// </summary>
     public void ReadPreferencesFromDisk() {
         // Check file's existence
         bool fileExists = File.Exists(_preferencesPath);
@@ -121,6 +169,9 @@ public class Preferences : ScriptableObject {
         }
     }
 
+    /// <summary>
+    /// Save the user's language preferences to disk.
+    /// </summary>
     public void WritePreferencesToDisk() {
         string settingsJson = JsonUtility.ToJson(this, true);
         try {
@@ -129,5 +180,6 @@ public class Preferences : ScriptableObject {
             Debug.LogError("Saving Yarn Spinner preferences to disk failed!");
         }
     }
+    #endregion
 
 }

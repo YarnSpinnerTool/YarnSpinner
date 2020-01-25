@@ -29,7 +29,7 @@ class PreferencesSettingsProvider : SettingsProvider {
 
         preferences.Update();
 
-        // Draw text language popup
+        // Text language popup related things
         var selectedTextLanguageIndex = -1;
         var textLanguageProp = preferences.FindProperty("_textLanguage");
         var selectedTextLanguage = Cultures.AvailableCulturesNames
@@ -38,14 +38,15 @@ class PreferencesSettingsProvider : SettingsProvider {
         if (selectedTextLanguage != null) {
             selectedTextLanguageIndex = selectedTextLanguage.index;
         }
+        // Draw the actual text language popup
         selectedTextLanguageIndex = EditorGUILayout.Popup("Text Language", selectedTextLanguageIndex, Cultures.AvailableCulturesDisplayNames);
-
+        // Change/set the text language ID (to system's default if the index is unusable)
         textLanguageProp.stringValue = selectedTextLanguageIndex != -1
             ? Cultures.AvailableCulturesNames[selectedTextLanguageIndex]
             : System.Globalization.CultureInfo.CurrentCulture.Name;
 
 
-        // Draw audio language popup
+        // Audio language popup related things
         var selectedAudioLanguageIndex = -1;
         var audioLanguageProp = preferences.FindProperty("_audioLanguage");
         var selectedAudioLanguage = Cultures.AvailableCulturesNames
@@ -54,8 +55,9 @@ class PreferencesSettingsProvider : SettingsProvider {
         if (selectedAudioLanguage != null) {
             selectedAudioLanguageIndex = selectedAudioLanguage.index;
         }
+        // Draw the actual audio language popup
         selectedAudioLanguageIndex = EditorGUILayout.Popup("Audio Language", selectedAudioLanguageIndex, Cultures.AvailableCulturesDisplayNames);
-
+        // Change/set the audio language ID (to system's default if the index is unusable)
         audioLanguageProp.stringValue = selectedAudioLanguageIndex != -1
             ? Cultures.AvailableCulturesNames[selectedAudioLanguageIndex]
             : System.Globalization.CultureInfo.CurrentCulture.Name;
