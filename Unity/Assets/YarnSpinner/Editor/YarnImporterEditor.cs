@@ -24,11 +24,24 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 
     SerializedProperty baseLanguageProp;
 
+    private ProjectSettings _projectSettings;
+
+    private Culture[] _culturesAvailable;
+
     public override void OnEnable() {
         base.OnEnable();
         baseLanguageProp = serializedObject.FindProperty("baseLanguageID");
+        _culturesAvailable = Cultures.AvailableCultures;
 
-        selectedLanguageIndex = Cultures.AvailableCultures.Select((culture, index) => new { culture, index })
+        var projectSettingsSearch = AssetDatabase.FindAssets("t:ProjectSettings");
+        if (projectSettingsSearch.Length > 0) {
+            _projectSettings = AssetDatabase.LoadAssetAtPath<ProjectSettings>(AssetDatabase.GUIDToAssetPath(projectSettingsSearch[0]));
+            if (_projectSettings._textProjectLanguages.Count > 0 && _projectSettings._textProjectLanguages.Contains(baseLanguageProp.stringValue)) {
+                _culturesAvailable = Cultures.LanguageNamesToCultures(_projectSettings._textProjectLanguages.ToArray());
+            }
+        }
+
+        selectedLanguageIndex = _culturesAvailable.Select((culture, index) => new { culture, index })
             .FirstOrDefault(pair => pair.culture.Name == baseLanguageProp.stringValue)
             .index;
         selectedNewTranslationLanguageIndex = selectedLanguageIndex;
@@ -47,12 +60,12 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         // Array of translations that have been added to this asset + base language
         var culturesAvailableOnAsset = yarnImporter.localizations.
             Select(element => element.languageName).
-            Append(Cultures.AvailableCultures[selectedLanguageIndex].Name).
+            Append(_culturesAvailable[selectedLanguageIndex].Name).
             OrderBy(element => element).
             ToArray();
 
-        selectedLanguageIndex = EditorGUILayout.Popup("Base Language", selectedLanguageIndex, Cultures.AvailableCulturesDisplayNames);
-        baseLanguageProp.stringValue = Cultures.AvailableCultures[selectedLanguageIndex].Name;
+        selectedLanguageIndex = EditorGUILayout.Popup("Base Language", selectedLanguageIndex, Cultures.CulturesToDisplayNames(_culturesAvailable));
+        baseLanguageProp.stringValue = _culturesAvailable[selectedLanguageIndex].Name;
 
         if (yarnImporter.isSuccesfullyCompiled == false) {
             EditorGUILayout.HelpBox(yarnImporter.compilationErrorMessage, MessageType.Error);
@@ -66,7 +79,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         using (new EditorGUI.DisabledScope(!canCreateLocalisation))
         using (new EditorGUILayout.HorizontalScope()) {
 
-            selectedNewTranslationLanguageIndex = EditorGUILayout.Popup(selectedNewTranslationLanguageIndex, Cultures.AvailableCulturesDisplayNames);
+            selectedNewTranslationLanguageIndex = EditorGUILayout.Popup(selectedNewTranslationLanguageIndex, Cultures.CulturesToDisplayNames(_culturesAvailable));
 
             if (GUILayout.Button("Create New Localisation", EditorStyles.miniButton)) {
                 var stringsTableText = AssetDatabase
@@ -75,7 +88,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                     .FirstOrDefault()?
                     .text ?? "";
 
-                var selectedCulture = Cultures.AvailableCultures[selectedNewTranslationLanguageIndex];
+                var selectedCulture = _culturesAvailable[selectedNewTranslationLanguageIndex];
 
                 var assetDirectory = Path.GetDirectoryName(yarnImporter.assetPath);
 
