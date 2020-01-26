@@ -77,6 +77,10 @@ public class Preferences : ScriptableObject {
 
     #region Private Methods
     private void Awake() {
+        if (_instance != null && this != _instance) {
+            DestroyImmediate(_instance);
+        }
+        _instance = this;
         _preferencesPath = Application.persistentDataPath + "/preferences-language.json";
         ReadPreferencesFromDisk();
     }
