@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEditor.Experimental.AssetImporters;
 using System.Linq;
 using System.IO;
+using System.Globalization;
 
 [CustomEditor(typeof(YarnImporter))]
 public class YarnImporterEditor : ScriptedImporterEditor {
@@ -40,10 +41,23 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                 _culturesAvailable = Cultures.LanguageNamesToCultures(_projectSettings._textProjectLanguages.ToArray());
             }
         }
-
-        selectedLanguageIndex = _culturesAvailable.Select((culture, index) => new { culture, index })
-            .FirstOrDefault(pair => pair.culture.Name == baseLanguageProp.stringValue)
-            .index;
+        if (string.IsNullOrEmpty(baseLanguageProp.stringValue)) {
+            if (_projectSettings != null && _projectSettings._textProjectLanguages.Count > 0) {
+                // Use first language from project settings as base language
+                selectedLanguageIndex = 0;
+            } else {
+                // Use system's language as base language if no project settings are defined
+                selectedLanguageIndex = _culturesAvailable.
+                    Select((culture, index) => new { culture, index })
+                    .FirstOrDefault(element => element.culture.Name == CultureInfo.CurrentCulture.Name)
+                    .index;
+            }
+        } else {
+            // Get index from previously stored base language setting
+            selectedLanguageIndex = _culturesAvailable.Select((culture, index) => new { culture, index })
+                .FirstOrDefault(pair => pair.culture.Name == baseLanguageProp.stringValue)
+                .index;
+        }
         selectedNewTranslationLanguageIndex = selectedLanguageIndex;
     }
 
