@@ -17,8 +17,7 @@ using UnityEngine.UIElements;
 class ProjectSettingsProvider : SettingsProvider {
     public ProjectSettingsProvider(string path, SettingsScope scope = SettingsScope.Project) : base(path, scope) { }
 
-    private static string _pathToYarnProjectSettingsAsset;
-    private SerializedObject _projectSettings;
+    private static SerializedObject _projectSettings;
     private ReorderableList _projetLanguagesReorderableList;
     private ReorderableList _textLanguagesReorderableList;
     private ReorderableList _audioLanguagesReorderableList;
@@ -26,22 +25,17 @@ class ProjectSettingsProvider : SettingsProvider {
     private int _textLanguagesListIndex;
     private int _audioLanguagesListIndex;
 
-    public override void OnActivate(string searchContext, VisualElement rootElement) {
-        // Handle Yarn's project settings asset
-        // 1. Try to locate the asset
-        var asset = AssetDatabase.FindAssets("t:ProjectSettings");
-        if (asset.Length > 0) {
-            // 2.a Asset found, cache path for OnGUI calls
-            _pathToYarnProjectSettingsAsset = AssetDatabase.GUIDToAssetPath(asset[0]);
-        } else {
-            // 2.b No asset found so create and cache path
-            _pathToYarnProjectSettingsAsset = AssetDatabase.GenerateUniqueAssetPath("Assets/YarnProjectSettings.asset");
-            var settingsObject = ScriptableObject.CreateInstance<ProjectSettings>();
-            AssetDatabase.CreateAsset(settingsObject, _pathToYarnProjectSettingsAsset);
+    public static SerializedObject ProjectSettings {
+        get {
+            if (_projectSettings == null) {
+                _projectSettings = GetProjectSettings();
+            }
+            return _projectSettings;
         }
-        // Load the asset
-        _projectSettings = new SerializedObject(AssetDatabase.LoadAssetAtPath<ProjectSettings>(_pathToYarnProjectSettingsAsset));
+    }
 
+    public override void OnActivate(string searchContext, VisualElement rootElement) {
+        _projectSettings = GetProjectSettings();
 
         // Initialize the language lists
         _projetLanguagesReorderableList = new ReorderableList(_projectSettings, _projectSettings.FindProperty("_projectLanguages"), true, true, false, true);
@@ -191,5 +185,23 @@ class ProjectSettingsProvider : SettingsProvider {
         provider.keywords = new HashSet<string>(new[] { "Language", "Text", "Audio" });
 
         return provider;
+    }
+
+    private static SerializedObject GetProjectSettings() {
+        // Handle Yarn's project settings asset
+        // 1. Try to locate the asset
+        var asset = AssetDatabase.FindAssets("t:ProjectSettings");
+        string _pathToYarnProjectSettingsAsset;
+        if (asset.Length > 0) {
+            // 2.a Asset found, cache path for OnGUI calls
+            _pathToYarnProjectSettingsAsset = AssetDatabase.GUIDToAssetPath(asset[0]);
+        } else {
+            // 2.b No asset found so create and cache path
+            _pathToYarnProjectSettingsAsset = AssetDatabase.GenerateUniqueAssetPath("Assets/YarnProjectSettings.asset");
+            var settingsObject = ScriptableObject.CreateInstance<ProjectSettings>();
+            AssetDatabase.CreateAsset(settingsObject, _pathToYarnProjectSettingsAsset);
+        }
+        // Load the asset
+        return new SerializedObject(AssetDatabase.LoadAssetAtPath<ProjectSettings>(_pathToYarnProjectSettingsAsset));
     }
 }
