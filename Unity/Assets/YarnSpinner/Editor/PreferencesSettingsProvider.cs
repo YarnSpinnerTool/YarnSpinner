@@ -16,17 +16,13 @@ class PreferencesSettingsProvider : SettingsProvider {
     public PreferencesSettingsProvider(string path, SettingsScope scope = SettingsScope.User) : base(path, scope) { }
 
     private SerializedObject _preferences;
-    private ProjectSettings _projectSettings;
-    private List<string> _textLanguages;
-    private List<string> _audioLanguage;
+    private List<string> _textLanguages = new List<string>();
+    private List<string> _audioLanguage = new List<string>();
 
     public override void OnActivate(string searchContext, VisualElement rootElement) {
         _preferences = new SerializedObject(ScriptableObject.CreateInstance<Preferences>());
-        if (AssetDatabase.FindAssets("t:ProjectSettings").Length > 0) {
-            _projectSettings = AssetDatabase.LoadAssetAtPath<ProjectSettings>(AssetDatabase.GUIDToAssetPath(AssetDatabase.FindAssets("t:ProjectSettings")[0]));
-            _textLanguages = _projectSettings._textProjectLanguages;
-            _audioLanguage = _projectSettings._audioProjectLanguages;
-        }
+        _textLanguages = ProjectSettings.Instance._textProjectLanguages;
+        _audioLanguage = ProjectSettings.Instance._audioProjectLanguages;
     }
 
     public override void OnDeactivate() {

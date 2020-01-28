@@ -25,7 +25,7 @@ class ProjectSettingsProvider : SettingsProvider {
     private int _textLanguagesListIndex;
     private int _audioLanguagesListIndex;
 
-    public static SerializedObject ProjectSettings {
+    public static SerializedObject ProjectSettingsSerialized {
         get {
             if (_projectSettings == null) {
                 _projectSettings = GetProjectSettings();
@@ -70,6 +70,12 @@ class ProjectSettingsProvider : SettingsProvider {
             rect.y += 2;
             EditorGUI.LabelField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), displayName);
         };
+    }
+
+    public override void OnDeactivate() {
+        if (_projectSettings != null) {
+            Object.DestroyImmediate(_projectSettings.targetObject);
+        }
     }
 
     public override void OnGUI(string searchContext) {
@@ -188,20 +194,20 @@ class ProjectSettingsProvider : SettingsProvider {
     }
 
     private static SerializedObject GetProjectSettings() {
-        // Handle Yarn's project settings asset
-        // 1. Try to locate the asset
-        var asset = AssetDatabase.FindAssets("t:ProjectSettings");
-        string _pathToYarnProjectSettingsAsset;
-        if (asset.Length > 0) {
-            // 2.a Asset found, cache path for OnGUI calls
-            _pathToYarnProjectSettingsAsset = AssetDatabase.GUIDToAssetPath(asset[0]);
-        } else {
-            // 2.b No asset found so create and cache path
-            _pathToYarnProjectSettingsAsset = AssetDatabase.GenerateUniqueAssetPath("Assets/YarnProjectSettings.asset");
-            var settingsObject = ScriptableObject.CreateInstance<ProjectSettings>();
-            AssetDatabase.CreateAsset(settingsObject, _pathToYarnProjectSettingsAsset);
-        }
+        //// Handle Yarn's project settings asset
+        //// 1. Try to locate the asset
+        //var asset = AssetDatabase.FindAssets("t:ProjectSettings");
+        //string _pathToYarnProjectSettingsAsset;
+        //if (asset.Length > 0) {
+        //    // 2.a Asset found, cache path for OnGUI calls
+        //    _pathToYarnProjectSettingsAsset = AssetDatabase.GUIDToAssetPath(asset[0]);
+        //} else {
+        //    // 2.b No asset found so create and cache path
+        //    _pathToYarnProjectSettingsAsset = AssetDatabase.GenerateUniqueAssetPath("Assets/YarnProjectSettings.asset");
+        //    var settingsObject = ScriptableObject.CreateInstance<ProjectSettings>();
+        //    AssetDatabase.CreateAsset(settingsObject, _pathToYarnProjectSettingsAsset);
+        //}
         // Load the asset
-        return new SerializedObject(AssetDatabase.LoadAssetAtPath<ProjectSettings>(_pathToYarnProjectSettingsAsset));
+        return new SerializedObject(ProjectSettings.Instance);
     }
 }

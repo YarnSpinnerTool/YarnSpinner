@@ -96,7 +96,7 @@ public class Preferences : ScriptableObject {
 
     private void OnDestroy() {
         if (PreferencesChanged()) {
-            WritePreferencesToDisk();
+            YarnSettingsHelper.WritePreferencesToDisk(this, _preferencesPath);
         }
     }
 
@@ -118,42 +118,13 @@ public class Preferences : ScriptableObject {
     /// Read the user's language preferences from disk.
     /// </summary>
     public void ReadPreferencesFromDisk() {
-        // Check file's existence
-        bool fileExists = File.Exists(_preferencesPath);
-        if (!fileExists) {
-            // Wen don't throw an error since during OnEnable() all values will be initialized with 
-            // the system's default and create a new file once this class get's out of scope
-            Debug.Log("No previous Yarn Spinner preferences have been found.");
-            return;
-        }
-
-        // Load file into memory
-        string jsonString;
-        try {
-            jsonString = File.ReadAllText(_preferencesPath);
-        } catch (Exception) {
-            // No big deal since we'll initialize all values during OnEnable()
-            Debug.Log("Error loading Yarn Spinner preferences from JSON.");
-            return;
-        }
-
-        // Parse json to *this* ScriptableObject
-        try {
-            JsonUtility.FromJsonOverwrite(jsonString, this);
-        } catch (Exception) {
-            // No big deal since we'll initialize all values during OnEnable()
-            Debug.Log("Error parsing Yarn Spinner preferences from JSON.");
-            return;
-        }
+        YarnSettingsHelper.ReadPreferencesFromDisk(this, _preferencesPath);
 
         // Apply text language preference from file
         if (!string.IsNullOrEmpty(_textLanguage)) {
-            var matchingTextLanguage = Cultures.AvailableCulturesNames.FirstOrDefault(element => element == _textLanguage);
-            _textLanguageFromDisk = matchingTextLanguage;
-            if (!string.IsNullOrEmpty(matchingTextLanguage)) {
-                // Language ID from JSON found in available Cultures so apply
-                _textLanguage = matchingTextLanguage;
-            } else {
+            // Keep the value read from disk to be able to tell if this class has been modified during runtime
+            _textLanguageFromDisk = Cultures.AvailableCulturesNames.FirstOrDefault(element => element == _textLanguage);
+            if (string.IsNullOrEmpty(_textLanguageFromDisk)) {
                 // Language ID from JSON was not found in available Cultures so reset
                 _textLanguage = CultureInfo.CurrentCulture.Name;
             }
@@ -161,27 +132,12 @@ public class Preferences : ScriptableObject {
 
         // Apply audio language preference from file
         if (!string.IsNullOrEmpty(_audioLanguage)) {
-            var matchingAudioLanguage = Cultures.AvailableCulturesNames.FirstOrDefault(element => element == _audioLanguage);
-            _audioLanguageFromDisk = matchingAudioLanguage;
-            if (!string.IsNullOrEmpty(matchingAudioLanguage)) {
-                // Language ID from JSON found in available Cultures so apply
-                _audioLanguage = matchingAudioLanguage;
-            } else {
+            // Keep the value read from disk to be able to tell if this class has been modified during runtime
+            _audioLanguageFromDisk = Cultures.AvailableCulturesNames.FirstOrDefault(element => element == _audioLanguage);
+            if (string.IsNullOrEmpty(_audioLanguageFromDisk)) {
                 // Language ID from JSON was not found in available Cultures so reset
                 _audioLanguage = CultureInfo.CurrentCulture.Name;
             }
-        }
-    }
-
-    /// <summary>
-    /// Save the user's language preferences to disk.
-    /// </summary>
-    public void WritePreferencesToDisk() {
-        string settingsJson = JsonUtility.ToJson(this, true);
-        try {
-            File.WriteAllText(_preferencesPath, settingsJson);
-        } catch (Exception) {
-            Debug.LogError("Saving Yarn Spinner preferences to disk failed!");
         }
     }
     #endregion
