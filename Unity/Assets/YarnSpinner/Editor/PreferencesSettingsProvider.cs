@@ -21,8 +21,8 @@ class PreferencesSettingsProvider : SettingsProvider {
 
     public override void OnActivate(string searchContext, VisualElement rootElement) {
         _preferences = new SerializedObject(ScriptableObject.CreateInstance<Preferences>());
-        _textLanguages = ProjectSettings.Instance._textProjectLanguages;
-        _audioLanguage = ProjectSettings.Instance._audioProjectLanguages;
+        _textLanguages = ProjectSettings.TextProjectLanguages;
+        _audioLanguage = ProjectSettings.AudioProjectLanguages;
     }
 
     public override void OnDeactivate() {

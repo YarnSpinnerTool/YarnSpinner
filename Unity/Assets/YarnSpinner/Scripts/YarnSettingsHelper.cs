@@ -14,7 +14,7 @@ public static class YarnSettingsHelper
         if (!fileExists) {
             // Wen don't throw an error since during OnEnable() all values will be initialized with 
             // the system's default and create a new file once this class get's out of scope
-            Debug.Log("No previous Yarn Spinner preferences have been found.");
+            Debug.LogFormat("No previous Yarn Spinner preferences have been found in {0}.", storagePath);
             return;
         }
 

@@ -16,12 +16,9 @@ public class YarnTranslationDrawer : PropertyDrawer
 
         var availableCulturesNames = Cultures.AvailableCulturesNames;
 
-        if (ProjectSettingsProvider.ProjectSettingsSerialized != null) {
-            var projectSettingsTextLanguages = (ProjectSettingsProvider.ProjectSettingsSerialized.targetObject as ProjectSettings)._textProjectLanguages;
-            if (projectSettingsTextLanguages.Count > 0 && projectSettingsTextLanguages.Contains(property.FindPropertyRelative("languageName").stringValue)) {
-                // Only reduce text languages to selection from project settings if the current language is available in that list
-                availableCulturesNames = projectSettingsTextLanguages.ToArray();
-            }
+        if (ProjectSettings.TextProjectLanguages.Count > 0 && ProjectSettings.TextProjectLanguages.Contains(property.FindPropertyRelative("languageName").stringValue)) {
+            // Only reduce text languages to selection from project settings if the current language is available in that list
+            availableCulturesNames = ProjectSettings.TextProjectLanguages.ToArray();
         }
 
         // The language ID

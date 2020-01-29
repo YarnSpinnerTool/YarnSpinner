@@ -7,11 +7,17 @@ using UnityEditor;
 
 [System.Serializable]
 public class ProjectSettings : ScriptableObject {
-    public List<string> _projectLanguages = new List<string>();
+    [SerializeField]
+    private List<string> _projectLanguages = new List<string>();
+    public static List<string> ProjectLanguages => Instance._projectLanguages;
 
-    public List<string> _textProjectLanguages = new List<string>();
+    [SerializeField]
+    private List<string> _textProjectLanguages = new List<string>();
+    public static List<string> TextProjectLanguages => Instance._textProjectLanguages;
 
-    public List<string> _audioProjectLanguages = new List<string>();
+    [SerializeField]
+    private List<string> _audioProjectLanguages = new List<string>();
+    public static List<string> AudioProjectLanguages => Instance._audioProjectLanguages;
 
     /// <summary>
     /// The path to store the project settings
@@ -27,9 +33,10 @@ public class ProjectSettings : ScriptableObject {
     /// Makes sure that there's always an instance of this 
     /// class alive upon access.
     /// </summary>
-    public static ProjectSettings Instance {
+    private static ProjectSettings Instance {
         get {
             if (!_instance) {
+                // Calls Awake() implicitly
                 _instance = CreateInstance<ProjectSettings>();
             }
             return _instance;

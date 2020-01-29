@@ -25,17 +25,8 @@ class ProjectSettingsProvider : SettingsProvider {
     private int _textLanguagesListIndex;
     private int _audioLanguagesListIndex;
 
-    public static SerializedObject ProjectSettingsSerialized {
-        get {
-            if (_projectSettings == null) {
-                _projectSettings = GetProjectSettings();
-            }
-            return _projectSettings;
-        }
-    }
-
     public override void OnActivate(string searchContext, VisualElement rootElement) {
-        _projectSettings = GetProjectSettings();
+        _projectSettings = new SerializedObject(ScriptableObject.CreateInstance<ProjectSettings>());
 
         // Initialize the language lists
         _projetLanguagesReorderableList = new ReorderableList(_projectSettings, _projectSettings.FindProperty("_projectLanguages"), true, true, false, true);
@@ -88,7 +79,7 @@ class ProjectSettingsProvider : SettingsProvider {
         // Project languages (List of languages available in this project)
         var projectLanguagesProp = _projectSettings.FindProperty("_projectLanguages");
         //EditorGUILayout.PropertyField(projectLanguagesProp);
-        var projectLanguages = (_projectSettings.targetObject as ProjectSettings)._projectLanguages;
+        var projectLanguages = ProjectSettings.ProjectLanguages;
         var remainingProjectLanguages = Cultures.AvailableCulturesNames.Except(projectLanguages).ToArray();
         var remainingProjectLanguagesDisplayNames = Cultures.LanguageNamesToDisplayNames(remainingProjectLanguages);
         // Button and Dropdown List for adding a language
@@ -114,7 +105,7 @@ class ProjectSettingsProvider : SettingsProvider {
         // Text languages (sub-selection from available project languages)
         var textLanguagesProp = _projectSettings.FindProperty("_textProjectLanguages");
         //EditorGUILayout.PropertyField(textLanguagesProp);
-        var textLanguages = (_projectSettings.targetObject as ProjectSettings)._textProjectLanguages;
+        var textLanguages = ProjectSettings.TextProjectLanguages;
         var remainingTextLanguages = projectLanguages.Except(textLanguages).ToArray();
         var remainingTextLanguagesDisplayNames = Cultures.LanguageNamesToDisplayNames(remainingTextLanguages);
         // Button and Dropdown List for adding a language
@@ -149,7 +140,7 @@ class ProjectSettingsProvider : SettingsProvider {
         // Audio languages (sub-selection from available project languages)
         var audioLanguagesProp = _projectSettings.FindProperty("_audioProjectLanguages");
         //EditorGUILayout.PropertyField(_projectSettings.FindProperty("_audioProjectLanguages"));
-        var audioLanguages = (_projectSettings.targetObject as ProjectSettings)._audioProjectLanguages;
+        var audioLanguages = ProjectSettings.AudioProjectLanguages;
         var remainingAudioLanguages = projectLanguages.Except(audioLanguages).ToArray();
         var remainingAudioLanguagesDisplayNames = Cultures.LanguageNamesToDisplayNames(remainingAudioLanguages);
         // Button and Dropdown List for adding a language
@@ -191,23 +182,5 @@ class ProjectSettingsProvider : SettingsProvider {
         provider.keywords = new HashSet<string>(new[] { "Language", "Text", "Audio" });
 
         return provider;
-    }
-
-    private static SerializedObject GetProjectSettings() {
-        //// Handle Yarn's project settings asset
-        //// 1. Try to locate the asset
-        //var asset = AssetDatabase.FindAssets("t:ProjectSettings");
-        //string _pathToYarnProjectSettingsAsset;
-        //if (asset.Length > 0) {
-        //    // 2.a Asset found, cache path for OnGUI calls
-        //    _pathToYarnProjectSettingsAsset = AssetDatabase.GUIDToAssetPath(asset[0]);
-        //} else {
-        //    // 2.b No asset found so create and cache path
-        //    _pathToYarnProjectSettingsAsset = AssetDatabase.GenerateUniqueAssetPath("Assets/YarnProjectSettings.asset");
-        //    var settingsObject = ScriptableObject.CreateInstance<ProjectSettings>();
-        //    AssetDatabase.CreateAsset(settingsObject, _pathToYarnProjectSettingsAsset);
-        //}
-        // Load the asset
-        return new SerializedObject(ProjectSettings.Instance);
     }
 }

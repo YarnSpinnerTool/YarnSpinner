@@ -50,6 +50,7 @@ public class Preferences : ScriptableObject {
     private static Preferences Instance {
         get {
             if (!_instance) {
+                // Calls Awake() implicitly
                 _instance = CreateInstance<Preferences>();
             }
             return _instance;

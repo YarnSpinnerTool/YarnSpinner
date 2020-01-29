@@ -25,8 +25,6 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 
     SerializedProperty baseLanguageProp;
 
-    private ProjectSettings _projectSettings;
-
     private Culture[] _culturesAvailable;
 
     public override void OnEnable() {
@@ -34,17 +32,13 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         baseLanguageProp = serializedObject.FindProperty("baseLanguageID");
         _culturesAvailable = Cultures.AvailableCultures;
 
-        var projectSettingsSearch = AssetDatabase.FindAssets("t:ProjectSettings");
-        if (projectSettingsSearch.Length > 0) {
-            _projectSettings = AssetDatabase.LoadAssetAtPath<ProjectSettings>(AssetDatabase.GUIDToAssetPath(projectSettingsSearch[0]));
-            // Check for situations where we don't want to apply the project settings (for instance, if no settings have been made at all ...)
-            if (_projectSettings._textProjectLanguages.Count > 0 && (string.IsNullOrEmpty(baseLanguageProp.stringValue) || _projectSettings._textProjectLanguages.Contains(baseLanguageProp.stringValue))) {
-                // Reduce the available languages to the list defined on the project settings
-                _culturesAvailable = Cultures.LanguageNamesToCultures(_projectSettings._textProjectLanguages.ToArray());
-            }
+        // Check for situations where we don't want to apply the project settings (for instance, if no settings have been made at all ...)
+        if (ProjectSettings.TextProjectLanguages.Count > 0 && (string.IsNullOrEmpty(baseLanguageProp.stringValue) || ProjectSettings.TextProjectLanguages.Contains(baseLanguageProp.stringValue))) {
+            // Reduce the available languages to the list defined on the project settings
+            _culturesAvailable = Cultures.LanguageNamesToCultures(ProjectSettings.TextProjectLanguages.ToArray());
         }
         if (string.IsNullOrEmpty(baseLanguageProp.stringValue)) {
-            if (_projectSettings != null && _projectSettings._textProjectLanguages.Count > 0) {
+            if (ProjectSettings.TextProjectLanguages.Count > 0) {
                 // Use first language from project settings as base language
                 selectedLanguageIndex = 0;
             } else {
