@@ -142,5 +142,4 @@ public class Preferences : ScriptableObject {
         }
     }
     #endregion
-
 }
