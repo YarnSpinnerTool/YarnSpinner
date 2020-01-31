@@ -68,11 +68,17 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         YarnImporter yarnImporter = (target as YarnImporter);
 
         // Array of translations that have been added to this asset + base language
-        var languageIdsAvailableOnAsset = yarnImporter.localizations.
-            Select(element => element.languageName).
-            Append(_culturesAvailable[selectedLanguageIndex].Name).
-            OrderBy(element => element).
-            ToArray();
+        // First get list from Project Settings or from available localization
+        var languageIdsAvailableOnAsset = ProjectSettings.AudioProjectLanguages.Count > 0 
+            ? ProjectSettings.AudioProjectLanguages.ToArray() 
+            : yarnImporter.localizations.Select(element => element.languageName).ToArray();
+        if (ProjectSettings.AudioProjectLanguages.Count > 0 && ProjectSettings.AudioProjectLanguages.Contains(_culturesAvailable[selectedLanguageIndex].Name)) {
+            // Add base language to voice over list
+            languageIdsAvailableOnAsset = languageIdsAvailableOnAsset.
+                Append(_culturesAvailable[selectedLanguageIndex].Name).
+                OrderBy(element => element).
+                ToArray();
+        }
 
         selectedLanguageIndex = EditorGUILayout.Popup("Base Language", selectedLanguageIndex, Cultures.CulturesToDisplayNames(_culturesAvailable));
         baseLanguageProp.stringValue = _culturesAvailable[selectedLanguageIndex].Name;

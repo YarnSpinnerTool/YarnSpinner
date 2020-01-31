@@ -18,10 +18,8 @@ class ProjectSettingsProvider : SettingsProvider {
     public ProjectSettingsProvider(string path, SettingsScope scope = SettingsScope.Project) : base(path, scope) { }
 
     private static SerializedObject _projectSettings;
-    private ReorderableList _projetLanguagesReorderableList;
     private ReorderableList _textLanguagesReorderableList;
     private ReorderableList _audioLanguagesReorderableList;
-    private int _projetLanguagesListIndex;
     private int _textLanguagesListIndex;
     private int _audioLanguagesListIndex;
 
@@ -29,13 +27,9 @@ class ProjectSettingsProvider : SettingsProvider {
         _projectSettings = new SerializedObject(ScriptableObject.CreateInstance<ProjectSettings>());
 
         // Initialize the language lists
-        _projetLanguagesReorderableList = new ReorderableList(_projectSettings, _projectSettings.FindProperty("_projectLanguages"), true, true, false, true);
         _textLanguagesReorderableList = new ReorderableList(_projectSettings, _projectSettings.FindProperty("_textProjectLanguages"), true, true, false, true);
         _audioLanguagesReorderableList = new ReorderableList(_projectSettings, _projectSettings.FindProperty("_audioProjectLanguages"), true, true, false, true);
         // Add labels to the lists
-        _projetLanguagesReorderableList.drawHeaderCallback = (Rect rect) => {
-            EditorGUI.LabelField(rect, "Languages available for this project");
-        };
         _textLanguagesReorderableList.drawHeaderCallback = (Rect rect) => {
             EditorGUI.LabelField(rect, "Languages available for this project");
         };
@@ -43,12 +37,6 @@ class ProjectSettingsProvider : SettingsProvider {
             EditorGUI.LabelField(rect, "Languages available for this project");
         };
         // How an element of the lists should be drawn
-        _projetLanguagesReorderableList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) => {
-            var languageId = _projetLanguagesReorderableList.serializedProperty.GetArrayElementAtIndex(index);
-            var displayName = Cultures.LanguageNamesToDisplayNames(languageId.stringValue);
-            rect.y += 2;
-            EditorGUI.LabelField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), displayName);
-        };
         _textLanguagesReorderableList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) => {
             var languageId = _textLanguagesReorderableList.serializedProperty.GetArrayElementAtIndex(index);
             var displayName = Cultures.LanguageNamesToDisplayNames(languageId.stringValue);
@@ -75,38 +63,11 @@ class ProjectSettingsProvider : SettingsProvider {
         }
         _projectSettings.Update();
 
-        GUILayout.Label("Project Languages", EditorStyles.boldLabel);
-        // Project languages (List of languages available in this project)
-        var projectLanguagesProp = _projectSettings.FindProperty("_projectLanguages");
-        //EditorGUILayout.PropertyField(projectLanguagesProp);
-        var projectLanguages = ProjectSettings.ProjectLanguages;
-        var remainingProjectLanguages = Cultures.AvailableCulturesNames.Except(projectLanguages).ToArray();
-        var remainingProjectLanguagesDisplayNames = Cultures.LanguageNamesToDisplayNames(remainingProjectLanguages);
-        // Button and Dropdown List for adding a language
-        GUILayout.BeginHorizontal();
-        if (remainingProjectLanguages.Length < 0) {
-            GUI.enabled = false;
-            GUILayout.Button("No more languages left to add");
-            GUI.enabled = true;
-        } else {
-            if (GUILayout.Button("Add Language to Project Languages")) {
-                projectLanguagesProp.InsertArrayElementAtIndex(projectLanguagesProp.arraySize);
-                projectLanguagesProp.GetArrayElementAtIndex(projectLanguagesProp.arraySize - 1).stringValue = remainingProjectLanguages[_projetLanguagesListIndex];
-                _projetLanguagesListIndex = 0;
-            }
-        }
-        _projetLanguagesListIndex = EditorGUILayout.Popup(_projetLanguagesListIndex, remainingProjectLanguagesDisplayNames);
-        GUILayout.EndHorizontal();
-        // Project Language List
-        _projetLanguagesReorderableList.DoLayoutList();
-
-        GUILayout.Space(20);
         GUILayout.Label("Text Languages", EditorStyles.boldLabel);
-        // Text languages (sub-selection from available project languages)
+        // Text languages
         var textLanguagesProp = _projectSettings.FindProperty("_textProjectLanguages");
-        //EditorGUILayout.PropertyField(textLanguagesProp);
         var textLanguages = ProjectSettings.TextProjectLanguages;
-        var remainingTextLanguages = projectLanguages.Except(textLanguages).ToArray();
+        var remainingTextLanguages = Cultures.AvailableCulturesNames.Except(textLanguages).ToArray();
         var remainingTextLanguagesDisplayNames = Cultures.LanguageNamesToDisplayNames(remainingTextLanguages);
         // Button and Dropdown List for adding a language
         GUILayout.BeginHorizontal();
@@ -124,24 +85,15 @@ class ProjectSettingsProvider : SettingsProvider {
         _textLanguagesListIndex = EditorGUILayout.Popup(_textLanguagesListIndex, remainingTextLanguagesDisplayNames);
         GUILayout.EndHorizontal();
 
-        // Cleanup Text Language List from languages that have been removed from the Project Languages
-        for (int i = textLanguages.Count - 1; i >= 0; i--) {
-            string language = (string)textLanguages[i];
-            if (!projectLanguages.Contains(language)) {
-                textLanguagesProp.DeleteArrayElementAtIndex(i);
-            }
-        }
-
         // Text Language List
         _textLanguagesReorderableList.DoLayoutList();
 
         GUILayout.Space(20);
         GUILayout.Label("Audio Languages", EditorStyles.boldLabel);
-        // Audio languages (sub-selection from available project languages)
+        // Audio languages (sub-selection from available text languages)
         var audioLanguagesProp = _projectSettings.FindProperty("_audioProjectLanguages");
-        //EditorGUILayout.PropertyField(_projectSettings.FindProperty("_audioProjectLanguages"));
         var audioLanguages = ProjectSettings.AudioProjectLanguages;
-        var remainingAudioLanguages = projectLanguages.Except(audioLanguages).ToArray();
+        var remainingAudioLanguages = textLanguages.Except(audioLanguages).ToArray();
         var remainingAudioLanguagesDisplayNames = Cultures.LanguageNamesToDisplayNames(remainingAudioLanguages);
         // Button and Dropdown List for adding a language
         GUILayout.BeginHorizontal();
@@ -162,7 +114,7 @@ class ProjectSettingsProvider : SettingsProvider {
         // Cleanup Audio Language List from languages that have been removed from the Project Languages
         for (int i = audioLanguages.Count - 1; i >= 0; i--) {
             string language = (string)audioLanguages[i];
-            if (!projectLanguages.Contains(language)) {
+            if (!textLanguages.Contains(language)) {
                 audioLanguagesProp.DeleteArrayElementAtIndex(i);
             }
         }

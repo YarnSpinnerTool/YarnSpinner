@@ -8,10 +8,6 @@ using UnityEditor;
 [System.Serializable]
 public class ProjectSettings : ScriptableObject {
     [SerializeField]
-    private List<string> _projectLanguages = new List<string>();
-    public static List<string> ProjectLanguages => Instance._projectLanguages;
-
-    [SerializeField]
     private List<string> _textProjectLanguages = new List<string>();
     public static List<string> TextProjectLanguages => Instance._textProjectLanguages;
 

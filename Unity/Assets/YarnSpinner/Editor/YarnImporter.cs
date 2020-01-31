@@ -128,7 +128,7 @@ public class YarnImporter : ScriptedImporter
                     stringIDs = lines.Select(l => l.id).ToArray();
 
                     var voiceOversList = voiceOvers.ToList();
-                    // Init voiceovers by writing all linetags of this yarn program for every available translation
+                    // Init voice overs by writing all linetags of this yarn program for every available translation
                     foreach (var textEntry in stringIDs) {
                         if (voiceOversList.Find(element => element.linetag == textEntry) == null) {
                             voiceOversList.Add(new LinetagToLanguage(textEntry));
@@ -136,6 +136,9 @@ public class YarnImporter : ScriptedImporter
 
                         var languageToAudioclipList = voiceOversList.Find(element => element.linetag == textEntry).languageToAudioclip.ToList();
                         foreach (var localization in localizations) {
+                            if (!ProjectSettings.AudioProjectLanguages.Contains(localization.languageName)) {
+                                continue;
+                            }
 
                             if (languageToAudioclipList.Find(element => element.language == localization.languageName) == null) {
                                 languageToAudioclipList.Add(new LanguageToAudioclip(localization.languageName));
