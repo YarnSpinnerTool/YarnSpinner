@@ -21,19 +21,26 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 
     public override void OnEnable() {
         base.OnEnable();
-            cultureInfo = CultureInfo.GetCultures(CultureTypes.AllCultures)
-                .Where(c => c.Name != "")
-                .Select(c => new Culture { Name = c.Name, DisplayName = c.DisplayName })
-                .Append(new Culture { Name = "mi", DisplayName = "Maori" })
-                .OrderBy(c => c.DisplayName)
-                .ToArray();
+        cultureInfo = CultureInfo.GetCultures(CultureTypes.AllCultures)
+            .Where(c => c.Name != "")
+            .Select(c => new Culture { Name = c.Name, DisplayName = c.DisplayName })
+            .Append(new Culture { Name = "mi", DisplayName = "Maori" })
+            .OrderBy(c => c.DisplayName)
+            .ToArray();
 
-            baseLanguageProp = serializedObject.FindProperty("baseLanguageID");
+        baseLanguageProp = serializedObject.FindProperty("baseLanguageID");
 
+        if (string.IsNullOrEmpty(baseLanguageProp.stringValue)) {
+            selectedLanguageIndex = cultureInfo.
+                Select((culture, index) => new { culture, index })
+                .FirstOrDefault(element => element.culture.Name == CultureInfo.CurrentCulture.Name)
+                .index;
+        } else {
             selectedLanguageIndex = cultureInfo.Select((culture, index) => new { culture, index })
                 .FirstOrDefault(pair => pair.culture.Name == baseLanguageProp.stringValue)
                 .index;
-            selectedNewTranslationLanguageIndex = selectedLanguageIndex;
+        }
+        selectedNewTranslationLanguageIndex = selectedLanguageIndex;
     }
 
     public override void OnDisable() {
