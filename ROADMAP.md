@@ -12,7 +12,7 @@ Let us know what you think about this road map either in the [Slack](http://lab.
 
 Here are the main releases we're currently planning.
 
-## V1.0
+## ✅ V1.0
 
 ### Goal
 
@@ -35,8 +35,8 @@ As such, there is a lot of wonky code and half-finished concepts which users cur
 - [x] Implementation of a barebones Unity prefab (with a Canvas) that can be added into a scene to "just work"
 - [x] Rework examples to be designed to be used as the basis of your own game
 - [x] Modify example dialogue runner and variable storage to be the base form, instead of "just" examples
-- [ ] Syntax highlighter extension for Visual Studio Code
-- [ ] New documentation site
+- [x] Syntax highlighter extension for Visual Studio Code
+- [x] New documentation site
 
 ## V1.1
 
