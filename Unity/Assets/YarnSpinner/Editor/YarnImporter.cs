@@ -29,7 +29,15 @@ public class YarnImporter : ScriptedImporter
 
     private void OnValidate() {
         if (baseLanguageID == null) {
-            baseLanguageID = CultureInfo.CurrentCulture.Name;
+            // If the user has added project wide text languages in the settings 
+            // dialogue, we default to the first text language as base language
+            if (ProjectSettings.TextProjectLanguages.Count > 0) {
+                baseLanguageID = ProjectSettings.TextProjectLanguages[0];
+            // Otherwrise use system's language as base language
+            } else {
+                baseLanguageID = CultureInfo.CurrentCulture.Name;
+
+            }
         }
     }
 
