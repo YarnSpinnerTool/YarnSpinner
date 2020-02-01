@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 The MIT License (MIT)
 
@@ -369,8 +369,13 @@ namespace Yarn.Unity
                 textToLoad = yarnScript.baseLocalisationStringTable;
             }
 
+            // Use the invariant culture when parsing the CSV
+            var configuration = new CsvHelper.Configuration.Configuration(
+                System.Globalization.CultureInfo.InvariantCulture
+            );
+
             using (var reader = new System.IO.StringReader(textToLoad.text))
-            using (var csv = new CsvReader(reader)) {
+            using (var csv = new CsvReader(reader, configuration)) {
                 csv.Read();
                 csv.ReadHeader();
 

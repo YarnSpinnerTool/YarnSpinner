@@ -94,10 +94,22 @@ public class YarnImporter : ScriptedImporter
             }
 
             if (stringTable.Count > 0) {
+
+                
+
                 using (var memoryStream = new MemoryStream()) 
                 using (var textWriter = new StreamWriter(memoryStream)) {
                     // Generate the localised .csv file
-                    var csv = new CsvHelper.CsvWriter(textWriter);
+
+                    // Use the invariant culture when writing the CSV
+                    var configuration = new CsvHelper.Configuration.Configuration(
+                        System.Globalization.CultureInfo.InvariantCulture
+                    );
+
+                    var csv = new CsvHelper.CsvWriter(
+                        textWriter, // write into this stream
+                        configuration // use this configuration
+                        );
 
                     var lines = stringTable.Select(x => new {
                         id = x.Key, 

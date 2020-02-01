@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Fixed a bug where a null reference exception would be thrown the first time a new Yarn file's Inspector is drawn. (@Schroedingers-Cat)
+- Made string table CSVs always be read and written in the Invariant culture. Previously, locale differences would lead to parsing failures. (#197)
 
 ### Removed
 
