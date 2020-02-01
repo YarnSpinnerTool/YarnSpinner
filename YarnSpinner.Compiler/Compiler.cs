@@ -496,7 +496,7 @@ namespace Yarn.Compiler
             // if it is a split style option
             if (context.OPTION_LINK() != null)
             {
-                string destination = context.OPTION_LINK().GetText();
+                string destination = context.OPTION_LINK().GetText().Trim();
                 string label = context.OPTION_TEXT().GetText();
 
                 int lineNumber = context.Start.Line;
@@ -509,7 +509,7 @@ namespace Yarn.Compiler
             }
             else
             {
-                string destination = context.OPTION_TEXT().GetText();
+                string destination = context.OPTION_TEXT().GetText().Trim();
                 compiler.Emit(OpCode.RunNode, new Operand(destination));
             }
             return 0;
