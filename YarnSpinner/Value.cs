@@ -186,12 +186,6 @@ namespace Yarn
                 }
             }
 
-            // Compare null value with numbers as a number, this avoids returning false on unasigned variables.
-            if (this.type == Type.Null && other.type == Type.Number)
-            {
-                return this.AsNumber.CompareTo (other.numberValue);
-            }
-
             // try to do a string test at that point!
             return string.Compare(this.AsString, other.AsString, StringComparison.InvariantCulture);
         }
