@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Added some parser tests for working with node headers.
+
 ### Changed
 
 - Command handlers will now look for command handlers added via `AddCommandHandler` first (which is faster), followed by commands registered using the `YarnCommand` attribute (which is slower).
