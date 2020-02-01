@@ -30,6 +30,9 @@ using System.Collections.Generic;
 using CsvHelper;
 using System;
 
+// Field ... is never assigned to and will always have its default value null
+#pragma warning disable 0649
+
 namespace Yarn.Unity
 {
 

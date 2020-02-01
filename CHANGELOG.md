@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - When writing an option (for example, `[[Hello!| Greeting ]]`), any whitespace around the node name (`Greeting`) will be discarded. This fixes a bug where Yarn Spinner would try to go to a node named "` Greeting `", but spaces in node names aren't allowed. (#192)
 - Fixed a bug where a null reference exception would be thrown the first time a new Yarn file's Inspector is drawn. (@Schroedingers-Cat)
 - Made string table CSVs always be read and written in the Invariant culture. Previously, locale differences would lead to parsing failures. (#197)
+- Disabled 'this field is never assigned to' warnings for certain files in the Unity version (they're assigned in the Editor, which the compiler doesn't know about.)
 
 ### Removed
 
