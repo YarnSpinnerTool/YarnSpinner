@@ -251,8 +251,9 @@ namespace Yarn.Unity
 
             if (commandHandlers.ContainsKey(firstWord) == false && 
                 blockingCommandHandlers.ContainsKey(firstWord) == false) {
-
-                Debug.LogWarning($"Unknown command '{firstWord}'");
+                
+                // We don't have a registered handler for this command, but
+                // some other part of the game might.
                 return (false, Dialogue.HandlerExecutionType.ContinueExecution);
             }
 

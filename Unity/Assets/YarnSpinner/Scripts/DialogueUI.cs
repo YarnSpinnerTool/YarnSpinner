@@ -209,18 +209,13 @@ namespace Yarn.Unity {
 
         }
 
-        /// Run an internal command.
+        /// Run a command.
         public override Dialogue.HandlerExecutionType RunCommand (Yarn.Command command, System.Action onComplete) {
-            StartCoroutine(DoRunCommand(command, onComplete));
+            // Dispatch this command via the 'On Command' handler.
+            onCommand?.Invoke(command.Text);
+
+            // Signal to the DialogueRunner that it should continue executing.
             return Dialogue.HandlerExecutionType.ContinueExecution;
-        }
-
-        public IEnumerator DoRunCommand (Yarn.Command command, System.Action onComplete)
-        {
-            // "Perform" the command
-            Debug.Log ("Command: " + command.Text);
-
-            yield break;
         }
 
         /// Called when the dialogue system has started running.
