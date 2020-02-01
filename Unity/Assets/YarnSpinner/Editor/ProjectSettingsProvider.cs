@@ -25,13 +25,16 @@ class ProjectSettingsProvider : SettingsProvider {
 
     public override void OnActivate(string searchContext, VisualElement rootElement) {
         _projectSettings = new SerializedObject(ScriptableObject.CreateInstance<ProjectSettings>());
+        var textLanguages = _projectSettings.FindProperty("_textProjectLanguages");
+        var audioLanguages = _projectSettings.FindProperty("_audioProjectLanguages");
 
         // Initialize the language lists
-        _textLanguagesReorderableList = new ReorderableList(_projectSettings, _projectSettings.FindProperty("_textProjectLanguages"), true, true, false, true);
-        _audioLanguagesReorderableList = new ReorderableList(_projectSettings, _projectSettings.FindProperty("_audioProjectLanguages"), true, true, false, true);
+        _textLanguagesReorderableList = new ReorderableList(_projectSettings, textLanguages, true, true, false, true);
+        _audioLanguagesReorderableList = new ReorderableList(_projectSettings, audioLanguages, true, true, false, true);
         // Add labels to the lists
         _textLanguagesReorderableList.drawHeaderCallback = (Rect rect) => {
-            EditorGUI.LabelField(rect, "Languages available for this project");
+            EditorGUI.LabelField(new Rect(rect.x, rect.y, rect.width * 0.65f, EditorGUIUtility.singleLineHeight), "Text Languages");
+            EditorGUI.LabelField(new Rect(rect.width * 0.65f, rect.y, rect.width * 0.75f, EditorGUIUtility.singleLineHeight), "Audio Languages");
         };
         _audioLanguagesReorderableList.drawHeaderCallback = (Rect rect) => {
             EditorGUI.LabelField(rect, "Languages available for this project");
@@ -41,7 +44,18 @@ class ProjectSettingsProvider : SettingsProvider {
             var languageId = _textLanguagesReorderableList.serializedProperty.GetArrayElementAtIndex(index);
             var displayName = Cultures.LanguageNamesToDisplayNames(languageId.stringValue);
             rect.y += 2;
-            EditorGUI.LabelField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), displayName);
+            EditorGUI.LabelField(new Rect(rect.x, rect.y, rect.width * 0.7f, EditorGUIUtility.singleLineHeight), displayName);
+            var textLanguageOnAudio = ProjectSettings.AudioProjectLanguages.Contains(languageId.stringValue);
+            var audioBool = EditorGUI.Toggle(new Rect(rect.width * 0.7f, rect.y, rect.width * 0.3f, EditorGUIUtility.singleLineHeight), textLanguageOnAudio);
+            if (audioBool != textLanguageOnAudio) {
+                if (audioBool) {
+                    audioLanguages.InsertArrayElementAtIndex(audioLanguages.arraySize);
+                    audioLanguages.GetArrayElementAtIndex(audioLanguages.arraySize-1).stringValue = languageId.stringValue;
+                } else {
+                    var audiolanguageIndex = ProjectSettings.AudioProjectLanguages.IndexOf(languageId.stringValue);
+                    audioLanguages.DeleteArrayElementAtIndex(audiolanguageIndex);
+                }
+            }
         };
         _audioLanguagesReorderableList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) => {
             var languageId = _audioLanguagesReorderableList.serializedProperty.GetArrayElementAtIndex(index);
