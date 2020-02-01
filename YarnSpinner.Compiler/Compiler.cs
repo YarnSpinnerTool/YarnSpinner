@@ -6,6 +6,7 @@ using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using System.Globalization;
 using System.IO;
+using System.Text.RegularExpressions;
 
 using System.Linq;
 
@@ -43,6 +44,9 @@ namespace Yarn.Compiler
         internal string fileName;
 
         private bool containsImplicitStringTags;
+
+        // A regular expression used to detect illegal characters in node titles
+        private Regex invalidNodeTitleNameRegex = new System.Text.RegularExpressions.Regex(@"[\[<>\]{}\|:\s#\$]");
 
         internal Compiler(string fileName)
         {
@@ -348,7 +352,16 @@ namespace Yarn.Compiler
         // all we need to do is store the title as the name of the node
         public override void EnterHeader_title(YarnSpinnerParser.Header_titleContext context)
         {
-            currentNode.Name = context.TITLE_TEXT().GetText().Trim();
+
+            var nodeTitle = context.TITLE_TEXT().GetText().Trim();
+
+            if (invalidNodeTitleNameRegex.IsMatch(nodeTitle)) {
+                // this node title contains illegal characters
+                throw new ParseException($"The node '{nodeTitle}' contains illegal characters in its title.");
+            }
+
+            currentNode.Name = nodeTitle;
+            
         }
         // parsing the header tags
         // will not enter if there aren't any

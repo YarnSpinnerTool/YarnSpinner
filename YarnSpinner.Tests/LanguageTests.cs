@@ -94,6 +94,17 @@ namespace YarnSpinner.Tests
             
         }
 
+        [Fact]
+        public void TestInvalidCharactersInNodeTitle()
+        {
+            var path = Path.Combine(TestDataPath, "InvalidNodeTitle.yarn.txt");
+
+            Assert.Throws<Yarn.Compiler.ParseException>( () => {
+                Compiler.CompileFile(path, out var program, out stringTable);
+            });
+            
+        }
+
         // Test every file in Tests/TestCases
         [Theory, MemberData(nameof(FileSources))]
         public void TestSources(string file) {
