@@ -27,6 +27,8 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 
     private Culture[] _culturesAvailable;
 
+    private const string _audioVoiceOverInitializeHelpBox = "Hit 'Apply' to initialize the currently selected voice over language!";
+
     public override void OnEnable() {
         base.OnEnable();
         baseLanguageProp = serializedObject.FindProperty("baseLanguageID");
@@ -67,18 +69,15 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         EditorGUILayout.Space();
         YarnImporter yarnImporter = (target as YarnImporter);
 
-        // Array of translations that have been added to this asset + base language
-        // First get list from Project Settings or from available localization
-        var languageIdsAvailableOnAsset = ProjectSettings.AudioProjectLanguages.Count > 0 
-            ? ProjectSettings.AudioProjectLanguages.ToArray() 
-            : yarnImporter.localizations.Select(element => element.languageName).ToArray();
-        if (ProjectSettings.AudioProjectLanguages.Count > 0 && ProjectSettings.AudioProjectLanguages.Contains(_culturesAvailable[selectedLanguageIndex].Name)) {
-            // Add base language to voice over list
-            languageIdsAvailableOnAsset = languageIdsAvailableOnAsset.
-                Append(_culturesAvailable[selectedLanguageIndex].Name).
-                OrderBy(element => element).
-                ToArray();
-        }
+        // All text languages on this asset (translations and  base language)
+        var textLanguageNamesOnAsset = yarnImporter.localizations.
+            Select(element => element.languageName).
+            Append(_culturesAvailable[selectedLanguageIndex].Name).
+            OrderBy(element => element).
+            ToArray();
+        var audioLanguageNamesOnAsset = ProjectSettings.AudioProjectLanguages.Count > 0 ?
+            ProjectSettings.AudioProjectLanguages.ToArray() :
+            textLanguageNamesOnAsset;
 
         selectedLanguageIndex = EditorGUILayout.Popup("Base Language", selectedLanguageIndex, Cultures.CulturesToDisplayNames(_culturesAvailable));
         baseLanguageProp.stringValue = _culturesAvailable[selectedLanguageIndex].Name;
@@ -95,7 +94,8 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         using (new EditorGUI.DisabledScope(!canCreateLocalisation))
         using (new EditorGUILayout.HorizontalScope()) {
 
-            var culturesAvailableNotOnAsset = _culturesAvailable.Except(Cultures.LanguageNamesToCultures(languageIdsAvailableOnAsset)).ToArray();
+            var culturesAvailableNotOnAsset = _culturesAvailable.Except(Cultures.LanguageNamesToCultures(textLanguageNamesOnAsset)).ToArray();
+            audioLanguageNamesOnAsset = audioLanguageNamesOnAsset.Except(Cultures.CulturesToNames(culturesAvailableNotOnAsset)).ToArray();
 
             if (culturesAvailableNotOnAsset.Length > 0) {
                 selectedNewTranslationLanguageIndex = EditorGUILayout.Popup(selectedNewTranslationLanguageIndex, Cultures.CulturesToDisplayNames(culturesAvailableNotOnAsset));
@@ -206,13 +206,17 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         if (showVoiceovers) {
             EditorGUI.indentLevel++;
             // Language selected here will reduce the visual representation of the voiceover data structure
-            selectedVoiceoverLanguageIndex = EditorGUILayout.Popup(selectedVoiceoverLanguageIndex, Cultures.LanguageNamesToDisplayNames(languageIdsAvailableOnAsset), GUILayout.MaxWidth(96));
+            selectedVoiceoverLanguageIndex = EditorGUILayout.Popup(selectedVoiceoverLanguageIndex, Cultures.LanguageNamesToDisplayNames(audioLanguageNamesOnAsset), GUILayout.MaxWidth(96));
+            // Bound-check (f.g. currently selected voice over language has been removed from the available translations on this asset)
+            selectedVoiceoverLanguageIndex = Mathf.Min(audioLanguageNamesOnAsset.Length - 1, selectedVoiceoverLanguageIndex);
+            var selectedVoiceOverLanguageExists = false;
             // Only draw AudioClips from selected language
             for (int i = 0; i < yarnImporter.voiceOvers.Length; i++) {
                 LinetagToLanguage linetagToLanguage = yarnImporter.voiceOvers[i];
                 for (int j = 0; j < linetagToLanguage.languageToAudioclip.Length; j++) {
                     LanguageToAudioclip languageToAudioclip = linetagToLanguage.languageToAudioclip[j];
-                    if (languageToAudioclip.language == languageIdsAvailableOnAsset[selectedVoiceoverLanguageIndex]) {
+                    if (languageToAudioclip.language == audioLanguageNamesOnAsset[selectedVoiceoverLanguageIndex]) {
+                        selectedVoiceOverLanguageExists = true;
                         var voiceOversProp = serializedObject.FindProperty("voiceOvers");
                         var linetagProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("linetag");
                         var languagetoAudioClipProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("languageToAudioclip");
@@ -221,6 +225,9 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                         EditorGUILayout.PropertyField(audioclipProp, new GUIContent(linetagProp.stringValue));
                     }
                 }
+            }
+            if (!selectedVoiceOverLanguageExists) {
+                EditorGUILayout.HelpBox(_audioVoiceOverInitializeHelpBox, MessageType.Info );
             }
             EditorGUI.indentLevel--;
         }
