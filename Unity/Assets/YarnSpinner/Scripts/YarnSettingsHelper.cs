@@ -8,13 +8,14 @@ public static class YarnSettingsHelper
     /// <summary>
     /// Read the user's language preferences from disk.
     /// </summary>
-    public static void ReadPreferencesFromDisk<T>(T settingsClass, string storagePath) {
+    public static void ReadPreferencesFromDisk<T>(T settingsClass, string storagePath, Action OnReadError = null) {
         // Check file's existence
         bool fileExists = File.Exists(storagePath);
         if (!fileExists) {
             // Wen don't throw an error since during OnEnable() all values will be initialized with 
             // the system's default and create a new file once this class get's out of scope
             Debug.LogFormat("No previous Yarn Spinner preferences have been found in {0}.", storagePath);
+            OnReadError?.Invoke();
             return;
         }
 
@@ -25,6 +26,7 @@ public static class YarnSettingsHelper
         } catch (Exception) {
             // No big deal since we'll initialize all values during OnEnable()
             Debug.Log("Error loading Yarn Spinner preferences from JSON.");
+            OnReadError?.Invoke();
             return;
         }
 
@@ -34,6 +36,7 @@ public static class YarnSettingsHelper
         } catch (Exception) {
             // No big deal since we'll initialize all values during OnEnable()
             Debug.Log("Error parsing Yarn Spinner preferences from JSON.");
+            OnReadError?.Invoke();
             return;
         }
     }

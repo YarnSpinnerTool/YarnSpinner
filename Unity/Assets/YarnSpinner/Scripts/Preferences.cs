@@ -86,6 +86,11 @@ public class Preferences : ScriptableObject {
         ReadPreferencesFromDisk();
     }
 
+    private void Initialize () {
+        _textLanguage = null;
+        _audioLanguage = null;
+    }
+
     private void OnEnable() {
         if (string.IsNullOrEmpty(Cultures.AvailableCulturesNames.FirstOrDefault(element => element == _textLanguage))) {
             _textLanguage = CultureInfo.CurrentCulture.Name;
@@ -119,7 +124,7 @@ public class Preferences : ScriptableObject {
     /// Read the user's language preferences from disk.
     /// </summary>
     public void ReadPreferencesFromDisk() {
-        YarnSettingsHelper.ReadPreferencesFromDisk(this, _preferencesPath);
+        YarnSettingsHelper.ReadPreferencesFromDisk(this, _preferencesPath, Initialize);
 
         // Apply text language preference from file
         if (!string.IsNullOrEmpty(_textLanguage)) {

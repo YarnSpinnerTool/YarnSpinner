@@ -52,10 +52,15 @@ public class ProjectSettings : ScriptableObject {
         _preferencesPath = "YarnProjectSettings.json"
 #endif
 
-        YarnSettingsHelper.ReadPreferencesFromDisk(this, _preferencesPath);
+        YarnSettingsHelper.ReadPreferencesFromDisk(this, _preferencesPath, Initialize);
     }
 
     private void OnDestroy() {
         YarnSettingsHelper.WritePreferencesToDisk(this, _preferencesPath);
+    }
+
+    private void Initialize () {
+        _textProjectLanguages = new List<string>();
+        _audioProjectLanguages = new List<string>();
     }
 }
