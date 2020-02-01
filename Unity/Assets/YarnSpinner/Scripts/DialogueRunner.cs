@@ -188,23 +188,13 @@ namespace Yarn.Unity
             bool wasValidCommand;
             Dialogue.HandlerExecutionType executionType;
 
-            (wasValidCommand, executionType) = DispatchCommandToGameObject(command);
-            
-            if (wasValidCommand) {
-                // We found an object and method to invoke as a Yarn
-                // command. It may or may not have been a coroutine; if it
-                // was a coroutine, executionType will be
-                // HandlerExecutionType.Pause, and we'll wait for it to
-                // complete before resuming execution.
-                return executionType;
-                
-            } 
+            // Try looking in the command handlers first, which is a lot
+            // cheaper than crawling the game object hierarchy.
 
+            // Set a flag that we can use to tell if the dispatched command
+            // immediately called _continue
             wasCompleteCalled = false;
 
-            // It wasn't found by looking in objects. Try looking in the
-            // command handlers.
-            
             (wasValidCommand, executionType) = DispatchCommandToRegisteredHandlers(command, _continue);   
 
             if (wasValidCommand) {
@@ -222,6 +212,19 @@ namespace Yarn.Unity
                 }
                 
             }
+            
+            // We didn't find it in the comand handlers. Try looking in the game objects.
+            (wasValidCommand, executionType) = DispatchCommandToGameObject(command);
+            
+            if (wasValidCommand) {
+                // We found an object and method to invoke as a Yarn
+                // command. It may or may not have been a coroutine; if it
+                // was a coroutine, executionType will be
+                // HandlerExecutionType.Pause, and we'll wait for it to
+                // complete before resuming execution.
+                return executionType;
+                
+            } 
 
             // We didn't find a method in our C# code to invoke. Pass it to
             // the UI to handle; it will determine whether we pause or
