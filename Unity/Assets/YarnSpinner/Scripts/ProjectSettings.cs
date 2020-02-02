@@ -18,7 +18,8 @@ public class ProjectSettings : ScriptableObject {
     /// <summary>
     /// The path to store the project settings
     /// </summary>
-    private string _preferencesPath;
+    private string _settingsPath;
+    public static string SettingsPath => Instance._settingsPath;
 
     /// <summary>
     /// Instance of this class (Singleton design pattern)
@@ -39,6 +40,7 @@ public class ProjectSettings : ScriptableObject {
         }
     }
 
+
     private void Awake() {
         if (_instance != null && this != _instance) {
             DestroyImmediate(_instance);
@@ -46,17 +48,17 @@ public class ProjectSettings : ScriptableObject {
         _instance = this;
 
 #if UNITY_EDITOR
-        _preferencesPath = Application.dataPath + "/../ProjectSettings" + "/YarnProjectSettings.json";
+        _settingsPath = Application.dataPath + "/../ProjectSettings" + "/YarnProjectSettings.json";
 #endif
 #if UNITY_PLAYER
-        _preferencesPath = "YarnProjectSettings.json"
+        _settingsPath = "YarnProjectSettings.json"
 #endif
 
-        YarnSettingsHelper.ReadPreferencesFromDisk(this, _preferencesPath, Initialize);
+        YarnSettingsHelper.ReadPreferencesFromDisk(this, _settingsPath, Initialize);
     }
 
     private void OnDestroy() {
-        YarnSettingsHelper.WritePreferencesToDisk(this, _preferencesPath);
+        YarnSettingsHelper.WritePreferencesToDisk(this, _settingsPath);
     }
 
     private void Initialize () {
