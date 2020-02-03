@@ -64,7 +64,7 @@ BODY_CLOSE : '===' -> popMode ;
 
 TEXT_STRING : '"' .*? '"' ;
 
-SHORTCUT_ENTER : ('->' | '-> ') -> pushMode(Shortcuts);
+SHORTCUT_ENTER : ('->' | '-> ') -> pushMode(ShortcutsMode);
 
 // currently using \a and \v as the indent and dedent symbols
 // these play the role that { and } play in many other languages
@@ -77,24 +77,24 @@ SHORTCUT_ENTER : ('->' | '-> ') -> pushMode(Shortcuts);
 INDENT : '\u0007';
 DEDENT : '\u000B';
 
-COMMAND_IF : COMMAND_OPEN KEYWORD_IF -> pushMode(Command) ;
-//COMMAND_ELSE : COMMAND_OPEN KEYWORD_ELSE -> pushMode(Command) ;
+COMMAND_IF : COMMAND_OPEN KEYWORD_IF -> pushMode(CommandMode) ;
+//COMMAND_ELSE : COMMAND_OPEN KEYWORD_ELSE -> pushMode(CommandMode) ;
 COMMAND_ELSE : COMMAND_OPEN KEYWORD_ELSE COMMAND_CLOSE | '<<else>>' | '<<ELSE>>' ;
-COMMAND_ELSE_IF : COMMAND_OPEN KEYWORD_ELSE_IF -> pushMode(Command) ;
+COMMAND_ELSE_IF : COMMAND_OPEN KEYWORD_ELSE_IF -> pushMode(CommandMode) ;
 COMMAND_ENDIF : COMMAND_OPEN ('endif' | 'ENDIF') '>>' ;
-COMMAND_SET : COMMAND_OPEN KEYWORD_SET -> pushMode(Command) ;
-COMMAND_FUNC : COMMAND_OPEN ID '(' -> pushMode(Command) ;
+COMMAND_SET : COMMAND_OPEN KEYWORD_SET -> pushMode(CommandMode) ;
+COMMAND_FUNC : COMMAND_OPEN ID '(' -> pushMode(CommandMode) ;
 
-ACTION_CMD : COMMAND_OPEN -> more, pushMode(Action) ;
+ACTION_CMD : COMMAND_OPEN -> more, pushMode(ActionMode) ;
 
 COMMAND_OPEN : '<<' ' '* ;
 
-OPTION_ENTER : '[[' -> pushMode(Option) ;
+OPTION_ENTER : '[[' -> pushMode(OptionMode) ;
 
 HASHTAG : '#' TEXT ;
 
 
-BODY_GOBBLE : . -> more, pushMode(Text);
+BODY_GOBBLE : . -> more, pushMode(TextMode);
 
 
 // ----------------------
@@ -102,7 +102,7 @@ BODY_GOBBLE : . -> more, pushMode(Text);
 // for handling the raw lines of dialogue
 // goes until it hits a hashtag, or an indent/dedent and then pops
 // is zero or more as it will always have the first symbol passed by BODY_GOBBLE
-mode Text;
+mode TextMode;
 
 // TEXT_BLOCK_START : '{' ;
 // TEXT_BLOCK_END : '}' ;
@@ -113,7 +113,7 @@ TEXT : ~('\n'|'\u0007'|'\u000B'|'#')* -> popMode;
 // Shortcut mode
 // Handles any form of text except the delimiters or <<
 // currently uses a semantic predicate to handle << which I don't like and would like to change
-mode Shortcuts;
+mode ShortcutsMode;
 
 // these 3 commented out bits work but use a semantic predicate
 fragment CHEVRON : '<' ~('<'|'#'|'\n'|'\u0007'|'\u000B') ;
@@ -132,7 +132,7 @@ SHORTCUT_TEXT : (PARTIAL | PARTIAL* '<' {InputStream.LA(1) != '<'}?) -> popMode 
 // Command mode
 // for handling branching and expression
 
-mode Command;
+mode CommandMode;
 
 COMMAND_WS : (' ' | '\n' | '\t')+ -> skip ; // skip spaces, tabs, newlines
 
@@ -193,7 +193,7 @@ COMMAND_UNKNOWN : . ;
 // ----------------------
 // Action mode
 // handles the <<anything you want>> command
-mode Action;
+mode ActionMode;
 ACTION : '>>' -> popMode ;
 IGNORE : . -> more ;
 
@@ -206,11 +206,11 @@ IGNORE : . -> more ;
 // For handling options
 // pops when hits ]]
 
-mode Option;
+mode OptionMode;
 
-OPTION_SEPARATOR: '|' -> pushMode(OptionLink) ;
+OPTION_SEPARATOR: '|' -> pushMode(OptionLinkMode) ;
 OPTION_TEXT : ~('|'|']')+ ;
 OPTION_CLOSE: ']]' -> popMode ;
 
-mode OptionLink;
+mode OptionLinkMode;
 OPTION_LINK : ~(']')+ -> popMode ;
