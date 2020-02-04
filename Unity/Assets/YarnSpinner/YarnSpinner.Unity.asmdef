@@ -1,5 +1,5 @@
 {
-    "name": "YarnSpinnerUnity",
+    "name": "YarnSpinner.Unity",
     "references": [
         "Unity.TextMeshPro"
     ],
