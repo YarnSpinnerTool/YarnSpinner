@@ -9,7 +9,9 @@ public class NodeVisitedTracker : MonoBehaviour
 {
 
     // The dialogue runner that we want to attach the 'visited' function to
+#pragma warning disable 0649
     [SerializeField] Yarn.Unity.DialogueRunner dialogueRunner;
+#pragma warning restore 0649
 
     private HashSet<string> _visitedNodes = new HashSet<string>();
 

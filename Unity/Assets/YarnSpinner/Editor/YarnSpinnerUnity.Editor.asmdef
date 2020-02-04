@@ -1,0 +1,16 @@
+{
+    "name": "YarnSpinnerUnity.Editor",
+    "references": [
+        "GUID:34aa492b82754644eac2f903cd496268"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
