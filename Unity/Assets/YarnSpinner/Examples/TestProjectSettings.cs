@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TestProjectSetting : MonoBehaviour
+public class TestProjectSettings : MonoBehaviour
 {
     public Text text;
 
