@@ -355,7 +355,7 @@ namespace Yarn.Unity
         }
 
         /// Adds a program and its base localisation string table
-        internal void Add(YarnProgram scriptToLoad)
+        public void Add(YarnProgram scriptToLoad)
         {
             AddProgram(scriptToLoad);
             AddStringTable(scriptToLoad);
