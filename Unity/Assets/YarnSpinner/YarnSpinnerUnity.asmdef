@@ -1,7 +1,7 @@
 {
     "name": "YarnSpinnerUnity",
     "references": [
-        "GUID:bae83085c871e65499349309526e7f94"
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
