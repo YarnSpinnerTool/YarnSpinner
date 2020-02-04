@@ -15,11 +15,7 @@ public class ProjectSettings : ScriptableObject {
     private List<string> _audioProjectLanguages = new List<string>();
     public static List<string> AudioProjectLanguages => Instance._audioProjectLanguages;
 
-    /// <summary>
-    /// The path to store the project settings
-    /// </summary>
-    private static string _settingsPath;
-    public static string SettingsPath => _settingsPath;
+    public static string SettingsPath { get; private set; }
 
     /// <summary>
     /// Instance of this class (Singleton design pattern)
@@ -48,11 +44,11 @@ public class ProjectSettings : ScriptableObject {
         _instance = this;
 
 #if UNITY_EDITOR
-        _settingsPath = Application.dataPath + "/../ProjectSettings" + "/YarnProjectSettings.json";
-        YarnSettingsHelper.ReadPreferencesFromDisk(this, _settingsPath, Initialize);
+        SettingsPath = Application.dataPath + "/../ProjectSettings" + "/YarnProjectSettings.json";
+        YarnSettingsHelper.ReadPreferencesFromDisk(this, SettingsPath, Initialize);
 #else
-        _settingsPath = "YarnProjectSettings";
-        var jsonString = Resources.Load<TextAsset>(_settingsPath);
+        SettingsPath = "YarnProjectSettings";
+        var jsonString = Resources.Load<TextAsset>(SettingsPath);
         var test = jsonString.text.ToString();
         if (!string.IsNullOrEmpty(test)) {
             YarnSettingsHelper.ReadJsonFromString(this, test, Initialize);
@@ -61,7 +57,7 @@ public class ProjectSettings : ScriptableObject {
     }
 
     private void OnDestroy() {
-        YarnSettingsHelper.WritePreferencesToDisk(this, _settingsPath);
+        YarnSettingsHelper.WritePreferencesToDisk(this, SettingsPath);
     }
 
     private void Initialize () {
