@@ -87,7 +87,9 @@ namespace Yarn.Unity
 
         /// A Unity event that receives the name of the node that just
         /// finished running
+#pragma warning disable 0649
         [SerializeField] StringUnityEvent onNodeComplete;
+#pragma warning restore 0649
 
         // A flag used to note when we call into a blocking command
         // handler, but it calls its complete handler immediately -
