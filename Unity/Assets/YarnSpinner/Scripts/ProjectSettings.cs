@@ -49,12 +49,16 @@ public class ProjectSettings : ScriptableObject {
 
 #if UNITY_EDITOR
         _settingsPath = Application.dataPath + "/../ProjectSettings" + "/YarnProjectSettings.json";
+        YarnSettingsHelper.ReadPreferencesFromDisk(this, _settingsPath, Initialize);
 #endif
 #if UNITY_PLAYER
         _settingsPath = "YarnProjectSettings.json"
+        var jsonString = Resources.Load<TextAsset>(_settingsPath).ToString();
+        if (!string.IsNullOrEmpty(jsonString)) {
+            YarnSettingsHelper.ReadJsonFromString(this, jsonString, Initialize);
+        }
 #endif
-
-        YarnSettingsHelper.ReadPreferencesFromDisk(this, _settingsPath, Initialize);
+        Debug.Log(_settingsPath);
     }
 
     private void OnDestroy() {

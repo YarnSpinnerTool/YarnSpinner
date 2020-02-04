@@ -30,9 +30,13 @@ public static class YarnSettingsHelper
             return;
         }
 
+        ReadJsonFromString(settingsClass, jsonString, OnReadError);
+    }
+
+    public static void ReadJsonFromString<T>(T settingsClass, string json, Action OnReadError = null) {
         // Parse json to *this* ScriptableObject
         try {
-            JsonUtility.FromJsonOverwrite(jsonString, settingsClass);
+            JsonUtility.FromJsonOverwrite(json, settingsClass);
         } catch (Exception) {
             // No big deal since we'll initialize all values during OnEnable()
             Debug.Log("Error parsing Yarn Spinner preferences from JSON.");
