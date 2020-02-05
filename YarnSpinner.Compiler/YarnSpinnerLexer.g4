@@ -93,7 +93,7 @@ OPTION_ENTER : '[[' -> pushMode(OptionMode) ;
 
 HASHTAG : '#' TEXT ;
 
-
+// Any other text enters TextMode
 BODY_GOBBLE : . -> more, pushMode(TextMode);
 
 
@@ -104,10 +104,18 @@ BODY_GOBBLE : . -> more, pushMode(TextMode);
 // is zero or more as it will always have the first symbol passed by BODY_GOBBLE
 mode TextMode;
 
-// TEXT_BLOCK_START : '{' ;
-// TEXT_BLOCK_END : '}' ;
+// Newlines end a line and leave Text mode
+TEXT_ENDLINE : '\n' -> popMode;
 
-TEXT : ~('\n'|'\u0007'|'\u000B'|'#')* -> popMode;
+TEXT_HASHTAG : '#' -> more, popMode;
+
+// Opening a curly brace marks the start of an expression, which is handled in Command mode
+INLINE_EXPRESSION_START : '{' -> pushMode(CommandMode) ;
+
+// A run of text, up to a newline, an indentation, or the start of a
+// hashtag. We gather as many of these as we can until we hit an expression,
+// newline, change in indentation, or hashtag. 
+TEXT : ~('{'|'\n'|'\u0007'|'\u000B'|'#')+ ;
 
 // ----------------------
 // Shortcut mode
@@ -137,6 +145,8 @@ mode CommandMode;
 COMMAND_WS : (' ' | '\n' | '\t')+ -> skip ; // skip spaces, tabs, newlines
 
 COMMAND_CLOSE : '>>' -> popMode ;
+
+INLINE_EXPRESSION_END : '}' -> popMode ;
 
 COMMAND_STRING : STRING ;
 

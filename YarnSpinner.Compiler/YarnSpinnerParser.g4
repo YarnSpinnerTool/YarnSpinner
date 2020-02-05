@@ -57,11 +57,13 @@ function_statement : COMMAND_FUNC expression (COMMA expression)* ')' COMMAND_CLO
 // this isn't ideal but works quite well
 action_statement : ACTION ;
 
-text : TEXT | TEXT_STRING ;
-line_statement : text (hashtag_block)? ;
-
 hashtag_block : hashtag+ ;
 hashtag : HASHTAG ;
+
+text : TEXT;
+// line_statement : (text|'{' expression '}')+ (hashtag_block)? '\n';
+line_statement : text (hashtag_block)? '\n';
+
 
 // this feel a bit crude
 // need to work on this

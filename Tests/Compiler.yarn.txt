@@ -21,12 +21,12 @@ Foo is something TOTALLY DIFFERENT.
 <<endif>>
 
 -> This is a shortcut option that you'll never see <<if false>>
-	Nice.
+    Nice.
 -> This is a different shortcut option
-	Sweet, but what about this?
-	-> It's ok
-		Cool.
-	-> Huh?
+    Sweet, but what about this?
+    -> It's ok
+        Cool.
+    -> Huh?
 -> This is a shortcut option with no consequential text.
 
 All done with the shortcut options!

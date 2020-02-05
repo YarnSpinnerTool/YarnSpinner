@@ -71,7 +71,7 @@ namespace YarnSpinner.Tests
             dialogue = new Dialogue (storage);
 
             dialogue.LogDebugMessage = delegate(string message) {
-
+                Console.ResetColor();
                 Console.WriteLine (message);
 
             };

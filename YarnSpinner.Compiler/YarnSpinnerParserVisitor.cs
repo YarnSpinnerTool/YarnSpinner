@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from /Users/desplesda/Work/yarnspinner/YarnSpinner/YarnSpinnerParser.g4 by ANTLR 4.7.1
+// Generated from /Users/desplesda/Work/yarnspinner/YarnSpinner.Compiler/YarnSpinnerParser.g4 by ANTLR 4.7.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -158,18 +158,6 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitAction_statement([NotNull] YarnSpinnerParser.Action_statementContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.text"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitText([NotNull] YarnSpinnerParser.TextContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.line_statement"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLine_statement([NotNull] YarnSpinnerParser.Line_statementContext context);
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.hashtag_block"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -181,6 +169,18 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitHashtag([NotNull] YarnSpinnerParser.HashtagContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitText([NotNull] YarnSpinnerParser.TextContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.line_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLine_statement([NotNull] YarnSpinnerParser.Line_statementContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>expParens</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.

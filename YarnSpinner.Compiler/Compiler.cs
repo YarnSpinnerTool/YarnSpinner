@@ -177,6 +177,11 @@ namespace Yarn.Compiler
 
         }
 
+        #if DEBUG
+        internal string parseTree;
+        internal List<string> tokens;
+        #endif
+
         // Given a bunch of raw text, load all nodes that were inside it.
         public static Status CompileString(string text, string fileName, out Program program, out IDictionary<string,StringInfo> stringTable)
         {
@@ -193,10 +198,36 @@ namespace Yarn.Compiler
             parser.RemoveErrorListeners();
             parser.AddErrorListener(ErrorListener.Instance);
 
-            IParseTree tree = parser.dialogue();
-
             Compiler compiler = new Compiler(fileName);
 
+            #if DEBUG
+            IParseTree tree;
+            try {
+                tree = parser.dialogue();
+            } catch (ParseException e) {
+                var list = new List<string>();
+                foreach (var t in tokens.GetTokens()) {
+                    list.Add($"{lexer.Vocabulary.GetSymbolicName(t.Type)} {t.Text}");
+                }
+
+                compiler.tokens = list;
+
+                var message = new StringBuilder();
+                message.AppendLine(e.Message);
+                message.AppendLine("Last 5 tokens:");
+                foreach (var token in list.AsEnumerable().Reverse().Take(5).Reverse()) {
+                    message.AppendLine(token);
+                }
+
+                throw new ParseException(message.ToString());
+                
+            }
+            #else
+            IParseTree tree = parser.dialogue();
+            #endif
+            
+
+ 
             compiler.Compile(tree);
 
             program = compiler.program;
@@ -486,16 +517,34 @@ namespace Yarn.Compiler
         // a regular ol' line of text
         public override int VisitLine_statement(YarnSpinnerParser.Line_statementContext context)
         {
-            // grabbing the line of text and stripping off any "'s if they had them
-            string lineText = context.text().GetText().Trim('"');
+            StringBuilder composedString = new StringBuilder();
 
+            int expressionCount = 0;
+            foreach (var child in context.children) {
+                if (child is YarnSpinnerParser.ExpressionContext) {
+
+                    // Evaluate this expression
+                    Visit(child);
+
+                    composedString.Append("{");
+                    composedString.Append(expressionCount);
+                    composedString.Append("}");
+                    expressionCount += 1;
+                } else if (child is YarnSpinnerParser.TextContext) {
+                    // grab each piece of text and stripping off any "'s if they had them
+                    var textChunk = child.GetText();
+
+                    composedString.Append(textChunk);
+                }
+            }
+            
             // getting the lineID from the hashtags if it has one
             string lineID = compiler.GetLineID(context.hashtag_block());
 
             // technically this only gets the line the statement started on
             int lineNumber = context.Start.Line;
 
-            string stringID = compiler.RegisterString(lineText, compiler.currentNode.Name, lineID, lineNumber);
+            string stringID = compiler.RegisterString(composedString.ToString(), compiler.currentNode.Name, lineID, lineNumber);
 
             compiler.Emit(OpCode.RunLine, new Operand(stringID));
 

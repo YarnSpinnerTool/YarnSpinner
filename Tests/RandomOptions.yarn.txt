@@ -23,12 +23,12 @@ These options should NOT be shuffled
 
 <<prepare_for_options(2, 0)>>
 -> One: Select this option to see shuffled options.
-	<<prepare_for_options(4, 0)>>
-	<<shuffleNextOptions>>
-	-> One
-	-> Two
-	-> Three
-	-> Four
+    <<prepare_for_options(4, 0)>>
+    <<shuffleNextOptions>>
+    -> One
+    -> Two
+    -> Three
+    -> Four
 -> Two: Select this option to do nothing.
 
 

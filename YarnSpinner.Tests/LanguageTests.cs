@@ -109,6 +109,9 @@ namespace YarnSpinner.Tests
         [Theory, MemberData(nameof(FileSources))]
         public void TestSources(string file) {
 
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine ($"INFO: Loading file {file}");
+
             storage.Clear();
             bool runTest = true;
 
