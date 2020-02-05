@@ -57,7 +57,11 @@ public class ProjectSettings : ScriptableObject {
     }
 
     private void OnDestroy() {
-        YarnSettingsHelper.WritePreferencesToDisk(this, SettingsPath);
+        WriteProjectSettingsToDisk();
+    }
+
+    public static void WriteProjectSettingsToDisk() {
+        YarnSettingsHelper.WritePreferencesToDisk(Instance, SettingsPath);
     }
 
     private void Initialize () {

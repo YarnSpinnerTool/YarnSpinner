@@ -17,6 +17,8 @@ public class OnBuildYarnSpinner : IPreprocessBuildWithReport, IPostprocessBuildW
     }
 
     void IPreprocessBuildWithReport.OnPreprocessBuild(BuildReport report) {
+        ProjectSettings.WriteProjectSettingsToDisk();
+
         createdResourcesDirectory = false;
         if (!System.IO.Directory.Exists(GetResourcesPath())) {
             System.IO.Directory.CreateDirectory(GetResourcesPath());
