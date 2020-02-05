@@ -13,6 +13,9 @@ public class OnBuildYarnSpinner : IPreprocessBuildWithReport, IPostprocessBuildW
         if (createdResourcesDirectory) {
             System.IO.Directory.Delete(GetResourcesPath(), true);
             System.IO.File.Delete(GetResourcesPath() + ".meta");
+        } else {
+            System.IO.File.Delete(GetResourcesPath() + "/YarnProjectSettings.json");
+            System.IO.File.Delete(GetResourcesPath() + "/YarnProjectSettings.json.meta");
         }
     }
 
@@ -26,6 +29,7 @@ public class OnBuildYarnSpinner : IPreprocessBuildWithReport, IPostprocessBuildW
         }
 
         System.IO.File.Copy(ProjectSettings.SettingsPath, GetResourcesPath() + "/YarnProjectSettings.json", true);
+        AssetDatabase.ImportAsset("Assets/Resources/YarnProjectSettings.json", ImportAssetOptions.ForceUpdate);
     }
 
     static string GetResourcesPath () {
