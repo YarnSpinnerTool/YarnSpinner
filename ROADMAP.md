@@ -172,3 +172,10 @@ Some of these changes are intentionally made to clean up some of the cruft we've
 Some of these changes we can see exactly how they will work and integrate, others will need to change as we get closer.
 Later releases are designed to have much larger broad strokes of features instead of specifics like in V1.0.
 As a release comes out we can take a look at the road map again, work out what features and needs should go into the next release and update the road map appropriately.
+
+# GSoC 2020 Ideas
+
+* Godot Engine Support
+* Game Maker Engine Support
+* Improvements and new features for YS VS Code extension
+* Bundles of features from above roadmap
