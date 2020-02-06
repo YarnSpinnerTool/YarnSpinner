@@ -57,6 +57,7 @@ public class ProjectSettings : ScriptableObject {
     }
 
     private void OnDestroy() {
+        SortAudioLanguagesList();
         WriteProjectSettingsToDisk();
     }
 
@@ -67,5 +68,18 @@ public class ProjectSettings : ScriptableObject {
     private void Initialize () {
         _textProjectLanguages = new List<string>();
         _audioProjectLanguages = new List<string>();
+    }
+
+    /// <summary>
+    /// Sort the audio languages list to match the text languages list
+    /// </summary>
+    private void SortAudioLanguagesList() {
+        var audioLanguagesSorted = new List<string>();
+        foreach (var textLanguage in _textProjectLanguages) {
+            if (_audioProjectLanguages.Contains(textLanguage)) {
+                audioLanguagesSorted.Add(textLanguage);
+            }
+        }
+        _audioProjectLanguages = audioLanguagesSorted;
     }
 }
