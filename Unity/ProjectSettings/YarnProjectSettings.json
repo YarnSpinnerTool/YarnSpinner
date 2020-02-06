@@ -1,8 +1,10 @@
 {
     "_textProjectLanguages": [
-        "af",
-        "as",
-        "br"
+        "en",
+        "de"
     ],
-    "_audioProjectLanguages": []
+    "_audioProjectLanguages": [
+        "en",
+        "de"
+    ]
 }

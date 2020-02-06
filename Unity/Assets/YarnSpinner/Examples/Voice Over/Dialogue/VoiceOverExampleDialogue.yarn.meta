@@ -39,6 +39,8 @@ ScriptedImporter:
       audioClip: {fileID: 8300000, guid: 925ab48b6d0bd314f8d29fb0fcad02ef, type: 3}
     - language: en
       audioClip: {fileID: 8300000, guid: dbce673db3c96a24a948d24b4c61f462, type: 3}
+    - language: en-AU
+      audioClip: {instanceID: 0}
   - linetag: line:0967160
     languageToAudioclip:
     - language: af
@@ -47,6 +49,8 @@ ScriptedImporter:
       audioClip: {fileID: 8300000, guid: 7c1a3502fb6e83e4287a5967faaab88d, type: 3}
     - language: en
       audioClip: {fileID: 8300000, guid: cb3a7dc09556e344191a02051b6c2e6c, type: 3}
+    - language: en-AU
+      audioClip: {instanceID: 0}
   - linetag: line:04e806e
     languageToAudioclip:
     - language: af
@@ -55,6 +59,8 @@ ScriptedImporter:
       audioClip: {instanceID: 0}
     - language: en
       audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
   - linetag: line:0901fb2
     languageToAudioclip:
     - language: af
@@ -62,4 +68,6 @@ ScriptedImporter:
     - language: de
       audioClip: {instanceID: 0}
     - language: en
+      audioClip: {instanceID: 0}
+    - language: en-AU
       audioClip: {instanceID: 0}

@@ -8,7 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
-  baseLanguageID: en-AU
+  baseLanguageID: en
   stringIDs:
   - line:794945
   - line:2dc39b
@@ -30,7 +30,8 @@ ScriptedImporter:
   isSuccesfullyCompiled: 1
   compilationErrorMessage: 'Error on line 23 at position 1:
 
-    missing COMMAND_ENDIF at ''===''
+    missing COMMAND_ENDIF
+    at ''===''
 
     ===
 
@@ -40,3 +41,100 @@ ScriptedImporter:
   localizations:
   - languageName: de
     text: {fileID: 4900000, guid: 816b6de293b849a4fad13d5caca52524, type: 3}
+  voiceOvers:
+  - linetag: line:794945
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:2dc39b
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:34de2f
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:dcc2bc
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:a8e70c
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:305cde
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:5d7a7c
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:0a7e39
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:0facf7
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:8c3f98
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:24c418
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:df4eaf
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:1fea6c
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:5df323
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:60c282
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:d7df49
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}

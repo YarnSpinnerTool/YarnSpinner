@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 24f22b038d584445ba4f43344cc5733d
+guid: 8e3b0eabc14eb4e4cb5da356b457ab83
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -10,94 +10,72 @@ ScriptedImporter:
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
   baseLanguageID: en
   stringIDs:
-  - line:5837f2
-  - line:ship9
-  - line:ship10
-  - line:ship11
-  - line:ship12
-  - line:ship13
-  - line:ship1
-  - line:ship3
-  - line:ship4
-  - line:ship5
-  - line:ship6
-  - line:ship7
+  - line:01bbe32
+  - line:0ff5d85
+  - line:02d8e0d
+  - line:0cabcd2
+  - line:0718c80
+  - line:05073d5
+  - line:071d8ad
   compilationStatus: 0
   isSuccesfullyCompiled: 1
-  compilationErrorMessage: 
-  baseLanguage: {fileID: 7128917941130120860, guid: 24f22b038d584445ba4f43344cc5733d,
+  compilationErrorMessage: 'Error on line 1 at position 1:
+
+    mismatched input
+    ''<EOF>'' expecting ''title:''
+
+
+
+'
+  baseLanguage: {fileID: 7128917941130120860, guid: 8e3b0eabc14eb4e4cb5da356b457ab83,
     type: 3}
   localizations:
   - languageName: de
-    text: {fileID: 4900000, guid: c7ccc37b05d57b5449cdae7c315d1646, type: 3}
+    text: {fileID: 4900000, guid: a74afbcd340a1134e9a812870eebe8b9, type: 3}
   voiceOvers:
-  - linetag: line:5837f2
+  - linetag: MainMenu-Menu-0
+    languageToAudioclip: []
+  - linetag: line:0c4c755
+    languageToAudioclip:
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:01bbe32
+    languageToAudioclip:
+    - language: en-AU
+      audioClip: {instanceID: 0}
+    - language: de
+      audioClip: {instanceID: 0}
+  - linetag: line:02d8e0d
+    languageToAudioclip:
+    - language: en-AU
+      audioClip: {instanceID: 0}
+    - language: de
+      audioClip: {instanceID: 0}
+  - linetag: line:0cabcd2
+    languageToAudioclip:
+    - language: en-AU
+      audioClip: {instanceID: 0}
+    - language: de
+      audioClip: {instanceID: 0}
+  - linetag: line:0718c80
+    languageToAudioclip:
+    - language: en-AU
+      audioClip: {instanceID: 0}
+    - language: de
+      audioClip: {instanceID: 0}
+  - linetag: line:0ff5d85
     languageToAudioclip:
     - language: de
       audioClip: {instanceID: 0}
     - language: en-AU
       audioClip: {instanceID: 0}
-  - linetag: line:ship9
+  - linetag: line:05073d5
     languageToAudioclip:
     - language: de
       audioClip: {instanceID: 0}
     - language: en-AU
       audioClip: {instanceID: 0}
-  - linetag: line:ship10
-    languageToAudioclip:
-    - language: de
-      audioClip: {instanceID: 0}
-    - language: en-AU
-      audioClip: {instanceID: 0}
-  - linetag: line:ship11
-    languageToAudioclip:
-    - language: de
-      audioClip: {instanceID: 0}
-    - language: en-AU
-      audioClip: {instanceID: 0}
-  - linetag: line:ship12
-    languageToAudioclip:
-    - language: de
-      audioClip: {instanceID: 0}
-    - language: en-AU
-      audioClip: {instanceID: 0}
-  - linetag: line:ship13
-    languageToAudioclip:
-    - language: de
-      audioClip: {instanceID: 0}
-    - language: en-AU
-      audioClip: {instanceID: 0}
-  - linetag: line:ship1
-    languageToAudioclip:
-    - language: de
-      audioClip: {instanceID: 0}
-    - language: en-AU
-      audioClip: {instanceID: 0}
-  - linetag: line:ship3
-    languageToAudioclip:
-    - language: de
-      audioClip: {instanceID: 0}
-    - language: en-AU
-      audioClip: {instanceID: 0}
-  - linetag: line:ship4
-    languageToAudioclip:
-    - language: de
-      audioClip: {instanceID: 0}
-    - language: en-AU
-      audioClip: {instanceID: 0}
-  - linetag: line:ship5
-    languageToAudioclip:
-    - language: de
-      audioClip: {instanceID: 0}
-    - language: en-AU
-      audioClip: {instanceID: 0}
-  - linetag: line:ship6
-    languageToAudioclip:
-    - language: de
-      audioClip: {instanceID: 0}
-    - language: en-AU
-      audioClip: {instanceID: 0}
-  - linetag: line:ship7
+  - linetag: line:071d8ad
     languageToAudioclip:
     - language: de
       audioClip: {instanceID: 0}

@@ -27,6 +27,7 @@ SOFTWARE.
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 namespace Yarn.Unity.Example {
     public class PlayerCharacter : MonoBehaviour {
@@ -74,6 +75,10 @@ namespace Yarn.Unity.Example {
             // Detect if we want to start a conversation
             if (Input.GetKeyDown(KeyCode.Space)) {
                 CheckForNearbyNPC ();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                SceneManager.LoadScene("MainMenu");
             }
         }
 
