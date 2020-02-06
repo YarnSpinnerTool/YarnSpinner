@@ -8,7 +8,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Yarn Spinner for Unity now uses .asmdef files. Yarn Spinner's Unity code now compiles to a separate assembly.
+  - **IMPORTANT:** if you're using asmdefs in your game's code, you will need to add a reference to YarnSpinner.Unity.
+
 ### Changed
+
+### Removed
+
+## [1.0.3] - 2020-02-01
+
+### Added
+
+- The compiler will now reject node titles that contain an invalid character. Invalid characters for node titles are: `[`, `]`, `{`, `}`, `|`, `:`, `#`, `$`, or spaces.
+- Added some parser tests for working with node headers.
+
+### Changed
+
+- Fixed a bug where the Dialogue UI component in Unity would not actually send any commands to the 'On Command' event.
+- Command handlers will now look for command handlers added via `AddCommandHandler` first (which is faster), followed by commands registered using the `YarnCommand` attribute (which is slower).
+- When writing an option (for example, `[[Hello!| Greeting ]]`), any whitespace around the node name (`Greeting`) will be discarded. This fixes a bug where Yarn Spinner would try to go to a node named " ` Greeting ` ", but spaces in node names aren't allowed. (#192)
+- Fixed a bug where a null reference exception would be thrown the first time a new Yarn file's Inspector is drawn. (@Schroedingers-Cat)
+- Made string table CSVs always be read and written in the Invariant culture. Previously, locale differences would lead to parsing failures. (#197)
+- Disabled 'this field is never assigned to' warnings for certain files in the Unity version (they're assigned in the Editor, which the compiler doesn't know about.)
 
 ### Removed
 

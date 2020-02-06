@@ -8,7 +8,7 @@ Write your conversations in *Yarn*, a simple programming language that's designe
 
 Yarn's similar in style to [Twine](http://twinery.org), so if you already know that, you'll be right at home! If you don't, that's cool - Yarn's syntax is extremely minimal, and there's not much there to learn. 
 
-<a href="https://www.patreon.com/bePatron?u=11132340"><img src="Documentation/patreon.png" width="100px"></a>
+<a href="https://www.patreon.com/bePatron?u=11132340"><img src="Documentation/patreon.png" width="150px"></a>
 
 ## Getting Started
 

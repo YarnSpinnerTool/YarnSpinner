@@ -80,6 +80,31 @@ namespace YarnSpinner.Tests
 
         }
 
+        [Fact]
+        public void TestNodeHeaders()
+        {
+            var path = Path.Combine(TestDataPath, "Headers.yarn.txt");
+            Compiler.CompileFile(path, out var program, out stringTable);
+
+            Assert.Equal(3, program.Nodes.Count);
+
+            foreach (var tag in new[] {"one", "two", "three"}) {
+                Assert.Contains(tag, program.Nodes["Tags"].Tags);
+            }
+            
+        }
+
+        [Fact]
+        public void TestInvalidCharactersInNodeTitle()
+        {
+            var path = Path.Combine(TestDataPath, "InvalidNodeTitle.yarn.txt");
+
+            Assert.Throws<Yarn.Compiler.ParseException>( () => {
+                Compiler.CompileFile(path, out var program, out stringTable);
+            });
+            
+        }
+
         // Test every file in Tests/TestCases
         [Theory, MemberData(nameof(FileSources))]
         public void TestSources(string file) {
