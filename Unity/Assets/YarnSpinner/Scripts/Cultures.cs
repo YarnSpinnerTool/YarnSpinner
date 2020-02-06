@@ -48,6 +48,15 @@ public static class Cultures {
     }
 
     /// <summary>
+    /// Returns a native language name ("Deutsch" for German) from a language IDs/names ("de")
+    /// </summary>
+    /// <param name="languageName">The language ID to retrieve its LanguageName</param>
+    /// <returns></returns>
+    public static string LanguageNamesToNativeNames(string languageName) {
+        return LanguageNamesToNativeNames(new string[] { languageName })[0];
+    }
+
+    /// <summary>
     /// Returns an array of native language names ("Deutsch" for German) from an array of language IDs/names ("de")
     /// </summary>
     /// <param name="languageNames">Array of language IDs to be converted to NativeName</param>
