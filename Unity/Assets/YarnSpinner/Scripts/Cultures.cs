@@ -8,15 +8,18 @@ public static class Cultures {
         .Where(c => c.Name != "")
         .Select(c => new Culture {
             Name = c.Name,
-            DisplayName = c.DisplayName
+            DisplayName = c.DisplayName,
+            NativeName = c.NativeName
         })
-        .Append(new Culture { Name = "mi", DisplayName = "Maori" })
+        .Append(new Culture { Name = "mi", DisplayName = "Maori", NativeName = "Māori" })
         .OrderBy(c => c.DisplayName)
         .ToArray();
 
     public static string[] AvailableCulturesNames { get; private set; } = CulturesToNames(AvailableCultures);
 
     public static string[] AvailableCulturesDisplayNames { get; private set; } = CulturesToDisplayNames(AvailableCultures);
+
+    public static string[] AvailableCulturesNativeNames { get; private set; } = CulturesToNativeNames(AvailableCultures);
 
     /// <summary>
     /// Return a DisplayName ("English") from a language ID/name ("en")
@@ -41,8 +44,24 @@ public static class Cultures {
                 languageDisplayNames.Add("No valid language ID");
             }
         }
-        //return AvailableCultures.Where(culture => languageNames.Contains(culture.Name)).Select(culture => culture.DisplayName).ToArray();
         return languageDisplayNames.ToArray();
+    }
+
+    /// <summary>
+    /// Returns an array of native language names ("Deutsch" for German) from an array of language IDs/names ("de")
+    /// </summary>
+    /// <param name="languageNames">Array of language IDs to be converted to NativeName</param>
+    /// <returns></returns>
+    public static string[] LanguageNamesToNativeNames(string[] languageNames) {
+        List<string> languageNativeNames = new List<string>();
+        foreach (var languageName in languageNames) {
+            if (AvailableCulturesNames.Contains(languageName)) {
+                languageNativeNames.Add(AvailableCulturesNativeNames[Array.IndexOf(AvailableCulturesNames, languageName)]);
+            } else {
+                languageNativeNames.Add("No valid language ID");
+            }
+        }
+        return languageNativeNames.ToArray();
     }
 
     /// <summary>
@@ -61,13 +80,15 @@ public static class Cultures {
     /// <returns></returns>
     public static Culture[] LanguageNamesToCultures(string[] languageNames) {
         List<Culture> cultures = new List<Culture>();
-        var DisplayNames = LanguageNamesToDisplayNames(languageNames);
+        var displayNames = LanguageNamesToDisplayNames(languageNames);
+        var nativeNames = LanguageNamesToNativeNames(languageNames);
 
         for (int i = 0; i < languageNames.Length; i++) {
-            Culture addToCultures;
-            addToCultures.Name = languageNames[i];
-            addToCultures.DisplayName = DisplayNames[i];
-            cultures.Add(addToCultures);
+            cultures.Add(new Culture {
+                Name = languageNames[i],
+                DisplayName = displayNames[i],
+                NativeName = nativeNames[i]
+            });
         }
 
         return cultures.ToArray();
@@ -75,6 +96,10 @@ public static class Cultures {
 
     public static string[] CulturesToDisplayNames(Culture[] cultures) {
         return cultures.Select(c => $"{c.DisplayName}").ToArray();
+    }
+
+    public static string[] CulturesToNativeNames(Culture[] cultures) {
+        return cultures.Select(c => $"{c.NativeName}").ToArray();
     }
 
     public static string[] CulturesToNames(Culture[] cultures) {

@@ -4,4 +4,5 @@
 public struct Culture {
     public string Name;
     public string DisplayName;
+    public string NativeName;
 }
