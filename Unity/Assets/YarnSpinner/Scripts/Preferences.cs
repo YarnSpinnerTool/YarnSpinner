@@ -101,9 +101,7 @@ public class Preferences : ScriptableObject {
     }
 
     private void OnDestroy() {
-        if (PreferencesChanged()) {
-            YarnSettingsHelper.WritePreferencesToDisk(this, _preferencesPath);
-        }
+        WritePreferencesToDisk();
     }
 
     private bool PreferencesChanged() {
@@ -117,13 +115,11 @@ public class Preferences : ScriptableObject {
 
         return false;
     }
-    #endregion
 
-    #region Public Methods
     /// <summary>
     /// Read the user's language preferences from disk.
     /// </summary>
-    public void ReadPreferencesFromDisk() {
+    private void ReadPreferencesFromDisk() {
         YarnSettingsHelper.ReadPreferencesFromDisk(this, _preferencesPath, Initialize);
 
         // Apply text language preference from file
@@ -146,5 +142,15 @@ public class Preferences : ScriptableObject {
             }
         }
     }
+
+    private static void WritePreferencesToDisk() {
+        if (Instance.PreferencesChanged()) {
+            YarnSettingsHelper.WritePreferencesToDisk(Instance, Instance._preferencesPath);
+        }
+    }
+    #endregion
+
+    #region Public Methods
+
     #endregion
 }
