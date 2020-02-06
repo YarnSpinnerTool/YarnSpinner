@@ -36,7 +36,7 @@ public class ProjectSettings : ScriptableObject {
         }
     }
 
-
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("", "IDE0051", Justification = "Called from Unity/upon creaton")]
     private void Awake() {
         if (_instance != null && this != _instance) {
             DestroyImmediate(_instance);
