@@ -1,21 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
+/// <summary>
+/// Yarn's project wide settings that will automatically be included in a build and not altered after that.
+/// </summary>
 [System.Serializable]
 public class ProjectSettings : ScriptableObject {
+    /// <summary>
+    /// Project wide available text languages
+    /// </summary>
     [SerializeField]
     private List<string> _textProjectLanguages = new List<string>();
+    /// <summary>
+    /// Project wide available text languages
+    /// </summary>
     public static List<string> TextProjectLanguages => Instance._textProjectLanguages;
 
+    /// <summary>
+    /// Project wide available audio voice over languages
+    /// </summary>
     [SerializeField]
     private List<string> _audioProjectLanguages = new List<string>();
+    /// <summary>
+    /// Project wide available audio voice over languages
+    /// </summary>
     public static List<string> AudioProjectLanguages => Instance._audioProjectLanguages;
 
-    public static string SettingsPath { get; private set; }
+    /// <summary>
+    /// Path to Yarn's project settings
+    /// </summary>
+    private static string _settingsPath;
 
     /// <summary>
     /// Instance of this class (Singleton design pattern)
@@ -44,11 +58,11 @@ public class ProjectSettings : ScriptableObject {
         _instance = this;
 
 #if UNITY_EDITOR
-        SettingsPath = Application.dataPath + "/../ProjectSettings" + "/YarnProjectSettings.json";
-        YarnSettingsHelper.ReadPreferencesFromDisk(this, SettingsPath, Initialize);
+        _settingsPath = Application.dataPath + "/../ProjectSettings" + "/YarnProjectSettings.json";
+        YarnSettingsHelper.ReadPreferencesFromDisk(this, _settingsPath, Initialize);
 #else
-        SettingsPath = "YarnProjectSettings";
-        var jsonString = Resources.Load<TextAsset>(SettingsPath);
+        _settingsPath = "YarnProjectSettings";
+        var jsonString = Resources.Load<TextAsset>(_settingsPath);
         var test = jsonString.text.ToString();
         if (!string.IsNullOrEmpty(test)) {
             YarnSettingsHelper.ReadJsonFromString(this, test, Initialize);
@@ -56,18 +70,14 @@ public class ProjectSettings : ScriptableObject {
 #endif
     }
 
+    private void Initialize() {
+        _textProjectLanguages = new List<string>();
+        _audioProjectLanguages = new List<string>();
+    }
+
     private void OnDestroy() {
         SortAudioLanguagesList();
         WriteProjectSettingsToDisk();
-    }
-
-    public static void WriteProjectSettingsToDisk() {
-        YarnSettingsHelper.WritePreferencesToDisk(Instance, SettingsPath);
-    }
-
-    private void Initialize () {
-        _textProjectLanguages = new List<string>();
-        _audioProjectLanguages = new List<string>();
     }
 
     /// <summary>
@@ -81,5 +91,12 @@ public class ProjectSettings : ScriptableObject {
             }
         }
         _audioProjectLanguages = audioLanguagesSorted;
+    }
+
+    /// <summary>
+    /// Write current Yarn project settings from memory to disk.
+    /// </summary>
+    public static void WriteProjectSettingsToDisk() {
+        YarnSettingsHelper.WritePreferencesToDisk(Instance, _settingsPath);
     }
 }

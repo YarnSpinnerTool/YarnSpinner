@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System;
 using System.Linq;
-using System.IO;
 using System.Globalization;
 
+/// <summary>
+/// Yarn preferences made by the user that should not be stored in a project or in a build.
+/// </summary>
 [Serializable]
 public class Preferences : ScriptableObject {
     #region Properties
@@ -77,6 +79,7 @@ public class Preferences : ScriptableObject {
     #endregion
 
     #region Private Methods
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("", "IDE0051", Justification = "Called implicitly by Unity upon creation")]
     private void Awake() {
         if (_instance != null && this != _instance) {
             DestroyImmediate(_instance);

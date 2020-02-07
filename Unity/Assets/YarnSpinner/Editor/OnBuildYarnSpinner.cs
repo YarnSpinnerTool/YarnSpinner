@@ -28,7 +28,8 @@ public class OnBuildYarnSpinner : IPreprocessBuildWithReport, IPostprocessBuildW
             createdResourcesDirectory = true;
         }
 
-        System.IO.File.Copy(ProjectSettings.SettingsPath, GetResourcesPath() + "/YarnProjectSettings.json", true);
+        var yarnProjectSettingsPath = Application.dataPath + "/../ProjectSettings" + "/YarnProjectSettings.json";
+        System.IO.File.Copy(yarnProjectSettingsPath, GetResourcesPath() + "/YarnProjectSettings.json", true);
         AssetDatabase.ImportAsset("Assets/Resources/YarnProjectSettings.json", ImportAssetOptions.ForceUpdate);
     }
 

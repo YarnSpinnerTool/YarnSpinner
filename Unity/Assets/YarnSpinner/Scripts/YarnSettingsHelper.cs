@@ -2,9 +2,10 @@
 using System.IO;
 using UnityEngine;
 
-public static class YarnSettingsHelper 
-{
-
+/// <summary>
+/// Provides methods for loading and saving a scriptable object class used for settings.
+/// </summary>
+public static class YarnSettingsHelper {
     /// <summary>
     /// Read the user's language preferences from disk.
     /// </summary>
@@ -33,6 +34,13 @@ public static class YarnSettingsHelper
         ReadJsonFromString(settingsClass, jsonString, OnReadError);
     }
 
+    /// <summary>
+    /// Creates a class from a JSON string representing it's state.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="settingsClass">The type of the class to be created.</param>
+    /// <param name="json">The state of the class to be created described as JSON formatted string.</param>
+    /// <param name="OnReadError">The action to call on an error.</param>
     public static void ReadJsonFromString<T>(T settingsClass, string json, Action OnReadError = null) {
         // Parse json to *this* ScriptableObject
         try {
