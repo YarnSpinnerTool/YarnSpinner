@@ -82,7 +82,7 @@ class ProjectSettingsProvider : SettingsProvider {
             GUILayout.Button("No more available Project Languages");
             GUI.enabled = true;
         } else {
-            if (GUILayout.Button("Add Language to project")) {
+            if (GUILayout.Button("Add language to project")) {
                 textLanguagesProp.InsertArrayElementAtIndex(textLanguagesProp.arraySize);
                 textLanguagesProp.GetArrayElementAtIndex(textLanguagesProp.arraySize - 1).stringValue = remainingTextLanguages[_textLanguagesListIndex];
                 _textLanguagesListIndex = 0;
