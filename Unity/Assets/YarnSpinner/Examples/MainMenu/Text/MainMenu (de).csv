@@ -1,8 +1,8 @@
-id;text;file;node;lineNumber
-line:01bbe32;Beispiel Erzählung;MainMenu;Menu;4
-line:0ff5d85;Beispiel Sprachausgabe;MainMenu;Menu;5
-line:02d8e0d;Optionen;MainMenu;Menu;6
-line:0cabcd2;Textsprache;MainMenu;Menu;7
-line:0718c80;Tonsprache;MainMenu;Menu;8
-line:05073d5;Zurück;MainMenu;Menu;9
-line:071d8ad;Anwenden;MainMenu;Menu;10
+id,text,file,node,lineNumber
+line:01bbe32,Beispiel Erzählung,MainMenu,Menu,4
+line:0ff5d85,Beispiel Sprachausgabe,MainMenu,Menu,5
+line:02d8e0d,Optionen,MainMenu,Menu,6
+line:0cabcd2,Textsprache,MainMenu,Menu,7
+line:0718c80,Tonsprache,MainMenu,Menu,8
+line:05073d5,Zurück,MainMenu,Menu,9
+line:071d8ad,Anwenden,MainMenu,Menu,10
