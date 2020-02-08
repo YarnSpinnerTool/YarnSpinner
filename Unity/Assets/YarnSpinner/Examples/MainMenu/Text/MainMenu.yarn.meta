@@ -1,9 +1,10 @@
 fileFormatVersion: 2
 guid: 8e3b0eabc14eb4e4cb5da356b457ab83
 ScriptedImporter:
-  internalIDToNameTable: []
+  fileIDToRecycleName:
+    4900000: Strings
+    11400000: Program
   externalObjects: {}
-  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -21,14 +22,12 @@ ScriptedImporter:
   isSuccesfullyCompiled: 1
   compilationErrorMessage: 'Error on line 1 at position 1:
 
-    mismatched input
-    ''<EOF>'' expecting ''title:''
+    mismatched input ''<EOF>'' expecting ''title:''
 
 
 
 '
-  baseLanguage: {fileID: 7128917941130120860, guid: 8e3b0eabc14eb4e4cb5da356b457ab83,
-    type: 3}
+  baseLanguage: {instanceID: 0}
   localizations:
   - languageName: de
     text: {fileID: 4900000, guid: a74afbcd340a1134e9a812870eebe8b9, type: 3}
@@ -45,11 +44,15 @@ ScriptedImporter:
       audioClip: {instanceID: 0}
     - language: de
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {instanceID: 0}
   - linetag: line:02d8e0d
     languageToAudioclip:
     - language: en-AU
       audioClip: {instanceID: 0}
     - language: de
+      audioClip: {instanceID: 0}
+    - language: en
       audioClip: {instanceID: 0}
   - linetag: line:0cabcd2
     languageToAudioclip:
@@ -57,11 +60,15 @@ ScriptedImporter:
       audioClip: {instanceID: 0}
     - language: de
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {instanceID: 0}
   - linetag: line:0718c80
     languageToAudioclip:
     - language: en-AU
       audioClip: {instanceID: 0}
     - language: de
+      audioClip: {instanceID: 0}
+    - language: en
       audioClip: {instanceID: 0}
   - linetag: line:0ff5d85
     languageToAudioclip:
@@ -69,15 +76,21 @@ ScriptedImporter:
       audioClip: {instanceID: 0}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {instanceID: 0}
   - linetag: line:05073d5
     languageToAudioclip:
     - language: de
       audioClip: {instanceID: 0}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {instanceID: 0}
   - linetag: line:071d8ad
     languageToAudioclip:
     - language: de
       audioClip: {instanceID: 0}
     - language: en-AU
+      audioClip: {instanceID: 0}
+    - language: en
       audioClip: {instanceID: 0}
