@@ -58,6 +58,8 @@ namespace Yarn.Unity {
         // option. Externally provided by the DialogueRunner.
         private System.Action<int> currentOptionSelectionHandler;
 
+        private bool waitingForVoiceoverFinish = false;
+
         // When true, the DialogueRunner is waiting for the user to press
         // one of the option buttons.
         private bool waitingForOptionSelection = false;     
@@ -124,6 +126,11 @@ namespace Yarn.Unity {
             } else {
                 // Display the entire line immediately if textSpeed <= 0
                 onLineUpdate?.Invoke(text);
+            }
+
+            // Wait for voice over to finish
+            while (waitingForVoiceoverFinish) {
+                yield return null;
             }
 
             // We're now waiting for the player to move on to the next line
@@ -250,6 +257,27 @@ namespace Yarn.Unity {
             }
             waitingForOptionSelection = false;
             currentOptionSelectionHandler?.Invoke(index);
+        }
+
+        public override void VoiceoverFinished() {
+            if (!waitingForVoiceoverFinish) {
+                Debug.LogWarning($"{nameof(VoiceoverFinished)} was called, " +
+                    $"but {nameof(DialogueRunner)} wasn't waiting for a voice " +
+                    "over to finish.");
+                return;
+            }
+
+            waitingForVoiceoverFinish = false;
+        }
+
+        public override void VoiceoverStartedSuccessfully() {
+            if (waitingForVoiceoverFinish) {
+                Debug.LogWarning($"{nameof(VoiceoverStartedSuccessfully)} was called, " +
+                    $"but {nameof(DialogueRunner)} was already waiting for a voice " +
+                    "over to finish.");
+                return;
+            }
+            waitingForVoiceoverFinish = true;
         }
 
     }

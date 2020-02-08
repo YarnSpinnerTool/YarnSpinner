@@ -12,6 +12,16 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 
     int selectedNewTranslationLanguageIndex;
 
+    /// <summary>
+    /// Index of the currently selected voice over language.
+    /// Only show voiceovers for one language.
+    /// </summary>
+    int selectedVoiceoverLanguageIndex;
+
+    /// <summary>
+    /// Foldout bool for voiceover list.
+    /// </summary>
+    bool showVoiceovers = false;
 
     // We use a custom type to refer to cultures, because certain cultures
     // that we want to support don't exist in the .NET database (like Māori)
@@ -125,8 +135,79 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                 AddLineTagsToFile(yarnImporter.assetPath);
             }
         }
+
         // Localization list
         EditorGUILayout.PropertyField(serializedObject.FindProperty("localizations"), true);
+
+        EditorGUILayout.Space();
+
+        // Automatically find voice over assets based on the linetag and the language id
+        // Note: this could be expanded to multiple search patterns via actions or 
+        // delegates returning their results, comparing these results and selecting the 
+        // result that returns exactly one matching asset.
+        // Possible alternative search patterns: 
+        // * search for $linetag but return asset with parent directory matching $language
+        // * search for "$linetag-$language"
+        // * search for "$language-$linetag"
+        if (GUILayout.Button("Import Voice Over Audio Files")) {
+            // For every linetag of this yarn asset
+            for (int i = 0; i < yarnImporter.voiceOvers.Length; i++) {
+                LinetagToLanguage linetagToLanguage = yarnImporter.voiceOvers[i];
+                var linetag = linetagToLanguage.linetag.Remove(0, 5);
+                // For every language of this yarn asset
+                for (int j = 0; j < linetagToLanguage.languageToAudioclip.Length; j++) {
+                    LanguageToAudioclip languageToAudioclip = linetagToLanguage.languageToAudioclip[j];
+
+                    // Do not overwrite existing content
+                    if (languageToAudioclip.audioClip != null) {
+                        continue;
+                    }
+
+                    var language = languageToAudioclip.language;
+                    var results = AssetDatabase.FindAssets("t:AudioClip " + linetag + " " + language);
+
+                    // Write found AudioClip into voice overs array
+                    if (results.Length != 0) {
+                        var voiceOversProp = serializedObject.FindProperty("voiceOvers");
+                        var linetagProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("linetag");
+                        var languagetoAudioClipProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("languageToAudioclip");
+                        var audioclipProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClip");
+                        audioclipProp.objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>(AssetDatabase.GUIDToAssetPath(results[0]));
+                    }
+
+                    // Return info if the search results were ambiguous or there was not result
+                    if (results.Length > 1) {
+                        Debug.LogWarning("More than one asset found matching the linetag " + linetag + "  and the language " + language + ".");
+                    } else if (results.Length == 0) {
+                        Debug.LogWarning("No asset found matching the linetag '" + linetag + "' and the language '" + language + "'.");
+                    }
+                }
+            }
+
+        }
+        // Voiceover list. Reduced to one language.
+        showVoiceovers = EditorGUILayout.Foldout(showVoiceovers, "Voice Overs"); // FIXME: Clicking on the foldout triangle doesn't open/close the foldout
+        if (showVoiceovers) {
+            EditorGUI.indentLevel++;
+            // Language selected here will reduce the visual representation of the voiceover data structure
+            selectedVoiceoverLanguageIndex = EditorGUILayout.Popup(selectedVoiceoverLanguageIndex, culturesAvailableOnAsset, GUILayout.MaxWidth(68));
+            // Only draw AudioClips from selected language
+            for (int i = 0; i < yarnImporter.voiceOvers.Length; i++) {
+                LinetagToLanguage linetagToLanguage = yarnImporter.voiceOvers[i];
+                for (int j = 0; j < linetagToLanguage.languageToAudioclip.Length; j++) {
+                    LanguageToAudioclip languageToAudioclip = linetagToLanguage.languageToAudioclip[j];
+                    if (languageToAudioclip.language == culturesAvailableOnAsset[selectedVoiceoverLanguageIndex]) {
+                        var voiceOversProp = serializedObject.FindProperty("voiceOvers");
+                        var linetagProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("linetag");
+                        var languagetoAudioClipProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("languageToAudioclip");
+                        var languageProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("language");
+                        var audioclipProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClip");
+                        EditorGUILayout.PropertyField(audioclipProp, new GUIContent(linetagProp.stringValue));
+                    }
+                }
+            }
+            EditorGUI.indentLevel--;
+        }
 
         var success = serializedObject.ApplyModifiedProperties();
 #if UNITY_2018
