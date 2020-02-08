@@ -260,8 +260,6 @@ PlayerSettings:
     height: 180
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
-  AndroidValidateAppBundleSize: 1
-  AndroidAppBundleSizeToValidate: 150
   resolutionDialogBanner: {fileID: 0}
   m_BuildTargetIcons: []
   m_BuildTargetPlatformIcons: []
@@ -488,7 +486,6 @@ PlayerSettings:
   monoEnv: 
   splashScreenBackgroundSourceLandscape: {fileID: 0}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
-  blurSplashScreenBackground: 1
   spritePackerPolicy: 
   webGLMemorySize: 256
   webGLExceptionSupport: 1
