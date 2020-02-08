@@ -50,15 +50,19 @@ namespace Yarn.Unity {
         /// The buttons that let the user choose an option
         public List<Button> optionButtons;
 
-        // When true, the DialogueRunner is waiting for the user to
-        // indicate that they want to proceed to the next line.
-        private bool waitingForLineContinue = false;
+        // When true, the user has indicated that they want to proceed to
+        // the next line.
+        private bool userRequestedNextLine = false;
+
+        // The method that we should call when the user has chosen an
+        // option. Externally provided by the DialogueRunner.
+        private System.Action<int> currentOptionSelectionHandler;
 
         private bool waitingForVoiceoverFinish = false;
 
         // When true, the DialogueRunner is waiting for the user to press
         // one of the option buttons.
-        private bool waitingForOptionSelection = false;      
+        private bool waitingForOptionSelection = false;     
 
         public UnityEngine.Events.UnityEvent onDialogueStart;
 
@@ -97,6 +101,8 @@ namespace Yarn.Unity {
         private IEnumerator DoRunLine(Yarn.Line line, IDictionary<string,string> strings, System.Action onComplete) {
             onLineStart?.Invoke();
 
+            userRequestedNextLine = false;
+            
             if (strings.TryGetValue(line.ID, out var text) == false) {
                 Debug.LogWarning($"Line {line.ID} doesn't have any localised text.");
                 text = line.ID;
@@ -109,6 +115,12 @@ namespace Yarn.Unity {
                 foreach (char c in text) {
                     stringBuilder.Append (c);
                     onLineUpdate?.Invoke(stringBuilder.ToString ());
+                    if (userRequestedNextLine) {
+                        // We've requested a skip of the entire line.
+                        // Display all of the text immediately.
+                        onLineUpdate?.Invoke(text);
+                        break;
+                    }
                     yield return new WaitForSeconds (textSpeed);
                 }
             } else {
@@ -121,12 +133,13 @@ namespace Yarn.Unity {
                 yield return null;
             }
 
-            waitingForLineContinue = true;
+            // We're now waiting for the player to move on to the next line
+            userRequestedNextLine = false;
 
+            // Indicate to the rest of the game that the line has finished being delivered
             onLineFinishDisplaying?.Invoke();
 
-            // Wait for any user input
-            while (waitingForLineContinue) {
+            while (userRequestedNextLine == false) {
                 yield return null;
             }
 
@@ -158,23 +171,30 @@ namespace Yarn.Unity {
             int i = 0;
 
             waitingForOptionSelection = true;
+
+            currentOptionSelectionHandler = selectOption;
             
             foreach (var optionString in optionsCollection.Options) {
                 optionButtons [i].gameObject.SetActive (true);
 
                 // When the button is selected, tell the dialogue about it
                 optionButtons [i].onClick.RemoveAllListeners();
-                optionButtons [i].onClick.AddListener(() => {
-                    waitingForOptionSelection = false;
-                    selectOption(optionString.ID);
-                });
+                optionButtons [i].onClick.AddListener(() => SelectOption(optionString.ID));
 
                 if (strings.TryGetValue(optionString.Line.ID, out var optionText) == false) {
                     Debug.LogWarning($"Option {optionString.Line.ID} doesn't have any localised text");
                     optionText = optionString.Line.ID;
                 }
 
-                optionButtons [i].GetComponentInChildren<Text> ().text = optionText;
+                var unityText = optionButtons [i].GetComponentInChildren<Text> ();
+                if (unityText != null) {
+                    unityText.text = optionText;
+                }
+
+                var textMeshProText = optionButtons [i].GetComponentInChildren<TMPro.TMP_Text> ();
+                if (textMeshProText != null) {
+                    textMeshProText.text = optionText;
+                }
 
                 i++;
             }
@@ -196,18 +216,13 @@ namespace Yarn.Unity {
 
         }
 
-        /// Run an internal command.
+        /// Run a command.
         public override Dialogue.HandlerExecutionType RunCommand (Yarn.Command command, System.Action onComplete) {
-            StartCoroutine(DoRunCommand(command, onComplete));
+            // Dispatch this command via the 'On Command' handler.
+            onCommand?.Invoke(command.Text);
+
+            // Signal to the DialogueRunner that it should continue executing.
             return Dialogue.HandlerExecutionType.ContinueExecution;
-        }
-
-        public IEnumerator DoRunCommand (Yarn.Command command, System.Action onComplete)
-        {
-            // "Perform" the command
-            Debug.Log ("Command: " + command.Text);
-
-            yield break;
         }
 
         /// Called when the dialogue system has started running.
@@ -232,14 +247,16 @@ namespace Yarn.Unity {
         }
 
         public void MarkLineComplete() {
-            if (waitingForLineContinue == false) {
-                Debug.LogWarning($"{nameof(MarkLineComplete)} was called, " + 
-                    $"but {nameof(DialogueRunner)} wasn't waiting for a line " + 
-                    "to be marked as read.");
+            userRequestedNextLine = true;
+        }
+
+        public void SelectOption(int index) {
+            if (waitingForOptionSelection == false) {
+                Debug.LogWarning("An option was selected, but the dialogue UI was not expecting it.");
                 return;
             }
-
-            waitingForLineContinue = false;
+            waitingForOptionSelection = false;
+            currentOptionSelectionHandler?.Invoke(index);
         }
 
         public override void VoiceoverFinished() {

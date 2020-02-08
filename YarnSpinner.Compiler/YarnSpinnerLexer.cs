@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from /Users/desplesda/Work/yarnspinner/YarnSpinner/YarnSpinnerLexer.g4 by ANTLR 4.7.1
+// Generated from /Users/desplesda/Work/yarnspinner/YarnSpinner.Compiler/YarnSpinnerLexer.g4 by ANTLR 4.7.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -53,15 +53,15 @@ public partial class YarnSpinnerLexer : Lexer {
 		COMMAND_UNKNOWN=70, ACTION=71, OPTION_SEPARATOR=72, OPTION_TEXT=73, OPTION_CLOSE=74, 
 		OPTION_LINK=75;
 	public const int
-		Title=1, Tags=2, HeaderText=3, Body=4, Text=5, Shortcuts=6, Command=7, 
-		Action=8, Option=9, OptionLink=10;
+		Title=1, Tags=2, HeaderText=3, Body=4, TextMode=5, ShortcutsMode=6, CommandMode=7, 
+		ActionMode=8, OptionMode=9, OptionLinkMode=10;
 	public static string[] channelNames = {
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
 	};
 
 	public static string[] modeNames = {
-		"DEFAULT_MODE", "Title", "Tags", "HeaderText", "Body", "Text", "Shortcuts", 
-		"Command", "Action", "Option", "OptionLink"
+		"DEFAULT_MODE", "Title", "Tags", "HeaderText", "Body", "TextMode", "ShortcutsMode", 
+		"CommandMode", "ActionMode", "OptionMode", "OptionLinkMode"
 	};
 
 	public static readonly string[] ruleNames = {

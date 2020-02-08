@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NoWarn>3021</NoWarn> <!--  '...' does not need a CLSCompliant attribute because the assembly does not have a CLSCompliant attribute -->
   </PropertyGroup>
 
   <ItemGroup>

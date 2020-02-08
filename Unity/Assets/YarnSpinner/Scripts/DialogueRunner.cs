@@ -30,6 +30,9 @@ using System.Collections.Generic;
 using CsvHelper;
 using System;
 
+// Field ... is never assigned to and will always have its default value null
+#pragma warning disable 0649
+
 namespace Yarn.Unity
 {
 
@@ -100,7 +103,9 @@ namespace Yarn.Unity
 
         /// A Unity event that receives the name of the node that just
         /// finished running
+#pragma warning disable 0649
         [SerializeField] StringUnityEvent onNodeComplete;
+#pragma warning restore 0649
 
         /// <summary>
         /// Event sending a voiceover audio clip matching accociated with the currently run linetag,
@@ -237,23 +242,13 @@ namespace Yarn.Unity
             bool wasValidCommand;
             Dialogue.HandlerExecutionType executionType;
 
-            (wasValidCommand, executionType) = DispatchCommandToGameObject(command);
-            
-            if (wasValidCommand) {
-                // We found an object and method to invoke as a Yarn
-                // command. It may or may not have been a coroutine; if it
-                // was a coroutine, executionType will be
-                // HandlerExecutionType.Pause, and we'll wait for it to
-                // complete before resuming execution.
-                return executionType;
-                
-            } 
+            // Try looking in the command handlers first, which is a lot
+            // cheaper than crawling the game object hierarchy.
 
+            // Set a flag that we can use to tell if the dispatched command
+            // immediately called _continue
             wasCompleteCalled = false;
 
-            // It wasn't found by looking in objects. Try looking in the
-            // command handlers.
-            
             (wasValidCommand, executionType) = DispatchCommandToRegisteredHandlers(command, _continue);   
 
             if (wasValidCommand) {
@@ -271,6 +266,19 @@ namespace Yarn.Unity
                 }
                 
             }
+            
+            // We didn't find it in the comand handlers. Try looking in the game objects.
+            (wasValidCommand, executionType) = DispatchCommandToGameObject(command);
+            
+            if (wasValidCommand) {
+                // We found an object and method to invoke as a Yarn
+                // command. It may or may not have been a coroutine; if it
+                // was a coroutine, executionType will be
+                // HandlerExecutionType.Pause, and we'll wait for it to
+                // complete before resuming execution.
+                return executionType;
+                
+            } 
 
             // We didn't find a method in our C# code to invoke. Pass it to
             // the UI to handle; it will determine whether we pause or
@@ -294,8 +302,9 @@ namespace Yarn.Unity
 
             if (commandHandlers.ContainsKey(firstWord) == false && 
                 blockingCommandHandlers.ContainsKey(firstWord) == false) {
-
-                Debug.LogWarning($"Unknown command '{firstWord}'");
+                
+                // We don't have a registered handler for this command, but
+                // some other part of the game might.
                 return (false, Dialogue.HandlerExecutionType.ContinueExecution);
             }
 
@@ -409,7 +418,7 @@ namespace Yarn.Unity
         }
 
         /// Adds a program and its base localisation string table
-        internal void Add(YarnProgram scriptToLoad)
+        public void Add(YarnProgram scriptToLoad)
         {
             AddProgram(scriptToLoad);
             AddStringTable(scriptToLoad);
@@ -432,8 +441,13 @@ namespace Yarn.Unity
                 textToLoad = yarnScript.baseLocalisationStringTable;
             }
 
+            // Use the invariant culture when parsing the CSV
+            var configuration = new CsvHelper.Configuration.Configuration(
+                System.Globalization.CultureInfo.InvariantCulture
+            );
+
             using (var reader = new System.IO.StringReader(textToLoad.text))
-            using (var csv = new CsvReader(reader)) {
+            using (var csv = new CsvReader(reader, configuration)) {
                 csv.Read();
                 csv.ReadHeader();
 
@@ -686,6 +700,10 @@ namespace Yarn.Unity
             }
 
             var wasValidCommand = numberOfMethodsFound > 0;
+
+            if (wasValidCommand == false) {
+                return (false, Dialogue.HandlerExecutionType.ContinueExecution);
+            }
 
             if (startedCoroutine) {
                 // Signal to the Dialogue that execution should wait. 
