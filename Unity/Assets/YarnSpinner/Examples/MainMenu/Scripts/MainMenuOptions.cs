@@ -21,7 +21,12 @@ public class MainMenuOptions : MonoBehaviour {
             textLanguagesDropdown.AddOptions(textLanguageList);
 
             textLanguageSelected = textLanguageList.IndexOf(Cultures.LanguageNamesToNativeNames(Preferences.TextLanguage));
+#if UNITY_2019_1_OR_NEWER
             textLanguagesDropdown.SetValueWithoutNotify(textLanguageSelected);
+#endif
+#if UNITY_2018
+            textLanguagesDropdown.value = textLanguageSelected;
+#endif
         }
 
         if (audioLanguagesDropdown) {
@@ -39,7 +44,12 @@ public class MainMenuOptions : MonoBehaviour {
             audioLanguagesDropdown.AddOptions(audioLanguagesList);
 
             audioLanguageSelected = audioLanguagesList.IndexOf(Cultures.LanguageNamesToNativeNames(Preferences.AudioLanguage));
+#if UNITY_2019_1_OR_NEWER
             audioLanguagesDropdown.SetValueWithoutNotify(audioLanguageSelected);
+#endif
+#if UNITY_2018
+            audioLanguagesDropdown.value = audioLanguageSelected;
+#endif
         }
     }
 
