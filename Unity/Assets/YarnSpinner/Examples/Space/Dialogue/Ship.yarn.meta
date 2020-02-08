@@ -9,7 +9,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
-  baseLanguageID: en-AU
+  baseLanguageID: en
   stringIDs:
   - line:5837f2
   - line:ship9
@@ -30,3 +30,76 @@ ScriptedImporter:
   localizations:
   - languageName: de
     text: {fileID: 4900000, guid: c7ccc37b05d57b5449cdae7c315d1646, type: 3}
+  voiceOvers:
+  - linetag: line:5837f2
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:ship9
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:ship10
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:ship11
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:ship12
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:ship13
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:ship1
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:ship3
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:ship4
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:ship5
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:ship6
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}
+  - linetag: line:ship7
+    languageToAudioclip:
+    - language: de
+      audioClip: {instanceID: 0}
+    - language: en-AU
+      audioClip: {instanceID: 0}

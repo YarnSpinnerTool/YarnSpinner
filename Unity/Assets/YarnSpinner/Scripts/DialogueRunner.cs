@@ -45,10 +45,6 @@ namespace Yarn.Unity
         /// The source files to load the conversation from
         public YarnProgram[] yarnScripts;
 
-        public string textLanguage;
-
-        public string audioLanguage;
-
         /// Our variable storage
         public Yarn.Unity.VariableStorageBehaviour variableStorage;
 
@@ -435,7 +431,7 @@ namespace Yarn.Unity
 
             var textToLoad = new TextAsset();
             if (yarnScript.localizations != null || yarnScript.localizations.Length > 0) {
-                textToLoad = Array.Find(yarnScript.localizations, element => element.languageName == textLanguage)?.text;
+                textToLoad = Array.Find(yarnScript.localizations, element => element.languageName == Preferences.TextLanguage)?.text;
             }
             if (textToLoad == null || string.IsNullOrEmpty(textToLoad.text)) {
                 textToLoad = yarnScript.baseLocalisationStringTable;
@@ -460,7 +456,7 @@ namespace Yarn.Unity
         public void AddVoiceOvers(LinetagToLanguage[] lineToLanguage) {
             foreach (var line in lineToLanguage) {
                 foreach (var language in line.languageToAudioclip) {
-                    if (language.language == audioLanguage) {
+                    if (language.language == Preferences.AudioLanguage) {
                         voiceOvers.Add(line.linetag, language.audioClip);
                     }
                 }
