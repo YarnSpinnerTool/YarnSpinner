@@ -1,0 +1,92 @@
+#wow
+#incredible
+title: Foo
+tags: one two
+---
+// <<set $items = "potions">>
+// <<set $knight_strength = 50>>
+// <<set $item_strength = 500>>
+
+// Knight: I am going into battle, and I want your strongest {$items}.
+// <<if $knight_strength < $item_strength>>
+//     Merchant: My {$items} are too strong for you, traveller.
+// <<else>>
+//     Merchant: Sure.
+// <<endif>>
+
+-> aaagh // aaagh
+
+
+
+// wow a line {0} wow {1} #hashtag //comment
+
+// <<command wow>> #command_tag //comment
+
+// [[Wow An Option|Wow]] #hashtag #twotag //comment
+
+// #bare_hashtag
+
+
+
+//wow {1 +1  /2} amazing #wow:123 #incredible <<if true>>
+
+// <<set $bar to 5+1 - $foo>>
+
+// <<stop>>
+// <<     multi line command    >>
+// <<walk Character {$location_name} {1+1}>>
+// <<iffy>>
+
+// <<if true>>
+//     INDENT
+//     True
+//     <<if false>>
+//         INDENT
+//         nested!
+//         DEDENT
+//     <<endif>>
+//     DEDENT
+// <<elseif false>>
+//     INDENT
+//     Whoa!
+//     DEDENT
+// <<elseif true>>
+//     INDENT
+//     Double whoa!
+//     DEDENT
+// <<else>>
+//     INDENT
+//     ah, nice
+//     DEDENT
+// <<endif>>
+
+// <<if foo() and bar("1") and bas(1,2,3)>> 
+//     functions!
+// <<endif>>
+
+// incredible
+// -> wow #line:123 
+//     INDENT
+//     astonishing
+//     // <<if true>>
+//     //     INDENT
+//     //     or this
+//     //     DEDENT
+//     // <<endif>>
+//     DEDENT
+// -> gosh
+//     INDENT
+//     fantastic
+//     -> it's nested!
+//         INDENT
+//         wow!
+//         <<but can you do this>>
+        
+//         DEDENT
+
+//     DEDENT
+
+// [[Jump]]
+// [[Node Description|NodeName]]
+// [[Good thing I have {$gold} in my pocket!|GotTheMoney]]
+===
