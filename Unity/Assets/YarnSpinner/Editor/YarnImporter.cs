@@ -29,7 +29,15 @@ public class YarnImporter : ScriptedImporter
 
     private void OnValidate() {
         if (baseLanguageID == null) {
-            baseLanguageID = CultureInfo.CurrentCulture.Name;
+            // If the user has added project wide text languages in the settings 
+            // dialogue, we default to the first text language as base language
+            if (ProjectSettings.TextProjectLanguages.Count > 0) {
+                baseLanguageID = ProjectSettings.TextProjectLanguages[0];
+            // Otherwrise use system's language as base language
+            } else {
+                baseLanguageID = CultureInfo.CurrentCulture.Name;
+
+            }
         }
     }
 
@@ -140,7 +148,7 @@ public class YarnImporter : ScriptedImporter
                     stringIDs = lines.Select(l => l.id).ToArray();
 
                     var voiceOversList = voiceOvers.ToList();
-                    // Init voiceovers by writing all linetags of this yarn program for every available translation
+                    // Init voice overs by writing all linetags of this yarn program for every available translation
                     foreach (var textEntry in stringIDs) {
                         if (voiceOversList.Find(element => element.linetag == textEntry) == null) {
                             voiceOversList.Add(new LinetagToLanguage(textEntry));
@@ -148,6 +156,9 @@ public class YarnImporter : ScriptedImporter
 
                         var languageToAudioclipList = voiceOversList.Find(element => element.linetag == textEntry).languageToAudioclip.ToList();
                         foreach (var localization in localizations) {
+                            if (!ProjectSettings.AudioProjectLanguages.Contains(localization.languageName)) {
+                                continue;
+                            }
 
                             if (languageToAudioclipList.Find(element => element.language == localization.languageName) == null) {
                                 languageToAudioclipList.Add(new LanguageToAudioclip(localization.languageName));
