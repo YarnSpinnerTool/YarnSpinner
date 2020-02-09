@@ -1,4 +1,4 @@
-﻿/*
+/*
 
 The MIT License (MIT)
 
@@ -109,6 +109,36 @@ namespace Yarn.Unity
         [SerializeField] StringUnityEvent onNodeComplete;
 #pragma warning restore 0649
 
+        /// <summary>
+        /// Event sending a voiceover audio clip matching accociated with the currently run linetag,
+        /// an action to call when voiceover playback started successfully and 
+        /// an action to call when voiceover playback finished successfully.
+        /// </summary>
+        [System.Serializable]
+        public class AudioClipUnityEvent : UnityEngine.Events.UnityEvent<AudioClip, System.Action, System.Action> { }
+
+        /// <summary>
+        /// Is called when a dialogue line is run and a matching entry in voiceovers was found
+        /// </summary>
+#pragma warning disable 0649
+        [SerializeField] AudioClipUnityEvent onLineStartUnityAudio;
+#pragma warning restore 0649
+
+        /// <summary>
+        /// Event sending the current linetag as string for processing in external applications like audio middlewares,
+        /// an action to call when the linetag was successfully resolved and voiceover playback started and
+        /// an action to call when the voiceover playback finished.
+        /// </summary>
+        [System.Serializable]
+        public class MiddlewareStringUnityEvent : UnityEngine.Events.UnityEvent<string, System.Action, System.Action> { }
+
+        /// <summary>
+        /// Is called when a dialogue line is run
+        /// </summary>
+#pragma warning disable 0649
+        [SerializeField] MiddlewareStringUnityEvent onLineStartAudioMiddleware;
+#pragma warning restore 0649
+
         // A flag used to note when we call into a blocking command
         // handler, but it calls its complete handler immediately -
         // _before_ the Dialogue is told to pause. This out-of-order
@@ -158,7 +188,9 @@ namespace Yarn.Unity
                         AddVoiceOvers(yarnScript.voiceOvers);
                     }
 
-                    _continue = this.ContinueDialogue;                    
+                    _continue = this.ContinueDialogue;
+                    _onVoiceoverTriggeredSuccessfully = dialogueUI.VoiceoverStartedSuccessfully;
+                    _onVoiceoverFinish = dialogueUI.VoiceoverFinished;
 
                     _selectAction = this.SelectedOption;
         
@@ -306,7 +338,19 @@ namespace Yarn.Unity
         /// Forward the line to the dialogue UI.
         private Dialogue.HandlerExecutionType HandleLine(Line line)
         {
-            
+            // Only resolve linetag to audiofile if there is a receiver for it
+            if (onLineStartUnityAudio.GetPersistentEventCount() > 0) {
+                if (voiceOvers.ContainsKey(line.ID)) {
+                    onLineStartUnityAudio?.Invoke(voiceOvers[line.ID], _onVoiceoverTriggeredSuccessfully, _onVoiceoverFinish);
+                } else {
+                    Debug.Log("No voice over for audio language found.", gameObject);
+                }
+            }
+
+            // Only run if there is a receiver interested in the linetag (e.g. audio middleware)
+            if (onLineStartAudioMiddleware.GetPersistentEventCount() > 0) {
+                onLineStartAudioMiddleware?.Invoke(line.ID.Remove(0, 5), _onVoiceoverTriggeredSuccessfully, _onVoiceoverFinish);
+            }
 
             return this.dialogueUI.RunLine (line, this, _continue);
         }
@@ -701,7 +745,7 @@ namespace Yarn.Unity
         public void RegisterFunction(string name, int parameterCount, Function implementation) {
             dialogue.library.RegisterFunction(name, parameterCount, implementation);
         }
-
+        
         string ILineLocalisationProvider.GetLocalisedTextForLine(Line line) {
             if (strings.TryGetValue(line.ID, out var result)) {
                 return result;
@@ -768,7 +812,10 @@ namespace Yarn.Unity
         /// The conversation has ended.
         public virtual void DialogueComplete () {
             // Default implementation does nothing.            
-        }        
+        }
+
+        public abstract void VoiceoverStartedSuccessfully();
+        public abstract void VoiceoverFinished();
     }
 
     /// Scripts that can act as a variable storage should subclass this

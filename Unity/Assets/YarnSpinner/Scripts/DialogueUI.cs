@@ -1,4 +1,4 @@
-﻿/*
+/*
 
 The MIT License (MIT)
 
@@ -29,7 +29,6 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Text;
 using System.Collections.Generic;
-using System;
 
 namespace Yarn.Unity {
     /// Displays dialogue lines to the player, and sends
@@ -59,10 +58,12 @@ namespace Yarn.Unity {
         // option. Externally provided by the DialogueRunner.
         private System.Action<int> currentOptionSelectionHandler;
 
+        private bool waitingForVoiceoverFinish = false;
+
         // When true, the DialogueRunner is waiting for the user to press
         // one of the option buttons.
-        private bool waitingForOptionSelection = false;    
-         
+        private bool waitingForOptionSelection = false;     
+
         public UnityEngine.Events.UnityEvent onDialogueStart;
 
         public UnityEngine.Events.UnityEvent onDialogueEnd;  
@@ -76,43 +77,6 @@ namespace Yarn.Unity {
         public UnityEngine.Events.UnityEvent onOptionsEnd;
 
         public DialogueRunner.StringUnityEvent onCommand;
-
-        public enum LineAudioType {
-            NoAudio,
-            UnityAudioSource,
-            Middleware
-        }
-
-        public LineAudioType lineAudioType;
-
-        /// <summary>
-        /// Event sending the current linetag as string for processing in external applications like audio middlewares,
-        /// an action to call when the linetag was successfully resolved and voiceover playback started and
-        /// an action to call when the voiceover playback finished.
-        /// </summary>
-        [System.Serializable]
-        public class MiddlewareStringUnityEvent : UnityEngine.Events.UnityEvent<string, System.Action, System.Action> { }
-
-        /// <summary>
-        /// Is called when a dialogue line is run
-        /// </summary>
-#pragma warning disable 0649
-        [SerializeField] MiddlewareStringUnityEvent onLineStartAudioMiddleware;
-#pragma warning restore 0649
-
-        /// <summary>
-        /// Is called when a dialogue line is interrupted
-        /// </summary>
-#pragma warning disable 0649
-        [SerializeField] DialogueRunner.StringUnityEvent onLineCancelAudioMiddleware;
-#pragma warning restore 0649
-
-        private System.Action audioMiddlewareReportedPlaybackStart;
-        private System.Action audioMiddlewareReportedPlaybackEnd;
-        public bool IsLineAudioPlaying {get; private set;}
-        private AudioSource lineAudioSource;
-
-        public bool autoAdvanceAfterAudioComplete = true;
         
         void Awake ()
         {
@@ -123,9 +87,6 @@ namespace Yarn.Unity {
             foreach (var button in optionButtons) {
                 button.gameObject.SetActive (false);
             }
-
-            audioMiddlewareReportedPlaybackEnd = LineAudioBeganPlayback;
-            audioMiddlewareReportedPlaybackEnd = LineAudioCompletedPlayback;
         }
 
         public override Dialogue.HandlerExecutionType RunLine (Yarn.Line line, ILineLocalisationProvider localisation, System.Action onComplete)
@@ -140,16 +101,8 @@ namespace Yarn.Unity {
         private IEnumerator DoRunLine(Yarn.Line line, ILineLocalisationProvider localisationProvider, System.Action onComplete) {
             onLineStart?.Invoke();
 
-            // Clear a bunch of state in preparation for delivering this line
             userRequestedNextLine = false;
-            IsLineAudioPlaying = false;
-
-            // Tracks whether we have attempted to play audio for a line.
-            // (If we aren't playing audio, or if we're playing via Unity
-            // audio and didn't find an AudioClip for it, this will be
-            // false.)
-            bool requestedAudioPlayback = false;
-
+            
             // The final text we'll be showing for this line.
             string text = localisationProvider.GetLocalisedTextForLine(line);
 
@@ -157,32 +110,7 @@ namespace Yarn.Unity {
                 Debug.LogWarning($"Line {line.ID} doesn't have any localised text.");
                 text = line.ID;
             }
-            
-            // Attempt to start audio playback for this line
-            if (lineAudioType == LineAudioType.UnityAudioSource) {
 
-                // Find the audio clip for this line and play it via an
-                // AudioSource
-
-                var audioClip = localisationProvider.GetLocalisedAudioClipForLine(line);
-
-                if (audioClip == null) {
-                    Debug.Log($"No voice over for line {line.ID} found for current localisation.", gameObject);
-                } else {                    
-                    requestedAudioPlayback = true;
-                    StartCoroutine(DoPlayLineAudio(audioClip));
-                }     
-            } else if (lineAudioType == LineAudioType.Middleware) {
-                
-                // Delegate the audio playback to some middleware. It will
-                // call the two delegates we provide to indicate start and
-                // end.
-                requestedAudioPlayback = true;
-                onLineStartAudioMiddleware.Invoke(line.ID, 
-                    audioMiddlewareReportedPlaybackStart, 
-                    audioMiddlewareReportedPlaybackEnd);                
-            }
-            
             if (textSpeed > 0.0f) {
                 // Display the line one character at a time
                 var stringBuilder = new StringBuilder ();
@@ -203,51 +131,21 @@ namespace Yarn.Unity {
                 onLineUpdate?.Invoke(text);
             }
 
-            // We're now waiting for the line to finish. This can happen in
-            // one of two ways: the audio can end, or the user can manually
-            // signal to move on. We only move to the next audio line when:
-            // 1. we successfully told something to start playing audio,
-            //    and
-            // 2. autoAdvanceAfterAudioComplete is true
+            // Wait for voice over to finish
+            while (waitingForVoiceoverFinish) {
+                yield return null;
+            }
+
+            // We're now waiting for the player to move on to the next line
             userRequestedNextLine = false;
 
             // Indicate to the rest of the game that the line has finished being delivered
             onLineFinishDisplaying?.Invoke();
 
-            if (autoAdvanceAfterAudioComplete && requestedAudioPlayback) {
-                // We have indicated that we want to wait until the audio
-                // has finished for this line, and then tell the dialogue
-                // system that we're ready to move on.
-                //
-                // We still want the user to be able to interrupt the line
-                // and skip on to the dialogue, so we wait for either audio
-                // to stop playing or for the user to request the next line.
-                while (IsLineAudioPlaying == true && userRequestedNextLine == false) {
-                    yield return null;
-                }
-
-                if (IsLineAudioPlaying == true && userRequestedNextLine == true) {
-                    // The user requested the next line, but audio is still
-                    // playing. We need to cancel the audio. The Unity
-                    // audio source will handle this for us, but if we
-                    // delegated the playback to middleware, we need to
-                    // signal it.
-                    if (lineAudioType == LineAudioType.Middleware) {
-                        onLineCancelAudioMiddleware.Invoke(line.ID);
-                    }
-                }
-                
-                // Clear the audio is playing flag in case this was an interruption
-                IsLineAudioPlaying = false;
-            } else {
-                // We're not using the duration of the audio to control how
-                // long this line runs for. We'll need to wait for the
-                // 'user requested next line' signal instead.
-                while (userRequestedNextLine == false) {
-                    yield return null;
-                }
+            while (userRequestedNextLine == false) {
+                yield return null;
             }
-            
+
             // Avoid skipping lines if textSpeed == 0
             yield return new WaitForEndOfFrame();
 
@@ -366,45 +264,27 @@ namespace Yarn.Unity {
             currentOptionSelectionHandler?.Invoke(index);
         }
 
-        private IEnumerator DoPlayLineAudio(AudioClip clip) {
-            if (lineAudioSource == null) {
-                var source = GetComponent<AudioSource>();
-                if (source == null) {
-                    // Create a new 2D sound source
-                    source = gameObject.AddComponent<AudioSource>();
-                    source.spatialBlend = 0f;
-                }
-                lineAudioSource = source;
+        public override void VoiceoverFinished() {
+            if (!waitingForVoiceoverFinish) {
+                Debug.LogWarning($"{nameof(VoiceoverFinished)} was called, " +
+                    $"but {nameof(DialogueRunner)} wasn't waiting for a voice " +
+                    "over to finish.");
+                return;
             }
 
-            if (lineAudioSource.isPlaying) {
-                lineAudioSource.Stop();                
+            waitingForVoiceoverFinish = false;
+        }
+
+        public override void VoiceoverStartedSuccessfully() {
+            if (waitingForVoiceoverFinish) {
+                Debug.LogWarning($"{nameof(VoiceoverStartedSuccessfully)} was called, " +
+                    $"but {nameof(DialogueRunner)} was already waiting for a voice " +
+                    "over to finish.");
+                return;
             }
-
-            lineAudioSource.PlayOneShot(clip);
-
-            if (lineAudioSource.isPlaying) {
-                LineAudioBeganPlayback();
-
-                while (lineAudioSource.isPlaying) {
-                    yield return null;
-                }
-
-                LineAudioCompletedPlayback();
-            }          
-            
-
+            waitingForVoiceoverFinish = true;
         }
 
-        private void LineAudioBeganPlayback()
-        {
-            IsLineAudioPlaying = true;
-        }
-
-        private void LineAudioCompletedPlayback()
-        {
-            IsLineAudioPlaying = false;
-        }
     }
 
 }

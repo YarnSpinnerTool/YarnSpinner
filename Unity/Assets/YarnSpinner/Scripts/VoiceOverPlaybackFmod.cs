@@ -77,10 +77,6 @@ class VoiceOverPlaybackFmod : MonoBehaviour {
         dialogueInstance.release();
     }
 
-    // TODO: There's currently no way for other parts of the system to tell
-    // this object that audio has been interrupted (e.g due to the user
-    // requesting to go to the next line in the middle of audio playback.)
-
     [AOT.MonoPInvokeCallback(typeof(FMOD.Studio.EVENT_CALLBACK))]
     static FMOD.RESULT DialogueEventCallback(FMOD.Studio.EVENT_CALLBACK_TYPE type, FMOD.Studio.EventInstance instance, IntPtr parameterPtr) {
         // Retrieve the user data
