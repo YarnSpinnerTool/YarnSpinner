@@ -1,9 +1,10 @@
 fileFormatVersion: 2
 guid: 8b6ae1e8d32e840f0b3fd0b033e52253
 ScriptedImporter:
-  internalIDToNameTable: []
+  fileIDToRecycleName:
+    4900000: Strings
+    11400000: Program
   externalObjects: {}
-  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -35,8 +36,7 @@ ScriptedImporter:
     ===
 
     ^^^'
-  baseLanguage: {fileID: 7128917941130120860, guid: 8b6ae1e8d32e840f0b3fd0b033e52253,
-    type: 3}
+  baseLanguage: {fileID: 4900000, guid: 8b6ae1e8d32e840f0b3fd0b033e52253, type: 3}
   localizations:
   - languageName: de
     text: {fileID: 4900000, guid: 816b6de293b849a4fad13d5caca52524, type: 3}
