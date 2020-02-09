@@ -64,7 +64,11 @@ class VoiceOverPlaybackFmod : MonoBehaviour {
             throw;
         }
 
-        _voiceOverDuration.Add(dialogueInstance, voiceOverDuration);
+        if (!_voiceOverDuration.ContainsKey(dialogueInstance)) {
+            _voiceOverDuration.Add(dialogueInstance, voiceOverDuration);
+        } else {
+            Debug.LogWarning("FMOD: Dialogue event instance was already registered. Will not wait for this voice over line to finish.");
+        }
 
         // Pin the key string in memory and pass a pointer through the user data
         GCHandle stringHandle = GCHandle.Alloc(currentLine.ID.Remove(0, 5), GCHandleType.Pinned);
@@ -128,7 +132,11 @@ class VoiceOverPlaybackFmod : MonoBehaviour {
                 }
                 break;
             case FMOD.Studio.EVENT_CALLBACK_TYPE.DESTROYED:
-                _voiceOverDuration.Remove(instance);
+                if (_voiceOverDuration.ContainsKey(instance)) {
+                    _voiceOverDuration.Remove(instance);
+                } else {
+                    Debug.Log("FMOD: Cannot remove current playback event instance because it wasn't registered properly.");
+                }
                 // Now the event has been destroyed, unpin the string memory so it can be garbage collected
                 stringHandle.Free();
                 break;
@@ -144,7 +152,11 @@ class VoiceOverPlaybackFmod : MonoBehaviour {
         var soundLength = GetSoundLength(dialogueSound);
         // Only tell the Dialogue UI to wait if we actually got a sound length
         if (soundLength >= 0) {
-            _voiceOverDuration[instance](soundLength);
+            if (_voiceOverDuration.ContainsKey(instance)) {
+                _voiceOverDuration[instance](soundLength);
+            } else {
+                Debug.Log("FMOD: Current playback event instance unknown. Will not wait for this line to finish.");
+            }
         }
     }
 

@@ -290,7 +290,11 @@ namespace Yarn.Unity {
         }
 
         public override void VoiceOverDuration(float duration) {
-            voiceOverDuration = duration;
+            if (duration >= 0 && duration <= float.MaxValue) {
+                voiceOverDuration = duration;
+            } else {
+                Debug.LogWarning("YarnSpinner: Not waiting for voice over to finish because duration is :" + duration + ".", gameObject);
+            }
         }
 
     }
