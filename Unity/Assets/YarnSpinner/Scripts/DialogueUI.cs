@@ -1,4 +1,4 @@
-﻿/*
+/*
 
 The MIT License (MIT)
 
@@ -87,21 +87,24 @@ namespace Yarn.Unity {
             }
         }
 
-        public override Dialogue.HandlerExecutionType RunLine (Yarn.Line line, IDictionary<string,string> strings, System.Action onComplete)
+        public override Dialogue.HandlerExecutionType RunLine (Yarn.Line line, ILineLocalisationProvider localisation, System.Action onComplete)
         {
             // Start displaying the line; it will call onComplete later
             // which will tell the dialogue to continue
-            StartCoroutine(DoRunLine(line, strings, onComplete));
+            StartCoroutine(DoRunLine(line, localisation, onComplete));
             return Dialogue.HandlerExecutionType.PauseExecution;
         }
 
         /// Show a line of dialogue, gradually        
-        private IEnumerator DoRunLine(Yarn.Line line, IDictionary<string,string> strings, System.Action onComplete) {
+        private IEnumerator DoRunLine(Yarn.Line line, ILineLocalisationProvider localisationProvider, System.Action onComplete) {
             onLineStart?.Invoke();
 
             userRequestedNextLine = false;
             
-            if (strings.TryGetValue(line.ID, out var text) == false) {
+            // The final text we'll be showing for this line.
+            string text = localisationProvider.GetLocalisedTextForLine(line);
+
+            if (text == null) {
                 Debug.LogWarning($"Line {line.ID} doesn't have any localised text.");
                 text = line.ID;
             }
@@ -146,13 +149,13 @@ namespace Yarn.Unity {
 
         }
 
-        public override void RunOptions (Yarn.OptionSet optionsCollection, IDictionary<string,string> strings, System.Action<int> selectOption) {
-            StartCoroutine(DoRunOptions(optionsCollection, strings, selectOption));
+        public override void RunOptions (Yarn.OptionSet optionsCollection, ILineLocalisationProvider localisationProvider, System.Action<int> selectOption) {
+            StartCoroutine(DoRunOptions(optionsCollection, localisationProvider, selectOption));
         }
 
         /// Show a list of options, and wait for the player to make a
         /// selection.
-        public  IEnumerator DoRunOptions (Yarn.OptionSet optionsCollection, IDictionary<string,string> strings, System.Action<int> selectOption)
+        public  IEnumerator DoRunOptions (Yarn.OptionSet optionsCollection, ILineLocalisationProvider localisationProvider, System.Action<int> selectOption)
         {
             // Do a little bit of safety checking
             if (optionsCollection.Options.Length > optionButtons.Count) {
@@ -174,7 +177,9 @@ namespace Yarn.Unity {
                 optionButtons [i].onClick.RemoveAllListeners();
                 optionButtons [i].onClick.AddListener(() => SelectOption(optionString.ID));
 
-                if (strings.TryGetValue(optionString.Line.ID, out var optionText) == false) {
+                var optionText = localisationProvider.GetLocalisedTextForLine(optionString.Line);
+
+                if (optionText == null) {
                     Debug.LogWarning($"Option {optionString.Line.ID} doesn't have any localised text");
                     optionText = optionString.Line.ID;
                 }

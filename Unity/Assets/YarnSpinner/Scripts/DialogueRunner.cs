@@ -1,4 +1,4 @@
-﻿/*
+/*
 
 The MIT License (MIT)
 
@@ -36,11 +36,16 @@ using System;
 namespace Yarn.Unity
 {
 
+
+    public interface ILineLocalisationProvider {
+        string GetLocalisedTextForLine(Yarn.Line line);        
+    }
+
     /// DialogueRunners act as the interface between your game and
     /// YarnSpinner.
     /** Make our menu item slightly nicer looking */
     [AddComponentMenu("Scripts/Yarn Spinner/Dialogue Runner")]
-    public class DialogueRunner : MonoBehaviour
+    public class DialogueRunner : MonoBehaviour, ILineLocalisationProvider
     {
         /// The source files to load the conversation from
         public YarnProgram[] yarnScripts;
@@ -183,9 +188,8 @@ namespace Yarn.Unity
         }
 
         private void HandleOptions(OptionSet options)
-        {
-            
-            this.dialogueUI.RunOptions(options, strings, _selectAction);
+        {            
+            this.dialogueUI.RunOptions(options, this, _selectAction);
         }
 
         private Dialogue.HandlerExecutionType HandleCommand(Command command)
@@ -288,7 +292,7 @@ namespace Yarn.Unity
         /// Forward the line to the dialogue UI.
         private Dialogue.HandlerExecutionType HandleLine(Line line)
         {
-            return this.dialogueUI.RunLine (line, strings, _continue);            
+            return this.dialogueUI.RunLine (line, this, _continue);
         }
 
         /// Adds a command handler. Yarn Spinner will continue execution after this handler is called.
@@ -672,6 +676,14 @@ namespace Yarn.Unity
             dialogue.library.RegisterFunction(name, parameterCount, implementation);
         }
         
+        string ILineLocalisationProvider.GetLocalisedTextForLine(Line line) {
+            if (strings.TryGetValue(line.ID, out var result)) {
+                return result;
+            } else {
+                return null;
+            }
+        }
+
     }
 
     /// them to Yarn.
@@ -701,12 +713,14 @@ namespace Yarn.Unity
         }
 
         /// Display a line.
-        public abstract Dialogue.HandlerExecutionType RunLine (Yarn.Line line, IDictionary<string, string> strings, System.Action onLineComplete);
+        public abstract Dialogue.HandlerExecutionType RunLine(Yarn.Line line, 
+                                        ILineLocalisationProvider localisationProvider, 
+                                        System.Action onLineComplete);
 
         /// Display the options, and call the optionChooser when done.
         public abstract void RunOptions (Yarn.OptionSet optionSet, 
-                                        IDictionary<string, string> strings,
-                                                System.Action<int> onOptionSelected);
+                                        ILineLocalisationProvider localisationProvider,
+                                        System.Action<int> onOptionSelected);
 
         /// Perform some game-specific command.
         public abstract Dialogue.HandlerExecutionType RunCommand (Yarn.Command command, System.Action onCommandComplete);
