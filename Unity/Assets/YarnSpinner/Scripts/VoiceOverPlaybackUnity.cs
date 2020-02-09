@@ -23,30 +23,19 @@ public class VoiceOverPlaybackUnity : MonoBehaviour
     /// <param name="audioClip">The voiceover asset file</param>
     /// <param name="onVoiceoverTriggeredSuccessfully">Action to call if playback started successfully</param>
     /// <param name="onVoiceoverFinish">Action to call when playback finished</param>
-    public void PlayVoiceOver (AudioClip audioClip, System.Action onVoiceoverTriggeredSuccessfully, System.Action onVoiceoverFinish) {
+    public void PlayVoiceOver (AudioClip audioClip, System.Action<float> voiceOverDuration) {
         if (!audioClip) {
             Debug.Log("Playing voice over failed since the given AudioClip was null.", gameObject);
             return;
         }
         _audioSource.PlayOneShot(audioClip);
 
-        if (_audioSource.isPlaying) {
-            onVoiceoverTriggeredSuccessfully?.Invoke();
-            StopAllCoroutines();
-            StartCoroutine(CallVoiceoverFinish(onVoiceoverFinish));
-        }
-    }
+        var _audioSourcePlaybackSpeed = Mathf.Abs(_audioSource.pitch);
+        var remainingTimeForVoiceOver = audioClip.length / (_audioSourcePlaybackSpeed > 0 ? _audioSourcePlaybackSpeed : Mathf.Epsilon);
+        remainingTimeForVoiceOver = Mathf.Clamp(remainingTimeForVoiceOver, 0, float.MaxValue /*Never show this to Hideo Kojima or he'll use this!*/);
 
-    /// <summary>
-    /// Checks the AudioSource playback status and calls onVoiceFinish when finished
-    /// </summary>
-    /// <param name="onVoiceoverFinish"></param>
-    /// <returns></returns>
-    private IEnumerator CallVoiceoverFinish (System.Action onVoiceoverFinish) {
-        while (_audioSource.isPlaying) {
-            yield return null;
-        }
+        voiceOverDuration?.Invoke(remainingTimeForVoiceOver);
 
-        onVoiceoverFinish?.Invoke();
+        return;
     }
 }

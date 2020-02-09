@@ -75,6 +75,8 @@ namespace Yarn.Unity
         /// </summary>
         private System.Action _onVoiceoverTriggeredSuccessfully;
 
+        private Action<float> _onVoiceOverDuration;
+
         /// <summary>
         /// Called when the voiceover finished.
         /// </summary>
@@ -115,7 +117,7 @@ namespace Yarn.Unity
         /// an action to call when voiceover playback finished successfully.
         /// </summary>
         [System.Serializable]
-        public class AudioClipUnityEvent : UnityEngine.Events.UnityEvent<AudioClip, System.Action, System.Action> { }
+        public class AudioClipUnityEvent : UnityEngine.Events.UnityEvent<AudioClip, Action<float>> { }
 
         /// <summary>
         /// Is called when a dialogue line is run and a matching entry in voiceovers was found
@@ -190,6 +192,7 @@ namespace Yarn.Unity
 
                     _continue = this.ContinueDialogue;
                     _onVoiceoverTriggeredSuccessfully = dialogueUI.VoiceoverStartedSuccessfully;
+                    _onVoiceOverDuration = dialogueUI.VoiceOverDuration;
                     _onVoiceoverFinish = dialogueUI.VoiceoverFinished;
 
                     _selectAction = this.SelectedOption;
@@ -341,7 +344,7 @@ namespace Yarn.Unity
             // Only resolve linetag to audiofile if there is a receiver for it
             if (onLineStartUnityAudio.GetPersistentEventCount() > 0) {
                 if (voiceOvers.ContainsKey(line.ID)) {
-                    onLineStartUnityAudio?.Invoke(voiceOvers[line.ID], _onVoiceoverTriggeredSuccessfully, _onVoiceoverFinish);
+                    onLineStartUnityAudio?.Invoke(voiceOvers[line.ID], _onVoiceOverDuration);
                 } else {
                     Debug.Log("No voice over for audio language found.", gameObject);
                 }
@@ -816,6 +819,7 @@ namespace Yarn.Unity
 
         public abstract void VoiceoverStartedSuccessfully();
         public abstract void VoiceoverFinished();
+        public abstract void VoiceOverDuration(float duration);
     }
 
     /// Scripts that can act as a variable storage should subclass this
