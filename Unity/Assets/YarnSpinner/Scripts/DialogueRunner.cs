@@ -112,33 +112,18 @@ namespace Yarn.Unity
 #pragma warning restore 0649
 
         /// <summary>
-        /// Event sending a voiceover audio clip matching accociated with the currently run linetag,
-        /// an action to call when voiceover playback started successfully and 
-        /// an action to call when voiceover playback finished successfully.
+        /// Event sending the current Line, the accociated a voiceover audio,
+        /// and an action to call should the Dialogue UI wait for the voice 
+        /// over to finish.
         /// </summary>
         [System.Serializable]
-        public class AudioClipUnityEvent : UnityEngine.Events.UnityEvent<AudioClip, Action<float>> { }
+        public class VoiceOverUnityEvent : UnityEngine.Events.UnityEvent<Line, AudioClip, Action<float>> { }
 
         /// <summary>
         /// Is called when a dialogue line is run and a matching entry in voiceovers was found
         /// </summary>
 #pragma warning disable 0649
-        [SerializeField] AudioClipUnityEvent onLineStartUnityAudio;
-#pragma warning restore 0649
-
-        /// <summary>
-        /// Event sending the current linetag as string for processing in external applications like audio middlewares,
-        /// an action to call when the linetag was successfully resolved and voiceover playback started and
-        /// an action to call when the voiceover playback finished.
-        /// </summary>
-        [System.Serializable]
-        public class MiddlewareStringUnityEvent : UnityEngine.Events.UnityEvent<string, System.Action, System.Action> { }
-
-        /// <summary>
-        /// Is called when a dialogue line is run
-        /// </summary>
-#pragma warning disable 0649
-        [SerializeField] MiddlewareStringUnityEvent onLineStartAudioMiddleware;
+        [SerializeField] VoiceOverUnityEvent onLineStartVoiceOver;
 #pragma warning restore 0649
 
         // A flag used to note when we call into a blocking command
@@ -342,17 +327,12 @@ namespace Yarn.Unity
         private Dialogue.HandlerExecutionType HandleLine(Line line)
         {
             // Only resolve linetag to audiofile if there is a receiver for it
-            if (onLineStartUnityAudio.GetPersistentEventCount() > 0) {
+            if (onLineStartVoiceOver.GetPersistentEventCount() > 0) {
                 if (voiceOvers.ContainsKey(line.ID)) {
-                    onLineStartUnityAudio?.Invoke(voiceOvers[line.ID], _onVoiceOverDuration);
+                    onLineStartVoiceOver?.Invoke(line, voiceOvers[line.ID], _onVoiceOverDuration);
                 } else {
-                    Debug.Log("No voice over for audio language found.", gameObject);
+                    onLineStartVoiceOver?.Invoke(line, null, _onVoiceOverDuration);
                 }
-            }
-
-            // Only run if there is a receiver interested in the linetag (e.g. audio middleware)
-            if (onLineStartAudioMiddleware.GetPersistentEventCount() > 0) {
-                onLineStartAudioMiddleware?.Invoke(line.ID.Remove(0, 5), _onVoiceoverTriggeredSuccessfully, _onVoiceoverFinish);
             }
 
             return this.dialogueUI.RunLine (line, this, _continue);

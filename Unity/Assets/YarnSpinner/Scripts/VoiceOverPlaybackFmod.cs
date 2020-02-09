@@ -27,9 +27,10 @@
 //--------------------------------------------------------------------
 #if FMOD_2_OR_NEWER
 using System;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Yarn;
 
 class VoiceOverPlaybackFmod : MonoBehaviour {
     FMOD.Studio.EVENT_CALLBACK dialogueCallback;
@@ -39,16 +40,14 @@ class VoiceOverPlaybackFmod : MonoBehaviour {
     /// </summary>
     [FMODUnity.EventRef]
     public string fmodEvent = "";
-    
-    /// <summary>
-    /// We call this action when we voiceover file started successfully
-    /// </summary>
-    private static System.Action _onVoiceoverTriggeredSuccessfully;
 
     /// <summary>
-    /// We call this when the voiceover file playback finished
+    /// Stores the Dialogue UI action to call for every instance created. Necessary since the sound length is retrieved 
+    /// in a static callback from FMOD.
+    /// We call this if we found out the length of the current voice over clip and want the Dialogue UI to wait for 
+    /// that length.
     /// </summary>
-    private static System.Action _onVoiceoverFinish;
+    private static Dictionary<FMOD.Studio.EventInstance,System.Action<float>> _voiceOverDuration = new Dictionary<FMOD.Studio.EventInstance, Action<float>>();
 
     void Start() {
         // Explicitly create the delegate object and assign it to a member so it doesn't get freed
@@ -56,20 +55,19 @@ class VoiceOverPlaybackFmod : MonoBehaviour {
         dialogueCallback = new FMOD.Studio.EVENT_CALLBACK(DialogueEventCallback);
     }
 
-    public void PlayDialogue(string key, System.Action onVoiceoverTriggeredSuccessfully, System.Action onVoiceoverFinish) {
+    public void PlayDialogue(Line currentLine, AudioClip audioClip, System.Action<float> voiceOverDuration) {
         FMOD.Studio.EventInstance dialogueInstance;
         try {
             dialogueInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEvent);
         } catch (Exception) {
-            _onVoiceoverFinish?.Invoke();
+            Debug.LogWarning("FMOD: Voice over playback failed.", gameObject);
             throw;
         }
 
-        _onVoiceoverTriggeredSuccessfully = onVoiceoverTriggeredSuccessfully;
-        _onVoiceoverFinish = onVoiceoverFinish;
+        _voiceOverDuration.Add(dialogueInstance, voiceOverDuration);
 
         // Pin the key string in memory and pass a pointer through the user data
-        GCHandle stringHandle = GCHandle.Alloc(key, GCHandleType.Pinned);
+        GCHandle stringHandle = GCHandle.Alloc(currentLine.ID.Remove(0, 5), GCHandleType.Pinned);
         dialogueInstance.setUserData(GCHandle.ToIntPtr(stringHandle));
 
         dialogueInstance.setCallback(dialogueCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.ALL);
@@ -93,13 +91,14 @@ class VoiceOverPlaybackFmod : MonoBehaviour {
 
         switch (type) {
             case FMOD.Studio.EVENT_CALLBACK_TYPE.CREATE_PROGRAMMER_SOUND: {
-                    FMOD.MODE soundMode = FMOD.MODE.LOOP_NORMAL | FMOD.MODE.CREATECOMPRESSEDSAMPLE | FMOD.MODE.NONBLOCKING;
+                    FMOD.MODE soundMode = FMOD.MODE.DEFAULT | FMOD.MODE.CREATESTREAM;
                     var parameter = (FMOD.Studio.PROGRAMMER_SOUND_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.PROGRAMMER_SOUND_PROPERTIES));
 
                     if (key.Contains(".")) {
                         FMOD.Sound dialogueSound;
                         var soundResult = FMODUnity.RuntimeManager.CoreSystem.createSound(Application.streamingAssetsPath + "/" + key, soundMode, out dialogueSound);
                         if (soundResult == FMOD.RESULT.OK) {
+                            CallVoiceOverDuration(dialogueSound, instance);
                             parameter.sound = dialogueSound.handle;
                             parameter.subsoundIndex = -1;
                             Marshal.StructureToPtr(parameter, parameterPtr, false);
@@ -113,10 +112,10 @@ class VoiceOverPlaybackFmod : MonoBehaviour {
                         FMOD.Sound dialogueSound;
                         var soundResult = FMODUnity.RuntimeManager.CoreSystem.createSound(dialogueSoundInfo.name_or_data, soundMode | dialogueSoundInfo.mode, ref dialogueSoundInfo.exinfo, out dialogueSound);
                         if (soundResult == FMOD.RESULT.OK) {
+                            CallVoiceOverDuration(dialogueSound, instance);
                             parameter.sound = dialogueSound.handle;
                             parameter.subsoundIndex = dialogueSoundInfo.subsoundindex;
                             Marshal.StructureToPtr(parameter, parameterPtr, false);
-                            _onVoiceoverTriggeredSuccessfully?.Invoke();
                         }
                     }
                 }
@@ -125,16 +124,49 @@ class VoiceOverPlaybackFmod : MonoBehaviour {
                     var parameter = (FMOD.Studio.PROGRAMMER_SOUND_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.PROGRAMMER_SOUND_PROPERTIES));
                     var sound = new FMOD.Sound();
                     sound.handle = parameter.sound;
-                    _onVoiceoverFinish?.Invoke();
                     sound.release();
                 }
                 break;
             case FMOD.Studio.EVENT_CALLBACK_TYPE.DESTROYED:
+                _voiceOverDuration.Remove(instance);
                 // Now the event has been destroyed, unpin the string memory so it can be garbage collected
                 stringHandle.Free();
                 break;
         }
         return FMOD.RESULT.OK;
+    }
+
+    /// <summary>
+    /// Call the _voiceOverDuration action for this sound.
+    /// </summary>
+    /// <param name="dialogueSound">The sound for which we want to call _voiceOverDuration.</param>
+    private static void CallVoiceOverDuration(FMOD.Sound dialogueSound, FMOD.Studio.EventInstance instance) {
+        var soundLength = GetSoundLength(dialogueSound);
+        // Only tell the Dialogue UI to wait if we actually got a sound length
+        if (soundLength >= 0) {
+            _voiceOverDuration[instance](soundLength);
+        }
+    }
+
+    /// <summary>
+    /// Returns the length of a sound.
+    /// CAREFUL: you'll need to create the sound with 
+    /// FMOD.MODE = FMOD.MODE.DEFAULT | FMOD.MODE.CREATESTREAM;
+    /// Other modes could work but a lot will result in "ERR_NOTREADY".
+    /// </summary>
+    /// <param name="dialogueSound">The sound we want to get the length of.</param>
+    /// <returns></returns>
+    private static float GetSoundLength(FMOD.Sound dialogueSound) {
+        uint soundLength;
+        var lengthResult = dialogueSound.getLength(out soundLength, FMOD.TIMEUNIT.MS);
+        var soundLengthInSeconds = (float)soundLength / 1000f;
+        if (lengthResult == FMOD.RESULT.OK) {
+            //Debug.Log("Sound length is: " + soundLengthInSeconds + "s.");
+            return soundLengthInSeconds;
+        } else {
+            Debug.LogWarning(lengthResult.ToString());
+            return -1;
+        }
     }
 }
 #endif
