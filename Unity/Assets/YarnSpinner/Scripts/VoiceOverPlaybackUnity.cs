@@ -27,6 +27,10 @@ public class VoiceOverPlaybackUnity : MonoBehaviour
             Debug.Log("Playing voice over failed since the given AudioClip was null.", gameObject);
             return;
         }
+        if (_audioSource.isPlaying) {
+            // TODO: Do this without possible artifats
+            _audioSource.Stop();
+        }
         _audioSource.PlayOneShot(audioClip);
 
         var _audioSourcePlaybackSpeed = Mathf.Abs(_audioSource.pitch);
