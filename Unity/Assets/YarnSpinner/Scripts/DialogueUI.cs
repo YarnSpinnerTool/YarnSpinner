@@ -58,8 +58,6 @@ namespace Yarn.Unity {
         // option. Externally provided by the DialogueRunner.
         private System.Action<int> currentOptionSelectionHandler;
 
-        private bool waitingForVoiceoverFinish = false;
-
         private float voiceOverDuration = 0f;
 
         // When true, the DialogueRunner is waiting for the user to press
@@ -133,9 +131,6 @@ namespace Yarn.Unity {
                 // Display the entire line immediately if textSpeed <= 0
                 onLineUpdate?.Invoke(text);
             }
-
-            // Wait for voice over (external middleware like FMOD) to finish
-            yield return new WaitUntil(() => !waitingForVoiceoverFinish);
 
             // Wait for pre-calculated voice over duration (Unity audio system) to finish.
             yield return new WaitUntil(() => Time.time - startTime > voiceOverDuration);
@@ -266,27 +261,6 @@ namespace Yarn.Unity {
             }
             waitingForOptionSelection = false;
             currentOptionSelectionHandler?.Invoke(index);
-        }
-
-        public override void VoiceoverFinished() {
-            if (!waitingForVoiceoverFinish) {
-                Debug.LogWarning($"{nameof(VoiceoverFinished)} was called, " +
-                    $"but {nameof(DialogueRunner)} wasn't waiting for a voice " +
-                    "over to finish.");
-                return;
-            }
-
-            waitingForVoiceoverFinish = false;
-        }
-
-        public override void VoiceoverStartedSuccessfully() {
-            if (waitingForVoiceoverFinish) {
-                Debug.LogWarning($"{nameof(VoiceoverStartedSuccessfully)} was called, " +
-                    $"but {nameof(DialogueRunner)} was already waiting for a voice " +
-                    "over to finish.");
-                return;
-            }
-            waitingForVoiceoverFinish = true;
         }
 
         public override void VoiceOverDuration(float duration) {

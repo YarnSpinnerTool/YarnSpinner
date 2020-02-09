@@ -69,18 +69,8 @@ namespace Yarn.Unity
         public bool automaticCommands = true;
 
         private System.Action _continue;
-        
-        /// <summary>
-        /// Called if a voiceover started and makes the DialogUI wait for the finish
-        /// </summary>
-        private System.Action _onVoiceoverTriggeredSuccessfully;
 
         private Action<float> _onVoiceOverDuration;
-
-        /// <summary>
-        /// Called when the voiceover finished.
-        /// </summary>
-        private System.Action _onVoiceoverFinish;
 
         private System.Action<int> _selectAction;
 
@@ -176,9 +166,7 @@ namespace Yarn.Unity
                     }
 
                     _continue = this.ContinueDialogue;
-                    _onVoiceoverTriggeredSuccessfully = dialogueUI.VoiceoverStartedSuccessfully;
                     _onVoiceOverDuration = dialogueUI.VoiceOverDuration;
-                    _onVoiceoverFinish = dialogueUI.VoiceoverFinished;
 
                     _selectAction = this.SelectedOption;
         
@@ -797,8 +785,6 @@ namespace Yarn.Unity
             // Default implementation does nothing.            
         }
 
-        public abstract void VoiceoverStartedSuccessfully();
-        public abstract void VoiceoverFinished();
         public abstract void VoiceOverDuration(float duration);
     }
 
