@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Yarn Spinner for Unity now uses .asmdef files. Yarn Spinner's Unity code now compiles to a separate assembly.
   - **IMPORTANT:** if you're using asmdefs in your game's code, you will need to add a reference to YarnSpinner.Unity.
+- Yarn Spinner for Unity has been back-ported to Unity 2018.4 LTS. This is now the minimum required version of Unity; previously, it informally required 2019.2. (@Schroedingers-Cat)
 
 ### Changed
 
