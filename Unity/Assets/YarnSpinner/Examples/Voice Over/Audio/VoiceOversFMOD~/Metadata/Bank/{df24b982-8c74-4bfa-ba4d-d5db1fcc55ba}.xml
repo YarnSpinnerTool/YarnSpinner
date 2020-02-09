@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="Bank" id="{df24b982-8c74-4bfa-ba4d-d5db1fcc55ba}">
+		<property name="name">
+			<value>Master</value>
+		</property>
+		<property name="isMasterBank">
+			<value>true</value>
+		</property>
+		<relationship name="folder">
+			<destination>{b34d3d85-b4db-4b43-a2a2-a08ce203372d}</destination>
+		</relationship>
+		<relationship name="audioTable">
+			<destination>{ec29afbc-f515-4032-94f6-4b7f0c9c59a3}</destination>
+		</relationship>
+	</object>
+	<object class="AudioTable" id="{ec29afbc-f515-4032-94f6-4b7f0c9c59a3}">
+		<property name="name">
+			<value>Audio Table</value>
+		</property>
+		<property name="sourceDirectory">
+			<value>Assets/FMOD Audio Table Example</value>
+		</property>
+		<property name="isLocalized">
+			<value>true</value>
+		</property>
+	</object>
+</objects>
