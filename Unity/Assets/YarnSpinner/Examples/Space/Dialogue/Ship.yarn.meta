@@ -34,72 +34,96 @@ ScriptedImporter:
   - linetag: line:5837f2
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 4044464b3efc6d44c963d41dedd6df2c, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: d1ca6ee2065f253419c7965d712635cc, type: 3}
   - linetag: line:ship9
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 520b1454f77b1b3438e15b0ddae70a67, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 5cb11c66e0442634bba32b194b16055f, type: 3}
   - linetag: line:ship10
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: a8ca523895d0c634c9511a5abb9dea5e, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: bbf44e7a8dbe9c74da9802c5705b613d, type: 3}
   - linetag: line:ship11
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 56375221a80b95447864e260072eb813, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: f8ac10829878c184da12d1e550125eb2, type: 3}
   - linetag: line:ship12
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 790ab313eba2ec74a89e6a47facb9af2, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 7b8f384ea6122bf4c90b38bd65f56b6d, type: 3}
   - linetag: line:ship13
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 4e04b498cb892364aa496059bf288763, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 10e15d5dc43f59548ac14e5c30d16dda, type: 3}
   - linetag: line:ship1
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 99b30374c43f50d42925448d099dc4b7, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 26fab58a5315dca428880962a812a807, type: 3}
   - linetag: line:ship3
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: c70f2dc431510d940bf57ba5f08a85f6, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 2acfb0f4e4a2cb444af8e147d05aadd3, type: 3}
   - linetag: line:ship4
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 1108239bf8d04624dbf6ff7681a8a663, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 8ef90c8eee7f5964dbd376d850610a6b, type: 3}
   - linetag: line:ship5
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 700aa630d6a93344bb90e98811f18cf2, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: d50f246020ffd7247888c37b42456d26, type: 3}
   - linetag: line:ship6
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: a36af5477f211ea4bb9800a800bef15b, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 92a28aa542307314caacdc659b65fb74, type: 3}
   - linetag: line:ship7
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 8e9930895aeba3e4596c7fa83b642114, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: f2f7ea27634e10b48ac0685700ddf412, type: 3}
