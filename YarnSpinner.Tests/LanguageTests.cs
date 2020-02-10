@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,7 +34,7 @@ namespace YarnSpinner.Tests
         {
 
             errorsCauseFailures = false;
-            var path = Path.Combine(TestDataPath, "Example.yarn.txt");
+            var path = Path.Combine(TestDataPath, "Example.yarn");
             
             Compiler.CompileFile(path, out var program, out stringTable);
 
@@ -66,7 +66,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestEndOfNotesWithOptionsNotAdded()
         {
-            var path = Path.Combine(TestDataPath, "SkippedOptions.yarn.txt");
+            var path = Path.Combine(TestDataPath, "SkippedOptions.yarn");
             Compiler.CompileFile(path, out var program, out stringTable);
 
             dialogue.SetProgram(program);
@@ -83,7 +83,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestNodeHeaders()
         {
-            var path = Path.Combine(TestDataPath, "Headers.yarn.txt");
+            var path = Path.Combine(TestDataPath, "Headers.yarn");
             Compiler.CompileFile(path, out var program, out stringTable);
 
             Assert.Equal(3, program.Nodes.Count);
@@ -97,7 +97,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestInvalidCharactersInNodeTitle()
         {
-            var path = Path.Combine(TestDataPath, "InvalidNodeTitle.yarn.txt");
+            var path = Path.Combine(TestDataPath, "InvalidNodeTitle.yarn");
 
             Assert.Throws<Yarn.Compiler.ParseException>( () => {
                 Compiler.CompileFile(path, out var program, out stringTable);
@@ -119,7 +119,7 @@ namespace YarnSpinner.Tests
 
             // skipping the indentation test when using the ANTLR parser
             // it can never pass
-            if (file == "Indentation.yarn.txt")
+            if (file == "Indentation.yarn")
             {
                 runTest = false;
             }
@@ -137,13 +137,13 @@ namespace YarnSpinner.Tests
             }
         }
 
-        // Returns the list of .node and yarn.txt files in the
+        // Returns the list of .node and.yarn files in the
         // Tests/TestCases directory.
         public static IEnumerable<object[]> FileSources() {
 
             var directory = "TestCases";
 
-            var allowedExtensions = new[] { ".node", ".txt" };
+            var allowedExtensions = new[] { ".node", ".yarn" };
 
             var path = Path.Combine(TestDataPath, directory);
 
