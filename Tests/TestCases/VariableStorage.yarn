@@ -4,73 +4,110 @@ title: Start
 
 // Testing variable storage
 <<set $foo to 1>>
-<<assert($foo == 1, "Test numeric storage")>>
+
+// Test numeric storage
+<<assert($foo == 1)>>
 
 <<set $foo to -1>>
-<<assert($foo == -1, "Test numeric storage (negative)")>>
 
+// Test numeric storage (negative)
+<<assert($foo == -1)>>
+
+// Test string storage
 <<set $foo to "foo">>
-<<assert($foo == "foo", "Test string storage")>>
+<<assert($foo == "foo")>>
 
 <<set $foo to null>>
-<<assert($foo == null, "Test null storage")>>
+
+// Test null storage
+<<assert($foo == null)>>
 
 // Test immediate value arithmetic
 <<set $foo = 45>>
 
 <<set $bar = $foo + 1>>
-<<assert($bar == 46, "Test immediate addition")>>
+
+// Test immediate addition
+<<assert($bar == 46)>>
 
 <<set $bar = $foo - 1>>
-<<assert($bar == 44, "Test immediate subtraction")>>
+
+// Test immediate subtraction
+<<assert($bar == 44)>>
 
 <<set $foo = 46>>
 <<set $bar = $foo * 2>>
-<<assert($bar == 92, "Test immediate multiplication")>>
+
+// Test immediate multiplication
+<<assert($bar == 92)>>
 
 <<set $bar = $foo / 2>>
-<<assert($bar == 23, "Test immediate division")>>
+
+// Test immediate division
+<<assert($bar == 23)>>
 
 <<set $foo = 45>>
 <<set $foo += 1>>
-<<assert($foo == 46, "Test immediate assignment addition")>>
+
+// Test immediate assignment addition
+<<assert($foo == 46)>>
 
 <<set $foo *= 2>>
-<<assert($foo == 92, "Test immediate assignment multiplication")>>
+
+// Test immediate assignment multiplication
+<<assert($foo == 92)>>
 
 <<set $foo /= 2>>
-<<assert($foo == 46, "Test immediate assignment division")>>
+
+// Test immediate assignment division
+<<assert($foo == 46)>>
 
 <<set $foo -= 1>>
-<<assert($foo == 45, "Test immediate assignment subtraction")>>
+
+// Test immediate assignment subtraction
+<<assert($foo == 45)>>
 
 // Testing variable arithmetic
 <<set $foo = 46>>
 <<set $bar = 1>>
 <<set $foobar = $foo + $bar>>
-<<assert($foobar == 47, "Test variable addition")>>
+
+// Test variable addition
+<<assert($foobar == 47)>>
 
 <<set $foobar = $foo - $bar>>
-<<assert($foobar == 45, "Test variable subtraction")>>
+
+// Test variable subtraction
+<<assert($foobar == 45)>>
 
 <<set $bar = 2>>
 <<set $foobar = $foo * $bar>>
-<<assert($foobar == 92, "Test variable multiplication")>>
+
+// Test variable multiplication
+<<assert($foobar == 92)>>
 
 <<set $foobar = $foo / $bar>>
-<<assert($foobar == 23, "Test variable division")>>
+
+// Test variable division
+<<assert($foobar == 23)>>
 
 // Testing default variable values
 <<set $foounused += 1>>
-<<assert($foounused == 1, "An undefined variable must default to 0 for arithmetic")>>
+
+// An undefined variable must default to 0 for arithmetic
+<<assert($foounused == 1)>>
 
 // Testing string addition
 <<set $foo = "foo">>
 <<set $bar = "bar">>
 <<set $foobar = $foo + "bar">>
-<<assert($foobar == "foobar", "Test immediate string addition")>>
+
+// "Test immediate string addition
+<<assert($foobar == "foobar")>>
 
 <<set $foobar = $foo + $bar>>
-<<assert($foobar == "foobar", "Test string addition")>>
+
+// "Test string addition
+<<assert($foobar == "foobar")>>
 
 ===
