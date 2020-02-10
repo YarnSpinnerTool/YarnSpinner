@@ -13,6 +13,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Fixed a bug that caused the unary minus operator (e.g. `-$foo`) to cause crashes when it's run.
+- Unit tests now use test plans, which makes the test cases much more rigorous.
+
 ### Removed
 
 ## [1.0.3] - 2020-02-01
