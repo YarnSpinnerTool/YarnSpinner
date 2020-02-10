@@ -217,11 +217,8 @@ namespace Yarn
 
         public bool SetNode(string nodeName) {
             if (Program.Nodes.ContainsKey(nodeName) == false) {
-
-                var error = "No node named " + nodeName;
-                dialogue.LogErrorMessage(error);
                 executionState = ExecutionState.Stopped;
-                return false;
+                throw new DialogueException($"No node named {nodeName}");                
             }
 
             dialogue.LogDebugMessage ("Running node " + nodeName);
@@ -240,9 +237,9 @@ namespace Yarn
         public void SetSelectedOption(int selectedOptionID) {
 
             if (executionState != ExecutionState.WaitingOnOptionSelection) {
-                dialogue.LogErrorMessage(@"SetSelectedOption was called, but Dialogue wasn't waiting for a selection.
-                This method should only be called after the Dialogue is waiting for the user to select an option.");
-                return;
+
+                throw new DialogueException(@"SetSelectedOption was called, but Dialogue wasn't waiting for a selection.
+                This method should only be called after the Dialogue is waiting for the user to select an option.");                
             }
 
             // We now know what number option was selected; push the
@@ -264,38 +261,31 @@ namespace Yarn
         internal void Continue() {
 
             if (currentNode == null) {
-                dialogue.LogErrorMessage("Cannot continue running dialogue. No node has been selected.");
-                return;
+                throw new DialogueException("Cannot continue running dialogue. No node has been selected.");                
             }
 
             if (executionState == ExecutionState.WaitingOnOptionSelection) {
-                dialogue.LogErrorMessage ("Cannot continue running dialogue. Still waiting on option selection.");
-                return;
+                throw new DialogueException ("Cannot continue running dialogue. Still waiting on option selection.");                
             }
 
             if (lineHandler == null) {
-                dialogue.LogErrorMessage ($"Cannot continue running dialogue. {nameof(lineHandler)} has not been set.");
-                return;
+                throw new DialogueException ($"Cannot continue running dialogue. {nameof(lineHandler)} has not been set.");                
             }
 
             if (optionsHandler == null) {
-                dialogue.LogErrorMessage ($"Cannot continue running dialogue. {nameof(optionsHandler)} has not been set.");
-                return;
+                throw new DialogueException ($"Cannot continue running dialogue. {nameof(optionsHandler)} has not been set.");                
             }
 
             if (commandHandler == null) {
-                dialogue.LogErrorMessage ($"Cannot continue running dialogue. {nameof(commandHandler)} has not been set.");
-                return;
+                throw new DialogueException ($"Cannot continue running dialogue. {nameof(commandHandler)} has not been set.");                
             }
 
             if (nodeCompleteHandler == null) {
-                dialogue.LogErrorMessage ($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");
-                return;
+                throw new DialogueException ($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");                
             }
 
             if (nodeCompleteHandler == null) {
-                dialogue.LogErrorMessage ($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");
-                return;
+                throw new DialogueException ($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");                
             }
 
             executionState = ExecutionState.Running;
