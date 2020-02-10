@@ -105,8 +105,7 @@ namespace YarnSpinner.Tests
 
             errorsCauseFailures = false;
 
-            dialogue.SetNode("THIS NODE DOES NOT EXIST");
-            dialogue.Continue();
+            Assert.Throws<DialogueException>( () => dialogue.SetNode("THIS NODE DOES NOT EXIST"));            
         }
 
         [Fact]
