@@ -379,6 +379,7 @@ namespace Yarn.Unity
         {
             AddProgram(scriptToLoad);
             AddStringTable(scriptToLoad);
+            AddVoiceOvers(scriptToLoad.voiceOvers);
         }
 
         /// Adds a program, and all of its nodes
