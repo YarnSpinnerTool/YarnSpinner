@@ -1,4 +1,4 @@
-using Xunit;
+﻿using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,10 +35,13 @@ namespace YarnSpinner.Tests
 
             errorsCauseFailures = false;
             var path = Path.Combine(TestDataPath, "Example.yarn");
+            var testPath = Path.ChangeExtension(path, ".testplan");
             
             Compiler.CompileFile(path, out var program, out stringTable);
 
             dialogue.SetProgram(program);
+            this.LoadTestPlan(testPath);
+
             RunStandardTestcase();
         }
 
@@ -116,7 +119,8 @@ namespace YarnSpinner.Tests
             bool runTest = true;
 
             var scriptFilePath = Path.Combine(TestDataPath, "TestCases", file);
-
+            var testPlanFilePath = Path.ChangeExtension(scriptFilePath, ".testplan");
+            
             // skipping the indentation test when using the ANTLR parser
             // it can never pass
             if (file == "Indentation.yarn")
@@ -126,6 +130,8 @@ namespace YarnSpinner.Tests
 
             if (runTest)
             {
+                LoadTestPlan(testPlanFilePath);
+
                 Compiler.CompileFile(scriptFilePath, out var program, out stringTable);
                 dialogue.SetProgram(program);
 

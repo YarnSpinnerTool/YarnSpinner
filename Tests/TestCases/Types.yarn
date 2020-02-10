@@ -2,16 +2,27 @@ title: Start
 ---
 // Testing types
 
-<<assert ("test" == "test", "string equality")>>
+// string equality
+<<assert("test" == "test")>>
 
-<<assert ("test" != 1, "string-number inequality")>>
+// string-number inequality
+<<assert("test" != 1)>>
 
-<<assert ("hi" != "HI", "string case sensitivity")>>
+// string case sensitivity
+<<assert("hi" != "HI")>>
 
-<<assert (1+1+"hi" == "2hi", "multiple-type concatenation")>>
+// multiple-type concatenation
+<<assert(1+1+"hi" == "2hi")>>
 
-<<assert (3 gt 2, "gt test")>>
-<<assert (1 lt 2, "lt test")>>
-<<assert (2 lte 2, "lte test")>>
-<<assert (2 gte 2, "gte test")>>
+// gt test
+<<assert(3 gt 2)>>
+
+// lt test
+<<assert(1 lt 2)>>
+
+// lte test
+<<assert(2 lte 2)>>
+
+// gte test
+<<assert(2 gte 2)>>
 ===

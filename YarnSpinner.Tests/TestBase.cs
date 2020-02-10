@@ -14,11 +14,7 @@ namespace YarnSpinner.Tests
     public class TestBase
     {
 
-        string nextExpectedLine = null;
-        int nextExpectedOptionCount = -1;
-        int nextOptionToSelect = -1;
-        string nextExpectedCommand = null;
-
+        
 
         protected VariableStorage storage = new MemoryVariableStore();
         protected Dialogue dialogue;
@@ -64,7 +60,8 @@ namespace YarnSpinner.Tests
             }
         }
 
-
+        private TestPlan testPlan;
+        
         public TestBase()
         {
 
@@ -87,29 +84,6 @@ namespace YarnSpinner.Tests
                     
             };
 
-            dialogue.library.RegisterFunction ("assert", -1, delegate(Yarn.Value[] parameters) {
-                if (parameters[0].AsBool == false) {
-                    if( parameters.Length > 1 && parameters[1].AsBool ) {
-                        Assert.NotNull ("Assertion failed: " + parameters[1].AsString);
-                    } else {
-                        Assert.NotNull ("Assertion failed");
-                    }
-                }
-            });
-
-            dialogue.library.RegisterFunction ("prepare_for_options", 2, delegate(Value[] parameters) {
-                nextExpectedOptionCount = (int)parameters[0].AsNumber;
-                nextOptionToSelect = (int)parameters[1].AsNumber;
-            });
-
-            dialogue.library.RegisterFunction ("expect_line", -1, delegate(Value[] parameters) {
-                nextExpectedLine = parameters[0].AsString;
-            });
-
-            dialogue.library.RegisterFunction ("expect_command", -1, delegate(Value[] parameters) {
-                nextExpectedCommand = parameters[0].AsString;
-            });
-
             dialogue.lineHandler = delegate (Line line) {
                 var id = line.ID;
 
@@ -119,12 +93,16 @@ namespace YarnSpinner.Tests
 
                 Console.WriteLine("Line: " + text);
 
-                if (IsExpectingLine) {
-                    Assert.Equal (nextExpectedLine, text);
-                }
+                if (testPlan != null) {
+                    testPlan.Next();
 
-                nextExpectedLine = null;
-            
+                    if (testPlan.nextExpectedType == TestPlan.Step.Type.Line) {
+                        Assert.Equal(testPlan.nextExpectedValue, text);
+                    } else {
+                        throw new Xunit.Sdk.XunitException($"Received line {text}, but was expecting a {testPlan.nextExpectedType.ToString()}");
+                    }
+                }
+                            
                 return Dialogue.HandlerExecutionType.ContinueExecution;
             };
 
@@ -133,42 +111,74 @@ namespace YarnSpinner.Tests
 
                 Console.WriteLine("Options:");
                 foreach (var option in optionSet.Options) {
-                    Console.WriteLine(" - " + option.Line);
+                    var optionText = stringTable[option.Line.ID].text;
+                    Console.WriteLine(" - " + optionText);
                 }
 
-                if (nextExpectedOptionCount != -1) {
-                    Assert.Equal (nextExpectedOptionCount, optionCount);
+                if (testPlan != null) {
+                    testPlan.Next();
+
+                    if (testPlan.nextExpectedType != TestPlan.Step.Type.Select) {
+                        throw new Xunit.Sdk.XunitException($"Received options, but wasn't expecting to select one (was expecting {testPlan.nextExpectedType.ToString()})");
+                    }
+
+                    var expectedOptionCount = testPlan.nextExpectedOptions.Count();
+
+                    Assert.Equal (expectedOptionCount, optionCount);
+                    
+                    if (testPlan.nextOptionToSelect != -1) {
+                        dialogue.SetSelectedOption(testPlan.nextOptionToSelect - 1);                    
+                    } else {
+                        dialogue.SetSelectedOption(0);                    
+                    }
                 }
 
-                if (nextOptionToSelect != -1) {
-                    dialogue.SetSelectedOption(nextOptionToSelect);                    
-                } else {
-                    dialogue.SetSelectedOption(0);                    
-                }
-
-                nextExpectedOptionCount = -1;
-                nextOptionToSelect = -1;
+                
             };
 
             dialogue.commandHandler = delegate (Command command) {
                 Console.WriteLine("Command: " + command.Text);
-
-                if (nextExpectedCommand != null) {
-                    Assert.Equal (nextExpectedCommand, command.Text);
+                
+                if (testPlan != null) {
+                    testPlan.Next();
+                    if (testPlan.nextExpectedType != TestPlan.Step.Type.Command) {
+                        Assert.Equal (testPlan.nextExpectedValue, command.Text);
+                    }
                 }
-
+                
                 return Dialogue.HandlerExecutionType.ContinueExecution;
             };
 
+            dialogue.library.RegisterFunction ("assert", 1, delegate(Yarn.Value[] parameters) {
+                if (parameters[0].AsBool == false) {
+                        Assert.NotNull ("Assertion failed");
+                }
+            });
+
+            
+            // When a node is complete, just indicate that we want to continue execution
             dialogue.nodeCompleteHandler = (string nodeName) => Dialogue.HandlerExecutionType.ContinueExecution;
 
-            dialogue.dialogueCompleteHandler = () => {};
+            // When dialogue is complete, check that we expected a stop
+            dialogue.dialogueCompleteHandler = () => {
+                if (testPlan != null) {
+                    testPlan.Next();
+
+                    if (testPlan.nextExpectedType != TestPlan.Step.Type.Stop) {
+                        throw new Xunit.Sdk.XunitException($"Stopped dialogue, but wasn't expecting to select it (was expecting {testPlan.nextExpectedType.ToString()})");
+                    }
+                }
+            };
 
         }
 
         // Executes the named node, and checks any assertions made during
         // execution. Fails the test if an assertion made in Yarn fails.
         protected void RunStandardTestcase(string nodeName = "Start") {
+
+            if (testPlan == null) {
+                throw new Xunit.Sdk.XunitException("Cannot run test: no test plan provided.");
+            }
 
             dialogue.SetNode(nodeName);
 
@@ -178,19 +188,13 @@ namespace YarnSpinner.Tests
             
         }
 
-        protected void ExpectLine(string line) {
-            nextExpectedLine = line;
-        }
-
-        protected bool IsExpectingLine {
-            get {
-                return nextExpectedLine != null;
-            }
-        }
-
         protected string CreateTestNode(string source) {
             return $"title: Start\n---\n{source}\n===";
             
+        }
+
+        public void LoadTestPlan(string path) {
+            this.testPlan = new TestPlan(path);
         }
     }
 }
