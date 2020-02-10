@@ -1,72 +1,52 @@
-// Basic Parser grammar for YarnSpinner
-
 parser grammar YarnSpinnerParser;
 
 options { tokenVocab=YarnSpinnerLexer; }
 
-dialogue : node+ EOF;
+dialogue 
+	: (file_hashtag*) node+ 
+	;
 
-node: header body NEWLINE*;
+// File-global hashtags, which precede all nodes
+file_hashtag
+    : HASHTAG HASHTAG_TEXT HASHTAG_NEWLINE
+    ;
 
-// this is wrong, this means you have to have a title (correct)
-// but can have any number (including 0) of the others (also correct)
-// we only want 0-1 of each in any order but to do this means writing them out
-// or doing it with some code, the in code option seems the best here
-// at least according to https://stackoverflow.com/questions/14934081/antlr4-matching-all-input-alternatives-exaclty-once
-header : header_title (header_tag | header_line)* ;
-header_title : HEADER_TITLE TITLE_TEXT NEWLINE ;
-header_tag : HEADER_TAGS TAG_TEXT NEWLINE ;
-header_line : HEADER_NAME ':' HEADER_TEXT NEWLINE ;
+node
+	: header+  BODY_START  statement* BODY_END
+	;
 
-body : BODY_ENTER statement* BODY_CLOSE ;
+header 
+	: header_key=ID HEADER_DELIMITER  header_value=REST_OF_LINE HEADER_NEWLINE
+	;
 
 statement
-    : shortcut_statement
-    | if_statement
-    | set_statement
-    | option_statement
-	| function_statement
-    | action_statement
-    | line_statement
+	: line_statement
+	| if_statement
+	| set_statement
+	| option_statement
+	| shortcut_option_statement
+	| command_statement
+	| INDENT statement* DEDENT
+	;
+
+line_statement
+	: 
+		(
+			TEXT // a chunk of text to show to the player
+		  | TEXT_EXPRESSION_START expression EXPRESSION_END // an expression to evaluate
+		)* 
+		(hashtag|line_condition)*  // any number of hashtags or line conditions
+		(TEXT_NEWLINE|HASHTAG_NEWLINE) // the end of the line
+	;
+
+hashtag
+	: (TEXT_HASHTAG|HASHTAG_TAG|OPTION_HASHTAG|HASHTAG) HASHTAG_TEXT
+	;
+
+line_condition
+    : HASHTAG_COMMAND_START COMMAND_IF expression EXPRESSION_COMMAND_END
     ;
 
-shortcut_statement : shortcut+ ;
-shortcut : SHORTCUT_ENTER shortcut_text shortcut_conditional? hashtag_block? (INDENT statement* DEDENT)? ;
-shortcut_conditional : COMMAND_IF expression COMMAND_CLOSE ;
-shortcut_text : SHORTCUT_TEXT ;
-
-if_statement : if_clause (else_if_clause)* (else_clause)? COMMAND_ENDIF (hashtag_block)? ;
-if_clause : COMMAND_IF expression COMMAND_CLOSE statement* ;
-else_if_clause : COMMAND_ELSE_IF expression COMMAND_CLOSE statement* ;
-else_clause : COMMAND_ELSE statement* ;
-
-// this is a hack until I can work out exactly what the rules for setting are
-set_statement
-    : COMMAND_SET variable KEYWORD_TO* expression COMMAND_CLOSE
-    | COMMAND_SET expression COMMAND_CLOSE
-    ;
-
-option_statement
-	: ('[[' OPTION_TEXT '|' OPTION_LINK ']]'
-	| '[[' OPTION_TEXT ']]')
-	(hashtag_block)? ;
-
-function : FUNC_ID '(' expression? (COMMA expression)* ')' ;
-// this is messy
-function_statement : COMMAND_FUNC expression (COMMA expression)* ')' COMMAND_CLOSE ;
-// this isn't ideal but works quite well
-action_statement : ACTION ;
-
-hashtag_block : hashtag+ ;
-hashtag : HASHTAG ;
-
-text : TEXT;
-// line_statement : (text|'{' expression '}')+ (hashtag_block)? '\n';
-line_statement : text (hashtag_block)? '\n';
-
-
-// this feel a bit crude
-// need to work on this
 expression
 	: '(' expression ')' #expParens
 	| <assoc=right>'-' expression #expNegative
@@ -79,18 +59,57 @@ expression
 	| variable op=('+=' | '-=') expression #expPlusMinusEquals
 	| expression op=(OPERATOR_LOGICAL_AND | OPERATOR_LOGICAL_OR | OPERATOR_LOGICAL_XOR) expression #expAndOrXor
 	| value #expValue
-    ;
+	;
 
-// can add in support for more values in here
 value
-    : BODY_NUMBER	 #valueNumber
-    | KEYWORD_TRUE   #valueTrue
-    | KEYWORD_FALSE  #valueFalse
-	| variable		 #valueVar
-	| COMMAND_STRING #valueString
-	| function		 #valueFunc
-    | KEYWORD_NULL   #valueNull
-    ;
+	: NUMBER         #valueNumber
+	| KEYWORD_TRUE   #valueTrue
+	| KEYWORD_FALSE  #valueFalse
+	| variable       #valueVar
+	| STRING #valueString
+	| KEYWORD_NULL   #valueNull
+    | function       #valueFunc
+
+	;
 variable
-    : VAR_ID
-    ;
+	: VAR_ID
+	;
+
+function 
+	: FUNC_ID '(' expression? (COMMA expression)* ')' ;
+
+if_statement
+	: ((COMMAND_START COMMAND_IF if_clause=expression EXPRESSION_COMMAND_END)
+		 if_clause_statements=statement*) 
+	  (COMMAND_START COMMAND_ELSEIF elseif_clause=expression EXPRESSION_COMMAND_END 
+		elseif_clause_statements=statement*)*
+	  (COMMAND_START COMMAND_ELSE COMMAND_END 
+		else_clause_statements=statement*)?
+	  COMMAND_START COMMAND_ENDIF COMMAND_END
+	;
+
+set_statement
+	: COMMAND_START COMMAND_SET VAR_ID OPERATOR_ASSIGNMENT expression EXPRESSION_COMMAND_END
+	;
+
+command_statement
+	: COMMAND_START (COMMAND_TEXT|COMMAND_EXPRESSION_START expression EXPRESSION_END)+ COMMAND_TEXT_END (hashtag* HASHTAG_NEWLINE)?
+	;
+
+shortcut_option_statement
+	: shortcut_option+
+	;
+
+shortcut_option
+	: '->' line_statement (INDENT statement* DEDENT)?
+	;
+
+option_statement
+	: '[[' (option_formatted_text)+ '|' NodeName=OPTION_ID ']]' (hashtag* HASHTAG_NEWLINE)? #OptionLink
+	| '[[' NodeName=OPTION_TEXT ']]' #OptionJump
+	;
+
+option_formatted_text
+	: OPTION_TEXT 
+	| OPTION_EXPRESSION_START expression EXPRESSION_END 
+	;
