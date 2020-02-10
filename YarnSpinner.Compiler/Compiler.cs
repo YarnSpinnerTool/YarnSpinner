@@ -822,6 +822,10 @@ namespace Yarn.Compiler
             Visit(context.expression());
 
             // TODO: temp operator call
+
+            // Indicate that we are pushing one parameter
+            compiler.Emit(OpCode.PushFloat, new Operand(1));
+            
             compiler.Emit(OpCode.CallFunc, new Operand(TokenType.UnaryMinus.ToString()));
 
             return 0;
