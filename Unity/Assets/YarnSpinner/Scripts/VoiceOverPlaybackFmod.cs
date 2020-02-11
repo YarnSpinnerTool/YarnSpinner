@@ -47,13 +47,19 @@ namespace Yarn.Unity {
         /// We call this if we found out the length of the current voice over clip and want the Dialogue UI to wait for 
         /// that length.
         /// </summary>
-        private static Dictionary<FMOD.Studio.EventInstance, DialogueUIBehaviour> _voiceOverDuration = new Dictionary<FMOD.Studio.EventInstance, DialogueUIBehaviour>();
+        private DialogueUIBehaviour _lastVoiceOverDialogueUI;
 
         /// <summary>
         /// FMOD callbacks are received via a static method. To support multiple instances of this playback class, 
         /// we track which instance fired which fmod audio event in this dict.
         /// </summary>
-        private static Dictionary<FMOD.Studio.EventInstance, VoiceOverPlaybackFmod> _voiceOverEventPlaybackInstance = new Dictionary<FMOD.Studio.EventInstance, VoiceOverPlaybackFmod>();
+        private FMOD.Studio.EventInstance _lastVoiceOverEvent;
+
+        private static List<VoiceOverPlaybackFmod> _instances = new List<VoiceOverPlaybackFmod>();
+
+        private void Awake() {
+            _instances.Add(this);
+        }
 
         void Start() {
             // Explicitly create the delegate object and assign it to a member so it doesn't get freed
@@ -69,10 +75,8 @@ namespace Yarn.Unity {
         /// <param name="dialogueUI">The reference to the DialogueUIBehaviour handling this line. Call VoiceOverDuration on this behaviour if you want the UI to wait for audio playback to finish.</param>
         public override void StartLineVoiceOver(Line currentLine, AudioClip voiceOver, DialogueUIBehaviour dialogueUI) {
             // Check if this instance is currently playing back another voice over in which case we stop it
-            foreach (var runningVoiceOver in _voiceOverEventPlaybackInstance) {
-                if (runningVoiceOver.Value == this) {
-                    runningVoiceOver.Key.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                }
+            if (_lastVoiceOverEvent.isValid()) {
+                _lastVoiceOverEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             }
 
             // Create playback event
@@ -84,17 +88,8 @@ namespace Yarn.Unity {
                 throw;
             }
 
-            if (!_voiceOverDuration.ContainsKey(dialogueInstance)) {
-                _voiceOverDuration.Add(dialogueInstance, dialogueUI);
-            } else {
-                Debug.LogWarning("FMOD: Dialogue event instance was already registered. Will not wait for this voice over line to finish.");
-            }
-
-            if (!_voiceOverEventPlaybackInstance.ContainsKey(dialogueInstance)) {
-                _voiceOverEventPlaybackInstance.Add(dialogueInstance, this);
-            } else {
-                Debug.LogWarning("FMOD: Dialogue event instance was already registered.");
-            }
+            _lastVoiceOverDialogueUI = dialogueUI;
+            _lastVoiceOverEvent = dialogueInstance;
 
             // Pin the key string in memory and pass a pointer through the user data
             GCHandle stringHandle = GCHandle.Alloc(currentLine.ID.Remove(0, 5), GCHandleType.Pinned);
@@ -158,14 +153,10 @@ namespace Yarn.Unity {
                     }
                     break;
                 case FMOD.Studio.EVENT_CALLBACK_TYPE.DESTROYED:
-                    if (_voiceOverDuration.ContainsKey(instance)) {
-                        _voiceOverDuration.Remove(instance);
-                    } else {
-                        Debug.Log("FMOD: Cannot remove current playback event instance because it wasn't registered properly.");
-                    }
-
-                    if (_voiceOverEventPlaybackInstance.ContainsKey(instance)) {
-                        _voiceOverEventPlaybackInstance.Remove(instance);
+                    foreach (var playbackInstance in _instances) {
+                        if (playbackInstance._lastVoiceOverEvent.Equals(instance)) {
+                            playbackInstance._lastVoiceOverDialogueUI = null;
+                        }
                     }
 
                     // Now the event has been destroyed, unpin the string memory so it can be garbage collected
@@ -183,10 +174,12 @@ namespace Yarn.Unity {
             var soundLength = GetSoundLength(dialogueSound);
             // Only tell the Dialogue UI to wait if we actually got a sound length
             if (soundLength >= 0) {
-                if (_voiceOverDuration.ContainsKey(instance)) {
-                    _voiceOverDuration[instance]?.VoiceOverDuration(soundLength);
-                } else {
-                    Debug.Log("FMOD: Current playback event instance unknown. Will not wait for this line to finish.");
+                foreach (var playbackInstance in _instances) {
+                    if (playbackInstance._lastVoiceOverEvent.Equals(instance)) {
+                        playbackInstance._lastVoiceOverDialogueUI?.VoiceOverDuration(soundLength);
+                    } else {
+                        Debug.Log("FMOD: Current playback event instance unknown. Will not wait for this line to finish.");
+                    }
                 }
             }
         }
