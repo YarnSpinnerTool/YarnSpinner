@@ -265,6 +265,34 @@ namespace Yarn {
             
         }
 
+        /// <summary>
+        /// Get current State of Virtual Machine as a copy of the VMState object.
+        /// </summary>
+        public VMState GetVMStateClone() {
+            return vm.GetStateClone();
+        }
+
+        /// <summary>
+        /// Get current State of Virtual Machine as serialized object.
+        /// </summary>
+        public SerializedVMState GetVMStateSerialized() {
+            return vm.GetStateSerialized();
+        }
+
+        /// <summary>
+        /// Set Virtual Machine state from a VMState object.
+        /// </summary>
+        public void SetVMState(VMState newState) {
+            vm.SetState(newState);
+        }
+
+        /// <summary>
+        /// Set Virtual Machine state from a serialized object.
+        /// </summary>
+        public void SetVMState(SerializedVMState serialized) {
+            vm.SetState(serialized);
+        }
+
         // Prepares to run the named node
         public void SetNode(string startNode = DEFAULT_START) {
             vm.SetNode (startNode);

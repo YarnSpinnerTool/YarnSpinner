@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-
+using Google.Protobuf;
 using static Yarn.Instruction.Types;
 
 namespace Yarn
@@ -117,60 +116,224 @@ namespace Yarn
         Text // a run of text until we hit other syntax
     }
 
-    internal class VirtualMachine
-    {
+    public class SerializedVMState {
 
-        internal class State {
+        public enum Format { JSON }
 
-            /// The name of the node that we're currently in
-            public string currentNodeName;
+        private VMState _deserialized;
 
-            /// The instruction number in the current node
-            public int programCounter = 0;
+        public string text { get; private set; }
+        public Format format { get; private set; }
 
-            /// List of options, where each option = <string id, destination node>
-            public List<KeyValuePair<string,string>> currentOptions = new List<KeyValuePair<string, string>>();
+        /// NOTE: Implemented basically non functional format type only to make it explicit
+        /// that this class accepts only JSON strings.
+        /// 
+        /// <summary>
+        /// Manage JSON serialized VM State.
+        /// </summary>
+        /// <param name="text">JSON formatted string.</param>
+        /// <param name="format">Only JSON is supported.</param>
+        public SerializedVMState(string text, Format format = Format.JSON) {
+            if (format != Format.JSON) {
+                throw new ArgumentException("Serialized VM State accepts only JSON format.");
+            }
 
-            /// The value stack
-            private Stack<Value> stack = new Stack<Value>();
+            this.text = text;
+            this.format = format;
+        }
 
-            /// Methods for working with the stack
-            public void PushValue(object o) {
-                if( o is Value ) {
-                    stack.Push(o as Value);
-                } else {
-                    stack.Push (new Value(o));
+        /// <summary>
+        /// Get deserialized VMState object back from the original JSON format.
+        /// </summary>
+        public VMState Deserialized {
+            get {
+                if (this._deserialized != null) {
+                    return this._deserialized;
                 }
-            }
 
-            /// Pop a value from the stack
-            public Value PopValue() {
-                return stack.Pop ();
-            }
+                JsonParser parser = JsonParser.Default;
+                VMState newState;
 
-            /// Peek at a value from the stack
-            public Value PeekValue() {
-                return stack.Peek ();
-            }
+                // not sure what Parse() returns when it fails to parse.
+                try {
+                    newState = parser.Parse<VMState>(this.text);
+                } catch (InvalidJsonException exception) {
+                    throw exception;
+                }
 
-            /// Clear the stack
-            public void ClearStack() {
-                stack.Clear ();
+                if (newState != null) {
+                    this._deserialized = newState;
+                }
+
+                return this._deserialized;
             }
         }
-        
+    }
+
+    public partial class VMStateOption
+    {
+        // Works the same as KeyValuePair, but in protobuf.
+
+        public VMStateOption(string key, string value) : base()
+        {
+            this.Key = key;
+            this.Value = value;
+        }
+    }
+
+    public partial class VMStateValue
+    {
+        // This entire class exists only because serializing entire Value object
+        // seemed unnecessary so instead we are rebuilding Values from less complex context.
+
+        public VMStateValue(Value yarnValue) : base() {
+            this.YarnValue = yarnValue;
+            this.Type = (int)yarnValue.type;
+            this.Value = yarnValue.AsString;
+        }
+
+        private Value _yarnValue;
+        public Value YarnValue {
+            get {
+                if (this._yarnValue == null) {
+                    Yarn.Value.Type type = (Yarn.Value.Type)this.Type;
+
+                    switch (type) {
+                        case Yarn.Value.Type.Null:
+                            this._yarnValue = Yarn.Value.NULL;
+                            break;
+                        case Yarn.Value.Type.Number:
+                            this._yarnValue = new Yarn.Value(float.Parse(this.Value));
+                            break;
+                        case Yarn.Value.Type.String:
+                            this._yarnValue = new Yarn.Value(this.Value);
+                            break;
+                        case Yarn.Value.Type.Bool:
+                            this._yarnValue = new Yarn.Value(bool.Parse(this.Value));
+                            break;
+                    }
+                }
+
+                return this._yarnValue;
+            }
+            private set {
+                this._yarnValue = value;
+            }
+        }
+    }
+
+    public partial class VMState
+    {
+        // The methods in here used to handle a Stack object, but it is easier to serialize
+        // and handle a List these methods are now providing Stack functionality on top of a List.
+
+        /// Methods for working with the stack
+        public void PushValue(object o) {
+            if (o is Value) {
+                Stack.Add(new VMStateValue(o as Value));
+            } else {
+                Stack.Add(new VMStateValue(new Value(o)));
+            }
+        }
+
+        /// Pop a value from the stack
+        public Value PopValue() {
+            if (Stack.Count != 0) {
+                int lastElement = Stack.Count - 1;
+                Value item = Stack[lastElement].YarnValue;
+                Stack.RemoveAt(lastElement);
+
+                return item;
+            }
+
+            return null;
+        }
+
+        /// Peek at a value from the stack
+        public Value PeekValue() {
+            if (Stack.Count != 0) {
+                return Stack[Stack.Count - 1].YarnValue;
+            }
+
+            return null;
+        }
+
+        /// Clear the stack
+        public void ClearStack() {
+            Stack.Clear();
+        }
+    }
+
+    internal class VirtualMachine
+    {
         internal VirtualMachine (Dialogue d)
         {
             dialogue = d;
-            state = new State ();
+            state = new VMState();
         }
 
         /// Reset the state of the VM
         internal void ResetState() {
-            state = new State();
+            state = new VMState();
         }
 
-        
+        // Using this flag to return expected VM State programCounter.
+        // depends on when the State is requested, mostly it would be after
+        // an instruction has been processed which increments the counter.
+        private bool instructionProcessed = false;
+
+        /// <summary>
+        /// Get current State of Virtual Machine as a copy of the VMState object.
+        /// </summary>
+        public VMState GetStateClone() {
+            if (string.IsNullOrEmpty(this.state.CurrentNodeName)) {
+                dialogue.LogErrorMessage($"Cannot get State of the Virtual Machine because it is not running any node.");
+                return null;
+            }
+
+            VMState clonedState = this.state.Clone();
+
+            // Here we decrement saved States program counter, otherwise it would
+            // indicate next instruction instead of the current one.
+            if (this.instructionProcessed) {
+                clonedState.ProgramCounter--;
+            }
+
+            return clonedState;
+        }
+
+        /// <summary>
+        /// Get current State of Virtual Machine as serialized object.
+        /// </summary>
+        public SerializedVMState GetStateSerialized() {
+            JsonFormatter formatter = JsonFormatter.Default;
+            string json = formatter.Format(GetStateClone());
+
+            return new SerializedVMState(json);
+        }
+
+        /// <summary>
+        /// Set Virtual Machine state from a VMState object.
+        /// </summary>
+        public void SetState(VMState newState) {
+            if (string.IsNullOrEmpty(newState.CurrentNodeName)) {
+                // If loaded state NodeName is empty, throw error.
+                throw new ArgumentException("Tried to set VM State that does not have any Node set, this is invalid because VM has no idea ");
+            } else {
+                // Otherwise set VMs node to what the State is expecting.
+                SetNode(newState.CurrentNodeName);
+            }
+
+            this.state = newState;
+        }
+
+        /// <summary>
+        /// Set Virtual Machine state from a serialized object.
+        /// </summary>
+        public void SetState(SerializedVMState serialized) {
+            SetState(serialized.Deserialized);
+        }
+
         public Dialogue.LineHandler lineHandler;
         public Dialogue.OptionsHandler optionsHandler;
         public Dialogue.CommandHandler commandHandler;
@@ -181,11 +344,11 @@ namespace Yarn
 
         internal Program Program { get; set; }
 
-        private State state = new State();
+        private VMState state = new VMState();
 
         public string currentNodeName {
             get {
-                return state.currentNodeName;
+                return state.CurrentNodeName;
             }
         }
 
@@ -225,7 +388,7 @@ namespace Yarn
 
             currentNode = Program.Nodes [nodeName];
             ResetState ();
-            state.currentNodeName = nodeName;
+            state.CurrentNodeName = nodeName;
 
             return true;
         }
@@ -244,12 +407,12 @@ namespace Yarn
 
             // We now know what number option was selected; push the
             // corresponding node name to the stack
-            var destinationNode = state.currentOptions[selectedOptionID].Value;
+            var destinationNode = state.CurrentOptions[selectedOptionID].Value;
             state.PushValue(destinationNode);
 
             // We no longer need the accumulated list of options; clear it
             // so that it's ready for the next one
-            state.currentOptions.Clear();
+            state.CurrentOptions.Clear();
 
             // We're no longer in the WaitingForOptions state; we are now
             // instead Suspended
@@ -292,13 +455,15 @@ namespace Yarn
 
             // Execute instructions until something forces us to stop
             while (executionState == ExecutionState.Running) {
-                Instruction currentInstruction = currentNode.Instructions [state.programCounter];
+                this.instructionProcessed = false;
 
+                Instruction currentInstruction = currentNode.Instructions [state.ProgramCounter];
                 RunInstruction (currentInstruction);
 
-                state.programCounter++;
+                state.ProgramCounter++;
+                this.instructionProcessed = true;
 
-                if (state.programCounter >= currentNode.Instructions.Count) {
+                if (state.ProgramCounter >= currentNode.Instructions.Count) {
                     nodeCompleteHandler(currentNode.Name);
                     executionState = ExecutionState.Stopped;
                     dialogueCompleteHandler();
@@ -313,7 +478,7 @@ namespace Yarn
             if (currentNode.Labels.ContainsKey(labelName) == false) {
                 // Couldn't find the node..
                 throw new IndexOutOfRangeException (
-                    $"Unknown label {labelName} in node {state.currentNodeName}"
+                    $"Unknown label {labelName} in node {state.CurrentNodeName}"
                 );
             }
 
@@ -329,7 +494,7 @@ namespace Yarn
                         /// - JumpTo
                         /** Jumps to a named label
                          */
-                        state.programCounter = FindInstructionPointForLabel(i.Operands[0].StringValue) - 1;
+                        state.ProgramCounter = FindInstructionPointForLabel(i.Operands[0].StringValue) - 1;
 
                         break;
                     }
@@ -418,7 +583,7 @@ namespace Yarn
                          */
                         if (state.PeekValue().AsBool == false)
                         {
-                            state.programCounter = FindInstructionPointForLabel(i.Operands[0].StringValue) - 1;
+                            state.ProgramCounter = FindInstructionPointForLabel(i.Operands[0].StringValue) - 1;
                         }
                         break;
                     }
@@ -428,7 +593,7 @@ namespace Yarn
                         /** Jumps to a label whose name is on the stack.
                          */
                         var jumpDestination = state.PeekValue().AsString;
-                        state.programCounter = FindInstructionPointForLabel(jumpDestination) - 1;
+                        state.ProgramCounter = FindInstructionPointForLabel(jumpDestination) - 1;
 
                         break;
                     }
@@ -562,7 +727,7 @@ namespace Yarn
                         // Decrement program counter here, because it will
                         // be incremented when this function returns, and
                         // would mean skipping the first instruction
-                        state.programCounter -= 1; 
+                        state.ProgramCounter -= 1; 
 
                         if (pause == Dialogue.HandlerExecutionType.PauseExecution) {
                             executionState = ExecutionState.Suspended;
@@ -576,10 +741,10 @@ namespace Yarn
                         /// - AddOption
                         /** Add an option to the current state.
                          */
-                        state.currentOptions.Add(
-                            new KeyValuePair<string, string>(
-                                i.Operands[0].StringValue, // node name
-                                i.Operands[1].StringValue  // display string key
+                        state.CurrentOptions.Add(
+                            new VMStateOption(
+                                i.Operands[0].StringValue, // display string key
+                                i.Operands[1].StringValue  // node name
                             )
                         );
 
@@ -591,7 +756,7 @@ namespace Yarn
                         /// - ShowOptions
                         /** If we have no options to show, immediately stop.
                          */
-                        if (state.currentOptions.Count == 0)
+                        if (state.CurrentOptions.Count == 0)
                         {
                             executionState = ExecutionState.Stopped;
                             dialogueCompleteHandler();
@@ -601,9 +766,9 @@ namespace Yarn
                         // Present the list of options to the user and let them pick
                         var optionChoices = new List<OptionSet.Option>();
 
-                        for (int optionIndex = 0; optionIndex < state.currentOptions.Count; optionIndex++)
+                        for (int optionIndex = 0; optionIndex < state.CurrentOptions.Count; optionIndex++)
                         {
-                            var option = state.currentOptions[optionIndex];
+                            var option = state.CurrentOptions[optionIndex];
                             var line = new Line(option.Key);
                             optionChoices.Add(new OptionSet.Option(line, optionIndex));
                         }
