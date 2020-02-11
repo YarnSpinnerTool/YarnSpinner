@@ -116,57 +116,42 @@ namespace Yarn
         Text // a run of text until we hit other syntax
     }
 
-    public class SerializedVMState {
+    public abstract class SerializedVMState {
 
-        public enum Format { JSON }
+        public string Text { get; protected set; }
+
+        public abstract VMState Deserialize();
+    }
+
+    public class JsonVMState : SerializedVMState
+    {
+        public JsonVMState(string text) {
+            Text = text;
+        }
 
         private VMState _deserialized;
 
-        public string text { get; private set; }
-        public Format format { get; private set; }
-
-        /// NOTE: Implemented basically non functional format type only to make it explicit
-        /// that this class accepts only JSON strings.
-        /// 
-        /// <summary>
-        /// Manage JSON serialized VM State.
-        /// </summary>
-        /// <param name="text">JSON formatted string.</param>
-        /// <param name="format">Only JSON is supported.</param>
-        public SerializedVMState(string text, Format format = Format.JSON) {
-            if (format != Format.JSON) {
-                throw new ArgumentException("Serialized VM State accepts only JSON format.");
-            }
-
-            this.text = text;
-            this.format = format;
-        }
-
-        /// <summary>
-        /// Get deserialized VMState object back from the original JSON format.
-        /// </summary>
-        public VMState Deserialized {
-            get {
-                if (this._deserialized != null) {
-                    return this._deserialized;
-                }
-
-                JsonParser parser = JsonParser.Default;
-                VMState newState;
-
-                // not sure what Parse() returns when it fails to parse.
-                try {
-                    newState = parser.Parse<VMState>(this.text);
-                } catch (InvalidJsonException exception) {
-                    throw exception;
-                }
-
-                if (newState != null) {
-                    this._deserialized = newState;
-                }
-
+        public override VMState Deserialize() {
+            if (this._deserialized != null) {
                 return this._deserialized;
             }
+
+            JsonParser parser = JsonParser.Default;
+            VMState newState;
+
+            // not sure what Parse() returns when it fails to parse.
+            try {
+                newState = parser.Parse<VMState>(Text);
+            }
+            catch (InvalidJsonException exception) {
+                throw exception;
+            }
+
+            if (newState != null) {
+                this._deserialized = newState;
+            }
+
+            return this._deserialized;
         }
     }
 
@@ -305,11 +290,11 @@ namespace Yarn
         /// <summary>
         /// Get current State of Virtual Machine as serialized object.
         /// </summary>
-        public SerializedVMState GetStateSerialized() {
+        public JsonVMState GetStateSerialized() {
             JsonFormatter formatter = JsonFormatter.Default;
             string json = formatter.Format(GetStateClone());
 
-            return new SerializedVMState(json);
+            return new JsonVMState(json);
         }
 
         /// <summary>
@@ -331,7 +316,7 @@ namespace Yarn
         /// Set Virtual Machine state from a serialized object.
         /// </summary>
         public void SetState(SerializedVMState serialized) {
-            SetState(serialized.Deserialized);
+            SetState(serialized.Deserialize());
         }
 
         public Dialogue.LineHandler lineHandler;

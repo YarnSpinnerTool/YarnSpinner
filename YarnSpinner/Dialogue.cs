@@ -275,7 +275,7 @@ namespace Yarn {
         /// <summary>
         /// Get current State of Virtual Machine as serialized object.
         /// </summary>
-        public SerializedVMState GetVMStateSerialized() {
+        public JsonVMState GetVMStateSerialized() {
             return vm.GetStateSerialized();
         }
 

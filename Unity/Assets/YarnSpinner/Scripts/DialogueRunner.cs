@@ -353,14 +353,6 @@ namespace Yarn.Unity
             
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                Debug.Log(dialogue.GetVMStateSerialized().text);
-            }
-        }
-
         /// Adds a program and its base localisation string table
         public void Add(YarnProgram scriptToLoad)
         {
@@ -475,7 +467,7 @@ namespace Yarn.Unity
         /// </summary>
         public void StartDialogue(SerializedVMState vmState)
         {
-            StartDialogue(vmState.Deserialized);
+            StartDialogue(vmState.Deserialize());
         }
 
         private void ContinueDialogue()
