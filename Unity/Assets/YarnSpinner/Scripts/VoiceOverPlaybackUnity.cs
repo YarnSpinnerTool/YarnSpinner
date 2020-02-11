@@ -21,7 +21,7 @@ namespace Yarn.Unity {
         /// <param name="currentLine">The Yarn line currently active.</param>
         /// <param name="voiceOver">The AudioClip accociated with the current Yarn line.</param>
         /// <param name="dialogueUI">The reference to the DialogueUIBehaviour handling this line. Call VoiceOverDuration on this behaviour if you want the UI to wait for audio playback to finish.</param>
-        public override void StartLineVoiceOver(Line currentLine, AudioClip voiceOver, DialogueUIBehaviour dialogueUI) {
+        public override void StartLineVoiceOver(Line currentLine, AudioClip voiceOver = null, DialogueUIBehaviour dialogueUI = null) {
             if (!voiceOver) {
                 Debug.Log("Playing voice over failed since the given AudioClip was null.", gameObject);
                 return;

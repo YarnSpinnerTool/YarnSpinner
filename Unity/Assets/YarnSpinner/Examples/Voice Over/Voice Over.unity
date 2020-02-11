@@ -469,6 +469,11 @@ PrefabInstance:
       propertyPath: _onLineStartVoiceOver
       value: 
       objectReference: {fileID: 2086818859}
+    - target: {fileID: 5935829475398715329, guid: 4ec3df5875e7347beb6176b545b8fb39,
+        type: 3}
+      propertyPath: _voiceOverPlayback
+      value: 
+      objectReference: {fileID: 2086818859}
     - target: {fileID: 5935829475398715334, guid: 4ec3df5875e7347beb6176b545b8fb39,
         type: 3}
       propertyPath: onDialogueEnd.m_PersistentCalls.m_Calls.Array.size

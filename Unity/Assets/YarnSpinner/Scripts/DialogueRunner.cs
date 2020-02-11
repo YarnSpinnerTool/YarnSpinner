@@ -54,6 +54,11 @@ namespace Yarn.Unity
         /// The object that will handle the actual display and user input
         public Yarn.Unity.DialogueUIBehaviour dialogueUI;
 
+        /// <summary>
+        /// This object will handle the audio playback 
+        /// </summary>
+        public VoiceOverPlaybackBase _voiceOverPlayback;
+
         /// Which node to start from
         public string startNode = Yarn.Dialogue.DEFAULT_START;
 
@@ -95,8 +100,6 @@ namespace Yarn.Unity
 #pragma warning disable 0649
         [SerializeField] StringUnityEvent onNodeComplete;
 #pragma warning restore 0649
-
-        public VoiceOverPlaybackBase _onLineStartVoiceOver;
 
         // A flag used to note when we call into a blocking command
         // handler, but it calls its complete handler immediately -
@@ -295,15 +298,9 @@ namespace Yarn.Unity
         private Dialogue.HandlerExecutionType HandleLine(Line line)
         {
             // Only resolve linetag to audiofile if there is a receiver for it
-            if (_onLineStartVoiceOver != null) {
-                AudioClip voiceOverAudioClip = null;
-
-                if (voiceOvers.ContainsKey(line.ID)) {
-                    voiceOverAudioClip = voiceOvers[line.ID];
-                }
-
-                // TODO: Make onVoiceOverDuration always available on DialogueUI so we don't need to know about it here
-                _onLineStartVoiceOver.StartLineVoiceOver(line, voiceOverAudioClip, dialogueUI);
+            if (_voiceOverPlayback) {
+                AudioClip voiceOverAudioClip = voiceOvers.ContainsKey(line.ID) ? voiceOvers[line.ID] : null;
+                _voiceOverPlayback.StartLineVoiceOver(line, voiceOverAudioClip, dialogueUI);
             }
 
             return this.dialogueUI.RunLine (line, this, _continue);

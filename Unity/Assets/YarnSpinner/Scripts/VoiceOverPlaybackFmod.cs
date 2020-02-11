@@ -42,7 +42,7 @@ namespace Yarn.Unity {
         public string fmodEvent = "";
 
         /// <summary>
-        /// Stores the Dialogue UI instance showing the YarnLine for every voice over instance created. 
+        /// Stores the Dialogue UI instance showing the YarnLine of this instance.
         /// Necessary since the sound length is retrieved in a static callback from FMOD.
         /// We call this if we found out the length of the current voice over clip and want the Dialogue UI to wait for 
         /// that length.
@@ -51,14 +51,21 @@ namespace Yarn.Unity {
 
         /// <summary>
         /// FMOD callbacks are received via a static method. To support multiple instances of this playback class, 
-        /// we track which instance fired which fmod audio event in this dict.
+        /// we track the last fired FMOD event per instance here.
         /// </summary>
         private FMOD.Studio.EventInstance _lastVoiceOverEvent;
 
+        /// <summary>
+        /// All instances currently alive of this class. Necessary to properly deal with static callbacks from FMOD.
+        /// </summary>
         private static List<VoiceOverPlaybackFmod> _instances = new List<VoiceOverPlaybackFmod>();
 
-        private void Awake() {
+        private void OnEnable() {
             _instances.Add(this);
+        }
+
+        private void OnDisable() {
+            _instances.Remove(this);
         }
 
         void Start() {
@@ -71,9 +78,9 @@ namespace Yarn.Unity {
         /// Start playback of voice over.
         /// </summary>
         /// <param name="currentLine">The Yarn line currently active.</param>
-        /// <param name="voiceOver">The AudioClip accociated with the current Yarn line.</param>
+        /// <param name="voiceOver">The AudioClip accociated with the current Yarn line. Will be ignored by FMOD. Build banks with FMOD Studio and load them.</param>
         /// <param name="dialogueUI">The reference to the DialogueUIBehaviour handling this line. Call VoiceOverDuration on this behaviour if you want the UI to wait for audio playback to finish.</param>
-        public override void StartLineVoiceOver(Line currentLine, AudioClip voiceOver, DialogueUIBehaviour dialogueUI) {
+        public override void StartLineVoiceOver(Line currentLine, AudioClip voiceOver, DialogueUIBehaviour dialogueUI = null) {
             // Check if this instance is currently playing back another voice over in which case we stop it
             if (_lastVoiceOverEvent.isValid()) {
                 _lastVoiceOverEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
