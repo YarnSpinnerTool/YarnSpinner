@@ -30,9 +30,6 @@ using System.Collections.Generic;
 using CsvHelper;
 using System;
 
-// Field ... is never assigned to and will always have its default value null
-#pragma warning disable 0649
-
 namespace Yarn.Unity
 {
 
@@ -70,8 +67,6 @@ namespace Yarn.Unity
 
         private System.Action _continue;
 
-        private Action<float> _onVoiceOverDuration;
-
         private System.Action<int> _selectAction;
 
         public delegate void CommandHandler(string[] parameters);
@@ -101,20 +96,7 @@ namespace Yarn.Unity
         [SerializeField] StringUnityEvent onNodeComplete;
 #pragma warning restore 0649
 
-        /// <summary>
-        /// Event sending the current Line, the accociated a voiceover audio,
-        /// and an action to call should the Dialogue UI wait for the voice 
-        /// over to finish.
-        /// </summary>
-        [System.Serializable]
-        public class VoiceOverUnityEvent : UnityEngine.Events.UnityEvent<Line, AudioClip, Action<float>> { }
-
-        /// <summary>
-        /// Is called when a dialogue line is run and a matching entry in voiceovers was found
-        /// </summary>
-#pragma warning disable 0649
-        [SerializeField] VoiceOverUnityEvent onLineStartVoiceOver;
-#pragma warning restore 0649
+        public VoiceOverPlaybackBase _onLineStartVoiceOver;
 
         // A flag used to note when we call into a blocking command
         // handler, but it calls its complete handler immediately -
@@ -166,8 +148,6 @@ namespace Yarn.Unity
                     }
 
                     _continue = this.ContinueDialogue;
-                    _onVoiceOverDuration = dialogueUI.VoiceOverDuration;
-
                     _selectAction = this.SelectedOption;
         
                 }
@@ -315,12 +295,15 @@ namespace Yarn.Unity
         private Dialogue.HandlerExecutionType HandleLine(Line line)
         {
             // Only resolve linetag to audiofile if there is a receiver for it
-            if (onLineStartVoiceOver.GetPersistentEventCount() > 0) {
+            if (_onLineStartVoiceOver != null) {
+                AudioClip voiceOverAudioClip = null;
+
                 if (voiceOvers.ContainsKey(line.ID)) {
-                    onLineStartVoiceOver?.Invoke(line, voiceOvers[line.ID], _onVoiceOverDuration);
-                } else {
-                    onLineStartVoiceOver?.Invoke(line, null, _onVoiceOverDuration);
+                    voiceOverAudioClip = voiceOvers[line.ID];
                 }
+
+                // TODO: Make onVoiceOverDuration always available on DialogueUI so we don't need to know about it here
+                _onLineStartVoiceOver.StartLineVoiceOver(line, voiceOverAudioClip, dialogueUI);
             }
 
             return this.dialogueUI.RunLine (line, this, _continue);
