@@ -7,13 +7,17 @@ namespace Yarn.Unity {
     public class YarnLinesAsCanvasTextEditor : Editor {
         private YarnProgram _yarnProgram = default;
         private SerializedProperty _yarnProgramProperty = default;
-        private Dictionary<string, string> _yarnLines = new Dictionary<string, string>();
+        private Dictionary<string, string> _yarnStringTable = new Dictionary<string, string>();
         private SerializedProperty _textObjectsProperty = default;
-        private bool ShowUIElements = true;
-        private const string textObjects = "Text Objects";
-        private string lastUpdateLanguage = default;
+        private bool _showTextUiComponents = true;
+        private const string _textUiComponentsLabel = "Text UI Components";
+        private string _lastLanguageId = default;
+        private GUIStyle _headerStyle;
 
         private void OnEnable() {
+            _headerStyle = new GUIStyle() { fontStyle = FontStyle.Bold };
+            _lastLanguageId = Preferences.TextLanguage;
+
             _yarnProgramProperty = serializedObject.FindProperty("yarnScript");
             if (_yarnProgramProperty.objectReferenceValue == null) {
                 return;
@@ -21,14 +25,12 @@ namespace Yarn.Unity {
 
             _yarnProgram = _yarnProgramProperty.objectReferenceValue as YarnProgram;
 
-            _yarnLines.Clear();
+            _yarnStringTable.Clear();
             foreach (var line in _yarnProgram.GetStringTable()) {
-                _yarnLines.Add(line.Key, line.Value);
+                _yarnStringTable.Add(line.Key, line.Value);
             }
 
-            _textObjectsProperty = serializedObject.FindProperty("textObjects");
-
-            lastUpdateLanguage = Preferences.TextLanguage;
+            _textObjectsProperty = serializedObject.FindProperty("textCanvases");
         }
 
         public override void OnInspectorGUI() {
@@ -36,32 +38,34 @@ namespace Yarn.Unity {
 
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.PropertyField(_yarnProgramProperty);
-            if (EditorGUI.EndChangeCheck() || lastUpdateLanguage != Preferences.TextLanguage) {
+            // Rebuild the string table if the yarn asset or the language preference has changed
+            if (EditorGUI.EndChangeCheck() || _lastLanguageId != Preferences.TextLanguage) {
                 OnEnable();
             }
 
             if (_yarnProgramProperty.objectReferenceValue == null) {
                 EditorGUILayout.HelpBox("This component needs a yarn asset.", MessageType.Info);
             } else {
-                var InventoryHeaderStyle = new GUIStyle();
-                InventoryHeaderStyle.fontStyle = FontStyle.Bold;
-
-                ShowUIElements = EditorGUILayout.Foldout(ShowUIElements, textObjects);
-                if (ShowUIElements) {
-                    if (_yarnLines.Count == 0) {
+                _showTextUiComponents = EditorGUILayout.Foldout(_showTextUiComponents, _textUiComponentsLabel);
+                if (_showTextUiComponents) {
+                    if (_yarnStringTable.Count == 0) {
                         EditorGUILayout.HelpBox("Couldn't find any text lines on the referenced Yarn asset.", MessageType.Info);
                     } else {
+                        // Header
                         EditorGUILayout.BeginHorizontal();
-                        EditorGUILayout.LabelField("Yarn Text Lines", InventoryHeaderStyle);
-                        EditorGUILayout.LabelField("UI Canvas", InventoryHeaderStyle);
+                        EditorGUILayout.LabelField("Yarn Text Lines", _headerStyle);
+                        EditorGUILayout.LabelField("UI Canvas", _headerStyle);
                         EditorGUILayout.EndHorizontal();
+
+                        // The referenced Canvas Text components
                         var i = 0;
-                        foreach (var stringEntry in _yarnLines) {
+                        foreach (var stringTableEntry in _yarnStringTable) {
                             if (_textObjectsProperty.arraySize <= i) {
                                 _textObjectsProperty.InsertArrayElementAtIndex(i);
                             }
-                            GUIContent label = new GUIContent();
-                            label.text = "'" + stringEntry.Value + "'";
+                            // Draw the actual content of the yarn line as lable so the user knows what text 
+                            // will placed on the referenced component
+                            GUIContent label = new GUIContent() { text = "'" + stringTableEntry.Value + "'" } ;
                             EditorGUILayout.PropertyField(_textObjectsProperty.GetArrayElementAtIndex(i), label);
                             i++;
                         }

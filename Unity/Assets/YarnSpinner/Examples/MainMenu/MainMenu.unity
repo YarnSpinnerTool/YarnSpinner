@@ -802,7 +802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yarnScript: {fileID: 11400000, guid: 8e3b0eabc14eb4e4cb5da356b457ab83, type: 3}
-  textObjects:
+  textCanvases:
   - {fileID: 572921156}
   - {fileID: 1819006488}
   - {fileID: 1172188912}

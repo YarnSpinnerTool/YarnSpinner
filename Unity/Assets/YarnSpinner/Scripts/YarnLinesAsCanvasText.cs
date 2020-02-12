@@ -2,27 +2,30 @@
 using UnityEngine;
 
 namespace Yarn.Unity {
+    /// <summary>
+    /// Shows Yarn lines on Canvas Text components.
+    /// </summary>
     public class YarnLinesAsCanvasText : MonoBehaviour {
         public YarnProgram yarnScript;
-        private Dictionary<string, string> strings = new Dictionary<string, string>();
-        public UnityEngine.UI.Text[] textObjects;
+        public UnityEngine.UI.Text[] textCanvases;
+
+        private Dictionary<string, string> _yarnStringTable = new Dictionary<string, string>();
 
         private void Awake() {
             foreach (var line in yarnScript.GetStringTable()) {
-                strings.Add(line.Key, line.Value);
+                _yarnStringTable.Add(line.Key, line.Value);
             }
         }
 
-        // Start is called before the first frame update
         void Start() {
             var index = 0;
-            foreach (var line in strings) {
-                if (index >= textObjects.Length) {
+            foreach (var line in _yarnStringTable) {
+                if (index >= textCanvases.Length) {
                     return;
                 }
 
-                if (textObjects[index]) {
-                    textObjects[index].text = line.Value;
+                if (textCanvases[index]) {
+                    textCanvases[index].text = line.Value;
                 }
 
                 index++;
