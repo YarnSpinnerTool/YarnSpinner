@@ -273,10 +273,10 @@ namespace Yarn {
         }
 
         /// <summary>
-        /// Get current State of Virtual Machine as serialized Protobuf.
+        /// Get current State of Virtual Machine as serialized Binary.
         /// </summary>
-        public ProtobufSerializedState GetStateProtobufSerialized() {
-            return vm.GetStateProtobufSerialized();
+        public BinarySerializedState GetStateBinarySerialized() {
+            return vm.GetStateBinarySerialized();
         }
 
         /// <summary>
@@ -294,16 +294,9 @@ namespace Yarn {
         }
 
         /// <summary>
-        /// Set Virtual Machine state from a serialized Protobuf State.
+        /// Set Virtual Machine state from a serialized State.
         /// </summary>
-        public void SetState(ProtobufSerializedState serialized) {
-            vm.SetState(serialized);
-        }
-
-        /// <summary>
-        /// Set Virtual Machine state from a serialized JSON State.
-        /// </summary>
-        public void SetState(JsonSerializedState serialized) {
+        public void SetState(ISerializedState serialized) {
             vm.SetState(serialized);
         }
 

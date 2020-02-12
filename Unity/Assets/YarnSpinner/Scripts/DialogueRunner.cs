@@ -465,15 +465,7 @@ namespace Yarn.Unity
         /// <summary>
         /// Start the dialogue from saved Serialized State
         /// </summary>
-        public void StartDialogue(ProtobufSerializedState state)
-        {
-            StartDialogue(state.Deserialize());
-        }
-
-        /// <summary>
-        /// Start the dialogue from saved Serialized State
-        /// </summary>
-        public void StartDialogue(JsonSerializedState state)
+        public void StartDialogue(ISerializedState state)
         {
             StartDialogue(state.Deserialize());
         }

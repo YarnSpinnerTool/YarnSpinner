@@ -117,103 +117,164 @@ namespace Yarn
         Text // a run of text until we hit other syntax
     }
 
-    public abstract class SerializedState<T> {
-        public T Data { get; protected set; }
+    public interface ISerializedState {
+        /// <summary>
+        /// Get the serialized source data.
+        /// </summary>
+        object GetData();
 
-        public abstract State Deserialize();
+        /// <summary>
+        /// Deserialize the source data and return resulting State object.
+        /// </summary>
+        State Deserialize();
+    }
+
+    public interface ISerializedState<out T> : ISerializedState {
+        /// <summary>
+        /// Get the serialized source data.
+        /// </summary>
+        new T GetData();
     }
 
     /// <summary>
-    /// Handle serialized state in PROTOBUF format (unicode)
+    /// Handle serialized state in Binary format
     /// </summary>
-    public class ProtobufSerializedState : SerializedState<ByteString>
+    public class BinarySerializedState : ISerializedState<ByteString>
     {
         /// <summary>
         /// Creates a Serialized State from given array.
         /// </summary>
-        public ProtobufSerializedState(params byte[] bytes) {
-            Data = ByteString.CopyFrom(bytes);
+        public BinarySerializedState(params byte[] bytes) {
+            this.data = ByteString.CopyFrom(bytes);
         }
 
         /// <summary>
         /// Creates a Serialized State by encoding specified text with given encoding.
         /// </summary>
-        public ProtobufSerializedState(string text, Encoding encoding) {
-            Data = ByteString.CopyFrom(text, encoding);
+        public BinarySerializedState(string text, Encoding encoding) {
+            this.data = ByteString.CopyFrom(text, encoding);
         }
 
         /// <summary>
         /// Creates a Serialized State from Base64 Encoded String.
         /// </summary>
-        public ProtobufSerializedState(string base64) {
-            Data = ByteString.FromBase64(base64);
+        public BinarySerializedState(string base64) {
+            this.data = ByteString.FromBase64(base64);
         }
 
         /// <summary>
         /// Creates a Serialized State from ByteString data.
         /// </summary>
-        public ProtobufSerializedState(ByteString data) {
-            Data = data;
+        public BinarySerializedState(ByteString data) {
+            this.data = data;
         }
 
-        private State _deserialized;
+        private ByteString data;
+        private State deserialized;
 
-        public override State Deserialize() {
-            if (this._deserialized != null) {
-                return this._deserialized;
+        public ByteString GetData() {
+            return this.data;
+        }
+
+        object ISerializedState.GetData()
+        {
+            return GetData();
+        }
+
+        public State Deserialize() {
+            if (this.deserialized != null) {
+                return this.deserialized;
             }
 
             MessageParser parser = new MessageParser<State>(() => { return new State(); });
             State newState;
 
             try {
-                newState = parser.ParseFrom(Data) as State;
+                newState = parser.ParseFrom(this.data) as State;
             } catch (InvalidProtocolBufferException exception) {
                 throw exception;
             }
 
             if (newState != null) {
-                this._deserialized = newState;
+                this.deserialized = newState;
             }
 
-            return this._deserialized;
+            return this.deserialized;
+        }
+
+        /// <summary>
+        /// Converts data into a byte array.
+        /// </summary>
+        public byte[] ToByteArray() {
+            return this.data.ToByteArray();
+        }
+
+        /// <summary>
+        /// Converts data into a string by applying the given encoding.
+        /// </summary>
+        public string ToString(Encoding encoding) {
+            return this.data.ToString(encoding);
+        }
+
+        /// <summary>
+        /// Converts data into a standard base64 representation.
+        /// </summary>
+        public string ToBase64() {
+            return this.data.ToBase64();
+        }
+
+        public override string ToString() {
+            return this.data.ToBase64().ToString();
         }
     }
 
     /// <summary>
     /// Handle serialized state in JSON format
     /// </summary>
-    public class JsonSerializedState : SerializedState<string>
+    public class JsonSerializedState : ISerializedState<string>
     {
         /// <summary>
         /// Creates a Serialized State from JSON formatted string.
         /// </summary>
         public JsonSerializedState(string json) {
-            Data = json;
+            this.data = json;
         }
 
-        private State _deserialized;
+        private string data;
+        private State deserialized;
 
-        public override State Deserialize() {
-            if (this._deserialized != null) {
-                return this._deserialized;
+        public string GetData() {
+            return this.data;
+        }
+
+        object ISerializedState.GetData() {
+            return GetData();
+        }
+
+        public State Deserialize() {
+            if (this.deserialized != null) {
+                return this.deserialized;
             }
 
             JsonParser parser = JsonParser.Default;
             State newState;
 
             try {
-                newState = parser.Parse<State>(Data);
+                newState = parser.Parse<State>(this.data);
             }
             catch (InvalidJsonException exception) {
                 throw exception;
             }
 
             if (newState != null) {
-                this._deserialized = newState;
+                this.deserialized = newState;
             }
 
-            return this._deserialized;
+            return this.deserialized;
+        }
+
+        public override string ToString() {
+            return this.data;
         }
     }
 
@@ -340,14 +401,24 @@ namespace Yarn
         /// <summary>
         /// Get current State of Virtual Machine as serialized Protobuf.
         /// </summary>
-        public ProtobufSerializedState GetStateProtobufSerialized() {
-            return new ProtobufSerializedState(this.state.ToByteString());
+        public BinarySerializedState GetStateBinarySerialized() {
+            if (string.IsNullOrEmpty(this.state.CurrentNodeName)) {
+                dialogue.LogErrorMessage($"Cannot get State of the Virtual Machine because it is not running any node.");
+                return null;
+            }
+
+            return new BinarySerializedState(this.state.ToByteString());
         }
 
         /// <summary>
         /// Get current State of Virtual Machine as serialized JSON.
         /// </summary>
         public JsonSerializedState GetStateJsonSerialized() {
+            if (string.IsNullOrEmpty(this.state.CurrentNodeName)) {
+                dialogue.LogErrorMessage($"Cannot get State of the Virtual Machine because it is not running any node.");
+                return null;
+            }
+
             JsonFormatter formatter = JsonFormatter.Default;
             string json = formatter.Format(this.state);
 
@@ -374,16 +445,9 @@ namespace Yarn
         }
 
         /// <summary>
-        /// Set Virtual Machine state from a serialized Protobuf State.
+        /// Set Virtual Machine state from a serialized State.
         /// </summary>
-        public void SetState(ProtobufSerializedState serialized) {
-            SetState(serialized.Deserialize());
-        }
-
-        /// <summary>
-        /// Set Virtual Machine state from a serialized JSON State.
-        /// </summary>
-        public void SetState(JsonSerializedState serialized) {
+        public void SetState(ISerializedState serialized) {
             SetState(serialized.Deserialize());
         }
 
