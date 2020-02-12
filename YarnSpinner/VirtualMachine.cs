@@ -118,10 +118,6 @@ namespace Yarn
     }
 
     public abstract class SerializedState<T> {
-
-        public enum Format { Protobuf, Json }
-        protected Format DataFormat { get; set; }
-
         public T Data { get; protected set; }
 
         public abstract State Deserialize();
@@ -137,7 +133,6 @@ namespace Yarn
         /// </summary>
         public ProtobufSerializedState(params byte[] bytes) {
             Data = ByteString.CopyFrom(bytes);
-            DataFormat = Format.Protobuf;
         }
 
         /// <summary>
@@ -145,7 +140,6 @@ namespace Yarn
         /// </summary>
         public ProtobufSerializedState(string text, Encoding encoding) {
             Data = ByteString.CopyFrom(text, encoding);
-            DataFormat = Format.Protobuf;
         }
 
         /// <summary>
@@ -153,7 +147,6 @@ namespace Yarn
         /// </summary>
         public ProtobufSerializedState(string base64) {
             Data = ByteString.FromBase64(base64);
-            DataFormat = Format.Protobuf;
         }
 
         /// <summary>
@@ -161,7 +154,6 @@ namespace Yarn
         /// </summary>
         public ProtobufSerializedState(ByteString data) {
             Data = data;
-            DataFormat = Format.Protobuf;
         }
 
         private State _deserialized;
@@ -198,7 +190,6 @@ namespace Yarn
         /// </summary>
         public JsonSerializedState(string json) {
             Data = json;
-            DataFormat = Format.Json;
         }
 
         private State _deserialized;
