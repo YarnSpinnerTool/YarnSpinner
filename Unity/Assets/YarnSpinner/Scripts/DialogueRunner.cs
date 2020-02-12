@@ -465,7 +465,7 @@ namespace Yarn.Unity
         /// <summary>
         /// Start the dialogue from saved Serialized State
         /// </summary>
-        public void StartDialogue(SerializedState<string> state)
+        public void StartDialogue(ProtobufSerializedState state)
         {
             StartDialogue(state.Deserialize());
         }
@@ -473,7 +473,7 @@ namespace Yarn.Unity
         /// <summary>
         /// Start the dialogue from saved Serialized State
         /// </summary>
-        public void StartDialogue(SerializedState<Google.Protobuf.ByteString> state)
+        public void StartDialogue(JsonSerializedState state)
         {
             StartDialogue(state.Deserialize());
         }

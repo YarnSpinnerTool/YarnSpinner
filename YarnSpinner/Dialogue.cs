@@ -296,14 +296,14 @@ namespace Yarn {
         /// <summary>
         /// Set Virtual Machine state from a serialized Protobuf State.
         /// </summary>
-        public void SetState(SerializedState<Google.Protobuf.ByteString> serialized) {
+        public void SetState(ProtobufSerializedState serialized) {
             vm.SetState(serialized);
         }
 
         /// <summary>
         /// Set Virtual Machine state from a serialized JSON State.
         /// </summary>
-        public void SetState(SerializedState<string> serialized) {
+        public void SetState(JsonSerializedState serialized) {
             vm.SetState(serialized);
         }
 
