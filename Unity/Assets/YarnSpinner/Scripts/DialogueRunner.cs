@@ -27,7 +27,6 @@ SOFTWARE.
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using CsvHelper;
 using System;
 
 // Field ... is never assigned to and will always have its default value null
@@ -155,7 +154,7 @@ namespace Yarn.Unity
 
                     foreach (var yarnScript in yarnScripts) {
                         AddStringTable(yarnScript);
-                        AddVoiceOvers(yarnScript.voiceOvers);
+                        AddVoiceOvers(yarnScript);
                     }
 
                     _continue = this.ContinueDialogue;                    
@@ -379,7 +378,7 @@ namespace Yarn.Unity
         {
             AddProgram(scriptToLoad);
             AddStringTable(scriptToLoad);
-            AddVoiceOvers(scriptToLoad.voiceOvers);
+            AddVoiceOvers(scriptToLoad);
         }
 
         /// Adds a program, and all of its nodes
@@ -388,40 +387,20 @@ namespace Yarn.Unity
             this.dialogue.AddProgram(scriptToLoad.GetProgram());
         }
 
-        /// Adds a tagged string table from the yarn asset depending on the variable "textLanguage"
+        /// Adds a tagged string table from the yarn asset
         public void AddStringTable(YarnProgram yarnScript) {
-
-            var textToLoad = new TextAsset();
-            if (yarnScript.localizations != null || yarnScript.localizations.Length > 0) {
-                textToLoad = Array.Find(yarnScript.localizations, element => element.languageName == Preferences.TextLanguage)?.text;
-            }
-            if (textToLoad == null || string.IsNullOrEmpty(textToLoad.text)) {
-                textToLoad = yarnScript.baseLocalisationStringTable;
-            }
-
-            // Use the invariant culture when parsing the CSV
-            var configuration = new CsvHelper.Configuration.Configuration(
-                System.Globalization.CultureInfo.InvariantCulture
-            );
-
-            using (var reader = new System.IO.StringReader(textToLoad.text))
-            using (var csv = new CsvReader(reader, configuration)) {
-                csv.Read();
-                csv.ReadHeader();
-
-                while (csv.Read()) {
-                    strings.Add(csv.GetField("id"), csv.GetField("text"));
-                }
+            foreach (var yarnLine in yarnScript.GetStringTable()) {
+                strings.Add(yarnLine.Key, yarnLine.Value);
             }
         }
 
-        public void AddVoiceOvers(LinetagToLanguage[] lineToLanguage) {
-            foreach (var line in lineToLanguage) {
-                foreach (var language in line.languageToAudioclip) {
-                    if (language.language == Preferences.AudioLanguage) {
-                        voiceOvers.Add(line.linetag, language.audioClip);
-                    }
-                }
+        /// <summary>
+        /// Adds a tagged voice over table from the yarn asset
+        /// </summary>
+        /// <param name="scriptToLoad">The yarn script/program to load the voice overs from.</param>
+        public void AddVoiceOvers(YarnProgram scriptToLoad) {
+            foreach (var voiceOver in scriptToLoad.GetVoiceOversOfLanguage()) {
+                voiceOvers.Add(voiceOver.Key, voiceOver.Value);
             }
         }
 
