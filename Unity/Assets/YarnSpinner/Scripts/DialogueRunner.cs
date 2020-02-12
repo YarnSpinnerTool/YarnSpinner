@@ -436,16 +436,16 @@ namespace Yarn.Unity
         }
 
         /// <summary>
-        /// Start the dialogue from saved VM State
+        /// Start the dialogue from saved State
         /// </summary>
-        public void StartDialogue(VMState vmState)
+        public void StartDialogue(State state)
         {
-            if (string.IsNullOrEmpty(vmState.CurrentNodeName)) {
+            if (string.IsNullOrEmpty(state.CurrentNodeName)) {
                 Debug.LogError("Cannot start dialogue from a VM State because it doesn't have currentNode set.");
                 return;
             }
 
-            dialogue.SetVMState(vmState);
+            dialogue.SetState(state);
 
             // Stop any processes that might be running already
             dialogueUI.StopAllCoroutines();
@@ -463,11 +463,19 @@ namespace Yarn.Unity
         }
 
         /// <summary>
-        /// Start the dialogue from saved Serialized VM State
+        /// Start the dialogue from saved Serialized State
         /// </summary>
-        public void StartDialogue(SerializedVMState vmState)
+        public void StartDialogue(SerializedState<string> state)
         {
-            StartDialogue(vmState.Deserialize());
+            StartDialogue(state.Deserialize());
+        }
+
+        /// <summary>
+        /// Start the dialogue from saved Serialized State
+        /// </summary>
+        public void StartDialogue(SerializedState<Google.Protobuf.ByteString> state)
+        {
+            StartDialogue(state.Deserialize());
         }
 
         private void ContinueDialogue()

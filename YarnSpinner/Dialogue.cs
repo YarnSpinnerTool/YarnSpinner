@@ -266,30 +266,44 @@ namespace Yarn {
         }
 
         /// <summary>
-        /// Get current State of Virtual Machine as a copy of the VMState object.
+        /// Get current State of Virtual Machine as a copy of the State object.
         /// </summary>
-        public VMState GetVMStateClone() {
+        public State GetStateClone() {
             return vm.GetStateClone();
         }
 
         /// <summary>
-        /// Get current State of Virtual Machine as serialized object.
+        /// Get current State of Virtual Machine as serialized Protobuf.
         /// </summary>
-        public JsonVMState GetVMStateSerialized() {
-            return vm.GetStateSerialized();
+        public ProtobufSerializedState GetStateProtobufSerialized() {
+            return vm.GetStateProtobufSerialized();
         }
 
         /// <summary>
-        /// Set Virtual Machine state from a VMState object.
+        /// Get current State of Virtual Machine as serialized JSON.
         /// </summary>
-        public void SetVMState(VMState newState) {
+        public JsonSerializedState GetStateJsonSerialized() {
+            return vm.GetStateJsonSerialized();
+        }
+
+        /// <summary>
+        /// Set Virtual Machine state from a State object.
+        /// </summary>
+        public void SetState(State newState) {
             vm.SetState(newState);
         }
 
         /// <summary>
-        /// Set Virtual Machine state from a serialized object.
+        /// Set Virtual Machine state from a serialized Protobuf State.
         /// </summary>
-        public void SetVMState(SerializedVMState serialized) {
+        public void SetState(SerializedState<Google.Protobuf.ByteString> serialized) {
+            vm.SetState(serialized);
+        }
+
+        /// <summary>
+        /// Set Virtual Machine state from a serialized JSON State.
+        /// </summary>
+        public void SetState(SerializedState<string> serialized) {
             vm.SetState(serialized);
         }
 

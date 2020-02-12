@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Google.Protobuf;
 using static Yarn.Instruction.Types;
 
@@ -116,32 +117,102 @@ namespace Yarn
         Text // a run of text until we hit other syntax
     }
 
-    public abstract class SerializedVMState {
+    public abstract class SerializedState<T> {
 
-        public string Text { get; protected set; }
+        public enum Format { Protobuf, Json }
+        protected Format DataFormat { get; set; }
 
-        public abstract VMState Deserialize();
+        public T Data { get; protected set; }
+
+        public abstract State Deserialize();
     }
 
-    public class JsonVMState : SerializedVMState
+    /// <summary>
+    /// Handle serialized state in PROTOBUF format (unicode)
+    /// </summary>
+    public class ProtobufSerializedState : SerializedState<ByteString>
     {
-        public JsonVMState(string text) {
-            Text = text;
+        /// <summary>
+        /// Creates a Serialized State from given array.
+        /// </summary>
+        public ProtobufSerializedState(params byte[] bytes) {
+            Data = ByteString.CopyFrom(bytes);
+            DataFormat = Format.Protobuf;
         }
 
-        private VMState _deserialized;
+        /// <summary>
+        /// Creates a Serialized State by encoding specified text with given encoding.
+        /// </summary>
+        public ProtobufSerializedState(string text, Encoding encoding) {
+            Data = ByteString.CopyFrom(text, encoding);
+            DataFormat = Format.Protobuf;
+        }
 
-        public override VMState Deserialize() {
+        /// <summary>
+        /// Creates a Serialized State from Base64 Encoded String.
+        /// </summary>
+        public ProtobufSerializedState(string base64) {
+            Data = ByteString.FromBase64(base64);
+            DataFormat = Format.Protobuf;
+        }
+
+        /// <summary>
+        /// Creates a Serialized State from ByteString data.
+        /// </summary>
+        public ProtobufSerializedState(ByteString data) {
+            Data = data;
+            DataFormat = Format.Protobuf;
+        }
+
+        private State _deserialized;
+
+        public override State Deserialize() {
+            if (this._deserialized != null) {
+                return this._deserialized;
+            }
+
+            MessageParser parser = new MessageParser<State>(() => { return new State(); });
+            State newState;
+
+            try {
+                newState = parser.ParseFrom(Data) as State;
+            } catch (InvalidProtocolBufferException exception) {
+                throw exception;
+            }
+
+            if (newState != null) {
+                this._deserialized = newState;
+            }
+
+            return this._deserialized;
+        }
+    }
+
+    /// <summary>
+    /// Handle serialized state in JSON format
+    /// </summary>
+    public class JsonSerializedState : SerializedState<string>
+    {
+        /// <summary>
+        /// Creates a Serialized State from JSON formatted string.
+        /// </summary>
+        public JsonSerializedState(string json) {
+            Data = json;
+            DataFormat = Format.Json;
+        }
+
+        private State _deserialized;
+
+        public override State Deserialize() {
             if (this._deserialized != null) {
                 return this._deserialized;
             }
 
             JsonParser parser = JsonParser.Default;
-            VMState newState;
+            State newState;
 
-            // not sure what Parse() returns when it fails to parse.
             try {
-                newState = parser.Parse<VMState>(Text);
+                newState = parser.Parse<State>(Data);
             }
             catch (InvalidJsonException exception) {
                 throw exception;
@@ -155,23 +226,21 @@ namespace Yarn
         }
     }
 
-    public partial class VMStateOption
+    public partial class StateOption
     {
         // Works the same as KeyValuePair, but in protobuf.
-
-        public VMStateOption(string key, string value) : base()
-        {
+        public StateOption(string key, string value) : base() {
             this.Key = key;
             this.Value = value;
         }
     }
 
-    public partial class VMStateValue
+    public partial class StateValue
     {
         // This entire class exists only because serializing entire Value object
         // seemed unnecessary so instead we are rebuilding Values from less complex context.
 
-        public VMStateValue(Value yarnValue) : base() {
+        public StateValue(Value yarnValue) : base() {
             this.YarnValue = yarnValue;
             this.Type = (int)yarnValue.type;
             this.Value = yarnValue.AsString;
@@ -207,17 +276,20 @@ namespace Yarn
         }
     }
 
-    public partial class VMState
+    public partial class State
     {
+        /// The instruction number in the current node
+        public int programCounter = 0;
+
         // The methods in here used to handle a Stack object, but it is easier to serialize
         // and handle a List these methods are now providing Stack functionality on top of a List.
 
         /// Methods for working with the stack
         public void PushValue(object o) {
             if (o is Value) {
-                Stack.Add(new VMStateValue(o as Value));
+                Stack.Add(new StateValue(o as Value));
             } else {
-                Stack.Add(new VMStateValue(new Value(o)));
+                Stack.Add(new StateValue(new Value(o)));
             }
         }
 
@@ -254,53 +326,47 @@ namespace Yarn
         internal VirtualMachine (Dialogue d)
         {
             dialogue = d;
-            state = new VMState();
+            state = new State();
         }
 
         /// Reset the state of the VM
         internal void ResetState() {
-            state = new VMState();
+            state = new State();
         }
 
-        // Using this flag to return expected VM State programCounter.
-        // depends on when the State is requested, mostly it would be after
-        // an instruction has been processed which increments the counter.
-        private bool instructionProcessed = false;
-
         /// <summary>
-        /// Get current State of Virtual Machine as a copy of the VMState object.
+        /// Get current State of Virtual Machine as a copy of the State object.
         /// </summary>
-        public VMState GetStateClone() {
+        public State GetStateClone() {
             if (string.IsNullOrEmpty(this.state.CurrentNodeName)) {
                 dialogue.LogErrorMessage($"Cannot get State of the Virtual Machine because it is not running any node.");
                 return null;
             }
 
-            VMState clonedState = this.state.Clone();
-
-            // Here we decrement saved States program counter, otherwise it would
-            // indicate next instruction instead of the current one.
-            if (this.instructionProcessed) {
-                clonedState.ProgramCounter--;
-            }
-
-            return clonedState;
+            return this.state.Clone();
         }
 
         /// <summary>
-        /// Get current State of Virtual Machine as serialized object.
+        /// Get current State of Virtual Machine as serialized Protobuf.
         /// </summary>
-        public JsonVMState GetStateSerialized() {
+        public ProtobufSerializedState GetStateProtobufSerialized() {
+            return new ProtobufSerializedState(this.state.ToByteString());
+        }
+
+        /// <summary>
+        /// Get current State of Virtual Machine as serialized JSON.
+        /// </summary>
+        public JsonSerializedState GetStateJsonSerialized() {
             JsonFormatter formatter = JsonFormatter.Default;
-            string json = formatter.Format(GetStateClone());
+            string json = formatter.Format(this.state);
 
-            return new JsonVMState(json);
+            return new JsonSerializedState(json);
         }
 
         /// <summary>
-        /// Set Virtual Machine state from a VMState object.
+        /// Set Virtual Machine state from a State object.
         /// </summary>
-        public void SetState(VMState newState) {
+        public void SetState(State newState) {
             if (string.IsNullOrEmpty(newState.CurrentNodeName)) {
                 // If loaded state NodeName is empty, throw error.
                 throw new ArgumentException("Tried to set VM State that does not have any Node set, this is invalid because VM has no idea ");
@@ -309,13 +375,24 @@ namespace Yarn
                 SetNode(newState.CurrentNodeName);
             }
 
+            // Set our new State.
             this.state = newState;
+
+            // To properly continue from where the State left of, we need to sync program counter to current instruction.
+            this.state.programCounter = newState.CurrentInstruction;
         }
 
         /// <summary>
-        /// Set Virtual Machine state from a serialized object.
+        /// Set Virtual Machine state from a serialized Protobuf State.
         /// </summary>
-        public void SetState(SerializedVMState serialized) {
+        public void SetState(SerializedState<ByteString> serialized) {
+            SetState(serialized.Deserialize());
+        }
+
+        /// <summary>
+        /// Set Virtual Machine state from a serialized JSON State.
+        /// </summary>
+        public void SetState(SerializedState<string> serialized) {
             SetState(serialized.Deserialize());
         }
 
@@ -329,7 +406,7 @@ namespace Yarn
 
         internal Program Program { get; set; }
 
-        private VMState state = new VMState();
+        private State state = new State();
 
         public string currentNodeName {
             get {
@@ -440,15 +517,18 @@ namespace Yarn
 
             // Execute instructions until something forces us to stop
             while (executionState == ExecutionState.Running) {
-                this.instructionProcessed = false;
 
-                Instruction currentInstruction = currentNode.Instructions [state.ProgramCounter];
+                // Sync current instruction to one that is supposed to run.
+                state.CurrentInstruction = state.programCounter;
+
+                // Run the instruction.
+                Instruction currentInstruction = currentNode.Instructions [state.CurrentInstruction];
                 RunInstruction (currentInstruction);
 
-                state.ProgramCounter++;
-                this.instructionProcessed = true;
+                // Increment program counter for the next loop.
+                state.programCounter++;
 
-                if (state.ProgramCounter >= currentNode.Instructions.Count) {
+                if (state.programCounter >= currentNode.Instructions.Count) {
                     nodeCompleteHandler(currentNode.Name);
                     executionState = ExecutionState.Stopped;
                     dialogueCompleteHandler();
@@ -479,7 +559,7 @@ namespace Yarn
                         /// - JumpTo
                         /** Jumps to a named label
                          */
-                        state.ProgramCounter = FindInstructionPointForLabel(i.Operands[0].StringValue) - 1;
+                        state.programCounter = FindInstructionPointForLabel(i.Operands[0].StringValue) - 1;
 
                         break;
                     }
@@ -568,7 +648,7 @@ namespace Yarn
                          */
                         if (state.PeekValue().AsBool == false)
                         {
-                            state.ProgramCounter = FindInstructionPointForLabel(i.Operands[0].StringValue) - 1;
+                            state.programCounter = FindInstructionPointForLabel(i.Operands[0].StringValue) - 1;
                         }
                         break;
                     }
@@ -578,7 +658,7 @@ namespace Yarn
                         /** Jumps to a label whose name is on the stack.
                          */
                         var jumpDestination = state.PeekValue().AsString;
-                        state.ProgramCounter = FindInstructionPointForLabel(jumpDestination) - 1;
+                        state.programCounter = FindInstructionPointForLabel(jumpDestination) - 1;
 
                         break;
                     }
@@ -712,7 +792,7 @@ namespace Yarn
                         // Decrement program counter here, because it will
                         // be incremented when this function returns, and
                         // would mean skipping the first instruction
-                        state.ProgramCounter -= 1; 
+                        state.programCounter -= 1; 
 
                         if (pause == Dialogue.HandlerExecutionType.PauseExecution) {
                             executionState = ExecutionState.Suspended;
@@ -727,7 +807,7 @@ namespace Yarn
                         /** Add an option to the current state.
                          */
                         state.CurrentOptions.Add(
-                            new VMStateOption(
+                            new StateOption(
                                 i.Operands[0].StringValue, // display string key
                                 i.Operands[1].StringValue  // node name
                             )
