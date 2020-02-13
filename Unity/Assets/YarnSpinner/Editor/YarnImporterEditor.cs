@@ -34,6 +34,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
     Dictionary<string, Dictionary<string, string>> _allLanguagesStringTable = new Dictionary<string, Dictionary<string, string>>();
 
     private const string _audioVoiceOverInitializeHelpBox = "Hit 'Apply' to initialize the currently selected voice over language!";
+    private const string _audioVoiceOverNoYarnLinesOnAsset = "No yarn lines found on this asset so no voice overs can be linked to lines.";
 
     public override void OnEnable() {
         base.OnEnable();
@@ -254,7 +255,11 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                 }
             }
             if (!selectedVoiceOverLanguageExists) {
-                EditorGUILayout.HelpBox(_audioVoiceOverInitializeHelpBox, MessageType.Info );
+                if (YarnProgram.GetStringTable(yarnImporter.baseLanguage).Count > 0) {
+                    EditorGUILayout.HelpBox(_audioVoiceOverInitializeHelpBox, MessageType.Info);
+                } else {
+                    EditorGUILayout.HelpBox(_audioVoiceOverNoYarnLinesOnAsset, MessageType.Info);
+                }
             }
             EditorGUI.indentLevel--;
         }
