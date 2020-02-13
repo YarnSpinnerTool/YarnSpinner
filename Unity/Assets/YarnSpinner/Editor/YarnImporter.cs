@@ -29,7 +29,7 @@ public class YarnImporter : ScriptedImporter
     public YarnProgram programContainer = default;
 
     private void OnValidate() {
-        if (baseLanguageID == null) {
+        if (string.IsNullOrEmpty(baseLanguageID)) {
             // If the user has added project wide text languages in the settings 
             // dialogue, we default to the first text language as base language
             if (ProjectSettings.TextProjectLanguages.Count > 0) {
@@ -50,7 +50,7 @@ public class YarnImporter : ScriptedImporter
 
     public override void OnImportAsset(AssetImportContext ctx)
     {
-
+        OnValidate();
         var extension = System.IO.Path.GetExtension(ctx.assetPath);
 
         // Clear the list of strings, in case this compilation fails
