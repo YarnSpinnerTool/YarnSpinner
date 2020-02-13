@@ -1,6 +1,7 @@
 ﻿using CsvHelper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Yarn;
 
@@ -53,11 +54,26 @@ public class YarnProgram : ScriptableObject
     }
 
     /// <summary>
+    /// Returns a tagged string table from all lines available on this yarn asset in the given language.
+    /// </summary>
+    /// <param name="languageId">The language id of the returned string table.</param>
+    /// <returns></returns>
+    public Dictionary<string, string> GetStringTable (string languageId) {
+        if (languageId == baseLocalizationId) {
+            return GetStringTable(baseLocalisationStringTable);
+        } else if (localizations.FirstOrDefault(element => element.languageName == languageId) != null) {
+            return GetStringTable(localizations.FirstOrDefault(element => element.languageName == languageId).text);
+        } else {
+            return new Dictionary<string, string>();
+        }
+    }
+
+    /// <summary>
     /// Returns a tagged string table from all lines available on this yarn asset.
     /// </summary>
     /// <param name="stringTable">The (localized) string table of this yarn asset to load.</param>
     /// <returns></returns>
-    public Dictionary<string, string> GetStringTable (TextAsset stringTable) {
+    public static Dictionary<string, string> GetStringTable (TextAsset stringTable) {
         Dictionary<string, string> strings = new Dictionary<string, string>();
         if (stringTable == null) {
             return strings;
@@ -95,17 +111,28 @@ public class YarnProgram : ScriptableObject
     /// Returns all associated AudioClips for all available Line IDs for the given language ID.
     /// Returns the AudioClips of the language set in preferences if no Parameter is given.
     /// </summary>
-    /// <param name="LanguageId">The ID of the language the requested voice overs.</param>
+    /// <param name="languageId">The ID of the language the requested voice overs.</param>
     /// <returns></returns>
-    public Dictionary<string, AudioClip> GetVoiceOversOfLanguage(string LanguageId) {
+    public Dictionary<string, AudioClip> GetVoiceOversOfLanguage(string languageId) {
+        return GetVoiceOversOfLanguage(languageId, voiceOvers);
+    }
+
+    /// <summary>
+    /// Returns all associated AudioClips for all available Line IDs for the given language ID.
+    /// Returns the AudioClips of the language set in preferences if no Parameter is given.
+    /// </summary>
+    /// <param name="languageId">The ID of the language the requested voice overs.</param>
+    /// <param name="voiceOvers">The voice overs array to get a specific language of voice overs from.</param>
+    /// <returns></returns>
+    public static Dictionary<string, AudioClip> GetVoiceOversOfLanguage(string languageId, LinetagToLanguage[] voiceOvers) {
         Dictionary<string, AudioClip> voiceOversOfPreferredLanguage = new Dictionary<string, AudioClip>();
-        if (string.IsNullOrEmpty(LanguageId)) {
+        if (string.IsNullOrEmpty(languageId)) {
             return voiceOversOfPreferredLanguage;
         }
 
         foreach (var line in voiceOvers) {
             foreach (var language in line.languageToAudioclip) {
-                if (language.language == LanguageId) {
+                if (language.language == languageId) {
                     voiceOversOfPreferredLanguage.Add(line.linetag, language.audioClip);
                 }
             }

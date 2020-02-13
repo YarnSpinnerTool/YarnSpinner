@@ -4,6 +4,7 @@ using UnityEditor.Experimental.AssetImporters;
 using System.Linq;
 using System.IO;
 using System.Globalization;
+using System.Collections.Generic;
 
 [CustomEditor(typeof(YarnImporter))]
 public class YarnImporterEditor : ScriptedImporterEditor {
@@ -26,6 +27,11 @@ public class YarnImporterEditor : ScriptedImporterEditor {
     SerializedProperty baseLanguageIdProperty;
 
     private Culture[] _culturesAvailable;
+
+    /// <summary>
+    /// Contains all yarn lines in all available languages on this asset. Used for line hinting on the voice overs list.
+    /// </summary>
+    Dictionary<string, Dictionary<string, string>> _allLanguagesStringTable = new Dictionary<string, Dictionary<string, string>>();
 
     private const string _audioVoiceOverInitializeHelpBox = "Hit 'Apply' to initialize the currently selected voice over language!";
 
@@ -55,6 +61,20 @@ public class YarnImporterEditor : ScriptedImporterEditor {
             selectedLanguageIndex = _culturesAvailable.Select((culture, index) => new { culture, index })
                 .FirstOrDefault(pair => pair.culture.Name == baseLanguageIdProperty.stringValue)
                 .index;
+        }
+
+        // Assets imported with older code should be reimported so we have a reference to the YarnProgram
+        if (serializedObject.FindProperty("programContainer").objectReferenceValue == null) {
+            (target as YarnImporter).SaveAndReimport();
+            serializedObject.Update();
+        }
+        // Get all yarn lines of all languages so we can line hint them on the voice overs list
+        var _yarnProgram = serializedObject.FindProperty("programContainer").objectReferenceValue as YarnProgram;
+        if (_yarnProgram) {
+            _allLanguagesStringTable.Add(baseLanguageIdProperty.stringValue, _yarnProgram.GetStringTable(baseLanguageIdProperty.stringValue));
+            foreach (var language in _yarnProgram.localizations) {
+                _allLanguagesStringTable.Add(language.languageName, _yarnProgram.GetStringTable(language.languageName));
+            }
         }
     }
 
@@ -221,7 +241,15 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                         var languagetoAudioClipProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("languageToAudioclip");
                         var languageProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("language");
                         var audioclipProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClip");
-                        EditorGUILayout.PropertyField(audioclipProp, new GUIContent(linetagProp.stringValue));
+                        var label = linetagProp.stringValue;
+                        if (_allLanguagesStringTable.ContainsKey(languageProp.stringValue) 
+                            && _allLanguagesStringTable[languageProp.stringValue].ContainsKey(linetagProp.stringValue)) {
+                            label = linetagProp.stringValue + " ('" + _allLanguagesStringTable[languageProp.stringValue][linetagProp.stringValue] + "')";
+                        }
+                        EditorGUILayout.BeginHorizontal();
+                        EditorGUILayout.LabelField(label);
+                        EditorGUILayout.PropertyField(audioclipProp, new GUIContent(""));
+                        EditorGUILayout.EndHorizontal();
                     }
                 }
             }

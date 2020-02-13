@@ -26,6 +26,7 @@ public class YarnImporter : ScriptedImporter
     public TextAsset baseLanguage;
     public YarnTranslation[] localizations = new YarnTranslation[0];
     public LinetagToLanguage[] voiceOvers = new LinetagToLanguage[0];
+    public YarnProgram programContainer = default;
 
     private void OnValidate() {
         if (baseLanguageID == null) {
@@ -79,7 +80,7 @@ public class YarnImporter : ScriptedImporter
             compilationStatus = Compiler.CompileString(sourceText, fileName, out var compiledProgram, out var stringTable);
 
             // Create a container for storing the bytes
-            var programContainer = ScriptableObject.CreateInstance<YarnProgram>();                
+            programContainer = ScriptableObject.CreateInstance<YarnProgram>();
 
             using (var memoryStream = new MemoryStream())
             using (var outputStream = new Google.Protobuf.CodedOutputStream(memoryStream))
