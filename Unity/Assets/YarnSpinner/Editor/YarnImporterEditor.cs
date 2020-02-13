@@ -23,7 +23,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
     /// </summary>
     bool showVoiceovers = false;
 
-    SerializedProperty baseLanguageProp;
+    SerializedProperty baseLanguageIdProperty;
 
     private Culture[] _culturesAvailable;
 
@@ -31,15 +31,15 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 
     public override void OnEnable() {
         base.OnEnable();
-        baseLanguageProp = serializedObject.FindProperty("baseLanguageID");
+        baseLanguageIdProperty = serializedObject.FindProperty("baseLanguageID");
         _culturesAvailable = Cultures.AvailableCultures;
 
         // Check for situations where we don't want to apply the project settings (for instance, if no settings have been made at all ...)
-        if (ProjectSettings.TextProjectLanguages.Count > 0 && (string.IsNullOrEmpty(baseLanguageProp.stringValue) || ProjectSettings.TextProjectLanguages.Contains(baseLanguageProp.stringValue))) {
+        if (ProjectSettings.TextProjectLanguages.Count > 0 && (string.IsNullOrEmpty(baseLanguageIdProperty.stringValue) || ProjectSettings.TextProjectLanguages.Contains(baseLanguageIdProperty.stringValue))) {
             // Reduce the available languages to the list defined on the project settings
             _culturesAvailable = Cultures.LanguageNamesToCultures(ProjectSettings.TextProjectLanguages.ToArray());
         }
-        if (string.IsNullOrEmpty(baseLanguageProp.stringValue)) {
+        if (string.IsNullOrEmpty(baseLanguageIdProperty.stringValue)) {
             if (ProjectSettings.TextProjectLanguages.Count > 0) {
                 // Use first language from project settings as base language
                 selectedLanguageIndex = 0;
@@ -53,7 +53,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         } else {
             // Get index from previously stored base language setting
             selectedLanguageIndex = _culturesAvailable.Select((culture, index) => new { culture, index })
-                .FirstOrDefault(pair => pair.culture.Name == baseLanguageProp.stringValue)
+                .FirstOrDefault(pair => pair.culture.Name == baseLanguageIdProperty.stringValue)
                 .index;
         }
         //selectedNewTranslationLanguageIndex = selectedLanguageIndex;
@@ -80,7 +80,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
             textLanguageNamesOnAsset;
 
         selectedLanguageIndex = EditorGUILayout.Popup("Base Language", selectedLanguageIndex, Cultures.CulturesToDisplayNames(_culturesAvailable));
-        baseLanguageProp.stringValue = _culturesAvailable[selectedLanguageIndex].Name;
+        baseLanguageIdProperty.stringValue = _culturesAvailable[selectedLanguageIndex].Name;
 
         if (yarnImporter.isSuccesfullyCompiled == false) {
             EditorGUILayout.HelpBox(yarnImporter.compilationErrorMessage, MessageType.Error);
