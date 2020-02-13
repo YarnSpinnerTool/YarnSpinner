@@ -141,6 +141,7 @@ public class YarnImporter : ScriptedImporter
                         ctx.AddObjectToAsset("Strings", textAsset);
 
                         programContainer.baseLocalisationStringTable = textAsset;
+                        programContainer.baseLocalizationId = baseLanguageID;
                         baseLanguage = textAsset;
                         programContainer.localizations = localizations;
                     }
