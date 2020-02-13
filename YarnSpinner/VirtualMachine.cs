@@ -176,8 +176,7 @@ namespace Yarn
             return this.data;
         }
 
-        object ISerializedState.GetData()
-        {
+        object ISerializedState.GetData() {
             return GetData();
         }
 
@@ -209,6 +208,10 @@ namespace Yarn
             return this.data.ToByteArray();
         }
 
+        public override string ToString() {
+            return this.data.ToString();
+        }
+
         /// <summary>
         /// Converts data into a string by applying the given encoding.
         /// </summary>
@@ -221,10 +224,6 @@ namespace Yarn
         /// </summary>
         public string ToBase64() {
             return this.data.ToBase64();
-        }
-
-        public override string ToString() {
-            return this.data.ToBase64().ToString();
         }
     }
 
