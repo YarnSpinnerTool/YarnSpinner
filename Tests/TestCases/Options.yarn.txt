@@ -2,6 +2,13 @@ title: Start
 ---
 // Testing options
 
+// This should parse successfully
+<<if true>>
+    -> Option1
+<<else>>
+    -> Option2
+<<endif>>
+
 // Expect 2 options (the second one in the following group of three
 // will not be run) and select the first one
 <<prepare_for_options(2,0)>>

@@ -115,8 +115,6 @@ namespace Yarn.Compiler
                         {
                             outputLines[outputLines.Count - 1] = outputLines[outputLines.Count - 1] + INDENT;
                         }
-
-                        shouldTrackNextIndentation = false;
                     }
                     // have we finished with the current block of statements
                     else if (lineIndent < previous.depth)
@@ -139,12 +137,9 @@ namespace Yarn.Compiler
                             }
                         }
                     }
-                    else
-                    {
-                        shouldTrackNextIndentation = false;
-                    }
 
                     // do we need to track the indents for the next statement?
+                    shouldTrackNextIndentation = false;
                     if (isOption)
                     {
                         shouldTrackNextIndentation = true;
