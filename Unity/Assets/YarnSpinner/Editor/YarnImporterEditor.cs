@@ -269,6 +269,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         if (success) {
             EditorUtility.SetDirty(target);
             AssetDatabase.WriteImportSettingsIfDirty(AssetDatabase.GetAssetPath(target));
+            AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(target));
         }
 #endif
 #if UNITY_2019_1_OR_NEWER
