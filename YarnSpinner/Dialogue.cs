@@ -266,6 +266,13 @@ namespace Yarn {
         }
 
         /// <summary>
+        /// Is the State ready to be saved?
+        /// </summary>
+        public bool TryGetState() {
+            return vm.TryGetState();
+        }
+
+        /// <summary>
         /// Get current State of Virtual Machine as a copy of the State object.
         /// </summary>
         public State GetStateClone() {
@@ -284,6 +291,20 @@ namespace Yarn {
         /// </summary>
         public JsonSerializedState GetStateJsonSerialized() {
             return vm.GetStateJsonSerialized();
+        }
+
+        /// <summary>
+        /// Is the State ready to be set into VirtualMachine?
+        /// </summary>
+        public bool TrySetState(State newState) {
+            return vm.TrySetState(newState);
+        }
+
+        /// <summary>
+        /// Is the State ready to be set into VirtualMachine?
+        /// </summary>
+        public bool TrySetState(ISerializedState serialized) {
+            return vm.TrySetState(serialized);
         }
 
         /// <summary>

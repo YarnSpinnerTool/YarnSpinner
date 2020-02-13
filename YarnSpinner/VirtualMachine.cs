@@ -142,6 +142,14 @@ namespace Yarn
     public class BinarySerializedState : ISerializedState<ByteString>
     {
         /// <summary>
+        /// Creates a Serialized State from existing State
+        /// </summary>
+        public BinarySerializedState(State state) {
+            this.data = state.ToByteString();
+            this.deserialized = state;
+        }
+
+        /// <summary>
         /// Creates a Serialized State from given array.
         /// </summary>
         public BinarySerializedState(params byte[] bytes) {
@@ -228,6 +236,17 @@ namespace Yarn
     /// </summary>
     public class JsonSerializedState : ISerializedState<string>
     {
+        /// <summary>
+        /// Creates a Serialized State from existing State
+        /// </summary>
+        public JsonSerializedState(State state) {
+            JsonFormatter formatter = JsonFormatter.Default;
+            string json = formatter.Format(state);
+
+            this.data = json;
+            this.deserialized = state;
+        }
+
         /// <summary>
         /// Creates a Serialized State from JSON formatted string.
         /// </summary>
@@ -378,61 +397,84 @@ namespace Yarn
         }
 
         /// <summary>
+        /// Is the State ready to be saved?
+        /// </summary>
+        public bool TryGetState() {
+            // Check if the VM is running any Node
+            if (string.IsNullOrEmpty(this.state.CurrentNodeName)) {
+                dialogue.LogErrorMessage("Cannot get State of the Virtual Machine because it is not running any node.");
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// Get current State of Virtual Machine as a copy of the State object.
         /// </summary>
         public State GetStateClone() {
-            if (string.IsNullOrEmpty(this.state.CurrentNodeName)) {
-                dialogue.LogErrorMessage($"Cannot get State of the Virtual Machine because it is not running any node.");
-                return null;
-            }
-
-            return this.state.Clone();
+            return (TryGetState()) ? this.state.Clone() : null;
         }
 
         /// <summary>
         /// Get current State of Virtual Machine as serialized Protobuf.
         /// </summary>
         public BinarySerializedState GetStateBinarySerialized() {
-            if (string.IsNullOrEmpty(this.state.CurrentNodeName)) {
-                dialogue.LogErrorMessage($"Cannot get State of the Virtual Machine because it is not running any node.");
-                return null;
-            }
-
-            return new BinarySerializedState(this.state.ToByteString());
+            return (TryGetState()) ? new BinarySerializedState(this.state) : null;
         }
 
         /// <summary>
         /// Get current State of Virtual Machine as serialized JSON.
         /// </summary>
         public JsonSerializedState GetStateJsonSerialized() {
-            if (string.IsNullOrEmpty(this.state.CurrentNodeName)) {
-                dialogue.LogErrorMessage($"Cannot get State of the Virtual Machine because it is not running any node.");
-                return null;
+            return (TryGetState()) ? new JsonSerializedState(this.state) : null;
+        }
+
+        /// <summary>
+        /// Is the State ready to be set into VirtualMachine?
+        /// </summary>
+        public bool TrySetState(State newState) {
+            // Check if newState has node, it should but better be safe
+            if (string.IsNullOrEmpty(newState.CurrentNodeName)) {
+                dialogue.LogErrorMessage("Cannot set State because it doesnt have any node set.");
+                return false;
             }
 
-            JsonFormatter formatter = JsonFormatter.Default;
-            string json = formatter.Format(this.state);
+            // Check if program was set, again it should be set...
+            if (this.Program == null) {
+                dialogue.LogErrorMessage("Cannot set State because the VM doesnt have any program.");
+                return false;
+            }
 
-            return new JsonSerializedState(json);
+            if (! Program.Nodes.ContainsKey(newState.CurrentNodeName)) {
+                dialogue.LogErrorMessage($"Cannot set State because the VMs program doesnt have required Node ({newState.CurrentNodeName}).");
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Is the State ready to be set into VirtualMachine?
+        /// </summary>
+        public bool TrySetState(ISerializedState serialized) {
+            return TrySetState(serialized.Deserialize());
         }
 
         /// <summary>
         /// Set Virtual Machine state from a State object.
         /// </summary>
         public void SetState(State newState) {
-            if (string.IsNullOrEmpty(newState.CurrentNodeName)) {
-                // If loaded state NodeName is empty, throw error.
-                throw new ArgumentException("Tried to set VM State that does not have any Node set, this is invalid because VM has no idea ");
-            } else {
-                // Otherwise set VMs node to what the State is expecting.
+            if (TrySetState(newState)) {
+                // Set Node to what a newState is expecting.
                 SetNode(newState.CurrentNodeName);
+
+                // Set our new State.
+                this.state = newState;
+
+                // To properly continue from where the State left of, we need to sync program counter to current instruction.
+                this.state.programCounter = newState.CurrentInstruction;
             }
-
-            // Set our new State.
-            this.state = newState;
-
-            // To properly continue from where the State left of, we need to sync program counter to current instruction.
-            this.state.programCounter = newState.CurrentInstruction;
         }
 
         /// <summary>
