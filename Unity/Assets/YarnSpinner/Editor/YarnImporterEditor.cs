@@ -56,7 +56,6 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                 .FirstOrDefault(pair => pair.culture.Name == baseLanguageIdProperty.stringValue)
                 .index;
         }
-        //selectedNewTranslationLanguageIndex = selectedLanguageIndex;
     }
 
     public override void OnDisable() {

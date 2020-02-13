@@ -36,7 +36,6 @@ public class YarnImporter : ScriptedImporter
             // Otherwrise use system's language as base language
             } else {
                 baseLanguageID = CultureInfo.CurrentCulture.Name;
-
             }
         }
     }
