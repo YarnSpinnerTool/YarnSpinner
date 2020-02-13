@@ -208,10 +208,6 @@ namespace Yarn
             return this.data.ToByteArray();
         }
 
-        public override string ToString() {
-            return this.data.ToString();
-        }
-
         /// <summary>
         /// Converts data into a string by applying the given encoding.
         /// </summary>
@@ -270,10 +266,6 @@ namespace Yarn
             }
 
             return this.deserialized;
-        }
-
-        public override string ToString() {
-            return this.data;
         }
     }
 
