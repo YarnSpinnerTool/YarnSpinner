@@ -2,34 +2,56 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
 
 public class MainMenuOptions : MonoBehaviour {
-    public UnityEngine.UI.Dropdown textLanguagesDropdown;
-    public UnityEngine.UI.Dropdown audioLanguagesDropdown;
+    public Dropdown textLanguagesDropdown;
+    public Dropdown audioLanguagesDropdown;
+    public TMP_Dropdown textLanguagesTMPDropdown;
+    public TMP_Dropdown audioLanguagesTMPDropdown;
+
+    [SerializeField] Yarn.Unity.YarnLinesAsCanvasText[] _yarnLinesCanvasTexts = default;
 
     int textLanguageSelected = -1;
     int audioLanguageSelected = -1;
 
     private void Awake() {
-        if (textLanguagesDropdown) {
+        LoadTextLanguagesIntoDropdowns();
+        LoadAudioLanguagesIntoDropdowns();
+    }
+
+    public void OnValueChangedTextLanguage(int value) {
+        ApplyChangedValueToPreferences(value, ref textLanguageSelected, textLanguagesTMPDropdown, textLanguagesDropdown);
+
+        foreach (var yarnLinesCanvasText in _yarnLinesCanvasTexts) {
+            yarnLinesCanvasText?.OnTextLanguagePreferenceChanged();
+        }
+    }
+
+    public void OnValueChangedAudioLanguage(int value) {
+        ApplyChangedValueToPreferences(value, ref audioLanguageSelected, audioLanguagesTMPDropdown, audioLanguagesDropdown);
+    }
+
+    public void ReloadScene() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void LoadTextLanguagesIntoDropdowns() {
+        if (textLanguagesDropdown || textLanguagesTMPDropdown) {
             var textLanguageList = new List<string>();
             textLanguageList = Cultures.LanguageNamesToNativeNames(ProjectSettings.TextProjectLanguages.ToArray()).ToList();
             // If no project settings have been defined, show all available cultures
             if (textLanguageList.Count == 0) {
                 textLanguageList = Cultures.AvailableCulturesNativeNames.ToList();
             }
-            textLanguagesDropdown.AddOptions(textLanguageList);
 
-            textLanguageSelected = textLanguageList.IndexOf(Cultures.LanguageNamesToNativeNames(Preferences.TextLanguage));
-#if UNITY_2019_1_OR_NEWER
-            textLanguagesDropdown.SetValueWithoutNotify(textLanguageSelected);
-#endif
-#if UNITY_2018
-            textLanguagesDropdown.value = textLanguageSelected;
-#endif
+            PopulateLanguagesListToDropdown(textLanguageList, textLanguagesTMPDropdown, textLanguagesDropdown, ref textLanguageSelected);
         }
+    }
 
-        if (audioLanguagesDropdown) {
+    private void LoadAudioLanguagesIntoDropdowns() {
+        if (audioLanguagesDropdown || audioLanguagesTMPDropdown) {
             var audioLanguagesList = new List<string>();
             audioLanguagesList = Cultures.LanguageNamesToNativeNames(ProjectSettings.AudioProjectLanguages.ToArray()).ToList();
 
@@ -41,33 +63,43 @@ public class MainMenuOptions : MonoBehaviour {
                     audioLanguagesList.Add("No audio languages available!");
                 }
             }
-            audioLanguagesDropdown.AddOptions(audioLanguagesList);
 
-            audioLanguageSelected = audioLanguagesList.IndexOf(Cultures.LanguageNamesToNativeNames(Preferences.AudioLanguage));
+            PopulateLanguagesListToDropdown(audioLanguagesList, audioLanguagesTMPDropdown, audioLanguagesDropdown, ref audioLanguageSelected);
+        }
+    }
+
+    private void PopulateLanguagesListToDropdown(List<string> languageList, TMP_Dropdown tmpDropdown, Dropdown dropdown, ref int selectedLanguageIndex) {
+        selectedLanguageIndex = languageList.IndexOf(Cultures.LanguageNamesToNativeNames(Preferences.TextLanguage));
+
+        if (dropdown) {
+            dropdown.ClearOptions();
+            dropdown.AddOptions(languageList);
 #if UNITY_2019_1_OR_NEWER
-            audioLanguagesDropdown.SetValueWithoutNotify(audioLanguageSelected);
+            dropdown.SetValueWithoutNotify(selectedLanguageIndex);
+#else
+            dropdown.value = selectedLanguageIndex;
 #endif
-#if UNITY_2018
-            audioLanguagesDropdown.value = audioLanguageSelected;
+        }
+
+        if (tmpDropdown) {
+            tmpDropdown.ClearOptions();
+            tmpDropdown.AddOptions(languageList);
+#if UNITY_2019_1_OR_NEWER
+            tmpDropdown.SetValueWithoutNotify(selectedLanguageIndex);
+#else
+            tmpDropdown.value = selectedLanguageIndex;
 #endif
         }
     }
 
-    public void OnValueChangedTextLanguage(int value) {
-        if (textLanguagesDropdown) {
-            textLanguageSelected = value;
-        }
-    }
+    private void ApplyChangedValueToPreferences(int value, ref int languageSelected, TMP_Dropdown tmpDropdown, Dropdown dropdown) {
+        languageSelected = value;
 
-    public void OnValueChangedAudioLanguage(int value) {
-        if (audioLanguagesDropdown) {
-            audioLanguageSelected = value;
+        if (dropdown) {
+            Preferences.TextLanguage = Cultures.AvailableCultures.First(element => element.NativeName == dropdown.options[value].text).Name;
         }
-    }
-
-    public void ApplyPreferences() {
-        Preferences.TextLanguage = Cultures.AvailableCultures.First(element => element.NativeName == textLanguagesDropdown.options[textLanguageSelected].text).Name;
-        Preferences.AudioLanguage = Cultures.AvailableCultures.First(element => element.NativeName == audioLanguagesDropdown.options[audioLanguageSelected].text).Name;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (tmpDropdown) {
+            Preferences.TextLanguage = Cultures.AvailableCultures.First(element => element.NativeName == tmpDropdown.options[value].text).Name;
+        }
     }
 }

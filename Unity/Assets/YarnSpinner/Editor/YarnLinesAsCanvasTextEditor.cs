@@ -9,6 +9,8 @@ namespace Yarn.Unity {
         private SerializedProperty _yarnProgramProperty = default;
         private Dictionary<string, string> _yarnStringTable = new Dictionary<string, string>();
         private SerializedProperty _textObjectsProperty = default;
+        private SerializedProperty _textMeshProObjectsProperty = default;
+        private SerializedProperty _useTextMeshProProperty = default;
         private bool _showTextUiComponents = true;
         private const string _textUiComponentsLabel = "Text UI Components";
         private string _lastLanguageId = default;
@@ -31,6 +33,8 @@ namespace Yarn.Unity {
             }
 
             _textObjectsProperty = serializedObject.FindProperty("textCanvases");
+            _textMeshProObjectsProperty = serializedObject.FindProperty("textMeshProCanvases");
+            _useTextMeshProProperty = serializedObject.FindProperty("_useTextMeshPro");
         }
 
         public override void OnInspectorGUI() {
@@ -42,6 +46,8 @@ namespace Yarn.Unity {
             if (EditorGUI.EndChangeCheck() || _lastLanguageId != Preferences.TextLanguage) {
                 OnEnable();
             }
+
+            EditorGUILayout.PropertyField(_useTextMeshProProperty);
 
             if (_yarnProgramProperty.objectReferenceValue == null) {
                 EditorGUILayout.HelpBox("This component needs a yarn asset.", MessageType.Info);
@@ -63,10 +69,13 @@ namespace Yarn.Unity {
                             if (_textObjectsProperty.arraySize <= i) {
                                 _textObjectsProperty.InsertArrayElementAtIndex(i);
                             }
+                            if (_textMeshProObjectsProperty.arraySize <= i) {
+                                _textMeshProObjectsProperty.InsertArrayElementAtIndex(i);
+                            }
                             // Draw the actual content of the yarn line as lable so the user knows what text 
                             // will placed on the referenced component
-                            GUIContent label = new GUIContent() { text = "'" + stringTableEntry.Value + "'" } ;
-                            EditorGUILayout.PropertyField(_textObjectsProperty.GetArrayElementAtIndex(i), label);
+                            GUIContent label = new GUIContent() { text = "'" + stringTableEntry.Value + "'" };
+                            EditorGUILayout.PropertyField(_useTextMeshProProperty.boolValue ? _textMeshProObjectsProperty.GetArrayElementAtIndex(i) : _textObjectsProperty.GetArrayElementAtIndex(i), label);
                             i++;
                         }
                     }
