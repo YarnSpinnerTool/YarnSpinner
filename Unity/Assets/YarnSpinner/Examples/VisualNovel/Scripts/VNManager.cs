@@ -1,49 +1,74 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using System.Text;
-using System.IO;
+using System.Collections;
 using System.Collections.Generic;
-using Yarn.Unity;
+using System.Text.RegularExpressions;
 
 namespace Yarn.Unity {
+	/// <summary>runs Yarn commands and manages sprites for the Visual Novel example</summary>
     public class VNManager : MonoBehaviour
     {
-		[Header("Manually Load Assets"), Tooltip("you can manually assign various assets here if you don't want to use /Resources/ folder")]
+		DialogueRunner runner;
+
+		[Header("Assets"), Tooltip("you can manually assign various assets here if you don't want to use /Resources/ folder")]
 		public List<Sprite> loadSprites = new List<Sprite>();
 		public List<AudioClip> loadAudio = new List<AudioClip>();
-		[Tooltip("if enabled: on Start() this will load all sprites and audioclips in Resources folders, and put them in one pile (the Lists above), thus ignoring Resource subfolders")]
-		public bool ignoreResourceSubfolders = true;
 
-		[Header("UI settings")] // UI tuning variables and references
-		public Color highlightTint;
+		[Tooltip("if enabled: will automatically load all Sprites and AudioClips in any /Resources/ folder including any subfolders")]
+		public bool useResourcesFolders = false;
+
+
+		[Header("Sprite UI settings")] // UI tuning variables and references
+		[Tooltip("all sprites will be tinted with this color")] 
 		public Color defaultTint;
+		[Tooltip("when speaking, a sprite will be highlighted by tinting it with this color")]
+		public Color highlightTint;
 
-		[Header("Object references"), Tooltip("umm you shouldn't really change these")]
+
+		[Header("Object references"), Tooltip("don't change these unless you know what you're doing")]
 		public RectTransform spriteGroup; // used for screenshake
 		public Image bgImage, fadeBG;
 		public Image genericSprite; // local prefab, used for instantiating sprites
-		public AudioSource myAudioSource; // local prefab, used for instantiating sounds
+		public AudioSource genericAudioSource; // local prefab, used for instantiating sounds
 
 		// big lists to keep track of all instantiated objects
 		List<AudioSource> sounds = new List<AudioSource>(); // big list of all instantiated sounds
 		List<Image> sprites = new List<Image>(); // big list of all instantianted sprites
 
-		// "actors" are sprites with name IDs
-		// TODO: if "actors" need more data (more than currentImage and color) maybe put them in their own serialized class
-		[HideInInspector] public Dictionary<string,Image> actors = new Dictionary<string,Image>(); // tracks names to sprites
-		[HideInInspector] public Dictionary<string, Color> actorColors = new Dictionary<string, Color>(); // tracks names to colors... but this is just data, the DialogueUI script has to actually do something with the color
+		// store sprite references for "actors" (characters, etc.)
+		[HideInInspector] public Dictionary<string, VNActor> actors = new Dictionary<string, VNActor>(); // tracks names to sprites
 
-		string[] separ = new string[] {","}; // stores the separator value, usually a comma
+		static string[] separ = new string[] {","}; // stores the separator value, usually a comma, but you can put a custom one in here
+		static Vector2 screenSize = new Vector2( 1280f, 720f); // needed for position calcuations, e.g. what does "left" mean?
 
 		void Awake () {
-			// always rename this gameObject to "@" so that Yarn commands will work
-			this.name = "@";
-		}
+			runner = GetComponent<DialogueRunner>();
 
-		void Start () {
-			// if enabled, adds all Resources to internal lists / one big pile, so that you can ignore Resource subfolders
-			if ( ignoreResourceSubfolders ) {
+			// manually add all Yarn command handlers, so that we don't have to type out game object names in Yarn scripts
+			// (also gives us a performance increase by avoiding GameObject.Find)
+			runner.AddCommandHandler("Scene", DoSceneChange );
+			runner.AddCommandHandler("Act", SetActor );
+			runner.AddCommandHandler("Draw", SetSpriteYarn );
+
+			runner.AddCommandHandler("Hide", HideSprite );
+			runner.AddCommandHandler("HideAll", HideAllSprites );
+			runner.AddCommandHandler("Reset", ResetScene );
+
+			runner.AddCommandHandler("Move", MoveSprite );
+			runner.AddCommandHandler("Flip", FlipSprite );
+			runner.AddCommandHandler("Shake", ShakeSprite );
+
+			runner.AddCommandHandler("PlayAudio", PlayAudio );
+			runner.AddCommandHandler("StopAudio", StopAudio );
+			runner.AddCommandHandler("StopAudioAll", StopAudioAll );
+
+			runner.AddCommandHandler("Fade", SetFade );
+			runner.AddCommandHandler("FadeIn", SetFadeIn );
+			runner.AddCommandHandler("CamOffset", SetCameraOffset );
+
+			// adds all Resources to internal lists / one big pile... it will scan all subfolders
+			// note: but when referencing sprites in the Yarn script, just use the file name!
+			if ( useResourcesFolders ) {
 				var allSpritesInResources = Resources.LoadAll<Sprite>("");
 				loadSprites.AddRange( allSpritesInResources );
 				var allAudioInResources = Resources.LoadAll<AudioClip>("");
@@ -53,15 +78,14 @@ namespace Yarn.Unity {
 
 		#region YarnCommands
 
-		// changes background image
-		[YarnCommand("Scene")]
-		public void DoSceneChange(string spriteName) {
-			bgImage.sprite = FetchAsset<Sprite>(spriteName);
+		/// <summary>changes background image</summary>
+		public void DoSceneChange(string[] parameters) {
+			var par = CleanParams( parameters );
+			bgImage.sprite = FetchAsset<Sprite>( par[0] );
 		}
 
-		// SetActor(actorName,spriteName,positionX,positionY,color)
-		// main function for moving / adjusting characters
-		[YarnCommand("Act")]
+		/// <summary> SetActor(actorName,spriteName,positionX,positionY,color)
+		/// main function for moving / adjusting characters</summary>
 		public void SetActor(params string[] parameters) {
 			// get parameter data
 			var par = CleanParams( parameters );
@@ -70,17 +94,17 @@ namespace Yarn.Unity {
 			if ( par.Length > 1 ) {
 				spriteName = par[1];
 			} else {
-				Debug.LogErrorFormat(this, "Ropework tried to <<SetActor {0}>> but there aren't enough parameters to work with; it needs at least 2, like <<SetActor @ actorName, spriteName>>", par[0] );
+				Debug.LogErrorFormat(this, "VN Manager tried to <<SetActor {0}>> but there aren't enough parameters to work with; it needs at least 2, like <<SetActor @ actorName, spriteName>>", par[0] );
 				return;
 			}
 
 			// have to use SetSprite() because par[2] and par[3] might be keywords (e.g. "left", "right")
-			var newActor = SetSprite( string.Format("{0},{1},{2}", spriteName, par.Length > 2 ? par[2] : "", par.Length > 3 ? par[3] : "" ) );
+			var newActor = SetSpriteUnity( string.Format("{0},{1},{2}", spriteName, par.Length > 2 ? par[2] : "", par.Length > 3 ? par[3] : "" ) );
 
 			// define text label BG color
 			var actorColor = Color.black;
 			if ( par.Length > 4 && ColorUtility.TryParseHtmlString( par[4], out actorColor )==false ) {
-				Debug.LogErrorFormat(this, "Ropework can't parse [{0}] as an HTML color (e.g. [#FFFFFF] or certain keywords like [white])", par[4]);
+				Debug.LogErrorFormat(this, "VN Manager can't parse [{0}] as an HTML color (e.g. [#FFFFFF] or certain keywords like [white])", par[4]);
 			}
 
 			// if the actor is using a sprite already, then clone any persisting data, and destroy it (just to be safe)
@@ -94,24 +118,26 @@ namespace Yarn.Unity {
 				}
 				// if any missing color params, then assume actor color should stay the same
 				if ( par.Length <= 4 ) {
-					actorColor = actorColors[actorName];
+					actorColor = actors[actorName].actorColor;
 				}
 				newActor.rectTransform.anchoredPosition = newPos;
 				// clean-up
 				Destroy( actors[actorName].gameObject );
 				actors.Remove(actorName);
-				actorColors.Remove(actorName);
+				actors.Remove(actorName);
 			}
 
 			// save actor data
-			actors.Add( actorName, newActor );
-			actorColors.Add( actorName, actorColor );
+			actors.Add( actorName, new VNActor( newActor, actorColor) );
 		}
 
-		// SetSprite(spriteName,positionX,positionY)
-		// generic function for sprite drawing
-		[YarnCommand("Show")]
-		public Image SetSprite(params string[] parameters) {
+		///<summary> Draw(spriteName,positionX,positionY)
+		/// generic function for sprite drawing</summary>
+		public void SetSpriteYarn(params string[] parameters) {
+			SetSpriteUnity( parameters );
+		}
+
+		public Image SetSpriteUnity(params string[] parameters) {
 			var par = CleanParams( parameters );
 
 			// set sprite
@@ -130,158 +156,99 @@ namespace Yarn.Unity {
 			return SetSpriteActual( spriteName, pos );
 		}
 
-		// hides a sprite... TODO: allow wildcards, e.g. HideSprite(Sally*) will hide a sprite named SallyIdle or Sally_Happy
-		[YarnCommand("Hide")]
-		public void HideSprite(string actorOrSpriteName) {
-			// find the spriteObject with name "spriteName" and destroy it
+		///<summary>Hide(spriteName). "spriteName" can use wildcards, e.g. HideSprite(Sally*) will hide both SallyIdle and Sally_Happy</summary>
+		public void HideSprite(params string[] parameters) {
+			var par = CleanParams( parameters );
+			var wildcard = new Wildcard(par[0]);
 
-			// is it an actor name?
-			Image toDestroy = null;
-			string keyToRemove = "";
-			if ( actors.ContainsKey( actorOrSpriteName ) ) {
-				keyToRemove = actorOrSpriteName;
-				toDestroy = actors[actorOrSpriteName];
-			} else { // if it isn't an actor, then let's just do this in a sloppy way for now, and also assume there's only one object like it
-				foreach ( var spriteObject in sprites ) {
-					if (spriteObject.name == actorOrSpriteName) {
-						toDestroy = spriteObject;
-						break;
-					}
-				}
+			// generate lists of things to remove
 
-				// if an actor is using the sprite reference, also remove reference to it
-				foreach ( var kvp in actors ) {
-					if ( kvp.Value == toDestroy ) {
-						keyToRemove = kvp.Key;
-						break;
-					}
+			var imagesToDestroy = new List<Image>();
+			var actorKeysToRemove = new List<string>();
+			
+			foreach ( var actor in actors ) {
+				if ( wildcard.IsMatch(actor.Key) || wildcard.IsMatch(actor.Value.actorImage.name) ) {
+					actorKeysToRemove.Add( actor.Key );
+					imagesToDestroy.Add(actor.Value.actorImage);
 				}
 			}
 
-			// there's probably a better way to do this
-			if ( keyToRemove.Length > 0 ) {
-				actors.Remove(keyToRemove);
+			foreach ( var sprite in sprites ) {
+				if ( wildcard.IsMatch(sprite.name) ) {
+					imagesToDestroy.Add(sprite);
+				}
 			}
 
-			// don't forget to actually destroy the sprite object
-			if ( toDestroy != null ) {
-				CleanDestroy<Image>(toDestroy.gameObject);
-			} else {
-				Debug.LogWarningFormat(this, "Ropework tried to <<Hide {0}>> but it can't find any sprite named \"{0}\"... it was either misspelled, or it was already hidden", actorOrSpriteName );
+			// actually remove all the things now, if any
+
+			for( int i=0; i<actorKeysToRemove.Count; i++) {
+				if ( actors.ContainsKey( actorKeysToRemove[i] ) ) { // this should never be false, but let's be safe
+					actors.Remove( actorKeysToRemove[i] );
+				}
 			}
+
+			for ( int i=0; i<imagesToDestroy.Count; i++) {
+				if ( imagesToDestroy[i] != null ) { // this should never be false, but let's be safe
+					CleanDestroy<Image>(imagesToDestroy[i].gameObject);
+				}
+			}
+
 		}
 
-		// hides all sprites (but doesn't clear the background image)
-		[YarnCommand("HideAll")]
-		public void HideAllSprites() {
-			foreach ( var spr in sprites ) {
-				HideSprite( spr.name );
-			}
+		/// <summary>HideAll doesn't actually use any parameters</summary>
+		public void HideAllSprites(params string[] parameters) {
+			HideSprite( "*" );
+			actors.Clear();
+			sprites.Clear();
+		}
+
+		/// <summary>Reset doesn't actually use any parameters</summary>
+		public void ResetScene(params string[] parameters) {
+			bgImage.sprite = null;
+			HideAllSprites();
+			SetFadeIn("0");
 		}
 
 		// move a sprite
-		// usage: <<Move @ actorOrspriteName, screenPosX, screenPosY, moveTime>>
+		// usage: <<Move actorOrspriteName, screenPosX=0.5, screenPosY=0.5, moveTime=1.0>>
 		// screenPosX and screenPosY are normalized screen coordinates (0.0 - 1.0)
 		// moveTime is the time in seconds it will take to reach that position
-		[YarnCommand("Move")]
 		public void MoveSprite(params string[] parameters) {
 			var pars = CleanParams( parameters );
 
 			var image = FindActorOrSprite( pars[0] );
+
 			// get new screen position
 			Vector2 newPos = new Vector2(0.5f, 0.5f);
 			if ( pars.Length > 2 ) {
 				newPos = new Vector2( ConvertCoordinates(pars[1]), ConvertCoordinates(pars[2]) );
+			} else if ( pars.Length == 2) {
+				newPos.x = ConvertCoordinates(pars[1]);
 			}
+
 			// get move speed, with error handling
 			float moveTime = 1f;
 			if ( pars.Length > 3 && float.TryParse( pars[3], out moveTime ) == false ) {
-				Debug.LogErrorFormat(this, "Ropework <<Move>> couldn't parse moveSpeed [{0}] as a number", pars[3] );
+				Debug.LogErrorFormat(this, "VN Manager <<Move>> couldn't parse moveSpeed [{0}] as a number", pars[3] );
 			}
+
 			// actually do the moving now
-			StartCoroutine( MoveCoroutine( image, Vector2.Scale(newPos, new Vector2(1280f, 720f) ), moveTime) );
+			StartCoroutine( MoveCoroutine( image.GetComponent<RectTransform>(), Vector2.Scale(newPos, screenSize), moveTime) );
 		}
 
-		// flip a sprite
-		[YarnCommand("Flip")]
-		public void FlipSprite(string actorOrSpriteName) {
-			var image = FindActorOrSprite( actorOrSpriteName );
-			image.rectTransform.localScale = Vector3.Scale(image.rectTransform.localScale, new Vector3(-1f, 1f, 1f) );
+		/// <summary>flip a sprite, or force the sprite to face a direction<
+		/// Move(actorOrSpriteName, xDirection=toggle)</sprite>
+		public void FlipSprite(params string[] parameters) {
+			var pars = CleanParams(parameters);
+
+			var image = FindActorOrSprite( pars[0] );
+
+			float direction = pars.Length > 1 ? Mathf.Sign(ConvertCoordinates(pars[1]) - 0.5f) : Mathf.Sign(image.rectTransform.localScale.x) * -1f;
+			image.rectTransform.localScale = new Vector3( direction * Mathf.Abs(image.rectTransform.localScale.x), image.rectTransform.localScale.y, image.rectTransform.localScale.z );
 		}
 
-		// usage: PlayAudio( soundName,volume,"loop" )...  PlayAudio(soundName,1.0) plays soundName once at 100% volume... if third parameter was word "loop" it would loop
-		// "volume" is a number from 0.0 to 1.0
-		// "loop" is the word "loop" (or "true"), which tells the sound to loop over and over
-		[YarnCommand("PlayAudio")]
-		public void PlayAudio(params string[] parameters) {
-			var pars = CleanParams( parameters );
-
-			var audioClip = FetchAsset<AudioClip>(pars[0]);
-			// detect volume setting
-			float volume = 1f;
-			if ( pars.Length > 1 ) { // if parsing fails or second parameter isn't present, default to 100% volume
-				if ( float.TryParse( pars[1], out volume ) == false ) {
-					volume = 1f;
-				} else if ( volume <= 0.01f ) {
-					Debug.LogWarningFormat(this, "Ropework is playing sound {0} at very low volume ({1}), just so you know", pars[0], pars[1] );
-				}
-			}
-			// detect loop setting
-			bool shouldLoop = false;
-			if ( pars.Length > 2 && (pars[2].Contains("loop") || pars[2].Contains("true") ) ) {
-				shouldLoop = true;
-			}
-			
-			// instantiate AudioSource and configure it (don't use AudioSource.PlayOneShot because we also want the option to use <<StopAudio>> and interrupt it)
-			var newAudioSource = Instantiate<AudioSource>( myAudioSource, myAudioSource.transform.parent );
-			newAudioSource.name = audioClip.name;
-			newAudioSource.clip = audioClip;
-			newAudioSource.volume *= volume;
-			newAudioSource.loop = shouldLoop;
-			newAudioSource.Play();
-			sounds.Add(newAudioSource);
-
-			// if it doesn't loop, let's set a max lifetime for this sound
-			if ( shouldLoop == false ) {
-				StartCoroutine( SetDestroyTime( newAudioSource, audioClip.length ) );
-			}
-		}
-
-		// stops sound playback based on sound name, whether it's looping or not
-		[YarnCommand("StopAudio")]
-		public void StopAudio(string soundName) {
-			// let's just do this in a sloppy way for now, and also assume there's only one object like it
-			AudioSource toDestroy = null;
-			foreach ( var audioObject in sounds ) {
-				if (audioObject.name == soundName) {
-					toDestroy = audioObject;
-					break;
-				}
-			}
-
-			// double-check there's any audioSource to destroy tho
-			if ( toDestroy != null ) {
-				CleanDestroy<AudioSource>( toDestroy.gameObject );
-			} else {
-				Debug.LogWarningFormat(this, "Ropework tried to <<StopAudio {0}>> but couldn't find any sound \"{0}\" currently playing. Double-check the name, or maybe it already stopped.", soundName );
-			}
-		}
-
-		// stops all currently playing sounds
-		[YarnCommand("StopAudioAll")]
-		public void StopAudioAll() {
-			var toStop = new List<AudioSource>();
-			foreach (var audioSrc in sounds ) {
-				toStop.Add( audioSrc );
-			}
-			foreach ( var stopThis in toStop ) {
-				StopAudio( stopThis.name );
-			}
-		}
-
-		// shakes actorName or spriteName at X strength
-		[YarnCommand("Shake")]
-		public void SetShake(params string[] parameters) {
+		/// <summary>Shake(actorName or spriteName, strength=0.5)</summary>
+		public void ShakeSprite(params string[] parameters) {
 			var pars = CleanParams( parameters );
 
 			// detect shakeStrength setting
@@ -299,16 +266,85 @@ namespace Yarn.Unity {
 			}
 		}
 
-		// typical screen fade effect, good for transitions
-		// usage: <<Fade @ #hexcolor, startAlpha, endAlpha, fadeTime>>
-		[YarnCommand("Fade")]
+		/// <summary>PlayAudio( soundName,volume,"loop" )...  PlayAudio(soundName,1.0) plays soundName once at 100% volume... if third parameter was word "loop" it would loop
+		/// "volume" is a number from 0.0 to 1.0
+		/// "loop" is the word "loop" (or "true"), which tells the sound to loop over and over</summary>
+		public void PlayAudio(params string[] parameters) {
+			var pars = CleanParams( parameters );
+
+			var audioClip = FetchAsset<AudioClip>(pars[0]);
+			// detect volume setting
+			float volume = 1f;
+			if ( pars.Length > 1 ) { // if parsing fails or second parameter isn't present, default to 100% volume
+				if ( float.TryParse( pars[1], out volume ) == false ) {
+					volume = 1f;
+				} else if ( volume <= 0.01f ) {
+					Debug.LogWarningFormat(this, "VN Manager is playing sound {0} at very low volume ({1}), just so you know", pars[0], pars[1] );
+				}
+			}
+			// detect loop setting
+			bool shouldLoop = false;
+			if ( pars.Length > 2 && (pars[2].Contains("loop") || pars[2].Contains("true") ) ) {
+				shouldLoop = true;
+			}
+			
+			// instantiate AudioSource and configure it (don't use AudioSource.PlayOneShot because we also want the option to use <<StopAudio>> and interrupt it)
+			var newAudioSource = Instantiate<AudioSource>( genericAudioSource, genericAudioSource.transform.parent );
+			newAudioSource.name = audioClip.name;
+			newAudioSource.clip = audioClip;
+			newAudioSource.volume *= volume;
+			newAudioSource.loop = shouldLoop;
+			newAudioSource.Play();
+			sounds.Add(newAudioSource);
+
+			// if it doesn't loop, let's set a max lifetime for this sound
+			if ( shouldLoop == false ) {
+				StartCoroutine( SetDestroyTime( newAudioSource, audioClip.length ) );
+			}
+		}
+
+		/// <summary>stops sound playback based on sound name, whether it's looping or not</summary>
+		public void StopAudio(params string[] parameters) {
+			var pars = CleanParams( parameters );
+			string soundName = pars[0];
+
+			// let's just do this in a sloppy way for now, and also assume there's only one object like it
+			AudioSource toDestroy = null;
+			foreach ( var audioObject in sounds ) {
+				if (audioObject.name == soundName) {
+					toDestroy = audioObject;
+					break;
+				}
+			}
+
+			// double-check there's any audioSource to destroy tho, because it might have been destroyed already
+			if ( toDestroy != null ) {
+				CleanDestroy<AudioSource>( toDestroy.gameObject );
+			} else {
+				Debug.LogWarningFormat(this, "VN Manager tried to <<StopAudio {0}>> but couldn't find any sound \"{0}\" currently playing. Double-check the name, or maybe it already stopped.", soundName );
+			}
+		}
+
+		/// <summary>stops all currently playing sounds, doesn't actually take any parameters</summary>
+		public void StopAudioAll(params string[] parameters) {
+			var toStop = new List<AudioSource>();
+			foreach (var audioSrc in sounds ) {
+				toStop.Add( audioSrc );
+			}
+			foreach ( var stopThis in toStop ) {
+				StopAudio( stopThis.name );
+			}
+		}
+
+		/// <summary>typical screen fade effect, good for transitions? 
+		/// usage: Fade( #hexcolor, startAlpha, endAlpha, fadeTime )</summary>
 		public void SetFade(params string[] parameters) {
 			var pars = CleanParams( parameters );
 
 			// grab the color
 			Color fadeColor = Color.black;
 			if ( pars.Length > 0 && ColorUtility.TryParseHtmlString( pars[0], out fadeColor ) == false ) {
-				Debug.LogErrorFormat( this, "Ropework <<Fade>> couldn't parse [{0}] as an HTML hex color... it should look like [#FFFFFF] or [##FFCC00FF], or a small number of keywords work too, like [black] or [red]", pars[0] );
+				Debug.LogErrorFormat( this, "VN Manager <<Fade>> couldn't parse [{0}] as an HTML hex color... it should look like [#FFFFFF] or [##FFCC00FF], or a small number of keywords work too, like [black] or [red]", pars[0] );
 				fadeColor = Color.magenta;
 			}
 
@@ -317,29 +353,57 @@ namespace Yarn.Unity {
 			float endAlpha = 1f;
 			float fadeTime = 1f;
 			if ( pars.Length > 1 && float.TryParse( pars[1], out startAlpha )==false ) {
-				Debug.LogErrorFormat( this, "Ropework <<Fade>> couldn't parse startAlpha [{0}] as a number", pars[1] );
+				Debug.LogErrorFormat( this, "VN Manager <<Fade>> couldn't parse startAlpha [{0}] as a number", pars[1] );
 			}
 			if ( pars.Length > 2 && float.TryParse( pars[2], out endAlpha )==false ) {
-				Debug.LogErrorFormat( this, "Ropework <<Fade>> couldn't parse endAlpha [{0}] as a number", pars[1] );
+				Debug.LogErrorFormat( this, "VN Manager <<Fade>> couldn't parse endAlpha [{0}] as a number", pars[1] );
 			}
 			if ( pars.Length > 3 && float.TryParse( pars[3], out fadeTime )==false ) {
-				Debug.LogErrorFormat( this, "Ropework <<Fade>> couldn't parse fadeTime [{0}] as a number", pars[1] );
+				Debug.LogErrorFormat( this, "VN Manager <<Fade>> couldn't parse fadeTime [{0}] as a number", pars[1] );
 			}
 
 			// do the fade
 			StartCoroutine( FadeCoroutine( fadeColor, startAlpha, endAlpha, fadeTime ) );
 		}
 
-		// convenient for an easy fade in, no matter what the previous fade color or alpha was
-		[YarnCommand("FadeIn")]
-		public void SetFadeIn(string fadeTime) {
+		/// <summary>convenient for an easy fade in, no matter what the previous fade color or alpha was</summary>
+		public void SetFadeIn(params string[] parameters) {
+			var pars = CleanParams( parameters );
+			string fadeTime = pars[0];
+
 			float fadeTimeReal = 1f;
 			if ( fadeTime.Length > 0 && float.TryParse(fadeTime, out fadeTimeReal ) == false ) {
-				Debug.LogErrorFormat( this, "Ropework <<Fade>> couldn't parse fadeTime [{0}] as a number", fadeTime );
+				Debug.LogErrorFormat( this, "VN Manager <<Fade>> couldn't parse fadeTime [{0}] as a number", fadeTime );
+				fadeTimeReal = 1f;
 			}
 
 			// do the fade in
 			StartCoroutine( FadeCoroutine( fadeBG.color, -1f, 0f, fadeTimeReal ) );
+		}
+
+		/// <summary>pan the camera. Usage: CameraOffset(xPos, yPos, moveTime)</summary>
+		/// 0, 0 is center default
+		public void SetCameraOffset(params string[] parameters) {
+			parameters = CleanParams( parameters );
+
+			Vector2 newOffset = Vector2.zero;
+			if ( parameters.Length >= 2 ) {
+				newOffset = new Vector2( ConvertCoordinates(parameters[0]) - 0.5f, ConvertCoordinates(parameters[1]) - 0.5f);
+			} else if ( parameters.Length >= 1) {
+				newOffset.x = ConvertCoordinates(parameters[0]) - 0.5f;
+			}
+
+			float moveTime = 0.25f;
+			if ( parameters.Length >= 3 && float.TryParse(parameters[2], out moveTime) == false) {
+				Debug.LogErrorFormat( this, "VN Manager <<CamOffset>> couldn't parse moveTime [{0}] as a number", parameters[2]);
+				moveTime = 0.25f;
+			}
+
+			// because we're using UI overlays, there's no actual "camera" exactly
+			// so we do a fake camera scroll by moving the "Sprites" game object container
+			var parent = genericSprite.transform.parent.GetComponent<RectTransform>();
+			var newPos = Vector2.Scale( new Vector2(0.5f, 0.5f) - newOffset, screenSize );
+			StartCoroutine( MoveCoroutine( parent, newPos, moveTime ) );
 		}
 
 		#endregion
@@ -348,7 +412,7 @@ namespace Yarn.Unity {
 
 		#region Utility
 
-		// called by ClassicDialogueUI to highlight a sprite when it's talking
+		// called by VNDialogueUI to highlight a sprite when it's talking
 		public void HighlightSprite (Image sprite) {
 			StopCoroutine( "HighlightSpriteCoroutine" ); // use StartCoroutine(string) overload so that we can Stop and Start the coroutine (it doesn't work otherwise?)
 			StartCoroutine( "HighlightSpriteCoroutine", sprite );
@@ -368,18 +432,19 @@ namespace Yarn.Unity {
 					} else { // a little bit bigger / brighter
 						spr.transform.localScale = Vector3.MoveTowards( spr.transform.localScale, regularScalePreserveXFlip * 1.05f, Time.deltaTime );
 						spr.color = Color.Lerp( spr.color, highlightTint, Time.deltaTime * 5f );
+						spr.transform.SetAsLastSibling();
 					}
 				}
 				yield return 0;
 			}
 		}
 
-		IEnumerator MoveCoroutine(Image image, Vector2 newAnchorPos, float moveTime ) {
-			Vector2 startPos = image.rectTransform.anchoredPosition;
+		IEnumerator MoveCoroutine(RectTransform transform, Vector2 newAnchorPos, float moveTime ) {
+			Vector2 startPos = transform.anchoredPosition;
 			float t = 0f;
 			while (t < 1f ) {
 				t += Time.deltaTime / Mathf.Max(0.001f, moveTime); // Math.Max to prevent divide by zero error
-				image.rectTransform.anchoredPosition = Vector2.Lerp( startPos, newAnchorPos, t);
+				transform.anchoredPosition = Vector2.Lerp( startPos, newAnchorPos, t);
 				yield return 0;
 			}
 		}
@@ -406,21 +471,21 @@ namespace Yarn.Unity {
 			newSpriteObject.name = spriteName;
 			newSpriteObject.sprite = FetchAsset<Sprite>( spriteName );
 			newSpriteObject.SetNativeSize();
-			newSpriteObject.rectTransform.anchoredPosition = Vector2.Scale( position, new Vector2( 1280f, 720f ) );
+			newSpriteObject.rectTransform.anchoredPosition = Vector2.Scale( position, screenSize );
 			return newSpriteObject;
 		}
 
-		// TODO: change to Image[] and grab all valid results
+		// TODO: change to Image[] and grab all valid results?
 		Image FindActorOrSprite(string actorOrSpriteName) {
 			if ( actors.ContainsKey( actorOrSpriteName ) ) {
-				return actors[actorOrSpriteName];
+				return actors[actorOrSpriteName].actorImage;
 			} else { // or is it a generic sprite?
 				foreach ( var sprite in sprites ) { // lazy sprite name search
 					if ( sprite.name == actorOrSpriteName ) {
 						return sprite;
 					}
 				}
-				Debug.LogErrorFormat(this, "Ropework couldn't find an actor or sprite with name \"{0}\", maybe it was misspelled or the sprite was hidden / destroyed already", actorOrSpriteName );
+				Debug.LogErrorFormat(this, "VN Manager couldn't find an actor or sprite with name \"{0}\", maybe it was misspelled or the sprite was hidden / destroyed already", actorOrSpriteName );
 				return null;
 			}
 		}
@@ -477,9 +542,18 @@ namespace Yarn.Unity {
 
 		// utility function to convert words like "left" or "right" into equivalent position numbers
 		float ConvertCoordinates(string coordinate) {
-			// first, let's see if they used a position keyword
-			coordinate = coordinate.ToLower();
-			switch ( coordinate ) {
+			// first, is anyone named after this coordinate? we'll use the X position
+			if ( actors.ContainsKey(coordinate) ) {
+				return actors[coordinate].rectTransform.anchoredPosition.x / screenSize.x;
+			}
+
+			// next, let's see if they used a position keyword
+			var labelCoordinate = coordinate.ToLower().Replace(" ", "").Replace("_", "").Replace("-", "");
+			switch ( labelCoordinate ) {
+				case "leftedge":
+				case "bottomedge":
+				case "loweredge":
+					return 0f;
 				case "left":
 				case "bottom":
 				case "lower":
@@ -491,6 +565,14 @@ namespace Yarn.Unity {
 				case "top":
 				case "upper":
 					return 0.75f;
+				case "rightedge":
+				case "topedge":
+				case "upperedge":
+					return 1f;
+				case "offleft":
+				    return -0.33f;
+				case "offright":
+				    return 1.33f;
 			}
 
 			// if none of those worked, then let's try parsing it as a number
@@ -501,7 +583,7 @@ namespace Yarn.Unity {
             }
             else
             {
-                Debug.LogErrorFormat(this, "Ropework couldn't convert position [{0}]... it must be an alignment (left, center, right, or top, middle, bottom) or a value (like 0.42 as 42%)", coordinate);
+                Debug.LogErrorFormat(this, "VN Manager couldn't convert position [{0}]... it must be an alignment (left, center, right, or top, middle, bottom) or a value (like 0.42 as 42%)", coordinate);
                 return -1f;
             }
 
@@ -524,18 +606,15 @@ namespace Yarn.Unity {
 				}
 			}
 
-			// v1.0: this implementation lacked support for subfolders inside \Resources\
-			// so the new technique is to just load all Resources assets on Start into the asset arrays
+			// by default, we load all Resources assets into the asset arrays already, but if you don't want that, then uncomment this, etc.
+			// if ( useResourcesFolders ) {
+			// 	var newAsset = Resources.Load<T>(assetName);
+			// 	if ( newAsset != null ) {
+			// 		return newAsset;
+			// 	}
+			// }
 
-			// otherwise, let's search Resources for it...
-			if ( ignoreResourceSubfolders == false ) {
-				var newAsset = Resources.Load<T>(assetName);
-				if ( newAsset != null ) {
-					return newAsset;
-				}
-			}
-
-			Debug.LogErrorFormat(this, "Ropework can't find asset [{0}]... maybe it is misspelled, or isn't imported as {1}?", assetName, typeof(T).ToString() );
+			Debug.LogErrorFormat(this, "VN Manager can't find asset [{0}]... maybe it is misspelled, or isn't imported as {1}?", assetName, typeof(T).ToString() );
 			return null; // didn't find any matching asset
 		}
 
@@ -544,5 +623,37 @@ namespace Yarn.Unity {
 
 
     } // end class
+
+	/// stores data for actors (sprite reference and color), can be expanded to store more data if necessary
+	[System.Serializable]
+	public class VNActor {
+		public Image actorImage;
+		public Color actorColor;
+		public RectTransform rectTransform { get { return actorImage.rectTransform; } }
+		public GameObject gameObject { get { return actorImage.gameObject; } }
+
+		public VNActor( Image actorImage, Color actorColor ) {
+			this.actorImage = actorImage;
+			this.actorColor = actorColor;
+		}
+	}
+
+	// from https://www.codeproject.com/Articles/11556/Converting-Wildcards-to-Regexes by Rei Miyasaka
+    public class Wildcard : Regex
+    {
+        public Wildcard(string pattern) : base(WildcardToRegex(pattern))
+        {
+
+        }
+
+        public Wildcard(string pattern, RegexOptions options) : base(WildcardToRegex(pattern), options)
+        {
+        }
+
+        public static string WildcardToRegex(string pattern)
+        {
+            return "^" + Regex.Escape(pattern).Replace("\\*", ".*").Replace("\\?", ".") + "$";
+        }
+    }
 
 } // end namespace

@@ -5,57 +5,65 @@ position: 0,0
 ---
 
 // sets background image to sprite called "bg_office"
-<<Scene @ bg_office>>
+<<Scene bg_office>>
+// start playing audioclip "ambient_birds" at 50% volume, loop forever
+<<PlayAudio ambient_birds, 0.5, loop>>
 
-A SIMPLE EXAMPLE USING ROPEWORK
+A VISUAL NOVEL EXAMPLE
 
 // adds actor named "Eve" using sprite "cool-girl", placed in left-half + center of screen, with green text label
-<<Act @ Eve, cool-girl, left, center, green>>
+<<Act Eve, cool-girl, left, center, green>>
 
 Eve: Finally, a quiet day at the office. Maybe I'll be able to get some work done.
 
 // adds actor "Adam" with sprite "biz-guy" off-screen right, with blue-ish text label
-<<Act @ Adam, biz-guy, 1.25, center, #226677>>
+<<Act Adam, biz-guy, 1.25, center, #226677>>
 
 // animate Adam into new position in right-half + center, within 0.5 seconds
-<<Move @ Adam, right, center, 0.5>>
-// start playing audioclip "music_funny" at 100% volume, loop forever
-<<PlayAudio @ music_funny, 1.0, loop>>
+<<Move Adam, right, center, 0.5>>
+<<PlayAudio music_funny, 1.0, loop>>
 
 Adam: Hey Eve! I have a question!
 Eve: Oh no...
 
 // horizontally flips Eve actor to face Adam
-<<Flip @ Eve>>
+<<Flip Eve>>
 
 // Yarn shortcut choices, an easy way to make branching options
 -> Eve gets upset with Adam
-	<<Shake @ Eve, 1.0>>
+	<<Shake Eve, 1.0>>
 	Eve: WHAT DO YOU WANT???
-	Adam: I just wanted to see if you liked using Ropework.
+	Adam: I just wanted to see if you liked using Yarn Spinner.
 	Eve: ... It's fine. Thanks. Now leave me alone.
 -> Adam asks Eve a question
-	Adam: Do you think Ropework is easy to use?
+	Adam: Do you think Yarn Spinner is easy to use?
 	Eve: Not when you're bothering me.
 	Adam: Oh, I didn't realize you were busy. Sorry.
 
-// hide Adam actor / remove from the scene
-<<Hide @ Adam>>
+// hide Adam actor and remove from the scene
+<<Hide Adam>>
 // Stop all sound playback
-<<StopAudioAll @>>
+<<StopAudioAll>>
 
 Eve: Ok, now to finally write that visual novel.
-<<Flip @ Eve>>
-Eve: Wait... Where's my laptop? It's not here.
-<<Shake @ Eve>>
+<<Flip Eve>>
+<<PlayAudio music_romantic>>
+Eve: I can finally write my epic romance about -
+<<StopAudioAll>>
+<<Flip Eve>>
+<<wait 1.5>>
+<<Flip Eve>>
+Eve: Wait... where's my laptop? It's not here.
+<<Shake Eve>>
 Eve: Adam! Have you seen my laptop???
 
-<<Flip @ Eve>>
-<<Move @ Eve, 1.25, center, 1.0>>
+<<PlayAudio music_funny>>
+<<Flip Eve>>
+<<Move Eve, 1.25, center, 1.0>>
 Eve: ADDDDAAAMMMMMMM!!!
 
 // fade to black, from 0% opacity to 100% opacity, in 2.0 seconds
-<<Fade @ black, 0.0, 1.0, 2.0>>
+<<Fade black, 0.0, 1.0, 2.0>>
 THE END.
 
 ===

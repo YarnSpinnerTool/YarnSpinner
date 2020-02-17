@@ -692,18 +692,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114716998665554330}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6885618662069859611}
-        m_MethodName: SelectOption
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1374043672036314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,14 +1023,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 77d8f11e4af00594c8aaf1784c1dd7a8, type: 3}
   loadAudio:
   - {fileID: 8300000, guid: 1f9607a7d89d843439ab1d3467d2f54a, type: 3}
-  ignoreResourceSubfolders: 1
-  highlightTint: {r: 1, g: 1, b: 1, a: 1}
+  - {fileID: 8300000, guid: 6076163f000d35246a5a23e13ae9de25, type: 3}
+  - {fileID: 8300000, guid: 5b23cdd00116c4748b48d312c9dc9f18, type: 3}
+  useResourcesFolders: 0
   defaultTint: {r: 0.721237, g: 0.79072744, b: 0.8455882, a: 1}
+  highlightTint: {r: 1, g: 1, b: 1, a: 1}
   spriteGroup: {fileID: 224005039409447594}
   bgImage: {fileID: 114178998031062532}
   fadeBG: {fileID: 114885191920496410}
   genericSprite: {fileID: 114774347424995662}
-  myAudioSource: {fileID: 82675393856402862}
+  genericAudioSource: {fileID: 82675393856402862}
 --- !u!114 &6885618662069859611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,7 +1052,6 @@ MonoBehaviour:
   - {fileID: 114521215799123954}
   - {fileID: 114717154260145578}
   - {fileID: 114657984681216628}
-  userRequestedNextLine: 0
   onDialogueStart:
     m_PersistentCalls:
       m_Calls: []
@@ -1977,18 +1967,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114530616268999686}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6885618662069859611}
-        m_MethodName: SelectOption
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1819755135887614
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,18 +2085,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114820566453912986}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6885618662069859611}
-        m_MethodName: SelectOption
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1900907515079900
 GameObject:
   m_ObjectHideFlags: 0
@@ -2235,18 +2203,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114323225113321106}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6885618662069859611}
-        m_MethodName: SelectOption
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1936019924836874
 GameObject:
   m_ObjectHideFlags: 0
