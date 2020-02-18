@@ -137,6 +137,5 @@ stops playing all sounds, no parameters
 The assets included in this example project are:
 
 - Visual Novel Tutorial Set (public domain) https://opengameart.org/content/visual-novel-tutorial-set
-- Louis George Cafe font ("100% free") https://www.dafont.com/louis-george-caf.font
 - Lovely Piano Song by Rafael Krux (public domain) https://freepd.com
 - Comic Game Loop - Mischief by Kevin MacLeod (public domain) https://freepd.com

@@ -29,9 +29,12 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Yarn.Unity {
-    /// <summary>displays dialogue and choices for the visual novel example...
-    /// for convenience, this inherits from DialogueUI instead of DialogueUIBehavior</summary>
+namespace Yarn.Unity.Example {
+    /// <summary>
+    /// displays dialogue and choices for the visual novel example...
+    /// for convenience, this inherits from DialogueUI instead of DialogueUIBehavior,
+    /// so make sure you read the base class DialogueUI to know what's happening
+    /// </summary>
     public class VNDialogueUI : Yarn.Unity.DialogueUI
     {
         /// <summary>handles Yarn commands for visual novels</summary>
@@ -45,7 +48,9 @@ namespace Yarn.Unity {
         public DialogueRunner.StringUnityEvent onNameUpdate;
 
 
-        /// <summary>overrides DialogueRunner.RunLine to create temporary string table and run DoDetectSpeakerName()</summary>
+        /// <summary>
+        /// overrides DialogueUI.RunLine to create temporary string table and run DoDetectSpeakerName()
+        /// </summary>
         public override Dialogue.HandlerExecutionType RunLine (Yarn.Line line, IDictionary<string,string> strings, System.Action onComplete)
         {
             // get localized text from the string table
@@ -67,7 +72,9 @@ namespace Yarn.Unity {
             return base.RunLine( line, modifiedStringTable, onComplete );
         }
 
-        /// <summary>also strips out the speaker's name, if present, from the string table parameter</summary>
+        /// <summary>
+        /// also strips out the speaker's name, if present, from the string table parameter
+        /// </summary>
         private void DoDetectSpeakerName(Yarn.Line line, IDictionary<string,string> strings, string text) {
             // extract speaker's name, if any
             string speakerName = "";

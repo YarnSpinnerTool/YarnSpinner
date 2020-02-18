@@ -4,8 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace Yarn.Unity {
-	/// <summary>runs Yarn commands and manages sprites for the Visual Novel example</summary>
+namespace Yarn.Unity.Example {
+	/// <summary>
+	/// runs Yarn commands and manages sprites for the Visual Novel example
+	/// </summary>
     public class VNManager : MonoBehaviour
     {
 		DialogueRunner runner;
@@ -66,8 +68,8 @@ namespace Yarn.Unity {
 			runner.AddCommandHandler("FadeIn", SetFadeIn );
 			runner.AddCommandHandler("CamOffset", SetCameraOffset );
 
-			// adds all Resources to internal lists / one big pile... it will scan all subfolders
-			// note: but when referencing sprites in the Yarn script, just use the file name!
+			// adds all Resources to internal lists / one big pile... it will scan inside all subfolders too!
+			// note: but when referencing sprites in the Yarn script, just use the file name and omit folder names
 			if ( useResourcesFolders ) {
 				var allSpritesInResources = Resources.LoadAll<Sprite>("");
 				loadSprites.AddRange( allSpritesInResources );
@@ -620,11 +622,11 @@ namespace Yarn.Unity {
 
 
 		#endregion
-
-
     } // end class
 
-	/// stores data for actors (sprite reference and color), can be expanded to store more data if necessary
+	/// <summary>
+	/// stores data for actors (sprite reference and color), can be expanded if necessary
+	/// </summary>
 	[System.Serializable]
 	public class VNActor {
 		public Image actorImage;
@@ -639,19 +641,12 @@ namespace Yarn.Unity {
 	}
 
 	// from https://www.codeproject.com/Articles/11556/Converting-Wildcards-to-Regexes by Rei Miyasaka
-    public class Wildcard : Regex
-    {
-        public Wildcard(string pattern) : base(WildcardToRegex(pattern))
-        {
+    class Wildcard : Regex {
+        public Wildcard(string pattern) : base(WildcardToRegex(pattern)) { }
 
-        }
+        public Wildcard(string pattern, RegexOptions options) : base(WildcardToRegex(pattern), options) { }
 
-        public Wildcard(string pattern, RegexOptions options) : base(WildcardToRegex(pattern), options)
-        {
-        }
-
-        public static string WildcardToRegex(string pattern)
-        {
+        public static string WildcardToRegex(string pattern) {
             return "^" + Regex.Escape(pattern).Replace("\\*", ".*").Replace("\\?", ".") + "$";
         }
     }
