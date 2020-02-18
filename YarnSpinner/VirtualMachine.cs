@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-
+using System.Text;
+using Google.Protobuf;
 using static Yarn.Instruction.Types;
 
 namespace Yarn
@@ -117,52 +117,278 @@ namespace Yarn
         Text // a run of text until we hit other syntax
     }
 
-    internal class VirtualMachine
+    public interface ISerializedState {
+        /// <summary>
+        /// Get the serialized source data.
+        /// </summary>
+        object GetData();
+
+        /// <summary>
+        /// Deserialize the source data and return resulting State object.
+        /// </summary>
+        State Deserialize();
+    }
+
+    public interface ISerializedState<out T> : ISerializedState {
+        /// <summary>
+        /// Get the serialized source data.
+        /// </summary>
+        new T GetData();
+    }
+
+    /// <summary>
+    /// Handle serialized state in Binary format
+    /// </summary>
+    public class BinarySerializedState : ISerializedState<ByteString>
     {
+        /// <summary>
+        /// Creates a Serialized State from existing State
+        /// </summary>
+        public BinarySerializedState(State state) {
+            this.data = state.ToByteString();
+            this.deserialized = state;
+        }
 
-        internal class State {
+        /// <summary>
+        /// Creates a Serialized State from given array.
+        /// </summary>
+        public BinarySerializedState(params byte[] bytes) {
+            this.data = ByteString.CopyFrom(bytes);
+        }
 
-            /// The name of the node that we're currently in
-            public string currentNodeName;
+        /// <summary>
+        /// Creates a Serialized State by encoding specified text with given encoding.
+        /// </summary>
+        public BinarySerializedState(string text, Encoding encoding) {
+            this.data = ByteString.CopyFrom(text, encoding);
+        }
 
-            /// The instruction number in the current node
-            public int programCounter = 0;
+        /// <summary>
+        /// Creates a Serialized State from Base64 Encoded String.
+        /// </summary>
+        public BinarySerializedState(string base64) {
+            this.data = ByteString.FromBase64(base64);
+        }
 
-            /// List of options, where each option = <string id, destination node>
-            public List<KeyValuePair<string,string>> currentOptions = new List<KeyValuePair<string, string>>();
+        /// <summary>
+        /// Creates a Serialized State from ByteString data.
+        /// </summary>
+        public BinarySerializedState(ByteString data) {
+            this.data = data;
+        }
 
-            /// The value stack
-            private Stack<Value> stack = new Stack<Value>();
+        private ByteString data;
+        private State deserialized;
 
-            /// Methods for working with the stack
-            public void PushValue(object o) {
-                if( o is Value ) {
-                    stack.Push(o as Value);
-                } else {
-                    stack.Push (new Value(o));
+        public ByteString GetData() {
+            return this.data;
+        }
+
+        object ISerializedState.GetData() {
+            return GetData();
+        }
+
+        public State Deserialize() {
+            if (this.deserialized != null) {
+                return this.deserialized;
+            }
+
+            MessageParser parser = new MessageParser<State>(() => { return new State(); });
+            State newState;
+
+            try {
+                newState = parser.ParseFrom(this.data) as State;
+            } catch (InvalidProtocolBufferException exception) {
+                throw exception;
+            }
+
+            if (newState != null) {
+                this.deserialized = newState;
+            }
+
+            return this.deserialized;
+        }
+
+        /// <summary>
+        /// Converts data into a byte array.
+        /// </summary>
+        public byte[] ToByteArray() {
+            return this.data.ToByteArray();
+        }
+
+        /// <summary>
+        /// Converts data into a string by applying the given encoding.
+        /// </summary>
+        public string ToString(Encoding encoding) {
+            return this.data.ToString(encoding);
+        }
+
+        /// <summary>
+        /// Converts data into a standard base64 representation.
+        /// </summary>
+        public string ToBase64() {
+            return this.data.ToBase64();
+        }
+    }
+
+    /// <summary>
+    /// Handle serialized state in JSON format
+    /// </summary>
+    public class JsonSerializedState : ISerializedState<string>
+    {
+        /// <summary>
+        /// Creates a Serialized State from existing State
+        /// </summary>
+        public JsonSerializedState(State state) {
+            JsonFormatter formatter = JsonFormatter.Default;
+            string json = formatter.Format(state);
+
+            this.data = json;
+            this.deserialized = state;
+        }
+
+        /// <summary>
+        /// Creates a Serialized State from JSON formatted string.
+        /// </summary>
+        public JsonSerializedState(string json) {
+            this.data = json;
+        }
+
+        private string data;
+        private State deserialized;
+
+        public string GetData() {
+            return this.data;
+        }
+
+        object ISerializedState.GetData() {
+            return GetData();
+        }
+
+        public State Deserialize() {
+            if (this.deserialized != null) {
+                return this.deserialized;
+            }
+
+            JsonParser parser = JsonParser.Default;
+            State newState;
+
+            try {
+                newState = parser.Parse<State>(this.data);
+            }
+            catch (InvalidJsonException exception) {
+                throw exception;
+            }
+
+            if (newState != null) {
+                this.deserialized = newState;
+            }
+
+            return this.deserialized;
+        }
+    }
+
+    public partial class StateOption
+    {
+        // Works the same as KeyValuePair, but in protobuf.
+        public StateOption(string key, string value) : base() {
+            this.Key = key;
+            this.Value = value;
+        }
+    }
+
+    public partial class StateValue
+    {
+        // This entire class exists only because serializing entire Value object
+        // seemed unnecessary so instead we are rebuilding Values from less complex context.
+
+        public StateValue(Value yarnValue) : base() {
+            this.YarnValue = yarnValue;
+            this.Type = (int)yarnValue.type;
+            this.Value = yarnValue.AsString;
+        }
+
+        private Value _yarnValue;
+        public Value YarnValue {
+            get {
+                if (this._yarnValue == null) {
+                    Yarn.Value.Type type = (Yarn.Value.Type)this.Type;
+
+                    switch (type) {
+                        case Yarn.Value.Type.Null:
+                            this._yarnValue = Yarn.Value.NULL;
+                            break;
+                        case Yarn.Value.Type.Number:
+                            this._yarnValue = new Yarn.Value(float.Parse(this.Value));
+                            break;
+                        case Yarn.Value.Type.String:
+                            this._yarnValue = new Yarn.Value(this.Value);
+                            break;
+                        case Yarn.Value.Type.Bool:
+                            this._yarnValue = new Yarn.Value(bool.Parse(this.Value));
+                            break;
+                    }
                 }
-            }
 
-            /// Pop a value from the stack
-            public Value PopValue() {
-                return stack.Pop ();
+                return this._yarnValue;
             }
-
-            /// Peek at a value from the stack
-            public Value PeekValue() {
-                return stack.Peek ();
-            }
-
-            /// Clear the stack
-            public void ClearStack() {
-                stack.Clear ();
+            private set {
+                this._yarnValue = value;
             }
         }
-        
+    }
+
+    public partial class State
+    {
+        /// The instruction number in the current node
+        public int programCounter = 0;
+
+        // The methods in here used to handle a Stack object, but it is easier to serialize
+        // and handle a List these methods are now providing Stack functionality on top of a List.
+
+        /// Methods for working with the stack
+        public void PushValue(object o) {
+            if (o is Value) {
+                Stack.Add(new StateValue(o as Value));
+            } else {
+                Stack.Add(new StateValue(new Value(o)));
+            }
+        }
+
+        /// Pop a value from the stack
+        public Value PopValue() {
+            if (Stack.Count != 0) {
+                int lastElement = Stack.Count - 1;
+                Value item = Stack[lastElement].YarnValue;
+                Stack.RemoveAt(lastElement);
+
+                return item;
+            }
+
+            return null;
+        }
+
+        /// Peek at a value from the stack
+        public Value PeekValue() {
+            if (Stack.Count != 0) {
+                return Stack[Stack.Count - 1].YarnValue;
+            }
+
+            return null;
+        }
+
+        /// Clear the stack
+        public void ClearStack() {
+            Stack.Clear();
+        }
+    }
+
+    internal class VirtualMachine
+    {
         internal VirtualMachine (Dialogue d)
         {
             dialogue = d;
-            state = new State ();
+            state = new State();
         }
 
         /// Reset the state of the VM
@@ -170,7 +396,94 @@ namespace Yarn
             state = new State();
         }
 
-        
+        /// <summary>
+        /// Is the State ready to be saved?
+        /// </summary>
+        public bool TryGetState() {
+            // Check if the VM is running any Node
+            if (string.IsNullOrEmpty(this.state.CurrentNodeName)) {
+                dialogue.LogErrorMessage("Cannot get State of the Virtual Machine because it is not running any node.");
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Get current State of Virtual Machine as a copy of the State object.
+        /// </summary>
+        public State GetStateClone() {
+            return (TryGetState()) ? this.state.Clone() : null;
+        }
+
+        /// <summary>
+        /// Get current State of Virtual Machine as serialized Protobuf.
+        /// </summary>
+        public BinarySerializedState GetStateBinarySerialized() {
+            return (TryGetState()) ? new BinarySerializedState(this.state) : null;
+        }
+
+        /// <summary>
+        /// Get current State of Virtual Machine as serialized JSON.
+        /// </summary>
+        public JsonSerializedState GetStateJsonSerialized() {
+            return (TryGetState()) ? new JsonSerializedState(this.state) : null;
+        }
+
+        /// <summary>
+        /// Is the State ready to be set into VirtualMachine?
+        /// </summary>
+        public bool TrySetState(State newState) {
+            // Check if newState has node, it should but better be safe
+            if (string.IsNullOrEmpty(newState.CurrentNodeName)) {
+                dialogue.LogErrorMessage("Cannot set State because it doesnt have any node set.");
+                return false;
+            }
+
+            // Check if program was set, again it should be set...
+            if (this.Program == null) {
+                dialogue.LogErrorMessage("Cannot set State because the VM doesnt have any program.");
+                return false;
+            }
+
+            if (! Program.Nodes.ContainsKey(newState.CurrentNodeName)) {
+                dialogue.LogErrorMessage($"Cannot set State because the VMs program doesnt have required Node ({newState.CurrentNodeName}).");
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Is the State ready to be set into VirtualMachine?
+        /// </summary>
+        public bool TrySetState(ISerializedState serialized) {
+            return TrySetState(serialized.Deserialize());
+        }
+
+        /// <summary>
+        /// Set Virtual Machine state from a State object.
+        /// </summary>
+        public void SetState(State newState) {
+            if (TrySetState(newState)) {
+                // Set Node to what a newState is expecting.
+                SetNode(newState.CurrentNodeName);
+
+                // Set our new State.
+                this.state = newState;
+
+                // To properly continue from where the State left of, we need to sync program counter to current instruction.
+                this.state.programCounter = newState.CurrentInstruction;
+            }
+        }
+
+        /// <summary>
+        /// Set Virtual Machine state from a serialized State.
+        /// </summary>
+        public void SetState(ISerializedState serialized) {
+            SetState(serialized.Deserialize());
+        }
+
         public Dialogue.LineHandler lineHandler;
         public Dialogue.OptionsHandler optionsHandler;
         public Dialogue.CommandHandler commandHandler;
@@ -185,7 +498,7 @@ namespace Yarn
 
         public string currentNodeName {
             get {
-                return state.currentNodeName;
+                return state.CurrentNodeName;
             }
         }
 
@@ -225,7 +538,7 @@ namespace Yarn
 
             currentNode = Program.Nodes [nodeName];
             ResetState ();
-            state.currentNodeName = nodeName;
+            state.CurrentNodeName = nodeName;
 
             return true;
         }
@@ -244,12 +557,12 @@ namespace Yarn
 
             // We now know what number option was selected; push the
             // corresponding node name to the stack
-            var destinationNode = state.currentOptions[selectedOptionID].Value;
+            var destinationNode = state.CurrentOptions[selectedOptionID].Value;
             state.PushValue(destinationNode);
 
             // We no longer need the accumulated list of options; clear it
             // so that it's ready for the next one
-            state.currentOptions.Clear();
+            state.CurrentOptions.Clear();
 
             // We're no longer in the WaitingForOptions state; we are now
             // instead Suspended
@@ -292,10 +605,15 @@ namespace Yarn
 
             // Execute instructions until something forces us to stop
             while (executionState == ExecutionState.Running) {
-                Instruction currentInstruction = currentNode.Instructions [state.programCounter];
 
+                // Sync current instruction to one that is supposed to run.
+                state.CurrentInstruction = state.programCounter;
+
+                // Run the instruction.
+                Instruction currentInstruction = currentNode.Instructions [state.CurrentInstruction];
                 RunInstruction (currentInstruction);
 
+                // Increment program counter for the next loop.
                 state.programCounter++;
 
                 if (state.programCounter >= currentNode.Instructions.Count) {
@@ -313,7 +631,7 @@ namespace Yarn
             if (currentNode.Labels.ContainsKey(labelName) == false) {
                 // Couldn't find the node..
                 throw new IndexOutOfRangeException (
-                    $"Unknown label {labelName} in node {state.currentNodeName}"
+                    $"Unknown label {labelName} in node {state.CurrentNodeName}"
                 );
             }
 
@@ -576,10 +894,10 @@ namespace Yarn
                         /// - AddOption
                         /** Add an option to the current state.
                          */
-                        state.currentOptions.Add(
-                            new KeyValuePair<string, string>(
-                                i.Operands[0].StringValue, // node name
-                                i.Operands[1].StringValue  // display string key
+                        state.CurrentOptions.Add(
+                            new StateOption(
+                                i.Operands[0].StringValue, // display string key
+                                i.Operands[1].StringValue  // node name
                             )
                         );
 
@@ -591,7 +909,7 @@ namespace Yarn
                         /// - ShowOptions
                         /** If we have no options to show, immediately stop.
                          */
-                        if (state.currentOptions.Count == 0)
+                        if (state.CurrentOptions.Count == 0)
                         {
                             executionState = ExecutionState.Stopped;
                             dialogueCompleteHandler();
@@ -601,9 +919,9 @@ namespace Yarn
                         // Present the list of options to the user and let them pick
                         var optionChoices = new List<OptionSet.Option>();
 
-                        for (int optionIndex = 0; optionIndex < state.currentOptions.Count; optionIndex++)
+                        for (int optionIndex = 0; optionIndex < state.CurrentOptions.Count; optionIndex++)
                         {
-                            var option = state.currentOptions[optionIndex];
+                            var option = state.CurrentOptions[optionIndex];
                             var line = new Line(option.Key);
                             optionChoices.Add(new OptionSet.Option(line, optionIndex));
                         }

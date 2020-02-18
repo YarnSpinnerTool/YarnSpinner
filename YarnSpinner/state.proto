@@ -1,0 +1,22 @@
+syntax = "proto3";
+package Yarn;
+
+// Virtual Machine states currentOptions KeyValuePair
+message StateOption {
+    string key = 1;
+    string value = 2;
+}
+
+// Serializable encloser for Yarn Value
+message StateValue {
+    int32 type = 1;
+    string value = 2;
+}
+
+// Virtual Machine state
+message State {
+    string currentNodeName = 1;
+    int32 currentInstruction = 2;
+    repeated StateOption currentOptions = 3;
+    repeated StateValue stack = 4;
+}
