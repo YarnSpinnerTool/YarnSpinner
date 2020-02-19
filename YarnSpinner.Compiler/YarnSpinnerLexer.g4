@@ -1,12 +1,160 @@
 lexer grammar YarnSpinnerLexer;
 
+tokens { INDENT, DEDENT }
+ 
+@lexer::header{
+using System.Linq;
+using System.Text.RegularExpressions;
+}
+
+@lexer::members {
+	// A queue where extra tokens are pushed on (see the NEWLINE lexer rule).
+	private System.Collections.Generic.LinkedList<IToken> Tokens = new System.Collections.Generic.LinkedList<IToken>();
+	// The stack that keeps track of the indentation level.
+	private System.Collections.Generic.Stack<int> Indents = new System.Collections.Generic.Stack<int>();
+	// The amount of opened braces, brackets and parenthesis.
+	private int Opened = 0;
+	// The most recently produced token.
+	private IToken LastToken = null;
+
+	public override void Emit(IToken token)
+    {
+        base.Token = token;
+        Tokens.AddLast(token);
+    }
+
+    private CommonToken CommonToken(int type, string text)
+    {
+        int stop = CharIndex - 1;
+        int start = text.Length == 0 ? stop : stop - text.Length + 1;
+        var tokenFactorySourcePair = Tuple.Create((ITokenSource)this, (ICharStream)InputStream);
+        return new CommonToken(tokenFactorySourcePair, type, DefaultTokenChannel, start, stop);
+    }
+
+	private IToken CreateDedent()
+	{
+	    var dedent = CommonToken(YarnSpinnerParser.DEDENT, "");
+	    dedent.Line = LastToken.Line;
+	    return dedent;
+	}
+
+	public override IToken NextToken()
+	{
+	    // Check if the end-of-file is ahead and there are still some DEDENTS expected.
+	    if (InputStream.LA(1) == Eof && Indents.Count != 0)
+	    {
+            // Remove any trailing EOF tokens from our buffer.
+            for (var node  = Tokens.First; node != null; )
+            {
+                var temp = node.Next;
+                if (node.Value.Type == Eof)
+                {
+                    Tokens.Remove(node);
+                }
+                node = temp;
+            }
+            
+            // First emit an extra line break that serves as the end of the statement.
+            this.Emit(CommonToken(YarnSpinnerParser.NEWLINE, "\n"));
+
+	        // Now emit as much DEDENT tokens as needed.
+	        while (Indents.Count != 0)
+	        {
+	            Emit(CreateDedent());
+	            Indents.Pop();
+	        }
+
+	        // Put the EOF back on the token stream.
+	        Emit(CommonToken(YarnSpinnerParser.Eof, "<EOF>"));
+	    }
+
+	    var next = base.NextToken();
+	    if (next.Channel == DefaultTokenChannel)
+	    {
+	        // Keep track of the last token on the default channel.
+	        LastToken = next;
+	    }
+
+	    if (Tokens.Count == 0)
+	    {
+	        return next;
+	    }
+	    else
+	    {
+	        var x = Tokens.First.Value;
+	        Tokens.RemoveFirst();
+	        return x;
+	    }
+	}
+
+    // Calculates the indentation of the provided spaces, taking the
+    // following rules into account:
+    //
+    // "Tabs are replaced (from left to right) by one to eight spaces
+    //  such that the total number of characters up to and including
+    //  the replacement is a multiple of eight [...]"
+    //
+    //  -- https://docs.python.org/3.1/reference/lexical_analysis.html#indentation
+    static int GetIndentationCount(string spaces)
+    {
+        int count = 0;
+        foreach (char ch in spaces.ToCharArray())
+        {
+            count += ch == '\t' ? 8 - (count % 8) : 1;
+        }
+        return count;
+    }
+
+    bool AtStartOfInput()
+    {
+        return Column == 0 && Line == 1;
+    }
+
+    void CreateIndentIfNeeded(int type = NEWLINE) {
+
+        var newLine = (new Regex("[^\r\n\f]+")).Replace(Text, "");
+		var spaces = (new Regex("[\r\n\f]+")).Replace(Text, "");
+		// Strip newlines inside open clauses except if we are near EOF. We keep NEWLINEs near EOF to
+		// satisfy the final newline needed by the single_put rule used by the REPL.
+		int next = InputStream.LA(1);
+		int nextnext = InputStream.LA(2);
+        
+        // '-1' indicates 'do not emit the newline here but do emit indents/dedents'
+        if (type != -1) {
+            Emit(CommonToken(type, newLine));
+        }
+        int indent = GetIndentationCount(spaces);
+        int previous = Indents.Count == 0 ? 0 : Indents.Peek();
+        if (indent == previous)
+        {
+            // skip indents of the same size as the present indent-size            
+        }
+        else if (indent > previous) {
+            Indents.Push(indent);
+            Emit(CommonToken(YarnSpinnerParser.INDENT, spaces));
+        }
+        else {
+            // Possibly emit more than 1 DEDENT token.
+            while(Indents.Count != 0 && Indents.Peek() > indent)
+            {
+                this.Emit(CreateDedent());
+                Indents.Pop();
+            }        
+		}
+    }
+}
+
 // Root mode: skip whitespaces, set up some commonly-seen 
 // tokens
-WS : ([ \t\r\n])+ -> skip;
+WS : ([ \t])+ -> skip;
+
+fragment SPACES: [ \t]+ ; // used in NEWLINE tokens to calculate the text following a newline
 
 // Some commonly-seen tokens that other lexer modes will use
-NEWLINE: [\r\n]+ ;
+NEWLINE: [\r\n]+ SPACES? { CreateIndentIfNeeded(-1); } -> skip;
+
 ID : [a-zA-Z_](([a-zA-Z0-9])|('_'))* ;
+fragment NODE_ID : [a-zA-Z_](([a-zA-Z0-9])|('_'|'.'))* ;
 
 // The 'end of node headers, start of node body' marker
 BODY_START : '---' -> pushMode(BodyMode) ;
@@ -21,25 +169,22 @@ HASHTAG : '#' -> pushMode(HashtagMode);
 // Headers before a node.
 mode HeaderMode;
 // Allow arbitrary text up to the end of the line.
-REST_OF_LINE : ~('\n')+;
-HEADER_NEWLINE : NEWLINE -> popMode;
+REST_OF_LINE : ~('\r'|'\n')+;
+HEADER_NEWLINE : NEWLINE SPACES? {CreateIndentIfNeeded(HEADER_NEWLINE);} -> popMode;
 
-COMMENT: '//' .*? NEWLINE -> skip;
+COMMENT: '//' REST_OF_LINE -> skip;
 
 // The main body of a node.
 mode BodyMode;
 
 // Ignore all whitespace and comments
 BODY_WS : WS -> skip;
+BODY_NEWLINE : NEWLINE SPACES? {CreateIndentIfNeeded(-1);} -> skip;
 BODY_COMMENT : COMMENT -> skip ;
 
 // End of this node; return to global mode (eg node headers)
 // or end of file
 BODY_END : '===' -> popMode; 
-
-// Indent tokens. (TODO: do not use these strings)
-INDENT : 'INDENT' ;
-DEDENT : 'DEDENT' ;
 
 // The start of a shortcut option
 SHORTCUT_ARROW : '->' ;
@@ -61,7 +206,7 @@ ANY: . -> more, pushMode(TextMode);
 // Arbitrary text, punctuated by expressions, and ended by 
 // hashtags and/or a newline.
 mode TextMode;
-TEXT_NEWLINE: NEWLINE -> popMode;
+TEXT_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(TEXT_NEWLINE);} -> popMode;
 
 // The start of a hashtag. Swap to Hashtag mode here, because 
 // we aren't looking for any more free text.
@@ -71,21 +216,17 @@ TEXT_HASHTAG: HASHTAG -> mode(HashtagMode);
 // free text after the expression is done
 TEXT_EXPRESSION_START: '{' -> pushMode(ExpressionMode); 
 
-// Finally, lex anything up to a newline, a hashtag, or the 
-// start of an expression as free text.
-TEXT: ~[\n#{]+ ;
+TEXT_COMMAND_START: '<<' -> pushMode(CommandMode);
+
+// Finally, lex anything up to a newline, a hashtag, the 
+// start of an expression as free text, or a command-start marker.
+TEXT: TEXT_FRAG+ ;
+TEXT_FRAG: {!(InputStream.LA(1) == '<' && InputStream.LA(2) == '<')}? ~[\r\n#{] ;
 
 // TODO: support detecting a comment at the end of a line by looking 
 // ahead and seeing '//', then skipping the rest of the line. 
 // Currently "woo // foo" is parsed as one whole TEXT.
 
-// TODO: support for mid-line or end-line <<if expr>> - 
-// requires looking ahead two characters, so do something like:
-//   TEXT: TEXT_FRAG
-//   TEXT_FRAG:  {_input.LA(2) != "<<"}? ~[\n#{] -> more
-// This is a little complex because we can't just stop runs of text
-// at '<' because that prevents us from lexing in-line HTML-like 
-// syntax (eg. 'Mae: <i>Woo!</i> <<if $var>>' )
 
 // Hashtags at the end of a Line, Command or Option.
 mode HashtagMode;
@@ -94,13 +235,13 @@ HASHTAG_WS: [ \t] -> skip;
 // everything UP TO the newline, because we still want to capture
 // the newline after the comment as a HASHTAG_NEWLINE token, which 
 // the parser is looking for to mark the end of the run of hashtags.
-HASHTAG_COMMENT: '//' ~[\n]* -> skip; 
+HASHTAG_COMMENT: '//' ~[\r\n]* -> skip; 
 HASHTAG_TAG: HASHTAG;
 // A newline; we're done looking for hashtag-related symbols
-HASHTAG_NEWLINE: NEWLINE -> popMode;
+HASHTAG_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(HASHTAG_NEWLINE);} -> popMode;
 // A command - this marks the start of a line condition
 HASHTAG_COMMAND_START: '<<' -> pushMode(CommandMode);
-HASHTAG_TEXT: ~[ \t\n#$<]+ ;
+HASHTAG_TEXT: ~[ \t\r\n#$<]+ ;
 
 // Expressions, involving values and operations on values.
 mode ExpressionMode;
@@ -182,6 +323,8 @@ COMMAND_ELSE: 'else' [\p{White_Space}];
 COMMAND_SET : 'set' [\p{White_Space}] -> pushMode(ExpressionMode);
 COMMAND_ENDIF: 'endif';
 
+COMMAND_CALL: 'call' [\p{White_Space}] -> pushMode(ExpressionMode);
+
 // End of a command.
 COMMAND_END: '>>' -> popMode;
 
@@ -200,10 +343,9 @@ COMMAND_TEXT: ~[>{]+;
 // Options [[Description|NodeName]] or jumps [[NodeName]]. May be followed 
 // by hashtags, so we lex those here too.
 mode OptionMode;
-OPTION_NEWLINE: NEWLINE -> popMode;
+OPTION_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(OPTION_NEWLINE);} -> popMode;
 OPTION_WS: WS -> skip;
 OPTION_END: ']]' -> popMode ;
-OPTION_HASHTAG: HASHTAG -> pushMode(HashtagMode);
 OPTION_DELIMIT: '|' -> pushMode(OptionIDMode); // time to specifically look for IDs here
 OPTION_EXPRESSION_START: '{' -> pushMode(ExpressionMode);
 OPTION_TEXT: ~[\]{|]+ ;
@@ -214,7 +356,7 @@ OPTION_TEXT: ~[\]{|]+ ;
 // second half of the statement.
 mode OptionIDMode;
 OPTION_ID_WS: [ \t] -> skip;
-OPTION_ID: ID -> popMode ; 
+OPTION_ID: NODE_ID -> popMode ; 
 // (We return immediately to OptionMode after we've seen this 
 // single OPTION_ID, so that we can lex the OPTION_END that 
 // closes the option.)

@@ -17,10 +17,9 @@
             "type": "antlr-debug",
             "request": "launch",
             "name": "Debug Current Grammar",
-            "input": "NewYarnGrammar/Test.yarn",
-            "actionFile": "NewYarnGrammar/actions.js",
-            "grammar": "NewYarnGrammar/YarnSpinnerParser.g4",
-            "visualParseTree": true,
+            "input": "Test.yarn",
+            "grammar": "YarnSpinner.Compiler/YarnSpinnerParser.g4",
+             "visualParseTree": true,
             "printParseTree": true
         },
         {

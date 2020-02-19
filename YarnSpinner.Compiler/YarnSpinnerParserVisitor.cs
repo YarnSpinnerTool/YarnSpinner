@@ -56,6 +56,12 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitHeader([NotNull] YarnSpinnerParser.HeaderContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.body"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBody([NotNull] YarnSpinnerParser.BodyContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -67,6 +73,12 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitLine_statement([NotNull] YarnSpinnerParser.Line_statementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.line_formatted_text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLine_formatted_text([NotNull] YarnSpinnerParser.Line_formatted_textContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.hashtag"/>.
 	/// </summary>
@@ -224,11 +236,43 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitIf_statement([NotNull] YarnSpinnerParser.If_statementContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.set_statement"/>.
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.if_clause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context);
+	Result VisitIf_clause([NotNull] YarnSpinnerParser.If_clauseContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.else_if_clause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitElse_if_clause([NotNull] YarnSpinnerParser.Else_if_clauseContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.else_clause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitElse_clause([NotNull] YarnSpinnerParser.Else_clauseContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>setVariableToValue</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.set_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSetVariableToValue([NotNull] YarnSpinnerParser.SetVariableToValueContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>setExpression</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.set_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSetExpression([NotNull] YarnSpinnerParser.SetExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.call_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCall_statement([NotNull] YarnSpinnerParser.Call_statementContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.command_statement"/>.
 	/// </summary>
