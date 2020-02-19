@@ -109,7 +109,8 @@ namespace YarnSpinner.Tests
         }
 
         // Test every file in Tests/TestCases
-        [Theory, MemberData(nameof(FileSources))]
+        [Theory]
+        [MemberData(nameof(FileSources))]
         public void TestSources(string file) {
 
             Console.ForegroundColor = ConsoleColor.Blue;

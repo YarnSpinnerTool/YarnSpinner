@@ -140,7 +140,7 @@ namespace YarnSpinner.Tests
 
             Assert.NotNull (source);
 
-            Assert.Equal ("A: HAHAHA", source);
+            Assert.Equal ("A: HAHAHA\n", source);
         }
 		[Fact]
 		public void TestGettingTags() {

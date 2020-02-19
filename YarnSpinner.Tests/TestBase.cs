@@ -119,7 +119,7 @@ namespace YarnSpinner.Tests
                     testPlan.Next();
 
                     if (testPlan.nextExpectedType != TestPlan.Step.Type.Select) {
-                        throw new Xunit.Sdk.XunitException($"Received options, but wasn't expecting to select one (was expecting {testPlan.nextExpectedType.ToString()})");
+                        throw new Xunit.Sdk.XunitException($"Received {optionCount} options, but wasn't expecting them (was expecting {testPlan.nextExpectedType.ToString()})");
                     }
 
                     var expectedOptionCount = testPlan.nextExpectedOptions.Count();
@@ -141,8 +141,13 @@ namespace YarnSpinner.Tests
                 
                 if (testPlan != null) {
                     testPlan.Next();
-                    if (testPlan.nextExpectedType != TestPlan.Step.Type.Command) {
-                        Assert.Equal (testPlan.nextExpectedValue, command.Text);
+                    if (testPlan.nextExpectedType != TestPlan.Step.Type.Command)
+                    {
+                        throw new Xunit.Sdk.XunitException($"Received command {command.Text}, but wasn't expecting to select one (was expecting {testPlan.nextExpectedType.ToString()})");
+                    }
+                    else
+                    {
+                        Assert.Equal(testPlan.nextExpectedValue, command.Text);
                     }
                 }
                 
