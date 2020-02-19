@@ -115,8 +115,12 @@ call_statement
     ;
 
 command_statement
-    : COMMAND_START (COMMAND_TEXT|COMMAND_EXPRESSION_START expression EXPRESSION_END)+ COMMAND_TEXT_END (hashtag* HASHTAG_NEWLINE)?
+    : COMMAND_START command_formatted_text COMMAND_TEXT_END (hashtag* HASHTAG_NEWLINE)?
     ;
+
+command_formatted_text
+	: (COMMAND_TEXT|COMMAND_EXPRESSION_START expression EXPRESSION_END)*
+	;
 
 shortcut_option_statement
     : shortcut_option+

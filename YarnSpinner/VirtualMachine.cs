@@ -381,8 +381,38 @@ namespace Yarn
                         /// - RunCommand
                         /** Passes a string to the client as a custom command
                          */
+                        
+                        string commandText = i.Operands[0].StringValue;
+                        
+                        // The second operand, if provided (compilers prior
+                        // to v1.1 don't include it), indicates the number
+                        // of expressions in the command. We need to pop
+                        // these values off the stack and deliver them to
+                        // the line handler.
+                        if (i.Operands.Count > 1) {
+                            // TODO: we only have float operands, which is
+                            // unpleasant. we should make 'int' operands a
+                            // valid type, but doing that implies that the
+                            // language differentiates between floats and
+                            // ints itself. something to think about.
+                            var expressionCount = (int)i.Operands[1].FloatValue;
+
+                            var strings = new string[expressionCount];
+
+                            // Get the values from the stack, and
+                            // substitute them into the command text
+                            for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--) {
+                                var substitution = state.PopValue().AsString;
+
+                                commandText = commandText.Replace("{" + expressionIndex + "}", substitution);
+                            }
+                            
+                        }
+
+                        var command = new Command(commandText);
+                         
                         var pause = commandHandler(
-                            new Command(i.Operands[0].StringValue)
+                            command
                         );
 
                         if (pause == Dialogue.HandlerExecutionType.PauseExecution)
@@ -603,18 +633,24 @@ namespace Yarn
 
                         var line = new Line(i.Operands[0].StringValue);
 
-                        if (i.Operands.Count > 1) {
+                        if (i.Operands.Count > 2) {
                             // TODO: we only have float operands, which is
                             // unpleasant. we should make 'int' operands a
                             // valid type, but doing that implies that the
                             // language differentiates between floats and
                             // ints itself. something to think about.
-                            var expressionCount = (int)i.Operands[1].FloatValue;
+
+                            // get the number of expressions that we're
+                            // working with out of the third operand
+                            var expressionCount = (int)i.Operands[2].FloatValue;
 
                             var strings = new string[expressionCount];
 
+                            // pop the expression values off the stack in
+                            // reverse order, and store the list of substitutions
                             for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--) {
-                                strings[expressionIndex] = state.PopValue().AsString;
+                                string substitution = state.PopValue().AsString;
+                                strings[expressionIndex] = substitution;
                             }
                             
                             line.Substitutions = strings;

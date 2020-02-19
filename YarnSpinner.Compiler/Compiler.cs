@@ -387,8 +387,15 @@ namespace Yarn.Compiler
                     // pushes the final value of this expression onto the
                     // stack. running the line will pop these expressions
                     // off the stack.
+                    //
+                    // Expressions in the final string are denoted as the
+                    // index of the expression, surrounded by braces { }.
+                    // However, we don't need to write the braces here
+                    // ourselves, because the text itself that the parser
+                    // captured already has them. So, we just need to write
+                    // the expression count.
                     Visit(child);
-                    composedString.Append("{" + expressionCount + "}");
+                    composedString.Append(expressionCount);
                     expressionCount += 1;
                 }
             }        
@@ -527,12 +534,10 @@ namespace Yarn.Compiler
         // for things like <<turn fred left>> or <<unlockAchievement FacePlant>>
         public override int VisitCommand_statement(YarnSpinnerParser.Command_statementContext context)
         {
-            var action = context.COMMAND_TEXT()[0].GetText().Trim();
-
-            // TODO: support formatted text here
+            GenerateFormattedText(context.command_formatted_text().children, out var composedString, out var expressionCount);
 
             // TODO: look into replacing this as it seems a bit odd
-            switch (action)
+            switch (composedString)
             {
                 case "stop":
                     // "stop" is a special command that immediately stops
@@ -540,7 +545,7 @@ namespace Yarn.Compiler
                     compiler.Emit(OpCode.Stop);
                     break;                
                 default:
-                    compiler.Emit(OpCode.RunCommand, new Operand(action));
+                    compiler.Emit(OpCode.RunCommand, new Operand(composedString), new Operand(expressionCount));
                     break;
             }
 

@@ -531,6 +531,18 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCommand_statement([NotNull] YarnSpinnerParser.Command_statementContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.command_formatted_text"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCommand_formatted_text([NotNull] YarnSpinnerParser.Command_formatted_textContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.command_formatted_text"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCommand_formatted_text([NotNull] YarnSpinnerParser.Command_formatted_textContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.shortcut_option_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

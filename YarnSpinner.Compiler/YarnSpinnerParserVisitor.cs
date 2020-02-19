@@ -280,6 +280,12 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitCommand_statement([NotNull] YarnSpinnerParser.Command_statementContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.command_formatted_text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCommand_formatted_text([NotNull] YarnSpinnerParser.Command_formatted_textContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.shortcut_option_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

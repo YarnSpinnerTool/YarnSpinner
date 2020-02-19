@@ -451,6 +451,16 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCommand_statement([NotNull] YarnSpinnerParser.Command_statementContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.command_formatted_text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCommand_formatted_text([NotNull] YarnSpinnerParser.Command_formatted_textContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.command_formatted_text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCommand_formatted_text([NotNull] YarnSpinnerParser.Command_formatted_textContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.shortcut_option_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
