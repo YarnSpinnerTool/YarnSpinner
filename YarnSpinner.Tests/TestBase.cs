@@ -61,6 +61,20 @@ namespace YarnSpinner.Tests
         }
 
         private TestPlan testPlan;
+
+        public string GetComposedTextForLine(Line line) {
+
+            var baseText = stringTable[line.ID].text;
+
+            for (int i = 0; i < line.Substitutions.Length; i++) {
+                string substitution = line.Substitutions[i];
+                baseText = baseText.Replace("{" + i + "}", substitution);
+            }
+
+            return baseText;
+
+
+        }
         
         public TestBase()
         {
@@ -68,7 +82,7 @@ namespace YarnSpinner.Tests
             dialogue = new Dialogue (storage);
 
             dialogue.LogDebugMessage = delegate(string message) {
-
+                Console.ResetColor();
                 Console.WriteLine (message);
 
             };
@@ -89,7 +103,7 @@ namespace YarnSpinner.Tests
 
                 Assert.Contains(id, stringTable.Keys);
 
-                var text = stringTable[id].text;
+                var text = GetComposedTextForLine(line);
 
                 Console.WriteLine("Line: " + text);
 
@@ -111,7 +125,7 @@ namespace YarnSpinner.Tests
 
                 Console.WriteLine("Options:");
                 foreach (var option in optionSet.Options) {
-                    var optionText = stringTable[option.Line.ID].text;
+                    var optionText = GetComposedTextForLine(option.Line);
                     Console.WriteLine(" - " + optionText);
                 }
 
@@ -119,8 +133,13 @@ namespace YarnSpinner.Tests
                     testPlan.Next();
 
                     if (testPlan.nextExpectedType != TestPlan.Step.Type.Select) {
-                        throw new Xunit.Sdk.XunitException($"Received options, but wasn't expecting to select one (was expecting {testPlan.nextExpectedType.ToString()})");
+                        throw new Xunit.Sdk.XunitException($"Received {optionCount} options, but wasn't expecting them (was expecting {testPlan.nextExpectedType.ToString()})");
                     }
+
+                    // Assert that the list of options we were given is
+                    // identical to the list of options we expect
+                    var actualOptionList = optionSet.Options.Select(o => GetComposedTextForLine(o.Line)).ToList();
+                    Assert.Equal(testPlan.nextExpectedOptions, actualOptionList);
 
                     var expectedOptionCount = testPlan.nextExpectedOptions.Count();
 
@@ -141,8 +160,18 @@ namespace YarnSpinner.Tests
                 
                 if (testPlan != null) {
                     testPlan.Next();
-                    if (testPlan.nextExpectedType != TestPlan.Step.Type.Command) {
-                        Assert.Equal (testPlan.nextExpectedValue, command.Text);
+                    if (testPlan.nextExpectedType != TestPlan.Step.Type.Command)
+                    {
+                        throw new Xunit.Sdk.XunitException($"Received command {command.Text}, but wasn't expecting to select one (was expecting {testPlan.nextExpectedType.ToString()})");
+                    }
+                    else
+                    {
+                        // We don't need to get the composed string for a
+                        // command because it's been done for us in the
+                        // virtual machine. The VM can do this because
+                        // commands are not localised, so we don't need to
+                        // refer to the string table to get the text.
+                        Assert.Equal(testPlan.nextExpectedValue, command.Text);
                     }
                 }
                 

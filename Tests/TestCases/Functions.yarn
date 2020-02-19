@@ -4,13 +4,13 @@ title: Start
 
 // "add_three_operands" is a function that adds three operands together
 
-<<assert(add_three_operands(1, 2, 4*1) == 7)>>
+<<call assert(add_three_operands(1, 2, 4*1) == 7)>>
 
 // last_value is a function that returns the last parameter
 
-<<assert(last_value(1,2,3) == 3)>>
+<<call assert(last_value(1,2,3) == 3)>>
 
 // function calls as parameters
 
-<<assert(last_value(1, last_value(2,3)) == 3)>>
+<<call assert(last_value(1, last_value(2,3)) == 3)>>
 ===

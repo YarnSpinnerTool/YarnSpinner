@@ -4,6 +4,24 @@
    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
    "version": "0.2.0",
    "configurations": [
+       {
+           "type": "antlr-debug",
+           "request": "launch",
+           "name": "Debug Current Grammar",
+           "input": "Tests/Example.yarn.txt",
+           "grammar": "YarnSpinner.Compiler/YarnSpinnerParser.g4",
+           "visualParseTree": true
+       },
+   
+        {
+            "type": "antlr-debug",
+            "request": "launch",
+            "name": "Debug Current Grammar",
+            "input": "Test.yarn",
+            "grammar": "YarnSpinner.Compiler/YarnSpinnerParser.g4",
+             "visualParseTree": true,
+            "printParseTree": true
+        },
         {
             "name": ".NET Core Launch (console)",
             "type": "coreclr",

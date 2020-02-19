@@ -68,6 +68,10 @@ namespace YarnSpinner.Tests
                         case Type.Select:
                             intValue = reader.ReadNext<int>();
 
+                            if (intValue < 1) {
+                                throw new ArgumentOutOfRangeException($"Cannot select option {intValue} - must be >= 1");
+                            }
+
                             break;                           
                     }
                 } catch (Exception e) {

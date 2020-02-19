@@ -8,8 +8,6 @@ using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 
-using System.Linq;
-
 using static Yarn.Instruction.Types;
 
 
@@ -54,120 +52,7 @@ namespace Yarn.Compiler
             this.fileName = fileName;            
         }
 
-        // the preprocessor that cleans up things to make it easier on ANTLR
-        // replaces \r\n with \n
-        // adds in INDENTS and DEDENTS where necessary
-        // replaces \t with four spaces
-        // takes in a string of yarn and returns a string the compiler can then use
         
-        private static string PreprocessIndentationInSource(string nodeText)
-        {
-            string processed = null;
-
-            using (StringReader reader = new StringReader(nodeText))
-            {
-                // a list to hold outputLines once they have been cleaned up
-                List<string> outputLines = new List<string>();
-
-				// a stack to keep track of how far indented we are
-				// made up of ints and bools
-				// ints track the depth, bool tracks if we emitted an indent token
-				// starts with 0 and false so we can never fall off the end of the stack
-				var indents = new Stack<(int depth, bool emitted)>();
-				indents.Push((0, false));
-
-                // a bool to determine if we are in a mode where we need to track indents
-                bool shouldTrackNextIndentation = false;
-
-                char INDENT = '\a';
-                char DEDENT = '\v';
-                //string INDENT = "{";
-                //string DEDENT = "}";
-
-                string OPTION = "->";
-
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    // replacing \t with 4 spaces
-                    string tweakedLine = line.Replace("\t", "    ");
-                    // stripping of any trailing newlines, will add them back in later
-                    tweakedLine = tweakedLine.TrimEnd('\r', '\n');
-
-                    // getting the number of indents on this line
-                    int lineIndent = tweakedLine.TakeWhile(Char.IsWhiteSpace).Count();
-
-                    // working out if it is an option (ie does it start with ->)
-                    bool isOption = tweakedLine.TrimStart(' ').StartsWith(OPTION, StringComparison.InvariantCulture);
-
-                    // are we in a state where we need to track indents?
-                    var previous = indents.Peek();
-                    if (shouldTrackNextIndentation && (lineIndent > previous.depth))
-                    {
-                        indents.Push((lineIndent, true));
-                        // adding an indent to the stream
-                        // tries to add it to the end of the previous line where possible
-                        if (outputLines.Count == 0)
-                        {
-                            tweakedLine = INDENT + tweakedLine;
-                        }
-                        else
-                        {
-                            outputLines[outputLines.Count - 1] = outputLines[outputLines.Count - 1] + INDENT;
-                        }
-
-                        shouldTrackNextIndentation = false;
-                    }
-                    // have we finished with the current block of statements
-                    else if (lineIndent < previous.depth)
-                    {
-                        while (lineIndent < indents.Peek().depth)
-                        {
-                            var topLevel = indents.Pop();
-
-                            if (topLevel.emitted)
-                            {
-                                // adding dedents
-								if (outputLines.Count == 0)
-								{
-                                    tweakedLine = DEDENT + tweakedLine;
-								}
-								else
-								{
-                                    outputLines[outputLines.Count - 1] = outputLines[outputLines.Count - 1] + DEDENT;
-								}
-                            }
-                        }
-                    }
-                    else
-                    {
-                        shouldTrackNextIndentation = false;
-                    }
-
-                    // do we need to track the indents for the next statement?
-                    if (isOption)
-                    {
-                        shouldTrackNextIndentation = true;
-                        if (indents.Peek().depth < lineIndent)
-                        {
-                            indents.Push((lineIndent, false));
-                        }
-                    }
-                    outputLines.Add(tweakedLine);
-                }
-                // mash it all back together now
-                StringBuilder builder = new StringBuilder();
-                foreach (string outLine in outputLines)
-                {
-                    builder.Append(outLine);
-                    builder.Append("\n");
-                }
-                processed = builder.ToString();
-            }
-
-            return processed;
-        }
-
         public static Status CompileFile(string path, out Program program, out IDictionary<string,StringInfo> stringTable) {
             var source = File.ReadAllText(path);
 
@@ -177,12 +62,16 @@ namespace Yarn.Compiler
 
         }
 
+        #if DEBUG
+        internal string parseTree;
+        internal List<string> tokens;
+        #endif
+
         // Given a bunch of raw text, load all nodes that were inside it.
         public static Status CompileString(string text, string fileName, out Program program, out IDictionary<string,StringInfo> stringTable)
         {
 
-            string inputString = PreprocessIndentationInSource(text);
-            ICharStream input = CharStreams.fromstring(inputString);
+            ICharStream input = CharStreams.fromstring(text);
 
             YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -193,10 +82,20 @@ namespace Yarn.Compiler
             parser.RemoveErrorListeners();
             parser.AddErrorListener(ErrorListener.Instance);
 
-            IParseTree tree = parser.dialogue();
+            IParseTree tree;
+            try {
+                tree = parser.dialogue();
+            } catch (ParseException e) {
+                var tokenStringList = new List<string>();
+                tokens.Reset();
+                foreach (var token in tokens.GetTokens()) {
+                    tokenStringList.Add($"{token.Line}:{token.Column} {YarnSpinnerLexer.DefaultVocabulary.GetDisplayName(token.Type)} \"{token.Text}\"");
+                }
+                throw new ParseException($"{e.Message}\n\nTokens:\n{string.Join("\n", tokenStringList)}");
+            }
 
             Compiler compiler = new Compiler(fileName);
-
+            
             compiler.Compile(tree);
 
             program = compiler.program;
@@ -209,11 +108,32 @@ namespace Yarn.Compiler
             }
         }
 
+        static public List<string> GetTokensFromFile(string path) {
+            var text = File.ReadAllText(path);
+            return GetTokensFromString(text);
+        }
+
+        static public List<string> GetTokensFromString(string text) {
+            ICharStream input = CharStreams.fromstring(text);
+
+            YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
+            
+            var tokenStringList = new List<string>();
+
+            var tokens = lexer.GetAllTokens();
+            foreach (var token in tokens) {
+                tokenStringList.Add($"{token.Line}:{token.Column} {YarnSpinnerLexer.DefaultVocabulary.GetDisplayName(token.Type)} \"{token.Text}\"");
+            }
+
+            return tokenStringList;
+                
+        } 
+
         public Dictionary<string, StringInfo> StringTable = new Dictionary<string, StringInfo>();
 
         int stringCount = 0;
 
-        public string RegisterString(string text, string nodeName, string lineID, int lineNumber)
+        public string RegisterString(string text, string nodeName, string lineID, int lineNumber, string[] tags)
 		{
 
 			string key;
@@ -237,7 +157,7 @@ namespace Yarn.Compiler
                 isImplicit = false;
             }
 
-            var theString = new StringInfo(text, fileName, nodeName, lineNumber, isImplicit);
+            var theString = new StringInfo(text, fileName, nodeName, lineNumber, isImplicit, tags);
             
 			// It's not in the list; append it
 			StringTable.Add(key, theString);
@@ -253,48 +173,34 @@ namespace Yarn.Compiler
             return "L" + labelCount++ + commentary;
         }
         // creates the relevant instruction and adds it to the stack
-        void Emit(Node node, OpCode code, Operand operandA = null, Operand operandB = null)
+        void Emit(Node node, OpCode code, params Operand[] operands)
         {
             var instruction = new Instruction();
             instruction.Opcode = code;
 
-            // TODO: replace the operandA and operandB parameters with a list, so that we don't need to do this check
-            // Can't have operand B be non-null while operand A is null
-            if (operandA == null && operandB != null)
-            {
-                throw new ArgumentNullException("operandA", "operandA cannot be null while operandB is not null");
-            }
+            instruction.Operands.Add(operands);
 
-            if (operandA != null) {
-                instruction.Operands.Add(operandA);            
-            }
-
-            if (operandB != null) {
-                instruction.Operands.Add(operandB);
-            }
-
-            
             node.Instructions.Add(instruction);
             
         }
         // exactly same as above but defaults to using currentNode
         // creates the relevant instruction and adds it to the stack
-        internal void Emit(OpCode code, Operand operandA = null, Operand operandB = null)
+        internal void Emit(OpCode code, params Operand[] operands)
         {
-            this.Emit(this.currentNode, code, operandA, operandB);
+            this.Emit(this.currentNode, code, operands);
         }
         // returns the lineID for this statement if it has one
         // otherwise returns null
         // takes in a hashtag block which it handles here
         // may need to be changed as future hashtags get support
-        internal string GetLineID(YarnSpinnerParser.Hashtag_blockContext context)
+        internal string GetLineID(YarnSpinnerParser.HashtagContext[] context)
         {
             // if there are any hashtags
             if (context != null)
             {
-                foreach (var hashtag in context.hashtag())
+                foreach (var hashtag in context)
                 {
-                    string tagText = hashtag.GetText().Trim('#');
+                    string tagText = hashtag.text.Text;
                     if (tagText.StartsWith("line:", StringComparison.InvariantCulture))
                     {
                         return tagText;
@@ -319,12 +225,6 @@ namespace Yarn.Compiler
         // set up the currentNode var ready to hold it and otherwise continue
         public override void EnterNode(YarnSpinnerParser.NodeContext context)
         {
-            if (currentNode != null)
-            {
-                string newNode = context.header().header_title().TITLE_TEXT().GetText().Trim();
-                string message = string.Format(CultureInfo.CurrentCulture, "Discovered a new node {0} while {1} is still being parsed", newNode, currentNode.Name);
-				throw new ParseException(message);
-            }
             currentNode = new Node();
             rawTextNode = false;
         }
@@ -338,58 +238,47 @@ namespace Yarn.Compiler
             rawTextNode = false;
         }
 
-        // quick check to make sure we have the required number of headers
-        // basically only allowed one of each tags, position, colourID
-        // don't need to check for title because without it'll be a parse error
-        public override void EnterHeader(YarnSpinnerParser.HeaderContext context)
-        {
-            if (context.header_tag().Length > 1)
-            {
-                string message = string.Format(CultureInfo.CurrentCulture, "Too many header tags defined inside {0}", context.header_title().TITLE_TEXT().GetText().Trim());
-                throw new ParseException(message);
-            }
-        }
-        // all we need to do is store the title as the name of the node
-        public override void EnterHeader_title(YarnSpinnerParser.Header_titleContext context)
-        {
-
-            var nodeTitle = context.TITLE_TEXT().GetText().Trim();
-
-            if (invalidNodeTitleNameRegex.IsMatch(nodeTitle)) {
-                // this node title contains illegal characters
-                throw new ParseException($"The node '{nodeTitle}' contains illegal characters in its title.");
-            }
-
-            currentNode.Name = nodeTitle;
-            
-        }
-        // parsing the header tags
-        // will not enter if there aren't any
-        public override void EnterHeader_tag(YarnSpinnerParser.Header_tagContext context)
-        {
-            var tags = new List<string>(context.TAG_TEXT().GetText().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-            // if the node is to be parsed as raw text
-            // ie just straight passthrough
-            // this is for things like if you want to store books in YarnSpinner
-            if (tags.Contains("rawText"))
-            {
-                rawTextNode = true;
-            }
-            // storing the tags in the node
-            currentNode.Tags.Add(tags);
-        }
+        
         // have finished with the header
         // so about to enter the node body and all its statements
         // do the initial setup required before compiling that body statements
         // eg emit a new startlabel
         public override void ExitHeader(YarnSpinnerParser.HeaderContext context)
         {
-            // if this is flagged as a regular node
-            if (!rawTextNode)
-            {
-                // Add this label to the label table
-                currentNode.Labels.Add(RegisterLabel(), currentNode.Instructions.Count);                
+            var headerKey = context.header_key.Text;
+
+            // Use the header value if provided, else fall back to the
+            // empty string. This means that a header like "foo: \n" will
+            // be stored as 'foo', '', consistent with how it was typed.
+            // That is, it's not null, because a header was provided, but
+            // it was written as an empty line.
+            var headerValue = context.header_value?.Text ?? "";
+
+            if (headerKey.Equals("title", StringComparison.InvariantCulture)) {
+                // Set the name of the node
+                currentNode.Name = headerValue;
+
+                // Throw an exception if this node name contains illegal
+                // characters
+                if (invalidNodeTitleNameRegex.IsMatch(currentNode.Name)) {
+                    throw new ParseException($"The node '{currentNode.Name}' contains illegal characters in its title.");
+                }
             }
+
+            if (headerKey.Equals("tags", StringComparison.InvariantCulture)) {
+                // Split the list of tags by spaces, and use that
+
+                var tags = headerValue.Split(new[]{' '}, StringSplitOptions.RemoveEmptyEntries);
+
+                currentNode.Tags.Add(tags);
+
+                if (currentNode.Tags.Contains("rawText")) {
+                    // This is a raw text node. Flag it as such for future compilation.
+                    rawTextNode = true;
+                }
+                
+            }
+            
         }
 
         // have entered the body
@@ -401,6 +290,9 @@ namespace Yarn.Compiler
             // if it is a regular node
             if (!rawTextNode)
             {
+                // This is the start of a node that we can jump to. Add a label at this point.
+                currentNode.Labels.Add(RegisterLabel(), currentNode.Instructions.Count);                
+
                 BodyVisitor visitor = new BodyVisitor(this);
 
                 foreach (var statement in context.statement())
@@ -415,13 +307,7 @@ namespace Yarn.Compiler
             // TODO: oh glob! there has to be a better way
             else
             {
-                // moving in by 4 from the end to cut off the ---/=== delimiters
-                // and their associated /n's
-				int start = context.Start.StartIndex + 4;
-				int end = context.Stop.StopIndex - 4;
-                string body = context.Start.InputStream.GetText(new Interval(start, end));
-
-                currentNode.SourceTextStringID = RegisterString(body, currentNode.Name, "line:" + currentNode.Name, context.Start.Line);
+                currentNode.SourceTextStringID = RegisterString(context.GetText(), currentNode.Name, "line:" + currentNode.Name, context.Start.Line, null);
 			}
         }
 
@@ -483,101 +369,175 @@ namespace Yarn.Compiler
             this.loadOperators();
         }
 
+        private void GenerateFormattedText(IList<IParseTree> nodes, out string outputString, out int expressionCount) {
+            expressionCount = 0;
+            StringBuilder composedString = new StringBuilder();
+
+            // First, visit all of the nodes, which are either terminal
+            // text nodes or expressions. if they're expressions, we
+            // evaluate them, and inject a positional reference into the
+            // final string.
+            foreach (var child in nodes) {
+                if (child is ITerminalNode) {
+                    composedString.Append(child.GetText());
+                } else if (child is ParserRuleContext) {
+                    // assume that this is an expression (the parser only
+                    // permits them to be expressions, but we can't specify
+                    // that here) - visit it, and we will emit code that
+                    // pushes the final value of this expression onto the
+                    // stack. running the line will pop these expressions
+                    // off the stack.
+                    //
+                    // Expressions in the final string are denoted as the
+                    // index of the expression, surrounded by braces { }.
+                    // However, we don't need to write the braces here
+                    // ourselves, because the text itself that the parser
+                    // captured already has them. So, we just need to write
+                    // the expression count.
+                    Visit(child);
+                    composedString.Append(expressionCount);
+                    expressionCount += 1;
+                }
+            }        
+
+            outputString = composedString.ToString().Trim();
+            
+        } 
+
+        private string[] GetHashtagTexts (YarnSpinnerParser.HashtagContext[] hashtags) {
+            // Add hashtag
+            var hashtagText = new List<string>();
+            foreach (var tag in hashtags) {
+                hashtagText.Add(tag.HASHTAG_TEXT().GetText());
+            }
+            return hashtagText.ToArray();
+        }
+
         // a regular ol' line of text
         public override int VisitLine_statement(YarnSpinnerParser.Line_statementContext context)
         {
-            // grabbing the line of text and stripping off any "'s if they had them
-            string lineText = context.text().GetText().Trim('"');
+            // TODO: add support for line conditions:
+            //
+            // Mae: here's a line <<if true>>
+            //
+            // is identical to
+            //
+            // <<if true>>
+            // Mae: here's a line
+            // <<endif>>
 
-            // getting the lineID from the hashtags if it has one
-            string lineID = compiler.GetLineID(context.hashtag_block());
+            // Convert the formatted string into a string with
+            // placeholders, and evaluate the inline expressions and push
+            // the results onto the stack.
+            GenerateFormattedText(context.line_formatted_text().children, out var composedString, out var expressionCount);    
+            
+            // Get the lineID for this string from the hashtags if it has one; otherwise, a new one will be created
+            string lineID = compiler.GetLineID(context.hashtag());
 
-            // technically this only gets the line the statement started on
+            var hashtagText = GetHashtagTexts(context.hashtag());
+
             int lineNumber = context.Start.Line;
 
-            string stringID = compiler.RegisterString(lineText, compiler.currentNode.Name, lineID, lineNumber);
+            string stringID = compiler.RegisterString(
+                composedString.ToString(), 
+                compiler.currentNode.Name, 
+                lineID, 
+                lineNumber, 
+                hashtagText
+            );
 
-            compiler.Emit(OpCode.RunLine, new Operand(stringID));
+            compiler.Emit(OpCode.RunLine, new Operand(stringID), new Operand(expressionCount));
+            
+            return 0;
+        }
+
+        // a jump statement
+        // [[ NodeName ]]
+        public override int VisitOptionJump(YarnSpinnerParser.OptionJumpContext context)
+        {
+            string destination = context.NodeName.Text.Trim();
+            compiler.Emit(OpCode.RunNode, new Operand(destination));
+            return 0;
+        }
+
+        public override int VisitOptionLink(YarnSpinnerParser.OptionLinkContext context)
+        {
+
+            // Create the formatted string and evaluate any inline
+            // expressions            
+            GenerateFormattedText(context.option_formatted_text().children, out var composedString, out var expressionCount);
+
+            string destination = context.NodeName.Text.Trim();
+            string label = composedString;
+
+            int lineNumber = context.Start.Line;
+
+            // getting the lineID from the hashtags if it has one
+            string lineID = compiler.GetLineID(context.hashtag());
+            
+            var hashtagText = GetHashtagTexts(context.hashtag());
+
+            string stringID = compiler.RegisterString(label, compiler.currentNode.Name, lineID, lineNumber, hashtagText);
+
+            compiler.Emit(OpCode.AddOption, new Operand(stringID), new Operand(destination), new Operand(expressionCount));
 
             return 0;
         }
 
-        // an option statement
-        // [[ OPTION_TEXT | OPTION_LINK]] or [[OPTION_TEXT]]
-        public override int VisitOption_statement(YarnSpinnerParser.Option_statementContext context)
+        // A set command: explicitly setting a value to an expression
+        // <<set $foo to 1>>
+        public override int VisitSetVariableToValue(YarnSpinnerParser.SetVariableToValueContext context)
         {
-            // if it is a split style option
-            if (context.OPTION_LINK() != null)
+            // add the expression (whatever it resolves to)
+            Visit(context.expression());
+
+            // now store the variable and clean up the stack
+            string variableName = context.VAR_ID().GetText();
+            compiler.Emit(OpCode.StoreVariable, new Operand(variableName));
+            compiler.Emit(OpCode.Pop);
+            return 0;
+        }
+
+        // A set command: evaluating an expression where the operator is an assignment-type
+        public override int VisitSetExpression(YarnSpinnerParser.SetExpressionContext context)
+        {
+            // checking the expression is of the correct form
+            var expression = context.expression();
+            // TODO: is there really no more elegant way of doing this?!
+            if (expression is YarnSpinnerParser.ExpMultDivModEqualsContext ||
+                expression is YarnSpinnerParser.ExpPlusMinusEqualsContext)
             {
-                string destination = context.OPTION_LINK().GetText().Trim();
-                string label = context.OPTION_TEXT().GetText();
-
-                int lineNumber = context.Start.Line;
-
-                // getting the lineID from the hashtags if it has one
-                string lineID = compiler.GetLineID(context.hashtag_block());
-
-                string stringID = compiler.RegisterString(label, compiler.currentNode.Name, lineID, lineNumber);
-                compiler.Emit(OpCode.AddOption, new Operand(stringID), new Operand(destination));
+                // run the expression, it handles it from here
+                Visit(expression);
             }
             else
             {
-                string destination = context.OPTION_TEXT().GetText().Trim();
-                compiler.Emit(OpCode.RunNode, new Operand(destination));
+                // throw an error
+                throw ParseException.Make(context,"Invalid expression inside assignment statement");
             }
             return 0;
-        }
+        }  
 
-        // for setting variables, has two forms
-        // << SET variable TO/= expression >>
-        // << SET expression >>
-        // the second form does need to match the structure:
-        // variable (+= -= *= /= %=) expression
-        public override int VisitSet_statement(YarnSpinnerParser.Set_statementContext context)
+        public override int VisitCall_statement(YarnSpinnerParser.Call_statementContext context)
         {
-            // if it is the first form
-            // a regular << SET $varName TO expression >>
-            if (context.variable() != null)
-            {
-                // add the expression (whatever it resolves to)
-                Visit(context.expression());
+            // Visit our function call, which will invoke the function
+            Visit(context.function());
 
-                // now store the variable and clean up the stack
-                string variableName = context.variable().GetText();
-                compiler.Emit(OpCode.StoreVariable, new Operand(variableName));
-                compiler.Emit(OpCode.Pop);
-            }
-            // it is the second form
-            else
-            {
-                // checking the expression is of the correct form
-                var expression = context.expression();
-                // TODO: is there really no more elegant way of doing this?!
-                if (expression is YarnSpinnerParser.ExpMultDivModEqualsContext ||
-                    expression is YarnSpinnerParser.ExpPlusMinusEqualsContext)
-                {
-                    // run the expression, it handles it from here
-                    Visit(expression);
-                }
-                else
-                {
-                    // throw an error
-                    throw ParseException.Make(context,"Invalid expression inside assignment statement");
-                }
-            }
-
+            // TODO: if this function returns a value, it will be pushed
+            // onto the stack, but there's no way for the compiler to know
+            // that, so the stack will not be tidied up. is there a way for
+            // that to work?
             return 0;
-        }
+        }      
 
         // semi-free form text that gets passed along to the game
         // for things like <<turn fred left>> or <<unlockAchievement FacePlant>>
-        public override int VisitAction_statement(YarnSpinnerParser.Action_statementContext context)
+        public override int VisitCommand_statement(YarnSpinnerParser.Command_statementContext context)
         {
-            char[] trimming = { '<', '>' };
-            string action = context.GetText().Trim(trimming);
+            GenerateFormattedText(context.command_formatted_text().children, out var composedString, out var expressionCount);
 
             // TODO: look into replacing this as it seems a bit odd
-            switch (action)
+            switch (composedString)
             {
                 case "stop":
                     // "stop" is a special command that immediately stops
@@ -585,28 +545,14 @@ namespace Yarn.Compiler
                     compiler.Emit(OpCode.Stop);
                     break;                
                 default:
-                    compiler.Emit(OpCode.RunCommand, new Operand(action));
+                    compiler.Emit(OpCode.RunCommand, new Operand(composedString), new Operand(expressionCount));
                     break;
             }
 
 			return 0;
         }
 
-        // solo function statements
-        // this is such a weird thing...
-        // COMMAND_FUNC expression, expression ) >>
-        // COMMAND_FUNC = << ID (
-        public override int VisitFunction_statement(YarnSpinnerParser.Function_statementContext context)
-        {
-            char[] lTrim = { '<' };
-            char[] rTrim = { '(' };
-            string functionName = context.GetChild(0).GetText().TrimStart(lTrim).TrimEnd(rTrim);
-
-            this.HandleFunction(functionName, context.expression());
-            
-            return 0;
-        }
-        // emits the required tokens for the function call
+        // emits the required bytecode for the function call
         private void HandleFunction(string functionName, YarnSpinnerParser.ExpressionContext[] parameters)
         {
 			// generate the instructions for all of the parameters
@@ -686,73 +632,116 @@ namespace Yarn.Compiler
             }
         }
 
-        // tiny helper to return the text of a short cut
-        // making it a separate method call because I am positive shortcuts will change
-        private string ShortcutText(YarnSpinnerParser.Shortcut_textContext context)
-        {
-            return context.SHORTCUT_TEXT().GetText().Trim();
-        }
         // for the shortcut options
         // (-> line of text <<if expression>> indent statements dedent)+
-        public override int VisitShortcut_statement(YarnSpinnerParser.Shortcut_statementContext context)
-        {
+        public override int VisitShortcut_option_statement (YarnSpinnerParser.Shortcut_option_statementContext context) {
+            
             string endOfGroupLabel = compiler.RegisterLabel("group_end");
 
             var labels = new List<string>();
 
             int optionCount = 0;
 
-            foreach (var shortcut in context.shortcut())
+            // For each option, create an internal destination label that,
+            // if the user selects the option, control flow jumps to. Then,
+            // evaluate its associated line_statement, and use that as the
+            // option text. Finally, add this option to the list of
+            // upcoming options.
+            foreach (var shortcut in context.shortcut_option())
             {
+                // Generate the name of internal label that we'll jump to
+                // if this option is selected. We'll emit the label itself
+                // later.
                 string optionDestinationLabel = compiler.RegisterLabel("option_" + (optionCount + 1));
                 labels.Add(optionDestinationLabel);
 
+                // This line statement may have a condition on it. If it
+                // does, emit code that evaluates the condition, and skips
+                // over the code that prepares and adds the option.
                 string endOfClauseLabel = null;
-                if (shortcut.shortcut_conditional() != null)
+                if (shortcut.line_statement().line_condition()?.Length > 0)
                 {
+                    // Register the label we'll jump to if the condition
+                    // fails. We'll add it later.
                     endOfClauseLabel = compiler.RegisterLabel("conditional_" + optionCount);
 
-                    Visit(shortcut.shortcut_conditional().expression());
+                    // Ensure that we only have a single condition here
+                    var conditions = shortcut.line_statement().line_condition();
+                    if (conditions.Length > 1) {
+                        throw new ParseException("More than one line condition is not allowed.");
+                    }
+
+                    // Evaluate the condition, and jump to the end of
+                    // clause if it evaluates to false.
+                    var firstCondition = conditions[0];
+
+                    Visit(firstCondition.expression());
 
                     compiler.Emit(OpCode.JumpIfFalse, new Operand(endOfClauseLabel));
                 }
 
-                // getting the lineID from the hashtags if it has one
-                string lineID = compiler.GetLineID(shortcut.hashtag_block());
+                // We can now prepare and add the option.
 
-                string shortcutLine = ShortcutText(shortcut.shortcut_text());
-                string labelStringID = compiler.RegisterString(shortcutLine, compiler.currentNode.Name, lineID, shortcut.Start.Line);
+                // Start by figuring out the text that we want to add. This
+                // will involve evaluating any inline expressions.
+                GenerateFormattedText(shortcut.line_statement().line_formatted_text().children, out var composedString, out var expressionCount);
 
-                compiler.Emit(OpCode.AddOption, new Operand(labelStringID), new Operand(optionDestinationLabel));
+                // Get the line ID from the hashtags if it has one
+                string lineID = compiler.GetLineID(shortcut.line_statement().hashtag());
 
-                if (shortcut.shortcut_conditional() != null)
+                // Get the hashtags for the line
+                var hashtags = GetHashtagTexts(shortcut.line_statement().hashtag());
+
+                // Register this string
+                string labelStringID = compiler.RegisterString(composedString, compiler.currentNode.Name, lineID, shortcut.Start.Line, hashtags);
+
+                // And add this option to the list.
+                compiler.Emit(OpCode.AddOption, new Operand(labelStringID), new Operand(optionDestinationLabel), new Operand(expressionCount));
+
+                // If we had a line condition, now's the time to generate
+                // the label that we'd jump to if its condition is false.
+                if (shortcut.line_statement().line_condition()?.Length > 0)
                 {
-                    compiler.currentNode.Labels.Add(endOfClauseLabel, compiler.currentNode.Instructions.Count);                
+                    compiler.currentNode.Labels.Add(endOfClauseLabel, compiler.currentNode.Instructions.Count);    
+
+                    // JumpIfFalse doesn't change the stack, so we need to
+                    // tidy up            
                     compiler.Emit(OpCode.Pop);
                 }
+
                 optionCount++;
             }
 
+            // All of the options that we intend to show are now ready to
+            // go.
             compiler.Emit(OpCode.ShowOptions);
             
+            // The top of the stack now contains the name of the label we
+            // want to jump to. Jump to it now.
             compiler.Emit(OpCode.Jump);
 
+            // We'll now emit the labels and code associated with each
+            // option.
             optionCount = 0;
-            foreach (var shortcut in context.shortcut())
+            foreach (var shortcut in context.shortcut_option())
             {
+                // Emit the label for this option's code
                 compiler.currentNode.Labels.Add(labels[optionCount], compiler.currentNode.Instructions.Count);                
                 
-                // running through all the children statements of the shortcut
+                // Run through all the children statements of the shortcut
+                // option.
                 foreach (var child in shortcut.statement())
                 {
                     Visit(child);
                 }
 
+                // Jump to the end of this shortcut option group.
                 compiler.Emit(OpCode.JumpTo, new Operand(endOfGroupLabel));
 
                 optionCount++;
             }
 
+            // We made it to the end! Mark the end of the group, so we can jump to it.
             compiler.currentNode.Labels.Add(endOfGroupLabel, compiler.currentNode.Instructions.Count);                
             compiler.Emit(OpCode.Pop);
 
@@ -912,7 +901,7 @@ namespace Yarn.Compiler
         }
         public override int VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
         {
-            float number = float.Parse(context.BODY_NUMBER().GetText(), CultureInfo.InvariantCulture);
+            float number = float.Parse(context.NUMBER().GetText(), CultureInfo.InvariantCulture);
             compiler.Emit(OpCode.PushFloat, new Operand(number));
 
             return 0;
@@ -939,7 +928,7 @@ namespace Yarn.Compiler
         {
             // stripping the " off the front and back
             // actually is this what we want?
-            string stringVal = context.COMMAND_STRING().GetText().Trim('"');
+            string stringVal = context.STRING().GetText().Trim('"');
 
             compiler.Emit(OpCode.PushString, new Operand(stringVal));
 
@@ -1037,22 +1026,26 @@ namespace Yarn.Compiler
     {
         String currentNode = null;
         public Graph graph = new Graph();
-        public override void EnterHeader_title(YarnSpinnerParser.Header_titleContext context)
+
+        public override void EnterHeader(YarnSpinnerParser.HeaderContext context)
         {
-            currentNode = context.HEADER_TITLE().GetText();
+            if (context.header_key.Text == "title") {
+                currentNode = context.header_value.Text;
+            }
+        }
+
+        public override void ExitNode(YarnSpinnerParser.NodeContext context)
+        {
+            // Add this node to the graph
             graph.nodes.Add(currentNode);
         }
-        public override void ExitOption_statement(YarnSpinnerParser.Option_statementContext context)
-        {
-            var link = context.OPTION_LINK();
-            if (link != null)
-            {
-                graph.edge(currentNode,link.GetText());
-            }
-            else
-            {
-                graph.edge(currentNode, context.OPTION_TEXT().GetText());
-            }
+        public override void ExitOptionJump(YarnSpinnerParser.OptionJumpContext context) {
+            graph.edge(currentNode, context.NodeName.Text);
         }
+
+        public override void ExitOptionLink(YarnSpinnerParser.OptionLinkContext context) {
+            graph.edge(currentNode, context.NodeName.Text);
+        }
+
     }
 }
