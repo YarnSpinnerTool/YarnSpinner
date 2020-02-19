@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Added support for inline expressions, which can be used in lines, options and commands.
+  - You can use inline expressions in lines, options, shortcut options, and commands.
+  - Inline expressions look like this: `Mae: Wow! I have {$num_pies} pies!`.
+  - When the compiler processes a line that includes an inline expression, the line that's stored in the string table will have each of the expressions replaced with a placeholder. For example, the line above will be stored as `Mae: Wow! I have {0} pies!`. If you're translating a line to other languages, the placeholders can be moved and re-ordered as you need them.
+  - The `Line` struct now includes an array of substitutions, which Dialogue UI objects will insert into the localised line at the appropriate place.
 - Yarn Spinner for Unity now uses .asmdef files. Yarn Spinner's Unity code now compiles to a separate assembly.
   - **IMPORTANT:** if you're using asmdefs in your game's code, you will need to add a reference to YarnSpinner.Unity.
 
