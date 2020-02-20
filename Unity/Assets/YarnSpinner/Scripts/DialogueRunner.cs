@@ -678,6 +678,14 @@ namespace Yarn.Unity
         
         string ILineLocalisationProvider.GetLocalisedTextForLine(Line line) {
             if (strings.TryGetValue(line.ID, out var result)) {
+
+                // Now that we know the localised string for this line, we
+                // can go ahead and inject this line's substitutions.
+                for (int i = 0; i < line.Substitutions.Length; i++) {
+                    string substitution = line.Substitutions[i];
+                    result = result.Replace("{" + i + "}", substitution);
+                }
+
                 return result;
             } else {
                 return null;
