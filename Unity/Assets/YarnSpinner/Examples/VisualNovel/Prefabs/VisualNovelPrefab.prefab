@@ -984,7 +984,7 @@ GameObject:
   - component: {fileID: 7112041585887571140}
   - component: {fileID: 759175788083730652}
   m_Layer: 0
-  m_Name: VN Runner
+  m_Name: Dialogue Runner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1031,6 +1031,7 @@ MonoBehaviour:
   spriteGroup: {fileID: 224005039409447594}
   bgImage: {fileID: 114178998031062532}
   fadeBG: {fileID: 114885191920496410}
+  nameplateBG: {fileID: 114099955469796580}
   genericSprite: {fileID: 114774347424995662}
   genericAudioSource: {fileID: 82675393856402862}
 --- !u!114 &6885618662069859611
@@ -1123,13 +1124,52 @@ MonoBehaviour:
   onCommand:
     m_PersistentCalls:
       m_Calls: []
-  nameTextContainer: {fileID: 1308810924048604}
+  separatorCharacter: ':'
   onNameUpdate:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114545994632442856}
         m_MethodName: set_text
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114392013309792444}
+        m_MethodName: OnActorSpeak
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSplit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1308810924048604}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onNoSplit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1308810924048604}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2217,7 +2257,7 @@ GameObject:
   - component: {fileID: 114748136302977540}
   - component: {fileID: 114605789608865228}
   m_Layer: 0
-  m_Name: VN Canvas
+  m_Name: Dialogue Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

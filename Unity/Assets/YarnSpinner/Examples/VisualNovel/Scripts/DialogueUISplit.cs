@@ -35,18 +35,19 @@ namespace Yarn.Unity.Example {
     /// for convenience, this inherits from DialogueUI instead of DialogueUIBehavior,
     /// so make sure you read the base class DialogueUI to know what's happening
     /// </summary>
-    public class VNDialogueUI : Yarn.Unity.DialogueUI
+    public class DialogueUISplit : Yarn.Unity.DialogueUI
     {
-        /// <summary>handles Yarn commands for visual novels</summary>
-        private VNManager vnManager;
-
-        /// <summary>name plate to display the speaker's name; optionally, put a UI Image background on it</summary>
-        [Tooltip("displays the speaker's name, should contain some sort of Text component in its hierarchy")]
-        public GameObject nameTextContainer;
+        [Header("Splitter Settings"), Tooltip("the text char used to split lines")]
+        public string separatorCharacter = ":";
 
         [Tooltip("similar to DialogueUI.onLineUpdate, have this fire out to a Text / TextMesh / TextMeshPro")]
         public DialogueRunner.StringUnityEvent onNameUpdate;
 
+        [Tooltip("fires when a split / a name is found")]
+        public UnityEngine.Events.UnityEvent onSplit;
+
+        [Tooltip("fires when no split / no name is found")]
+        public UnityEngine.Events.UnityEvent onNoSplit;
 
         /// <summary>
         /// overrides DialogueUI.RunLine to create temporary string table and run DoDetectSpeakerName()
@@ -78,32 +79,18 @@ namespace Yarn.Unity.Example {
         private void DoDetectSpeakerName(Yarn.Line line, IDictionary<string,string> strings, string text) {
             // extract speaker's name, if any
             string speakerName = "";
-            if ( text.Contains(":") ) { // if there's a ":" separator, then identify the first part as a speaker
-                var splitLine = text.Split( new char[] {':'}, 2); // split the line into 2 parts based on the ":" position
+            if ( text.Contains(separatorCharacter) ) { // if there's a ":" separator, then identify the first part as a speaker
+                var splitLine = text.Split( new char[] {separatorCharacter[0]}, 2); // split the line into 2 parts based on the ":" position
                 speakerName = splitLine[0].Trim(); // extract speaker name from before the string split
                 strings[line.ID] = splitLine[1].Trim(); // MODIFY STRING TABLE (!!!), strip out the speaker name
             }
             
-            // change dialog nameplate text and, if applicable the nameplate BG color
+            // change dialog nameplate text
             if ( speakerName.Length > 0 ) {
-                nameTextContainer.SetActive(true);
                 onNameUpdate?.Invoke(speakerName);
-
-                // optional features: change the name plate color or highlight the actor's sprite
-                if ( vnManager == null ) { vnManager = GetComponent<VNManager>(); }
-                if ( vnManager != null ) {
-                    // update name BG color, if possible
-                    if ( vnManager.actors.ContainsKey(speakerName) && nameTextContainer.GetComponentInChildren<Image>() != null ) {
-                        nameTextContainer.GetComponentInChildren<Image>().color = vnManager.actors[speakerName].actorColor;
-                    }
-                    // Highlight actor's sprite (if on-screen) using VNManager, if possible
-                    if ( vnManager.actors.ContainsKey(speakerName) ) {
-                        vnManager.HighlightSprite( vnManager.actors[speakerName].actorImage );
-                    }
-                }
-
-            } else { // no speaker name found, so hide the nameplate
-                nameTextContainer.SetActive(false);
+                onSplit?.Invoke();
+            } else { // no speaker name found
+                onNoSplit?.Invoke();
             }
         } 
 

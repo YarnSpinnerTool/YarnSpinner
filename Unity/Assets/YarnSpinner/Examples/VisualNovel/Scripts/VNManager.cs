@@ -29,7 +29,7 @@ namespace Yarn.Unity.Example {
 
 		[Header("Object references"), Tooltip("don't change these unless you know what you're doing")]
 		public RectTransform spriteGroup; // used for screenshake
-		public Image bgImage, fadeBG;
+		public Image bgImage, fadeBG, nameplateBG;
 		public Image genericSprite; // local prefab, used for instantiating sprites
 		public AudioSource genericAudioSource; // local prefab, used for instantiating sounds
 
@@ -414,7 +414,12 @@ namespace Yarn.Unity.Example {
 
 		#region Utility
 
-		// called by VNDialogueUI to highlight a sprite when it's talking
+		public void OnActorSpeak (string actorName) {
+			if ( actors.ContainsKey(actorName) ) {
+				HighlightSprite(actors[actorName].actorImage);
+				nameplateBG.color = actors[actorName].actorColor;
+			}
+		}
 		public void HighlightSprite (Image sprite) {
 			StopCoroutine( "HighlightSpriteCoroutine" ); // use StartCoroutine(string) overload so that we can Stop and Start the coroutine (it doesn't work otherwise?)
 			StartCoroutine( "HighlightSpriteCoroutine", sprite );

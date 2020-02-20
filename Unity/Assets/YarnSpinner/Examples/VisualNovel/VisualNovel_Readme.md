@@ -2,7 +2,7 @@
 
 This is an example project that implements a few Yarn Spinner features:
 
-- `VNDialogueUI.cs` shows how to separate the speaker's name from their dialogue, and how to display them separately
+- `DialogueUISplit.cs` shows how to separate the speaker's name from their dialogue, and how to display them separately
 - `VNManager.cs` demos extensive use of Yarn Commands to implement custom visual novel functionality (sprite management, sound playback, screen fades)
 
 This is intended as an example of how Yarn Spinner is flexible enough to support a variety of game formats and genres. **It is not actively developed, it is just a template / example.** If you want to add new commands of functionality, try to figure it out yourself!
