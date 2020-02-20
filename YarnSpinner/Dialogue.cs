@@ -44,11 +44,13 @@ namespace Yarn {
     public struct Line {
         public Line(string stringID) : this()
         {
-            this.ID = stringID;            
+            this.ID = stringID;       
+            this.Substitutions = new string[] {};     
         }
 
         public string ID;
         public string Text;
+        public string[] Substitutions;
     }
 
     public struct OptionSet {

@@ -128,8 +128,8 @@ namespace Yarn
             /// The instruction number in the current node
             public int programCounter = 0;
 
-            /// List of options, where each option = <string id, destination node>
-            public List<KeyValuePair<string,string>> currentOptions = new List<KeyValuePair<string, string>>();
+            /// List of options, where each option = <Line, destination node>
+            public List<KeyValuePair<Line,string>> currentOptions = new List<KeyValuePair<Line, string>>();
 
             /// The value stack
             private Stack<Value> stack = new Stack<Value>();
@@ -217,11 +217,8 @@ namespace Yarn
 
         public bool SetNode(string nodeName) {
             if (Program.Nodes.ContainsKey(nodeName) == false) {
-
-                var error = "No node named " + nodeName;
-                dialogue.LogErrorMessage(error);
                 executionState = ExecutionState.Stopped;
-                return false;
+                throw new DialogueException($"No node named {nodeName}");                
             }
 
             dialogue.LogDebugMessage ("Running node " + nodeName);
@@ -240,9 +237,9 @@ namespace Yarn
         public void SetSelectedOption(int selectedOptionID) {
 
             if (executionState != ExecutionState.WaitingOnOptionSelection) {
-                dialogue.LogErrorMessage(@"SetSelectedOption was called, but Dialogue wasn't waiting for a selection.
-                This method should only be called after the Dialogue is waiting for the user to select an option.");
-                return;
+
+                throw new DialogueException(@"SetSelectedOption was called, but Dialogue wasn't waiting for a selection.
+                This method should only be called after the Dialogue is waiting for the user to select an option.");                
             }
 
             // We now know what number option was selected; push the
@@ -264,38 +261,31 @@ namespace Yarn
         internal void Continue() {
 
             if (currentNode == null) {
-                dialogue.LogErrorMessage("Cannot continue running dialogue. No node has been selected.");
-                return;
+                throw new DialogueException("Cannot continue running dialogue. No node has been selected.");                
             }
 
             if (executionState == ExecutionState.WaitingOnOptionSelection) {
-                dialogue.LogErrorMessage ("Cannot continue running dialogue. Still waiting on option selection.");
-                return;
+                throw new DialogueException ("Cannot continue running dialogue. Still waiting on option selection.");                
             }
 
             if (lineHandler == null) {
-                dialogue.LogErrorMessage ($"Cannot continue running dialogue. {nameof(lineHandler)} has not been set.");
-                return;
+                throw new DialogueException ($"Cannot continue running dialogue. {nameof(lineHandler)} has not been set.");                
             }
 
             if (optionsHandler == null) {
-                dialogue.LogErrorMessage ($"Cannot continue running dialogue. {nameof(optionsHandler)} has not been set.");
-                return;
+                throw new DialogueException ($"Cannot continue running dialogue. {nameof(optionsHandler)} has not been set.");                
             }
 
             if (commandHandler == null) {
-                dialogue.LogErrorMessage ($"Cannot continue running dialogue. {nameof(commandHandler)} has not been set.");
-                return;
+                throw new DialogueException ($"Cannot continue running dialogue. {nameof(commandHandler)} has not been set.");                
             }
 
             if (nodeCompleteHandler == null) {
-                dialogue.LogErrorMessage ($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");
-                return;
+                throw new DialogueException ($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");                
             }
 
             if (nodeCompleteHandler == null) {
-                dialogue.LogErrorMessage ($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");
-                return;
+                throw new DialogueException ($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");                
             }
 
             executionState = ExecutionState.Running;
@@ -352,7 +342,31 @@ namespace Yarn
                          */
                         string stringKey = i.Operands[0].StringValue;
 
-                        var pause = lineHandler(new Line(stringKey));
+                        Line line = new Line(stringKey);
+                        
+                        // The second operand, if provided (compilers prior
+                        // to v1.1 don't include it), indicates the number
+                        // of expressions in the line. We need to pop these
+                        // values off the stack and deliver them to the
+                        // line handler.
+                        if (i.Operands.Count > 1) {
+                            // TODO: we only have float operands, which is
+                            // unpleasant. we should make 'int' operands a
+                            // valid type, but doing that implies that the
+                            // language differentiates between floats and
+                            // ints itself. something to think about.
+                            var expressionCount = (int)i.Operands[1].FloatValue;
+
+                            var strings = new string[expressionCount];
+
+                            for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--) {
+                                strings[expressionIndex] = state.PopValue().AsString;
+                            }
+                            
+                            line.Substitutions = strings;
+                        }
+
+                        var pause = lineHandler(line);
 
                         if (pause == Dialogue.HandlerExecutionType.PauseExecution)
                         {
@@ -367,8 +381,38 @@ namespace Yarn
                         /// - RunCommand
                         /** Passes a string to the client as a custom command
                          */
+                        
+                        string commandText = i.Operands[0].StringValue;
+                        
+                        // The second operand, if provided (compilers prior
+                        // to v1.1 don't include it), indicates the number
+                        // of expressions in the command. We need to pop
+                        // these values off the stack and deliver them to
+                        // the line handler.
+                        if (i.Operands.Count > 1) {
+                            // TODO: we only have float operands, which is
+                            // unpleasant. we should make 'int' operands a
+                            // valid type, but doing that implies that the
+                            // language differentiates between floats and
+                            // ints itself. something to think about.
+                            var expressionCount = (int)i.Operands[1].FloatValue;
+
+                            var strings = new string[expressionCount];
+
+                            // Get the values from the stack, and
+                            // substitute them into the command text
+                            for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--) {
+                                var substitution = state.PopValue().AsString;
+
+                                commandText = commandText.Replace("{" + expressionIndex + "}", substitution);
+                            }
+                            
+                        }
+
+                        var command = new Command(commandText);
+                         
                         var pause = commandHandler(
-                            new Command(i.Operands[0].StringValue)
+                            command
                         );
 
                         if (pause == Dialogue.HandlerExecutionType.PauseExecution)
@@ -586,10 +630,36 @@ namespace Yarn
                         /// - AddOption
                         /** Add an option to the current state.
                          */
+
+                        var line = new Line(i.Operands[0].StringValue);
+
+                        if (i.Operands.Count > 2) {
+                            // TODO: we only have float operands, which is
+                            // unpleasant. we should make 'int' operands a
+                            // valid type, but doing that implies that the
+                            // language differentiates between floats and
+                            // ints itself. something to think about.
+
+                            // get the number of expressions that we're
+                            // working with out of the third operand
+                            var expressionCount = (int)i.Operands[2].FloatValue;
+
+                            var strings = new string[expressionCount];
+
+                            // pop the expression values off the stack in
+                            // reverse order, and store the list of substitutions
+                            for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--) {
+                                string substitution = state.PopValue().AsString;
+                                strings[expressionIndex] = substitution;
+                            }
+                            
+                            line.Substitutions = strings;
+                        }
+
                         state.currentOptions.Add(
-                            new KeyValuePair<string, string>(
-                                i.Operands[0].StringValue, // node name
-                                i.Operands[1].StringValue  // display string key
+                            new KeyValuePair<Line, string>(
+                                line,  // line to show
+                                i.Operands[1].StringValue  // node name
                             )
                         );
 
@@ -614,8 +684,7 @@ namespace Yarn
                         for (int optionIndex = 0; optionIndex < state.currentOptions.Count; optionIndex++)
                         {
                             var option = state.currentOptions[optionIndex];
-                            var line = new Line(option.Key);
-                            optionChoices.Add(new OptionSet.Option(line, optionIndex));
+                            optionChoices.Add(new OptionSet.Option(option.Key, optionIndex));
                         }
 
                         // We can't continue until our client tell us which option to pick

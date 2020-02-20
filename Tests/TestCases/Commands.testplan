@@ -1,0 +1,11 @@
+command: flip Harley3 +1
+command: toggle
+command: settings
+command: iffy
+command: nulled
+command: orion
+command: andorian
+command: note
+command: isActive
+#command: !@#$%^&*()⁄€‹›ﬁﬂ‡°·‚‘-=_+
+command: hide Collision:GermOnPorch
