@@ -1894,6 +1894,11 @@ PrefabInstance:
       propertyPath: onDialogueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5935829475398715334, guid: 4ec3df5875e7347beb6176b545b8fb39,
+        type: 3}
+      propertyPath: lineAudioType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5935829475522760372, guid: 4ec3df5875e7347beb6176b545b8fb39,
         type: 3}
       propertyPath: m_AnchorMin.y

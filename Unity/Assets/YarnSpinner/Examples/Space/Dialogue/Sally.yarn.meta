@@ -31,8 +31,7 @@ ScriptedImporter:
   isSuccesfullyCompiled: 1
   compilationErrorMessage: 'Error on line 23 at position 1:
 
-    missing COMMAND_ENDIF
-    at ''===''
+    missing COMMAND_ENDIF at ''===''
 
     ===
 
@@ -45,96 +44,128 @@ ScriptedImporter:
   - linetag: line:794945
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 955dc7a78583ca949b9e220dd7a51858, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: d653c16cf588ded429931e16ec9c74b3, type: 3}
   - linetag: line:2dc39b
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 534763d010c9e8d4cb6dfcf5f633b608, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 5f7416fd7f797094a93810d4bd11f610, type: 3}
   - linetag: line:34de2f
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: beccf05c797a7e74cab49fa61a666df9, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: deadb062b242e014b9cec9340b3038f1, type: 3}
   - linetag: line:dcc2bc
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: dec4f5e2ba5adb847951291440fa082f, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 4625990170b1626498d0c892c35edeb9, type: 3}
   - linetag: line:a8e70c
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 186a88e5ffcb5ac4682063edb40e943c, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: b7eb695f38de3174db0cb4ab6234baf9, type: 3}
   - linetag: line:305cde
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 50f6b4f8445d473498480b47dd315956, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 2c5b41533e5b21e45a1b045258ec3451, type: 3}
   - linetag: line:5d7a7c
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 1c77d0238fd642d40b5117344ad67b67, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 9c402b246285d354badce194db156645, type: 3}
   - linetag: line:0a7e39
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 73f09654e7346a147a77f494d34ff10d, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: ca075f0c4b186c746bfb48ddba4a0ab2, type: 3}
   - linetag: line:0facf7
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 7f8aad4df2b4c3048a0683e61165bca9, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 108436843461c3c4c88a10399c3d802a, type: 3}
   - linetag: line:8c3f98
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: fd85d05ca217d6241ae789ae5a9a13a5, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: d87321b69120e4d488257dc44f0ffb5a, type: 3}
   - linetag: line:24c418
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 74ce8a5d9dca30046aa76e6dff006528, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: fc8096c914b4aa843a5495d1677f803c, type: 3}
   - linetag: line:df4eaf
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 871d1f02b1441d748a9b148da5586ee6, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 0a2acb28a540a4e46aee3f17434734e0, type: 3}
   - linetag: line:1fea6c
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 891d155f614314e42b8fb67862e9381a, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 24ba34d3a21de0746923b4b580853eb6, type: 3}
   - linetag: line:5df323
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 09672488f26560244bd257eb895b4d2f, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 1aaab19050495d249a00b4f9143e0ecf, type: 3}
   - linetag: line:60c282
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: 710d2f23b800d6a4db7a7bded5ace1f0, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 42259fd68e0107d4eafc514734c404af, type: 3}
   - linetag: line:d7df49
     languageToAudioclip:
     - language: de
-      audioClip: {instanceID: 0}
+      audioClip: {fileID: 8300000, guid: d4cba8a6886e7224aaaf6584bb057650, type: 3}
     - language: en-AU
       audioClip: {instanceID: 0}
+    - language: en
+      audioClip: {fileID: 8300000, guid: 8da1547987e83ce48a53cba0adba0e8a, type: 3}

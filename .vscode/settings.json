@@ -6,5 +6,12 @@
             "--csharp_out=${workspaceRoot}/YarnSpinner", 
             "${workspaceRoot}/YarnSpinner/yarn_spinner.proto"
         ]
+    },
+    "antlr4.generation": {
+        "mode": "external",
+        "language": "CSharp",
+        "listeners": true,
+        "visitors": true,
+        "outputDir": "."
     }
 }

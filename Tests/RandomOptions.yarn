@@ -1,0 +1,53 @@
+title: Start
+---
+// Randomizing options
+
+These options should be shuffled:
+
+<<shuffleNextOptions>>
+-> One
+-> Two
+-> Three
+-> Four
+
+These options should NOT be shuffled:
+
+-> One
+-> Two
+-> Three
+-> Four
+
+These options should NOT be shuffled
+
+-> One: Select this option to see shuffled options.
+	<<shuffleNextOptions>>
+	-> One
+	-> Two
+	-> Three
+	-> Four
+-> Two: Select this option to do nothing.
+
+
+These options should NOT be shuffled:
+
+-> One
+-> Two
+-> Three
+-> Four
+
+These options should be shuffled, 50% of the time:
+
+<<shuffleNextOptions>>
+-> One
+-> Two
+
+These options should be shuffled:
+
+<<shuffleNextOptions>>
+
+[[One|One]]
+[[Two|One]]
+[[Three|One]]
+[[Four|One]]
+
+===

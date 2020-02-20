@@ -12,14 +12,22 @@ namespace Yarn
             public int lineNumber;
 			public string fileName;
 			public bool isImplicitTag;
+			public string[] metadata;
 
-            public StringInfo(string text, string fileName, string nodeName, int lineNumber, bool isImplicitTag)
+            public StringInfo(string text, string fileName, string nodeName, int lineNumber, bool isImplicitTag, string[] metadata)
             {
                 this.text = text;
                 this.nodeName = nodeName;
                 this.lineNumber = lineNumber;
 				this.fileName = fileName;
 				this.isImplicitTag = isImplicitTag;
+
+				if (metadata != null) {
+					this.metadata = metadata;
+				} else {
+					this.metadata = new string[] {};
+				}
+				
             }
         }
 	

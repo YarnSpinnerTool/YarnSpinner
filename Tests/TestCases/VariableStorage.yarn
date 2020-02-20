@@ -1,0 +1,113 @@
+title: Start
+---
+// Variable testing
+
+// Testing variable storage
+<<set $foo to 1>>
+
+// Test numeric storage
+<<call assert($foo == 1)>>
+
+<<set $foo to -1>>
+
+// Test numeric storage (negative)
+<<call assert($foo == -1)>>
+
+// Test string storage
+<<set $foo to "foo">>
+<<call assert($foo == "foo")>>
+
+<<set $foo to null>>
+
+// Test null storage
+<<call assert($foo == null)>>
+
+// Test immediate value arithmetic
+<<set $foo = 45>>
+
+<<set $bar = $foo + 1>>
+
+// Test immediate addition
+<<call assert($bar == 46)>>
+
+<<set $bar = $foo - 1>>
+
+// Test immediate subtraction
+<<call assert($bar == 44)>>
+
+<<set $foo = 46>>
+<<set $bar = $foo * 2>>
+
+// Test immediate multiplication
+<<call assert($bar == 92)>>
+
+<<set $bar = $foo / 2>>
+
+// Test immediate division
+<<call assert($bar == 23)>>
+
+<<set $foo = 45>>
+<<set $foo += 1>>
+
+// Test immediate assignment addition
+<<call assert($foo == 46)>>
+
+<<set $foo *= 2>>
+
+// Test immediate assignment multiplication
+<<call assert($foo == 92)>>
+
+<<set $foo /= 2>>
+
+// Test immediate assignment division
+<<call assert($foo == 46)>>
+
+<<set $foo -= 1>>
+
+// Test immediate assignment subtraction
+<<call assert($foo == 45)>>
+
+// Testing variable arithmetic
+<<set $foo = 46>>
+<<set $bar = 1>>
+<<set $foobar = $foo + $bar>>
+
+// Test variable addition
+<<call assert($foobar == 47)>>
+
+<<set $foobar = $foo - $bar>>
+
+// Test variable subtraction
+<<call assert($foobar == 45)>>
+
+<<set $bar = 2>>
+<<set $foobar = $foo * $bar>>
+
+// Test variable multiplication
+<<call assert($foobar == 92)>>
+
+<<set $foobar = $foo / $bar>>
+
+// Test variable division
+<<call assert($foobar == 23)>>
+
+// Testing default variable values
+<<set $foounused += 1>>
+
+// An undefined variable must default to 0 for arithmetic
+<<call assert($foounused == 1)>>
+
+// Testing string addition
+<<set $foo = "foo">>
+<<set $bar = "bar">>
+<<set $foobar = $foo + "bar">>
+
+// "Test immediate string addition
+<<call assert($foobar == "foobar")>>
+
+<<set $foobar = $foo + $bar>>
+
+// "Test string addition
+<<call assert($foobar == "foobar")>>
+
+===

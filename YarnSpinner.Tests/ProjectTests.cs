@@ -15,10 +15,9 @@ namespace YarnSpinner.Tests
     {
 		
         [Fact]
-        public void TestLoadingSingleFile()
+        public void TestLoadingNodes()
         {
-            var path = Path.Combine(TestDataPath, "Projects", "Basic", "Test.yarn.txt");
-
+            var path = Path.Combine(TestDataPath, "Projects", "Basic", "Test.yarn");
             Compiler.CompileFile(path, out var program, out stringTable);
 
             // high-level test: load the file, verify it has the nodes we want,
@@ -30,21 +29,7 @@ namespace YarnSpinner.Tests
             Assert.True(dialogue.NodeExists("TestNode"));
             Assert.True(dialogue.NodeExists("AnotherTestNode"));
             Assert.True(dialogue.NodeExists("ThirdNode"));
-
-            // execute a node
-            var secondNodeName = "AnotherTestNode";
-            ExpectLine("This is a second test node!");
-
-            // we are now expecting a node
-            Assert.True(this.IsExpectingLine);
-
-            RunStandardTestcase(secondNodeName);
-
-            // the line should have run, so this property should become true
-            Assert.False(this.IsExpectingLine);
-
-            // and the variable $x should now have a value
-            Assert.Equal(23, (int)dialogue.continuity.GetValue("$x").AsNumber);
+            
         }
     }
 }
