@@ -659,15 +659,28 @@ namespace Yarn.Unity
 
         /// Registers a new function that returns a value, so that it can
         /// be called from Yarn scripts.
-        public void RegisterFunction(string name, int parameterCount, ReturningFunction implementation) {
+        public void RegisterFunction(string name, int parameterCount, ReturningFunction implementation)
+        {
+            if (dialogue.library.FunctionExists(name)) {
+                Debug.LogError($"Cannot register function {name}, one already exists");
+                return;
+            }
             dialogue.library.RegisterFunction(name, parameterCount, implementation);
         }
 
         /// Registers a new function that doesn't return a value, so that
         /// it can be called from Yarn scripts.
-        public void RegisterFunction(string name, int parameterCount, Function implementation) {
+        public void RegisterFunction(string name, int parameterCount, Function implementation)
+        {
+            if (dialogue.library.FunctionExists(name)) {
+                Debug.LogError($"Cannot register function {name}, one already exists");
+                return;
+            }
             dialogue.library.RegisterFunction(name, parameterCount, implementation);
         }
+        
+        /// Remove a function that could be called from Yarn scripts.
+        public void RemoveFunction(string name) => dialogue.library.DeregisterFunction(name);
         
         string ILineLocalisationProvider.GetLocalisedTextForLine(Line line) {
             if (strings.TryGetValue(line.ID, out var result)) {
