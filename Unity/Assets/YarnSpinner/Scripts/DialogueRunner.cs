@@ -657,25 +657,49 @@ namespace Yarn.Unity
 
         // Expose the RegisterFunction methods from dialogue.library to Unity
 
-        /// Registers a new function that returns a value, so that it can
-        /// be called from Yarn scripts.
+        [Obsolete("Use AddFunction instead")]
         public void RegisterFunction(string name, int parameterCount, ReturningFunction implementation)
         {
             if (dialogue.library.FunctionExists(name)) {
-                Debug.LogError($"Cannot register function {name}, one already exists");
+                Debug.LogError($"Cannot register function {name} one already exists");
                 return;
             }
+
             dialogue.library.RegisterFunction(name, parameterCount, implementation);
         }
 
-        /// Registers a new function that doesn't return a value, so that
-        /// it can be called from Yarn scripts.
+        [Obsolete("Use AddFunction instead")]
         public void RegisterFunction(string name, int parameterCount, Function implementation)
         {
             if (dialogue.library.FunctionExists(name)) {
-                Debug.LogError($"Cannot register function {name}, one already exists");
+                Debug.LogError($"Cannot register function {name} one already exists");
                 return;
             }
+
+            dialogue.library.RegisterFunction(name, parameterCount, implementation);
+        }
+
+        /// Adds a new function that returns a value, so that it can be called
+        /// from Yarn scripts.
+        public void AddFunction(string name, int parameterCount, ReturningFunction implementation)
+        {
+            if (dialogue.library.FunctionExists(name)) {
+                Debug.LogError($"Cannot register function {name} one already exists");
+                return;
+            }
+
+            dialogue.library.RegisterFunction(name, parameterCount, implementation);
+        }
+
+        /// Adds a new function that doesn't return a value, so that it can be
+        /// called from Yarn scripts.
+        public void AddFunction(string name, int parameterCount, Function implementation)
+        {
+            if (dialogue.library.FunctionExists(name)) {
+                Debug.LogError($"Cannot register function {name} one already exists");
+                return;
+            }
+
             dialogue.library.RegisterFunction(name, parameterCount, implementation);
         }
         
