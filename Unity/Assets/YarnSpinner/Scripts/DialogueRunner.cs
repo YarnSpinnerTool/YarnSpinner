@@ -30,13 +30,8 @@ using System.Collections.Generic;
 using CsvHelper;
 using System;
 
-// Field ... is never assigned to and will always have its default value null
-#pragma warning disable 0649
-
 namespace Yarn.Unity
 {
-
-
     public interface ILineLocalisationProvider {
         string GetLocalisedTextForLine(Yarn.Line line);        
     }
@@ -92,9 +87,7 @@ namespace Yarn.Unity
 
         /// A Unity event that receives the name of the node that just
         /// finished running
-#pragma warning disable 0649
-        [SerializeField] StringUnityEvent onNodeComplete;
-#pragma warning restore 0649
+        [SerializeField] StringUnityEvent onNodeComplete = default;
 
         // A flag used to note when we call into a blocking command
         // handler, but it calls its complete handler immediately -
