@@ -686,6 +686,9 @@ namespace Yarn.Unity
                     result = result.Replace("{" + i + "}", substitution);
                 }
 
+                // Apply in-line format functions
+                result = Dialogue.ExpandFormatFunctions(result, this.textLanguage);
+
                 return result;
             } else {
                 return null;
