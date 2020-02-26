@@ -195,6 +195,8 @@ COMMAND_START: '<<' -> pushMode(CommandMode) ;
 // The start of an option or jump
 OPTION_START: '[[' -> pushMode(OptionMode) ;
 
+FORMAT_FUNCTION_START: '[' -> pushMode(TextMode), pushMode(FormatFunctionMode);
+
 // The start of a hashtag. Can goes at the end of the 
 // line, but this rule allows us to capture '#' at the start 
 // of a line, or following an Option.
@@ -218,10 +220,13 @@ TEXT_EXPRESSION_START: '{' -> pushMode(ExpressionMode);
 
 TEXT_COMMAND_START: '<<' -> pushMode(CommandMode);
 
+TEXT_FORMAT_FUNCTION_START: '[' -> pushMode(FormatFunctionMode);
+
 // Finally, lex anything up to a newline, a hashtag, the 
-// start of an expression as free text, or a command-start marker.
+// start of an expression as free text, the start of a format function,
+// or a command-start marker.
 TEXT: TEXT_FRAG+ ;
-TEXT_FRAG: {!(InputStream.LA(1) == '<' && InputStream.LA(2) == '<')}? ~[\r\n#{] ;
+TEXT_FRAG: {!(InputStream.LA(1) == '<' && InputStream.LA(2) == '<')}? ~[\r\n#{[] ;
 
 // TODO: support detecting a comment at the end of a line by looking 
 // ahead and seeing '//', then skipping the rest of the line. 
@@ -242,6 +247,28 @@ HASHTAG_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(HASHTAG_NEWLINE);} -> pop
 // A command - this marks the start of a line condition
 HASHTAG_COMMAND_START: '<<' -> pushMode(CommandMode);
 HASHTAG_TEXT: ~[ \t\r\n#$<]+ ;
+
+// A format function, which allows for run-time text replacement for 
+// things like pluralisation and gender 
+mode FormatFunctionMode;
+FORMAT_FUNCTION_WS : WS -> skip;
+
+FORMAT_FUNCTION_ID: ID;
+
+FORMAT_FUNCTION_NUMBER: NUMBER;
+
+// Format functions may have expressions in them.
+FORMAT_FUNCTION_EXPRESSION_START: '{' -> pushMode(ExpressionMode);
+
+// Separates keys from values in format functions
+FORMAT_FUNCTION_EQUALS: '=';
+
+// A run of text. Escaped quotes, backslashes and format markers are allowed.
+fragment FORMAT_FUNCTION_MARKER: '%';
+FORMAT_FUNCTION_STRING : '"' (~('"' | '\\' | '\r' | '\n') | '\\' ('"' | '\\' | FORMAT_FUNCTION_MARKER))* '"';
+
+// Leave this mode when we reach the delimiting 'end'
+FORMAT_FUNCTION_END: ']' -> popMode;
 
 // Expressions, involving values and operations on values.
 mode ExpressionMode;
@@ -279,8 +306,8 @@ LPAREN : '(' ;
 RPAREN : ')' ;
 COMMA : ',' ;
 
-// A run of text.
-STRING : '"' .*? '"';
+// A run of text. Escaped quotes and backslashes are allowed.
+STRING : '"' (~('"' | '\\' | '\r' | '\n') | '\\' ('"' | '\\'))* '"';
 
 FUNC_ID: ID ;
 
@@ -348,7 +375,8 @@ OPTION_WS: WS -> skip;
 OPTION_END: ']]' -> popMode ;
 OPTION_DELIMIT: '|' -> pushMode(OptionIDMode); // time to specifically look for IDs here
 OPTION_EXPRESSION_START: '{' -> pushMode(ExpressionMode);
-OPTION_TEXT: ~[\]{|]+ ;
+OPTION_FORMAT_FUNCTION_START: '[' -> pushMode(FormatFunctionMode);
+OPTION_TEXT: ~[\]{|[]+ ;
 
 // Only allow seeing runs of text as an ID after a '|' is 
 // seen. This prevents an option being parsed 

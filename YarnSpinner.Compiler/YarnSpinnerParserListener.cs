@@ -111,6 +111,40 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitLine_formatted_text([NotNull] YarnSpinnerParser.Line_formatted_textContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.format_function"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFormat_function([NotNull] YarnSpinnerParser.Format_functionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.format_function"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFormat_function([NotNull] YarnSpinnerParser.Format_functionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>KeyValuePairNamed</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.key_value_pair"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterKeyValuePairNamed([NotNull] YarnSpinnerParser.KeyValuePairNamedContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>KeyValuePairNamed</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.key_value_pair"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitKeyValuePairNamed([NotNull] YarnSpinnerParser.KeyValuePairNamedContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>KeyValuePairNumber</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.key_value_pair"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterKeyValuePairNumber([NotNull] YarnSpinnerParser.KeyValuePairNumberContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>KeyValuePairNumber</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.key_value_pair"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitKeyValuePairNumber([NotNull] YarnSpinnerParser.KeyValuePairNumberContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.hashtag"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

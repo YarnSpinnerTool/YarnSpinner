@@ -44,7 +44,18 @@ line_statement
 line_formatted_text
     : ( TEXT // a chunk of text to show to the player
         | TEXT_EXPRESSION_START expression EXPRESSION_END // an expression to evaluate
+        | (FORMAT_FUNCTION_START|TEXT_FORMAT_FUNCTION_START) format_function FORMAT_FUNCTION_END // a format function
       )* 
+    ;
+
+format_function
+    : function_name=FORMAT_FUNCTION_ID FORMAT_FUNCTION_EXPRESSION_START variable EXPRESSION_END key_value_pair*
+    ;
+
+// key="value"
+key_value_pair
+    : pair_key=FORMAT_FUNCTION_ID FORMAT_FUNCTION_EQUALS pair_value=FORMAT_FUNCTION_STRING #KeyValuePairNamed
+    | pair_key=FORMAT_FUNCTION_NUMBER FORMAT_FUNCTION_EQUALS pair_value=FORMAT_FUNCTION_STRING #KeyValuePairNumber
     ;
 
 hashtag
@@ -139,5 +150,6 @@ option_formatted_text
     : (
         OPTION_TEXT 
         | OPTION_EXPRESSION_START expression EXPRESSION_END 
+        | OPTION_FORMAT_FUNCTION_START format_function FORMAT_FUNCTION_END
       )+
     ;

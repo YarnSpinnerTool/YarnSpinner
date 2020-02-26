@@ -19,6 +19,8 @@ namespace YarnSpinner.Tests
         protected VariableStorage storage = new MemoryVariableStore();
         protected Dialogue dialogue;
         protected IDictionary<string, Yarn.StringInfo> stringTable;
+
+        public string locale = "en";
         
         protected bool errorsCauseFailures = true;
 
@@ -71,9 +73,9 @@ namespace YarnSpinner.Tests
                 baseText = baseText.Replace("{" + i + "}", substitution);
             }
 
-            return baseText;
 
 
+            return Dialogue.ExpandFormatFunctions(baseText, locale);
         }
         
         public TestBase()
