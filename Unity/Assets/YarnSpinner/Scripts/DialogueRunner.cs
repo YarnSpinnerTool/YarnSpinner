@@ -660,23 +660,13 @@ namespace Yarn.Unity
         [Obsolete("Use AddFunction instead")]
         public void RegisterFunction(string name, int parameterCount, ReturningFunction implementation)
         {
-            if (dialogue.library.FunctionExists(name)) {
-                Debug.LogError($"Cannot register function {name} one already exists");
-                return;
-            }
-
-            dialogue.library.RegisterFunction(name, parameterCount, implementation);
+            AddFunction(name, parameterCount, implementation);
         }
 
         [Obsolete("Use AddFunction instead")]
         public void RegisterFunction(string name, int parameterCount, Function implementation)
         {
-            if (dialogue.library.FunctionExists(name)) {
-                Debug.LogError($"Cannot register function {name} one already exists");
-                return;
-            }
-
-            dialogue.library.RegisterFunction(name, parameterCount, implementation);
+            AddFunction(name, parameterCount, implementation);
         }
 
         /// Adds a new function that returns a value, so that it can be called
