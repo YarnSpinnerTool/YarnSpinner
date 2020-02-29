@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using System.Collections.Generic;
 using Antlr4.Runtime.Misc;
@@ -80,7 +80,10 @@ namespace Yarn.Compiler
 
             // turning off the normal error listener and using ours
             parser.RemoveErrorListeners();
-            parser.AddErrorListener(ErrorListener.Instance);
+            parser.AddErrorListener(ParserErrorListener.Instance);
+            
+            lexer.RemoveErrorListeners();
+            lexer.AddErrorListener(LexerErrorListener.Instance);
 
             IParseTree tree;
             try {

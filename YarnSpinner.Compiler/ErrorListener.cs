@@ -6,18 +6,27 @@ using System.Globalization;
 
 namespace Yarn.Compiler
 {
-    public sealed class ErrorListener : BaseErrorListener
+    public sealed class LexerErrorListener : IAntlrErrorListener<int>
     {
-        private static readonly ErrorListener instance = new ErrorListener();
-        private ErrorListener(){}
-        public static ErrorListener Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
+        private static readonly LexerErrorListener instance = new LexerErrorListener();
+        public static LexerErrorListener Instance => instance;
 
+        public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append($"Error on line {line} at position {charPositionInLine + 1}:");
+            builder.AppendLine(msg);
+                         
+            throw new ParseException(builder.ToString());
+            
+        }
+    }
+
+    public sealed class ParserErrorListener : BaseErrorListener
+    {
+        private static readonly ParserErrorListener instance = new ParserErrorListener();
+        public static ParserErrorListener Instance => instance;
+        
         public override void SyntaxError(System.IO.TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
             StringBuilder builder = new StringBuilder();
