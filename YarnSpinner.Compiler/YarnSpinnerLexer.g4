@@ -200,7 +200,7 @@ FORMAT_FUNCTION_START: '[' -> pushMode(TextMode), pushMode(FormatFunctionMode);
 // The start of a hashtag. Can goes at the end of the 
 // line, but this rule allows us to capture '#' at the start 
 // of a line, or following an Option.
-BODY_HASHTAG: '#' -> pushMode(HashtagMode);
+BODY_HASHTAG: '#' -> pushMode(TextCommandOrHashtagMode), pushMode(HashtagMode);
 
 // Any other text means this is a Line
 ANY: . -> more, pushMode(TextMode);
@@ -210,16 +210,21 @@ ANY: . -> more, pushMode(TextMode);
 mode TextMode;
 TEXT_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(TEXT_NEWLINE);} -> popMode;
 
-// The start of a hashtag. Swap to Hashtag mode here, because 
-// we aren't looking for any more free text.
-TEXT_HASHTAG: HASHTAG -> mode(HashtagMode); 
+// The start of a hashtag. The remainder of this line will consist of
+// commands or hashtags, so swap to this mode and then enter hashtag mode.
+
+TEXT_HASHTAG: HASHTAG -> mode(TextCommandOrHashtagMode), pushMode(HashtagMode) ; 
 
 // push into expression mode here, because we might lex more 
 // free text after the expression is done
 TEXT_EXPRESSION_START: '{' -> pushMode(ExpressionMode); 
 
-TEXT_COMMAND_START: '<<' -> pushMode(CommandMode);
+// The start of a hashtag. The remainder of this line will consist of
+// commands or hashtags, so swap to this mode, and then enter command mode.
+TEXT_COMMAND_START: '<<' -> mode(TextCommandOrHashtagMode), pushMode(CommandMode);
 
+// The start of a format function. Push into this mode, because we may lex
+// more free text after the function is done.
 TEXT_FORMAT_FUNCTION_START: '[' -> pushMode(FormatFunctionMode);
 
 // Comments after free text.
@@ -238,21 +243,28 @@ TEXT_FRAG: {
 // ahead and seeing '//', then skipping the rest of the line. 
 // Currently "woo // foo" is parsed as one whole TEXT.
 
+mode TextCommandOrHashtagMode;
+TEXT_COMMANDHASHTAG_WS: WS -> skip;
+
+// Comments following hashtags and line conditions.
+TEXT_COMMANDHASHTAG_COMMENT: COMMENT -> skip;
+
+TEXT_COMMANDHASHTAG_COMMAND_START: '<<' -> pushMode(CommandMode);
+
+TEXT_COMMANDHASHTAG_HASHTAG: '#' -> pushMode(HashtagMode);
+
+TEXT_COMMANDHASHTAG_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(TEXT_COMMANDHASHTAG_NEWLINE);} -> popMode;
+
+TEXT_COMMANDHASHTAG_ERROR: . ; 
 
 // Hashtags at the end of a Line, Command or Option.
 mode HashtagMode;
-HASHTAG_WS: [ \t] -> skip;
-// comments at the end of a hashtag list - note that we capture 
-// everything UP TO the newline, because we still want to capture
-// the newline after the comment as a HASHTAG_NEWLINE token, which 
-// the parser is looking for to mark the end of the run of hashtags.
-HASHTAG_COMMENT: '//' ~[\r\n]* -> skip; 
+HASHTAG_WS: WS -> skip;
 HASHTAG_TAG: HASHTAG;
-// A newline; we're done looking for hashtag-related symbols
-HASHTAG_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(HASHTAG_NEWLINE);} -> popMode;
-// A command - this marks the start of a line condition
-HASHTAG_COMMAND_START: '<<' -> pushMode(CommandMode);
-HASHTAG_TEXT: ~[ \t\r\n#$<]+ ;
+
+// The text of the hashtag. After we parse it, we're done parsing this
+// hashtag, so leave this mode.
+HASHTAG_TEXT: ~[ \t\r\n#$<]+ -> popMode;
 
 // A format function, which allows for run-time text replacement for 
 // things like pluralisation and gender 

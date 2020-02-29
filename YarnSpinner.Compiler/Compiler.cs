@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Text;
 using System.Collections.Generic;
 using Antlr4.Runtime.Misc;
@@ -13,7 +13,9 @@ using static Yarn.Instruction.Types;
 
 namespace Yarn.Compiler
 {
+
     
+
     public enum Status {
         /// The compilation succeeded with no errors
         Succeeded, 
@@ -701,23 +703,16 @@ namespace Yarn.Compiler
                 // does, emit code that evaluates the condition, and skips
                 // over the code that prepares and adds the option.
                 string endOfClauseLabel = null;
-                if (shortcut.line_statement().line_condition()?.Length > 0)
+                if (shortcut.line_statement().line_condition() != null)
                 {
                     // Register the label we'll jump to if the condition
                     // fails. We'll add it later.
                     endOfClauseLabel = compiler.RegisterLabel("conditional_" + optionCount);
 
-                    // Ensure that we only have a single condition here
-                    var conditions = shortcut.line_statement().line_condition();
-                    if (conditions.Length > 1) {
-                        throw new ParseException("More than one line condition is not allowed.");
-                    }
-
                     // Evaluate the condition, and jump to the end of
                     // clause if it evaluates to false.
-                    var firstCondition = conditions[0];
-
-                    Visit(firstCondition.expression());
+                    
+                    Visit(shortcut.line_statement().line_condition().expression());
 
                     compiler.Emit(OpCode.JumpIfFalse, new Operand(endOfClauseLabel));
                 }
@@ -742,7 +737,7 @@ namespace Yarn.Compiler
 
                 // If we had a line condition, now's the time to generate
                 // the label that we'd jump to if its condition is false.
-                if (shortcut.line_statement().line_condition()?.Length > 0)
+                if (shortcut.line_statement().line_condition() != null)
                 {
                     compiler.currentNode.Labels.Add(endOfClauseLabel, compiler.currentNode.Instructions.Count);    
 
