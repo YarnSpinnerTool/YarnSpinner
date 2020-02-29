@@ -222,11 +222,17 @@ TEXT_COMMAND_START: '<<' -> pushMode(CommandMode);
 
 TEXT_FORMAT_FUNCTION_START: '[' -> pushMode(FormatFunctionMode);
 
+// Comments after free text.
+TEXT_COMMENT: COMMENT -> skip;
+
 // Finally, lex anything up to a newline, a hashtag, the 
 // start of an expression as free text, the start of a format function,
 // or a command-start marker.
 TEXT: TEXT_FRAG+ ;
-TEXT_FRAG: {!(InputStream.LA(1) == '<' && InputStream.LA(2) == '<')}? ~[\r\n#{[] ;
+TEXT_FRAG: {
+      !(InputStream.LA(1) == '<' && InputStream.LA(2) == '<') // start-of-command marker
+    &&!(InputStream.LA(1) == '/' && InputStream.LA(2) == '/') // start of a comment
+    }? ~[\r\n#{[] ;
 
 // TODO: support detecting a comment at the end of a line by looking 
 // ahead and seeing '//', then skipping the rest of the line. 
