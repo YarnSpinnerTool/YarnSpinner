@@ -174,7 +174,8 @@ namespace Yarn
         public Dialogue.LineHandler lineHandler;
         public Dialogue.OptionsHandler optionsHandler;
         public Dialogue.CommandHandler commandHandler;
-        public Dialogue.NodeCompleteHandler nodeCompleteHandler;
+		public Dialogue.NodeStartHandler nodeStartHandler;
+		public Dialogue.NodeCompleteHandler nodeCompleteHandler;
         public Dialogue.DialogueCompleteHandler dialogueCompleteHandler;
 
         private Dialogue dialogue;
@@ -227,6 +228,7 @@ namespace Yarn
             ResetState ();
             state.currentNodeName = nodeName;
 
+			nodeStartHandler?.Invoke(nodeName);
             return true;
         }
 

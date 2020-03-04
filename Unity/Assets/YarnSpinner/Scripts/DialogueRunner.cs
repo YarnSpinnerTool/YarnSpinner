@@ -29,6 +29,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CsvHelper;
 using System;
+using System.Linq;
 
 // Field ... is never assigned to and will always have its default value null
 #pragma warning disable 0649
@@ -90,21 +91,26 @@ namespace Yarn.Unity
         [System.Serializable]
         public class StringUnityEvent : UnityEngine.Events.UnityEvent<string> { }
 
-        /// A Unity event that receives the name of the node that just
-        /// finished running
+		/// A type of UnityEvent that takes a string and a string[] parameter. 
+		[System.Serializable]
+		public class StringTagsUnityEvent : UnityEngine.Events.UnityEvent<string, string[]> { }
+
+		/// A Unity event that receives the name of the node that just
+		/// finished running
 #pragma warning disable 0649
-        [SerializeField] StringUnityEvent onNodeComplete;
+		[SerializeField] StringUnityEvent onNodeComplete;
+		[SerializeField] StringTagsUnityEvent onNodeStart;
 #pragma warning restore 0649
 
-        // A flag used to note when we call into a blocking command
-        // handler, but it calls its complete handler immediately -
-        // _before_ the Dialogue is told to pause. This out-of-order
-        // problem can lead to the Dialogue being stuck in a paused state.
-        // To solve this, this variable is set to false before any blocking
-        // command handler is called, and set to true when ContinueDialogue
-        // is called. If it's true after calling a blocking command
-        // handler, then the Dialogue is not told to pause.
-        private bool wasCompleteCalled = false;
+		// A flag used to note when we call into a blocking command
+		// handler, but it calls its complete handler immediately -
+		// _before_ the Dialogue is told to pause. This out-of-order
+		// problem can lead to the Dialogue being stuck in a paused state.
+		// To solve this, this variable is set to false before any blocking
+		// command handler is called, and set to true when ContinueDialogue
+		// is called. If it's true after calling a blocking command
+		// handler, then the Dialogue is not told to pause.
+		private bool wasCompleteCalled = false;
         
         /// Our conversation engine
         /** Automatically created on first access
@@ -128,7 +134,11 @@ namespace Yarn.Unity
                     _dialogue.lineHandler = HandleLine;
                     _dialogue.commandHandler = HandleCommand;
                     _dialogue.optionsHandler = HandleOptions;
-                    _dialogue.nodeCompleteHandler = (node) => { 
+					_dialogue.nodeStartHandler = (node) => {
+						onNodeStart?.Invoke(node, _dialogue.GetTagsForNode(node).ToArray());
+						return Dialogue.HandlerExecutionType.ContinueExecution;
+					};
+					_dialogue.nodeCompleteHandler = (node) => { 
                         onNodeComplete?.Invoke(node); 
                         return Dialogue.HandlerExecutionType.ContinueExecution; 
                     };

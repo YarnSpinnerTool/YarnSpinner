@@ -190,7 +190,8 @@ namespace Yarn {
         public delegate HandlerExecutionType LineHandler(Line line);
         public delegate void OptionsHandler(OptionSet options);
         public delegate HandlerExecutionType CommandHandler(Command command);
-        public delegate HandlerExecutionType NodeCompleteHandler(string completedNodeName);
+		public delegate HandlerExecutionType NodeStartHandler(string startedNodeName);
+		public delegate HandlerExecutionType NodeCompleteHandler(string completedNodeName);
         public delegate void DialogueCompleteHandler();
 
 
@@ -222,11 +223,17 @@ namespace Yarn {
         {
             get => vm.nodeCompleteHandler;
             set => vm.nodeCompleteHandler = value;
-        }
+		}
 
-        /// Called when all execution is complete, indicating that the
-        /// dialogue is over.
-        public DialogueCompleteHandler dialogueCompleteHandler
+		/// Called when a node is started.
+		public NodeStartHandler nodeStartHandler {
+			get => vm.nodeStartHandler;
+			set => vm.nodeStartHandler = value;
+		}
+
+		/// Called when all execution is complete, indicating that the
+		/// dialogue is over.
+		public DialogueCompleteHandler dialogueCompleteHandler
         {
             get => vm.dialogueCompleteHandler;
             set => vm.dialogueCompleteHandler = value;
