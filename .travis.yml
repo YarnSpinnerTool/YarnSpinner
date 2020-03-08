@@ -13,7 +13,7 @@ script:
 solution: YarnSpinner.sln
 env: 
   global:
-    - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+    - DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
     # skip the dotnet-cli initialization, which is expensive and unneeded
     # for build agents.    
 # env:
