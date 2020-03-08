@@ -11,6 +11,11 @@ script:
   - dotnet restore
   - dotnet build
 solution: YarnSpinner.sln
+env: 
+  global:
+    - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+    # skip the dotnet-cli initialization, which is expensive and unneeded
+    # for build agents.    
 # env:
 #   global:
 #   - DOXYFILES_ROOT: "$TRAVIS_BUILD_DIR/Documentation"
