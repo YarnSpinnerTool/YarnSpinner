@@ -30,13 +30,8 @@ using System.Collections.Generic;
 using CsvHelper;
 using System;
 
-// Field ... is never assigned to and will always have its default value null
-#pragma warning disable 0649
-
 namespace Yarn.Unity
 {
-
-
     public interface ILineLocalisationProvider {
         string GetLocalisedTextForLine(Yarn.Line line);        
     }
@@ -92,9 +87,7 @@ namespace Yarn.Unity
 
         /// A Unity event that receives the name of the node that just
         /// finished running
-#pragma warning disable 0649
-        [SerializeField] StringUnityEvent onNodeComplete;
-#pragma warning restore 0649
+        [SerializeField] StringUnityEvent onNodeComplete = default;
 
         // A flag used to note when we call into a blocking command
         // handler, but it calls its complete handler immediately -
@@ -664,17 +657,44 @@ namespace Yarn.Unity
 
         // Expose the RegisterFunction methods from dialogue.library to Unity
 
-        /// Registers a new function that returns a value, so that it can
-        /// be called from Yarn scripts.
-        public void RegisterFunction(string name, int parameterCount, ReturningFunction implementation) {
+        [Obsolete("Use AddFunction instead")]
+        public void RegisterFunction(string name, int parameterCount, ReturningFunction implementation)
+        {
+            AddFunction(name, parameterCount, implementation);
+        }
+
+        [Obsolete("Use AddFunction instead")]
+        public void RegisterFunction(string name, int parameterCount, Function implementation)
+        {
+            AddFunction(name, parameterCount, implementation);
+        }
+
+        /// Add a new function that returns a value, so that it can be called
+        /// from Yarn scripts.
+        public void AddFunction(string name, int parameterCount, ReturningFunction implementation)
+        {
+            if (dialogue.library.FunctionExists(name)) {
+                Debug.LogError($"Cannot add function {name} one already exists");
+                return;
+            }
+
             dialogue.library.RegisterFunction(name, parameterCount, implementation);
         }
 
-        /// Registers a new function that doesn't return a value, so that
-        /// it can be called from Yarn scripts.
-        public void RegisterFunction(string name, int parameterCount, Function implementation) {
+        /// Add a new function that doesn't return a value, so that it can be
+        /// called from Yarn scripts.
+        public void AddFunction(string name, int parameterCount, Function implementation)
+        {
+            if (dialogue.library.FunctionExists(name)) {
+                Debug.LogError($"Cannot add function {name} one already exists");
+                return;
+            }
+
             dialogue.library.RegisterFunction(name, parameterCount, implementation);
         }
+        
+        /// Remove function that could be called from Yarn scripts.
+        public void RemoveFunction(string name) => dialogue.library.DeregisterFunction(name);
         
         string ILineLocalisationProvider.GetLocalisedTextForLine(Line line) {
             if (strings.TryGetValue(line.ID, out var result)) {
