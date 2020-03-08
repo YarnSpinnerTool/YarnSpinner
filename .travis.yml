@@ -10,6 +10,7 @@ dotnet: 2.1.505
 script:
   - dotnet restore
   - dotnet build
+  - dotnet test
 solution: YarnSpinner.sln
 env: 
   global:
