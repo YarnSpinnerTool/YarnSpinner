@@ -36,6 +36,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Yarn Spinner's Unity integration now supports Unity 2018.4 LTS and later. (Previously, the minimum version was unspecified, but was actually 2019.2.)
 - Fixed a bug that caused the unary minus operator (e.g. `-$foo`) to cause crashes when it's run.
 - Unit tests now use test plans, which makes the test cases much more rigorous.
+- Methods for working with functions in the `DialogueRunner` class for Yarn Spinner for Unity (thanks to @unknowndevice): 
+  - Renamed: `AddFunction` (renamed from `RegisterFunction`)
+  - Added: `RemoveFunction`, which removes a function.
 
 ### Removed
 
