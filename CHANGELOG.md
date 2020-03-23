@@ -33,6 +33,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **Faster Compiling:** Yarn Spinner for Unity now uses .asmdef files. 
   - Yarn Spinner's Unity code now compiles to a separate assembly.
   - **IMPORTANT:** if you're using asmdefs in your own code, any assembly you write that needs to refer to Yarn Spinner will need to add a reference to the YarnSpinner.Unity assembly.
+- **Patreon Supporter Info**: [Patreon supporter](https://www.patreon.com/bePatron?u=11132340) information is now displayed in the Yarn Spinner window in Yarn Spinner for Unity. 
+  - To view it, open the Window menu, and choose Yarn Spinner.
+  - While you're viewing it, why not consider becoming a supporter yourself? 😃
 
 ### Changed
 
