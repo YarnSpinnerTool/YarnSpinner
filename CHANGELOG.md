@@ -8,13 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Added support for inline expressions, which can be used in lines, options and commands.
+- **Inline Expressions**: Embed variables, values and expressions right into your dialogue.
   - You can use inline expressions in lines, options, shortcut options, and commands.
   - Inline expressions look like this: `Mae: Wow! I have {$num_pies} pies!`.
   - When the compiler processes a line that includes an inline expression, the line that's stored in the string table will have each of the expressions replaced with a placeholder. For example, the line above will be stored as `Mae: Wow! I have {0} pies!`. If you're translating a line to other languages, the placeholders can be moved and re-ordered as you need them.
   - Any expression can be used - numbers, strings, variables, function calls, or more complex expressions.
   - The `Line` struct now includes an array of substitutions, which Dialogue UI objects will insert into the localised line at the appropriate place.
-- Added support for format functions. 
+  - Documentation for inline expressions is available on the [Yarn Spinner site](https://yarnspinner.dev/docs/syntax/#inline-expressions).
+- **Format Functions**: Easier localisation when dealing with inline expressions.
   - Format functions are in-line expressions in your scripts that dynamically select text based on a variable. These functions can be localised, which means you can change them based on the needs of the language you're translating the game into.
   - Format functions will appear as-is in the .csv string tables that Yarn Spinner for Unity generates, which means that they can be edited by translators.  
   - Please note that format functions are intended to be a tool for ensuring correct grammar across multiple languages. They are more complex than a simple inline expression, and may complicate your dialogue. They're not intended to replace `if`-`endif` structures for your dialogue's logic.
@@ -26,10 +27,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - The `ordinal` function uses a number variable and determines its ordinal category. For example:
     - `Character: The race is over! I came [ordinal {$race_position} one="%st" two="%nd" few="%rd" other="%th"]!`
     - This example also shows how you can embed the variable that the function is using in the result - the `%` character will be replaced the variable's value (in this example, `$race_position`, creating text like "I came 3rd!")
-  - Different languages have different plural rules. Yarn Spinner uses the plural rules defined by the [Unicode CLDR](https://www.unicode.org/cldr/charts/36/supplemental/language_plural_rules.html); note that not all languages make use of all plural categories.
+  - Different languages have different plural rules. Yarn Spinner uses the plural rules defined by the [Unicode CLDR](https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html); note that not all languages make use of all plural categories.
     - Yarn Spinner for Unity will use the Text Language setting to determine which plural rules to apply.
-- Yarn Spinner for Unity now uses .asmdef files. Yarn Spinner's Unity code now compiles to a separate assembly.
-  - **IMPORTANT:** if you're using asmdefs in your game's code, you will need to add a reference to YarnSpinner.Unity.
+  - Documentation for format functions is available on the [Yarn Spinner site](https://yarnspinner.dev/docs/syntax/#format-functions).
+- **Faster Compiling:** Yarn Spinner for Unity now uses .asmdef files. 
+  - Yarn Spinner's Unity code now compiles to a separate assembly.
+  - **IMPORTANT:** if you're using asmdefs in your own code, any assembly you write that needs to refer to Yarn Spinner will need to add a reference to the YarnSpinner.Unity assembly.
 
 ### Changed
 
