@@ -15,22 +15,28 @@ namespace Yarn.Compiler
 {
 
     
-
+    /// <summary>Specifies the result of compiling Yarn code.</summary>
+    /// <remarks>This enum specifies the _type_ of success that resulted.
+    /// Compilation failures will result in an exception, so they don't get
+    /// a Status.</remarks>
     public enum Status {
-        /// The compilation succeeded with no errors
+
+        /// <summary>The compilation succeeded with no errors</summary>
         Succeeded, 
 
-        /// The compilation succeeded, but some strings do not have string tags. 
+        /// <summary>The compilation succeeded, but some strings do not have string tags.</summary>
         SucceededUntaggedStrings,
 
     }
     
+    /// <summary>
+    /// Compiles Yarn code.
+    /// </summary>
     public class Compiler : YarnSpinnerParserBaseListener
     {
 
         
-        // (compilation failures will result in an exception, so they don't get a Status)
-
+        
         private int labelCount = 0;
 
         internal Program program { get; private set; }
@@ -54,7 +60,7 @@ namespace Yarn.Compiler
             this.fileName = fileName;            
         }
 
-        
+        /// Compiles a file, and generates a program and a derived string table.
         public static Status CompileFile(string path, out Program program, out IDictionary<string,StringInfo> stringTable) {
             var source = File.ReadAllText(path);
 
@@ -69,7 +75,7 @@ namespace Yarn.Compiler
         internal List<string> tokens;
         #endif
 
-        // Given a bunch of raw text, load all nodes that were inside it.
+        
         public static Status CompileString(string text, string fileName, out Program program, out IDictionary<string,StringInfo> stringTable)
         {
 

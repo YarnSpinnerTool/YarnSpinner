@@ -30,6 +30,9 @@ using System.Collections.Generic;
 using CsvHelper;
 using System;
 
+/// <summary>
+/// Yarn Spinner for Unity.
+/// </summary>
 namespace Yarn.Unity
 {
     public interface ILineLocalisationProvider {
@@ -478,9 +481,9 @@ namespace Yarn.Unity
 
         
 
-        /// commands that can be automatically dispatched look like this:
-        /// COMMANDNAME OBJECTNAME <param> <param> <param> ...
-        /** We can dispatch this command if:
+        // commands that can be automatically dispatched look like this:
+        // COMMANDNAME OBJECTNAME <param> <param> <param> ...
+        /* We can dispatch this command if:
          * 1. it has at least 2 words
          * 2. the second word is the name of an object
          * 3. that object has components that have methods with the
@@ -717,14 +720,7 @@ namespace Yarn.Unity
 
     }
 
-    /// them to Yarn.
-
-    /** For example:
-     *  [YarnCommand("dosomething")]
-     *      void Foo() {
-     *         do something!
-     *      }
-     */
+    /// Allows tagging a method as a command that can be called from Yarn.
     public class YarnCommandAttribute : System.Attribute
     {
         public string commandString { get; private set; }

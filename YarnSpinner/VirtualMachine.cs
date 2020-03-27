@@ -6,6 +6,9 @@ using static Yarn.Instruction.Types;
 
 namespace Yarn
 {
+    /// <summary>
+    /// A value used by an Instruction.
+    /// </summary>
     public partial class Operand {
         // Define some convenience constructors for the Operand type, so
         // that we don't need to have two separate steps for creating and

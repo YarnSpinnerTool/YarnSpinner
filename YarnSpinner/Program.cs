@@ -6,6 +6,10 @@ using static Yarn.Instruction.Types;
 
 namespace Yarn
 {
+	/// <summary>
+	/// Information about a string. Stored inside a string table, which is
+	/// produced from the Compiler.
+	/// </summary>
 	public struct StringInfo {
             public string text;
             public string nodeName;
@@ -31,6 +35,9 @@ namespace Yarn
             }
         }
 	
+	/// <summary>
+	/// A compiled Yarn program.
+	/// </summary>
 	public partial class Program
 	{
 
@@ -107,6 +114,9 @@ namespace Yarn
 		}
 	}
 
+	/// <summary>
+	/// An instruction in a Yarn Program.
+	/// </summary>
 	public partial class Instruction
 	{
 		
