@@ -10,6 +10,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+### Removed
+
+## [v1.1.0-beta3]
+
+### Added
+
+### Changed
+
 - Fixed a bug that caused `<<else>>` to be incorrectly parsed as a command, not an `else` statement, which meant that flow control didn't work correctly.
 
 ## [v1.0.0-beta2]
