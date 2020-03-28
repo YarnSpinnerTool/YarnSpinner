@@ -8,6 +8,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+### Changed
+
+### Removed
+
+## [v1.1.0-beta3]
+
+### Added
+
+### Changed
+
+- Fixed a bug that caused `<<else>>` to be incorrectly parsed as a command, not an `else` statement, which meant that flow control didn't work correctly.
+
+## [v1.0.0-beta2]
+
+### Added
+
 - **Inline Expressions**: Embed variables, values and expressions right into your dialogue.
   - You can use inline expressions in lines, options, shortcut options, and commands.
   - Inline expressions look like this: `Mae: Wow! I have {$num_pies} pies!`.

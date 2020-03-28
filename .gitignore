@@ -145,3 +145,7 @@ Unity/Assets/YarnSpinner/Scripts/DLLs/*.pdb*
 Unity/Logs
 
 export.log
+
+
+# Auto-generated API documentation metadata
+/_api/
