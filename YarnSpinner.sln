@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YarnSpinner.Tests", "YarnSp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YarnSpinner.Compiler", "YarnSpinner.Compiler\YarnSpinner.Compiler.csproj", "{CBFD3E89-DD32-4EC3-B3B8-3B8D3DBBC213}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YarnSpinner.Unity", "Unity\YarnSpinner.Unity.csproj", "{5C0E715E-0A90-0477-61DD-35732DCC052A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
