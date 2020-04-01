@@ -3,14 +3,18 @@ using System.Globalization;
 
 namespace Yarn.Compiler {
     
-    // An exception representing something going wrong during parsing
+    /// <summary>
+    /// An exception representing something going wrong during parsing.
+    /// </summary>
 	[Serializable]
 	public sealed class ParseException : Exception
 	{
 
-		internal int lineNumber = 0;
+		internal int LineNumber = 0;
 
-        public static ParseException Make(Antlr4.Runtime.ParserRuleContext context, string message)
+        internal ParseException(string message) : base(message) { }
+
+        internal static ParseException Make(Antlr4.Runtime.ParserRuleContext context, string message)
         {
             int line = context.Start.Line;
 
@@ -21,12 +25,14 @@ namespace Yarn.Compiler {
 
             string theMessage = string.Format(CultureInfo.CurrentCulture, "Error on line {0}\n{1}\n{2}", line,body,message);
 
-            var e = new ParseException(theMessage);
-            e.lineNumber = line;
+            var e = new ParseException(theMessage)
+            {
+                LineNumber = line,
+            };
             return e;
         }
 
-		public ParseException(string message) : base(message) { }
+		
 	}
 	
 }

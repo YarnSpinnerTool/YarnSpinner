@@ -6,7 +6,7 @@ using System.Globalization;
 
 namespace Yarn.Compiler
 {
-    public sealed class LexerErrorListener : IAntlrErrorListener<int>
+    internal sealed class LexerErrorListener : IAntlrErrorListener<int>
     {
         private static readonly LexerErrorListener instance = new LexerErrorListener();
         public static LexerErrorListener Instance => instance;
@@ -22,7 +22,7 @@ namespace Yarn.Compiler
         }
     }
 
-    public sealed class ParserErrorListener : BaseErrorListener
+    internal sealed class ParserErrorListener : BaseErrorListener
     {
         private static readonly ParserErrorListener instance = new ParserErrorListener();
         public static ParserErrorListener Instance => instance;

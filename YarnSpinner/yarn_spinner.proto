@@ -11,6 +11,7 @@ message Program {
     map<string, Node> nodes = 2;   	
 }
 
+// A collection of instructions
 message Node {
 	// The name of this node.
 	string name = 1;
@@ -22,6 +23,7 @@ message Node {
     // instructions list.
 	map<string, int32> labels = 3;
 	
+	// The tags associated with this node.
 	repeated string tags = 4;
 
 	// the entry in the program's string table that contains the original
@@ -29,6 +31,7 @@ message Node {
 	string sourceTextStringID = 5;
 }
 
+// A single Yarn instruction.
 message Instruction {
 
 	// The operation that this instruction will perform.
@@ -37,6 +40,7 @@ message Instruction {
 	// The list of operands, if any, that this instruction uses.
     repeated Operand operands = 2;
 
+	// The type of instruction that this is.
     enum OpCode {
 		
 		// Jumps to a named position in the node.
@@ -119,6 +123,8 @@ message Instruction {
 
 // A value used by an Instruction.
 message Operand {
+
+	// The type of operand this is.
     oneof value {
 		
 		// A string.
