@@ -97,7 +97,7 @@ namespace Yarn.Unity {
         
         /// A UI.Text that can show the current list of all variables. Optional.
         [SerializeField] 
-        internal UnityEngine.UI.Text debugTextView;
+        internal UnityEngine.UI.Text debugTextView = null;
 
         /// Reset to our default values when the game starts
         internal void Awake ()
