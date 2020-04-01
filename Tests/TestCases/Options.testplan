@@ -1,0 +1,35 @@
+option: Option 1
+option: Option 3
+select: 1
+line: This line should appear.
+option: Sub Option 1
+option: Sub Option 2
+select: 1
+line: This line should also appear.
+
+line: Bea: line text
+option: option1
+option: option2
+select: 1
+line: Bea: line text2
+
+line: Bea: indented line text
+option: indented option1
+option: indented option2
+select: 1
+line: Bea: indented line text2
+
+line: Bea: line text
+option: indented option1 following unindented line
+option: indented option2 following unindented line
+select: 1
+
+option: Option A
+option: Option B
+select: 1
+
+line: (Break up the commands)
+
+option: Option A
+option: Option B
+select: 1

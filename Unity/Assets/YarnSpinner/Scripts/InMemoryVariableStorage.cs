@@ -31,42 +31,84 @@ using Yarn.Unity;
 
 namespace Yarn.Unity {
 
-    /// An extremely simple implementation of DialogueUnityVariableStorage,
-    /// which just stores everything in a Dictionary in memory.
+    /// <summary>
+    /// An simple implementation of DialogueUnityVariableStorage, which
+    /// stores everything in memory.
+    /// </summary>
+    /// <remarks>
+    /// This class does not perform any saving or loading on its own, but
+    /// you can enumerate over the variables by using a `foreach` loop:
+    /// 
+    /// <![CDATA[
+    /// ```csharp    
+    /// // 'storage' is an InMemoryVariableStorage    
+    /// foreach (var variable in storage) {
+    ///         string name = variable.Key;
+    ///         Yarn.Value value = variable.Value;
+    /// }   
+    /// ```
+    /// ]]>
+    /// 
+    /// </remarks>    
     public class InMemoryVariableStorage : VariableStorageBehaviour, IEnumerable<KeyValuePair<string, Yarn.Value>>
     {
 
         /// Where we actually keeping our variables
-        Dictionary<string, Yarn.Value> variables = new Dictionary<string, Yarn.Value> ();
+        private Dictionary<string, Yarn.Value> variables = new Dictionary<string, Yarn.Value> ();
 
+        /// <summary>
         /// A default value to apply when the object wakes up, or when
-        /// ResetToDefaults is called
+        /// ResetToDefaults is called.
+        /// </summary>
         [System.Serializable]
         public class DefaultVariable
         {
-            /// Name of the variable
+            /// <summary>
+            /// The name of the variable.
+            /// </summary>
+            /// <remarks>
+            /// Do not include the `$` prefix in front of the variable
+            /// name. It will be added for you.
+            /// </remarks>
             public string name;
-            /// Value of the variable
+
+            /// <summary>
+            /// The value of the variable, as a string.
+            /// </summary>
+            /// <remarks>
+            /// This string will be converted to the appropriate type,
+            /// depending on the value of <see cref="type"/>.
+            /// </remarks>
             public string value;
-            /// Type of the variable
+
+            /// <summary>
+            /// The type of the variable.
+            /// </summary>
             public Yarn.Value.Type type;
         }
 
-        /// Our list of default variables, for debugging.
+        /// <summary>
+        /// The list of default variables that should be present in the
+        /// InMemoryVariableStorage when the scene loads.
+        /// </summary>
         public DefaultVariable[] defaultVariables;
 
         [Header("Optional debugging tools")]
-        /// A UI.Text that can show the current list of all variables.
-        /// Optional.
-        public UnityEngine.UI.Text debugTextView;
+        
+        /// A UI.Text that can show the current list of all variables. Optional.
+        [SerializeField] 
+        internal UnityEngine.UI.Text debugTextView = null;
 
         /// Reset to our default values when the game starts
-        void Awake ()
+        internal void Awake ()
         {
             ResetToDefaults ();
         }
 
-        /// Erase all variables and reset to default values
+        /// <summary>
+        /// Removes all variables, and replaces them with the variables
+        /// defined in <see cref="defaultVariables"/>.
+        /// </summary>
         public override void ResetToDefaults ()
         {
             Clear ();
@@ -118,15 +160,27 @@ namespace Yarn.Unity {
             }
         }
 
-        /// Set a variable's value
-        public override void SetValue (string variableName, Yarn.Value value)
+        /// <summary>
+        /// Stores a <see cref="Value"/>.
+        /// </summary>
+        /// <param name="variableName">The name to associate with this
+        /// variable.</param>
+        /// <param name="value">The value to store.</param>
+        public override void SetValue (string variableName, Value value)
         {
             // Copy this value into our list
             variables[variableName] = new Yarn.Value(value);
         }
 
-        /// Get a variable's value
-        public override Yarn.Value GetValue (string variableName)
+        /// <summary>
+        /// Retrieves a <see cref="Value"/> by name.
+        /// </summary>
+        /// <param name="variableName">The name of the variable to retrieve
+        /// the value of.</param>
+        /// <returns>The <see cref="Value"/>. If a variable by the name of
+        /// <paramref name="variableName"/> is not present, returns a value
+        /// representing `null`.</returns>
+        public override Value GetValue (string variableName)
         {
             // If we don't have a variable with this name, return the null
             // value
@@ -136,14 +190,16 @@ namespace Yarn.Unity {
             return variables [variableName];
         }
 
-        /// Erase all variables
+        /// <summary>
+        /// Removes all variables from storage.
+        /// </summary>
         public override void Clear ()
         {
             variables.Clear ();
         }
 
         /// If we have a debug view, show the list of all variables in it
-        void Update ()
+        internal void Update ()
         {
             if (debugTextView != null) {
                 var stringBuilder = new System.Text.StringBuilder ();
@@ -176,11 +232,21 @@ namespace Yarn.Unity {
             }
         }
 
-        public IEnumerator<KeyValuePair<string, Value>> GetEnumerator()
+        /// <summary>
+        /// Returns an <see cref="IEnumerator{T}"/> that iterates over all
+        /// variables in this object.
+        /// </summary>
+        /// <returns>An iterator over the variables.</returns>
+        IEnumerator<KeyValuePair<string, Value>> IEnumerable<KeyValuePair<string, Yarn.Value>>.GetEnumerator()
         {
             return ((IEnumerable<KeyValuePair<string, Value>>)variables).GetEnumerator();
         }
 
+        /// <summary>
+        /// Returns an <see cref="IEnumerator"/> that iterates over all
+        /// variables in this object.
+        /// </summary>
+        /// <returns>An iterator over the variables.</returns>        
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable<KeyValuePair<string, Value>>)variables).GetEnumerator();

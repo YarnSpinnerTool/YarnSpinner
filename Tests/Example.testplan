@@ -1,0 +1,14 @@
+line: A: Hey, I'm a character in a script!
+line: B: And I am too! You are talking to me!
+option: What's going on    
+option: Um ok
+select: 1
+line: A: Why this is a demo of the script system!
+line: B: And you're in it!
+line: A: How delightful!
+line: B: What would you prefer to do next?
+option: Leave
+option: Learn more
+select: 1
+line: A: Oh, goodbye!
+line: B: You'll be back soon!

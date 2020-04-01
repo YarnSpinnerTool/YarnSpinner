@@ -4,7 +4,6 @@ title: Start
 
 These options should be shuffled:
 
-<<prepare_for_options(4, 0)>>
 <<shuffleNextOptions>>
 -> One
 -> Two
@@ -13,7 +12,6 @@ These options should be shuffled:
 
 These options should NOT be shuffled:
 
-<<prepare_for_options(4, 0)>>
 -> One
 -> Two
 -> Three
@@ -21,9 +19,7 @@ These options should NOT be shuffled:
 
 These options should NOT be shuffled
 
-<<prepare_for_options(2, 0)>>
 -> One: Select this option to see shuffled options.
-	<<prepare_for_options(4, 0)>>
 	<<shuffleNextOptions>>
 	-> One
 	-> Two
@@ -34,7 +30,6 @@ These options should NOT be shuffled
 
 These options should NOT be shuffled:
 
-<<prepare_for_options(4, 0)>>
 -> One
 -> Two
 -> Three
@@ -42,14 +37,12 @@ These options should NOT be shuffled:
 
 These options should be shuffled, 50% of the time:
 
-<<prepare_for_options(2, 0)>>
 <<shuffleNextOptions>>
 -> One
 -> Two
 
 These options should be shuffled:
 
-<<prepare_for_options(4, 0)>>
 <<shuffleNextOptions>>
 
 [[One|One]]

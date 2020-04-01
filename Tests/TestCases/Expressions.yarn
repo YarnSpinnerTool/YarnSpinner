@@ -3,26 +3,26 @@ title: Start
 // Expression testing
 
 <<set $test to 1>>
-<<assert ($test == 1)>>
+<<call assert($test == 1)>>
 
 // Test unary operators
 
-<<assert (!$test == false)>>
-<<assert (-$test == -1)>>
-<<assert (-$test == 0 - 1)>>
+<<call assert(!$test == false)>>
+<<call assert(-$test == -1)>>
+<<call assert(-$test == 0 - 1)>>
 
 // Test more complex expressions
 <<set $math = 5 * 2 - 2 * -1 >>
-<<assert ($math is 12)>>
+<<call assert($math is 12)>>
 
 // Test % operator
 <<set $math = 12 >>
 <<set $math = $math % 5 >>
-<<assert ($math is 2)>>
+<<call assert($math is 2)>>
 
 // Test floating point math
-<<assert (1 / 2 == 0.5)>>
-<<assert (0.1 + 0.1 == 0.2)>>
+<<call assert(1 / 2 == 0.5)>>
+<<call assert(0.1 + 0.1 == 0.2)>>
 
 
 ===

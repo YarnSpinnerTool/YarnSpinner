@@ -1,9 +1,10 @@
 fileFormatVersion: 2
 guid: 24f22b038d584445ba4f43344cc5733d
 ScriptedImporter:
-  internalIDToNameTable: []
+  fileIDToRecycleName:
+    4900000: Strings
+    11400000: Program
   externalObjects: {}
-  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -25,8 +26,7 @@ ScriptedImporter:
   compilationStatus: 0
   isSuccesfullyCompiled: 1
   compilationErrorMessage: 
-  baseLanguage: {fileID: 7128917941130120860, guid: 24f22b038d584445ba4f43344cc5733d,
-    type: 3}
+  baseLanguage: {fileID: 4900000, guid: 24f22b038d584445ba4f43344cc5733d, type: 3}
   localizations:
   - languageName: de
     text: {fileID: 4900000, guid: c7ccc37b05d57b5449cdae7c315d1646, type: 3}

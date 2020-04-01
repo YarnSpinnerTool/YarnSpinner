@@ -1,0 +1,13 @@
+title: Start
+---
+// Tests a single line
+
+This is a line of dialogue.
+
+Mae: <shake=.01>HA HA HA HA HA NO I'M FINE.</shake>
+
+// Comments after lines
+Mae: Testing comments after lines // comment
+Mae: Testing comments after hashtags #hashtag // comment
+Mae: Testing comments after line conditions <<if true>> // comment
+===

@@ -1,0 +1,28 @@
+title: Start
+---
+// Testing types
+
+// string equality
+<<call assert("test" == "test")>>
+
+// string-number inequality
+<<call assert("test" != 1)>>
+
+// string case sensitivity
+<<call assert("hi" != "HI")>>
+
+// multiple-type concatenation
+<<call assert(1+1+"hi" == "2hi")>>
+
+// gt test
+<<call assert(3 gt 2)>>
+
+// lt test
+<<call assert(1 lt 2)>>
+
+// lte test
+<<call assert(2 lte 2)>>
+
+// gte test
+<<call assert(2 gte 2)>>
+===

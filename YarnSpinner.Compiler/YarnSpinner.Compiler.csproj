@@ -4,12 +4,18 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NoWarn>3021</NoWarn> <!--  '...' does not need a CLSCompliant attribute because the assembly does not have a CLSCompliant attribute -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.7.2"/>
     <PackageReference Include="Google.Protobuf" Version="3.10.0"/>    
     <PackageReference Include="CsvHelper" Version="12.2.2" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>    
   </ItemGroup>
 
   <ItemGroup>
