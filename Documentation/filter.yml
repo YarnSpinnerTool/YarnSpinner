@@ -1,0 +1,27 @@
+# Exclude certain namespaces that aren't intended for public consumption
+apiRules:
+    - exclude:
+        uidRegex: ^Yarn\.Analysis
+    - exclude:
+        uidRegex: ^Yarn\.Dialogue\.Analyse
+    - exclude:
+        uidRegex: ^Yarn\.Compiler\.Graph
+    - exclude:
+        uidRegex: ^Yarn\.Compiler\.Compiler\.(Enter|Exit)
+    - exclude:
+        uidRegex: ^CLDRPlurals
+    
+    # Exclude the constructor of attributes that we define (the properties
+    # they rely on are documented anyway, and the constructor is never
+    # explicitly invoked)
+    - exclude:
+        uidRegex: ^Yarn\..*Attribute\.#ctor        
+    
+    # Exclude Protobuf APIs
+    - exclude:
+        uidRegex: ^Yarn\.(Node|Program|Instruction|Operand)\.#ctor
+    - exclude:
+        uidRegex: ^Yarn\.(Node|Program|Instruction|Operand)\.(CalculateSize|Clone|Equals|GetHashCode|MergeFrom|ToString$|Descriptor|Parser|Google#Protobuf#IMessage#Descriptor|WriteTo|.*FieldNumber)
+    - exclude:
+        uidRegex: ^Yarn.YarnSpinnerReflection
+    
