@@ -55,6 +55,9 @@ namespace Yarn {
 
   }
   #region Messages
+  /// <summary>
+  /// A complete Yarn program.
+  /// </summary>
   public sealed partial class Program : pb::IMessage<Program> {
     private static readonly pb::MessageParser<Program> _parser = new pb::MessageParser<Program>(() => new Program());
     private pb::UnknownFieldSet _unknownFields;
@@ -93,6 +96,9 @@ namespace Yarn {
     /// <summary>Field number for the "name" field.</summary>
     public const int NameFieldNumber = 1;
     private string name_ = "";
+    /// <summary>
+    /// The name of the program.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Name {
       get { return name_; }
@@ -106,6 +112,9 @@ namespace Yarn {
     private static readonly pbc::MapField<string, global::Yarn.Node>.Codec _map_nodes_codec
         = new pbc::MapField<string, global::Yarn.Node>.Codec(pb::FieldCodec.ForString(10, ""), pb::FieldCodec.ForMessage(18, global::Yarn.Node.Parser), 18);
     private readonly pbc::MapField<string, global::Yarn.Node> nodes_ = new pbc::MapField<string, global::Yarn.Node>();
+    /// <summary>
+    /// The collection of nodes in this program.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::MapField<string, global::Yarn.Node> Nodes {
       get { return nodes_; }
@@ -204,6 +213,9 @@ namespace Yarn {
 
   }
 
+  /// <summary>
+  /// A collection of instructions
+  /// </summary>
   public sealed partial class Node : pb::IMessage<Node> {
     private static readonly pb::MessageParser<Node> _parser = new pb::MessageParser<Node>(() => new Node());
     private pb::UnknownFieldSet _unknownFields;
@@ -288,6 +300,9 @@ namespace Yarn {
     private static readonly pb::FieldCodec<string> _repeated_tags_codec
         = pb::FieldCodec.ForString(34);
     private readonly pbc::RepeatedField<string> tags_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// The tags associated with this node.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<string> Tags {
       get { return tags_; }
@@ -435,6 +450,9 @@ namespace Yarn {
 
   }
 
+  /// <summary>
+  /// A single Yarn instruction.
+  /// </summary>
   public sealed partial class Instruction : pb::IMessage<Instruction> {
     private static readonly pb::MessageParser<Instruction> _parser = new pb::MessageParser<Instruction>(() => new Instruction());
     private pb::UnknownFieldSet _unknownFields;
@@ -592,6 +610,9 @@ namespace Yarn {
     /// <summary>Container for nested types declared in the Instruction message type.</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static partial class Types {
+      /// <summary>
+      /// The type of instruction that this is.
+      /// </summary>
       public enum OpCode {
         /// <summary>
         /// Jumps to a named position in the node.
