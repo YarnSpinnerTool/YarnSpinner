@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 The MIT License (MIT)
 
@@ -924,9 +924,9 @@ namespace Yarn.Unity
         /// This method determines the final text to deliver to the user,
         /// given a <see cref="Line"/>. Classes that implement this method
         /// should use the Line's <see cref="Line.ID"/> to look up the
-        /// user-facing text in a string table, and then replace any
-        /// substitutions and expand any format functions by calling <see
-        /// cref="Dialogue.ExpandFormatFunctions"/>.
+        /// user-facing text in a string table, replace any substitutions
+        /// in the text, and then expand any format functions by calling
+        /// <see cref="Dialogue.ExpandFormatFunctions"/>.
         ///
         /// See the <seealso cref="Line"/> class's documentation for more
         /// information on how to prepare a Line for delivery to the user.
@@ -1082,8 +1082,9 @@ namespace Yarn.Unity
         /// </summary>
         /// <remarks>
         /// If this method returns <see
-        /// cref="Dialogue.HandlerExecutionType.ContinueExecution"/>, do
-        /// not call the <paramref name="onLineComplete"/> method.
+        /// cref="Dialogue.HandlerExecutionType.ContinueExecution"/>, it
+        /// should not not call the <paramref name="onLineComplete"/>
+        /// method.
         /// </remarks>
         /// <param name="line">The line that should be displayed to the
         /// user.</param>
@@ -1124,8 +1125,9 @@ namespace Yarn.Unity
         /// could not be handled by the <see cref="DialogueRunner"/>.
         ///
         /// If this method returns <see
-        /// cref="Dialogue.HandlerExecutionType.ContinueExecution"/>, do
-        /// not call the <paramref name="onCommandComplete"/> method.
+        /// cref="Dialogue.HandlerExecutionType.ContinueExecution"/>, it
+        /// should not call the <paramref name="onCommandComplete"/>
+        /// method.
         /// </remarks>
         /// <param name="command">The command to be executed.</param>
         /// <param name="onCommandComplete">A method that should be called

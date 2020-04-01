@@ -528,13 +528,12 @@ namespace Yarn {
         }
 
         /// <summary>
-        /// Loads all nodes from the provided <see
-        /// cref="Yarn.Program"/>.
+        /// Loads all nodes from the provided <see cref="Yarn.Program"/>.
         /// </summary>
         /// <remarks>
-        /// This method replaces any existing nodes have been loaded.
-        /// If you want to load nodes from _additional_ Program, use the <see
-        /// cref="AddProgram(Program)"/> method.
+        /// This method replaces any existing nodes have been loaded. If
+        /// you want to load nodes from an _additional_ Program, use the
+        /// <see cref="AddProgram(Program)"/> method.
         /// </remarks>
         /// <param name="program">The <see cref="Yarn.Program"/> to
         /// use.</param>
