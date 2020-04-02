@@ -12,6 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Removed
 
+## [v1.1.0] - 2020-04-01
+
+Final release of v1.1.0.
+
 ## [v1.1.0-beta3]
 
 ### Added
