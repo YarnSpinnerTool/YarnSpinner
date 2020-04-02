@@ -308,7 +308,7 @@ namespace Yarn.Unity {
                 onLineUpdate?.Invoke(text);
             }
 
-            // Wait for pre-calculated voice over duration (Unity audio system) to finish.
+            // Wait for pre-calculated voice over duration to finish.
             yield return new WaitUntil(() => Time.time - startTime > voiceOverDuration);
 
             // We're now waiting for the player to move on to the next line
