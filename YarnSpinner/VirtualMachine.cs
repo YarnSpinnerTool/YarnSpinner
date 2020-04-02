@@ -219,9 +219,14 @@ namespace Yarn
         Node currentNode;
 
         public bool SetNode(string nodeName) {
+
+            if (Program == null || Program.Nodes.Count == 0) {
+                throw new DialogueException($"Cannot load node {nodeName}: No nodes have been loaded.");
+            }
+
             if (Program.Nodes.ContainsKey(nodeName) == false) {
                 executionState = ExecutionState.Stopped;
-                throw new DialogueException($"No node named {nodeName}");                
+                throw new DialogueException($"No node named {nodeName} has been loaded.");                
             }
 
             dialogue.LogDebugMessage ("Running node " + nodeName);
