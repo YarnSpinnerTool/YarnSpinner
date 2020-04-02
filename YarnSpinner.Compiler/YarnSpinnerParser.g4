@@ -8,7 +8,7 @@ dialogue
 
 // File-global hashtags, which precede all nodes
 file_hashtag
-    : HASHTAG HASHTAG_TEXT HASHTAG_NEWLINE
+    : HASHTAG HASHTAG_TEXT TEXT_COMMANDHASHTAG_NEWLINE
     ;
 
 node
@@ -37,22 +37,34 @@ statement
 line_statement
     : 
         line_formatted_text // text, interspersed with expressions
-        (hashtag|line_condition)*  // any number of hashtags or line conditions
-        (TEXT_NEWLINE|HASHTAG_NEWLINE) // the end of the line
+        line_condition? // a line condition
+        hashtag*  // any number of hashtags
+        (TEXT_NEWLINE|TEXT_COMMANDHASHTAG_NEWLINE) // the end of the line
     ;
 
 line_formatted_text
     : ( TEXT // a chunk of text to show to the player
         | TEXT_EXPRESSION_START expression EXPRESSION_END // an expression to evaluate
+      | (FORMAT_FUNCTION_START|TEXT_FORMAT_FUNCTION_START) format_function FORMAT_FUNCTION_END // a format function
       )* 
     ;
 
+format_function
+    : function_name=FORMAT_FUNCTION_ID FORMAT_FUNCTION_EXPRESSION_START variable EXPRESSION_END key_value_pair*
+    ;
+
+// key="value"
+key_value_pair
+    : pair_key=FORMAT_FUNCTION_ID FORMAT_FUNCTION_EQUALS pair_value=FORMAT_FUNCTION_STRING #KeyValuePairNamed
+    | pair_key=FORMAT_FUNCTION_NUMBER FORMAT_FUNCTION_EQUALS pair_value=FORMAT_FUNCTION_STRING #KeyValuePairNumber
+    ;
+
 hashtag
-    : (TEXT_HASHTAG|HASHTAG_TAG|BODY_HASHTAG|HASHTAG) text=HASHTAG_TEXT
+    : (TEXT_HASHTAG|TEXT_COMMANDHASHTAG_HASHTAG|HASHTAG_TAG|BODY_HASHTAG|HASHTAG) text=HASHTAG_TEXT
     ;
 
 line_condition
-    : (TEXT_COMMAND_START|HASHTAG_COMMAND_START) COMMAND_IF expression EXPRESSION_COMMAND_END
+    : (TEXT_COMMANDHASHTAG_COMMAND_START|TEXT_COMMAND_START) COMMAND_IF expression EXPRESSION_COMMAND_END
     ;
 
 expression
@@ -115,7 +127,7 @@ call_statement
     ;
 
 command_statement
-    : COMMAND_START command_formatted_text COMMAND_TEXT_END (hashtag* HASHTAG_NEWLINE)?
+    : COMMAND_START command_formatted_text COMMAND_TEXT_END (hashtag* TEXT_COMMANDHASHTAG_NEWLINE)?
     ;
 
 command_formatted_text
@@ -131,7 +143,7 @@ shortcut_option
     ;
 
 option_statement
-    : '[[' option_formatted_text '|' NodeName=OPTION_ID ']]' (hashtag* HASHTAG_NEWLINE)? #OptionLink
+    : '[[' option_formatted_text '|' NodeName=OPTION_ID ']]' (hashtag* TEXT_COMMANDHASHTAG_NEWLINE)? #OptionLink
     | '[[' NodeName=OPTION_TEXT ']]' #OptionJump
     ;
 
@@ -139,5 +151,6 @@ option_formatted_text
     : (
         OPTION_TEXT 
         | OPTION_EXPRESSION_START expression EXPRESSION_END 
+        | OPTION_FORMAT_FUNCTION_START format_function FORMAT_FUNCTION_END
       )+
     ;

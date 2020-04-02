@@ -6,6 +6,9 @@ using static Yarn.Instruction.Types;
 
 namespace Yarn
 {
+    /// <summary>
+    /// A value used by an Instruction.
+    /// </summary>
     public partial class Operand {
         // Define some convenience constructors for the Operand type, so
         // that we don't need to have two separate steps for creating and
@@ -216,9 +219,14 @@ namespace Yarn
         Node currentNode;
 
         public bool SetNode(string nodeName) {
+
+            if (Program == null || Program.Nodes.Count == 0) {
+                throw new DialogueException($"Cannot load node {nodeName}: No nodes have been loaded.");
+            }
+
             if (Program.Nodes.ContainsKey(nodeName) == false) {
                 executionState = ExecutionState.Stopped;
-                throw new DialogueException($"No node named {nodeName}");                
+                throw new DialogueException($"No node named {nodeName} has been loaded.");                
             }
 
             dialogue.LogDebugMessage ("Running node " + nodeName);
@@ -239,7 +247,11 @@ namespace Yarn
             if (executionState != ExecutionState.WaitingOnOptionSelection) {
 
                 throw new DialogueException(@"SetSelectedOption was called, but Dialogue wasn't waiting for a selection.
-                This method should only be called after the Dialogue is waiting for the user to select an option.");                
+                This method should only be called after the Dialogue is waiting for the user to select an option.");
+            }
+
+            if (selectedOptionID < 0 || selectedOptionID >= state.currentOptions.Count) {
+                throw new ArgumentOutOfRangeException($"{selectedOptionID} is not a valid option ID (expected a number between 0 and {state.currentOptions.Count-1}.");
             }
 
             // We now know what number option was selected; push the
@@ -257,35 +269,42 @@ namespace Yarn
         }
                     
 
-        /// Resumes execution.inheritdoc
+        /// Resumes execution.
         internal void Continue() {
 
-            if (currentNode == null) {
-                throw new DialogueException("Cannot continue running dialogue. No node has been selected.");                
+            if (currentNode == null)
+            {
+                throw new DialogueException("Cannot continue running dialogue. No node has been selected.");
             }
 
-            if (executionState == ExecutionState.WaitingOnOptionSelection) {
-                throw new DialogueException ("Cannot continue running dialogue. Still waiting on option selection.");                
+            if (executionState == ExecutionState.WaitingOnOptionSelection)
+            {
+                throw new DialogueException("Cannot continue running dialogue. Still waiting on option selection.");
             }
 
-            if (lineHandler == null) {
-                throw new DialogueException ($"Cannot continue running dialogue. {nameof(lineHandler)} has not been set.");                
+            if (lineHandler == null)
+            {
+                throw new DialogueException($"Cannot continue running dialogue. {nameof(lineHandler)} has not been set.");
             }
 
-            if (optionsHandler == null) {
-                throw new DialogueException ($"Cannot continue running dialogue. {nameof(optionsHandler)} has not been set.");                
+            if (optionsHandler == null)
+            {
+                throw new DialogueException($"Cannot continue running dialogue. {nameof(optionsHandler)} has not been set.");
             }
 
-            if (commandHandler == null) {
-                throw new DialogueException ($"Cannot continue running dialogue. {nameof(commandHandler)} has not been set.");                
+            if (commandHandler == null)
+            {
+                throw new DialogueException($"Cannot continue running dialogue. {nameof(commandHandler)} has not been set.");
             }
 
-            if (nodeCompleteHandler == null) {
-                throw new DialogueException ($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");                
+            if (nodeCompleteHandler == null)
+            {
+                throw new DialogueException($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");
             }
 
-            if (nodeCompleteHandler == null) {
-                throw new DialogueException ($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");                
+            if (nodeCompleteHandler == null)
+            {
+                throw new DialogueException($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");
             }
 
             executionState = ExecutionState.Running;
@@ -561,7 +580,7 @@ namespace Yarn
                         /** Get the contents of a variable, push that onto the stack.
                          */
                         var variableName = i.Operands[0].StringValue;
-                        var loadedValue = dialogue.continuity.GetValue(variableName);
+                        var loadedValue = dialogue.variableStorage.GetValue(variableName);
                         state.PushValue(loadedValue);
 
                         break;
@@ -574,7 +593,7 @@ namespace Yarn
                          */
                         var topValue = state.PeekValue();
                         var destinationVariableName = i.Operands[0].StringValue;
-                        dialogue.continuity.SetValue(destinationVariableName, topValue);
+                        dialogue.variableStorage.SetValue(destinationVariableName, topValue);
 
                         break;
                     }

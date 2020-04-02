@@ -24,4 +24,12 @@ option: indented option1 following unindented line
 option: indented option2 following unindented line
 select: 1
 
-command: command1
+option: Option A
+option: Option B
+select: 1
+
+line: (Break up the commands)
+
+option: Option A
+option: Option B
+select: 1
