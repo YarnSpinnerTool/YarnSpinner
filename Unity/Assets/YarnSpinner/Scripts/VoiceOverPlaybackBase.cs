@@ -11,6 +11,6 @@ namespace Yarn.Unity {
         /// <param name="currentLine">The yarn line we want to playback a voice over file for.</param>
         /// <param name="voiceOver">The associated voice over AudioClip. Can be null if external middlewares are used.</param>
         /// <param name="dialogueUI"></param>
-        public abstract void StartLineVoiceOver(Yarn.Line currentLine, AudioClip voiceOver = null, DialogueUIBehaviour dialogueUI = null);
+        public abstract void StartLineVoiceOver(Yarn.Line currentLine, AudioClip voiceOver = null, DialogueViewBase dialogueUI = null);
     }
 }

@@ -46,7 +46,7 @@ namespace Yarn.Unity {
     /// to the next line.
     /// </remarks>
     /// <seealso cref="DialogueRunner"/>
-    public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
+    public class DialogueUI : Yarn.Unity.DialogueViewBase 
     {
 
         /// <summary>

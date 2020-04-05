@@ -58,7 +58,7 @@ namespace Yarn.Unity
         /// <summary>
         /// The object that will handle the actual display and user input.
         /// </summary>
-        public DialogueUIBehaviour dialogueUI;
+        public DialogueViewBase dialogueUI;
 
         /// <summary>
         /// This object will handle the audio playback 
@@ -130,17 +130,13 @@ namespace Yarn.Unity
         /// program's string table to the DialogueRunner's combined string table.
         /// </summary>
         /// <remarks>This method calls <see
-        /// cref="AddStringTable(YarnProgram)"/> to load the string table
+        /// cref="AddDialogueLines(YarnProgram)"/> to load the string table
         /// for the current localisation. It selects the appropriate string
-        /// table based on the value of <see
-        /// cref="textLanguage"/>.</remarks>
-        /// <param name="scriptToLoad">The <see cref="YarnProgram"/> to
-        /// load.</param>
+        /// table based on the value of set in the Preferences dialogue.
         public void Add(YarnProgram scriptToLoad)
         {
             Dialogue.AddProgram(scriptToLoad.GetProgram());
-            AddStringTable(scriptToLoad);
-            AddVoiceOvers(scriptToLoad.voiceOvers);
+            AddDialogueLines(scriptToLoad);
         }
 
         /// <summary>
@@ -158,69 +154,74 @@ namespace Yarn.Unity
         /// the base localisation in its <see
         /// cref="YarnProgram.localizations"/>. 
         ///
-        /// The specific string table that this method uses is determined
-        /// by the value of <see cref="textLanguage"/>. If this is empty or
-        /// null, <see cref="YarnProgram.baseLocalisationStringTable"/> is
-        /// used.
         /// </remarks>
         /// <param name="yarnScript">The <see cref="YarnProgram"/> to get
         /// the string table from.</param>
-        public void AddStringTable(YarnProgram yarnScript)
-        {
-            var textToLoad = new TextAsset();
-
-            if (yarnScript.localizations != null || yarnScript.localizations.Length > 0) {
-                textToLoad = Array.Find(yarnScript.localizations, element => element.languageName == Preferences.TextLanguage)?.text;
+        private void AddDialogueLines (YarnProgram yarnScript) {
+            List<YarnTranslation> textsToLoad = new List<YarnTranslation>();
+            
+            // Add base language
+            textsToLoad.Add(new YarnTranslation(yarnScript.baseLocalizationId, yarnScript.baseLocalisationStringTable));
+            
+            // Add all available localizations
+            foreach (var localization in yarnScript.localizations) {
+                textsToLoad.Add(localization);
             }
 
-            if (textToLoad == null || string.IsNullOrEmpty(textToLoad.text)) {
-                textToLoad = yarnScript.baseLocalisationStringTable;
-            }
-
+            // TODO: Is this relevant?
             // Use the invariant culture when parsing the CSV
             var configuration = new CsvHelper.Configuration.Configuration(
                 System.Globalization.CultureInfo.InvariantCulture
             );
 
-            using (var reader = new System.IO.StringReader(textToLoad.text))
-            using (var csv = new CsvReader(reader, configuration)) {
-                csv.Read();
-                csv.ReadHeader();
+            // Load strings of all available languages into DialogueLines dict
+            foreach (var localization in textsToLoad) {
+                using (var reader = new System.IO.StringReader(localization.text.text))
+                using (var csv = new CsvReader(reader, configuration)) {
+                    csv.Read();
+                    csv.ReadHeader();
 
-                while (csv.Read())
-                {
-                    strings.Add(csv.GetField("id"), csv.GetField("text"));
+                    while (csv.Read()) {
+                        var lineId = csv.GetField("id");
+                        var lineText = csv.GetField("text");
+
+                        if (dialogueLines.ContainsKey(lineId)) {
+                            if (dialogueLines[lineId].TextLocalized.ContainsKey(localization.languageName)) {
+                                dialogueLines[lineId].TextLocalized[localization.languageName] = lineText;
+                            } else {
+                                dialogueLines[lineId].TextLocalized.Add(localization.languageName, lineText);
+                            }
+                        } else {
+                            DialogueLine newDialogueLine = new DialogueLine();
+                            newDialogueLine.TextLocalized.Add(localization.languageName, lineText);
+                            dialogueLines.Add(lineId, newDialogueLine);
+                        }
+                    }
                 }
             }
-        }
 
-        public void AddVoiceOvers(LinetagToLanguage[] lineToLanguage) {
-            foreach (var line in lineToLanguage) {
-                foreach (var language in line.languageToAudioclip) {
-                    if (language.language == Preferences.AudioLanguage) {
-                        voiceOvers.Add(line.linetag, language.audioClip);
+            // Load voiceover audio clips of all available languages into DialogueLines dict
+            foreach (var line in yarnScript.voiceOvers) {
+                var lineID = line.linetag;
+
+                foreach (var localization in line.languageToAudioclip) {
+                    var languageId = localization.language;
+                    var voiceOverClip = localization.audioClip;
+
+                    if (dialogueLines.ContainsKey(lineID)) {
+                        if (dialogueLines[lineID].VoiceOverLocalized.ContainsKey(languageId)) {
+                            dialogueLines[lineID].VoiceOverLocalized[languageId] = voiceOverClip;
+                        } else {
+                            dialogueLines[lineID].VoiceOverLocalized.Add(languageId, voiceOverClip);
+                        }
+                    } else {
+                        DialogueLine newDialogueLine = new DialogueLine();
+                        newDialogueLine.VoiceOverLocalized.Add(languageId, voiceOverClip);
+                        dialogueLines.Add(lineID, newDialogueLine);
                     }
                 }
             }
         }
-
-        /// <summary>
-        /// Adds entries to the DialogueRunner's combined string table.
-        /// </summary>
-        /// <remarks>
-        /// This method may be used to directly add <see
-        /// cref="Yarn.Compiler.StringInfo"/> entries into the combined string table,
-        /// instead of accessing them via a <see cref="YarnProgram"/>.
-        /// </remarks>
-        /// <param name="stringTable">A dictionary mapping string IDs to
-        /// <see cref="Yarn.Compiler.StringInfo"/> values.</param>
-        public void AddStringTable(IDictionary<string, Yarn.Compiler.StringInfo> stringTable)
-        {
-            foreach (var line in stringTable) {
-                strings.Add(line.Key, line.Value.text);
-            }
-        }
-
         
         /// <summary>
         /// Starts running dialogue. The node specified by <see
@@ -485,13 +486,10 @@ namespace Yarn.Unity
         Dictionary<string, CommandHandler> commandHandlers = new Dictionary<string, CommandHandler>();
         Dictionary<string, BlockingCommandHandler> blockingCommandHandlers = new Dictionary<string, BlockingCommandHandler>();
 
-        // Maps string IDs received from Yarn Spinner to user-facing text
-        Dictionary<string, string> strings = new Dictionary<string, string>();
-
         /// <summary>
-        /// Linetag and voiceover for the current audio language if Unity's AudioSystem is being used
+        /// Dialogue lines and voice over clips for all available languages.
         /// </summary>
-        private Dictionary<string, AudioClip> voiceOvers = new Dictionary<string, AudioClip>();
+        Dictionary<string, DialogueLine> dialogueLines = new Dictionary<string, DialogueLine>();
 
         // A flag used to note when we call into a blocking command
         // handler, but it calls its complete handler immediately -
@@ -567,8 +565,7 @@ namespace Yarn.Unity
             AddCommandHandler("wait", HandleWaitCommand);
 
             foreach (var yarnScript in yarnScripts) {
-                AddStringTable(yarnScript);
-                AddVoiceOvers(yarnScript.voiceOvers);
+                AddDialogueLines(yarnScript);
             }
 
             continueAction = ContinueDialogue;
@@ -666,7 +663,14 @@ namespace Yarn.Unity
                 // Only resolve linetag to audiofile if there is a receiver for it
                 if (_voiceOverPlayback)
                 {
-                    AudioClip voiceOverAudioClip = voiceOvers.ContainsKey(line.ID) ? voiceOvers[line.ID] : null;
+                    AudioClip voiceOverAudioClip = null;
+
+                    if (dialogueLines.ContainsKey(line.ID)) {
+                        if (dialogueLines[line.ID].VoiceOverLocalized.ContainsKey(Preferences.AudioLanguage)) {
+                            voiceOverAudioClip = dialogueLines[line.ID].VoiceOverLocalized[Preferences.AudioLanguage];
+                        }
+                    }
+
                     _voiceOverPlayback.StartLineVoiceOver(line, voiceOverAudioClip, dialogueUI);
                 }
                 return dialogueUI.RunLine(line, this, continueAction);
@@ -910,7 +914,8 @@ namespace Yarn.Unity
         /// <inheritdoc />
         string ILineLocalisationProvider.GetLocalisedTextForLine(Line line)
         {
-            if (!strings.TryGetValue(line.ID, out var result)) return null;
+            if (!dialogueLines.TryGetValue(line.ID, out var textLocalizations)) return null;
+            if (!textLocalizations.TextLocalized.TryGetValue(Preferences.TextLanguage, out var result)) return null;
 
             // Now that we know the localised string for this line, we
             // can go ahead and inject this line's substitutions.
@@ -923,14 +928,6 @@ namespace Yarn.Unity
             result = Dialogue.ExpandFormatFunctions(result, Preferences.TextLanguage);
 
             return result;
-        }
-
-        AudioClip ILineLocalisationProvider.GetLocalisedAudioClipForLine(Line line) {
-            if (voiceOvers.TryGetValue(line.ID, out var result)) {
-                return result;
-            } else {
-                return null;
-            }
         }
 
         #endregion
@@ -966,8 +963,6 @@ namespace Yarn.Unity
         /// <seealso cref="Dialogue.ExpandFormatFunctions(string,
         /// string)"/>
         string GetLocalisedTextForLine(Line line);
-
-        AudioClip GetLocalisedAudioClipForLine(Yarn.Line line);
     }
 
     /// <summary>
@@ -1089,114 +1084,6 @@ namespace Yarn.Unity
 
         public YarnCommandAttribute(string commandString) => CommandString = commandString;
     }
-
-    /// <summary>
-    /// A <see cref="MonoBehaviour"/> that can display lines, options and commands to the user, and receive input regarding their choices.
-    /// </summary>
-    /// <remarks>
-    /// The <see cref="DialogueRunner"/> uses subclasses of this type to relay information to and from the user, and to pause and resume the execution of the Yarn program.
-    /// </remarks>
-    /// <seealso cref="DialogueRunner.dialogueUI"/>
-    /// <seealso cref="DialogueUI"/>
-    public abstract class DialogueUIBehaviour : MonoBehaviour
-    {
-        /// <summary>Signals that a conversation has started.</summary>
-        public virtual void DialogueStarted()
-        {
-            // Default implementation does nothing.
-        }
-
-        /// <summary>
-        /// Called by the <see cref="DialogueRunner"/> to signal that a line should be displayed to the user.
-        /// </summary>
-        /// <remarks>
-        /// If this method returns <see
-        /// cref="Dialogue.HandlerExecutionType.ContinueExecution"/>, it
-        /// should not not call the <paramref name="onLineComplete"/>
-        /// method.
-        /// </remarks>
-        /// <param name="line">The line that should be displayed to the
-        /// user.</param>
-        /// <param name="localisationProvider">The object that should be
-        /// used to get the localised text of the line.</param>
-        /// <param name="onLineComplete">A method that should be called to
-        /// indicate that the line has finished being delivered.</param>
-        /// <returns><see
-        /// cref="Dialogue.HandlerExecutionType.PauseExecution"/> if
-        /// dialogue should wait until the completion handler is
-        /// called before continuing execution; <see
-        /// cref="Dialogue.HandlerExecutionType.ContinueExecution"/> if
-        /// dialogue should immediately continue running after calling this
-        /// method.</returns>
-        public abstract Dialogue.HandlerExecutionType RunLine(Line line, ILineLocalisationProvider localisationProvider, Action onLineComplete);
-
-        /// <summary>
-        /// Called by the <see cref="DialogueRunner"/> to signal that a set of options should be displayed to the user.
-        /// </summary>
-        /// <remarks>
-        /// When this method is called, the <see cref="DialogueRunner"/>
-        /// will pause execution until the `onOptionSelected` method is
-        /// called.
-        /// </remarks>
-        /// <param name="optionSet">The set of options that should be
-        /// displayed to the user.</param>
-        /// <param name="localisationProvider">The object that should be
-        /// used to get the localised text of each of the options.</param>
-        /// <param name="onOptionSelected">A method that should be called
-        /// when the user has made a selection.</param>
-        public abstract void RunOptions(OptionSet optionSet, ILineLocalisationProvider localisationProvider, Action<int> onOptionSelected);
-
-        /// <summary>
-        /// Called by the <see cref="DialogueRunner"/> to signal that a command should be executed.
-        /// </summary>
-        /// <remarks>
-        /// This method will only be invoked if the <see cref="Command"/>
-        /// could not be handled by the <see cref="DialogueRunner"/>.
-        ///
-        /// If this method returns <see
-        /// cref="Dialogue.HandlerExecutionType.ContinueExecution"/>, it
-        /// should not call the <paramref name="onCommandComplete"/>
-        /// method.
-        /// </remarks>
-        /// <param name="command">The command to be executed.</param>
-        /// <param name="onCommandComplete">A method that should be called
-        /// to indicate that the DialogueRunner should continue
-        /// execution.</param>
-        /// <inheritdoc cref="RunLine(Line, ILineLocalisationProvider, Action)"/>
-        public abstract Dialogue.HandlerExecutionType RunCommand(Command command, Action onCommandComplete);
-
-        /// <summary>
-        /// Called by the <see cref="DialogueRunner"/> to signal that the end of a node has been reached.
-        /// </summary>
-        /// <remarks>
-        /// This method may be called multiple times before <see cref="DialogueComplete"/> is called.
-        /// 
-        /// If this method returns <see
-        /// cref="Dialogue.HandlerExecutionType.ContinueExecution"/>, do
-        /// not call the <paramref name="onComplete"/> method.
-        /// </remarks>
-        /// <param name="nextNode">The name of the next node that is being entered.</param>
-        /// <param name="onComplete">A method that should be called to
-        /// indicate that the DialogueRunner should continue executing.</param>
-        /// <inheritdoc cref="RunLine(Line, ILineLocalisationProvider, Action)"/>
-        public virtual Dialogue.HandlerExecutionType NodeComplete(string nextNode, Action onComplete)
-        {
-            // Default implementation does nothing.
-
-            return Dialogue.HandlerExecutionType.ContinueExecution;
-        }
-
-        /// <summary>
-        /// Called by the <see cref="DialogueRunner"/> to signal that the dialogue has ended.
-        /// </summary>
-        public virtual void DialogueComplete()
-        {
-            // Default implementation does nothing.
-        }
-
-        public abstract void VoiceOverDuration(float duration);
-    }
-
     
     /// <summary>
     /// A <see cref="MonoBehaviour"/> that a <see cref="DialogueRunner"/>
@@ -1241,6 +1128,27 @@ namespace Yarn.Unity
         /// present.
         /// </remarks>
         public abstract void ResetToDefaults();
+    }
+
+    public class DialogueLine {
+        /// <summary>
+        /// DialogueLine's ID
+        /// </summary>
+        public string ID;
+        [Obsolete("This field will always be empty; lines do not contain their own text. Instead, use the ID field to look up the text in the string table.")]
+        public string Text;
+        /// <summary>
+        /// DialogueLine's inline expression's substitution
+        /// </summary>
+        public string[] Substitutions;
+        /// <summary>
+        /// DialogueLine's text per language
+        /// </summary>
+        public Dictionary<string, string> TextLocalized = new Dictionary<string, string>();
+        /// <summary>
+        /// DialogueLine's voice over clip per language
+        /// </summary>
+        public Dictionary<string, AudioClip> VoiceOverLocalized = new Dictionary<string, AudioClip>();
     }
 
     #endregion
