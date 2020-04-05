@@ -193,6 +193,7 @@ namespace Yarn.Unity
                             }
                         } else {
                             DialogueLine newDialogueLine = new DialogueLine();
+                            newDialogueLine.BaseLanguageID = yarnScript.baseLocalizationId;
                             newDialogueLine.TextLocalized.Add(localization.languageName, lineText);
                             dialogueLines.Add(lineId, newDialogueLine);
                         }
@@ -600,7 +601,18 @@ namespace Yarn.Unity
                 }
             }
 
-            void HandleOptions(OptionSet options) => dialogueUI.RunOptions(options, this, selectAction);
+            void HandleOptions(OptionSet options) {
+                DialogueOption[] optionSet = new DialogueOption[options.Options.Length];
+                for (int i = 0; i < options.Options.Length; i++) {
+                    var dialogOption = new DialogueOption();
+                    dialogOption.TextID = options.Options[i].Line.ID;
+                    dialogOption.DialogueOptionID = options.Options[i].ID;
+                    dialogOption.TextLocalized = dialogueLines[options.Options[i].Line.ID].TextLocalized;
+                    dialogOption.BaseLanguageID = dialogueLines[options.Options[i].Line.ID].BaseLanguageID;
+                    optionSet[i] = dialogOption;
+                }
+                dialogueUI.RunOptions(optionSet, selectAction);
+            }
 
             void HandleDialogueComplete()
             {
@@ -660,6 +672,9 @@ namespace Yarn.Unity
             /// Forward the line to the dialogue UI.
             Dialogue.HandlerExecutionType HandleLine(Line line)
             {
+                // Update lines to current state before sending them to the view classes
+                UpdateInlineExpressions(line);
+
                 // Only resolve linetag to audiofile if there is a receiver for it
                 if (_voiceOverPlayback)
                 {
@@ -673,7 +688,7 @@ namespace Yarn.Unity
 
                     _voiceOverPlayback.StartLineVoiceOver(line, voiceOverAudioClip, dialogueUI);
                 }
-                return dialogueUI.RunLine(line, this, continueAction);
+                return dialogueUI.RunLine(dialogueLines[line.ID], continueAction);
             }
 
             /// Indicates to the DialogueRunner that the user has selected an option
@@ -930,6 +945,18 @@ namespace Yarn.Unity
             return result;
         }
 
+        void UpdateInlineExpressions (Line line) {
+            if (!dialogueLines.ContainsKey(line.ID)) return;
+
+            List<string> substitutions = new List<string>();
+
+            foreach (string substitution in line.Substitutions) {
+                substitutions.Add(substitution);
+            }
+
+            dialogueLines[line.ID].Substitutions = substitutions.ToArray();
+        }
+
         #endregion
     }
 
@@ -1134,9 +1161,7 @@ namespace Yarn.Unity
         /// <summary>
         /// DialogueLine's ID
         /// </summary>
-        public string ID;
-        [Obsolete("This field will always be empty; lines do not contain their own text. Instead, use the ID field to look up the text in the string table.")]
-        public string Text;
+        public string TextID;
         /// <summary>
         /// DialogueLine's inline expression's substitution
         /// </summary>
@@ -1149,6 +1174,29 @@ namespace Yarn.Unity
         /// DialogueLine's voice over clip per language
         /// </summary>
         public Dictionary<string, AudioClip> VoiceOverLocalized = new Dictionary<string, AudioClip>();
+        /// <summary>
+        /// The language ID this DialogueLine was written in
+        /// </summary>
+        public string BaseLanguageID;
+    }
+
+    public class DialogueOption {
+        /// <summary>
+        /// The ID of this dialogue option
+        /// </summary>
+        public int DialogueOptionID;
+        /// <summary>
+        /// The ID of the dialogue option's text
+        /// </summary>
+        public string TextID;
+        /// <summary>
+        /// The text of this dialogue option in all available languages
+        /// </summary>
+        public Dictionary<string, string> TextLocalized = new Dictionary<string, string>();
+        /// <summary>
+        /// The language ID the original yarn asset was written in
+        /// </summary>
+        public string BaseLanguageID;
     }
 
     #endregion

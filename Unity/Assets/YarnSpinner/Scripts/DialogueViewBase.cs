@@ -31,10 +31,8 @@ namespace Yarn.Unity
         /// should not not call the <paramref name="onLineComplete"/>
         /// method.
         /// </remarks>
-        /// <param name="line">The line that should be displayed to the
+        /// <param name="dialogueLine">The line that should be displayed to the
         /// user.</param>
-        /// <param name="localisationProvider">The object that should be
-        /// used to get the localised text of the line.</param>
         /// <param name="onLineComplete">A method that should be called to
         /// indicate that the line has finished being delivered.</param>
         /// <returns><see
@@ -44,7 +42,7 @@ namespace Yarn.Unity
         /// cref="Dialogue.HandlerExecutionType.ContinueExecution"/> if
         /// dialogue should immediately continue running after calling this
         /// method.</returns>
-        public abstract Dialogue.HandlerExecutionType RunLine(Line line, ILineLocalisationProvider localisationProvider, Action onLineComplete);
+        public abstract Dialogue.HandlerExecutionType RunLine(DialogueLine dialogueLine, Action onLineComplete);
 
         /// <summary>
         /// Called by the <see cref="DialogueRunner"/> to signal that a set of options should be displayed to the user.
@@ -54,13 +52,11 @@ namespace Yarn.Unity
         /// will pause execution until the `onOptionSelected` method is
         /// called.
         /// </remarks>
-        /// <param name="optionSet">The set of options that should be
+        /// <param name="dialogueOptions">The set of options that should be
         /// displayed to the user.</param>
-        /// <param name="localisationProvider">The object that should be
-        /// used to get the localised text of each of the options.</param>
         /// <param name="onOptionSelected">A method that should be called
         /// when the user has made a selection.</param>
-        public abstract void RunOptions(OptionSet optionSet, ILineLocalisationProvider localisationProvider, Action<int> onOptionSelected);
+        public abstract void RunOptions(DialogueOption[] dialogueOptions, Action<int> onOptionSelected);
 
         /// <summary>
         /// Called by the <see cref="DialogueRunner"/> to signal that a command should be executed.

@@ -265,27 +265,38 @@ namespace Yarn.Unity {
 
         /// Runs a line.
         /// <inheritdoc/>
-        public override Dialogue.HandlerExecutionType RunLine (Yarn.Line line, ILineLocalisationProvider localisationProvider, System.Action onLineComplete)
+        public override Dialogue.HandlerExecutionType RunLine (DialogueLine dialogueLine, System.Action onLineComplete)
         {
             // Start displaying the line; it will call onComplete later
             // which will tell the dialogue to continue
-            StartCoroutine(DoRunLine(line, localisationProvider, onLineComplete));
+            StartCoroutine(DoRunLine(dialogueLine, onLineComplete));
             return Dialogue.HandlerExecutionType.PauseExecution;
         }
 
         /// Show a line of dialogue, gradually        
-        private IEnumerator DoRunLine(Yarn.Line line, ILineLocalisationProvider localisationProvider, System.Action onComplete) {
+        private IEnumerator DoRunLine(DialogueLine dialogueLine, System.Action onComplete) {
             var startTime = Time.time;
             onLineStart?.Invoke();
 
             userRequestedNextLine = false;
             
             // The final text we'll be showing for this line.
-            string text = localisationProvider.GetLocalisedTextForLine(line);
+            string text = dialogueLine.TextLocalized.ContainsKey(Preferences.TextLanguage) ? dialogueLine.TextLocalized[Preferences.TextLanguage] : 
+                        dialogueLine.TextLocalized.ContainsKey(dialogueLine.BaseLanguageID) ? dialogueLine.TextLocalized[dialogueLine.BaseLanguageID] : string.Empty;
+
+            // Now that we know the localised string for this line, we
+            // can go ahead and inject this line's substitutions.
+            for (int i = 0; i < dialogueLine.Substitutions.Length; i++) {
+                string substitution = dialogueLine.Substitutions[i];
+                text = text.Replace("{" + i + "}", substitution);
+            }
+
+            // Apply in-line format functions
+            text = Dialogue.ExpandFormatFunctions(text, Preferences.TextLanguage);
 
             if (text == null) {
-                Debug.LogWarning($"Line {line.ID} doesn't have any localised text.");
-                text = line.ID;
+                Debug.LogWarning($"Line {dialogueLine.TextID} doesn't have any localised text.");
+                text = dialogueLine.TextID;
             }
 
             if (textSpeed > 0.0f) {
@@ -333,16 +344,16 @@ namespace Yarn.Unity {
 
         /// Runs a set of options.
         /// <inheritdoc/>
-        public override void RunOptions (Yarn.OptionSet optionSet, ILineLocalisationProvider localisationProvider, System.Action<int> onOptionSelected) {
-            StartCoroutine(DoRunOptions(optionSet, localisationProvider, onOptionSelected));
+        public override void RunOptions (DialogueOption[] dialogueOptions, System.Action<int> onOptionSelected) {
+            StartCoroutine(DoRunOptions(dialogueOptions, onOptionSelected));
         }
 
         /// Show a list of options, and wait for the player to make a
         /// selection.
-        private  IEnumerator DoRunOptions (Yarn.OptionSet optionsCollection, ILineLocalisationProvider localisationProvider, System.Action<int> selectOption)
+        private  IEnumerator DoRunOptions (DialogueOption[] dialogueOptions, System.Action<int> selectOption)
         {
             // Do a little bit of safety checking
-            if (optionsCollection.Options.Length > optionButtons.Count) {
+            if (dialogueOptions.Length > optionButtons.Count) {
                 Debug.LogWarning("There are more options to present than there are" +
                                  "buttons to present them in. This will cause problems.");
             }
@@ -354,18 +365,19 @@ namespace Yarn.Unity {
 
             currentOptionSelectionHandler = selectOption;
 
-            foreach (var optionString in optionsCollection.Options) {
+            foreach (var dialogueOption in dialogueOptions) {
                 optionButtons [i].gameObject.SetActive (true);
 
                 // When the button is selected, tell the dialogue about it
                 optionButtons [i].onClick.RemoveAllListeners();
-                optionButtons [i].onClick.AddListener(() => SelectOption(optionString.ID));
+                optionButtons [i].onClick.AddListener(() => SelectOption(dialogueOption.DialogueOptionID));
 
-                var optionText = localisationProvider.GetLocalisedTextForLine(optionString.Line);
+                var optionText = dialogueOption.TextLocalized.ContainsKey(Preferences.TextLanguage) ? dialogueOption.TextLocalized[Preferences.TextLanguage] : 
+                            dialogueOption.TextLocalized.ContainsKey(dialogueOption.BaseLanguageID) ? dialogueOption.TextLocalized[dialogueOption.BaseLanguageID] : string.Empty;
 
                 if (optionText == null) {
-                    Debug.LogWarning($"Option {optionString.Line.ID} doesn't have any localised text");
-                    optionText = optionString.Line.ID;
+                    Debug.LogWarning($"Option {dialogueOption.TextID} doesn't have any localised text");
+                    optionText = dialogueOption.TextID;
                 }
 
                 var unityText = optionButtons [i].GetComponentInChildren<Text> ();
