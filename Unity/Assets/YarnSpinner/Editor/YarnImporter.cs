@@ -6,7 +6,7 @@ using System.Globalization;
 using Yarn;
 using Yarn.Compiler;
 
-[ScriptedImporter(1, new[] {"yarn", "yarnc"})]
+[ScriptedImporter(2, new[] {"yarn", "yarnc"})]
 public class YarnImporter : ScriptedImporter
 {    
     // culture identifiers like en-US
