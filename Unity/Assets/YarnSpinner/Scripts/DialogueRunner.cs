@@ -674,11 +674,19 @@ namespace Yarn.Unity
                     return executionType;
                 }
 
+                // TODO for Code View
+                // The following passage needs to be adapted to the new design.
+                // My knowledge about these commands and why it should be handled
+                // on the DialogueUI is limited so it'd be best if you take a lookt at this.
+                // My intend would be to handle the situation right here in this class but I
+                // could be missing context ...
+
                 // We didn't find a method in our C# code to invoke. Pass it to
                 // the UI to handle; it will determine whether we pause or
                 // continue.
                 //return dialogueViews.RunCommand(command, continueAction);
 
+                // Ugly hack to keep the previous behaviour intact following in 3... 2... 1...
                 return GetDialogueUI().RunCommand(command, continueAction);
             }
 
@@ -973,6 +981,7 @@ namespace Yarn.Unity
             dialogueLines[line.ID].Substitutions = substitutions.ToArray();
         }
 
+        [Obsolete("This is a temporary workaround. Do not keep this.")]
         private DialogueUI GetDialogueUI() 
         {
             DialogueUI dialogueUI = null;

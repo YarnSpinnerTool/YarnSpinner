@@ -411,6 +411,7 @@ namespace Yarn.Unity {
 
         /// Runs a command.
         /// <inheritdoc/>
+        /// FIXME: onCommandComplete doesn't seem to be called ...?
         public override Dialogue.HandlerExecutionType RunCommand (Yarn.Command command, System.Action onCommandComplete) {
             // Dispatch this command via the 'On Command' handler.
             onCommand?.Invoke(command.Text);
@@ -419,6 +420,8 @@ namespace Yarn.Unity {
             // executing. (This implementation of RunCommand always signals
             // that execution should continue, and never calls
             // onCommandComplete.)
+            // FIXME: It should be fine to set the execution directly on the runner after it called RunCommand on this instance
+            // but I might be missing context ...
             return Dialogue.HandlerExecutionType.ContinueExecution;
         }
 

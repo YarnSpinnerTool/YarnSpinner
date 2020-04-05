@@ -91,6 +91,7 @@ namespace Yarn.Unity
         /// <param name="onComplete">A method that should be called to
         /// indicate that the DialogueRunner should continue executing.</param>
         /// <inheritdoc cref="RunLine(Line, ILineLocalisationProvider, Action)"/>
+        /// FIXME: This doesn't seem to be called anymore ...?
         public virtual Dialogue.HandlerExecutionType NodeComplete(string nextNode, Action onComplete) 
         {
             // Default implementation does nothing.
