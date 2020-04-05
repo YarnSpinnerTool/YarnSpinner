@@ -12,7 +12,7 @@ namespace Yarn.Unity
     /// <remarks>
     /// The <see cref="DialogueRunner"/> uses subclasses of this type to relay information to and from the user, and to pause and resume the execution of the Yarn program.
     /// </remarks>
-    /// <seealso cref="DialogueRunner.dialogueUI"/>
+    /// <seealso cref="DialogueRunner.dialogueViews"/>
     /// <seealso cref="DialogueUI"/>
     public abstract class DialogueViewBase : MonoBehaviour 
     {
@@ -42,7 +42,7 @@ namespace Yarn.Unity
         /// cref="Dialogue.HandlerExecutionType.ContinueExecution"/> if
         /// dialogue should immediately continue running after calling this
         /// method.</returns>
-        public abstract Dialogue.HandlerExecutionType RunLine(DialogueLine dialogueLine, Action onLineComplete);
+        public abstract void RunLine(DialogueLine dialogueLine, Action<DialogueViewBase> onLineComplete);
 
         /// <summary>
         /// Called by the <see cref="DialogueRunner"/> to signal that a set of options should be displayed to the user.

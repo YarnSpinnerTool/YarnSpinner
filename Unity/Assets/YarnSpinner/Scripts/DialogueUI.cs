@@ -265,16 +265,15 @@ namespace Yarn.Unity {
 
         /// Runs a line.
         /// <inheritdoc/>
-        public override Dialogue.HandlerExecutionType RunLine (DialogueLine dialogueLine, System.Action onLineComplete)
+        public override void RunLine (DialogueLine dialogueLine, System.Action<DialogueViewBase> onLineComplete)
         {
             // Start displaying the line; it will call onComplete later
             // which will tell the dialogue to continue
             StartCoroutine(DoRunLine(dialogueLine, onLineComplete));
-            return Dialogue.HandlerExecutionType.PauseExecution;
         }
 
         /// Show a line of dialogue, gradually        
-        private IEnumerator DoRunLine(DialogueLine dialogueLine, System.Action onComplete) {
+        private IEnumerator DoRunLine(DialogueLine dialogueLine, System.Action<DialogueViewBase> onLineComplete) {
             var startTime = Time.time;
             onLineStart?.Invoke();
 
@@ -338,7 +337,7 @@ namespace Yarn.Unity {
             // Hide the text and prompt
             onLineEnd?.Invoke();
 
-            onComplete();
+            onLineComplete(this);
 
         }
 

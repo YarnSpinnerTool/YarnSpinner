@@ -42,7 +42,7 @@ namespace Yarn.Unity
     /// the interface between your game and Yarn Spinner.
     /// </summary>
     [AddComponentMenu("Scripts/Yarn Spinner/Dialogue Runner")]
-    public class DialogueRunner : MonoBehaviour, ILineLocalisationProvider
+    public class DialogueRunner : MonoBehaviour
     {
         /// <summary>
         /// The <see cref="YarnProgram"/> assets that should be loaded on
@@ -58,7 +58,7 @@ namespace Yarn.Unity
         /// <summary>
         /// The object that will handle the actual display and user input.
         /// </summary>
-        public DialogueViewBase dialogueUI;
+        public DialogueViewBase[] dialogueViews;
 
         /// <summary>
         /// This object will handle the audio playback 
@@ -238,7 +238,9 @@ namespace Yarn.Unity
         public void StartDialogue(string startNode)
         {
             // Stop any processes that might be running already
-            dialogueUI.StopAllCoroutines();
+            foreach (var dialogueView in dialogueViews) {
+                dialogueView.StopAllCoroutines();
+            }
 
             // Get it going
             RunDialogue();
@@ -248,7 +250,9 @@ namespace Yarn.Unity
                 IsDialogueRunning = true;
 
                 // Signal that we're starting up.
-                dialogueUI.DialogueStarted();
+                foreach (var dialogueView in dialogueViews) {
+                    dialogueView.DialogueStarted();
+                }
 
                 Dialogue.SetNode(startNode);
 
@@ -449,6 +453,8 @@ namespace Yarn.Unity
 
         #region Private Properties/Variables/Procedures
 
+        List<DialogueViewBase> lineCurrentlyRunOnDialogueViews = new List<DialogueViewBase>();
+        Action<DialogueViewBase> onLineCompleteAction;
         Action continueAction;
         Action<int> selectAction;
 
@@ -510,7 +516,7 @@ namespace Yarn.Unity
         /// Start the dialogue
         void Start()
         {
-            Assert.IsNotNull(dialogueUI, "Implementation was not set! Can't run the dialogue!");
+            Assert.IsNotNull(dialogueViews, "No View class (like DialogueUI) was given! Can't run the dialogue without a View class!");
             Assert.IsNotNull(variableStorage, "Variable storage was not set! Can't run the dialogue!");
 
             // Ensure that the variable storage has the right stuff in it
@@ -569,6 +575,7 @@ namespace Yarn.Unity
                 AddDialogueLines(yarnScript);
             }
 
+            onLineCompleteAction = OnDialogueLineCompleted;
             continueAction = ContinueDialogue;
             selectAction = SelectedOption;
 
@@ -611,13 +618,17 @@ namespace Yarn.Unity
                     dialogOption.BaseLanguageID = dialogueLines[options.Options[i].Line.ID].BaseLanguageID;
                     optionSet[i] = dialogOption;
                 }
-                dialogueUI.RunOptions(optionSet, selectAction);
+                foreach (var dialogueView in dialogueViews) {
+                    dialogueView.RunOptions(optionSet, selectAction);
+                }
             }
 
             void HandleDialogueComplete()
             {
                 IsDialogueRunning = false;
-                dialogueUI.DialogueComplete();
+                foreach (var dialogueView in dialogueViews) {
+                    dialogueView.DialogueComplete();
+                }
                 onDialogueComplete.Invoke();
             }
 
@@ -666,7 +677,9 @@ namespace Yarn.Unity
                 // We didn't find a method in our C# code to invoke. Pass it to
                 // the UI to handle; it will determine whether we pause or
                 // continue.
-                return dialogueUI.RunCommand(command, continueAction);
+                //return dialogueViews.RunCommand(command, continueAction);
+
+                return GetDialogueUI().RunCommand(command, continueAction);
             }
 
             /// Forward the line to the dialogue UI.
@@ -686,9 +699,17 @@ namespace Yarn.Unity
                         }
                     }
 
-                    _voiceOverPlayback.StartLineVoiceOver(line, voiceOverAudioClip, dialogueUI);
+                    _voiceOverPlayback.StartLineVoiceOver(line, voiceOverAudioClip, GetDialogueUI());
                 }
-                return dialogueUI.RunLine(dialogueLines[line.ID], continueAction);
+                // First register current dialogue views for line complete calls
+                foreach (var dialogueView in dialogueViews) {
+                    lineCurrentlyRunOnDialogueViews.Add(dialogueView);
+                }
+                // Send line to available dialogue views
+                foreach (var dialogueView in dialogueViews) {
+                    dialogueView.RunLine(dialogueLines[line.ID], onLineCompleteAction);
+                }
+                return Dialogue.HandlerExecutionType.PauseExecution;
             }
 
             /// Indicates to the DialogueRunner that the user has selected an option
@@ -922,27 +943,22 @@ namespace Yarn.Unity
 
         void ContinueDialogue()
         {
+            lineCurrentlyRunOnDialogueViews.Clear();
             wasCompleteCalled = true;
             Dialogue.Continue();
         }
 
-        /// <inheritdoc />
-        string ILineLocalisationProvider.GetLocalisedTextForLine(Line line)
+        void OnDialogueLineCompleted(DialogueViewBase completedBy) 
         {
-            if (!dialogueLines.TryGetValue(line.ID, out var textLocalizations)) return null;
-            if (!textLocalizations.TextLocalized.TryGetValue(Preferences.TextLanguage, out var result)) return null;
-
-            // Now that we know the localised string for this line, we
-            // can go ahead and inject this line's substitutions.
-            for (int i = 0; i < line.Substitutions.Length; i++) {
-                string substitution = line.Substitutions[i];
-                result = result.Replace("{" + i + "}", substitution);
+            if (lineCurrentlyRunOnDialogueViews.Contains(completedBy)) {
+                lineCurrentlyRunOnDialogueViews.Remove(completedBy);
+            } else {
+                Debug.LogWarning("Line completed was called but given Dialogue View was not registered for current line.", gameObject);
             }
 
-            // Apply in-line format functions
-            result = Dialogue.ExpandFormatFunctions(result, Preferences.TextLanguage);
-
-            return result;
+            if (lineCurrentlyRunOnDialogueViews.Count == 0) {
+                continueAction();
+            }
         }
 
         void UpdateInlineExpressions (Line line) {
@@ -957,40 +973,31 @@ namespace Yarn.Unity
             dialogueLines[line.ID].Substitutions = substitutions.ToArray();
         }
 
+        private DialogueUI GetDialogueUI() 
+        {
+            DialogueUI dialogueUI = null;
+            // Search mode: confident
+            foreach (var dialogueView in dialogueViews) {
+                if (dialogueView.GetType() == typeof(DialogueUI)) {
+                    dialogueUI = dialogueView as DialogueUI;
+                }
+            }
+            // Search mode: panicking
+            if (!dialogueUI) {
+                dialogueUI = FindObjectOfType<DialogueUI>();
+            }
+            // Search mode: giving up
+            if (!dialogueUI) {
+                Debug.LogError("No DialogueUI for command handling found.", gameObject);
+            }
+
+            return dialogueUI;
+        }
+
         #endregion
     }
 
     #region Class/Interface
-
-    /// <summary>
-    /// Provides a mechanism for determining the user-facing localised content for a <see cref="Line"/>.
-    /// </summary>
-    /// <seealso cref="DialogueRunner"/>
-    public interface ILineLocalisationProvider
-    {
-        /// <summary>
-        /// Returns the user-facing text for a given <see cref="Line"/>.
-        /// </summary>
-        /// <remarks>
-        /// This method determines the final text to deliver to the user,
-        /// given a <see cref="Line"/>. Classes that implement this method
-        /// should use the Line's <see cref="Line.ID"/> to look up the
-        /// user-facing text in a string table, replace any substitutions
-        /// in the text, and then expand any format functions by calling
-        /// <see cref="Dialogue.ExpandFormatFunctions"/>.
-        ///
-        /// See the <seealso cref="Line"/> class's documentation for more
-        /// information on how to prepare a Line for delivery to the user.
-        /// </remarks>
-        /// <param name="line">The <see cref="Line"/> to get the text
-        /// for.</param>
-        /// <returns>The text to show the user, or `null` if the
-        /// user-facing text cannot be found.</returns>
-        /// <seealso cref="Line"/>
-        /// <seealso cref="Dialogue.ExpandFormatFunctions(string,
-        /// string)"/>
-        string GetLocalisedTextForLine(Line line);
-    }
 
     /// <summary>
     /// An attribute that marks a method on a <see cref="MonoBehaviour"/>
