@@ -50,18 +50,6 @@ namespace Yarn.Unity
         /// </summary>
         public YarnProgram[] yarnScripts;
 
-         
-
-        /// <summary>
-        /// The language code used to select a string table.
-        /// </summary>
-        /// <remarks>
-        /// This must be an IETF BCP-47 language code, like "en" or "de".
-        /// 
-        /// This value is used to select a string table from the <see cref="YarnProgram.localizations"/>, for each of the <see cref="YarnProgram"/>s in <see cref="yarnScripts"/>.
-        /// </remarks>
-        public string textLanguage;
-
         /// <summary>
         /// The variable storage object.
         /// </summary>
@@ -932,7 +920,7 @@ namespace Yarn.Unity
             }
 
             // Apply in-line format functions
-            result = Dialogue.ExpandFormatFunctions(result, textLanguage);
+            result = Dialogue.ExpandFormatFunctions(result, Preferences.TextLanguage);
 
             return result;
         }
