@@ -263,17 +263,8 @@ namespace Yarn.Unity {
             }
         }
 
-        /// Runs a line.
-        /// <inheritdoc/>
-        public override void RunLine (DialogueLine dialogueLine, System.Action<DialogueViewBase> onLineComplete)
-        {
-            // Start displaying the line; it will call onComplete later
-            // which will tell the dialogue to continue
-            StartCoroutine(DoRunLine(dialogueLine, onLineComplete));
-        }
-
         /// Show a line of dialogue, gradually        
-        private IEnumerator DoRunLine(DialogueLine dialogueLine, System.Action<DialogueViewBase> onLineComplete) {
+        internal override IEnumerator RunLine(DialogueLine dialogueLine) {
             var startTime = Time.time;
             onLineStart?.Invoke();
 
@@ -336,9 +327,6 @@ namespace Yarn.Unity {
 
             // Hide the text and prompt
             onLineEnd?.Invoke();
-
-            onLineComplete(this);
-
         }
 
         /// Runs a set of options.
@@ -449,26 +437,6 @@ namespace Yarn.Unity {
         }
 
         /// <summary>
-        /// Signals that the user has finished with a line, or wishes to
-        /// skip to the end of the current line.
-        /// </summary>
-        /// <remarks>
-        /// This method is generally called by a "continue" button, and
-        /// causes the DialogueUI to signal the <see
-        /// cref="DialogueRunner"/> to proceed to the next piece of
-        /// content.
-        ///
-        /// If this method is called before the line has finished appearing
-        /// (that is, before <see cref="onLineFinishDisplaying"/> is
-        /// called), the DialogueUI immediately displays the entire line
-        /// (via the <see cref="onLineUpdate"/> method), and then calls
-        /// <see cref="onLineFinishDisplaying"/>.
-        /// </remarks>
-        public void MarkLineComplete() {
-            userRequestedNextLine = true;
-        }
-
-        /// <summary>
         /// Signals that the user has selected an option.
         /// </summary>
         /// <remarks>
@@ -496,6 +464,10 @@ namespace Yarn.Unity {
             }
         }
 
+        /// <inheritdoc/>
+        internal override void OnMarkLineComplete() {
+            userRequestedNextLine = true;
+        }
     }
 
 }

@@ -11,11 +11,24 @@ namespace Yarn.Unity
     /// </summary>
     /// <remarks>
     /// The <see cref="DialogueRunner"/> uses subclasses of this type to relay information to and from the user, and to pause and resume the execution of the Yarn program.
+    /// The inhereting classes will receive a DialogueLine and are responsible for presenting it to the user. A DialogueLine can be in the following possible stages:
+    ///   * started
+    ///   * interrupted (line was in the middle of playing/appearing but the user indicated to proceed to the next line. Views should get to the end as fast as possible (fade out voice over, show full line)
+    ///   * completed (finished presenting the line, i.e. full text of the line or finished playback of voice over audio) -> could be renamed to FinishedDisplaying
+    ///   * ended (the user has indicated to proceed to the next line)
+    /// FIXME: Currently, only the completed-request is implemented in the MVVM pattern. Started and Ended likely don't need to.
+    /// TODO: Implement "interrupted" like "completed"
+    /// TODO: Determine if the line stages should be implemented as states or if it's enough to have the necessary calls to change the states implicitly.
     /// </remarks>
     /// <seealso cref="DialogueRunner.dialogueViews"/>
     /// <seealso cref="DialogueUI"/>
     public abstract class DialogueViewBase : MonoBehaviour 
     {
+        /// <summary>
+        /// The instance of the current line's DialogueRunner
+        /// </summary>
+        internal DialogueRunner dialogueRunnerCurrentLine;
+
         /// <summary>Signals that a conversation has started.</summary>
         public virtual void DialogueStarted() 
         {
@@ -42,7 +55,20 @@ namespace Yarn.Unity
         /// cref="Dialogue.HandlerExecutionType.ContinueExecution"/> if
         /// dialogue should immediately continue running after calling this
         /// method.</returns>
-        public abstract void RunLine(DialogueLine dialogueLine, Action<DialogueViewBase> onLineComplete);
+        /// FIXME: If this method is expected to be called only from the DialogueRunner
+        /// then this should be converted into a coroutine and merged with RunLineWithCallback();
+        public void RunLine(DialogueLine dialogueLine, Action<DialogueViewBase> onLineComplete) {
+            StartCoroutine(RunLineWithCallback(dialogueLine, onLineComplete));
+        }
+        internal abstract IEnumerator RunLine(DialogueLine dialogueLine);
+
+        private IEnumerator RunLineWithCallback (DialogueLine dialogueLine, Action<DialogueViewBase> onLineComplete) {
+            dialogueRunnerCurrentLine = onLineComplete.Target as DialogueRunner;
+
+            yield return StartCoroutine(RunLine(dialogueLine));
+
+            onLineComplete(this);
+        }
 
         /// <summary>
         /// Called by the <see cref="DialogueRunner"/> to signal that a set of options should be displayed to the user.
@@ -107,5 +133,31 @@ namespace Yarn.Unity
         }
 
         public abstract void VoiceOverDuration(float duration);
+
+        /// <summary>
+        /// Signals that the user has finished with a line, or wishes to
+        /// skip to the end of the current line.
+        /// </summary>
+        /// <remarks>
+        /// This method is generally called by a "continue" button, and
+        /// causes the DialogueUI to signal the <see
+        /// cref="DialogueRunner"/> to proceed to the next piece of
+        /// content.
+        ///
+        /// If this method is called before the line has finished appearing
+        /// (that is, before <see cref="onLineFinishDisplaying"/> is
+        /// called), the DialogueUI immediately displays the entire line
+        /// (via the <see cref="onLineUpdate"/> method), and then calls
+        /// <see cref="onLineFinishDisplaying"/>.
+        /// </remarks>
+        public void MarkLineComplete() 
+        {
+            dialogueRunnerCurrentLine?.OnUserViewRequestedLineComplete();
+        }
+
+        /// <summary>
+        /// The <see cref="DialogueRunner"/> has received the user's request on a view class derived from <see cref="DialogueViewBase"/> to complete the current line.
+        /// </summary>
+        internal abstract void OnMarkLineComplete();
     }
 }

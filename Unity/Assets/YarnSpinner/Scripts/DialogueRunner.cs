@@ -969,6 +969,16 @@ namespace Yarn.Unity
             }
         }
 
+        /// <summary>
+        /// The currently running line has been requested to be completed
+        /// by the user input on a view class derived from <see cref="DialogueViewBase"/>.
+        /// </summary>
+        internal void OnUserViewRequestedLineComplete() {
+            foreach (var activeDialogueLineView in lineCurrentlyRunOnDialogueViews) {
+                activeDialogueLineView.OnMarkLineComplete();
+            }
+        }
+
         void UpdateInlineExpressions (Line line) {
             if (!dialogueLines.ContainsKey(line.ID)) return;
 
