@@ -455,7 +455,6 @@ namespace Yarn.Unity
 
         List<DialogueViewBase> lineCurrentlyRunOnDialogueViews = new List<DialogueViewBase>();
         Action<DialogueViewBase> onLineCompleteAction;
-        Action continueAction;
         Action<int> selectAction;
 
         /// <summary>
@@ -576,7 +575,6 @@ namespace Yarn.Unity
             }
 
             onLineCompleteAction = OnDialogueLineCompleted;
-            continueAction = ContinueDialogue;
             selectAction = SelectedOption;
 
             return dialogue;
@@ -644,7 +642,7 @@ namespace Yarn.Unity
                 // immediately called _continue
                 wasCompleteCalled = false;
 
-                (wasValidCommand, executionType) = DispatchCommandToRegisteredHandlers(command, continueAction);
+                (wasValidCommand, executionType) = DispatchCommandToRegisteredHandlers(command, ContinueDialogue);
 
                 if (wasValidCommand) {
 
@@ -687,7 +685,7 @@ namespace Yarn.Unity
                 //return dialogueViews.RunCommand(command, continueAction);
 
                 // Ugly hack to keep the previous behaviour intact following in 3... 2... 1...
-                return GetDialogueUI().RunCommand(command, continueAction);
+                return GetDialogueUI().RunCommand(command, ContinueDialogue);
             }
 
             /// Forward the line to the dialogue UI.
@@ -965,7 +963,7 @@ namespace Yarn.Unity
             }
 
             if (lineCurrentlyRunOnDialogueViews.Count == 0) {
-                continueAction();
+                ContinueDialogue();
             }
         }
 
