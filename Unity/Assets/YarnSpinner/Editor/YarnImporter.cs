@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using UnityEditor.Experimental.AssetImporters;
 using System.IO;
 using System.Linq;
@@ -87,7 +88,7 @@ public class YarnImporter : ScriptedImporter
 
                 // Add this container to the imported asset; it will be
                 // what the user interacts with in Unity
-                ctx.AddObjectToAsset("Program", programContainer);
+                ctx.AddObjectToAsset("Program", programContainer, AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath("528a6dd601766934abb8b1053bd798ef"), typeof(Texture2D)) as Texture2D);
                 ctx.SetMainObject(programContainer);
 
                 isSuccesfullyCompiled = true;
