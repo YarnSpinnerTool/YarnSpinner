@@ -163,9 +163,6 @@ namespace Yarn.Unity
             // Default implementation does nothing.
         }
 
-        [Obsolete("This will be removed once the Voice Over components have been adapted to the MVVM pattern")]
-        public abstract void VoiceOverDuration(float duration);
-
         /// <summary>
         /// Signals that the user has finished with a line, or wishes to
         /// skip to the end of the current line.

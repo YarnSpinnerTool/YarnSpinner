@@ -91,9 +91,6 @@ namespace Yarn.Unity {
         // option. Externally provided by the DialogueRunner.
         private System.Action<int> currentOptionSelectionHandler;
 
-        [Obsolete("This will be removed once the Voice Over components have been adapted to the MVVM pattern")]
-        private float voiceOverDuration = 0f;
-
         // When true, the DialogueRunner is waiting for the user to press
         // one of the option buttons.
         private bool waitingForOptionSelection = false;     
@@ -450,15 +447,6 @@ namespace Yarn.Unity {
             }
             waitingForOptionSelection = false;
             currentOptionSelectionHandler?.Invoke(optionID);
-        }
-
-        [Obsolete("This will be removed once the Voice Over components have been adapted to the MVVM pattern")]
-        public override void VoiceOverDuration(float duration) {
-            if (duration >= 0 && duration <= float.MaxValue) {
-                voiceOverDuration = duration;
-            } else {
-                Debug.LogWarning("YarnSpinner: Not waiting for voice over to finish because duration is :" + duration + ".", gameObject);
-            }
         }
 
         /// <inheritdoc/>

@@ -60,11 +60,6 @@ namespace Yarn.Unity
         /// </summary>
         public DialogueViewBase[] dialogueViews;
 
-        /// <summary>
-        /// This object will handle the audio playback 
-        /// </summary>
-        public VoiceOverPlaybackBase _voiceOverPlayback;
-
         /// <summary>The name of the node to start from.</summary>
         /// <remarks>
         /// This value is used to select a node to start from when
@@ -704,19 +699,6 @@ namespace Yarn.Unity
                 // Update lines to current state before sending them to the view classes
                 UpdateInlineExpressions(line);
 
-                // Only resolve linetag to audiofile if there is a receiver for it
-                if (_voiceOverPlayback)
-                {
-                    AudioClip voiceOverAudioClip = null;
-
-                    if (dialogueLines.ContainsKey(line.ID)) {
-                        if (dialogueLines[line.ID].VoiceOverLocalized.ContainsKey(Preferences.AudioLanguage)) {
-                            voiceOverAudioClip = dialogueLines[line.ID].VoiceOverLocalized[Preferences.AudioLanguage];
-                        }
-                    }
-
-                    _voiceOverPlayback.StartLineVoiceOver(line, voiceOverAudioClip, GetDialogueUI());
-                }
                 // First register current dialogue views for line complete calls
                 foreach (var dialogueView in dialogueViews) {
                     lineCurrentlyRunOnDialogueViews.Add(dialogueView);
