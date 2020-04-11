@@ -1,5 +1,5 @@
 * **I'm submitting a ...**
-* 
+ 
   - [ ] bug report
   - [ ] feature request
   - [ ] support request => For support, please don't file an issue. Instead, visit our helpful Slack community at https://lab.to/narrativegamedev, or ask us on Twitter at https://twitter.com/YarnSpinnerTool
