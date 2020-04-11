@@ -29,6 +29,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Text;
 using System.Collections.Generic;
+using System;
 
 namespace Yarn.Unity {
     
@@ -80,14 +81,17 @@ namespace Yarn.Unity {
         /// </remarks>
         public List<Button> optionButtons;
 
-        // When true, the user has indicated that they want to proceed to
-        // the next line.
-        private bool userRequestedNextLine = false;
+        /// <summary>
+        /// When true, the Runner has signaled to finish the current line 
+        /// asap.
+        /// </summary>
+        private bool finishCurrentLine = false;
 
         // The method that we should call when the user has chosen an
         // option. Externally provided by the DialogueRunner.
         private System.Action<int> currentOptionSelectionHandler;
 
+        [Obsolete("This will be removed once the Voice Over components have been adapted to the MVVM pattern")]
         private float voiceOverDuration = 0f;
 
         // When true, the DialogueRunner is waiting for the user to press
@@ -264,11 +268,11 @@ namespace Yarn.Unity {
         }
 
         /// Show a line of dialogue, gradually        
-        internal override IEnumerator RunLine(DialogueLine dialogueLine) {
+        protected override IEnumerator RunLine(DialogueLine dialogueLine) {
             var startTime = Time.time;
             onLineStart?.Invoke();
 
-            userRequestedNextLine = false;
+            finishCurrentLine = false;
             
             // The final text we'll be showing for this line.
             string text = dialogueLine.TextLocalized.ContainsKey(Preferences.TextLanguage) ? dialogueLine.TextLocalized[Preferences.TextLanguage] : 
@@ -296,7 +300,7 @@ namespace Yarn.Unity {
                 foreach (char c in text) {
                     stringBuilder.Append (c);
                     onLineUpdate?.Invoke(stringBuilder.ToString ());
-                    if (userRequestedNextLine) {
+                    if (finishCurrentLine) {
                         // We've requested a skip of the entire line.
                         // Display all of the text immediately.
                         onLineUpdate?.Invoke(text);
@@ -309,19 +313,11 @@ namespace Yarn.Unity {
                 onLineUpdate?.Invoke(text);
             }
 
-            // Wait for pre-calculated voice over duration to finish.
-            yield return new WaitUntil(() => Time.time - startTime > voiceOverDuration);
-
-            // We're now waiting for the player to move on to the next line
-            userRequestedNextLine = false;
-
             // Indicate to the rest of the game that the line has finished being delivered
             onLineFinishDisplaying?.Invoke();
+        }
 
-            while (userRequestedNextLine == false) {
-                yield return null;
-            }
-
+        protected override IEnumerator EndCurrentLine() {
             // Avoid skipping lines if textSpeed == 0
             yield return new WaitForEndOfFrame();
 
@@ -456,6 +452,7 @@ namespace Yarn.Unity {
             currentOptionSelectionHandler?.Invoke(optionID);
         }
 
+        [Obsolete("This will be removed once the Voice Over components have been adapted to the MVVM pattern")]
         public override void VoiceOverDuration(float duration) {
             if (duration >= 0 && duration <= float.MaxValue) {
                 voiceOverDuration = duration;
@@ -465,9 +462,8 @@ namespace Yarn.Unity {
         }
 
         /// <inheritdoc/>
-        internal override void OnMarkLineComplete() {
-            userRequestedNextLine = true;
+        protected override void FinishCurrentLine() {
+            finishCurrentLine = true;
         }
     }
-
 }

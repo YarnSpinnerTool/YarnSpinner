@@ -454,7 +454,6 @@ namespace Yarn.Unity
         #region Private Properties/Variables/Procedures
 
         List<DialogueViewBase> lineCurrentlyRunOnDialogueViews = new List<DialogueViewBase>();
-        Action<DialogueViewBase> onLineCompleteAction;
         Action<int> selectAction;
 
         /// <summary>
@@ -506,6 +505,8 @@ namespace Yarn.Unity
         // is called. If it's true after calling a blocking command
         // handler, then the Dialogue is not told to pause.
         bool wasCompleteCalled = false;
+
+        bool continueNextLineOnLineFinished = false;
 
         /// Our conversation engine
         /** Automatically created on first access
@@ -574,7 +575,6 @@ namespace Yarn.Unity
                 AddDialogueLines(yarnScript);
             }
 
-            onLineCompleteAction = OnDialogueLineCompleted;
             selectAction = SelectedOption;
 
             return dialogue;
@@ -713,7 +713,7 @@ namespace Yarn.Unity
                 }
                 // Send line to available dialogue views
                 foreach (var dialogueView in dialogueViews) {
-                    dialogueView.RunLine(dialogueLines[line.ID], onLineCompleteAction);
+                    dialogueView.RunLine(dialogueLines[line.ID], OnDialogueLineFinished);
                 }
                 return Dialogue.HandlerExecutionType.PauseExecution;
             }
@@ -954,27 +954,77 @@ namespace Yarn.Unity
             Dialogue.Continue();
         }
 
-        void OnDialogueLineCompleted(DialogueViewBase completedBy) 
-        {
-            if (lineCurrentlyRunOnDialogueViews.Contains(completedBy)) {
-                lineCurrentlyRunOnDialogueViews.Remove(completedBy);
-            } else {
-                Debug.LogWarning("Line completed was called but given Dialogue View was not registered for current line.", gameObject);
+        internal void OnViewUserIntentNextLine() {
+            continueNextLineOnLineFinished = true;
+
+            switch (GetLowestLineStatus()) {
+                case DialogueViewBase.DialogueLineStatus.Running:
+                    FinishLineCurrentlyRunningOnViews();
+                    break;
+                case DialogueViewBase.DialogueLineStatus.Finished:
+                    EndLineCurrentlyFinishedOnViews();
+                    break;
+                default:
+                    break;
             }
 
-            if (lineCurrentlyRunOnDialogueViews.Count == 0) {
+            if (CheckDialogueViewsForCommonLineStatus(DialogueViewBase.DialogueLineStatus.Ended) && continueNextLineOnLineFinished) {
+                continueNextLineOnLineFinished = false;
                 ContinueDialogue();
             }
         }
 
-        /// <summary>
-        /// The currently running line has been requested to be completed
-        /// by the user input on a view class derived from <see cref="DialogueViewBase"/>.
-        /// </summary>
-        internal void OnUserViewRequestedLineComplete() {
-            foreach (var activeDialogueLineView in lineCurrentlyRunOnDialogueViews) {
-                activeDialogueLineView.OnMarkLineComplete();
+        internal void OnViewUserIntentFinishLine() {
+            FinishLineCurrentlyRunningOnViews();
+        }
+
+        void OnDialogueLineFinished() {
+            if (CheckDialogueViewsForCommonLineStatus(DialogueViewBase.DialogueLineStatus.Finished) && continueNextLineOnLineFinished) {
+                continueNextLineOnLineFinished = false;
+                ContinueDialogue();
             }
+        }
+
+        void OnDialogueLineCompleted() {
+            if (CheckDialogueViewsForCommonLineStatus(DialogueViewBase.DialogueLineStatus.Ended)) {
+                continueNextLineOnLineFinished = false;
+                ContinueDialogue();
+            }
+        }
+
+        private void EndLineCurrentlyFinishedOnViews() {
+            foreach (var dialogueView in dialogueViews) {
+                if (dialogueView.dialogueLineStatus == DialogueViewBase.DialogueLineStatus.Finished) {
+                    StartCoroutine(dialogueView.EndCurrentLine(OnDialogueLineCompleted));
+                }
+            }
+        }
+
+        private void FinishLineCurrentlyRunningOnViews() {
+            foreach (var dialogueView in dialogueViews) {
+                if (dialogueView.dialogueLineStatus == DialogueViewBase.DialogueLineStatus.Running) {
+                    dialogueView.FinishRunningCurrentLine();
+                }
+            }
+        }
+
+        DialogueViewBase.DialogueLineStatus GetLowestLineStatus() {
+            var lowestStatus = DialogueViewBase.DialogueLineStatus.Ended;
+            foreach (var dialogueView in dialogueViews) {
+                if (dialogueView.dialogueLineStatus < lowestStatus) {
+                    lowestStatus = dialogueView.dialogueLineStatus;
+                }
+            }
+            return lowestStatus;
+        }
+
+        private bool CheckDialogueViewsForCommonLineStatus (DialogueViewBase.DialogueLineStatus commonStatusToCheck) {
+            foreach (var dialogueView in dialogueViews) {
+                if (dialogueView.dialogueLineStatus != commonStatusToCheck) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         void UpdateInlineExpressions (Line line) {

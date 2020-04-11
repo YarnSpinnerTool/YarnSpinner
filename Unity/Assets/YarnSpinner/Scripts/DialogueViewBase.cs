@@ -24,6 +24,15 @@ namespace Yarn.Unity
     /// <seealso cref="DialogueUI"/>
     public abstract class DialogueViewBase : MonoBehaviour 
     {
+        public enum DialogueLineStatus {
+            Running,
+            Interrupted,
+            Finished,
+            Ending,
+            Ended
+        }
+        internal DialogueLineStatus dialogueLineStatus;
+
         /// <summary>
         /// The instance of the current line's DialogueRunner
         /// </summary>
@@ -41,12 +50,12 @@ namespace Yarn.Unity
         /// <remarks>
         /// If this method returns <see
         /// cref="Dialogue.HandlerExecutionType.ContinueExecution"/>, it
-        /// should not not call the <paramref name="onLineComplete"/>
+        /// should not not call the <paramref name="onDialogueLineFinished"/>
         /// method.
         /// </remarks>
         /// <param name="dialogueLine">The line that should be displayed to the
         /// user.</param>
-        /// <param name="onLineComplete">A method that should be called to
+        /// <param name="onDialogueLineFinished">A method that should be called to
         /// indicate that the line has finished being delivered.</param>
         /// <returns><see
         /// cref="Dialogue.HandlerExecutionType.PauseExecution"/> if
@@ -57,18 +66,40 @@ namespace Yarn.Unity
         /// method.</returns>
         /// FIXME: If this method is expected to be called only from the DialogueRunner
         /// then this should be converted into a coroutine and merged with RunLineWithCallback();
-        public void RunLine(DialogueLine dialogueLine, Action<DialogueViewBase> onLineComplete) {
-            StartCoroutine(RunLineWithCallback(dialogueLine, onLineComplete));
+        public void RunLine(DialogueLine dialogueLine, Action onDialogueLineFinished) {
+            StartCoroutine(RunLineWithCallback(dialogueLine, onDialogueLineFinished));
         }
-        internal abstract IEnumerator RunLine(DialogueLine dialogueLine);
+        protected abstract IEnumerator RunLine(DialogueLine dialogueLine);
 
-        private IEnumerator RunLineWithCallback (DialogueLine dialogueLine, Action<DialogueViewBase> onLineComplete) {
-            dialogueRunnerCurrentLine = onLineComplete.Target as DialogueRunner;
+        private IEnumerator RunLineWithCallback (DialogueLine dialogueLine, Action onDialogueLineFinished) {
+            dialogueRunnerCurrentLine = onDialogueLineFinished.Target as DialogueRunner;
+            dialogueLineStatus = DialogueLineStatus.Running;
 
             yield return StartCoroutine(RunLine(dialogueLine));
 
-            onLineComplete(this);
+            dialogueLineStatus = DialogueLineStatus.Finished;
+            onDialogueLineFinished();
         }
+
+        internal void FinishRunningCurrentLine() {
+            dialogueLineStatus = DialogueLineStatus.Interrupted;
+            FinishCurrentLine();
+        }
+        /// <summary>
+        /// The <see cref="DialogueRunner"/> has received the user's request on a view class derived from <see cref="DialogueViewBase"/> to complete the current line.
+        /// </summary>
+        protected abstract void FinishCurrentLine();
+
+        internal IEnumerator EndCurrentLine(Action onDialogueLineCompleted) {
+            dialogueRunnerCurrentLine = onDialogueLineCompleted.Target as DialogueRunner;
+            dialogueLineStatus = DialogueLineStatus.Ending;
+
+            yield return StartCoroutine(EndCurrentLine());
+
+            dialogueLineStatus = DialogueLineStatus.Ended;
+            onDialogueLineCompleted();
+        }
+        protected abstract IEnumerator EndCurrentLine();
 
         /// <summary>
         /// Called by the <see cref="DialogueRunner"/> to signal that a set of options should be displayed to the user.
@@ -132,6 +163,7 @@ namespace Yarn.Unity
             // Default implementation does nothing.
         }
 
+        [Obsolete("This will be removed once the Voice Over components have been adapted to the MVVM pattern")]
         public abstract void VoiceOverDuration(float duration);
 
         /// <summary>
@@ -152,12 +184,11 @@ namespace Yarn.Unity
         /// </remarks>
         public void MarkLineComplete() 
         {
-            dialogueRunnerCurrentLine?.OnUserViewRequestedLineComplete();
+            dialogueRunnerCurrentLine?.OnViewUserIntentNextLine();
         }
 
-        /// <summary>
-        /// The <see cref="DialogueRunner"/> has received the user's request on a view class derived from <see cref="DialogueViewBase"/> to complete the current line.
-        /// </summary>
-        internal abstract void OnMarkLineComplete();
+        public void FinishLine() {
+            dialogueRunnerCurrentLine?.OnViewUserIntentFinishLine();
+        }
     }
 }
