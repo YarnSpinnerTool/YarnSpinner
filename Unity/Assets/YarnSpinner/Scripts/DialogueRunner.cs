@@ -82,6 +82,12 @@ namespace Yarn.Unity
         public bool startAutomatically = true;
 
         /// <summary>
+        /// Whether the DialogueRunner should automatically proceed to the
+        /// next line once a line has been finished.
+        /// </summary>
+        public bool continueNextLineOnLineFinished;
+
+        /// <summary>
         /// Gets a value that indicates if the dialogue is actively running.
         /// </summary>
         public bool IsDialogueRunning { get; set; }
@@ -506,7 +512,11 @@ namespace Yarn.Unity
         // handler, then the Dialogue is not told to pause.
         bool wasCompleteCalled = false;
 
-        bool continueNextLineOnLineFinished = false;
+        /// <summary>
+        /// A flag caching if a View has communicated the user's intent to proceed to the next line
+        /// </summary>
+        bool userIntendedNextLine = false;
+
 
         /// Our conversation engine
         /** Automatically created on first access
@@ -951,11 +961,12 @@ namespace Yarn.Unity
         {
             lineCurrentlyRunOnDialogueViews.Clear();
             wasCompleteCalled = true;
+            userIntendedNextLine = false;
             Dialogue.Continue();
         }
 
         internal void OnViewUserIntentNextLine() {
-            continueNextLineOnLineFinished = true;
+            userIntendedNextLine = true;
 
             switch (GetLowestLineStatus()) {
                 case DialogueViewBase.DialogueLineStatus.Running:
@@ -968,8 +979,7 @@ namespace Yarn.Unity
                     break;
             }
 
-            if (CheckDialogueViewsForCommonLineStatus(DialogueViewBase.DialogueLineStatus.Ended) && continueNextLineOnLineFinished) {
-                continueNextLineOnLineFinished = false;
+            if (CheckDialogueViewsForCommonLineStatus(DialogueViewBase.DialogueLineStatus.Ended) && (continueNextLineOnLineFinished || userIntendedNextLine)) {
                 ContinueDialogue();
             }
         }
@@ -979,15 +989,13 @@ namespace Yarn.Unity
         }
 
         void OnDialogueLineFinished() {
-            if (CheckDialogueViewsForCommonLineStatus(DialogueViewBase.DialogueLineStatus.Finished) && continueNextLineOnLineFinished) {
-                continueNextLineOnLineFinished = false;
+            if (CheckDialogueViewsForCommonLineStatus(DialogueViewBase.DialogueLineStatus.Finished) && (continueNextLineOnLineFinished || userIntendedNextLine)) {
                 ContinueDialogue();
             }
         }
 
         void OnDialogueLineCompleted() {
             if (CheckDialogueViewsForCommonLineStatus(DialogueViewBase.DialogueLineStatus.Ended)) {
-                continueNextLineOnLineFinished = false;
                 ContinueDialogue();
             }
         }
