@@ -15,7 +15,7 @@ title: Start
             Mom: Maybe something is drawing you here?
             [[I don't think so. I wish.|DrawnHere_No]]
             [[Yeah I think so|DrawnHere_Yes]]
-			// this endif is one space further in than its if
+            // this endif is one space further in than its if
          <<endif>>
 <<endif>>
 
@@ -28,6 +28,12 @@ title: Start
         Option 2 Line 1
         Option 2 Line 2
 <<endif>>
+
+// A shortcut option block that's indented itself
+    -> Indented shortcut option
+        Woo!
+    -> Another indented option
+        -> Wow!
 
 // When a line is relatively indented, but still absolutely indented, then its text should not include its left-padding
 <<if true>>

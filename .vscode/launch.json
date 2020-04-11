@@ -5,6 +5,15 @@
    "version": "0.2.0",
    "configurations": [
         {
+            "type": "antlr-debug",
+            "request": "launch",
+            "name": "Debug Current Grammar",
+            "input": "Test.yarn",
+            "grammar": "YarnSpinner.Compiler/YarnSpinnerParser.g4",
+             "visualParseTree": true,
+            "printParseTree": true
+        },
+        {
             "name": ".NET Core Launch (console)",
             "type": "coreclr",
             "request": "launch",

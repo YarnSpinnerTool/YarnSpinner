@@ -27,8 +27,10 @@ SOFTWARE.
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
-namespace Yarn.Unity {
+namespace Yarn.Unity
+{
     public class YarnSpinnerEditorWindow : EditorWindow {
 
         class CheckerResult {
@@ -79,6 +81,19 @@ namespace Yarn.Unity {
         // Seconds before the progress bar appears during checking
         const float timeBeforeProgressBar = 0.1f;
 
+        // The URL for the text document containing supporter information
+        private const string SupportersURL = "https://yarnspinner.dev/supporters.txt";
+
+        // URLs to open when buttons on the about page are clicked
+        private const string DocumentationURL = "https://yarnspinner.dev/docs/tutorial";
+        private const string PatreonURL = "https://www.patreon.com/bePatron?u=11132340";
+
+        // The request object, used to fetch supportersText
+        static UnityWebRequest supportersRequest;
+
+        // The dynamically fetched text to show in the About page.
+        static string supportersText = null;
+
         // Updates the list of all scripts that should be checked.
         void UpdateYarnScriptList() {
 
@@ -121,6 +136,48 @@ namespace Yarn.Unity {
             // Update the list of scripts known to the window
             if(isJSONRootPathChosen)
                 UpdateYarnScriptList();
+            
+            if (supportersText == null) {
+                RequestSupporterText();                
+            }
+        }
+
+        private static void EditorUpdate()
+        {
+            if (supportersRequest == null) {
+                // The UnityWebRequest hasn't been created, so this method
+                // should be called. Remove the callback so we don't get
+                // called again.
+                EditorApplication.update -= EditorUpdate;
+                return;
+            }
+
+            if (supportersRequest.isDone == false) {
+                // Not done loading yet; continue waiting
+                return;
+            }
+
+            EditorApplication.update -= EditorUpdate;
+
+            if (supportersRequest.isNetworkError || supportersRequest.isHttpError) {
+                Debug.LogError("Error loading Yarn Spinner supporter data: " + supportersRequest.error);
+                supportersText = ""; // set to the empty string to prevent future loads
+                return;
+            }
+
+            supportersText = supportersRequest.downloadHandler.text;
+
+        }
+
+        private static void RequestSupporterText()
+        {
+            // Start requesting the supporters text.
+            supportersRequest = UnityWebRequest.Get(SupportersURL);
+            supportersRequest.SendWebRequest();          
+
+            // Run EditorUpdate every editor frame so that we can handle
+            // when the request ends.
+            EditorApplication.update += EditorUpdate;              
         }
 
         void RefreshAllResults() {
@@ -164,8 +221,80 @@ namespace Yarn.Unity {
             }
         }
 
-        void OnGUI() {
+        enum SelectedMode {
+            About,
+            Analysis
+        }
+        SelectedMode selectedMode = 0;
 
+        void OnGUI() {
+            var modes = System.Enum.GetNames( typeof( SelectedMode ) );
+            selectedMode = (SelectedMode)GUILayout.Toolbar((int)selectedMode, modes);
+
+            switch (selectedMode) {
+                case SelectedMode.About:
+                    DrawAboutGUI();
+                    break;
+                case  SelectedMode.Analysis:
+                    DrawAnalysisGUI();
+                    break;
+            }
+
+        }
+
+        void DrawAboutGUI() {
+
+            float logoSize = Mathf.Min(EditorGUIUtility.currentViewWidth, 200);
+
+            scrollPos = EditorGUILayout.BeginScrollView(scrollPos);                         
+            EditorGUILayout.BeginVertical (EditorStyles.inspectorDefaultMargins);
+            
+
+            GUIStyle titleLabel = new GUIStyle(EditorStyles.largeLabel);
+            titleLabel.fontSize = 20;
+            titleLabel.alignment = TextAnchor.MiddleCenter;
+
+            GUIStyle creditsLabel = new GUIStyle(EditorStyles.wordWrappedLabel);
+            creditsLabel.alignment = TextAnchor.MiddleCenter;
+            creditsLabel.richText = true;
+
+            
+            using (new EditorGUILayout.HorizontalScope(GUILayout.Height(logoSize))) {
+                GUILayout.FlexibleSpace();
+                using (new EditorGUILayout.VerticalScope()) {
+                    GUILayout.Label(new GUIContent(Icons.logo), GUILayout.Width(logoSize), GUILayout.Height(logoSize));
+                    GUILayout.Label("Yarn Spinner", titleLabel);
+                    if (GUILayout.Button("Documentation")) {
+                        Application.OpenURL(DocumentationURL);                        
+                    }
+                    if (GUILayout.Button("Support Us On Patreon")) {
+                        Application.OpenURL(PatreonURL);
+                    }
+                    
+                }             
+                GUILayout.FlexibleSpace();
+            }
+
+            GUILayout.Space(20);
+            GUILayout.Label("Yarn Spinner is made possible thanks to our wonderful supporters on Patreon.", creditsLabel);
+            GUILayout.Space(20);
+
+            using (new EditorGUILayout.VerticalScope(GUILayout.Width(EditorGUIUtility.currentViewWidth - 40)))
+             {
+                if (supportersText == null) {
+                    // We're still waiting for supporters text to finish arriving (or error out)
+                    GUILayout.Label("Loading supporters...", creditsLabel);
+                } else {
+                    GUILayout.Label(supportersText, creditsLabel);
+                }
+            }
+                
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndScrollView();
+            
+         }
+
+        void DrawAnalysisGUI() {
             using (new EditorGUILayout.VerticalScope()) {
                 EditorGUILayout.Space();
 
@@ -229,8 +358,6 @@ namespace Yarn.Unity {
                 }
 
             }
-
-
         }
 
         static void DrawScriptGUI (CheckerResult result)
@@ -518,6 +645,16 @@ namespace Yarn.Unity {
                     _windowIcon = GetTexture("YarnSpinnerEditorWindow");
                 }
                 return _windowIcon;
+            }
+        }
+
+        static Texture _logo;
+        public static Texture logo {
+            get {
+                if (_logo == null) {
+                    _logo = GetTexture("YarnSpinnerLogo");
+                }
+                return _logo;
             }
         }
     }

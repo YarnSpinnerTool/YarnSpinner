@@ -1,0 +1,14 @@
+{
+    "name": "YarnSpinner.Unity.Example",
+    "references": [
+        "YarnSpinner.Unity"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

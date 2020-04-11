@@ -92,6 +92,9 @@ public class YarnImporter : ScriptedImporter
                 ctx.SetMainObject(programContainer);
 
                 isSuccesfullyCompiled = true;
+
+                // var outPath = Path.ChangeExtension(ctx.assetPath, ".yarnc");
+                // File.WriteAllBytes(outPath, compiledBytes);
             }
 
             if (stringTable.Count > 0) {

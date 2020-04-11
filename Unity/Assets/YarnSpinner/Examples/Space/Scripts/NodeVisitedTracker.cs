@@ -19,7 +19,7 @@ public class NodeVisitedTracker : MonoBehaviour
     {
         // Register a function on startup called "visited" that lets Yarn
         // scripts query to see if a node has been run before.
-        dialogueRunner.RegisterFunction("visited", 1, delegate (Yarn.Value[] parameters)
+        dialogueRunner.AddFunction("visited", 1, delegate (Yarn.Value[] parameters)
         {
             var nodeName = parameters[0];
             return _visitedNodes.Contains(nodeName.AsString);

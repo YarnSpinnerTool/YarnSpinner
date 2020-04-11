@@ -9,15 +9,10 @@ public class YarnProgramEditor : Editor {
 
     private List<string> nodeNames;
 
-    void OnEnable() {
-        try {
-            var program = (serializedObject.targetObject as YarnProgram).GetProgram();
+    public void OnEnable() {
+        var program = (serializedObject.targetObject as YarnProgram).GetProgram();
 
-            nodeNames = program.Nodes.Keys.ToList();
-        } catch (YarnException) {
-            nodeNames = null;
-        }
-
+        nodeNames = program.Nodes.Keys.ToList();        
     }
 
     public override void OnInspectorGUI() {

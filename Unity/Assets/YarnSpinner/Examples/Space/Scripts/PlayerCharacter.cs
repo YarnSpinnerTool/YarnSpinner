@@ -55,7 +55,7 @@ namespace Yarn.Unity.Example {
         void Update () {
 
             // Remove all player control when we're in dialogue
-            if (FindObjectOfType<DialogueRunner>().isDialogueRunning == true) {
+            if (FindObjectOfType<DialogueRunner>().IsDialogueRunning == true) {
                 return;
             }
 

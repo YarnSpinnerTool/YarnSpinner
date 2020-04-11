@@ -6,21 +6,21 @@ title: Start
 <<set $foo to 1>>
 
 // Test numeric storage
-<<assert($foo == 1)>>
+<<call assert($foo == 1)>>
 
 <<set $foo to -1>>
 
 // Test numeric storage (negative)
-<<assert($foo == -1)>>
+<<call assert($foo == -1)>>
 
 // Test string storage
 <<set $foo to "foo">>
-<<assert($foo == "foo")>>
+<<call assert($foo == "foo")>>
 
 <<set $foo to null>>
 
 // Test null storage
-<<assert($foo == null)>>
+<<call assert($foo == null)>>
 
 // Test immediate value arithmetic
 <<set $foo = 45>>
@@ -28,44 +28,44 @@ title: Start
 <<set $bar = $foo + 1>>
 
 // Test immediate addition
-<<assert($bar == 46)>>
+<<call assert($bar == 46)>>
 
 <<set $bar = $foo - 1>>
 
 // Test immediate subtraction
-<<assert($bar == 44)>>
+<<call assert($bar == 44)>>
 
 <<set $foo = 46>>
 <<set $bar = $foo * 2>>
 
 // Test immediate multiplication
-<<assert($bar == 92)>>
+<<call assert($bar == 92)>>
 
 <<set $bar = $foo / 2>>
 
 // Test immediate division
-<<assert($bar == 23)>>
+<<call assert($bar == 23)>>
 
 <<set $foo = 45>>
 <<set $foo += 1>>
 
 // Test immediate assignment addition
-<<assert($foo == 46)>>
+<<call assert($foo == 46)>>
 
 <<set $foo *= 2>>
 
 // Test immediate assignment multiplication
-<<assert($foo == 92)>>
+<<call assert($foo == 92)>>
 
 <<set $foo /= 2>>
 
 // Test immediate assignment division
-<<assert($foo == 46)>>
+<<call assert($foo == 46)>>
 
 <<set $foo -= 1>>
 
 // Test immediate assignment subtraction
-<<assert($foo == 45)>>
+<<call assert($foo == 45)>>
 
 // Testing variable arithmetic
 <<set $foo = 46>>
@@ -73,29 +73,29 @@ title: Start
 <<set $foobar = $foo + $bar>>
 
 // Test variable addition
-<<assert($foobar == 47)>>
+<<call assert($foobar == 47)>>
 
 <<set $foobar = $foo - $bar>>
 
 // Test variable subtraction
-<<assert($foobar == 45)>>
+<<call assert($foobar == 45)>>
 
 <<set $bar = 2>>
 <<set $foobar = $foo * $bar>>
 
 // Test variable multiplication
-<<assert($foobar == 92)>>
+<<call assert($foobar == 92)>>
 
 <<set $foobar = $foo / $bar>>
 
 // Test variable division
-<<assert($foobar == 23)>>
+<<call assert($foobar == 23)>>
 
 // Testing default variable values
 <<set $foounused += 1>>
 
 // An undefined variable must default to 0 for arithmetic
-<<assert($foounused == 1)>>
+<<call assert($foounused == 1)>>
 
 // Testing string addition
 <<set $foo = "foo">>
@@ -103,11 +103,11 @@ title: Start
 <<set $foobar = $foo + "bar">>
 
 // "Test immediate string addition
-<<assert($foobar == "foobar")>>
+<<call assert($foobar == "foobar")>>
 
 <<set $foobar = $foo + $bar>>
 
 // "Test string addition
-<<assert($foobar == "foobar")>>
+<<call assert($foobar == "foobar")>>
 
 ===

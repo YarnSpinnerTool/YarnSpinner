@@ -1,170 +1,314 @@
-// Grammar file for the YarnSpinner lexer
-
 lexer grammar YarnSpinnerLexer;
 
-// ----------------------
-// Default mode
-// handles headers and pushes into body mode
+tokens { INDENT, DEDENT }
+ 
+@lexer::header{
+using System.Linq;
+using System.Text.RegularExpressions;
+}
 
-BODY_ENTER : '---' -> pushMode(Body) ;
+@lexer::members {
+	// A queue where extra tokens are pushed on (see the NEWLINE lexer rule).
+	private System.Collections.Generic.LinkedList<IToken> Tokens = new System.Collections.Generic.LinkedList<IToken>();
+	// The stack that keeps track of the indentation level.
+	private System.Collections.Generic.Stack<int> Indents = new System.Collections.Generic.Stack<int>();
+	// The amount of opened braces, brackets and parenthesis.
+	private int Opened = 0;
+	// The most recently produced token.
+	private IToken LastToken = null;
 
-// the two predetermined and important headers
-HEADER_TITLE : 'title:' -> pushMode(Title) ;
-HEADER_TAGS : 'tags:' -> pushMode(Tags) ;
-// the catchall for all other headers, anything except spaces ending in a :
-HEADER_NAME : ~(':' | ' ' | '\n')+ ;
+	public override void Emit(IToken token)
+    {
+        base.Token = token;
+        Tokens.AddLast(token);
+    }
 
-HEADER_SEPARATOR : ':' -> pushMode(HeaderText);
+    private CommonToken CommonToken(int type, string text)
+    {
+        int stop = CharIndex - 1;
+        int start = text.Length == 0 ? stop : stop - text.Length + 1;
+        var tokenFactorySourcePair = Tuple.Create((ITokenSource)this, (ICharStream)InputStream);
+        return new CommonToken(tokenFactorySourcePair, type, DefaultTokenChannel, start, stop);
+    }
 
-// this should allow normal "programming style" strings
-STRING : '"' .*? '"';
-// format for identifiers used in numerous places
-ID : (([a-zA-Z0-9])|('_'))+ ;
+	private IToken CreateDedent()
+	{
+	    var dedent = CommonToken(YarnSpinnerParser.DEDENT, "");
+	    dedent.Line = LastToken.Line;
+	    return dedent;
+	}
 
-NEWLINE : [\n]+ ;
+	public override IToken NextToken()
+	{
+	    // Check if the end-of-file is ahead and there are still some DEDENTS expected.
+	    if (InputStream.LA(1) == Eof && Indents.Count != 0)
+	    {
+            // Remove any trailing EOF tokens from our buffer.
+            for (var node  = Tokens.First; node != null; )
+            {
+                var temp = node.Next;
+                if (node.Value.Type == Eof)
+                {
+                    Tokens.Remove(node);
+                }
+                node = temp;
+            }
+            
+            // First emit an extra line break that serves as the end of the statement.
+            this.Emit(CommonToken(YarnSpinnerParser.NEWLINE, "\n"));
 
-UNKNOWN : . ;
+	        // Now emit as much DEDENT tokens as needed.
+	        while (Indents.Count != 0)
+	        {
+	            Emit(CreateDedent());
+	            Indents.Pop();
+	        }
 
-// ----------------------
-// Title mode
-// for handling the title of the node
-// pops when it hits the end of the line
-// A title is allowed to be anything excluding a space or newline
-mode Title;
-TITLE_WS : (' ' | '\t') -> skip ;
-TITLE_TEXT : ~('\n' | ' ' | '\t')+ -> popMode ;
+	        // Put the EOF back on the token stream.
+	        Emit(CommonToken(YarnSpinnerParser.Eof, "<EOF>"));
+	    }
 
-// ----------------------
-// Tag mode
-// for handling the tags of the node
-// pops when it hits the end of the line
-// currently this is just the same as the Header Text
-// but will likely change so better to set it up now
-mode Tags;
-TAG_TEXT : ~('\n')+ -> popMode ;
+	    var next = base.NextToken();
+	    if (next.Channel == DefaultTokenChannel)
+	    {
+	        // Keep track of the last token on the default channel.
+	        LastToken = next;
+	    }
 
-// ----------------------
-// Header Text mode
-// for grabbing all the non-title/tag header text
-// pops when it hits the end of a line
-mode HeaderText;
-HEADER_WS : (' ' | '\t') -> skip ;
-HEADER_TEXT : ~('\n')+ -> popMode;
+	    if (Tokens.Count == 0)
+	    {
+	        return next;
+	    }
+	    else
+	    {
+	        var x = Tokens.First.Value;
+	        Tokens.RemoveFirst();
+	        return x;
+	    }
+	}
 
-// ----------------------
-// Body mode
-// for handling normal dialogue lines and moving between modes
+    // Calculates the indentation of the provided spaces, taking the
+    // following rules into account:
+    //
+    // "Tabs are replaced (from left to right) by one to eight spaces
+    //  such that the total number of characters up to and including
+    //  the replacement is a multiple of eight [...]"
+    //
+    //  -- https://docs.python.org/3.1/reference/lexical_analysis.html#indentation
+    static int GetIndentationCount(string spaces)
+    {
+        int count = 0;
+        foreach (char ch in spaces.ToCharArray())
+        {
+            count += ch == '\t' ? 8 - (count % 8) : 1;
+        }
+        return count;
+    }
 
-mode Body;
+    bool AtStartOfInput()
+    {
+        return Column == 0 && Line == 1;
+    }
 
-WS_IN_BODY : (' ' | '\t' | '\n')+ -> skip ; // skip spaces, tabs, newlines
-COMMENT : '//' .*? '\n' -> skip ;
+    void CreateIndentIfNeeded(int type = NEWLINE) {
 
-BODY_CLOSE : '===' -> popMode ;
+        var newLine = (new Regex("[^\r\n\f]+")).Replace(Text, "");
+		var spaces = (new Regex("[\r\n\f]+")).Replace(Text, "");
+		// Strip newlines inside open clauses except if we are near EOF. We keep NEWLINEs near EOF to
+		// satisfy the final newline needed by the single_put rule used by the REPL.
+		int next = InputStream.LA(1);
+		int nextnext = InputStream.LA(2);
+        
+        // '-1' indicates 'do not emit the newline here but do emit indents/dedents'
+        if (type != -1) {
+            Emit(CommonToken(type, newLine));
+        }
+        int indent = GetIndentationCount(spaces);
+        int previous = Indents.Count == 0 ? 0 : Indents.Peek();
+        if (indent == previous)
+        {
+            // skip indents of the same size as the present indent-size            
+        }
+        else if (indent > previous) {
+            Indents.Push(indent);
+            Emit(CommonToken(YarnSpinnerParser.INDENT, spaces));
+        }
+        else {
+            // Possibly emit more than 1 DEDENT token.
+            while(Indents.Count != 0 && Indents.Peek() > indent)
+            {
+                this.Emit(CreateDedent());
+                Indents.Pop();
+            }        
+		}
+    }
+}
 
-TEXT_STRING : '"' .*? '"' ;
+// Root mode: skip whitespaces, set up some commonly-seen 
+// tokens
+WS : ([ \t])+ -> skip;
 
-SHORTCUT_ENTER : ('->' | '-> ') -> pushMode(ShortcutsMode);
+fragment SPACES: [ \t]+ ; // used in NEWLINE tokens to calculate the text following a newline
 
-// currently using \a and \v as the indent and dedent symbols
-// these play the role that { and } play in many other languages
-// not sure if this is the best idea, feels like it might break
-// but at this stage the yarn file has gone through the preprocessor so it shouldnt really matter
-// have ruled out people using \a and \v as normal text, not likely to cause issue but worth pointing out
+// Some commonly-seen tokens that other lexer modes will use
+NEWLINE: [\r\n]+ SPACES? { CreateIndentIfNeeded(-1); } -> skip;
 
-//INDENT : '{' ;
-//DEDENT : '}' ;
-INDENT : '\u0007';
-DEDENT : '\u000B';
+ID : [a-zA-Z_](([a-zA-Z0-9])|('_'))* ;
+fragment NODE_ID : [a-zA-Z_](([a-zA-Z0-9])|('_'|'.'))* ;
 
-COMMAND_IF : COMMAND_OPEN KEYWORD_IF -> pushMode(CommandMode) ;
-//COMMAND_ELSE : COMMAND_OPEN KEYWORD_ELSE -> pushMode(CommandMode) ;
-COMMAND_ELSE : COMMAND_OPEN KEYWORD_ELSE COMMAND_CLOSE | '<<else>>' | '<<ELSE>>' ;
-COMMAND_ELSE_IF : COMMAND_OPEN KEYWORD_ELSE_IF -> pushMode(CommandMode) ;
-COMMAND_ENDIF : COMMAND_OPEN ('endif' | 'ENDIF') '>>' ;
-COMMAND_SET : COMMAND_OPEN KEYWORD_SET -> pushMode(CommandMode) ;
-COMMAND_FUNC : COMMAND_OPEN ID '(' -> pushMode(CommandMode) ;
+// The 'end of node headers, start of node body' marker
+BODY_START : '---' -> pushMode(BodyMode) ;
 
-ACTION_CMD : COMMAND_OPEN -> more, pushMode(ActionMode) ;
+// The ':' in 'foo: bar (plus any whitespace after it)
+HEADER_DELIMITER : ':' [ ]* -> pushMode(HeaderMode);
 
-COMMAND_OPEN : '<<' ' '* ;
+// A hashtag. These can appear at the start of a file, or after 
+// certain lines (see BODY_HASHTAG rule)
+HASHTAG : '#' -> pushMode(HashtagMode);
 
-OPTION_ENTER : '[[' -> pushMode(OptionMode) ;
+// Headers before a node.
+mode HeaderMode;
+// Allow arbitrary text up to the end of the line.
+REST_OF_LINE : ~('\r'|'\n')+;
+HEADER_NEWLINE : NEWLINE SPACES? {CreateIndentIfNeeded(HEADER_NEWLINE);} -> popMode;
 
-HASHTAG : '#' TEXT ;
+COMMENT: '//' REST_OF_LINE -> skip;
 
+// The main body of a node.
+mode BodyMode;
 
-BODY_GOBBLE : . -> more, pushMode(TextMode);
+// Ignore all whitespace and comments
+BODY_WS : WS -> skip;
+BODY_NEWLINE : NEWLINE SPACES? {CreateIndentIfNeeded(-1);} -> skip;
+BODY_COMMENT : COMMENT -> skip ;
 
+// End of this node; return to global mode (eg node headers)
+// or end of file
+BODY_END : '===' -> popMode; 
 
-// ----------------------
-// Text mode
-// for handling the raw lines of dialogue
-// goes until it hits a hashtag, or an indent/dedent and then pops
-// is zero or more as it will always have the first symbol passed by BODY_GOBBLE
+// The start of a shortcut option
+SHORTCUT_ARROW : '->' ;
+
+// The start of a command
+COMMAND_START: '<<' -> pushMode(CommandMode) ;
+
+// The start of an option or jump
+OPTION_START: '[[' -> pushMode(OptionMode) ;
+
+FORMAT_FUNCTION_START: '[' -> pushMode(TextMode), pushMode(FormatFunctionMode);
+
+// The start of a hashtag. Can goes at the end of the 
+// line, but this rule allows us to capture '#' at the start 
+// of a line, or following an Option.
+BODY_HASHTAG: '#' -> pushMode(TextCommandOrHashtagMode), pushMode(HashtagMode);
+
+// Any other text means this is a Line
+ANY: . -> more, pushMode(TextMode);
+
+// Arbitrary text, punctuated by expressions, and ended by 
+// hashtags and/or a newline.
 mode TextMode;
+TEXT_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(TEXT_NEWLINE);} -> popMode;
 
-// TEXT_BLOCK_START : '{' ;
-// TEXT_BLOCK_END : '}' ;
+// The start of a hashtag. The remainder of this line will consist of
+// commands or hashtags, so swap to this mode and then enter hashtag mode.
 
-TEXT : ~('\n'|'\u0007'|'\u000B'|'#')* -> popMode;
+TEXT_HASHTAG: HASHTAG -> mode(TextCommandOrHashtagMode), pushMode(HashtagMode) ; 
 
-// ----------------------
-// Shortcut mode
-// Handles any form of text except the delimiters or <<
-// currently uses a semantic predicate to handle << which I don't like and would like to change
-mode ShortcutsMode;
+// push into expression mode here, because we might lex more 
+// free text after the expression is done
+TEXT_EXPRESSION_START: '{' -> pushMode(ExpressionMode); 
 
-// these 3 commented out bits work but use a semantic predicate
-fragment CHEVRON : '<' ~('<'|'#'|'\n'|'\u0007'|'\u000B') ;
-fragment PARTIAL : (~('<'|'#'|'\n'|'\u0007'|'\u000B') | CHEVRON)+ ;
-SHORTCUT_TEXT : (PARTIAL | PARTIAL* '<' {InputStream.LA(1) != '<'}?) -> popMode ;
+// The start of a hashtag. The remainder of this line will consist of
+// commands or hashtags, so swap to this mode, and then enter command mode.
+TEXT_COMMAND_START: '<<' -> mode(TextCommandOrHashtagMode), pushMode(CommandMode);
 
-// this is the bit I am trying to get working based on what was said on SO
-//SHORTCUT_TEXT : CHAR+ -> popMode;
+// The start of a format function. Push into this mode, because we may lex
+// more free text after the function is done.
+TEXT_FORMAT_FUNCTION_START: '[' -> pushMode(FormatFunctionMode);
 
-//SHORTCUT_COMMAND : '<<' -> popMode, pushMode(Command);
-//SHORTCUT_COMMAND : '<<' -> popMode, pushMode(Command);
-//CHEVRON : '<' -> type(SHORTCUT_TEXT) ;
-//fragment CHAR : ~('<'|'#'|'\n'|'\u0007'|'\u000B') ;
+// Comments after free text.
+TEXT_COMMENT: COMMENT -> skip;
 
-// ----------------------
-// Command mode
-// for handling branching and expression
+// Finally, lex anything up to a newline, a hashtag, the 
+// start of an expression as free text, the start of a format function,
+// or a command-start marker.
+TEXT: TEXT_FRAG+ ;
+TEXT_FRAG: {
+      !(InputStream.LA(1) == '<' && InputStream.LA(2) == '<') // start-of-command marker
+    &&!(InputStream.LA(1) == '/' && InputStream.LA(2) == '/') // start of a comment
+    }? ~[\r\n#{[] ;
 
-mode CommandMode;
+// TODO: support detecting a comment at the end of a line by looking 
+// ahead and seeing '//', then skipping the rest of the line. 
+// Currently "woo // foo" is parsed as one whole TEXT.
 
-COMMAND_WS : (' ' | '\n' | '\t')+ -> skip ; // skip spaces, tabs, newlines
+mode TextCommandOrHashtagMode;
+TEXT_COMMANDHASHTAG_WS: WS -> skip;
 
-COMMAND_CLOSE : '>>' -> popMode ;
+// Comments following hashtags and line conditions.
+TEXT_COMMANDHASHTAG_COMMENT: COMMENT -> skip;
 
-COMMAND_STRING : STRING ;
+TEXT_COMMANDHASHTAG_COMMAND_START: '<<' -> pushMode(CommandMode);
 
-// adding a space after the keywords to get around the issue of
-//<<iffy>> being detected as an if statement
-KEYWORD_IF : ('if' | 'IF') ' ' ;
-KEYWORD_ELSE : ('else' | 'ELSE') ' ' ;
-KEYWORD_ELSE_IF : ('elseif' | 'ELSEIF') ' ' ;
-//KEYWORD_FUNC : 'func' | 'FUNC' ;
-KEYWORD_SET : ('set' | 'SET') ' ' ;
+TEXT_COMMANDHASHTAG_HASHTAG: '#' -> pushMode(HashtagMode);
 
-KEYWORD_TRUE  : 'true' | 'TRUE' ;
-KEYWORD_FALSE : 'false' | 'FALSE' ;
+TEXT_COMMANDHASHTAG_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(TEXT_COMMANDHASHTAG_NEWLINE);} -> popMode;
 
-KEYWORD_NULL : 'null' | 'NULL' ;
+TEXT_COMMANDHASHTAG_ERROR: . ; 
 
-KEYWORD_TO : 'to' | 'TO' | '=' ;
-// All the operators YarnSpinner currently supports
-OPERATOR_LOGICAL_LESS_THAN_EQUALS : '<=' | 'lte' | 'LTE' ;
-OPERATOR_LOGICAL_GREATER_THAN_EQUALS : '>=' | 'gte' | 'GTE' ;
-OPERATOR_LOGICAL_EQUALS : '==' | 'IS' | 'is' | 'eq' | 'EQ' ;
-OPERATOR_LOGICAL_LESS : '<' | 'lt' | 'LT' ;
-OPERATOR_LOGICAL_GREATER : '>' | 'gt' | 'GT' ;
-OPERATOR_LOGICAL_NOT_EQUALS : '!=' | 'neq' | 'NEQ' ;
-OPERATOR_LOGICAL_AND : 'and' | 'AND' | '&&' ;
-OPERATOR_LOGICAL_OR : 'or' | 'OR' | '||' ;
-OPERATOR_LOGICAL_XOR : 'xor' | 'XOR' | '^' ;
-OPERATOR_LOGICAL_NOT : 'not' | 'NOT' | '!' ;
+// Hashtags at the end of a Line, Command or Option.
+mode HashtagMode;
+HASHTAG_WS: WS -> skip;
+HASHTAG_TAG: HASHTAG;
+
+// The text of the hashtag. After we parse it, we're done parsing this
+// hashtag, so leave this mode.
+HASHTAG_TEXT: ~[ \t\r\n#$<]+ -> popMode;
+
+// A format function, which allows for run-time text replacement for 
+// things like pluralisation and gender 
+mode FormatFunctionMode;
+FORMAT_FUNCTION_WS : WS -> skip;
+
+FORMAT_FUNCTION_ID: ID;
+
+FORMAT_FUNCTION_NUMBER: NUMBER;
+
+// Format functions may have expressions in them.
+FORMAT_FUNCTION_EXPRESSION_START: '{' -> pushMode(ExpressionMode);
+
+// Separates keys from values in format functions
+FORMAT_FUNCTION_EQUALS: '=';
+
+// A run of text. Escaped quotes, backslashes and format markers are allowed.
+fragment FORMAT_FUNCTION_MARKER: '%';
+FORMAT_FUNCTION_STRING : '"' (~('"' | '\\' | '\r' | '\n') | '\\' ('"' | '\\' | FORMAT_FUNCTION_MARKER))* '"';
+
+// Leave this mode when we reach the delimiting 'end'
+FORMAT_FUNCTION_END: ']' -> popMode;
+
+// Expressions, involving values and operations on values.
+mode ExpressionMode;
+EXPR_WS : WS -> skip;
+
+// Simple values
+KEYWORD_TRUE  : 'true' ;
+KEYWORD_FALSE : 'false' ;
+KEYWORD_NULL : 'null' ;
+
+OPERATOR_ASSIGNMENT : '=' | 'to' ;
+
+OPERATOR_LOGICAL_LESS_THAN_EQUALS : '<=' | 'lte' ;
+OPERATOR_LOGICAL_GREATER_THAN_EQUALS : '>=' | 'gte' ;
+OPERATOR_LOGICAL_EQUALS : '==' | 'is' | 'eq' ;
+OPERATOR_LOGICAL_LESS : '<' | 'lt' ;
+OPERATOR_LOGICAL_GREATER : '>' | 'gt'  ;
+OPERATOR_LOGICAL_NOT_EQUALS : '!=' | 'neq' ;
+OPERATOR_LOGICAL_AND : 'and' | '&&' ;
+OPERATOR_LOGICAL_OR : 'or' | '||' ;
+OPERATOR_LOGICAL_XOR : 'xor' |  '^' ;
+OPERATOR_LOGICAL_NOT : 'not' | '!' ;
 OPERATOR_MATHS_ADDITION_EQUALS : '+=' ;
 OPERATOR_MATHS_SUBTRACTION_EQUALS : '-=' ;
 OPERATOR_MATHS_MULTIPLICATION_EQUALS : '*=' ;
@@ -180,37 +324,85 @@ LPAREN : '(' ;
 RPAREN : ')' ;
 COMMA : ',' ;
 
+// A run of text. Escaped quotes and backslashes are allowed.
+STRING : '"' (~('"' | '\\' | '\r' | '\n') | '\\' ('"' | '\\'))* '"';
+
+FUNC_ID: ID ;
+
+// The end of an expression. Return to whatever we were lexing before.
+EXPRESSION_END: '}' -> popMode;
+
+// The end of a command. We need to leave both expression mode, and command mode.
+EXPRESSION_COMMAND_END: '>>' -> popMode, popMode;
+
+// Variables, which always begin with a '$'
 VAR_ID : '$' ID ;
 
-// this should allow for 1, 1.1, and .1 all fine
-BODY_NUMBER : '-'? DIGIT+('.'DIGIT+)? ;
-fragment DIGIT : [0-9] ;
+// Integer or decimal numbers.
+NUMBER
+    : INT
+    | INT '.' INT
+    ;
 
-FUNC_ID : ID ;
+fragment INT: DIGIT+ ;
+fragment DIGIT: [0-9];
 
-COMMAND_UNKNOWN : . ;
+// Commands; these are either specific ones that the compiler has a special 
+// behaviour for, like if, else, set; otherwise, they are arbitrary text 
+// (which may contain expressions), which are passed to the game.
+mode CommandMode;
 
-// ----------------------
-// Action mode
-// handles the <<anything you want>> command
-mode ActionMode;
-ACTION : '>>' -> popMode ;
-IGNORE : . -> more ;
+COMMAND_WS: WS -> skip;
 
-//ACTION_TEXT : ID ;
+// Special keywords that can appear in commands. If we see one of these after 
+// the <<, it's part of the Yarn language and used for flow control. If we
+// see anything else, it's a Command whose text will be passed to the game.
 
-//WS_IN_COMMAND : (' ' | '\n' | '\t') -> skip ; // skip spaces, tabs, newlines
+// Certain commands are followed by expressions (separated by some 
+// whitespace), and we want to ensure that we don't accidentally match 
+// things like "iffy" or "settle" as keywords followed by arbitrary text. 
+// So we make some whitespace be part of the definition of the keyword.
+COMMAND_IF: 'if' [\p{White_Space}] -> pushMode(ExpressionMode);
+COMMAND_ELSEIF: 'elseif' [\p{White_Space}] -> pushMode(ExpressionMode);
+COMMAND_ELSE: 'else' [\p{White_Space}]?; // next expected token after 'else' is '>>' so no whitespace is strictly needed 
+COMMAND_SET : 'set' [\p{White_Space}] -> pushMode(ExpressionMode);
+COMMAND_ENDIF: 'endif';
 
-// ----------------------
-// Option mode
-// For handling options
-// pops when hits ]]
+COMMAND_CALL: 'call' [\p{White_Space}] -> pushMode(ExpressionMode);
 
+// End of a command.
+COMMAND_END: '>>' -> popMode;
+
+// If we see anything that we don't expect, assume that this 
+// is a command with arbitrary text inside it. Replace this 
+// lexer state with CommandTextMode so that when it finishes 
+// up, it returns to BodyMode
+COMMAND_ARBITRARY: . -> more, mode(CommandTextMode);
+
+// Arbitrary commands, which may contain expressions, and end with a '>>'.
+mode CommandTextMode;
+COMMAND_TEXT_END: '>>' -> popMode;
+COMMAND_EXPRESSION_START: '{' -> pushMode(ExpressionMode);
+COMMAND_TEXT: ~[>{]+;
+
+// Options [[Description|NodeName]] or jumps [[NodeName]]. May be followed 
+// by hashtags, so we lex those here too.
 mode OptionMode;
+OPTION_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(OPTION_NEWLINE);} -> popMode;
+OPTION_WS: WS -> skip;
+OPTION_END: ']]' -> popMode ;
+OPTION_DELIMIT: '|' -> pushMode(OptionIDMode); // time to specifically look for IDs here
+OPTION_EXPRESSION_START: '{' -> pushMode(ExpressionMode);
+OPTION_FORMAT_FUNCTION_START: '[' -> pushMode(FormatFunctionMode);
+OPTION_TEXT: ~[\]{|[]+ ;
 
-OPTION_SEPARATOR: '|' -> pushMode(OptionLinkMode) ;
-OPTION_TEXT : ~('|'|']')+ ;
-OPTION_CLOSE: ']]' -> popMode ;
-
-mode OptionLinkMode;
-OPTION_LINK : ~(']')+ -> popMode ;
+// Only allow seeing runs of text as an ID after a '|' is 
+// seen. This prevents an option being parsed 
+// as TEXT | TEXT, and lets us prohibit multiple IDs in the
+// second half of the statement.
+mode OptionIDMode;
+OPTION_ID_WS: [ \t] -> skip;
+OPTION_ID: NODE_ID -> popMode ; 
+// (We return immediately to OptionMode after we've seen this 
+// single OPTION_ID, so that we can lex the OPTION_END that 
+// closes the option.)
