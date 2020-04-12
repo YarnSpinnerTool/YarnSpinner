@@ -975,7 +975,7 @@ namespace Yarn.Unity
                 LineFinishedOnAllViews();
 
                 if (continueNextLineOnLineFinished || userIntendedNextLine) {
-                    ContinueDialogue();
+                    EndLineCurrentlyFinishedOnViews();
                 }
             }
         }
