@@ -971,14 +971,24 @@ namespace Yarn.Unity
         }
 
         void OnDialogueLineFinished() {
-            if (CheckDialogueViewsForCommonLineStatus(DialogueViewBase.DialogueLineStatus.Finished) && (continueNextLineOnLineFinished || userIntendedNextLine)) {
-                ContinueDialogue();
+            if (CheckDialogueViewsForCommonLineStatus(DialogueViewBase.DialogueLineStatus.Finished)) {
+                LineFinishedOnAllViews();
+
+                if (continueNextLineOnLineFinished || userIntendedNextLine) {
+                    ContinueDialogue();
+                }
             }
         }
 
         void OnDialogueLineCompleted() {
             if (CheckDialogueViewsForCommonLineStatus(DialogueViewBase.DialogueLineStatus.Ended)) {
                 ContinueDialogue();
+            }
+        }
+
+        private void LineFinishedOnAllViews() {
+            foreach (var dialogueView in dialogueViews) {
+                dialogueView.OnFinishedLineOnAllViews();
             }
         }
 

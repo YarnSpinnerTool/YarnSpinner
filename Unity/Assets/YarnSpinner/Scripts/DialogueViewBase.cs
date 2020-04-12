@@ -90,6 +90,8 @@ namespace Yarn.Unity
         /// </summary>
         protected abstract void FinishCurrentLine();
 
+        internal abstract void OnFinishedLineOnAllViews();
+
         internal IEnumerator EndCurrentLine(Action onDialogueLineCompleted) {
             dialogueRunnerCurrentLine = onDialogueLineCompleted.Target as DialogueRunner;
             dialogueLineStatus = DialogueLineStatus.Ending;

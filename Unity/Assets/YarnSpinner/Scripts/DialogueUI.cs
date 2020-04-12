@@ -143,6 +143,17 @@ namespace Yarn.Unity {
         public UnityEngine.Events.UnityEvent onLineFinishDisplaying;
 
         /// <summary>
+        /// A <see cref="UnityEngine.Events.UnityEvent"/> that is called
+        /// when a line has finished being delivered not just on this
+        /// View but on all Views registered on the <see cref="DialogueRunner"/>.
+        /// </summary>
+        /// <remarks>
+        /// Use this method to display UI elements like a "continue" button 
+        /// in sync with other Views like voice over playback.
+        /// </remarks>
+        public UnityEngine.Events.UnityEvent onLineFinishDisplayingOnAllViews;
+
+        /// <summary>
         /// A <see cref="DialogueRunner.StringUnityEvent"/> that is called
         /// when the visible part of the line's localised text changes.
         /// </summary>
@@ -452,6 +463,10 @@ namespace Yarn.Unity {
         /// <inheritdoc/>
         protected override void FinishCurrentLine() {
             finishCurrentLine = true;
+        }
+
+        internal override void OnFinishedLineOnAllViews() {
+            onLineFinishDisplayingOnAllViews?.Invoke();
         }
     }
 }
