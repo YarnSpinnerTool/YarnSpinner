@@ -3,6 +3,8 @@
 - [ ] Docs have been added / updated (for bug fixes / features)
 - [ ] CHANGELOG.md has been updated to describe this change
 
+To update the documentation on [yarnspinner.dev](https://yarnspinner.dev), please visit the [documentation repository](https://github.com/YarnSpinnerTool/Docs).
+
 * **What kind of change does this pull request introduce?**
 
 - [ ] Bug Fix
