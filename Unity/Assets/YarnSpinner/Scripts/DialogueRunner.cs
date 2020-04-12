@@ -169,8 +169,8 @@ namespace Yarn.Unity
                 textsToLoad.Add(localization);
             }
 
-            // TODO: Is this relevant?
-            // Use the invariant culture when parsing the CSV
+            // Use the invariant culture when parsing the CSV to ensure parsing
+            // with the correct separator instead of the user's locale separator
             var configuration = new CsvHelper.Configuration.Configuration(
                 System.Globalization.CultureInfo.InvariantCulture
             );
