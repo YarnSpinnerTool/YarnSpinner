@@ -126,7 +126,8 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                 AddLineTagsToFile(yarnImporter.assetPath);
             }
         }
-        else if (serializedObject.FindProperty("localizations").arraySize>0)
+        // Only update localizations if line tags exist and localizations exist
+        else if (yarnImporter .localizations.Length > 0)
         {
             if (GUILayout.Button("Update Localizations"))
             {
@@ -176,21 +177,18 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 
     void UpdateLocalizations(string newBaseCsv)
     {
+        // Goes through each localization string table csv file and merges it with the new base string table
         YarnImporter yarnImporter = (target as YarnImporter);
 
-        SerializedProperty sp = serializedObject.FindProperty("localizations");
-        for (int i = 0; i < sp.arraySize; i++)
+        for (int i = 0; i < yarnImporter.localizations.Length; i++)
         {
-            SerializedProperty spe = sp.GetArrayElementAtIndex(i);
-            SerializedProperty spt = spe.FindPropertyRelative("text");
-            TextAsset ta = (TextAsset)spt.objectReferenceValue;
-            string s = ta.text;
-            string merged = MergeStringTables(s, newBaseCsv, Path.GetFileNameWithoutExtension(yarnImporter.assetPath));
+            // Feeds the merge function with the old localized string table, the new base string table and the current file name in case it has changed.
+            string merged = MergeStringTables(yarnImporter.localizations[i].text.text, newBaseCsv, Path.GetFileNameWithoutExtension(yarnImporter.assetPath));
 
-            // Save to file
+            // Save the merged csv to file (copied from the "Create New Localisation" button).
             var assetDirectory = Path.GetDirectoryName(yarnImporter.assetPath);
-            string language = spe.FindPropertyRelative("languageName").stringValue;
 
+            string language = yarnImporter.localizations[i].languageName;
             var newStringsTablePath = $"{assetDirectory}/{Path.GetFileNameWithoutExtension(yarnImporter.assetPath)} ({language}).csv";
             newStringsTablePath = AssetDatabase.GenerateUniqueAssetPath(newStringsTablePath);
 
@@ -208,6 +206,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 
     string MergeStringTables(string oldLocalizedCsv, string newBaseCsv, string outputFileName)
     {
+        // Use the CsvHelper to convert the two csvs to lists so they are easy to work with
         List<CsvEntry> oldEntries = new List<CsvEntry>();
         List<CsvEntry> newEntries = new List<CsvEntry>();
 
@@ -254,15 +253,15 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         }
 
 
-        // Here's what's happening:
+        // This is where we merge the two string tables. Here's what's happening:
         // Use CsvParser to parse new base string table and old localized string table
         // The strategy is to use the fact that the two string tables look alike to optimize.
         // The algorithm goes through the string tables side by side. Imagine two fingers running
         // through the entries. At each line there are four different scenarios that we test for:
-        // scenario 1: The lines match (matching tags)
-        // scenario 2: The line in the new string table exists in the old string table but has been moved from somewhere else
-        // scenario 3: The line in the new string table is completely new
-        // scenario 4: The line in the old string table has been deleted
+        //   scenario 1: The lines match (matching tags)
+        //   scenario 2: The line in the new string table exists in the old string table but has been moved from somewhere else
+        //   scenario 3: The line in the new string table is completely new (no line tags in old string table match it)
+        //   scenario 4: The line in the old string table has been deleted (no line tags in new string table match it)
 
         //Go line by line:
         //1.If line tags are the same: add old localized with new line number and node. Increase index of both. (s1: matching lines)
@@ -277,19 +276,24 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 
         List<CsvEntry> mergedEntries = new List<CsvEntry>();
 
+        // Mark new lines as new so they are easy to spot
+        string newlineMarker = " (((NEW LINE)))";
+
         while (true)
         {
-            // If no more entries in old: add all last new entries and break
+            // If no more entries in old: add the rest of the new entries and break
             if (oldEntries.Count <= oldIndex)
             {
                 for (int i = newIndex; i < newEntries.Count; i++)
                 {
-                    mergedEntries.Add(newEntries[i]);
+                    CsvEntry entry = newEntries[i];
+                    entry.text += newlineMarker;
+                    mergedEntries.Add(entry);
                 }
                 break;
             }
 
-            // If no more entries in new: break
+            // If no more entries in new: all additional old entries must have been deleted so break
             if (newEntries.Count <= newIndex)
             {
                 break;
@@ -339,7 +343,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                     if (oldEntries[oldIndex].id == newEntries[i].id)
                     {
                         CsvEntry entry = newEntries[newIndex];
-                        entry.text += " (((NEW LINE)))";
+                        entry.text += newlineMarker;
                         mergedEntries.Add(entry);
                         newIndex++;
                         didFindInNew = true;
@@ -354,12 +358,8 @@ public class YarnImporterEditor : ScriptedImporterEditor {
             }
         }
 
+        // Entries are not necessarily added in the correct order and have to be sorted
         mergedEntries.Sort((a, b) => a.lineNumber.CompareTo(b.lineNumber));
-
-        //foreach (CsvEntry e in mergedEntries)
-        //{
-        //    Debug.Log(e.text + " : " + e.lineNumber);
-        //}
 
         // Create new Csv file
         using (var memoryStream = new MemoryStream())
@@ -390,7 +390,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         }
     }
     
-    public struct CsvEntry
+    struct CsvEntry
     {
         public string id;
         public string text;
