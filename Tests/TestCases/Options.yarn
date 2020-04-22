@@ -54,4 +54,13 @@ Bea: line text
 -> Option A <<if true>> #line:0e8a7cd
 -> Option B #line:0405c67
 
+(Break up the commands)
+
+// Single-line shortcut options inside an indented context
+<<if true>>
+    -> Option1
+<<else>>
+    -> Option2
+<<endif>>
+
 ===
