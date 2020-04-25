@@ -32,6 +32,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using CsvHelper;
 using System;
+using System.Linq;
 
 namespace Yarn.Unity
 {
@@ -138,6 +139,11 @@ namespace Yarn.Unity
         {
             Dialogue.AddProgram(scriptToLoad.GetProgram());
             AddDialogueLines(scriptToLoad);
+            
+            // Keep reference to loaded script so we can reload upon language changes
+            var expandedYarnScripts = yarnScripts.ToList();
+            expandedYarnScripts.Add(scriptToLoad);
+            yarnScripts = expandedYarnScripts.ToArray();
         }
 
         /// <summary>
@@ -539,6 +545,14 @@ namespace Yarn.Unity
             }
         }
 
+        private void OnEnable() {
+            Preferences.LanguagePreferencesChanged += OnLanguagePreferencesChanged;
+        }
+
+        private void OnDisable() {
+            Preferences.LanguagePreferencesChanged -= OnLanguagePreferencesChanged;
+        }
+
         Dialogue CreateDialogueInstance()
         {
             // Create the main Dialogue runner, and pass our
@@ -936,6 +950,14 @@ namespace Yarn.Unity
                     // And then continue running dialogue
                     ContinueDialogue();
                 }
+            }
+        }
+
+        void OnLanguagePreferencesChanged(object sender, EventArgs e) {
+            localizedAudio.Clear();
+            localizedText.Clear();
+            foreach (var yarnScript in yarnScripts) {
+                AddDialogueLines(yarnScript);
             }
         }
 

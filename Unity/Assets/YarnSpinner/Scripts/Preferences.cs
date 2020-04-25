@@ -10,6 +10,11 @@ using System.Globalization;
 public class Preferences : ScriptableObject {
     #region Properties
     /// <summary>
+    /// Raised when the language preferences have been changed
+    /// </summary>
+    public static EventHandler LanguagePreferencesChanged;
+
+    /// <summary>
     /// The text language preferred by the user
     /// </summary>
     [SerializeField]
@@ -65,7 +70,14 @@ public class Preferences : ScriptableObject {
     /// </summary>
     public static string TextLanguage {
         get => Instance._textLanguage;
-        set => Instance._textLanguage = value;
+        set {
+            if (value != Instance._textLanguage) {
+                Instance._textLanguage = value;
+                LanguagePreferencesChanged?.Invoke(Instance, new EventArgs());
+            } else {
+                Instance._textLanguage = value;
+            }
+        }
     }
 
     /// <summary>
@@ -74,7 +86,14 @@ public class Preferences : ScriptableObject {
     /// </summary>
     public static string AudioLanguage {
         get => Instance._audioLanguage;
-        set => Instance._audioLanguage = value;
+        set {
+            if (value != Instance._audioLanguage) {
+                Instance._audioLanguage = value;
+                LanguagePreferencesChanged?.Invoke(Instance, new EventArgs());
+            } else {
+                Instance._audioLanguage = value;
+            }
+        }
     }
     #endregion
 

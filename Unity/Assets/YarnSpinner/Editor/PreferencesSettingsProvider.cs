@@ -18,11 +18,15 @@ class PreferencesSettingsProvider : SettingsProvider {
     private SerializedObject _preferences;
     private List<string> _textLanguages = new List<string>();
     private List<string> _audioLanguage = new List<string>();
+    private string _textLanguageLastFrame;
+    private string _audioLanguageLastFrame;
 
     public override void OnActivate(string searchContext, VisualElement rootElement) {
         _preferences = new SerializedObject(ScriptableObject.CreateInstance<Preferences>());
         _textLanguages = ProjectSettings.TextProjectLanguages;
         _audioLanguage = ProjectSettings.AudioProjectLanguages;
+        _textLanguageLastFrame = Preferences.TextLanguage;
+        _audioLanguageLastFrame = Preferences.AudioLanguage;
     }
 
     public override void OnDeactivate() {
@@ -41,6 +45,7 @@ class PreferencesSettingsProvider : SettingsProvider {
         // Text language popup related things
         var selectedTextLanguageIndex = -1;
         var textLanguageProp = _preferences.FindProperty("_textLanguage");
+        _textLanguageLastFrame = textLanguageProp.stringValue;
         var textLanguagesNamesAvailableForSelection = _textLanguages.Count > 0 ? _textLanguages.ToArray() : Cultures.AvailableCulturesNames;
         var selectedTextLanguage = textLanguagesNamesAvailableForSelection
             .Select((name, index) => new { name, index })
@@ -60,6 +65,7 @@ class PreferencesSettingsProvider : SettingsProvider {
         // Audio language popup related things
         var selectedAudioLanguageIndex = -1;
         var audioLanguageProp = _preferences.FindProperty("_audioLanguage");
+        _audioLanguageLastFrame = audioLanguageProp.stringValue;
         var audioLanguagesNamesAvailableForSelection = _audioLanguage.Count > 0 ? _audioLanguage.ToArray() : Cultures.AvailableCulturesNames;
         var selectedAudioLanguage = audioLanguagesNamesAvailableForSelection
             .Select((name, index) => new { name, index })
@@ -77,6 +83,13 @@ class PreferencesSettingsProvider : SettingsProvider {
 
 
         _preferences.ApplyModifiedProperties();
+
+        if (_textLanguageLastFrame != textLanguageProp.stringValue) {
+            Preferences.LanguagePreferencesChanged?.Invoke(this, new System.EventArgs());
+        }
+        if (_audioLanguageLastFrame != audioLanguageProp.stringValue) {
+            Preferences.LanguagePreferencesChanged?.Invoke(this, new System.EventArgs());
+        }
     }
 
     // Register the YarnSpinner user preferences in the "Preferences" window
