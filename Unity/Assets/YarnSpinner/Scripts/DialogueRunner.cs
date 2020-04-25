@@ -647,7 +647,7 @@ namespace Yarn.Unity
                 // immediately called _continue
                 wasCompleteCalled = false;
 
-                (wasValidCommand, executionType) = DispatchCommandToRegisteredHandlers(command, ContinueDialogue);
+                (wasValidCommand, executionType) = DispatchCommandToRegisteredHandlers(command, () => ContinueDialogue());
 
                 if (wasValidCommand) {
 
@@ -690,7 +690,7 @@ namespace Yarn.Unity
                 //return dialogueViews.RunCommand(command, continueAction);
 
                 // Ugly hack to keep the previous behaviour intact following in 3... 2... 1...
-                return GetDialogueUI().RunCommand(command, ContinueDialogue);
+                return GetDialogueUI().RunCommand(command, () => ContinueDialogue());
             }
 
             /// Forward the line to the dialogue UI.
@@ -705,7 +705,7 @@ namespace Yarn.Unity
                 }
                 // Send line to available dialogue views
                 foreach (var dialogueView in dialogueViews) {
-                    dialogueView.RunLine(dialogueLines[line.ID], OnDialogueLineFinished);
+                    dialogueView.RunLine(dialogueLines[line.ID], () => OnDialogueLineFinished());
                 }
                 return Dialogue.HandlerExecutionType.PauseExecution;
             }
