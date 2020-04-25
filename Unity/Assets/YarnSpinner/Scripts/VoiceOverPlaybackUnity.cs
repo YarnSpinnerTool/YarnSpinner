@@ -29,12 +29,11 @@ namespace Yarn.Unity {
             }
         }
 
-        protected override IEnumerator RunLine(DialogueLine dialogueLine) {
+        protected override IEnumerator RunLine(LocalizedLine dialogueLine) {
             finishCurrentLine = false;
 
             // Get the localized voice over audio clip
-            var voiceOverClip = dialogueLine.VoiceOverLocalized.ContainsKey(Preferences.AudioLanguage) ? dialogueLine.VoiceOverLocalized[Preferences.AudioLanguage] :
-            dialogueLine.VoiceOverLocalized.ContainsKey(dialogueLine.BaseLanguageID) ? dialogueLine.VoiceOverLocalized[dialogueLine.BaseLanguageID] : null;
+            var voiceOverClip = dialogueLine.VoiceOverLocalized;
 
             if (!voiceOverClip) {
                 Debug.Log("Playing voice over failed since the AudioClip of the voice over audio language or the base language was null.", gameObject);
