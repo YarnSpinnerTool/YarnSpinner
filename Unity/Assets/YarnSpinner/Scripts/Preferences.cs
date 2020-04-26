@@ -73,7 +73,7 @@ public class Preferences : ScriptableObject {
         set {
             if (value != Instance._textLanguage) {
                 Instance._textLanguage = value;
-                LanguagePreferencesChanged?.Invoke(Instance, new EventArgs());
+                LanguagePreferencesChanged?.Invoke(Instance, EventArgs.Empty);
             } else {
                 Instance._textLanguage = value;
             }
@@ -89,7 +89,7 @@ public class Preferences : ScriptableObject {
         set {
             if (value != Instance._audioLanguage) {
                 Instance._audioLanguage = value;
-                LanguagePreferencesChanged?.Invoke(Instance, new EventArgs());
+                LanguagePreferencesChanged?.Invoke(Instance, EventArgs.Empty);
             } else {
                 Instance._audioLanguage = value;
             }

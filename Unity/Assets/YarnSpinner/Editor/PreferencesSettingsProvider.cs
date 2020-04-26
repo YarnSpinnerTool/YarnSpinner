@@ -85,10 +85,10 @@ class PreferencesSettingsProvider : SettingsProvider {
         _preferences.ApplyModifiedProperties();
 
         if (_textLanguageLastFrame != textLanguageProp.stringValue) {
-            Preferences.LanguagePreferencesChanged?.Invoke(this, new System.EventArgs());
+            Preferences.LanguagePreferencesChanged?.Invoke(this, System.EventArgs.Empty);
         }
         if (_audioLanguageLastFrame != audioLanguageProp.stringValue) {
-            Preferences.LanguagePreferencesChanged?.Invoke(this, new System.EventArgs());
+            Preferences.LanguagePreferencesChanged?.Invoke(this, System.EventArgs.Empty);
         }
     }
 
