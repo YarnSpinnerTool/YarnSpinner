@@ -196,11 +196,7 @@ namespace Yarn.Unity
                         var lineId = csv.GetField("id");
                         var lineText = csv.GetField("text");
 
-                        if (localizedText.ContainsKey(lineId)) {
-                            localizedText[lineId] = lineText;
-                        } else {
-                            localizedText.Add(lineId, lineText);
-                        }
+                        localizedText[lineId] = lineText;
                     }
                 }
             }
@@ -217,11 +213,7 @@ namespace Yarn.Unity
                     var languageId = localization.language;
                     var voiceOverClip = localization.audioClip;
 
-                    if (localizedAudio.ContainsKey(lineID)) {
-                        localizedAudio[lineID] = voiceOverClip;
-                    } else {
-                        localizedAudio.Add(lineID, voiceOverClip);
-                    }
+                    localizedAudio[lineID] = voiceOverClip;
                 }
             }
         }
@@ -621,11 +613,11 @@ namespace Yarn.Unity
             void HandleOptions(OptionSet options) {
                 DialogueOption[] optionSet = new DialogueOption[options.Options.Length];
                 for (int i = 0; i < options.Options.Length; i++) {
-                    var dialogOption = new DialogueOption();
-                    dialogOption.TextID = options.Options[i].Line.ID;
-                    dialogOption.DialogueOptionID = options.Options[i].ID;
-                    dialogOption.TextLocalized = localizedText[options.Options[i].Line.ID];
-                    optionSet[i] = dialogOption;
+                    optionSet[i] = new DialogueOption {
+                        TextID = options.Options[i].Line.ID,
+                        DialogueOptionID = options.Options[i].ID,
+                        TextLocalized = localizedText[options.Options[i].Line.ID]
+                    };
                 }
                 foreach (var dialogueView in dialogueViews) {
                     dialogueView.RunOptions(optionSet, selectAction);
