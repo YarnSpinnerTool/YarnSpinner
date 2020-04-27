@@ -276,15 +276,14 @@ namespace Yarn.Unity {
         }
 
         /// Show a line of dialogue, gradually        
-        protected override IEnumerator RunLine(DialogueLine dialogueLine) {
+        protected override IEnumerator RunLine(LocalizedLine dialogueLine) {
             var startTime = Time.time;
             onLineStart?.Invoke();
 
             finishCurrentLine = false;
             
             // The final text we'll be showing for this line.
-            string text = dialogueLine.TextLocalized.ContainsKey(Preferences.TextLanguage) ? dialogueLine.TextLocalized[Preferences.TextLanguage] : 
-                        dialogueLine.TextLocalized.ContainsKey(dialogueLine.BaseLanguageID) ? dialogueLine.TextLocalized[dialogueLine.BaseLanguageID] : string.Empty;
+            string text = dialogueLine.TextLocalized;
 
             // Now that we know the localised string for this line, we
             // can go ahead and inject this line's substitutions.
@@ -363,8 +362,7 @@ namespace Yarn.Unity {
                 optionButtons [i].onClick.RemoveAllListeners();
                 optionButtons [i].onClick.AddListener(() => SelectOption(dialogueOption.DialogueOptionID));
 
-                var optionText = dialogueOption.TextLocalized.ContainsKey(Preferences.TextLanguage) ? dialogueOption.TextLocalized[Preferences.TextLanguage] : 
-                            dialogueOption.TextLocalized.ContainsKey(dialogueOption.BaseLanguageID) ? dialogueOption.TextLocalized[dialogueOption.BaseLanguageID] : string.Empty;
+                var optionText = dialogueOption.TextLocalized;
 
                 if (optionText == null) {
                     Debug.LogWarning($"Option {dialogueOption.TextID} doesn't have any localised text");

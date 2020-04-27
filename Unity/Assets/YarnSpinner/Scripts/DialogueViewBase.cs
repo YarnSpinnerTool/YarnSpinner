@@ -66,12 +66,12 @@ namespace Yarn.Unity
         /// method.</returns>
         /// FIXME: If this method is expected to be called only from the DialogueRunner
         /// then this should be converted into a coroutine and merged with RunLineWithCallback();
-        public void RunLine(DialogueLine dialogueLine, Action onDialogueLineFinished) {
+        public void RunLine(LocalizedLine dialogueLine, Action onDialogueLineFinished) {
             StartCoroutine(RunLineWithCallback(dialogueLine, onDialogueLineFinished));
         }
-        protected abstract IEnumerator RunLine(DialogueLine dialogueLine);
+        protected abstract IEnumerator RunLine(LocalizedLine dialogueLine);
 
-        private IEnumerator RunLineWithCallback (DialogueLine dialogueLine, Action onDialogueLineFinished) {
+        private IEnumerator RunLineWithCallback (LocalizedLine dialogueLine, Action onDialogueLineFinished) {
             dialogueRunnerCurrentLine = onDialogueLineFinished.Target as DialogueRunner;
             dialogueLineStatus = DialogueLineStatus.Running;
 

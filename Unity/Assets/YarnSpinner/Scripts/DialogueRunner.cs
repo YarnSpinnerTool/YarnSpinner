@@ -32,6 +32,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using CsvHelper;
 using System;
+using System.Linq;
 
 namespace Yarn.Unity
 {
@@ -138,6 +139,11 @@ namespace Yarn.Unity
         {
             Dialogue.AddProgram(scriptToLoad.GetProgram());
             AddDialogueLines(scriptToLoad);
+            
+            // Keep reference to loaded script so we can reload upon language changes
+            var expandedYarnScripts = yarnScripts.ToList();
+            expandedYarnScripts.Add(scriptToLoad);
+            yarnScripts = expandedYarnScripts.ToArray();
         }
 
         /// <summary>
@@ -177,6 +183,10 @@ namespace Yarn.Unity
 
             // Load strings of all available languages into DialogueLines dict
             foreach (var localization in textsToLoad) {
+                if (localization.languageName != Preferences.TextLanguage) {
+                    continue;
+                }
+
                 using (var reader = new System.IO.StringReader(localization.text.text))
                 using (var csv = new CsvReader(reader, configuration)) {
                     csv.Read();
@@ -186,18 +196,7 @@ namespace Yarn.Unity
                         var lineId = csv.GetField("id");
                         var lineText = csv.GetField("text");
 
-                        if (dialogueLines.ContainsKey(lineId)) {
-                            if (dialogueLines[lineId].TextLocalized.ContainsKey(localization.languageName)) {
-                                dialogueLines[lineId].TextLocalized[localization.languageName] = lineText;
-                            } else {
-                                dialogueLines[lineId].TextLocalized.Add(localization.languageName, lineText);
-                            }
-                        } else {
-                            DialogueLine newDialogueLine = new DialogueLine();
-                            newDialogueLine.BaseLanguageID = yarnScript.baseLocalizationId;
-                            newDialogueLine.TextLocalized.Add(localization.languageName, lineText);
-                            dialogueLines.Add(lineId, newDialogueLine);
-                        }
+                        localizedText[lineId] = lineText;
                     }
                 }
             }
@@ -207,20 +206,14 @@ namespace Yarn.Unity
                 var lineID = line.linetag;
 
                 foreach (var localization in line.languageToAudioclip) {
+                    if (localization.language != Preferences.AudioLanguage) {
+                        continue;
+                    }
+
                     var languageId = localization.language;
                     var voiceOverClip = localization.audioClip;
 
-                    if (dialogueLines.ContainsKey(lineID)) {
-                        if (dialogueLines[lineID].VoiceOverLocalized.ContainsKey(languageId)) {
-                            dialogueLines[lineID].VoiceOverLocalized[languageId] = voiceOverClip;
-                        } else {
-                            dialogueLines[lineID].VoiceOverLocalized.Add(languageId, voiceOverClip);
-                        }
-                    } else {
-                        DialogueLine newDialogueLine = new DialogueLine();
-                        newDialogueLine.VoiceOverLocalized.Add(languageId, voiceOverClip);
-                        dialogueLines.Add(lineID, newDialogueLine);
-                    }
+                    localizedAudio[lineID] = voiceOverClip;
                 }
             }
         }
@@ -492,10 +485,8 @@ namespace Yarn.Unity
         Dictionary<string, CommandHandler> commandHandlers = new Dictionary<string, CommandHandler>();
         Dictionary<string, BlockingCommandHandler> blockingCommandHandlers = new Dictionary<string, BlockingCommandHandler>();
 
-        /// <summary>
-        /// Dialogue lines and voice over clips for all available languages.
-        /// </summary>
-        Dictionary<string, DialogueLine> dialogueLines = new Dictionary<string, DialogueLine>();
+        Dictionary<string, string> localizedText = new Dictionary<string, string>();
+        Dictionary<string, AudioClip> localizedAudio = new Dictionary<string, AudioClip>();
 
         // A flag used to note when we call into a blocking command
         // handler, but it calls its complete handler immediately -
@@ -544,6 +535,14 @@ namespace Yarn.Unity
             if (startAutomatically) {
                 StartDialogue();
             }
+        }
+
+        private void OnEnable() {
+            Preferences.LanguagePreferencesChanged += OnLanguagePreferencesChanged;
+        }
+
+        private void OnDisable() {
+            Preferences.LanguagePreferencesChanged -= OnLanguagePreferencesChanged;
         }
 
         Dialogue CreateDialogueInstance()
@@ -614,12 +613,11 @@ namespace Yarn.Unity
             void HandleOptions(OptionSet options) {
                 DialogueOption[] optionSet = new DialogueOption[options.Options.Length];
                 for (int i = 0; i < options.Options.Length; i++) {
-                    var dialogOption = new DialogueOption();
-                    dialogOption.TextID = options.Options[i].Line.ID;
-                    dialogOption.DialogueOptionID = options.Options[i].ID;
-                    dialogOption.TextLocalized = dialogueLines[options.Options[i].Line.ID].TextLocalized;
-                    dialogOption.BaseLanguageID = dialogueLines[options.Options[i].Line.ID].BaseLanguageID;
-                    optionSet[i] = dialogOption;
+                    optionSet[i] = new DialogueOption {
+                        TextID = options.Options[i].Line.ID,
+                        DialogueOptionID = options.Options[i].ID,
+                        TextLocalized = localizedText[options.Options[i].Line.ID]
+                    };
                 }
                 foreach (var dialogueView in dialogueViews) {
                     dialogueView.RunOptions(optionSet, selectAction);
@@ -697,7 +695,15 @@ namespace Yarn.Unity
             Dialogue.HandlerExecutionType HandleLine(Line line)
             {
                 // Update lines to current state before sending them to the view classes
-                UpdateInlineExpressions(line);
+                var substitutions = GetInlineExpressions(line);
+                var text = localizedText.ContainsKey(line.ID) ? localizedText[line.ID] : string.Empty;
+                var audio = localizedAudio.ContainsKey(line.ID) ? localizedAudio[line.ID] : null;
+                var localizedLine = new LocalizedLine() {
+                    TextID = line.ID,
+                    TextLocalized = text,
+                    VoiceOverLocalized = audio,
+                    Substitutions = substitutions
+                };
 
                 // First register current dialogue views for line complete calls
                 foreach (var dialogueView in dialogueViews) {
@@ -705,7 +711,7 @@ namespace Yarn.Unity
                 }
                 // Send line to available dialogue views
                 foreach (var dialogueView in dialogueViews) {
-                    dialogueView.RunLine(dialogueLines[line.ID], () => OnDialogueLineFinished());
+                    dialogueView.RunLine(localizedLine, () => OnDialogueLineFinished());
                 }
                 return Dialogue.HandlerExecutionType.PauseExecution;
             }
@@ -939,6 +945,14 @@ namespace Yarn.Unity
             }
         }
 
+        void OnLanguagePreferencesChanged(object sender, EventArgs e) {
+            localizedAudio.Clear();
+            localizedText.Clear();
+            foreach (var yarnScript in yarnScripts) {
+                AddDialogueLines(yarnScript);
+            }
+        }
+
         void ContinueDialogue()
         {
             lineCurrentlyRunOnDialogueViews.Clear();
@@ -1027,8 +1041,8 @@ namespace Yarn.Unity
             return true;
         }
 
-        void UpdateInlineExpressions (Line line) {
-            if (!dialogueLines.ContainsKey(line.ID)) return;
+        string[] GetInlineExpressions (Line line) {
+            if (!localizedText.ContainsKey(line.ID)) return Array.Empty<string>();
 
             List<string> substitutions = new List<string>();
 
@@ -1036,7 +1050,7 @@ namespace Yarn.Unity
                 substitutions.Add(substitution);
             }
 
-            dialogueLines[line.ID].Substitutions = substitutions.ToArray();
+            return substitutions.ToArray();
         }
 
         [Obsolete("This is a temporary workaround. Do not keep this.")]
@@ -1231,7 +1245,7 @@ namespace Yarn.Unity
         public abstract void ResetToDefaults();
     }
 
-    public class DialogueLine {
+    public class LocalizedLine {
         /// <summary>
         /// DialogueLine's ID
         /// </summary>
@@ -1241,17 +1255,13 @@ namespace Yarn.Unity
         /// </summary>
         public string[] Substitutions;
         /// <summary>
-        /// DialogueLine's text per language
+        /// DialogueLine's text
         /// </summary>
-        public Dictionary<string, string> TextLocalized = new Dictionary<string, string>();
+        public string TextLocalized;
         /// <summary>
-        /// DialogueLine's voice over clip per language
+        /// DialogueLine's voice over clip
         /// </summary>
-        public Dictionary<string, AudioClip> VoiceOverLocalized = new Dictionary<string, AudioClip>();
-        /// <summary>
-        /// The language ID this DialogueLine was written in
-        /// </summary>
-        public string BaseLanguageID;
+        public AudioClip VoiceOverLocalized;
     }
 
     public class DialogueOption {
@@ -1264,13 +1274,9 @@ namespace Yarn.Unity
         /// </summary>
         public string TextID;
         /// <summary>
-        /// The text of this dialogue option in all available languages
+        /// The text of this dialogue option
         /// </summary>
-        public Dictionary<string, string> TextLocalized = new Dictionary<string, string>();
-        /// <summary>
-        /// The language ID the original yarn asset was written in
-        /// </summary>
-        public string BaseLanguageID;
+        public string TextLocalized;
     }
 
     #endregion
