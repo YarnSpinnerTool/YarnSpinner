@@ -63,8 +63,6 @@ namespace Yarn.Unity {
             } else {
                 audioSource.Stop();
             }
-
-            yield break;
         }
 
         protected override void FinishCurrentLine() {
