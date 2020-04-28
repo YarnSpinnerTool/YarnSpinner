@@ -272,7 +272,6 @@ namespace Yarn.Unity {
 
         /// Show a line of dialogue, gradually
         protected override IEnumerator RunLine(LocalizedLine dialogueLine) {
-            var startTime = Time.time;
             onLineStart?.Invoke();
 
             finishCurrentLine = false;
