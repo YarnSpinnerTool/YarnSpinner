@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Yarn.Unity 
+namespace Yarn.Unity
 {
-
     /// <summary>
     /// A <see cref="MonoBehaviour"/> that can present the data of a dialogue. The term "view" is meant in the broadest sense, e.g. a view on the dialogue (MVVM pattern). Therefore, tis abstract class only defines how a specific view on the dialogue should communicate with the Runner (e.g. display a line or trigger a voice over clip). How to present the content to the user will be the responsibility of all classes inhereting from this class.
     /// </summary>
@@ -22,7 +21,7 @@ namespace Yarn.Unity
     /// </remarks>
     /// <seealso cref="DialogueRunner.dialogueViews"/>
     /// <seealso cref="DialogueUI"/>
-    public abstract class DialogueViewBase : MonoBehaviour 
+    public abstract class DialogueViewBase : MonoBehaviour
     {
         public enum DialogueLineStatus {
             Running,
@@ -39,7 +38,7 @@ namespace Yarn.Unity
         internal DialogueRunner dialogueRunnerCurrentLine;
 
         /// <summary>Signals that a conversation has started.</summary>
-        public virtual void DialogueStarted() 
+        public virtual void DialogueStarted()
         {
             // Default implementation does nothing.
         }
@@ -141,7 +140,6 @@ namespace Yarn.Unity
         /// </summary>
         /// <remarks>
         /// This method may be called multiple times before <see cref="DialogueComplete"/> is called.
-        /// 
         /// If this method returns <see
         /// cref="Dialogue.HandlerExecutionType.ContinueExecution"/>, do
         /// not call the <paramref name="onComplete"/> method.
@@ -151,7 +149,7 @@ namespace Yarn.Unity
         /// indicate that the DialogueRunner should continue executing.</param>
         /// <inheritdoc cref="RunLine(Line, ILineLocalisationProvider, Action)"/>
         /// FIXME: This doesn't seem to be called anymore ...?
-        public virtual Dialogue.HandlerExecutionType NodeComplete(string nextNode, Action onComplete) 
+        public virtual Dialogue.HandlerExecutionType NodeComplete(string nextNode, Action onComplete)
         {
             // Default implementation does nothing.
             return Dialogue.HandlerExecutionType.ContinueExecution;
@@ -160,7 +158,7 @@ namespace Yarn.Unity
         /// <summary>
         /// Called by the <see cref="DialogueRunner"/> to signal that the dialogue has ended.
         /// </summary>
-        public virtual void DialogueComplete() 
+        public virtual void DialogueComplete()
         {
             // Default implementation does nothing.
         }
@@ -181,7 +179,7 @@ namespace Yarn.Unity
         /// (via the <see cref="onLineUpdate"/> method), and then calls
         /// <see cref="onLineFinishDisplaying"/>.
         /// </remarks>
-        public void MarkLineComplete() 
+        public void MarkLineComplete()
         {
             dialogueRunnerCurrentLine?.OnViewUserIntentNextLine();
         }

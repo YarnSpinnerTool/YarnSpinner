@@ -32,13 +32,13 @@ public class Preferences : ScriptableObject {
     private string _preferencesPath;
 
     /// <summary>
-    /// The text language preference that was read from disk. 
+    /// The text language preference that was read from disk.
     /// Used to detect changes to reduce writing to disk.
     /// </summary>
     private string _textLanguageFromDisk;
 
     /// <summary>
-    /// The audio language preference that was read from disk. 
+    /// The audio language preference that was read from disk.
     /// Used to detect changes to reduce writing to disk.
     /// </summary>
     private string _audioLanguageFromDisk;
@@ -51,7 +51,7 @@ public class Preferences : ScriptableObject {
 
     #region Accessors
     /// <summary>
-    /// Makes sure that there's always an instance of this 
+    /// Makes sure that there's always an instance of this
     /// class alive upon access.
     /// </summary>
     private static Preferences Instance {
@@ -65,7 +65,7 @@ public class Preferences : ScriptableObject {
     }
 
     /// <summary>
-    /// The text language preferred by the user. Changes will 
+    /// The text language preferred by the user. Changes will
     /// be written to disk during exit and ending playmode.
     /// </summary>
     public static string TextLanguage {
@@ -81,7 +81,7 @@ public class Preferences : ScriptableObject {
     }
 
     /// <summary>
-    /// The audio language preferred by the user. Changes will 
+    /// The audio language preferred by the user. Changes will
     /// be written to disk during exit and ending playmode.
     /// </summary>
     public static string AudioLanguage {

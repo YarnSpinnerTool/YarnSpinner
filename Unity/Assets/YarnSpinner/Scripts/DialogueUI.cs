@@ -32,7 +32,6 @@ using System.Collections.Generic;
 using System;
 
 namespace Yarn.Unity {
-    
     /// <summary>
     /// Displays dialogue lines to the player, and sends user choices back
     /// to the dialogue system.
@@ -47,9 +46,8 @@ namespace Yarn.Unity {
     /// to the next line.
     /// </remarks>
     /// <seealso cref="DialogueRunner"/>
-    public class DialogueUI : Yarn.Unity.DialogueViewBase 
+    public class DialogueUI : Yarn.Unity.DialogueViewBase
     {
-
         /// <summary>
         /// The object that contains the dialogue and the options.
         /// </summary>
@@ -82,7 +80,7 @@ namespace Yarn.Unity {
         public List<Button> optionButtons;
 
         /// <summary>
-        /// When true, the Runner has signaled to finish the current line 
+        /// When true, the Runner has signaled to finish the current line
         /// asap.
         /// </summary>
         private bool finishCurrentLine = false;
@@ -93,7 +91,7 @@ namespace Yarn.Unity {
 
         // When true, the DialogueRunner is waiting for the user to press
         // one of the option buttons.
-        private bool waitingForOptionSelection = false;     
+        private bool waitingForOptionSelection = false;
 
         /// <summary>
         /// A <see cref="UnityEngine.Events.UnityEvent"/> that is called
@@ -114,7 +112,7 @@ namespace Yarn.Unity {
         /// Use this event to disable any dialogue-related UI and gameplay
         /// elements, and enable any non-dialogue UI and gameplay elements.
         /// </remarks>
-        public UnityEngine.Events.UnityEvent onDialogueEnd;  
+        public UnityEngine.Events.UnityEvent onDialogueEnd;
 
         /// <summary>
         /// A <see cref="UnityEngine.Events.UnityEvent"/> that is called
@@ -148,7 +146,7 @@ namespace Yarn.Unity {
         /// View but on all Views registered on the <see cref="DialogueRunner"/>.
         /// </summary>
         /// <remarks>
-        /// Use this method to display UI elements like a "continue" button 
+        /// Use this method to display UI elements like a "continue" button
         /// in sync with other Views like voice over playback.
         /// </remarks>
         public UnityEngine.Events.UnityEvent onLineFinishDisplayingOnAllViews;
@@ -186,7 +184,7 @@ namespace Yarn.Unity {
         /// <seealso cref="textSpeed"/>
         /// <seealso cref="onLineFinishDisplaying"/>
         public DialogueRunner.StringUnityEvent onLineUpdate;
-        
+
         /// <summary>
         /// A <see cref="UnityEngine.Events.UnityEvent"/> that is called
         /// when a line has finished displaying, and should be removed from
@@ -205,7 +203,6 @@ namespace Yarn.Unity {
         /// <summary>
         /// A <see cref="UnityEngine.Events.UnityEvent"/> that is called
         /// when an <see cref="OptionSet"/> has been displayed to the user.
-        /// 
         /// </summary>
         /// <remarks>
         /// Before this method is called, the <see cref="Button"/>s in <see
@@ -219,7 +216,7 @@ namespace Yarn.Unity {
         /// object that they're contained in.
         /// </remarks>
         public UnityEngine.Events.UnityEvent onOptionsStart;
-        
+
         /// <summary>
         /// A <see cref="UnityEngine.Events.UnityEvent"/> that is called
         /// when an option has been selected, and the <see
@@ -242,13 +239,11 @@ namespace Yarn.Unity {
         /// </summary>
         /// <remarks>
         /// Use this method to dispatch a command to other parts of your game.
-        /// 
         /// This method is only called if the <see cref="Command"/> has not
         /// been handled by a command handler that has been added to the
         /// <see cref="DialogueRunner"/>, or by a method on a <see
         /// cref="MonoBehaviour"/> in the scene with the attribute <see
         /// cref="YarnCommandAttribute"/>.
-        /// 
         /// {{|note|}}
         /// When a command is delivered in this way, the <see cref="DialogueRunner"/> will not pause execution. If you want a command to make the DialogueRunner pause execution, see <see cref="DialogueRunner.AddCommandHandler(string,
         /// DialogueRunner.BlockingCommandHandler)"/>.
@@ -258,12 +253,12 @@ namespace Yarn.Unity {
         /// the `<![CDATA[<<]]>` and `<![CDATA[>>]]>` markers.
         /// </remarks>
         /// <seealso cref="DialogueRunner.AddCommandHandler(string,
-        /// DialogueRunner.CommandHandler)"/> 
+        /// DialogueRunner.CommandHandler)"/>
         /// <seealso cref="DialogueRunner.AddCommandHandler(string,
-        /// DialogueRunner.BlockingCommandHandler)"/> 
+        /// DialogueRunner.BlockingCommandHandler)"/>
         /// <seealso cref="YarnCommandAttribute"/>
         public DialogueRunner.StringUnityEvent onCommand;
-        
+
         internal void Awake ()
         {
             // Start by hiding the container
@@ -275,13 +270,13 @@ namespace Yarn.Unity {
             }
         }
 
-        /// Show a line of dialogue, gradually        
+        /// Show a line of dialogue, gradually
         protected override IEnumerator RunLine(LocalizedLine dialogueLine) {
             var startTime = Time.time;
             onLineStart?.Invoke();
 
             finishCurrentLine = false;
-            
+
             // The final text we'll be showing for this line.
             string text = dialogueLine.TextLocalized;
 
@@ -389,14 +384,12 @@ namespace Yarn.Unity {
                 yield return null;
             }
 
-            
             // Hide all the buttons
             foreach (var button in optionButtons) {
                 button.gameObject.SetActive (false);
             }
 
             onOptionsEnd?.Invoke();
-
         }
 
         /// Runs a command.
@@ -423,7 +416,7 @@ namespace Yarn.Unity {
             if (dialogueContainer != null)
                 dialogueContainer.SetActive(true);
 
-            onDialogueStart?.Invoke();            
+            onDialogueStart?.Invoke();
         }
 
         /// Called when the dialogue system has finished running.

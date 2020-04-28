@@ -16,11 +16,10 @@ namespace Yarn.Unity {
         private AudioSource audioSource;
 
         /// <summary>
-        /// When true, the Runner has signaled to finish the current line 
+        /// When true, the Runner has signaled to finish the current line
         /// asap.
         /// </summary>
         private bool finishCurrentLine = false;
-
 
         private void Awake() {
             if (!audioSource) {
