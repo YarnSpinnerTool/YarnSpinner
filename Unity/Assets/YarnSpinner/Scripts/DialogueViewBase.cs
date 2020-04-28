@@ -49,7 +49,7 @@ namespace Yarn.Unity
         /// <remarks>
         /// If this method returns <see
         /// cref="Dialogue.HandlerExecutionType.ContinueExecution"/>, it
-        /// should not not call the <paramref name="onDialogueLineFinished"/>
+        /// should not call the <paramref name="onDialogueLineFinished"/>
         /// method.
         /// </remarks>
         /// <param name="dialogueLine">The line that should be displayed to the
