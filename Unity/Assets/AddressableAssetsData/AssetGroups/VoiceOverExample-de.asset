@@ -18,13 +18,13 @@ MonoBehaviour:
   m_GUID: 6e32470655bbea141b21f982a7891447
   m_SerializeEntries:
   - m_GUID: 7c1a3502fb6e83e4287a5967faaab88d
-    m_Address: Assets/YarnSpinner/Examples/Voice Over/Audio/VoiceOverExampleDialogue-NPC(de)-0967160.ogg
+    m_Address: 0967160-de
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 8300000, guid: 7c1a3502fb6e83e4287a5967faaab88d, type: 3}
     m_TargetAsset: {fileID: 8300000, guid: 7c1a3502fb6e83e4287a5967faaab88d, type: 3}
   - m_GUID: 925ab48b6d0bd314f8d29fb0fcad02ef
-    m_Address: Assets/YarnSpinner/Examples/Voice Over/Audio/VoiceOverExampleDialogue-Player(de)-0e3dc4b.ogg
+    m_Address: 0e3dc4b-de
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 8300000, guid: 925ab48b6d0bd314f8d29fb0fcad02ef, type: 3}

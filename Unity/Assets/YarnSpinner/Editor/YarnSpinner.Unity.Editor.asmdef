@@ -1,7 +1,9 @@
 {
     "name": "YarnSpinner.Unity.Editor",
     "references": [
-        "YarnSpinner.Unity"
+        "YarnSpinner.Unity",
+        "Unity.Addressables",
+        "Unity.Addressables.Editor"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [
