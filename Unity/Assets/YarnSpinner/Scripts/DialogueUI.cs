@@ -262,7 +262,7 @@ namespace Yarn.Unity {
         internal void Awake ()
         {
             // Start by hiding the container
-            if (dialogueContainer != null)
+            if (dialogueContainer)
                 dialogueContainer.SetActive(false);
 
             foreach (var button in optionButtons) {
@@ -412,7 +412,7 @@ namespace Yarn.Unity {
         public override void DialogueStarted ()
         {
             // Enable the dialogue controls.
-            if (dialogueContainer != null)
+            if (dialogueContainer)
                 dialogueContainer.SetActive(true);
 
             onDialogueStart?.Invoke();
@@ -425,9 +425,8 @@ namespace Yarn.Unity {
             onDialogueEnd?.Invoke();
 
             // Hide the dialogue interface.
-            if (dialogueContainer != null)
+            if (dialogueContainer)
                 dialogueContainer.SetActive(false);
-            
         }
 
         /// <summary>
@@ -442,7 +441,7 @@ namespace Yarn.Unity {
         /// <param name="optionID">The <see cref="OptionSet.Option.ID"/> of
         /// the <see cref="OptionSet.Option"/> that was selected.</param>
         public void SelectOption(int optionID) {
-            if (waitingForOptionSelection == false) {
+            if (!waitingForOptionSelection) {
                 Debug.LogWarning("An option was selected, but the dialogue UI was not expecting it.");
                 return;
             }
