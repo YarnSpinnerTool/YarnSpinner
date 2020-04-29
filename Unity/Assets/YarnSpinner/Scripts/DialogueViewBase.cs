@@ -181,11 +181,15 @@ namespace Yarn.Unity
         /// </remarks>
         public void MarkLineComplete()
         {
-            dialogueRunnerCurrentLine?.OnViewUserIntentNextLine();
+            if (dialogueRunnerCurrentLine) {
+                dialogueRunnerCurrentLine.OnViewUserIntentNextLine();
+            }
         }
 
         public void FinishLine() {
-            dialogueRunnerCurrentLine?.OnViewUserIntentFinishLine();
+            if (dialogueRunnerCurrentLine) {
+                dialogueRunnerCurrentLine.OnViewUserIntentFinishLine();
+            }
         }
     }
 }
