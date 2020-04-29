@@ -10,5 +10,5 @@ public class LinetagToLanguage {
     }
 
     public string linetag;
-    public LanguageToAudioclip[] languageToAudioclip = new LanguageToAudioclip[0];
+    public LanguageToAudioclip[] languageToAudioclip = Array.Empty<LanguageToAudioclip>();
 }

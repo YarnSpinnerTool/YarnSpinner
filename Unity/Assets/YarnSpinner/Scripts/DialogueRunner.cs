@@ -165,11 +165,11 @@ namespace Yarn.Unity
         /// <param name="yarnScript">The <see cref="YarnProgram"/> to get
         /// the string table from.</param>
         private void AddDialogueLines (YarnProgram yarnScript) {
-            List<YarnTranslation> textsToLoad = new List<YarnTranslation>();
-            
-            // Add base language
-            textsToLoad.Add(new YarnTranslation(yarnScript.baseLocalizationId, yarnScript.baseLocalisationStringTable));
-            
+            List<YarnTranslation> textsToLoad = new List<YarnTranslation> {
+                // Add base language
+                new YarnTranslation(yarnScript.baseLocalizationId, yarnScript.baseLocalisationStringTable)
+            };
+
             // Add all available localizations
             foreach (var localization in yarnScript.localizations) {
                 textsToLoad.Add(localization);

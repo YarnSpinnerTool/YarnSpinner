@@ -37,7 +37,7 @@ public class ProjectSettings : ScriptableObject {
     private static ProjectSettings _instance;
 
     /// <summary>
-    /// Makes sure that there's always an instance of this 
+    /// Makes sure that there's always an instance of this
     /// class alive upon access.
     /// </summary>
     private static ProjectSettings Instance {
@@ -58,7 +58,7 @@ public class ProjectSettings : ScriptableObject {
         _instance = this;
 
 #if UNITY_EDITOR
-        _settingsPath = Application.dataPath + "/../ProjectSettings" + "/YarnProjectSettings.json";
+        _settingsPath = Application.dataPath + "/../ProjectSettings/YarnProjectSettings.json";
         YarnSettingsHelper.ReadPreferencesFromDisk(this, _settingsPath, Initialize);
 #else
         _settingsPath = "YarnProjectSettings";
