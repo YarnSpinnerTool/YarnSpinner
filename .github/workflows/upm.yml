@@ -23,7 +23,7 @@ jobs:
       run: |
         ./build.sh -b
         # commit DLLs changes, but will not push the current branch
-        git add Unity/Assets/YarnSpinner/Scripts/DLLs/*.dll -f
+        git add "Unity/Assets/YarnSpinner/Scripts/DLLs/*.dll" -f
         git commit -m "chore(ci): add DLLs"
     - name: split upm branch
       run: |
