@@ -5,7 +5,7 @@ on:
     - master
 jobs:
   split-upm:
-    name: split upm branch (force)
+    name: create upm branch
     runs-on: ubuntu-latest
     steps:
     - name: setup .NET Core
@@ -23,12 +23,14 @@ jobs:
         # commit DLLs changes, but will not push the current branch.
         git config --global user.name 'github-bot'
         git config --global user.email 'github-bot@users.noreply.github.com'
-        # find Unity/Assets/YarnSpinner/Scripts/DLLs
+        echo find Unity/Assets/YarnSpinner/Scripts/DLLs
         find Unity/Assets/YarnSpinner/Scripts/DLLs
-        # find Unity/Assets/YarnSpinner/Scripts/DLLs|grep dll$
+        echo find Unity/Assets/YarnSpinner/Scripts/DLLs|grep dll$
         find Unity/Assets/YarnSpinner/Scripts/DLLs|grep dll$
-        # find .|grep dll$
+        echo find .|grep dll$
         find .|grep dll
+        echo find .
+        find .
         find Unity/Assets/YarnSpinner/Scripts/DLLs/|grep dll$|xargs git add -f
         git commit -m "chore(ci): add DLLs"
     - name: split upm branch
