@@ -224,6 +224,10 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                         var languageProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("language");
                         var audioclipProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClip");
                         EditorGUILayout.PropertyField(audioclipProp, new GUIContent(linetagProp.stringValue));
+                        // Draw the assetref. Seems to ignore the label (https://forum.unity.com/threads/custom-inspector-for-a-list-of-addressables.575086/)
+                        // Maybe this could help: https://docs.unity3d.com/Packages/com.unity.addressables@1.8/api/UnityEngine.AddressableAssets.AssetLabelReference.html
+                        var audioclipAddressableProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClipAddressable");
+                        EditorGUILayout.PropertyField(audioclipAddressableProp, new GUIContent(linetagProp.stringValue));
                     }
                 }
             }

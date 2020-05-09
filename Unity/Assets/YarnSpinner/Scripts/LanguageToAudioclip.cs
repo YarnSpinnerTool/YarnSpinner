@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 /// <summary>
 /// A voiceover AudioClip and its associated language
@@ -13,4 +14,5 @@ public class LanguageToAudioclip {
 
     public string language;
     public AudioClip audioClip;
+    public AssetReference audioClipAddressable;
 }
