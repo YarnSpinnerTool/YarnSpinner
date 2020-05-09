@@ -69,14 +69,14 @@ init_build () {
         if [ -n "${FAILED_PREREQ}" ]; then
             echo "Failed pre-requisite checks, aborting"
             exit 1
-        fi        
+        fi
     fi
 done
 }
 
 clean_yarnspinner () {
     if [ -f YarnSpinner/bin/${CONFIGURATION}/netcoreapp2.0/YarnSpinner.dll ]; then
-        dotnet clean        
+        dotnet clean
     fi
     echo "Cleaning documentation"
     rm -fvr Documentation/{docbook,html,latex,rtf,xml}
@@ -94,11 +94,12 @@ build_yarnspinner () {
     fi
 
     # this is an appalling test for not windows or osx and with unity
-    if [ "${OSTYPE}" != "linux-gnu" ]; then
+    # however always build during CI
+    if [[ "${OSTYPE}" != "linux-gnu" || "${CI}" ]]; then
         BUILD_DIR="YarnSpinner.Compiler/bin/${CONFIGURATION}/netstandard2.0"
         UNITY_DIR="Unity/Assets/YarnSpinner/Scripts/DLLs/"
 
-        cp -v "$BUILD_DIR/"*.dll "$UNITY_DIR"        
+        cp -v "$BUILD_DIR/"*.dll "$UNITY_DIR"
 
         if [ -f "$UNITY_DIR/Microsoft.CSharp.dll" ]; then
             rm "$UNITY_DIR/Microsoft.CSharp.dll"
