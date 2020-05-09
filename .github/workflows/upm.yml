@@ -23,6 +23,12 @@ jobs:
         # commit DLLs changes, but will not push the current branch.
         git config --global user.name 'github-bot'
         git config --global user.email 'github-bot@users.noreply.github.com'
+        # find Unity/Assets/YarnSpinner/Scripts/DLLs
+        find Unity/Assets/YarnSpinner/Scripts/DLLs
+        # find Unity/Assets/YarnSpinner/Scripts/DLLs|grep dll$
+        find Unity/Assets/YarnSpinner/Scripts/DLLs|grep dll$
+        # find .|grep dll$
+        find .|grep dll
         find Unity/Assets/YarnSpinner/Scripts/DLLs/|grep dll$|xargs git add -f
         git commit -m "chore(ci): add DLLs"
     - name: split upm branch
