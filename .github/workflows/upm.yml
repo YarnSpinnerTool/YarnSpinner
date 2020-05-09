@@ -18,7 +18,9 @@ jobs:
     - name: build DLLs
       run: |
         ./build.sh -b
-        cp ".github/meta/*.meta" Unity/Assets/YarnSpinner/Scripts/DLLs
+    - name: copy DLL meta files
+      run: |
+        find .github/meta | grep \\.meta$ | sort | xargs -i cp '{}' Unity/Assets/YarnSpinner/Scripts/DLLs
     - name: commit DLLs
       run: |
         # commit DLLs changes, but will not push the current branch.
