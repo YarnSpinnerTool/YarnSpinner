@@ -38,7 +38,7 @@ As such, there is a lot of wonky code and half-finished concepts which users cur
 - [x] Syntax highlighter extension for Visual Studio Code
 - [x] New documentation site
 
-## V1.1
+## ✅ V1.1
 
 ### Goal
 
