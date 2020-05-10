@@ -753,7 +753,6 @@ namespace Yarn {
         /// </summary>
         public void UnloadAll() {
             Program = null;
-
         }
 
         internal String GetByteCode() {
