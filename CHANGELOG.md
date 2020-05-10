@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Removed
 
+- The 'clearVisitedNodes' parameter of Dialogue.UnloadAll
+
 ## [v1.1.0] - 2020-04-01
 
 Final release of v1.1.0.
