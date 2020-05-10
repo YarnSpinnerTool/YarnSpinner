@@ -6,7 +6,7 @@ The idea of this document is to both give us something to help plan our developm
 
 Let us know what you think about this road map either in the [Slack](http://lab.to/narrativegamedev) or [here on the GitHub issue we created about the road map](https://github.com/YarnSpinnerTool/YarnSpinner/issues/183).
 
-**This documents was last edited 17/12/2019**
+**This document was last edited 10/05/2020**
 
 # Releases
 
