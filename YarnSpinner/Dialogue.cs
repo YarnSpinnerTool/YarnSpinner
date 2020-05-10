@@ -509,10 +509,6 @@ namespace Yarn {
         /// </remarks>
         public Library library { get; internal set; }
 
-        // The collection of nodes that we've seen.
-        // TODO: this should probably be serialized
-        private Dictionary<string, int> visitedNodeCount = new Dictionary<string, int>();
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Dialogue"/> class.
         /// </summary>
@@ -659,18 +655,6 @@ namespace Yarn {
                 vm.Stop();
         }
 
-        internal IEnumerable<string> visitedNodes {
-            get {
-                return visitedNodeCount.Keys;
-            }
-            set {
-                visitedNodeCount = new Dictionary<string, int>();
-                foreach (var entry in value) {
-                    visitedNodeCount[entry] = 1;
-                }
-            }
-        }
-
         /// <summary>
         /// Gets the names of the nodes in the Program.
         /// </summary>
@@ -767,12 +751,7 @@ namespace Yarn {
         /// <summary>
         /// Unloads all nodes from the Dialogue.
         /// </summary>
-        /// <param name="clearVisitedNodes">If `true`, the internal list of
-        /// visited nodes is cleared as well.</param>
-        public void UnloadAll(bool clearVisitedNodes = true) {
-            if (clearVisitedNodes)
-                visitedNodeCount.Clear();
-
+        public void UnloadAll() {
             Program = null;
 
         }
