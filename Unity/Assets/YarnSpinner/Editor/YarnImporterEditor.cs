@@ -28,6 +28,8 @@ public class YarnImporterEditor : ScriptedImporterEditor {
     private Culture[] _culturesAvailable;
 
     private const string _audioVoiceOverInitializeHelpBox = "Hit 'Apply' to initialize the currently selected voice over language!";
+    private const string buttonTextDeleteAllDirectReferences = "Delete all direct AudioClip references";
+    private const string buttonTextDeleteAllAddressableReferences = "Delete all addressable AudioClip references";
 
     public override void OnEnable() {
         base.OnEnable();
@@ -222,12 +224,15 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                         var linetagProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("linetag");
                         var languagetoAudioClipProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("languageToAudioclip");
                         var languageProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("language");
-                        var audioclipProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClip");
-                        EditorGUILayout.PropertyField(audioclipProp, new GUIContent(linetagProp.stringValue));
-                        // Draw the assetref. Seems to ignore the label (https://forum.unity.com/threads/custom-inspector-for-a-list-of-addressables.575086/)
-                        // Maybe this could help: https://docs.unity3d.com/Packages/com.unity.addressables@1.8/api/UnityEngine.AddressableAssets.AssetLabelReference.html
-                        var audioclipAddressableProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClipAddressable");
-                        EditorGUILayout.PropertyField(audioclipAddressableProp, new GUIContent(linetagProp.stringValue));
+                        if (ProjectSettings.AddressableVoiceOverAudioClips) {
+                            // Draw the assetref. Seems to ignore the label (https://forum.unity.com/threads/custom-inspector-for-a-list-of-addressables.575086/)
+                            // Maybe this could help: https://docs.unity3d.com/Packages/com.unity.addressables@1.8/api/UnityEngine.AddressableAssets.AssetLabelReference.html
+                            var audioclipAddressableProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClipAddressable");
+                            EditorGUILayout.PropertyField(audioclipAddressableProp, new GUIContent(linetagProp.stringValue));
+                        } else {
+                            var audioclipProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClip");
+                            EditorGUILayout.PropertyField(audioclipProp, new GUIContent(linetagProp.stringValue));
+                        }
                     }
                 }
             }
@@ -235,6 +240,10 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                 EditorGUILayout.HelpBox(_audioVoiceOverInitializeHelpBox, MessageType.Info );
             }
             EditorGUI.indentLevel--;
+        }
+
+        if (GUILayout.Button(ProjectSettings.AddressableVoiceOverAudioClips ? buttonTextDeleteAllDirectReferences : buttonTextDeleteAllAddressableReferences)) {
+            RemoveVoiceOverReferences(ProjectSettings.AddressableVoiceOverAudioClips);
         }
 
         var success = serializedObject.ApplyModifiedProperties();
@@ -247,6 +256,41 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 #if UNITY_2019_1_OR_NEWER
         ApplyRevertGUI();
 #endif
+    }
+
+    /// <summary>
+    /// Remove all voice over audio clip references on this yarn asset.
+    /// </summary>
+    /// <param name="removeDirectReferences">If true, remove all direct asset references. If false, remove all Addressable references.</param>
+    public void RemoveVoiceOverReferences (bool removeDirectReferences) {
+        serializedObject.Update();
+        YarnImporter yarnImporter = (target as YarnImporter);
+
+        var voiceOversProp = serializedObject.FindProperty("voiceOvers");
+        for (int i = 0; i < voiceOversProp.arraySize; i++) {
+            var linetagProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("linetag");
+            var languagetoAudioClipProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("languageToAudioclip");
+            for (int j = 0; j < languagetoAudioClipProp.arraySize; j++) {
+                if (removeDirectReferences) {
+                    SerializedProperty audioclipProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClip");
+                    audioclipProp.objectReferenceValue = null;
+                } else {
+                    // NOTE: Addressables 1.8.3 don't support writing via SerializedProperty atm so we need to work around that limitation
+                    yarnImporter.voiceOvers[i].languageToAudioclip[j].audioClipAddressable = null;
+                }
+            }
+        }
+
+        var success = serializedObject.ApplyModifiedProperties();
+        if (removeDirectReferences) {
+            if (success) {
+                EditorUtility.SetDirty(target);
+                AssetDatabase.WriteImportSettingsIfDirty(AssetDatabase.GetAssetPath(target));
+            }
+        } else {
+            // We need to force reserialization. SetDirty() and SaveAssets() isn't enough when modyfing via target.
+            AssetDatabase.ForceReserializeAssets(new string[] { AssetDatabase.GetAssetPath(yarnImporter) }, ForceReserializeAssetsOptions.ReserializeAssetsAndMetadata);
+        }
     }
 
     private void AddLineTagsToFile(string assetPath) {

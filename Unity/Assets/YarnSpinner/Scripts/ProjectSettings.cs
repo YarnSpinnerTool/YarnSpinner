@@ -36,6 +36,16 @@ public class ProjectSettings : ScriptableObject {
     /// </summary>
     private static ProjectSettings _instance;
 
+    [SerializeField]
+    private bool _addressableVoiceOverAudioClips = false;
+
+    /// <summary>
+    /// False (default) when VoiceOver AudioClip should be directly 
+    /// referenced and loaded. True if the Addressable system 
+    /// should be used.
+    /// </summary>
+    public static bool AddressableVoiceOverAudioClips { get => Instance._addressableVoiceOverAudioClips; set => Instance._addressableVoiceOverAudioClips = value; }
+
     /// <summary>
     /// Makes sure that there's always an instance of this
     /// class alive upon access.

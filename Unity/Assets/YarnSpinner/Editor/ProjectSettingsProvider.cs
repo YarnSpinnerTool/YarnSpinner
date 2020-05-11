@@ -17,6 +17,8 @@ using UnityEngine.UIElements;
 class ProjectSettingsProvider : SettingsProvider {
     public ProjectSettingsProvider(string path, SettingsScope scope = SettingsScope.Project) : base(path, scope) { }
 
+    private const string buttonTextDeleteAllDirectReferences = "Delete all direct AudioClip references";
+    private const string buttonTextDeleteAllAddressableReferences = "Delete all addressable AudioClip references";
     private static SerializedObject _projectSettings;
     private ReorderableList _textLanguagesReorderableList;
     private int _textLanguagesListIndex;
@@ -106,7 +108,50 @@ class ProjectSettingsProvider : SettingsProvider {
             }
         }
 
+        GUILayout.Label("Voice Over Settings", EditorStyles.boldLabel);
+        var addressableVoiceOverAudioClipsProp = _projectSettings.FindProperty("_addressableVoiceOverAudioClips");
+        EditorGUILayout.PropertyField(addressableVoiceOverAudioClipsProp, new GUIContent("Use Addressables"));
+
+        GUILayout.BeginHorizontal();
+        GUI.enabled = addressableVoiceOverAudioClipsProp.boolValue;
+        if (GUILayout.Button(buttonTextDeleteAllDirectReferences)) {
+            RemoveVoiceOverReferences(true);
+        }
+        GUI.enabled = !addressableVoiceOverAudioClipsProp.boolValue;
+        if (GUILayout.Button(buttonTextDeleteAllAddressableReferences)) {
+            RemoveVoiceOverReferences(false);
+        }
+        GUI.enabled = true;
+        GUILayout.EndHorizontal();
+
         _projectSettings.ApplyModifiedProperties();
+    }
+
+    private static void RemoveVoiceOverReferences(bool removeDirectReferences) {
+        if (removeDirectReferences) {
+            Debug.Log("Removing all direct AudioClip references on all yarn assets!");
+        } else {
+            Debug.Log("Removing all Adressable references on all yarn assets!");
+        }
+
+        var assets = AssetDatabase.FindAssets("t:YarnProgram");
+        foreach (var yarnProgram in assets) {
+            var yarnProgramLoaded = AssetDatabase.LoadAssetAtPath<YarnProgram>(AssetDatabase.GUIDToAssetPath(yarnProgram));
+            foreach (var linetag in yarnProgramLoaded.voiceOvers) {
+                foreach (var language in linetag.languageToAudioclip) {
+                    if (removeDirectReferences) {
+                        language.audioClip = null;
+                    } else {
+                        language.audioClipAddressable = null;
+                    }
+                }
+            }
+            // Communicating the changes back fails ...
+            EditorUtility.SetDirty(yarnProgramLoaded);
+            AssetDatabase.WriteImportSettingsIfDirty(AssetDatabase.GetAssetPath(yarnProgramLoaded));
+            AssetDatabase.SaveAssets();
+            AssetDatabase.ForceReserializeAssets(new string[] { AssetDatabase.GetAssetPath(yarnProgramLoaded) }, ForceReserializeAssetsOptions.ReserializeAssetsAndMetadata);
+        }
     }
 
     // Register YarnSpinner's project settings in the "Project Settings" window
