@@ -165,56 +165,12 @@ namespace Yarn.Unity
         /// <param name="yarnScript">The <see cref="YarnProgram"/> to get
         /// the string table from.</param>
         private void AddDialogueLines (YarnProgram yarnScript) {
-            List<YarnTranslation> textsToLoad = new List<YarnTranslation> {
-                // Add base language
-                new YarnTranslation(yarnScript.baseLocalizationId, yarnScript.baseLocalisationStringTable)
-            };
-
-            // Add all available localizations
-            foreach (var localization in yarnScript.localizations) {
-                textsToLoad.Add(localization);
+            foreach (var yarnLine in yarnScript.GetStringTable()) {
+                localizedText.Add(yarnLine.Key, yarnLine.Value);
             }
 
-            // Use the invariant culture when parsing the CSV to ensure parsing
-            // with the correct separator instead of the user's locale separator
-            var configuration = new CsvHelper.Configuration.Configuration(
-                System.Globalization.CultureInfo.InvariantCulture
-            );
-
-            // Load strings of all available languages into DialogueLines dict
-            foreach (var localization in textsToLoad) {
-                if (localization.languageName != Preferences.TextLanguage) {
-                    continue;
-                }
-
-                using (var reader = new System.IO.StringReader(localization.text.text))
-                using (var csv = new CsvReader(reader, configuration)) {
-                    csv.Read();
-                    csv.ReadHeader();
-
-                    while (csv.Read()) {
-                        var lineId = csv.GetField("id");
-                        var lineText = csv.GetField("text");
-
-                        localizedText[lineId] = lineText;
-                    }
-                }
-            }
-
-            // Load voiceover audio clips of all available languages into DialogueLines dict
-            foreach (var line in yarnScript.voiceOvers) {
-                var lineID = line.linetag;
-
-                foreach (var localization in line.languageToAudioclip) {
-                    if (localization.language != Preferences.AudioLanguage) {
-                        continue;
-                    }
-
-                    var languageId = localization.language;
-                    var voiceOverClip = localization.audioClip;
-
-                    localizedAudio[lineID] = voiceOverClip;
-                }
+            foreach (var voiceOver in yarnScript.GetVoiceOversOfLanguage()) {
+                localizedAudio.Add(voiceOver.Key, voiceOver.Value);
             }
         }
         

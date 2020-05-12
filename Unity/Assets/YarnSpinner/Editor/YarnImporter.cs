@@ -26,9 +26,10 @@ public class YarnImporter : ScriptedImporter
     public TextAsset baseLanguage;
     public YarnTranslation[] localizations = new YarnTranslation[0];
     public LinetagToLanguage[] voiceOvers = new LinetagToLanguage[0];
+    public YarnProgram programContainer = default;
 
     private void OnValidate() {
-        if (baseLanguageID == null) {
+        if (string.IsNullOrEmpty(baseLanguageID)) {
             // If the user has added project wide text languages in the settings 
             // dialogue, we default to the first text language as base language
             if (ProjectSettings.TextProjectLanguages.Count > 0) {
@@ -36,7 +37,6 @@ public class YarnImporter : ScriptedImporter
             // Otherwrise use system's language as base language
             } else {
                 baseLanguageID = CultureInfo.CurrentCulture.Name;
-
             }
         }
     }
@@ -50,7 +50,7 @@ public class YarnImporter : ScriptedImporter
 
     public override void OnImportAsset(AssetImportContext ctx)
     {
-
+        OnValidate();
         var extension = System.IO.Path.GetExtension(ctx.assetPath);
 
         // Clear the list of strings, in case this compilation fails
@@ -80,7 +80,7 @@ public class YarnImporter : ScriptedImporter
             compilationStatus = Compiler.CompileString(sourceText, fileName, out var compiledProgram, out var stringTable);
 
             // Create a container for storing the bytes
-            var programContainer = ScriptableObject.CreateInstance<YarnProgram>();                
+            programContainer = ScriptableObject.CreateInstance<YarnProgram>();
 
             using (var memoryStream = new MemoryStream())
             using (var outputStream = new Google.Protobuf.CodedOutputStream(memoryStream))
@@ -144,6 +144,7 @@ public class YarnImporter : ScriptedImporter
                         ctx.AddObjectToAsset("Strings", textAsset);
 
                         programContainer.baseLocalisationStringTable = textAsset;
+                        programContainer.baseLocalizationId = baseLanguageID;
                         baseLanguage = textAsset;
                         programContainer.localizations = localizations;
                         programContainer.baseLocalizationId = baseLanguageID;

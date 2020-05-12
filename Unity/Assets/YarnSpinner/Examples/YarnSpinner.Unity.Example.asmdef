@@ -1,7 +1,8 @@
 {
     "name": "YarnSpinner.Unity.Example",
     "references": [
-        "YarnSpinner.Unity"
+        "YarnSpinner.Unity",
+        "Unity.TextMeshPro"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
