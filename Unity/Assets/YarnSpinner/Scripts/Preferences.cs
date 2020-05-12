@@ -10,6 +10,11 @@ using System.Globalization;
 public class Preferences : ScriptableObject {
     #region Properties
     /// <summary>
+    /// Raised when the language preferences have been changed
+    /// </summary>
+    public static EventHandler LanguagePreferencesChanged;
+
+    /// <summary>
     /// The text language preferred by the user
     /// </summary>
     [SerializeField]
@@ -27,13 +32,13 @@ public class Preferences : ScriptableObject {
     private string _preferencesPath;
 
     /// <summary>
-    /// The text language preference that was read from disk. 
+    /// The text language preference that was read from disk.
     /// Used to detect changes to reduce writing to disk.
     /// </summary>
     private string _textLanguageFromDisk;
 
     /// <summary>
-    /// The audio language preference that was read from disk. 
+    /// The audio language preference that was read from disk.
     /// Used to detect changes to reduce writing to disk.
     /// </summary>
     private string _audioLanguageFromDisk;
@@ -46,7 +51,7 @@ public class Preferences : ScriptableObject {
 
     #region Accessors
     /// <summary>
-    /// Makes sure that there's always an instance of this 
+    /// Makes sure that there's always an instance of this
     /// class alive upon access.
     /// </summary>
     private static Preferences Instance {
@@ -60,21 +65,35 @@ public class Preferences : ScriptableObject {
     }
 
     /// <summary>
-    /// The text language preferred by the user. Changes will 
+    /// The text language preferred by the user. Changes will
     /// be written to disk during exit and ending playmode.
     /// </summary>
     public static string TextLanguage {
         get => Instance._textLanguage;
-        set => Instance._textLanguage = value;
+        set {
+            if (value != Instance._textLanguage) {
+                Instance._textLanguage = value;
+                LanguagePreferencesChanged?.Invoke(Instance, EventArgs.Empty);
+            } else {
+                Instance._textLanguage = value;
+            }
+        }
     }
 
     /// <summary>
-    /// The audio language preferred by the user. Changes will 
+    /// The audio language preferred by the user. Changes will
     /// be written to disk during exit and ending playmode.
     /// </summary>
     public static string AudioLanguage {
         get => Instance._audioLanguage;
-        set => Instance._audioLanguage = value;
+        set {
+            if (value != Instance._audioLanguage) {
+                Instance._audioLanguage = value;
+                LanguagePreferencesChanged?.Invoke(Instance, EventArgs.Empty);
+            } else {
+                Instance._audioLanguage = value;
+            }
+        }
     }
     #endregion
 

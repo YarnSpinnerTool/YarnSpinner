@@ -1,44 +1,88 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 
 namespace Yarn.Unity {
     /// <summary>
     /// Handles playback of voice over audio files from the yarn dialogue system.
     /// </summary>
-    public class VoiceOverPlaybackUnity : VoiceOverPlaybackBase {
+    public class VoiceOverPlaybackUnity : DialogueViewBase {
+        /// <summary>
+        /// The fade out time when FinishCurrentLine() is called.
+        /// </summary>
+        public float fadeOutTimeOnLineFinish = 0.05f;
+
         [SerializeField]
-        private AudioSource _audioSource;
+        private AudioSource audioSource;
+
+        /// <summary>
+        /// When true, the Runner has signaled to finish the current line
+        /// asap.
+        /// </summary>
+        private bool finishCurrentLine = false;
 
         private void Awake() {
-            if (!_audioSource) {
-                _audioSource = gameObject.AddComponent<AudioSource>();
-                _audioSource.spatialBlend = 0f;
+            if (!audioSource) {
+                audioSource = gameObject.AddComponent<AudioSource>();
+                audioSource.spatialBlend = 0f;
             }
         }
 
-        /// <summary>
-        /// Start playback of voice over.
-        /// </summary>
-        /// <param name="currentLine">The Yarn line currently active.</param>
-        /// <param name="voiceOver">The AudioClip accociated with the current Yarn line.</param>
-        /// <param name="dialogueUI">The reference to the DialogueUIBehaviour handling this line. Call VoiceOverDuration on this behaviour if you want the UI to wait for audio playback to finish.</param>
-        public override void StartLineVoiceOver(Line currentLine, AudioClip voiceOver = null, DialogueUIBehaviour dialogueUI = null) {
-            if (!voiceOver) {
-                Debug.Log("Playing voice over failed since the given AudioClip was null.", gameObject);
-                return;
+        protected override IEnumerator RunLine(LocalizedLine dialogueLine) {
+            finishCurrentLine = false;
+
+            // Get the localized voice over audio clip
+            var voiceOverClip = dialogueLine.VoiceOverLocalized;
+
+            if (!voiceOverClip) {
+                Debug.Log("Playing voice over failed since the AudioClip of the voice over audio language or the base language was null.", gameObject);
+                yield break;
             }
-            if (_audioSource.isPlaying) {
-                // TODO: Do this without possible artifats
-                _audioSource.Stop();
+            if (audioSource.isPlaying) {
+                // Usually, this shouldn't happen because the DialogueRunner finishes and ends a line first
+                audioSource.Stop();
             }
-            _audioSource.PlayOneShot(voiceOver);
+            audioSource.PlayOneShot(voiceOverClip);
 
-            var _audioSourcePlaybackSpeed = Mathf.Abs(_audioSource.pitch);
-            var remainingTimeForVoiceOver = voiceOver.length / (_audioSourcePlaybackSpeed > 0 ? _audioSourcePlaybackSpeed : Mathf.Epsilon);
-            remainingTimeForVoiceOver = Mathf.Clamp(remainingTimeForVoiceOver, 0, float.MaxValue /*Never show this to Hideo Kojima or he'll use this!*/);
+            while (audioSource.isPlaying && !finishCurrentLine) {
+                yield return null;
+            }
 
-            dialogueUI?.VoiceOverDuration(remainingTimeForVoiceOver);
+            // Fade out voice over clip
+            if (audioSource.isPlaying && finishCurrentLine) {
+                float lerpPosition = 0f;
+                float volumeFadeStart = audioSource.volume;
+                while (audioSource.volume != 0) {
+                    lerpPosition += Time.unscaledDeltaTime / fadeOutTimeOnLineFinish;
+                    audioSource.volume = Mathf.Lerp(volumeFadeStart, 0, lerpPosition);
+                    yield return null;
+                }
+                audioSource.Stop();
+                audioSource.volume = volumeFadeStart;
+            } else {
+                audioSource.Stop();
+            }
+        }
 
-            return;
+        protected override void FinishCurrentLine() {
+            finishCurrentLine = true;
+        }
+
+        protected override IEnumerator EndCurrentLine() {
+            // Avoid skipping lines if textSpeed == 0
+            yield return new WaitForEndOfFrame();
+        }
+
+        public override void RunOptions(DialogueOption[] dialogueOptions, Action<int> onOptionSelected) {
+            // Do nothing
+        }
+
+        public override Dialogue.HandlerExecutionType RunCommand(Command command, Action onCommandComplete) {
+            return Dialogue.HandlerExecutionType.ContinueExecution;
+        }
+
+        internal override void OnFinishedLineOnAllViews() {
+            // Do nothing
         }
     }
 }

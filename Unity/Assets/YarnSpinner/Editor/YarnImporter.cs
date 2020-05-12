@@ -146,6 +146,7 @@ public class YarnImporter : ScriptedImporter
                         programContainer.baseLocalisationStringTable = textAsset;
                         baseLanguage = textAsset;
                         programContainer.localizations = localizations;
+                        programContainer.baseLocalizationId = baseLanguageID;
                     }
 
                     stringIDs = lines.Select(l => l.id).ToArray();
