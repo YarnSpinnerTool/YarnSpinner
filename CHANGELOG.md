@@ -13,6 +13,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Fixed a crash in the compiler when parsing single-character commands (e.g. `<<p>>`) (#231)
+
 ### Removed
 
 ## [v1.1.0] - 2020-04-01
