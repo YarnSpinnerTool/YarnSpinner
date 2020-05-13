@@ -55,17 +55,23 @@ class PreferencesSettingsProvider : SettingsProvider {
             .FirstOrDefault(element => element.name == textLanguageProp.stringValue);
         if (selectedTextLanguage != null) {
             selectedTextLanguageIndex = selectedTextLanguage.index;
+        } else if (!string.IsNullOrEmpty(ProjectSettings.TextProjectLanguageDefault)) {
+            // Assign default language in case the currently selected text language has become invalid
+            selectedTextLanguageIndex = 0;
         }
         var textLanguagesDisplayNamesAvailableForSelection = Cultures.LanguageNamesToDisplayNames(textLanguagesNamesAvailableForSelection);
-        // Draw the actual text language popup
         if (textLanguagesNamesAvailableForSelection.Length == 0) {
             GUI.enabled = false;
             EditorGUILayout.HelpBox(_emptyTextLanguageMessage, MessageType.Info);
         }
+        // Draw the actual text language popup
         selectedTextLanguageIndex = EditorGUILayout.Popup("Text Language", selectedTextLanguageIndex, textLanguagesDisplayNamesAvailableForSelection);
-        // Change/set the text language ID (or don't touch the setting if the index is unusable)
+        // Change/set the text language ID
         if (selectedTextLanguageIndex != -1) {
             textLanguageProp.stringValue = textLanguagesNamesAvailableForSelection[selectedTextLanguageIndex];
+        } else {
+            // null the text language ID since the index is invalid
+            textLanguageProp.stringValue = string.Empty;
         }
         GUI.enabled = true;
 
@@ -79,6 +85,9 @@ class PreferencesSettingsProvider : SettingsProvider {
             .FirstOrDefault(element => element.name == audioLanguageProp.stringValue);
         if (selectedAudioLanguage != null) {
             selectedAudioLanguageIndex = selectedAudioLanguage.index;
+        } else if (!string.IsNullOrEmpty(ProjectSettings.AudioProjectLanguageDefault)) {
+            // Assign default language in case the currently selected audio language has become invalid but a default language exists
+            selectedAudioLanguageIndex = 0;
         }
         var audioLanguagesDisplayNamesAvailableForSelection = Cultures.LanguageNamesToDisplayNames(audioLanguagesNamesAvailableForSelection);
         if (audioLanguagesNamesAvailableForSelection.Length == 0) {
@@ -87,9 +96,12 @@ class PreferencesSettingsProvider : SettingsProvider {
         }
         // Draw the actual audio language popup
         selectedAudioLanguageIndex = EditorGUILayout.Popup("Audio Language", selectedAudioLanguageIndex, audioLanguagesDisplayNamesAvailableForSelection);
-        // Change/set the audio language ID (or don't touch the setting if the index is unusable)
+        // Change/set the audio language ID
         if (selectedAudioLanguageIndex != -1) {
             audioLanguageProp.stringValue = audioLanguagesNamesAvailableForSelection[selectedAudioLanguageIndex];
+        } else {
+            // null the audio language ID since the index is invalid
+            audioLanguageProp.stringValue = string.Empty;
         }
         GUI.enabled = true;
 
