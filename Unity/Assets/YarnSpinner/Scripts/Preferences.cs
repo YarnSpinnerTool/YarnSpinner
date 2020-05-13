@@ -114,10 +114,10 @@ public class Preferences : ScriptableObject {
     }
 
     private void OnEnable() {
-        if (string.IsNullOrEmpty(Array.Find(Cultures.AvailableCulturesNames, element => element == _textLanguage))) {
+        if (string.IsNullOrEmpty(Array.Find(Cultures.AvailableCulturesNames, element => element == _textLanguage)) || !ProjectSettings.TextProjectLanguages.Contains(_textLanguage)) {
             _textLanguage = GetDefaultTextLanguage();
         }
-        if (string.IsNullOrEmpty(Array.Find(Cultures.AvailableCulturesNames, element => element == _audioLanguage))) {
+        if (string.IsNullOrEmpty(Array.Find(Cultures.AvailableCulturesNames, element => element == _audioLanguage)) || !ProjectSettings.AudioProjectLanguages.Contains(_audioLanguage)) {
             _audioLanguage = GetDefaultAudioLanguage();
         }
     }
