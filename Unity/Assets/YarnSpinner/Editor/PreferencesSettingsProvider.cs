@@ -42,6 +42,7 @@ class PreferencesSettingsProvider : SettingsProvider {
             return;
         }
 
+        GUILayout.Label("Language Preferences", EditorStyles.boldLabel);
         _preferences.Update();
 
         // Text language popup related things
