@@ -22,7 +22,8 @@ public class MainMenuOptions : MonoBehaviour {
     }
 
     public void OnValueChangedTextLanguage(int value) {
-        ApplyChangedValueToPreferences(value, ref textLanguageSelected, textLanguagesTMPDropdown, textLanguagesDropdown);
+        textLanguageSelected = value;
+        ApplyChangedValueToPreferences(value, textLanguagesTMPDropdown, textLanguagesDropdown, PreferencesSetting.TextLanguage);
 
         foreach (var yarnLinesCanvasText in _yarnLinesCanvasTexts) {
             yarnLinesCanvasText?.OnTextLanguagePreferenceChanged();
@@ -30,7 +31,8 @@ public class MainMenuOptions : MonoBehaviour {
     }
 
     public void OnValueChangedAudioLanguage(int value) {
-        ApplyChangedValueToPreferences(value, ref audioLanguageSelected, audioLanguagesTMPDropdown, audioLanguagesDropdown);
+        audioLanguageSelected = value;
+        ApplyChangedValueToPreferences(value, audioLanguagesTMPDropdown, audioLanguagesDropdown, PreferencesSetting.AudioLanguage);
     }
 
     public void ReloadScene() {
@@ -46,7 +48,7 @@ public class MainMenuOptions : MonoBehaviour {
                 textLanguageList = Cultures.AvailableCulturesNativeNames.ToList();
             }
 
-            PopulateLanguagesListToDropdown(textLanguageList, textLanguagesTMPDropdown, textLanguagesDropdown, ref textLanguageSelected);
+            PopulateLanguagesListToDropdown(textLanguageList, textLanguagesTMPDropdown, textLanguagesDropdown, ref textLanguageSelected, PreferencesSetting.TextLanguage);
         }
     }
 
@@ -64,12 +66,19 @@ public class MainMenuOptions : MonoBehaviour {
                 }
             }
 
-            PopulateLanguagesListToDropdown(audioLanguagesList, audioLanguagesTMPDropdown, audioLanguagesDropdown, ref audioLanguageSelected);
+            PopulateLanguagesListToDropdown(audioLanguagesList, audioLanguagesTMPDropdown, audioLanguagesDropdown, ref audioLanguageSelected, PreferencesSetting.AudioLanguage);
         }
     }
 
-    private void PopulateLanguagesListToDropdown(List<string> languageList, TMP_Dropdown tmpDropdown, Dropdown dropdown, ref int selectedLanguageIndex) {
-        selectedLanguageIndex = languageList.IndexOf(Cultures.LanguageNamesToNativeNames(Preferences.TextLanguage));
+    private void PopulateLanguagesListToDropdown(List<string> languageList, TMP_Dropdown tmpDropdown, Dropdown dropdown, ref int selectedLanguageIndex, PreferencesSetting setting) {
+        switch (setting) {
+            case PreferencesSetting.TextLanguage:
+                selectedLanguageIndex = languageList.IndexOf(Cultures.LanguageNamesToNativeNames(Preferences.TextLanguage));
+                break;
+            case PreferencesSetting.AudioLanguage:
+                selectedLanguageIndex = languageList.IndexOf(Cultures.LanguageNamesToNativeNames(Preferences.AudioLanguage));
+                break;
+        }
 
         if (dropdown) {
             dropdown.ClearOptions();
@@ -92,14 +101,28 @@ public class MainMenuOptions : MonoBehaviour {
         }
     }
 
-    private void ApplyChangedValueToPreferences(int value, ref int languageSelected, TMP_Dropdown tmpDropdown, Dropdown dropdown) {
-        languageSelected = value;
+    private void ApplyChangedValueToPreferences(int value, TMP_Dropdown tmpDropdown, Dropdown dropdown, PreferencesSetting setting) {
+        string language = default;
 
         if (dropdown) {
-            Preferences.TextLanguage = Cultures.AvailableCultures.First(element => element.NativeName == dropdown.options[value].text).Name;
+            language = Cultures.AvailableCultures.First(element => element.NativeName == dropdown.options[value].text).Name;
         }
         if (tmpDropdown) {
-            Preferences.TextLanguage = Cultures.AvailableCultures.First(element => element.NativeName == tmpDropdown.options[value].text).Name;
+            language = Cultures.AvailableCultures.First(element => element.NativeName == tmpDropdown.options[value].text).Name;
         }
+
+        switch (setting) {
+            case PreferencesSetting.TextLanguage:
+                Preferences.TextLanguage = language;
+                break;
+            case PreferencesSetting.AudioLanguage:
+                Preferences.AudioLanguage = language;
+                break;
+        }
+    }
+
+    private enum PreferencesSetting {
+        TextLanguage,
+        AudioLanguage
     }
 }
