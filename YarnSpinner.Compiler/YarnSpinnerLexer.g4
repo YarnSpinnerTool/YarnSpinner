@@ -377,7 +377,7 @@ COMMAND_END: '>>' -> popMode;
 // is a command with arbitrary text inside it. Replace this 
 // lexer state with CommandTextMode so that when it finishes 
 // up, it returns to BodyMode
-COMMAND_ARBITRARY: . -> more, mode(CommandTextMode);
+COMMAND_ARBITRARY: . -> type(COMMAND_TEXT), mode(CommandTextMode);
 
 // Arbitrary commands, which may contain expressions, and end with a '>>'.
 mode CommandTextMode;

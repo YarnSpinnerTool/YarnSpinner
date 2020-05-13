@@ -21,6 +21,9 @@ title: Start
 
 <<isActive>>
 
+// Commands with a single character
+<<p>>
+
 // Commands with punctuation
 //<<!@#$%^&*()⁄€‹›ﬁﬂ‡°·‚‘-=_+>>
 
