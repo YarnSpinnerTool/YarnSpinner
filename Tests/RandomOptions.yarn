@@ -20,7 +20,7 @@ These options should NOT be shuffled:
 These options should NOT be shuffled
 
 -> One: Select this option to see shuffled options.
-		<<shuffleNextOptions>>
+	<<shuffleNextOptions>>
 	-> One
 	-> Two
 	-> Three

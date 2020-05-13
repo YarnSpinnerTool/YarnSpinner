@@ -3,26 +3,26 @@ title: Start
 // Testing types
 
 // string equality
-<<assert("test" == "test")>>
+<<call assert("test" == "test")>>
 
 // string-number inequality
-<<assert("test" != 1)>>
+<<call assert("test" != 1)>>
 
 // string case sensitivity
-<<assert("hi" != "HI")>>
+<<call assert("hi" != "HI")>>
 
 // multiple-type concatenation
-<<assert(1+1+"hi" == "2hi")>>
+<<call assert(1+1+"hi" == "2hi")>>
 
 // gt test
-<<assert(3 gt 2)>>
+<<call assert(3 gt 2)>>
 
 // lt test
-<<assert(1 lt 2)>>
+<<call assert(1 lt 2)>>
 
 // lte test
-<<assert(2 lte 2)>>
+<<call assert(2 lte 2)>>
 
 // gte test
-<<assert(2 gte 2)>>
+<<call assert(2 gte 2)>>
 ===

@@ -1,16 +1,16 @@
 # Yarn Spinner Road Map
 
 This is the current road map we are considering for the future of Yarn Spinner.
-Nothing in here is fixed and reflects what we believe should be the focus of development.
+Nothing in here is fixed. It reflects what we believe should be the focus of development.
 The idea of this document is to both give us something to help plan our development but to also give you all a space to see what we are doing, and to give us input on what you consider important.
 
 Let us know what you think about this road map either in the [Slack](http://lab.to/narrativegamedev) or [here on the GitHub issue we created about the road map](https://github.com/YarnSpinnerTool/YarnSpinner/issues/183).
 
-**This documents was last edited 17/12/2019**
+**This document was last edited 2020-05-10**
 
 # Releases
 
-Here are the main releases we're currently planning.
+Here are the main releases we're currently planning:
 
 ## ✅ V1.0
 
@@ -38,7 +38,7 @@ As such, there is a lot of wonky code and half-finished concepts which users cur
 - [x] Syntax highlighter extension for Visual Studio Code
 - [x] New documentation site
 
-## V1.1
+## ✅ V1.1
 
 ### Goal
 
@@ -172,3 +172,10 @@ Some of these changes are intentionally made to clean up some of the cruft we've
 Some of these changes we can see exactly how they will work and integrate, others will need to change as we get closer.
 Later releases are designed to have much larger broad strokes of features instead of specifics like in V1.0.
 As a release comes out we can take a look at the road map again, work out what features and needs should go into the next release and update the road map appropriately.
+
+# GSoC 2020 Ideas
+
+* Godot Engine Support
+* Game Maker Engine Support
+* Improvements and new features for YS VS Code extension
+* Bundles of features from above roadmap
