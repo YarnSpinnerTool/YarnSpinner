@@ -21,6 +21,18 @@ public class MainMenuOptions : MonoBehaviour {
         LoadAudioLanguagesIntoDropdowns();
     }
 
+    private void OnEnable() {
+        Preferences.LanguagePreferencesChanged += OnLanguagePreferencesChanged;
+    }
+
+    private void OnDisable() {
+        Preferences.LanguagePreferencesChanged -= OnLanguagePreferencesChanged;
+    }
+
+    public void OnLanguagePreferencesChanged (object sender, System.EventArgs e) {
+        Awake();
+    }
+
     public void OnValueChangedTextLanguage(int value) {
         textLanguageSelected = value;
         ApplyChangedValueToPreferences(value, textLanguagesTMPDropdown, textLanguagesDropdown, PreferencesSetting.TextLanguage);
