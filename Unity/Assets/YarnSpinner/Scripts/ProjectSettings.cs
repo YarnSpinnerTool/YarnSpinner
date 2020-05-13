@@ -15,6 +15,10 @@ public class ProjectSettings : ScriptableObject {
     /// Project wide available text languages
     /// </summary>
     public static List<string> TextProjectLanguages => Instance._textProjectLanguages;
+    /// <summary>
+    /// Project wide default text language. Returns null if no default languages exists.
+    /// </summary>
+    public static string TextProjectLanguageDefault => TextProjectLanguages.Count > 0 ? TextProjectLanguages[0] : null;
 
     /// <summary>
     /// Project wide available audio voice over languages
@@ -25,6 +29,10 @@ public class ProjectSettings : ScriptableObject {
     /// Project wide available audio voice over languages
     /// </summary>
     public static List<string> AudioProjectLanguages => Instance._audioProjectLanguages;
+    /// <summary>
+    /// Project wide default audio language. Returns null if no default languages exists.
+    /// </summary>
+    public static string AudioProjectLanguageDefault => AudioProjectLanguages.Count > 0 ? AudioProjectLanguages[0] : null;
 
     /// <summary>
     /// Path to Yarn's project settings

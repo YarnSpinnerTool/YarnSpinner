@@ -15,6 +15,8 @@ using UnityEngine.UIElements;
 class PreferencesSettingsProvider : SettingsProvider {
     public PreferencesSettingsProvider(string path, SettingsScope scope = SettingsScope.User) : base(path, scope) { }
 
+    private const string _emptyTextLanguageMessage = "To set a preference for text language, add one or more languages to 'Project Setting->Yarn Spinner' first.";
+    private const string _emptyAudioLanguageMessage = "To set a preference for audio language, add one or more languages to 'Project Setting->Yarn Spinner' first.";
     private SerializedObject _preferences;
     private List<string> _textLanguages = new List<string>();
     private List<string> _audioLanguage = new List<string>();
@@ -46,7 +48,7 @@ class PreferencesSettingsProvider : SettingsProvider {
         var selectedTextLanguageIndex = -1;
         var textLanguageProp = _preferences.FindProperty("_textLanguage");
         _textLanguageLastFrame = textLanguageProp.stringValue;
-        var textLanguagesNamesAvailableForSelection = _textLanguages.Count > 0 ? _textLanguages.ToArray() : Cultures.AvailableCulturesNames;
+        var textLanguagesNamesAvailableForSelection = _textLanguages.Count > 0 ? _textLanguages.ToArray() : System.Array.Empty<string>();
         var selectedTextLanguage = textLanguagesNamesAvailableForSelection
             .Select((name, index) => new { name, index })
             .FirstOrDefault(element => element.name == textLanguageProp.stringValue);
@@ -55,18 +57,22 @@ class PreferencesSettingsProvider : SettingsProvider {
         }
         var textLanguagesDisplayNamesAvailableForSelection = Cultures.LanguageNamesToDisplayNames(textLanguagesNamesAvailableForSelection);
         // Draw the actual text language popup
+        if (textLanguagesNamesAvailableForSelection.Length == 0) {
+            GUI.enabled = false;
+            EditorGUILayout.HelpBox(_emptyTextLanguageMessage, MessageType.Info);
+        }
         selectedTextLanguageIndex = EditorGUILayout.Popup("Text Language", selectedTextLanguageIndex, textLanguagesDisplayNamesAvailableForSelection);
-        // Change/set the text language ID (to system's default if the index is unusable)
-        textLanguageProp.stringValue = selectedTextLanguageIndex != -1
-            ? textLanguagesNamesAvailableForSelection[selectedTextLanguageIndex]
-            : System.Globalization.CultureInfo.CurrentCulture.Name;
-
+        // Change/set the text language ID (or don't touch the setting if the index is unusable)
+        if (selectedTextLanguageIndex != -1) {
+            textLanguageProp.stringValue = textLanguagesNamesAvailableForSelection[selectedTextLanguageIndex];
+        }
+        GUI.enabled = true;
 
         // Audio language popup related things
         var selectedAudioLanguageIndex = -1;
         var audioLanguageProp = _preferences.FindProperty("_audioLanguage");
         _audioLanguageLastFrame = audioLanguageProp.stringValue;
-        var audioLanguagesNamesAvailableForSelection = _audioLanguage.Count > 0 ? _audioLanguage.ToArray() : Cultures.AvailableCulturesNames;
+        var audioLanguagesNamesAvailableForSelection = _audioLanguage.Count > 0 ? _audioLanguage.ToArray() : System.Array.Empty<string>();
         var selectedAudioLanguage = audioLanguagesNamesAvailableForSelection
             .Select((name, index) => new { name, index })
             .FirstOrDefault(element => element.name == audioLanguageProp.stringValue);
@@ -74,16 +80,21 @@ class PreferencesSettingsProvider : SettingsProvider {
             selectedAudioLanguageIndex = selectedAudioLanguage.index;
         }
         var audioLanguagesDisplayNamesAvailableForSelection = Cultures.LanguageNamesToDisplayNames(audioLanguagesNamesAvailableForSelection);
+        if (audioLanguagesNamesAvailableForSelection.Length == 0) {
+            GUI.enabled = false;
+            EditorGUILayout.HelpBox(_emptyAudioLanguageMessage, MessageType.Info);
+        }
         // Draw the actual audio language popup
         selectedAudioLanguageIndex = EditorGUILayout.Popup("Audio Language", selectedAudioLanguageIndex, audioLanguagesDisplayNamesAvailableForSelection);
-        // Change/set the audio language ID (to system's default if the index is unusable)
-        audioLanguageProp.stringValue = selectedAudioLanguageIndex != -1
-            ? audioLanguagesNamesAvailableForSelection[selectedAudioLanguageIndex]
-            : System.Globalization.CultureInfo.CurrentCulture.Name;
-
+        // Change/set the audio language ID (or don't touch the setting if the index is unusable)
+        if (selectedAudioLanguageIndex != -1) {
+            audioLanguageProp.stringValue = audioLanguagesNamesAvailableForSelection[selectedAudioLanguageIndex];
+        }
+        GUI.enabled = true;
 
         _preferences.ApplyModifiedProperties();
 
+        // Trigger events in case the preferences have been changed
         if (_textLanguageLastFrame != textLanguageProp.stringValue) {
             Preferences.LanguagePreferencesChanged?.Invoke(this, System.EventArgs.Empty);
         }

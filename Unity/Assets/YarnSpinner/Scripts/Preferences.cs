@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System;
-using System.Linq;
 using System.Globalization;
 
 /// <summary>
@@ -111,14 +110,15 @@ public class Preferences : ScriptableObject {
     private void Initialize () {
         _textLanguage = null;
         _audioLanguage = null;
+        WritePreferencesToDisk(true);
     }
 
     private void OnEnable() {
-        if (string.IsNullOrEmpty(Cultures.AvailableCulturesNames.FirstOrDefault(element => element == _textLanguage))) {
-            _textLanguage = CultureInfo.CurrentCulture.Name;
+        if (string.IsNullOrEmpty(Array.Find(Cultures.AvailableCulturesNames, element => element == _textLanguage))) {
+            _textLanguage = GetDefaultTextLanguage();
         }
-        if (string.IsNullOrEmpty(Cultures.AvailableCulturesNames.FirstOrDefault(element => element == _audioLanguage))) {
-            _audioLanguage = CultureInfo.CurrentCulture.Name;
+        if (string.IsNullOrEmpty(Array.Find(Cultures.AvailableCulturesNames, element => element == _audioLanguage))) {
+            _audioLanguage = GetDefaultAudioLanguage();
         }
     }
 
@@ -126,6 +126,10 @@ public class Preferences : ScriptableObject {
         WritePreferencesToDisk();
     }
 
+    /// <summary>
+    /// Returns true if settings have been changed and returns false if no settings have been changed.
+    /// </summary>
+    /// <returns></returns>
     private bool PreferencesChanged() {
         if (_textLanguage != _textLanguageFromDisk) {
             return true;
@@ -147,28 +151,41 @@ public class Preferences : ScriptableObject {
         // Apply text language preference from file
         if (!string.IsNullOrEmpty(_textLanguage)) {
             // Keep the value read from disk to be able to tell if this class has been modified during runtime
-            _textLanguageFromDisk = Cultures.AvailableCulturesNames.FirstOrDefault(element => element == _textLanguage);
+            _textLanguageFromDisk = Array.Find(Cultures.AvailableCulturesNames, element => element == _textLanguage);
             if (string.IsNullOrEmpty(_textLanguageFromDisk)) {
-                // Language ID from JSON was not found in available Cultures so reset
-                _textLanguage = CultureInfo.CurrentCulture.Name;
+                // Language ID from JSON was not found in available Cultures so try to reset with current culture or the project's default language
+                _textLanguage = ProjectSettings.TextProjectLanguages.Contains(CultureInfo.CurrentCulture.Name) ? CultureInfo.CurrentCulture.Name : ProjectSettings.TextProjectLanguageDefault;
             }
         }
 
         // Apply audio language preference from file
         if (!string.IsNullOrEmpty(_audioLanguage)) {
             // Keep the value read from disk to be able to tell if this class has been modified during runtime
-            _audioLanguageFromDisk = Cultures.AvailableCulturesNames.FirstOrDefault(element => element == _audioLanguage);
+            _audioLanguageFromDisk = Array.Find(Cultures.AvailableCulturesNames, element => element == _audioLanguage);
             if (string.IsNullOrEmpty(_audioLanguageFromDisk)) {
-                // Language ID from JSON was not found in available Cultures so reset
-                _audioLanguage = CultureInfo.CurrentCulture.Name;
+                // Language ID from JSON was not found in available Cultures so try to reset with current culture or the project's default language
+                _audioLanguage = ProjectSettings.AudioProjectLanguages.Contains(CultureInfo.CurrentCulture.Name) ? CultureInfo.CurrentCulture.Name : ProjectSettings.AudioProjectLanguageDefault;
             }
         }
     }
 
-    private static void WritePreferencesToDisk() {
-        if (Instance.PreferencesChanged()) {
-            YarnSettingsHelper.WritePreferencesToDisk(Instance, Instance._preferencesPath);
+    /// <summary>
+    /// Write the preferences to disk. Will be stored outside of the project in the user settings directory of the OS.
+    /// </summary>
+    /// <param name="force">Force writing the settings to disk (true) or only write to disk if settings have been changed (false).</param>
+    private static void WritePreferencesToDisk(bool force = false) {
+        if (!Instance.PreferencesChanged() && !force) {
+            return;
         }
+        YarnSettingsHelper.WritePreferencesToDisk(Instance, Instance._preferencesPath);
+    }
+
+    private static string GetDefaultTextLanguage() {
+        return ProjectSettings.TextProjectLanguages.Contains(CultureInfo.CurrentCulture.Name) ? CultureInfo.CurrentCulture.Name : ProjectSettings.TextProjectLanguageDefault;
+    }
+
+    private static string GetDefaultAudioLanguage() {
+        return ProjectSettings.AudioProjectLanguages.Contains(CultureInfo.CurrentCulture.Name) ? CultureInfo.CurrentCulture.Name : ProjectSettings.AudioProjectLanguageDefault;
     }
     #endregion
 
