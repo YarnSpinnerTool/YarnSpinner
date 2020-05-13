@@ -104,13 +104,13 @@ public class Preferences : ScriptableObject {
         }
         _instance = this;
         _preferencesPath = Application.persistentDataPath + "/preferences-language.json";
-        ReadPreferencesFromDisk();
+        ReadPreferencesFromDisk(false);
     }
 
     private void Initialize () {
         _textLanguage = null;
         _audioLanguage = null;
-        WritePreferencesToDisk(true);
+        WritePreferencesToDisk(true, false);
     }
 
     private void OnEnable() {
@@ -123,7 +123,7 @@ public class Preferences : ScriptableObject {
     }
 
     private void OnDestroy() {
-        WritePreferencesToDisk();
+        WritePreferencesToDisk(false, false);
     }
 
     /// <summary>
@@ -145,8 +145,14 @@ public class Preferences : ScriptableObject {
     /// <summary>
     /// Read the user's language preferences from disk.
     /// </summary>
-    private void ReadPreferencesFromDisk() {
-        YarnSettingsHelper.ReadPreferencesFromDisk(this, _preferencesPath, Initialize);
+    /// /// <param name="useJson">If true, settings will be read from JSON file (default). If false, settings will be read from Unity's PlayerPrefs.</param>
+    private void ReadPreferencesFromDisk(bool useJson = true) {
+        if (useJson) {
+            YarnSettingsHelper.ReadPreferencesFromDisk(this, _preferencesPath, Initialize);
+        } else {
+            _textLanguage = PlayerPrefs.GetString("Yarn-TextLanguage");
+            _audioLanguage = PlayerPrefs.GetString("Yarn-AudioLanguage");
+        }
 
         // Apply text language preference from file
         if (!string.IsNullOrEmpty(_textLanguage)) {
@@ -173,11 +179,18 @@ public class Preferences : ScriptableObject {
     /// Write the preferences to disk. Will be stored outside of the project in the user settings directory of the OS.
     /// </summary>
     /// <param name="force">Force writing the settings to disk (true) or only write to disk if settings have been changed (false).</param>
-    private static void WritePreferencesToDisk(bool force = false) {
+    /// <param name="useJson">If true, settings will be written as JSON (default). If false, settings will be written to Unity's PlayerPrefs.</param>
+    private static void WritePreferencesToDisk(bool force = false, bool useJson = true) {
         if (!Instance.PreferencesChanged() && !force) {
             return;
         }
-        YarnSettingsHelper.WritePreferencesToDisk(Instance, Instance._preferencesPath);
+
+        if (useJson) {
+            YarnSettingsHelper.WritePreferencesToDisk(Instance, Instance._preferencesPath);
+        } else {
+            PlayerPrefs.SetString("Yarn-TextLanguage", Instance._textLanguage);
+            PlayerPrefs.SetString("Yarn-AudioLanguage", Instance._audioLanguage);
+        }
     }
 
     private static string GetDefaultTextLanguage() {
