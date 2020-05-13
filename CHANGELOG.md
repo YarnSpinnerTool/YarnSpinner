@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Yarn scripts now appear with Yarn Spinner icon. (@Schroedingers-Cat)
+- Documentation is updated to call 1.1 the current version (also to mention 2018.4 LTS as supported)
 
 ### Changed
 
