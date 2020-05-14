@@ -1,4 +1,4 @@
-﻿/*
+/*
 
 The MIT License (MIT)
 
@@ -104,11 +104,7 @@ namespace Yarn.Unity
         [Serializable]
         public class StringUnityEvent : UnityEvent<string> { }
 
-        /// A type of UnityEvent that takes a string and a string[] parameter. 
-        [System.Serializable]
-        public class StringTagsUnityEvent : UnityEngine.Events.UnityEvent<string, IEnumerable<string>> { }
-
-        [SerializeField] StringTagsUnityEvent onNodeStart;
+        public StringUnityEvent onNodeStart;
         
         /// <summary>
         /// A Unity event that is called when a node is complete.
@@ -289,6 +285,15 @@ namespace Yarn.Unity
         /// <param name="nodeName">The name of the node.</param>
         /// <returns>`true` if the node is loaded, `false` otherwise/</returns>
         public bool NodeExists(string nodeName) => Dialogue.NodeExists(nodeName);
+
+        /// <summary>
+        /// Returns the collection of tags that the node associated with
+        /// the node named `nodeName`.
+        /// </summary>
+        /// <param name="nodeName">The name of the node.</param>
+        /// <returns>The collection of tags associated with the node, or
+        /// `null` if no node with that name exists.</returns>
+        public IEnumerable<string> GetTagsForNode(String nodeName) => Dialogue.GetTagsForNode(nodeName);
 
         /// <summary>
         /// Adds a command handler. Dialogue will continue running after the command is called.
@@ -551,7 +556,7 @@ namespace Yarn.Unity
                 commandHandler = HandleCommand,
                 optionsHandler = HandleOptions,
                 nodeStartHandler = (node) => {
-                    onNodeStart?.Invoke(node, Dialogue.GetTagsForNode(node));
+                    onNodeStart?.Invoke(node);
                     return Dialogue.HandlerExecutionType.ContinueExecution;
                 },
                 nodeCompleteHandler = (node) => {
