@@ -439,6 +439,8 @@ namespace Yarn {
         /// <seealso cref="DialogueCompleteHandler"/>
         public delegate HandlerExecutionType NodeCompleteHandler(string completedNodeName);
 
+        public delegate HandlerExecutionType NodeStartHandler(string startedNodeName);		
+
         /// <summary>
         /// Represents the method that is called when the dialogue has
         /// reached its end, and no more code remains to be run.
@@ -486,6 +488,12 @@ namespace Yarn {
             get => vm.commandHandler;
             set => vm.commandHandler = value;
         }
+
+        /// Called when a node is started.
+		public NodeStartHandler nodeStartHandler {
+			get => vm.nodeStartHandler;
+			set => vm.nodeStartHandler = value;
+		}
 
         /// <summary>
         /// Gets or sets the <see cref="NodeCompleteHandler"/> that is called

@@ -104,6 +104,12 @@ namespace Yarn.Unity
         [Serializable]
         public class StringUnityEvent : UnityEvent<string> { }
 
+        /// A type of UnityEvent that takes a string and a string[] parameter. 
+        [System.Serializable]
+        public class StringTagsUnityEvent : UnityEngine.Events.UnityEvent<string, IEnumerable<string>> { }
+
+        [SerializeField] StringTagsUnityEvent onNodeStart;
+        
         /// <summary>
         /// A Unity event that is called when a node is complete.
         /// </summary>
@@ -544,6 +550,10 @@ namespace Yarn.Unity
                 lineHandler = HandleLine,
                 commandHandler = HandleCommand,
                 optionsHandler = HandleOptions,
+                nodeStartHandler = (node) => {
+                    onNodeStart?.Invoke(node, Dialogue.GetTagsForNode(node));
+                    return Dialogue.HandlerExecutionType.ContinueExecution;
+                },
                 nodeCompleteHandler = (node) => {
                     onNodeComplete?.Invoke(node);
                     return Dialogue.HandlerExecutionType.ContinueExecution;
