@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 The MIT License (MIT)
 
@@ -104,6 +104,14 @@ namespace Yarn.Unity
         [Serializable]
         public class StringUnityEvent : UnityEvent<string> { }
 
+        /// <summary>
+        /// A Unity event that is called when a node starts running.
+        /// </summary>
+        /// <remarks>
+        /// This event receives as a parameter the name of the node that is
+        /// about to start running.
+        /// </remarks>
+        /// <seealso cref="Dialogue.NodeStartHandler"/>
         public StringUnityEvent onNodeStart;
         
         /// <summary>
