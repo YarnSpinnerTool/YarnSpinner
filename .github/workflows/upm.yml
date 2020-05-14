@@ -1,0 +1,45 @@
+name: upm
+on:
+  push:
+    branches:
+    - master
+jobs:
+  split-upm:
+    name: create upm branch
+    runs-on: ubuntu-latest
+    steps:
+    - name: setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.201'
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: build DLLs
+      run: |
+        ./build.sh -b
+    - name: copy DLL meta files
+      run: |
+        find .github/meta | grep \\.meta$ | sort | xargs -i cp '{}' Unity/Assets/YarnSpinner/Scripts/DLLs
+    - name: commit DLLs
+      run: |
+        # commit DLLs changes, but will not push the current branch.
+        git config --global user.name 'github-bot'
+        git config --global user.email 'github-bot@users.noreply.github.com'
+        echo list Unity/Assets/YarnSpinner/Scripts/DLLs
+        find Unity/Assets/YarnSpinner/Scripts/DLLs/ | grep dll | sort | xargs -i echo '{}'
+        find Unity/Assets/YarnSpinner/Scripts/DLLs/ | grep dll | xargs git add -f
+        git commit -m "chore(ci): add DLLs"
+    - name: split upm branch
+      run: |
+        git branch -d upm &> /dev/null || echo upm branch not found
+        git subtree split -P "$PKG_ROOT" -b upm
+        git checkout upm
+        if [[ -d "Examples" ]]; then
+          git mv Examples Examples~
+          rm -f Examples.meta
+          git commit -am "fix: Examples => Examples~"
+        fi
+        git push -f -u origin upm
+      env:
+        PKG_ROOT: Unity/Assets/YarnSpinner
