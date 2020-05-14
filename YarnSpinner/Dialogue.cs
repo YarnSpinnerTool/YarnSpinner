@@ -135,6 +135,10 @@ namespace Yarn {
             /// Gets the name of the node that will be run if this option
             /// is selected.
             /// </summary>
+            /// <remarks>
+            /// The value of this property not be valid if this is a
+            /// shortcut option.
+            /// </remarks>
             public string DestinationNode { get; private set; }
         }
         
