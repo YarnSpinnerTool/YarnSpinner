@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEditorInternal;
@@ -17,14 +16,33 @@ using UnityEngine.UIElements;
 class ProjectSettingsProvider : SettingsProvider {
     public ProjectSettingsProvider(string path, SettingsScope scope = SettingsScope.Project) : base(path, scope) { }
 
+    // Variables used for the project-wide settings
     private static SerializedObject _projectSettings;
     private ReorderableList _textLanguagesReorderableList;
     private int _textLanguagesListIndex;
+    
+    // Variables used for the user's settings (also called "Preferences")
+    private static SerializedObject _preferences;
+    private const string _emptyTextLanguageMessage = "To set a preference for text language, add one or more languages to 'Project Setting->Yarn Spinner' first.";
+    private const string _emptyAudioLanguageMessage = "To set a preference for audio language, add one or more languages to 'Project Setting->Yarn Spinner' first.";
+    private List<string> _textLanguages = new List<string>();
+    private List<string> _audioLanguage = new List<string>();
+    private string _textLanguageLastFrame;
+    private string _audioLanguageLastFrame;
+
 
     public override void OnActivate(string searchContext, VisualElement rootElement) {
+        // Initialize project settings variables
         _projectSettings = new SerializedObject(ScriptableObject.CreateInstance<ProjectSettings>());
         var textLanguages = _projectSettings.FindProperty("_textProjectLanguages");
         var audioLanguages = _projectSettings.FindProperty("_audioProjectLanguages");
+
+        // Initialize user settings variables (preference variables)
+        _preferences = new SerializedObject(ScriptableObject.CreateInstance<Preferences>());
+        _textLanguages = ProjectSettings.TextProjectLanguages;
+        _audioLanguage = ProjectSettings.AudioProjectLanguages;
+        _textLanguageLastFrame = Preferences.TextLanguage;
+        _audioLanguageLastFrame = Preferences.AudioLanguage;
 
         // Initialize visual representation of the language lists
         _textLanguagesReorderableList = new ReorderableList(_projectSettings, textLanguages, true, true, false, true);
@@ -60,6 +78,9 @@ class ProjectSettingsProvider : SettingsProvider {
     public override void OnDeactivate() {
         if (_projectSettings != null) {
             Object.DestroyImmediate(_projectSettings.targetObject);
+        }
+        if (_preferences != null) {
+            Object.DestroyImmediate(_preferences.targetObject);
         }
     }
 
@@ -107,9 +128,110 @@ class ProjectSettingsProvider : SettingsProvider {
         }
 
         _projectSettings.ApplyModifiedProperties();
+
+        // User's language preferences
+        if (_preferences == null || _preferences.targetObject == null) {
+            return;
+        }
+
+        GUILayout.Label("Language Preferences", EditorStyles.boldLabel);
+        _preferences.Update();
+
+        // Text language popup related things
+        SerializedProperty textLanguageProp = DrawLanguagePreference(LanguagePreference.TextLanguage);
+
+        // Audio language popup related things
+        SerializedProperty audioLanguageProp = DrawLanguagePreference(LanguagePreference.AudioLanguage);
+
+        _preferences.ApplyModifiedProperties();
+
+        // Trigger events in case the preferences have been changed
+        if (_textLanguageLastFrame != textLanguageProp.stringValue) {
+            Preferences.LanguagePreferencesChanged?.Invoke(this, System.EventArgs.Empty);
+        }
+        if (_audioLanguageLastFrame != audioLanguageProp.stringValue) {
+            Preferences.LanguagePreferencesChanged?.Invoke(this, System.EventArgs.Empty);
+        }
     }
 
-    // Register YarnSpinner's project settings in the "Project Settings" window
+    /// <summary>
+    /// Draws a language selection popup used for showing a user's language preference.
+    /// Returns the corresponding SerializedProperty of the drawn language selection popup which be used after ApplyModifiedProperties() to detect changes to the settings.
+    /// </summary>
+    /// <param name="languagePreference">Determines wheter to draw the Text Language preference or the Audio Language preference.</param>
+    private SerializedProperty DrawLanguagePreference(LanguagePreference languagePreference) {
+        // Declare and set variables depending on the type of language preference to draw
+        List<string> languages = default;
+        SerializedProperty preferencesProperty = default;
+        string defaultProjectLanguage = default;
+        string infoMessageOnEmptyProjectLanguageList = default;
+        string languagePopupLabel = default;
+
+        switch (languagePreference) {
+            case LanguagePreference.TextLanguage:
+                languages = _textLanguages;
+                preferencesProperty = _preferences.FindProperty("_textLanguage");
+                defaultProjectLanguage = ProjectSettings.TextProjectLanguageDefault;
+                infoMessageOnEmptyProjectLanguageList = _emptyTextLanguageMessage;
+                languagePopupLabel = "Text Language";
+                _textLanguageLastFrame = preferencesProperty.stringValue;
+                break;
+            case LanguagePreference.AudioLanguage:
+                languages = _audioLanguage;
+                preferencesProperty = _preferences.FindProperty("_audioLanguage");
+                defaultProjectLanguage = ProjectSettings.AudioProjectLanguageDefault;
+                infoMessageOnEmptyProjectLanguageList = _emptyAudioLanguageMessage;
+                languagePopupLabel = "Audio Language";
+                _audioLanguageLastFrame = preferencesProperty.stringValue;
+                break;
+        }
+
+        // Get currently available languages and determine which the selected language should be
+        int selectedLanguageIndex = -1;
+        string[] languagesNamesAvailableForSelection = languages.Count > 0 ? languages.ToArray() : System.Array.Empty<string>();
+        var selectedLanguage = languagesNamesAvailableForSelection
+            .Select((name, index) => new { name, index })
+            .FirstOrDefault(element => element.name == preferencesProperty.stringValue);
+        if (selectedLanguage != null) {
+            selectedLanguageIndex = selectedLanguage.index;
+        } else if (!string.IsNullOrEmpty(defaultProjectLanguage)) {
+            // Assign default language in case the currently selected language has become invalid
+            selectedLanguageIndex = 0;
+        }
+        string[] languagesDisplayNamesAvailableForSelection = Cultures.LanguageNamesToDisplayNames(languagesNamesAvailableForSelection);
+        // Disable popup and show message box in case the project languages have been defined yet
+        if (languagesNamesAvailableForSelection.Length == 0) {
+            GUI.enabled = false;
+            EditorGUILayout.HelpBox(infoMessageOnEmptyProjectLanguageList, MessageType.Info);
+        }
+        // Draw the actual language popup
+        selectedLanguageIndex = EditorGUILayout.Popup(languagePopupLabel, selectedLanguageIndex, languagesDisplayNamesAvailableForSelection);
+        // Change/set the language ID
+        if (selectedLanguageIndex != -1) {
+            preferencesProperty.stringValue = languagesNamesAvailableForSelection[selectedLanguageIndex];
+        } else {
+            // null the language ID since the index is invalid
+            preferencesProperty.stringValue = string.Empty;
+        }
+        GUI.enabled = true;
+
+        return preferencesProperty;
+    }
+
+    /// <summary>
+    /// Available types of language preferences.
+    /// </summary>
+    private enum LanguagePreference {
+        TextLanguage,
+        AudioLanguage
+    }
+
+    /// <summary>
+    /// Register YarnSpinner's UI for project settings and user preferences in the "Project Settings" window.
+    /// The user preferences should be declaed in SettingsScope.User but to avoid confusion by having 
+    /// settings windows in two different places we present the UIs of both in a single window.
+    /// </summary>
+    /// <returns></returns>
     [SettingsProvider]
     public static SettingsProvider CreatePreferencesSettingsProvider() {
         var provider = new ProjectSettingsProvider("Project/Yarn Spinner", SettingsScope.Project);
