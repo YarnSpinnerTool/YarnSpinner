@@ -46,64 +46,10 @@ class PreferencesSettingsProvider : SettingsProvider {
         _preferences.Update();
 
         // Text language popup related things
-        var selectedTextLanguageIndex = -1;
-        var textLanguageProp = _preferences.FindProperty("_textLanguage");
-        _textLanguageLastFrame = textLanguageProp.stringValue;
-        var textLanguagesNamesAvailableForSelection = _textLanguages.Count > 0 ? _textLanguages.ToArray() : System.Array.Empty<string>();
-        var selectedTextLanguage = textLanguagesNamesAvailableForSelection
-            .Select((name, index) => new { name, index })
-            .FirstOrDefault(element => element.name == textLanguageProp.stringValue);
-        if (selectedTextLanguage != null) {
-            selectedTextLanguageIndex = selectedTextLanguage.index;
-        } else if (!string.IsNullOrEmpty(ProjectSettings.TextProjectLanguageDefault)) {
-            // Assign default language in case the currently selected text language has become invalid
-            selectedTextLanguageIndex = 0;
-        }
-        var textLanguagesDisplayNamesAvailableForSelection = Cultures.LanguageNamesToDisplayNames(textLanguagesNamesAvailableForSelection);
-        if (textLanguagesNamesAvailableForSelection.Length == 0) {
-            GUI.enabled = false;
-            EditorGUILayout.HelpBox(_emptyTextLanguageMessage, MessageType.Info);
-        }
-        // Draw the actual text language popup
-        selectedTextLanguageIndex = EditorGUILayout.Popup("Text Language", selectedTextLanguageIndex, textLanguagesDisplayNamesAvailableForSelection);
-        // Change/set the text language ID
-        if (selectedTextLanguageIndex != -1) {
-            textLanguageProp.stringValue = textLanguagesNamesAvailableForSelection[selectedTextLanguageIndex];
-        } else {
-            // null the text language ID since the index is invalid
-            textLanguageProp.stringValue = string.Empty;
-        }
-        GUI.enabled = true;
+        SerializedProperty textLanguageProp = DrawLanguagePreference(LanguagePreference.TextLanguage);
 
         // Audio language popup related things
-        var selectedAudioLanguageIndex = -1;
-        var audioLanguageProp = _preferences.FindProperty("_audioLanguage");
-        _audioLanguageLastFrame = audioLanguageProp.stringValue;
-        var audioLanguagesNamesAvailableForSelection = _audioLanguage.Count > 0 ? _audioLanguage.ToArray() : System.Array.Empty<string>();
-        var selectedAudioLanguage = audioLanguagesNamesAvailableForSelection
-            .Select((name, index) => new { name, index })
-            .FirstOrDefault(element => element.name == audioLanguageProp.stringValue);
-        if (selectedAudioLanguage != null) {
-            selectedAudioLanguageIndex = selectedAudioLanguage.index;
-        } else if (!string.IsNullOrEmpty(ProjectSettings.AudioProjectLanguageDefault)) {
-            // Assign default language in case the currently selected audio language has become invalid but a default language exists
-            selectedAudioLanguageIndex = 0;
-        }
-        var audioLanguagesDisplayNamesAvailableForSelection = Cultures.LanguageNamesToDisplayNames(audioLanguagesNamesAvailableForSelection);
-        if (audioLanguagesNamesAvailableForSelection.Length == 0) {
-            GUI.enabled = false;
-            EditorGUILayout.HelpBox(_emptyAudioLanguageMessage, MessageType.Info);
-        }
-        // Draw the actual audio language popup
-        selectedAudioLanguageIndex = EditorGUILayout.Popup("Audio Language", selectedAudioLanguageIndex, audioLanguagesDisplayNamesAvailableForSelection);
-        // Change/set the audio language ID
-        if (selectedAudioLanguageIndex != -1) {
-            audioLanguageProp.stringValue = audioLanguagesNamesAvailableForSelection[selectedAudioLanguageIndex];
-        } else {
-            // null the audio language ID since the index is invalid
-            audioLanguageProp.stringValue = string.Empty;
-        }
-        GUI.enabled = true;
+        SerializedProperty audioLanguageProp = DrawLanguagePreference(LanguagePreference.AudioLanguage);
 
         _preferences.ApplyModifiedProperties();
 
@@ -114,6 +60,78 @@ class PreferencesSettingsProvider : SettingsProvider {
         if (_audioLanguageLastFrame != audioLanguageProp.stringValue) {
             Preferences.LanguagePreferencesChanged?.Invoke(this, System.EventArgs.Empty);
         }
+    }
+
+    /// <summary>
+    /// Draws a language selection popup.
+    /// Returns the corresponding SerializedProperty of the drawn language selection popup which be used after ApplyModifiedProperties() to detect changes to the settings.
+    /// </summary>
+    /// <param name="languagePreference">Determines wheter to draw the Text Language preference or the Audio Language preference.</param>
+    private SerializedProperty DrawLanguagePreference(LanguagePreference languagePreference) {
+        // Declare and set variables depending on the type of language preference to draw
+        List<string> languages = default;
+        SerializedProperty preferencesProperty = default;
+        string defaultProjectLanguage = default;
+        string infoMessageOnEmptyProjectLanguageList = default;
+        string languagePopupLabel = default;
+
+        switch (languagePreference) {
+            case LanguagePreference.TextLanguage:
+                languages = _textLanguages;
+                preferencesProperty = _preferences.FindProperty("_textLanguage");
+                defaultProjectLanguage = ProjectSettings.TextProjectLanguageDefault;
+                infoMessageOnEmptyProjectLanguageList = _emptyTextLanguageMessage;
+                languagePopupLabel = "Text Language";
+                _textLanguageLastFrame = preferencesProperty.stringValue;
+                break;
+            case LanguagePreference.AudioLanguage:
+                languages = _audioLanguage;
+                preferencesProperty = _preferences.FindProperty("_audioLanguage");
+                defaultProjectLanguage = ProjectSettings.AudioProjectLanguageDefault;
+                infoMessageOnEmptyProjectLanguageList = _emptyAudioLanguageMessage;
+                languagePopupLabel = "Audio Language";
+                _audioLanguageLastFrame = preferencesProperty.stringValue;
+                break;
+        }
+
+        // Get currently available languages and determine which the selected language should be
+        int selectedLanguageIndex = -1;
+        string[] languagesNamesAvailableForSelection = languages.Count > 0 ? languages.ToArray() : System.Array.Empty<string>();
+        var selectedLanguage = languagesNamesAvailableForSelection
+            .Select((name, index) => new { name, index })
+            .FirstOrDefault(element => element.name == preferencesProperty.stringValue);
+        if (selectedLanguage != null) {
+            selectedLanguageIndex = selectedLanguage.index;
+        } else if (!string.IsNullOrEmpty(defaultProjectLanguage)) {
+            // Assign default language in case the currently selected language has become invalid
+            selectedLanguageIndex = 0;
+        }
+        string[] languagesDisplayNamesAvailableForSelection = Cultures.LanguageNamesToDisplayNames(languagesNamesAvailableForSelection);
+        // Disable popup and show message box in case the project languages have been defined yet
+        if (languagesNamesAvailableForSelection.Length == 0) {
+            GUI.enabled = false;
+            EditorGUILayout.HelpBox(infoMessageOnEmptyProjectLanguageList, MessageType.Info);
+        }
+        // Draw the actual language popup
+        selectedLanguageIndex = EditorGUILayout.Popup(languagePopupLabel, selectedLanguageIndex, languagesDisplayNamesAvailableForSelection);
+        // Change/set the language ID
+        if (selectedLanguageIndex != -1) {
+            preferencesProperty.stringValue = languagesNamesAvailableForSelection[selectedLanguageIndex];
+        } else {
+            // null the language ID since the index is invalid
+            preferencesProperty.stringValue = string.Empty;
+        }
+        GUI.enabled = true;
+
+        return preferencesProperty;
+    }
+
+    /// <summary>
+    /// Available types of language preferences.
+    /// </summary>
+    private enum LanguagePreference {
+        TextLanguage,
+        AudioLanguage
     }
 
     // Register the YarnSpinner user preferences in the "Preferences" window
