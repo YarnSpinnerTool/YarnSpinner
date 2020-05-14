@@ -705,7 +705,7 @@ namespace Yarn
                         for (int optionIndex = 0; optionIndex < state.currentOptions.Count; optionIndex++)
                         {
                             var option = state.currentOptions[optionIndex];
-                            optionChoices.Add(new OptionSet.Option(option.Key, optionIndex));
+                            optionChoices.Add(new OptionSet.Option(option.Key, optionIndex, option.Value));
                         }
 
                         // We can't continue until our client tell us which option to pick

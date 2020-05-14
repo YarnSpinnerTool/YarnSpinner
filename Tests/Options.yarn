@@ -1,0 +1,13 @@
+title: A
+---
+[[Go to B|B]]
+[[Go to C|C]]
+===
+title: B
+---
+Node B
+===
+title: C
+---
+Node C
+===
