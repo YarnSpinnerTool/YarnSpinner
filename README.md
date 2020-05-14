@@ -1,5 +1,7 @@
 # Yarn Spinner
 
+[![openupm](https://img.shields.io/npm/v/dev.secretlab.yarnspinner?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/dev.secretlab.yarnspinner/)
+
 <img src="Documentation/YarnSpinnerLogo.png" alt="Yarn Spinner logo" width="100px;" align="right">
 
 **Yarn Spinner** is a tool for creating interactive dialogue for games. 
@@ -12,7 +14,7 @@ Yarn's similar in style to [Twine](http://twinery.org), so if you already know t
 
 ## Getting Started
 
-To get started using Yarn Spinner, [download it](https://github.com/YarnSpinnerTool/YarnSpinner/releases/latest), and then head over to the [tutorial](https://yarnspinner.dev/docs/tutorial).
+Yarn Spinner supports both the [UPM package](https://openupm.com/packages/dev.secretlab.yarnspinner/) and [traditional .unitypackage](https://github.com/YarnSpinnerTool/YarnSpinner/releases/latest). To get started using Yarn Spinner, please head over to the [tutorial](https://yarnspinner.dev/docs/tutorial).
 
 **Note**: Yarn Spinner requires Unity 2019.2 or later. (_The next upcoming version, Yarn Spinner v1.1, works with 2018.4 LTS and later._)
 
