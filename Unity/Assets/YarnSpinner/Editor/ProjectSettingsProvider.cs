@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.Audio;
 #if UNITY_2018
 using UnityEngine.Experimental.UIElements;
 #endif
@@ -137,20 +138,34 @@ class ProjectSettingsProvider : SettingsProvider {
         var assets = AssetDatabase.FindAssets("t:YarnProgram");
         foreach (var yarnProgram in assets) {
             var yarnProgramLoaded = AssetDatabase.LoadAssetAtPath<YarnProgram>(AssetDatabase.GUIDToAssetPath(yarnProgram));
-            foreach (var linetag in yarnProgramLoaded.voiceOvers) {
-                foreach (var language in linetag.languageToAudioclip) {
+            SerializedObject yarnProgramSerialized = new SerializedObject(yarnProgramLoaded);
+            yarnProgramSerialized.Update();
+            var voiceOversProp = yarnProgramSerialized.FindProperty("voiceOvers");
+            for (int i = 0; i < voiceOversProp.arraySize; i++) {
+                var linetagProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("linetag");
+                var languagetoAudioClipProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("languageToAudioclip");
+                for (int j = 0; j < languagetoAudioClipProp.arraySize; j++) {
                     if (removeDirectReferences) {
-                        language.audioClip = null;
+                        SerializedProperty audioclipProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClip");
+                        audioclipProp.objectReferenceValue = null;
                     } else {
-                        language.audioClipAddressable = null;
+                        // NOTE: Addressables 1.8.3 don't support writing via SerializedProperty atm so we need to work around that limitation
+                        yarnProgramLoaded.voiceOvers[i].languageToAudioclip[j].audioClipAddressable = null;
                     }
                 }
             }
-            // Communicating the changes back fails ...
-            EditorUtility.SetDirty(yarnProgramLoaded);
-            AssetDatabase.WriteImportSettingsIfDirty(AssetDatabase.GetAssetPath(yarnProgramLoaded));
-            AssetDatabase.SaveAssets();
-            AssetDatabase.ForceReserializeAssets(new string[] { AssetDatabase.GetAssetPath(yarnProgramLoaded) }, ForceReserializeAssetsOptions.ReserializeAssetsAndMetadata);
+
+            var success = yarnProgramSerialized.ApplyModifiedProperties();
+            if (removeDirectReferences) {
+                if (success) {
+                    EditorUtility.SetDirty(yarnProgramLoaded);
+                    AssetDatabase.WriteImportSettingsIfDirty(AssetDatabase.GetAssetPath(yarnProgramLoaded));
+                    AssetDatabase.SaveAssets();
+                }
+            } else {
+                // We need to force reserialization. SetDirty() and SaveAssets() isn't enough when modyfing via target.
+                AssetDatabase.ForceReserializeAssets(new string[] { AssetDatabase.GetAssetPath(yarnProgramLoaded) }, ForceReserializeAssetsOptions.ReserializeAssetsAndMetadata);
+            }
         }
     }
 
