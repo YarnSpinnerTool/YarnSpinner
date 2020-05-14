@@ -382,6 +382,7 @@ namespace Yarn {
         /// <seealso cref="HandlerExecutionType"/>
         /// <seealso cref="OptionsHandler"/>
         /// <seealso cref="CommandHandler"/>
+        /// <seealso cref="NodeStartHandler"/>
         /// <seealso cref="NodeCompleteHandler"/>
         /// <seealso cref="DialogueCompleteHandler"/>
         public delegate HandlerExecutionType LineHandler(Line line);
@@ -401,6 +402,7 @@ namespace Yarn {
         /// </remarks>
         /// <seealso cref="LineHandler"/>
         /// <seealso cref="CommandHandler"/>
+        /// <seealso cref="NodeStartHandler"/>
         /// <seealso cref="NodeCompleteHandler"/>
         /// <seealso cref="DialogueCompleteHandler"/>
         public delegate void OptionsHandler(OptionSet options);
@@ -416,6 +418,7 @@ namespace Yarn {
         /// <seealso cref="HandlerExecutionType"/>
         /// <seealso cref="LineHandler"/>
         /// <seealso cref="OptionsHandler"/>
+        /// <seealso cref="NodeStartHandler"/>
         /// <seealso cref="NodeCompleteHandler"/>
         /// <seealso cref="DialogueCompleteHandler"/>
         public delegate HandlerExecutionType CommandHandler(Command command);
@@ -436,8 +439,24 @@ namespace Yarn {
         /// <seealso cref="LineHandler"/>
         /// <seealso cref="OptionsHandler"/>
         /// <seealso cref="CommandHandler"/>
+        /// <seealso cref="NodeStartHandler"/>
         /// <seealso cref="DialogueCompleteHandler"/>
         public delegate HandlerExecutionType NodeCompleteHandler(string completedNodeName);
+
+        /// <summary>
+        /// Represents the method that is called when the Dialogue begins
+        /// executing a node.
+        /// </summary>
+        /// <param name="startedNodeName">The name of the node.</param>
+        /// <returns>Whether the <see cref="Dialogue"/> should suspend
+        /// execution after this method has been called.</returns>
+        /// <seealso cref="HandlerExecutionType"/>
+        /// <seealso cref="LineHandler"/>
+        /// <seealso cref="OptionsHandler"/>
+        /// <seealso cref="CommandHandler"/>
+        /// <seealso cref="NodeCompleteHandler"/>
+        /// <seealso cref="DialogueCompleteHandler"/>
+        public delegate HandlerExecutionType NodeStartHandler(string startedNodeName);
 
         /// <summary>
         /// Represents the method that is called when the dialogue has
@@ -446,6 +465,7 @@ namespace Yarn {
         /// <seealso cref="LineHandler"/>
         /// <seealso cref="OptionsHandler"/>
         /// <seealso cref="CommandHandler"/>
+        /// <seealso cref="NodeStartHandler"/>
         /// <seealso cref="NodeCompleteHandler"/>
         public delegate void DialogueCompleteHandler();
 
@@ -485,6 +505,16 @@ namespace Yarn {
         {
             get => vm.commandHandler;
             set => vm.commandHandler = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the <see cref="NodeStartHandler"/> that is called
+        /// when a node is started.
+        /// </summary>
+        public NodeStartHandler nodeStartHandler
+        {
+            get => vm.nodeStartHandler;
+            set => vm.nodeStartHandler = value;
         }
 
         /// <summary>

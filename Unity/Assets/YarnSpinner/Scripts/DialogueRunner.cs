@@ -105,6 +105,16 @@ namespace Yarn.Unity
         public class StringUnityEvent : UnityEvent<string> { }
 
         /// <summary>
+        /// A Unity event that is called when a node starts running.
+        /// </summary>
+        /// <remarks>
+        /// This event receives as a parameter the name of the node that is
+        /// about to start running.
+        /// </remarks>
+        /// <seealso cref="Dialogue.NodeStartHandler"/>
+        public StringUnityEvent onNodeStart;
+        
+        /// <summary>
         /// A Unity event that is called when a node is complete.
         /// </summary>
         /// <remarks>
@@ -283,6 +293,15 @@ namespace Yarn.Unity
         /// <param name="nodeName">The name of the node.</param>
         /// <returns>`true` if the node is loaded, `false` otherwise/</returns>
         public bool NodeExists(string nodeName) => Dialogue.NodeExists(nodeName);
+
+        /// <summary>
+        /// Returns the collection of tags that the node associated with
+        /// the node named `nodeName`.
+        /// </summary>
+        /// <param name="nodeName">The name of the node.</param>
+        /// <returns>The collection of tags associated with the node, or
+        /// `null` if no node with that name exists.</returns>
+        public IEnumerable<string> GetTagsForNode(String nodeName) => Dialogue.GetTagsForNode(nodeName);
 
         /// <summary>
         /// Adds a command handler. Dialogue will continue running after the command is called.
@@ -544,6 +563,10 @@ namespace Yarn.Unity
                 lineHandler = HandleLine,
                 commandHandler = HandleCommand,
                 optionsHandler = HandleOptions,
+                nodeStartHandler = (node) => {
+                    onNodeStart?.Invoke(node);
+                    return Dialogue.HandlerExecutionType.ContinueExecution;
+                },
                 nodeCompleteHandler = (node) => {
                     onNodeComplete?.Invoke(node);
                     return Dialogue.HandlerExecutionType.ContinueExecution;
