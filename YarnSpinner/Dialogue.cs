@@ -103,10 +103,11 @@ namespace Yarn {
         /// An option to be presented to the user.
         /// </summary>
         public struct Option {
-            internal Option(Line line, int id)
+            internal Option(Line line, int id, string destinationNode)
             {
                 Line = line;
                 ID = id;
+                DestinationNode = destinationNode;
             }
 
             /// <summary>
@@ -129,6 +130,12 @@ namespace Yarn {
             /// cref="Dialogue.SetSelectedOption(int)"/>.
             /// </remarks>
             public int ID {get; private set;}
+
+            /// <summary>
+            /// Gets the name of the node that will be run if this option
+            /// is selected.
+            /// </summary>
+            public string DestinationNode { get; private set; }
         }
         
         /// <summary>
