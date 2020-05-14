@@ -873,7 +873,7 @@
                 // Generate the name of internal label that we'll jump to
                 // if this option is selected. We'll emit the label itself
                 // later.
-                string optionDestinationLabel = compiler.RegisterLabel("option_" + (optionCount + 1));
+                string optionDestinationLabel = compiler.RegisterLabel($"shortcutoption_{compiler.CurrentNode.Name ?? "node"}_{optionCount + 1}");
                 labels.Add(optionDestinationLabel);
 
                 // This line statement may have a condition on it. If it

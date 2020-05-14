@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -220,7 +220,8 @@ namespace YarnSpinner.Tests
 
         // Test every file in Tests/TestCases
         [Theory]
-        [MemberData(nameof(FileSources))]
+        [MemberData(nameof(FileSources), "TestCases")]
+        [MemberData(nameof(FileSources), "Issues")]
         public void TestSources(string file) {
 
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -229,12 +230,12 @@ namespace YarnSpinner.Tests
             storage.Clear();
             bool runTest = true;
 
-            var scriptFilePath = Path.Combine(TestDataPath, "TestCases", file);
+            var scriptFilePath = Path.Combine(TestDataPath, file);
             var testPlanFilePath = Path.ChangeExtension(scriptFilePath, ".testplan");
             
             // skipping the indentation test when using the ANTLR parser
             // it can never pass
-            if (file == "Indentation.yarn")
+            if (file == "TestCases/Indentation.yarn")
             {
                 runTest = false;
             }
@@ -255,20 +256,17 @@ namespace YarnSpinner.Tests
         }
 
         // Returns the list of .node and.yarn files in the
-        // Tests/TestCases directory.
-        public static IEnumerable<object[]> FileSources() {
-
-            var directory = "TestCases";
+        // Tests/<directory> directory.
+        public static IEnumerable<object[]> FileSources(string directory) {
 
             var allowedExtensions = new[] { ".node", ".yarn" };
 
             var path = Path.Combine(TestDataPath, directory);
 
-
             var files = GetFilesInDirectory(path);
 
             return files.Where(p => allowedExtensions.Contains(Path.GetExtension(p)))
-                        .Select(p => new[] {Path.GetFileName(p)});
+                        .Select(p => new[] {Path.Combine(directory, Path.GetFileName(p))});
         }
 
         // Returns the list of files in a directory. If that directory doesn't

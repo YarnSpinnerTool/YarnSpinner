@@ -78,7 +78,8 @@ namespace Yarn {
         public string Text;
 
         /// <summary>
-        /// The values that should be inserted into the user-facing text before delivery.
+        /// The values that should be inserted into the user-facing text
+        /// before delivery.
         /// </summary>
         public string[] Substitutions;
     }
@@ -102,20 +103,21 @@ namespace Yarn {
         /// An option to be presented to the user.
         /// </summary>
         public struct Option {
-            internal Option(Line line, int id)
+            internal Option(Line line, int id, string destinationNode)
             {
                 Line = line;
                 ID = id;
+                DestinationNode = destinationNode;
             }
 
             /// <summary>
-            /// Gets the <see cref="Line"/> that should be presented to the user
-            /// for this option.
+            /// Gets the <see cref="Line"/> that should be presented to the
+            /// user for this option.
             /// </summary>
             /// <remarks>
-            /// See the documentation for the <see cref="Yarn.Line"/> class for
-            /// information on how to prepare a line before presenting it
-            /// to the user. 
+            /// See the documentation for the <see cref="Yarn.Line"/> class
+            /// for information on how to prepare a line before presenting
+            /// it to the user. 
             /// </remarks>
             public Line Line {get; private set;}
 
@@ -123,13 +125,26 @@ namespace Yarn {
             /// Gets the identifying number for this option.
             /// </summary>
             /// <remarks>
-            /// When the user selects this option, this value should be used as the parameter for <see cref="Dialogue.SetSelectedOption(int)"/>.
+            /// When the user selects this option, this value should be
+            /// used as the parameter for <see
+            /// cref="Dialogue.SetSelectedOption(int)"/>.
             /// </remarks>
             public int ID {get; private set;}
+
+            /// <summary>
+            /// Gets the name of the node that will be run if this option
+            /// is selected.
+            /// </summary>
+            /// <remarks>
+            /// The value of this property not be valid if this is a
+            /// shortcut option.
+            /// </remarks>
+            public string DestinationNode { get; private set; }
         }
         
         /// <summary>
-        /// Gets the <see cref="Option"/>s that should be presented to the user.
+        /// Gets the <see cref="Option"/>s that should be presented to the
+        /// user.
         /// </summary>
         /// <seealso cref="Option"/>
         public Option[] Options {get; private set;}
@@ -156,8 +171,8 @@ namespace Yarn {
     }
 
     /// <summary>
-    /// Represents a method that receives diagnostic messages and error information
-    /// from a <see cref="Dialogue"/>.
+    /// Represents a method that receives diagnostic messages and error
+    /// information from a <see cref="Dialogue"/>.
     /// </summary>
     /// <remarks>
     /// The text that this delegate receives may be output to a console, or
@@ -173,7 +188,8 @@ namespace Yarn {
         /// <summary>
         /// Stores a <see cref="Value"/>.
         /// </summary>
-        /// <param name="variableName">The name to associate with this variable.</param>
+        /// <param name="variableName">The name to associate with this
+        /// variable.</param>
         /// <param name="value">The value to store.</param>
         void SetValue(string variableName, Value value);
 
@@ -182,21 +198,24 @@ namespace Yarn {
         /// <summary>
         /// Stores a <see cref="string"/> as a <see cref="Value"/>.
         /// </summary>
-        /// <param name="variableName">The name to associate with this variable.</param>
+        /// <param name="variableName">The name to associate with this
+        /// variable.</param>
         /// <param name="stringValue">The string to store.</param>
         void SetValue(string variableName, string stringValue);
 
         /// <summary>
         /// Stores a <see cref="float"/> as a <see cref="Value"/>.
         /// </summary>
-        /// <param name="variableName">The name to associate with this variable.</param>
+        /// <param name="variableName">The name to associate with this
+        /// variable.</param>
         /// <param name="floatValue">The number to store.</param>
         void SetValue(string variableName, float floatValue);
 
         /// <summary>
         /// Stores a <see cref="bool"/> as a <see cref="Value"/>.
         /// </summary>
-        /// <param name="variableName">The name to associate with this variable.</param>
+        /// <param name="variableName">The name to associate with this
+        /// variable.</param>
         /// <param name="boolValue">The boolean value to store.</param>
         void SetValue(string variableName, bool boolValue);
 
@@ -351,12 +370,14 @@ namespace Yarn {
         public enum HandlerExecutionType {
 
             /// <summary>
-            /// Indicates that the <see cref="Dialogue"/> should suspend execution.
+            /// Indicates that the <see cref="Dialogue"/> should suspend
+            /// execution.
             /// </summary>
             PauseExecution,
 
             /// <summary>
-            /// Indicates that the <see cref="Dialogue"/> should continue execution.
+            /// Indicates that the <see cref="Dialogue"/> should continue
+            /// execution.
             /// </summary>
             ContinueExecution,
         }
@@ -372,6 +393,7 @@ namespace Yarn {
         /// <seealso cref="HandlerExecutionType"/>
         /// <seealso cref="OptionsHandler"/>
         /// <seealso cref="CommandHandler"/>
+        /// <seealso cref="NodeStartHandler"/>
         /// <seealso cref="NodeCompleteHandler"/>
         /// <seealso cref="DialogueCompleteHandler"/>
         public delegate HandlerExecutionType LineHandler(Line line);
@@ -391,6 +413,7 @@ namespace Yarn {
         /// </remarks>
         /// <seealso cref="LineHandler"/>
         /// <seealso cref="CommandHandler"/>
+        /// <seealso cref="NodeStartHandler"/>
         /// <seealso cref="NodeCompleteHandler"/>
         /// <seealso cref="DialogueCompleteHandler"/>
         public delegate void OptionsHandler(OptionSet options);
@@ -406,6 +429,7 @@ namespace Yarn {
         /// <seealso cref="HandlerExecutionType"/>
         /// <seealso cref="LineHandler"/>
         /// <seealso cref="OptionsHandler"/>
+        /// <seealso cref="NodeStartHandler"/>
         /// <seealso cref="NodeCompleteHandler"/>
         /// <seealso cref="DialogueCompleteHandler"/>
         public delegate HandlerExecutionType CommandHandler(Command command);
@@ -426,8 +450,24 @@ namespace Yarn {
         /// <seealso cref="LineHandler"/>
         /// <seealso cref="OptionsHandler"/>
         /// <seealso cref="CommandHandler"/>
+        /// <seealso cref="NodeStartHandler"/>
         /// <seealso cref="DialogueCompleteHandler"/>
         public delegate HandlerExecutionType NodeCompleteHandler(string completedNodeName);
+
+        /// <summary>
+        /// Represents the method that is called when the Dialogue begins
+        /// executing a node.
+        /// </summary>
+        /// <param name="startedNodeName">The name of the node.</param>
+        /// <returns>Whether the <see cref="Dialogue"/> should suspend
+        /// execution after this method has been called.</returns>
+        /// <seealso cref="HandlerExecutionType"/>
+        /// <seealso cref="LineHandler"/>
+        /// <seealso cref="OptionsHandler"/>
+        /// <seealso cref="CommandHandler"/>
+        /// <seealso cref="NodeCompleteHandler"/>
+        /// <seealso cref="DialogueCompleteHandler"/>
+        public delegate HandlerExecutionType NodeStartHandler(string startedNodeName);
 
         /// <summary>
         /// Represents the method that is called when the dialogue has
@@ -436,6 +476,7 @@ namespace Yarn {
         /// <seealso cref="LineHandler"/>
         /// <seealso cref="OptionsHandler"/>
         /// <seealso cref="CommandHandler"/>
+        /// <seealso cref="NodeStartHandler"/>
         /// <seealso cref="NodeCompleteHandler"/>
         public delegate void DialogueCompleteHandler();
 
@@ -478,6 +519,16 @@ namespace Yarn {
         }
 
         /// <summary>
+        /// Gets or sets the <see cref="NodeStartHandler"/> that is called
+        /// when a node is started.
+        /// </summary>
+        public NodeStartHandler nodeStartHandler
+        {
+            get => vm.nodeStartHandler;
+            set => vm.nodeStartHandler = value;
+        }
+
+        /// <summary>
         /// Gets or sets the <see cref="NodeCompleteHandler"/> that is called
         /// when a node is complete.
         /// </summary>
@@ -509,14 +560,11 @@ namespace Yarn {
         /// </remarks>
         public Library library { get; internal set; }
 
-        // The collection of nodes that we've seen.
-        // TODO: this should probably be serialized
-        private Dictionary<string, int> visitedNodeCount = new Dictionary<string, int>();
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Dialogue"/> class.
         /// </summary>
-        /// <param name="variableStorage">The <see cref="VariableStorage"/> that this Dialogue should use.</param>
+        /// <param name="variableStorage">The <see cref="VariableStorage"/>
+        /// that this Dialogue should use.</param>
         public Dialogue(Yarn.VariableStorage variableStorage)
         {
             this.variableStorage = variableStorage ?? throw new ArgumentNullException(nameof(variableStorage));
@@ -581,13 +629,19 @@ namespace Yarn {
         }
 
         /// <summary>
-        /// Prepares the <see cref="Dialogue"/> that the user intends to start running a node.
+        /// Prepares the <see cref="Dialogue"/> that the user intends to
+        /// start running a node.
         /// </summary>
-        /// <param name="startNode">The name of the node that will be run. The node have been loaded by calling <see cref="SetProgram(Program)"/> or <see cref="AddProgram(Program)"/>.</param>
+        /// <param name="startNode">The name of the node that will be run.
+        /// The node have been loaded by calling <see
+        /// cref="SetProgram(Program)"/> or <see
+        /// cref="AddProgram(Program)"/>.</param>
         /// <remarks>
-        /// After this method is called, you call <see cref="Continue"/> to start executing it.
+        /// After this method is called, you call <see cref="Continue"/> to
+        /// start executing it.
         /// </remarks>
-        /// <throws cref="DialogueException">Thrown when no node named `startNode` has been loaded.</throws>
+        /// <throws cref="DialogueException">Thrown when no node named
+        /// `startNode` has been loaded.</throws>
         public void SetNode(string startNode = DEFAULT_START)
         {
             vm.SetNode(startNode);
@@ -623,14 +677,25 @@ namespace Yarn {
         /// Starts, or continues, execution of the current Program.
         /// </summary>
         /// <remarks>
-        /// This method repeatedly executes instructions until one of the following conditions is encountered:
+        /// This method repeatedly executes instructions until one of the
+        /// following conditions is encountered:
         /// 
-        /// * The <see cref="lineHandler"/>, <see cref="commandHandler"/>, or <see cref="nodeCompleteHandler"/> return <see cref="HandlerExecutionType.PauseExecution"/>.
-        /// * The <see cref="optionsHandler"/> is called. When this occurs, the Dialogue is waiting for the user to specify which of the options has been selected, and <see cref="SetSelectedOption(int)"/> must be called before <see cref="Continue"/> is called again.)
-        /// * The Program reaches its end. When this occurs, <see cref="SetNode(string)"/> must be called before <see cref="Continue"/> is called again.
+        /// * The <see cref="lineHandler"/>, <see cref="commandHandler"/>,
+        /// or <see cref="nodeCompleteHandler"/> return <see
+        /// cref="HandlerExecutionType.PauseExecution"/>.
+        /// * The <see cref="optionsHandler"/> is called. When this occurs,
+        /// the Dialogue is waiting for the user to specify which of the
+        /// options has been selected, and <see
+        /// cref="SetSelectedOption(int)"/> must be called before <see
+        /// cref="Continue"/> is called again.)
+        /// * The Program reaches its end. When this occurs, <see
+        /// cref="SetNode(string)"/> must be called before <see
+        /// cref="Continue"/> is called again.
         /// * An error occurs while executing the Program.
         ///
-        /// This method has no effect if it is called while the <see cref="Dialogue"/> is currently in the process of executing instructions.
+        /// This method has no effect if it is called while the <see
+        /// cref="Dialogue"/> is currently in the process of executing
+        /// instructions.
         /// </remarks>
         /// <seealso cref="LineHandler"/>
         /// <seealso cref="OptionsHandler"/>
@@ -656,18 +721,6 @@ namespace Yarn {
         public void Stop() {
             if (vm != null)
                 vm.Stop();
-        }
-
-        internal IEnumerable<string> visitedNodes {
-            get {
-                return visitedNodeCount.Keys;
-            }
-            set {
-                visitedNodeCount = new Dictionary<string, int>();
-                foreach (var entry in value) {
-                    visitedNodeCount[entry] = 1;
-                }
-            }
         }
 
         /// <summary>
@@ -766,14 +819,8 @@ namespace Yarn {
         /// <summary>
         /// Unloads all nodes from the Dialogue.
         /// </summary>
-        /// <param name="clearVisitedNodes">If `true`, the internal list of
-        /// visited nodes is cleared as well.</param>
-        public void UnloadAll(bool clearVisitedNodes = true) {
-            if (clearVisitedNodes)
-                visitedNodeCount.Clear();
-
+        public void UnloadAll() {
             Program = null;
-
         }
 
         internal String GetByteCode() {

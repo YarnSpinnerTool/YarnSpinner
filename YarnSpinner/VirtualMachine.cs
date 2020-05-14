@@ -177,7 +177,8 @@ namespace Yarn
         public Dialogue.LineHandler lineHandler;
         public Dialogue.OptionsHandler optionsHandler;
         public Dialogue.CommandHandler commandHandler;
-        public Dialogue.NodeCompleteHandler nodeCompleteHandler;
+		public Dialogue.NodeStartHandler nodeStartHandler;
+		public Dialogue.NodeCompleteHandler nodeCompleteHandler;
         public Dialogue.DialogueCompleteHandler dialogueCompleteHandler;
 
         private Dialogue dialogue;
@@ -235,6 +236,7 @@ namespace Yarn
             ResetState ();
             state.currentNodeName = nodeName;
 
+			nodeStartHandler?.Invoke(nodeName);
             return true;
         }
 
@@ -703,7 +705,7 @@ namespace Yarn
                         for (int optionIndex = 0; optionIndex < state.currentOptions.Count; optionIndex++)
                         {
                             var option = state.currentOptions[optionIndex];
-                            optionChoices.Add(new OptionSet.Option(option.Key, optionIndex));
+                            optionChoices.Add(new OptionSet.Option(option.Key, optionIndex, option.Value));
                         }
 
                         // We can't continue until our client tell us which option to pick
