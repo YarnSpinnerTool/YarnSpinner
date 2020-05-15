@@ -248,12 +248,6 @@ public class YarnImporterEditor : ScriptedImporterEditor {
             EditorGUI.indentLevel--;
         }
 
-#if ADDRESSABLES
-        if (GUILayout.Button(ProjectSettings.AddressableVoiceOverAudioClips ? buttonTextDeleteAllDirectReferences : buttonTextDeleteAllAddressableReferences)) {
-            RemoveVoiceOverReferences(ProjectSettings.AddressableVoiceOverAudioClips);
-        }
-#endif
-
         var success = serializedObject.ApplyModifiedProperties();
 #if UNITY_2018
         if (success) {
@@ -265,43 +259,6 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         ApplyRevertGUI();
 #endif
     }
-
-#if ADDRESSABLES
-    /// <summary>
-    /// Remove all voice over audio clip references on this yarn asset.
-    /// </summary>
-    /// <param name="removeDirectReferences">If true, remove all direct asset references. If false, remove all Addressable references.</param>
-    public void RemoveVoiceOverReferences (bool removeDirectReferences) {
-        serializedObject.Update();
-        YarnImporter yarnImporter = (target as YarnImporter);
-
-        var voiceOversProp = serializedObject.FindProperty("voiceOvers");
-        for (int i = 0; i < voiceOversProp.arraySize; i++) {
-            var linetagProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("linetag");
-            var languagetoAudioClipProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("languageToAudioclip");
-            for (int j = 0; j < languagetoAudioClipProp.arraySize; j++) {
-                if (removeDirectReferences) {
-                    SerializedProperty audioclipProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClip");
-                    audioclipProp.objectReferenceValue = null;
-                } else {
-                    // NOTE: Addressables 1.8.3 don't support writing via SerializedProperty atm so we need to work around that limitation
-                    yarnImporter.voiceOvers[i].languageToAudioclip[j].audioClipAddressable = null;
-                }
-            }
-        }
-
-        var success = serializedObject.ApplyModifiedProperties();
-        if (removeDirectReferences) {
-            if (success) {
-                EditorUtility.SetDirty(target);
-                AssetDatabase.WriteImportSettingsIfDirty(AssetDatabase.GetAssetPath(target));
-            }
-        } else {
-            // We need to force reserialization. SetDirty() and SaveAssets() isn't enough when modyfing via target.
-            AssetDatabase.ForceReserializeAssets(new string[] { AssetDatabase.GetAssetPath(yarnImporter) }, ForceReserializeAssetsOptions.ReserializeAssetsAndMetadata);
-        }
-    }
-#endif
 
     private void AddLineTagsToFile(string assetPath) {
         // First, gather all existing line tags, so that we don't

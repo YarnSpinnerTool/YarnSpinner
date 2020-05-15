@@ -68,6 +68,24 @@ public class YarnImporter : ScriptedImporter
         }
     }
 
+#if ADDRESSABLES
+    /// <summary>
+    /// Remove all voice over audio clip references or addressable references on this yarn asset.
+    /// </summary>
+    /// <param name="removeDirectReferences">True if direct audio clip references should be deleted and false if Addressable references should be deleted.</param>
+    public void RemoveAllVoiceOverReferences(bool removeDirectReferences) {
+        foreach (var linetag in voiceOvers) {
+            foreach (var language in linetag.languageToAudioclip) {
+                if (removeDirectReferences) {
+                    language.audioClip = null;
+                } else {
+                    language.audioClipAddressable = null;
+                }
+            }
+        }
+    }
+#endif
+
     private void ImportYarn(AssetImportContext ctx)
     {
         var sourceText = File.ReadAllText(ctx.assetPath);

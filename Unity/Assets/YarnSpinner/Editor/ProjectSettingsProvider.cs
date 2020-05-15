@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Experimental.AssetImporters;
 using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.Audio;
 #if UNITY_2018
 using UnityEngine.Experimental.UIElements;
 #endif
@@ -131,6 +130,10 @@ class ProjectSettingsProvider : SettingsProvider {
     }
 
 #if ADDRESSABLES
+    /// <summary>
+    /// Remove all voice over audio clip references or addressable references on all yarn assets.
+    /// </summary>
+    /// <param name="removeDirectReferences">True if direct audio clip references should be deleted and false if Addressable references should be deleted.</param>
     private static void RemoveVoiceOverReferences(bool removeDirectReferences) {
         if (removeDirectReferences) {
             Debug.Log("Removing all direct AudioClip references on all yarn assets!");
@@ -138,37 +141,11 @@ class ProjectSettingsProvider : SettingsProvider {
             Debug.Log("Removing all Adressable references on all yarn assets!");
         }
 
-        var assets = AssetDatabase.FindAssets("t:YarnProgram");
-        foreach (var yarnProgram in assets) {
-            var yarnProgramLoaded = AssetDatabase.LoadAssetAtPath<YarnProgram>(AssetDatabase.GUIDToAssetPath(yarnProgram));
-            SerializedObject yarnProgramSerialized = new SerializedObject(yarnProgramLoaded);
-            yarnProgramSerialized.Update();
-            var voiceOversProp = yarnProgramSerialized.FindProperty("voiceOvers");
-            for (int i = 0; i < voiceOversProp.arraySize; i++) {
-                var linetagProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("linetag");
-                var languagetoAudioClipProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("languageToAudioclip");
-                for (int j = 0; j < languagetoAudioClipProp.arraySize; j++) {
-                    if (removeDirectReferences) {
-                        SerializedProperty audioclipProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClip");
-                        audioclipProp.objectReferenceValue = null;
-                    } else {
-                        // NOTE: Addressables 1.8.3 don't support writing via SerializedProperty atm so we need to work around that limitation
-                        yarnProgramLoaded.voiceOvers[i].languageToAudioclip[j].audioClipAddressable = null;
-                    }
-                }
-            }
-
-            var success = yarnProgramSerialized.ApplyModifiedProperties();
-            if (removeDirectReferences) {
-                if (success) {
-                    EditorUtility.SetDirty(yarnProgramLoaded);
-                    AssetDatabase.WriteImportSettingsIfDirty(AssetDatabase.GetAssetPath(yarnProgramLoaded));
-                    AssetDatabase.SaveAssets();
-                }
-            } else {
-                // We need to force reserialization. SetDirty() and SaveAssets() isn't enough when modyfing via target.
-                AssetDatabase.ForceReserializeAssets(new string[] { AssetDatabase.GetAssetPath(yarnProgramLoaded) }, ForceReserializeAssetsOptions.ReserializeAssetsAndMetadata);
-            }
+        foreach (var yarnProgram in AssetDatabase.FindAssets("t:YarnProgram")) {
+            var yarnImporter = ScriptedImporter.GetAtPath(AssetDatabase.GUIDToAssetPath(yarnProgram)) as YarnImporter;
+            yarnImporter.RemoveAllVoiceOverReferences(removeDirectReferences);
+            EditorUtility.SetDirty(yarnImporter);
+            yarnImporter.SaveAndReimport();
         }
     }
 #endif
