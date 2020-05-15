@@ -33,10 +33,9 @@ using System.Reflection;
 using CsvHelper;
 using System;
 using System.Linq;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement;
+#if ADDRESSABLES
 using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.SocialPlatforms;
+#endif
 
 namespace Yarn.Unity
 {
@@ -215,24 +214,28 @@ namespace Yarn.Unity
                     }
 
                     var languageId = localization.language;
-                    //var voiceOverClip = localization.audioClip;
-
-                    //localizedAudio[lineID] = voiceOverClip;
-
-                    // check Addressable for NULL
-                    if (!localization.audioClipAddressable.RuntimeKeyIsValid()) {
-                        continue;
-                    }
-                    // Load the asset and put it into the hashtable once it has been successfully loaded
-                    localization.audioClipAddressable.LoadAssetAsync<AudioClip>().Completed += (AsyncOperationHandle<AudioClip> asyncOperationHandle) => {
-                        if (!asyncOperationHandle.Result) {
-                            Debug.LogWarning("Got NULL for Addressable: " + lineID);
-                            return;
-                        } else {
-                            localizedAudio[lineID] = asyncOperationHandle.Result;
-                            Debug.Log("Found something!");
+#if ADDRESSABLES
+                    if (!ProjectSettings.AddressableVoiceOverAudioClips) {
+#endif
+                        localizedAudio[lineID] = localization.audioClip;
+#if ADDRESSABLES
+                    } else {
+                        // check Addressable for NULL
+                        if (!localization.audioClipAddressable.RuntimeKeyIsValid()) {
+                            continue;
                         }
-                    };
+                        // Load the asset and put it into the hashtable once it has been successfully loaded
+                        localization.audioClipAddressable.LoadAssetAsync<AudioClip>().Completed += (AsyncOperationHandle<AudioClip> asyncOperationHandle) => {
+                            if (!asyncOperationHandle.Result) {
+                                Debug.LogWarning("Got NULL for Addressable: " + lineID);
+                                return;
+                            } else {
+                                localizedAudio[lineID] = asyncOperationHandle.Result;
+                                Debug.Log("Found something!");
+                            }
+                        };
+                    }
+#endif
                 }
             }
         }

@@ -191,7 +191,9 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                         var languagetoAudioClipProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("languageToAudioclip");
                         var audioclipProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClip");
                         audioclipProp.objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>(AssetDatabase.GUIDToAssetPath(results[0]));
+#if ADDRESSABLES
                         UnityEditor.AddressableAssets.AddressableAssetSettingsDefaultObject.Settings.FindAssetEntry(results[0])?.SetAddress(linetag + "-" + language);
+#endif
                     }
 
                     // Return info if the search results were ambiguous or there was not result
@@ -224,15 +226,19 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                         var linetagProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("linetag");
                         var languagetoAudioClipProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("languageToAudioclip");
                         var languageProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("language");
+#if ADDRESSABLES
                         if (ProjectSettings.AddressableVoiceOverAudioClips) {
                             // Draw the assetref. Seems to ignore the label (https://forum.unity.com/threads/custom-inspector-for-a-list-of-addressables.575086/)
                             // Maybe this could help: https://docs.unity3d.com/Packages/com.unity.addressables@1.8/api/UnityEngine.AddressableAssets.AssetLabelReference.html
                             var audioclipAddressableProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClipAddressable");
                             EditorGUILayout.PropertyField(audioclipAddressableProp, new GUIContent(linetagProp.stringValue));
                         } else {
+#endif
                             var audioclipProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClip");
                             EditorGUILayout.PropertyField(audioclipProp, new GUIContent(linetagProp.stringValue));
+#if ADDRESSABLES
                         }
+#endif
                     }
                 }
             }
@@ -242,9 +248,11 @@ public class YarnImporterEditor : ScriptedImporterEditor {
             EditorGUI.indentLevel--;
         }
 
+#if ADDRESSABLES
         if (GUILayout.Button(ProjectSettings.AddressableVoiceOverAudioClips ? buttonTextDeleteAllDirectReferences : buttonTextDeleteAllAddressableReferences)) {
             RemoveVoiceOverReferences(ProjectSettings.AddressableVoiceOverAudioClips);
         }
+#endif
 
         var success = serializedObject.ApplyModifiedProperties();
 #if UNITY_2018
@@ -258,6 +266,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 #endif
     }
 
+#if ADDRESSABLES
     /// <summary>
     /// Remove all voice over audio clip references on this yarn asset.
     /// </summary>
@@ -292,6 +301,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
             AssetDatabase.ForceReserializeAssets(new string[] { AssetDatabase.GetAssetPath(yarnImporter) }, ForceReserializeAssetsOptions.ReserializeAssetsAndMetadata);
         }
     }
+#endif
 
     private void AddLineTagsToFile(string assetPath) {
         // First, gather all existing line tags, so that we don't

@@ -109,6 +109,7 @@ class ProjectSettingsProvider : SettingsProvider {
             }
         }
 
+#if ADDRESSABLES
         GUILayout.Label("Voice Over Settings", EditorStyles.boldLabel);
         var addressableVoiceOverAudioClipsProp = _projectSettings.FindProperty("_addressableVoiceOverAudioClips");
         EditorGUILayout.PropertyField(addressableVoiceOverAudioClipsProp, new GUIContent("Use Addressables"));
@@ -124,10 +125,12 @@ class ProjectSettingsProvider : SettingsProvider {
         }
         GUI.enabled = true;
         GUILayout.EndHorizontal();
+#endif
 
         _projectSettings.ApplyModifiedProperties();
     }
 
+#if ADDRESSABLES
     private static void RemoveVoiceOverReferences(bool removeDirectReferences) {
         if (removeDirectReferences) {
             Debug.Log("Removing all direct AudioClip references on all yarn assets!");
@@ -168,6 +171,7 @@ class ProjectSettingsProvider : SettingsProvider {
             }
         }
     }
+#endif
 
     // Register YarnSpinner's project settings in the "Project Settings" window
     [SettingsProvider]

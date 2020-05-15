@@ -36,6 +36,7 @@ public class ProjectSettings : ScriptableObject {
     /// </summary>
     private static ProjectSettings _instance;
 
+#if ADDRESSABLES
     [SerializeField]
     private bool _addressableVoiceOverAudioClips = false;
 
@@ -45,6 +46,7 @@ public class ProjectSettings : ScriptableObject {
     /// should be used.
     /// </summary>
     public static bool AddressableVoiceOverAudioClips { get => Instance._addressableVoiceOverAudioClips; set => Instance._addressableVoiceOverAudioClips = value; }
+#endif
 
     /// <summary>
     /// Makes sure that there's always an instance of this
