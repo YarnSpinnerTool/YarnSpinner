@@ -14,7 +14,7 @@ Yarn's similar in style to [Twine](http://twinery.org), so if you already know t
 
 To get started using Yarn Spinner, [download it](https://github.com/YarnSpinnerTool/YarnSpinner/releases/latest), and then head over to the [tutorial](https://yarnspinner.dev/docs/tutorial).
 
-**Note**: Yarn Spinner requires Unity 2019.2 or later. (_The next upcoming version, Yarn Spinner v1.1, works with 2018.4 LTS and later._)
+**Note**: Yarn Spinner requires Unity 2018.4 LTS or later.
 
 ## Getting Help
 
