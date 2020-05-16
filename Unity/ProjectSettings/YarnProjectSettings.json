@@ -6,5 +6,6 @@
     "_audioProjectLanguages": [
         "en",
         "de"
-    ]
+    ],
+    "_addressableVoiceOverAudioClips": true
 }

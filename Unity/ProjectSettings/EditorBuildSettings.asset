@@ -14,4 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/YarnSpinner/Examples/Voice Over/Voice Over.unity
     guid: 00aa761b886e7ba49a2b22aa0ba9e8ea
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 8a7020536af48834f8f07ed113bd63ef,
+      type: 2}
