@@ -145,8 +145,8 @@ public class YarnProgram : ScriptableObject
     }
 
 #if ADDRESSABLES
-    public async Task<Dictionary<string, AudioClip>> GetVoiceOversOfLanguageAsync(Action<string, AudioClip> action) {
-        Dictionary<string, AudioClip> voiceOversOfPreferredLanguage = new Dictionary<string, AudioClip>();
+    public async Task<IEnumerable<AudioClip>> GetVoiceOversOfLanguageAsync(Action<string, AudioClip> action) {
+        List<Task<AudioClip>> listOfTasks = new List<Task<AudioClip>>();
         foreach (var linetag in voiceOvers) {
             foreach (var language in linetag.languageToAudioclip) {
                 // Only load the preferred audio language
@@ -157,7 +157,8 @@ public class YarnProgram : ScriptableObject
                 if (!language.audioClipAddressable.RuntimeKeyIsValid()) {
                     continue;
                 }
-                language.audioClipAddressable.LoadAssetAsync<AudioClip>().Completed += (AsyncOperationHandle<AudioClip> asyncOperationHandle) => {
+                var task = language.audioClipAddressable.LoadAssetAsync<AudioClip>();
+                task.Completed += (AsyncOperationHandle<AudioClip> asyncOperationHandle) => {
                     if (!asyncOperationHandle.Result) {
                         Debug.LogWarning("Got NULL for Addressable: " + linetag.linetag);
                         return;
@@ -166,10 +167,10 @@ public class YarnProgram : ScriptableObject
                         Debug.Log("Found something!");
                     }
                 };
+                listOfTasks.Add(task.Task);
             }
         }
-
-        return voiceOversOfPreferredLanguage;
+        return await Task.WhenAll(listOfTasks);
     }
 #endif
 }

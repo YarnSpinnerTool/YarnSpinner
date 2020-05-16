@@ -32,6 +32,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Yarn.Unity
 {
@@ -81,6 +82,15 @@ namespace Yarn.Unity
         /// next line once a line has been finished.
         /// </summary>
         public bool continueNextLineOnLineFinished;
+
+#if ADDRESSABLES
+        /// <summary>
+        /// Whether the DialogueRunner should wait for the linked 
+        /// Addressable voice over AudioClips to finish loading (true)
+        /// or not (false).
+        /// </summary>
+        public bool waitForAddressablesLoaded = true;
+#endif
 
         /// <summary>
         /// Gets a value that indicates if the dialogue is actively running.
@@ -150,54 +160,10 @@ namespace Yarn.Unity
             AddDialogueLines(scriptToLoad);
             
             // Keep reference to loaded script so we can reload upon language changes
-            var expandedYarnScripts = yarnScripts.ToList();
-            expandedYarnScripts.Add(scriptToLoad);
-            yarnScripts = expandedYarnScripts.ToArray();
+            var additionalYarnScripts = yarnScripts.ToList();
+            additionalYarnScripts.Add(scriptToLoad);
+            yarnScripts = additionalYarnScripts.ToArray();
         }
-
-        /// <summary>
-        /// Parses and adds the contents of a string table from a yarn
-        /// asset to the DialogueRunner's combined string table.
-        /// </summary>
-        /// <remarks>
-        /// <see cref="YarnProgram"/>s contain at least one string table,
-        /// stored in <see
-        /// cref="YarnProgram.baseLocalisationStringTable"/>. String tables
-        /// are <see cref="TextAsset"/>s that contain comma-separated value
-        /// formatted text.
-        ///
-        /// A <see cref="YarnProgram"/> may have more string tables beyond
-        /// the base localisation in its <see
-        /// cref="YarnProgram.localizations"/>. 
-        ///
-        /// </remarks>
-        /// <param name="yarnScript">The <see cref="YarnProgram"/> to get
-        /// the string table from.</param>
-        private void AddDialogueLines (YarnProgram yarnScript) {
-            foreach (var yarnLine in yarnScript.GetStringTable()) {
-                localizedText.Add(yarnLine.Key, yarnLine.Value);
-            }
-
-#if ADDRESSABLES
-            if (ProjectSettings.AddressableVoiceOverAudioClips) {
-                yarnScript.GetVoiceOversOfLanguageAsync(GetVoiceOversCallback);
-            } else {
-#endif
-                foreach (var voiceOver in yarnScript.GetVoiceOversOfLanguage()) {
-                    localizedAudio.Add(voiceOver.Key, voiceOver.Value);
-                }
-#if ADDRESSABLES
-            }
-#endif
-        }
-
-#if ADDRESSABLES
-        private void GetVoiceOversCallback(string key, AudioClip value) {
-            localizedAudio[key] = value;
-        }
-#endif
-
-
 
         /// <summary>
         /// Starts running dialogue. The node specified by <see
@@ -230,8 +196,17 @@ namespace Yarn.Unity
                 }
 
                 Dialogue.SetNode(startNode);
-
-                ContinueDialogue();
+#if ADDRESSABLES
+                if (waitForAddressablesLoaded) {
+                    if (WaitForAddressablesLoadedCoroutine == null) {
+                        WaitForAddressablesLoadedCoroutine = StartCoroutine(CheckAddressablesLoaded(ContinueDialogue));
+                    }
+                } else {
+#endif
+                    ContinueDialogue();
+#if ADDRESSABLES
+                }
+#endif
             }
         }
 
@@ -475,7 +450,13 @@ namespace Yarn.Unity
         Dictionary<string, CommandHandler> commandHandlers = new Dictionary<string, CommandHandler>();
         Dictionary<string, BlockingCommandHandler> blockingCommandHandlers = new Dictionary<string, BlockingCommandHandler>();
 
+        /// <summary>
+        /// Collection of dialogue lines linked with their corresponding Yarn linetags.
+        /// </summary>
         Dictionary<string, string> localizedText = new Dictionary<string, string>();
+        /// <summary>
+        /// Collection of voice over AudioClips linked with their corresponding Yarn linetags.
+        /// </summary>
         Dictionary<string, AudioClip> localizedAudio = new Dictionary<string, AudioClip>();
 
         // A flag used to note when we call into a blocking command
@@ -492,6 +473,16 @@ namespace Yarn.Unity
         /// A flag caching if a View has communicated the user's intent to proceed to the next line
         /// </summary>
         bool userIntendedNextLine = false;
+
+        /// <summary>
+        /// List of Addressable voice over AudioClips being currently loaded.
+        /// </summary>
+        private List<Task> addressableVoiceOverLoadingTasks = new List<Task>();
+
+        /// <summary>
+        /// Instance of coroutine checking whether all Addressable loading tasks finished.
+        /// </summary>
+        private Coroutine WaitForAddressablesLoadedCoroutine;
 
 
         /// Our conversation engine
@@ -534,6 +525,77 @@ namespace Yarn.Unity
         private void OnDisable() {
             Preferences.LanguagePreferencesChanged -= OnLanguagePreferencesChanged;
         }
+
+        /// <summary>
+        /// Parses and adds the contents of a string table from a yarn
+        /// asset to the DialogueRunner's combined string table.
+        /// </summary>
+        /// <remarks>
+        /// <see cref="YarnProgram"/>s contain at least one string table,
+        /// stored in <see
+        /// cref="YarnProgram.baseLocalisationStringTable"/>. String tables
+        /// are <see cref="TextAsset"/>s that contain comma-separated value
+        /// formatted text.
+        ///
+        /// A <see cref="YarnProgram"/> may have more string tables beyond
+        /// the base localisation in its <see
+        /// cref="YarnProgram.localizations"/>. 
+        ///
+        /// </remarks>
+        /// <param name="yarnScript">The <see cref="YarnProgram"/> to get
+        /// the string table from.</param>
+        private void AddDialogueLines(YarnProgram yarnScript) {
+            foreach (var yarnLine in yarnScript.GetStringTable()) {
+                localizedText.Add(yarnLine.Key, yarnLine.Value);
+            }
+
+#if ADDRESSABLES
+            if (ProjectSettings.AddressableVoiceOverAudioClips) {
+                if (waitForAddressablesLoaded) {
+                    addressableVoiceOverLoadingTasks.Add(yarnScript.GetVoiceOversOfLanguageAsync(GetVoiceOversCallback));
+                } else {
+                    yarnScript.GetVoiceOversOfLanguageAsync(GetVoiceOversCallback);
+                }
+            } else {
+#endif
+                foreach (var voiceOver in yarnScript.GetVoiceOversOfLanguage()) {
+                    localizedAudio.Add(voiceOver.Key, voiceOver.Value);
+                }
+#if ADDRESSABLES
+            }
+#endif
+        }
+
+#if ADDRESSABLES
+        /// <summary>
+        /// Link a voice over AudioClip with a Yarn linetag.
+        /// </summary>
+        /// <param name="linetag">The linetag of the line.</param>
+        /// <param name="voiceOver">The voice over AudioClip of the line.</param>
+        private void GetVoiceOversCallback(string linetag, AudioClip voiceOver) {
+            localizedAudio[linetag] = voiceOver;
+        }
+
+        /// <summary>
+        /// Check if all Addressable load tasks are finished and invoke the given
+        /// action.
+        /// </summary>
+        /// <param name="onAddressablesLoaded">Action invoked after all Addressables are loaded.</param>
+        /// <returns></returns>
+        private IEnumerator CheckAddressablesLoaded(Action onAddressablesLoaded) {
+            while (waitForAddressablesLoaded && addressableVoiceOverLoadingTasks.Count > 0) {
+                for (int i = addressableVoiceOverLoadingTasks.Count - 1; i >= 0; i--) {
+                    // Remove task if not active anymore
+                    if ((int)addressableVoiceOverLoadingTasks[i].Status > 3) {
+                        addressableVoiceOverLoadingTasks.RemoveAt(i);
+                    }
+                }
+                yield return 0;
+            }
+            WaitForAddressablesLoadedCoroutine = null;
+            onAddressablesLoaded?.Invoke();
+        }
+#endif
 
         Dialogue CreateDialogueInstance()
         {
