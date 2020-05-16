@@ -30,12 +30,8 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using CsvHelper;
 using System;
 using System.Linq;
-#if ADDRESSABLES
-using UnityEngine.ResourceManagement.AsyncOperations;
-#endif
 
 namespace Yarn.Unity
 {
@@ -182,41 +178,27 @@ namespace Yarn.Unity
                 localizedText.Add(yarnLine.Key, yarnLine.Value);
             }
 
-            foreach (var voiceOver in yarnScript.GetVoiceOversOfLanguage()) {
-                localizedAudio.Add(voiceOver.Key, voiceOver.Value);
-            }
 #if ADDRESSABLES
-            // Load voiceover audio clips of all available languages into DialogueLines dict
-            foreach (var line in yarnScript.voiceOvers) {
-                var lineID = line.linetag;
-
-                foreach (var localization in line.languageToAudioclip) {
-                    if (localization.language != Preferences.AudioLanguage) {
-                        continue;
-                    }
-
-                    var languageId = localization.language;
-                    if (ProjectSettings.AddressableVoiceOverAudioClips) {
-                        // check Addressable for NULL
-                        if (!localization.audioClipAddressable.RuntimeKeyIsValid()) {
-                            continue;
-                        }
-                        // Load the asset and put it into the hashtable once it has been successfully loaded
-                        localization.audioClipAddressable.LoadAssetAsync<AudioClip>().Completed += (AsyncOperationHandle<AudioClip> asyncOperationHandle) => {
-                            if (!asyncOperationHandle.Result) {
-                                Debug.LogWarning("Got NULL for Addressable: " + lineID);
-                                return;
-                            } else {
-                                localizedAudio[lineID] = asyncOperationHandle.Result;
-                                Debug.Log("Found something!");
-                            }
-                        };
-                    }
+            if (ProjectSettings.AddressableVoiceOverAudioClips) {
+                yarnScript.GetVoiceOversOfLanguageAsync(GetVoiceOversCallback);
+            } else {
+#endif
+                foreach (var voiceOver in yarnScript.GetVoiceOversOfLanguage()) {
+                    localizedAudio.Add(voiceOver.Key, voiceOver.Value);
                 }
+#if ADDRESSABLES
             }
 #endif
         }
-        
+
+#if ADDRESSABLES
+        private void GetVoiceOversCallback(string key, AudioClip value) {
+            localizedAudio[key] = value;
+        }
+#endif
+
+
+
         /// <summary>
         /// Starts running dialogue. The node specified by <see
         /// cref="startNode"/> will start running.

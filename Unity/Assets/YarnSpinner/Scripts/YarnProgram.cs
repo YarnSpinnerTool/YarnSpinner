@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using Yarn;
 
 /// Stores compiled Yarn programs in a form that Unity can serialise.
@@ -141,4 +143,33 @@ public class YarnProgram : ScriptableObject
 
         return voiceOversOfPreferredLanguage;
     }
+
+#if ADDRESSABLES
+    public async Task<Dictionary<string, AudioClip>> GetVoiceOversOfLanguageAsync(Action<string, AudioClip> action) {
+        Dictionary<string, AudioClip> voiceOversOfPreferredLanguage = new Dictionary<string, AudioClip>();
+        foreach (var linetag in voiceOvers) {
+            foreach (var language in linetag.languageToAudioclip) {
+                // Only load the preferred audio language
+                if (language.language != Preferences.AudioLanguage) {
+                    continue;
+                }
+                // check Addressable for NULL
+                if (!language.audioClipAddressable.RuntimeKeyIsValid()) {
+                    continue;
+                }
+                language.audioClipAddressable.LoadAssetAsync<AudioClip>().Completed += (AsyncOperationHandle<AudioClip> asyncOperationHandle) => {
+                    if (!asyncOperationHandle.Result) {
+                        Debug.LogWarning("Got NULL for Addressable: " + linetag.linetag);
+                        return;
+                    } else {
+                        action(linetag.linetag, asyncOperationHandle.Result);
+                        Debug.Log("Found something!");
+                    }
+                };
+            }
+        }
+
+        return voiceOversOfPreferredLanguage;
+    }
+#endif
 }
