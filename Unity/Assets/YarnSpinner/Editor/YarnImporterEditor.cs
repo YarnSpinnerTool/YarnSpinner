@@ -4,6 +4,7 @@ using UnityEditor.Experimental.AssetImporters;
 using System.Linq;
 using System.IO;
 using System.Globalization;
+using UnityEngine.AddressableAssets;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(YarnImporter))]
@@ -35,8 +36,6 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 
     private const string _audioVoiceOverInitializeHelpBox = "Hit 'Apply' to initialize the currently selected voice over language!";
     private const string _audioVoiceOverNoYarnLinesOnAsset = "No yarn lines found on this asset so no voice overs can be linked to lines.";
-    private const string buttonTextDeleteAllDirectReferences = "Delete all direct AudioClip references";
-    private const string buttonTextDeleteAllAddressableReferences = "Delete all addressable AudioClip references";
 
     public override void OnEnable() {
         base.OnEnable();
@@ -90,6 +89,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         serializedObject.Update();
         EditorGUILayout.Space();
         YarnImporter yarnImporter = (target as YarnImporter);
+        bool workaroundIsDirty = false;
 
         // All text languages on this asset (translations and  base language)
         var textLanguageNamesOnAsset = yarnImporter.localizations.
@@ -208,11 +208,6 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                 for (int j = 0; j < linetagToLanguage.languageToAudioclip.Length; j++) {
                     LanguageToAudioclip languageToAudioclip = linetagToLanguage.languageToAudioclip[j];
 
-                    // Do not overwrite existing content
-                    if (languageToAudioclip.audioClip != null) {
-                        continue;
-                    }
-
                     var language = languageToAudioclip.language;
                     var results = AssetDatabase.FindAssets("t:AudioClip " + linetag + " " + language);
 
@@ -222,9 +217,24 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                         var linetagProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("linetag");
                         var languagetoAudioClipProp = voiceOversProp.GetArrayElementAtIndex(i).FindPropertyRelative("languageToAudioclip");
                         var audioclipProp = languagetoAudioClipProp.GetArrayElementAtIndex(j).FindPropertyRelative("audioClip");
-                        audioclipProp.objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>(AssetDatabase.GUIDToAssetPath(results[0]));
 #if ADDRESSABLES
-                        UnityEditor.AddressableAssets.AddressableAssetSettingsDefaultObject.Settings.FindAssetEntry(results[0])?.SetAddress(linetag + "-" + language);
+                        if (ProjectSettings.AddressableVoiceOverAudioClips) {
+                            // Assign address to found asset if it has been added to the project's Addressables
+                            UnityEditor.AddressableAssets.AddressableAssetSettingsDefaultObject.Settings.FindAssetEntry(results[0])?.SetAddress(linetag + "-" + language);
+                            // Do not overwrite existing content
+                            if (!yarnImporter.voiceOvers[i].languageToAudioclip[j].audioClipAddressable.RuntimeKeyIsValid()) {
+                                yarnImporter.voiceOvers[i].languageToAudioclip[j].audioClipAddressable = new AssetReference(results[0]);
+                                workaroundIsDirty = true;
+                            }
+                        } else {
+#endif
+
+                            // Do not overwrite existing content
+                            if (audioclipProp.objectReferenceValue == null) {
+                                audioclipProp.objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>(AssetDatabase.GUIDToAssetPath(results[0]));
+                            }
+#if ADDRESSABLES
+                        }
 #endif
                     }
 
@@ -296,14 +306,22 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         var success = serializedObject.ApplyModifiedProperties();
 #if UNITY_2018
         if (success) {
-            EditorUtility.SetDirty(target);
-            AssetDatabase.WriteImportSettingsIfDirty(AssetDatabase.GetAssetPath(target));
-            AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(target));
+            WriteChangesToDisk();
         }
 #endif
+        if (workaroundIsDirty) {
+            WriteChangesToDisk();
+        }
 #if UNITY_2019_1_OR_NEWER
         ApplyRevertGUI();
 #endif
+    }
+
+    private void WriteChangesToDisk() {
+        EditorUtility.SetDirty(target);
+        AssetDatabase.WriteImportSettingsIfDirty(AssetDatabase.GetAssetPath(target));
+        AssetDatabase.ForceReserializeAssets(new string[] { AssetDatabase.GetAssetPath(target) }, ForceReserializeAssetsOptions.ReserializeAssetsAndMetadata);
+        AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(target));
     }
 
     private void AddLineTagsToFile(string assetPath) {
