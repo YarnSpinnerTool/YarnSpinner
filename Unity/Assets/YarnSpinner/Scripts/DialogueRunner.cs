@@ -554,7 +554,9 @@ namespace Yarn.Unity
                 if (waitForAddressablesLoaded) {
                     addressableVoiceOverLoadingTasks.Add(yarnScript.GetVoiceOversOfLanguageAsync(GetVoiceOversCallback));
                 } else {
+#pragma warning disable CS4014 // Don't await or save the returned Tasks because the user set the option waitForAddressablesLoaded to false
                     yarnScript.GetVoiceOversOfLanguageAsync(GetVoiceOversCallback);
+#pragma warning restore CS4014
                 }
             } else {
 #endif
