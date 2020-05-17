@@ -131,7 +131,7 @@ class ProjectSettingsProvider : SettingsProvider {
         }
 
 #if ADDRESSABLES
-        GUILayout.Label("Voice Over Settings", EditorStyles.boldLabel);
+        GUILayout.Label("Voice Over Asset Handling", EditorStyles.boldLabel);
         var addressableVoiceOverAudioClipsProp = _projectSettings.FindProperty("_addressableVoiceOverAudioClips");
         EditorGUILayout.PropertyField(addressableVoiceOverAudioClipsProp, new GUIContent("Use Addressables"));
 
