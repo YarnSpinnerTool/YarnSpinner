@@ -29,7 +29,6 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Text;
 using System.Collections.Generic;
-using System;
 
 namespace Yarn.Unity {
     /// <summary>
@@ -233,32 +232,6 @@ namespace Yarn.Unity {
         /// </remarks>
         public UnityEngine.Events.UnityEvent onOptionsEnd;
 
-        /// <summary>
-        /// A <see cref="DialogueRunner.StringUnityEvent"/> that is called
-        /// when a <see cref="Command"/> is received.
-        /// </summary>
-        /// <remarks>
-        /// Use this method to dispatch a command to other parts of your game.
-        /// This method is only called if the <see cref="Command"/> has not
-        /// been handled by a command handler that has been added to the
-        /// <see cref="DialogueRunner"/>, or by a method on a <see
-        /// cref="MonoBehaviour"/> in the scene with the attribute <see
-        /// cref="YarnCommandAttribute"/>.
-        /// {{|note|}}
-        /// When a command is delivered in this way, the <see cref="DialogueRunner"/> will not pause execution. If you want a command to make the DialogueRunner pause execution, see <see cref="DialogueRunner.AddCommandHandler(string,
-        /// DialogueRunner.BlockingCommandHandler)"/>.
-        /// {{|/note|}}
-        ///
-        /// This method receives the full text of the command, as it appears between
-        /// the `<![CDATA[<<]]>` and `<![CDATA[>>]]>` markers.
-        /// </remarks>
-        /// <seealso cref="DialogueRunner.AddCommandHandler(string,
-        /// DialogueRunner.CommandHandler)"/>
-        /// <seealso cref="DialogueRunner.AddCommandHandler(string,
-        /// DialogueRunner.BlockingCommandHandler)"/>
-        /// <seealso cref="YarnCommandAttribute"/>
-        public DialogueRunner.StringUnityEvent onCommand;
-
         internal void Awake ()
         {
             // Start by hiding the container
@@ -389,22 +362,6 @@ namespace Yarn.Unity {
             }
 
             onOptionsEnd?.Invoke();
-        }
-
-        /// Runs a command.
-        /// <inheritdoc/>
-        /// FIXME: onCommandComplete doesn't seem to be called ...?
-        public override Dialogue.HandlerExecutionType RunCommand (Yarn.Command command, System.Action onCommandComplete) {
-            // Dispatch this command via the 'On Command' handler.
-            onCommand?.Invoke(command.Text);
-
-            // Signal to the DialogueRunner that it should continue
-            // executing. (This implementation of RunCommand always signals
-            // that execution should continue, and never calls
-            // onCommandComplete.)
-            // FIXME: It should be fine to set the execution directly on the runner after it called RunCommand on this instance
-            // but I might be missing context ...
-            return Dialogue.HandlerExecutionType.ContinueExecution;
         }
 
         /// Called when the dialogue system has started running.

@@ -147,6 +147,34 @@ namespace Yarn.Unity
         public Dialogue Dialogue => dialogue ?? (dialogue = CreateDialogueInstance());
 
         /// <summary>
+        /// A <see cref="StringUnityEvent"/> that is called when a <see cref="Command"/> 
+        /// is received.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Use this method to dispatch a command to other parts of your game.
+        /// This method is only called if the <see cref="Command"/> has not
+        /// been handled by a command handler that has been added to the
+        /// <see cref="DialogueRunner"/>, or by a method on a <see
+        /// cref="MonoBehaviour"/> in the scene with the attribute <see
+        /// cref="YarnCommandAttribute"/>.
+        /// {{|note|}}
+        /// When a command is delivered in this way, the <see cref="DialogueRunner"/> 
+        /// will not pause execution. If you want a command to make the DialogueRunner 
+        /// pause execution, see <see cref="AddCommandHandler(string, BlockingCommandHandler)"/>.
+        /// {{|/note|}}
+        /// </para>
+        /// <para>
+        /// This method receives the full text of the command, as it appears between
+        /// the `<![CDATA[<<]]>` and `<![CDATA[>>]]>` markers.
+        /// </para>
+        /// </remarks>
+        /// <seealso cref="AddCommandHandler(string, CommandHandler)"/>
+        /// <seealso cref="AddCommandHandler(string, BlockingCommandHandler)"/>
+        /// <seealso cref="YarnCommandAttribute"/>
+        public StringUnityEvent onCommand;
+
+        /// <summary>
         /// Adds a program, and parses and adds the contents of the
         /// program's string table to the DialogueRunner's combined string table.
         /// </summary>
@@ -733,20 +761,10 @@ namespace Yarn.Unity
                     return executionType;
                 }
 
-                // TODO for Code View
-                // The following passage needs to be adapted to the new design.
-                // My knowledge about these commands and why it should be handled
-                // on the DialogueUI is limited so it'd be best if you take a lookt at this.
-                // My intend would be to handle the situation right here in this class but I
-                // could be missing context ...
-
-                // We didn't find a method in our C# code to invoke. Pass it to
-                // the UI to handle; it will determine whether we pause or
-                // continue.
-                //return dialogueViews.RunCommand(command, continueAction);
-
-                // Ugly hack to keep the previous behaviour intact following in 3... 2... 1...
-                return GetDialogueUI().RunCommand(command, () => ContinueDialogue());
+                // We didn't find a method in our C# code to invoke. Try invoking on the 
+                // publicly exposed UnityEvent.
+                onCommand?.Invoke(command.Text);
+                return Dialogue.HandlerExecutionType.ContinueExecution;
             }
 
             /// Forward the line to the dialogue UI.
@@ -1110,29 +1128,6 @@ namespace Yarn.Unity
 
             return substitutions.ToArray();
         }
-
-        [Obsolete("This is a temporary workaround. Do not keep this.")]
-        private DialogueUI GetDialogueUI() 
-        {
-            DialogueUI dialogueUI = null;
-            // Search mode: confident
-            foreach (var dialogueView in dialogueViews) {
-                if (dialogueView.GetType() == typeof(DialogueUI)) {
-                    dialogueUI = dialogueView as DialogueUI;
-                }
-            }
-            // Search mode: panicking
-            if (!dialogueUI) {
-                dialogueUI = FindObjectOfType<DialogueUI>();
-            }
-            // Search mode: giving up
-            if (!dialogueUI) {
-                Debug.LogError("No DialogueUI for command handling found.", gameObject);
-            }
-
-            return dialogueUI;
-        }
-
         #endregion
     }
 

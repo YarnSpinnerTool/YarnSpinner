@@ -117,25 +117,6 @@ namespace Yarn.Unity
         public abstract void RunOptions(DialogueOption[] dialogueOptions, Action<int> onOptionSelected);
 
         /// <summary>
-        /// Called by the <see cref="DialogueRunner"/> to signal that a command should be executed.
-        /// </summary>
-        /// <remarks>
-        /// This method will only be invoked if the <see cref="Command"/>
-        /// could not be handled by the <see cref="DialogueRunner"/>.
-        ///
-        /// If this method returns <see
-        /// cref="Dialogue.HandlerExecutionType.ContinueExecution"/>, it
-        /// should not call the <paramref name="onCommandComplete"/>
-        /// method.
-        /// </remarks>
-        /// <param name="command">The command to be executed.</param>
-        /// <param name="onCommandComplete">A method that should be called
-        /// to indicate that the DialogueRunner should continue
-        /// execution.</param>
-        /// <inheritdoc cref="RunLine(Line, ILineLocalisationProvider, Action)"/>
-        public abstract Dialogue.HandlerExecutionType RunCommand(Command command, Action onCommandComplete);
-
-        /// <summary>
         /// Called by the <see cref="DialogueRunner"/> to signal that the end of a node has been reached.
         /// </summary>
         /// <remarks>

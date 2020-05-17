@@ -180,10 +180,6 @@ namespace Yarn.Unity {
             // Do nothing
         }
 
-        public override Dialogue.HandlerExecutionType RunCommand(Command command, Action onCommandComplete) {
-            return Dialogue.HandlerExecutionType.ContinueExecution;
-        }
-
         internal override void OnFinishedLineOnAllViews() {
             // Do nothing
         }
