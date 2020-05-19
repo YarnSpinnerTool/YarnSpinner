@@ -1,0 +1,19 @@
+{
+    "name": "YarnSpinnerEditorTests",
+    "references": [
+        "YarnSpinner.Unity",
+        "YarnSpinner.Unity.Editor"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
