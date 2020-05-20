@@ -6,6 +6,8 @@ line: Bool: True
 line: Null: null
 line: Variable: variable
 
+line: variable is great!
+
 # shortcut options
 option: Shortcut Number: 1
 option: Shortcut Expression: 2

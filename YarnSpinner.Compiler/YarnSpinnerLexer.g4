@@ -202,6 +202,17 @@ FORMAT_FUNCTION_START: '[' -> pushMode(TextMode), pushMode(FormatFunctionMode);
 // of a line, or following an Option.
 BODY_HASHTAG: '#' -> pushMode(TextCommandOrHashtagMode), pushMode(HashtagMode);
 
+// The start of an inline expression. Immediately lex as 
+// TEXT_FORMAT_FUNCTION_START and push into TextMode 
+// and ExpressionMode.
+BODY_EXPRESSION_FUNCTION_START: '{' -> type(TEXT_EXPRESSION_START), pushMode(TextMode), pushMode(ExpressionMode);
+
+// The start of a format function. Immediately lex as 
+// TEXT_FORMAT_FUNCTION_START and push into TextMode 
+// and ExpressionMode.
+BODY_FORMAT_FUNCTION_START: '[' -> type(TEXT_FORMAT_FUNCTION_START), pushMode(TextMode), pushMode(FormatFunctionMode);
+
+
 // Any other text means this is a Line
 ANY: . -> more, pushMode(TextMode);
 

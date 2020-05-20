@@ -13,6 +13,9 @@ Bool: {true}
 Null: {null}
 Variable: {$var}
 
+// Lines with the expresion at the start (issue #243)
+{$var} is great!
+
 // Shortcut Options
 -> Shortcut Number: {1}
 -> Shortcut Expression: {1+1}
