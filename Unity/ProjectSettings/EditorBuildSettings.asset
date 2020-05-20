@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/YarnSpinner/Examples/Space/Space.unity
     guid: d8cedd83aff34492d9c72e0aecb98160
+  - enabled: 1
+    path: Assets/YarnSpinner/Scripts/YarnSpinnerTests/DialogueRunnerTest.unity
+    guid: a04d7174042154a47a29ac4f924e0474
+  - enabled: 1
+    path: Assets/YarnSpinner/Scripts/YarnSpinnerTests/DialogueUITests.unity
+    guid: 6ddb3fe00f2d33e4e982dd435382ea97
   m_configObjects: {}

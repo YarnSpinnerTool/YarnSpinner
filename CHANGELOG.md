@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added a button in the Inspector for `.yarn` files in Yarn Spinner for Unity, which updates localised `.csv` files when the `.yarn` file changes. (@stalhandske, #227)
 - Added handlers for when nodes begin executing (in addition to the existing handlers for when nodes complete.) (@arendhil, #222)
 - `OptionSet.Option` now includes the name of the node that an option will jump to if selected.
+- Added unit tests for Yarn Spinner for Unity (@Schroedingers-Cat)
 
 ### Changed
 
