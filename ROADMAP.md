@@ -53,7 +53,7 @@ To add in initial support for Unreal.
 ### Motivation
 
 Unreal is a large portion of the games community, and we've been asked multiple times by different people if Unreal is supported. We want to be able to say yes to them.
-This is not to say it will be as featureful as the Unity version for V1.2, although the long term goal is for feature parity.
+This is not to say it will be as featureful as the Unity version, although the long term goal is for feature parity.
 
 ### Features
 
