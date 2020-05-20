@@ -6,11 +6,115 @@ The idea of this document is to both give us something to help plan our developm
 
 Let us know what you think about this road map either in the [Slack](http://lab.to/narrativegamedev) or [here on the GitHub issue we created about the road map](https://github.com/YarnSpinnerTool/YarnSpinner/issues/183).
 
-**This document was last edited 2020-05-10**
+**This document was last edited 2020-05-20**
 
 # Releases
 
 Here are the main releases we're currently planning:
+
+## V1.2
+
+### Goal
+
+Bug fixes and quality-of-life improvements.
+
+### Motivation
+
+We've had a bunch of fantastic contributions and bug fixes come in, and this release will be a great opportunity to merge them in. Additonally, because V2.0 will be a breaking change to the language and to the API, this release is ideal for any changes that don't require a change to the API or language.
+
+### Features
+
+- Bug fixes
+- Small quality-of-life improvements
+
+## V2.0
+
+### Goal
+
+Add voiceovers, editor API revamp, and other breaking features.
+
+### Motivation
+
+Major-version changes to the project are where we're allowed to make changes and improvements that break backwards compatibility. In this release, we're taking the opportunity to improve the editor API, and adding features that are tricky to add without it.
+
+### Features
+
+- Revamped editor API
+- Voiceover support
+- Easier support for custom line display tools
+- Built-in support for annotated text
+
+## V2.1
+
+### Goal
+
+To add in initial support for Unreal.
+
+### Motivation
+
+Unreal is a large portion of the games community, and we've been asked multiple times by different people if Unreal is supported. We want to be able to say yes to them.
+This is not to say it will be as featureful as the Unity version for V1.2, although the long term goal is for feature parity.
+
+### Features
+
+- Create an Unreal VM capable of reading compiled Yarn bytecode
+- Create Unreal Dialouge Runners and Variable Storage
+- Create examples showing how to use Yarn Spinner in Unreal.
+- Add documentation on using Yarn Spinner in Unreal.
+
+## V2.2
+
+### Goal
+
+To create resources for developers to get more out of using Yarn Spinner.
+
+### Motivation
+
+At this point, Yarn Spinner should be at a state where it is stable to use and easy to update.
+The intent is to then make it more convenient for developers to integrate, so more examples and ready to go elements.
+
+### Features
+
+- Modular prefab UI elements designed to work out of the both with Yarn Spinner
+- More examples and example projects demonstrating using Yarn in different forms
+- Add in parsing `.yarn` files into Unreal
+
+## V2.3
+
+### Goal
+
+Make Yarn more accessible from your existing development tools.
+
+### Motivation
+
+While we expect the [Yarn editor](https://github.com/YarnSpinnerTool/YarnEditor) will remain the main way you will create and modify Yarn files, there are always more workflows that need support.
+This release will be designed to try and help make that easier.
+
+### Features
+
+- Merge all command line tool functionality into the Unity and Unreal core
+- Create a [language server protocol](https://microsoft.github.io/language-server-protocol/) server for Yarn
+- Add diagnostics and debugging features to a VSCode extension
+- Create a WebAssembly compiler for Yarn, allowing browsers to run the exact same code to compile Yarn as is used in Unity and Unreal
+
+## V2.6
+
+### Goal
+
+To put Yarn Spinner in a place where it will be capable of being used more easily and in multiple places.
+
+### Motivation
+
+We want Yarn Spinner to be easy to implement, use, and port to as many places as possible.
+We also want to start adding in support for any additional features that are community requested.
+
+### Features
+
+- Porting guide for any platform, engine, and language
+- Attributed string support (such as `[b]this is bold text[/b]`)
+
+
+# Past Releases
 
 ## ✅ V1.0
 
@@ -57,74 +161,6 @@ This release will have no other features beyond those necessary to support inter
 - Updated examples
 - Updated documentation
 
-## V1.2
-
-### Goal
-
-To add in initial support for Unreal.
-
-### Motivation
-
-Unreal is a large portion of the games community, and we've been asked multiple times by different people if Unreal is supported. We want to be able to say yes to them.
-This is not to say it will be as featureful as the Unity version for V1.2, although the long term goal is for feature parity.
-
-### Features
-
-- Create an Unreal VM capable of reading compiled Yarn bytecode
-- Create Unreal Dialouge Runners and Variable Storage
-- Create examples showing how to use Yarn Spinner in Unreal.
-- Add documentation on using Yarn Spinner in Unreal.
-
-## V1.3
-
-### Goal
-
-To create resources for developers to get more out of using Yarn Spinner.
-
-### Motivation
-
-At this point, Yarn Spinner should be at a state where it is stable to use and easy to update.
-The intent is to then make it more convenient for developers to integrate, so more examples and ready to go elements.
-
-### Features
-
-- Modular prefab UI elements designed to work out of the both with Yarn Spinner
-- More examples and example projects demonstrating using Yarn in different forms
-- Add in parsing `.yarn` files into Unreal
-
-## V1.4
-
-### Goal
-
-Make Yarn more accessible from your existing development tools.
-
-### Motivation
-
-While we expect the [Yarn editor](https://github.com/YarnSpinnerTool/YarnEditor) will remain the main way you will create and modify Yarn files, there are always more workflows that need support.
-This release will be designed to try and help make that easier.
-
-### Features
-
-- Merge all command line tool functionality into the Unity and Unreal core
-- Create a [language server protocol](https://microsoft.github.io/language-server-protocol/) server for Yarn
-- Add diagnostics and debugging features to a VSCode extension
-- Create a WebAssembly compiler for Yarn, allowing browsers to run the exact same code to compile Yarn as is used in Unity and Unreal
-
-## V1.5
-
-### Goal
-
-To put Yarn Spinner in a place where it will be capable of being used more easily and in multiple places.
-
-### Motivation
-
-We want Yarn Spinner to be easy to implement, use, and port to as many places as possible.
-We also want to start adding in support for any additional features that are community requested.
-
-### Features
-
-- Porting guide for any platform, engine, and language
-- Attributed string support (such as `[b]this is bold text[/b]`)
 
 # FAQ
 
@@ -173,9 +209,10 @@ Some of these changes we can see exactly how they will work and integrate, other
 Later releases are designed to have much larger broad strokes of features instead of specifics like in V1.0.
 As a release comes out we can take a look at the road map again, work out what features and needs should go into the next release and update the road map appropriately.
 
-# GSoC 2020 Ideas
+# Open-ended ideas
+
+These are ideas that we don't have a roadmap for, but we'd love to see contributed from the community. If you want to work on this, [fork the repo](https://github.com/YarnSpinnerTool/YarnSpinner/fork) and send in a pull request!
 
 * Godot Engine Support
 * Game Maker Engine Support
 * Improvements and new features for YS VS Code extension
-* Bundles of features from above roadmap
