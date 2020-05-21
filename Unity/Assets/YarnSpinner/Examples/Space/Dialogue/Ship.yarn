@@ -5,7 +5,7 @@ position: 721,130
 ---
 <<if visited("Ship") is false>>
     Ship: Hey, friend.  #line:5837f2
-    Player: Hi, Ship. #line:ship9
+    Player: Hi, Ship. #line:ship09
     Player: How's space? #line:ship10
     Ship: Oh, man. #line:ship11
     <<setsprite ShipFace happy>>
@@ -18,17 +18,17 @@ position: 721,130
 <<endif>>
 
 <<if $should_see_ship is true and $sally_warning is false>>
-    Player: Sally said you wanted to see me? #line:ship1
+    Player: Sally said you wanted to see me? #line:ship01
     <<setsprite ShipFace happy>> 
-    Ship: She totally did!! #line:ship3
+    Ship: She totally did!! #line:ship03
     <<setsprite ShipFace neutral>> 
-    Ship: She wanted me to tell you... #line:ship4
-    Ship: If you ever go off-watch without resetting the console again... #line:ship5
+    Ship: She wanted me to tell you... #line:ship04
+    Ship: If you ever go off-watch without resetting the console again... #line:ship05
     <<setsprite ShipFace happy>>
-    Ship: She'll flay you alive! #line:ship6
+    Ship: She'll flay you alive! #line:ship06
     <<set $sally_warning to true>>
     <<wait 1>>
-    Player: Uh. #line:ship7
+    Player: Uh. #line:ship07
     <<setsprite ShipFace neutral>>
 <<endif>>
 ===
