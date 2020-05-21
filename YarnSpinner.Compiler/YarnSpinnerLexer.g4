@@ -203,8 +203,8 @@ FORMAT_FUNCTION_START: '[' -> pushMode(TextMode), pushMode(FormatFunctionMode);
 BODY_HASHTAG: '#' -> pushMode(TextCommandOrHashtagMode), pushMode(HashtagMode);
 
 // The start of an inline expression. Immediately lex as 
-// TEXT_FORMAT_FUNCTION_START and push into TextMode 
-// and ExpressionMode.
+// TEXT_EXPRESSION_START and push into TextMode  and 
+// ExpressionMode.
 BODY_EXPRESSION_FUNCTION_START: '{' -> type(TEXT_EXPRESSION_START), pushMode(TextMode), pushMode(ExpressionMode);
 
 // The start of a format function. Immediately lex as 
