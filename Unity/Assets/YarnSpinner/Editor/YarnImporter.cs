@@ -6,6 +6,7 @@ using System.Linq;
 using System.Globalization;
 using Yarn;
 using Yarn.Compiler;
+using Boo.Lang;
 
 [ScriptedImporter(2, new[] {"yarn", "yarnc"})]
 public class YarnImporter : ScriptedImporter
@@ -200,6 +201,16 @@ public class YarnImporter : ScriptedImporter
                         }
 
                         voiceOversList.Find(element => element.linetag == textEntry).languageToAudioclip = languageToAudioclipList.ToArray();
+                    }
+
+                    // Check if previously stored linetags have been removed and remove them from the voice over collection
+                    for (int i = voiceOversList.Count - 1; i >= 0; i--)
+                    {
+                        LinetagToLanguage voiceOver = voiceOversList[i];
+                        if (!stringIDs.Contains(voiceOver.linetag))
+                        {
+                            voiceOversList.Remove(voiceOver);
+                        }
                     }
 
                     voiceOvers = voiceOversList.ToArray();
