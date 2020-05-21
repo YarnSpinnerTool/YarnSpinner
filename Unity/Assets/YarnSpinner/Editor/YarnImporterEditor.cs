@@ -6,6 +6,7 @@ using System.IO;
 using System.Globalization;
 using UnityEngine.AddressableAssets;
 using System.Collections.Generic;
+using Yarn.Unity;
 
 [CustomEditor(typeof(YarnImporter))]
 public class YarnImporterEditor : ScriptedImporterEditor {
@@ -209,7 +210,7 @@ public class YarnImporterEditor : ScriptedImporterEditor {
                     LanguageToAudioclip languageToAudioclip = linetagToLanguage.languageToAudioclip[j];
 
                     var language = languageToAudioclip.language;
-                    var results = AssetDatabase.FindAssets("t:AudioClip " + linetag + " " + language);
+                    string[] results = Yarn.Unity.FindVoiceOver.GetMatchingVoiceOverAudioClip(linetag, language);
 
                     // Write found AudioClip into voice overs array
                     if (results.Length != 0) {
@@ -567,5 +568,62 @@ public class YarnImporterEditor : ScriptedImporterEditor {
         public string file;
         public string node;
         public int lineNumber;
+    }
+}
+
+namespace Yarn.Unity
+{
+    internal static class FindVoiceOver
+    {
+        internal static string[] GetMatchingVoiceOverAudioClip(string linetag, string language)
+        {
+            string[] result = null;
+            string[] searchPatterns = new string[] {
+                $"t:AudioClip {linetag} ({language})",
+                $"t:AudioClip {linetag}  {language}",
+                $"t:AudioClip {linetag}"
+            };
+
+            foreach (var searchPattern in searchPatterns)
+            {
+                result = FindVoiceOverAudioClips(searchPattern, language);
+                if (result.Length > 0)
+                {
+                    return result;
+                }
+            }
+
+            return result;
+        }
+
+        private static string[] FindVoiceOverAudioClips(string searchPattern, string language)
+        {
+            var result = AssetDatabase.FindAssets(searchPattern);
+            // Check if result is ambiguous and try to improve the situation
+            if (result.Length > 1)
+            {
+                var assetsInMatchingLanguageDirectory = GetAsseetsInMatchingLanguageDirectory(result, language);
+                // Check if this improved the situation
+                if (assetsInMatchingLanguageDirectory.Length == 1 || (assetsInMatchingLanguageDirectory.Length != 0 && assetsInMatchingLanguageDirectory.Length < result.Length))
+                {
+                    result = assetsInMatchingLanguageDirectory;
+                }
+            }
+            return result;
+        }
+
+        private static string[] GetAsseetsInMatchingLanguageDirectory (string[] result, string language)
+        {
+            var list = new List<string>();
+            foreach (var assetId in result)
+            {
+                var testPath = AssetDatabase.GUIDToAssetPath(assetId);
+                if (AssetDatabase.GUIDToAssetPath(assetId).Contains($"/{language}/"))
+                {
+                    list.Add(assetId);
+                }
+            }
+            return list.ToArray();
+        }
     }
 }
