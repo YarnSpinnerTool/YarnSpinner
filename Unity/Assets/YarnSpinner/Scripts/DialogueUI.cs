@@ -411,6 +411,7 @@ namespace Yarn.Unity {
             finishCurrentLine = true;
         }
 
+        /// <inheritdoc/>
         internal override void OnFinishedLineOnAllViews() {
             onLineFinishDisplayingOnAllViews?.Invoke();
         }

@@ -77,6 +77,7 @@ namespace Yarn.Unity {
             // Do nothing
         }
 
+        /// <inheritdoc/>
         internal override void OnFinishedLineOnAllViews() {
             // Do nothing
         }

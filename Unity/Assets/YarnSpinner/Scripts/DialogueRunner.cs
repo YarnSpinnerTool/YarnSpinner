@@ -57,7 +57,7 @@ namespace Yarn.Unity
         public VariableStorageBehaviour variableStorage;
 
         /// <summary>
-        /// The object that will handle the actual display and user input.
+        /// The View classes that will present the dialogue to the user.
         /// </summary>
         public DialogueViewBase[] dialogueViews;
 
@@ -1037,6 +1037,11 @@ namespace Yarn.Unity
             Dialogue.Continue();
         }
 
+        /// <summary>
+        /// Called by a <see cref="DialogueViewBase"/> derived class from <see cref="dialogueViews"/>
+        /// to inform the <see cref="DialogueRunner"/> that the user intents to proceed to the next
+        /// line.
+        /// </summary>
         internal void OnViewUserIntentNextLine() {
             userIntendedNextLine = true;
 
@@ -1056,10 +1061,28 @@ namespace Yarn.Unity
             }
         }
 
+        /// <summary>
+        /// Called by a <see cref="DialogueViewBase"/> derived class from <see cref="dialogueViews"/>
+        /// to inform the <see cref="DialogueRunner"/> that the user intents to finish the current
+        /// line.
+        /// </summary>
         internal void OnViewUserIntentFinishLine() {
             FinishLineCurrentlyRunningOnViews();
         }
 
+        /// <summary>
+        /// Called by a <see cref="DialogueViewBase"/> derived class from <see cref="dialogueViews"/>
+        /// to inform the <see cref="DialogueRunner"/> that it has finished presenting a line.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Checks and informs all <see cref="dialogueViews"/> if they have all finished a line.
+        /// Also proceeds to the next line if the option 
+        /// <see cref="continueNextLineOnLineFinished"/> is true or if the user
+        /// expressed that intent on one of the <see cref="dialogueViews"/> in which case
+        /// the corresponding view called <see cref="OnViewUserIntentNextLine"/>.
+        /// </para>
+        /// </remarks>
         void OnDialogueLineFinished() {
             if (CheckDialogueViewsForCommonLineStatus(DialogueViewBase.DialogueLineStatus.Finished)) {
                 LineFinishedOnAllViews();
@@ -1070,18 +1093,30 @@ namespace Yarn.Unity
             }
         }
 
+        /// <summary>
+        /// Instructs the <see cref="DialogueRunner"/> to check all <see cref="dialogueViews"/> if
+        /// they have all ended the current line and proceeds with the next line in that case.
+        /// </summary>
         void OnDialogueLineCompleted() {
             if (CheckDialogueViewsForCommonLineStatus(DialogueViewBase.DialogueLineStatus.Ended)) {
                 ContinueDialogue();
             }
         }
 
+        /// <summary>
+        /// Informs all <see cref="dialogueViews"/> that they have finished a line by calling
+        /// <see cref="DialogueViewBase.OnFinishedLineOnAllViews"/> on them.
+        /// </summary>
         private void LineFinishedOnAllViews() {
             foreach (var dialogueView in dialogueViews) {
                 dialogueView.OnFinishedLineOnAllViews();
             }
         }
 
+        /// <summary>
+        /// Instructs all <see cref="dialogueViews"/> to end the current line by calling
+        /// <see cref="DialogueViewBase.EndCurrentLine(Action)"/> on all of them.
+        /// </summary>
         private void EndLineCurrentlyFinishedOnViews() {
             foreach (var dialogueView in dialogueViews) {
                 if (dialogueView.dialogueLineStatus == DialogueViewBase.DialogueLineStatus.Finished) {
@@ -1090,6 +1125,10 @@ namespace Yarn.Unity
             }
         }
 
+        /// <summary>
+        /// Instructs all <see cref="dialogueViews"/> to go to the end of the current line by calling
+        /// <see cref="DialogueViewBase.FinishRunningCurrentLine"/> on all of them.
+        /// </summary>
         private void FinishLineCurrentlyRunningOnViews() {
             foreach (var dialogueView in dialogueViews) {
                 if (dialogueView.dialogueLineStatus == DialogueViewBase.DialogueLineStatus.Running) {
@@ -1098,6 +1137,11 @@ namespace Yarn.Unity
             }
         }
 
+        /// <summary>
+        /// Check the <see cref="DialogueViewBase.DialogueLineStatus"/> on all <see cref="dialogueViews"/> and get the status with the lowest
+        /// int representation.
+        /// </summary>
+        /// <returns></returns>
         DialogueViewBase.DialogueLineStatus GetLowestLineStatus() {
             var lowestStatus = DialogueViewBase.DialogueLineStatus.Ended;
             foreach (var dialogueView in dialogueViews) {
@@ -1108,6 +1152,11 @@ namespace Yarn.Unity
             return lowestStatus;
         }
 
+        /// <summary>
+        /// Return true if all <see cref="dialogueViews"/> have the same <see cref="DialogueViewBase.DialogueLineStatus"/>.
+        /// </summary>
+        /// <param name="commonStatusToCheck"></param>
+        /// <returns></returns>
         private bool CheckDialogueViewsForCommonLineStatus (DialogueViewBase.DialogueLineStatus commonStatusToCheck) {
             foreach (var dialogueView in dialogueViews) {
                 if (dialogueView.dialogueLineStatus != commonStatusToCheck) {
