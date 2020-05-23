@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added handlers for when nodes begin executing (in addition to the existing handlers for when nodes complete.) (@arendhil, #222)
 - `OptionSet.Option` now includes the name of the node that an option will jump to if selected.
 - Added unit tests for Yarn Spinner for Unity (@Schroedingers-Cat)
+- Yarn Spinner for Unity: Added a menu item for creating new Yarn scripts (Assets -> Create -> Yarn Script)
 
 ### Changed
 

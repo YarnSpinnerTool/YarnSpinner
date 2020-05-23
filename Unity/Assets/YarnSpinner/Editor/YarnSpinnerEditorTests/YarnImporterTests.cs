@@ -60,5 +60,6 @@ public class YarnImporterTests
 
         // Test that YarnEditorUtility can locate the editor assets
         Assert.IsNotNull(YarnEditorUtility.GetYarnDocumentIconTexture());
+        Assert.IsNotNull(YarnEditorUtility.GetTemplateYarnScriptPath());
     }
 }
