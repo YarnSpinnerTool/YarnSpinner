@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEditor.Experimental.AssetImporters;
@@ -53,5 +53,12 @@ public class YarnImporterTests
         Assert.That(Equals(result.baseLanguage.text, expectedStringTable));
 
         AssetDatabase.DeleteAsset("Assets/" + fileName + ".yarn");
+    }
+
+    [Test]
+    public void YarnEditorUtility_HasValidEditorResources() {
+
+        // Test that YarnEditorUtility can locate the editor assets
+        Assert.IsNotNull(YarnEditorUtility.GetYarnDocumentIconTexture());
     }
 }
