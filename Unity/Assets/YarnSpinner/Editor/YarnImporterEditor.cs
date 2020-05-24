@@ -8,6 +8,9 @@ using UnityEngine.AddressableAssets;
 using System.Collections.Generic;
 using Yarn.Unity;
 
+/// <summary>
+/// Custom inspector for a Yarn asset imported via the <see cref="ScriptedImporter"/>.
+/// </summary>
 [CustomEditor(typeof(YarnImporter))]
 public class YarnImporterEditor : ScriptedImporterEditor {
 
@@ -17,12 +20,12 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 
     /// <summary>
     /// Index of the currently selected voice over language.
-    /// Only show voiceovers for one language.
+    /// Only show voice overs for one language.
     /// </summary>
     int selectedVoiceoverLanguageIndex;
 
     /// <summary>
-    /// Foldout bool for voiceover list.
+    /// Foldout bool for voice over list.
     /// </summary>
     bool showVoiceovers = false;
 
@@ -249,11 +252,11 @@ public class YarnImporterEditor : ScriptedImporterEditor {
             }
 
         }
-        // Voiceover list. Reduced to one language.
+        // Voice over list. Reduced to one language.
         showVoiceovers = EditorGUILayout.Foldout(showVoiceovers, "Voice Overs"); // FIXME: Clicking on the foldout triangle doesn't open/close the foldout
         if (showVoiceovers) {
             EditorGUI.indentLevel++;
-            // Language selected here will reduce the visual representation of the voiceover data structure
+            // Language selected here will reduce the visual representation of the voice over data structure
             selectedVoiceoverLanguageIndex = EditorGUILayout.Popup(selectedVoiceoverLanguageIndex, Cultures.LanguageNamesToDisplayNames(audioLanguageNamesOnAsset), GUILayout.MaxWidth(96));
             // Bound-check (f.g. currently selected voice over language has been removed from the available translations on this asset)
             selectedVoiceoverLanguageIndex = Mathf.Min(audioLanguageNamesOnAsset.Length - 1, selectedVoiceoverLanguageIndex);
@@ -573,8 +576,17 @@ public class YarnImporterEditor : ScriptedImporterEditor {
 
 namespace Yarn.Unity
 {
+    /// <summary>
+    /// Provides methods for finding voice over <see cref="AudioClip"/>s in the project matching a Yarn linetag/string ID and a language ID.
+    /// </summary>
     internal static class FindVoiceOver
     {
+        /// <summary>
+        /// Finds all voice over <see cref="AudioClip"/>s in the project with a filename matching a Yarn linetag and a language ID.
+        /// </summary>
+        /// <param name="linetag">The linetag/string ID the voice over filename should match.</param>
+        /// <param name="language">The language ID the voice over filename should match.</param>
+        /// <returns>A string array with GUIDs of all matching <see cref="AudioClip"/>s.</returns>
         internal static string[] GetMatchingVoiceOverAudioClip(string linetag, string language)
         {
             string[] result = null;
@@ -586,7 +598,7 @@ namespace Yarn.Unity
 
             foreach (var searchPattern in searchPatterns)
             {
-                result = FindVoiceOverAudioClips(searchPattern, language);
+                result = SearchAssetDatabase(searchPattern, language);
                 if (result.Length > 0)
                 {
                     return result;
@@ -596,7 +608,7 @@ namespace Yarn.Unity
             return result;
         }
 
-        private static string[] FindVoiceOverAudioClips(string searchPattern, string language)
+        private static string[] SearchAssetDatabase(string searchPattern, string language)
         {
             var result = AssetDatabase.FindAssets(searchPattern);
             // Check if result is ambiguous and try to improve the situation

@@ -6,8 +6,10 @@ using System.Linq;
 using System.Globalization;
 using Yarn;
 using Yarn.Compiler;
-using Boo.Lang;
 
+/// <summary>
+/// A <see cref="ScriptedImporter"/> for Yarn assets. The actual asset used and referenced at runtime and in the editor will be a <see cref="YarnProgram"/>, which this class wraps around creating the asset's corresponding meta file.
+/// </summary>
 [ScriptedImporter(2, new[] {"yarn", "yarnc"})]
 public class YarnImporter : ScriptedImporter
 {    

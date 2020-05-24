@@ -7,9 +7,14 @@ using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Yarn;
 
-/// Stores compiled Yarn programs in a form that Unity can serialise.
+/// <summary>
+/// A <see cref="ScriptableObject"/> created from a yarn file that stores the compiled Yarn program, all lines of text with their associated IDs, translations and voice over <see cref="AudioClip"/>s.
+/// </summary>
 public class YarnProgram : ScriptableObject
 {
+    /// <summary>
+    /// The compiled Yarn program as byte code.
+    /// </summary>
     [SerializeField]
     [HideInInspector]
     public byte[] compiledProgram;
@@ -17,23 +22,28 @@ public class YarnProgram : ScriptableObject
     [SerializeField]
     public TextAsset baseLocalisationStringTable;
 
+    /// <summary>
+    /// The language ID (e.g. "en" or "de") of the base language (the language the Yarn file is written in).
+    /// </summary>
     [SerializeField]
     public string baseLocalizationId;
 
     /// <summary>
-    /// Available localizations of this yarn program
+    /// Available localizations of this <see cref="YarnProgram"/>.
     /// </summary>
     [SerializeField][HideInInspector]
     public YarnTranslation[] localizations = new YarnTranslation[0];
 
     /// <summary>
-    /// Available voiceovers of this yarn program
+    /// Available voice over audio clips of this <see cref="YarnProgram"/>.
     /// </summary>
     [SerializeField][HideInInspector]
     public LinetagToLanguage[] voiceOvers = new LinetagToLanguage[0];
 
-    // Deserializes a compiled Yarn program from the stored bytes in this
-    // object.
+    /// <summary>
+    /// Deserializes a compiled Yarn program from the stored bytes in this object.
+    /// </summary>
+    /// <returns></returns>
     public Program GetProgram() {
         return Program.Parser.ParseFrom(compiledProgram);                
     }
@@ -102,31 +112,36 @@ public class YarnProgram : ScriptableObject
 
 
     /// <summary>
-    /// Returns all associated AudioClips for all available Line IDs for the given language ID.
-    /// Returns the AudioClips of the language set in preferences if no Parameter is given.
+    /// Returns all associated <see cref="AudioClip"/>s for all available Line IDs of this
+    /// <see cref="YarnProgram"/> for the language set in <see cref="Preferences"/>.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>A collection of all <see cref="AudioClip"/>s (value) associated with their 
+    /// linetag/StringID (key) that are available on this <see cref="YarnProgram"/>.</returns>
     public Dictionary<string, AudioClip> GetVoiceOversOfLanguage() {
         return GetVoiceOversOfLanguage(Preferences.AudioLanguage);
     }
 
     /// <summary>
-    /// Returns all associated AudioClips for all available Line IDs for the given language ID.
-    /// Returns the AudioClips of the language set in preferences if no Parameter is given.
+    /// Returns all associated <see cref="AudioClip"/>s for all available Line IDs for the given
+    /// language ID. Returns the <see cref="AudioClip"/>s of the language set in <see 
+    /// cref="Preferences"/> if no parameter is given.
     /// </summary>
     /// <param name="languageId">The ID of the language the requested voice overs.</param>
-    /// <returns></returns>
+    /// <returns>A collection of all <see cref="AudioClip"/>s (value) associated with their
+    /// linetag/StringID (key) that are available on this <see cref="YarnProgram"/>.</returns>
     public Dictionary<string, AudioClip> GetVoiceOversOfLanguage(string languageId) {
         return GetVoiceOversOfLanguage(languageId, voiceOvers);
     }
 
     /// <summary>
-    /// Returns all associated AudioClips for all available Line IDs for the given language ID.
-    /// Returns the AudioClips of the language set in preferences if no Parameter is given.
+    /// Returns all associated <see cref="AudioClip"/>s for all available Line IDs for the given
+    /// language ID. Returns the <see cref="AudioClip"/>s of the language set in <see 
+    /// cref="Preferences"/> if no parameter is given.
     /// </summary>
     /// <param name="languageId">The ID of the language the requested voice overs.</param>
     /// <param name="voiceOvers">The voice overs array to get a specific language of voice overs from.</param>
-    /// <returns></returns>
+    /// <returns>A collection of all <see cref="AudioClip"/>s (value) associated with their
+    /// linetag/StringID (key) that are available on this <see cref="YarnProgram"/>.</returns>
     public static Dictionary<string, AudioClip> GetVoiceOversOfLanguage(string languageId, LinetagToLanguage[] voiceOvers) {
         Dictionary<string, AudioClip> voiceOversOfPreferredLanguage = new Dictionary<string, AudioClip>();
         if (string.IsNullOrEmpty(languageId)) {
@@ -145,6 +160,14 @@ public class YarnProgram : ScriptableObject
     }
 
 #if ADDRESSABLES
+    /// <summary>
+    /// Asynchronously loads all associated <see cref="AudioClip"/>s for all available Line IDs of this <see cref="YarnProgram"/>
+    /// for the language set in <see cref="Preferences"/>. Will return every single voice over once it completed loading via the
+    /// given callback action provided as parameter.
+    /// </summary>
+    /// <param name="action">The action to call after the loading of each voice over <see cref="AudioClip"/> completed. The action should create a collection associating the linetags/StringIDs with the corresponding voice over.</param>
+    /// <returns>A collection of <see cref="Task"/>s loading all voice over <see cref="AudioClip"/>s available on 
+    /// this <see cref="YarnProgram"/>.</returns>
     public async Task<IEnumerable<AudioClip>> GetVoiceOversOfLanguageAsync(Action<string, AudioClip> action) {
         List<Task<AudioClip>> listOfTasks = new List<Task<AudioClip>>();
         foreach (var linetag in voiceOvers) {
