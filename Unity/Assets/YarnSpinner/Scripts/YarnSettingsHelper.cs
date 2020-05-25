@@ -3,7 +3,7 @@ using System.IO;
 using UnityEngine;
 
 /// <summary>
-/// Provides methods for loading and saving a scriptable object class used for settings.
+/// Provides methods for loading and saving a <see cref="ScriptableObject"/> class used for settings.
 /// </summary>
 public static class YarnSettingsHelper {
     /// <summary>

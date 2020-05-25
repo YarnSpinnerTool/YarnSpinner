@@ -65,7 +65,7 @@ public class Preferences : ScriptableObject {
 
     /// <summary>
     /// The text language preferred by the user. Changes will
-    /// be written to disk during exit and ending playmode.
+    /// be written to disk during exit and ending play mode.
     /// </summary>
     public static string TextLanguage {
         get => Instance._textLanguage;
@@ -81,7 +81,7 @@ public class Preferences : ScriptableObject {
 
     /// <summary>
     /// The audio language preferred by the user. Changes will
-    /// be written to disk during exit and ending playmode.
+    /// be written to disk during exit and ending play mode.
     /// </summary>
     public static string AudioLanguage {
         get => Instance._audioLanguage;

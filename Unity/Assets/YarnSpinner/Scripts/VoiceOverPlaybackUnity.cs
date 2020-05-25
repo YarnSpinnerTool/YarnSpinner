@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Yarn.Unity {
     /// <summary>
-    /// Handles playback of voice over audio files from the yarn dialogue system.
+    /// Handles playback of voice over <see cref="AudioClip"/>s referenced on <see cref="YarnProgram"/>s.
     /// </summary>
     public class VoiceOverPlaybackUnity : DialogueViewBase {
         /// <summary>
-        /// The fade out time when FinishCurrentLine() is called.
+        /// The fade out time when <see cref="FinishCurrentLine"/> is called.
         /// </summary>
         public float fadeOutTimeOnLineFinish = 0.05f;
 
@@ -16,7 +16,7 @@ namespace Yarn.Unity {
         private AudioSource audioSource;
 
         /// <summary>
-        /// When true, the Runner has signaled to finish the current line
+        /// When true, the <see cref="DialogueRunner"/> has signaled to finish the current line
         /// asap.
         /// </summary>
         private bool finishCurrentLine = false;
@@ -28,6 +28,11 @@ namespace Yarn.Unity {
             }
         }
 
+        /// <summary>
+        /// Start playback of the associated voice over <see cref="AudioClip"/> of the given <see cref="LocalizedLine"/>.
+        /// </summary>
+        /// <param name="dialogueLine"></param>
+        /// <returns></returns>
         protected override IEnumerator RunLine(LocalizedLine dialogueLine) {
             finishCurrentLine = false;
 
@@ -64,6 +69,10 @@ namespace Yarn.Unity {
             }
         }
 
+        /// <summary>
+        /// Instruct playback of the current <see cref="LocalizedLine"/>'s voice over <see cref="AudioClip"/> to stop asap.
+        /// Applies fade out defined by <see cref="fadeOutTimeOnLineFinish"/>.
+        /// </summary>
         protected override void FinishCurrentLine() {
             finishCurrentLine = true;
         }
@@ -73,11 +82,20 @@ namespace Yarn.Unity {
             yield return new WaitForEndOfFrame();
         }
 
+        /// <summary>
+        /// YarnSpinner's implementation of voice over playback does nothing when presenting an option.
+        /// </summary>
+        /// <param name="dialogueOptions"></param>
+        /// <param name="onOptionSelected"></param>
         public override void RunOptions(DialogueOption[] dialogueOptions, Action<int> onOptionSelected) {
             // Do nothing
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// YarnSpinner's implementation of voice over playback does nothing when all Views finished a line.
+        /// </summary>
+        /// <param name="dialogueOptions"></param>
+        /// <param name="onOptionSelected"></param>
         internal override void OnFinishedLineOnAllViews() {
             // Do nothing
         }

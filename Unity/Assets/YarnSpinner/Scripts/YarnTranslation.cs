@@ -11,6 +11,14 @@ public class YarnTranslation
         languageName = LanguageName;
         text = Text;
     }
+
+    /// <summary>
+    /// Name of the language of this <see cref="YarnTranslation"/> in RFC 4646.
+    /// </summary>
     public string languageName;
+
+    /// <summary>
+    /// The csv string table containing the translated text.
+    /// </summary>
     public TextAsset text;
 }

@@ -3,6 +3,9 @@ using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
+/// <summary>
+/// Steps required by YarnSpinner for a working build.
+/// </summary>
 public class OnBuildYarnSpinner : IPreprocessBuildWithReport, IPostprocessBuildWithReport {
     static bool createdResourcesDirectory = false;
 
