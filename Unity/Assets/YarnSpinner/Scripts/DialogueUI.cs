@@ -412,7 +412,7 @@ namespace Yarn.Unity {
         }
 
         /// <inheritdoc/>
-        internal override void OnFinishedLineOnAllViews() {
+        protected internal override void OnFinishedLineOnAllViews() {
             onLineFinishDisplayingOnAllViews?.Invoke();
         }
     }

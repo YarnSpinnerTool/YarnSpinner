@@ -145,11 +145,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yarnScripts:
   - {fileID: 11400000, guid: 40a60c3c28a91d34bbf2088bb0d2824a, type: 3}
-  textLanguage: 
   variableStorage: {fileID: 999971321}
-  dialogueUI: {fileID: 999971320}
+  dialogueViews:
+  - {fileID: 999971320}
   startNode: Start
   startAutomatically: 1
+  continueNextLineOnLineFinished: 0
+  waitForAddressablesLoaded: 1
   onNodeStart:
     m_PersistentCalls:
       m_Calls: []
@@ -157,6 +159,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onDialogueComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onCommand:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &999971319

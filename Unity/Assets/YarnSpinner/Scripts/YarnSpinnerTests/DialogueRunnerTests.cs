@@ -18,14 +18,15 @@ public class DialogueRunnerTests
         yield return new WaitUntil(() => loaded);
 
         var runner = GameObject.FindObjectOfType<DialogueRunner>();
-        runner.dialogueUI = runner.gameObject.AddComponent<DialogueRunnerMockUI>();
-        DialogueRunnerMockUI dialogueUI = runner.dialogueUI as DialogueRunnerMockUI;
+        DialogueRunnerMockUI dialogueUI = GameObject.FindObjectOfType<DialogueRunnerMockUI>();
 
         runner.StartDialogue();
         yield return null;
 
         Assert.That(string.Equals(dialogueUI.CurrentLine, "Spieler: Kannst du mich hören?"));
         dialogueUI.MarkLineComplete();
+        yield return null;
+        // Atm, current implementation of MVVM model needs two frames to go to the next line (will be fixed by removing the "Ending" state in DialogueViewBase")
         yield return null;
         Assert.That(string.Equals(dialogueUI.CurrentLine, "NPC: Klar und deutlich."));
     }

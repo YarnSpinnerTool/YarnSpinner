@@ -96,7 +96,7 @@ namespace Yarn.Unity {
         /// </summary>
         /// <param name="dialogueOptions"></param>
         /// <param name="onOptionSelected"></param>
-        internal override void OnFinishedLineOnAllViews() {
+        protected internal override void OnFinishedLineOnAllViews() {
             // Do nothing
         }
     }

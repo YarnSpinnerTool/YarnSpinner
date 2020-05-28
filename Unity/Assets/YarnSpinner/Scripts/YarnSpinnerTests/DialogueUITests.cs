@@ -21,7 +21,7 @@ public class DialogueUITests
         yield return new WaitUntil(() => loaded);
 
         var runner = GameObject.FindObjectOfType<DialogueRunner>();
-        DialogueUI ui = runner.dialogueUI as DialogueUI;
+        DialogueUI ui = GameObject.FindObjectOfType<DialogueUI>();
         Text textCanvas = ui.dialogueContainer.transform.GetComponentsInChildren<Text>().First(element => element.gameObject.name == "Text");
 
         // Arrange

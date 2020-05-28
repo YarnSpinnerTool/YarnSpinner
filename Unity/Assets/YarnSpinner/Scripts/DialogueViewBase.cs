@@ -131,7 +131,7 @@ namespace Yarn.Unity
         /// <remarks>
         /// This can be used to trigger sounds in sync when a line has been fully presented or to show the user a prompt to go to the next line.
         /// </remarks>
-        internal abstract void OnFinishedLineOnAllViews();
+        protected internal abstract void OnFinishedLineOnAllViews();
 
         /// <summary>
         /// End the current <see cref="LocalizedLine"/>.
