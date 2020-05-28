@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+### Changed
+
+### Removed
+
+## [v1.2.0-beta1]
+
+### Added
+
 - Yarn scripts now appear with Yarn Spinner icon. (@Schroedingers-Cat)
 - Documentation is updated to call 1.1 the current version (also to mention 2018.4 LTS as supported)
 - Added a button in the Inspector for `.yarn` files in Yarn Spinner for Unity, which updates localised `.csv` files when the `.yarn` file changes. (@stalhandske, #227)
