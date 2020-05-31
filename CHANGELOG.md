@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Parse errors no longer show debugging information in non-debug builds.
+
 ### Removed
 
 ## [v1.2.0-beta1]
