@@ -6,12 +6,24 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <NoWarn>3021</NoWarn> <!--  '...' does not need a CLSCompliant attribute because the assembly does not have a CLSCompliant attribute -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <PackageId>YarnSpinner.Compiler</PackageId>
+    <Version>1.1.0</Version>
+    <Title>Yarn Spinner Compiler</Title>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>Secret Lab Pty. Ltd. and Yarn Spinner contributors</Authors>
+    <Company>Secret Lab Pty. Ltd.</Company>
+    <RepositoryUrl>https://github.com/YarnSpinnerTool/YarnSpinner</RepositoryUrl>    
+    <PackageDescription>Yarn Spinner is a tool for creating interactive dialogue for games.
+
+This package provides support for compiling Yarn source code, so that you can execute it using the YarnSpinner package.</PackageDescription>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.7.2"/>
     <PackageReference Include="Google.Protobuf" Version="3.10.0"/>    
     <PackageReference Include="CsvHelper" Version="12.2.2" />
+    <PackageReference Include="YarnSpinner" Version="1.1.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>

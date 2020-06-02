@@ -4,6 +4,17 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <PackageId>YarnSpinner</PackageId>
+    <Title>Yarn Spinner</Title>
+    <Version>1.1.0</Version>
+    <Authors>Secret Lab Pty. Ltd. and Yarn Spinner contributors</Authors>
+    <PackageDescription>Yarn Spinner is a tool for creating interactive dialogue for games.
+
+Write your conversations in Yarn, a simple programming language that's designed to be easy for writers to learn, while also powerful enough to handle whatever you need.</PackageDescription>
+    <Company>Secret Lab Pty. Ltd.</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/YarnSpinnerTool/YarnSpinner</RepositoryUrl>    
   </PropertyGroup>
   
   <ItemGroup>

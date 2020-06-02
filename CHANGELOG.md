@@ -10,6 +10,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+### Removed
+
+## [v1.2.0]
+
+### Added
+
+- Added Nuget package definitions for [YarnSpinner](http://nuget.org/packages/YarnSpinner/) and [YarnSpinner.Compiler](http://nuget.org/packages/YarnSpinner.Compiler/).
+
+### Changed
+
 - Parse errors no longer show debugging information in non-debug builds.
 
 ### Removed
