@@ -16,13 +16,13 @@ Write your conversations in Yarn, a simple programming language that's designed 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/YarnSpinnerTool/YarnSpinner</RepositoryUrl>    
   </PropertyGroup>
-  
+
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.10.0"/>    
+    <PackageReference Include="Google.Protobuf" Version="3.10.0"/>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
-    </PackageReference>    
-    
+    </PackageReference>
   </ItemGroup>
+  
 </Project>
