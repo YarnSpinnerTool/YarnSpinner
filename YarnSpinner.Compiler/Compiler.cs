@@ -211,12 +211,17 @@
                 tree = parser.dialogue();
             } catch (ParseException e)
             {
+                #if DEBUG
                 var tokenStringList = new List<string>();
                 tokens.Reset();
                 foreach (var token in tokens.GetTokens()) {
                     tokenStringList.Add($"{token.Line}:{token.Column} {YarnSpinnerLexer.DefaultVocabulary.GetDisplayName(token.Type)} \"{token.Text}\"");
                 }
+
                 throw new ParseException($"{e.Message}\n\nTokens:\n{string.Join("\n", tokenStringList)}");
+                #else
+                throw new ParseException(e.Message);
+                #endif // DEBUG
             }
 
             Compiler compiler = new Compiler(fileName);

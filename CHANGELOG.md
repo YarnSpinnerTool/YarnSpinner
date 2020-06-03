@@ -9,8 +9,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Added support for voiceovers.  **TODO: Documentation for this feature.** (@Schroedingers-Cat)
+
+### Changed
+
+### Removed
+
+## [v1.2.0] 2020-05-04
+
+### Added
+
+- Added Nuget package definitions for [YarnSpinner](http://nuget.org/packages/YarnSpinner/) and [YarnSpinner.Compiler](http://nuget.org/packages/YarnSpinner.Compiler/).
+
+### Changed
+
+- Parse errors no longer show debugging information in non-debug builds.
+
+### Removed
+
+## [v1.2.0-beta1] 2020-05-28
+
+### Added
+
 - Yarn scripts now appear with Yarn Spinner icon. (@Schroedingers-Cat)
-- Documentation is updated to call 1.1 the current version (also to mention 2018.4 LTS as supported)
+- Documentation is updated to reflect the current version number (also to mention 2018.4 LTS as supported)
 - Added a button in the Inspector for `.yarn` files in Yarn Spinner for Unity, which updates localised `.csv` files when the `.yarn` file changes. (@stalhandske, #227)
 - Added handlers for when nodes begin executing (in addition to the existing handlers for when nodes complete.) (@arendhil, #222)
 - `OptionSet.Option` now includes the name of the node that an option will jump to if selected.
