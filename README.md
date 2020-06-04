@@ -1,6 +1,8 @@
 # Yarn Spinner
 
-<img src="Documentation/YarnSpinnerLogo.png" alt="Yarn Spinner logo" width="100px;" align="right">
+<img src="https://yarnspinner.dev/img/YarnSpinnerLogo.png" alt="Yarn Spinner logo" width="100px;" align="right">
+
+
 
 **Yarn Spinner** is a tool for creating interactive dialogue for games. 
 
@@ -8,13 +10,15 @@ Write your conversations in *Yarn*, a simple programming language that's designe
 
 Yarn's similar in style to [Twine](http://twinery.org), so if you already know that, you'll be right at home! If you don't, that's cool - Yarn's syntax is extremely minimal, and there's not much there to learn. 
 
-<a href="https://www.patreon.com/bePatron?u=11132340"><img src="Documentation/patreon.png" width="150px"></a>
+<a href="https://www.patreon.com/bePatron?u=11132340"><img src="https://yarnspinner.dev/img/patreon.png" width="150px"></a>
 
 ## Getting Started
 
-To get started using Yarn Spinner, [download it](https://github.com/YarnSpinnerTool/YarnSpinner/releases/latest), and then head over to the [tutorial](https://yarnspinner.dev/docs/tutorial).
+This repo contains the core source code for the Yarn Spinner compiler. If you want to use it in a game, you should get the appropriate package for your game engine.
 
-**Note**: Yarn Spinner requires Unity 2018.4 LTS or later.
+* **[Yarn Spinner for Unity](https://github.com/YarnSpinnerTool/YarnSpinner-Unity/releases/latest)** (2018.4 LTS or later)
+
+Once you've downloaded it, head over to the [tutorial](https://yarnspinner.dev/docs/tutorial)!
 
 ## Getting Help
 
@@ -31,9 +35,9 @@ Yarn Spinner is available under the [MIT License](LICENSE.md). This means that y
 
 Yarn Spinner was originally created by [Secret Lab](http://secretlab.com.au), an Australian game dev studio. [Come say hi](https://twitter.com/thesecretlab)!
 
-The [logo](Documentation/YarnSpinnerLogo.png) was made by [Cecile Richard](https://www.cecile-richard.com/).
+The [logo](https://yarnspinner.dev/img/YarnSpinnerLogo.png) was made by [Cecile Richard](https://www.cecile-richard.com/).
 
-<a href="https://gamecenter.nyu.edu/"><img src="Documentation/NYUGameCenter.png" alt="NYU Game Center logo" width="250px;" align="right"></a>
+<a href="https://gamecenter.nyu.edu/"><img src="https://yarnspinner.dev/img/NYUGameCenter.png" alt="NYU Game Center logo" width="250px;" align="right"></a>
 
 Yarn Spinner's development is made possible in part by [NYU Game Center](https://gamecenter.nyu.edu/). 
 
@@ -44,7 +48,7 @@ Yarn Spinner needs your help to be as awesome as it can be! You don't have to be
 
 * Yarn Spinner's development is powered by our wonderful Patreon supporters. [Become a patron](https://patreon.com/secretlab), and help us make Yarn Spinner be amazing.
 * Our [issues page](https://github.com/YarnSpinnerTool/YarnSpinner/issues) contains a list of things we'd love your help in improving.
-* Join our discussion on Slack by requesting an invite to our [narrative game development](http://lab.to/narrativegamedev) channel.
+* Join our discussion on Slack by joining our [narrative game development](http://lab.to/narrativegamedev) channel.
 * Follow [Yarn Spinner on Twitter](http://twitter.com/YarnSpinnerTool).
 
 If you want to contribute to Yarn Spinner (!!), [go read our contributor's guide!](CONTRIBUTING.md)
