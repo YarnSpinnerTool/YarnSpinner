@@ -49,8 +49,8 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestMergingNodes()
         {
-            var sallyPath = Path.Combine(UnityDemoScriptsPath, "Sally.yarn");
-            var shipPath = Path.Combine(UnityDemoScriptsPath, "Ship.yarn");
+            var sallyPath = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
+            var shipPath = Path.Combine(SpaceDemoScriptsPath, "Ship.yarn");
 
             Compiler.CompileFile(sallyPath, out var sally, out var sallyStringTable);
             Compiler.CompileFile(shipPath, out var ship, out var shipStringTable);

@@ -1,0 +1,55 @@
+title: Sally
+tags: 
+colorID: 0
+position: 524,111
+---
+<<if visited("Sally") is false>>
+    Player: Hey, Sally. #line:794945
+    Sally: Oh! Hi. #line:2dc39b
+    Sally: You snuck up on me. #line:34de2f
+    Sally: Don't do that. #line:dcc2bc
+<<else>>
+    Player: Hey. #line:a8e70c
+    Sally: Hi. #line:305cde
+<<endif>>
+
+<<if not visited("Sally.Watch")>>
+    [[Anything exciting happen on your watch?|Sally.Watch]] #line:5d7a7c
+<<endif>>
+
+<<if $sally_warning and not visited("Sally.Sorry")>>
+    [[Sorry about the console.|Sally.Sorry]] #line:0a7e39
+<<endif>>
+[[See you later.|Sally.Exit]] #line:0facf7
+===
+
+title: Sally.Watch
+tags: 
+colorID: 0
+position: 512,430
+---
+Sally: Not really.  #line:8c3f98
+Sally: Same old nebula, doing the same old thing. #line:24c418
+Sally: Oh, Ship wanted to see you. Go say hi to it. #line:df4eaf
+<<set $should_see_ship to true>>
+<<if visited("Ship") is true>>
+    Player: Already done! #line:1fea6c
+    Sally: Go say hi again. #line:5df323
+<<endif>>
+===
+
+title: Sally.Exit
+tags: 
+colorID: 6
+position: 211,417
+---
+Sally: Bye. #line:60c282
+===
+
+title: Sally.Sorry
+tags: 
+colorID: 0
+position: 827,439
+---
+Sally: Yeah. Don't do it again. #line:d7df49
+===

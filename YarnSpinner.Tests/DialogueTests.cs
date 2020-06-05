@@ -17,7 +17,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestNodeExists ()
         {
-            var path = Path.Combine(UnityDemoScriptsPath, "Sally.yarn");
+            var path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
 
             Compiler.CompileFile(path, out var program, out stringTable);
 
@@ -79,10 +79,10 @@ namespace YarnSpinner.Tests
 
             context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
 
-            string shipPath = Path.Combine(UnityDemoScriptsPath, "Ship.yarn");
+            string shipPath = Path.Combine(SpaceDemoScriptsPath, "Ship.yarn");
             Compiler.CompileFile(shipPath, out var shipProgram, out var shipStringTable);
 
-            string sallyPath = Path.Combine(UnityDemoScriptsPath, "Sally.yarn");
+            string sallyPath = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
             Compiler.CompileFile(sallyPath, out var sallyProgram, out var sallyStringTable);
 
             stringTable = shipStringTable.Union(sallyStringTable).ToDictionary(k => k.Key, v => v.Value);            
@@ -130,7 +130,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestGettingCurrentNodeName()  {
 
-            string path = Path.Combine(UnityDemoScriptsPath, "Sally.yarn");
+            string path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
             Compiler.CompileFile(path, out var program, out stringTable);
             
             dialogue.SetProgram (program);

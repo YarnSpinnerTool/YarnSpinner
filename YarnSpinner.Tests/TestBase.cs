@@ -54,11 +54,11 @@ namespace YarnSpinner.Tests
             }
         }
 
-        public static string UnityDemoScriptsPath
+        public static string SpaceDemoScriptsPath
         {
             get
             {
-                return Path.Combine(ProjectRootPath, "Unity/Assets/YarnSpinner/Examples/Space/Dialogue");
+                return Path.Combine(ProjectRootPath, "Tests/Projects/Space");
             }
         }
 
