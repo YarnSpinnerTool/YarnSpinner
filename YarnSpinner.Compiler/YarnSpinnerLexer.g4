@@ -195,22 +195,19 @@ COMMAND_START: '<<' -> pushMode(CommandMode) ;
 // The start of an option or jump
 OPTION_START: '[[' -> pushMode(OptionMode) ;
 
+// The start of a format function. Immediately push into TextMode 
+// and ExpressionMode.
 FORMAT_FUNCTION_START: '[' -> pushMode(TextMode), pushMode(FormatFunctionMode);
 
 // The start of a hashtag. Can goes at the end of the 
 // line, but this rule allows us to capture '#' at the start 
 // of a line, or following an Option.
-BODY_HASHTAG: '#' -> pushMode(TextCommandOrHashtagMode), pushMode(HashtagMode);
+BODY_HASHTAG: '#' -> type(HASHTAG), pushMode(TextCommandOrHashtagMode), pushMode(HashtagMode);
 
 // The start of an inline expression. Immediately lex as 
 // TEXT_EXPRESSION_START and push into TextMode  and 
 // ExpressionMode.
-BODY_EXPRESSION_FUNCTION_START: '{' -> type(TEXT_EXPRESSION_START), pushMode(TextMode), pushMode(ExpressionMode);
-
-// The start of a format function. Immediately lex as 
-// TEXT_FORMAT_FUNCTION_START and push into TextMode 
-// and ExpressionMode.
-BODY_FORMAT_FUNCTION_START: '[' -> type(TEXT_FORMAT_FUNCTION_START), pushMode(TextMode), pushMode(FormatFunctionMode);
+EXPRESSION_START: '{' -> pushMode(TextMode), pushMode(ExpressionMode);
 
 
 // Any other text means this is a Line
@@ -224,19 +221,19 @@ TEXT_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(TEXT_NEWLINE);} -> popMode;
 // The start of a hashtag. The remainder of this line will consist of
 // commands or hashtags, so swap to this mode and then enter hashtag mode.
 
-TEXT_HASHTAG: HASHTAG -> mode(TextCommandOrHashtagMode), pushMode(HashtagMode) ; 
+TEXT_HASHTAG: HASHTAG -> type(HASHTAG), mode(TextCommandOrHashtagMode), pushMode(HashtagMode) ; 
 
 // push into expression mode here, because we might lex more 
 // free text after the expression is done
-TEXT_EXPRESSION_START: '{' -> pushMode(ExpressionMode); 
+TEXT_EXPRESSION_START: '{' -> type(EXPRESSION_START), pushMode(ExpressionMode); 
 
 // The start of a hashtag. The remainder of this line will consist of
 // commands or hashtags, so swap to this mode, and then enter command mode.
-TEXT_COMMAND_START: '<<' -> mode(TextCommandOrHashtagMode), pushMode(CommandMode);
+TEXT_COMMAND_START: '<<' -> type(COMMAND_START), mode(TextCommandOrHashtagMode), pushMode(CommandMode);
 
 // The start of a format function. Push into this mode, because we may lex
 // more free text after the function is done.
-TEXT_FORMAT_FUNCTION_START: '[' -> pushMode(FormatFunctionMode);
+TEXT_FORMAT_FUNCTION_START: '[' -> type(FORMAT_FUNCTION_START), pushMode(FormatFunctionMode);
 
 // Comments after free text.
 TEXT_COMMENT: COMMENT -> skip;
@@ -260,18 +257,18 @@ TEXT_COMMANDHASHTAG_WS: WS -> skip;
 // Comments following hashtags and line conditions.
 TEXT_COMMANDHASHTAG_COMMENT: COMMENT -> skip;
 
-TEXT_COMMANDHASHTAG_COMMAND_START: '<<' -> pushMode(CommandMode);
+TEXT_COMMANDHASHTAG_COMMAND_START: '<<' -> type(COMMAND_START), pushMode(CommandMode);
 
-TEXT_COMMANDHASHTAG_HASHTAG: '#' -> pushMode(HashtagMode);
+TEXT_COMMANDHASHTAG_HASHTAG: '#' -> type(HASHTAG), pushMode(HashtagMode);
 
-TEXT_COMMANDHASHTAG_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(TEXT_COMMANDHASHTAG_NEWLINE);} -> popMode;
+TEXT_COMMANDHASHTAG_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(TEXT_NEWLINE);} -> type(TEXT_NEWLINE), popMode;
 
 TEXT_COMMANDHASHTAG_ERROR: . ; 
 
 // Hashtags at the end of a Line, Command or Option.
 mode HashtagMode;
 HASHTAG_WS: WS -> skip;
-HASHTAG_TAG: HASHTAG;
+HASHTAG_TAG: HASHTAG -> type(HASHTAG);
 
 // The text of the hashtag. After we parse it, we're done parsing this
 // hashtag, so leave this mode.
@@ -287,7 +284,7 @@ FORMAT_FUNCTION_ID: ID;
 FORMAT_FUNCTION_NUMBER: NUMBER;
 
 // Format functions may have expressions in them.
-FORMAT_FUNCTION_EXPRESSION_START: '{' -> pushMode(ExpressionMode);
+FORMAT_FUNCTION_EXPRESSION_START: '{' -> type(EXPRESSION_START), pushMode(ExpressionMode);
 
 // Separates keys from values in format functions
 FORMAT_FUNCTION_EQUALS: '=';
