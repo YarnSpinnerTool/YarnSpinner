@@ -75,7 +75,7 @@ namespace YarnSpinner.Tests
 
 
 
-            return Dialogue.ExpandFormatFunctions(baseText, locale);
+            return LineParser.ExpandFormatFunctions(baseText, locale);
         }
         
         public TestBase()

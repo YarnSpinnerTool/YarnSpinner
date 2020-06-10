@@ -125,7 +125,7 @@ namespace YarnSpinner.Tests
                 {"many", "many"},                
             };
 
-            Dialogue.ParseFormatFunctions(input, out string lineWithReplacements, out ParsedFormatFunction[] parsedFunctions);
+            LineParser.ParseFormatFunctions(input, out string lineWithReplacements, out ParsedFormatFunction[] parsedFunctions);
 
             Assert.Equal(expectedLineWithReplacements, lineWithReplacements);
             Assert.Equal(1, parsedFunctions.Length);

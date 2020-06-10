@@ -108,7 +108,7 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.line_formatted_text"/>.
 	/// </summary>
-	/// <param name="context">The parse tree.</param>
+	/// <param name="context">The parse tree.</param> 
 	void ExitLine_formatted_text([NotNull] YarnSpinnerParser.Line_formatted_textContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.format_function"/>.

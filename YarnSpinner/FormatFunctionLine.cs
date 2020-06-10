@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace YarnSpinner
+namespace Yarn
 {
     internal struct ParsedFormatFunction
     {
