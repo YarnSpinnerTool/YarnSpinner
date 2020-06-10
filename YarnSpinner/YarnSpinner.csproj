@@ -7,7 +7,7 @@
 
     <PackageId>YarnSpinner</PackageId>
     <Title>Yarn Spinner</Title>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <Authors>Secret Lab Pty. Ltd. and Yarn Spinner contributors</Authors>
     <PackageDescription>Yarn Spinner is a tool for creating interactive dialogue for games.
 
