@@ -773,7 +773,7 @@ namespace Yarn {
         {
             if (Program.Nodes.Count == 0)
             {
-                LogErrorMessage("No nodes are loaded!");
+                LogErrorMessage?.Invoke("No nodes are loaded!");
                 return null;
             }
             else if (Program.Nodes.ContainsKey(nodeName))
@@ -782,7 +782,7 @@ namespace Yarn {
             }
             else
             {
-                LogErrorMessage("No node named " + nodeName);
+                LogErrorMessage?.Invoke("No node named " + nodeName);
                 return null;
             }
         }
@@ -802,7 +802,7 @@ namespace Yarn {
         {
             if (Program.Nodes.Count == 0)
             {
-                LogErrorMessage("No nodes are loaded!");
+                LogErrorMessage?.Invoke("No nodes are loaded!");
                 return null;
             }
             else if (Program.Nodes.ContainsKey(nodeName))
@@ -811,7 +811,7 @@ namespace Yarn {
             }
             else
             {
-                LogErrorMessage("No node named " + nodeName);
+                LogErrorMessage?.Invoke("No node named " + nodeName);
                 return null;
             }
         }
@@ -835,12 +835,12 @@ namespace Yarn {
         /// <returns>`true` if a node named `nodeName` exists in the Program, `false` otherwise.</returns>
         public bool NodeExists(string nodeName) {
             if (Program == null) {
-                LogErrorMessage ("Tried to call NodeExists, but no nodes " +
+                LogErrorMessage?.Invoke ("Tried to call NodeExists, but no nodes " +
                                  "have been compiled!");
                 return false;
             }
             if (Program.Nodes == null || Program.Nodes.Count == 0) {
-                LogDebugMessage ("Called NodeExists, but there are zero nodes. " +
+                LogDebugMessage?.Invoke ("Called NodeExists, but there are zero nodes. " +
                                  "This may be an error.");
                 return false;
             }

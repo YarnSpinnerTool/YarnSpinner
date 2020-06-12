@@ -230,7 +230,7 @@ namespace Yarn
                 throw new DialogueException($"No node named {nodeName} has been loaded.");                
             }
 
-            dialogue.LogDebugMessage ("Running node " + nodeName);
+            dialogue.LogDebugMessage?.Invoke ("Running node " + nodeName);
 
             currentNode = Program.Nodes [nodeName];
             ResetState ();
@@ -323,7 +323,7 @@ namespace Yarn
                     nodeCompleteHandler(currentNode.Name);
                     executionState = ExecutionState.Stopped;
                     dialogueCompleteHandler();
-                    dialogue.LogDebugMessage ("Run complete.");
+                    dialogue.LogDebugMessage?.Invoke ("Run complete.");
                 }
             }
         }
