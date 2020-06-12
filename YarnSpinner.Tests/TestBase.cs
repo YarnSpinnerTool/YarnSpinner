@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -105,6 +105,8 @@ namespace YarnSpinner.Tests
 
                 Assert.Contains(id, stringTable.Keys);
 
+                var lineNumber = stringTable[id].lineNumber;
+
                 var text = GetComposedTextForLine(line);
 
                 Console.WriteLine("Line: " + text);
@@ -113,7 +115,7 @@ namespace YarnSpinner.Tests
                     testPlan.Next();
 
                     if (testPlan.nextExpectedType == TestPlan.Step.Type.Line) {
-                        Assert.Equal(testPlan.nextExpectedValue, text);
+                        Assert.Equal($"Line {lineNumber}: {testPlan.nextExpectedValue}", $"Line {lineNumber}: {text}");
                     } else {
                         throw new Xunit.Sdk.XunitException($"Received line {text}, but was expecting a {testPlan.nextExpectedType.ToString()}");
                     }
