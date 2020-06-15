@@ -110,33 +110,7 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestFormatFunctionParsing() 
-        {
-            var input = @"prefix [plural ""5"" one=""one"" two=""two"" few=""few"" many=""many""] suffix";
-            
-
-            var expectedLineWithReplacements = @"prefix {0} suffix";
-            var expectedFunctionName = "plural";
-            var expectedValue = "5";
-            var expectedParameters = new Dictionary<string,string>() {
-                {"one", "one"},
-                {"two", "two"},
-                {"few", "few"},
-                {"many", "many"},                
-            };
-
-            LineParser.ParseFormatFunctions(input, out string lineWithReplacements, out ParsedFormatFunction[] parsedFunctions);
-
-            Assert.Equal(expectedLineWithReplacements, lineWithReplacements);
-            Assert.Equal(1, parsedFunctions.Length);
-            Assert.Equal(expectedFunctionName, parsedFunctions[0].functionName);
-            Assert.Equal(expectedValue, parsedFunctions[0].value);
-            Assert.Equal(expectedParameters, parsedFunctions[0].data);
-
-        }
-
-        [Fact]
-        public void TestNumberPlurals() {
+    public void TestNumberPlurals() {
 
             (string, double , PluralCase )[] cardinalTests = new[] {
 

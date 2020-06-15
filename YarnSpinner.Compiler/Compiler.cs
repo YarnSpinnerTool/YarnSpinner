@@ -568,45 +568,6 @@
             foreach (var child in nodes) {
                 if (child is ITerminalNode) {
                     composedString.Append(child.GetText());
-                } else if (child is YarnSpinnerParser.Format_functionContext) {
-                    // Format functions are composed of:
-                    // 1. The name of the function
-                    // 2. A value
-                    // 3. Zero or more key-value pairs. 
-                    //
-                    // We want to evaluate the value, and ensure that it's
-                    // on the stack; we then want to emit the entire format
-                    // function into the composed line, but with the
-                    // evaluated value replaced with a placeholder, as
-                    // though it had been an inline expression. We do this
-                    // because the format function is localisable -
-                    // different languages will want to have different
-                    // values. 
-                    //
-                    // We therefore evaluate any information we need, and
-                    // then emit the format function into the line, ready
-                    // to be loaded, or dumped into a string table to be
-                    // localised.
-                    //
-                    // As with inline expressions, we don't emit the '['
-                    // and ']', because these have already been captured as
-                    // part of the line text.
-
-                    var formatFunction = child as YarnSpinnerParser.Format_functionContext;
-
-                    Visit(formatFunction.variable());
-
-                    composedString.Append(formatFunction.function_name.Text);
-                    composedString.Append(" ");
-                    composedString.Append("\"{"+ expressionCount + "}\"");
-
-                    foreach (var keyValuePair in formatFunction.key_value_pair()) {
-                        composedString.Append(" " + keyValuePair.GetText());
-                    }
-
-                    expressionCount += 1;
-
-
                 } else if (child is ParserRuleContext) {
                     // assume that this is an expression (the parser only
                     // permits them to be expressions, but we can't specify

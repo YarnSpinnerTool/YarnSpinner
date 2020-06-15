@@ -195,10 +195,6 @@ COMMAND_START: '<<' -> pushMode(CommandMode) ;
 // The start of an option or jump
 OPTION_START: '[[' -> pushMode(OptionMode) ;
 
-// The start of a format function. Immediately push into TextMode 
-// and ExpressionMode.
-FORMAT_FUNCTION_START: '[' -> pushMode(TextMode), pushMode(FormatFunctionMode);
-
 // The start of a hashtag. Can goes at the end of the 
 // line, but this rule allows us to capture '#' at the start 
 // of a line, or following an Option.
@@ -231,21 +227,16 @@ TEXT_EXPRESSION_START: '{' -> type(EXPRESSION_START), pushMode(ExpressionMode);
 // commands or hashtags, so swap to this mode, and then enter command mode.
 TEXT_COMMAND_START: '<<' -> type(COMMAND_START), mode(TextCommandOrHashtagMode), pushMode(CommandMode);
 
-// The start of a format function. Push into this mode, because we may lex
-// more free text after the function is done.
-TEXT_FORMAT_FUNCTION_START: '[' -> type(FORMAT_FUNCTION_START), pushMode(FormatFunctionMode);
-
 // Comments after free text.
 TEXT_COMMENT: COMMENT -> skip;
 
-// Finally, lex anything up to a newline, a hashtag, the 
-// start of an expression as free text, the start of a format function,
-// or a command-start marker.
+// Finally, lex anything up to a newline, a hashtag, the start of an
+// expression as free text, or a command-start marker.
 TEXT: TEXT_FRAG+ ;
 TEXT_FRAG: {
       !(InputStream.LA(1) == '<' && InputStream.LA(2) == '<') // start-of-command marker
     &&!(InputStream.LA(1) == '/' && InputStream.LA(2) == '/') // start of a comment
-    }? ~[\r\n#{[] ;
+    }? ~[\r\n#{] ;
 
 // TODO: support detecting a comment at the end of a line by looking 
 // ahead and seeing '//', then skipping the rest of the line. 
@@ -273,28 +264,6 @@ HASHTAG_TAG: HASHTAG -> type(HASHTAG);
 // The text of the hashtag. After we parse it, we're done parsing this
 // hashtag, so leave this mode.
 HASHTAG_TEXT: ~[ \t\r\n#$<]+ -> popMode;
-
-// A format function, which allows for run-time text replacement for 
-// things like pluralisation and gender 
-mode FormatFunctionMode;
-FORMAT_FUNCTION_WS : WS -> skip;
-
-FORMAT_FUNCTION_ID: ID;
-
-FORMAT_FUNCTION_NUMBER: NUMBER;
-
-// Format functions may have expressions in them.
-FORMAT_FUNCTION_EXPRESSION_START: '{' -> type(EXPRESSION_START), pushMode(ExpressionMode);
-
-// Separates keys from values in format functions
-FORMAT_FUNCTION_EQUALS: '=';
-
-// A run of text. Escaped quotes, backslashes and format markers are allowed.
-fragment FORMAT_FUNCTION_MARKER: '%';
-FORMAT_FUNCTION_STRING : '"' (~('"' | '\\' | '\r' | '\n') | '\\' ('"' | '\\' | FORMAT_FUNCTION_MARKER))* '"';
-
-// Leave this mode when we reach the delimiting 'end'
-FORMAT_FUNCTION_END: ']' -> popMode;
 
 // Expressions, involving values and operations on values.
 mode ExpressionMode;
@@ -401,8 +370,9 @@ OPTION_WS: WS -> skip;
 OPTION_END: ']]' -> popMode ;
 OPTION_DELIMIT: '|' -> pushMode(OptionIDMode); // time to specifically look for IDs here
 OPTION_EXPRESSION_START: '{' -> pushMode(ExpressionMode);
-OPTION_FORMAT_FUNCTION_START: '[' -> pushMode(FormatFunctionMode);
-OPTION_TEXT: ~[\]{|[]+ ;
+OPTION_TEXT: {
+    !(InputStream.LA(1) == ']' && InputStream.LA(2) == ']') // end-of-option
+    }? ~[{|]+ ;
 
 // Only allow seeing runs of text as an ID after a '|' is 
 // seen. This prevents an option being parsed 

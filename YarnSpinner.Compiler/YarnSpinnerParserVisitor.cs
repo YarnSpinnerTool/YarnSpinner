@@ -80,26 +80,6 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitLine_formatted_text([NotNull] YarnSpinnerParser.Line_formatted_textContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.format_function"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFormat_function([NotNull] YarnSpinnerParser.Format_functionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>KeyValuePairNamed</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.key_value_pair"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitKeyValuePairNamed([NotNull] YarnSpinnerParser.KeyValuePairNamedContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>KeyValuePairNumber</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.key_value_pair"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitKeyValuePairNumber([NotNull] YarnSpinnerParser.KeyValuePairNumberContext context);
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.hashtag"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

@@ -131,46 +131,6 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitLine_formatted_text([NotNull] YarnSpinnerParser.Line_formatted_textContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.format_function"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFormat_function([NotNull] YarnSpinnerParser.Format_functionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.format_function"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFormat_function([NotNull] YarnSpinnerParser.Format_functionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>KeyValuePairNamed</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.key_value_pair"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterKeyValuePairNamed([NotNull] YarnSpinnerParser.KeyValuePairNamedContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>KeyValuePairNamed</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.key_value_pair"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitKeyValuePairNamed([NotNull] YarnSpinnerParser.KeyValuePairNamedContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>KeyValuePairNumber</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.key_value_pair"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterKeyValuePairNumber([NotNull] YarnSpinnerParser.KeyValuePairNumberContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>KeyValuePairNumber</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.key_value_pair"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitKeyValuePairNumber([NotNull] YarnSpinnerParser.KeyValuePairNumberContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.hashtag"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
