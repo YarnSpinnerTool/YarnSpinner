@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 
 ### Added
+- Added support for markup.
 - Added an EditorConfig file to assist future contributions in following the .NET coding style (@Schroedingers-Cat)
 
 ### Changed
