@@ -876,8 +876,7 @@ namespace Yarn {
         /// <remarks>
         /// The <see cref="MarkupParseResult"/>'s <see
         /// cref="MarkupParseResult.Text"/> will have any `select`,
-        /// `plural` or `ordinal` [format function]({{|ref
-        /// "syntax.md#format-functions"|}}) markers replaced with the
+        /// `plural` or `ordinal` markers replaced with the
         /// appropriate text, following this <see cref="Dialogue"/>'s <see
         /// cref="LanguageCode"/>.
         /// </remarks>
@@ -899,7 +898,7 @@ namespace Yarn {
         /// <throws cref="InvalidOperationException"></throws>
         /// <throws cref="KeyNotFoundException"></throws>
         /// <throws cref="ArgumentException">Thrown when the string
-        /// contains a `plural` or `ordinal` format function, but the
+        /// contains a `plural` or `ordinal` marker, but the
         /// specified value cannot be parsed as a number.</throws>
         string IAttributeMarkerProcessor.ReplacementTextForMarker(MarkupAttributeMarker marker)
         {
@@ -911,7 +910,7 @@ namespace Yarn {
 
             var value = valueProp.ToString();
 
-            // Apply the "select" format function
+            // Apply the "select" marker
             if (marker.Name == "select")
             {
                 if (!marker.TryGetProperty(value, out var replacementProp))

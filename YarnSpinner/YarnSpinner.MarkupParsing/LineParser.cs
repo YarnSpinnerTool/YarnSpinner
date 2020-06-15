@@ -757,7 +757,7 @@ namespace Yarn.MarkupParsing
             }
             else
             {
-                throw new ArgumentException($"Expected an identifier inside a format function in line \"{this.input}\"");
+                throw new ArgumentException($"Expected an identifier inside markup in line \"{this.input}\"");
             }
 
             // Read zero or more letters, numbers, or underscores
@@ -813,7 +813,7 @@ namespace Yarn.MarkupParsing
             char nextChar = (char)tempNext;
             if (nextChar != '"')
             {
-                throw new ArgumentException($"Expected a string inside a format function in line {this.input}");
+                throw new ArgumentException($"Expected a string inside markup in line {this.input}");
             }
 
             while (true)
@@ -856,7 +856,7 @@ namespace Yarn.MarkupParsing
             this.AssertNotEndOfInput(tempNext);
             if ((char)tempNext != character)
             {
-                throw new MarkupParseException($"Expected a {character} inside a format function in line \"{this.input}\"");
+                throw new MarkupParseException($"Expected a {character} inside markup in line \"{this.input}\"");
             }
         }
 
@@ -873,7 +873,7 @@ namespace Yarn.MarkupParsing
         {
             if (value == -1)
             {
-                throw new MarkupParseException($"Unexpected end of line inside a format function in line \"{this.input}");
+                throw new MarkupParseException($"Unexpected end of line inside markup in line \"{this.input}");
             }
         }
 
@@ -894,7 +894,7 @@ namespace Yarn.MarkupParsing
                 var tempNext = this.stringReader.Peek();
                 if (tempNext == -1 && allowEndOfLine == false)
                 {
-                    throw new MarkupParseException($"Unexpected end of line inside a format function in line \"{this.input}");
+                    throw new MarkupParseException($"Unexpected end of line inside markup in line \"{this.input}");
                 }
 
                 if (char.IsWhiteSpace((char)tempNext) == true)
