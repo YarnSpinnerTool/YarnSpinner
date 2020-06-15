@@ -31,6 +31,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.RegularExpressions;
+using Yarn.MarkupParsing;
 
 namespace Yarn {
 
@@ -50,9 +52,8 @@ namespace Yarn {
     /// is, the text "`{0}`" should be replaced with the value of
     /// `Substitutions[0]`, "`{1}`" with `Substitutions[1]`, and so on. 
     ///
-    /// 3. Use <see cref="Dialogue.ExpandFormatFunctions(string, string)"/>
-    /// to expand all [format functions]({{|ref
-    /// "/docs/syntax.md#format-functions"|}}) in the line.
+    /// 3. Use <see cref="Dialogue.ParseMarkup(string)"/>
+    /// to parse all markup in the line.
     ///
     /// You do not create instances of this struct yourself. They are
     /// created by the <see cref="Dialogue"/> during program execution.
@@ -314,7 +315,7 @@ namespace Yarn {
     /// <summary>
     /// Co-ordinates the execution of Yarn programs.
     /// </summary>
-    public class Dialogue {
+    public class Dialogue : IAttributeMarkerProcessor {
 
         /// We'll ask this object for the state of variables
         internal VariableStorage variableStorage {get;set;}
@@ -485,6 +486,19 @@ namespace Yarn {
         }
 
         /// <summary>
+        /// Gets or sets the <see cref="Dialogue"/>'s locale, as an IETF
+        /// BCP 47 code.
+        /// </summary>
+        /// <remarks>
+        /// This code is used to determine how the `plural` and `ordinal`
+        /// markers determine the plural class of numbers.
+        ///
+        /// For example, the code "en-US" represents the English language
+        /// as used in the United States.
+        /// </remarks>
+        public string LanguageCode { get; set; }
+
+        /// <summary>
         /// Gets or sets the <see cref="OptionsHandler"/> that is called
         /// when a set of options are ready to be shown to the user.
         /// </summary>
@@ -567,6 +581,12 @@ namespace Yarn {
             this.vm = new VirtualMachine(this);
 
             library.ImportLibrary(new StandardLibrary());
+
+            lineParser = new LineParser();
+
+            lineParser.RegisterMarkerProcessor("select", this);
+            lineParser.RegisterMarkerProcessor("plural", this);
+            lineParser.RegisterMarkerProcessor("ordinal", this);
         }
 
         /// <summary>
@@ -846,11 +866,104 @@ namespace Yarn {
             context.AddProgramToAnalysis (this.Program);
         }
 
-        
+        private readonly LineParser lineParser;
 
-        public static MarkupParseResult ParseMarkup(string line)
+        /// <summary>
+        /// Parses a line of text, and produces a <see
+        /// cref="MarkupParseResult"/>
+        /// containing the results.
+        /// </summary>
+        /// <remarks>
+        /// The <see cref="MarkupParseResult"/>'s <see
+        /// cref="MarkupParseResult.Text"/> will have any `select`,
+        /// `plural` or `ordinal` [format function]({{|ref
+        /// "syntax.md#format-functions"|}}) markers replaced with the
+        /// appropriate text, following this <see cref="Dialogue"/>'s <see
+        /// cref="LanguageCode"/>.
+        /// </remarks>
+        /// <param name="line">The line of text to parse.</param>
+        /// <returns>The results of parsing the markup.</returns>
+        public MarkupParseResult ParseMarkup(string line)
         {
-            return LineParser.ParseMarkup(line);
+            return this.lineParser.ParseMarkup(line);
+        }
+
+        /// <summary>
+        /// A regex that matches any `%` as long as it's not preceded by a `\`.
+        /// </summary>
+        private static readonly Regex ValuePlaceholderRegex = new Regex(@"(?<!\\)%");
+
+        /// <summary></summary>
+        /// <param name="marker">The marker to generate replacement text for.</param>
+        /// <returns>The replacement text for the marker.</returns>
+        /// <throws cref="InvalidOperationException"></throws>
+        /// <throws cref="KeyNotFoundException"></throws>
+        /// <throws cref="ArgumentException">Thrown when the string
+        /// contains a `plural` or `ordinal` format function, but the
+        /// specified value cannot be parsed as a number.</throws>
+        string IAttributeMarkerProcessor.ReplacementTextForMarker(MarkupAttributeMarker marker)
+        {
+
+            if (marker.TryGetProperty("value", out var valueProp) == false)
+            {
+                throw new KeyNotFoundException("Expected a property \"value\"");
+            }
+
+            var value = valueProp.ToString();
+
+            // Apply the "select" format function
+            if (marker.Name == "select")
+            {
+                if (!marker.TryGetProperty(value, out var replacementProp))
+                {
+                    throw new KeyNotFoundException($"error: no replacement for {value}");
+                }
+                
+                string replacement = replacementProp.ToString();
+                replacement = ValuePlaceholderRegex.Replace(replacement, value);
+                return replacement;                
+            }
+
+            // If it's not "select", then it's "plural" or "ordinal"
+
+            // First, ensure that we have a locale code set
+            if (this.LanguageCode == null) 
+            {
+                throw new InvalidOperationException("Dialogue locale code is not set. 'plural' and 'ordinal' markers cannot be called unless one is set.");
+            }
+
+            // Attempt to parse the value as a double, so we can determine
+            // its plural class
+            if (double.TryParse(value, out var doubleValue) == false)
+            {
+                throw new ArgumentException($"Error while pluralising line: '{value}' is not a number");
+            }
+
+            CLDRPlurals.PluralCase pluralCase;
+
+            switch (marker.Name)
+            {
+                case "plural":
+                    pluralCase = CLDRPlurals.NumberPlurals.GetCardinalPluralCase(this.LanguageCode, doubleValue);
+                    break;
+                case "ordinal":
+                    pluralCase = CLDRPlurals.NumberPlurals.GetOrdinalPluralCase(this.LanguageCode, doubleValue);
+                    break;
+                default:
+                    throw new InvalidOperationException($"Invalid marker name {marker.Name}");
+            }
+
+            string pluralCaseName = pluralCase.ToString().ToLowerInvariant();
+
+            // Now that we know the plural case, we can select the appropriate replacement text for it
+            if (!marker.TryGetProperty(pluralCaseName, out var replacementValue))
+            {
+                throw new KeyNotFoundException($"error: no replacement for {value}'s plural case of {pluralCaseName}");
+            }
+            
+            string input = replacementValue.ToString();
+            return ValuePlaceholderRegex.Replace(input, value);
+        
         }
 
         /// The standard, built-in library of functions and operators.

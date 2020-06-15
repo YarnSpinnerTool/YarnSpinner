@@ -24,23 +24,26 @@ SOFTWARE.
 
 */
 
-namespace Yarn
+namespace Yarn.MarkupParsing
 {
-    using System.Collections.Generic;
-
-    public struct MarkupParseResult
+    /// <summary>A markup text processor that implements the `[nomarkup]`
+    /// attribute's behaviour.</summary>
+    internal class NoMarkupTextProcessor : IAttributeMarkerProcessor
     {
-        public string Text;
-        public List<MarkupAttribute> Attributes;
-    }
-
-    public struct MarkupAttribute {
-        public string Name;
-        public List<MarkupProperty> Properties;
-    }
-
-    public struct MarkupProperty {
-        public string name;
-        public Value value;
+        /// <inheritdoc/>
+        public string ReplacementTextForMarker(MarkupAttributeMarker marker)
+        {
+            if (marker.TryGetProperty(LineParser.ReplacementMarkerContents, out var prop))
+            {
+                return prop.StringValue;
+            }
+            else
+            {
+                // this is only possible when it's a tag like [raw/], in
+                // which case there's no text to provide, so we'll provide
+                // the empty string here
+                return string.Empty;
+            }
+        }
     }
 }

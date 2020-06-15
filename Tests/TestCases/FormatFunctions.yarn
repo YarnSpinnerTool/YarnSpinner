@@ -3,60 +3,60 @@ title: Start
 
 // Case selection
 <<set $gender to "male">>
-Select: [select {$gender} male="male" female="female" other="other"]
+Select: [select value={$gender} male="male" female="female" other="other"/]
 
 <<set $gender to "female">>
-Select: [select {$gender} male="male" female="female" other="other"]
+Select: [select value={$gender} male="male" female="female" other="other"/]
 
 <<set $gender to "other">>
-Select: [select {$gender} male="male" female="female" other="other"]
+Select: [select value={$gender} male="male" female="female" other="other"/]
 
 // Cardinal pluralisation
 <<set $num to 1>>
-Plural: [plural {$num} one="one" two="two" few="few" many="many" other="other"]
+Plural: [plural value={$num} one="one" two="two" few="few" many="many" other="other"/]
 
 <<set $num to 2>>
-Plural: [plural {$num} one="one" two="two" few="few" many="many" other="other"]
+Plural: [plural value={$num} one="one" two="two" few="few" many="many" other="other"/]
 
 <<set $num to 3>>
-Plural: [plural {$num} one="one" two="two" few="few" many="many" other="other"]
+Plural: [plural value={$num} one="one" two="two" few="few" many="many" other="other"/]
 
 <<set $num to 4>>
-Plural: [plural {$num} one="one" two="two" few="few" many="many" other="other"]
+Plural: [plural value={$num} one="one" two="two" few="few" many="many" other="other"/]
 
 // Ordinal pluralisation
 <<set $ord to 1>>
-Ordinal: [ordinal {$ord} one="one" two="two" few="few" many="many" other="other"]
+Ordinal: [ordinal value={$ord} one="one" two="two" few="few" many="many" other="other"/]
 
 <<set $ord to 2>>
-Ordinal: [ordinal {$ord} one="one" two="two" few="few" many="many" other="other"]
+Ordinal: [ordinal value={$ord} one="one" two="two" few="few" many="many" other="other"/]
 
 <<set $ord to 3>>
-Ordinal: [ordinal {$ord} one="one" two="two" few="few" many="many" other="other"]
+Ordinal: [ordinal value={$ord} one="one" two="two" few="few" many="many" other="other"/]
 
 <<set $ord to 4>>
-Ordinal: [ordinal {$ord} one="one" two="two" few="few" many="many" other="other"]
+Ordinal: [ordinal value={$ord} one="one" two="two" few="few" many="many" other="other"/]
 
 <<set $gender to "other">>
 <<set $num to 1>>
 <<set $ord to 1>>
 
 // Value insertion
-[select {$gender} male="male: %" female="female: %" other="other: %"]
+[select value={$gender} male="male: %" female="female: %" other="other: %"/]
 
 <<set $race_position = 3>>
-Mae: Wow, I came [ordinal {$race_position} one="%st" two="%nd" few="%rd" other="%th"]!
+Mae: Wow, I came [ordinal value={$race_position} one="%st" two="%nd" few="%rd" other="%th"/]!
 
 // Shortcut options
 
--> [select {$gender} male="male" female="female" other="other"]
--> [plural {$num} one="one" few="few" many="many" other="other"]
--> [ordinal {$ord} one="one" two="two" few="few" many="many" other="other"]
+-> [select value={$gender} male="male" female="female" other="other"/]
+-> [plural value={$num} one="one" few="few" many="many" other="other"/]
+-> [ordinal value={$ord} one="one" two="two" few="few" many="many" other="other"/]
 
 // Regular options
-[[[select {$gender} male="male" female="female" other="other"]|Destination]]
-[[[plural {$num} one="one" few="few" many="many" other="other"]|Destination]]
-[[[ordinal {$ord} one="one" few="few" many="many" other="other"]|Destination]]
+[[[select value={$gender} male="male" female="female" other="other" /]|Destination]]
+[[[plural value={$num} one="one" few="few" many="many" other="other" /]|Destination]]
+[[[ordinal value={$ord} one="one" few="few" many="many" other="other" /]|Destination]]
 
 ===
 title: Destination

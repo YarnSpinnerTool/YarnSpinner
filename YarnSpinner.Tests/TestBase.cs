@@ -1,4 +1,4 @@
-using Xunit;
+﻿using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -73,15 +73,15 @@ namespace YarnSpinner.Tests
                 baseText = baseText.Replace("{" + i + "}", substitution);
             }
 
-
-
-            return LineParser.ExpandFormatFunctions(baseText, locale);
+            return dialogue.ParseMarkup(baseText).Text;
         }
         
         public TestBase()
         {
 
             dialogue = new Dialogue (storage);
+
+            dialogue.LanguageCode = "en";
 
             dialogue.LogDebugMessage = delegate(string message) {
                 Console.ResetColor();
