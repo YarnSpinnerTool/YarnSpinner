@@ -59,6 +59,32 @@ namespace Yarn.MarkupParsing
             this.Text = text;
             this.Attributes = attributes;
         }
+
+        /// <summary>
+        /// Gets the first attribute with the specified name, if present.
+        /// </summary>
+        /// <param name="name">The name of the attribute to get.</param>
+        /// <param name="attribute">When this method returns, contains the
+        /// attribute with the specified name, if the attribute is found;
+        /// otherwise, the default <see cref="MarkupAttribute"/>. This
+        /// parameter is passed uninitialized.</param>
+        /// <returns><see langword="true"/> if the <see
+        /// cref="MarkupParseResult"/> contains an attribute with the
+        /// specified name; otherwise, <see langword="false"/>.</returns>
+        public bool TryGetAttributeWithName(string name, out MarkupAttribute attribute)
+        {
+            foreach (var a in this.Attributes)
+            {
+                if (a.Name == name)
+                {
+                    attribute = a;
+                    return true;
+                }
+            }
+
+            attribute = default;
+            return false;
+        }
     }
 
     /// <summary>

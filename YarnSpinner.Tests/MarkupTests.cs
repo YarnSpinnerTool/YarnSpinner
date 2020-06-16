@@ -26,6 +26,26 @@ namespace YarnSpinner.Tests
             Assert.Equal(1, markup.Attributes[0].Length);
         }
 
+        [Fact]
+        public void TestFindingAttributes()
+        {
+            var line = "A [b]B[/b] [b]C[/b]";
+            var markup = dialogue.ParseMarkup(line);
+
+            MarkupAttribute attribute;
+            bool found;
+            
+            found = markup.TryGetAttributeWithName("b", out attribute);
+
+            Assert.True(found);
+            Assert.Equal(attribute, markup.Attributes[0]);
+            Assert.NotEqual(attribute, markup.Attributes[1]);
+
+            found = markup.TryGetAttributeWithName("c", out _);
+
+            Assert.False(found);                        
+        }
+
         [Theory]
         [InlineData("á [á]S[/á]")]
         [InlineData("á [a]á[/a]")]
