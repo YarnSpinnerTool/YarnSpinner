@@ -47,12 +47,10 @@ namespace Yarn {
     /// 1. Use the value in the <see cref="ID"/> field to look up the
     /// appropriate user-facing text in the string table. 
     ///
-    /// 2. For each of the entries in the <see cref="Substitutions"/>
-    /// field, replace the corresponding placeholder with the entry. That
-    /// is, the text "`{0}`" should be replaced with the value of
-    /// `Substitutions[0]`, "`{1}`" with `Substitutions[1]`, and so on. 
+    /// 2. Use <see cref="Dialogue.ExpandSubstitutions"/> to replace all
+    /// substitutions in the user-facing text.
     ///
-    /// 3. Use <see cref="Dialogue.ParseMarkup(string)"/>
+    /// 3. Use <see cref="Dialogue.ParseMarkup"/>
     /// to parse all markup in the line.
     ///
     /// You do not create instances of this struct yourself. They are
@@ -70,12 +68,6 @@ namespace Yarn {
         /// The string ID for this line.
         /// </summary>
         public string ID;
-
-        /// <summary>
-        /// The text of the line.
-        /// </summary>
-        [Obsolete("This field will always be empty; lines do not contain their own text. Instead, use the ID field to look up the text in the string table.")]
-        public string Text;
 
         /// <summary>
         /// The values that should be inserted into the user-facing text
@@ -885,6 +877,32 @@ namespace Yarn {
         public MarkupParseResult ParseMarkup(string line)
         {
             return this.lineParser.ParseMarkup(line);
+        }
+
+        /// <summary>
+        /// Replaces all substitution markers in a text with the given
+        /// substitution list.
+        /// </summary>
+        /// <remarks>
+        /// This method replaces substitution markers - for example, `{0}`
+        /// - with the corresponding entry in <paramref
+        /// name="substitutions"/>. If <paramref name="text"/> contains a
+        /// substitution marker whose index is not present in <paramref
+        /// name="substitutions"/>, it is ignored.
+        /// </remarks>
+        /// <param name="text">The text containing substitution
+        /// markers.</param>
+        /// <param name="substitutions">The list of substitutions.</param>
+        /// <returns><paramref name="text"/>, with the content from
+        /// <paramref name="substitutions"/> inserted.</returns>
+        public static string ExpandSubstitutions(string text, IList<string> substitutions)
+        {
+            for (int i = 0; i < substitutions.Count; i++) {
+                string substitution = substitutions[i];
+                text = text.Replace("{" + i + "}", substitution);
+            }
+
+            return text;
         }
 
         /// <summary>
