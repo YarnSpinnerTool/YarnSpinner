@@ -100,7 +100,8 @@ namespace Yarn.MarkupParsing
         private int position;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LineParser"/> class.
+        /// Initializes a new instance of the <see cref="LineParser"/>
+        /// class.
         /// </summary>
         internal LineParser()
         {
@@ -390,9 +391,9 @@ namespace Yarn.MarkupParsing
                         break;
                     case TagType.Close:
                         {
-                            // A close marker! Walk back through the unclosed
-                            // stack to find the most recent marker of the same
-                            // type to find its pair.
+                            // A close marker! Walk back through the
+                            // unclosed stack to find the most recent
+                            // marker of the same type to find its pair.
                             MarkupAttributeMarker matchedOpenMarker = default;
                             foreach (var openMarker in unclosedMarkerList)
                             {
@@ -409,8 +410,8 @@ namespace Yarn.MarkupParsing
                                 throw new MarkupParseException($"Unexpected close marker {marker.Name} at position {marker.Position} in line {this.input}");
                             }
 
-                            // This attribute is now closed, so we can remove
-                            // the marker from the unmatched list
+                            // This attribute is now closed, so we can
+                            // remove the marker from the unmatched list
                             unclosedMarkerList.Remove(matchedOpenMarker);
 
                             // We can now construct the attribute!
@@ -824,8 +825,8 @@ namespace Yarn.MarkupParsing
 
                 if (nextChar == '"')
                 {
-                    // end of string - consume it but don't
-                    // append to the final collection
+                    // end of string - consume it but don't append to the
+                    // final collection
                     break;
                 }
                 else if (nextChar == '\\')
@@ -867,8 +868,7 @@ namespace Yarn.MarkupParsing
         /// <param name="value">The character to test, as an
         /// integer.</param>
         /// <throws cref="MarkupParseException">Thrown when <paramref
-        /// name="value"/> is the
-        /// end-of-line character.</throws>
+        /// name="value"/> is the end-of-line character.</throws>
         private void AssertNotEndOfInput(int value)
         {
             if (value == -1)
@@ -904,9 +904,8 @@ namespace Yarn.MarkupParsing
                 }
                 else
                 {
-                    // no more whitespace ahead; don't
-                    // consume it, but instead stop eating
-                    // whitespace
+                    // no more whitespace ahead; don't consume it, but
+                    // instead stop eating whitespace
                     return;
                 }
             }
