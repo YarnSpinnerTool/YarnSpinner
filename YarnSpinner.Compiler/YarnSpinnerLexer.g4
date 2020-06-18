@@ -148,6 +148,8 @@ using System.Text.RegularExpressions;
 // tokens
 WS : ([ \t])+ -> skip;
 
+COMMENT: '//' ~('\r'|'\n')* -> skip;
+
 fragment SPACES: [ \t]+ ; // used in NEWLINE tokens to calculate the text following a newline
 
 // Some commonly-seen tokens that other lexer modes will use
@@ -171,8 +173,6 @@ mode HeaderMode;
 // Allow arbitrary text up to the end of the line.
 REST_OF_LINE : ~('\r'|'\n')+;
 HEADER_NEWLINE : NEWLINE SPACES? {CreateIndentIfNeeded(HEADER_NEWLINE);} -> popMode;
-
-COMMENT: '//' REST_OF_LINE -> skip;
 
 // The main body of a node.
 mode BodyMode;

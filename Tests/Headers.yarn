@@ -15,3 +15,9 @@ In this test, an arbitrary header is defined with some text.
 
 (TODO: If the last header is an arbitrary header, and is empty, a parse error is thrown. This is a bug.)
 ===
+title: Comments
+tags: one two three
+// test
+---
+This node demonstrates the use of comments in node headers.
+===

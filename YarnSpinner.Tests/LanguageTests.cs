@@ -90,7 +90,7 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "Headers.yarn");
             Compiler.CompileFile(path, out var program, out stringTable);
 
-            Assert.Equal(3, program.Nodes.Count);
+            Assert.Equal(4, program.Nodes.Count);
 
             foreach (var tag in new[] {"one", "two", "three"}) {
                 Assert.Contains(tag, program.Nodes["Tags"].Tags);
