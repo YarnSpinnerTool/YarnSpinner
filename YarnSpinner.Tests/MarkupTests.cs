@@ -50,6 +50,49 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestAttributeRemoval() {
+            // A test string with the following attributes:
+            // a: Covers the entire string
+            // b: Starts outside X, ends inside
+            // c: Same start and end point as X
+            // d: Starts inside X, ends outside
+            // e: Starts and ends outside X
+            var line = "[a][b]A [c][X]x[/b] [d]x[/X][/c] B[/d] [e]C[/e][/a]";
+            var originalMarkup = dialogue.ParseMarkup(line);
+
+            // Remove the "X" attribute
+            Assert.Equal(originalMarkup.Attributes[3].Name, "X");
+            var trimmedMarkup = originalMarkup.DeleteRange(originalMarkup.Attributes[3]);
+            
+            Assert.Equal("A x x B C", originalMarkup.Text);
+            Assert.Equal(6, originalMarkup.Attributes.Count);
+
+            Assert.Equal("A  B C", trimmedMarkup.Text);
+            Assert.Equal(4, trimmedMarkup.Attributes.Count);
+            
+            Assert.Equal("a", trimmedMarkup.Attributes[0].Name);
+            Assert.Equal(0, trimmedMarkup.Attributes[0].Position);
+            Assert.Equal(6, trimmedMarkup.Attributes[0].Length);
+
+            Assert.Equal("b", trimmedMarkup.Attributes[1].Name);
+            Assert.Equal(0, trimmedMarkup.Attributes[1].Position);
+            Assert.Equal(2, trimmedMarkup.Attributes[1].Length);
+
+            // "c" will have been removed along with "X" because it had a
+            // length of >0 before deletion, and was reduced to zero
+            // characters
+
+            Assert.Equal("d", trimmedMarkup.Attributes[2].Name);
+            Assert.Equal(2, trimmedMarkup.Attributes[2].Position);
+            Assert.Equal(2, trimmedMarkup.Attributes[2].Length);
+
+            Assert.Equal("e", trimmedMarkup.Attributes[3].Name);
+            Assert.Equal(5, trimmedMarkup.Attributes[3].Position);
+            Assert.Equal(1, trimmedMarkup.Attributes[3].Length);
+
+        }
+
+        [Fact]
         public void TestFindingAttributes()
         {
             var line = "A [b]B[/b] [b]C[/b]";

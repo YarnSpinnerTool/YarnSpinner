@@ -123,6 +123,156 @@ namespace Yarn.MarkupParsing
             return this.Text.Substring(attribute.Position, attribute.Length);
         }
 
+        /// <summary>
+        /// Deletes an attribute from this markup.
+        /// </summary>
+        /// <remarks>
+        /// This method deletes the range of text covered by <paramref
+        /// name="attributeToDelete"/>, and updates the other attributes in
+        /// this markup as follows:
+        ///
+        /// - Attributes that start and end before the deleted attribute
+        /// are unmodified.
+        ///
+        /// - Attributes that start before the deleted attribute and end
+        /// inside it are truncated to remove the part overlapping the
+        /// deleted attribute.
+        ///
+        /// - Attributes that have the same position and length as the
+        /// deleted attribute are deleted, if they apply to any text.
+        ///
+        /// - Attributes that start and end within the deleted attribute
+        /// are deleted.
+        ///
+        /// - Attributes that start within the deleted attribute, and end
+        /// outside it, have their start truncated to remove the part
+        /// overlapping the deleted attribute.
+        ///
+        /// - Attributes that start after the deleted attribute have their
+        /// start point adjusted to account for the deleted text.
+        ///
+        /// This method does not modify the current object. A new
+        /// MarkupParseResult is returned.
+        ///
+        /// If <paramref name="attributeToDelete"/> is not an attribute of
+        /// this <see cref="MarkupParseResult"/>, the behaviour is
+        /// undefined.
+        /// </remarks>
+        /// <param name="attributeToDelete">The attribute to
+        /// remove.</param>
+        /// <returns>A new MarkupParseResult, with the plain text modified
+        /// and an updated collection of attributes.</returns>
+        public MarkupParseResult DeleteRange(MarkupAttribute attributeToDelete)
+        {
+            var newAttributes = new List<MarkupAttribute>();
+
+            // Address the trivial case: if the attribute has a zero
+            // length, just create a new markup that doesn't include it.
+            // The plain text is left unmodified, because this attribute
+            // didn't apply to any text.
+            if (attributeToDelete.Length == 0)
+            {
+                foreach (var a in this.Attributes)
+                {
+                    if (!a.Equals(attributeToDelete))
+                    {
+                        newAttributes.Add(a);
+                    }
+                }
+
+                return new MarkupParseResult(this.Text, newAttributes);
+            }
+
+            var deletionStart = attributeToDelete.Position;
+            var deletionEnd = attributeToDelete.Position + attributeToDelete.Length;
+
+            var editedSubstring = this.Text.Remove(attributeToDelete.Position, attributeToDelete.Length);
+
+            foreach (var existingAttribute in this.Attributes)
+            {
+                var start = existingAttribute.Position;
+                var end = existingAttribute.Position + existingAttribute.Length;
+
+                if (existingAttribute.Equals(attributeToDelete))
+                {
+                    // This is the attribute we're deleting. Don't include
+                    // it.
+                    continue;
+                }
+
+                var editedAttribute = existingAttribute;
+
+                if (start <= deletionStart)
+                {
+                    // The attribute starts before start point of the item
+                    // we're deleting.
+                    if (end <= deletionStart)
+                    {
+                        // This attribute is entirely before the item we're
+                        // deleting, and will be unmodified.
+                    }
+                    else if (end <= deletionEnd)
+                    {
+                        // This attribute starts before the item we're
+                        // deleting, and ends inside it. The Position
+                        // doesn't need to change, but its Length is
+                        // trimmed so that it ends where the deleted
+                        // attribute begins.
+                        editedAttribute.Length = deletionStart - start;
+
+                        if (existingAttribute.Length > 0 && editedAttribute.Length <= 0)
+                        {
+                            // The attribute's length has been reduced to
+                            // zero. All of the contents it previous had
+                            // have been removed, so we will remove the
+                            // attribute itself.
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        // This attribute starts before the item we're
+                        // deleting, and ends after it. Its length is
+                        // edited to remove the length of the item we're
+                        // deleting.
+                        editedAttribute.Length -= attributeToDelete.Length;
+                    }
+                }
+                else if (start >= deletionEnd)
+                {
+                    // The item begins after the item we're deleting. Its
+                    // length isn't changing. We just need to offset its
+                    // start position.
+                    editedAttribute.Position = start - attributeToDelete.Length;
+                }
+                else if (start >= deletionStart && end <= deletionEnd)
+                {
+                    // The item is entirely within the item we're deleting.
+                    // It will be deleted too - we'll skip including it in
+                    // the updated attributes list.
+                    continue;
+                }
+                else if (start >= deletionStart && end > deletionEnd)
+                {
+                    // The item starts within the item we're deleting, and
+                    // ends outside it. We'll adjust the start point so
+                    // that it begins at the point where this item and the
+                    // item we're deleting stop overlapping.
+                    var overlapLength = deletionEnd - start;
+                    var newStart = deletionStart;
+                    var newLength = existingAttribute.Length - overlapLength;
+
+                    editedAttribute.Position = newStart;
+                    editedAttribute.Length = newLength;
+                }
+
+                newAttributes.Add(editedAttribute);
+            }
+
+            return new MarkupParseResult(editedSubstring, newAttributes);
+        }
+    }
+
     /// <summary>
     /// Represents a range of text in a marked-up string.
     /// </summary>
@@ -198,6 +348,28 @@ namespace Yarn.MarkupParsing
         /// attribute.
         /// </summary>
         public IReadOnlyDictionary<string, MarkupValue> Properties { get; internal set; }
+
+        /// <summary>
+        /// Gets the position in the original source text where this
+        /// attribute begins.
+        /// </summary>
+        internal int SourcePosition { get; private set; }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            var sb = new System.Text.StringBuilder();
+            sb.Append($"[{this.Name}] - {this.Position}-{this.Position + this.Length} ({this.Length}");
+
+            if (this.Properties?.Count > 0)
+            {
+                sb.Append($", {this.Properties.Count} properties)");
+            }
+
+            sb.Append(")");
+
+            return sb.ToString();
+        }
     }
 
     /// <summary>
