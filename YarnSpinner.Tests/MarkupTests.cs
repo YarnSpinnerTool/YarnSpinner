@@ -27,6 +27,16 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestTextExtraction() {
+            var line = "A [b]B [c]C[/c][/b]";
+
+            var markup = dialogue.ParseMarkup(line);
+
+            Assert.Equal("B C", markup.TextForAttribute(markup.Attributes[0]));
+            Assert.Equal("C", markup.TextForAttribute(markup.Attributes[1]));
+        }
+
+        [Fact]
         public void TestFindingAttributes()
         {
             var line = "A [b]B[/b] [b]C[/b]";

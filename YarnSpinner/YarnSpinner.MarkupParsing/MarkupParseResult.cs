@@ -85,7 +85,43 @@ namespace Yarn.MarkupParsing
             attribute = default;
             return false;
         }
-    }
+
+        /// <summary>
+        /// Returns the substring of <see cref="Text"/> covered by
+        /// <paramref name="attribute"/> Position and Length properties.
+        /// </summary>
+        /// <remarks>
+        /// If the attribute's <see cref="MarkupAttribute.Length"/>
+        /// property is zero, this method returns the empty string.
+        ///
+        /// This method does not check to see if <paramref
+        /// name="attribute"/> is an attribute belonging to this
+        /// MarkupParseResult. As a result, if you pass an attribute that
+        /// doesn't belong, it may describe a range of text that does not
+        /// appear in <see cref="Text"/>. If this occurs, an <see
+        /// cref="System.IndexOutOfRangeException"/> will be thrown.
+        /// </remarks>
+        /// <param name="attribute">The attribute to get the text
+        /// for.</param>
+        /// <returns>The text contained within the attribute.</returns>
+        /// <throws cref="System.IndexOutOfRangeException">Thrown when
+        /// attribute's <see cref="MarkupAttribute.Position"/> and <see
+        /// cref="MarkupAttribute.Length"/> properties describe a range of
+        /// text outside the maximum range of <see cref="Text"/>.</throws>
+        public string TextForAttribute(MarkupAttribute attribute)
+        {
+            if (attribute.Length == 0)
+            {
+                return string.Empty;
+            }
+
+            if (this.Text.Length < attribute.Position + attribute.Length)
+            {
+                throw new System.IndexOutOfRangeException($"Attribute represents a range not representable by this text. Does this {nameof(MarkupAttribute)} belong to this {nameof(MarkupParseResult)}?");
+            }
+
+            return this.Text.Substring(attribute.Position, attribute.Length);
+        }
 
     /// <summary>
     /// Represents a range of text in a marked-up string.
