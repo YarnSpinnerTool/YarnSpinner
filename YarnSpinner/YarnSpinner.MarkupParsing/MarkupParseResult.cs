@@ -223,12 +223,17 @@ namespace Yarn.MarkupParsing
         /// </remarks>
         public string StringValue { get; internal set; }
 
+        // Disable style warning "Summary should begin "Gets a value
+        // indicating..." for this property, because that's not what this
+        // bool property represents
+#pragma warning disable SA1623
         /// <summary>Gets the bool value of this property.</summary>
         /// <remarks>
         /// This property is only defined when the property's <see
         /// cref="Type"/> is <see cref="MarkupValueType.Bool"/>.
         /// </remarks>
         public bool BoolValue { get; internal set; }
+#pragma warning restore SA1623
 
         /// <summary>
         /// Gets the value's type.
