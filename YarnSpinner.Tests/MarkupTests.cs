@@ -27,6 +27,19 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestOverlappingAttributes() {
+            var line = "[a][b][c]X[/b][/a]X[/c]";
+
+            var markup = dialogue.ParseMarkup(line);
+
+            Assert.Equal(3, markup.Attributes.Count);
+            Assert.Equal("a", markup.Attributes[0].Name);
+            Assert.Equal("b", markup.Attributes[1].Name);
+            Assert.Equal("c", markup.Attributes[2].Name);
+
+        }
+
+        [Fact]
         public void TestTextExtraction() {
             var line = "A [b]B [c]C[/c][/b]";
 
@@ -153,10 +166,12 @@ namespace YarnSpinner.Tests
 
             Assert.Equal("b", markup.Attributes[0].Name);
             Assert.Equal(2, markup.Attributes[0].Position);
+            Assert.Equal(2, markup.Attributes[0].SourcePosition);
             Assert.Equal(3, markup.Attributes[0].Length);
 
             Assert.Equal("c", markup.Attributes[1].Name);
             Assert.Equal(4, markup.Attributes[1].Position);
+            Assert.Equal(7, markup.Attributes[1].SourcePosition);
             Assert.Equal(1, markup.Attributes[1].Length);
         }
 

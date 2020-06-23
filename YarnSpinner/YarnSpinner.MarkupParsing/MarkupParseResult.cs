@@ -138,14 +138,17 @@ namespace Yarn.MarkupParsing
         /// </summary>
         /// <param name="position">The position in the plain text where
         /// this attribute begins.</param>
+        /// <param name="sourcePosition">The position in the original
+        /// source text where this attribute begins.</param>
         /// <param name="length">The number of text elements in the plain
         /// text that this attribute covers.</param>
         /// <param name="name">The name of the attribute.</param>
         /// <param name="properties">The properties associated with this
         /// attribute.</param>
-        internal MarkupAttribute(int position, int length, string name, IEnumerable<MarkupProperty> properties)
+        internal MarkupAttribute(int position, int sourcePosition, int length, string name, IEnumerable<MarkupProperty> properties)
         {
             this.Position = position;
+            this.SourcePosition = sourcePosition;
             this.Length = length;
             this.Name = name;
 
@@ -169,7 +172,7 @@ namespace Yarn.MarkupParsing
         /// <param name="length">The number of text elements in the plain
         /// text that this attribute covers.</param>
         internal MarkupAttribute(MarkupAttributeMarker openingMarker, int length)
-        : this(openingMarker.Position, length, openingMarker.Name, openingMarker.Properties)
+        : this(openingMarker.Position, openingMarker.SourcePosition, length, openingMarker.Name, openingMarker.Properties)
         {
         }
 
@@ -310,12 +313,14 @@ namespace Yarn.MarkupParsing
         /// </summary>
         /// <param name="name">The name of the marker.</param>
         /// <param name="position">The position of the marker.</param>
+        /// <param name="sourcePosition">The position of the marker in the original text.</param>
         /// <param name="properties">The properties of the marker.</param>
         /// <param name="type">The type of the marker.</param>
-        internal MarkupAttributeMarker(string name, int position, List<MarkupProperty> properties, TagType type)
+        internal MarkupAttributeMarker(string name, int position, int sourcePosition, List<MarkupProperty> properties, TagType type)
         {
             this.Name = name;
             this.Position = position;
+            this.SourcePosition = sourcePosition;
             this.Properties = properties;
             this.Type = type;
         }
@@ -340,6 +345,12 @@ namespace Yarn.MarkupParsing
         /// Gets the type of marker that this is.
         /// </summary>
         public TagType Type { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the position of this marker in the original source
+        /// text.
+        /// </summary>
+        internal int SourcePosition { get; set; }
 
         /// <summary>
         /// Gets the property associated with the specified key, if

@@ -70,11 +70,11 @@ namespace Yarn.MarkupParsing
 
         /// <summary>
         /// A comparison function that sorts <see cref="MarkupAttribute"/>s
-        /// by their position.
+        /// by their source position.
         /// </summary>
-        /// <returns>A value indicating the relative position of the two
-        /// attributes.</returns>
-        private static readonly Comparison<MarkupAttribute> AttributePositionComparison = (x, y) => x.Position.CompareTo(y.Position);
+        /// <returns>A value indicating the relative source position of the
+        /// two attributes.</returns>
+        private static readonly Comparison<MarkupAttribute> AttributePositionComparison = (x, y) => x.SourcePosition.CompareTo(y.SourcePosition);
 
         /// <summary>
         /// A dictionary that maps the names of attributes to an object
@@ -94,10 +94,16 @@ namespace Yarn.MarkupParsing
         private StringReader stringReader;
 
         /// <summary>
-        /// The current position of the string reader, measured in text
-        /// elements.
+        /// The current position of the string reader in the plain text,
+        /// measured in text elements.
         /// </summary>
         private int position;
+
+        /// <summary>
+        /// The current position of the string reader in the plain text,
+        /// measured in characters.
+        /// </summary>
+        private int sourcePosition;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LineParser"/>
@@ -222,6 +228,7 @@ namespace Yarn.MarkupParsing
                             // Consume the single trailing whitespace
                             // character (and don't update position)
                             this.stringReader.Read();
+                            this.sourcePosition += 1;
                         }
                     }
                 }
@@ -230,8 +237,9 @@ namespace Yarn.MarkupParsing
                     // plain text! add it to the resulting string and
                     // advance the parser's plain-text position
                     stringBuilder.Append(c);
+                    this.sourcePosition += 1;
                 }
-
+                
                 lastCharacter = c;
             }
 
@@ -265,7 +273,7 @@ namespace Yarn.MarkupParsing
 
                     MarkupProperty nameProperty = new MarkupProperty(CharacterAttributeNameProperty, nameValue);
 
-                    var characterAttribute = new MarkupAttribute(0, endRange, CharacterAttribute, new[] { nameProperty });
+                    var characterAttribute = new MarkupAttribute(0, 0, endRange, CharacterAttribute, new[] { nameProperty });
 
                     attributes.Add(characterAttribute);
                 }
@@ -467,9 +475,15 @@ namespace Yarn.MarkupParsing
         /// <returns>The parsed marker.</returns>
         private MarkupAttributeMarker ParseAttributeMarker()
         {
+            var sourcePositionAtMarkerStart = this.sourcePosition;
+
             // We have already consumed the start of the marker '[' before
-            // we enter here, so start parsing from the characters that can
-            // appear inside the marker
+            // we enter here. Increment the sourcePosition counter to
+            // account for it.
+            this.sourcePosition += 1;
+
+            // Next, start parsing from the characters that can appear
+            // inside the marker
             if (this.Peek('/'))
             {
                 // This is either the start of a closing tag or the start
@@ -480,14 +494,14 @@ namespace Yarn.MarkupParsing
                 {
                     // It's the close-all tag!
                     this.ParseCharacter(']');
-                    return new MarkupAttributeMarker(null, this.position, new List<MarkupProperty>(), TagType.CloseAll);
+                    return new MarkupAttributeMarker(null, this.position, sourcePositionAtMarkerStart, new List<MarkupProperty>(), TagType.CloseAll);
                 }
                 else
                 {
                     // It's a named closing tag!
                     var tagName = this.ParseID();
                     this.ParseCharacter(']');
-                    return new MarkupAttributeMarker(tagName, this.position, new List<MarkupProperty>(), TagType.Close);
+                    return new MarkupAttributeMarker(tagName, this.position, sourcePositionAtMarkerStart, new List<MarkupProperty>(), TagType.Close);
                 }
             }
 
@@ -528,7 +542,7 @@ namespace Yarn.MarkupParsing
                 {
                     // End of an Opening tag.
                     this.ParseCharacter(']');
-                    return new MarkupAttributeMarker(attributeName, this.position, properties, TagType.Open);
+                    return new MarkupAttributeMarker(attributeName, this.position, sourcePositionAtMarkerStart, properties, TagType.Open);
                 }
 
                 if ((char)next == '/')
@@ -536,7 +550,7 @@ namespace Yarn.MarkupParsing
                     // End of a self-closing tag.
                     this.ParseCharacter('/');
                     this.ParseCharacter(']');
-                    return new MarkupAttributeMarker(attributeName, this.position, properties, TagType.SelfClosing);
+                    return new MarkupAttributeMarker(attributeName, this.position, sourcePositionAtMarkerStart, properties, TagType.SelfClosing);
                 }
 
                 // Expect another property.
@@ -722,6 +736,7 @@ namespace Yarn.MarkupParsing
                 {
                     this.stringReader.Read();
                     intBuilder.Append(nextChar);
+                    this.sourcePosition += 1;
                 }
                 else
                 {
@@ -738,12 +753,14 @@ namespace Yarn.MarkupParsing
 
             // Read the first character, which must be a letter
             int tempNext = this.stringReader.Read();
+            this.sourcePosition += 1;
             this.AssertNotEndOfInput(tempNext);
             char nextChar = (char)tempNext;
 
             if (char.IsSurrogate(nextChar))
             {
                 var nextNext = this.stringReader.Read();
+                this.sourcePosition += 1;
                 this.AssertNotEndOfInput(nextNext);
                 var nextNextChar = (char)nextNext;
 
@@ -775,10 +792,12 @@ namespace Yarn.MarkupParsing
                 if (char.IsSurrogate(nextChar))
                 {
                     this.stringReader.Read(); // consume this char
+                    this.sourcePosition += 1;
 
                     // consume the next character, which we expect to be a
                     // surrogate pair
                     var nextNext = this.stringReader.Read();
+                    this.sourcePosition += 1;
                     this.AssertNotEndOfInput(nextNext);
                     var nextNextChar = (char)nextNext;
 
@@ -791,6 +810,7 @@ namespace Yarn.MarkupParsing
                 {
                     idStringBuilder.Append((char)tempNext);
                     this.stringReader.Read(); // consume it
+                    this.sourcePosition += 1;
                 }
                 else
                 {
@@ -810,6 +830,7 @@ namespace Yarn.MarkupParsing
 
             int tempNext = this.stringReader.Read();
             this.AssertNotEndOfInput(tempNext);
+            this.sourcePosition += 1;
 
             char nextChar = (char)tempNext;
             if (nextChar != '"')
@@ -821,6 +842,7 @@ namespace Yarn.MarkupParsing
             {
                 tempNext = this.stringReader.Read();
                 this.AssertNotEndOfInput(tempNext);
+                this.sourcePosition += 1;
                 nextChar = (char)tempNext;
 
                 if (nextChar == '"')
@@ -834,6 +856,7 @@ namespace Yarn.MarkupParsing
                     // an escaped quote or backslash
                     int nextNext = this.stringReader.Read();
                     this.AssertNotEndOfInput(nextNext);
+                    this.sourcePosition += 1;
                     char nextNextChar = (char)nextNext;
                     if (nextNextChar == '\\' || nextNextChar == '"')
                     {
@@ -859,6 +882,8 @@ namespace Yarn.MarkupParsing
             {
                 throw new MarkupParseException($"Expected a {character} inside markup in line \"{this.input}\"");
             }
+
+            this.sourcePosition += 1;
         }
 
         /// <summary>
@@ -901,6 +926,7 @@ namespace Yarn.MarkupParsing
                 {
                     // consume it and continue
                     this.stringReader.Read();
+                    this.sourcePosition += 1;
                 }
                 else
                 {
