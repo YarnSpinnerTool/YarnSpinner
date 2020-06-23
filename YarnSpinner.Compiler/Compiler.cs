@@ -1,4 +1,4 @@
-﻿namespace Yarn.Compiler
+namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -700,7 +700,7 @@
             else
             {
                 // throw an error
-                throw ParseException.Make(context,"Invalid expression inside assignment statement");
+                throw new ParseException(context, "Invalid expression inside assignment statement");
             }
             return 0;
         }  
