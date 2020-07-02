@@ -19,6 +19,7 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
+namespace Yarn.Compiler {
 
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -971,3 +972,4 @@ public partial class YarnSpinnerLexer : Lexer {
 
 
 }
+} // namespace Yarn.Compiler

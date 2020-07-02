@@ -19,6 +19,7 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
+namespace Yarn.Compiler {
 using System;
 using System.IO;
 using System.Text;
@@ -2978,3 +2979,4 @@ public partial class YarnSpinnerParser : Parser {
 
 
 }
+} // namespace Yarn.Compiler
