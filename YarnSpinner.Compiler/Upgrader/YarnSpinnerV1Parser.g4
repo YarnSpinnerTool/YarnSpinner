@@ -1,6 +1,6 @@
-parser grammar YarnSpinnerParser;
+parser grammar YarnSpinnerV1Parser;
 
-options { tokenVocab=YarnSpinnerLexer; }
+options { tokenVocab=YarnSpinnerV1Lexer; }
 
 dialogue 
     : (file_hashtag*) node+ 

@@ -1,4 +1,4 @@
-lexer grammar YarnSpinnerLexer;
+lexer grammar YarnSpinnerV1Lexer;
 
 tokens { INDENT, DEDENT }
  
