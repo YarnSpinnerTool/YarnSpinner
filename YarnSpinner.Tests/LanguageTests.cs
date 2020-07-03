@@ -228,34 +228,6 @@ namespace YarnSpinner.Tests
                     RunStandardTestcase();
             }
         }
-
-        // Returns the list of .node and.yarn files in the
-        // Tests/<directory> directory.
-        public static IEnumerable<object[]> FileSources(string directory) {
-
-            var allowedExtensions = new[] { ".node", ".yarn" };
-
-            var path = Path.Combine(TestDataPath, directory);
-
-            var files = GetFilesInDirectory(path);
-
-            return files.Where(p => allowedExtensions.Contains(Path.GetExtension(p)))
-                        .Select(p => new[] {Path.Combine(directory, Path.GetFileName(p))});
-        }
-
-        // Returns the list of files in a directory. If that directory doesn't
-        // exist, returns an empty list.
-        static IEnumerable<string> GetFilesInDirectory(string path)
-        {
-            try
-            {
-                return Directory.EnumerateFiles(path);
-            }
-            catch (DirectoryNotFoundException)
-            {
-                return new string[] { };
-            }
-        }
     }
 
 }
