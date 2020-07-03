@@ -71,6 +71,7 @@ namespace Yarn.Compiler.Upgrader
                 var replacement = new Replacement()
                 {
                     Start = context.Start.StartIndex,
+                    StartLine = context.Start.Line,
                     OriginalText = originalText,
                     ReplacementText = sb.ToString(),
                     Comment = "Format functions have been replaced with markup.",

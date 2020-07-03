@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -13,13 +13,20 @@ namespace Yarn.Compiler.Upgrader
     public struct Replacement
     {
         /// <summary>
-        /// The position in the original string where the substitution should
-        /// be made.
+        /// The position in the original string where the substitution
+        /// should be made.
         /// </summary>
         public int Start;
 
         /// <summary>
-        /// The string to expect at <see cref="Start"/> in the original string.
+        /// The line in the original string where the substitution should
+        /// be made.
+        /// </summary>
+        public int StartLine;
+
+        /// <summary>
+        /// The string to expect at <see cref="Start"/> in the original
+        /// string.
         /// </summary>
         public string OriginalText;
 
