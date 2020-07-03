@@ -1,4 +1,4 @@
-using Xunit;
+﻿using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -200,8 +200,12 @@ namespace YarnSpinner.Tests
 
         }
 
-        // Executes the named node, and checks any assertions made during
-        // execution. Fails the test if an assertion made in Yarn fails.
+        /// <summary>
+        /// Executes the named node, and checks any assertions made during
+        /// execution. Fails the test if an assertion made in Yarn fails.
+        /// </summary>
+        /// <param name="nodeName">The name of the node to start the test
+        /// from. Defaults to "Start".</param>
         protected void RunStandardTestcase(string nodeName = "Start") {
 
             if (testPlan == null) {
@@ -221,6 +225,11 @@ namespace YarnSpinner.Tests
             
         }
 
+        /// <summary>
+        /// Sets the current test plan to one loaded from a given path.
+        /// </summary>
+        /// <param name="path">The path of the file containing the test
+        /// plan.</param>
         public void LoadTestPlan(string path) {
             this.testPlan = new TestPlan(path);
         }

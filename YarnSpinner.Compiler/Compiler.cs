@@ -1,4 +1,4 @@
-namespace Yarn.Compiler
+﻿namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -10,17 +10,18 @@ namespace Yarn.Compiler
     using Antlr4.Runtime.Misc;
     using Antlr4.Runtime.Tree;
     using static Yarn.Instruction.Types;
-    
+
     /// <summary>Specifies the result of compiling Yarn code.</summary>
     /// <remarks>This enum specifies the _type_ of success that resulted.
-    /// Compilation failures will result in a <see cref="ParseException"/>, so they don't get
-    /// a Status.</remarks>
+    /// Compilation failures will result in a <see cref="ParseException"/>,
+    /// so they don't get a Status.</remarks>
     public enum Status
     {
         /// <summary>The compilation succeeded with no errors.</summary>
         Succeeded,
 
-        /// <summary>The compilation succeeded, but some strings do not have string tags.</summary>
+        /// <summary>The compilation succeeded, but some strings do not
+        /// have string tags.</summary>
         SucceededUntaggedStrings,
     }
 
@@ -34,55 +35,57 @@ namespace Yarn.Compiler
     /// </remarks>
     public struct StringInfo
     {
-		/// <summary>
-		/// The original text of the string.
-		/// </summary>
+        /// <summary>
+        /// The original text of the string.
+        /// </summary>
         public string text;
 
-		/// <summary>
-		/// The name of the node that this string was found in.
-		/// </summary>
+        /// <summary>
+        /// The name of the node that this string was found in.
+        /// </summary>
         public string nodeName;
 
-		/// <summary>
-		/// The line number at which this string was found in the file.
-		/// </summary>
+        /// <summary>
+        /// The line number at which this string was found in the file.
+        /// </summary>
         public int lineNumber;
 
-		/// <summary>
-		/// The name of the file this string was found in.
-		/// </summary>
+        /// <summary>
+        /// The name of the file this string was found in.
+        /// </summary>
         public string fileName;
 
-		/// <summary>
-		/// Indicates whether this string's line ID was implicitly
-		/// generated.
-		/// </summary>
-		/// <remarks>
-		/// Implicitly generated line IDs are not guaranteed to remain the
-		/// same across multiple compilations. To ensure that a line ID
-		/// remains the same, you must define it by adding a [line
-		/// tag]({{|ref "/docs/unity/localisation.md"|}}) to the line.
-		/// </remarks>
+        /// <summary>
+        /// Indicates whether this string's line ID was implicitly
+        /// generated.
+        /// </summary>
+        /// <remarks>
+        /// Implicitly generated line IDs are not guaranteed to remain the
+        /// same across multiple compilations. To ensure that a line ID
+        /// remains the same, you must define it by adding a [line
+        /// tag]({{|ref "/docs/unity/localisation.md"|}}) to the line.
+        /// </remarks>
         public bool isImplicitTag;
 
-		/// <summary>
-		/// The metadata (i.e. hashtags) associated with this string.
-		/// </summary>
-		/// <remarks>
-		/// This array will contain any hashtags associated with this string besides the `#line:`
-		/// hashtag.
-		/// </remarks>
+        /// <summary>
+        /// The metadata (i.e. hashtags) associated with this string.
+        /// </summary>
+        /// <remarks>
+        /// This array will contain any hashtags associated with this
+        /// string besides the `#line:` hashtag.
+        /// </remarks>
         public string[] metadata;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StringInfo"/> struct.
+        /// Initializes a new instance of the <see cref="StringInfo"/>
+        /// struct.
         /// </summary>
         /// <param name="text">The text of the string.</param>
         /// <param name="fileName">The file name.</param>
         /// <param name="nodeName">The node name.</param>
         /// <param name="lineNumber">The line number.</param>
-        /// <param name="isImplicitTag">If `true`, this string info is stored with an implicit line ID.</param>
+        /// <param name="isImplicitTag">If `true`, this string info is
+        /// stored with an implicit line ID.</param>
         /// <param name="metadata">The string's metadata.</param>
         internal StringInfo(string text, string fileName, string nodeName, int lineNumber, bool isImplicitTag, string[] metadata)
         {
@@ -109,7 +112,8 @@ namespace Yarn.Compiler
     /// </summary>
     public class Compiler : YarnSpinnerParserBaseListener
     {
-        /// <summary>A regular expression used to detect illegal characters in node titles.</summary>
+        /// <summary>A regular expression used to detect illegal characters
+        /// in node titles.</summary>
         private readonly Regex invalidNodeTitleNameRegex = new Regex(@"[\[<>\]{}\|:\s#\$]");
 
         private int labelCount = 0;
@@ -131,7 +135,7 @@ namespace Yarn.Compiler
         /// Gets the program being generated by the compiler.
         /// </summary>
         internal Program Program { get; private set; }
-        
+
         /// <summary>
         /// The name of the file we are currently parsing from.
         /// </summary>
@@ -150,8 +154,8 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
-        /// Reads the contents of a file at a given path, and generates a program and a
-        /// derived string table from its contents.
+        /// Reads the contents of a file at a given path, and generates a
+        /// program and a derived string table from its contents.
         /// </summary>
         /// <param name="path">The path to the file containing the
         /// program.</param>
@@ -162,7 +166,8 @@ namespace Yarn.Compiler
         /// <returns>The status of the compilation.</returns>
         /// <exception cref="ParseException">Thrown when a parse error
         /// occurs during compilation.</exception>
-        public static Status CompileFile(string path, out Program program, out IDictionary<string, StringInfo> stringTable) {
+        public static Status CompileFile(string path, out Program program, out IDictionary<string, StringInfo> stringTable)
+        {
             var source = File.ReadAllText(path);
 
             var fileName = Path.GetFileNameWithoutExtension(path);
@@ -170,10 +175,10 @@ namespace Yarn.Compiler
             return CompileString(source, fileName, out program, out stringTable);
         }
 
-        #if DEBUG
+#if DEBUG
         internal string parseTree;
         internal List<string> tokens;
-        #endif
+#endif
 
         /// <summary>
         /// Generates a program and a derived string table from the
@@ -189,7 +194,7 @@ namespace Yarn.Compiler
         /// <returns>The status of the compilation.</returns>
         /// <exception cref="ParseException">Thrown when a parse error
         /// occurs during compilation.</exception>                
-        public static Status CompileString(string text, string fileName, out Program program, out IDictionary<string,StringInfo> stringTable)
+        public static Status CompileString(string text, string fileName, out Program program, out IDictionary<string, StringInfo> stringTable)
         {
             ICharStream input = CharStreams.fromstring(text);
 
@@ -201,7 +206,7 @@ namespace Yarn.Compiler
             // turning off the normal error listener and using ours
             parser.RemoveErrorListeners();
             parser.AddErrorListener(ParserErrorListener.Instance);
-            
+
             lexer.RemoveErrorListeners();
             lexer.AddErrorListener(LexerErrorListener.Instance);
 
@@ -209,29 +214,32 @@ namespace Yarn.Compiler
             try
             {
                 tree = parser.dialogue();
-            } catch (ParseException e)
+            }
+            catch (ParseException e)
             {
-                #if DEBUG
+#if DEBUG
                 var tokenStringList = new List<string>();
                 tokens.Reset();
-                foreach (var token in tokens.GetTokens()) {
+                foreach (var token in tokens.GetTokens())
+                {
                     tokenStringList.Add($"{token.Line}:{token.Column} {YarnSpinnerLexer.DefaultVocabulary.GetDisplayName(token.Type)} \"{token.Text}\"");
                 }
 
                 throw new ParseException($"{e.Message}\n\nTokens:\n{string.Join("\n", tokenStringList)}");
-                #else
+#else
                 throw new ParseException(e.Message);
-                #endif // DEBUG
+#endif // DEBUG
             }
 
             Compiler compiler = new Compiler(fileName);
-            
+
             compiler.Compile(tree);
 
             program = compiler.Program;
             stringTable = compiler.StringTable;
 
-            if (compiler.containsImplicitStringTags) {
+            if (compiler.containsImplicitStringTags)
+            {
                 return Status.SucceededUntaggedStrings;
             }
             else
@@ -248,7 +256,8 @@ namespace Yarn.Compiler
         /// to extract tokens from.</param>
         /// <returns>The list of tokens extracted from the source
         /// code.</returns>
-        internal static List<string> GetTokensFromFile(string path) {
+        internal static List<string> GetTokensFromFile(string path)
+        {
             var text = File.ReadAllText(path);
             return GetTokensFromString(text);
         }
@@ -261,7 +270,8 @@ namespace Yarn.Compiler
         /// from.</param>
         /// <returns>The list of tokens extracted from the source
         /// code.</returns>
-        internal static List<string> GetTokensFromString(string text) {
+        internal static List<string> GetTokensFromString(string text)
+        {
             ICharStream input = CharStreams.fromstring(text);
 
             YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
@@ -269,7 +279,8 @@ namespace Yarn.Compiler
             var tokenStringList = new List<string>();
 
             var tokens = lexer.GetAllTokens();
-            foreach (var token in tokens) {
+            foreach (var token in tokens)
+            {
                 tokenStringList.Add($"{token.Line}:{token.Column} {YarnSpinnerLexer.DefaultVocabulary.GetDisplayName(token.Type)} \"{token.Text}\"");
             }
 
@@ -306,7 +317,8 @@ namespace Yarn.Compiler
 
             bool isImplicit;
 
-            if (lineID == null) {
+            if (lineID == null)
+            {
                 lineIDUsed = $"{this.FileName}-{nodeName}-{this.stringCount}";
 
                 this.stringCount += 1;
@@ -317,7 +329,7 @@ namespace Yarn.Compiler
 
                 isImplicit = true;
             }
-            else 
+            else
             {
                 lineIDUsed = lineID;
 
@@ -326,7 +338,8 @@ namespace Yarn.Compiler
 
             var theString = new StringInfo(text, this.FileName, nodeName, lineNumber, isImplicit, tags);
 
-            // Finally, add this to the string table, and return the line ID.
+            // Finally, add this to the string table, and return the line
+            // ID.
             this.StringTable.Add(lineIDUsed, theString);
 
             return lineIDUsed;
@@ -361,7 +374,7 @@ namespace Yarn.Compiler
 
             instruction.Operands.Add(operands);
 
-            node.Instructions.Add(instruction);            
+            node.Instructions.Add(instruction);
         }
 
         /// <summary>
@@ -377,10 +390,12 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
-        /// Extracts a line ID from a <see cref="YarnSpinnerParser.HashtagContext"/>, if one exists.
+        /// Extracts a line ID from a <see
+        /// cref="YarnSpinnerParser.HashtagContext"/>, if one exists.
         /// </summary>
         /// <param name="context">The hashtag parsing context.</param>
-        /// <returns>The line ID if one is present in the hashtag context, otherwise `null`.</returns>
+        /// <returns>The line ID if one is present in the hashtag context,
+        /// otherwise `null`.</returns>
         internal string GetLineID(YarnSpinnerParser.HashtagContext[] context)
         {
             // if there are any hashtags
@@ -398,27 +413,25 @@ namespace Yarn.Compiler
             return null;
         }
 
-        // this replaces the CompileNode from the old compiler
-        // will start walking the parse tree
-        // emitting byte code as it goes along
-        // this will all get stored into our program var
-        // needs a tree to walk, this comes from the ANTLR Parser/Lexer steps
+        // this replaces the CompileNode from the old compiler will start
+        // walking the parse tree emitting byte code as it goes along this
+        // will all get stored into our program var needs a tree to walk,
+        // this comes from the ANTLR Parser/Lexer steps
         internal void Compile(IParseTree tree)
         {
             ParseTreeWalker walker = new ParseTreeWalker();
             walker.Walk(this, tree);
         }
 
-        // we have found a new node
-        // set up the currentNode var ready to hold it and otherwise continue
+        // we have found a new node set up the currentNode var ready to
+        // hold it and otherwise continue
         public override void EnterNode(YarnSpinnerParser.NodeContext context)
         {
             CurrentNode = new Node();
             RawTextNode = false;
         }
-        // have left the current node
-        // store it into the program
-        // wipe the var and make it ready to go again
+        // have left the current node store it into the program wipe the
+        // var and make it ready to go again
         public override void ExitNode(YarnSpinnerParser.NodeContext context)
         {
             Program.Nodes[CurrentNode.Name] = CurrentNode;
@@ -426,11 +439,10 @@ namespace Yarn.Compiler
             RawTextNode = false;
         }
 
-        
-        // have finished with the header
-        // so about to enter the node body and all its statements
-        // do the initial setup required before compiling that body statements
-        // eg emit a new startlabel
+
+        // have finished with the header so about to enter the node body
+        // and all its statements do the initial setup required before
+        // compiling that body statements eg emit a new startlabel
         public override void ExitHeader(YarnSpinnerParser.HeaderContext context)
         {
             var headerKey = context.header_key.Text;
@@ -442,44 +454,49 @@ namespace Yarn.Compiler
             // it was written as an empty line.
             var headerValue = context.header_value?.Text ?? "";
 
-            if (headerKey.Equals("title", StringComparison.InvariantCulture)) {
+            if (headerKey.Equals("title", StringComparison.InvariantCulture))
+            {
                 // Set the name of the node
                 CurrentNode.Name = headerValue;
 
                 // Throw an exception if this node name contains illegal
                 // characters
-                if (invalidNodeTitleNameRegex.IsMatch(CurrentNode.Name)) {
+                if (invalidNodeTitleNameRegex.IsMatch(CurrentNode.Name))
+                {
                     throw new ParseException($"The node '{CurrentNode.Name}' contains illegal characters in its title.");
                 }
             }
 
-            if (headerKey.Equals("tags", StringComparison.InvariantCulture)) {
+            if (headerKey.Equals("tags", StringComparison.InvariantCulture))
+            {
                 // Split the list of tags by spaces, and use that
-
-                var tags = headerValue.Split(new[]{' '}, StringSplitOptions.RemoveEmptyEntries);
+                var tags = headerValue.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
                 CurrentNode.Tags.Add(tags);
 
-                if (CurrentNode.Tags.Contains("rawText")) {
-                    // This is a raw text node. Flag it as such for future compilation.
+                if (CurrentNode.Tags.Contains("rawText"))
+                {
+                    // This is a raw text node. Flag it as such for future
+                    // compilation.
                     RawTextNode = true;
                 }
-                
+
             }
-            
+
         }
 
-        // have entered the body
-        // the header should have finished being parsed and currentNode ready
-        // all we do is set up a body visitor and tell it to run through all the statements
-        // it handles everything from that point onwards
+        // have entered the body the header should have finished being
+        // parsed and currentNode ready all we do is set up a body visitor
+        // and tell it to run through all the statements it handles
+        // everything from that point onwards
         public override void EnterBody(YarnSpinnerParser.BodyContext context)
         {
             // if it is a regular node
             if (!RawTextNode)
             {
-                // This is the start of a node that we can jump to. Add a label at this point.
-                CurrentNode.Labels.Add(RegisterLabel(), CurrentNode.Instructions.Count);                
+                // This is the start of a node that we can jump to. Add a
+                // label at this point.
+                CurrentNode.Labels.Add(RegisterLabel(), CurrentNode.Instructions.Count);
 
                 BodyVisitor visitor = new BodyVisitor(this);
 
@@ -488,30 +505,27 @@ namespace Yarn.Compiler
                     visitor.Visit(statement);
                 }
             }
-            // we are a rawText node
-            // turn the body into text
-            // save that into the node
-            // perform no compilation
-            // TODO: oh glob! there has to be a better way
+            // we are a rawText node turn the body into text save that into
+            // the node perform no compilation TODO: oh glob! there has to
+            // be a better way
             else
             {
                 CurrentNode.SourceTextStringID = RegisterString(context.GetText(), CurrentNode.Name, "line:" + CurrentNode.Name, context.Start.Line, null);
             }
         }
 
-        // exiting the body of the node, time for last minute work
-        // before moving onto the next node
-        // Does this node end after emitting AddOptions codes
-        // without calling ShowOptions?
+        // exiting the body of the node, time for last minute work before
+        // moving onto the next node Does this node end after emitting
+        // AddOptions codes without calling ShowOptions?
         public override void ExitBody(YarnSpinnerParser.BodyContext context)
         {
             // if it is a regular node
             if (!RawTextNode)
             {
                 // Note: this only works when we know that we don't have
-                // AddOptions and then Jump up back into the code to run them.
-                // TODO: A better solution would be for the parser to flag
-                // whether a node has Options at the end.
+                // AddOptions and then Jump up back into the code to run
+                // them. TODO: A better solution would be for the parser to
+                // flag whether a node has Options at the end.
                 var hasRemainingOptions = false;
                 foreach (var instruction in CurrentNode.Instructions)
                 {
@@ -525,14 +539,16 @@ namespace Yarn.Compiler
                     }
                 }
 
-                // If this compiled node has no lingering options to show at the end of the node, then stop at the end
+                // If this compiled node has no lingering options to show
+                // at the end of the node, then stop at the end
                 if (hasRemainingOptions == false)
                 {
                     Emit(CurrentNode, OpCode.Stop);
                 }
                 else
                 {
-                    // Otherwise, show the accumulated nodes and then jump to the selected node
+                    // Otherwise, show the accumulated nodes and then jump
+                    // to the selected node
                     Emit(CurrentNode, OpCode.ShowOptions);
 
                     // Showing options will make the execution stop; the
@@ -544,9 +560,9 @@ namespace Yarn.Compiler
         }
     }
 
-    // the visitor for the body of the node
-    // does not really return ints, just has to return something
-    // might be worth later investigating returning Instructions
+    // the visitor for the body of the node does not really return ints,
+    // just has to return something might be worth later investigating
+    // returning Instructions
     internal class BodyVisitor : YarnSpinnerParserBaseVisitor<int>
     {
         internal Compiler compiler;
@@ -557,7 +573,8 @@ namespace Yarn.Compiler
             this.loadOperators();
         }
 
-        private void GenerateFormattedText(IList<IParseTree> nodes, out string outputString, out int expressionCount) {
+        private void GenerateFormattedText(IList<IParseTree> nodes, out string outputString, out int expressionCount)
+        {
             expressionCount = 0;
             StringBuilder composedString = new StringBuilder();
 
@@ -565,10 +582,14 @@ namespace Yarn.Compiler
             // text nodes or expressions. if they're expressions, we
             // evaluate them, and inject a positional reference into the
             // final string.
-            foreach (var child in nodes) {
-                if (child is ITerminalNode) {
+            foreach (var child in nodes)
+            {
+                if (child is ITerminalNode)
+                {
                     composedString.Append(child.GetText());
-                } else if (child is ParserRuleContext) {
+                }
+                else if (child is ParserRuleContext)
+                {
                     // assume that this is an expression (the parser only
                     // permits them to be expressions, but we can't specify
                     // that here) - visit it, and we will emit code that
@@ -586,16 +607,17 @@ namespace Yarn.Compiler
                     composedString.Append(expressionCount);
                     expressionCount += 1;
                 }
-            }        
+            }
 
             outputString = composedString.ToString().Trim();
-            
-        } 
+        }
 
-        private string[] GetHashtagTexts (YarnSpinnerParser.HashtagContext[] hashtags) {
+        private string[] GetHashtagTexts(YarnSpinnerParser.HashtagContext[] hashtags)
+        {
             // Add hashtag
             var hashtagText = new List<string>();
-            foreach (var tag in hashtags) {
+            foreach (var tag in hashtags)
+            {
                 hashtagText.Add(tag.HASHTAG_TEXT().GetText());
             }
             return hashtagText.ToArray();
@@ -617,9 +639,10 @@ namespace Yarn.Compiler
             // Convert the formatted string into a string with
             // placeholders, and evaluate the inline expressions and push
             // the results onto the stack.
-            GenerateFormattedText(context.line_formatted_text().children, out var composedString, out var expressionCount);    
-            
-            // Get the lineID for this string from the hashtags if it has one; otherwise, a new one will be created
+            GenerateFormattedText(context.line_formatted_text().children, out var composedString, out var expressionCount);
+
+            // Get the lineID for this string from the hashtags if it has
+            // one; otherwise, a new one will be created
             string lineID = compiler.GetLineID(context.hashtag());
 
             var hashtagText = GetHashtagTexts(context.hashtag());
@@ -627,19 +650,18 @@ namespace Yarn.Compiler
             int lineNumber = context.Start.Line;
 
             string stringID = compiler.RegisterString(
-                composedString.ToString(), 
-                compiler.CurrentNode.Name, 
-                lineID, 
-                lineNumber, 
+                composedString.ToString(),
+                compiler.CurrentNode.Name,
+                lineID,
+                lineNumber,
                 hashtagText);
 
             compiler.Emit(OpCode.RunLine, new Operand(stringID), new Operand(expressionCount));
-            
+
             return 0;
         }
 
-        // a jump statement
-        // [[ NodeName ]]
+        // a jump statement [[ NodeName ]]
         public override int VisitOptionJump(YarnSpinnerParser.OptionJumpContext context)
         {
             string destination = context.NodeName.Text.Trim();
@@ -661,7 +683,7 @@ namespace Yarn.Compiler
 
             // getting the lineID from the hashtags if it has one
             string lineID = compiler.GetLineID(context.hashtag());
-            
+
             var hashtagText = GetHashtagTexts(context.hashtag());
 
             string stringID = compiler.RegisterString(label, compiler.CurrentNode.Name, lineID, lineNumber, hashtagText);
@@ -671,8 +693,8 @@ namespace Yarn.Compiler
             return 0;
         }
 
-        // A set command: explicitly setting a value to an expression
-        // <<set $foo to 1>>
+        // A set command: explicitly setting a value to an expression <<set
+        // $foo to 1>>
         public override int VisitSetVariableToValue(YarnSpinnerParser.SetVariableToValueContext context)
         {
             // add the expression (whatever it resolves to)
@@ -685,7 +707,8 @@ namespace Yarn.Compiler
             return 0;
         }
 
-        // A set command: evaluating an expression where the operator is an assignment-type
+        // A set command: evaluating an expression where the operator is an
+        // assignment-type
         public override int VisitSetExpression(YarnSpinnerParser.SetExpressionContext context)
         {
             // checking the expression is of the correct form
@@ -703,7 +726,7 @@ namespace Yarn.Compiler
                 throw new ParseException(context, "Invalid expression inside assignment statement");
             }
             return 0;
-        }  
+        }
 
         public override int VisitCall_statement(YarnSpinnerParser.Call_statementContext context)
         {
@@ -715,10 +738,11 @@ namespace Yarn.Compiler
             // that, so the stack will not be tidied up. is there a way for
             // that to work?
             return 0;
-        }      
+        }
 
-        // semi-free form text that gets passed along to the game
-        // for things like <<turn fred left>> or <<unlockAchievement FacePlant>>
+        // semi-free form text that gets passed along to the game for
+        // things like <<turn fred left>> or <<unlockAchievement
+        // FacePlant>>
         public override int VisitCommand_statement(YarnSpinnerParser.Command_statementContext context)
         {
             GenerateFormattedText(context.command_formatted_text().children, out var composedString, out var expressionCount);
@@ -730,7 +754,7 @@ namespace Yarn.Compiler
                     // "stop" is a special command that immediately stops
                     // execution
                     compiler.Emit(OpCode.Stop);
-                    break;                
+                    break;
                 default:
                     compiler.Emit(OpCode.RunCommand, new Operand(composedString), new Operand(expressionCount));
                     break;
@@ -750,9 +774,9 @@ namespace Yarn.Compiler
 
             // push the number of parameters onto the stack
             compiler.Emit(OpCode.PushFloat, new Operand(parameters.Length));
-            
+
             // then call the function itself
-            compiler.Emit(OpCode.CallFunc, new Operand(functionName));            
+            compiler.Emit(OpCode.CallFunc, new Operand(functionName));
         }
         // handles emiting the correct instructions for the function
         public override int VisitFunction(YarnSpinnerParser.FunctionContext context)
@@ -764,8 +788,7 @@ namespace Yarn.Compiler
             return 0;
         }
 
-        // if statement
-        // ifclause (elseifclause)* (elseclause)? <<endif>>
+        // if statement ifclause (elseifclause)* (elseclause)? <<endif>>
         public override int VisitIf_statement(YarnSpinnerParser.If_statementContext context)
         {
             // label to give us a jump point for when the if finishes
@@ -788,7 +811,7 @@ namespace Yarn.Compiler
                 generateClause(endOfIfStatementLabel, elseClause.statement(), null);
             }
 
-            compiler.CurrentNode.Labels.Add(endOfIfStatementLabel, compiler.CurrentNode.Instructions.Count);                
+            compiler.CurrentNode.Labels.Add(endOfIfStatementLabel, compiler.CurrentNode.Instructions.Count);
 
             return 0;
         }
@@ -796,8 +819,8 @@ namespace Yarn.Compiler
         {
             string endOfClauseLabel = compiler.RegisterLabel("skipclause");
 
-            // handling the expression (if it has one)
-            // will only be called on ifs and elseifs
+            // handling the expression (if it has one) will only be called
+            // on ifs and elseifs
             if (expression != null)
             {
                 Visit(expression);
@@ -814,15 +837,16 @@ namespace Yarn.Compiler
 
             if (expression != null)
             {
-                compiler.CurrentNode.Labels.Add(endOfClauseLabel, compiler.CurrentNode.Instructions.Count);                
+                compiler.CurrentNode.Labels.Add(endOfClauseLabel, compiler.CurrentNode.Instructions.Count);
                 compiler.Emit(OpCode.Pop);
             }
         }
 
-        // for the shortcut options
-        // (-> line of text <<if expression>> indent statements dedent)+
-        public override int VisitShortcut_option_statement (YarnSpinnerParser.Shortcut_option_statementContext context) {
-            
+        // for the shortcut options (-> line of text <<if expression>>
+        // indent statements dedent)+
+        public override int VisitShortcut_option_statement(YarnSpinnerParser.Shortcut_option_statementContext context)
+        {
+
             string endOfGroupLabel = compiler.RegisterLabel("group_end");
 
             var labels = new List<string>();
@@ -854,7 +878,7 @@ namespace Yarn.Compiler
 
                     // Evaluate the condition, and jump to the end of
                     // clause if it evaluates to false.
-                    
+
                     Visit(shortcut.line_statement().line_condition().expression());
 
                     compiler.Emit(OpCode.JumpIfFalse, new Operand(endOfClauseLabel));
@@ -882,7 +906,7 @@ namespace Yarn.Compiler
                 // the label that we'd jump to if its condition is false.
                 if (shortcut.line_statement().line_condition() != null)
                 {
-                    compiler.CurrentNode.Labels.Add(endOfClauseLabel, compiler.CurrentNode.Instructions.Count);    
+                    compiler.CurrentNode.Labels.Add(endOfClauseLabel, compiler.CurrentNode.Instructions.Count);
 
                     // JumpIfFalse doesn't change the stack, so we need to
                     // tidy up            
@@ -895,7 +919,7 @@ namespace Yarn.Compiler
             // All of the options that we intend to show are now ready to
             // go.
             compiler.Emit(OpCode.ShowOptions);
-            
+
             // The top of the stack now contains the name of the label we
             // want to jump to. Jump to it now.
             compiler.Emit(OpCode.Jump);
@@ -906,8 +930,8 @@ namespace Yarn.Compiler
             foreach (var shortcut in context.shortcut_option())
             {
                 // Emit the label for this option's code
-                compiler.CurrentNode.Labels.Add(labels[optionCount], compiler.CurrentNode.Instructions.Count);                
-                
+                compiler.CurrentNode.Labels.Add(labels[optionCount], compiler.CurrentNode.Instructions.Count);
+
                 // Run through all the children statements of the shortcut
                 // option.
                 foreach (var child in shortcut.statement())
@@ -921,15 +945,17 @@ namespace Yarn.Compiler
                 optionCount++;
             }
 
-            // We made it to the end! Mark the end of the group, so we can jump to it.
-            compiler.CurrentNode.Labels.Add(endOfGroupLabel, compiler.CurrentNode.Instructions.Count);                
+            // We made it to the end! Mark the end of the group, so we can
+            // jump to it.
+            compiler.CurrentNode.Labels.Add(endOfGroupLabel, compiler.CurrentNode.Instructions.Count);
             compiler.Emit(OpCode.Pop);
 
             return 0;
         }
 
-        // the calls for the various operations and expressions
-        // first the special cases (), unary -, !, and if it is just a value by itself
+        // the calls for the various operations and expressions first the
+        // special cases (), unary -, !, and if it is just a value by
+        // itself
         #region specialCaseCalls
         // (expression)
         public override int VisitExpParens(YarnSpinnerParser.ExpParensContext context)
@@ -945,7 +971,7 @@ namespace Yarn.Compiler
 
             // Indicate that we are pushing one parameter
             compiler.Emit(OpCode.PushFloat, new Operand(1));
-            
+
             compiler.Emit(OpCode.CallFunc, new Operand(TokenType.UnaryMinus.ToString()));
 
             return 0;
@@ -971,9 +997,8 @@ namespace Yarn.Compiler
         }
         #endregion
 
-        // left OPERATOR right style expressions
-        // the most common form of expressions
-        // for things like 1 + 3
+        // left OPERATOR right style expressions the most common form of
+        // expressions for things like 1 + 3
         #region lValueOperatorrValueCalls
         internal void genericExpVisitor(YarnSpinnerParser.ExpressionContext left, YarnSpinnerParser.ExpressionContext right, int op)
         {
@@ -1024,11 +1049,9 @@ namespace Yarn.Compiler
         }
         #endregion
 
-        // operatorEquals style operators, eg +=
-        // these two should only be called during a SET operation
-        // eg << set $var += 1 >>
-        // the left expression has to be a variable
-        // the right value can be anything
+        // operatorEquals style operators, eg += these two should only be
+        // called during a SET operation eg << set $var += 1 >> the left
+        // expression has to be a variable the right value can be anything
         #region operatorEqualsCalls
         // generic helper for these types of expressions
         internal void opEquals(string varName, YarnSpinnerParser.ExpressionContext expression, int op)
@@ -1044,12 +1067,12 @@ namespace Yarn.Compiler
             // Indicate that we are pushing two items for comparison
             compiler.Emit(OpCode.PushFloat, new Operand(2));
 
-            // now we evaluate the operator
-            // op will match to one of + - / * %
+            // now we evaluate the operator op will match to one of + - / *
+            // %
             compiler.Emit(OpCode.CallFunc, new Operand(tokens[op].ToString()));
 
-            // Stack now has the destination value
-            // now store the variable and clean up the stack
+            // Stack now has the destination value now store the variable
+            // and clean up the stack
             compiler.Emit(OpCode.StoreVariable, new Operand(varName));
             compiler.Emit(OpCode.Pop);
         }
@@ -1070,10 +1093,10 @@ namespace Yarn.Compiler
         }
         #endregion
 
-        // the calls for the various value types
-        // this is a wee bit messy but is easy to extend, easy to read
-        // and requires minimal checking as ANTLR has already done all that
-        // does have code duplication though
+        // the calls for the various value types this is a wee bit messy
+        // but is easy to extend, easy to read and requires minimal
+        // checking as ANTLR has already done all that does have code
+        // duplication though
         #region valueCalls
         public override int VisitValueVar(YarnSpinnerParser.ValueVarContext context)
         {
@@ -1106,15 +1129,16 @@ namespace Yarn.Compiler
         }
         public override int VisitValueString(YarnSpinnerParser.ValueStringContext context)
         {
-            // stripping the " off the front and back
-            // actually is this what we want?
+            // stripping the " off the front and back actually is this what
+            // we want?
             string stringVal = context.STRING().GetText().Trim('"');
 
             compiler.Emit(OpCode.PushString, new Operand(stringVal));
 
             return 0;
         }
-        // all we need do is visit the function itself, it will handle everything
+        // all we need do is visit the function itself, it will handle
+        // everything
         public override int VisitValueFunc(YarnSpinnerParser.ValueFuncContext context)
         {
             Visit(context.function());
@@ -1151,8 +1175,8 @@ namespace Yarn.Compiler
             tokens[YarnSpinnerLexer.OPERATOR_MATHS_MULTIPLICATION] = TokenType.Multiply;
             tokens[YarnSpinnerLexer.OPERATOR_MATHS_DIVISION] = TokenType.Divide;
             tokens[YarnSpinnerLexer.OPERATOR_MATHS_MODULUS] = TokenType.Modulo;
-            // operators for the set expressions
-            // these map directly to the operator if they didn't have the =
+            // operators for the set expressions these map directly to the
+            // operator if they didn't have the =
             tokens[YarnSpinnerLexer.OPERATOR_MATHS_ADDITION_EQUALS] = TokenType.Add;
             tokens[YarnSpinnerLexer.OPERATOR_MATHS_SUBTRACTION_EQUALS] = TokenType.Minus;
             tokens[YarnSpinnerLexer.OPERATOR_MATHS_MULTIPLICATION_EQUALS] = TokenType.Multiply;
@@ -1174,7 +1198,7 @@ namespace Yarn.Compiler
         public String toDot()
         {
             StringBuilder buf = new StringBuilder();
-            buf.AppendFormat("digraph {0} ",graphName);
+            buf.AppendFormat("digraph {0} ", graphName);
             buf.Append("{\n");
             buf.Append("  ");
             foreach (String node in nodes)
@@ -1202,14 +1226,15 @@ namespace Yarn.Compiler
             return buf.ToString();
         }
     }
-    public class GraphListener:YarnSpinnerParserBaseListener
+    public class GraphListener : YarnSpinnerParserBaseListener
     {
         String currentNode = null;
         public Graph graph = new Graph();
 
         public override void EnterHeader(YarnSpinnerParser.HeaderContext context)
         {
-            if (context.header_key.Text == "title") {
+            if (context.header_key.Text == "title")
+            {
                 currentNode = context.header_value.Text;
             }
         }
@@ -1219,11 +1244,13 @@ namespace Yarn.Compiler
             // Add this node to the graph
             graph.nodes.Add(currentNode);
         }
-        public override void ExitOptionJump(YarnSpinnerParser.OptionJumpContext context) {
+        public override void ExitOptionJump(YarnSpinnerParser.OptionJumpContext context)
+        {
             graph.edge(currentNode, context.NodeName.Text);
         }
 
-        public override void ExitOptionLink(YarnSpinnerParser.OptionLinkContext context) {
+        public override void ExitOptionLink(YarnSpinnerParser.OptionLinkContext context)
+        {
             graph.edge(currentNode, context.NodeName.Text);
         }
 
