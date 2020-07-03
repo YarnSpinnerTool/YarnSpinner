@@ -11,7 +11,7 @@ namespace Yarn.Compiler.Upgrader
     /// Represents an exception occuring during a language syntax upgrade
     /// operation.
     /// </summary>
-    internal class UpgradeException : Exception
+    public class UpgradeException : Exception
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpgradeException"/> class.
