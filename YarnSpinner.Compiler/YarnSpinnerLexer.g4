@@ -206,8 +206,9 @@ BODY_HASHTAG: '#' -> type(HASHTAG), pushMode(TextCommandOrHashtagMode), pushMode
 EXPRESSION_START: '{' -> pushMode(TextMode), pushMode(ExpressionMode);
 
 
-// Any other text means this is a Line
-ANY: . -> more, pushMode(TextMode);
+// Any other text means this is a Line. Lex this first character as
+// TEXT, and enter TextMode.
+ANY: .  -> type(TEXT), pushMode(TextMode);
 
 // Arbitrary text, punctuated by expressions, and ended by 
 // hashtags and/or a newline.
