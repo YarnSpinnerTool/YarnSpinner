@@ -56,7 +56,8 @@ public partial class YarnSpinnerParser : Parser {
 		COMMAND_ELSEIF=65, COMMAND_ELSE=66, COMMAND_SET=67, COMMAND_ENDIF=68, 
 		COMMAND_CALL=69, COMMAND_END=70, COMMAND_TEXT_END=71, COMMAND_EXPRESSION_START=72, 
 		COMMAND_TEXT=73, OPTION_NEWLINE=74, OPTION_WS=75, OPTION_END=76, OPTION_DELIMIT=77, 
-		OPTION_EXPRESSION_START=78, OPTION_TEXT=79, OPTION_ID_WS=80, OPTION_ID=81;
+		OPTION_EXPRESSION_START=78, OPTION_TEXT=79, OPTION_TEXT_FRAG=80, OPTION_ID_WS=81, 
+		OPTION_ID=82;
 	public const int
 		RULE_dialogue = 0, RULE_file_hashtag = 1, RULE_node = 2, RULE_header = 3, 
 		RULE_body = 4, RULE_statement = 5, RULE_line_statement = 6, RULE_line_formatted_text = 7, 
@@ -104,7 +105,8 @@ public partial class YarnSpinnerParser : Parser {
 		"COMMAND_IF", "COMMAND_ELSEIF", "COMMAND_ELSE", "COMMAND_SET", "COMMAND_ENDIF", 
 		"COMMAND_CALL", "COMMAND_END", "COMMAND_TEXT_END", "COMMAND_EXPRESSION_START", 
 		"COMMAND_TEXT", "OPTION_NEWLINE", "OPTION_WS", "OPTION_END", "OPTION_DELIMIT", 
-		"OPTION_EXPRESSION_START", "OPTION_TEXT", "OPTION_ID_WS", "OPTION_ID"
+		"OPTION_EXPRESSION_START", "OPTION_TEXT", "OPTION_TEXT_FRAG", "OPTION_ID_WS", 
+		"OPTION_ID"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -2685,7 +2687,7 @@ public partial class YarnSpinnerParser : Parser {
 
 	private static char[] _serializedATN = {
 		'\x3', '\x608B', '\xA72A', '\x8133', '\xB9ED', '\x417C', '\x3BE7', '\x7786', 
-		'\x5964', '\x3', 'S', '\x14D', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
+		'\x5964', '\x3', 'T', '\x14D', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
 		'\t', '\x3', '\x4', '\x4', '\t', '\x4', '\x4', '\x5', '\t', '\x5', '\x4', 
 		'\x6', '\t', '\x6', '\x4', '\a', '\t', '\a', '\x4', '\b', '\t', '\b', 
 		'\x4', '\t', '\t', '\t', '\x4', '\n', '\t', '\n', '\x4', '\v', '\t', '\v', 
@@ -2949,7 +2951,7 @@ public partial class YarnSpinnerParser : Parser {
 		'\x12E', '\x12F', '\x3', '\x2', '\x2', '\x2', '\x12F', '\x31', '\x3', 
 		'\x2', '\x2', '\x2', '\x130', '\x131', '\a', '\x14', '\x2', '\x2', '\x131', 
 		'\x132', '\x5', '\x34', '\x1B', '\x2', '\x132', '\x133', '\a', 'O', '\x2', 
-		'\x2', '\x133', '\x134', '\a', 'S', '\x2', '\x2', '\x134', '\x13C', '\a', 
+		'\x2', '\x133', '\x134', '\a', 'T', '\x2', '\x2', '\x134', '\x13C', '\a', 
 		'N', '\x2', '\x2', '\x135', '\x137', '\x5', '\x12', '\n', '\x2', '\x136', 
 		'\x135', '\x3', '\x2', '\x2', '\x2', '\x137', '\x13A', '\x3', '\x2', '\x2', 
 		'\x2', '\x138', '\x136', '\x3', '\x2', '\x2', '\x2', '\x138', '\x139', 

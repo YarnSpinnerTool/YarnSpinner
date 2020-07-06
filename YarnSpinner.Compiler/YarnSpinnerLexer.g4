@@ -370,9 +370,10 @@ OPTION_WS: WS -> skip;
 OPTION_END: ']]' -> popMode ;
 OPTION_DELIMIT: '|' -> pushMode(OptionIDMode); // time to specifically look for IDs here
 OPTION_EXPRESSION_START: '{' -> pushMode(ExpressionMode);
-OPTION_TEXT: {
+OPTION_TEXT: OPTION_TEXT_FRAG+ ;
+OPTION_TEXT_FRAG: {
     !(InputStream.LA(1) == ']' && InputStream.LA(2) == ']') // end-of-option
-    }? ~[{|]+ ;
+    }? ~[{|] ;
 
 // Only allow seeing runs of text as an ID after a '|' is 
 // seen. This prevents an option being parsed 

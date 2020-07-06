@@ -1,0 +1,10 @@
+title: Start
+---
+Start line
+[[Destination]]
+This line will never be shown.
+===
+title: Destination
+---
+Destination line
+===
