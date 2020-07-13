@@ -676,6 +676,11 @@ namespace Yarn {
         /// <remarks>
         /// After this method is called, you call <see cref="Continue"/> to
         /// start executing it.
+        ///
+        /// If <see cref="prepareForLinesHandler"/> has been set, it may be
+        /// called when this method is invoked, as the Dialogue determines
+        /// which lines may be delivered during the <paramref
+        /// name="startNode"/> node's execution.
         /// </remarks>
         /// <throws cref="DialogueException">Thrown when no node named
         /// `startNode` has been loaded.</throws>
