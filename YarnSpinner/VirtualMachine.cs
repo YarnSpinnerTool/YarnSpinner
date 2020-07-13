@@ -180,6 +180,7 @@ namespace Yarn
 		public Dialogue.NodeStartHandler nodeStartHandler;
 		public Dialogue.NodeCompleteHandler nodeCompleteHandler;
         public Dialogue.DialogueCompleteHandler dialogueCompleteHandler;
+        public Dialogue.PrepareForLinesHandler prepareForLinesHandler;
 
         private Dialogue dialogue;
 
@@ -237,6 +238,38 @@ namespace Yarn
             state.currentNodeName = nodeName;
 
 			nodeStartHandler?.Invoke(nodeName);
+
+            // Do we have a way to let the client know that certain lines
+            // might be run?
+            if (this.prepareForLinesHandler != null)
+            {
+                // If we have a prepare-for-lines handler, figure out what
+                // lines we anticipate running
+
+                // Create a list; we will never have more lines and options
+                // than total instructions, so that's a decent capacity for
+                // the list (TODO: maybe this list could be reused to save
+                // on allocations?)
+                var stringIDs = new List<string>(this.currentNode.Instructions.Count);
+
+                // Loop over every instruction and find the ones that run a
+                // line or add an option; these are the two instructions
+                // that will signal a line can appear to the player
+                foreach (var instruction in this.currentNode.Instructions)
+                {
+                    if (instruction.Opcode == OpCode.RunLine || instruction.Opcode == OpCode.AddOption)
+                    {
+                        // Both RunLine and AddOption have the string ID
+                        // they want to show as their first operand, so
+                        // store that
+                        stringIDs.Add(instruction.Operands[0].StringValue);
+                    }
+                }
+
+                // Deliver the string IDs
+                this.prepareForLinesHandler(stringIDs);
+            }
+
             return true;
         }
 

@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added substitution support to Dialogue (previously, the game client had to do it)
 - Added support for markup.
 - Added an EditorConfig file to assist future contributions in following the .NET coding style (@Schroedingers-Cat)
+- Added Dialogue.prepareForLinesHandler, a delegate that is called when the Dialogue anticipates running certain lines; games can use this to pre-load content or take other actions to prepare to run lines
 
 ### Changed
 

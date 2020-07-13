@@ -468,6 +468,26 @@ namespace Yarn {
         public delegate void DialogueCompleteHandler();
 
         /// <summary>
+        /// Represents the method that is called when the dialogue
+        /// anticipates that it will deliver lines.
+        /// </summary>
+        /// <remarks>
+        /// This method should begin preparing to run the lines. For
+        /// example, if a game delivers dialogue via voice-over, the
+        /// appropriate audio files should be loaded.
+        ///
+        /// This method serves to provide a hint to the game that a line
+        /// _may_ be run. Not every line indicated in <paramref
+        /// ref="lineIDs"/> may end up actually running.
+        ///
+        /// This method may be called any number of times during a dialogue
+        /// session.
+        /// </remarks>
+        /// <param name="lineIDs">The collection of line IDs that may be
+        /// delivered at some point soon.</param>
+        public delegate void PrepareForLinesHandler(IEnumerable<string> lineIDs);
+
+        /// <summary>
         /// Gets or sets the <see cref="LineHandler"/> that is called when
         /// a line is ready to be shown to the user.
         /// </summary>
@@ -546,6 +566,17 @@ namespace Yarn {
         {
             get => vm.dialogueCompleteHandler;
             set => vm.dialogueCompleteHandler = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the <see cref="PrepareForLinesHandler"/> that is
+        /// called when the dialogue anticipates delivering some lines.
+        /// </summary>
+        /// <value></value>
+        public PrepareForLinesHandler prepareForLinesHandler
+        {
+            get => vm.prepareForLinesHandler;
+            set => vm.prepareForLinesHandler = value;
         }
 
         private VirtualMachine vm;

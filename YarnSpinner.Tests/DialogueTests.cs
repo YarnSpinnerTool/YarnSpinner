@@ -177,6 +177,30 @@ namespace YarnSpinner.Tests
 			Assert.Equal ("rawText", source.First());
 		}
 
+        [Fact]
+        public void TestPrepareForLine() {
+            var path = Path.Combine(TestDataPath, "TaggedLines.yarn");
+            Compiler.CompileFile(path, out var program, out stringTable);
+
+            bool prepareForLinesWasCalled = false;
+
+            dialogue.prepareForLinesHandler = (lines) => {
+                // When the Dialogue realises it's about to run the Start
+                // node, it will tell us that it's about to run these two
+                // line IDs
+                Assert.Equal(2, lines.Count());
+                Assert.Contains("line:test1", lines);
+                Assert.Contains("line:test2", lines);
+
+                // Ensure that these asserts were actually called
+                prepareForLinesWasCalled = true;
+            };
+
+			dialogue.SetProgram (program);
+            dialogue.SetNode("Start");
+
+            Assert.True(prepareForLinesWasCalled);
+        }
         
     }
 }
