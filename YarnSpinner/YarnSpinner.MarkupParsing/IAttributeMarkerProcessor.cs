@@ -29,7 +29,7 @@ namespace Yarn.MarkupParsing
     /// <summary>Provides a mechanism for producing replacement text for a
     /// marker.</summary>
     /// <seealso cref="LineParser.RegisterMarkerProcessor"/>
-    public interface IAttributeMarkerProcessor
+    internal interface IAttributeMarkerProcessor
     {
         /// <summary>
         /// Produces the replacement text that should be inserted into a
