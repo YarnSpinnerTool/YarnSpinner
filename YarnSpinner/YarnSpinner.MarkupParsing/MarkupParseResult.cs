@@ -34,8 +34,9 @@ namespace Yarn.MarkupParsing
     /// </summary>
     /// <remarks>
     /// You do not create instances of this struct yourself. It is created
-    /// by the <see cref="LineParser.ParseMarkup"/> method.
+    /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
+    /// <seealso cref="Dialogue.ParseMarkup(string)"/>
     public struct MarkupParseResult
     {
         /// <summary>
@@ -278,7 +279,7 @@ namespace Yarn.MarkupParsing
     /// </summary>
     /// <remarks>
     /// You do not create instances of this struct yourself. It is created
-    /// by the <see cref="LineParser.ParseMarkup"/> method.
+    /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
     public struct MarkupAttribute
     {
@@ -377,7 +378,7 @@ namespace Yarn.MarkupParsing
     /// </summary>
     /// <remarks>
     /// You do not create instances of this struct yourself. It is created
-    /// by the <see cref="LineParser.ParseMarkup"/> method.
+    /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
     public struct MarkupProperty
     {
@@ -409,7 +410,7 @@ namespace Yarn.MarkupParsing
     /// </summary>
     /// <remarks>
     /// You do not create instances of this struct yourself. It is created
-    /// by the <see cref="LineParser.ParseMarkup"/> method.
+    /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
     public struct MarkupValue
     {
@@ -475,7 +476,7 @@ namespace Yarn.MarkupParsing
     /// </summary>
     /// <remarks>
     /// You do not create instances of this struct yourself. It is created
-    /// by the <see cref="LineParser.ParseMarkup"/> method.
+    /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
     public struct MarkupAttributeMarker
     {
