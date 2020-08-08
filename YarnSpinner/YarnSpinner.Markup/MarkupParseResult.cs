@@ -281,6 +281,7 @@ namespace Yarn.Markup
     /// You do not create instances of this struct yourself. It is created
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
+    /// <seealso cref="Dialogue.ParseMarkup(string)"/>
     public struct MarkupAttribute
     {
         /// <summary>
@@ -380,6 +381,7 @@ namespace Yarn.Markup
     /// You do not create instances of this struct yourself. It is created
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
+    /// <seealso cref="Dialogue.ParseMarkup(string)"/>
     public struct MarkupProperty
     {
         /// <summary>
@@ -412,6 +414,7 @@ namespace Yarn.Markup
     /// You do not create instances of this struct yourself. It is created
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
+    /// <seealso cref="Dialogue.ParseMarkup(string)"/>
     public struct MarkupValue
     {
         /// <summary>Gets the integer value of this property.</summary>
@@ -478,6 +481,7 @@ namespace Yarn.Markup
     /// You do not create instances of this struct yourself. It is created
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
+    /// <seealso cref="Dialogue.ParseMarkup(string)"/>
     public struct MarkupAttributeMarker
     {
         /// <summary>
