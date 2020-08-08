@@ -482,7 +482,7 @@ namespace Yarn.Markup
     /// by objects that can parse markup, such as <see cref="Dialogue"/>.
     /// </remarks>
     /// <seealso cref="Dialogue.ParseMarkup(string)"/>
-    public struct MarkupAttributeMarker
+    internal struct MarkupAttributeMarker
     {
         /// <summary>
         /// Initializes a new instance of the <see
