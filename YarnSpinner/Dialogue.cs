@@ -32,7 +32,7 @@ using System.Globalization;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Yarn.MarkupParsing;
+using Yarn.Markup;
 
 namespace Yarn {
 

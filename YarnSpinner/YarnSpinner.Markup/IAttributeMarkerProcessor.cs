@@ -24,26 +24,25 @@ SOFTWARE.
 
 */
 
-namespace Yarn.MarkupParsing
+namespace Yarn.Markup
 {
-    /// <summary>A markup text processor that implements the `[nomarkup]`
-    /// attribute's behaviour.</summary>
-    internal class NoMarkupTextProcessor : IAttributeMarkerProcessor
+    /// <summary>Provides a mechanism for producing replacement text for a
+    /// marker.</summary>
+    /// <seealso cref="LineParser.RegisterMarkerProcessor"/>
+    internal interface IAttributeMarkerProcessor
     {
-        /// <inheritdoc/>
-        public string ReplacementTextForMarker(MarkupAttributeMarker marker)
-        {
-            if (marker.TryGetProperty(LineParser.ReplacementMarkerContents, out var prop))
-            {
-                return prop.StringValue;
-            }
-            else
-            {
-                // this is only possible when it's a tag like [raw/], in
-                // which case there's no text to provide, so we'll provide
-                // the empty string here
-                return string.Empty;
-            }
-        }
+        /// <summary>
+        /// Produces the replacement text that should be inserted into a
+        /// parse result for a given attribute.
+        /// </summary>
+        /// <remarks>
+        /// If the marker is an _open_ marker, the text from the marker's
+        /// position to its corresponding closing marker is provided as a
+        /// string property called `contents`.
+        /// </remarks>
+        /// <param name="marker">The marker that should have text
+        /// inserted.</param>
+        /// <returns>The replacement text to insert.</returns>
+        string ReplacementTextForMarker(MarkupAttributeMarker marker);
     }
 }

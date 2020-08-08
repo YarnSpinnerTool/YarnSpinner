@@ -24,31 +24,45 @@ SOFTWARE.
 
 */
 
-namespace Yarn.MarkupParsing
+namespace Yarn.Markup
 {
+    using System;
+
     /// <summary>
-    /// A type of <see cref="MarkupAttributeMarker"/>.
+    /// An exception representing something going wrong when parsing markup.
     /// </summary>
-    public enum TagType
+    /// <seealso cref="LineParser"/>
+    [Serializable]
+    public class MarkupParseException : Exception
     {
         /// <summary>
-        /// An open marker. For example, `[a]`.
+        /// Initializes a new instance of the <see
+        /// cref="MarkupParseException"/> class.
         /// </summary>
-        Open,
+        internal MarkupParseException()
+        {
+        }
 
         /// <summary>
-        /// A closing marker. For example, `[/a]`.
+        /// Initializes a new instance of the <see
+        /// cref="MarkupParseException"/> class.
         /// </summary>
-        Close,
+        /// <param name="message">An explanation of the exception.</param>
+        internal MarkupParseException(string message)
+            : base(message)
+        {
+        }
 
         /// <summary>
-        /// A self-closing marker. For example, `[a/]`.
+        /// Initializes a new instance of the <see
+        /// cref="MarkupParseException"/> class.
         /// </summary>
-        SelfClosing,
-
-        /// <summary>
-        /// The close-all marker, `[/]`.
-        /// </summary>
-        CloseAll,
+        /// <param name="message">An explanation of the exception.</param>
+        /// <param name="inner">The exception that caused this
+        /// exception.</param>
+        internal MarkupParseException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
     }
 }

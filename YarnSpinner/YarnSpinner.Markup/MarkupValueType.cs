@@ -24,25 +24,23 @@ SOFTWARE.
 
 */
 
-namespace Yarn.MarkupParsing
+namespace Yarn.Markup
 {
-    /// <summary>Provides a mechanism for producing replacement text for a
-    /// marker.</summary>
-    /// <seealso cref="LineParser.RegisterMarkerProcessor"/>
-    internal interface IAttributeMarkerProcessor
+    /// <summary>
+    /// A type of <see cref="MarkupValue"/>.
+    /// </summary>
+    public enum MarkupValueType
     {
-        /// <summary>
-        /// Produces the replacement text that should be inserted into a
-        /// parse result for a given attribute.
-        /// </summary>
-        /// <remarks>
-        /// If the marker is an _open_ marker, the text from the marker's
-        /// position to its corresponding closing marker is provided as a
-        /// string property called `contents`.
-        /// </remarks>
-        /// <param name="marker">The marker that should have text
-        /// inserted.</param>
-        /// <returns>The replacement text to insert.</returns>
-        string ReplacementTextForMarker(MarkupAttributeMarker marker);
+        /// <summary>An integer.</summary>
+        Integer,
+
+        /// <summary>A float.</summary>
+        Float,
+
+        /// <summary>A string.</summary>
+        String,
+
+        /// <summary>A bool.</summary>
+        Bool,
     }
 }

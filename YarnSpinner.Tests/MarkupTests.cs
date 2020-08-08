@@ -6,7 +6,7 @@ using Yarn;
 using System.IO;
 using System.Linq;
 using Yarn.Compiler;
-using Yarn.MarkupParsing;
+using Yarn.Markup;
 
 namespace YarnSpinner.Tests
 {

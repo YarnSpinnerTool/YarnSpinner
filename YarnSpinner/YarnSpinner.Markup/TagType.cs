@@ -24,23 +24,31 @@ SOFTWARE.
 
 */
 
-namespace Yarn.MarkupParsing
+namespace Yarn.Markup
 {
     /// <summary>
-    /// A type of <see cref="MarkupValue"/>.
+    /// A type of <see cref="MarkupAttributeMarker"/>.
     /// </summary>
-    public enum MarkupValueType
+    public enum TagType
     {
-        /// <summary>An integer.</summary>
-        Integer,
+        /// <summary>
+        /// An open marker. For example, `[a]`.
+        /// </summary>
+        Open,
 
-        /// <summary>A float.</summary>
-        Float,
+        /// <summary>
+        /// A closing marker. For example, `[/a]`.
+        /// </summary>
+        Close,
 
-        /// <summary>A string.</summary>
-        String,
+        /// <summary>
+        /// A self-closing marker. For example, `[a/]`.
+        /// </summary>
+        SelfClosing,
 
-        /// <summary>A bool.</summary>
-        Bool,
+        /// <summary>
+        /// The close-all marker, `[/]`.
+        /// </summary>
+        CloseAll,
     }
 }

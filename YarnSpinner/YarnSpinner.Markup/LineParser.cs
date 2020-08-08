@@ -24,7 +24,7 @@ SOFTWARE.
 
 */
 
-namespace Yarn.MarkupParsing
+namespace Yarn.Markup
 {
     using System;
     using System.Collections.Generic;
