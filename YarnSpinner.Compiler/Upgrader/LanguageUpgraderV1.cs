@@ -8,9 +8,9 @@ namespace Yarn.Compiler.Upgrader
 {
     internal class LanguageUpgraderV1 : ILanguageUpgrader
     {
-        public ICollection<Replacement> Upgrade(string contents, string fileName)
+        public ICollection<TextReplacement> Upgrade(string contents, string fileName)
         {
-            var replacements = new List<Replacement>();
+            var replacements = new List<TextReplacement>();
 
             ICharStream input = CharStreams.fromstring(contents);
 
@@ -34,9 +34,9 @@ namespace Yarn.Compiler.Upgrader
         {
             private string contents;
             private YarnSpinnerV1Parser parser;
-            private Action<Replacement> replacementCallback;
+            private Action<TextReplacement> replacementCallback;
 
-            public FormatFunctionListener(string contents, YarnSpinnerV1Parser parser, Action<Replacement> replacementCallback)
+            public FormatFunctionListener(string contents, YarnSpinnerV1Parser parser, Action<TextReplacement> replacementCallback)
             {
                 this.contents = contents;
                 this.parser = parser;
@@ -68,7 +68,7 @@ namespace Yarn.Compiler.Upgrader
                 var originalStart = context.Start.StartIndex;
                 var originalText = this.contents.Substring(originalStart, originalLength);
 
-                var replacement = new Replacement()
+                var replacement = new TextReplacement()
                 {
                     Start = context.Start.StartIndex,
                     StartLine = context.Start.Line,
@@ -85,8 +85,6 @@ namespace Yarn.Compiler.Upgrader
 
     internal interface ILanguageUpgrader
     {
-        ICollection<Replacement> Upgrade(string contents, string fileName);
+        ICollection<TextReplacement> Upgrade(string contents, string fileName);
     }
-
-
 }

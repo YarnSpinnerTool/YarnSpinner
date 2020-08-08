@@ -61,12 +61,12 @@ namespace YarnSpinner.Tests
             var expectedReplacement = "Keep keep\nnew keep";
 
             var replacements = new[] {
-                new Replacement() {
+                new TextReplacement() {
                     Start = 5,
                     OriginalText = "delete ",
                     ReplacementText = ""
                 },
-                new Replacement() {
+                new TextReplacement() {
                     Start = 17,
                     OriginalText = "replace",
                     ReplacementText = "new"
@@ -84,7 +84,7 @@ namespace YarnSpinner.Tests
             var text = "Keep keep";
             
             var replacements = new[] {
-                new Replacement() {
+                new TextReplacement() {
                     Start = 5,
                     OriginalText = "delete ", // the replacement expects to see  "delete " here, but it will see "keep" instead
                     ReplacementText = ""
@@ -100,7 +100,7 @@ namespace YarnSpinner.Tests
             var text = "Test";
             
             var replacements = new[] {
-                new Replacement() {
+                new TextReplacement() {
                     Start = 8, // This replacement starts outside the text's length
                     OriginalText = "Test", 
                     ReplacementText = ""

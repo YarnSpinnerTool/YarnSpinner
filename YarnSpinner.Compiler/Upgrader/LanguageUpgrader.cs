@@ -10,7 +10,7 @@ namespace Yarn.Compiler.Upgrader
     /// <summary>
     /// Contains information describing a replacement to make in a string.
     /// </summary>
-    public struct Replacement
+    public struct TextReplacement
     {
         /// <summary>
         /// The position in the original string where the substitution
@@ -53,7 +53,10 @@ namespace Yarn.Compiler.Upgrader
         public int ReplacementLength => this.ReplacementText.Length;
     }
 
-    public class LanguageUpgrader
+    /// <summary>
+    /// Contains methods for upgrading the syntax of Yarn scripts.
+    /// </summary>
+    public static class LanguageUpgrader
     {
         /// <summary>
         /// Upgrades a Yarn script from one version of the language to
@@ -69,7 +72,7 @@ namespace Yarn.Compiler.Upgrader
         /// <param name="upgradeType">The type of language conversion to
         /// perform.</param>
         /// <param name="replacements">When this method returns, contains a
-        /// collection of <see cref="Replacement"/> structs that describe
+        /// collection of <see cref="TextReplacement"/> structs that describe
         /// the changes made in <paramref
         /// name="originalContents"/>.</param>
         /// <returns>The upgraded version of <paramref
@@ -78,7 +81,7 @@ namespace Yarn.Compiler.Upgrader
         /// in originalText.</throws> <throws
         /// cref="UpgradeException">Thrown when an error occurs during the
         /// upgrade process.</throws>
-        public static string UpgradeScript(string originalContents, string fileName, UpgradeType upgradeType, out IEnumerable<Replacement> replacements)
+        public static string UpgradeScript(string originalContents, string fileName, UpgradeType upgradeType, out IEnumerable<TextReplacement> replacements)
         {
             switch (upgradeType)
             {
@@ -97,14 +100,14 @@ namespace Yarn.Compiler.Upgrader
         /// </summary>
         /// <param name="originalText">The string to modify.</param>
         /// <param name="replacements">A collection of <see
-        /// cref="Replacement"/>s to make in the <paramref
+        /// cref="TextReplacement"/>s to make in the <paramref
         /// name="originalText"/>.</param>
         /// <returns>The modified string.</returns>
         /// <throws cref="ArgumentOutOfRangeException">Thrown when a
         /// replacement refers to an invalid position in originalText, or
         /// its original text does not match what exists in the
         /// text.</throws>
-        internal static string ApplyReplacements(string originalText, IEnumerable<Replacement> replacements)
+        internal static string ApplyReplacements(string originalText, IEnumerable<TextReplacement> replacements)
         {
             // We need this in order of start position because replacements
             // are very likely to change the length the string, which
