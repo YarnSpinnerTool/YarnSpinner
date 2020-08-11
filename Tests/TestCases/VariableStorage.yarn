@@ -110,4 +110,8 @@ title: Start
 // "Test string addition
 <<call assert($foobar == "foobar")>>
 
+// Test complex variable names
+<<set $`object.property` to 14>>
+
+<<call assert($`object.property` == 14)>>
 ===

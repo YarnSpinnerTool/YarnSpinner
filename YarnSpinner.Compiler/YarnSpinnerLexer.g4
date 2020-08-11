@@ -347,7 +347,11 @@ EXPRESSION_END: '}' -> popMode;
 EXPRESSION_COMMAND_END: '>>' -> popMode, popMode;
 
 // Variables, which always begin with a '$'
-VAR_ID : '$' ID ;
+VAR_ID 
+    : '$' ID 
+    | '$`' .*? '`'
+    ;
+
 
 // Integer or decimal numbers.
 NUMBER
