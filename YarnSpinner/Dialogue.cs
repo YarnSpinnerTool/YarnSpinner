@@ -1026,73 +1026,72 @@ namespace Yarn {
 
                 #region Operators
 
-                this.RegisterFunction(TokenType.Add.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] + parameters[1];
+                this.RegisterFunction(TokenType.Add.ToString(), delegate(Value a, Value b) {
+                    return a + b;
                 });
 
-                this.RegisterFunction(TokenType.Minus.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] - parameters[1];
+                this.RegisterFunction(TokenType.Minus.ToString(), delegate(Value a, Value b) {
+                    return a - b;
                 });
 
-                this.RegisterFunction(TokenType.UnaryMinus.ToString(), 1, delegate(Value[] parameters) {
-                    return -parameters[0];
+                this.RegisterFunction(TokenType.UnaryMinus.ToString(), delegate(Value a) {
+                    return -a;
                 });
 
-                this.RegisterFunction(TokenType.Divide.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] / parameters[1];
+                this.RegisterFunction(TokenType.Divide.ToString(), delegate(Value a, Value b) {
+                    return a / b;
                 });
 
-                this.RegisterFunction(TokenType.Multiply.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] * parameters[1];
+                this.RegisterFunction(TokenType.Multiply.ToString(), delegate(Value a, Value b) {
+                    return a * b;
                 });
 
-                this.RegisterFunction(TokenType.Modulo.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] % parameters[1];
+                this.RegisterFunction(TokenType.Modulo.ToString(), delegate(Value a, Value b) {
+                    return a % b;
                 });
 
-                this.RegisterFunction(TokenType.EqualTo.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0].Equals( parameters[1] );
+                this.RegisterFunction(TokenType.EqualTo.ToString(), delegate(Value a, Value b) {
+                    return a.Equals(b);
                 });
 
-                this.RegisterFunction(TokenType.NotEqualTo.ToString(), 2, delegate(Value[] parameters) {
+                this.RegisterFunction(TokenType.NotEqualTo.ToString(), delegate(Value a, Value b) {
 
                     // Return the logical negative of the == operator's result
-                    var equalTo = this.GetFunction(TokenType.EqualTo.ToString());
-
-                    return !equalTo.Invoke(parameters).AsBool;
+                    return !a.Equals(b);
                 });
 
-                this.RegisterFunction(TokenType.GreaterThan.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] > parameters[1];
+                this.RegisterFunction(TokenType.GreaterThan.ToString(), delegate(Value a, Value b) {
+                    return a > b;
                 });
 
-                this.RegisterFunction(TokenType.GreaterThanOrEqualTo.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] >= parameters[1];
+                this.RegisterFunction(TokenType.GreaterThanOrEqualTo.ToString(), delegate(Value a, Value b) {
+                    return a >= b;
                 });
 
-                this.RegisterFunction(TokenType.LessThan.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] < parameters[1];
+                this.RegisterFunction(TokenType.LessThan.ToString(), delegate(Value a, Value b) {
+                    return a < b;
                 });
 
-                this.RegisterFunction(TokenType.LessThanOrEqualTo.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] <= parameters[1];
+                this.RegisterFunction(TokenType.LessThanOrEqualTo.ToString(), delegate(Value a, Value b) {
+                    return a <= b;
                 });
 
-                this.RegisterFunction(TokenType.And.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0].AsBool && parameters[1].AsBool;
+                this.RegisterFunction(TokenType.And.ToString(), delegate(Value a, Value b) {
+                    return a.AsBool && b.AsBool;
                 });
 
-                this.RegisterFunction(TokenType.Or.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0].AsBool || parameters[1].AsBool;
+                this.RegisterFunction(TokenType.Or.ToString(), delegate(Value a, Value b) {
+                    return a.AsBool || b.AsBool;
                 });
 
-                this.RegisterFunction(TokenType.Xor.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0].AsBool ^ parameters[1].AsBool;
+                this.RegisterFunction(TokenType.Xor.ToString(), delegate(Value a, Value b) {
+                    return a.AsBool ^ b.AsBool;
                 });
 
-                this.RegisterFunction(TokenType.Not.ToString(), 1, delegate(Value[] parameters) {
-                    return !parameters[0].AsBool;
+                this.RegisterFunction(TokenType.Not.ToString(), delegate(Value a) {
+                    return !a.AsBool;
                 });
+                
 
                 #endregion Operators
 			}

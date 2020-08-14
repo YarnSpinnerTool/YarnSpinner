@@ -129,9 +129,11 @@ namespace Yarn
                 case OpCode.CallFunc:
                     var function = l.GetFunction(Operands[0].StringValue);
 
-                    pops = function.paramCount;
+                    pops = function.Method.GetParameters().Length;
 
-                    if (function.returnsValue)
+                    var returnsValue = function.Method.ReturnType != typeof(void);
+
+                    if (returnsValue)
                     {
                         pushes = 1;
                     }

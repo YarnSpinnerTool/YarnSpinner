@@ -201,7 +201,6 @@ namespace YarnSpinner.Tests
 
             Assert.True(prepareForLinesWasCalled);
         }
-        
     }
 }
 

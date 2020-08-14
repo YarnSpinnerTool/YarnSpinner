@@ -177,10 +177,11 @@ namespace YarnSpinner.Tests
                 return Dialogue.HandlerExecutionType.ContinueExecution;
             };
 
-            dialogue.library.RegisterFunction ("assert", 1, delegate(Yarn.Value[] parameters) {
-                if (parameters[0].AsBool == false) {
+            dialogue.library.RegisterFunction ("assert", delegate(Yarn.Value value) {
+                if (value.AsBool == false) {
                         Assert.NotNull ("Assertion failed");
                 }
+                return true;
             });
 
             

@@ -14,7 +14,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- `Library.RegisterFunction` no longer works with the `Function` and `ReturningFunction` classes, which have been removed. Instead, you provide a `Func` directly, which can take multiple individual parameters, rather than a single `Value[]` parameter.
+
 ### Removed
+
+- Functions registered with the `Library` class can no longer accept an unlimited number of parametes.
 
 ## [v1.2.0] 2020-05-04
 

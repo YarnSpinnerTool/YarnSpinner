@@ -562,8 +562,8 @@ namespace Yarn
                         var function = dialogue.library.GetFunction(functionName);
                         {
 
-                            var expectedParamCount = function.paramCount;
-
+                            var expectedParamCount = function.Method.GetParameters().Length;
+                            
                             // Expect the compiler to have placed the number of parameters
                             // actually passed at the top of the stack.
                             var actualParamCount = (int)state.PopValue().AsNumber;
@@ -573,18 +573,18 @@ namespace Yarn
                             // variadic function)
                             if (expectedParamCount == -1)
                             {
-                                expectedParamCount = actualParamCount;
+                                throw new System.NotImplementedException();
                             }
 
                             if (expectedParamCount != actualParamCount)
                             {
-                                throw new InvalidOperationException($"Function {function.name} expected {expectedParamCount}, but received {actualParamCount}");
+                                throw new InvalidOperationException($"Function {functionName} expected {expectedParamCount}, but received {actualParamCount}");
                             }
 
                             Value result;
                             if (actualParamCount == 0)
                             {
-                                result = function.Invoke();
+                                throw new NotImplementedException();
                             }
                             else
                             {
@@ -596,13 +596,14 @@ namespace Yarn
                                 }
 
                                 // Invoke the function
-                                result = function.InvokeWithArray(parameters);
-                            }
+                                var returnValue = function.DynamicInvoke(parameters);
 
-                            // If the function returns a value, push it
-                            if (function.returnsValue)
-                            {
-                                state.PushValue(result);
+                                // If the function returns a value, push it
+                                bool functionReturnsValue = function.Method.ReturnType != typeof(void);
+                                
+                                if (functionReturnsValue) {
+                                    state.PushValue(returnValue);
+                                }
                             }
                         }
 

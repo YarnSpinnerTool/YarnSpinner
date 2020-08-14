@@ -18,16 +18,9 @@ namespace YarnSpinner.Tests
 		public LanguageTests() : base() {
 
             // Register some additional functions
-            dialogue.library.RegisterFunction("add_three_operands", 3, delegate (Value[] parameters) {
-                return parameters[0] + parameters[1] + parameters[2];
+            dialogue.library.RegisterFunction("add_three_operands", delegate (Value a, Value b, Value c) {
+                return a + b + c;
             });
-
-            dialogue.library.RegisterFunction("last_value", -1, delegate (Value[] parameters)
-            {
-                return parameters[parameters.Length - 1];
-            });
-
-			
 		}
 
         [Fact]
