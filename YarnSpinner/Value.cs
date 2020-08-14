@@ -30,9 +30,6 @@ namespace Yarn
             /// <summary>A boolean value.</summary>
             Bool,
 
-            /// <summary>The name of a variable; will be expanded at runtime.</summary>
-            Variable,
-
             /// <summary>The null value.</summary>
             Null,
         }
@@ -50,8 +47,6 @@ namespace Yarn
         // The underlying values for this object
         private float NumberValue { get; set; }
 
-        private string VariableName { get; set; }
-
         private string StringValue { get; set; }
 
         private bool BoolValue { get; set; }
@@ -66,8 +61,6 @@ namespace Yarn
                     case Type.String: return this.StringValue;
                     case Type.Number: return this.NumberValue;
                     case Type.Bool: return this.BoolValue;
-                    case Type.Variable:
-                        break;
                 }
                 throw new InvalidOperationException(
                     string.Format(CultureInfo.CurrentCulture, "Can't get good backing type for {0}", this.type)
@@ -230,9 +223,6 @@ namespace Yarn
                     break;
                 case Type.Bool:
                     BoolValue = otherValue.BoolValue;
-                    break;
-                case Type.Variable:
-                    VariableName = otherValue.VariableName;
                     break;
                 case Type.Null:
                     break;
