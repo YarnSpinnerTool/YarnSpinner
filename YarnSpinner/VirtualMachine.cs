@@ -552,6 +552,7 @@ namespace Yarn
 
                 case OpCode.CallFunc:
                     {
+
                         /// - CallFunc
                         /** Call a function, whose parameters are expected to
                          *  be on the stack. Pushes the function's return value,
@@ -560,52 +561,44 @@ namespace Yarn
                         var functionName = i.Operands[0].StringValue;
 
                         var function = dialogue.library.GetFunction(functionName);
+
+                        var parameterInfos = function.Method.GetParameters();
+
+                        var expectedParamCount = parameterInfos.Length;
+
+                        // Expect the compiler to have placed the number of parameters
+                        // actually passed at the top of the stack.
+                        var actualParamCount = (int)state.PopValue().AsNumber;
+
+                        if (expectedParamCount != actualParamCount)
                         {
-
-                            var expectedParamCount = function.Method.GetParameters().Length;
-                            
-                            // Expect the compiler to have placed the number of parameters
-                            // actually passed at the top of the stack.
-                            var actualParamCount = (int)state.PopValue().AsNumber;
-
-                            // If a function indicates -1 parameters, it takes as
-                            // many parameters as it was given (i.e. it's a
-                            // variadic function)
-                            if (expectedParamCount == -1)
-                            {
-                                throw new System.NotImplementedException();
-                            }
-
-                            if (expectedParamCount != actualParamCount)
-                            {
-                                throw new InvalidOperationException($"Function {functionName} expected {expectedParamCount}, but received {actualParamCount}");
-                            }
-
-                            Value result;
-                            if (actualParamCount == 0)
-                            {
-                                throw new NotImplementedException();
-                            }
-                            else
-                            {
-                                // Get the parameters, which were pushed in reverse
-                                Value[] parameters = new Value[actualParamCount];
-                                for (int param = actualParamCount - 1; param >= 0; param--)
-                                {
-                                    parameters[param] = state.PopValue();
-                                }
-
-                                // Invoke the function
-                                var returnValue = function.DynamicInvoke(parameters);
-
-                                // If the function returns a value, push it
-                                bool functionReturnsValue = function.Method.ReturnType != typeof(void);
-                                
-                                if (functionReturnsValue) {
-                                    state.PushValue(returnValue);
-                                }
-                            }
+                            throw new InvalidOperationException($"Function {functionName} expected {expectedParamCount} parameters, but received {actualParamCount}");
                         }
+
+                        // Get the parameters, which were pushed in reverse
+                        Value[] parameters = new Value[actualParamCount];
+                        var parametersToUse = new object[actualParamCount];
+                        
+                        for (int param = actualParamCount - 1; param >= 0; param--)
+                        {
+                            var value = state.PopValue();
+                            var parameterType = parameterInfos[param].ParameterType;
+                            // Perform type checking on this parameter
+                            parametersToUse[param] = value.ConvertTo(parameterType);
+                        }
+
+                        
+                        // Invoke the function
+                        object returnValue = function.DynamicInvoke(parametersToUse);
+
+                        // If the function returns a value, push it
+                        bool functionReturnsValue = function.Method.ReturnType != typeof(void);
+
+                        if (functionReturnsValue)
+                        {
+                            state.PushValue(new Value(returnValue));
+                        }
+
 
                         break;
                     }

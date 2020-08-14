@@ -532,6 +532,68 @@ namespace Yarn
         }
 
         /// <summary>
+        /// Converts this <see cref="Value"/> to the type specified by
+        /// <paramref name="parameterType"/>.
+        /// </summary>
+        /// <remarks>parameterType must be one of the following:
+        ///
+        /// * <see cref="string"/> 
+        ///
+        /// * <see cref="int"/>
+        ///
+        /// * <see cref="float"/>
+        ///
+        /// * <see cref="double"/>
+        ///
+        /// * <see cref="bool"/>
+        ///
+        /// * <see cref="Value"/>
+        ///
+        /// If any other type is provided, this method will throw an
+        /// exception.
+        /// </remarks>
+        /// <param name="parameterType">The type to convert this <see
+        /// cref="Value"/> to.</param>
+        /// <throws cref="InvalidCastException">Thrown when <paramref
+        /// name="parameterType"/> is a type that instances of the <see
+        /// cref="Value"/> class cannot be converted to.</throws>
+        /// <returns>This Value, converted to the specified type.</returns>
+        internal object ConvertTo(System.Type parameterType)
+        {
+            if (parameterType.IsAssignableFrom(typeof(Value)))
+            {
+                return this;
+            }
+
+            if (parameterType.IsAssignableFrom(typeof(string)))
+            {
+                return this.AsString;
+            }
+
+            if (parameterType.IsAssignableFrom(typeof(int)))
+            {
+                return (int)this.AsNumber;
+            }
+
+            if (parameterType.IsAssignableFrom(typeof(float)))
+            {
+                return (float)this.AsNumber;
+            }
+
+            if (parameterType.IsAssignableFrom(typeof(double)))
+            {
+                return (double)this.AsNumber;
+            }
+
+            if (parameterType.IsAssignableFrom(typeof(bool)))
+            {
+                return this.AsBool;
+            }
+
+            throw new InvalidCastException($"Cannot convert value {this} ({type}) to {parameterType}");
+        }
+
+        /// <summary>
         /// Computes the negative of a value.
         /// </summary>
         /// <remarks>

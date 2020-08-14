@@ -201,6 +201,94 @@ namespace YarnSpinner.Tests
 
             Assert.True(prepareForLinesWasCalled);
         }
+
+
+        [Fact]
+        public void TestFunctionArgumentTypeInference() {
+
+            // Register some functions
+            dialogue.library.RegisterFunction("ConcatString", (string a, string b) => a+b);
+            dialogue.library.RegisterFunction("AddInt", (int a, int b) => a+b);
+            dialogue.library.RegisterFunction("AddFloat", (float a, float b) => a+b);
+            dialogue.library.RegisterFunction("NegateBool", (bool a) => !a);
+
+            // Run some code to exercise these functions
+            var source = CreateTestNode(@"
+            <<set $str = ConcatString(""a"", ""b"")>>
+            <<set $int = AddInt(1,2)>>
+            <<set $float = AddFloat(1,2)>>
+            <<set $bool = NegateBool(true)>>
+            ");
+
+            Compiler.CompileString(source, "input", out var program, out var strings);
+
+            dialogue.SetProgram(program);
+            dialogue.SetNode("Start");
+
+            do {
+                dialogue.Continue();
+            } while (dialogue.IsActive);
+
+            // The values should be of the right type and value
+            Assert.Equal(Value.Type.String, this.storage.GetValue("$str").type);
+            Assert.Equal("ab", this.storage.GetValue("$str").AsString);
+
+            Assert.Equal(Value.Type.Number, this.storage.GetValue("$int").type);
+            Assert.Equal(3, this.storage.GetValue("$int").AsNumber);
+
+            Assert.Equal(Value.Type.Number, this.storage.GetValue("$float").type);
+            Assert.Equal(3, this.storage.GetValue("$float").AsNumber);
+
+            Assert.Equal(Value.Type.Bool, this.storage.GetValue("$bool").type);
+            Assert.Equal(false, this.storage.GetValue("$bool").AsBool);
+        }
+
+        [Fact]
+        public void TestFunctionArgumentCount() {
+
+            // Register a function with a given number of arguments
+            dialogue.library.RegisterFunction("the_func", (int a, int b, int c) => 0);
+
+            // Run code that calls it with the wrong number of arguments
+            var source = CreateTestNode("<<set $var = the_func(1,2)>>");
+
+            Compiler.CompileString(source, "input", out var program, out var strings);
+
+            dialogue.SetProgram(program);
+            dialogue.SetNode("Start");
+
+            // It should throw an InvalidOperationException because the
+            // wrong number of arguments were supplied
+            Assert.Throws<InvalidOperationException>(delegate {
+                do {
+                    dialogue.Continue();
+                } while (dialogue.IsActive);
+            });
+        }
+
+        [Fact]
+        public void TestFunctionArgumentTypeChecking() {
+            // Register a function that expects a parameter of a type that
+            // Yarn Spinner can't represent
+            dialogue.library.RegisterFunction("the_func", (Dialogue d) => 0);
+
+            // Run code that calls it
+            var source = CreateTestNode("<<set $var = the_func(1)>>");
+
+            Compiler.CompileString(source, "input", out var program, out var strings);
+
+            dialogue.SetProgram(program);
+            dialogue.SetNode("Start");
+
+            // It should throw an InvalidCastException because a Yarn.Value
+            // can't be converted to a Dialogue
+            Assert.Throws<InvalidCastException>(delegate {
+                do {
+                    dialogue.Continue();
+                } while (dialogue.IsActive);
+            });
+
+        }
     }
 }
 
