@@ -52,46 +52,77 @@ namespace Yarn
         /// called from a Yarn program.
         /// </summary>
         /// <param name="name">The name of the function.</param>
-        /// <param name="implementation">The <see
-        /// cref="Func{TResult}"/> to be invoked when the function is
-        /// called.</param>
-        /// <remarks>If `parameterCount` is -1, the function expects to
-        /// receive any number of parameters.
-        ///
-        /// If a function named `name` already exists in this Library, it
-        /// will be replaced.
-        /// </remarks>
+        /// <param name="implementation">The <see cref="Func{TResult}"/> to
+        /// be invoked when the function is called.</param>
+        /// <typeparam name="TResult">The return type of the
+        /// function.</typeparam>
+        /// <exception cref="ArgumentException">Thrown when a function
+        /// named <paramref name="name"/> already exists in the <see
+        /// cref="Library"/>.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when name is
+        /// null.</exception>
         public void RegisterFunction<TResult>(string name, Func<TResult> implementation)
         {
             RegisterFunction(name, (Delegate)implementation);
         }
 
+        /// <inheritdoc cref="RegisterFunction{TResult}(string, Func{TResult})"/>
+        /// <typeparam name="TResult">The return type of the function.</typeparam>
+        /// <typeparam name="T1">The type of the function's first argument.</typeparam>
         public void RegisterFunction<T1, TResult>(string name, Func<T1, TResult> implementation)
         {
             RegisterFunction(name, (Delegate)implementation);
         }
 
+        /// <inheritdoc cref="RegisterFunction{TResult}(string, Func{TResult})"/>
+        /// <typeparam name="TResult">The return type of the function.</typeparam>
+        /// <typeparam name="T1">The type of the function's first argument.</typeparam>
+        /// <typeparam name="T2">The type of the function's second argument.</typeparam>
         public void RegisterFunction<T1, T2, TResult>(string name, Func<T1, T2, TResult> implementation)
         {
             RegisterFunction(name, (Delegate)implementation);
         }
 
+        /// <inheritdoc cref="RegisterFunction{TResult}(string, Func{TResult})"/>
+        /// <typeparam name="TResult">The return type of the function.</typeparam>
+        /// <typeparam name="T1">The type of the function's first argument.</typeparam>
+        /// <typeparam name="T2">The type of the function's second argument.</typeparam>
+        /// <typeparam name="T3">The type of the function's third argument.</typeparam>
         public void RegisterFunction<T1, T2, T3, TResult>(string name, Func<T1, T2, T3, TResult> implementation)
         {
             RegisterFunction(name, (Delegate)implementation);
         }
 
+        /// <inheritdoc cref="RegisterFunction{TResult}(string, Func{TResult})"/>
+        /// <typeparam name="TResult">The return type of the function.</typeparam>
+        /// <typeparam name="T1">The type of the function's first argument.</typeparam>
+        /// <typeparam name="T2">The type of the function's second argument.</typeparam>
+        /// <typeparam name="T3">The type of the function's third argument.</typeparam>
+        /// <typeparam name="T4">The type of the function's fourth argument.</typeparam>
         public void RegisterFunction<T1, T2, T3, T4, TResult>(string name, Func<T1, T2, T3, T4, TResult> implementation)
         {
             RegisterFunction(name, (Delegate)implementation);
         }
 
+        /// <inheritdoc cref="RegisterFunction{TResult}(string, Func{TResult})"/>
+        /// <typeparam name="TResult">The return type of the function.</typeparam>
+        /// <typeparam name="T1">The type of the function's first argument.</typeparam>
+        /// <typeparam name="T2">The type of the function's second argument.</typeparam>
+        /// <typeparam name="T3">The type of the function's third argument.</typeparam>
+        /// <typeparam name="T4">The type of the function's fourth argument.</typeparam>
+        /// <typeparam name="T5">The type of the function's fifth argument.</typeparam>
         public void RegisterFunction<T1, T2, T3, T4, T5, TResult>(string name, Func<T1, T2, T3, T4, T5, TResult> implementation)
         {
             RegisterFunction(name, (Delegate)implementation);
         }
 
-        private void RegisterFunction(string name, Delegate implementation) {
+        /// <inheritdoc cref="RegisterFunction{TResult}(string,
+        /// Func{TResult})"/>
+        /// <param name="name">The name of the function.</param>
+        /// <param name="implementation">The <see cref="Delegate"/> that
+        /// should be invoked when this function is called from Yarn
+        /// scripts.</param>
+        public void RegisterFunction(string name, Delegate implementation) {
             delegates.Add(name, implementation);
         }
 
