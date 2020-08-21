@@ -8,7 +8,8 @@ namespace Yarn
     /// A value from inside Yarn.
     /// </summary>
     public class Value : IComparable, IComparable<Value> {
-        private static readonly Type[] NumberTypes = new Type[] {
+        private static readonly System.Type[] NumberTypes = new System.Type[] 
+        {
             typeof(sbyte),
             typeof(byte),
             typeof(short),
