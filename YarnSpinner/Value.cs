@@ -8,7 +8,21 @@ namespace Yarn
     /// A value from inside Yarn.
     /// </summary>
     public class Value : IComparable, IComparable<Value> {
-
+        private static readonly System.Type[] NumberTypes = new System.Type[] 
+        {
+            typeof(sbyte),
+            typeof(byte),
+            typeof(short),
+            typeof(ushort),
+            typeof(int),
+            typeof(uint),
+            typeof(long),
+            typeof(ulong),
+            typeof(float),
+            typeof(double),
+            typeof(decimal),
+        };
+        
         /// <summary>
         /// The shared Null value.
         /// </summary>
@@ -235,20 +249,18 @@ namespace Yarn
                 type = Type.Null;
                 return;
             }
-            if (value.GetType() == typeof(string) ) {
+            var checkType = value.GetType();
+            if (checkType == typeof(string)) {
                 type = Type.String;
                 StringValue = System.Convert.ToString(value, CultureInfo.InvariantCulture);
                 return;
             }
-            if (value.GetType() == typeof(int) ||
-                value.GetType() == typeof(float) ||
-                value.GetType() == typeof(double)) {
+            if (Array.IndexOf(NumberTypes, checkType) >= 0) {
                 type = Type.Number;
                 NumberValue = System.Convert.ToSingle(value, CultureInfo.InvariantCulture);
-
                 return;
             }
-            if (value.GetType() == typeof(bool) ) {
+            if (checkType == typeof(bool) ) {
                 type = Type.Bool;
                 BoolValue = System.Convert.ToBoolean(value, CultureInfo.InvariantCulture);
                 return;
