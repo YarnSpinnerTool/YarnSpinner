@@ -115,8 +115,6 @@ namespace YarnSpinner.Tests
                         throw new Xunit.Sdk.XunitException($"Received line {text}, but was expecting a {testPlan.nextExpectedType.ToString()}");
                     }
                 }
-                            
-                return Dialogue.HandlerExecutionType.ContinueExecution;
             };
 
             dialogue.optionsHandler = delegate (OptionSet optionSet) {
@@ -173,8 +171,6 @@ namespace YarnSpinner.Tests
                         Assert.Equal(testPlan.nextExpectedValue, command.Text);
                     }
                 }
-                
-                return Dialogue.HandlerExecutionType.ContinueExecution;
             };
 
             dialogue.library.RegisterFunction ("assert", delegate(Yarn.Value value) {
@@ -185,8 +181,8 @@ namespace YarnSpinner.Tests
             });
 
             
-            // When a node is complete, just indicate that we want to continue execution
-            dialogue.nodeCompleteHandler = (string nodeName) => Dialogue.HandlerExecutionType.ContinueExecution;
+            // When a node is complete, do nothing
+            dialogue.nodeCompleteHandler = (string nodeName) => {};
 
             // When dialogue is complete, check that we expected a stop
             dialogue.dialogueCompleteHandler = () => {

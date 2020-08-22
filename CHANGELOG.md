@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - `Library.RegisterFunction` no longer works with the `Function` and `ReturningFunction` classes, which have been removed. Instead, you provide a `Func` directly, which can take multiple individual parameters, rather than a single `Value[]` parameter.
+- The `LineHandler`, `CommandHandler`, and `NodeCompleteHandler` callbacks, used by the `Dialogue` class, no longer return a value that indicates whether the `Dialogue` should pause execution. Instead, the `Dialogue` will now *always* pause execution, which can be resumed by calling `Dialogue.Continue()`. (This method may be called from inside the line handler or command handler, or at any point after these handlers return.)
 
 ### Removed
 

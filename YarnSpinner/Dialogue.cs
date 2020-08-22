@@ -346,44 +346,17 @@ namespace Yarn {
         public bool IsActive => vm.executionState != VirtualMachine.ExecutionState.Stopped;
 
         /// <summary>
-        /// Used as a return type by handlers (such as the <see
-        /// cref="LineHandler"/>) to indicate whether a <see
-        /// cref="Dialogue"/> should suspend execution, or continue
-        /// executing, after it has called the handler.
-        /// </summary>
-        /// <seealso cref="LineHandler"/>
-        /// <seealso cref="CommandHandler"/>
-        /// <seealso cref="NodeCompleteHandler"/>
-        public enum HandlerExecutionType {
-
-            /// <summary>
-            /// Indicates that the <see cref="Dialogue"/> should suspend
-            /// execution.
-            /// </summary>
-            PauseExecution,
-
-            /// <summary>
-            /// Indicates that the <see cref="Dialogue"/> should continue
-            /// execution.
-            /// </summary>
-            ContinueExecution,
-        }
-
-        /// <summary>
         /// Represents the method that is called when the Dialogue delivers
         /// a <see cref="Line"/>.
         /// </summary>
         /// <param name="line">The <see cref="Line"/> that has been
         /// delivered.</param>
-        /// <returns>Whether the <see cref="Dialogue"/> should suspend
-        /// execution after delivering this line.</returns>
-        /// <seealso cref="HandlerExecutionType"/>
         /// <seealso cref="OptionsHandler"/>
         /// <seealso cref="CommandHandler"/>
         /// <seealso cref="NodeStartHandler"/>
         /// <seealso cref="NodeCompleteHandler"/>
         /// <seealso cref="DialogueCompleteHandler"/>
-        public delegate HandlerExecutionType LineHandler(Line line);
+        public delegate void LineHandler(Line line);
 
         /// <summary>
         /// Represents the method that is called when the Dialogue delivers
@@ -391,13 +364,6 @@ namespace Yarn {
         /// </summary>
         /// <param name="options">The <see cref="OptionSet"/> that has been
         /// delivered.</param>
-        /// <remarks>
-        /// Unlike <see cref="LineHandler"/>, <see cref="OptionsHandler"/>
-        /// does not return a <see cref="HandlerExecutionType"/> to signal
-        /// that the Dialogue should suspend execution. This is because the
-        /// Dialogue will _always_ need to wait for the user to make a
-        /// selection before execution can resume.
-        /// </remarks>
         /// <seealso cref="LineHandler"/>
         /// <seealso cref="CommandHandler"/>
         /// <seealso cref="NodeStartHandler"/>
@@ -411,50 +377,41 @@ namespace Yarn {
         /// </summary>
         /// <param name="command">The <see cref="Command"/> that has been
         /// delivered.</param>
-        /// <returns>Whether the <see cref="Dialogue"/> should suspend
-        /// execution after delivering this command.</returns>
-        /// <seealso cref="HandlerExecutionType"/>
         /// <seealso cref="LineHandler"/>
         /// <seealso cref="OptionsHandler"/>
         /// <seealso cref="NodeStartHandler"/>
         /// <seealso cref="NodeCompleteHandler"/>
         /// <seealso cref="DialogueCompleteHandler"/>
-        public delegate HandlerExecutionType CommandHandler(Command command);
+        public delegate void CommandHandler(Command command);
 
         /// <summary>
         /// Represents the method that is called when the Dialogue reaches
         /// the end of a node.
         /// </summary>
         /// <param name="completedNodeName">The name of the node.</param>
-        /// <returns>Whether the <see cref="Dialogue"/> should suspend
-        /// execution after this method has been called.</returns>
         /// <remarks>
         /// This method may be called multiple times over the course of
         /// code execution. A node being complete does not necessarily
         /// represent the end of the conversation.
         /// </remarks>
-        /// <seealso cref="HandlerExecutionType"/>
         /// <seealso cref="LineHandler"/>
         /// <seealso cref="OptionsHandler"/>
         /// <seealso cref="CommandHandler"/>
         /// <seealso cref="NodeStartHandler"/>
         /// <seealso cref="DialogueCompleteHandler"/>
-        public delegate HandlerExecutionType NodeCompleteHandler(string completedNodeName);
+        public delegate void NodeCompleteHandler(string completedNodeName);
 
         /// <summary>
         /// Represents the method that is called when the Dialogue begins
         /// executing a node.
         /// </summary>
         /// <param name="startedNodeName">The name of the node.</param>
-        /// <returns>Whether the <see cref="Dialogue"/> should suspend
-        /// execution after this method has been called.</returns>
-        /// <seealso cref="HandlerExecutionType"/>
         /// <seealso cref="LineHandler"/>
         /// <seealso cref="OptionsHandler"/>
         /// <seealso cref="CommandHandler"/>
         /// <seealso cref="NodeCompleteHandler"/>
         /// <seealso cref="DialogueCompleteHandler"/>
-        public delegate HandlerExecutionType NodeStartHandler(string startedNodeName);
+        public delegate void NodeStartHandler(string startedNodeName);
 
         /// <summary>
         /// Represents the method that is called when the dialogue has
@@ -721,19 +678,20 @@ namespace Yarn {
         /// <remarks>
         /// This method repeatedly executes instructions until one of the
         /// following conditions is encountered:
-        /// 
-        /// * The <see cref="lineHandler"/>, <see cref="commandHandler"/>,
-        /// or <see cref="nodeCompleteHandler"/> return <see
-        /// cref="HandlerExecutionType.PauseExecution"/>.
-        /// * The <see cref="optionsHandler"/> is called. When this occurs,
+        ///
+        /// * The <see cref="lineHandler"/> or <see cref="commandHandler"/>
+        /// is called. After calling either of these handlers, the Dialogue
+        /// will wait until <see cref="Continue"/> is called. Continue may
+        /// be called from inside the <see cref="lineHandler"/> or <see
+        /// cref="commandHandler"/>, or may be called at any future time. *
+        /// The <see cref="optionsHandler"/> is called. When this occurs,
         /// the Dialogue is waiting for the user to specify which of the
         /// options has been selected, and <see
         /// cref="SetSelectedOption(int)"/> must be called before <see
-        /// cref="Continue"/> is called again.)
-        /// * The Program reaches its end. When this occurs, <see
-        /// cref="SetNode(string)"/> must be called before <see
-        /// cref="Continue"/> is called again.
-        /// * An error occurs while executing the Program.
+        /// cref="Continue"/> is called again.) * The Program reaches its
+        /// end. When this occurs, <see cref="SetNode(string)"/> must be
+        /// called before <see cref="Continue"/> is called again. * An
+        /// error occurs while executing the Program.
         ///
         /// This method has no effect if it is called while the <see
         /// cref="Dialogue"/> is currently in the process of executing
@@ -744,7 +702,7 @@ namespace Yarn {
         /// <seealso cref="CommandHandler"/>
         /// <seealso cref="NodeCompleteHandler"/>
         /// <seealso cref="DialogueCompleteHandler"/>
-        /// <seealso cref="HandlerExecutionType"/>
+
         public void Continue() {
             if (vm.executionState == VirtualMachine.ExecutionState.Running) {
                 // Cannot 'continue' an already running VM.

@@ -195,14 +195,37 @@ namespace Yarn
         }
 
         public enum ExecutionState {
-            /** Stopped */
+            /// <summary>
+            /// The VirtualMachine is not running a node.
+            /// </summary>
             Stopped,
-            /** Waiting on option selection */
+            
+            /// <summary>
+            /// The VirtualMachine is waiting on option selection. Call
+            /// <see cref="SetSelectedOption(int)"/> before calling <see
+            /// cref="Continue"/>.
+            /// </summary>
             WaitingOnOptionSelection,
-            /** Suspended in the middle of execution */
-            Suspended,
-            /** Running */
-            Running
+            
+
+
+            /// <summary>
+            /// The VirtualMachine has finished delivering content to the
+            /// client game, and is waiting for <see cref="Continue"/> to
+            /// be called.
+            /// </summary>
+            WaitingForContinue,
+
+            /// <summary>
+            /// The VirtualMachine is delivering a line, options, or a
+            /// commmand to the client game.
+            /// </summary>
+            DeliveringContent,
+            
+            /// <summary>
+            /// The VirtualMachine is in the middle of executing code.
+            /// </summary>
+            Running,
         }
 
         private ExecutionState _executionState;
@@ -298,15 +321,58 @@ namespace Yarn
             // so that it's ready for the next one
             state.currentOptions.Clear();
 
-            // We're no longer in the WaitingForOptions state; we are now
-            // instead Suspended
-            executionState = ExecutionState.Suspended;
+            // We're no longer in the WaitingForOptions state; we are now waiting for our game to let us continue
+            executionState = ExecutionState.WaitingForContinue;
         }
-                    
 
         /// Resumes execution.
-        internal void Continue() {
+        internal void Continue()
+        {
+            CheckCanContinue();
 
+            if (executionState == ExecutionState.DeliveringContent) {
+                // We were delivering a line, option set, or command, and
+                // the client has called Continue() on us. We're still
+                // inside the stack frame of the client callback, so to
+                // avoid recursion, we'll note that our state has changed
+                // back to Running; when we've left the callback, we'll
+                // continue executing instructions.
+                executionState = ExecutionState.Running;
+                return;
+            }
+
+            executionState = ExecutionState.Running;
+
+            // Execute instructions until something forces us to stop
+            while (executionState == ExecutionState.Running)
+            {
+                Instruction currentInstruction = currentNode.Instructions[state.programCounter];
+
+                RunInstruction(currentInstruction);
+
+                state.programCounter++;
+
+                if (state.programCounter >= currentNode.Instructions.Count)
+                {
+                    nodeCompleteHandler(currentNode.Name);
+                    executionState = ExecutionState.Stopped;
+                    dialogueCompleteHandler();
+                    dialogue.LogDebugMessage("Run complete.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Runs a series of tests to see if the <see
+        /// cref="VirtualMachine"/> is in a state where <see
+        /// cref="Continue"/> can be called. Throws an exception if it
+        /// can't.
+        /// </summary>
+        /// <throws cref="DialogueException">Thrown when the <see
+        /// cref="VirtualMachine"/> is not in a state where <see
+        /// cref="Continue"/> could be called.</throws>
+        private void CheckCanContinue()
+        {
             if (currentNode == null)
             {
                 throw new DialogueException("Cannot continue running dialogue. No node has been selected.");
@@ -340,24 +406,6 @@ namespace Yarn
             if (nodeCompleteHandler == null)
             {
                 throw new DialogueException($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");
-            }
-
-            executionState = ExecutionState.Running;
-
-            // Execute instructions until something forces us to stop
-            while (executionState == ExecutionState.Running) {
-                Instruction currentInstruction = currentNode.Instructions [state.programCounter];
-
-                RunInstruction (currentInstruction);
-
-                state.programCounter++;
-
-                if (state.programCounter >= currentNode.Instructions.Count) {
-                    nodeCompleteHandler(currentNode.Name);
-                    executionState = ExecutionState.Stopped;
-                    dialogueCompleteHandler();
-                    dialogue.LogDebugMessage ("Run complete.");
-                }
             }
         }
 
@@ -420,11 +468,15 @@ namespace Yarn
                             line.Substitutions = strings;
                         }
 
-                        var pause = lineHandler(line);
+                        // Suspend execution, because we're about to deliver content
+                        executionState = ExecutionState.DeliveringContent;
 
-                        if (pause == Dialogue.HandlerExecutionType.PauseExecution)
-                        {
-                            executionState = ExecutionState.Suspended;
+                        lineHandler(line);
+
+                        if (executionState == ExecutionState.DeliveringContent) {
+                            // The client didn't call Continue, so we'll
+                            // wait here.
+                            executionState = ExecutionState.WaitingForContinue;
                         }
 
                         break;
@@ -463,15 +515,16 @@ namespace Yarn
                             
                         }
 
-                        var command = new Command(commandText);
+                        executionState = ExecutionState.DeliveringContent;
                          
-                        var pause = commandHandler(
-                            command
-                        );
+                        var command = new Command(commandText);
 
-                        if (pause == Dialogue.HandlerExecutionType.PauseExecution)
-                        {
-                            executionState = ExecutionState.Suspended;
+                        commandHandler(command);
+
+                        if (executionState == ExecutionState.DeliveringContent) {
+                            // The client didn't call Continue, so we'll
+                            // wait here.
+                            executionState = ExecutionState.WaitingForContinue;
                         }
 
                         break;
@@ -657,7 +710,7 @@ namespace Yarn
                             nodeName = i.Operands[0].StringValue;
                         }
 
-                        var pause = nodeCompleteHandler(currentNode.Name);
+                        nodeCompleteHandler(currentNode.Name);
                         
                         SetNode(nodeName);
 
@@ -665,10 +718,6 @@ namespace Yarn
                         // be incremented when this function returns, and
                         // would mean skipping the first instruction
                         state.programCounter -= 1; 
-
-                        if (pause == Dialogue.HandlerExecutionType.PauseExecution) {
-                            executionState = ExecutionState.Suspended;
-                        }                        
 
                         break;
                     }
@@ -735,11 +784,13 @@ namespace Yarn
                             optionChoices.Add(new OptionSet.Option(option.Key, optionIndex, option.Value));
                         }
 
-                        // We can't continue until our client tell us which option to pick
+                        // We can't continue until our client tell us which
+                        // option to pick
                         executionState = ExecutionState.WaitingOnOptionSelection;
 
-                        // Pass the options set to the client, as well as a delegate for them to call when the
-                        // user has made a selection
+                        // Pass the options set to the client, as well as a
+                        // delegate for them to call when the user has made
+                        // a selection
 
                         optionsHandler(new OptionSet(optionChoices.ToArray()));
 
