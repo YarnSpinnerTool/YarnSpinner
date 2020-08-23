@@ -53,7 +53,7 @@ hashtag
     ;
 
 line_condition
-    : COMMAND_START COMMAND_IF expression EXPRESSION_COMMAND_END
+    : COMMAND_START COMMAND_IF expression COMMAND_END
     ;
 
 expression
@@ -95,11 +95,11 @@ if_statement
     ;
 
 if_clause
-    : COMMAND_START COMMAND_IF expression EXPRESSION_COMMAND_END statement*
+    : COMMAND_START COMMAND_IF expression COMMAND_END statement*
     ;
 
 else_if_clause
-    : COMMAND_START COMMAND_ELSEIF expression EXPRESSION_COMMAND_END statement*
+    : COMMAND_START COMMAND_ELSEIF expression COMMAND_END statement*
     ;
 
 else_clause
@@ -107,12 +107,12 @@ else_clause
     ;
 
 set_statement
-    : COMMAND_START COMMAND_SET VAR_ID OPERATOR_ASSIGNMENT expression EXPRESSION_COMMAND_END #setVariableToValue
-    | COMMAND_START COMMAND_SET expression EXPRESSION_COMMAND_END #setExpression
+    : COMMAND_START COMMAND_SET VAR_ID OPERATOR_ASSIGNMENT expression COMMAND_END #setVariableToValue
+    | COMMAND_START COMMAND_SET expression COMMAND_END #setExpression
     ;
 
 call_statement
-    : COMMAND_START COMMAND_CALL function EXPRESSION_COMMAND_END
+    : COMMAND_START COMMAND_CALL function COMMAND_END
     ;
 
 command_statement

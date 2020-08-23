@@ -311,7 +311,7 @@ FUNC_ID: ID ;
 EXPRESSION_END: '}' -> popMode;
 
 // The end of a command. We need to leave both expression mode, and command mode.
-EXPRESSION_COMMAND_END: '>>' -> popMode, popMode;
+EXPRESSION_COMMAND_END: '>>' -> type(COMMAND_END), popMode, popMode;
 
 // Variables, which always begin with a '$'
 VAR_ID : '$' ID ;
