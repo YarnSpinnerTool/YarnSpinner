@@ -31,6 +31,7 @@ statement
     | shortcut_option_statement
     | call_statement
     | command_statement
+    | declare_statement
     | INDENT statement* DEDENT
     ;
 
@@ -107,7 +108,7 @@ else_clause
     ;
 
 set_statement
-    : COMMAND_START COMMAND_SET VAR_ID OPERATOR_ASSIGNMENT expression COMMAND_END #setVariableToValue
+    : COMMAND_START COMMAND_SET variable OPERATOR_ASSIGNMENT expression COMMAND_END #setVariableToValue
     | COMMAND_START COMMAND_SET expression COMMAND_END #setExpression
     ;
 
@@ -142,3 +143,6 @@ option_formatted_text
         | OPTION_EXPRESSION_START expression EXPRESSION_END 
       )+
     ;
+
+declare_statement
+    : COMMAND_START COMMAND_DECLARE variable OPERATOR_ASSIGNMENT expression Description=STRING? COMMAND_END ;

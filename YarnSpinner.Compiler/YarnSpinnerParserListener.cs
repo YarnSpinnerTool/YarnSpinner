@@ -515,5 +515,15 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitOption_formatted_text([NotNull] YarnSpinnerParser.Option_formatted_textContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.declare_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.declare_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context);
 }
 } // namespace Yarn.Compiler

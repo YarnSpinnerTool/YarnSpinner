@@ -348,6 +348,8 @@ COMMAND_ENDIF: 'endif';
 
 COMMAND_CALL: 'call' [\p{White_Space}] -> pushMode(ExpressionMode);
 
+COMMAND_DECLARE: 'declare' [\p{White_Space}] -> pushMode(ExpressionMode);
+
 // End of a command.
 COMMAND_END: '>>' -> popMode;
 

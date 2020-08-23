@@ -46,6 +46,9 @@ namespace Yarn
 
             /// <summary>The null value.</summary>
             Null,
+
+            /// <summary>A value of undefined type.</summary>
+            Undefined,
         }
 
         /// <summary>

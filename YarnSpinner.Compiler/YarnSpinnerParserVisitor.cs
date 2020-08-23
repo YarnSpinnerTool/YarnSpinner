@@ -318,5 +318,11 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitOption_formatted_text([NotNull] YarnSpinnerParser.Option_formatted_textContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.declare_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context);
 }
 } // namespace Yarn.Compiler

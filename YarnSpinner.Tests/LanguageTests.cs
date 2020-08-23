@@ -31,7 +31,7 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "Example.yarn");
             var testPath = Path.ChangeExtension(path, ".testplan");
             
-            Compiler.CompileFile(path, out var program, out stringTable);
+            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
 
             dialogue.SetProgram(program);
             this.LoadTestPlan(testPath);
@@ -45,8 +45,8 @@ namespace YarnSpinner.Tests
             var sallyPath = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
             var shipPath = Path.Combine(SpaceDemoScriptsPath, "Ship.yarn");
 
-            Compiler.CompileFile(sallyPath, out var sally, out var sallyStringTable);
-            Compiler.CompileFile(shipPath, out var ship, out var shipStringTable);
+            Compiler.CompileFile(sallyPath, out var sally, out var sallyStringTable, out declarations);
+            Compiler.CompileFile(shipPath, out var ship, out var shipStringTable, out declarations);
 
 
             var combinedWorking = Program.Combine(sally, ship);
@@ -64,7 +64,7 @@ namespace YarnSpinner.Tests
         public void TestEndOfNotesWithOptionsNotAdded()
         {
             var path = Path.Combine(TestDataPath, "SkippedOptions.yarn");
-            Compiler.CompileFile(path, out var program, out stringTable);
+            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
 
             dialogue.SetProgram(program);
 
@@ -81,7 +81,7 @@ namespace YarnSpinner.Tests
         public void TestNodeHeaders()
         {
             var path = Path.Combine(TestDataPath, "Headers.yarn");
-            Compiler.CompileFile(path, out var program, out stringTable);
+            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
 
             Assert.Equal(4, program.Nodes.Count);
 
@@ -97,7 +97,7 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "InvalidNodeTitle.yarn");
 
             Assert.Throws<Yarn.Compiler.ParseException>( () => {
-                Compiler.CompileFile(path, out var program, out stringTable);
+                Compiler.CompileFile(path, out var program, out stringTable, out declarations);
             });
             
         }
@@ -211,7 +211,7 @@ namespace YarnSpinner.Tests
             {
                 LoadTestPlan(testPlanFilePath);
 
-                Compiler.CompileFile(scriptFilePath, out var program, out stringTable);
+                Compiler.CompileFile(scriptFilePath, out var program, out stringTable, out declarations);
                 dialogue.SetProgram(program);
 
                 // If this file contains a Start node, run the test case

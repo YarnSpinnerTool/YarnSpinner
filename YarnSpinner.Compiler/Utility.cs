@@ -33,7 +33,12 @@ namespace Yarn.Compiler
         /// added.</returns>
         public static string AddTagsToLines(string contents, ICollection<string> existingLineTags)
         {
-            Compiler.CompileString(contents, "input", out Program program, out IDictionary<string, StringInfo> stringTable);
+            Compiler.CompileString(
+                contents,
+                "input",
+                out Program program,
+                out IDictionary<string, StringInfo> stringTable,
+                out IEnumerable<VariableDeclaration> variableDeclarations);
 
             var untaggedLines = stringTable.Where(entry => entry.Value.isImplicitTag);
 

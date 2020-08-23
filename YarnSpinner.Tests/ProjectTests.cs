@@ -18,7 +18,7 @@ namespace YarnSpinner.Tests
         public void TestLoadingNodes()
         {
             var path = Path.Combine(TestDataPath, "Projects", "Basic", "Test.yarn");
-            Compiler.CompileFile(path, out var program, out stringTable);
+            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
 
             // high-level test: load the file, verify it has the nodes we want,
             // and run one

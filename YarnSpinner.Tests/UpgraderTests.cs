@@ -39,7 +39,7 @@ namespace YarnSpinner.Tests
             Assert.Equal(expectedContents, upgradedContents);
 
             // Compile this upgraded source
-            Compiler.CompileString(upgradedContents, fileName, out var program, out stringTable);
+            Compiler.CompileString(upgradedContents, fileName, out var program, out stringTable, out declarations);
 
             // Execute the program and verify thats output matches the test
             // plan

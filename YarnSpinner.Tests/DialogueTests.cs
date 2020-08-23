@@ -19,7 +19,7 @@ namespace YarnSpinner.Tests
         {
             var path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
 
-            Compiler.CompileFile(path, out var program, out stringTable);
+            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
 
             dialogue.SetProgram (program);
 
@@ -36,7 +36,7 @@ namespace YarnSpinner.Tests
         public void TestOptionDestinations() {
             var path = Path.Combine(TestDataPath, "Options.yarn");
 
-            Compiler.CompileFile(path, out var program, out stringTable);
+            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
 
             dialogue.SetProgram (program);
 
@@ -67,7 +67,7 @@ namespace YarnSpinner.Tests
 
             var path = Path.Combine(TestDataPath, "AnalysisTest.yarn");
 
-            Compiler.CompileFile(path, out var program, out stringTable);
+            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
 
             dialogue.SetProgram(program);
             dialogue.Analyse (context);
@@ -80,10 +80,10 @@ namespace YarnSpinner.Tests
             context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
 
             string shipPath = Path.Combine(SpaceDemoScriptsPath, "Ship.yarn");
-            Compiler.CompileFile(shipPath, out var shipProgram, out var shipStringTable);
+            Compiler.CompileFile(shipPath, out var shipProgram, out var shipStringTable, out declarations);
 
             string sallyPath = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
-            Compiler.CompileFile(sallyPath, out var sallyProgram, out var sallyStringTable);
+            Compiler.CompileFile(sallyPath, out var sallyProgram, out var sallyStringTable, out declarations);
 
             stringTable = shipStringTable.Union(sallyStringTable).ToDictionary(k => k.Key, v => v.Value);            
 
@@ -104,7 +104,7 @@ namespace YarnSpinner.Tests
 
             var path = Path.Combine(TestDataPath, "Example.yarn");
 
-            Compiler.CompileFile(path, out var program, out stringTable);
+            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
 
             dialogue.SetProgram (program);
 
@@ -118,7 +118,7 @@ namespace YarnSpinner.Tests
         {
             var path = Path.Combine (TestDataPath, "TestCases", "Smileys.yarn");
 
-            Compiler.CompileFile(path, out var program, out stringTable);
+            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
             
             dialogue.SetProgram (program);
 
@@ -131,7 +131,7 @@ namespace YarnSpinner.Tests
         public void TestGettingCurrentNodeName()  {
 
             string path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
-            Compiler.CompileFile(path, out var program, out stringTable);
+            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
             
             dialogue.SetProgram (program);
 
@@ -151,7 +151,7 @@ namespace YarnSpinner.Tests
 
             var path = Path.Combine(TestDataPath, "Example.yarn");
 
-            Compiler.CompileFile(path, out var program, out stringTable);
+            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
             dialogue.SetProgram (program);
 
             var sourceID = dialogue.GetStringIDForNode ("LearnMore");
@@ -165,7 +165,7 @@ namespace YarnSpinner.Tests
 		public void TestGettingTags() {
 
             var path = Path.Combine(TestDataPath, "Example.yarn");
-            Compiler.CompileFile(path, out var program, out stringTable);
+            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
 			dialogue.SetProgram (program);
 
 			var source = dialogue.GetTagsForNode ("LearnMore");
@@ -180,7 +180,7 @@ namespace YarnSpinner.Tests
         [Fact]
         public void TestPrepareForLine() {
             var path = Path.Combine(TestDataPath, "TaggedLines.yarn");
-            Compiler.CompileFile(path, out var program, out stringTable);
+            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
 
             bool prepareForLinesWasCalled = false;
 
@@ -220,7 +220,7 @@ namespace YarnSpinner.Tests
             <<set $bool = NegateBool(true)>>
             ");
 
-            Compiler.CompileString(source, "input", out var program, out var strings);
+            Compiler.CompileString(source, "input", out var program, out var strings, out declarations);
 
             dialogue.SetProgram(program);
             dialogue.SetNode("Start");
@@ -252,7 +252,7 @@ namespace YarnSpinner.Tests
             // Run code that calls it with the wrong number of arguments
             var source = CreateTestNode("<<set $var = the_func(1,2)>>");
 
-            Compiler.CompileString(source, "input", out var program, out var strings);
+            Compiler.CompileString(source, "input", out var program, out var strings, out declarations);
 
             dialogue.SetProgram(program);
             dialogue.SetNode("Start");
@@ -275,7 +275,7 @@ namespace YarnSpinner.Tests
             // Run code that calls it
             var source = CreateTestNode("<<set $var = the_func(1)>>");
 
-            Compiler.CompileString(source, "input", out var program, out var strings);
+            Compiler.CompileString(source, "input", out var program, out var strings, out declarations);
 
             dialogue.SetProgram(program);
             dialogue.SetNode("Start");
