@@ -145,4 +145,4 @@ option_formatted_text
     ;
 
 declare_statement
-    : COMMAND_START COMMAND_DECLARE variable OPERATOR_ASSIGNMENT expression Description=STRING? COMMAND_END ;
+    : COMMAND_START COMMAND_DECLARE variable OPERATOR_ASSIGNMENT value Description=STRING? COMMAND_END ;

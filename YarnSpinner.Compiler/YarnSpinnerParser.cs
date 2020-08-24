@@ -2685,8 +2685,8 @@ public partial class YarnSpinnerParser : Parser {
 			return GetRuleContext<VariableContext>(0);
 		}
 		public ITerminalNode OPERATOR_ASSIGNMENT() { return GetToken(YarnSpinnerParser.OPERATOR_ASSIGNMENT, 0); }
-		public ExpressionContext expression() {
-			return GetRuleContext<ExpressionContext>(0);
+		public ValueContext value() {
+			return GetRuleContext<ValueContext>(0);
 		}
 		public ITerminalNode COMMAND_END() { return GetToken(YarnSpinnerParser.COMMAND_END, 0); }
 		public ITerminalNode STRING() { return GetToken(YarnSpinnerParser.STRING, 0); }
@@ -2722,7 +2722,7 @@ public partial class YarnSpinnerParser : Parser {
 			State = 334; Match(COMMAND_DECLARE);
 			State = 335; variable();
 			State = 336; Match(OPERATOR_ASSIGNMENT);
-			State = 337; expression(0);
+			State = 337; value();
 			State = 339;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
@@ -3054,8 +3054,8 @@ public partial class YarnSpinnerParser : Parser {
 		'\x14E', '\x3', '\x2', '\x2', '\x2', '\x14E', '\x35', '\x3', '\x2', '\x2', 
 		'\x2', '\x14F', '\x150', '\a', '\x13', '\x2', '\x2', '\x150', '\x151', 
 		'\a', 'G', '\x2', '\x2', '\x151', '\x152', '\x5', '\x1A', '\xE', '\x2', 
-		'\x152', '\x153', '\a', '#', '\x2', '\x2', '\x153', '\x155', '\x5', '\x16', 
-		'\f', '\x2', '\x154', '\x156', '\a', ';', '\x2', '\x2', '\x155', '\x154', 
+		'\x152', '\x153', '\a', '#', '\x2', '\x2', '\x153', '\x155', '\x5', '\x18', 
+		'\r', '\x2', '\x154', '\x156', '\a', ';', '\x2', '\x2', '\x155', '\x154', 
 		'\x3', '\x2', '\x2', '\x2', '\x155', '\x156', '\x3', '\x2', '\x2', '\x2', 
 		'\x156', '\x157', '\x3', '\x2', '\x2', '\x2', '\x157', '\x158', '\a', 
 		'H', '\x2', '\x2', '\x158', '\x37', '\x3', '\x2', '\x2', '\x2', '&', ';', 
