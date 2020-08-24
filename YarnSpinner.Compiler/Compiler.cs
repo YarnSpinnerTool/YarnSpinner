@@ -15,7 +15,7 @@
     /// <remarks>This enum specifies the _type_ of success that resulted.
     /// Compilation failures will result in a <see cref="ParseException"/>,
     /// so they don't get a Status.</remarks>
-    public enum Status
+    public enum CompilationStatus
     {
         /// <summary>The compilation succeeded with no errors.</summary>
         Succeeded,
@@ -117,6 +117,124 @@
         }
     }
 
+    public struct CompilationJob {
+
+        /// <summary>
+        /// Represents the contents of a file to compile.
+        /// </summary>
+        public struct File {
+            public string FileName;
+            public string Source;
+        }
+
+        /// <summary>
+        /// The <see cref="File"/> structs that represent the content to
+        /// parse..
+        /// </summary>
+        public IEnumerable<File> Files;
+
+        /// <summary>
+        /// The <see cref="Library"/> that contains declarations for
+        /// functions.
+        /// </summary>
+        public Library Library;
+
+        /// <summary>
+        /// The declarations for variables.
+        /// </summary>
+        public IEnumerable<VariableDeclaration> VariableDeclarations;
+
+        /// <summary>
+        /// Creates a new <see cref="CompilationJob"/> using the contents
+        /// of a collection of files.
+        /// </summary>
+        /// <param name="paths">The paths to the files.</param>
+        /// <returns>A new <see cref="CompilationJob"/>.</returns>
+        public static CompilationJob CreateFromFiles(IEnumerable<string> paths)
+        {
+            var fileList = new List<File>();
+
+            // Read every file and add it to the file list
+            foreach (var path in paths)
+            {
+                fileList.Add(new File
+                {
+                    FileName = System.IO.Path.GetFileNameWithoutExtension(path),
+                    Source = System.IO.File.ReadAllText(path),
+                });
+            }
+
+            return new CompilationJob
+            {
+                Files = fileList.ToArray(),
+            };
+        }
+
+        public static CompilationJob CreateFromFiles(params string[] paths) {
+            return CreateFromFiles((IEnumerable<string>) paths);
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="CompilationJob"/> using the contents
+        /// of a string.
+        /// </summary>
+        /// <param name="fileName">The name to assign to the compiled file.</param>
+        /// <param name="source">The text to compile.</param>
+        /// <returns>A new <see cref="CompilationJob"/>.</returns>
+        public static CompilationJob CreateFromString(string fileName, string source) {
+            return new CompilationJob
+            {
+                Files = new List<File>
+                {
+                    new File {
+                        Source = source, FileName = fileName
+                    },
+                }
+            };
+        }
+    }
+
+    public struct CompilationResult
+    {
+        public Program Program;
+        public IDictionary<string, StringInfo> StringTable;
+        public IEnumerable<VariableDeclaration> Declarations;
+        public CompilationStatus Status;
+
+        internal static CompilationResult CombineCompilationResults(IEnumerable<CompilationResult> results)
+        {
+            CompilationResult finalResult;
+
+            var programs = new List<Program>();
+            var declarations = new List<VariableDeclaration>();
+            var mergedStringTable = new Dictionary<string, StringInfo>();
+
+            var status = CompilationStatus.Succeeded;
+
+            foreach (var result in results)
+            {
+                programs.Add(result.Program);
+                declarations.AddRange(result.Declarations);
+                foreach (var entry in result.StringTable)
+                {
+                    mergedStringTable.Add(entry.Key, entry.Value);
+                }
+
+                if (result.Status != CompilationStatus.Succeeded) {
+                    status = result.Status;
+                }
+            }
+
+            return new CompilationResult
+            {
+                Program = Program.Combine(programs.ToArray()),
+                StringTable = mergedStringTable,
+                Declarations = declarations,
+                Status = status,
+            };
+        }
+    }
+
     /// <summary>
     /// Compiles Yarn code.
     /// </summary>
@@ -168,50 +286,24 @@
             this.FileName = fileName;
         }
 
-        /// <summary>
-        /// Reads the contents of a file at a given path, and generates a
-        /// program and a derived string table from its contents.
-        /// </summary>
-        /// <param name="path">The path to the file containing the
-        /// program.</param>
-        /// <param name="program">On return, contains the compiled
-        /// program.</param>
-        /// <param name="stringTable">On return, contains the string table
-        /// generated from the source code.</param>
-        /// <returns>The status of the compilation.</returns>
-        /// <exception cref="ParseException">Thrown when a parse error
-        /// occurs during compilation.</exception>
-        public static Status CompileFile(string path, out Program program, out IDictionary<string, StringInfo> stringTable, out IEnumerable<VariableDeclaration> declarations)
-        {
-            var source = File.ReadAllText(path);
-
-            var fileName = Path.GetFileNameWithoutExtension(path);
-
-            return CompileString(source, fileName, out program, out stringTable, out declarations);
-        }
-
 #if DEBUG
         internal string parseTree;
         internal List<string> tokens;
 #endif
 
-        /// <summary>
-        /// Generates a program and a derived string table from the
-        /// contents of a string.
-        /// </summary>
-        /// <param name="text">The source code of the program.</param>
-        /// <param name="fileName">The file name to assign to the compiled
-        /// results.</param>
-        /// <param name="program">On return, contains the compiled
-        /// program.</param>
-        /// <param name="stringTable">On return, contains the string table
-        /// generated from the source code.</param>
-        /// <returns>The status of the compilation.</returns>
-        /// <exception cref="ParseException">Thrown when a parse error
-        /// occurs during compilation.</exception>                
-        public static Status CompileString(string text, string fileName, out Program program, out IDictionary<string, StringInfo> stringTable, out IEnumerable<VariableDeclaration> declarations)
+        public static CompilationResult Compile(CompilationJob compilationJob)
         {
-            ICharStream input = CharStreams.fromstring(text);
+            var results = new List<CompilationResult>();
+
+            foreach (var file in compilationJob.Files) {
+                results.Add(CompileFileInJob(file, compilationJob));
+            }
+
+            return CompilationResult.CombineCompilationResults(results);
+        }
+
+        private static CompilationResult CompileFileInJob(CompilationJob.File file, CompilationJob job) {
+            ICharStream input = CharStreams.fromstring(file.Source);
 
             YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -246,22 +338,17 @@
 #endif // DEBUG
             }
 
-            Compiler compiler = new Compiler(fileName);
+            Compiler compiler = new Compiler(file.FileName);
 
             compiler.Compile(tree);
 
-            program = compiler.Program;
-            stringTable = compiler.StringTable;
-            declarations = compiler.VariableDeclarations;
-
-            if (compiler.containsImplicitStringTags)
+            return new CompilationResult
             {
-                return Status.SucceededUntaggedStrings;
-            }
-            else
-            {
-                return Status.Succeeded;
-            }
+                Program = compiler.Program,
+                StringTable = compiler.StringTable,
+                Declarations = compiler.VariableDeclarations,
+                Status = compiler.containsImplicitStringTags ? CompilationStatus.SucceededUntaggedStrings : CompilationStatus.Succeeded,
+            };
         }
 
         /// <summary>

@@ -39,11 +39,14 @@ namespace YarnSpinner.Tests
             Assert.Equal(expectedContents, upgradedContents);
 
             // Compile this upgraded source
-            Compiler.CompileString(upgradedContents, fileName, out var program, out stringTable, out declarations);
+
+            var result = Compiler.Compile(CompilationJob.CreateFromString(fileName, upgradedContents));
+            
+            stringTable = result.StringTable;
 
             // Execute the program and verify thats output matches the test
             // plan
-            dialogue.SetProgram(program);
+            dialogue.SetProgram(result.Program);
 
             // If this file contains a Start node, run the test case
             // (otherwise, we're just testing its parsability, which we did

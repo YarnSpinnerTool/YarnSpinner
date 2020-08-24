@@ -18,12 +18,15 @@ namespace YarnSpinner.Tests
         public void TestLoadingNodes()
         {
             var path = Path.Combine(TestDataPath, "Projects", "Basic", "Test.yarn");
-            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
+            
+            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+            
+            dialogue.SetProgram(result.Program);
+            stringTable = result.StringTable;
 
             // high-level test: load the file, verify it has the nodes we want,
             // and run one
-            dialogue.SetProgram(program);
-
+            
             Assert.Equal(3, dialogue.allNodes.Count());
 
             Assert.True(dialogue.NodeExists("TestNode"));

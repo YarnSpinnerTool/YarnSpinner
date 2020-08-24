@@ -34,7 +34,7 @@ namespace YarnSpinner.Tests
 
             IEnumerable<VariableDeclaration> declarations;
 
-            Compiler.CompileString(source, "input", out var program, out stringTable, out declarations);
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
             var expectedDeclarations = new HashSet<VariableDeclaration>() {
                 new VariableDeclaration {
@@ -54,7 +54,7 @@ namespace YarnSpinner.Tests
                 },                
             };
 
-            Assert.Equal(expectedDeclarations, declarations);
+            Assert.Equal(expectedDeclarations, result.Declarations);
 
             
         }
@@ -66,6 +66,10 @@ namespace YarnSpinner.Tests
             <<declare $int = 6>> // redeclaration            
             ");
 
+            var ex = Assert.Throws<TypeException>(() => {
+                Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            });
+            
             throw new NotImplementedException();
         }
 
@@ -78,12 +82,7 @@ namespace YarnSpinner.Tests
 
             var ex = Assert.Throws<TypeException>(() =>
             {
-                Compiler.CompileString(
-                    source,
-                    "input",
-                    out Program program,
-                    out stringTable,
-                    out IEnumerable<VariableDeclaration> declarations);
+                Compiler.Compile(CompilationJob.CreateFromString("input", source));
             });
 
             Assert.Contains("$int (Number) cannot be assigned a String", ex.Message);
@@ -98,12 +97,7 @@ namespace YarnSpinner.Tests
 
             var ex = Assert.Throws<TypeException>(() =>
             {
-                Compiler.CompileString(
-                    source,
-                    "input",
-                    out Program program,
-                    out stringTable,
-                    out IEnumerable<VariableDeclaration> declarations);
+                Compiler.Compile(CompilationJob.CreateFromString("input", source));
             });
 
             Assert.Contains("Undeclared variable $str", ex.Message);
@@ -148,12 +142,7 @@ namespace YarnSpinner.Tests
             ");
 
             // Should compile with no exceptions
-            Compiler.CompileString(
-                    source,
-                    "input",
-                    out Program program,
-                    out stringTable,
-                    out IEnumerable<VariableDeclaration> declarations);
+            Compiler.Compile(CompilationJob.CreateFromString("input", source));
         }
     }
 }

@@ -31,9 +31,11 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "Example.yarn");
             var testPath = Path.ChangeExtension(path, ".testplan");
             
-            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
-
-            dialogue.SetProgram(program);
+            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+            
+            dialogue.SetProgram(result.Program);
+            stringTable = result.StringTable;
+            
             this.LoadTestPlan(testPath);
 
             RunStandardTestcase();
@@ -45,16 +47,16 @@ namespace YarnSpinner.Tests
             var sallyPath = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
             var shipPath = Path.Combine(SpaceDemoScriptsPath, "Ship.yarn");
 
-            Compiler.CompileFile(sallyPath, out var sally, out var sallyStringTable, out declarations);
-            Compiler.CompileFile(shipPath, out var ship, out var shipStringTable, out declarations);
+            var resultSally = Compiler.Compile(CompilationJob.CreateFromFiles(sallyPath));
+            var resultShip = Compiler.Compile(CompilationJob.CreateFromFiles(shipPath));
+            
 
-
-            var combinedWorking = Program.Combine(sally, ship);
+            var combinedWorking = Program.Combine(resultSally.Program, resultShip.Program);
             
             // Loading code with the same contents should throw
             Assert.Throws<InvalidOperationException>(delegate ()
             {
-                var combinedNotWorking = Program.Combine(sally, ship, ship);
+                var combinedNotWorking = Program.Combine(resultSally.Program, resultShip.Program, resultShip.Program);
             });
         }
 
@@ -64,9 +66,11 @@ namespace YarnSpinner.Tests
         public void TestEndOfNotesWithOptionsNotAdded()
         {
             var path = Path.Combine(TestDataPath, "SkippedOptions.yarn");
-            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
 
-            dialogue.SetProgram(program);
+            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+            
+            dialogue.SetProgram(result.Program);
+            stringTable = result.StringTable;
 
             dialogue.optionsHandler = delegate (OptionSet optionSets) {
                 Assert.False(true, "Options should not be shown to the user in this test.");
@@ -81,12 +85,12 @@ namespace YarnSpinner.Tests
         public void TestNodeHeaders()
         {
             var path = Path.Combine(TestDataPath, "Headers.yarn");
-            Compiler.CompileFile(path, out var program, out stringTable, out declarations);
-
-            Assert.Equal(4, program.Nodes.Count);
+            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+            
+            Assert.Equal(4, result.Program.Nodes.Count);
 
             foreach (var tag in new[] {"one", "two", "three"}) {
-                Assert.Contains(tag, program.Nodes["Tags"].Tags);
+                Assert.Contains(tag, result.Program.Nodes["Tags"].Tags);
             }
             
         }
@@ -97,7 +101,7 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "InvalidNodeTitle.yarn");
 
             Assert.Throws<Yarn.Compiler.ParseException>( () => {
-                Compiler.CompileFile(path, out var program, out stringTable, out declarations);
+                Compiler.Compile(CompilationJob.CreateFromFiles(path));
             });
             
         }
@@ -211,8 +215,10 @@ namespace YarnSpinner.Tests
             {
                 LoadTestPlan(testPlanFilePath);
 
-                Compiler.CompileFile(scriptFilePath, out var program, out stringTable, out declarations);
-                dialogue.SetProgram(program);
+                var result = Compiler.Compile(CompilationJob.CreateFromFiles(scriptFilePath));
+            
+                dialogue.SetProgram(result.Program);
+                stringTable = result.StringTable;
 
                 // If this file contains a Start node, run the test case
                 // (otherwise, we're just testing its parsability, which
