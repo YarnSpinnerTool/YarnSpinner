@@ -199,6 +199,20 @@ namespace YarnSpinner.Tests
             Compiler.Compile(CompilationJob.CreateFromString("input", source));
         }
 
+        [Fact]
+        public void TestNullNotAllowed()
+        {
+            var source = CreateTestNode(@"
+            <<declare $err = null>> // error, null not allowed
+            ");
+
+            var ex = Assert.Throws<TypeException>( () => {
+                Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            });
+
+            Assert.Contains("Null is not a permitted type", ex.Message);
+        }
+
         [Theory]
         [InlineData("<<set $bool = func_void_bool()>>")]
         [InlineData("<<set $bool = func_int_bool(1)>>")]
