@@ -1,4 +1,4 @@
-﻿namespace Yarn.Compiler
+namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -530,7 +530,7 @@
         /// <summary>
         /// Creates a new instruction, and appends it to the current node
         /// in the <see cref="Program"/>. Called by instances of <see
-        /// cref="BodyVisitor"/> while walking the parse tree.
+        /// cref="CodeGenerationVisitor"/> while walking the parse tree.
         /// </summary>
         /// <param name="code">The opcode of the instruction.</param>
         /// <param name="operands">The operands to associate with the
@@ -649,7 +649,7 @@
                 // label at this point.
                 CurrentNode.Labels.Add(RegisterLabel(), CurrentNode.Instructions.Count);
 
-                BodyVisitor visitor = new BodyVisitor(this);
+                CodeGenerationVisitor visitor = new CodeGenerationVisitor(this);
 
                 foreach (var statement in context.statement())
                 {
@@ -714,11 +714,11 @@
     // the visitor for the body of the node does not really return ints,
     // just has to return something might be worth later investigating
     // returning Instructions
-    internal partial class BodyVisitor : YarnSpinnerParserBaseVisitor<int>
+    internal partial class CodeGenerationVisitor : YarnSpinnerParserBaseVisitor<int>
     {
         internal Compiler compiler;
 
-        public BodyVisitor(Compiler compiler)
+        public CodeGenerationVisitor(Compiler compiler)
         {
             this.compiler = compiler;
             this.loadOperators();
