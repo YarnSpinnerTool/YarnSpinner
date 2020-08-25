@@ -1,6 +1,8 @@
 title: Start
 ---
 
+<<declare $var = "">>
+
 <<set $var to "variable">>
 
 // Test (numbers, expressions, strings, bools, null, variables) in (commands, shortcut options, regular options, lines)

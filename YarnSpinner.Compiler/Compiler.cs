@@ -1,4 +1,4 @@
-namespace Yarn.Compiler
+﻿namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -150,7 +150,7 @@ namespace Yarn.Compiler
         /// </summary>
         /// <param name="paths">The paths to the files.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
-        public static CompilationJob CreateFromFiles(IEnumerable<string> paths)
+        public static CompilationJob CreateFromFiles(IEnumerable<string> paths, Library library = null)
         {
             var fileList = new List<File>();
 
@@ -167,6 +167,7 @@ namespace Yarn.Compiler
             return new CompilationJob
             {
                 Files = fileList.ToArray(),
+                Library = library,
             };
         }
 
@@ -181,7 +182,7 @@ namespace Yarn.Compiler
         /// <param name="fileName">The name to assign to the compiled file.</param>
         /// <param name="source">The text to compile.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
-        public static CompilationJob CreateFromString(string fileName, string source) {
+        public static CompilationJob CreateFromString(string fileName, string source, Library library = null) {
             return new CompilationJob
             {
                 Files = new List<File>
@@ -189,7 +190,8 @@ namespace Yarn.Compiler
                     new File {
                         Source = source, FileName = fileName
                     },
-                }
+                },
+                Library = library,
             };
         }
     }
@@ -280,9 +282,16 @@ namespace Yarn.Compiler
         private bool containsImplicitStringTags;
 
         /// <summary>
-        /// The list of variable declarations known to the compiler. Supplied as part of a CompilationJob, or by <see cref="DeriveVariableDeclarations"/>
+        /// The list of variable declarations known to the compiler.
+        /// Supplied as part of a <see cref="CompilationJob"/>, or by <see
+        /// cref="DeriveVariableDeclarations"/>
         /// </summary>
         internal IEnumerable<VariableDeclaration> VariableDeclarations = new List<VariableDeclaration>();
+
+        /// <summary>
+        /// The Library, which contains the function declarations known to the compiler. Supplied as part of a <see cref="CompilationJob"/>.
+        /// </summary>
+        internal Library Library { get; private set; }
 
         internal Compiler(string fileName)
         {
@@ -346,6 +355,7 @@ namespace Yarn.Compiler
         {
             Compiler compiler = new Compiler(fileName);
 
+            compiler.Library = job.Library;
             compiler.VariableDeclarations = variableDeclarations;
 
             compiler.Compile(tree);

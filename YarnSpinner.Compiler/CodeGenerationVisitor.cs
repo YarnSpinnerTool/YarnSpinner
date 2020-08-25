@@ -152,7 +152,7 @@ namespace Yarn.Compiler
             Visit(context.expression());
 
             // validate the type of this expression
-            var expressionTypeVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, false);
+            var expressionTypeVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, compiler.Library, false);
             var expressionType = expressionTypeVisitor.Visit(context.expression());
             var variableType = expressionTypeVisitor.Visit(context.variable());
 
@@ -284,7 +284,7 @@ namespace Yarn.Compiler
             if (expression != null)
             {
                 // Validate the expression's type
-                new ExpressionTypeVisitor(compiler.VariableDeclarations, false).Visit(expression);
+                new ExpressionTypeVisitor(compiler.VariableDeclarations, compiler.Library, false).Visit(expression);
 
                 // Code-generate the expression
                 Visit(expression);
@@ -617,6 +617,12 @@ namespace Yarn.Compiler
             return 0;
         }
         #endregion
+
+        public override int VisitDeclare_statement(YarnSpinnerParser.Declare_statementContext context)
+        {
+            // Declare statements do not participate in code generation
+            return 0;
+        }
 
         // TODO: figure out a better way to do operators
         Dictionary<int, TokenType> tokens = new Dictionary<int, TokenType>();

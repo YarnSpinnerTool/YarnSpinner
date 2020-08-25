@@ -2,112 +2,108 @@ title: Start
 ---
 // Variable testing
 
+<<declare $num1 = 0>>
+<<declare $num2 = 0>>
+<<declare $num3 = 0>>
+<<declare $str1 = "">>
+<<declare $str2 = "">>
+<<declare $str3 = "">>
+
 // Testing variable storage
-<<set $foo to 1>>
+<<set $num1 to 1>>
 
 // Test numeric storage
-<<call assert($foo == 1)>>
+<<call assert($num1 == 1)>>
 
-<<set $foo to -1>>
+<<set $num1 to -1>>
 
 // Test numeric storage (negative)
-<<call assert($foo == -1)>>
+<<call assert($num1 == -1)>>
 
 // Test string storage
-<<set $foo to "foo">>
-<<call assert($foo == "foo")>>
-
-<<set $foo to null>>
-
-// Test null storage
-<<call assert($foo == null)>>
+<<set $str1 to "foo">>
+<<call assert($str1 == "foo")>>
 
 // Test immediate value arithmetic
-<<set $foo = 45>>
+<<set $num1 = 45>>
 
-<<set $bar = $foo + 1>>
+<<set $num2 = $num1 + 1>>
 
 // Test immediate addition
-<<call assert($bar == 46)>>
+<<call assert($num2 == 46)>>
 
-<<set $bar = $foo - 1>>
+<<set $num2 = $num1 - 1>>
 
 // Test immediate subtraction
-<<call assert($bar == 44)>>
+<<call assert($num2 == 44)>>
 
-<<set $foo = 46>>
-<<set $bar = $foo * 2>>
+<<set $num1 = 46>>
+<<set $num2 = $num1 * 2>>
 
 // Test immediate multiplication
-<<call assert($bar == 92)>>
+<<call assert($num2 == 92)>>
 
-<<set $bar = $foo / 2>>
+<<set $num2 = $num1 / 2>>
 
 // Test immediate division
-<<call assert($bar == 23)>>
+<<call assert($num2 == 23)>>
 
-<<set $foo = 45>>
-<<set $foo += 1>>
+<<set $num1 = 45>>
+<<set $num1 += 1>>
 
 // Test immediate assignment addition
-<<call assert($foo == 46)>>
+<<call assert($num1 == 46)>>
 
-<<set $foo *= 2>>
+<<set $num1 *= 2>>
 
 // Test immediate assignment multiplication
-<<call assert($foo == 92)>>
+<<call assert($num1 == 92)>>
 
-<<set $foo /= 2>>
+<<set $num1 /= 2>>
 
 // Test immediate assignment division
-<<call assert($foo == 46)>>
+<<call assert($num1 == 46)>>
 
-<<set $foo -= 1>>
+<<set $num1 -= 1>>
 
 // Test immediate assignment subtraction
-<<call assert($foo == 45)>>
+<<call assert($num1 == 45)>>
 
 // Testing variable arithmetic
-<<set $foo = 46>>
-<<set $bar = 1>>
-<<set $foobar = $foo + $bar>>
+<<set $num1 = 46>>
+<<set $num2 = 1>>
+<<set $num3 = $num1 + $num2>>
 
 // Test variable addition
-<<call assert($foobar == 47)>>
+<<call assert($num3 == 47)>>
 
-<<set $foobar = $foo - $bar>>
+<<set $num3 = $num1 - $num2>>
 
 // Test variable subtraction
-<<call assert($foobar == 45)>>
+<<call assert($num3 == 45)>>
 
-<<set $bar = 2>>
-<<set $foobar = $foo * $bar>>
+<<set $num2 = 2>>
+<<set $num3 = $num1 * $num2>>
 
 // Test variable multiplication
-<<call assert($foobar == 92)>>
+<<call assert($num3 == 92)>>
 
-<<set $foobar = $foo / $bar>>
+<<set $num3 = $num1 / $num2>>
 
 // Test variable division
-<<call assert($foobar == 23)>>
-
-// Testing default variable values
-<<set $foounused += 1>>
-
-// An undefined variable must default to 0 for arithmetic
-<<call assert($foounused == 1)>>
+<<call assert($num3 == 23)>>
 
 // Testing string addition
-<<set $foo = "foo">>
-<<set $bar = "bar">>
-<<set $foobar = $foo + "bar">>
+<<set $str1 = "foo">>
+<<set $str2 = "bar">>
+<<set $str3 = $str1 + "bar">>
 
 // "Test immediate string addition
-<<call assert($foobar == "foobar")>>
+<<call assert($str3 == "foobar")>>
 
-<<set $foobar = $foo + $bar>>
+<<set $str3 = $str1 + $str2>>
 
 // "Test string addition
-<<call assert($foobar == "foobar")>>
+<<call assert($str3 == "foobar")>>
 
 ===

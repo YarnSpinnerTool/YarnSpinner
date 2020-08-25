@@ -198,5 +198,57 @@ namespace YarnSpinner.Tests
             // Should compile with no exceptions
             Compiler.Compile(CompilationJob.CreateFromString("input", source));
         }
+
+        [Theory]
+        [InlineData("<<set $bool = func_void_bool()>>")]
+        [InlineData("<<set $bool = func_int_bool(1)>>")]
+        [InlineData("<<set $bool = func_int_int_bool(1, 2)>>")]
+        [InlineData(@"<<set $bool = func_string_string_bool(""1"", ""2"")>>")]
+        public void TestFunctionSignatures(string source)
+        {
+            dialogue.library.RegisterFunction("func_void_bool", () => true);
+            dialogue.library.RegisterFunction("func_int_bool", (int i) => true);
+            dialogue.library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
+            dialogue.library.RegisterFunction("func_string_string_bool", (string i, string j) => true);
+
+            var correctSource = CreateTestNode($@"
+                <<declare $bool = false>>
+                {source}
+            ");
+
+            // Should compile with no exceptions
+            Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, dialogue.library));
+
+        }
+
+        [Theory]
+        [InlineData("<<set $bool = func_void_bool(1)>>", "expects 0 parameters, but received 1")]
+        [InlineData("<<set $bool = func_int_bool()>>", "expects 1 parameter, but received 0")]
+        [InlineData("<<set $bool = func_int_bool(true)>>", "expects a Number, not a Bool")]
+        [InlineData(@"<<set $bool = func_string_string_bool(""1"", 2)>>", "expects a String, not a Number")]
+        [InlineData("<<set $int = func_void_bool()>>", @"\$int \(Number\) cannot be assigned a Bool")]
+        [InlineData("<<set $bool = func_invalid_return()>>", "returns an invalid type")]
+        [InlineData("<<set $bool = func_invalid_param(1)>>", "parameter 1's type .* cannot be used")]
+        public void TestFailingFunctionSignatures(string source, string expectedExceptionMessage)
+        {
+            dialogue.library.RegisterFunction("func_void_bool", () => true);
+            dialogue.library.RegisterFunction("func_int_bool", (int i) => true);
+            dialogue.library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
+            dialogue.library.RegisterFunction("func_string_string_bool", (string i, string j) => true);
+            dialogue.library.RegisterFunction("func_invalid_return", () => new List<int>{1,2,3});
+            dialogue.library.RegisterFunction("func_invalid_param", (List<int> i) => true);
+
+            var failingSource = CreateTestNode($@"
+                <<declare $bool = false>>
+                <<declare $int = 1>>
+                {source}
+            ");
+
+            var ex = Assert.Throws<TypeException>(() => {
+                Compiler.Compile(CompilationJob.CreateFromString("input", failingSource, dialogue.library));
+            });
+
+            Assert.Matches(expectedExceptionMessage, ex.Message);        
+        }
     }
 }

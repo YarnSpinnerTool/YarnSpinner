@@ -1,5 +1,9 @@
 title: Start
 ---
+
+<<declare $test = 0>>
+<<declare $math = 0>>
+
 // Expression testing
 
 <<set $test to 1>>

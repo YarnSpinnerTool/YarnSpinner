@@ -1,6 +1,11 @@
 title: Start
 ---
 
+<<declare $gender = "">>
+<<declare $num = 0>>
+<<declare $ord = 0>>
+<<declare $race_position = 0>>
+
 // Case selection
 <<set $gender to "male">>
 Select: [select value={$gender} male="male" female="female" other="other"/]

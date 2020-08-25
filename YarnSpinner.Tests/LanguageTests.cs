@@ -47,16 +47,19 @@ namespace YarnSpinner.Tests
             var sallyPath = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
             var shipPath = Path.Combine(SpaceDemoScriptsPath, "Ship.yarn");
 
-            var resultSally = Compiler.Compile(CompilationJob.CreateFromFiles(sallyPath));
-            var resultShip = Compiler.Compile(CompilationJob.CreateFromFiles(shipPath));
+            CompilationJob compilationJobSally = CompilationJob.CreateFromFiles(sallyPath);
+            CompilationJob compilationJobSallyAndShip = CompilationJob.CreateFromFiles(sallyPath, shipPath);
             
+            compilationJobSally.Library = dialogue.library;
+            compilationJobSallyAndShip.Library = dialogue.library;
+            
+            var resultSally = Compiler.Compile(compilationJobSally);
+            var resultSallyAndShip = Compiler.Compile(compilationJobSallyAndShip);
 
-            var combinedWorking = Program.Combine(resultSally.Program, resultShip.Program);
-            
             // Loading code with the same contents should throw
             Assert.Throws<InvalidOperationException>(delegate ()
             {
-                var combinedNotWorking = Program.Combine(resultSally.Program, resultShip.Program, resultShip.Program);
+                var combinedNotWorking = Program.Combine(resultSally.Program, resultSallyAndShip.Program);
             });
         }
 

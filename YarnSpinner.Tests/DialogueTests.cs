@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,7 +19,10 @@ namespace YarnSpinner.Tests
         {
             var path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+            CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
+            compilationJob.Library = dialogue.library;
+
+            var result = Compiler.Compile(compilationJob);
 
             dialogue.SetProgram (result.Program);
 
@@ -69,7 +72,10 @@ namespace YarnSpinner.Tests
 
             var path = Path.Combine(TestDataPath, "AnalysisTest.yarn");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+            CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
+            compilationJob.Library = dialogue.library;
+            
+            var result = Compiler.Compile(compilationJob);
 
             stringTable = result.StringTable;
 
@@ -82,12 +88,11 @@ namespace YarnSpinner.Tests
             dialogue.UnloadAll ();
 
             context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
-
         
             result = Compiler.Compile(CompilationJob.CreateFromFiles(new[] {
                 Path.Combine(SpaceDemoScriptsPath, "Ship.yarn"),
                 Path.Combine(SpaceDemoScriptsPath, "Sally.yarn"),
-            }));
+            }, dialogue.library));
 
             dialogue.SetProgram (result.Program);
             
@@ -131,7 +136,10 @@ namespace YarnSpinner.Tests
 
             string path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
             
-            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+            CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
+            compilationJob.Library = dialogue.library;
+            
+            var result = Compiler.Compile(compilationJob);
             
             dialogue.SetProgram (result.Program);
 
@@ -232,7 +240,7 @@ namespace YarnSpinner.Tests
             <<set $bool = NegateBool(true)>>
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
 
             stringTable = result.StringTable;
 
@@ -257,56 +265,6 @@ namespace YarnSpinner.Tests
             Assert.Equal(false, this.storage.GetValue("$bool").AsBool);
         }
 
-        [Fact]
-        public void TestFunctionArgumentCount() {
-
-            // Register a function with a given number of arguments
-            dialogue.library.RegisterFunction("the_func", (int a, int b, int c) => 0);
-
-            // Run code that calls it with the wrong number of arguments
-            var source = CreateTestNode("<<declare $var = 0>> <<set $var = the_func(1,2)>>");
-
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-
-            stringTable = result.StringTable;
-            dialogue.SetProgram(result.Program);
-
-            dialogue.SetNode("Start");
-
-            // It should throw an InvalidOperationException because the
-            // wrong number of arguments were supplied
-            Assert.Throws<InvalidOperationException>(delegate {
-                do {
-                    dialogue.Continue();
-                } while (dialogue.IsActive);
-            });
-        }
-
-        [Fact]
-        public void TestFunctionArgumentTypeChecking() {
-            // Register a function that expects a parameter of a type that
-            // Yarn Spinner can't represent
-            dialogue.library.RegisterFunction("the_func", (Dialogue d) => 0);
-
-            // Run code that calls it
-            var source = CreateTestNode("<<declare $var = 0>> <<set $var = the_func(1)>>");
-
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
-
-            stringTable = result.StringTable;
-            dialogue.SetProgram(result.Program);
-
-            dialogue.SetNode("Start");
-
-            // It should throw an InvalidCastException because a Yarn.Value
-            // can't be converted to a Dialogue
-            Assert.Throws<InvalidCastException>(delegate {
-                do {
-                    dialogue.Continue();
-                } while (dialogue.IsActive);
-            });
-
-        }
     }
 }
 

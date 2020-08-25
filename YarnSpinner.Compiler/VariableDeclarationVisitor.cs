@@ -42,7 +42,7 @@ namespace Yarn.Compiler
             }
 
             // Figure out the type of the value
-            var expressionVisitor = new ExpressionTypeVisitor(null, true);
+            var expressionVisitor = new ExpressionTypeVisitor(null, null, true);
             var type = expressionVisitor.Visit(context.value());
             
             // Figure out the value itself

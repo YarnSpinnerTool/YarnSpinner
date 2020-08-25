@@ -18,10 +18,14 @@ namespace Yarn.Compiler
         // If true, this expression may not involve any variables or function calls
         protected bool RequireConstantExpression;
 
-        public ExpressionTypeVisitor(IEnumerable<VariableDeclaration> variableDeclarations, bool requireConstantExpression)
+        // The function declarations we know about
+        public Library Library { get; private set; }
+
+        public ExpressionTypeVisitor(IEnumerable<VariableDeclaration> variableDeclarations, Library library, bool requireConstantExpression)
         {
             VariableDeclarations = variableDeclarations;
             RequireConstantExpression = requireConstantExpression;
+            Library = library;
         }
 
         protected override Value.Type DefaultResult => Value.Type.Undefined;
@@ -68,15 +72,119 @@ namespace Yarn.Compiler
         }
 
         public override Value.Type VisitValueNull(YarnSpinnerParser.ValueNullContext context) {
-            throw new InvalidOperationException("Null is not a permitted type in Yarn Spinner 2.0 and later");
+            throw new TypeException("Null is not a permitted type in Yarn Spinner 2.0 and later");
         }
 
-        public override Value.Type VisitValueFunc(YarnSpinnerParser.ValueFuncContext context) {
-            // TODO: do not ship the Any type
+        public override Value.Type VisitValueFunc(YarnSpinnerParser.ValueFuncContext context)
+        {
 
-            // Currently, all function invocations return a type called
-            // Any, until we have type checking for functions done
-            throw new NotImplementedException();
+            if (this.Library == null)
+            {
+                throw new TypeException($"No library provided. Functions are not available.");
+            }
+
+            string functionName = context.function().FUNC_ID().GetText();
+
+            if (this.Library.FunctionExists(functionName) == false)
+            {
+                throw new TypeException($"Undeclared function {functionName}");
+            }
+
+            var function = this.Library.GetFunction(functionName);
+
+            // Check each parameter of the function
+            System.Reflection.ParameterInfo[] expectedParameters = function.Method.GetParameters();
+            var suppliedParameters = context.function().expression();
+
+            if (suppliedParameters.Length > expectedParameters.Length)
+            {
+                // Too many parameters supplied
+                var parameters = expectedParameters.Length == 1 ? "parameter" : "parameters";
+                throw new TypeException($"Function {functionName} expects {expectedParameters.Length} {parameters}, but received {suppliedParameters.Length}");
+            }
+
+            var typeMappings = new List<(Type NativeType, Value.Type YarnType)>
+            {
+                (typeof(string), Value.Type.String),
+                (typeof(bool), Value.Type.Bool),
+                (typeof(int), Value.Type.Number),
+                (typeof(float), Value.Type.Number),
+                (typeof(double), Value.Type.Number),
+                (typeof(sbyte), Value.Type.Number),
+                (typeof(byte), Value.Type.Number),
+                (typeof(short), Value.Type.Number),
+                (typeof(ushort), Value.Type.Number),
+                (typeof(uint), Value.Type.Number),
+                (typeof(long), Value.Type.Number),
+                (typeof(ulong), Value.Type.Number),
+                (typeof(float), Value.Type.Number),
+            };
+
+            for (int i = 0; i < expectedParameters.Length; i++)
+            {
+                System.Reflection.ParameterInfo parameter = expectedParameters[i];
+
+                if (i >= suppliedParameters.Length)
+                {
+                    if (parameter.IsOptional == false)
+                    {
+                        // Not enough parameters supplied
+                        var parameters = expectedParameters.Length == 1 ? "parameter" : "parameters";
+                        throw new TypeException($"Function {functionName} expects {expectedParameters.Length} {parameters}, but received {suppliedParameters.Length}");
+                    }
+                    else
+                    {
+                        // A parameter wasn't supplied, but it was
+                        // optional, so that's ok. Stop checking parameters
+                        // here, because there aren't any more.
+                        break;
+                    }
+                }
+
+                var suppliedParameter = suppliedParameters[i];
+
+                var expectedType = parameter.ParameterType;
+
+                var suppliedType = this.Visit(suppliedParameter);
+
+                bool expectedTypeIsValid = false;
+
+                foreach (var mapping in typeMappings)
+                {
+                    if (mapping.NativeType.IsAssignableFrom(expectedType))
+                    {
+                        if (suppliedType != mapping.YarnType) {
+                            throw new TypeException($"{functionName} parameter {i + 1} expects a {mapping.YarnType}, not a {suppliedType}");
+                        } else {
+                            // This parameter's expected type is valid, and
+                            // the supplied type can be used with it.
+                            expectedTypeIsValid = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (expectedTypeIsValid == false) {
+                    throw new TypeException($"{functionName} cannot be called: parameter {i+1}'s type ({expectedType}) cannot be used in Yarn functions");
+                }
+            }
+
+            // Cool, all the parameters check out!
+
+            // Last thing: check the return type. This will be the type of
+            // this function call.
+            var returnType = function.Method.ReturnType;
+
+            foreach (var mapping in typeMappings)
+            {
+                if (mapping.NativeType.IsAssignableFrom(returnType))
+                {
+                    return mapping.YarnType;
+                }
+            }
+
+            // Argh, this is an invalid function
+            throw new TypeException($"Function {functionName} can't be called, because it returns an invalid type ({returnType})");
         }
 
         public override Value.Type VisitExpValue(YarnSpinnerParser.ExpValueContext context) {
