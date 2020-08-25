@@ -221,13 +221,18 @@ namespace YarnSpinner.Tests
 
             // Run some code to exercise these functions
             var source = CreateTestNode(@"
+            <<declare $str = """">>
+            <<declare $int = 0>>
+            <<declare $float = 0.0>>
+            <<declare $bool = false>>
+
             <<set $str = ConcatString(""a"", ""b"")>>
             <<set $int = AddInt(1,2)>>
             <<set $float = AddFloat(1,2)>>
             <<set $bool = NegateBool(true)>>
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString(source, "input"));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
             stringTable = result.StringTable;
 
@@ -259,7 +264,7 @@ namespace YarnSpinner.Tests
             dialogue.library.RegisterFunction("the_func", (int a, int b, int c) => 0);
 
             // Run code that calls it with the wrong number of arguments
-            var source = CreateTestNode("<<set $var = the_func(1,2)>>");
+            var source = CreateTestNode("<<declare $var = 0>> <<set $var = the_func(1,2)>>");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
@@ -284,7 +289,7 @@ namespace YarnSpinner.Tests
             dialogue.library.RegisterFunction("the_func", (Dialogue d) => 0);
 
             // Run code that calls it
-            var source = CreateTestNode("<<set $var = the_func(1)>>");
+            var source = CreateTestNode("<<declare $var = 0>> <<set $var = the_func(1)>>");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 

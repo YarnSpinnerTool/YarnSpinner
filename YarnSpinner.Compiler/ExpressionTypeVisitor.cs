@@ -76,7 +76,7 @@ namespace Yarn.Compiler
 
             // Currently, all function invocations return a type called
             // Any, until we have type checking for functions done
-            return Value.Type.Unchecked;
+            throw new NotImplementedException();
         }
 
         public override Value.Type VisitExpValue(YarnSpinnerParser.ExpValueContext context) {
@@ -112,7 +112,7 @@ namespace Yarn.Compiler
             foreach (var expression in terms) {
                 Value.Type type = Visit(expression);
                 types.Add(type);
-                if (expressionType == Value.Type.Undefined && type != Value.Type.Unchecked) {
+                if (expressionType == Value.Type.Undefined) {
                     // This is the first concrete type we've seen. This
                     // will be our expression type.
                     expressionType = type;
@@ -121,7 +121,7 @@ namespace Yarn.Compiler
 
             // The expression type that we've seen must not be Any or
             // Undefined - it needs to be a concrete type.
-            if (expressionType == Value.Type.Unchecked || expressionType == Value.Type.Undefined) {
+            if (expressionType == Value.Type.Undefined) {
                 throw new TypeException(context, $"Can't determine a type for operands");
             }
 
@@ -129,12 +129,6 @@ namespace Yarn.Compiler
 
             // All types must be same as the expression type
             for (int i = 1; i < types.Count; i++) {
-                if (types[i] == Value.Type.Unchecked) {
-                    // Any types are silently converted to the
-                    // expression type
-                    types[i] = expressionType;
-                }
-                
                 if (types[i] != expressionType) {
                     typeList = string.Join(", ", types);
                     throw new TypeException(context, $"All terms of {operationType} must be the same, not {typeList}");

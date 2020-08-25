@@ -23,13 +23,15 @@ namespace YarnSpinner.Tests
             var source = CreateTestNode(@"
             <<declare $int = 5>>
             <<declare $str = ""yes"">>
-            <<declare $bool = true>>
-
+            
             // These value changes are allowed, 
             // because they match the declared type
             <<set $int = 6>>
             <<set $str = ""no"">>
             <<set $bool = false>>
+
+            // Declarations are allowed anywhere in the program
+            <<declare $bool = true>>
             ");
 
             IEnumerable<VariableDeclaration> declarations;
@@ -60,6 +62,58 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
+        public void TestDeclarationsCanAppearInOtherFiles()
+        {
+            // Create two separately-compiled compilation units that each
+            // declare a variable that's modified by the other
+            var sourceA = CreateTestNode(@"
+            <<declare $varB = 1>>
+            <<set $varA = 2>>
+            ", "NodeA");
+
+            var sourceB = CreateTestNode(@"
+            <<declare $varA = 1>>
+            <<set $varB = 2>>
+            ", "NodeB");
+
+            var compilationJob = new CompilationJob {
+                Files = new[] {
+                    new CompilationJob.File { FileName = "sourceA", Source = sourceA  },
+                    new CompilationJob.File { FileName = "sourceB", Source = sourceB  },
+                },                
+            };
+
+            Compiler.Compile(compilationJob);
+        }
+
+        [Fact]
+        public void TestImportingVariableDeclarations()
+        {
+            var source = CreateTestNode(@"
+            <<set $int = 6>> // no error; declaration is imported            
+            ");
+
+            var declarations = new[] {
+                new VariableDeclaration {
+                    name = "$int",
+                    type = Value.Type.Number,
+                }
+            };
+
+            CompilationJob compilationJob = CompilationJob.CreateFromString("input", source);
+
+            // Provide the declarations
+            compilationJob.VariableDeclarations = declarations;
+
+            // Should compile with no errors because $int was declared
+            var result = Compiler.Compile(compilationJob);
+
+            // No variables are declared in the source code, so we should
+            // expect an empty collection of variable declarations
+            Assert.Empty(result.Declarations);
+        }
+
+        [Fact]
         void TestVariableDeclarationsDisallowDuplicates() {
             var source = CreateTestNode(@"
             <<declare $int = 5>>
@@ -69,8 +123,8 @@ namespace YarnSpinner.Tests
             var ex = Assert.Throws<TypeException>(() => {
                 Compiler.Compile(CompilationJob.CreateFromString("input", source));
             });
-            
-            throw new NotImplementedException();
+
+            Assert.Contains("$int has already been declared", ex.Message);
         }
 
         [Fact]

@@ -49,9 +49,7 @@ namespace Yarn
 
             /// <summary>A value of undefined type.</summary>
             Undefined,
-
-            /// <summary>Represents a value with any defined type.</summary>
-            Unchecked,
+            
         }
 
         /// <summary>

@@ -214,7 +214,11 @@
             foreach (var result in results)
             {
                 programs.Add(result.Program);
-                declarations.AddRange(result.Declarations);
+                
+                if (result.Declarations != null) {
+                    declarations.AddRange(result.Declarations);
+                }
+
                 foreach (var entry in result.StringTable)
                 {
                     mergedStringTable.Add(entry.Key, entry.Value);
@@ -267,7 +271,7 @@
         /// <summary>
         /// The name of the file we are currently parsing from.
         /// </summary>
-        private readonly string FileName;
+        private readonly string fileName;
 
         /// <summary>
         /// Indicates whether the file we are currently parsing contains
@@ -276,14 +280,14 @@
         private bool containsImplicitStringTags;
 
         /// <summary>
-        /// The list of variable declarations that have been encountered during compilation.
+        /// The list of variable declarations known to the compiler. Supplied as part of a CompilationJob, or by <see cref="DeriveVariableDeclarations"/>
         /// </summary>
-        internal List<VariableDeclaration> VariableDeclarations = new List<VariableDeclaration>();
+        internal IEnumerable<VariableDeclaration> VariableDeclarations = new List<VariableDeclaration>();
 
         internal Compiler(string fileName)
         {
             Program = new Program();
-            this.FileName = fileName;
+            this.fileName = fileName;
         }
 
 #if DEBUG
@@ -295,14 +299,67 @@
         {
             var results = new List<CompilationResult>();
 
-            foreach (var file in compilationJob.Files) {
-                results.Add(CompileFileInJob(file, compilationJob));
+            // All variable declarations that we've encountered during this compilation job
+            var derivedVariableDeclarations = new List<VariableDeclaration>();
+
+            // All variable declarations that we've encountered, PLUS the ones we knew about before
+            var knownVariableDeclarations = new List<VariableDeclaration>();
+            if (compilationJob.VariableDeclarations != null) {
+                knownVariableDeclarations.AddRange(compilationJob.VariableDeclarations);
             }
 
-            return CompilationResult.CombineCompilationResults(results);
+            var compiledTrees = new List<(string name, IParseTree tree)>();
+
+            // First pass: parse all files, generate their syntax trees, and figure out what variables they've delcared
+            foreach (var file in compilationJob.Files) {
+                var tree = ParseSyntaxTree(file);
+                IEnumerable<VariableDeclaration> newDeclarations = DeriveVariableDeclarations(tree, knownVariableDeclarations);
+
+                derivedVariableDeclarations.AddRange(newDeclarations);
+                knownVariableDeclarations.AddRange(newDeclarations);
+
+                compiledTrees.Add((file.FileName, tree));
+            }
+
+            foreach (var parsedFile in compiledTrees) {
+                CompilationResult compilationResult = GenerateCode(parsedFile.name, knownVariableDeclarations, compilationJob, parsedFile.tree);
+                results.Add(compilationResult);
+            }            
+
+            var finalResult = CompilationResult.CombineCompilationResults(results);
+            finalResult.Declarations = derivedVariableDeclarations;
+
+            return finalResult;
         }
 
-        private static CompilationResult CompileFileInJob(CompilationJob.File file, CompilationJob job) {
+        private static IEnumerable<VariableDeclaration> DeriveVariableDeclarations(IParseTree tree, IEnumerable<VariableDeclaration> existingDeclarations)
+        {
+            var variableDeclarationVisitor = new VariableDeclarationVisitor(existingDeclarations);
+
+            variableDeclarationVisitor.Visit(tree);
+
+            // Upon exit, declarations will now contain every variable declaration we found
+            return variableDeclarationVisitor.NewVariableDeclarations;
+        }
+
+        private static CompilationResult GenerateCode(string fileName, IEnumerable<VariableDeclaration> variableDeclarations, CompilationJob job, IParseTree tree)
+        {
+            Compiler compiler = new Compiler(fileName);
+
+            compiler.VariableDeclarations = variableDeclarations;
+
+            compiler.Compile(tree);
+
+            return new CompilationResult
+            {
+                Program = compiler.Program,
+                StringTable = compiler.StringTable,
+                Status = compiler.containsImplicitStringTags ? CompilationStatus.SucceededUntaggedStrings : CompilationStatus.Succeeded,                
+            };
+        }
+
+        private static IParseTree ParseSyntaxTree(CompilationJob.File file)
+        {
             ICharStream input = CharStreams.fromstring(file.Source);
 
             YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
@@ -338,17 +395,7 @@
 #endif // DEBUG
             }
 
-            Compiler compiler = new Compiler(file.FileName);
-
-            compiler.Compile(tree);
-
-            return new CompilationResult
-            {
-                Program = compiler.Program,
-                StringTable = compiler.StringTable,
-                Declarations = compiler.VariableDeclarations,
-                Status = compiler.containsImplicitStringTags ? CompilationStatus.SucceededUntaggedStrings : CompilationStatus.Succeeded,
-            };
+            return tree;
         }
 
         /// <summary>
@@ -412,7 +459,7 @@
         /// <returns>The string ID for the newly registered
         /// string.</returns>
         /// <remarks>If `lineID` is `null`, a line ID will be generated
-        /// from <see cref="FileName"/>, the `nodeName`, and <see
+        /// from <see cref="fileName"/>, the `nodeName`, and <see
         /// cref="stringCount"/>.
         internal string RegisterString(string text, string nodeName, string lineID, int lineNumber, string[] tags)
         {
@@ -422,13 +469,13 @@
 
             if (lineID == null)
             {
-                lineIDUsed = $"{this.FileName}-{nodeName}-{this.stringCount}";
+                lineIDUsed = $"{this.fileName}-{nodeName}-{this.stringCount}";
 
                 this.stringCount += 1;
 
                 // Note that we had to make up a tag for this string, which
                 // may not be the same on future compilations
-                containsImplicitStringTags = true;
+                this.containsImplicitStringTags = true;
 
                 isImplicit = true;
             }
@@ -439,7 +486,7 @@
                 isImplicit = false;
             }
 
-            var theString = new StringInfo(text, this.FileName, nodeName, lineNumber, isImplicit, tags);
+            var theString = new StringInfo(text, this.fileName, nodeName, lineNumber, isImplicit, tags);
 
             // Finally, add this to the string table, and return the line
             // ID.
@@ -1067,26 +1114,6 @@
             // jump to it.
             compiler.CurrentNode.Labels.Add(endOfGroupLabel, compiler.CurrentNode.Instructions.Count);
             compiler.Emit(OpCode.Pop);
-
-            return 0;
-        }
-
-        public override int VisitDeclare_statement(YarnSpinnerParser.Declare_statementContext context)
-        {
-            var expressionVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, true);
-
-            var constantValueVisitor = new ConstantValueVisitor();
-
-            var type = expressionVisitor.Visit(context.value());
-            var value = constantValueVisitor.Visit(context.value());
-
-            var declaration = new VariableDeclaration {
-                name = context.variable().GetText(),
-                type = type,
-                defaultValue = value,
-            };
-
-            compiler.VariableDeclarations.Add(declaration);
 
             return 0;
         }
