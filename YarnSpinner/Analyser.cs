@@ -241,11 +241,6 @@ namespace Yarn.Analysis
             // Generate diagnoses
             var diagnoses = new List<Diagnosis>();
 
-            foreach (var readOnlyVariable in readOnlyVariables) {
-                var message = string.Format (CultureInfo.CurrentCulture, "Variable {0} is read from, but never assigned", readOnlyVariable);
-                diagnoses.Add(new Diagnosis (message, Diagnosis.Severity.Warning));
-            }
-
             foreach (var writeOnlyVariable in writeOnlyVariables) {
                 var message = string.Format (CultureInfo.CurrentCulture, "Variable {0} is assigned, but never read from", writeOnlyVariable);
                 diagnoses.Add(new Diagnosis (message, Diagnosis.Severity.Warning));

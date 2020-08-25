@@ -1,4 +1,4 @@
-using Xunit;
+﻿using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -66,8 +66,7 @@ namespace YarnSpinner.Tests
             // this script has the following variables:
             // $foo is read from and written to
             // $bar is written to but never read
-            // $bas is read from but never written to
-            // this means that there should be two diagnosis results
+            // this means that there should be one diagnosis result
             context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
 
             var path = Path.Combine(TestDataPath, "AnalysisTest.yarn");
@@ -83,7 +82,8 @@ namespace YarnSpinner.Tests
             dialogue.Analyse (context);
             diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
 
-            Assert.Equal (2, diagnoses.Count);
+            Assert.Equal (1, diagnoses.Count);
+            Assert.Contains("Variable $bar is assigned, but never read from", diagnoses.First().message);
 
             dialogue.UnloadAll ();
 
