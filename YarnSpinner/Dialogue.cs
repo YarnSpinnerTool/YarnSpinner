@@ -1035,19 +1035,20 @@ namespace Yarn {
                 });
 
                 this.RegisterFunction(TokenType.And.ToString(), delegate(Value a, Value b) {
-                    return a.AsBool && b.AsBool;
+                    return a.ConvertTo<bool>() && b.ConvertTo<bool>();
                 });
 
                 this.RegisterFunction(TokenType.Or.ToString(), delegate(Value a, Value b) {
-                    return a.AsBool || b.AsBool;
+                    return a.ConvertTo<bool>() || b.ConvertTo<bool>();
                 });
 
                 this.RegisterFunction(TokenType.Xor.ToString(), delegate(Value a, Value b) {
-                    return a.AsBool ^ b.AsBool;
+                    return a.ConvertTo<bool>() ^ b.ConvertTo<bool>();
                 });
 
                 this.RegisterFunction(TokenType.Not.ToString(), delegate(Value a) {
-                    return !a.AsBool;
+                    return !a.ConvertTo<bool>();
+                });
                 });
                 
 

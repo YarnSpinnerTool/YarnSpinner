@@ -374,13 +374,13 @@
                 switch (declaration.type)
                 {
                     case Value.Type.Number:
-                        value = new Operand(declaration.defaultValue.AsNumber);
+                        value = new Operand(declaration.defaultValue.ConvertTo<float>());
                         break;
                     case Value.Type.String:
-                        value = new Operand(declaration.defaultValue.AsString);
+                        value = new Operand(declaration.defaultValue.ConvertTo<string>());
                         break;
                     case Value.Type.Bool:
-                        value = new Operand(declaration.defaultValue.AsBool);
+                        value = new Operand(declaration.defaultValue.ConvertTo<bool>());
                         break;
                     default:
                         throw new ArgumentOutOfRangeException($"Cannot create an initial value for type {declaration.type}");

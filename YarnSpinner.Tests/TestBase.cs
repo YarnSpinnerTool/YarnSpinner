@@ -175,7 +175,7 @@ namespace YarnSpinner.Tests
             };
 
             dialogue.library.RegisterFunction ("assert", delegate(Yarn.Value value) {
-                if (value.AsBool == false) {
+                if (value.ConvertTo<bool>() == false) {
                         Assert.NotNull ("Assertion failed");
                 }
                 return true;

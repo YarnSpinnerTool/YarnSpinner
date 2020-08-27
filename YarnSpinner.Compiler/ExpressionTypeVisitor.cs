@@ -115,22 +115,7 @@ namespace Yarn.Compiler
                 throw new TypeException($"Function {functionName} expects {expectedParameters.Length} {parameters}, but received {suppliedParameters.Length}");
             }
 
-            var typeMappings = new List<(Type NativeType, Value.Type YarnType)>
-            {
-                (typeof(string), Value.Type.String),
-                (typeof(bool), Value.Type.Bool),
-                (typeof(int), Value.Type.Number),
-                (typeof(float), Value.Type.Number),
-                (typeof(double), Value.Type.Number),
-                (typeof(sbyte), Value.Type.Number),
-                (typeof(byte), Value.Type.Number),
-                (typeof(short), Value.Type.Number),
-                (typeof(ushort), Value.Type.Number),
-                (typeof(uint), Value.Type.Number),
-                (typeof(long), Value.Type.Number),
-                (typeof(ulong), Value.Type.Number),
-                (typeof(float), Value.Type.Number),
-            };
+            
 
             for (int i = 0; i < expectedParameters.Length; i++)
             {
@@ -161,13 +146,15 @@ namespace Yarn.Compiler
 
                 bool expectedTypeIsValid = false;
 
-                foreach (var mapping in typeMappings)
+                foreach (var mapping in Value.TypeMappings)
                 {
-                    if (mapping.NativeType.IsAssignableFrom(expectedType))
+                    var nativeType = mapping.Key;
+                    var yarnType = mapping.Value;
+                    if (nativeType.IsAssignableFrom(expectedType))
                     {
-                        if (suppliedType != mapping.YarnType)
+                        if (suppliedType != yarnType)
                         {
-                            throw new TypeException($"{functionName} parameter {i + 1} expects a {mapping.YarnType}, not a {suppliedType}");
+                            throw new TypeException($"{functionName} parameter {i + 1} expects a {yarnType}, not a {suppliedType}");
                         }
                         else
                         {
@@ -191,11 +178,11 @@ namespace Yarn.Compiler
             // this function call.
             var returnType = function.Method.ReturnType;
 
-            foreach (var mapping in typeMappings)
+            foreach (var mapping in Yarn.Value.TypeMappings)
             {
-                if (mapping.NativeType.IsAssignableFrom(returnType))
+                if (mapping.Key.IsAssignableFrom(returnType))
                 {
-                    return mapping.YarnType;
+                    return mapping.Value;
                 }
             }
 

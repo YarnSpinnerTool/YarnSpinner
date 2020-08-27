@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -253,16 +253,16 @@ namespace YarnSpinner.Tests
 
             // The values should be of the right type and value
             Assert.Equal(Value.Type.String, this.storage.GetValue("$str").type);
-            Assert.Equal("ab", this.storage.GetValue("$str").AsString);
+            Assert.Equal("ab", this.storage.GetValue("$str").ConvertTo<string>());
 
             Assert.Equal(Value.Type.Number, this.storage.GetValue("$int").type);
-            Assert.Equal(3, this.storage.GetValue("$int").AsNumber);
+            Assert.Equal(3, this.storage.GetValue("$int").ConvertTo<int>());
 
             Assert.Equal(Value.Type.Number, this.storage.GetValue("$float").type);
-            Assert.Equal(3, this.storage.GetValue("$float").AsNumber);
+            Assert.Equal(3, this.storage.GetValue("$float").ConvertTo<int>());
 
             Assert.Equal(Value.Type.Bool, this.storage.GetValue("$bool").type);
-            Assert.Equal(false, this.storage.GetValue("$bool").AsBool);
+            Assert.Equal(false, this.storage.GetValue("$bool").ConvertTo<bool>());
         }
 
     }

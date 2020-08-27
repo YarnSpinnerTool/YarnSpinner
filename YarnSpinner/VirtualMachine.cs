@@ -462,7 +462,7 @@ namespace Yarn
                             var strings = new string[expressionCount];
 
                             for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--) {
-                                strings[expressionIndex] = state.PopValue().AsString;
+                                strings[expressionIndex] = state.PopValue().ConvertTo<string>();
                             }
                             
                             line.Substitutions = strings;
@@ -508,7 +508,7 @@ namespace Yarn
                             // Get the values from the stack, and
                             // substitute them into the command text
                             for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--) {
-                                var substitution = state.PopValue().AsString;
+                                var substitution = state.PopValue().ConvertTo<string>();
 
                                 commandText = commandText.Replace("{" + expressionIndex + "}", substitution);
                             }
@@ -572,7 +572,7 @@ namespace Yarn
                         /** Jumps to a named label if the value on the top of the stack
                          *  evaluates to the boolean value 'false'.
                          */
-                        if (state.PeekValue().AsBool == false)
+                        if (state.PeekValue().ConvertTo<bool>() == false)
                         {
                             state.programCounter = FindInstructionPointForLabel(i.Operands[0].StringValue) - 1;
                         }
@@ -583,7 +583,7 @@ namespace Yarn
                     {/// - Jump
                         /** Jumps to a label whose name is on the stack.
                          */
-                        var jumpDestination = state.PeekValue().AsString;
+                        var jumpDestination = state.PeekValue().ConvertTo<string>();
                         state.programCounter = FindInstructionPointForLabel(jumpDestination) - 1;
 
                         break;
@@ -616,7 +616,7 @@ namespace Yarn
 
                         // Expect the compiler to have placed the number of parameters
                         // actually passed at the top of the stack.
-                        var actualParamCount = (int)state.PopValue().AsNumber;
+                        var actualParamCount = (int)state.PopValue().ConvertTo<int>();
 
                         if (expectedParamCount != actualParamCount)
                         {
@@ -637,16 +637,19 @@ namespace Yarn
 
                         
                         // Invoke the function
-                        object returnValue = function.DynamicInvoke(parametersToUse);
+                        try {
+                            object returnValue = function.DynamicInvoke(parametersToUse);
+                            // If the function returns a value, push it
+                            bool functionReturnsValue = function.Method.ReturnType != typeof(void);
 
-                        // If the function returns a value, push it
-                        bool functionReturnsValue = function.Method.ReturnType != typeof(void);
-
-                        if (functionReturnsValue)
-                        {
-                            state.PushValue(new Value(returnValue));
+                            if (functionReturnsValue)
+                            {
+                                state.PushValue(new Value(returnValue));
+                            }
+                        } catch (System.Reflection.TargetInvocationException ex) {
+                            // The function threw an exception. Re-throw the exception it threw.
+                            throw ex.InnerException;
                         }
-
 
                         break;
                     }
@@ -723,7 +726,7 @@ namespace Yarn
                         if (i.Operands.Count == 0 || string.IsNullOrEmpty(i.Operands[0].StringValue))
                         {
                             // Get a string from the stack, and jump to a node with that name.
-                            nodeName = state.PeekValue().AsString;
+                            nodeName = state.PeekValue().ConvertTo<string>();
                         }
                         else
                         {
@@ -767,7 +770,7 @@ namespace Yarn
                             // pop the expression values off the stack in
                             // reverse order, and store the list of substitutions
                             for (int expressionIndex = expressionCount - 1; expressionIndex >= 0; expressionIndex--) {
-                                string substitution = state.PopValue().AsString;
+                                string substitution = state.PopValue().ConvertTo<string>();
                                 strings[expressionIndex] = substitution;
                             }
                             
