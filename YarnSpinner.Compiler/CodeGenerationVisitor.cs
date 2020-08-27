@@ -194,6 +194,10 @@ namespace Yarn.Compiler
 
         public override int VisitCall_statement(YarnSpinnerParser.Call_statementContext context)
         {
+            // Type-check the function call
+            var expressionTypeVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, compiler.Library, false);
+            expressionTypeVisitor.Visit(context.function());
+
             // Visit our function call, which will invoke the function
             Visit(context.function());
 

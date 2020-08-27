@@ -18,7 +18,7 @@ namespace YarnSpinner.Tests
 		public LanguageTests() : base() {
 
             // Register some additional functions
-            dialogue.library.RegisterFunction("add_three_operands", delegate (Value a, Value b, Value c) {
+            dialogue.library.RegisterFunction("add_three_operands", delegate (int a, int b, int c) {
                 return a + b + c;
             });
 		}
@@ -218,7 +218,10 @@ namespace YarnSpinner.Tests
             {
                 LoadTestPlan(testPlanFilePath);
 
-                var result = Compiler.Compile(CompilationJob.CreateFromFiles(scriptFilePath));
+                CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
+                compilationJob.Library = dialogue.library;
+
+                var result = Compiler.Compile(compilationJob);
             
                 dialogue.SetProgram(result.Program);
                 stringTable = result.StringTable;

@@ -1,19 +1,20 @@
 title: Start
 ---
 
-<<declare $test = 0>>
+<<declare $int = 0>>
+<<declare $bool = true>>
 <<declare $math = 0>>
 
 // Expression testing
 
-<<set $test to 1>>
-<<call assert($test == 1)>>
+<<set $int to 1>>
+<<call assert($int == 1)>>
 
 // Test unary operators
 
-<<call assert(!$test == false)>>
-<<call assert(-$test == -1)>>
-<<call assert(-$test == 0 - 1)>>
+<<call assert(!$bool == false)>>
+<<call assert(-$int == -1)>>
+<<call assert(-$int == 0 - 1)>>
 
 // Test more complex expressions
 <<set $math = 5 * 2 - 2 * -1 >>
