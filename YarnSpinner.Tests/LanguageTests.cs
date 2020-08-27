@@ -11,8 +11,6 @@ using CLDRPlurals;
 
 namespace YarnSpinner.Tests
 {
-
-
 	public class LanguageTests : TestBase
     {
 		public LanguageTests() : base() {

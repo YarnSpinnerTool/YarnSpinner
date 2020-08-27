@@ -92,7 +92,16 @@ namespace Yarn.Compiler
 
             if (this.Library == null)
             {
-                throw new TypeException($"No library provided. Functions are not available.");
+                // We can't type-check this function call, because we don't
+                // have a Library to use to get the underlying Delegate's
+                // implementation. The best we can do is validate the types
+                // of the parameters, and then return Yarn.Type.Undefined;
+                // expressions above us will need to assume that the type
+                // matches requirements.
+                foreach (var expression in context.function().expression()) {
+                    Visit(expression);                    
+                }
+                return Yarn.Type.Undefined;
             }
 
             string functionName = context.function().FUNC_ID().GetText();
@@ -204,19 +213,7 @@ namespace Yarn.Compiler
 
         public override Yarn.Type VisitExpAndOrXor(YarnSpinnerParser.ExpAndOrXorContext context)
         {
-            // And/Or/Xor expressions require both child expressions to be
-            // Bool, and have a type of Bool
-            var expressions = context.expression();
-
-            Yarn.Type left = Visit(expressions[0]);
-            Yarn.Type right = Visit(expressions[1]);
-
-            if (left != Yarn.Type.Bool || right != Yarn.Type.Bool)
-            {
-                throw new TypeException(context, $"Both sides of {context.op.Text} must be bool, not {left} + {right}");
-            }
-
-            return Yarn.Type.Bool;
+            return CheckOperation(context, context.expression(), context.op.Text, Yarn.Type.Bool);
         }
 
         private Yarn.Type CheckOperation(ParserRuleContext context, ParserRuleContext[] terms, string operationType, params Yarn.Type[] permittedTypes)
@@ -230,7 +227,7 @@ namespace Yarn.Compiler
             {
                 Yarn.Type type = Visit(expression);
                 types.Add(type);
-                if (expressionType == Yarn.Type.Undefined)
+                if (type != Yarn.Type.Undefined && expressionType == Yarn.Type.Undefined)
                 {
                     // This is the first concrete type we've seen. This
                     // will be our expression type.
@@ -242,7 +239,12 @@ namespace Yarn.Compiler
             // Undefined - it needs to be a concrete type.
             if (expressionType == Yarn.Type.Undefined)
             {
-                throw new TypeException(context, $"Can't determine a type for operands");
+                var termTexts = new List<string>();
+                foreach (var term in terms) {
+                    termTexts.Add(term.GetText());
+                }
+                var termList = string.Join(", ", termTexts);
+                throw new TypeException(context, $"The types of all of {termList} can't be determined, so the type of this operation can't be defined. Use a type conversion function (i.e. string(), number()) on at least one of the terms to fix this problem.");
             }
 
             string typeList;
@@ -250,6 +252,12 @@ namespace Yarn.Compiler
             // All types must be same as the expression type
             for (int i = 1; i < types.Count; i++)
             {
+                if (types[i] == Yarn.Type.Undefined) {
+                    // Force any lingering undefined types into alignment
+                    // with the expression type
+                    types[i] = expressionType;
+                }
+
                 if (types[i] != expressionType)
                 {
                     typeList = string.Join(", ", types);
@@ -257,7 +265,7 @@ namespace Yarn.Compiler
                 }
             }
 
-            // Types must match one of the permitted types
+            // The expression type must match one of the permitted types
             foreach (var type in permittedTypes)
             {
                 if (expressionType == type)
@@ -268,6 +276,7 @@ namespace Yarn.Compiler
                 }
             }
 
+            // The expression type wasn't valid!
             var permittedTypesList = string.Join(" or ", permittedTypes);
             typeList = string.Join(", ", types);
 

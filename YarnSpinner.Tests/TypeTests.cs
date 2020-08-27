@@ -487,5 +487,36 @@ namespace YarnSpinner.Tests
                 RunStandardTestcase();
             });
         }
+
+        [Fact]
+        public void TestImplicitFunctionReturnTypes()
+        {
+            var source = CreateTestNode(@"
+            {simple_func()}
+            {simple_func() and bool(simple_func())}
+            { 1 + func_returning_num() }
+            { ""he"" + func_returning_str() }");
+
+            dialogue.Library.RegisterFunction("simple_func", () => true);
+            dialogue.Library.RegisterFunction("func_returning_num", () => 1);
+            dialogue.Library.RegisterFunction("func_returning_str", () => "llo");
+
+            testPlan = new TestPlanBuilder()
+                .AddLine("True")
+                .AddLine("True")
+                .AddLine("2")
+                .AddLine("hello")
+                .GetPlan();
+
+            var compilationJob = CompilationJob.CreateFromString("input", source);
+            var result = Compiler.Compile(compilationJob);
+
+            dialogue.SetProgram(result.Program);
+            stringTable = result.StringTable;
+
+            
+            RunStandardTestcase();
+
+        }
     }
 }
