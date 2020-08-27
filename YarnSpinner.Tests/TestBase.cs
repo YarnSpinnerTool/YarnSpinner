@@ -63,7 +63,7 @@ namespace YarnSpinner.Tests
             }
         }
 
-        private TestPlan testPlan;
+        protected TestPlan testPlan;
 
         public string GetComposedTextForLine(Line line) {
 
