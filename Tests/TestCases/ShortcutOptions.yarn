@@ -5,6 +5,7 @@ title: Start
 // Expect 2 options (the second one in the following group of three
 // will not be run) and select the first one
 
+<<declare $selected = 0>>
 
 -> Option 1
 	<<set $selected += 1>>

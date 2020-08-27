@@ -519,8 +519,20 @@ namespace Yarn.Compiler
         // expression has to be a variable the right value can be anything
         #region operatorEqualsCalls
         // generic helper for these types of expressions
-        internal void opEquals(string varName, YarnSpinnerParser.ExpressionContext expression, int op)
+        internal void opEquals(YarnSpinnerParser.VariableContext variable, YarnSpinnerParser.ExpressionContext expression, int op)
         {
+
+            // validate the type of this expression
+            var expressionTypeVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, compiler.Library, false);
+            var expressionType = expressionTypeVisitor.Visit(expression);
+            var variableType = expressionTypeVisitor.Visit(variable);
+
+            if (expressionType != variableType) {
+                throw new TypeException(expression.Parent as ParserRuleContext, $"{variable.GetText()} ({variableType}) cannot be assigned a {expressionType}");
+            }
+
+            var varName = variable.GetText();
+
             // Get the current value of the variable
             compiler.Emit(OpCode.PushVariable, new Operand(varName));
 
@@ -545,14 +557,14 @@ namespace Yarn.Compiler
         public override int VisitExpMultDivModEquals(YarnSpinnerParser.ExpMultDivModEqualsContext context)
         {
             // call the helper to deal with this
-            opEquals(context.variable().GetText(), context.expression(), context.op.Type);
+            opEquals(context.variable(), context.expression(), context.op.Type);
             return 0;
         }
         // += -=
         public override int VisitExpPlusMinusEquals(YarnSpinnerParser.ExpPlusMinusEqualsContext context)
         {
             // call the helper to deal with this
-            opEquals(context.variable().GetText(), context.expression(), context.op.Type);
+            opEquals(context.variable(), context.expression(), context.op.Type);
 
             return 0;
         }

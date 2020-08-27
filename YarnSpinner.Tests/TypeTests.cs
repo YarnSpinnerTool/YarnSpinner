@@ -235,6 +235,35 @@ namespace YarnSpinner.Tests
 
         }
 
+        [Theory, CombinatorialData]
+        public void TestOperatorsAreTypeChecked([CombinatorialValues(
+            "= 1 + 1",
+            "= 1 / 1",
+            "= 1 - 1",
+            "= 1 * 1",
+            "= 1 % 1",
+            "+= 1",
+            "-= 1",
+            "/= 1",
+            "*= 1"
+            )] string operation, bool declared ) {
+
+            string source = CreateTestNode($@"
+                {(declared ? "<<declare $var = 0>>" : "")}
+                <<set $var {operation}>>
+            ");
+
+            if (!declared) {
+                var ex = Assert.Throws<TypeException>(() => {
+                    Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
+                });
+
+                Assert.Contains("Undeclared variable $var", ex.Message);
+            } else {
+                Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
+            }
+        }
+
         [Theory]
         [InlineData("<<set $bool = func_void_bool(1)>>", "expects 0 parameters, but received 1")]
         [InlineData("<<set $bool = func_int_bool()>>", "expects 1 parameter, but received 0")]
