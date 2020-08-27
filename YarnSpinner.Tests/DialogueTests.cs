@@ -20,7 +20,7 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
 
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
-            compilationJob.Library = dialogue.library;
+            compilationJob.Library = dialogue.Library;
 
             var result = Compiler.Compile(compilationJob);
 
@@ -45,7 +45,7 @@ namespace YarnSpinner.Tests
 
             dialogue.SetProgram (result.Program);
 
-            dialogue.optionsHandler = delegate (OptionSet optionSet) {
+            dialogue.OptionsHandler = delegate (OptionSet optionSet) {
                 Assert.Equal(2, optionSet.Options.Length);
                 Assert.Equal("B", optionSet.Options[0].DestinationNode);
                 Assert.Equal("C", optionSet.Options[1].DestinationNode);
@@ -72,7 +72,7 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "AnalysisTest.yarn");
 
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
-            compilationJob.Library = dialogue.library;
+            compilationJob.Library = dialogue.Library;
             
             var result = Compiler.Compile(compilationJob);
 
@@ -92,7 +92,7 @@ namespace YarnSpinner.Tests
             result = Compiler.Compile(CompilationJob.CreateFromFiles(new[] {
                 Path.Combine(SpaceDemoScriptsPath, "Ship.yarn"),
                 Path.Combine(SpaceDemoScriptsPath, "Sally.yarn"),
-            }, dialogue.library));
+            }, dialogue.Library));
 
             dialogue.SetProgram (result.Program);
             
@@ -137,21 +137,21 @@ namespace YarnSpinner.Tests
             string path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
             
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
-            compilationJob.Library = dialogue.library;
+            compilationJob.Library = dialogue.Library;
             
             var result = Compiler.Compile(compilationJob);
             
             dialogue.SetProgram (result.Program);
 
             // dialogue should not be running yet
-            Assert.Null (dialogue.currentNode);
+            Assert.Null (dialogue.CurrentNode);
 
             dialogue.SetNode("Sally");
-            Assert.Equal ("Sally", dialogue.currentNode);
+            Assert.Equal ("Sally", dialogue.CurrentNode);
 
             dialogue.Stop();
             // Current node should now be null
-            Assert.Null (dialogue.currentNode);
+            Assert.Null (dialogue.CurrentNode);
         }
 
         [Fact]
@@ -199,7 +199,7 @@ namespace YarnSpinner.Tests
             
             bool prepareForLinesWasCalled = false;
 
-            dialogue.prepareForLinesHandler = (lines) => {
+            dialogue.PrepareForLinesHandler = (lines) => {
                 // When the Dialogue realises it's about to run the Start
                 // node, it will tell us that it's about to run these two
                 // line IDs
@@ -222,10 +222,10 @@ namespace YarnSpinner.Tests
         public void TestFunctionArgumentTypeInference() {
 
             // Register some functions
-            dialogue.library.RegisterFunction("ConcatString", (string a, string b) => a+b);
-            dialogue.library.RegisterFunction("AddInt", (int a, int b) => a+b);
-            dialogue.library.RegisterFunction("AddFloat", (float a, float b) => a+b);
-            dialogue.library.RegisterFunction("NegateBool", (bool a) => !a);
+            dialogue.Library.RegisterFunction("ConcatString", (string a, string b) => a+b);
+            dialogue.Library.RegisterFunction("AddInt", (int a, int b) => a+b);
+            dialogue.Library.RegisterFunction("AddFloat", (float a, float b) => a+b);
+            dialogue.Library.RegisterFunction("NegateBool", (bool a) => !a);
 
             // Run some code to exercise these functions
             var source = CreateTestNode(@"
@@ -240,7 +240,7 @@ namespace YarnSpinner.Tests
             <<set $bool = NegateBool(true)>>
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
             stringTable = result.StringTable;
 

@@ -10,7 +10,7 @@ namespace Yarn
     /// <remarks>
     /// You do not create instances of this class yourself. The <see
     /// cref="Dialogue"/> class creates one of its own, which you can
-    /// access via the <see cref="Dialogue.library"/> property.
+    /// access via the <see cref="Dialogue.Library"/> property.
     /// </remarks>
     /// <seealso cref="Dialogue"/>
     public class Library

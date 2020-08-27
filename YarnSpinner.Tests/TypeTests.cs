@@ -231,10 +231,10 @@ namespace YarnSpinner.Tests
         [InlineData(@"<<set $bool = func_string_string_bool(""1"", ""2"")>>")]
         public void TestFunctionSignatures(string source)
         {
-            dialogue.library.RegisterFunction("func_void_bool", () => true);
-            dialogue.library.RegisterFunction("func_int_bool", (int i) => true);
-            dialogue.library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
-            dialogue.library.RegisterFunction("func_string_string_bool", (string i, string j) => true);
+            dialogue.Library.RegisterFunction("func_void_bool", () => true);
+            dialogue.Library.RegisterFunction("func_int_bool", (int i) => true);
+            dialogue.Library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
+            dialogue.Library.RegisterFunction("func_string_string_bool", (string i, string j) => true);
 
             var correctSource = CreateTestNode($@"
                 <<declare $bool = false>>
@@ -242,7 +242,7 @@ namespace YarnSpinner.Tests
             ");
 
             // Should compile with no exceptions
-            Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, dialogue.library));
+            Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, dialogue.Library));
 
         }
 
@@ -269,14 +269,14 @@ namespace YarnSpinner.Tests
             {
                 var ex = Assert.Throws<TypeException>(() =>
                 {
-                    Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
+                    Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
                 });
 
                 Assert.Contains("Undeclared variable $var", ex.Message);
             }
             else
             {
-                Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
+                Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
             }
         }
 
@@ -290,12 +290,12 @@ namespace YarnSpinner.Tests
         [InlineData("<<set $bool = func_invalid_param(1)>>", "parameter 1's type .* cannot be used")]
         public void TestFailingFunctionSignatures(string source, string expectedExceptionMessage)
         {
-            dialogue.library.RegisterFunction("func_void_bool", () => true);
-            dialogue.library.RegisterFunction("func_int_bool", (int i) => true);
-            dialogue.library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
-            dialogue.library.RegisterFunction("func_string_string_bool", (string i, string j) => true);
-            dialogue.library.RegisterFunction("func_invalid_return", () => new List<int> { 1, 2, 3 });
-            dialogue.library.RegisterFunction("func_invalid_param", (List<int> i) => true);
+            dialogue.Library.RegisterFunction("func_void_bool", () => true);
+            dialogue.Library.RegisterFunction("func_int_bool", (int i) => true);
+            dialogue.Library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
+            dialogue.Library.RegisterFunction("func_string_string_bool", (string i, string j) => true);
+            dialogue.Library.RegisterFunction("func_invalid_return", () => new List<int> { 1, 2, 3 });
+            dialogue.Library.RegisterFunction("func_invalid_param", (List<int> i) => true);
 
             var failingSource = CreateTestNode($@"
                 <<declare $bool = false>>
@@ -305,7 +305,7 @@ namespace YarnSpinner.Tests
 
             var ex = Assert.Throws<TypeException>(() =>
             {
-                Compiler.Compile(CompilationJob.CreateFromString("input", failingSource, dialogue.library));
+                Compiler.Compile(CompilationJob.CreateFromString("input", failingSource, dialogue.Library));
             });
 
             Assert.Matches(expectedExceptionMessage, ex.Message);
@@ -339,7 +339,7 @@ namespace YarnSpinner.Tests
                 .AddLine("True")
                 .GetPlan();
 
-            CompilationJob compilationJob = CompilationJob.CreateFromString("input", source, dialogue.library);
+            CompilationJob compilationJob = CompilationJob.CreateFromString("input", source, dialogue.Library);
 
             compilationJob.VariableDeclarations = new[] {
                 new VariableDeclaration {
@@ -381,7 +381,7 @@ namespace YarnSpinner.Tests
             <<declare $bool = false as bool>>
             ");
 
-            Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
+            Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
         }
 
         [Theory]
@@ -394,7 +394,7 @@ namespace YarnSpinner.Tests
 
             var ex = Assert.Throws<TypeException>(() =>
             {
-                var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
+                var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
             });
 
             Assert.Matches(@"Type \w+ does not match", ex.Message);
@@ -409,7 +409,7 @@ namespace YarnSpinner.Tests
             <<declare $bool = true ""a bool"">>
             ");
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
             var expectedDeclarations = new HashSet<VariableDeclaration>() {
                 new VariableDeclaration {
@@ -460,7 +460,7 @@ namespace YarnSpinner.Tests
                 .AddLine("bool and bool(number): True")
                 .GetPlan();
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -478,7 +478,7 @@ namespace YarnSpinner.Tests
                 .GetPlan();
 
             Assert.Throws<FormatException>( () => {
-                var compilationJob = CompilationJob.CreateFromString("input", source, dialogue.library);
+                var compilationJob = CompilationJob.CreateFromString("input", source, dialogue.Library);
                 var result = Compiler.Compile(compilationJob);
 
                 dialogue.SetProgram(result.Program);

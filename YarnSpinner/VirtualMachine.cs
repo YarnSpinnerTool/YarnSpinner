@@ -174,13 +174,13 @@ namespace Yarn
         }
 
         
-        public Dialogue.LineHandler lineHandler;
-        public Dialogue.OptionsHandler optionsHandler;
-        public Dialogue.CommandHandler commandHandler;
-		public Dialogue.NodeStartHandler nodeStartHandler;
-		public Dialogue.NodeCompleteHandler nodeCompleteHandler;
-        public Dialogue.DialogueCompleteHandler dialogueCompleteHandler;
-        public Dialogue.PrepareForLinesHandler prepareForLinesHandler;
+        public LineHandler LineHandler;
+        public OptionsHandler OptionsHandler;
+        public CommandHandler CommandHandler;
+		public NodeStartHandler NodeStartHandler;
+		public NodeCompleteHandler NodeCompleteHandler;
+        public DialogueCompleteHandler DialogueCompleteHandler;
+        public PrepareForLinesHandler PrepareForLinesHandler;
 
         private Dialogue dialogue;
 
@@ -260,11 +260,11 @@ namespace Yarn
             ResetState ();
             state.currentNodeName = nodeName;
 
-			nodeStartHandler?.Invoke(nodeName);
+			NodeStartHandler?.Invoke(nodeName);
 
             // Do we have a way to let the client know that certain lines
             // might be run?
-            if (this.prepareForLinesHandler != null)
+            if (this.PrepareForLinesHandler != null)
             {
                 // If we have a prepare-for-lines handler, figure out what
                 // lines we anticipate running
@@ -290,7 +290,7 @@ namespace Yarn
                 }
 
                 // Deliver the string IDs
-                this.prepareForLinesHandler(stringIDs);
+                this.PrepareForLinesHandler(stringIDs);
             }
 
             return true;
@@ -354,9 +354,9 @@ namespace Yarn
 
                 if (state.programCounter >= currentNode.Instructions.Count)
                 {
-                    nodeCompleteHandler(currentNode.Name);
+                    NodeCompleteHandler(currentNode.Name);
                     executionState = ExecutionState.Stopped;
-                    dialogueCompleteHandler();
+                    DialogueCompleteHandler();
                     dialogue.LogDebugMessage("Run complete.");
                 }
             }
@@ -383,29 +383,29 @@ namespace Yarn
                 throw new DialogueException("Cannot continue running dialogue. Still waiting on option selection.");
             }
 
-            if (lineHandler == null)
+            if (LineHandler == null)
             {
-                throw new DialogueException($"Cannot continue running dialogue. {nameof(lineHandler)} has not been set.");
+                throw new DialogueException($"Cannot continue running dialogue. {nameof(LineHandler)} has not been set.");
             }
 
-            if (optionsHandler == null)
+            if (OptionsHandler == null)
             {
-                throw new DialogueException($"Cannot continue running dialogue. {nameof(optionsHandler)} has not been set.");
+                throw new DialogueException($"Cannot continue running dialogue. {nameof(OptionsHandler)} has not been set.");
             }
 
-            if (commandHandler == null)
+            if (CommandHandler == null)
             {
-                throw new DialogueException($"Cannot continue running dialogue. {nameof(commandHandler)} has not been set.");
+                throw new DialogueException($"Cannot continue running dialogue. {nameof(CommandHandler)} has not been set.");
             }
 
-            if (nodeCompleteHandler == null)
+            if (NodeCompleteHandler == null)
             {
-                throw new DialogueException($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");
+                throw new DialogueException($"Cannot continue running dialogue. {nameof(NodeCompleteHandler)} has not been set.");
             }
 
-            if (nodeCompleteHandler == null)
+            if (NodeCompleteHandler == null)
             {
-                throw new DialogueException($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");
+                throw new DialogueException($"Cannot continue running dialogue. {nameof(NodeCompleteHandler)} has not been set.");
             }
         }
 
@@ -471,7 +471,7 @@ namespace Yarn
                         // Suspend execution, because we're about to deliver content
                         executionState = ExecutionState.DeliveringContent;
 
-                        lineHandler(line);
+                        LineHandler(line);
 
                         if (executionState == ExecutionState.DeliveringContent) {
                             // The client didn't call Continue, so we'll
@@ -519,7 +519,7 @@ namespace Yarn
                          
                         var command = new Command(commandText);
 
-                        commandHandler(command);
+                        CommandHandler(command);
 
                         if (executionState == ExecutionState.DeliveringContent) {
                             // The client didn't call Continue, so we'll
@@ -608,7 +608,7 @@ namespace Yarn
                          */
                         var functionName = i.Operands[0].StringValue;
 
-                        var function = dialogue.library.GetFunction(functionName);
+                        var function = dialogue.Library.GetFunction(functionName);
 
                         var parameterInfos = function.Method.GetParameters();
 
@@ -663,7 +663,7 @@ namespace Yarn
                         
                         Value loadedValue;
                         
-                        var didLoadValue = dialogue.variableStorage.TryGetValue<object>(variableName, out var loadedObject);
+                        var didLoadValue = dialogue.VariableStorage.TryGetValue<object>(variableName, out var loadedObject);
 
                         if (didLoadValue)
                         {
@@ -713,13 +713,13 @@ namespace Yarn
                         switch (topValue.type)
                         {
                             case Type.Number:
-                                dialogue.variableStorage.SetValue(destinationVariableName, topValue.ConvertTo<float>());
+                                dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<float>());
                                 break;
                             case Type.String:
-                                dialogue.variableStorage.SetValue(destinationVariableName, topValue.ConvertTo<string>());
+                                dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<string>());
                                 break;
                             case Type.Bool:
-                                dialogue.variableStorage.SetValue(destinationVariableName, topValue.ConvertTo<bool>());
+                                dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<bool>());
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException($"Invalid Yarn value type {topValue.type}");
@@ -734,8 +734,8 @@ namespace Yarn
                         /// - Stop
                         /** Immediately stop execution, and report that fact.
                          */
-                        nodeCompleteHandler(currentNode.Name);
-                        dialogueCompleteHandler();
+                        NodeCompleteHandler(currentNode.Name);
+                        DialogueCompleteHandler();
                         executionState = ExecutionState.Stopped;
 
                         break;
@@ -759,7 +759,7 @@ namespace Yarn
                             nodeName = i.Operands[0].StringValue;
                         }
 
-                        nodeCompleteHandler(currentNode.Name);
+                        NodeCompleteHandler(currentNode.Name);
                         
                         SetNode(nodeName);
 
@@ -820,7 +820,7 @@ namespace Yarn
                         if (state.currentOptions.Count == 0)
                         {
                             executionState = ExecutionState.Stopped;
-                            dialogueCompleteHandler();
+                            DialogueCompleteHandler();
                             break;
                         }
 
@@ -841,7 +841,7 @@ namespace Yarn
                         // delegate for them to call when the user has made
                         // a selection
 
-                        optionsHandler(new OptionSet(optionChoices.ToArray()));
+                        OptionsHandler(new OptionSet(optionChoices.ToArray()));
 
                         break;
                     }

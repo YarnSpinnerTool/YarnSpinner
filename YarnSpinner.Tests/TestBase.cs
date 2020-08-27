@@ -13,10 +13,7 @@ namespace YarnSpinner.Tests
 
     public class TestBase
     {
-
-        
-
-        protected VariableStorage storage = new MemoryVariableStore();
+        protected IVariableStorage storage = new MemoryVariableStore();
         protected Dialogue dialogue;
         protected IDictionary<string, Yarn.Compiler.StringInfo> stringTable;
         protected IEnumerable<Yarn.Compiler.VariableDeclaration> declarations;
@@ -96,7 +93,7 @@ namespace YarnSpinner.Tests
                     
             };
 
-            dialogue.lineHandler = delegate (Line line) {
+            dialogue.LineHandler = delegate (Line line) {
                 var id = line.ID;
 
                 Assert.Contains(id, stringTable.Keys);
@@ -118,7 +115,7 @@ namespace YarnSpinner.Tests
                 }
             };
 
-            dialogue.optionsHandler = delegate (OptionSet optionSet) {
+            dialogue.OptionsHandler = delegate (OptionSet optionSet) {
                 var optionCount = optionSet.Options.Length;
 
                 Console.WriteLine("Options:");
@@ -153,7 +150,7 @@ namespace YarnSpinner.Tests
                 
             };
 
-            dialogue.commandHandler = delegate (Command command) {
+            dialogue.CommandHandler = delegate (Command command) {
                 Console.WriteLine("Command: " + command.Text);
                 
                 if (testPlan != null) {
@@ -174,7 +171,7 @@ namespace YarnSpinner.Tests
                 }
             };
 
-            dialogue.library.RegisterFunction ("assert", delegate(Yarn.Value value) {
+            dialogue.Library.RegisterFunction ("assert", delegate(Yarn.Value value) {
                 if (value.ConvertTo<bool>() == false) {
                         Assert.NotNull ("Assertion failed");
                 }
@@ -183,10 +180,10 @@ namespace YarnSpinner.Tests
 
             
             // When a node is complete, do nothing
-            dialogue.nodeCompleteHandler = (string nodeName) => {};
+            dialogue.NodeCompleteHandler = (string nodeName) => {};
 
             // When dialogue is complete, check that we expected a stop
-            dialogue.dialogueCompleteHandler = () => {
+            dialogue.DialogueCompleteHandler = () => {
                 if (testPlan != null) {
                     testPlan.Next();
 
@@ -201,7 +198,7 @@ namespace YarnSpinner.Tests
             // node with the given name has been run before. For type
             // correctness, we stub it out here with an implementation that
             // just returns false
-            dialogue.library.RegisterFunction("visited", (string nodeName) => false );
+            dialogue.Library.RegisterFunction("visited", (string nodeName) => false );
 
         }
 

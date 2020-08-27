@@ -27,7 +27,7 @@ namespace YarnSpinner.Tests
             // high-level test: load the file, verify it has the nodes we want,
             // and run one
             
-            Assert.Equal(3, dialogue.allNodes.Count());
+            Assert.Equal(3, dialogue.NodeNames.Count());
 
             Assert.True(dialogue.NodeExists("TestNode"));
             Assert.True(dialogue.NodeExists("AnotherTestNode"));

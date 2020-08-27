@@ -18,7 +18,7 @@ namespace YarnSpinner.Tests
 		public LanguageTests() : base() {
 
             // Register some additional functions
-            dialogue.library.RegisterFunction("add_three_operands", delegate (int a, int b, int c) {
+            dialogue.Library.RegisterFunction("add_three_operands", delegate (int a, int b, int c) {
                 return a + b + c;
             });
 		}
@@ -50,8 +50,8 @@ namespace YarnSpinner.Tests
             CompilationJob compilationJobSally = CompilationJob.CreateFromFiles(sallyPath);
             CompilationJob compilationJobSallyAndShip = CompilationJob.CreateFromFiles(sallyPath, shipPath);
             
-            compilationJobSally.Library = dialogue.library;
-            compilationJobSallyAndShip.Library = dialogue.library;
+            compilationJobSally.Library = dialogue.Library;
+            compilationJobSallyAndShip.Library = dialogue.Library;
             
             var resultSally = Compiler.Compile(compilationJobSally);
             var resultSallyAndShip = Compiler.Compile(compilationJobSallyAndShip);
@@ -75,7 +75,7 @@ namespace YarnSpinner.Tests
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
 
-            dialogue.optionsHandler = delegate (OptionSet optionSets) {
+            dialogue.OptionsHandler = delegate (OptionSet optionSets) {
                 Assert.False(true, "Options should not be shown to the user in this test.");
             };
 
@@ -219,7 +219,7 @@ namespace YarnSpinner.Tests
                 LoadTestPlan(testPlanFilePath);
 
                 CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
-                compilationJob.Library = dialogue.library;
+                compilationJob.Library = dialogue.Library;
 
                 var result = Compiler.Compile(compilationJob);
             
