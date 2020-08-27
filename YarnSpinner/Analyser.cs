@@ -91,13 +91,13 @@ namespace Yarn.Analysis
 
     public class Context {
 
-        IEnumerable<Type> _defaultAnalyserClasses;
-        internal IEnumerable<Type> defaultAnalyserClasses {
+        IEnumerable<System.Type> _defaultAnalyserClasses;
+        internal IEnumerable<System.Type> defaultAnalyserClasses {
             get {
-                var classes = new List<Type> ();
+                var classes = new List<System.Type> ();
 
                 if (_defaultAnalyserClasses == null) {
-                    classes = new List<Type> ();
+                    classes = new List<System.Type> ();
 
                     var assembly = this.GetType().Assembly;
 
@@ -128,7 +128,7 @@ namespace Yarn.Analysis
 
         }
 
-        public Context(params Type[] types) {
+        public Context(params System.Type[] types) {
             analysers = new List<CompiledProgramAnalyser> ();
 
             foreach (var analyserType in types) {

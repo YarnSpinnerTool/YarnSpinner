@@ -43,18 +43,18 @@ namespace YarnSpinner.Tests
             var expectedDeclarations = new HashSet<VariableDeclaration>() {
                 new VariableDeclaration {
                     name = "$int",
-                    type = Value.Type.Number,
-                    defaultValue = new Value(5)
+                    type = Yarn.Type.Number,
+                    defaultValue = 5f,
                 },
                 new VariableDeclaration {
                     name = "$str",
-                    type = Value.Type.String,
-                    defaultValue = new Value("yes")
+                    type = Yarn.Type.String,
+                    defaultValue = "yes",
                 },
                 new VariableDeclaration {
                     name = "$bool",
-                    type = Value.Type.Bool,
-                    defaultValue = new Value(true)
+                    type = Yarn.Type.Bool,
+                    defaultValue = true,
                 },
             };
 
@@ -99,7 +99,7 @@ namespace YarnSpinner.Tests
             var declarations = new[] {
                 new VariableDeclaration {
                     name = "$int",
-                    type = Value.Type.Number,
+                    type = Yarn.Type.Number,
                 }
             };
 
@@ -344,17 +344,17 @@ namespace YarnSpinner.Tests
             compilationJob.VariableDeclarations = new[] {
                 new VariableDeclaration {
                     name = "$external_str",
-                    type = Value.Type.String,
+                    type = Yarn.Type.String,
                     defaultValue = new Value("Hello")
                 },
                 new VariableDeclaration {
                     name = "$external_int",
-                    type = Value.Type.Bool,
+                    type = Yarn.Type.Bool,
                     defaultValue = new Value(true)
                 },
                 new VariableDeclaration {
                     name = "$external_bool",
-                    type = Value.Type.Number,
+                    type = Yarn.Type.Number,
                     defaultValue = new Value(42)
                 },
             };
@@ -392,10 +392,12 @@ namespace YarnSpinner.Tests
         {
             var source = CreateTestNode(test);
 
-            Assert.Throws<TypeException>(() =>
+            var ex = Assert.Throws<TypeException>(() =>
             {
                 var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
             });
+
+            Assert.Matches(@"Type \w+ does not match", ex.Message);
         }
 
         [Fact]
@@ -412,20 +414,20 @@ namespace YarnSpinner.Tests
             var expectedDeclarations = new HashSet<VariableDeclaration>() {
                 new VariableDeclaration {
                     name = "$int",
-                    type = Value.Type.Number,
-                    defaultValue = new Value(42),
+                    type = Yarn.Type.Number,
+                    defaultValue = 42f,
                     description = "a number",
                 },
                 new VariableDeclaration {
                     name = "$str",
-                    type = Value.Type.String,
-                    defaultValue = new Value("Hello"),
+                    type = Yarn.Type.String,
+                    defaultValue = "Hello",
                     description = "a string",
                 },
                 new VariableDeclaration {
                     name = "$bool",
-                    type = Value.Type.Bool,
-                    defaultValue = new Value(true),
+                    type = Yarn.Type.Bool,
+                    defaultValue = true,
                     description = "a bool",
 
                 },
@@ -473,13 +475,15 @@ namespace YarnSpinner.Tests
             var source = CreateTestNode(test);
             testPlan = new TestPlanBuilder()
                 .AddLine("test failure if seen")
-                .AddLine("test failure if seen")
                 .GetPlan();
-            
+
             Assert.Throws<FormatException>( () => {
-                var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
+                var compilationJob = CompilationJob.CreateFromString("input", source, dialogue.library);
+                var result = Compiler.Compile(compilationJob);
+
                 dialogue.SetProgram(result.Program);
                 stringTable = result.StringTable;
+
                 RunStandardTestcase();
             });
         }

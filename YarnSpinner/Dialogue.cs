@@ -178,16 +178,6 @@ namespace Yarn {
     public interface VariableStorage {
 
         /// <summary>
-        /// Stores a <see cref="Value"/>.
-        /// </summary>
-        /// <param name="variableName">The name to associate with this
-        /// variable.</param>
-        /// <param name="value">The value to store.</param>
-        void SetValue(string variableName, Value value);
-
-        // some convenience setters
-
-        /// <summary>
         /// Stores a <see cref="string"/> as a <see cref="Value"/>.
         /// </summary>
         /// <param name="variableName">The name to associate with this
@@ -219,7 +209,9 @@ namespace Yarn {
         /// <returns>The <see cref="Value"/>. If a variable by the name of
         /// `variableName` is not present, returns a value representing
         /// `null`.</returns>
-        Value GetValue(string variableName);
+        bool TryGetValue<T>(string variableName, out T result);
+
+        T GetValue<T>(string variableName);
 
         /// <summary>
         /// Removes all variables from storage.
@@ -228,79 +220,62 @@ namespace Yarn {
     }
 
     /// <summary>
-    /// An abstract class that implements convenience methods for
-    /// converting values to instances of <see cref="Value"/>. 
-    /// </summary>
-    /// <remarks>
-    /// If you subclass this, you only have to implement <see
-    /// cref="BaseVariableStorage.SetValue(string, Value)"/>, <see
-    /// cref="BaseVariableStorage.GetValue(string)"/> and <see
-    /// cref="BaseVariableStorage.Clear"/>.
-    /// </remarks>
-    /// <inheritdoc cref="VariableStorage"/>
-    public abstract class BaseVariableStorage : VariableStorage {
-
-        /// <inheritdoc/>
-        public virtual void SetValue(string variableName, string stringValue)
-        {
-            Value val = new Yarn.Value(stringValue);
-            SetValue(variableName, val);
-        }
-
-        /// <inheritdoc/>
-        public virtual void SetValue(string variableName, float floatValue)
-        {
-            Value val = new Yarn.Value(floatValue);
-            SetValue(variableName, val);
-        }
-
-        /// <inheritdoc/>
-        public virtual void SetValue(string variableName, bool boolValue)
-        {
-            Value val = new Yarn.Value(boolValue);
-            SetValue(variableName, val);
-        }
-
-        /// <inheritdoc/>
-        public abstract void SetValue(string variableName, Value value);
-
-        /// <inheritdoc/>
-        public abstract Value GetValue(string variableName);
-
-        /// <inheritdoc/>
-        public abstract void Clear();
-    }
-
-    /// <summary>
     /// A simple concrete subclass of <see cref="BaseVariableStorage"/> that
     /// keeps all variables in memory.
     /// </summary>
-    public class MemoryVariableStore : Yarn.BaseVariableStorage
+    public class MemoryVariableStore : VariableStorage
     {
 
-        private Dictionary<string, Value> variables = new Dictionary<string, Value>();
+        private Dictionary<string, object> variables = new Dictionary<string, object>();
 
         /// <inheritdoc/>
-        public override void SetValue(string variableName, Value value)
+        public bool TryGetValue<T>(string variableName, out T result)
         {
-            variables[variableName] = value;
+            if (variables.TryGetValue(variableName, out var foundValue)) {
+                if (typeof(T).IsAssignableFrom(foundValue.GetType())) {
+                    result = (T)foundValue;
+                    return true;
+                } else {
+                    throw new ArgumentException($"Variable {variableName} is present, but is of type {foundValue.GetType()}, not {typeof(T)}");
+                }
+            }
+            result = default;
+            return false;
         }
 
-        /// <inheritdoc/>
-        public override Value GetValue(string variableName)
+        public T GetValue<T>(string variableName)
         {
-            if (variables.ContainsKey(variableName))
+            var foundValue = variables[variableName];
+
+            if (typeof(T).IsAssignableFrom(foundValue.GetType()))
             {
-                return variables[variableName];
-            } else {
-                return null;
+                return (T)foundValue;
+            }
+            else
+            {
+                throw new ArgumentException($"Variable {variableName} is present, but is of type {foundValue.GetType()}, not {typeof(T)}");
             }
         }
 
         /// <inheritdoc/>
-        public override void Clear()
+        public void Clear()
         {
             variables.Clear();
+        }
+
+        public void SetValue(string variableName, string stringValue)
+        {
+            variables[variableName] = stringValue;
+        }
+
+        public void SetValue(string variableName, float floatValue)
+        {
+            variables[variableName] = floatValue;
+        }
+
+        public void SetValue(string variableName, bool boolValue)
+        {
+            variables[variableName] = boolValue;
         }
     }
 

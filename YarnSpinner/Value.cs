@@ -8,47 +8,24 @@ namespace Yarn
     /// <summary>
     /// A value from inside Yarn.
     /// </summary>
-    public class Value : IComparable, IComparable<Value>
+    internal partial class Value : IComparable, IComparable<Value>
     {
-
-
-        public static readonly new Dictionary<System.Type, Value.Type> TypeMappings = new Dictionary<System.Type, Value.Type>
+        public static readonly new Dictionary<System.Type, Yarn.Type> TypeMappings = new Dictionary<System.Type, Yarn.Type>
         {
-            { typeof(string), Type.String },
-            { typeof(bool), Type.Bool },
-            { typeof(int), Type.Number },
-            { typeof(float), Type.Number },
-            { typeof(double), Type.Number },
-            { typeof(sbyte), Type.Number },
-            { typeof(byte), Type.Number },
-            { typeof(short), Type.Number },
-            { typeof(ushort), Type.Number },
-            { typeof(uint), Type.Number },
-            { typeof(long), Type.Number },
-            { typeof(ulong), Type.Number },
-            { typeof(decimal), Type.Number },
+            { typeof(string), Yarn.Type.String },
+            { typeof(bool), Yarn.Type.Bool },
+            { typeof(int), Yarn.Type.Number },
+            { typeof(float), Yarn.Type.Number },
+            { typeof(double), Yarn.Type.Number },
+            { typeof(sbyte), Yarn.Type.Number },
+            { typeof(byte), Yarn.Type.Number },
+            { typeof(short), Yarn.Type.Number },
+            { typeof(ushort), Yarn.Type.Number },
+            { typeof(uint), Yarn.Type.Number },
+            { typeof(long), Yarn.Type.Number },
+            { typeof(ulong), Yarn.Type.Number },
+            { typeof(decimal), Yarn.Type.Number },
         };
-
-        /// <summary>
-        /// The type of a <see cref="Value"/>.
-        /// </summary>
-        public enum Type
-        {
-            /// <summary>A number.</summary>
-            Number,
-
-#pragma warning disable CA1720 // Identifier contains type name
-            /// <summary>A string.</summary>
-            String,
-#pragma warning restore CA1720 // Identifier contains type name
-
-            /// <summary>A boolean value.</summary>
-            Bool,
-
-            /// <summary>A value of undefined type.</summary>
-            Undefined,
-
-        }
 
         /// <summary>
         /// Gets the underlying type of this value.
@@ -58,7 +35,7 @@ namespace Yarn
         /// other types. This property allows you to access the actual type of value
         /// that this value contains.
         /// </remarks>
-        public Value.Type type { get; internal set; }
+        public Yarn.Type type { get; internal set; }
 
         // The underlying values for this object
         private float NumberValue { get; set; }
@@ -192,7 +169,7 @@ namespace Yarn
             if (targetType == typeof(Yarn.Value)) {
                 return this;
             }
-            
+
             if (TypeMappings.ContainsKey(targetType) == false)
             {
                 throw new InvalidOperationException($"{nameof(Value)} instances cannot be converted to {targetType}.");

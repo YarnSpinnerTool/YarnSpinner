@@ -65,19 +65,19 @@ namespace Yarn.Compiler
             // Do we have an explicit type declaration?
             if (context.type() != null)
             {
-                Value.Type explicitType;
+                Yarn.Type explicitType;
 
                 // Get its type
                 switch (context.type().typename.Type)
                 {
                     case YarnSpinnerLexer.TYPE_STRING:
-                        explicitType = Value.Type.String;
+                        explicitType = Yarn.Type.String;
                         break;
                     case YarnSpinnerLexer.TYPE_BOOL:
-                        explicitType = Value.Type.Bool;
+                        explicitType = Yarn.Type.Bool;
                         break;
                     case YarnSpinnerLexer.TYPE_NUMBER:
-                        explicitType = Value.Type.Number;
+                        explicitType = Yarn.Type.Number;
                         break;
                     default:
                         throw new ParseException(context, $"Unknown type {context.type().GetText()}");

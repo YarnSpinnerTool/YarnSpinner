@@ -110,8 +110,8 @@
     public struct VariableDeclaration
     {
         public string name;
-        public Value defaultValue;
-        public Value.Type type;
+        public object defaultValue;
+        public Yarn.Type type;
         public string description;
 
         public override string ToString()
@@ -373,14 +373,14 @@
 
                 switch (declaration.type)
                 {
-                    case Value.Type.Number:
-                        value = new Operand(declaration.defaultValue.ConvertTo<float>());
+                    case Yarn.Type.Number:
+                        value = new Operand((float)declaration.defaultValue);
                         break;
-                    case Value.Type.String:
-                        value = new Operand(declaration.defaultValue.ConvertTo<string>());
+                    case Yarn.Type.String:
+                        value = new Operand((string)declaration.defaultValue);
                         break;
-                    case Value.Type.Bool:
-                        value = new Operand(declaration.defaultValue.ConvertTo<bool>());
+                    case Yarn.Type.Bool:
+                        value = new Operand((bool)declaration.defaultValue);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException($"Cannot create an initial value for type {declaration.type}");

@@ -660,9 +660,17 @@ namespace Yarn
                         /** Get the contents of a variable, push that onto the stack.
                          */
                         var variableName = i.Operands[0].StringValue;
-                        var loadedValue = dialogue.variableStorage.GetValue(variableName);
+                        
+                        Value loadedValue;
+                        
+                        var didLoadValue = dialogue.variableStorage.TryGetValue<object>(variableName, out var loadedObject);
 
-                        if (loadedValue == null) {
+                        if (didLoadValue)
+                        {
+                            loadedValue = new Value(loadedObject);
+                        }
+                        else
+                        {
                             // We don't have a value for this. The initial
                             // value may be found in the program. (If it's
                             // not, then the variable's value is undefined,
@@ -680,6 +688,8 @@ namespace Yarn
                                     case Operand.ValueOneofCase.FloatValue:
                                         loadedValue = new Value(value.FloatValue);
                                         break;
+                                    default:
+                                        throw new ArgumentOutOfRangeException($"Unknown initial value type {value.ValueCase} for variable {variableName}");
                                 }
                             }
                             else
@@ -699,7 +709,22 @@ namespace Yarn
                          */
                         var topValue = state.PeekValue();
                         var destinationVariableName = i.Operands[0].StringValue;
-                        dialogue.variableStorage.SetValue(destinationVariableName, topValue);
+
+                        switch (topValue.type)
+                        {
+                            case Type.Number:
+                                dialogue.variableStorage.SetValue(destinationVariableName, topValue.ConvertTo<float>());
+                                break;
+                            case Type.String:
+                                dialogue.variableStorage.SetValue(destinationVariableName, topValue.ConvertTo<string>());
+                                break;
+                            case Type.Bool:
+                                dialogue.variableStorage.SetValue(destinationVariableName, topValue.ConvertTo<bool>());
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException($"Invalid Yarn value type {topValue.type}");
+                        }
+                        
 
                         break;
                     }
