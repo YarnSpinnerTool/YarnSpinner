@@ -72,11 +72,18 @@ namespace Yarn.Compiler
                 }
             }
 
+            string description = null;
+
+            if (context.Description != null) {
+                description = context.Description.Text.Trim('"');
+            }
+
             var declaration = new VariableDeclaration
             {
                 name = variableName,
                 type = type,
                 defaultValue = value,
+                description = description,
             };
 
             this.NewVariableDeclarations.Add(declaration);

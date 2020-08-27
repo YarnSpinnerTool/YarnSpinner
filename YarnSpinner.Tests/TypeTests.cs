@@ -381,5 +381,42 @@ namespace YarnSpinner.Tests
                 var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));            
             });
         }
+
+        [Fact]
+        public void TestVariableDeclarationAnnotations()
+        {
+            var source = CreateTestNode(@"
+            <<declare $int = 42 ""a number"">>
+            <<declare $str = ""Hello"" ""a string"">>
+            <<declare $bool = true ""a bool"">>
+            ");
+
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
+
+            var expectedDeclarations = new HashSet<VariableDeclaration>() {
+                new VariableDeclaration {
+                    name = "$int",
+                    type = Value.Type.Number,
+                    defaultValue = new Value(42),
+                    description = "a number",
+                },
+                new VariableDeclaration {
+                    name = "$str",
+                    type = Value.Type.String,
+                    defaultValue = new Value("Hello"),
+                    description = "a string",
+                },
+                new VariableDeclaration {
+                    name = "$bool",
+                    type = Value.Type.Bool,
+                    defaultValue = new Value(true),
+                    description = "a bool",
+
+                },                
+            };
+
+            Assert.Equal(expectedDeclarations, result.Declarations);
+
+        }
     }
 }

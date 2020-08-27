@@ -111,9 +111,14 @@ namespace Yarn.Compiler
         public string name;
         public Value defaultValue;
         public Value.Type type;
+        public string description;
 
         public override string ToString() {
-            return $"{name} : {type} = {defaultValue}";
+            if (string.IsNullOrEmpty(description)) {
+                return $"{name} : {type} = {defaultValue}";
+            } else {
+                return $"{name} : {type} = {defaultValue} (\"{description}\")";
+            }
         }
     }
 
