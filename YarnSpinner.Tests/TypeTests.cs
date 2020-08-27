@@ -143,10 +143,12 @@ namespace YarnSpinner.Tests
             
         }
 
-        [Fact]
-        public void TestExpressionsDisallowUsingUndeclaredVariables() {
-            var source = CreateTestNode(@"
-            <<set $str = ""hello"">> // error, undeclared
+        [Theory]
+        [InlineData(@"<<set $str = ""hi"">>")] // in commands
+        [InlineData(@"{$str}")] // in inline expressions
+        public void TestExpressionsDisallowUsingUndeclaredVariables(string testSource) {
+            var source = CreateTestNode($@"
+            {testSource} // error, undeclared
             ");
 
             var ex = Assert.Throws<TypeException>(() =>

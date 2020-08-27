@@ -54,6 +54,11 @@ namespace Yarn.Compiler
                     // ourselves, because the text itself that the parser
                     // captured already has them. So, we just need to write
                     // the expression count.
+
+                    // Validate the type of this expression
+                    new ExpressionTypeVisitor(this.compiler.VariableDeclarations, this.compiler.Library, false)
+                        .Visit(child);
+
                     Visit(child);
                     composedString.Append(expressionCount);
                     expressionCount += 1;
