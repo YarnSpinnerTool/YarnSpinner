@@ -289,12 +289,12 @@ namespace Yarn {
         /// <inheritdoc/>
         public override Value GetValue(string variableName)
         {
-            Value value = Value.NULL;
             if (variables.ContainsKey(variableName))
             {
-                value = variables[variableName];
+                return variables[variableName];
+            } else {
+                return null;
             }
-            return value;
         }
 
         /// <inheritdoc/>

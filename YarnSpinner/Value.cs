@@ -24,11 +24,6 @@ namespace Yarn
         };
         
         /// <summary>
-        /// The shared Null value.
-        /// </summary>
-        public static readonly Value NULL = new Value();
-
-        /// <summary>
         /// The type of a <see cref="Value"/>.
         /// </summary>
         public enum Type
@@ -43,9 +38,6 @@ namespace Yarn
 
             /// <summary>A boolean value.</summary>
             Bool,
-
-            /// <summary>The null value.</summary>
-            Null,
 
             /// <summary>A value of undefined type.</summary>
             Undefined,
@@ -75,7 +67,6 @@ namespace Yarn
             {
                 switch (this.type)
                 {
-                    case Type.Null: return null;
                     case Type.String: return this.StringValue;
                     case Type.Number: return this.NumberValue;
                     case Type.Bool: return this.BoolValue;
@@ -83,6 +74,18 @@ namespace Yarn
                 throw new InvalidOperationException(
                     string.Format(CultureInfo.CurrentCulture, "Can't get good backing type for {0}", this.type)
                 );
+            }
+        }
+
+        public static Value DefaultValue(Value.Type type) {
+            switch (type)
+            {
+                case Type.Undefined:
+                    throw new InvalidOperationException("No default value exists for the undefined type.");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException($"Invalid type {type}");
+                    break;
             }
         }
 
@@ -123,8 +126,6 @@ namespace Yarn
                         }
                     case Type.Bool:
                         return this.BoolValue ? 1.0f : 0.0f;
-                    case Type.Null:
-                        return 0.0f;
                     default:
                         throw new InvalidOperationException ("Cannot cast to number from " + type.ToString());
                 }
@@ -161,8 +162,6 @@ namespace Yarn
                         return !String.IsNullOrEmpty(this.StringValue);
                     case Type.Bool:
                         return this.BoolValue;
-                    case Type.Null:
-                        return false;
                     default:
                         throw new InvalidOperationException("Cannot cast to bool from " + type.ToString());
                 }
@@ -197,20 +196,11 @@ namespace Yarn
                         return this.StringValue;
                     case Type.Bool:
                         return this.BoolValue.ToString(CultureInfo.InvariantCulture);
-                    case Type.Null:
-                        return "null";
                     default:
                         throw new InvalidOperationException("Cannot cast to string from " + type.ToString());
                 }
             }
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Value"/> class.
-        /// The value will be `null`.
-        /// </summary>
-        /// <returns>A <see cref="Value"/>, containing `null`.</returns>
-        public Value () : this(null) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Value"/> class,
@@ -242,15 +232,9 @@ namespace Yarn
                 case Type.Bool:
                     BoolValue = otherValue.BoolValue;
                     break;
-                case Type.Null:
-                    break;
                 default:
                     throw new ArgumentOutOfRangeException ();
                 }
-                return;
-            }
-            if (value == null) {
-                type = Type.Null;
                 return;
             }
             var checkType = value.GetType();
@@ -324,8 +308,6 @@ namespace Yarn
             {
                 switch (this.type)
                 {
-                    case Type.Null:
-                        return 0;
                     case Type.String:
                         return string.Compare(this.StringValue, other.StringValue, StringComparison.InvariantCulture);
                     case Type.Number:
@@ -370,8 +352,6 @@ namespace Yarn
                 return this.AsString == other.AsString;
             case Type.Bool:
                 return this.AsBool == other.AsBool;
-            case Type.Null:
-                return other.type == Type.Null || other.AsNumber == 0 || other.AsBool == false;
             default:
                 throw new ArgumentOutOfRangeException ();
             }
@@ -442,8 +422,7 @@ namespace Yarn
             // bool (=> 0 or 1) + bool (=> 0 or 1)
             // null (=> 0) + null (=> 0)
             if ((a.type == Type.Number || b.type == Type.Number) ||
-                (a.type == Type.Bool && b.type == Type.Bool) ||
-                (a.type == Type.Null && b.type == Type.Null)
+                (a.type == Type.Bool && b.type == Type.Bool)
             ) {
                 return new Value( a.AsNumber + b.AsNumber );
             }
@@ -466,8 +445,8 @@ namespace Yarn
         /// <throws cref="ArgumentException">Thrown when the two values
         /// cannot be subtracted from each other together.</throws>
         public static Value operator- (Value a, Value b) {
-            if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Null) ||
-                b.type == Type.Number && (a.type == Type.Number || a.type == Type.Null)
+            if (a.type == Type.Number && (b.type == Type.Number) ||
+                b.type == Type.Number && (a.type == Type.Number)
             ) {
                 return new Value( a.AsNumber - b.AsNumber );
             }
@@ -490,8 +469,8 @@ namespace Yarn
         /// <throws cref="ArgumentException">Thrown when the two values
         /// cannot be multiplied together.</throws>
         public static Value operator* (Value a, Value b) {
-            if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Null) ||
-                b.type == Type.Number && (a.type == Type.Number || a.type == Type.Null)
+            if (a.type == Type.Number && (b.type == Type.Number) ||
+                b.type == Type.Number && (a.type == Type.Number)
             ) {
                 return new Value( a.AsNumber * b.AsNumber );
             }
@@ -514,8 +493,8 @@ namespace Yarn
         /// <throws cref="ArgumentException">Thrown when the two values
         /// cannot be divided.</throws>
         public static Value operator/ (Value a, Value b) {
-            if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Null) ||
-                b.type == Type.Number && (a.type == Type.Number || a.type == Type.Null)
+            if (a.type == Type.Number && (b.type == Type.Number) ||
+                b.type == Type.Number && (a.type == Type.Number)
             ) {
                 return new Value( a.AsNumber / b.AsNumber );
             }
@@ -538,8 +517,8 @@ namespace Yarn
         /// <throws cref="ArgumentException">Thrown when the two values
         /// cannot be divided.</throws>
         public static Value operator %(Value a, Value b) {
-            if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Null) ||
-                b.type == Type.Number && (a.type == Type.Number || a.type == Type.Null)) {
+            if (a.type == Type.Number && (b.type == Type.Number) ||
+                b.type == Type.Number && (a.type == Type.Number)) {
                 return new Value (a.AsNumber % b.AsNumber);
             }
             throw new System.ArgumentException(
@@ -632,8 +611,7 @@ namespace Yarn
             {
                 return new Value(-a.AsNumber);
             }
-            if (a.type == Type.Null &&
-                a.type == Type.String &&
+            if (a.type == Type.String &&
                (a.AsString == null || a.AsString.Trim() == string.Empty)
             )
             {

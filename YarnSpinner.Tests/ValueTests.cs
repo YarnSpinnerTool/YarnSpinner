@@ -20,8 +20,7 @@ namespace YarnSpinner.Tests
         [InlineData((float)1, Yarn.Value.Type.Number)]
         [InlineData("testing strings", Yarn.Value.Type.String)]
         [InlineData(true, Yarn.Value.Type.Bool)]
-        [InlineData((object)null, Yarn.Value.Type.Null)]
-        public void TestCreateValue(object val, Yarn.Value.Type expectedType = Yarn.Value.Type.Null)
+        public void TestCreateValue(object val, Yarn.Value.Type expectedType)
         {
             var yarnValue = new Value(val);
             Assert.Equal(expectedType, yarnValue.type);

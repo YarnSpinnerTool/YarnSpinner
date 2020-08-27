@@ -563,12 +563,7 @@ namespace Yarn
 
                 case OpCode.PushNull:
                     {
-                        /// - PushNull
-                        /** Pushes a null value onto the stack.
-                         */
-                        state.PushValue(Value.NULL);
-
-                        break;
+                        throw new InvalidOperationException("PushNull is no longer valid op code, because null is no longer a valid value from Yarn Spinner 2.0 onwards. To fix this error, re-compile the original source code.");
                     }
 
                 case OpCode.JumpIfFalse:
@@ -663,6 +658,32 @@ namespace Yarn
                          */
                         var variableName = i.Operands[0].StringValue;
                         var loadedValue = dialogue.variableStorage.GetValue(variableName);
+
+                        if (loadedValue == null) {
+                            // We don't have a value for this. The initial
+                            // value may be found in the program. (If it's
+                            // not, then the variable's value is undefined,
+                            // which isn't allowed.)
+                            if (Program.InitialValues.TryGetValue(variableName, out var value))
+                            {
+                                switch (value.ValueCase)
+                                {
+                                    case Operand.ValueOneofCase.StringValue:
+                                        loadedValue = new Value(value.StringValue);
+                                        break;
+                                    case Operand.ValueOneofCase.BoolValue:
+                                        loadedValue = new Value(value.BoolValue);
+                                        break;
+                                    case Operand.ValueOneofCase.FloatValue:
+                                        loadedValue = new Value(value.FloatValue);
+                                        break;
+                                }
+                            }
+                            else
+                            {
+                                throw new InvalidOperationException($"Variable storage returned a null value for variable {variableName}");
+                            }
+                        }
                         state.PushValue(loadedValue);
 
                         break;
