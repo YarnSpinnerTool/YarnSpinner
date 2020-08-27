@@ -295,5 +295,66 @@ namespace YarnSpinner.Tests
 
             Assert.Matches(expectedExceptionMessage, ex.Message);        
         }
+
+        [Fact]
+        public void TestInitialValues()
+        {
+            var source = CreateTestNode(@"
+            <<declare $int = 42>>
+            <<declare $str = ""Hello"">>
+            <<declare $bool = true>>
+            // internal decls
+            {$int}
+            {$str}
+            {$bool}
+            // external decls
+            {$external_int}
+            {$external_str}
+            {$external_bool}
+            ");
+
+            testPlan = new TestPlanBuilder()
+                // internal decls
+                .AddLine("42")
+                .AddLine("Hello")
+                .AddLine("True")
+                // external decls
+                .AddLine("42")
+                .AddLine("Hello")
+                .AddLine("True")
+                .GetPlan();
+
+            CompilationJob compilationJob = CompilationJob.CreateFromString("input", source, dialogue.library);
+
+            compilationJob.VariableDeclarations = new[] {
+                new VariableDeclaration {
+                    name = "$external_str",
+                    type = Value.Type.String,
+                    defaultValue = new Value("Hello")
+                },
+                new VariableDeclaration {
+                    name = "$external_int",
+                    type = Value.Type.Bool,
+                    defaultValue = new Value(true)
+                },
+                new VariableDeclaration {
+                    name = "$external_bool",
+                    type = Value.Type.Number,
+                    defaultValue = new Value(42)
+                },
+            };
+
+            var result = Compiler.Compile(compilationJob);
+
+            this.storage.SetValue("$external_str", "Hello");
+            this.storage.SetValue("$external_int", 42);
+            this.storage.SetValue("$external_bool", true);
+
+            dialogue.SetProgram(result.Program);
+            stringTable = result.StringTable;
+
+            RunStandardTestcase();
+           
+        }
     }
 }

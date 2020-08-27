@@ -1,4 +1,4 @@
-﻿namespace Yarn.Compiler
+namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -336,6 +336,33 @@
             }            
 
             var finalResult = CompilationResult.CombineCompilationResults(results);
+
+            // Last step: take every variable declaration we found in all
+            // of the inputs, and create an initial value registration for
+            // it. (We don't specify an initial value for
+            // externally-declared variables, because we expect their value
+            // to be in the variable storage when the program is run.)
+            foreach (var declaration in derivedVariableDeclarations) {
+                Operand value;
+
+                switch (declaration.type)
+                {
+                    case Value.Type.Number:
+                        value = new Operand(declaration.defaultValue.AsNumber);
+                        break;
+                    case Value.Type.String:
+                        value = new Operand(declaration.defaultValue.AsString);
+                        break;
+                    case Value.Type.Bool:
+                        value = new Operand(declaration.defaultValue.AsBool);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException($"Cannot create an initial value for type {declaration.type}");
+                }
+
+                finalResult.Program.InitialValues.Add(declaration.name, value);
+            }
+
             finalResult.Declarations = derivedVariableDeclarations;
 
             return finalResult;

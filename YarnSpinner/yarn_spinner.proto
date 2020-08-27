@@ -9,6 +9,10 @@ message Program {
 	
 	// The collection of nodes in this program.
     map<string, Node> nodes = 2;   	
+	
+	// The collection of initial values for variables that were defined in
+	// this program's source
+	map<string, Operand> initial_values = 3;
 }
 
 // A collection of instructions
