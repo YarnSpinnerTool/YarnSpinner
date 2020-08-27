@@ -252,13 +252,18 @@ namespace YarnSpinner.Tests
             } while (dialogue.IsActive);
 
             // The values should be of the right type and value
-            Assert.Equal("ab", this.storage.GetValue<string>("$str"));
+            
+            this.storage.TryGetValue<string>("$str", out var strValue);
+            Assert.Equal("ab", strValue);
 
-            Assert.Equal(3, this.storage.GetValue<float>("$int"));
+            this.storage.TryGetValue<float>("$int", out var intValue);
+            Assert.Equal(3, intValue);
 
-            Assert.Equal(3, this.storage.GetValue<float>("$float"));
+            this.storage.TryGetValue<float>("$float", out var floatValue);
+            Assert.Equal(3, floatValue);
 
-            Assert.Equal(false, this.storage.GetValue<bool>("$bool"));
+            this.storage.TryGetValue<bool>("$bool", out var boolValue);
+            Assert.Equal(false, boolValue);
         }
 
     }

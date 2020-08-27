@@ -211,8 +211,6 @@ namespace Yarn {
         /// `null`.</returns>
         bool TryGetValue<T>(string variableName, out T result);
 
-        T GetValue<T>(string variableName);
-
         /// <summary>
         /// Removes all variables from storage.
         /// </summary>
@@ -242,21 +240,7 @@ namespace Yarn {
             result = default;
             return false;
         }
-
-        public T GetValue<T>(string variableName)
-        {
-            var foundValue = variables[variableName];
-
-            if (typeof(T).IsAssignableFrom(foundValue.GetType()))
-            {
-                return (T)foundValue;
-            }
-            else
-            {
-                throw new ArgumentException($"Variable {variableName} is present, but is of type {foundValue.GetType()}, not {typeof(T)}");
-            }
-        }
-
+        
         /// <inheritdoc/>
         public void Clear()
         {
