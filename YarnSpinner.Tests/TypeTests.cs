@@ -356,5 +356,30 @@ namespace YarnSpinner.Tests
             RunStandardTestcase();
            
         }
+
+        [Fact]
+        public void TestExplicitTypes()
+        {
+            var source = CreateTestNode(@"
+            <<declare $str = ""hello"" as string>>
+            <<declare $int = 1 as number>>
+            <<declare $bool = false as bool>>
+            ");
+
+            Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));            
+        }
+
+        [Theory]
+        [InlineData(@"<<declare $str = ""hello"" as number>>")]
+        [InlineData(@"<<declare $int = 1 as bool>>")]
+        [InlineData(@"<<declare $bool = false as string>>")]
+        public void TestExplicitTypesMustMatchValue(string test)
+        {
+            var source = CreateTestNode(test);
+
+            Assert.Throws<TypeException>(() => {
+                var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));            
+            });
+        }
     }
 }

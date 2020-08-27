@@ -302,6 +302,12 @@ LPAREN : '(' ;
 RPAREN : ')' ;
 COMMA : ',' ;
 
+EXPRESSION_AS: 'as';
+
+TYPE_STRING: 'string';
+TYPE_NUMBER: 'number';
+TYPE_BOOL: 'bool';
+
 // A run of text. Escaped quotes and backslashes are allowed.
 STRING : '"' (~('"' | '\\' | '\r' | '\n') | '\\' ('"' | '\\'))* '"';
 

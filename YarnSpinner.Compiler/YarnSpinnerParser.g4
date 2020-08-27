@@ -145,4 +145,10 @@ option_formatted_text
     ;
 
 declare_statement
-    : COMMAND_START COMMAND_DECLARE variable OPERATOR_ASSIGNMENT value Description=STRING? COMMAND_END ;
+    : COMMAND_START COMMAND_DECLARE variable OPERATOR_ASSIGNMENT value ('as' type)? Description=STRING? COMMAND_END ;
+
+type
+    : typename=TYPE_STRING
+    | typename=TYPE_NUMBER
+    | typename=TYPE_BOOL
+    ;

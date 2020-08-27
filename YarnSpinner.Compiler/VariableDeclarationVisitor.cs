@@ -49,6 +49,29 @@ namespace Yarn.Compiler
             var constantValueVisitor = new ConstantValueVisitor();
             var value = constantValueVisitor.Visit(context.value());
 
+            // Do we have an explicit type declaration?
+            if (context.type() != null) {
+                Value.Type explicitType;
+                // Get its type
+                switch (context.type().typename.Type) {
+                    case YarnSpinnerLexer.TYPE_STRING:
+                        explicitType = Value.Type.String;
+                        break;
+                    case YarnSpinnerLexer.TYPE_BOOL:
+                        explicitType = Value.Type.Bool;
+                        break;
+                    case YarnSpinnerLexer.TYPE_NUMBER:
+                        explicitType = Value.Type.Number;
+                        break;
+                    default:
+                        throw new ParseException(context, $"Unknown type {context.type().GetText()}");
+                }
+
+                if (explicitType != type) {
+                    throw new TypeException(context, $"Type {context.type().GetText()} does not match value {context.value().GetText()} ({type})");
+                }
+            }
+
             var declaration = new VariableDeclaration
             {
                 name = variableName,
