@@ -1,4 +1,4 @@
-namespace Yarn.Compiler
+﻿namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -107,27 +107,34 @@ namespace Yarn.Compiler
         }
     }
 
-    public struct VariableDeclaration {
+    public struct VariableDeclaration
+    {
         public string name;
         public Value defaultValue;
         public Value.Type type;
         public string description;
 
-        public override string ToString() {
-            if (string.IsNullOrEmpty(description)) {
+        public override string ToString()
+        {
+            if (string.IsNullOrEmpty(description))
+            {
                 return $"{name} : {type} = {defaultValue}";
-            } else {
+            }
+            else
+            {
                 return $"{name} : {type} = {defaultValue} (\"{description}\")";
             }
         }
     }
 
-    public struct CompilationJob {
+    public struct CompilationJob
+    {
 
         /// <summary>
         /// Represents the contents of a file to compile.
         /// </summary>
-        public struct File {
+        public struct File
+        {
             public string FileName;
             public string Source;
         }
@@ -176,18 +183,21 @@ namespace Yarn.Compiler
             };
         }
 
-        public static CompilationJob CreateFromFiles(params string[] paths) {
-            return CreateFromFiles((IEnumerable<string>) paths);
+        public static CompilationJob CreateFromFiles(params string[] paths)
+        {
+            return CreateFromFiles((IEnumerable<string>)paths);
         }
 
         /// <summary>
         /// Creates a new <see cref="CompilationJob"/> using the contents
         /// of a string.
         /// </summary>
-        /// <param name="fileName">The name to assign to the compiled file.</param>
+        /// <param name="fileName">The name to assign to the compiled
+        /// file.</param>
         /// <param name="source">The text to compile.</param>
         /// <returns>A new <see cref="CompilationJob"/>.</returns>
-        public static CompilationJob CreateFromString(string fileName, string source, Library library = null) {
+        public static CompilationJob CreateFromString(string fileName, string source, Library library = null)
+        {
             return new CompilationJob
             {
                 Files = new List<File>
@@ -221,8 +231,9 @@ namespace Yarn.Compiler
             foreach (var result in results)
             {
                 programs.Add(result.Program);
-                
-                if (result.Declarations != null) {
+
+                if (result.Declarations != null)
+                {
                     declarations.AddRange(result.Declarations);
                 }
 
@@ -231,7 +242,8 @@ namespace Yarn.Compiler
                     mergedStringTable.Add(entry.Key, entry.Value);
                 }
 
-                if (result.Status != CompilationStatus.Succeeded) {
+                if (result.Status != CompilationStatus.Succeeded)
+                {
                     status = result.Status;
                 }
             }
@@ -294,7 +306,9 @@ namespace Yarn.Compiler
         internal IEnumerable<VariableDeclaration> VariableDeclarations = new List<VariableDeclaration>();
 
         /// <summary>
-        /// The Library, which contains the function declarations known to the compiler. Supplied as part of a <see cref="CompilationJob"/>.
+        /// The Library, which contains the function declarations known to
+        /// the compiler. Supplied as part of a <see
+        /// cref="CompilationJob"/>.
         /// </summary>
         internal Library Library { get; private set; }
 
@@ -313,19 +327,24 @@ namespace Yarn.Compiler
         {
             var results = new List<CompilationResult>();
 
-            // All variable declarations that we've encountered during this compilation job
+            // All variable declarations that we've encountered during this
+            // compilation job
             var derivedVariableDeclarations = new List<VariableDeclaration>();
 
-            // All variable declarations that we've encountered, PLUS the ones we knew about before
+            // All variable declarations that we've encountered, PLUS the
+            // ones we knew about before
             var knownVariableDeclarations = new List<VariableDeclaration>();
-            if (compilationJob.VariableDeclarations != null) {
+            if (compilationJob.VariableDeclarations != null)
+            {
                 knownVariableDeclarations.AddRange(compilationJob.VariableDeclarations);
             }
 
             var compiledTrees = new List<(string name, IParseTree tree)>();
 
-            // First pass: parse all files, generate their syntax trees, and figure out what variables they've delcared
-            foreach (var file in compilationJob.Files) {
+            // First pass: parse all files, generate their syntax trees,
+            // and figure out what variables they've delcared
+            foreach (var file in compilationJob.Files)
+            {
                 var tree = ParseSyntaxTree(file);
                 IEnumerable<VariableDeclaration> newDeclarations = DeriveVariableDeclarations(tree, knownVariableDeclarations);
 
@@ -335,10 +354,11 @@ namespace Yarn.Compiler
                 compiledTrees.Add((file.FileName, tree));
             }
 
-            foreach (var parsedFile in compiledTrees) {
+            foreach (var parsedFile in compiledTrees)
+            {
                 CompilationResult compilationResult = GenerateCode(parsedFile.name, knownVariableDeclarations, compilationJob, parsedFile.tree);
                 results.Add(compilationResult);
-            }            
+            }
 
             var finalResult = CompilationResult.CombineCompilationResults(results);
 
@@ -347,7 +367,8 @@ namespace Yarn.Compiler
             // it. (We don't specify an initial value for
             // externally-declared variables, because we expect their value
             // to be in the variable storage when the program is run.)
-            foreach (var declaration in derivedVariableDeclarations) {
+            foreach (var declaration in derivedVariableDeclarations)
+            {
                 Operand value;
 
                 switch (declaration.type)
@@ -379,7 +400,8 @@ namespace Yarn.Compiler
 
             variableDeclarationVisitor.Visit(tree);
 
-            // Upon exit, declarations will now contain every variable declaration we found
+            // Upon exit, declarations will now contain every variable
+            // declaration we found
             return variableDeclarationVisitor.NewVariableDeclarations;
         }
 
@@ -396,7 +418,7 @@ namespace Yarn.Compiler
             {
                 Program = compiler.Program,
                 StringTable = compiler.StringTable,
-                Status = compiler.containsImplicitStringTags ? CompilationStatus.SucceededUntaggedStrings : CompilationStatus.Succeeded,                
+                Status = compiler.containsImplicitStringTags ? CompilationStatus.SucceededUntaggedStrings : CompilationStatus.Succeeded,
             };
         }
 

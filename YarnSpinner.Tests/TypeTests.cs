@@ -13,13 +13,15 @@ namespace YarnSpinner.Tests
 {
 
 
-	public class TypeTests : TestBase
+    public class TypeTests : TestBase
     {
-		public TypeTests() : base() {
+        public TypeTests() : base()
+        {
         }
 
         [Fact]
-        void TestVariableDeclarationsParsed() {
+        void TestVariableDeclarationsParsed()
+        {
             var source = CreateTestNode(@"
             <<declare $int = 5>>
             <<declare $str = ""yes"">>
@@ -53,12 +55,12 @@ namespace YarnSpinner.Tests
                     name = "$bool",
                     type = Value.Type.Bool,
                     defaultValue = new Value(true)
-                },                
+                },
             };
 
             Assert.Equal(expectedDeclarations, result.Declarations);
 
-            
+
         }
 
         [Fact]
@@ -76,11 +78,12 @@ namespace YarnSpinner.Tests
             <<set $varB = 2>>
             ", "NodeB");
 
-            var compilationJob = new CompilationJob {
+            var compilationJob = new CompilationJob
+            {
                 Files = new[] {
                     new CompilationJob.File { FileName = "sourceA", Source = sourceA  },
                     new CompilationJob.File { FileName = "sourceB", Source = sourceB  },
-                },                
+                },
             };
 
             Compiler.Compile(compilationJob);
@@ -114,13 +117,15 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        void TestVariableDeclarationsDisallowDuplicates() {
+        void TestVariableDeclarationsDisallowDuplicates()
+        {
             var source = CreateTestNode(@"
             <<declare $int = 5>>
             <<declare $int = 6>> // redeclaration            
             ");
 
-            var ex = Assert.Throws<TypeException>(() => {
+            var ex = Assert.Throws<TypeException>(() =>
+            {
                 Compiler.Compile(CompilationJob.CreateFromString("input", source));
             });
 
@@ -128,7 +133,8 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestExpressionsDisallowMismatchedTypes() {
+        public void TestExpressionsDisallowMismatchedTypes()
+        {
             var source = CreateTestNode(@"
             <<declare $int = 5>>
             <<set $int = ""5"">> // error, can't assign string to a variable declared int
@@ -140,13 +146,14 @@ namespace YarnSpinner.Tests
             });
 
             Assert.Contains("$int (Number) cannot be assigned a String", ex.Message);
-            
+
         }
 
         [Theory]
         [InlineData(@"<<set $str = ""hi"">>")] // in commands
         [InlineData(@"{$str}")] // in inline expressions
-        public void TestExpressionsDisallowUsingUndeclaredVariables(string testSource) {
+        public void TestExpressionsDisallowUsingUndeclaredVariables(string testSource)
+        {
             var source = CreateTestNode($@"
             {testSource} // error, undeclared
             ");
@@ -160,7 +167,8 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestExpressionsRequireCompatibleTypes() {
+        public void TestExpressionsRequireCompatibleTypes()
+        {
             var source = CreateTestNode(@"
             <<declare $int = 0>>
             <<declare $bool = false>>
@@ -208,7 +216,8 @@ namespace YarnSpinner.Tests
             <<declare $err = null>> // error, null not allowed
             ");
 
-            var ex = Assert.Throws<TypeException>( () => {
+            var ex = Assert.Throws<TypeException>(() =>
+            {
                 Compiler.Compile(CompilationJob.CreateFromString("input", source));
             });
 
@@ -248,20 +257,25 @@ namespace YarnSpinner.Tests
             "-= 1",
             "/= 1",
             "*= 1"
-            )] string operation, bool declared ) {
+            )] string operation, bool declared)
+        {
 
             string source = CreateTestNode($@"
                 {(declared ? "<<declare $var = 0>>" : "")}
                 <<set $var {operation}>>
             ");
 
-            if (!declared) {
-                var ex = Assert.Throws<TypeException>(() => {
+            if (!declared)
+            {
+                var ex = Assert.Throws<TypeException>(() =>
+                {
                     Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
                 });
 
                 Assert.Contains("Undeclared variable $var", ex.Message);
-            } else {
+            }
+            else
+            {
                 Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
             }
         }
@@ -280,7 +294,7 @@ namespace YarnSpinner.Tests
             dialogue.library.RegisterFunction("func_int_bool", (int i) => true);
             dialogue.library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
             dialogue.library.RegisterFunction("func_string_string_bool", (string i, string j) => true);
-            dialogue.library.RegisterFunction("func_invalid_return", () => new List<int>{1,2,3});
+            dialogue.library.RegisterFunction("func_invalid_return", () => new List<int> { 1, 2, 3 });
             dialogue.library.RegisterFunction("func_invalid_param", (List<int> i) => true);
 
             var failingSource = CreateTestNode($@"
@@ -289,11 +303,12 @@ namespace YarnSpinner.Tests
                 {source}
             ");
 
-            var ex = Assert.Throws<TypeException>(() => {
+            var ex = Assert.Throws<TypeException>(() =>
+            {
                 Compiler.Compile(CompilationJob.CreateFromString("input", failingSource, dialogue.library));
             });
 
-            Assert.Matches(expectedExceptionMessage, ex.Message);        
+            Assert.Matches(expectedExceptionMessage, ex.Message);
         }
 
         [Fact]
@@ -354,7 +369,7 @@ namespace YarnSpinner.Tests
             stringTable = result.StringTable;
 
             RunStandardTestcase();
-           
+
         }
 
         [Fact]
@@ -366,7 +381,7 @@ namespace YarnSpinner.Tests
             <<declare $bool = false as bool>>
             ");
 
-            Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));            
+            Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
         }
 
         [Theory]
@@ -377,8 +392,9 @@ namespace YarnSpinner.Tests
         {
             var source = CreateTestNode(test);
 
-            Assert.Throws<TypeException>(() => {
-                var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));            
+            Assert.Throws<TypeException>(() =>
+            {
+                var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
             });
         }
 
@@ -412,7 +428,7 @@ namespace YarnSpinner.Tests
                     defaultValue = new Value(true),
                     description = "a bool",
 
-                },                
+                },
             };
 
             Assert.Equal(expectedDeclarations, result.Declarations);

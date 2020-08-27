@@ -88,9 +88,7 @@ namespace Yarn.Compiler
             //
             // is identical to
             //
-            // <<if true>>
-            // Mae: here's a line
-            // <<endif>>
+            // <<if true>> Mae: here's a line <<endif>>
 
             // Convert the formatted string into a string with
             // placeholders, and evaluate the inline expressions and push
@@ -161,7 +159,8 @@ namespace Yarn.Compiler
             var expressionType = expressionTypeVisitor.Visit(context.expression());
             var variableType = expressionTypeVisitor.Visit(context.variable());
 
-            if (expressionType != variableType) {
+            if (expressionType != variableType)
+            {
                 throw new TypeException(context, $"{context.variable().GetText()} ({variableType}) cannot be assigned a {expressionType}");
             }
 
@@ -280,6 +279,7 @@ namespace Yarn.Compiler
 
             return 0;
         }
+
         internal void generateClause(string jumpLabel, YarnSpinnerParser.StatementContext[] children, YarnSpinnerParser.ExpressionContext expression)
         {
             string endOfClauseLabel = compiler.RegisterLabel("skipclause");
@@ -293,7 +293,7 @@ namespace Yarn.Compiler
 
                 // Code-generate the expression
                 Visit(expression);
-                                
+
                 compiler.Emit(OpCode.JumpIfFalse, new Operand(endOfClauseLabel));
             }
 
@@ -316,7 +316,6 @@ namespace Yarn.Compiler
         // indent statements dedent)+
         public override int VisitShortcut_option_statement(YarnSpinnerParser.Shortcut_option_statementContext context)
         {
-
             string endOfGroupLabel = compiler.RegisterLabel("group_end");
 
             var labels = new List<string>();
@@ -426,12 +425,15 @@ namespace Yarn.Compiler
         // the calls for the various operations and expressions first the
         // special cases (), unary -, !, and if it is just a value by
         // itself
+
         #region specialCaseCalls
+
         // (expression)
         public override int VisitExpParens(YarnSpinnerParser.ExpParensContext context)
         {
             return Visit(context.expression());
         }
+
         // -expression
         public override int VisitExpNegative(YarnSpinnerParser.ExpNegativeContext context)
         {
@@ -446,6 +448,7 @@ namespace Yarn.Compiler
 
             return 0;
         }
+
         // (not NOT !)expression
         public override int VisitExpNot(YarnSpinnerParser.ExpNotContext context)
         {
@@ -460,6 +463,7 @@ namespace Yarn.Compiler
 
             return 0;
         }
+
         // variable
         public override int VisitExpValue(YarnSpinnerParser.ExpValueContext context)
         {
@@ -482,6 +486,7 @@ namespace Yarn.Compiler
 
             compiler.Emit(OpCode.CallFunc, new Operand(tokens[op].ToString()));
         }
+
         // * / %
         public override int VisitExpMultDivMod(YarnSpinnerParser.ExpMultDivModContext context)
         {
@@ -489,6 +494,7 @@ namespace Yarn.Compiler
 
             return 0;
         }
+
         // + -
         public override int VisitExpAddSub(YarnSpinnerParser.ExpAddSubContext context)
         {
@@ -503,6 +509,7 @@ namespace Yarn.Compiler
 
             return 0;
         }
+
         // == !=
         public override int VisitExpEquality(YarnSpinnerParser.ExpEqualityContext context)
         {
@@ -510,6 +517,7 @@ namespace Yarn.Compiler
 
             return 0;
         }
+
         // and && or || xor ^
         public override int VisitExpAndOrXor(YarnSpinnerParser.ExpAndOrXorContext context)
         {
@@ -532,7 +540,8 @@ namespace Yarn.Compiler
             var expressionType = expressionTypeVisitor.Visit(expression);
             var variableType = expressionTypeVisitor.Visit(variable);
 
-            if (expressionType != variableType) {
+            if (expressionType != variableType)
+            {
                 throw new TypeException(expression.Parent as ParserRuleContext, $"{variable.GetText()} ({variableType}) cannot be assigned a {expressionType}");
             }
 
@@ -584,6 +593,7 @@ namespace Yarn.Compiler
         {
             return Visit(context.variable());
         }
+
         public override int VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
         {
             float number = float.Parse(context.NUMBER().GetText(), CultureInfo.InvariantCulture);
@@ -591,17 +601,20 @@ namespace Yarn.Compiler
 
             return 0;
         }
+
         public override int VisitValueTrue(YarnSpinnerParser.ValueTrueContext context)
         {
             compiler.Emit(OpCode.PushBool, new Operand(true));
 
             return 0;
         }
+
         public override int VisitValueFalse(YarnSpinnerParser.ValueFalseContext context)
         {
             compiler.Emit(OpCode.PushBool, new Operand(false));
             return 0;
         }
+
         public override int VisitVariable(YarnSpinnerParser.VariableContext context)
         {
             string variableName = context.VAR_ID().GetText();
@@ -609,6 +622,7 @@ namespace Yarn.Compiler
 
             return 0;
         }
+
         public override int VisitValueString(YarnSpinnerParser.ValueStringContext context)
         {
             // stripping the " off the front and back actually is this what
