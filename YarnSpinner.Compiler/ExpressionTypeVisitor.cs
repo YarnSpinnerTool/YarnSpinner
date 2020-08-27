@@ -365,6 +365,26 @@ namespace Yarn.Compiler
             return CheckOperation(context, terms, "!", Value.Type.Bool);
         }
 
+        public override Value.Type VisitExpTypeConversion(YarnSpinnerParser.ExpTypeConversionContext context)
+        {
+            // Validate the type of the expression; the actual conversion
+            // will be done at runtime, and may fail depending on the
+            // actual value
+            Visit(context.expression());
+
+            // Return a value whose type depends on which type we're using
+            switch (context.type().typename.Type) {
+                case YarnSpinnerLexer.TYPE_NUMBER:
+                    return Value.Type.Number;
+                case YarnSpinnerLexer.TYPE_STRING:
+                    return Value.Type.String;
+                case YarnSpinnerLexer.TYPE_BOOL:
+                    return Value.Type.Bool;
+                default:
+                    throw new ArgumentOutOfRangeException($"Unsupported type {context.type().GetText()}");
+            }
+        }
+
 
     }
 }

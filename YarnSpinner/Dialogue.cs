@@ -1049,6 +1049,17 @@ namespace Yarn {
                 this.RegisterFunction(TokenType.Not.ToString(), delegate(Value a) {
                     return !a.ConvertTo<bool>();
                 });
+
+                this.RegisterFunction("string", delegate(Value v) {
+                    return v.ConvertTo<string>();
+                });
+
+                this.RegisterFunction("number", delegate(Value v) {
+                    return v.ConvertTo<float>();
+                });
+
+                this.RegisterFunction("bool", delegate(Value v) {
+                    return v.ConvertTo<bool>();
                 });
                 
 

@@ -434,5 +434,54 @@ namespace YarnSpinner.Tests
             Assert.Equal(expectedDeclarations, result.Declarations);
 
         }
+
+        [Fact]
+        public void TestTypeConversion()
+        {
+            var source = CreateTestNode(@"
+            string + string(number): {""1"" + string(1)}
+            string + string(bool): {""1"" + string(true)}
+
+            number + number(string): {1 + number(""1"")}
+            number + number(bool): {1 + number(true)}
+
+            bool and bool(string): {true and bool(""true"")}
+            bool and bool(number): {true and bool(1)}
+            ");
+
+            testPlan = new TestPlanBuilder()
+                .AddLine("string + string(number): 11")
+                .AddLine("string + string(bool): 1True")
+                .AddLine("number + number(string): 2")
+                .AddLine("number + number(bool): 2")
+                .AddLine("bool and bool(string): True")
+                .AddLine("bool and bool(number): True")
+                .GetPlan();
+
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
+
+            dialogue.SetProgram(result.Program);
+            stringTable = result.StringTable;
+            RunStandardTestcase();
+        }
+
+        [Theory]
+        [InlineData(@"{number(""hello"")}")]
+        [InlineData(@"{bool(""hello"")}")]        
+        public void TestTypeConversionFailure(string test)
+        {
+            var source = CreateTestNode(test);
+            testPlan = new TestPlanBuilder()
+                .AddLine("test failure if seen")
+                .AddLine("test failure if seen")
+                .GetPlan();
+            
+            Assert.Throws<FormatException>( () => {
+                var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.library));
+                dialogue.SetProgram(result.Program);
+                stringTable = result.StringTable;
+                RunStandardTestcase();
+            });
+        }
     }
 }

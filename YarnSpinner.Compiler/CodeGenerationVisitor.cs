@@ -659,6 +659,37 @@ namespace Yarn.Compiler
             return 0;
         }
 
+        public override int VisitExpTypeConversion(YarnSpinnerParser.ExpTypeConversionContext context)
+        {
+            // Evaluate the single expression, and then call the type-conversion function
+            Visit(context.expression());
+
+            // Push the number of parameters onto the stack
+            compiler.Emit(OpCode.PushFloat, new Operand(1));
+
+            string functionName;
+
+            switch (context.type().typename.Type)
+            {
+                case YarnSpinnerLexer.TYPE_STRING:
+                    functionName = "string";
+                    break;
+                case YarnSpinnerLexer.TYPE_BOOL:
+                    functionName = "bool";
+                    break;
+                case YarnSpinnerLexer.TYPE_NUMBER:
+                    functionName = "number";
+                    break;
+                default:
+                    throw new ParseException($"Cannot convert {context.expression().GetText()} to {context.type().GetText()}: unknown type");
+            }
+
+            // Call the function
+            compiler.Emit(OpCode.CallFunc, new Operand(functionName));
+
+            return 0;
+        }
+
         // TODO: figure out a better way to do operators
         Dictionary<int, TokenType> tokens = new Dictionary<int, TokenType>();
         private void loadOperators()

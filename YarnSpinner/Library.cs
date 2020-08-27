@@ -19,16 +19,24 @@ namespace Yarn
         private Dictionary<string, Delegate> delegates = new Dictionary<string, Delegate>();
         
         /// <summary>
-        /// Returns a <see cref="FunctionInfo"/> with a given name.
+        /// Returns a <see cref="Delegate"/> with a given name.
         /// </summary>
         /// <param name="name">The name of the function to
         /// retrieve.</param>
-        /// <returns>The <see cref="FunctionInfo"/>.</returns>
+        /// <returns>The <see cref="Delegate"/>.</returns>
         /// <throws cref="InvalidOperationException">Thrown when a function
         /// named `name` is not present in the library.</throws>
         public Delegate GetFunction(string name)
         {
-            return delegates[name];
+            try
+            {
+                return delegates[name];
+            }
+            catch (KeyNotFoundException)
+            {
+                throw new InvalidOperationException($"Function {name} is not present in the library.");
+            }
+            
         }
 
         /// <summary>

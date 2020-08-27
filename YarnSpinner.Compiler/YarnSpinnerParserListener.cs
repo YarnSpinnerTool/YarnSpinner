@@ -180,6 +180,18 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitExpComparison([NotNull] YarnSpinnerParser.ExpComparisonContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>expTypeConversion</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterExpTypeConversion([NotNull] YarnSpinnerParser.ExpTypeConversionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>expTypeConversion</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitExpTypeConversion([NotNull] YarnSpinnerParser.ExpTypeConversionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>expNegative</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
 	/// </summary>

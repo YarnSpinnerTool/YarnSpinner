@@ -212,6 +212,20 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitExpComparison([NotNull] YarnSpinnerParser.ExpComparisonContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>expTypeConversion</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterExpTypeConversion([NotNull] YarnSpinnerParser.ExpTypeConversionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>expTypeConversion</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitExpTypeConversion([NotNull] YarnSpinnerParser.ExpTypeConversionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>expNegative</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>

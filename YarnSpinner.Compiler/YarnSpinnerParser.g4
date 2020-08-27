@@ -68,6 +68,7 @@ expression
     | variable op=('*=' | '/=' | '%=') expression #expMultDivModEquals
     | variable op=('+=' | '-=') expression #expPlusMinusEquals
     | expression op=(OPERATOR_LOGICAL_AND | OPERATOR_LOGICAL_OR | OPERATOR_LOGICAL_XOR) expression #expAndOrXor
+    | type '(' expression ')' #expTypeConversion
     | value #expValue
     ;
 
