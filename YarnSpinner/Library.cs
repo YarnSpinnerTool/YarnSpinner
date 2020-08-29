@@ -16,7 +16,7 @@ namespace Yarn
     public class Library
     {
 
-        private Dictionary<string, Delegate> delegates = new Dictionary<string, Delegate>();
+        internal Dictionary<string, Delegate> Delegates = new Dictionary<string, Delegate>();
         
         /// <summary>
         /// Returns a <see cref="Delegate"/> with a given name.
@@ -30,7 +30,7 @@ namespace Yarn
         {
             try
             {
-                return delegates[name];
+                return Delegates[name];
             }
             catch (KeyNotFoundException)
             {
@@ -50,8 +50,8 @@ namespace Yarn
         /// </remarks>
         public void ImportLibrary(Library otherLibrary)
         {
-            foreach (var entry in otherLibrary.delegates) {
-                delegates[entry.Key] = entry.Value;
+            foreach (var entry in otherLibrary.Delegates) {
+                Delegates[entry.Key] = entry.Value;
             }
         }
 
@@ -131,7 +131,7 @@ namespace Yarn
         /// should be invoked when this function is called from Yarn
         /// scripts.</param>
         public void RegisterFunction(string name, Delegate implementation) {
-            delegates.Add(name, implementation);
+            Delegates.Add(name, implementation);
         }
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace Yarn
         /// <param name="name">The name of the function to look for.</param>
         /// <returns>`true` if a function exists in this Library; `false` otherwise.</returns>
         public bool FunctionExists(string name) {
-            return delegates.ContainsKey(name);
+            return Delegates.ContainsKey(name);
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace Yarn
         {
             if (FunctionExists(name))
             {
-                delegates.Remove(name);
+                Delegates.Remove(name);
             }
         }
     }
