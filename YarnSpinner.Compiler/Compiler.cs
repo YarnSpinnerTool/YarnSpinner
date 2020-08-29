@@ -107,7 +107,7 @@ namespace Yarn.Compiler
         }
     }
 
-    public struct VariableDeclaration
+    public struct Declaration
     {
         public string Name;
         public object DefaultValue;
@@ -154,7 +154,7 @@ namespace Yarn.Compiler
         /// <summary>
         /// The declarations for variables.
         /// </summary>
-        public IEnumerable<VariableDeclaration> VariableDeclarations;
+        public IEnumerable<Declaration> VariableDeclarations;
 
         /// <summary>
         /// Creates a new <see cref="CompilationJob"/> using the contents
@@ -215,7 +215,7 @@ namespace Yarn.Compiler
     {
         public Program Program;
         public IDictionary<string, StringInfo> StringTable;
-        public IEnumerable<VariableDeclaration> Declarations;
+        public IEnumerable<Declaration> Declarations;
         public CompilationStatus Status;
 
         internal static CompilationResult CombineCompilationResults(IEnumerable<CompilationResult> results)
@@ -223,7 +223,7 @@ namespace Yarn.Compiler
             CompilationResult finalResult;
 
             var programs = new List<Program>();
-            var declarations = new List<VariableDeclaration>();
+            var declarations = new List<Declaration>();
             var mergedStringTable = new Dictionary<string, StringInfo>();
 
             var status = CompilationStatus.Succeeded;
@@ -303,7 +303,7 @@ namespace Yarn.Compiler
         /// Supplied as part of a <see cref="CompilationJob"/>, or by <see
         /// cref="DeriveVariableDeclarations"/>
         /// </summary>
-        internal IEnumerable<VariableDeclaration> VariableDeclarations = new List<VariableDeclaration>();
+        internal IEnumerable<Declaration> VariableDeclarations = new List<Declaration>();
 
         /// <summary>
         /// The Library, which contains the function declarations known to
@@ -329,11 +329,11 @@ namespace Yarn.Compiler
 
             // All variable declarations that we've encountered during this
             // compilation job
-            var derivedVariableDeclarations = new List<VariableDeclaration>();
+            var derivedVariableDeclarations = new List<Declaration>();
 
             // All variable declarations that we've encountered, PLUS the
             // ones we knew about before
-            var knownVariableDeclarations = new List<VariableDeclaration>();
+            var knownVariableDeclarations = new List<Declaration>();
             if (compilationJob.VariableDeclarations != null)
             {
                 knownVariableDeclarations.AddRange(compilationJob.VariableDeclarations);
@@ -346,7 +346,7 @@ namespace Yarn.Compiler
             foreach (var file in compilationJob.Files)
             {
                 var tree = ParseSyntaxTree(file);
-                IEnumerable<VariableDeclaration> newDeclarations = DeriveVariableDeclarations(tree, knownVariableDeclarations);
+                IEnumerable<Declaration> newDeclarations = DeriveVariableDeclarations(tree, knownVariableDeclarations);
 
                 derivedVariableDeclarations.AddRange(newDeclarations);
                 knownVariableDeclarations.AddRange(newDeclarations);
@@ -394,9 +394,9 @@ namespace Yarn.Compiler
             return finalResult;
         }
 
-        private static IEnumerable<VariableDeclaration> DeriveVariableDeclarations(IParseTree tree, IEnumerable<VariableDeclaration> existingDeclarations)
+        private static IEnumerable<Declaration> DeriveVariableDeclarations(IParseTree tree, IEnumerable<Declaration> existingDeclarations)
         {
-            var variableDeclarationVisitor = new VariableDeclarationVisitor(existingDeclarations);
+            var variableDeclarationVisitor = new DeclarationVisitor(existingDeclarations);
 
             variableDeclarationVisitor.Visit(tree);
 
@@ -405,7 +405,7 @@ namespace Yarn.Compiler
             return variableDeclarationVisitor.NewVariableDeclarations;
         }
 
-        private static CompilationResult GenerateCode(string fileName, IEnumerable<VariableDeclaration> variableDeclarations, CompilationJob job, IParseTree tree)
+        private static CompilationResult GenerateCode(string fileName, IEnumerable<Declaration> variableDeclarations, CompilationJob job, IParseTree tree)
         {
             Compiler compiler = new Compiler(fileName);
 

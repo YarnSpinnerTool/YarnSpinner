@@ -16,7 +16,7 @@ namespace YarnSpinner.Tests
         protected IVariableStorage storage = new MemoryVariableStore();
         protected Dialogue dialogue;
         protected IDictionary<string, Yarn.Compiler.StringInfo> stringTable;
-        protected IEnumerable<Yarn.Compiler.VariableDeclaration> declarations;
+        protected IEnumerable<Yarn.Compiler.Declaration> declarations;
 
         public string locale = "en";
         

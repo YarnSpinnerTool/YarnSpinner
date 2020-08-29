@@ -36,22 +36,22 @@ namespace YarnSpinner.Tests
             <<declare $bool = true>>
             ");
 
-            IEnumerable<VariableDeclaration> declarations;
+            IEnumerable<Declaration> declarations;
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            var expectedDeclarations = new HashSet<VariableDeclaration>() {
-                new VariableDeclaration {
+            var expectedDeclarations = new HashSet<Declaration>() {
+                new Declaration {
                     Name = "$int",
                     ReturnType = Yarn.Type.Number,
                     DefaultValue = 5f,
                 },
-                new VariableDeclaration {
+                new Declaration {
                     Name = "$str",
                     ReturnType = Yarn.Type.String,
                     DefaultValue = "yes",
                 },
-                new VariableDeclaration {
+                new Declaration {
                     Name = "$bool",
                     ReturnType = Yarn.Type.Bool,
                     DefaultValue = true,
@@ -97,7 +97,7 @@ namespace YarnSpinner.Tests
             ");
 
             var declarations = new[] {
-                new VariableDeclaration {
+                new Declaration {
                     Name = "$int",
                     ReturnType = Yarn.Type.Number,
                 }
@@ -342,17 +342,17 @@ namespace YarnSpinner.Tests
             CompilationJob compilationJob = CompilationJob.CreateFromString("input", source, dialogue.Library);
 
             compilationJob.VariableDeclarations = new[] {
-                new VariableDeclaration {
+                new Declaration {
                     Name = "$external_str",
                     ReturnType = Yarn.Type.String,
                     DefaultValue = new Value("Hello")
                 },
-                new VariableDeclaration {
+                new Declaration {
                     Name = "$external_int",
                     ReturnType = Yarn.Type.Bool,
                     DefaultValue = new Value(true)
                 },
-                new VariableDeclaration {
+                new Declaration {
                     Name = "$external_bool",
                     ReturnType = Yarn.Type.Number,
                     DefaultValue = new Value(42)
@@ -411,20 +411,20 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            var expectedDeclarations = new HashSet<VariableDeclaration>() {
-                new VariableDeclaration {
+            var expectedDeclarations = new HashSet<Declaration>() {
+                new Declaration {
                     Name = "$int",
                     ReturnType = Yarn.Type.Number,
                     DefaultValue = 42f,
                     Description = "a number",
                 },
-                new VariableDeclaration {
+                new Declaration {
                     Name = "$str",
                     ReturnType = Yarn.Type.String,
                     DefaultValue = "Hello",
                     Description = "a string",
                 },
-                new VariableDeclaration {
+                new Declaration {
                     Name = "$bool",
                     ReturnType = Yarn.Type.Bool,
                     DefaultValue = true,

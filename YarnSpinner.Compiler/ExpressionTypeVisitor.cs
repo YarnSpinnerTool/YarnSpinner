@@ -14,7 +14,7 @@ namespace Yarn.Compiler
     {
 
         // The variable declarations we know about
-        protected IEnumerable<VariableDeclaration> VariableDeclarations;
+        protected IEnumerable<Declaration> VariableDeclarations;
 
         // If true, this expression may not involve any variables or
         // function calls
@@ -23,7 +23,7 @@ namespace Yarn.Compiler
         // The function declarations we know about
         public Library Library { get; private set; }
 
-        public ExpressionTypeVisitor(IEnumerable<VariableDeclaration> variableDeclarations, Library library, bool requireConstantExpression)
+        public ExpressionTypeVisitor(IEnumerable<Declaration> variableDeclarations, Library library, bool requireConstantExpression)
         {
             VariableDeclarations = variableDeclarations;
             RequireConstantExpression = requireConstantExpression;

@@ -4,21 +4,21 @@ namespace Yarn.Compiler
     using System.Collections.Generic;
     using Antlr4.Runtime;
 
-    internal class VariableDeclarationVisitor : YarnSpinnerParserBaseVisitor<int>
+    internal class DeclarationVisitor : YarnSpinnerParserBaseVisitor<int>
     {
 
         // The collection of variable declarations we know about before
         // starting our work
-        private IEnumerable<VariableDeclaration> ExistingVariableDeclarations;
+        private IEnumerable<Declaration> ExistingVariableDeclarations;
 
         /// <summary>
         /// The collection of new variable declarations that were found as
-        /// a result of using this <see cref="VariableDeclarationVisitor"/>
+        /// a result of using this <see cref="DeclarationVisitor"/>
         /// to visit a <see cref="ParserRuleContext"/>.
         /// </summary>
-        public ICollection<VariableDeclaration> NewVariableDeclarations { get; private set; }
+        public ICollection<Declaration> NewVariableDeclarations { get; private set; }
 
-        private IEnumerable<VariableDeclaration> AllDeclarations
+        private IEnumerable<Declaration> AllDeclarations
         {
             get
             {
@@ -33,10 +33,10 @@ namespace Yarn.Compiler
             }
         }
 
-        public VariableDeclarationVisitor(IEnumerable<VariableDeclaration> existingDeclarations)
+        public DeclarationVisitor(IEnumerable<Declaration> existingDeclarations)
         {
             this.ExistingVariableDeclarations = existingDeclarations;
-            this.NewVariableDeclarations = new List<VariableDeclaration>();
+            this.NewVariableDeclarations = new List<Declaration>();
         }
 
         public override int VisitDeclare_statement(YarnSpinnerParser.Declare_statementContext context)
@@ -100,7 +100,7 @@ namespace Yarn.Compiler
             }
 
             // We're done creating the declaration!
-            var declaration = new VariableDeclaration
+            var declaration = new Declaration
             {
                 Name = variableName,
                 ReturnType = type,
