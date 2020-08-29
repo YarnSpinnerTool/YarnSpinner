@@ -48,9 +48,9 @@ namespace Yarn.Compiler
             // Does this variable name already exist in our declarations?
             foreach (var decl in AllDeclarations)
             {
-                if (decl.name == variableName)
+                if (decl.Name == variableName)
                 {
-                    throw new TypeException($"{decl.name} has already been declared");
+                    throw new TypeException($"{decl.Name} has already been declared");
                 }
             }
 
@@ -102,10 +102,10 @@ namespace Yarn.Compiler
             // We're done creating the declaration!
             var declaration = new VariableDeclaration
             {
-                name = variableName,
-                type = type,
-                defaultValue = value,
-                description = description,
+                Name = variableName,
+                ReturnType = type,
+                DefaultValue = value,
+                Description = description,
             };
 
             this.NewVariableDeclarations.Add(declaration);

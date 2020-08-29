@@ -42,19 +42,19 @@ namespace YarnSpinner.Tests
 
             var expectedDeclarations = new HashSet<VariableDeclaration>() {
                 new VariableDeclaration {
-                    name = "$int",
-                    type = Yarn.Type.Number,
-                    defaultValue = 5f,
+                    Name = "$int",
+                    ReturnType = Yarn.Type.Number,
+                    DefaultValue = 5f,
                 },
                 new VariableDeclaration {
-                    name = "$str",
-                    type = Yarn.Type.String,
-                    defaultValue = "yes",
+                    Name = "$str",
+                    ReturnType = Yarn.Type.String,
+                    DefaultValue = "yes",
                 },
                 new VariableDeclaration {
-                    name = "$bool",
-                    type = Yarn.Type.Bool,
-                    defaultValue = true,
+                    Name = "$bool",
+                    ReturnType = Yarn.Type.Bool,
+                    DefaultValue = true,
                 },
             };
 
@@ -98,8 +98,8 @@ namespace YarnSpinner.Tests
 
             var declarations = new[] {
                 new VariableDeclaration {
-                    name = "$int",
-                    type = Yarn.Type.Number,
+                    Name = "$int",
+                    ReturnType = Yarn.Type.Number,
                 }
             };
 
@@ -343,19 +343,19 @@ namespace YarnSpinner.Tests
 
             compilationJob.VariableDeclarations = new[] {
                 new VariableDeclaration {
-                    name = "$external_str",
-                    type = Yarn.Type.String,
-                    defaultValue = new Value("Hello")
+                    Name = "$external_str",
+                    ReturnType = Yarn.Type.String,
+                    DefaultValue = new Value("Hello")
                 },
                 new VariableDeclaration {
-                    name = "$external_int",
-                    type = Yarn.Type.Bool,
-                    defaultValue = new Value(true)
+                    Name = "$external_int",
+                    ReturnType = Yarn.Type.Bool,
+                    DefaultValue = new Value(true)
                 },
                 new VariableDeclaration {
-                    name = "$external_bool",
-                    type = Yarn.Type.Number,
-                    defaultValue = new Value(42)
+                    Name = "$external_bool",
+                    ReturnType = Yarn.Type.Number,
+                    DefaultValue = new Value(42)
                 },
             };
 
@@ -413,22 +413,22 @@ namespace YarnSpinner.Tests
 
             var expectedDeclarations = new HashSet<VariableDeclaration>() {
                 new VariableDeclaration {
-                    name = "$int",
-                    type = Yarn.Type.Number,
-                    defaultValue = 42f,
-                    description = "a number",
+                    Name = "$int",
+                    ReturnType = Yarn.Type.Number,
+                    DefaultValue = 42f,
+                    Description = "a number",
                 },
                 new VariableDeclaration {
-                    name = "$str",
-                    type = Yarn.Type.String,
-                    defaultValue = "Hello",
-                    description = "a string",
+                    Name = "$str",
+                    ReturnType = Yarn.Type.String,
+                    DefaultValue = "Hello",
+                    Description = "a string",
                 },
                 new VariableDeclaration {
-                    name = "$bool",
-                    type = Yarn.Type.Bool,
-                    defaultValue = true,
-                    description = "a bool",
+                    Name = "$bool",
+                    ReturnType = Yarn.Type.Bool,
+                    DefaultValue = true,
+                    Description = "a bool",
 
                 },
             };

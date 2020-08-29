@@ -72,9 +72,9 @@ namespace Yarn.Compiler
 
             foreach (var declaration in VariableDeclarations)
             {
-                if (declaration.name == name)
+                if (declaration.Name == name)
                 {
-                    return declaration.type;
+                    return declaration.ReturnType;
                 }
             }
 

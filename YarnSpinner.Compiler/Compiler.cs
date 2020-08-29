@@ -1,4 +1,4 @@
-﻿namespace Yarn.Compiler
+namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -109,20 +109,20 @@
 
     public struct VariableDeclaration
     {
-        public string name;
-        public object defaultValue;
-        public Yarn.Type type;
-        public string description;
+        public string Name;
+        public object DefaultValue;
+        public Yarn.Type ReturnType;
+        public string Description;
 
         public override string ToString()
         {
-            if (string.IsNullOrEmpty(description))
+            if (string.IsNullOrEmpty(Description))
             {
-                return $"{name} : {type} = {defaultValue}";
+                return $"{Name} : {ReturnType} = {DefaultValue}";
             }
             else
             {
-                return $"{name} : {type} = {defaultValue} (\"{description}\")";
+                return $"{Name} : {ReturnType} = {DefaultValue} (\"{Description}\")";
             }
         }
     }
@@ -371,22 +371,22 @@
             {
                 Operand value;
 
-                switch (declaration.type)
+                switch (declaration.ReturnType)
                 {
                     case Yarn.Type.Number:
-                        value = new Operand((float)declaration.defaultValue);
+                        value = new Operand((float)declaration.DefaultValue);
                         break;
                     case Yarn.Type.String:
-                        value = new Operand((string)declaration.defaultValue);
+                        value = new Operand((string)declaration.DefaultValue);
                         break;
                     case Yarn.Type.Bool:
-                        value = new Operand((bool)declaration.defaultValue);
+                        value = new Operand((bool)declaration.DefaultValue);
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException($"Cannot create an initial value for type {declaration.type}");
+                        throw new ArgumentOutOfRangeException($"Cannot create an initial value for type {declaration.ReturnType}");
                 }
 
-                finalResult.Program.InitialValues.Add(declaration.name, value);
+                finalResult.Program.InitialValues.Add(declaration.Name, value);
             }
 
             finalResult.Declarations = derivedVariableDeclarations;
