@@ -99,7 +99,7 @@ namespace Yarn.Compiler
                 // expressions above us will need to assume that the type
                 // matches requirements.
                 foreach (var expression in context.function().expression()) {
-                    Visit(expression);                    
+                    Visit(expression);
                 }
                 return Yarn.Type.Undefined;
             }
@@ -235,16 +235,26 @@ namespace Yarn.Compiler
                 }
             }
 
-            // The expression type that we've seen must not be Any or
-            // Undefined - it needs to be a concrete type.
+            // The expression type that we've seen must not Undefined - it
+            // needs to be a concrete type. If we have a single permitted
+            // type, we can bind it to that. But if we have more than one,
+            // all bets are off.
             if (expressionType == Yarn.Type.Undefined)
             {
-                var termTexts = new List<string>();
-                foreach (var term in terms) {
-                    termTexts.Add(term.GetText());
+                if (permittedTypes.Length == 1)
+                {
+                    expressionType = permittedTypes[0];
                 }
-                var termList = string.Join(", ", termTexts);
-                throw new TypeException(context, $"The types of all of {termList} can't be determined, so the type of this operation can't be defined. Use a type conversion function (i.e. string(), number()) on at least one of the terms to fix this problem.");
+                else
+                {
+                    var termTexts = new List<string>();
+                    foreach (var term in terms)
+                    {
+                        termTexts.Add(term.GetText());
+                    }
+                    var termList = string.Join(", ", termTexts);
+                    throw new TypeException(context, $"The types of all of {termList} can't be determined, so the type of this operation can't be defined. Use a type conversion function (i.e. string(), number()) on at least one of the terms to fix this problem.");
+                }
             }
 
             string typeList;
