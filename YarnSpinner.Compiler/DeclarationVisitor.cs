@@ -69,7 +69,7 @@ namespace Yarn.Compiler
             {
                 if (decl.Name == variableName)
                 {
-                    throw new TypeException($"{decl.Name} has already been declared");
+                    throw new TypeException($"{decl.Name} has already been declared in {decl.SourceFileName}, line {decl.SourceFileLine}");
                 }
             }
 
