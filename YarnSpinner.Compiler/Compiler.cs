@@ -107,23 +107,122 @@ namespace Yarn.Compiler
         }
     }
 
-    public struct Declaration
+    public class Declaration
     {
         public string Name;
         public object DefaultValue;
+        public Declaration.Type DeclarationType;
         public Yarn.Type ReturnType;
         public string Description;
+        public Parameter[] Parameters = new Parameter[0];
 
+        /// <summary>
+        /// Enumerates the different types of <see cref="Declaration"/>
+        /// structs that may be encountered.
+        /// </summary>
+        public enum Type
+        {
+            /// <summary>
+            /// Variables have a return type, have no parameters, and can be assigned to.
+            /// </summary>
+            Variable,
+
+            /// <summary>
+            /// Functions has a return type, may have parameters, and cannot be assigned to.
+            /// </summary>
+            Function,
+        }
+
+        public class Parameter {
+            public string name;
+            public Yarn.Type type;
+
+            // override object.Equals
+            public override bool Equals(object obj)
+            {
+                if (obj == null || !(obj is Parameter otherParam))
+                {
+                    return false;
+                }
+                
+                return this.name == otherParam.name &&
+                    this.type == otherParam.type;
+            }
+            
+            // override object.GetHashCode
+            public override int GetHashCode()
+            {
+                return name.GetHashCode() ^ type.GetHashCode();
+            }
+        }
+
+        /// <inheritdoc/>
         public override string ToString()
         {
-            if (string.IsNullOrEmpty(Description))
+            string result;
+            switch (this.DeclarationType)
             {
-                return $"{Name} : {ReturnType} = {DefaultValue}";
+                case Type.Variable:
+                    result = $"{Name} : {ReturnType} = {DefaultValue}";
+                    break;                    
+                case Type.Function:
+                    result = $"{Name} : ({string.Join(", ", (object[])Parameters)}) -> {ReturnType}";
+                    break;
+                default:
+                    throw new InvalidOperationException($"Invalid declaration type {this.DeclarationType}");
             }
-            else
+            if (string.IsNullOrEmpty(Description)) {
+                return result;
+            } else {
+                return result + $" (\"{Description}\")";
+            }
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            if (obj == null || !(obj is Declaration otherDecl) )
             {
-                return $"{Name} : {ReturnType} = {DefaultValue} (\"{Description}\")";
+                return false;
             }
+            
+            if (Parameters.Length != otherDecl.Parameters.Length) {
+                return false;
+            }
+
+            for (int i = 0; i < Parameters.Length; i++) {
+                Parameter myParam = Parameters[i];
+                Parameter theirParam = otherDecl.Parameters[i];
+
+                if (myParam.Equals(theirParam) == false) {
+                    return false;
+                }
+            }
+
+            return this.Name == otherDecl.Name &&
+                this.ReturnType == otherDecl.ReturnType &&
+                this.DefaultValue == otherDecl.DefaultValue &&
+                this.Description == otherDecl.Description &&
+                this.DeclarationType == otherDecl.DeclarationType;
+        }
+        
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            int paramsHash = 0;
+            foreach (var param in Parameters) {
+                if (paramsHash == 0) {
+                    paramsHash = param.GetHashCode();                    
+                } else {
+                    paramsHash ^= param.GetHashCode();
+                }
+            }
+            return this.Name.GetHashCode()
+                ^ this.ReturnType.GetHashCode()
+                ^ this.DeclarationType.GetHashCode()
+                ^ this.DefaultValue.GetHashCode()
+                ^ paramsHash
+                ^ (this.Description ?? string.Empty).GetHashCode();
         }
     }
 
@@ -339,6 +438,12 @@ namespace Yarn.Compiler
                 knownVariableDeclarations.AddRange(compilationJob.VariableDeclarations);
             }
 
+            // Get function declarations from the library, if provided
+            if (compilationJob.Library != null)
+            {
+                knownVariableDeclarations.AddRange(GetDeclarationsFromLibrary(compilationJob.Library));
+            }
+
             var compiledTrees = new List<(string name, IParseTree tree)>();
 
             // First pass: parse all files, generate their syntax trees,
@@ -369,6 +474,12 @@ namespace Yarn.Compiler
             // to be in the variable storage when the program is run.)
             foreach (var declaration in derivedVariableDeclarations)
             {
+                // We only care about variable declarations here
+                if (declaration.DeclarationType != Declaration.Type.Variable)
+                {
+                    continue;
+                }
+
                 Operand value;
 
                 switch (declaration.ReturnType)
@@ -402,7 +513,7 @@ namespace Yarn.Compiler
 
             // Upon exit, declarations will now contain every variable
             // declaration we found
-            return variableDeclarationVisitor.NewVariableDeclarations;
+            return variableDeclarationVisitor.NewDeclarations;
         }
 
         private static CompilationResult GenerateCode(string fileName, IEnumerable<Declaration> variableDeclarations, CompilationJob job, IParseTree tree)
@@ -420,6 +531,94 @@ namespace Yarn.Compiler
                 StringTable = compiler.StringTable,
                 Status = compiler.containsImplicitStringTags ? CompilationStatus.SucceededUntaggedStrings : CompilationStatus.Succeeded,
             };
+        }
+
+        /// <summary>
+        /// Returns a collection of <see cref="Declaration"/> structs that
+        /// describe the functions present in <paramref name="library"/>.
+        /// </summary>
+        /// <param name="library">The <see cref="Library"/> to get
+        /// declarations from.</param>
+        /// <returns>The <see cref="Declaration"/> structs found.</returns>
+        /// <throws cref="TypeException">Thrown when a function in
+        /// <paramref name="library"/> has an invalid return type, an
+        /// invalid parameter type, an optional parameter, or an out
+        /// parameter.</throws>
+        internal static IEnumerable<Declaration> GetDeclarationsFromLibrary(Library library)
+        {
+            var declarations = new List<Declaration>();
+
+            foreach (var function in library.Delegates)
+            {
+                var method = function.Value.Method;
+
+                if (method.ReturnType == typeof(Value)) {
+                    // Functions that return the internal type Values are
+                    // operators, and are type checked by
+                    // ExpressionTypeVisitor. (Future work: define each
+                    // polymorph of each operator as a separate function
+                    // that returns a concrete type, rather than the
+                    // current method of having a 'Value' wrapper type).
+                    continue;
+                }
+
+                if (Value.TypeMappings.TryGetValue(method.ReturnType, out var yarnReturnType) == false)
+                {
+                    throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: {method.ReturnType} is not a valid return type.");
+                }
+
+                var parameters = new List<Declaration.Parameter>();
+
+                bool includeMethod = true;
+
+                foreach (var paramInfo in method.GetParameters())
+                {                    
+                    if (paramInfo.ParameterType == typeof(Value)) {
+                        // Don't type-check this method - it's an operator
+                        includeMethod = false;
+                        break; 
+                    }
+
+                    if (paramInfo.IsOptional)
+                    {
+                        throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is optional, which isn't supported.");
+                    }
+
+                    if (paramInfo.IsOut)
+                    {
+                        throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is an out parameter, which isn't supported.");
+                    }
+
+                    if (Value.TypeMappings.TryGetValue(paramInfo.ParameterType, out var yarnParameterType) == false)
+                    {
+                        throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used.");
+                    }
+
+                    var parameter = new Declaration.Parameter
+                    {
+                        name = paramInfo.Name,
+                        type = yarnParameterType,
+                    };
+
+                    parameters.Add(parameter);
+                }
+
+                if (includeMethod == false) {
+                    continue;
+                }
+
+                var declaration = new Declaration
+                {
+                    DeclarationType = Declaration.Type.Function,
+                    Name = function.Key,
+                    ReturnType = yarnReturnType,
+                    Parameters = parameters.ToArray(),
+                };
+
+                declarations.Add(declaration);
+            }
+
+            return declarations;
         }
 
         private static IParseTree ParseSyntaxTree(CompilationJob.File file)

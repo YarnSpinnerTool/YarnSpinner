@@ -14,20 +14,16 @@ namespace Yarn.Compiler
     {
 
         // The variable declarations we know about
-        protected IEnumerable<Declaration> VariableDeclarations;
+        protected IEnumerable<Declaration> Declarations;
 
         // If true, this expression may not involve any variables or
         // function calls
         protected bool RequireConstantExpression;
 
-        // The function declarations we know about
-        public Library Library { get; private set; }
-
-        public ExpressionTypeVisitor(IEnumerable<Declaration> variableDeclarations, Library library, bool requireConstantExpression)
+        public ExpressionTypeVisitor(IEnumerable<Declaration> variableDeclarations, bool requireConstantExpression)
         {
-            VariableDeclarations = variableDeclarations;
-            RequireConstantExpression = requireConstantExpression;
-            Library = library;
+            Declarations = variableDeclarations;
+            RequireConstantExpression = requireConstantExpression;            
         }
 
         protected override Yarn.Type DefaultResult => Yarn.Type.Undefined;
@@ -70,7 +66,7 @@ namespace Yarn.Compiler
 
             var name = context.VAR_ID().GetText();
 
-            foreach (var declaration in VariableDeclarations)
+            foreach (var declaration in Declarations)
             {
                 if (declaration.Name == name)
                 {
@@ -89,114 +85,59 @@ namespace Yarn.Compiler
 
         public override Yarn.Type VisitValueFunc(YarnSpinnerParser.ValueFuncContext context)
         {
-
-            if (this.Library == null)
-            {
-                // We can't type-check this function call, because we don't
-                // have a Library to use to get the underlying Delegate's
-                // implementation. The best we can do is validate the types
-                // of the parameters, and then return Yarn.Type.Undefined;
-                // expressions above us will need to assume that the type
-                // matches requirements.
-                foreach (var expression in context.function().expression()) {
-                    Visit(expression);
-                }
-                return Yarn.Type.Undefined;
-            }
-
             string functionName = context.function().FUNC_ID().GetText();
 
-            if (this.Library.FunctionExists(functionName) == false)
+            Declaration functionDeclaration = default;
+            var declarationFound = false;
+
+            foreach (var decl in Declarations) {
+                if (decl.DeclarationType == Declaration.Type.Function && decl.Name == functionName) {
+                    functionDeclaration = decl;
+                    declarationFound = true;
+                }
+            }
+
+            if (!declarationFound)
             {
                 throw new TypeException($"Undeclared function {functionName}");
             }
 
-            var function = this.Library.GetFunction(functionName);
-
             // Check each parameter of the function
-            System.Reflection.ParameterInfo[] expectedParameters = function.Method.GetParameters();
             var suppliedParameters = context.function().expression();
 
-            if (suppliedParameters.Length > expectedParameters.Length)
+            Declaration.Parameter[] expectedParameters = functionDeclaration.Parameters;
+            if (suppliedParameters.Length != expectedParameters.Length)
             {
-                // Too many parameters supplied
+                // Wrong number of parameters supplied
                 var parameters = expectedParameters.Length == 1 ? "parameter" : "parameters";
                 throw new TypeException($"Function {functionName} expects {expectedParameters.Length} {parameters}, but received {suppliedParameters.Length}");
             }
 
-            
-
             for (int i = 0; i < expectedParameters.Length; i++)
             {
-                System.Reflection.ParameterInfo parameter = expectedParameters[i];
-
-                if (i >= suppliedParameters.Length)
-                {
-                    if (parameter.IsOptional == false)
-                    {
-                        // Not enough parameters supplied
-                        var parameters = expectedParameters.Length == 1 ? "parameter" : "parameters";
-                        throw new TypeException($"Function {functionName} expects {expectedParameters.Length} {parameters}, but received {suppliedParameters.Length}");
-                    }
-                    else
-                    {
-                        // A parameter wasn't supplied, but it was
-                        // optional, so that's ok. Stop checking parameters
-                        // here, because there aren't any more.
-                        break;
-                    }
-                }
-
                 var suppliedParameter = suppliedParameters[i];
 
-                var expectedType = parameter.ParameterType;
+                var expectedType = expectedParameters[i].type;
 
                 var suppliedType = this.Visit(suppliedParameter);
 
-                bool expectedTypeIsValid = false;
-
-                foreach (var mapping in Value.TypeMappings)
+                if (expectedType == Yarn.Type.Undefined)
                 {
-                    var nativeType = mapping.Key;
-                    var yarnType = mapping.Value;
-                    if (nativeType.IsAssignableFrom(expectedType))
-                    {
-                        if (suppliedType != yarnType)
-                        {
-                            throw new TypeException($"{functionName} parameter {i + 1} expects a {yarnType}, not a {suppliedType}");
-                        }
-                        else
-                        {
-                            // This parameter's expected type is valid, and
-                            // the supplied type can be used with it.
-                            expectedTypeIsValid = true;
-                            break;
-                        }
-                    }
+                    // The type of this parameter hasn't yet been bound.
+                    // Bind this parameter type to what we've resolved the type to.
+                    expectedParameters[i].type = suppliedType;
+                    expectedType = suppliedType;
                 }
 
-                if (expectedTypeIsValid == false)
-                {
-                    throw new TypeException($"{functionName} cannot be called: parameter {i + 1}'s type ({expectedType}) cannot be used in Yarn functions");
+                if (suppliedType != expectedType) {
+                    throw new TypeException($"{functionName} parameter {i + 1} expects a {expectedType}, not a {suppliedType}");
                 }
             }
 
             // Cool, all the parameters check out!
 
-            // Last thing: check the return type. This will be the type of
-            // this function call.
-            var returnType = function.Method.ReturnType;
-
-            foreach (var mapping in Value.TypeMappings)
-            {
-                if (mapping.Key.IsAssignableFrom(returnType))
-                {
-                    return mapping.Value;
-                }
-            }
-
-            // Argh, this is an invalid function
-            throw new TypeException($"Function {functionName} can't be called, because it returns an invalid type ({returnType})");
+            // Finally, return the return type of this function.
+            return functionDeclaration.ReturnType;
         }
 
         public override Yarn.Type VisitExpValue(YarnSpinnerParser.ExpValueContext context)
@@ -235,25 +176,69 @@ namespace Yarn.Compiler
                 }
             }
 
-            // The expression type that we've seen must not Undefined - it
-            // needs to be a concrete type. If we have a single permitted
-            // type, we can bind it to that. But if we have more than one,
-            // all bets are off.
+            // Do we have a known expression type, and were any of the
+            // terms a function call whose return type is currently
+            // unbound?
             if (expressionType == Yarn.Type.Undefined)
             {
-                if (permittedTypes.Length == 1)
+                // We don't know what type of expression this is.
+                throw new TypeException(context, $"Type of expression {context.GetText()} can't be determined without more context. Use a type cast on at least one of the terms (e.g. the string(), number(), bool() functions)");
+            }
+            else
+            {
+                // If so, bind their return types now.
+                for (int i = 0; i < terms.Length; i++)
                 {
-                    expressionType = permittedTypes[0];
-                }
-                else
-                {
-                    var termTexts = new List<string>();
-                    foreach (var term in terms)
-                    {
-                        termTexts.Add(term.GetText());
+                    ParserRuleContext expression = terms[i];
+                    string funcName;
+
+                    // If this is a "value that's in an expression", get
+                    // the nested value
+                    if (expression is YarnSpinnerParser.ExpValueContext expValueContext) {
+                        expression = expValueContext.value();
                     }
-                    var termList = string.Join(", ", termTexts);
-                    throw new TypeException(context, $"The types of all of {termList} can't be determined, so the type of this operation can't be defined. Use a type conversion function (i.e. string(), number()) on at least one of the terms to fix this problem.");
+
+                    if (expression is YarnSpinnerParser.ValueFuncContext valueFuncContext)
+                    {
+                        funcName = valueFuncContext.function().FUNC_ID().GetText();
+                    }
+                    else if (expression is YarnSpinnerParser.FunctionContext funcContext)
+                    {
+                        funcName = funcContext.FUNC_ID().GetText();
+                    }
+                    else
+                    {
+                        // Not a function term, so nothing to do
+                        continue;
+                    }
+
+                    Declaration functionDeclaration = null;
+
+                    foreach (var decl in this.Declarations)
+                    {
+                        if (decl.DeclarationType == Declaration.Type.Function && decl.Name == funcName)
+                        {
+                            functionDeclaration = decl;
+                            break;
+                        }
+                    }
+
+                    if (functionDeclaration == null)
+                    {
+                        throw new TypeException(context, $"Can't check return value of {funcName}: Function is undeclared");
+                    }
+
+                    if (functionDeclaration.ReturnType != Yarn.Type.Undefined)
+                    {
+                        // This function declaration is already bound
+                        continue;
+                    }
+
+                    // Bind the function declaration's return type!
+                    functionDeclaration.ReturnType = expressionType;
+
+                    // Also update the type that we decided upon
+                    types[i] = expressionType;
                 }
             }
 
@@ -262,12 +247,6 @@ namespace Yarn.Compiler
             // All types must be same as the expression type
             for (int i = 1; i < types.Count; i++)
             {
-                if (types[i] == Yarn.Type.Undefined) {
-                    // Force any lingering undefined types into alignment
-                    // with the expression type
-                    types[i] = expressionType;
-                }
-
                 if (types[i] != expressionType)
                 {
                     typeList = string.Join(", ", types);

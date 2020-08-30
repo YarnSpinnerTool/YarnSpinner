@@ -968,7 +968,7 @@ namespace Yarn
         }
 
         // The standard, built-in library of functions and operators.
-        private class StandardLibrary : Library
+        internal class StandardLibrary : Library
         {
             public StandardLibrary()
             {

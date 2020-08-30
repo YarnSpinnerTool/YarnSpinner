@@ -36,11 +36,9 @@ namespace YarnSpinner.Tests
             <<declare $bool = true>>
             ");
 
-            IEnumerable<Declaration> declarations;
-
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            var expectedDeclarations = new HashSet<Declaration>() {
+            var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
                     Name = "$int",
                     ReturnType = Yarn.Type.Number,
@@ -58,9 +56,18 @@ namespace YarnSpinner.Tests
                 },
             };
 
-            Assert.Equal(expectedDeclarations, result.Declarations);
+            var actualDeclarations = new List<Declaration>(result.Declarations);
 
+            for (int i = 0; i < expectedDeclarations.Count; i++)
+            {
+                Declaration expected = expectedDeclarations[i];
+                Declaration actual = actualDeclarations[i];
 
+                Assert.Equal(expected.Name, actual.Name);
+                Assert.Equal(expected.ReturnType, actual.ReturnType);
+                Assert.Equal(expected.DefaultValue, actual.DefaultValue);
+                Assert.Equal(expected.DeclarationType, actual.DeclarationType);
+            }
         }
 
         [Fact]
@@ -280,23 +287,54 @@ namespace YarnSpinner.Tests
             }
         }
 
+        [Fact]
+        public void TestFailingFunctionDeclarationReturnType() {
+            
+            dialogue.Library.RegisterFunction("func_invalid_return", () => new List<int> { 1, 2, 3 });
+            
+            var source = CreateTestNode(@"Hello");
+
+            Assert.Throws<TypeException>(() =>
+            {
+                Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+            });
+        
+        }
+
+        [Fact]
+        public void TestFailingFunctionDeclarationParameterType()
+        {
+            dialogue.Library.RegisterFunction("func_invalid_param", (List<int> i) => true);
+
+            var source = CreateTestNode(@"Hello");
+
+            Assert.Throws<TypeException>(() =>
+            {
+                Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+            });
+        }
+
+        [Fact]
+        public void TestStandardLibraryDeclarationsContainNoTypeCheckedMethods()
+        {
+            var decls = Compiler.GetDeclarationsFromLibrary(new Dialogue.StandardLibrary());
+            
+            Assert.Empty(decls);
+        }
+
         [Theory]
         [InlineData("<<set $bool = func_void_bool(1)>>", "expects 0 parameters, but received 1")]
         [InlineData("<<set $bool = func_int_bool()>>", "expects 1 parameter, but received 0")]
         [InlineData("<<set $bool = func_int_bool(true)>>", "expects a Number, not a Bool")]
         [InlineData(@"<<set $bool = func_string_string_bool(""1"", 2)>>", "expects a String, not a Number")]
         [InlineData("<<set $int = func_void_bool()>>", @"\$int \(Number\) cannot be assigned a Bool")]
-        [InlineData("<<set $bool = func_invalid_return()>>", "returns an invalid type")]
-        [InlineData("<<set $bool = func_invalid_param(1)>>", "parameter 1's type .* cannot be used")]
         public void TestFailingFunctionSignatures(string source, string expectedExceptionMessage)
         {
             dialogue.Library.RegisterFunction("func_void_bool", () => true);
             dialogue.Library.RegisterFunction("func_int_bool", (int i) => true);
             dialogue.Library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
             dialogue.Library.RegisterFunction("func_string_string_bool", (string i, string j) => true);
-            dialogue.Library.RegisterFunction("func_invalid_return", () => new List<int> { 1, 2, 3 });
-            dialogue.Library.RegisterFunction("func_invalid_param", (List<int> i) => true);
-
+            
             var failingSource = CreateTestNode($@"
                 <<declare $bool = false>>
                 <<declare $int = 1>>
@@ -411,7 +449,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            var expectedDeclarations = new HashSet<Declaration>() {
+            var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
                     Name = "$int",
                     ReturnType = Yarn.Type.Number,
@@ -433,7 +471,19 @@ namespace YarnSpinner.Tests
                 },
             };
 
-            Assert.Equal(expectedDeclarations, result.Declarations);
+            var actualDeclarations = new List<Declaration>(result.Declarations);
+
+            for (int i = 0; i < expectedDeclarations.Count; i++)
+            {
+                Declaration expected = expectedDeclarations[i];
+                Declaration actual = actualDeclarations[i];
+
+                Assert.Equal(expected.Name, actual.Name);
+                Assert.Equal(expected.ReturnType, actual.ReturnType);
+                Assert.Equal(expected.DefaultValue, actual.DefaultValue);
+                Assert.Equal(expected.DeclarationType, actual.DeclarationType);
+                Assert.Equal(expected.Description, actual.Description);
+            }
 
         }
 
@@ -489,34 +539,95 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestImplicitFunctionReturnTypes()
+        public void TestImplicitFunctionDeclarations()
         {
             var source = CreateTestNode(@"
-            {simple_func()}
-            {simple_func() and bool(simple_func())}
-            { 1 + func_returning_num() }
-            { ""he"" + func_returning_str() }");
+            {func_void_bool()}
+            {func_void_bool() and bool(func_void_bool())}
+            { 1 + func_void_int() }
+            { ""he"" + func_void_str() }
 
-            dialogue.Library.RegisterFunction("simple_func", () => true);
-            dialogue.Library.RegisterFunction("func_returning_num", () => 1);
-            dialogue.Library.RegisterFunction("func_returning_str", () => "llo");
+            {func_int_bool(1)}
+            {true and func_int_bool(1)}
+
+            {func_bool_bool(false)}
+            {true and func_bool_bool(false)}
+
+            {func_str_bool(""hello"")}
+            {true and func_str_bool(""hello"")}
+            ");
+
+            dialogue.Library.RegisterFunction("func_void_bool", () => true);
+            dialogue.Library.RegisterFunction("func_void_int", () => 1);
+            dialogue.Library.RegisterFunction("func_void_str", () => "llo");
+
+            dialogue.Library.RegisterFunction("func_int_bool", (int i) => true);
+            dialogue.Library.RegisterFunction("func_bool_bool", (bool b) => true);
+            dialogue.Library.RegisterFunction("func_str_bool", (string s) => true);
 
             testPlan = new TestPlanBuilder()
                 .AddLine("True")
                 .AddLine("True")
                 .AddLine("2")
                 .AddLine("hello")
+                .AddLine("True")
+                .AddLine("True")
+                .AddLine("True")
+                .AddLine("True")
+                .AddLine("True")
+                .AddLine("True")                
                 .GetPlan();
 
+            // the library is NOT attached to this compilation job; all
+            // functions will be implicitly declared
             var compilationJob = CompilationJob.CreateFromString("input", source);
             var result = Compiler.Compile(compilationJob);
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
+            
+            RunStandardTestcase();
+        }
 
+        [Fact]
+        public void TestNestedImplicitFunctionDeclarations()
+        {
+            var source = CreateTestNode(@"
+            {func_bool_bool(bool(func_int_bool(1)))}
+            ");
+
+            dialogue.Library.RegisterFunction("func_int_bool", (int i) => i == 1);
+            dialogue.Library.RegisterFunction("func_bool_bool", (bool b) => b);
+
+             testPlan = new TestPlanBuilder()
+                .AddLine("True")
+                .GetPlan();
+
+            // the library is NOT attached to this compilation job; all
+            // functions will be implicitly declared
+            var compilationJob = CompilationJob.CreateFromString("input", source);
+            var result = Compiler.Compile(compilationJob);
+
+            dialogue.SetProgram(result.Program);
+            stringTable = result.StringTable;
             
             RunStandardTestcase();
 
+        }
+
+        [Fact]
+        public void TestMultipleImplicitRedeclarationsOfFunctionsFail()
+        {
+            var source = CreateTestNode(@"
+            {func(1)}
+            {func(2, 2)} // wrong number of parameters (previous decl had 1)
+            ");
+
+            var ex = Assert.Throws<TypeException>( () => {
+                Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            });
+
+            Assert.Contains("expects 1 parameter, but received 2", ex.Message);
         }
     }
 }

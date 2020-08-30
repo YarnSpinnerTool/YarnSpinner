@@ -56,7 +56,7 @@ namespace Yarn.Compiler
                     // the expression count.
 
                     // Validate the type of this expression
-                    new ExpressionTypeVisitor(this.compiler.VariableDeclarations, this.compiler.Library, false)
+                    new ExpressionTypeVisitor(this.compiler.VariableDeclarations, false)
                         .Visit(child);
 
                     Visit(child);
@@ -155,7 +155,7 @@ namespace Yarn.Compiler
             Visit(context.expression());
 
             // validate the type of this expression
-            var expressionTypeVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, compiler.Library, false);
+            var expressionTypeVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, false);
             var expressionType = expressionTypeVisitor.Visit(context.expression());
             var variableType = expressionTypeVisitor.Visit(context.variable());
 
@@ -195,7 +195,7 @@ namespace Yarn.Compiler
         public override int VisitCall_statement(YarnSpinnerParser.Call_statementContext context)
         {
             // Type-check the function call
-            var expressionTypeVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, compiler.Library, false);
+            var expressionTypeVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, false);
             expressionTypeVisitor.Visit(context.function());
 
             // Visit our function call, which will invoke the function
@@ -293,7 +293,7 @@ namespace Yarn.Compiler
             if (expression != null)
             {
                 // Validate the expression's type
-                new ExpressionTypeVisitor(compiler.VariableDeclarations, compiler.Library, false).Visit(expression);
+                new ExpressionTypeVisitor(compiler.VariableDeclarations, false).Visit(expression);
 
                 // Code-generate the expression
                 Visit(expression);
@@ -540,7 +540,7 @@ namespace Yarn.Compiler
         {
 
             // validate the type of this expression
-            var expressionTypeVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, compiler.Library, false);
+            var expressionTypeVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, false);
             var expressionType = expressionTypeVisitor.Visit(expression);
             var variableType = expressionTypeVisitor.Visit(variable);
 

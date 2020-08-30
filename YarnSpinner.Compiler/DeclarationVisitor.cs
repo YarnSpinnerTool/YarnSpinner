@@ -16,17 +16,17 @@ namespace Yarn.Compiler
         /// a result of using this <see cref="DeclarationVisitor"/>
         /// to visit a <see cref="ParserRuleContext"/>.
         /// </summary>
-        public ICollection<Declaration> NewVariableDeclarations { get; private set; }
+        public ICollection<Declaration> NewDeclarations { get; private set; }
 
         private IEnumerable<Declaration> AllDeclarations
         {
             get
             {
-                foreach (var decl in ExistingVariableDeclarations)
+                foreach (var decl in existingDeclarations)
                 {
                     yield return decl;
                 }
-                foreach (var decl in NewVariableDeclarations)
+                foreach (var decl in NewDeclarations)
                 {
                     yield return decl;
                 }
@@ -35,8 +35,20 @@ namespace Yarn.Compiler
 
         public DeclarationVisitor(IEnumerable<Declaration> existingDeclarations)
         {
-            this.ExistingVariableDeclarations = existingDeclarations;
-            this.NewVariableDeclarations = new List<Declaration>();
+            this.existingDeclarations = existingDeclarations;
+            this.NewDeclarations = new List<Declaration>();
+        }
+
+        public override int VisitNode(YarnSpinnerParser.NodeContext context) {
+            currentNodeContext = context;
+
+            foreach (var header in context.header()) {
+                if (header.header_key.Text == "title") {
+                    currentNodeName = header.header_value.Text;
+                }
+            }
+            Visit(context.body());
+            return 0;
         }
 
         public override int VisitDeclare_statement(YarnSpinnerParser.Declare_statementContext context)
@@ -55,7 +67,7 @@ namespace Yarn.Compiler
             }
 
             // Figure out the type of the value
-            var expressionVisitor = new ExpressionTypeVisitor(null, null, true);
+            var expressionVisitor = new ExpressionTypeVisitor(null, true);
             var type = expressionVisitor.Visit(context.value());
 
             // Figure out the value itself
@@ -106,9 +118,61 @@ namespace Yarn.Compiler
                 ReturnType = type,
                 DefaultValue = value,
                 Description = description,
+                DeclarationType = Declaration.Type.Variable,
             };
 
-            this.NewVariableDeclarations.Add(declaration);
+            this.NewDeclarations.Add(declaration);
+
+            return 0;
+        }
+
+        public override int VisitFunction(YarnSpinnerParser.FunctionContext context) {
+
+            // We've encountered a function call. We need to check to see
+            // if this is one that's already known, or if we need to create
+            // an implicit declaration for it.
+
+            var functionName = context.FUNC_ID().GetText();
+
+            // Visit this function invocation's parameters in case one of
+            // them is an invocation of a function we don't have a
+            // declaration for.
+            foreach (var param in context.expression()) {
+                Visit(param);
+            }
+
+            foreach (var decl in this.AllDeclarations) {
+                if (decl.DeclarationType == Declaration.Type.Function && decl.Name == functionName) {
+                    // We already have a declaration. Nothing left to do here.
+                    return 0;
+                }
+            }
+
+            // We don't have an existing declaration for this function.
+            // Create an implicit declaration here, and note that we don't
+            // know its return type or its parameters type (the expression
+            // that invokes us will attempt to determine the types from
+            // context, and bind the return and parameter types to those
+            // determinations. If such a determination can't be made, or it
+            // conflicts with a previously bound type, a type error
+            // occurs.)
+            var parameterList = new List<Declaration.Parameter>();
+            foreach (var parameter in context.expression())
+            {
+                parameterList.Add(new Declaration.Parameter
+                {
+                    type = Yarn.Type.Undefined,
+                });
+            }
+
+            var declaration = new Declaration {
+                DeclarationType = Declaration.Type.Function,
+                Name = functionName,
+                ReturnType = Yarn.Type.Undefined,
+                Parameters = parameterList.ToArray(),                
+            };
+
+            this.NewDeclarations.Add(declaration);
 
             return 0;
         }
