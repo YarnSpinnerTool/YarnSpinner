@@ -1,4 +1,4 @@
-namespace Yarn.Compiler
+﻿namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -109,12 +109,92 @@ namespace Yarn.Compiler
 
     public class Declaration
     {
-        public string Name;
-        public object DefaultValue;
-        public Declaration.Type DeclarationType;
-        public Yarn.Type ReturnType;
-        public string Description;
-        public Parameter[] Parameters = new Parameter[0];
+        /// <summary>
+        /// Gets the name of this Declaration.
+        /// </summary>
+        public string Name { get; internal set; }
+
+        /// <summary>
+        /// Gets the default value of this <see cref="Declaration"/>, if no
+        /// value has been specified in code or is available from a <see
+        /// cref="Dialogue"/>'s <see cref="IVariableStorage"/>.
+        /// </summary>
+        public object DefaultValue { get; internal set; }
+
+        /// <summary>
+        /// Gets the type of this declaration.
+        /// </summary>
+        public Declaration.Type DeclarationType { get; internal set; } = Declaration.Type.Variable;
+
+        /// <summary>
+        /// Gets the return type of this declaration.
+        /// </summary>
+        /// <remarks>
+        /// For declarations whose <see cref="DeclarationType"/> is <see
+        /// cref="Declaration.Type.Variable"/>, this is the type of the
+        /// variable.
+        /// </remarks>
+        public Yarn.Type ReturnType { get; internal set; }
+
+        /// <summary>
+        /// Gets a string describing the purpose of this <see
+        /// cref="Declaration"/>.
+        /// </summary>
+        public string Description { get; internal set; }
+
+        /// <summary>
+        /// Gets the <see cref="Parameter"/>s associated with this <see
+        /// cref="Declaration"/>.
+        /// </summary>
+        /// <remarks>
+        /// For declarations whose <see cref="DeclarationType"/> is <see
+        /// cref="Declaration.Type.Variable"/>, this array will be empty.
+        /// </remarks>
+        public Parameter[] Parameters { get; internal set; } = new Parameter[0];
+
+        /// <summary>
+        /// Gets the name of the file in which this Declaration was found.
+        /// </summary>
+        /// <remarks>
+        /// If this <see cref="Declaration"/> was not found in a Yarn
+        /// source file, this will be <see cref="ExternalDeclaration"/>.
+        /// </remarks>
+        public string SourceFileName { get; internal set; }
+
+        /// <summary>
+        /// Gets the name of the node in which this Declaration was found.
+        /// </summary>
+        /// <remarks>
+        /// If this <see cref="Declaration"/> was not found in a Yarn
+        /// source file, this will be <see langword="null"/>.
+        /// </remarks>
+        public string SourceNodeName { get; internal set; }
+
+        /// <summary>
+        /// The line number at which this Declaration was found in the
+        /// source file.
+        /// </summary>
+        /// <remarks>
+        /// If this <see cref="Declaration"/> was not found in a Yarn
+        /// source file, this will be -1.
+        /// </remarks>
+        public int SourceFileLine { get; internal set; }
+
+        /// <summary>
+        /// Gets the line number at which this Declaration was found in the node
+        /// indicated by <see cref="SourceNodeName"/>.
+        /// </summary>
+        /// <remarks>
+        /// If this <see cref="Declaration"/> was not found in a Yarn
+        /// source file, this will be -1.
+        /// </remarks>
+        public int SourceNodeLine { get; internal set; }
+
+        /// <summary>
+        /// The string used for <see cref="SourceFileName"/> if the
+        /// Declaration was found outside of a Yarn source file.
+        /// </summary>
+        public const string ExternalDeclaration = "(External)";
 
         /// <summary>
         /// Enumerates the different types of <see cref="Declaration"/>
@@ -133,9 +213,13 @@ namespace Yarn.Compiler
             Function,
         }
 
-        public class Parameter {
-            public string name;
-            public Yarn.Type type;
+        /// <summary>
+        /// A parameter for a function <see cref="Declaration"/>.
+        /// </summary>
+        public class Parameter
+        {
+            public string Name { get; internal set; }
+            public Yarn.Type Type { get; internal set; }
 
             // override object.Equals
             public override bool Equals(object obj)
@@ -144,15 +228,15 @@ namespace Yarn.Compiler
                 {
                     return false;
                 }
-                
-                return this.name == otherParam.name &&
-                    this.type == otherParam.type;
+
+                return this.Name == otherParam.Name &&
+                    this.Type == otherParam.Type;
             }
-            
+
             // override object.GetHashCode
             public override int GetHashCode()
             {
-                return name.GetHashCode() ^ type.GetHashCode();
+                return Name.GetHashCode() ^ Type.GetHashCode();
             }
         }
 
@@ -164,16 +248,19 @@ namespace Yarn.Compiler
             {
                 case Type.Variable:
                     result = $"{Name} : {ReturnType} = {DefaultValue}";
-                    break;                    
+                    break;
                 case Type.Function:
                     result = $"{Name} : ({string.Join(", ", (object[])Parameters)}) -> {ReturnType}";
                     break;
                 default:
                     throw new InvalidOperationException($"Invalid declaration type {this.DeclarationType}");
             }
-            if (string.IsNullOrEmpty(Description)) {
+            if (string.IsNullOrEmpty(Description))
+            {
                 return result;
-            } else {
+            }
+            else
+            {
                 return result + $" (\"{Description}\")";
             }
         }
@@ -181,20 +268,23 @@ namespace Yarn.Compiler
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null || !(obj is Declaration otherDecl) )
+            if (obj == null || !(obj is Declaration otherDecl))
             {
                 return false;
             }
-            
-            if (Parameters.Length != otherDecl.Parameters.Length) {
+
+            if (Parameters.Length != otherDecl.Parameters.Length)
+            {
                 return false;
             }
 
-            for (int i = 0; i < Parameters.Length; i++) {
+            for (int i = 0; i < Parameters.Length; i++)
+            {
                 Parameter myParam = Parameters[i];
                 Parameter theirParam = otherDecl.Parameters[i];
 
-                if (myParam.Equals(theirParam) == false) {
+                if (myParam.Equals(theirParam) == false)
+                {
                     return false;
                 }
             }
@@ -205,15 +295,19 @@ namespace Yarn.Compiler
                 this.Description == otherDecl.Description &&
                 this.DeclarationType == otherDecl.DeclarationType;
         }
-        
+
         /// <inheritdoc/>
         public override int GetHashCode()
         {
             int paramsHash = 0;
-            foreach (var param in Parameters) {
-                if (paramsHash == 0) {
-                    paramsHash = param.GetHashCode();                    
-                } else {
+            foreach (var param in Parameters)
+            {
+                if (paramsHash == 0)
+                {
+                    paramsHash = param.GetHashCode();
+                }
+                else
+                {
                     paramsHash ^= param.GetHashCode();
                 }
             }
@@ -451,7 +545,7 @@ namespace Yarn.Compiler
             foreach (var file in compilationJob.Files)
             {
                 var tree = ParseSyntaxTree(file);
-                IEnumerable<Declaration> newDeclarations = DeriveVariableDeclarations(tree, knownVariableDeclarations);
+                IEnumerable<Declaration> newDeclarations = DeriveVariableDeclarations(file.FileName, tree, knownVariableDeclarations);
 
                 derivedVariableDeclarations.AddRange(newDeclarations);
                 knownVariableDeclarations.AddRange(newDeclarations);
@@ -505,9 +599,9 @@ namespace Yarn.Compiler
             return finalResult;
         }
 
-        private static IEnumerable<Declaration> DeriveVariableDeclarations(IParseTree tree, IEnumerable<Declaration> existingDeclarations)
+        private static IEnumerable<Declaration> DeriveVariableDeclarations(string sourceFileName, IParseTree tree, IEnumerable<Declaration> existingDeclarations)
         {
-            var variableDeclarationVisitor = new DeclarationVisitor(existingDeclarations);
+            var variableDeclarationVisitor = new DeclarationVisitor(sourceFileName, existingDeclarations);
 
             variableDeclarationVisitor.Visit(tree);
 
@@ -596,8 +690,8 @@ namespace Yarn.Compiler
 
                     var parameter = new Declaration.Parameter
                     {
-                        name = paramInfo.Name,
-                        type = yarnParameterType,
+                        Name = paramInfo.Name,
+                        Type = yarnParameterType,
                     };
 
                     parameters.Add(parameter);
@@ -613,6 +707,10 @@ namespace Yarn.Compiler
                     Name = function.Key,
                     ReturnType = yarnReturnType,
                     Parameters = parameters.ToArray(),
+                    SourceFileLine = -1,
+                    SourceNodeLine = -1,
+                    SourceFileName = Declaration.ExternalDeclaration,
+                    SourceNodeName = null, 
                 };
 
                 declarations.Add(declaration);

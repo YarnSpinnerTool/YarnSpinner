@@ -23,7 +23,7 @@ namespace YarnSpinner.Tests
         void TestVariableDeclarationsParsed()
         {
             var source = CreateTestNode(@"
-            <<declare $int = 5>>
+            <<declare $int = 5>>            
             <<declare $str = ""yes"">>
             
             // These value changes are allowed, 
@@ -43,16 +43,25 @@ namespace YarnSpinner.Tests
                     Name = "$int",
                     ReturnType = Yarn.Type.Number,
                     DefaultValue = 5f,
+                    SourceNodeLine = 1,
+                    SourceNodeName = "Start",
+                    SourceFileName = "input",
                 },
                 new Declaration {
                     Name = "$str",
                     ReturnType = Yarn.Type.String,
                     DefaultValue = "yes",
+                    SourceNodeLine = 2,
+                    SourceNodeName = "Start",
+                    SourceFileName = "input",
                 },
                 new Declaration {
                     Name = "$bool",
                     ReturnType = Yarn.Type.Bool,
                     DefaultValue = true,
+                    SourceNodeLine = 11,
+                    SourceNodeName = "Start",
+                    SourceFileName = "input",
                 },
             };
 
@@ -67,6 +76,9 @@ namespace YarnSpinner.Tests
                 Assert.Equal(expected.ReturnType, actual.ReturnType);
                 Assert.Equal(expected.DefaultValue, actual.DefaultValue);
                 Assert.Equal(expected.DeclarationType, actual.DeclarationType);
+                Assert.Equal(expected.SourceNodeLine, actual.SourceNodeLine);
+                Assert.Equal(expected.SourceNodeName, actual.SourceNodeName);
+                Assert.Equal(expected.SourceFileName, actual.SourceFileName);
             }
         }
 
@@ -607,6 +619,14 @@ namespace YarnSpinner.Tests
             // functions will be implicitly declared
             var compilationJob = CompilationJob.CreateFromString("input", source);
             var result = Compiler.Compile(compilationJob);
+
+            Assert.Equal(2, result.Declarations.Count());
+
+            // Both declarations that resulted from the compile should be functions found on line 1
+            foreach (var decl in result.Declarations) {
+                Assert.Equal(1, decl.SourceNodeLine);
+                Assert.Equal(Declaration.Type.Function, decl.DeclarationType);
+            }
 
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;

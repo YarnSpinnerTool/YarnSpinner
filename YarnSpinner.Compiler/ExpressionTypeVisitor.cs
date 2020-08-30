@@ -117,7 +117,7 @@ namespace Yarn.Compiler
             {
                 var suppliedParameter = suppliedParameters[i];
 
-                var expectedType = expectedParameters[i].type;
+                var expectedType = expectedParameters[i].Type;
 
                 var suppliedType = this.Visit(suppliedParameter);
 
@@ -125,7 +125,7 @@ namespace Yarn.Compiler
                 {
                     // The type of this parameter hasn't yet been bound.
                     // Bind this parameter type to what we've resolved the type to.
-                    expectedParameters[i].type = suppliedType;
+                    expectedParameters[i].Type = suppliedType;
                     expectedType = suppliedType;
                 }
 

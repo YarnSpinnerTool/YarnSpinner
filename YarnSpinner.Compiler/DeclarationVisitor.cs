@@ -9,7 +9,13 @@ namespace Yarn.Compiler
 
         // The collection of variable declarations we know about before
         // starting our work
-        private IEnumerable<Declaration> ExistingVariableDeclarations;
+        private IEnumerable<Declaration> existingDeclarations;
+
+        // The name of the node that we're currently visiting.
+        private string currentNodeName = null;
+        private YarnSpinnerParser.NodeContext currentNodeContext;
+
+        private string sourceFileName;
 
         /// <summary>
         /// The collection of new variable declarations that were found as
@@ -33,10 +39,11 @@ namespace Yarn.Compiler
             }
         }
 
-        public DeclarationVisitor(IEnumerable<Declaration> existingDeclarations)
+        public DeclarationVisitor(string sourceFileName, IEnumerable<Declaration> existingDeclarations)
         {
             this.existingDeclarations = existingDeclarations;
             this.NewDeclarations = new List<Declaration>();
+            this.sourceFileName = sourceFileName;
         }
 
         public override int VisitNode(YarnSpinnerParser.NodeContext context) {
@@ -112,6 +119,12 @@ namespace Yarn.Compiler
             }
 
             // We're done creating the declaration!
+
+            int positionInFile = context.Start.Line;
+            
+            // The start line of the body is the line after the delimiter
+            int nodePositionInFile = this.currentNodeContext.BODY_START().Symbol.Line + 1;
+
             var declaration = new Declaration
             {
                 Name = variableName,
@@ -119,6 +132,11 @@ namespace Yarn.Compiler
                 DefaultValue = value,
                 Description = description,
                 DeclarationType = Declaration.Type.Variable,
+                SourceFileName = sourceFileName,
+                SourceFileLine = positionInFile,
+                SourceNodeName = currentNodeName,
+                SourceNodeLine = positionInFile - nodePositionInFile,
+
             };
 
             this.NewDeclarations.Add(declaration);
@@ -161,15 +179,25 @@ namespace Yarn.Compiler
             {
                 parameterList.Add(new Declaration.Parameter
                 {
-                    type = Yarn.Type.Undefined,
+                    Type = Yarn.Type.Undefined,
                 });
             }
 
-            var declaration = new Declaration {
+            int positionInFile = context.FUNC_ID().Symbol.Line;
+            // The start line of the body is the line after the delimiter
+            int nodePositionInFile = this.currentNodeContext.BODY_START().Symbol.Line + 1;
+
+
+            var declaration = new Declaration
+            {
                 DeclarationType = Declaration.Type.Function,
                 Name = functionName,
                 ReturnType = Yarn.Type.Undefined,
-                Parameters = parameterList.ToArray(),                
+                Parameters = parameterList.ToArray(),
+                SourceFileName = this.sourceFileName,
+                SourceFileLine = positionInFile,
+                SourceNodeName = this.currentNodeName,
+                SourceNodeLine = positionInFile - nodePositionInFile,
             };
 
             this.NewDeclarations.Add(declaration);
