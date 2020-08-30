@@ -332,6 +332,17 @@
             public string Source;
         }
 
+        public enum Type
+        {
+            /// <summary>The compiler will do a full compilation, and
+            /// generate a <see cref="Program"/>.</summary>
+            FullCompilation,
+
+            /// <summary>The compiler will derive only the variable and
+            /// function declarations found in the script.</summary>
+            DeclarationsOnly,
+        }
+
         /// <summary>
         /// The <see cref="File"/> structs that represent the content to
         /// parse..
@@ -343,6 +354,11 @@
         /// functions.
         /// </summary>
         public Library Library;
+
+        /// <summary>
+        /// The type of compilation to perform.
+        /// </summary>
+        public Type CompilationType;
 
         /// <summary>
         /// The declarations for variables.
@@ -551,6 +567,18 @@
                 knownVariableDeclarations.AddRange(newDeclarations);
 
                 compiledTrees.Add((file.FileName, tree));
+            }
+
+            if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
+            {
+                // Stop at this point
+                return new CompilationResult
+                {
+                    Declarations = derivedVariableDeclarations,
+                    Status = CompilationStatus.Succeeded,
+                    Program = null,
+                    StringTable = null,
+                };
             }
 
             foreach (var parsedFile in compiledTrees)
