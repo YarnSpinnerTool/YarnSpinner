@@ -72,19 +72,21 @@ namespace Yarn.Compiler
     /// An exception representing something going wrong during parsing.
     /// </summary>
     [Serializable]
-    public sealed class ParseException : CompilerException {
-        internal ParseException(string message) : base(message) {}
+    public sealed class ParseException : CompilerException
+    {
+        internal ParseException(string message) : base(message) { }
 
-        internal ParseException(Antlr4.Runtime.ParserRuleContext context, string message, string fileName = "(unknown)") : base (context, message, fileName) {}
+        internal ParseException(Antlr4.Runtime.ParserRuleContext context, string message, string fileName = "(unknown)") : base(context, message, fileName) { }
     }
 
     /// <summary>
     /// An exception representing something going wrong during type checking.
     /// </summary>
     [Serializable]
-    public sealed class TypeException : CompilerException {
-        internal TypeException(string message) : base(message) {}
+    public sealed class TypeException : CompilerException
+    {
+        internal TypeException(string message) : base(message) { }
 
-        internal TypeException(Antlr4.Runtime.ParserRuleContext context, string message, string fileName = "(unknown)") : base (context, message, fileName) {}
+        internal TypeException(Antlr4.Runtime.ParserRuleContext context, string message, string fileName = "(unknown)") : base(context, message, fileName) { }
     }
 }

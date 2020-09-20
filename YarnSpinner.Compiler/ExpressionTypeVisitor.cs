@@ -23,7 +23,7 @@ namespace Yarn.Compiler
         public ExpressionTypeVisitor(IEnumerable<Declaration> variableDeclarations, bool requireConstantExpression)
         {
             Declarations = variableDeclarations;
-            RequireConstantExpression = requireConstantExpression;            
+            RequireConstantExpression = requireConstantExpression;
         }
 
         protected override Yarn.Type DefaultResult => Yarn.Type.Undefined;
@@ -90,8 +90,10 @@ namespace Yarn.Compiler
             Declaration functionDeclaration = default;
             var declarationFound = false;
 
-            foreach (var decl in Declarations) {
-                if (decl.DeclarationType == Declaration.Type.Function && decl.Name == functionName) {
+            foreach (var decl in Declarations)
+            {
+                if (decl.DeclarationType == Declaration.Type.Function && decl.Name == functionName)
+                {
                     functionDeclaration = decl;
                     declarationFound = true;
                 }
@@ -129,7 +131,8 @@ namespace Yarn.Compiler
                     expectedType = suppliedType;
                 }
 
-                if (suppliedType != expectedType) {
+                if (suppliedType != expectedType)
+                {
                     throw new TypeException(context, $"{functionName} parameter {i + 1} expects a {expectedType}, not a {suppliedType}");
                 }
             }
@@ -194,7 +197,8 @@ namespace Yarn.Compiler
 
                     // If this is a "value that's in an expression", get
                     // the nested value
-                    if (expression is YarnSpinnerParser.ExpValueContext expValueContext) {
+                    if (expression is YarnSpinnerParser.ExpValueContext expValueContext)
+                    {
                         expression = expValueContext.value();
                     }
 
@@ -371,7 +375,8 @@ namespace Yarn.Compiler
             Visit(context.expression());
 
             // Return a value whose type depends on which type we're using
-            switch (context.type().typename.Type) {
+            switch (context.type().typename.Type)
+            {
                 case YarnSpinnerLexer.TYPE_NUMBER:
                     return Yarn.Type.Number;
                 case YarnSpinnerLexer.TYPE_STRING:
