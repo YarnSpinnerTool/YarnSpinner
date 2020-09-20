@@ -6,6 +6,9 @@ namespace Yarn
     /// </summary>
     public enum Type
     {
+        /// <summary>A value of undefined type.</summary>
+        Undefined,
+        
         /// <summary>A number.</summary>
         Number,
 
@@ -17,8 +20,7 @@ namespace Yarn
         /// <summary>A boolean value.</summary>
         Bool,
 
-        /// <summary>A value of undefined type.</summary>
-        Undefined,
+        
 
     }
     
