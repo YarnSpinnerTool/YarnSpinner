@@ -636,7 +636,7 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestMultipleImplicitRedeclarationsOfFunctionsFail()
+        public void TestMultipleImplicitRedeclarationsOfFunctionParameterCountFail()
         {
             var source = CreateTestNode(@"
             {func(1)}
@@ -648,6 +648,21 @@ namespace YarnSpinner.Tests
             });
 
             Assert.Contains("expects 1 parameter, but received 2", ex.Message);
+        }
+
+        [Fact]
+        public void TestMultipleImplicitRedeclarationsOfFunctionParameterTypeFail()
+        {
+            var source = CreateTestNode(@"
+            {func(1)}
+            {func(true)} // wrong type of parameter (previous decl had number)
+            ");
+
+            var ex = Assert.Throws<TypeException>( () => {
+                Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            });
+
+            Assert.Contains("expects a Number, not a Bool", ex.Message);
         }
     }
 }
