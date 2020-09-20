@@ -29,19 +29,32 @@ namespace Yarn.Compiler
         /// resulted in this exception being thrown.</param>
         /// <param name="message">The message associated with this
         /// exception. </param>
-        internal CompilerException(Antlr4.Runtime.ParserRuleContext context, string message)
-            : this(CreateErrorMessageForContext(context, message))
+        internal CompilerException(Antlr4.Runtime.ParserRuleContext context, string message, string fileName = "(unknown)")
+            : this(CreateErrorMessageForContext(context, message, fileName))
         {
-            this.LineNumber = context.Start.Line;
+            this.FileName = fileName;
+            this.LineNumber = context?.Start.Line ?? 0;
+            this.Context = context;
+            this.InternalMessage = message;
         }
+
+        public string FileName { get; private set; } = "(unknown)";
+
+        internal Antlr4.Runtime.ParserRuleContext Context { get; private set; }
+        internal string InternalMessage { get; private set; }
 
         /// <summary>
         /// Gets or sets the line number at which this compiler exception occurred.
         /// </summary>
-        internal int LineNumber { get; set; } = 0;
+        internal int LineNumber { get; private set; } = 0;
 
-        private static string CreateErrorMessageForContext(Antlr4.Runtime.ParserRuleContext context, string message)
+        private static string CreateErrorMessageForContext(Antlr4.Runtime.ParserRuleContext context, string message, string fileName = "(unknown)")
         {
+            if (context == null)
+            {
+                return message;
+            }
+
             int line = context.Start.Line;
 
             // getting the text that has the issue inside
@@ -49,7 +62,7 @@ namespace Yarn.Compiler
             int end = context.Stop.StopIndex;
             string body = context.Start.InputStream.GetText(new Antlr4.Runtime.Misc.Interval(start, end));
 
-            string theMessage = string.Format(CultureInfo.CurrentCulture, "Error on line {0}\n{1}\n{2}", line, body, message);
+            string theMessage = string.Format(CultureInfo.CurrentCulture, "Error in {3} line {0}\n{1}\n{2}", line, body, message, fileName);
 
             return theMessage;
         }
@@ -62,7 +75,7 @@ namespace Yarn.Compiler
     public sealed class ParseException : CompilerException {
         internal ParseException(string message) : base(message) {}
 
-        internal ParseException(Antlr4.Runtime.ParserRuleContext context, string message) : base (context, message) {}
+        internal ParseException(Antlr4.Runtime.ParserRuleContext context, string message, string fileName = "(unknown)") : base (context, message, fileName) {}
     }
 
     /// <summary>
@@ -72,6 +85,6 @@ namespace Yarn.Compiler
     public sealed class TypeException : CompilerException {
         internal TypeException(string message) : base(message) {}
 
-        internal TypeException(Antlr4.Runtime.ParserRuleContext context, string message) : base (context, message) {}
+        internal TypeException(Antlr4.Runtime.ParserRuleContext context, string message, string fileName = "(unknown)") : base (context, message, fileName) {}
     }
 }

@@ -11,18 +11,71 @@
     using Antlr4.Runtime.Tree;
     using static Yarn.Instruction.Types;
 
-    /// <summary>Specifies the result of compiling Yarn code.</summary>
-    /// <remarks>This enum specifies the _type_ of success that resulted.
-    /// Compilation failures will result in a <see cref="ParseException"/>,
-    /// so they don't get a Status.</remarks>
-    public enum CompilationStatus
-    {
-        /// <summary>The compilation succeeded with no errors.</summary>
-        Succeeded,
+    internal class StringTableManager {
+        internal Dictionary<string, StringInfo> StringTable = new Dictionary<string, StringInfo>();
 
-        /// <summary>The compilation succeeded, but some strings do not
-        /// have string tags.</summary>
-        SucceededUntaggedStrings,
+        internal bool ContainsImplicitStringTags {
+            get {
+                foreach (var item in StringTable) {
+                    if (item.Value.isImplicitTag) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Registers a new string in the string table.
+        /// </summary>
+        /// <param name="text">The text of the string to register.</param>
+        /// <param name="nodeName">The name of the node that this string
+        /// was found in.</param>
+        /// <param name="lineID">The line ID to use for this entry in the
+        /// string table.</param>
+        /// <param name="lineNumber">The line number that this string was
+        /// found in.</param>
+        /// <param name="tags">The tags to associate with this string in
+        /// the string table.</param>
+        /// <returns>The string ID for the newly registered
+        /// string.</returns>
+        /// <remarks>If `lineID` is `null`, a line ID will be generated
+        /// from <see cref="fileName"/>, the `nodeName`, and <see
+        /// cref="stringCount"/>.
+        internal string RegisterString(string text, string fileName, string nodeName, string lineID, int lineNumber, string[] tags)
+        {
+            string lineIDUsed;
+
+            bool isImplicit;
+
+            if (lineID == null)
+            {
+                lineIDUsed = $"line:{fileName}-{nodeName}-{this.StringTable.Count}";
+
+                isImplicit = true;
+            }
+            else
+            {
+                lineIDUsed = lineID;
+
+                isImplicit = false;
+            }
+
+            var theString = new StringInfo(text, fileName, nodeName, lineNumber, isImplicit, tags);
+
+            // Finally, add this to the string table, and return the line
+            // ID.
+            this.StringTable.Add(lineIDUsed, theString);
+
+            return lineIDUsed;
+        }
+
+        internal void Add(IDictionary<string, StringInfo> otherStringTable)
+        {
+            foreach (var entry in otherStringTable) {
+                StringTable.Add(entry.Key, entry.Value);
+            }
+        }
     }
 
     /// <summary>
@@ -107,24 +160,25 @@
         }
     }
 
+    [System.Serializable]
     public class Declaration
     {
         /// <summary>
         /// Gets the name of this Declaration.
         /// </summary>
-        public string Name { get; internal set; }
+        public string Name { get => name; internal set => name = value; }
 
         /// <summary>
         /// Gets the default value of this <see cref="Declaration"/>, if no
         /// value has been specified in code or is available from a <see
         /// cref="Dialogue"/>'s <see cref="IVariableStorage"/>.
         /// </summary>
-        public object DefaultValue { get; internal set; }
+        public object DefaultValue { get => defaultValue; internal set => defaultValue = value; }
 
         /// <summary>
         /// Gets the type of this declaration.
         /// </summary>
-        public Declaration.Type DeclarationType { get; internal set; } = Declaration.Type.Variable;
+        public Declaration.Type DeclarationType { get => declarationType; internal set => declarationType = value; }
 
         /// <summary>
         /// Gets the return type of this declaration.
@@ -134,13 +188,13 @@
         /// cref="Declaration.Type.Variable"/>, this is the type of the
         /// variable.
         /// </remarks>
-        public Yarn.Type ReturnType { get; internal set; }
+        public Yarn.Type ReturnType { get => returnType; internal set => returnType = value; }
 
         /// <summary>
         /// Gets a string describing the purpose of this <see
         /// cref="Declaration"/>.
         /// </summary>
-        public string Description { get; internal set; }
+        public string Description { get => description; internal set => description = value; }
 
         /// <summary>
         /// Gets the <see cref="Parameter"/>s associated with this <see
@@ -150,8 +204,7 @@
         /// For declarations whose <see cref="DeclarationType"/> is <see
         /// cref="Declaration.Type.Variable"/>, this array will be empty.
         /// </remarks>
-        public Parameter[] Parameters { get; internal set; } = new Parameter[0];
-
+        public Parameter[] Parameters { get => parameters; internal set => parameters = value; }
         /// <summary>
         /// Gets the name of the file in which this Declaration was found.
         /// </summary>
@@ -159,7 +212,7 @@
         /// If this <see cref="Declaration"/> was not found in a Yarn
         /// source file, this will be <see cref="ExternalDeclaration"/>.
         /// </remarks>
-        public string SourceFileName { get; internal set; }
+        public string SourceFileName { get => sourceFileName; internal set => sourceFileName = value; }
 
         /// <summary>
         /// Gets the name of the node in which this Declaration was found.
@@ -168,7 +221,7 @@
         /// If this <see cref="Declaration"/> was not found in a Yarn
         /// source file, this will be <see langword="null"/>.
         /// </remarks>
-        public string SourceNodeName { get; internal set; }
+        public string SourceNodeName { get => sourceNodeName; internal set => sourceNodeName = value; }
 
         /// <summary>
         /// The line number at which this Declaration was found in the
@@ -178,7 +231,7 @@
         /// If this <see cref="Declaration"/> was not found in a Yarn
         /// source file, this will be -1.
         /// </remarks>
-        public int SourceFileLine { get; internal set; }
+        public int SourceFileLine { get => sourceFileLine; internal set => sourceFileLine = value; }
 
         /// <summary>
         /// Gets the line number at which this Declaration was found in the node
@@ -188,13 +241,24 @@
         /// If this <see cref="Declaration"/> was not found in a Yarn
         /// source file, this will be -1.
         /// </remarks>
-        public int SourceNodeLine { get; internal set; }
+        public int SourceNodeLine { get => sourceNodeLine; internal set => sourceNodeLine = value; }
 
         /// <summary>
         /// The string used for <see cref="SourceFileName"/> if the
         /// Declaration was found outside of a Yarn source file.
         /// </summary>
         public const string ExternalDeclaration = "(External)";
+
+        internal string name;
+        internal object defaultValue;
+        internal Type declarationType = Declaration.Type.Variable;
+        internal Yarn.Type returnType;
+        internal string description;
+        internal Parameter[] parameters = new Parameter[0];
+        internal string sourceFileName;
+        internal string sourceNodeName;
+        internal int sourceFileLine;
+        internal int sourceNodeLine;
 
         /// <summary>
         /// Enumerates the different types of <see cref="Declaration"/>
@@ -216,10 +280,14 @@
         /// <summary>
         /// A parameter for a function <see cref="Declaration"/>.
         /// </summary>
+        [System.Serializable]
         public class Parameter
         {
-            public string Name { get; internal set; }
-            public Yarn.Type Type { get; internal set; }
+            private string name;
+            private Yarn.Type type;
+
+            public string Name { get => name; internal set => name = value; }
+            public Yarn.Type Type { get => type; internal set => type = value; }
 
             // override object.Equals
             public override bool Equals(object obj)
@@ -335,12 +403,17 @@
         public enum Type
         {
             /// <summary>The compiler will do a full compilation, and
-            /// generate a <see cref="Program"/>.</summary>
+            /// generate a <see cref="Program"/>, function declaration set,
+            /// and string table.</summary>
             FullCompilation,
 
             /// <summary>The compiler will derive only the variable and
             /// function declarations found in the script.</summary>
             DeclarationsOnly,
+
+            /// <summary>The compiler will generate a string table
+            /// only.</summary>
+            StringsOnly,
         }
 
         /// <summary>
@@ -422,20 +495,17 @@
 
     public struct CompilationResult
     {
-        public Program Program;
-        public IDictionary<string, StringInfo> StringTable;
-        public IEnumerable<Declaration> Declarations;
-        public CompilationStatus Status;
+        public Program Program { get; internal set; }
+        public IDictionary<string, StringInfo> StringTable { get; internal set; }
+        public IEnumerable<Declaration> Declarations { get; internal set; }
+        public bool ContainsImplicitStringTags { get; internal set; }
 
-        internal static CompilationResult CombineCompilationResults(IEnumerable<CompilationResult> results)
+        internal static CompilationResult CombineCompilationResults(IEnumerable<CompilationResult> results, StringTableManager stringTableManager)
         {
             CompilationResult finalResult;
 
             var programs = new List<Program>();
             var declarations = new List<Declaration>();
-            var mergedStringTable = new Dictionary<string, StringInfo>();
-
-            var status = CompilationStatus.Succeeded;
 
             foreach (var result in results)
             {
@@ -446,23 +516,14 @@
                     declarations.AddRange(result.Declarations);
                 }
 
-                foreach (var entry in result.StringTable)
-                {
-                    mergedStringTable.Add(entry.Key, entry.Value);
-                }
-
-                if (result.Status != CompilationStatus.Succeeded)
-                {
-                    status = result.Status;
-                }
             }
 
             return new CompilationResult
             {
                 Program = Program.Combine(programs.ToArray()),
-                StringTable = mergedStringTable,
+                StringTable = stringTableManager.StringTable,
                 Declarations = declarations,
-                Status = status,
+                ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
             };
         }
     }
@@ -500,12 +561,6 @@
         /// The name of the file we are currently parsing from.
         /// </summary>
         private readonly string fileName;
-
-        /// <summary>
-        /// Indicates whether the file we are currently parsing contains
-        /// string tags that were implicitly generated.
-        /// </summary>
-        private bool containsImplicitStringTags;
 
         /// <summary>
         /// The list of variable declarations known to the compiler.
@@ -557,16 +612,37 @@
             var compiledTrees = new List<(string name, IParseTree tree)>();
 
             // First pass: parse all files, generate their syntax trees,
-            // and figure out what variables they've delcared
+            // and figure out what variables they've declared
+
+            var stringTableManager = new  StringTableManager();
+
             foreach (var file in compilationJob.Files)
             {
                 var tree = ParseSyntaxTree(file);
-                IEnumerable<Declaration> newDeclarations = DeriveVariableDeclarations(file.FileName, tree, knownVariableDeclarations);
+                compiledTrees.Add((file.FileName, tree));
+
+                RegisterStrings(file.FileName, stringTableManager, tree);
+            }
+
+            if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
+            {
+                // Stop at this point
+                return new CompilationResult
+                {
+                    Declarations = null,
+                    ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
+                    Program = null,
+                    StringTable = stringTableManager.StringTable,
+                };
+            }
+            
+            foreach (var parsedFile in compiledTrees) {
+                IEnumerable<Declaration> newDeclarations = DeriveVariableDeclarations(parsedFile.name, parsedFile.tree, knownVariableDeclarations);
 
                 derivedVariableDeclarations.AddRange(newDeclarations);
                 knownVariableDeclarations.AddRange(newDeclarations);
 
-                compiledTrees.Add((file.FileName, tree));
+
             }
 
             if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
@@ -575,7 +651,7 @@
                 return new CompilationResult
                 {
                     Declarations = derivedVariableDeclarations,
-                    Status = CompilationStatus.Succeeded,
+                    ContainsImplicitStringTags = false,
                     Program = null,
                     StringTable = null,
                 };
@@ -583,11 +659,11 @@
 
             foreach (var parsedFile in compiledTrees)
             {
-                CompilationResult compilationResult = GenerateCode(parsedFile.name, knownVariableDeclarations, compilationJob, parsedFile.tree);
+                CompilationResult compilationResult = GenerateCode(parsedFile.name, knownVariableDeclarations, compilationJob, parsedFile.tree, stringTableManager);
                 results.Add(compilationResult);
             }
 
-            var finalResult = CompilationResult.CombineCompilationResults(results);
+            var finalResult = CompilationResult.CombineCompilationResults(results, stringTableManager);
 
             // Last step: take every variable declaration we found in all
             // of the inputs, and create an initial value registration for
@@ -627,31 +703,46 @@
             return finalResult;
         }
 
+        private static void RegisterStrings(string fileName, StringTableManager stringTableManager, IParseTree tree)
+        {
+            var visitor = new StringTableGeneratorVisitor(fileName, stringTableManager);
+            visitor.Visit(tree);
+        }
+
         private static IEnumerable<Declaration> DeriveVariableDeclarations(string sourceFileName, IParseTree tree, IEnumerable<Declaration> existingDeclarations)
         {
             var variableDeclarationVisitor = new DeclarationVisitor(sourceFileName, existingDeclarations);
 
-            variableDeclarationVisitor.Visit(tree);
+            try {
+                variableDeclarationVisitor.Visit(tree);
+            } catch (TypeException e) {
+                throw new TypeException(e.Context, e.InternalMessage, sourceFileName);
+            }
+            
 
             // Upon exit, declarations will now contain every variable
             // declaration we found
             return variableDeclarationVisitor.NewDeclarations;
         }
 
-        private static CompilationResult GenerateCode(string fileName, IEnumerable<Declaration> variableDeclarations, CompilationJob job, IParseTree tree)
+        private static CompilationResult GenerateCode(string fileName, IEnumerable<Declaration> variableDeclarations, CompilationJob job, IParseTree tree, StringTableManager stringTableManager)
         {
             Compiler compiler = new Compiler(fileName);
 
             compiler.Library = job.Library;
             compiler.VariableDeclarations = variableDeclarations;
 
-            compiler.Compile(tree);
+            try {
+                compiler.Compile(tree);
+            } catch (TypeException e) {
+                throw new TypeException(e.Context, e.InternalMessage, fileName);
+            }
 
             return new CompilationResult
             {
                 Program = compiler.Program,
-                StringTable = compiler.StringTable,
-                Status = compiler.containsImplicitStringTags ? CompilationStatus.SucceededUntaggedStrings : CompilationStatus.Succeeded,
+                StringTable = stringTableManager.StringTable,
+                ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
             };
         }
 
@@ -694,7 +785,7 @@
                 bool includeMethod = true;
 
                 foreach (var paramInfo in method.GetParameters())
-                {                    
+                {
                     if (paramInfo.ParameterType == typeof(Value)) {
                         // Don't type-check this method - it's an operator
                         includeMethod = false;
@@ -778,9 +869,9 @@
                     tokenStringList.Add($"{token.Line}:{token.Column} {YarnSpinnerLexer.DefaultVocabulary.GetDisplayName(token.Type)} \"{token.Text}\"");
                 }
 
-                throw new ParseException($"{e.Message}\n\nTokens:\n{string.Join("\n", tokenStringList)}");
+                throw new ParseException(e.Context, $"{e.InternalMessage}\n\nTokens:\n{string.Join("\n", tokenStringList)}", file.FileName);
 #else
-                throw new ParseException(e.Message);
+                throw new ParseException(e.Context, e.InternalMessage, file.FileName);
 #endif // DEBUG
             }
 
@@ -825,65 +916,6 @@
 
             return tokenStringList;
         }
-
-        internal Dictionary<string, StringInfo> StringTable = new Dictionary<string, StringInfo>();
-
-        /// <summary>
-        /// The number of strings encountered so far during compilation.
-        /// </summary>
-        private int stringCount = 0;
-
-        /// <summary>
-        /// Registers a new string in the string table.
-        /// </summary>
-        /// <param name="text">The text of the string to register.</param>
-        /// <param name="nodeName">The name of the node that this string
-        /// was found in.</param>
-        /// <param name="lineID">The line ID to use for this entry in the
-        /// string table.</param>
-        /// <param name="lineNumber">The line number that this string was
-        /// found in.</param>
-        /// <param name="tags">The tags to associate with this string in
-        /// the string table.</param>
-        /// <returns>The string ID for the newly registered
-        /// string.</returns>
-        /// <remarks>If `lineID` is `null`, a line ID will be generated
-        /// from <see cref="fileName"/>, the `nodeName`, and <see
-        /// cref="stringCount"/>.
-        internal string RegisterString(string text, string nodeName, string lineID, int lineNumber, string[] tags)
-        {
-            string lineIDUsed;
-
-            bool isImplicit;
-
-            if (lineID == null)
-            {
-                lineIDUsed = $"{this.fileName}-{nodeName}-{this.stringCount}";
-
-                this.stringCount += 1;
-
-                // Note that we had to make up a tag for this string, which
-                // may not be the same on future compilations
-                this.containsImplicitStringTags = true;
-
-                isImplicit = true;
-            }
-            else
-            {
-                lineIDUsed = lineID;
-
-                isImplicit = false;
-            }
-
-            var theString = new StringInfo(text, this.fileName, nodeName, lineNumber, isImplicit, tags);
-
-            // Finally, add this to the string table, and return the line
-            // ID.
-            this.StringTable.Add(lineIDUsed, theString);
-
-            return lineIDUsed;
-        }
-
 
         /// <summary>
         /// Generates a unique label name to use in the program.
@@ -930,26 +962,27 @@
         }
 
         /// <summary>
-        /// Extracts a line ID from a <see
-        /// cref="YarnSpinnerParser.HashtagContext"/>, if one exists.
+        /// Extracts a line ID from a collection of <see
+        /// cref="YarnSpinnerParser.HashtagContext"/>s, if one exists.
         /// </summary>
-        /// <param name="context">The hashtag parsing context.</param>
-        /// <returns>The line ID if one is present in the hashtag context,
+        /// <param name="hashtagContexts">The hashtag parsing contexts.</param>
+        /// <returns>The line ID if one is present in the hashtag contexts,
         /// otherwise `null`.</returns>
-        internal string GetLineID(YarnSpinnerParser.HashtagContext[] context)
+        internal static string GetLineID(YarnSpinnerParser.HashtagContext[] hashtagContexts)
         {
             // if there are any hashtags
-            if (context != null)
+            if (hashtagContexts != null)
             {
-                foreach (var hashtag in context)
+                foreach (var hashtagContext in hashtagContexts)
                 {
-                    string tagText = hashtag.text.Text;
+                    string tagText = hashtagContext.text.Text;
                     if (tagText.StartsWith("line:", StringComparison.InvariantCulture))
                     {
                         return tagText;
                     }
                 }
             }
+
             return null;
         }
 
@@ -1003,7 +1036,7 @@
                 // characters
                 if (invalidNodeTitleNameRegex.IsMatch(CurrentNode.Name))
                 {
-                    throw new ParseException($"The node '{CurrentNode.Name}' contains illegal characters in its title.");
+                    throw new ParseException(context, $"The node '{CurrentNode.Name}' contains illegal characters in its title.");
                 }
             }
 
@@ -1045,13 +1078,16 @@
                     visitor.Visit(statement);
                 }
             }
-            // we are a rawText node turn the body into text save that into
-            // the node perform no compilation TODO: oh glob! there has to
-            // be a better way
+            // We are a rawText node. Don't compile it; instead, note the string
             else
             {
-                CurrentNode.SourceTextStringID = RegisterString(context.GetText(), CurrentNode.Name, "line:" + CurrentNode.Name, context.Start.Line, null);
+                CurrentNode.SourceTextStringID = Compiler.GetLineIDForNodeName(CurrentNode.Name);
             }
+        }
+
+        public static string GetLineIDForNodeName(string name)
+        {
+            return "line:" + name;
         }
 
         // exiting the body of the node, time for last minute work before
@@ -1059,44 +1095,42 @@
         // AddOptions codes without calling ShowOptions?
         public override void ExitBody(YarnSpinnerParser.BodyContext context)
         {
-            // if it is a regular node
-            if (!RawTextNode)
+        
+            // Note: this only works when we know that we don't have
+            // AddOptions and then Jump up back into the code to run
+            // them. TODO: A better solution would be for the parser to
+            // flag whether a node has Options at the end.
+            var hasRemainingOptions = false;
+            foreach (var instruction in CurrentNode.Instructions)
             {
-                // Note: this only works when we know that we don't have
-                // AddOptions and then Jump up back into the code to run
-                // them. TODO: A better solution would be for the parser to
-                // flag whether a node has Options at the end.
-                var hasRemainingOptions = false;
-                foreach (var instruction in CurrentNode.Instructions)
+                if (instruction.Opcode == OpCode.AddOption)
                 {
-                    if (instruction.Opcode == OpCode.AddOption)
-                    {
-                        hasRemainingOptions = true;
-                    }
-                    if (instruction.Opcode == OpCode.ShowOptions)
-                    {
-                        hasRemainingOptions = false;
-                    }
+                    hasRemainingOptions = true;
                 }
-
-                // If this compiled node has no lingering options to show
-                // at the end of the node, then stop at the end
-                if (hasRemainingOptions == false)
+                if (instruction.Opcode == OpCode.ShowOptions)
                 {
-                    Emit(CurrentNode, OpCode.Stop);
-                }
-                else
-                {
-                    // Otherwise, show the accumulated nodes and then jump
-                    // to the selected node
-                    Emit(CurrentNode, OpCode.ShowOptions);
-
-                    // Showing options will make the execution stop; the
-                    // user will have invoked code that pushes the name of
-                    // a node onto the stack, which RunNode handles
-                    Emit(CurrentNode, OpCode.RunNode);
+                    hasRemainingOptions = false;
                 }
             }
+
+            // If this compiled node has no lingering options to show
+            // at the end of the node, then stop at the end
+            if (hasRemainingOptions == false)
+            {
+                Emit(CurrentNode, OpCode.Stop);
+            }
+            else
+            {
+                // Otherwise, show the accumulated nodes and then jump
+                // to the selected node
+                Emit(CurrentNode, OpCode.ShowOptions);
+
+                // Showing options will make the execution stop; the
+                // user will have invoked code that pushes the name of
+                // a node onto the stack, which RunNode handles
+                Emit(CurrentNode, OpCode.RunNode);
+            }
+        
         }
     }
 

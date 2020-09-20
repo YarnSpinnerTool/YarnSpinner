@@ -24,10 +24,9 @@ namespace Yarn.Compiler
             this.loadOperators();
         }
 
-        private void GenerateFormattedText(IList<IParseTree> nodes, out string outputString, out int expressionCount)
+        private int TypeCheckExpressionsInFormattedText(IList<IParseTree> nodes)
         {
-            expressionCount = 0;
-            StringBuilder composedString = new StringBuilder();
+            int expressionCount = 0;
 
             // First, visit all of the nodes, which are either terminal
             // text nodes or expressions. if they're expressions, we
@@ -37,7 +36,8 @@ namespace Yarn.Compiler
             {
                 if (child is ITerminalNode)
                 {
-                    composedString.Append(child.GetText());
+                    // nothing to do; string assembly will have been done
+                    // by the StringTableGeneratorVisitor
                 }
                 else if (child is ParserRuleContext)
                 {
@@ -47,25 +47,17 @@ namespace Yarn.Compiler
                     // pushes the final value of this expression onto the
                     // stack. running the line will pop these expressions
                     // off the stack.
-                    //
-                    // Expressions in the final string are denoted as the
-                    // index of the expression, surrounded by braces { }.
-                    // However, we don't need to write the braces here
-                    // ourselves, because the text itself that the parser
-                    // captured already has them. So, we just need to write
-                    // the expression count.
 
                     // Validate the type of this expression
                     new ExpressionTypeVisitor(this.compiler.VariableDeclarations, false)
                         .Visit(child);
 
                     Visit(child);
-                    composedString.Append(expressionCount);
                     expressionCount += 1;
                 }
             }
 
-            outputString = composedString.ToString().Trim();
+            return expressionCount;
         }
 
         private string[] GetHashtagTexts(YarnSpinnerParser.HashtagContext[] hashtags)
@@ -90,27 +82,18 @@ namespace Yarn.Compiler
             //
             // <<if true>> Mae: here's a line <<endif>>
 
-            // Convert the formatted string into a string with
-            // placeholders, and evaluate the inline expressions and push
-            // the results onto the stack.
-            GenerateFormattedText(context.line_formatted_text().children, out var composedString, out var expressionCount);
+            // Evaluate the inline expressions and push the results onto
+            // the stack.
+            var expressionCount = TypeCheckExpressionsInFormattedText(context.line_formatted_text().children);
 
-            // Get the lineID for this string from the hashtags if it has
-            // one; otherwise, a new one will be created
-            string lineID = compiler.GetLineID(context.hashtag());
+            // Get the lineID for this string from the hashtags 
+            string lineID = Compiler.GetLineID(context.hashtag());
 
-            var hashtagText = GetHashtagTexts(context.hashtag());
+            if (lineID == null) {
+                throw new ParseException("No line ID specified");
+            }
 
-            int lineNumber = context.Start.Line;
-
-            string stringID = compiler.RegisterString(
-                composedString.ToString(),
-                compiler.CurrentNode.Name,
-                lineID,
-                lineNumber,
-                hashtagText);
-
-            compiler.Emit(OpCode.RunLine, new Operand(stringID), new Operand(expressionCount));
+            compiler.Emit(OpCode.RunLine, new Operand(lineID), new Operand(expressionCount));
 
             return 0;
         }
@@ -127,22 +110,21 @@ namespace Yarn.Compiler
         {
 
             // Create the formatted string and evaluate any inline
-            // expressions            
-            GenerateFormattedText(context.option_formatted_text().children, out var composedString, out var expressionCount);
+            // expressions
+            var expressionCount = TypeCheckExpressionsInFormattedText(context.option_formatted_text().children);
 
             string destination = context.NodeName.Text.Trim();
-            string label = composedString;
-
+            
             int lineNumber = context.Start.Line;
 
             // getting the lineID from the hashtags if it has one
-            string lineID = compiler.GetLineID(context.hashtag());
+            string lineID = Compiler.GetLineID(context.hashtag());
 
-            var hashtagText = GetHashtagTexts(context.hashtag());
+            if (lineID == null) {
+                throw new ParseException("No line ID specified");
+            }
 
-            string stringID = compiler.RegisterString(label, compiler.CurrentNode.Name, lineID, lineNumber, hashtagText);
-
-            compiler.Emit(OpCode.AddOption, new Operand(stringID), new Operand(destination), new Operand(expressionCount));
+            compiler.Emit(OpCode.AddOption, new Operand(lineID), new Operand(destination), new Operand(expressionCount));
 
             return 0;
         }
@@ -213,7 +195,28 @@ namespace Yarn.Compiler
         // FacePlant>>
         public override int VisitCommand_statement(YarnSpinnerParser.Command_statementContext context)
         {
-            GenerateFormattedText(context.command_formatted_text().children, out var composedString, out var expressionCount);
+            var expressionCount = 0;
+            var sb = new StringBuilder();
+            foreach (var node in context.command_formatted_text().children) {
+                if (node is ITerminalNode) {
+                    sb.Append(node.GetText());
+                } else if (node is ParserRuleContext) {
+
+                    // Check the type of the expression
+                    var typeCheckVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, false);
+                    typeCheckVisitor.Visit(node);
+
+                    // Generate code for evaluating the expression at runtime
+                    Visit(node);
+
+                    // Don't include the '{' and '}', because it will have
+                    // been added as a terminal node already
+                    sb.Append(expressionCount);
+                    expressionCount += 1;
+                }
+            }
+
+            var composedString = sb.ToString();
 
             // TODO: look into replacing this as it seems a bit odd
             switch (composedString)
@@ -361,19 +364,17 @@ namespace Yarn.Compiler
 
                 // Start by figuring out the text that we want to add. This
                 // will involve evaluating any inline expressions.
-                GenerateFormattedText(shortcut.line_statement().line_formatted_text().children, out var composedString, out var expressionCount);
+                var expressionCount = TypeCheckExpressionsInFormattedText(shortcut.line_statement().line_formatted_text().children);
 
                 // Get the line ID from the hashtags if it has one
-                string lineID = compiler.GetLineID(shortcut.line_statement().hashtag());
+                string lineID = Compiler.GetLineID(shortcut.line_statement().hashtag());
 
-                // Get the hashtags for the line
-                var hashtags = GetHashtagTexts(shortcut.line_statement().hashtag());
-
-                // Register this string
-                string labelStringID = compiler.RegisterString(composedString, compiler.CurrentNode.Name, lineID, shortcut.Start.Line, hashtags);
+                if (lineID == null) {
+                    throw new ParseException("No line ID provided");
+                }
 
                 // And add this option to the list.
-                compiler.Emit(OpCode.AddOption, new Operand(labelStringID), new Operand(optionDestinationLabel), new Operand(expressionCount));
+                compiler.Emit(OpCode.AddOption, new Operand(lineID), new Operand(optionDestinationLabel), new Operand(expressionCount));
 
                 // If we had a line condition, now's the time to generate
                 // the label that we'd jump to if its condition is false.

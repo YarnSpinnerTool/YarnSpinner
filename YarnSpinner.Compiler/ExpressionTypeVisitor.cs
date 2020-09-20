@@ -80,7 +80,7 @@ namespace Yarn.Compiler
 
         public override Yarn.Type VisitValueNull(YarnSpinnerParser.ValueNullContext context)
         {
-            throw new TypeException("Null is not a permitted type in Yarn Spinner 2.0 and later");
+            throw new TypeException(context, "Null is not a permitted type in Yarn Spinner 2.0 and later");
         }
 
         public override Yarn.Type VisitValueFunc(YarnSpinnerParser.ValueFuncContext context)
@@ -99,7 +99,7 @@ namespace Yarn.Compiler
 
             if (!declarationFound)
             {
-                throw new TypeException($"Undeclared function {functionName}");
+                throw new TypeException(context, $"Undeclared function {functionName}");
             }
 
             // Check each parameter of the function
@@ -110,7 +110,7 @@ namespace Yarn.Compiler
             {
                 // Wrong number of parameters supplied
                 var parameters = expectedParameters.Length == 1 ? "parameter" : "parameters";
-                throw new TypeException($"Function {functionName} expects {expectedParameters.Length} {parameters}, but received {suppliedParameters.Length}");
+                throw new TypeException(context, $"Function {functionName} expects {expectedParameters.Length} {parameters}, but received {suppliedParameters.Length}");
             }
 
             for (int i = 0; i < expectedParameters.Length; i++)
@@ -130,7 +130,7 @@ namespace Yarn.Compiler
                 }
 
                 if (suppliedType != expectedType) {
-                    throw new TypeException($"{functionName} parameter {i + 1} expects a {expectedType}, not a {suppliedType}");
+                    throw new TypeException(context, $"{functionName} parameter {i + 1} expects a {expectedType}, not a {suppliedType}");
                 }
             }
 

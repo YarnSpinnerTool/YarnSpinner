@@ -18,6 +18,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - `Library.RegisterFunction` no longer works with the `Function` and `ReturningFunction` classes, which have been removed. Instead, you provide a `Func` directly, which can take multiple individual parameters, rather than a single `Value[]` parameter.
 - The `LineHandler`, `CommandHandler`, and `NodeCompleteHandler` callbacks, used by the `Dialogue` class, no longer return a value that indicates whether the `Dialogue` should pause execution. Instead, the `Dialogue` will now *always* pause execution, which can be resumed by calling `Dialogue.Continue()`. (This method may be called from inside the line handler or command handler, or at any point after these handlers return.)
 - The `Compiler` class no longer compiles Yarn scripts using the `CompileFile` and `CompileString` methods. Instead, the `Compile` method accepts a `CompilationJob` struct that describes the work to do, and returns a `CompilationResult` struct containing the result. This method allows for the compilation of multiple files into a single program, as well as supplying variable and function declarations.
+- The `Compiler` class also supports doing only a partial compilation, returning only variable declarations or string table entries.
+- Yarn scripts are now all compiled into a single `YarnProgram`. This improves compilation performance, ensures that scripts don't have multiple nodes with the same name, and ensures that scripts are able to make use of variables declared in other scripts.
 
 ### Removed
 
