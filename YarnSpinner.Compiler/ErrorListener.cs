@@ -73,7 +73,7 @@
                 }
             }
 
-            throw new ParseException(builder.ToString());
+            throw new ParseException(null, builder.ToString(), null);
         }
     }
 }
