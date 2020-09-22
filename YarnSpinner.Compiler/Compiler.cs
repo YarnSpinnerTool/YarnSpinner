@@ -1,4 +1,4 @@
-namespace Yarn.Compiler
+﻿namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -167,6 +167,49 @@ namespace Yarn.Compiler
         /// Gets the name of this Declaration.
         /// </summary>
         public string Name { get => name; internal set => name = value; }
+
+        /// <summary>
+        /// Creates a new instance of the <see cref="Declaration"/> class,
+        /// using the given <paramref name="name"/> and default value. The
+        /// <see cref="ReturnType"/> of the new instance will be configured
+        /// based on the type of <paramref name="defaultValue"/>, and the
+        /// <see cref="DeclarationType"/> will be <see
+        /// cref="Type.Variable"/>. All other properties will be their
+        /// default values.
+        /// </summary>
+        /// <param name="name">The name of the new declaration.</param>
+        /// <param name="defaultValue">The default value of the
+        /// declaration. This must be a string, a number (integer or
+        /// floating-point), or boolean value.</param>
+        /// <returns>A new instance of the <see cref="Declaration"/>
+        /// class.</returns>
+        public static Declaration CreateVariable(string name, object defaultValue)
+        {
+            if (defaultValue is null)
+            {
+                throw new ArgumentNullException(nameof(defaultValue));
+            }
+
+            // What type of default value did we get?
+            System.Type defaultValueType = defaultValue.GetType();
+
+            // Is it something we can handle?
+            if (Value.TypeMappings.ContainsKey(defaultValueType) == false)
+            {
+                throw new ArgumentException($"Default value type cannot be {defaultValueType}");
+            }
+
+            // We're all good to create the new declaration.
+            var decl = new Declaration
+            {
+                Name = name,
+                DefaultValue = defaultValue,
+                ReturnType = Value.TypeMappings[defaultValueType],
+                DeclarationType = Type.Variable,
+            };
+
+            return decl;
+        }
 
         /// <summary>
         /// Gets the default value of this <see cref="Declaration"/>, if no
