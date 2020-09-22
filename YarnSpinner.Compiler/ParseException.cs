@@ -55,14 +55,14 @@ namespace Yarn.Compiler
                 return message;
             }
 
-            int line = context.Start.Line;
+            int lineNumber = context.Start.Line;
 
             // getting the text that has the issue inside
-            int start = context.Start.StartIndex;
-            int end = context.Stop.StopIndex;
-            string body = context.Start.InputStream.GetText(new Antlr4.Runtime.Misc.Interval(start, end));
+            var interval = new Antlr4.Runtime.Misc.Interval(0, context.Start.InputStream.Size);
+            string[] lines = context.Start.InputStream.GetText(interval).Split('\n');
+            string line = lines[context.Start.Line - 1];
 
-            string theMessage = string.Format(CultureInfo.CurrentCulture, "Error in {3} line {0}\n{1}\n{2}", line, body, message, fileName);
+            string theMessage = string.Format(CultureInfo.CurrentCulture, "Error in {3} line {0}\n{1}\n{2}", lineNumber, line, message, fileName);
 
             return theMessage;
         }
