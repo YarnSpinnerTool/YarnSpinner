@@ -1,4 +1,4 @@
-﻿namespace Yarn.Compiler
+namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -453,7 +453,7 @@
             {
                 fileList.Add(new File
                 {
-                    FileName = System.IO.Path.GetFileNameWithoutExtension(path),
+                    FileName = path,
                     Source = System.IO.File.ReadAllText(path),
                 });
             }
