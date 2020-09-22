@@ -265,6 +265,10 @@ namespace Yarn.Compiler
             // label to give us a jump point for when the if finishes
             string endOfIfStatementLabel = compiler.RegisterLabel("endif");
 
+            // Type-check the if-clause
+            var expressionTypeVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, false);
+            expressionTypeVisitor.Visit(context.if_clause());
+
             // handle the if
             var ifClause = context.if_clause();
             generateClause(endOfIfStatementLabel, ifClause.statement(), ifClause.expression());
@@ -272,6 +276,8 @@ namespace Yarn.Compiler
             // all elseifs
             foreach (var elseIfClause in context.else_if_clause())
             {
+                // Type-check the else-if clause
+                expressionTypeVisitor.Visit(context.if_clause());
                 generateClause(endOfIfStatementLabel, elseIfClause.statement(), elseIfClause.expression());
             }
 

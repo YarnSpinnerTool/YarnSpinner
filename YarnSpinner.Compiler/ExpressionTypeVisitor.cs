@@ -284,6 +284,19 @@ namespace Yarn.Compiler
 
             throw new TypeException(context, $"Terms of '{operationType}' must be {permittedTypesList}, not {typeList}");
         }
+
+        public override Yarn.Type VisitIf_clause(YarnSpinnerParser.If_clauseContext context)
+        {
+            // If clauses are required to be boolean
+            var expressions = new[] { context.expression() };
+            return CheckOperation(context, expressions, "if statement", Yarn.Type.Bool);
+        }
+
+        public override Yarn.Type VisitElse_if_clause(YarnSpinnerParser.Else_if_clauseContext context)
+        {
+            // Else if clauses are required to be boolean
+            var expressions = new[] { context.expression() };
+            return CheckOperation(context, expressions, "if statement", Yarn.Type.Bool);
         }
 
         public override Yarn.Type VisitExpAddSub(YarnSpinnerParser.ExpAddSubContext context)

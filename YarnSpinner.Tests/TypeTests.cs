@@ -664,5 +664,28 @@ namespace YarnSpinner.Tests
 
             Assert.Contains("expects a Number, not a Bool", ex.Message);
         }
+
+        [Fact]
+        public void TestIfStatementExpressionsMustBeBoolean()
+        {
+            var source = CreateTestNode(@"
+            <<declare $str = ""hello"" as string>>
+            <<declare $bool = true>>
+
+            <<if $bool>> // ok
+            Hello
+            <<endif>>
+
+            <<if $str>> // error, must be a bool
+            Hello
+            <<endif>>
+            ");
+
+            var ex = Assert.Throws<TypeException>( () => {
+                Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            });
+
+            Assert.Contains("Terms of 'if statement' must be Bool, not String", ex.Message);
+        }
     }
 }
