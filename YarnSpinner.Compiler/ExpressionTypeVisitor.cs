@@ -126,7 +126,8 @@ namespace Yarn.Compiler
                 if (expectedType == Yarn.Type.Undefined)
                 {
                     // The type of this parameter hasn't yet been bound.
-                    // Bind this parameter type to what we've resolved the type to.
+                    // Bind this parameter type to what we've resolved the
+                    // type to.
                     expectedParameters[i].Type = suppliedType;
                     expectedType = suppliedType;
                 }
@@ -169,8 +170,10 @@ namespace Yarn.Compiler
 
             foreach (var expression in terms)
             {
+                // Visit this expression, and determine its type.
                 Yarn.Type type = Visit(expression);
                 types.Add(type);
+
                 if (type != Yarn.Type.Undefined && expressionType == Yarn.Type.Undefined)
                 {
                     // This is the first concrete type we've seen. This
@@ -179,76 +182,82 @@ namespace Yarn.Compiler
                 }
             }
 
-            // Do we have a known expression type, and were any of the
-            // terms a function call whose return type is currently
-            // unbound?
             if (expressionType == Yarn.Type.Undefined)
             {
                 // We don't know what type of expression this is.
                 throw new TypeException(context, $"Type of expression {context.GetText()} can't be determined without more context. Use a type cast on at least one of the terms (e.g. the string(), number(), bool() functions)");
             }
-            else
+
+            // Were any of the terms a function call whose return type is
+            // currently unbound? If so, bind their return types now.
+            for (int i = 0; i < terms.Length; i++)
             {
-                // If so, bind their return types now.
-                for (int i = 0; i < terms.Length; i++)
+                ParserRuleContext expression = terms[i];
+                string funcName;
+
+                // If this is a "value that's in an expression", get
+                // its nested value
+                if (expression is YarnSpinnerParser.ExpValueContext expValueContext)
                 {
-                    ParserRuleContext expression = terms[i];
-                    string funcName;
+                    expression = expValueContext.value();
+                }
 
-                    // If this is a "value that's in an expression", get
-                    // the nested value
-                    if (expression is YarnSpinnerParser.ExpValueContext expValueContext)
-                    {
-                        expression = expValueContext.value();
-                    }
+                if (expression is YarnSpinnerParser.ValueFuncContext valueFuncContext)
+                {
+                    funcName = valueFuncContext.function().FUNC_ID().GetText();
+                }
+                else if (expression is YarnSpinnerParser.FunctionContext funcContext)
+                {
+                    funcName = funcContext.FUNC_ID().GetText();
+                }
+                else
+                {
+                    // Not a function term, so nothing to do
+                    continue;
+                }
 
-                    if (expression is YarnSpinnerParser.ValueFuncContext valueFuncContext)
-                    {
-                        funcName = valueFuncContext.function().FUNC_ID().GetText();
-                    }
-                    else if (expression is YarnSpinnerParser.FunctionContext funcContext)
-                    {
-                        funcName = funcContext.FUNC_ID().GetText();
-                    }
-                    else
-                    {
-                        // Not a function term, so nothing to do
-                        continue;
-                    }
+                Declaration functionDeclaration = null;
 
-                    Declaration functionDeclaration = null;
-
-                    foreach (var decl in this.Declarations)
+                // We now know the name of the function that was called.
+                // Look for a declaration for that function.
+                foreach (var decl in this.Declarations)
+                {
+                    if (decl.DeclarationType == Declaration.Type.Function && decl.Name == funcName)
                     {
-                        if (decl.DeclarationType == Declaration.Type.Function && decl.Name == funcName)
-                        {
-                            functionDeclaration = decl;
-                            break;
-                        }
+                        functionDeclaration = decl;
+                        break;
                     }
+                }
 
-                    if (functionDeclaration == null)
-                    {
-                        throw new TypeException(context, $"Can't check return value of {funcName}: Function is undeclared");
-                    }
+                if (functionDeclaration == null)
+                {
+                    // We didn't find one, so we can't know the return type
+                    // of it, and thus can't determine this entire
+                    // expression.
+                    throw new TypeException(context, $"Can't check return value of {funcName}: Function is undeclared.");
+                }
 
-                    if (functionDeclaration.ReturnType != Yarn.Type.Undefined)
-                    {
-                        // This function declaration is already bound
-                        continue;
-                    }
+                if (functionDeclaration.ReturnType == Yarn.Type.Undefined)
+                {
+                    // The function's return type is not currently known,
+                    // but it's participating in an expression whose type
+                    // IS known! The only way for this to make sense is if
+                    // the function's return type is the expression type,
+                    // so we'll decide that that's the case here.
 
                     // Bind the function declaration's return type!
                     functionDeclaration.ReturnType = expressionType;
 
-                    // Also update the type that we decided upon
+                    // Also update the type for the expression that we
+                    // decided upon
                     types[i] = expressionType;
                 }
             }
 
             string typeList;
 
-            // All types must be same as the expression type
+            // All types must be same as the expression type (which is the
+            // first defined type we encountered when going through the terms)
             for (int i = 1; i < types.Count; i++)
             {
                 if (types[i] != expressionType)
@@ -273,7 +282,8 @@ namespace Yarn.Compiler
             var permittedTypesList = string.Join(" or ", permittedTypes);
             typeList = string.Join(", ", types);
 
-            throw new TypeException(context, $"Terms of {operationType} must be {permittedTypesList}, not {typeList}");
+            throw new TypeException(context, $"Terms of '{operationType}' must be {permittedTypesList}, not {typeList}");
+        }
         }
 
         public override Yarn.Type VisitExpAddSub(YarnSpinnerParser.ExpAddSubContext context)
