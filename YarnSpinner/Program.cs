@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Globalization;
@@ -92,6 +92,8 @@ namespace Yarn
 
                     output.Nodes[otherNodeName.Key] = otherNodeName.Value.Clone();
                 }
+
+                output.InitialValues.Add(otherProgram.InitialValues);
             }
             return output;
         }

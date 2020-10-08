@@ -119,6 +119,7 @@ namespace YarnSpinner.Tests
                 new Declaration {
                     Name = "$int",
                     ReturnType = Yarn.Type.Number,
+                    DefaultValue = 0,
                 }
             };
 
@@ -395,17 +396,17 @@ namespace YarnSpinner.Tests
                 new Declaration {
                     Name = "$external_str",
                     ReturnType = Yarn.Type.String,
-                    DefaultValue = new Value("Hello")
+                    DefaultValue = "Hello",
                 },
                 new Declaration {
                     Name = "$external_int",
                     ReturnType = Yarn.Type.Bool,
-                    DefaultValue = new Value(true)
+                    DefaultValue = true,
                 },
                 new Declaration {
                     Name = "$external_bool",
                     ReturnType = Yarn.Type.Number,
-                    DefaultValue = new Value(42)
+                    DefaultValue = 42,
                 },
             };
 

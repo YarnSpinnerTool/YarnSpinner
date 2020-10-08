@@ -1,4 +1,4 @@
-﻿namespace Yarn.Compiler
+namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -710,10 +710,8 @@
 
             // Last step: take every variable declaration we found in all
             // of the inputs, and create an initial value registration for
-            // it. (We don't specify an initial value for
-            // externally-declared variables, because we expect their value
-            // to be in the variable storage when the program is run.)
-            foreach (var declaration in derivedVariableDeclarations)
+            // it. 
+            foreach (var declaration in knownVariableDeclarations)
             {
                 // We only care about variable declarations here
                 if (declaration.DeclarationType != Declaration.Type.Variable)
@@ -723,16 +721,20 @@
 
                 Operand value;
 
+                if (declaration.DeclarationType == Declaration.Type.Variable && declaration.defaultValue == null) {
+                    throw new NullReferenceException($"Variable declaration {declaration.name} ({declaration.ReturnType}) has a null default value. This is not allowed.");
+                }
+
                 switch (declaration.ReturnType)
                 {
                     case Yarn.Type.Number:
-                        value = new Operand((float)declaration.DefaultValue);
+                        value = new Operand(Convert.ToSingle(declaration.DefaultValue));
                         break;
                     case Yarn.Type.String:
-                        value = new Operand((string)declaration.DefaultValue);
+                        value = new Operand(Convert.ToString(declaration.DefaultValue));
                         break;
                     case Yarn.Type.Bool:
-                        value = new Operand((bool)declaration.DefaultValue);
+                        value = new Operand(Convert.ToBoolean(declaration.DefaultValue));
                         break;
                     default:
                         throw new ArgumentOutOfRangeException($"Cannot create an initial value for type {declaration.ReturnType}");
