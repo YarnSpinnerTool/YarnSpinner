@@ -10,8 +10,9 @@ message Program {
 	// The collection of nodes in this program.
     map<string, Node> nodes = 2;   	
 	
-	// The collection of initial values for variables that were defined in
-	// this program's source
+	// The collection of initial values for variables; if a PUSH_VARIABLE
+	// instruction is run, and the value is not found in the storage, this
+	// value will be used
 	map<string, Operand> initial_values = 3;
 }
 
