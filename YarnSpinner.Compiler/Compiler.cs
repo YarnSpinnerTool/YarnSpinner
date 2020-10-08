@@ -181,9 +181,11 @@ namespace Yarn.Compiler
         /// <param name="defaultValue">The default value of the
         /// declaration. This must be a string, a number (integer or
         /// floating-point), or boolean value.</param>
+        /// <param name="description">The description of the new
+        /// declaration.</param>
         /// <returns>A new instance of the <see cref="Declaration"/>
         /// class.</returns>
-        public static Declaration CreateVariable(string name, object defaultValue)
+        public static Declaration CreateVariable(string name, object defaultValue, string description = null)
         {
             if (defaultValue is null)
             {
@@ -206,6 +208,7 @@ namespace Yarn.Compiler
                 DefaultValue = defaultValue,
                 ReturnType = Value.TypeMappings[defaultValueType],
                 DeclarationType = Type.Variable,
+                Description = description,
             };
 
             return decl;
