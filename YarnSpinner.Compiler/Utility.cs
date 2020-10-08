@@ -35,6 +35,8 @@ namespace Yarn.Compiler
         {
             var compileJob = CompilationJob.CreateFromString("input", contents);
 
+            compileJob.CompilationType = CompilationJob.Type.StringsOnly;
+
             var result = Compiler.Compile(compileJob);
 
             var untaggedLines = result.StringTable.Where(entry => entry.Value.isImplicitTag);
