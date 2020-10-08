@@ -18,11 +18,19 @@ namespace Yarn.Compiler
         private string sourceFileName;
 
         /// <summary>
-        /// The collection of new variable declarations that were found as
-        /// a result of using this <see cref="DeclarationVisitor"/>
-        /// to visit a <see cref="ParserRuleContext"/>.
+        /// Gets the collection of new variable declarations that were
+        /// found as a result of using this <see
+        /// cref="DeclarationVisitor"/> to visit a <see
+        /// cref="ParserRuleContext"/>.
         /// </summary>
         public ICollection<Declaration> NewDeclarations { get; private set; }
+
+        /// <summary>
+        /// Gets the collection of file-level hashtags that were found as a
+        /// result of using this <see cref="DeclarationVisitor"/> to visit
+        /// a <see cref="ParserRuleContext"/>.
+        /// </summary>
+        public ICollection<string> FileTags { get; private set; }
 
         private IEnumerable<Declaration> AllDeclarations
         {
@@ -43,7 +51,13 @@ namespace Yarn.Compiler
         {
             this.existingDeclarations = existingDeclarations;
             this.NewDeclarations = new List<Declaration>();
+            this.FileTags = new List<string>();
             this.sourceFileName = sourceFileName;
+        }
+
+        public override int VisitFile_hashtag(YarnSpinnerParser.File_hashtagContext context) {
+            this.FileTags.Add(context.text.Text);
+            return 0;
         }
 
         public override int VisitNode(YarnSpinnerParser.NodeContext context) {

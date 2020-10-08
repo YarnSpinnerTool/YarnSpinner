@@ -93,7 +93,12 @@ namespace YarnSpinner.Tests
             foreach (var tag in new[] {"one", "two", "three"}) {
                 Assert.Contains(tag, result.Program.Nodes["Tags"].Tags);
             }
-            
+
+            // Assert.Contains("version:2", result.FileTags);
+            Assert.Contains(path, result.FileTags.Keys);
+            Assert.Equal(1, result.FileTags.Count);
+            Assert.Equal(1, result.FileTags[path].Count());
+            Assert.Contains("file_header", result.FileTags[path]);
         }
 
         [Fact]

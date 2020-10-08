@@ -355,7 +355,10 @@ COMMAND_ENDIF: 'endif';
 COMMAND_CALL: 'call' [\p{White_Space}] -> pushMode(ExpressionMode);
 
 COMMAND_DECLARE: 'declare' [\p{White_Space}] -> pushMode(ExpressionMode);
-COMMAND_LOCAL: 'local' [\p{White_Space}] -> pushMode(ExpressionMode);
+
+// Keywords reserved for future language versions
+COMMAND_LOCAL: 'local' [\p{White_Space}]; 
+COMMAND_JUMP: 'jump' [\p{White_Space}];
 
 // End of a command.
 COMMAND_END: '>>' -> popMode;

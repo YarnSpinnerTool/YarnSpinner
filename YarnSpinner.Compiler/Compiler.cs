@@ -1,4 +1,4 @@
-namespace Yarn.Compiler
+﻿namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -454,7 +454,8 @@ namespace Yarn.Compiler
             FullCompilation,
 
             /// <summary>The compiler will derive only the variable and
-            /// function declarations found in the script.</summary>
+            /// function declarations, and file tags, found in the
+            /// script.</summary>
             DeclarationsOnly,
 
             /// <summary>The compiler will generate a string table
@@ -546,12 +547,15 @@ namespace Yarn.Compiler
         public IEnumerable<Declaration> Declarations { get; internal set; }
         public bool ContainsImplicitStringTags { get; internal set; }
 
+        public Dictionary<string, IEnumerable<string>> FileTags {get;internal set;}
+
         internal static CompilationResult CombineCompilationResults(IEnumerable<CompilationResult> results, StringTableManager stringTableManager)
         {
             CompilationResult finalResult;
 
             var programs = new List<Program>();
             var declarations = new List<Declaration>();
+            var tags = new Dictionary<string, IEnumerable<string>>();
 
             foreach (var result in results)
             {
@@ -562,6 +566,12 @@ namespace Yarn.Compiler
                     declarations.AddRange(result.Declarations);
                 }
 
+                if (result.FileTags != null) {
+                    foreach (var kvp in result.FileTags) {
+                        tags.Add(kvp.Key, kvp.Value);
+                    }
+                }
+                
             }
 
             return new CompilationResult
@@ -570,6 +580,7 @@ namespace Yarn.Compiler
                 StringTable = stringTableManager.StringTable,
                 Declarations = declarations,
                 ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
+                FileTags = tags,
             };
         }
     }
@@ -611,7 +622,7 @@ namespace Yarn.Compiler
         /// <summary>
         /// The list of variable declarations known to the compiler.
         /// Supplied as part of a <see cref="CompilationJob"/>, or by <see
-        /// cref="DeriveVariableDeclarations"/>
+        /// cref="GetDeclarations"/>
         /// </summary>
         internal IEnumerable<Declaration> VariableDeclarations = new List<Declaration>();
 
@@ -681,14 +692,16 @@ namespace Yarn.Compiler
                     StringTable = stringTableManager.StringTable,
                 };
             }
+
+            var fileTags = new Dictionary<string, IEnumerable<string>>();
             
             foreach (var parsedFile in compiledTrees) {
-                IEnumerable<Declaration> newDeclarations = DeriveVariableDeclarations(parsedFile.name, parsedFile.tree, knownVariableDeclarations);
+                GetDeclarations(parsedFile.name, parsedFile.tree, knownVariableDeclarations, out var newDeclarations, out var newFileTags);
 
                 derivedVariableDeclarations.AddRange(newDeclarations);
                 knownVariableDeclarations.AddRange(newDeclarations);
 
-
+                fileTags.Add(parsedFile.name, newFileTags);
             }
 
             if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
@@ -700,6 +713,7 @@ namespace Yarn.Compiler
                     ContainsImplicitStringTags = false,
                     Program = null,
                     StringTable = null,
+                    FileTags = fileTags,
                 };
             }
 
@@ -748,6 +762,8 @@ namespace Yarn.Compiler
 
             finalResult.Declarations = derivedVariableDeclarations;
 
+            finalResult.FileTags = fileTags;
+
             return finalResult;
         }
 
@@ -757,7 +773,7 @@ namespace Yarn.Compiler
             visitor.Visit(tree);
         }
 
-        private static IEnumerable<Declaration> DeriveVariableDeclarations(string sourceFileName, IParseTree tree, IEnumerable<Declaration> existingDeclarations)
+        private static void GetDeclarations(string sourceFileName, IParseTree tree, IEnumerable<Declaration> existingDeclarations, out IEnumerable<Declaration> declarations, out IEnumerable<string> fileTags)
         {
             var variableDeclarationVisitor = new DeclarationVisitor(sourceFileName, existingDeclarations);
 
@@ -770,7 +786,9 @@ namespace Yarn.Compiler
 
             // Upon exit, declarations will now contain every variable
             // declaration we found
-            return variableDeclarationVisitor.NewDeclarations;
+            declarations = variableDeclarationVisitor.NewDeclarations;
+
+            fileTags = variableDeclarationVisitor.FileTags;
         }
 
         private static CompilationResult GenerateCode(string fileName, IEnumerable<Declaration> variableDeclarations, CompilationJob job, IParseTree tree, StringTableManager stringTableManager)

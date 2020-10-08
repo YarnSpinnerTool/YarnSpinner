@@ -8,7 +8,7 @@ dialogue
 
 // File-global hashtags, which precede all nodes
 file_hashtag
-    : HASHTAG HASHTAG_TEXT TEXT_NEWLINE
+    : HASHTAG text=HASHTAG_TEXT
     ;
 
 node
