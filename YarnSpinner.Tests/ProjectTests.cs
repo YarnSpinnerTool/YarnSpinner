@@ -34,5 +34,36 @@ namespace YarnSpinner.Tests
             Assert.True(dialogue.NodeExists("ThirdNode"));
             
         }
+
+        [Fact]
+        public void TestDeclarationFilesAreGenerated()
+        {
+            // Parsing a file that contains variable declarations should be
+            // able to turned back into a string containing the same
+            // information.
+            
+            var originalText = @"title: Program
+tags: one two
+custom: yes
+---
+<<declare $str = ""str"" ""str desc"">>
+<<declare $num = 2 ""num desc"">>
+<<declare $bool = true ""bool desc"">>
+===
+";
+
+            var job = CompilationJob.CreateFromString("input", originalText);
+
+            var result = Compiler.Compile(job);
+
+            var headers = new Dictionary<string,string> {
+                { "custom", "yes"}
+            };
+            string[] tags = new[] { "one", "two" };
+
+            var generatedOutput = Utility.GenerateYarnFileWithDeclarations(result.Declarations, "Program", tags, headers);
+
+            Assert.Equal(originalText, generatedOutput);
+        }
     }
 }
