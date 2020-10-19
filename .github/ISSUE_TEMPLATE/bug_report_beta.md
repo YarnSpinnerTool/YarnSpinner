@@ -1,11 +1,18 @@
 ---
-name: Bug report
-about: Create a report to help us improve!
+name: Bug report (Yarn Spinner 2.0 Beta)
+about: Create a report to help us improve Yarn Spinner 2.0!
 title: ''
-labels: bug
+labels: bug beta
 assignees: 
-
 ---
+
+<!-- PLEASE NOTE: 
+
+You're filing an issue about the beta version of Yarn Spinner. Please note that we're not 
+able to offer direct support for these issues, but we're extremely grateful for you 
+letting us know about bugs and other problems while we get things ready for release.
+
+-->
 
 **What is the current behavior?**
 
