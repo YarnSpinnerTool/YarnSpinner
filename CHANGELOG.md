@@ -4,9 +4,22 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [v2.0.0-beta1] 2020-10-20
 
 ### Added
+- Version 2 of the Yarn language requires variables to be declared in order to use them. It's now an error to set or get a value from a variable that isn't declared.
+  - Variables must always have a defined type, and aren't allowed to change type. This means, for example, that you can't store a string inside a variable that was declared as a number.
+  - Variables also have a default value. As a result, variables are never allowed to be `null`.
+  - Variable declarations can be in any part of a Yarn script. As long as they're somewhere in the file, they'll be used.
+  - Variable declarations don't have to be in the same file as where they're used. If a script has a variable declaration, other scripts compiled with it can use the variable.
+  - To declare a variable in a script, use the following syntax:
+  
+```
+<<declare $variable_name = "hello">> // declares a string
+<<declare $variable_name = 123>> // declares a number
+<<declare $variable_name = true>> // declares a boolean
+```
+
 - Added substitution support to Dialogue (previously, the game client had to do it)
 - Added support for markup.
 - Added an EditorConfig file to assist future contributions in following the .NET coding style (@Schroedingers-Cat)
