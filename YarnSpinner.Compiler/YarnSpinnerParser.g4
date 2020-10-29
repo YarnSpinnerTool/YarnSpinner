@@ -27,11 +27,11 @@ statement
     : line_statement
     | if_statement
     | set_statement
-    | option_statement
     | shortcut_option_statement
     | call_statement
     | command_statement
     | declare_statement
+    | jump_statement
     | INDENT statement* DEDENT
     ;
 
@@ -133,20 +133,12 @@ shortcut_option
     : '->' line_statement (INDENT statement* DEDENT)?
     ;
 
-option_statement
-    : '[[' option_formatted_text '|' NodeName=OPTION_ID ']]' (hashtag* TEXT_NEWLINE)? #OptionLink
-    | '[[' NodeName=OPTION_TEXT ']]' #OptionJump
-    ;
-
-option_formatted_text
-    : (
-        OPTION_TEXT 
-        | OPTION_EXPRESSION_START expression EXPRESSION_END 
-      )+
-    ;
-
 declare_statement
     : COMMAND_START COMMAND_DECLARE variable OPERATOR_ASSIGNMENT value ('as' type)? Description=STRING? COMMAND_END ;
+
+jump_statement
+    : COMMAND_START COMMAND_JUMP destination=ID COMMAND_END
+    ;
 
 type
     : typename=TYPE_STRING

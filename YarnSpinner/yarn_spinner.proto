@@ -102,8 +102,7 @@ message Instruction {
 		
 		// Calls a function in the client. Pops as many arguments as the
 		// client indicates the function receives, and the result (if any)
-		// is pushed to the stack.
-		
+		// is pushed to the stack.		
 		// opA = string: name of the function
 		CALL_FUNC = 12; 
 		
@@ -120,7 +119,8 @@ message Instruction {
 		// No operands.
 		STOP = 15; 
 		
-		// Run the node whose name is at the top of the stack.
+		// Pops a string off the top of the stack, and runs the node with
+		// that name.
 		// No operands.
 		RUN_NODE = 16; 
     }

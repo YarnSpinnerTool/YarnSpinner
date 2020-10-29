@@ -36,27 +36,6 @@ namespace YarnSpinner.Tests
         }
 
         [Fact]
-        public void TestOptionDestinations() {
-            var path = Path.Combine(TestDataPath, "Options.yarn");
-
-            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
-
-            stringTable = result.StringTable;
-
-            dialogue.SetProgram (result.Program);
-
-            dialogue.OptionsHandler = delegate (OptionSet optionSet) {
-                Assert.Equal(2, optionSet.Options.Length);
-                Assert.Equal("B", optionSet.Options[0].DestinationNode);
-                Assert.Equal("C", optionSet.Options[1].DestinationNode);
-            };
-
-            dialogue.SetNode("A");
-
-            dialogue.Continue();
-        }
-
-        [Fact]
         public void TestAnalysis() 
         {
 

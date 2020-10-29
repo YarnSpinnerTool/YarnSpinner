@@ -192,12 +192,9 @@ SHORTCUT_ARROW : '->' ;
 // The start of a command
 COMMAND_START: '<<' -> pushMode(CommandMode) ;
 
-// The start of an option or jump
-OPTION_START: '[[' -> pushMode(OptionMode) ;
-
 // The start of a hashtag. Can goes at the end of the 
 // line, but this rule allows us to capture '#' at the start 
-// of a line, or following an Option.
+// of a line.
 BODY_HASHTAG: '#' -> type(HASHTAG), pushMode(TextCommandOrHashtagMode), pushMode(HashtagMode);
 
 // The start of an inline expression. Immediately lex as 
@@ -257,7 +254,7 @@ TEXT_COMMANDHASHTAG_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(TEXT_NEWLINE)
 
 TEXT_COMMANDHASHTAG_ERROR: . ; 
 
-// Hashtags at the end of a Line, Command or Option.
+// Hashtags at the end of a Line or Command.
 mode HashtagMode;
 HASHTAG_WS: WS -> skip;
 HASHTAG_TAG: HASHTAG -> type(HASHTAG);
@@ -356,9 +353,10 @@ COMMAND_CALL: 'call' [\p{White_Space}] -> pushMode(ExpressionMode);
 
 COMMAND_DECLARE: 'declare' [\p{White_Space}] -> pushMode(ExpressionMode);
 
+COMMAND_JUMP: 'jump' [\p{White_Space}] -> pushMode(CommandIDMode);
+
 // Keywords reserved for future language versions
 COMMAND_LOCAL: 'local' [\p{White_Space}]; 
-COMMAND_JUMP: 'jump' [\p{White_Space}];
 
 // End of a command.
 COMMAND_END: '>>' -> popMode;
@@ -375,26 +373,7 @@ COMMAND_TEXT_END: '>>' -> popMode;
 COMMAND_EXPRESSION_START: '{' -> pushMode(ExpressionMode);
 COMMAND_TEXT: ~[>{]+;
 
-// Options [[Description|NodeName]] or jumps [[NodeName]]. May be followed 
-// by hashtags, so we lex those here too.
-mode OptionMode;
-OPTION_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(OPTION_NEWLINE);} -> popMode;
-OPTION_WS: WS -> skip;
-OPTION_END: ']]' -> popMode ;
-OPTION_DELIMIT: '|' -> pushMode(OptionIDMode); // time to specifically look for IDs here
-OPTION_EXPRESSION_START: '{' -> pushMode(ExpressionMode);
-OPTION_TEXT: OPTION_TEXT_FRAG+ ;
-OPTION_TEXT_FRAG: {
-    !(InputStream.LA(1) == ']' && InputStream.LA(2) == ']') // end-of-option
-    }? ~[{|] ;
-
-// Only allow seeing runs of text as an ID after a '|' is 
-// seen. This prevents an option being parsed 
-// as TEXT | TEXT, and lets us prohibit multiple IDs in the
-// second half of the statement.
-mode OptionIDMode;
-OPTION_ID_WS: [ \t] -> skip;
-OPTION_ID: NODE_ID -> popMode ; 
-// (We return immediately to OptionMode after we've seen this 
-// single OPTION_ID, so that we can lex the OPTION_END that 
-// closes the option.)
+// A mode in which we expect to parse a node ID.
+mode CommandIDMode;
+COMMAND_ID: NODE_ID -> type(ID), popMode;
+COMMAND_ID_END: '>>' -> type(COMMAND_END), popMode; // almost certainly a parse error, but not a lex error

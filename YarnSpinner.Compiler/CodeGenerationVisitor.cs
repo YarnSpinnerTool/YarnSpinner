@@ -98,37 +98,6 @@ namespace Yarn.Compiler
             return 0;
         }
 
-        // a jump statement [[ NodeName ]]
-        public override int VisitOptionJump(YarnSpinnerParser.OptionJumpContext context)
-        {
-            string destination = context.NodeName.Text.Trim();
-            compiler.Emit(OpCode.RunNode, new Operand(destination));
-            return 0;
-        }
-
-        public override int VisitOptionLink(YarnSpinnerParser.OptionLinkContext context)
-        {
-
-            // Create the formatted string and evaluate any inline
-            // expressions
-            var expressionCount = TypeCheckExpressionsInFormattedText(context.option_formatted_text().children);
-
-            string destination = context.NodeName.Text.Trim();
-            
-            int lineNumber = context.Start.Line;
-
-            // getting the lineID from the hashtags if it has one
-            string lineID = Compiler.GetLineID(context.hashtag());
-
-            if (lineID == null) {
-                throw new ParseException("No line ID specified");
-            }
-
-            compiler.Emit(OpCode.AddOption, new Operand(lineID), new Operand(destination), new Operand(expressionCount));
-
-            return 0;
-        }
-
         // A set command: explicitly setting a value to an expression <<set
         // $foo to 1>>
         public override int VisitSetVariableToValue(YarnSpinnerParser.SetVariableToValueContext context)
@@ -693,6 +662,15 @@ namespace Yarn.Compiler
 
             // Call the function
             compiler.Emit(OpCode.CallFunc, new Operand(functionName));
+
+            return 0;
+        }
+
+        // A <<jump>> command, which immediately jumps to another node.
+        public override int VisitJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context)
+        {
+            compiler.Emit(OpCode.PushString, new Operand(context.destination.Text));
+            compiler.Emit(OpCode.RunNode);
 
             return 0;
         }

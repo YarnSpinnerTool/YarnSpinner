@@ -746,18 +746,10 @@ namespace Yarn
                         /// - RunNode
                         /** Run a node
                          */
-                        string nodeName;
 
-                        if (i.Operands.Count == 0 || string.IsNullOrEmpty(i.Operands[0].StringValue))
-                        {
-                            // Get a string from the stack, and jump to a node with that name.
-                            nodeName = state.PeekValue().ConvertTo<string>();
-                        }
-                        else
-                        {
-                            // jump straight to the node
-                            nodeName = i.Operands[0].StringValue;
-                        }
+                        // Pop a string from the stack, and jump to a node
+                        // with that name.
+                        string nodeName = state.PopValue().ConvertTo<string>();
 
                         NodeCompleteHandler(currentNode.Name);
                         

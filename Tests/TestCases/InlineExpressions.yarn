@@ -17,12 +17,12 @@ Variable: {$var}
 // Lines with the expresion at the start (issue #243)
 {$var} is great!
 
-// Shortcut Options
--> Shortcut Number: {1}
--> Shortcut Expression: {1+1}
--> Shortcut String: {"string"}
--> Shortcut Bool: {true}
--> Shortcut Variable: {$var}
+// Options
+-> Option Number: {1}
+-> Option Expression: {1+1}
+-> Option String: {"string"}
+-> Option Bool: {true}
+-> Option Variable: {$var}
 
 // Commands
 <<number {1}>>
@@ -30,13 +30,6 @@ Variable: {$var}
 <<string {"string"}>>
 <<bool {true}>>
 <<variable {$var}>>
-
-// Regular Options
-[[Regular Number: {1}|Destination]]
-[[Regular Expression: {1+1}|Destination]]
-[[Regular String: {"string"}|Destination]]
-[[Regular Bool: {true}|Destination]]
-[[Regular Variable: {$var}|Destination]]
 
 ===
 title: Destination

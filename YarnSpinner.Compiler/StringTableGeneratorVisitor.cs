@@ -96,34 +96,6 @@ namespace Yarn.Compiler
             return 0;
         }
 
-        public override int VisitOptionLink([NotNull] YarnSpinnerParser.OptionLinkContext context)
-        {
-            int lineNumber = context.Start.Line;
-
-            string lineID = Compiler.GetLineID(context.hashtag());
-
-            var hashtagText = GetHashtagTexts(context.hashtag());
-
-            GenerateFormattedText(context.option_formatted_text().children, out var composedString, out var expressionCount);
-
-            string stringID = stringTableManager.RegisterString(
-                composedString.ToString(),
-                fileName,
-                currentNodeName,
-                lineID,
-                lineNumber,
-                hashtagText);
-
-            if (lineID == null)
-            {
-                var hashtag = new YarnSpinnerParser.HashtagContext(context, 0);
-                hashtag.text = new CommonToken(YarnSpinnerLexer.HASHTAG_TEXT, stringID);
-                context.AddChild(hashtag);
-            }
-
-            return 0;
-        }
-
         private string[] GetHashtagTexts(YarnSpinnerParser.HashtagContext[] hashtags)
         {
             // Add hashtag

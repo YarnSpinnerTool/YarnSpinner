@@ -494,40 +494,6 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitShortcut_option([NotNull] YarnSpinnerParser.Shortcut_optionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>OptionLink</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.option_statement"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterOptionLink([NotNull] YarnSpinnerParser.OptionLinkContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>OptionLink</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.option_statement"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitOptionLink([NotNull] YarnSpinnerParser.OptionLinkContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>OptionJump</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.option_statement"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterOptionJump([NotNull] YarnSpinnerParser.OptionJumpContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>OptionJump</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.option_statement"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitOptionJump([NotNull] YarnSpinnerParser.OptionJumpContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.option_formatted_text"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterOption_formatted_text([NotNull] YarnSpinnerParser.Option_formatted_textContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.option_formatted_text"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitOption_formatted_text([NotNull] YarnSpinnerParser.Option_formatted_textContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.declare_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -537,6 +503,16 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.type"/>.
 	/// </summary>

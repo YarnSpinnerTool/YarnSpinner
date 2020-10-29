@@ -582,46 +582,6 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitShortcut_option([NotNull] YarnSpinnerParser.Shortcut_optionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>OptionLink</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.option_statement"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterOptionLink([NotNull] YarnSpinnerParser.OptionLinkContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>OptionLink</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.option_statement"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitOptionLink([NotNull] YarnSpinnerParser.OptionLinkContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>OptionJump</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.option_statement"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterOptionJump([NotNull] YarnSpinnerParser.OptionJumpContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>OptionJump</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.option_statement"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitOptionJump([NotNull] YarnSpinnerParser.OptionJumpContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.option_formatted_text"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterOption_formatted_text([NotNull] YarnSpinnerParser.Option_formatted_textContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.option_formatted_text"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitOption_formatted_text([NotNull] YarnSpinnerParser.Option_formatted_textContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.declare_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -633,6 +593,18 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.type"/>.
 	/// <para>The default implementation does nothing.</para>

@@ -25,6 +25,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added an EditorConfig file to assist future contributions in following the .NET coding style (@Schroedingers-Cat)
 - Added Dialogue.prepareForLinesHandler, a delegate that is called when the Dialogue anticipates running certain lines; games can use this to pre-load content or take other actions to prepare to run lines.
   - Yarn Spinner will check the types of the delegate you provide. At present, parameters must be either ints, floats, doubles, bools, strings, or `Yarn.Value`s.
+- Added a new command, `<<jump>>`, which immediately jumps to a new node. It takes one parameter: the name of the node to jump to.
 
 ### Changed
 
@@ -33,9 +34,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - The `Compiler` class no longer compiles Yarn scripts using the `CompileFile` and `CompileString` methods. Instead, the `Compile` method accepts a `CompilationJob` struct that describes the work to do, and returns a `CompilationResult` struct containing the result. This method allows for the compilation of multiple files into a single program, as well as supplying variable and function declarations.
 - The `Compiler` class also supports doing only a partial compilation, returning only variable declarations or string table entries.
 - Yarn scripts are now all compiled into a single `YarnProgram`. This improves compilation performance, ensures that scripts don't have multiple nodes with the same name, and ensures that scripts are able to make use of variables declared in other scripts.
+- Shortcut options have been renamed to "options".
 
 ### Removed
 
+- `[[Option]]` syntax has been removed.
+  - In previous versions of the Yarn language, there were two ways of presenting options to the player: "regular" options (`[[Displayed text|DestinationName]]`), and shortcut options (`-> Displayed Text`), with shortcut options being displayed immediately, and regular options accumulating and being presented at the end of the node.
+  - In Yarn Spinner 2.0, the "regular" option syntax has been removed; when you want to show options to the player, use the "shortcut option" syntax.  
+  - The previous, related syntax for jumping to another node, (`[[DestinationNode]]`), has also been removed, and has been replaced with the `<<jump>>` command.
 - Functions registered with the `Library` class can no longer accept an unlimited number of parametes.
 
 ## [v1.2.0] 2020-05-04

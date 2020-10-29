@@ -1,0 +1,14 @@
+line: Here's a line. It runs before options appear.
+
+option: Option 1
+option: Option 2
+option: Option 3
+
+select: 1
+
+option: Shortcut option 1
+option: Shortcut option 2
+select: 1
+
+line: A line
+line: Final node.

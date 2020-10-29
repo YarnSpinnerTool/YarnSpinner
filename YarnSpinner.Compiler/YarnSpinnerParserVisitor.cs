@@ -306,31 +306,17 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitShortcut_option([NotNull] YarnSpinnerParser.Shortcut_optionContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>OptionLink</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.option_statement"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitOptionLink([NotNull] YarnSpinnerParser.OptionLinkContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>OptionJump</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.option_statement"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitOptionJump([NotNull] YarnSpinnerParser.OptionJumpContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.option_formatted_text"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitOption_formatted_text([NotNull] YarnSpinnerParser.Option_formatted_textContext context);
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.declare_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.jump_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.type"/>.
 	/// </summary>
