@@ -6,17 +6,15 @@ using System.Text;
 
 namespace Yarn.Compiler.Upgrader
 {
-    internal class LanguageUpgraderV1 : ILanguageUpgrader
+    internal class FormatFunctionUpgrader : ILanguageUpgrader
     {
         public ICollection<TextReplacement> Upgrade(string contents, string fileName)
         {
             var replacements = new List<TextReplacement>();
 
             ICharStream input = CharStreams.fromstring(contents);
-
             YarnSpinnerV1Lexer lexer = new YarnSpinnerV1Lexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
-
             YarnSpinnerV1Parser parser = new YarnSpinnerV1Parser(tokens);
 
             var tree = parser.dialogue();
@@ -81,10 +79,5 @@ namespace Yarn.Compiler.Upgrader
                 this.replacementCallback(replacement);
             }
         }
-    }
-
-    internal interface ILanguageUpgrader
-    {
-        ICollection<TextReplacement> Upgrade(string contents, string fileName);
     }
 }
