@@ -1,6 +1,16 @@
 title: Start
 ---
 
+// The 'declare' statement doesn't exist in Yarn Spinner 1, but given that
+// this is a test of just the format function upgrader and not expression
+// types, and that declare statements are treated as commands in Yarn
+// Spinner 1, it feels appropriate to do this here to reduce the number of
+// things we're upgrading in a single file.
+<<declare $gender = "">>
+<<declare $num = 0>>
+<<declare $ord = 0>>
+<<declare $race_position = 0>>
+
 // Case selection
 <<set $gender to "male">>
 Select: [select value={$gender} male="male" female="female" other="other" /]
