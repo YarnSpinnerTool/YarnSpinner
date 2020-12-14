@@ -14,6 +14,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [v1.2.0] 2020-05-04
 
+### Changed
+
+- Fixed comparing null to any string evaluates to true  (e.g. `<< if null is "foo" >> null is foo!`) (#282)
+
 ### Added
 
 - Added Nuget package definitions for [YarnSpinner](http://nuget.org/packages/YarnSpinner/) and [YarnSpinner.Compiler](http://nuget.org/packages/YarnSpinner.Compiler/).
