@@ -314,6 +314,11 @@ namespace Yarn
                 return 1;
             }
 
+            if (this == null)
+            {
+                return 0;
+            }
+
             if (other.type == this.type)
             {
                 switch (this.type)
@@ -365,7 +370,7 @@ namespace Yarn
             case Type.Bool:
                 return this.AsBool == other.AsBool;
             case Type.Null:
-                return other.type == Type.Null || other.AsNumber == 0 || other.AsBool == false;
+                return other.type == Type.Null || other.AsNumber == 0 || other.AsBool == false || other.AsString == string.Empty;
             default:
                 throw new ArgumentOutOfRangeException ();
             }
