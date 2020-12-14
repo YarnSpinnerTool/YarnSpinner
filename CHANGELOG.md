@@ -18,6 +18,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Added Nuget package definitions for [YarnSpinner](http://nuget.org/packages/YarnSpinner/) and [YarnSpinner.Compiler](http://nuget.org/packages/YarnSpinner.Compiler/).
 
+- Added unit test cases for null equality comparisonfor[YarnSpinner/Tests/TestCases/Types.yarn](#287)
+
 ### Changed
 
 - Parse errors no longer show debugging information in non-debug builds.
