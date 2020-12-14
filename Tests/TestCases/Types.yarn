@@ -8,11 +8,29 @@ title: Start
 // string-number inequality
 <<call assert("test" != 1)>>
 
+// string-bool inequality
+<<call assert("test" != false)>>
+
+// string-int null equality 
+<<call assert("" == 0)>>
+
+// string-bool null equality
+<<call assert("" == false)>>
+
+// int-string null equality
+<<call assert(0 == "")>>
+
+// bool-string null equality
+<<call assert(false == "")>>
+
 // string case sensitivity
 <<call assert("hi" != "HI")>>
 
 // multiple-type concatenation
 <<call assert(1+1+"hi" == "2hi")>>
+
+// multiple-type concatenation
+<<call assert(false+"hi" == "0hi")>>
 
 // gt test
 <<call assert(3 gt 2)>>
