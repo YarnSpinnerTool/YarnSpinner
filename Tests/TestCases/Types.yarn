@@ -5,6 +5,12 @@ title: Start
 // string equality
 <<call assert("test" == "test")>>
 
+// string null inequality
+<<call assert("" == "test")>>
+
+// string null equality
+<<call assert("" == "")>>
+
 // string-number inequality
 <<call assert("test" != 1)>>
 
