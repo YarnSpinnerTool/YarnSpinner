@@ -1,16 +1,19 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Yarn.Compiler.Upgrader
 {
     internal class LanguageUpgraderV1 : ILanguageUpgrader
     {
-        public ICollection<TextReplacement> Upgrade(string contents, string fileName)
+     
+        public UpgradeResult Upgrade(UpgradeJob upgradeJob)
         {
-            var replacements = new List<TextReplacement>();
+            var results = new[] {
+                new FormatFunctionUpgrader().Upgrade(upgradeJob),
+                new VariableDeclarationUpgrader().Upgrade(upgradeJob),
+            };
 
-            replacements.AddRange(new FormatFunctionUpgrader().Upgrade(contents, fileName));
-
-            return replacements;
+            return results.Aggregate((result, next) => UpgradeResult.Merge(result, next));
         }
     }
 }

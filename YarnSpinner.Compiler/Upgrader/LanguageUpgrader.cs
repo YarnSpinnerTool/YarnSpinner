@@ -7,6 +7,141 @@ using System.Runtime.Serialization;
 
 namespace Yarn.Compiler.Upgrader
 {
+
+    public struct UpgradeJob {
+        public List<Yarn.Compiler.CompilationJob.File> Files;
+
+        public UpgradeType UpgradeType;
+
+        public UpgradeJob(UpgradeType upgradeType, IEnumerable<CompilationJob.File> files)
+        {
+            this.Files = new List<CompilationJob.File>(files);
+            this.UpgradeType = upgradeType;
+        }
+    }
+
+    public struct UpgradeResult {
+        public List<OutputFile> Files;
+        
+        internal static UpgradeResult Merge(UpgradeResult a, UpgradeResult b) {
+            
+            var filePairs = a.Files
+                .Join(
+                b.Files,
+                first => first.Path,
+                second => second.Path,
+                (first, second) => new { FileA = first, FileB = second });
+
+            var onlyResultA = a.Files.Where(f1 => b.Files.Select(f2 => f2.Path).Contains(f1.Path) == false);
+            var onlyResultB = b.Files.Where(f1 => a.Files.Select(f2 => f2.Path).Contains(f1.Path) == false);
+
+            var mergedFiles = filePairs.Select(pair => OutputFile.Merge(pair.FileA, pair.FileB));
+
+            var allFiles = onlyResultA.Concat(onlyResultB).Concat(mergedFiles);
+
+            return new UpgradeResult() {
+                Files = allFiles.ToList()
+            };
+        }
+
+        public struct OutputFile {
+            public string Path;
+            public IEnumerable<TextReplacement> Replacements;
+            public string OriginalSource;
+            public string UpgradedSource;
+            public IEnumerable<Annotation> Annotations;
+
+            /// <summary>
+            /// Indicates whether this <see cref="OutputFile"/> represents
+            /// a new file to be created. If this is <see
+            /// langword="true"/>, <see cref="OriginalSource"/> will be the
+            /// empty string, and <see cref="Replacements"/> will be empty.
+            /// </summary>
+            public bool IsNewFile;
+
+            public struct Annotation {
+                public Type AnnotationType;
+
+                public string Description;
+
+                public Annotation(Type annotationType, string description)
+                : this()
+                {
+                    this.AnnotationType = annotationType;
+                    this.Description = description;
+                }
+
+                public enum Type {
+                    Information,
+                    Warning,
+                    Error
+                }
+            }
+
+            
+
+            internal OutputFile(
+                string path,
+                IEnumerable<TextReplacement> replacements,
+                string originalSource,
+                IEnumerable<Annotation> annotations = null)
+            {
+                this.Path = path;
+                this.Replacements = replacements;
+                this.OriginalSource = originalSource;
+                this.UpgradedSource = LanguageUpgrader.ApplyReplacements(originalSource, replacements);
+                this.IsNewFile = false;
+                this.Annotations = annotations ?? new List<Annotation>();
+            }
+
+            internal OutputFile(
+                string path,
+                string newContent,
+                IEnumerable<Annotation> annotations = null)
+            {
+                this.Path = path;
+                this.UpgradedSource = newContent;
+                this.OriginalSource = string.Empty;
+                this.Replacements = new List<TextReplacement>();
+                this.IsNewFile = true;
+                this.Annotations = annotations ?? new List<Annotation>();
+            }
+
+            /// <summary>
+            /// Merges two <see cref="OutputFile"/> objects, producing a merged result.
+            /// </summary>
+            /// <param name="a">The first file.</param>
+            /// <param name="b">The second file.</param>
+            /// <returns>The merged result.</returns>
+            internal static OutputFile Merge(OutputFile a, OutputFile b)
+            {
+                if (a.Path != b.Path)
+                {
+                    throw new ArgumentException($"Cannot merge {a.Path} and {b.Path}: {nameof(Path)} fields differ");
+                }
+
+                if (a.OriginalSource != b.OriginalSource)
+                {
+                    throw new ArgumentException($"Cannot merge {a.Path} and {b.Path}: {nameof(OriginalSource)} fields differ");
+                }
+
+                if (a.IsNewFile || b.IsNewFile)
+                {
+                    throw new ArgumentException($"Cannot merge {a.Path} and {b.Path}: one or both of them are new files");
+                }
+
+                // Combine and sort the list of replacements
+                var mergedReplacements = a.Replacements
+                    .Concat(b.Replacements)
+                    .OrderBy(r => r.StartLine)
+                    .ThenBy(r => r.Start);
+
+                // Generate a new output file from the result
+                return new OutputFile(a.Path, mergedReplacements, a.OriginalSource);
+            }
+        }
+    }
+
     /// <summary>
     /// Contains information describing a replacement to make in a string.
     /// </summary>
@@ -63,36 +198,22 @@ namespace Yarn.Compiler.Upgrader
         /// another, producing both the fully upgraded text as well as a
         /// collection of replacements.
         /// </summary>
-        /// <param name="originalContents">The Yarn source, in the original
-        /// version of the language. This must be syntactically valid for
-        /// the <paramref name="upgradeType"/> upgrade operation you are
-        /// performing.</param>
-        /// <param name="fileName">The name of the file being
-        /// converted.</param>
-        /// <param name="upgradeType">The type of language conversion to
-        /// perform.</param>
-        /// <param name="replacements">When this method returns, contains a
-        /// collection of <see cref="TextReplacement"/> structs that describe
-        /// the changes made in <paramref
-        /// name="originalContents"/>.</param>
-        /// <returns>The upgraded version of <paramref
-        /// name="originalContents"/>.</returns>
+        /// <param name="upgradeJob">The upgrade job to perform.</param>
         /// <throws cref="ParseException">Thrown when a syntax error exists
         /// in originalText.</throws> <throws
         /// cref="UpgradeException">Thrown when an error occurs during the
         /// upgrade process.</throws>
-        public static string UpgradeScript(string originalContents, string fileName, UpgradeType upgradeType, out IEnumerable<TextReplacement> replacements)
+        /// <returns>An <see cref="UpgradeResult"/> object containing the
+        /// results of the upgrade operation.</returns>
+        public static UpgradeResult Upgrade(UpgradeJob upgradeJob)
         {
-            switch (upgradeType)
+            switch (upgradeJob.UpgradeType)
             {
                 case UpgradeType.Version1to2:
-                    replacements = new LanguageUpgraderV1().Upgrade(originalContents, fileName);
-                    break;
+                    return new LanguageUpgraderV1().Upgrade(upgradeJob);
                 default:
-                    throw new ArgumentException($"Upgrade type {upgradeType} is not supported.");
+                    throw new ArgumentException($"Upgrade type {upgradeJob.UpgradeType} is not supported.");
             }
-
-            return ApplyReplacements(originalContents, replacements);
         }
 
         /// <summary>

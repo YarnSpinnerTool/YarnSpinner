@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using Yarn.Compiler.Upgrader;
 using Yarn.Compiler;
+using System.Linq;
 
 namespace YarnSpinner.Tests
 {
@@ -12,41 +13,77 @@ namespace YarnSpinner.Tests
 
         // Test every file in Tests/TestCases
         [Theory]
-        [MemberData(nameof(FileSources), "Upgrader/V1toV2")]
-        public void TestUpgradingV1toV2(string file)
+        [MemberData(nameof(DirectorySources), "Upgrader/V1toV2")]
+        public void TestUpgradingV1toV2(string directory)
         {
 
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"INFO: Loading file {file}");
+            Console.WriteLine($"INFO: Loading file {directory}");
 
             storage.Clear();
 
-            var originalFilePath = Path.Combine(TestDataPath, file);
-            var upgradedFilePath = Path.ChangeExtension(originalFilePath, ".upgraded.yarn");
-            var testPlanFilePath = Path.ChangeExtension(originalFilePath, ".testplan");
+            var allInputYarnFiles = Directory.EnumerateFiles(directory)
+                .Where(path => path.EndsWith(".yarn"))
+                .Where(path => path.Contains(".upgraded.") == false);
 
-            LoadTestPlan(testPlanFilePath);
+            var expectedOutputFiles = Directory.EnumerateFiles(directory)
+                .Where(path => path.Contains(".upgraded."));
 
-            var originalContents = File.ReadAllText(originalFilePath);
+            var testPlanPath = Directory.EnumerateFiles(directory)
+                .Where(path => path.EndsWith(".testplan"))
+                .FirstOrDefault();
 
-            var fileName = Path.GetFileNameWithoutExtension(originalFilePath);
+            var upgradeJob = new UpgradeJob(
+                UpgradeType.Version1to2,
+                allInputYarnFiles.Select(path => new CompilationJob.File { 
+                    FileName = path, 
+                    Source = File.ReadAllText(path) 
+                }));
+            
+            var upgradeResult = LanguageUpgrader.Upgrade(upgradeJob);
 
-            var upgradedContents = LanguageUpgrader.UpgradeScript(originalContents, fileName, UpgradeType.Version1to2, out var replacements);
+            // The upgrade result should produce as many files as there are
+            // expected output files
+            Assert.Equal(expectedOutputFiles.Count(), upgradeResult.Files.Count());
+            
+            // For each file produced by the upgrade job, its content
+            // should match that of the corresponding expected output
+            foreach (var outputFile in upgradeResult.Files) {
+                string extension = Path.GetExtension(outputFile.Path);
+                var expectedOutputFilePath = Path.ChangeExtension(outputFile.Path, ".upgraded" + extension);
+                
+                Assert.True(File.Exists(expectedOutputFilePath));
 
-            var expectedContents = File.ReadAllText(upgradedFilePath);
+                var expectedOutputFileContents = File.ReadAllText(expectedOutputFilePath);
 
-            // Verify that the upgrade did what we expect
-            Assert.Equal(expectedContents, upgradedContents);
+                Assert.Equal(expectedOutputFileContents, outputFile.UpgradedSource);
+            }
 
-            // Compile this upgraded source
+            // If the test case doesn't contain a test plan file, it's not
+            // expected to compile successfully, so don't do it. Instead,
+            // we'll rely on the fact that the upgraded contents are what
+            // we expected.
+            if (testPlanPath == null) {
+                // Don't compile; just succeed here.
+                return;
+            }
 
-            var result = Compiler.Compile(CompilationJob.CreateFromString(fileName, upgradedContents));
+            // While we're here, correctness-check the upgraded source. (To
+            // be strictly correct, we're using the files on disk, not the
+            // generated source, but we just demonstrated that they're
+            // identical, so that's fine! Saves us having to write them to
+            // a temporary location.)
+
+            var result = Compiler.Compile(CompilationJob.CreateFromFiles(expectedOutputFiles) );
             
             stringTable = result.StringTable;
 
             // Execute the program and verify thats output matches the test
             // plan
             dialogue.SetProgram(result.Program);
+
+            // Load the test plan
+            LoadTestPlan(testPlanPath);            
 
             // If this file contains a Start node, run the test case
             // (otherwise, we're just testing its parsability, which we did

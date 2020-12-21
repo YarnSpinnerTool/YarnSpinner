@@ -1,31 +1,41 @@
-using Antlr4.Runtime;
-using Antlr4.Runtime.Tree;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Yarn.Compiler.Upgrader
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using Antlr4.Runtime;
+    using Antlr4.Runtime.Tree;
+
     internal class FormatFunctionUpgrader : ILanguageUpgrader
     {
-        public ICollection<TextReplacement> Upgrade(string contents, string fileName)
+        public UpgradeResult Upgrade(UpgradeJob upgradeJob)
         {
-            var replacements = new List<TextReplacement>();
+            var outputFiles = new List<UpgradeResult.OutputFile>();
 
-            ICharStream input = CharStreams.fromstring(contents);
-            YarnSpinnerV1Lexer lexer = new YarnSpinnerV1Lexer(input);
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            YarnSpinnerV1Parser parser = new YarnSpinnerV1Parser(tokens);
+            foreach (var file in upgradeJob.Files)
+            {
+                var replacements = new List<TextReplacement>();
 
-            var tree = parser.dialogue();
+                ICharStream input = CharStreams.fromstring(file.Source);
+                YarnSpinnerV1Lexer lexer = new YarnSpinnerV1Lexer(input);
+                CommonTokenStream tokens = new CommonTokenStream(lexer);
+                YarnSpinnerV1Parser parser = new YarnSpinnerV1Parser(tokens);
 
-            var walker = new ParseTreeWalker();
+                var tree = parser.dialogue();
 
-            var formatFunctionListener = new FormatFunctionListener(contents, parser, (replacement) => replacements.Add(replacement));
+                var walker = new ParseTreeWalker();
 
-            walker.Walk(formatFunctionListener, tree);
+                var formatFunctionListener = new FormatFunctionListener(file.Source, parser, (replacement) => replacements.Add(replacement));
 
-            return replacements;
+                walker.Walk(formatFunctionListener, tree);
+
+                outputFiles.Add(new UpgradeResult.OutputFile(file.FileName, replacements, file.Source));
+            }
+
+            return new UpgradeResult
+            {
+                Files = outputFiles,
+            };
         }
 
         private class FormatFunctionListener : YarnSpinnerV1ParserBaseListener
@@ -45,6 +55,7 @@ namespace Yarn.Compiler.Upgrader
             {
                 // V1: [select {$gender} male="male" female="female" other="other"]
                 //  function_name: "select" variable: "$gender" key_value_pair="male="male"..."
+                //
                 // V2: [select value={$gender} male="male" female="female" other="other"/]
                 var formatFunctionType = context.function_name.Text;
                 var variableName = context.variable().GetText();
@@ -61,7 +72,6 @@ namespace Yarn.Compiler.Upgrader
 
                 // '[' and ']' are tokens that wrap this format_function,
                 // so we're just replacing its innards
-
                 var originalLength = context.Stop.StopIndex + 1 - context.Start.StartIndex;
                 var originalStart = context.Start.StartIndex;
                 var originalText = this.contents.Substring(originalStart, originalLength);

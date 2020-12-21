@@ -253,6 +253,19 @@ namespace YarnSpinner.Tests
                         .Select(p => new[] {Path.Combine(directory, Path.GetFileName(p))});
         }
 
+        public static IEnumerable<object[]> DirectorySources(string directoryComponents) {
+            var directory = Path.Combine(directoryComponents.Split('/'));
+
+            var path = Path.Combine(TestDataPath, directory);
+
+            try {
+                return Directory.EnumerateDirectories(path)
+                    .Select(d => new[] {d});
+            } catch (DirectoryNotFoundException) {
+                return new string[] { }.Select(d => new[] {d});
+            }
+        }
+
         // Returns the list of files in a directory. If that directory doesn't
         // exist, returns an empty list.
         static IEnumerable<string> GetFilesInDirectory(string path)

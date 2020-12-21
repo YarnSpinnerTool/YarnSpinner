@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from /Users/desplesda/Work/yarnspinner/YarnSpinner.Compiler/Upgrader/YarnSpinnerV1Parser.g4 by ANTLR 4.8
+// Generated from /Users/desplesda/Work/yarnspinner/YarnSpinner.Compiler/Upgrader/Upgraders/V1toV2/YarnSpinnerV1Parser.g4 by ANTLR 4.8
 
 // Unreachable code detected
 #pragma warning disable 0162
