@@ -4,6 +4,105 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.0.0-beta2] 2021-01-14
+
+### Added
+
+- The `[[Destination]]` and `[[Option|Destination]]` syntax has been removed from the language.
+  - This syntax was inherited from the original Yarn language, which itself inherited it from Twine. 
+  - We removed it for four reasons: 
+    - it conflated jumps and options, which are very different operations, with too-similar syntax; 
+    - the Option-destination syntax for declaring options involved the management of non-obvious state (that is, if an option statement was inside an `if` branch that was never executed, it was not presented, and the runtime needed to keep track of that);
+    - it was not obvious that options accumulated and were only presented at the end of the node;
+    - finally, shortcut options provide a cleaner way to present the same behaviour.
+  - We have added a `<<jump Destination>>` command, which replaces the `[[Destination]]` jump syntax.
+  - No change to the bytecode is made here; these changes only affect the compiler.
+  - Instead of using ``[[Option|Destination]]`` syntax, use shortcut options instead. For example:
+
+```
+// Before
+Kim: You want a bagel?
+[[Yes, please!|GiveBagel]]
+[[No, thanks!|DontWantBagel]]
+
+// After
+Kim: You want a bagel?
+-> Yes, please!
+  <<jump GiveBagel>>
+-> No, thanks!
+  <<jump DontWantBagel>>
+```
+
+- An automatic upgrader has been added that attempts to determine the types of variables in Yarn Spinner 1.0, and generates `<<declare>>` statements for variables.
+  - This upgrader infers the type of a variable based on the values that are assigned to it, and the values of expressions that it participates in.
+  - If the upgrader cannot determine the type of a variable, it generates a declaration of the form `<<declare $variable_name as undefined>>`. The word `undefined` is not a valid type in Yarn Spinner, which means that these declarations will cause an error in compilation (which is a signal to the developer that the script needs to be manually updated.)
+
+ - For example: given the following script:
+
+```   
+<<set $const_string = "foo">>
+<<set $const_number = 2>>
+<<set $const_bool = true>>
+```
+    
+- The upgrader will generate the following variable declarations:
+```
+    <<declare $const_string = "" as string>>
+    <<declare $const_number = 0 as number>>
+    <<declare $const_bool = false as bool>>
+```
+    
+The upgrader is able to make use of type even when it appears later in the program, and is
+able to make inferences about type using indirect information.
+    
+```
+// These variables are participating in expressions that include
+// variables we've derived the type for earlier in this program, so they
+// will be bound to that type
+{$derived_expr_const_string + $const_string}
+{$derived_expr_const_number + $const_number}
+{$derived_expr_const_bool && $const_bool}
+
+// These variables are participating in expressions that include
+// variables that we define a type for later in this program. They will
+// also be bound to that type.
+{$derived_expr_const_string_late + $const_string_late}
+{$derived_expr_const_number_late + $const_number_late}
+{$derived_expr_const_bool_late && $const_bool_late}
+
+<<set $const_string_late = "yes">>
+<<set $const_number_late = 1>>
+<<set $const_bool_late = true>>
+```
+
+- The upgrader will also make in-line changes to any if or elseif statements where the expression is determined to use a number rather than a bool will be rewritten so that the expression evaluates to a bool:
+
+``` 
+// Define some variables whose type is known before the expressions are
+// hit
+<<set $some_num_var = 1>>
+<<set $some_other_num_var = 1>>
+
+// This will be converted to a bool expression
+<<if $some_num_var>>
+<<elseif $some_other_num_var>>
+<<endif>>
+```
+
+Will be rewritten to:
+
+```
+<<if $some_num_var != 0>>
+<<elseif $some_other_num_var != 0>>
+<<endif>>
+```
+
+### Changed
+
+- The internal structure of the LanguageUpgrader system has been updated to make it easier to add future upgrade passes.
+
+### Removed
+
 ## [v2.0.0-beta1] 2020-10-20
 
 ### Added
