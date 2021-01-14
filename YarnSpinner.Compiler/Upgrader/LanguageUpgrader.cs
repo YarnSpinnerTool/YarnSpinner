@@ -8,7 +8,8 @@ using System.Runtime.Serialization;
 namespace Yarn.Compiler.Upgrader
 {
 
-    public struct UpgradeJob {
+    public struct UpgradeJob
+    {
         public List<Yarn.Compiler.CompilationJob.File> Files;
 
         public UpgradeType UpgradeType;
@@ -20,11 +21,12 @@ namespace Yarn.Compiler.Upgrader
         }
     }
 
-    public struct UpgradeResult {
+    public struct UpgradeResult
+    {
         public List<OutputFile> Files;
-        
-        internal static UpgradeResult Merge(UpgradeResult a, UpgradeResult b) {
-            
+
+        internal static UpgradeResult Merge(UpgradeResult a, UpgradeResult b)
+        {
             var filePairs = a.Files
                 .Join(
                 b.Files,
@@ -39,12 +41,14 @@ namespace Yarn.Compiler.Upgrader
 
             var allFiles = onlyResultA.Concat(onlyResultB).Concat(mergedFiles);
 
-            return new UpgradeResult() {
-                Files = allFiles.ToList()
+            return new UpgradeResult()
+            {
+                Files = allFiles.ToList(),
             };
         }
 
-        public struct OutputFile {
+        public struct OutputFile
+        {
             public string Path;
             public IEnumerable<TextReplacement> Replacements;
             public string OriginalSource;
@@ -59,7 +63,8 @@ namespace Yarn.Compiler.Upgrader
             /// </summary>
             public bool IsNewFile;
 
-            public struct Annotation {
+            public struct Annotation
+            {
                 public Type AnnotationType;
 
                 public string Description;
@@ -71,14 +76,13 @@ namespace Yarn.Compiler.Upgrader
                     this.Description = description;
                 }
 
-                public enum Type {
+                public enum Type
+                {
                     Information,
                     Warning,
                     Error
                 }
             }
-
-            
 
             internal OutputFile(
                 string path,
@@ -108,7 +112,8 @@ namespace Yarn.Compiler.Upgrader
             }
 
             /// <summary>
-            /// Merges two <see cref="OutputFile"/> objects, producing a merged result.
+            /// Merges two <see cref="OutputFile"/> objects, producing a
+            /// merged result.
             /// </summary>
             /// <param name="a">The first file.</param>
             /// <param name="b">The second file.</param>
