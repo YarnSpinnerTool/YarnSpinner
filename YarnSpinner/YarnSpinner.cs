@@ -130,8 +130,9 @@ namespace Yarn {
         = new pbc::MapField<string, global::Yarn.Operand>.Codec(pb::FieldCodec.ForString(10, ""), pb::FieldCodec.ForMessage(18, global::Yarn.Operand.Parser), 26);
     private readonly pbc::MapField<string, global::Yarn.Operand> initialValues_ = new pbc::MapField<string, global::Yarn.Operand>();
     /// <summary>
-    /// The collection of initial values for variables that were defined in
-    /// this program's source
+    /// The collection of initial values for variables; if a PUSH_VARIABLE
+    /// instruction is run, and the value is not found in the storage, this
+    /// value will be used
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::MapField<string, global::Yarn.Operand> InitialValues {
@@ -664,7 +665,13 @@ namespace Yarn {
         [pbr::OriginalName("RUN_COMMAND")] RunCommand = 3,
         /// <summary>
         /// Adds an entry to the option list (see ShowOptions).
-        /// opA = string: string ID for option to add
+        /// - opA = string: string ID for option to add
+        /// - opB = string: destination to go to if this option is selected
+        /// - opC = number: number of expressions on the stack to insert
+        ///   into the line
+        /// - opD = bool: whether the option has a condition on it (in which
+        ///   case a value should be popped off the stack and used to signal
+        ///   the game that the option should be not available)
         /// </summary>
         [pbr::OriginalName("ADD_OPTION")] AddOption = 4,
         /// <summary>
@@ -706,6 +713,9 @@ namespace Yarn {
         /// </summary>
         [pbr::OriginalName("POP")] Pop = 11,
         /// <summary>
+        /// Calls a function in the client. Pops as many arguments as the
+        /// client indicates the function receives, and the result (if any)
+        /// is pushed to the stack.		
         /// opA = string: name of the function
         /// </summary>
         [pbr::OriginalName("CALL_FUNC")] CallFunc = 12,
@@ -726,7 +736,8 @@ namespace Yarn {
         /// </summary>
         [pbr::OriginalName("STOP")] Stop = 15,
         /// <summary>
-        /// Run the node whose name is at the top of the stack.
+        /// Pops a string off the top of the stack, and runs the node with
+        /// that name.
         /// No operands.
         /// </summary>
         [pbr::OriginalName("RUN_NODE")] RunNode = 16,

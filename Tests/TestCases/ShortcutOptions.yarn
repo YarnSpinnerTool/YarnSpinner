@@ -2,8 +2,8 @@ title: Start
 ---
 // Testing options
 
-// Expect 2 options (the second one in the following group of three
-// will not be run) and select the first one
+// Expect 3 options (the second one in the following group of three will be
+// marked as disabled) and select the first one
 
 <<declare $selected = 0>>
 

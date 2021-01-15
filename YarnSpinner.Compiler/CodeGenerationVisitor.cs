@@ -318,21 +318,17 @@ namespace Yarn.Compiler
                 labels.Add(optionDestinationLabel);
 
                 // This line statement may have a condition on it. If it
-                // does, emit code that evaluates the condition, and skips
-                // over the code that prepares and adds the option.
-                string endOfClauseLabel = null;
+                // does, emit code that evaluates the condition, and add a
+                // flag on the 'Add Option' instruction that indicates that
+                // a condition exists.
+
+                bool hasLineCondition = false;
                 if (shortcut.line_statement().line_condition() != null)
                 {
-                    // Register the label we'll jump to if the condition
-                    // fails. We'll add it later.
-                    endOfClauseLabel = compiler.RegisterLabel("conditional_" + optionCount);
-
-                    // Evaluate the condition, and jump to the end of
-                    // clause if it evaluates to false.
-
+                    // Evaluate the condition, and leave it on the stack
                     Visit(shortcut.line_statement().line_condition().expression());
 
-                    compiler.Emit(OpCode.JumpIfFalse, new Operand(endOfClauseLabel));
+                    hasLineCondition = true;
                 }
 
                 // We can now prepare and add the option.
@@ -349,18 +345,12 @@ namespace Yarn.Compiler
                 }
 
                 // And add this option to the list.
-                compiler.Emit(OpCode.AddOption, new Operand(lineID), new Operand(optionDestinationLabel), new Operand(expressionCount));
-
-                // If we had a line condition, now's the time to generate
-                // the label that we'd jump to if its condition is false.
-                if (shortcut.line_statement().line_condition() != null)
-                {
-                    compiler.CurrentNode.Labels.Add(endOfClauseLabel, compiler.CurrentNode.Instructions.Count);
-
-                    // JumpIfFalse doesn't change the stack, so we need to
-                    // tidy up            
-                    compiler.Emit(OpCode.Pop);
-                }
+                compiler.Emit(
+                    OpCode.AddOption,
+                    new Operand(lineID),
+                    new Operand(optionDestinationLabel),
+                    new Operand(expressionCount),
+                    new Operand(hasLineCondition));
 
                 optionCount++;
             }

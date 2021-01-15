@@ -125,19 +125,19 @@ namespace Yarn
 
         internal class State {
 
-            /// The name of the node that we're currently in
+            /// <summary>The name of the node that we're currently in.</summary>
             public string currentNodeName;
 
-            /// The instruction number in the current node
+            /// <summary>The instruction number in the current node.</summary>
             public int programCounter = 0;
 
-            /// List of options, where each option = <Line, destination node>
-            public List<KeyValuePair<Line,string>> currentOptions = new List<KeyValuePair<Line, string>>();
+            /// <summary>List of options, where each option = (Line, destination node, enabled flag).</summary>
+            public List<(Line line, string destination, bool enabled)> currentOptions = new List<(Line line, string destination, bool enabled)>();
 
-            /// The value stack
+            /// <summary>The value stack.</summary>
             private Stack<Value> stack = new Stack<Value>();
 
-            /// Methods for working with the stack
+            /// <summary>Pushes a value onto the stack.</summary>
             public void PushValue(object o) {
                 if( o is Value ) {
                     stack.Push(o as Value);
@@ -146,17 +146,17 @@ namespace Yarn
                 }
             }
 
-            /// Pop a value from the stack
+            /// <summary>Pops a value from the stack.</summary>
             public Value PopValue() {
                 return stack.Pop ();
             }
 
-            /// Peek at a value from the stack
+            /// <summary>Peeks at a value from the stack.</summary>
             public Value PeekValue() {
                 return stack.Peek ();
             }
 
-            /// Clear the stack
+            /// <summary>Clears the stack.</summary>
             public void ClearStack() {
                 stack.Clear ();
             }
@@ -314,7 +314,7 @@ namespace Yarn
 
             // We now know what number option was selected; push the
             // corresponding node name to the stack
-            var destinationNode = state.currentOptions[selectedOptionID].Value;
+            var destinationNode = state.currentOptions[selectedOptionID].destination;
             state.PushValue(destinationNode);
 
             // We no longer need the accumulated list of options; clear it
@@ -794,12 +794,33 @@ namespace Yarn
                             line.Substitutions = strings;
                         }
 
+                        // Indicates whether the VM believes that the
+                        // option should be shown to the user, based on any
+                        // conditions that were attached to the option.
+                        var lineConditionPassed = true;
+
+                        if (i.Operands.Count > 3) {
+                            // The fourth operand is a bool that indicates
+                            // whether this option had a condition or not.
+                            // If it does, then a bool value will exist on
+                            // the stack indiciating whether the condition
+                            // passed or not. We pass that information to
+                            // the game.
+
+                            var hasLineCondition = i.Operands[3].BoolValue;
+
+                            if (hasLineCondition)
+                            {
+                                // This option has a condition. Get it from
+                                // the stack.
+                                lineConditionPassed = state.PopValue().ConvertTo<bool>();
+                            }
+                        }
+
                         state.currentOptions.Add(
-                            new KeyValuePair<Line, string>(
-                                line,  // line to show
-                                i.Operands[1].StringValue  // node name
-                            )
-                        );
+                            (line, // line to show
+                            destination: i.Operands[1].StringValue, // node name
+                            enabled: lineConditionPassed)); // whether the line condition passed
 
                         break;
                     }
@@ -822,7 +843,7 @@ namespace Yarn
                         for (int optionIndex = 0; optionIndex < state.currentOptions.Count; optionIndex++)
                         {
                             var option = state.currentOptions[optionIndex];
-                            optionChoices.Add(new OptionSet.Option(option.Key, optionIndex, option.Value));
+                            optionChoices.Add(new OptionSet.Option(option.line, optionIndex, option.destination, option.enabled));
                         }
 
                         // We can't continue until our client tell us which
@@ -832,7 +853,6 @@ namespace Yarn
                         // Pass the options set to the client, as well as a
                         // delegate for them to call when the user has made
                         // a selection
-
                         OptionsHandler(new OptionSet(optionChoices.ToArray()));
 
                         break;

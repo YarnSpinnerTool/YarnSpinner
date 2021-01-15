@@ -94,11 +94,12 @@ namespace Yarn
         /// </summary>
         public struct Option
         {
-            internal Option(Line line, int id, string destinationNode)
+            internal Option(Line line, int id, string destinationNode, bool isAvailable)
             {
                 Line = line;
                 ID = id;
                 DestinationNode = destinationNode;
+                IsAvailable = isAvailable;
             }
 
             /// <summary>
@@ -131,6 +132,24 @@ namespace Yarn
             /// shortcut option.
             /// </remarks>
             public string DestinationNode { get; private set; }
+
+            /// <summary>
+            /// Gets a value indicating whether the player should be
+            /// permitted to select this option.
+            /// </summary>
+            /// <remarks>
+            /// If this value is <see langword="false"/>, this option had a
+            /// line condition on it that failed. The option will still be
+            /// delivered to the game, but, depending on the needs of the
+            /// game, the game may decide to not allow the player to select
+            /// it, or not offer it to the player at all.
+            ///
+            /// This is intended for situations where games wish to show
+            /// options that the player _could_ have taken, if some other
+            /// condition had been met (e.g. having enough "charisma"
+            /// points).
+            /// </remarks>
+            public bool IsAvailable { get; private set; }
         }
 
         /// <summary>

@@ -1,9 +1,11 @@
 option: Option 1
+option: Option 2 [disabled]
 option: Option 3
 select: 1
 line: This line should appear.
 option: Sub Option 1
 option: Sub Option 2
+option: Sub Option 3 [disabled]
 select: 1
 line: This line should also appear.
 

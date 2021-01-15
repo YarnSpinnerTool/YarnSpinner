@@ -133,7 +133,9 @@ namespace YarnSpinner.Tests
 
                     // Assert that the list of options we were given is
                     // identical to the list of options we expect
-                    var actualOptionList = optionSet.Options.Select(o => GetComposedTextForLine(o.Line)).ToList();
+                    var actualOptionList = optionSet.Options
+                        .Select(o => (GetComposedTextForLine(o.Line), o.IsAvailable))
+                        .ToList();
                     Assert.Equal(testPlan.nextExpectedOptions, actualOptionList);
 
                     var expectedOptionCount = testPlan.nextExpectedOptions.Count();

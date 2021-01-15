@@ -35,6 +35,8 @@ namespace YarnSpinner.Tests
 
             public string stringValue;
             public int intValue;
+
+            public bool expectOptionEnabled = true;
             
             public Step(string s) {
                 intValue = -1;
@@ -62,6 +64,14 @@ namespace YarnSpinner.Tests
                                 // but don't care what its text is" -
                                 // represent this as the null value
                                 stringValue = null; 
+                            }
+
+                            // Options whose text ends with " [disabled]"
+                            // are expected to be present, but have their
+                            // 'allowed' flag set to false
+                            if (type == Type.Option && stringValue.EndsWith(" [disabled]")) {
+                                expectOptionEnabled = false;
+                                stringValue = stringValue.Replace(" [disabled]", "");
                             }
                             break;
                         
@@ -148,7 +158,7 @@ namespace YarnSpinner.Tests
         private int currentTestPlanStep = 0;
 
         public TestPlan.Step.Type nextExpectedType;
-        public List<string> nextExpectedOptions = new List<string>();
+        public List<(string line, bool enabled)> nextExpectedOptions = new List<(string line, bool enabled)>();
         public int nextOptionToSelect = -1;
         public string nextExpectedValue = null;
 
@@ -198,7 +208,7 @@ namespace YarnSpinner.Tests
                         nextOptionToSelect = currentStep.intValue;
                         goto done;
                     case Step.Type.Option:
-                        nextExpectedOptions.Add(currentStep.stringValue);
+                        nextExpectedOptions.Add((currentStep.stringValue, currentStep.expectOptionEnabled));
                         continue;                                           
                 }
             } 

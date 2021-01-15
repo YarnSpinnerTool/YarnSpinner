@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+### Changed
+
+- Made line conditions control the `IsAvailable` flag on options that are sent to the game. 
+- This change was made in order to allow games to conditionally present, but disallow, options that the player can't choose. For example, consider the following script:
+
+```
+TD-110: Let me see your identification.
+-> Of course... um totally not General Kenobi and the son of Darth Vader.
+    Luke: Wait, what?!
+    TD-110: Promotion Time!
+-> You don't need to see his identification. <<if $learnt_mind_trick is true>>
+    TD-110: We don't need to see his identification.
+```
+
+- If the variable `$learnt_mind_trick` is false, a game may want to show the option but not allow the player to select it (i.e., show that this option could have been chosen if they'd learned how to do a mind trick.)
+- In previous versions of Yarn Spinner, if a line condition failed, the entire option was not delivered to the game. With this change, all options are delivered, and the `OptionSet.Option.IsAvailable` variable contains `false` if the condition was not met, and `true` if it was (or was not present.)
+- It's entirely up to the game to decide what to do with this information. To re-create the behaviour from previous Yarn Spinner versions, simply don't show any options whose `IsAvailable` value is `false`.
+
+### Removed
+
 ## [v2.0.0-beta2] 2021-01-14
 
 ### Added
