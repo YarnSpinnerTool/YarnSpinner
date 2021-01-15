@@ -21,8 +21,3 @@ option: one
 option: one
 select: 1
 
-option: other
-option: one
-option: one
-select: 1
-

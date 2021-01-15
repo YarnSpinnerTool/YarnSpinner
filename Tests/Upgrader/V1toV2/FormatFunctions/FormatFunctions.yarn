@@ -47,19 +47,10 @@ Ordinal: [ordinal {$ord} one="one" two="two" few="few" many="many" other="other"
 <<set $race_position = 3>>
 Mae: Wow, I came [ordinal {$race_position} one="%st" two="%nd" few="%rd" other="%th"]!
 
-// Shortcut options
+// Options
 
 -> [select {$gender} male="male" female="female" other="other"]
 -> [plural {$num} one="one" few="few" many="many" other="other"]
 -> [ordinal {$ord} one="one" two="two" few="few" many="many" other="other"]
 
-// Regular options
-[[[select {$gender} male="male" female="female" other="other"]|Destination]]
-[[[plural {$num} one="one" few="few" many="many" other="other"]|Destination]]
-[[[ordinal {$ord} one="one" few="few" many="many" other="other"]|Destination]]
-
-===
-title: Destination
----
-// no-op
 ===
