@@ -2,22 +2,24 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.IO;
-    using System.Text;
     using System.Text.RegularExpressions;
     using Antlr4.Runtime;
-    using Antlr4.Runtime.Misc;
     using Antlr4.Runtime.Tree;
     using static Yarn.Instruction.Types;
 
-    internal class StringTableManager {
+    internal class StringTableManager
+    {
         internal Dictionary<string, StringInfo> StringTable = new Dictionary<string, StringInfo>();
 
-        internal bool ContainsImplicitStringTags {
-            get {
-                foreach (var item in StringTable) {
-                    if (item.Value.isImplicitTag) {
+        internal bool ContainsImplicitStringTags
+        {
+            get
+            {
+                foreach (var item in StringTable)
+                {
+                    if (item.Value.isImplicitTag)
+                    {
                         return true;
                     }
                 }
@@ -39,9 +41,10 @@
         /// the string table.</param>
         /// <returns>The string ID for the newly registered
         /// string.</returns>
-        /// <remarks>If `lineID` is `null`, a line ID will be generated
-        /// from <see cref="fileName"/>, the `nodeName`, and <see
-        /// cref="stringCount"/>.
+        /// <remarks>If <paramref name="lineID"/> is <see
+        /// langword="null"/>, a line ID will be generated from <paramref
+        /// name="fileName"/>, <paramref name="nodeName"/>, and the number
+        /// of elements in <see cref="StringTable"/>.</remarks>
         internal string RegisterString(string text, string fileName, string nodeName, string lineID, int lineNumber, string[] tags)
         {
             string lineIDUsed;
@@ -72,7 +75,8 @@
 
         internal void Add(IDictionary<string, StringInfo> otherStringTable)
         {
-            foreach (var entry in otherStringTable) {
+            foreach (var entry in otherStringTable)
+            {
                 StringTable.Add(entry.Key, entry.Value);
             }
         }
@@ -333,6 +337,7 @@
             private Yarn.Type type;
 
             public string Name { get => name; internal set => name = value; }
+
             public Yarn.Type Type { get => type; internal set => type = value; }
 
             // override object.Equals
@@ -543,11 +548,14 @@
     public struct CompilationResult
     {
         public Program Program { get; internal set; }
+
         public IDictionary<string, StringInfo> StringTable { get; internal set; }
+
         public IEnumerable<Declaration> Declarations { get; internal set; }
+
         public bool ContainsImplicitStringTags { get; internal set; }
 
-        public Dictionary<string, IEnumerable<string>> FileTags {get;internal set;}
+        public Dictionary<string, IEnumerable<string>> FileTags { get; internal set; }
 
         internal static CompilationResult CombineCompilationResults(IEnumerable<CompilationResult> results, StringTableManager stringTableManager)
         {
@@ -566,12 +574,14 @@
                     declarations.AddRange(result.Declarations);
                 }
 
-                if (result.FileTags != null) {
-                    foreach (var kvp in result.FileTags) {
+                if (result.FileTags != null)
+                {
+                    foreach (var kvp in result.FileTags)
+                    {
                         tags.Add(kvp.Key, kvp.Value);
                     }
                 }
-                
+
             }
 
             return new CompilationResult
@@ -670,8 +680,7 @@
 
             // First pass: parse all files, generate their syntax trees,
             // and figure out what variables they've declared
-
-            var stringTableManager = new  StringTableManager();
+            var stringTableManager = new StringTableManager();
 
             foreach (var file in compilationJob.Files)
             {
@@ -694,8 +703,9 @@
             }
 
             var fileTags = new Dictionary<string, IEnumerable<string>>();
-            
-            foreach (var parsedFile in compiledTrees) {
+
+            foreach (var parsedFile in compiledTrees)
+            {
                 GetDeclarations(parsedFile.name, parsedFile.tree, knownVariableDeclarations, out var newDeclarations, out var newFileTags);
 
                 derivedVariableDeclarations.AddRange(newDeclarations);
@@ -738,7 +748,8 @@
 
                 Operand value;
 
-                if (declaration.DeclarationType == Declaration.Type.Variable && declaration.defaultValue == null) {
+                if (declaration.DeclarationType == Declaration.Type.Variable && declaration.defaultValue == null)
+                {
                     throw new NullReferenceException($"Variable declaration {declaration.name} ({declaration.ReturnType}) has a null default value. This is not allowed.");
                 }
 
@@ -777,12 +788,14 @@
         {
             var variableDeclarationVisitor = new DeclarationVisitor(sourceFileName, existingDeclarations);
 
-            try {
+            try
+            {
                 variableDeclarationVisitor.Visit(tree);
-            } catch (TypeException e) {
+            }
+            catch (TypeException e)
+            {
                 throw new TypeException(e.Context, e.InternalMessage, sourceFileName);
             }
-            
 
             // Upon exit, declarations will now contain every variable
             // declaration we found
@@ -798,9 +811,12 @@
             compiler.Library = job.Library;
             compiler.VariableDeclarations = variableDeclarations;
 
-            try {
+            try
+            {
                 compiler.Compile(tree);
-            } catch (TypeException e) {
+            }
+            catch (TypeException e)
+            {
                 throw new TypeException(e.Context, e.InternalMessage, fileName);
             }
 
@@ -831,7 +847,8 @@
             {
                 var method = function.Value.Method;
 
-                if (method.ReturnType == typeof(Value)) {
+                if (method.ReturnType == typeof(Value))
+                {
                     // Functions that return the internal type Values are
                     // operators, and are type checked by
                     // ExpressionTypeVisitor. (Future work: define each
@@ -852,10 +869,11 @@
 
                 foreach (var paramInfo in method.GetParameters())
                 {
-                    if (paramInfo.ParameterType == typeof(Value)) {
+                    if (paramInfo.ParameterType == typeof(Value))
+                    {
                         // Don't type-check this method - it's an operator
                         includeMethod = false;
-                        break; 
+                        break;
                     }
 
                     if (paramInfo.IsOptional)
@@ -882,7 +900,8 @@
                     parameters.Add(parameter);
                 }
 
-                if (includeMethod == false) {
+                if (includeMethod == false)
+                {
                     continue;
                 }
 
@@ -895,7 +914,7 @@
                     SourceFileLine = -1,
                     SourceNodeLine = -1,
                     SourceFileName = Declaration.ExternalDeclaration,
-                    SourceNodeName = null, 
+                    SourceNodeName = null,
                 };
 
                 declarations.Add(declaration);
@@ -1069,6 +1088,7 @@
             CurrentNode = new Node();
             RawTextNode = false;
         }
+
         // have left the current node store it into the program wipe the
         // var and make it ready to go again
         public override void ExitNode(YarnSpinnerParser.NodeContext context)
@@ -1077,7 +1097,6 @@
             CurrentNode = null;
             RawTextNode = false;
         }
-
 
         // have finished with the header so about to enter the node body
         // and all its statements do the initial setup required before
@@ -1119,9 +1138,7 @@
                     // compilation.
                     RawTextNode = true;
                 }
-
             }
-
         }
 
         // have entered the body the header should have finished being
@@ -1161,7 +1178,6 @@
         // AddOptions codes without calling ShowOptions?
         public override void ExitBody(YarnSpinnerParser.BodyContext context)
         {
-        
             // Note: this only works when we know that we don't have
             // AddOptions and then Jump up back into the code to run
             // them. TODO: A better solution would be for the parser to
@@ -1196,7 +1212,6 @@
                 // a node onto the stack, which RunNode handles
                 Emit(CurrentNode, OpCode.RunNode);
             }
-        
         }
     }
 }
