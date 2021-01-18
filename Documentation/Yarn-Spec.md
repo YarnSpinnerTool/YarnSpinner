@@ -16,7 +16,7 @@ Yarn essentially became and was always defined in terms of what Yarn Spinner cou
 
 As Night in the Woods was developed additional features and work was done on Yarn Spinner for the game the set of features and syntax exploded and became difficult to understand or reimplement.
 Post Night in the Woods Yarn Spinner continued as its own thing with version 0.9 being released which was mostly a polish of the version used in Night in the Woods.
-Later version 1.0 of Yarn Spinner, and as such the language, came out with improved syntax and was the first significant release that wasn't tied to Night in the Woods
+Later version 1.0 of Yarn Spinner, and as such the language, came out with improved syntax and was the first significant release that wasn't tied to Night in the Woods.
 Neither Yarn Spinner 0.9 or 1.0 however came with complete specifications of the Yarn language and had a great deal of legacy elements.
 
 A concerted effort was made to clean up the Yarn language in 2020 for Yarn Spinner 2.0 into something hopefully more understandable but also more flexible.
@@ -33,7 +33,7 @@ An *implementing program* is a program that accepts yarn files as inputs and und
 This document does not cover how a yarn file is to be transformed or handled internally by an implementing program.
 
 This document does note when behaviours are *unspecified*.
-The implementing program may choose how to handle any unspecified behaviour, often unspecified behaviours have no good solution and should result in an error to the user.
+The implementing program may choose how to handle any unspecified behaviour, often unspecified behaviours have no good solution and should result in an error.
 An example of unspecified behaviour are required tags on Nodes.
 Only the `Title` tag is required, an implementation may choose to make other tags required or banned.
 
@@ -42,7 +42,7 @@ Only the `Title` tag is required, an implementation may choose to make other tag
 There is one large assumption in this document and about the language itself.
 That is it that it is intended to be embedded into a larger game project.
 
-As such details like how lines are views, how selections are made, how directions get used, or how functions are handled are all assumed to be passed off onto the larger game to handle.
+As such details like how lines are viewed, how selections of options are made, how directions get used, or how functions are handled are all assumed to be passed off onto the larger game to handle.
 This is not technically necessary but does explain what would otherwise be gaps in the language.
 If your project does not have a game to offload certain tasks to these elements will have to be handled by the implementing program itself.
 
@@ -56,6 +56,11 @@ They are presented in italics the first time they are defined.
 
 _Must_ is a hard requirement.
 _Should_ is a recommendation, albeit a strong one.
+
+_Errors_ are mentioned multiple times and represent situations that are unrecoverable.
+Errors are intended to allow the implementing program to let the user or other parts of the game know that an unrecoverable situation has occured.
+The implementing program must abort progress on the Yarn after creating an error.
+The precise handling of errors will be specific to the implementing program but should use whatever error mechanisms exist already, for example Yarn Spinner throws normal C# exceptions for its errors.
 
 Dates, spelling, and numbers are to be in Australian English.
 
@@ -77,9 +82,9 @@ File extension should be `.yarn`.
 The *line* is the common unit that comprises all elements in a yarn file.
 A line is a series of characters terminated by the *new line* symbol.
 The new line symbol should be the `\n` character.
-The new line must be the same throughout the project.
+The new line must be the same throughout the project regardless of the chosen new line symbol.
 
-The following Yarn file contains four lines (in order); one header tag line, one header delimiter line, one body dialogue line, one body delimiter line.
+The following Yarn file contains four lines (in order); one header tag line, one header delimiter lione, one body dialogue line, one body delimiter line.
 ```yarn
 Title:Start
 ---
@@ -92,6 +97,8 @@ This is some text
 *Whitespace* is any non-visible character with a width greater than 0.
 Common whitespace encountered include the space and the tab.
 
+Whitespace for lines of dialogue plays no role but has significant syntactic important for Options.
+
 ### Project
 
 The yarn *project* is all yarn files that are intended to be associated with one another.
@@ -100,9 +107,9 @@ The project is all of these files collected and processed by the implementing pr
 
 ### Comments
 
-A comment is a line that starts with the `\\` symbol.
+A comment is a line that starts with the `//` symbol.
 All text from the start of the comment to the end of the line must be ignored.
-A comment starting in the middle of another line ends that line at the point the `\\` symbol is encountered.
+A comment starting in the middle of another line ends that line at the point the `//` symbol is encountered.
 That line is assumed to have finished at that point as if the comment was not there.
 Comments must not impact the rest of the lines or have any impact on the resulting yarn program.
  
@@ -127,7 +134,7 @@ A node must be comprised of a single header and a single body in that order.
 
 ### Headers
 
-A header is comprised of one or more header tags.
+A *header* is comprised of one or more header tags.
 The header is finished when encountering a line that only contains the *header delimiter* `---`.
 After encountering the header delimiter the body of the node is entered.
 
@@ -137,7 +144,7 @@ A *header tag* is a line broken up into three components, in order; the tag name
 The *tag name* can be any combination of the characters `A` - `Z`, `a` - `z`, `0` - `9`.
 The *tag separator* is the character `:`.
 The *tag text* can be any combination of the characters `A` - `Z`, `a` - `z`, `0` - `9`.
-Header tags are commonly used as node specific metadata but using them in this manner is not required.
+Header tags are commonly used as node specific metadata but using them in this manner is not required, beyond the title tag.
 
 The amount of allowed whitespace between the tag name, the seperator, and the tag text is unspecified.
 An example of a header tag is the title tag: `Title:start`.
@@ -154,7 +161,7 @@ The tag text for the title tag must be unique within the file.
 The tag text for the title tag should be unique within the project.
 
 The behaviour of the program when a title tag's text is not unique across the project is unspecified.
-The program could either flag this as an error and abort, choose which node will be the canonical one with that title, or some other form of name conflict resolution.
+The program should flag this as an error.
 
 ### Body
 
@@ -182,6 +189,7 @@ A hashtag starts with the `#` symbol and contain any text up to the newline or a
 `#lineID:a10be2` is an example of a hashtag.
 Multiple hashtags must be separated by the `,` symbol.
 `#lineID:a10be2, #return` is an example of multiple hashtags on a line.
+`General Kenobi: Why hello there #lineID:a10be2, #return` is an example of a line of dialogue with multiple hashtags.
 
 ### Dialogue Statement
 
@@ -203,13 +211,16 @@ A dialogue statement can contain any characters except for the `#` character.
 `General Kenobi, you are a bold one.` is an example of a raw dialogue.
 
 When resolving ambiguity of statements inside the body the dialogue statement must be considered the lowest priority by the implementing program.
-For example `<<Fred Move Left>>` could be read as a command or a dialogue statement, it is to be considered a command by the program.
+For example `<<Fred Move Left>>` could be read as a command or a dialogue statement, it must be considered a command by the implementing program.
 
-#### White space
+#### Escaping Text
 
-It is normal for dialogue to have leading or trailing white space.
-The handling or trimming of trailing white space in dialogue is unspecified.
-The handling or trimming of leading white space in dialogue is unspecified except in the case of options where it must obey the rules for options.
+There are going to be times in dialogue that the writer will need to use symbols that are reserved.
+To use reserved symbols in dialogue preface any reserved symbol with the escape symbol `\`, this allows the following symbol to escape being understood as a reserved character.
+Any character following the escape must be presented in the dialogue as-is and must not be parsed as a special character.
+As an example `\{$name\}, you are a bold one.` would be presented as `{$name}, you are a bold one.` to the game.
+
+Escaping text must be supported in both normal and interpolated dialogue lines as well as in the dialogue component of options.
 
 ### Commands
 
@@ -217,11 +228,12 @@ Commands are special statements that have no specific output to be shown but are
 
 The possible types of commands are:
 
-- flow control
-- jump
 - directions
+- jump
 - stop
 - set
+- declare
+- flow control
 
 All commands must start with the `<<` symbol and end with the `>>` symbol.
 Additional required command are unspecified.
@@ -249,21 +261,22 @@ The _jump_ command is how a yarn program can move from one node to another.
 The jump has two components: the keyword and destination.
 The _keyword_ is the text `jump` and comes first in the command.
 
-The _destination_ is the name of the node to load.
-The destination may be any text but must map to the `Title` of a node somewhere else in the project.
+The _destination_ is the name of the node to move to.
+The destination may be any text but must map to the `Title` of a node in the project.
 The destination text may be created using the result of an expression, however this must be wrapped inside `{` `}` symbols.
-The expression must resolve to a string value and must be a string that matches the structure of node names.
+The expression must resolve to a string value and must be a string that matches a node title in the project.
 
 The behaviour of an implementing program is unspecified when asked to jump to a destination that doesn't match a title in the project.
+The implementing program should flag this as an error.
 
-Once the jump command has been completed the current node must no longer be used, this means any dialogue, options or commands below the jump are to be ignored.
+Once the jump command has been completed the current node must be exited immediately, this means any dialogue, options or commands below the jump are to be ignored.
 From that point on the destination nodes contents must instead be run.
 
 `<<jump nodeName>>` is an example of a jump command, `<<jump {$chosenMurderer}>>` is an example of a jump command using an expression to determine the destination node.
 
 #### Stop
 
-The _stop_ command is for halting all progress on the story.
+The _stop_ command is for halting all progress on the project.
 Once the stop command is reached all processing on the project must halt, no additional nodes are to be loaded and run, no additional dialogue or commands are to processed.
 The stop command has only one component, the _keyword_ `stop`.
 The stop command should reset any variable or internal state back to their initial states.
@@ -278,7 +291,7 @@ The set command has four components: the keyword, the variable, the operator and
 The _keyword_ is the text `set`.
 The _variable_ is the name of the variable which is to have its value changed.
 The _operator_ must be the text `to`.
-The _expression_ is any expression.
+The _expression_ is any expression, unlike other uses of expressions this one must not be wrapped inside the `{` and `}` symbols.
 
 The following is an example of two set commands:
 ```yarn
@@ -287,7 +300,45 @@ The following is an example of two set commands:
 ```
 
 The set command must follow all the rules for variable naming and expressions.
-The set command must not allow setting a variable to an expression who's value is different from the type of that variable.
+The set command must not allow setting a variable to an expression whose value is different from the type of that variable.
+
+#### Declare
+
+Variables in Yarn should be declared to let the implementing program know the type of values they hold.
+The intent of this is to allow the implementing program to set up memory and to provide guidance as to the usage of a variable directly from the writer.
+The declare command has four components: the keyword, the variable, the operator and the value, and must be presented in that order.
+
+The _keyword_ is the text `declare`.
+The _variable_ is the name of the variable which is to have its value changed.
+The _operator_ must be the text `=`.
+The _expression_ is any expression, unlike other uses of expressions this one must not be wrapped inside the `{` and `}` symbols.
+
+The resulting value of the expression is used determine what type the value has been declared as, so if expression results in a boolean for example then the variable is declared as a boolean.
+
+The following is an example of two declaration commands:
+```yarn
+<<declare $name = "General Kenobi">>
+<<declare $boldness = 1>>
+```
+
+In these examples we have declared two new variables `$name` and `$boldness`.
+The value of the expression is used determine what type the value is to be declared as, so in the above examples `$name` is typed as a string because the expression value of `"General Kenobi"` is a string.
+
+The implementing program must not allow the variable declared to ever have a value set which is not of the declared type.
+If this does occur the implementing program must flag this as an error.
+The handling of encountering variables which have not been declared is unspecified but should generate an error.
+
+##### Explicit Typing
+
+It is assumed that most of the time variable type will be determined implicitly via the initial expression's type the value can explicitely set.
+Syntactically this works identically to the implicit type declaration.
+The type of the expression must match the suported types
+
+- `Number`
+- `Bool`
+- `String`
+
+If additional types are in use by the implementing program the keywords for their explicit definition are unspecified, but they must be consistent across all declarations.
 
 ### Flow control
 
@@ -308,6 +359,20 @@ The order of these commands is always the same and must be followed:
 
 The if and endif must be present, the elseif and else must be optional.
 While each of these commands are their own statement they should be considered to be part of a larger flow control statement which spans multiple lines.
+Each of these, except the `endif`, have an attached block.
+
+The following is an example of flow control, the dialogue line to be shown will depend on the value of `$var`.
+If `$var` is `1`, the line `if-scope` will be presented, if it is `2` then the `elseif-scope` line will be shown.
+If neither of those are the case then the `else-scope` line will be shown.
+```yarn
+<<if $var == 1>>
+    if-scope
+<<elseif $var == 2>>
+    elseif-scope
+<<else>>
+    else-scope
+<<endif>>
+```
 
 #### if
 
@@ -327,6 +392,8 @@ The _keyword_ is the text `elseif`.
 The _expression_ is an expression.
 The expression must resolve to a boolean.
 
+The elseif will run only if the `if` component, and any other `elseif`'s evaluated to false, and if its own expression evaluates to true.
+
 The minimum mumber of required elseif commands must be zero.
 The maximum number of allowed elseif commands is unspecified but should be greater than zero.
 An elseif command must not exist without an if command and must go after the if command.
@@ -339,6 +406,8 @@ The command only has a single component, the keyword `else`.
 There must only be a single else command (if any) per flow control.
 The else command must go after the if and any elseif commands.
 The else must not exist without an if command.
+
+The else's block will run only if the `if` and any `elseif` components all evaluated to false.
 
 The example of the else command is `<<else>>`.
 
@@ -451,9 +520,9 @@ _Expressions_ are mathematical chains of variables, values, functions, expressio
 
 Expressions are not a statement but are a component of various statements and must only be used as part of a statement, they cannot exist in isolation.
 This means if you do want to show the result of an expression it will have to be wrapped inside an interpolated line.
-For example a line that is just `$numberOfCoins + 1` is invalid, but `{$numberOfCoins + 1}` is valid.
+For example a line that is just `$numberOfCoins + 1` is and invalid line despite containing a valid expression, but `{$numberOfCoins + 1}` is valid.
 
-Expressions are mostly used to control the flow of the if statement.
+Expressions are mostly used to control the flow of the if statement, although they are also used as part of set statements, and in interpolated dialogue.
 
 ### Values
 
@@ -461,7 +530,7 @@ A _Value_ is a single concrete form of one of the supported types.
 All expressions, subexpressions, variables and functions, must resolve down into a value before it can be used.
 Examples of values include `1`, `true`, `"General Kenobi"`.
 
-### Types
+### Supported Types
 
 Yarn supports the following types and these must be supported by an implementing program:
 
@@ -469,7 +538,7 @@ Yarn supports the following types and these must be supported by an implementing
 - boolean
 - string
 
-The precision, storage, and form of the number internally is unspecified, however it must support decimals.
+The precision, storage, and form of the number internally by the implementing program is unspecified, however it must support decimals.
 As an example of this in C# the `Decimal`, `Complex`, and `float` formats are valid (though some make more sense than others) but `int` is not.
 Numbers in expressions can be written as either integers or as decimals, but decimal numbers must use the `.` symbol as the decimal seperator of the the number.
 
@@ -480,7 +549,7 @@ Booleans must be capable of representing the boolean logic values of `true` and 
 Booleans must not be exposed as `1` and `0` to expressions even if they are represented this way internally by the implementing program.
 Booleans in expressions must be written as `true` for true and `false` for false.
 
-Additional types supported are unspecified.
+Additional types supported are unspecified but should not be used.
 
 ### Variables
 
@@ -498,15 +567,18 @@ The minimum and maximum length of a variable name is unspecified.
 Variable names must be unique throughout their scope.
 The _scope_ of the variable is what defines for how long a variable exists.
 Once a variable leaves its scope it is no longer valid and implementing programs must not support accessing variables outside of their scope.
-The scope of variables is undefined, however implementing programs should err on the side of the smallest possible scope for a variable.
+The scope of variables is undefined, however implementing programs should err on the side of variables being global in scope.
 
 `$name` is an example of a standard variable name, `$`\``character.name`\` is an example of an arbitrary sybmol variable name.
 
 #### Types
 
-Variables have a type which represents which of the supported type' values it can hold.
+Yarn is a statically typed language, in the context of Yarn this means variables have a type which represents which of the supported type's values it can hold.
 Once a variable has its type determined either by declaration or inference it cannot change.
 The implementing program must not allow variables to hold values of types different from its own.
+
+Due to the nature of elements of Yarn being outside of the control of Yarn, notably functions, its possible for this requirement to be breached due to no fault of the implementing program or the Yarn script.
+However In these circumstances the implementing program must generate an error.
 
 ### Operations
 
@@ -525,7 +597,7 @@ Some of these have multiple operators, these must work identically and exist for
 - multiplication `*`
 - division `\`
 - truncating remainder division (modulo) `%`
-- equality `==` or `eq`
+- equality `==` or `eq` or `is`
 - inequality `!=` or `neq`
 - greater-than `>` or `gt`
 - less-than `<` or `lt`
