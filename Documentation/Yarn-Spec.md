@@ -468,22 +468,24 @@ _Options_ are the means by which Yarn can present dialogue choices to the game a
 Options are comprised of one or more option lines.
 An _option line_ represents a single choice in an option, and are comprised of three parts: the keyword, the dialogue, the conditional in that order.
 
-The _keyword_ is how the implementing program can tell a line is part of an option instead of dialogue and is the symbols `->`.
+The _keyword_ is how the implementing program can tell a line is part of an option instead of dialogue and is the symbol `->`.
 There must be at least one whitespace between the keyword and the next element, the dialogue.
 The _dialogue_ is a normal line of dialogue following all rules associated with that.
 
-The _conditional_ is a command which controls the specifics of the validity of the option.
-The conditional allows for additional data about the option to be bundled along with the line.
-The intent of the conditional is for the game to know which lines are currently valid for selection and which are not without forcing the writer to duplicate options inside of a control flow.
-The conditional's syntax is identical to the if command and follows all rules there, but as it is not part of flow control must not have an accompanying endif or attached block.
-The conditional must be an optional component of the option line.
-
-As the intention of options is to provide choice when options are encountered the implementing program must halt further progress through the node until an option has been selected.
+As the intention of options is to provide choice to the player when options are encountered the implementing program must halt further progress through the node until an option has been selected.
 Each option must be provided in the order they are written in the node.
 The mechanism by which an option line is chosen is unspecified.
 Only a single option line must be chosen.
 
-As the conditional controls the validity of the option for selection this information must be provided by implementing program to the parts of the game that makes the selections.
+#### Conditional
+
+The _conditional_ is a command which provides addtional data about the validity of the option.
+The intent of the conditional is to allow the writer to give the game more information about the option.
+The conditional's syntax is identical to the if command and follows all rules there, but as it is not part of flow control must not have an accompanying endif or attached block.
+The conditional must be an optional component of the option line.
+As the conditional is optional any option line without a conditional must be assumed to be `true`.
+
+The implementing program must process the results of the conditional expression and provide the resulting boolean value to the other parts of the game that makes the selection.
 The implementing program must not restrict the selection of invalid options.
 It is the responsibility of the other components of the game to control how invalid options are to be handled.
 
@@ -505,6 +507,7 @@ These rules are repeated for each option line until a non-option line with the s
 
 Options can be nested inside options.
 Not every option line needs to have blocks.
+The maximum number of supported indentation of options inside a block is unspecified.
 
 ##### Tabs vs Space
 
@@ -513,6 +516,72 @@ Tabs and spaces shouldn't be mixed.
 Should there be a need to convert between them the conversion rate must be the same at all points in the project.
 The rate of conversion between tabs to spaces, and spaces to tabs, is unspecified.
 If there is a need to choose one, tabs should be preferred due to their improved accessibility over spaces.
+
+#### Examples
+
+```
+-> Hi
+-> Hi {$name}
+```
+
+The above is an example of an option with two choices for the player to make.
+The first is a regular lines of dialogue, the second is an interpolated line of dialogue.
+
+```
+-> Hi
+-> Hi Fred <<if 5 > 3>>
+```
+
+The above is an example of an option with two choices for the player to make.
+Both have regular lines of dialogue.
+The second has a conditional component, the validity of the second option line will be `true`.
+
+```
+-> Hi
+    So, are we doing this?
+    Yes, lets.
+-> Hi Fred
+    What's the plan?
+    We're doing it.
+Alright!
+```
+
+The above is an example of an option with two choices and another line of dialogue after the option.
+Both are a regular lines of dialogue and both have an attached block.
+If the first option was selected then the lines to be presented would be as follows:
+```
+So, are we doing this?
+Yes, lets.
+Alright!
+```
+
+```
+-> Hi Fred
+    What's the plan?
+    We're doing it.
+    -> Alright!
+        Yep
+    -> Ok.
+-> Hi
+```
+
+The above is an example of an option with nested options in its block.
+The `Alright` and `Ok` option lines are inside the `Hi Fred` option line's block.
+The `Yep` line would only ever be presented if the `Hi Fred` option was selected and then the `Alright` option was selected after that.
+
+```
+-> Hi
+-> Hi Fred <<if 5 > 3>>
+    what's the plan?
+    We're doing it.
+    -> Alright!
+        Yep
+    -> Ok
+-> Hello {$name} <<if $formality > 2 >>
+-> Hi {$name}
+```
+
+The above is an example of an option with multiple option lines, conditionals, interpolated dialogue, nested options, and blocks.
 
 ## Expressions
 
