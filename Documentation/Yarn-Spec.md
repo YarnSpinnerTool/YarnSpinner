@@ -661,19 +661,19 @@ Most operations are binary operations and have two operands, these go either sid
 The following binary operations and their operator must be supported.
 Some of these have multiple operators, these must work identically and exist for people who prefer to use words instead of symbols:
 
-- addition `+`
-- subtraction `-`
-- multiplication `*`
-- division `\`
-- truncating remainder division (modulo) `%`
-- equality `==` or `eq` or `is`
-- inequality `!=` or `neq`
-- greater-than `>` or `gt`
-- less-than `<` or `lt`
-- great-than-or-equal `>=` or `gte`
-- less-than-or-equal `<=` or `let`
-- boolean OR `||`
-- boolean AND `&&`
+- addition: `+`
+- subtraction: `-`
+- multiplication: `*`
+- division: `/`
+- truncating remainder division (modulo): `%`
+- equality: `==` or `is`
+- inequality: `!=`
+- greater-than: `>`
+- less-than: `<`
+- greater-than-or-equal: `>=`
+- less-than-or-equal: `<=`
+- boolean OR: `||` or `or`
+- boolean AND: `&&` or `and`
 
 The amount of whitespace between operands and operators in binary operations is unspecified.
 
@@ -681,8 +681,8 @@ There are two unary operations that have only a single operand.
 The operator always goes to the left side of the operand and the must be no whitespace between the operator and operand.
 The unary operations are:
 
-- minus `-`
-- boolean NOT `!`
+- minus: `-`
+- boolean NOT: `!`
 
 Parentheses are a special form of operation.
 They are for bundling up elements of an expression into a subexpression.
@@ -696,7 +696,7 @@ The `+` operator when operating on strings is not addition in the mathematical s
 
 The following table shows the compatible types for each binary operation and must be supported:
 
-|          | + | - | * | / | % | == | != | gt | lt | gte | lte | \|\| | && |
+|          | + | - | * | / | % | == | != | >  | <  | >=  | <=  | \|\| | && |
 |----------|---|---|---|---|---|----|----|----|----|-----|-----|------|----|
 | numbers  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ |
 | strings  | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ | ❌ | ❌  | ❌ | ❌ | ❌ |
@@ -720,7 +720,7 @@ This taken to the extreme should mean that `1 + "hello" == "hello + 1` should ev
 
 The following table shows the expected output type of each operation based on its operand type:
 
-|         | +      | -      | *      | /      | %      | ==      | !=      | gt      | lt      | gte     | lte     | \|\|    | &&      | !       | unary minus |
+|         | +      | -      | *      | /      | %      | ==      | !=      | >       | <       | >=      | <=      | \|\|    | &&      | !       | unary minus |
 |---------|--------|--------|--------|--------|--------|---------|---------|---------|---------|---------|---------|---------|---------|---------|-------------|
 | number  | number | number | number | number | number | boolean | boolean | boolean | boolean | boolean | boolean | boolean | boolean |         | number      |
 | string  | string |        |        |        |        | boolean | boolean |         |         |         |         |         |         |         |             |
@@ -730,12 +730,12 @@ The following table shows the expected output type of each operation based on it
 
 The order of operations is as follows:
 
-1. `()`
-1. `!`, `unary minus`
-1. `*`, `/`, `%`
-1. `-`, `+`
-1. `==`, `!=`, `lt`, `gt`, `lte`, `gte`
-1. `||`, `&&`
+1. parentheses (`()`)
+1. boolean NOT (`!`), unary minus (`-`)
+1. multiplication (`*`), division (`/`), truncating remainder division (`%`)
+1. subtraction (`-`), addition (`+`)
+1. equality (`==` or `is`), inequality (`!=`), less-than (`<`), greater-than (`>`), less-than-or-equal (`<=`), greater-than-or-equal (`>=`)
+1. boolean OR (`||` or `or`), boolean AND (`&&` or `and`)
 
 If there are any equal priority operations in an expression they are resolved left to right as encountered in the expression.
 
