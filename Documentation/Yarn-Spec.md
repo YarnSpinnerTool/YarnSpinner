@@ -674,6 +674,7 @@ Some of these have multiple operators, these must work identically and exist for
 - less-than-or-equal: `<=`
 - boolean OR: `||` or `or`
 - boolean AND: `&&` or `and`
+- boolean XOR: `^` or `xor`
 
 The amount of whitespace between operands and operators in binary operations is unspecified.
 
@@ -696,11 +697,11 @@ The `+` operator when operating on strings is not addition in the mathematical s
 
 The following table shows the compatible types for each binary operation and must be supported:
 
-|          | + | - | * | / | % | == | != | >  | <  | >=  | <=  | \|\| | && |
-|----------|---|---|---|---|---|----|----|----|----|-----|-----|------|----|
-| numbers  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ |
-| strings  | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ | ❌ | ❌  | ❌ | ❌ | ❌ |
-| booleans | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ | ❌ | ❌  | ❌ | ✅ | ✅ |
+|          | + | - | * | / | % | == | != | >  | <  | >=  | <=  | \|\| | && | ^ |
+|----------|---|---|---|---|---|----|----|----|----|-----|-----|------|----|---|
+| numbers  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ❌ |
+| strings  | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ | ❌ | ❌  | ❌ | ❌ | ❌ | ❌ |
+| booleans | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ | ❌ | ❌  | ❌ | ✅ | ✅ | ✅ |
 
 The following table shows the compatible types for each unary operation and must be supported:
 
@@ -720,11 +721,11 @@ This taken to the extreme should mean that `1 + "hello" == "hello + 1` should ev
 
 The following table shows the expected output type of each operation based on its operand type:
 
-|         | +      | -      | *      | /      | %      | ==      | !=      | >       | <       | >=      | <=      | \|\|    | &&      | !       | unary minus |
-|---------|--------|--------|--------|--------|--------|---------|---------|---------|---------|---------|---------|---------|---------|---------|-------------|
-| number  | number | number | number | number | number | boolean | boolean | boolean | boolean | boolean | boolean | boolean | boolean |         | number      |
-| string  | string |        |        |        |        | boolean | boolean |         |         |         |         |         |         |         |             |
-| boolean |        |        |        |        |        | boolean | boolean |         |         |         |         | boolean | boolean | boolean |             |
+|         | +      | -      | *      | /      | %      | ==      | !=      | >       | <       | >=      | <=      | \|\|    | &&      | !       | unary minus |    ^    |
+|---------|--------|--------|--------|--------|--------|---------|---------|---------|---------|---------|---------|---------|---------|---------|-------------|---------|
+| number  | number | number | number | number | number | boolean | boolean | boolean | boolean | boolean | boolean | boolean | boolean |         | number      |         |
+| string  | string |        |        |        |        | boolean | boolean |         |         |         |         |         |         |         |             |         |
+| boolean |        |        |        |        |        | boolean | boolean |         |         |         |         | boolean | boolean | boolean |             | boolean |
 
 #### Order of Operations
 
@@ -735,7 +736,7 @@ The order of operations is as follows:
 1. multiplication (`*`), division (`/`), truncating remainder division (`%`)
 1. subtraction (`-`), addition (`+`)
 1. equality (`==` or `is`), inequality (`!=`), less-than (`<`), greater-than (`>`), less-than-or-equal (`<=`), greater-than-or-equal (`>=`)
-1. boolean OR (`||` or `or`), boolean AND (`&&` or `and`)
+1. boolean OR (`||` or `or`), boolean AND (`&&` or `and`), boolean XOR (`^` or `xor`)
 
 If there are any equal priority operations in an expression they are resolved left to right as encountered in the expression.
 
