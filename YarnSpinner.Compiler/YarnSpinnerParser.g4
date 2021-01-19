@@ -44,7 +44,7 @@ line_statement
     ;
 
 line_formatted_text
-    : ( TEXT // a chunk of text to show to the player
+    : ( TEXT+ // a chunk of text to show to the player
       | EXPRESSION_START expression EXPRESSION_END // an expression to evaluate
       )* 
     ;

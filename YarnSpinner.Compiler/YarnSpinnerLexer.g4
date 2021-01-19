@@ -212,6 +212,11 @@ ANY: .  -> type(TEXT), pushMode(TextMode);
 mode TextMode;
 TEXT_NEWLINE: NEWLINE SPACES? {CreateIndentIfNeeded(TEXT_NEWLINE);} -> popMode;
 
+// An escape marker. Skip this token and enter escaped text mode, which 
+// allows escaping characters that would otherwise be syntactically 
+// meaningful.
+TEXT_ESCAPE: '\\' -> skip, pushMode(TextEscapedMode) ;
+
 // The start of a hashtag. The remainder of this line will consist of
 // commands or hashtags, so swap to this mode and then enter hashtag mode.
 
@@ -234,11 +239,14 @@ TEXT: TEXT_FRAG+ ;
 TEXT_FRAG: {
       !(InputStream.LA(1) == '<' && InputStream.LA(2) == '<') // start-of-command marker
     &&!(InputStream.LA(1) == '/' && InputStream.LA(2) == '/') // start of a comment
-    }? ~[\r\n#{] ;
+    }? ~[\r\n#{\\] ;
 
 // TODO: support detecting a comment at the end of a line by looking 
 // ahead and seeing '//', then skipping the rest of the line. 
 // Currently "woo // foo" is parsed as one whole TEXT.
+
+mode TextEscapedMode;
+TEXT_ESCAPED_CHARACTER: [\\<>{}#/] -> type(TEXT), popMode ; 
 
 mode TextCommandOrHashtagMode;
 TEXT_COMMANDHASHTAG_WS: WS -> skip;
