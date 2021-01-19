@@ -84,7 +84,7 @@ A line is a series of characters terminated by the *new line* symbol.
 The new line symbol should be the `\n` character.
 The new line must be the same throughout the project regardless of the chosen new line symbol.
 
-The following Yarn file contains four lines (in order); one header tag line, one header delimiter lione, one body dialogue line, one body delimiter line.
+The following Yarn file contains four lines (in order); one header tag line, one header delimiter line, one body dialogue line, one body delimiter line.
 ```yarn
 Title:Start
 ---
@@ -290,7 +290,7 @@ The set command has four components: the keyword, the variable, the operator and
 
 The _keyword_ is the text `set`.
 The _variable_ is the name of the variable which is to have its value changed.
-The _operator_ must be the text `to`.
+The _operator_ must be the text `to` or `=`.
 The _expression_ is any expression, unlike other uses of expressions this one must not be wrapped inside the `{` and `}` symbols.
 
 The following is an example of two set commands:
@@ -310,7 +310,7 @@ The declare command has four components: the keyword, the variable, the operator
 
 The _keyword_ is the text `declare`.
 The _variable_ is the name of the variable which is to have its value changed.
-The _operator_ must be the text `=`.
+The _operator_ must be the text `=` or `to`.
 The _expression_ is any expression, unlike other uses of expressions this one must not be wrapped inside the `{` and `}` symbols.
 
 The resulting value of the expression is used determine what type the value has been declared as, so if expression results in a boolean for example then the variable is declared as a boolean.
@@ -330,13 +330,17 @@ The handling of encountering variables which have not been declared is unspecifi
 
 ##### Explicit Typing
 
-It is assumed that most of the time variable type will be determined implicitly via the initial expression's type the value can explicitely set.
-Syntactically this works identically to the implicit type declaration.
-The type of the expression must match the suported types
+It is assumed that most of the time a variable's type will be determined implicitly via the initial expression, however the type can also be explicitly set.
+Syntactically this works identically to the implicit type declaration with two additional elements at the end of the command, the `as` keyword and a type.
+The type of the expression must match one of the suported types keywords:
 
-- `Number`
-- `Bool`
-- `String`
+- `Number` for Numbers
+- `Bool` for Booleans
+- `String` for Strings
+
+`<<declare $name = "General Kenobi" as String>>` is an example of an explicitly typed declaration.
+Explicitly typed declarations will most likely be used when getting intial values from functions where the type is undefined but they can be used anywhere.
+The default value's type given in a an explictly typed declaration must match the type, for example `<<declare $name = "General Kenobi" as Number>>` is an invalid declaration because `General Kenobi` isn't a `Number`.
 
 If additional types are in use by the implementing program the keywords for their explicit definition are unspecified, but they must be consistent across all declarations.
 
@@ -629,7 +633,7 @@ Variables can only be used inside of expressions.
 
 All variables must start with the `$` symbol followed immediately by any combination of `a`-`z`, `A` - `Z`, and `0-9`.
 Arbitrary symbol variable names are allowed by wrapping the symbols after the `$` inside backtick symbols \`.
-Any symbols except another backtick are allowed in an arbitrary sybmol variable name.
+Any symbols except another backtick are allowed in an arbitrary symbol variable name.
 This is useful to allow writers to create semantic connections between variables.
 The minimum and maximum length of a variable name is unspecified.
 
