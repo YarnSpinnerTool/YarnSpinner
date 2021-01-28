@@ -15,15 +15,31 @@ Here's a line. It runs before options appear.
 <<endif>>
 
 ===
-title:DestOption1
+title: DestOption1
 ---
 -> Shortcut option 1
     A line
 -> Shortcut option 2
 
-[[DirectJump]]
+[[MixedOptionsAndShortcut]]
 ===
-title:DirectJump
+title: MixedOptionsAndShortcut
 ---
-Final node.
+
+Here's a line. It runs before anything else.
+
+[[Option A|DestOption1]]
+[[Option B]DestOption2]]
+
+-> Shortcut Option 1
+    Shortcut 1
+-> Shortcut Option 2
+    Shortcut 2
+
+[[Option C|DestOption3]]
+[[Option D]End]]
+===
+title: End
+---
+// End of script
 ===

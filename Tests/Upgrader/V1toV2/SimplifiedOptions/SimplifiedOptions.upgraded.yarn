@@ -15,15 +15,34 @@ Here's a line. It runs before options appear.
     <<jump DestOption5>>
 
 ===
-title:DestOption1
+title: DestOption1
 ---
 -> Shortcut option 1
     A line
 -> Shortcut option 2
 
-<<jump DirectJump>>
+<<jump MixedOptionsAndShortcut>>
 ===
-title:DirectJump
+title: MixedOptionsAndShortcut
 ---
-Final node.
+
+Here's a line. It runs before anything else.
+
+-> Shortcut Option 1
+    Shortcut 1
+-> Shortcut Option 2
+    Shortcut 2
+
+-> Option A
+    <<jump DestOption1>>
+-> Option B
+    <<jump DestOption2>>
+-> Option C
+    <<jump DestOption3>>
+-> Option D
+    <<jump End>>
+===
+title: End
+---
+// End of script
 ===
