@@ -261,7 +261,8 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, directory);
 
             try {
-                return Directory.EnumerateDirectories(path)
+                return Directory.GetDirectories(path)
+                    .Select(d => d.Replace(TestDataPath + Path.DirectorySeparatorChar, ""))
                     .Select(d => new[] {d});
             } catch (DirectoryNotFoundException) {
                 return new string[] { }.Select(d => new[] {d});

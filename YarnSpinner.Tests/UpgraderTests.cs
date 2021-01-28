@@ -22,6 +22,8 @@ namespace YarnSpinner.Tests
 
             storage.Clear();
 
+            directory = Path.Combine(TestBase.TestDataPath, directory);
+
             var allInputYarnFiles = Directory.EnumerateFiles(directory)
                 .Where(path => path.EndsWith(".yarn"))
                 .Where(path => path.Contains(".upgraded.") == false);
