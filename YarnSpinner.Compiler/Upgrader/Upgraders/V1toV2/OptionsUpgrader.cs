@@ -88,7 +88,8 @@ namespace Yarn.Compiler.Upgrader
                     // then the replacement text is empty.
                     var needsNewline = optionLink.Context.hashtag().Length > 0;
 
-                    string replacementText = needsNewline ? "\n" : string.Empty;
+                    string replacementText = $@"// Option ""{GetContextTextWithWhitespace(optionLink.Context.option_formatted_text())}"" moved to the end of this node";
+                    replacementText += needsNewline ? "\n" : string.Empty;
 
                     // Create a replacement to remove it
                     var replacement = new TextReplacement
