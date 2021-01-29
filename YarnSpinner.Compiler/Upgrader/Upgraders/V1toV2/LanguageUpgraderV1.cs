@@ -11,6 +11,7 @@ namespace Yarn.Compiler.Upgrader
             var results = new[] {
                 new FormatFunctionUpgrader().Upgrade(upgradeJob),
                 new VariableDeclarationUpgrader().Upgrade(upgradeJob),
+                new OptionsUpgrader().Upgrade(upgradeJob),
             };
 
             return results.Aggregate((result, next) => UpgradeResult.Merge(result, next));
