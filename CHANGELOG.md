@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - The `\` character can be used to write characters that the parser would otherwise use.
   - The following characters can be escaped: `{` `}` `<` `>` `#` `/` `\`
     - The `/` and `<` characters don't usually need to be escaped if they're appearing on their own (they're only meaningful when they appear in pairs), but this allows you to escape things like commands and comments. 
+- Identifiers now support a wider range of characters, including most multilingual letters and numbers, as well as symbols and emoji.
 
 ### Changed
 

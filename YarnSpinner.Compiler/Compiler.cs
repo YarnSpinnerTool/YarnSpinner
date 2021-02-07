@@ -954,9 +954,9 @@
                     tokenStringList.Add($"{token.Line}:{token.Column} {YarnSpinnerLexer.DefaultVocabulary.GetDisplayName(token.Type)} \"{token.Text}\"");
                 }
 
-                throw new ParseException(e.Context, $"{e.InternalMessage}\n\nTokens:\n{string.Join("\n", tokenStringList)}", file.FileName);
+                throw new ParseException(e.Context, $"{e.Message}\n\nTokens:\n{string.Join("\n", tokenStringList)}", file.FileName);
 #else
-                throw new ParseException(e.Context, e.InternalMessage, file.FileName);
+                throw new ParseException(e.Context, e.Message, file.FileName);
 #endif // DEBUG
             }
 
