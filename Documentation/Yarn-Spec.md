@@ -197,9 +197,9 @@ The other components of the statement must end at the hashtag, the hashtag opera
 
 A hashtag starts with the `#` symbol and contain any text up to the newline or another hashtag.
 `#lineID:a10be2` is an example of a hashtag.
-Multiple hashtags must be separated by the `,` symbol.
-`#lineID:a10be2, #return` is an example of multiple hashtags on a line.
-`General Kenobi: Why hello there #lineID:a10be2, #return` is an example of a line of dialogue with multiple hashtags.
+Multiple hashtags can exist on a single line.
+`#lineID:a10be2 #return` is an example of multiple hashtags on a line.
+`General Kenobi: Why hello there #lineID:a10be2 #return` is an example of a line of dialogue with multiple hashtags.
 
 ### Dialogue Statement
 
