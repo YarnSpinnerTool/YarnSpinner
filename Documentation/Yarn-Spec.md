@@ -131,7 +131,7 @@ A Yarn script file is yarn file that contains one or more nodes and zero or more
 _File tags_ are file level metadata that is relevant for all nodes in the file.
 A common use for file tags is for versioning the file.
 File tags must go at the start of a file before any nodes begin.
-File tags must have the `#` symbol at the start of them but are syntactically identical otherwise to the Header Tags of nodes.
+File tags must have the `#` symbol at the start of them and then contain all text up until the end of the line.
 
 ### Nodes
 
