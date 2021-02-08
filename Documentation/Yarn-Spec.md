@@ -113,6 +113,15 @@ A comment starting in the middle of another line ends that line at the point the
 That line is assumed to have finished at that point as if the comment was not there.
 Comments must not impact the rest of the lines or have any impact on the resulting yarn program.
  
+### Identifiers
+
+Throughout various points in this document identifiers are mentioned, the rules for these are shared across all stages of the Yarn project.
+
+An *identifier* is any of the following symbols: an upper or lowercase letter A to Z, an underscore (`_`), a noncombining alphanumeric Unicode character in the Basic Multilingual Plane, or a character outside the Basic Multilingual Plane that isn't in the Private Use Area.
+After the first character digits, a period (`.`), and combining Unicode characters are also allowed.
+But not another `$` symbol.
+The minimum and maximum length of identifiers is unspecified.
+
 ## Yarn Structure
 
 A Yarn script file is yarn file that contains one or more nodes and zero or more file tags.
@@ -141,9 +150,9 @@ After encountering the header delimiter the body of the node is entered.
 #### Header Tags
 
 A *header tag* is a line broken up into three components, in order; the tag name, the separator, and the tag text.
-The *tag name* can be any combination of the characters `A` - `Z`, `a` - `z`, `0` - `9`.
+The *tag name* is an identifier.
 The *tag separator* is the character `:`.
-The *tag text* can be any combination of the characters `A` - `Z`, `a` - `z`, `0` - `9`.
+The *tag text* is all text up until the end of line.
 Header tags are commonly used as node specific metadata but using them in this manner is not required, beyond the title tag.
 
 The amount of allowed whitespace between the tag name, the seperator, and the tag text is unspecified.
@@ -159,6 +168,7 @@ The *title tag* is a specific header tag that uniquely identifies the node.
 The tag name for the title tag must be `Title`.
 The tag text for the title tag must be unique within the file.
 The tag text for the title tag should be unique within the project.
+The tag text must follow the rules of identifiers.
 
 The behaviour of the program when a title tag's text is not unique across the project is unspecified.
 The program should flag this as an error.
@@ -631,18 +641,16 @@ Variables can only be used inside of expressions.
 
 #### Naming and scope
 
-All variables must start with the `$` symbol followed immediately by any combination of `a`-`z`, `A` - `Z`, and `0-9`.
-Arbitrary symbol variable names are allowed by wrapping the symbols after the `$` inside backtick symbols \`.
-Any symbols except another backtick are allowed in an arbitrary symbol variable name.
-This is useful to allow writers to create semantic connections between variables.
-The minimum and maximum length of a variable name is unspecified.
+All variables are a variant on identifiers.
+Variables are an identifier that start with a `$` symbol and otherwise follow all other identifier rules.
+The minimum and maximum length of a variable name is unspecified but must be at least one character after the `$` symbol.
 
 Variable names must be unique throughout their scope.
 The _scope_ of the variable is what defines for how long a variable exists.
 Once a variable leaves its scope it is no longer valid and implementing programs must not support accessing variables outside of their scope.
 The scope of variables is undefined, however implementing programs should err on the side of variables being global in scope.
 
-`$name` is an example of a standard variable name, `$`\``character.name`\` is an example of an arbitrary sybmol variable name.
+`$name` is an example of a variable name, `$𐃩` is another example of a variable name.
 
 #### Types
 
