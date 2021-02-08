@@ -762,7 +762,7 @@ Functions must return a value.
 
 Functions are comprised of a name, parentheses, and parameters.
 
-The _function name_ can be any combination of the characters `a` - `z`, `A` - `Z`, and `0` - `9`, but must not start with a number.
+The _function name_ is an identifier.
 The minimum and maximum length of function names is unspecified.
 
 The parentheses go after the function name and there must be no whitespace between the opening parentheses `(` and the function name.
