@@ -7,6 +7,8 @@ assignees: ''
 
 ---
 
+<!-- NOTE: This issue template is for proposing changes to the Yarn language itself. If you have a feature request for the Yarn Spinner compiler and tools that doesn't involve changing the Yarn language, use the Feature Request template. -->
+
 ## Introduction
 
 A short description of what the feature is. Try to keep it to a single-paragraph "elevator pitch" so the reader understands what problem this proposal is addressing.
@@ -22,6 +24,10 @@ Describe your solution to the problem. Provide examples and describe how they wo
 ## Detailed design
 
 Describe the design of the solution in detail. If it involves new syntax in the language, show the additions and changes to the Yarn grammar. If it's a new API, show the full API and its documentation comments detailing what it does. The detail in this section should be sufficient for someone who is not one of the proposal authors to be able to reasonably implement the feature.
+
+## Backwards Compatibility
+
+Describe the impact that your solution will have on code written in the most recent shipping version of the language. If your proposed changes mean that existing code would need to be changed in order to work, describe in detail what changes would be required, and describe an algorithm (pseudocode is fine) for detecting where these changes are necessary, and how an automated upgrader would either make changes or flag that a human must make changes.
 
 ## Alternatives considered
 
