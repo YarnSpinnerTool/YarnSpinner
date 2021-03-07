@@ -146,6 +146,16 @@ namespace Yarn.Markup
         /// <returns>The resulting markup information.</returns>
         internal MarkupParseResult ParseMarkup(string input)
         {
+            if (string.IsNullOrEmpty(input))
+            {
+                // We got a null input; return an empty markup parse result
+                return new MarkupParseResult
+                {
+                    Text = string.Empty,
+                    Attributes = new List<MarkupAttribute>(),
+                };
+            }
+
             this.input = input.Normalize();
 
             this.stringReader = new StringReader(this.input);

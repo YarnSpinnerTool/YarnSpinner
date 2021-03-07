@@ -32,6 +32,8 @@ TD-110: Let me see your identification.
 - In previous versions of Yarn Spinner, if a line condition failed, the entire option was not delivered to the game. With this change, all options are delivered, and the `OptionSet.Option.IsAvailable` variable contains `false` if the condition was not met, and `true` if it was (or was not present.)
 - It's entirely up to the game to decide what to do with this information. To re-create the behaviour from previous Yarn Spinner versions, simply don't show any options whose `IsAvailable` value is `false`.
 
+- Fixed a crash in `LineParser` if a null input was provided to it.
+
 ### Removed
 
 ## [v2.0.0-beta2] 2021-01-14
