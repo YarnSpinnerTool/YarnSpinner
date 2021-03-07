@@ -635,9 +635,22 @@ Yarn supports the following types and these must be supported by an implementing
 - boolean
 - string
 
+There are two types of numbers, *positive* and *negative*.
+Positive Numbers are broken up into three components: the *integer part*, the *decimal seperator*, and the *fractional part*.
+
+The integer part consists of one or more characters `0` - `9`.
+The decimal seperator is optional and consists solely of the `.` symbol.
+The fractional part is optional and consists of one or more chracters `0` - `9`.
+
+The decimal seperator must not exists without a fractional part also existing.
+The decimal seperator and fractional part must not exist without an integer part.
+
+Negative numbers follow all the same rules as positive numbers but begin with the *negation indicator* `-`.
+The negation indicator must go hard up against the integer part, there must not be whitespace between them.
+
 The precision, storage, and form of the number internally by the implementing program is unspecified, however it must support decimals.
 As an example of this in C# the `Decimal`, `Complex`, and `float` formats are valid (though some make more sense than others) but `int` is not.
-Numbers in expressions can be written as either integers or as decimals, but decimal numbers must use the `.` symbol as the decimal seperator of the the number.
+If a number is beyond the precision supported by the implementing program, the program must report this as an error.
 
 Strings must be capable of holding utf-8 values as this is what the yarn language is written in, but the internals of this is unspecified provided all valid utf-8 characters are supported.
 Strings in expressions must be encapsulated between `"` and `"` symbols.
@@ -647,6 +660,30 @@ Booleans must not be exposed as `1` and `0` to expressions even if they are repr
 Booleans in expressions must be written as `true` for true and `false` for false.
 
 Additional types supported are unspecified but should not be used.
+
+#### Numeric Examples
+
+The following are examples of valid numbers in Yarn:
+
+```
+1
+0.5
+-1
+3.14159
+-1.414
+```
+
+The following are examples of invalid numbers in Yarn:
+
+```
+.5
+1.
+- 1
+```
+
+The first of these is invalid because it does not have an integer part to the number.
+The second is invalid because it has a decimal seperator but doesn't have a fractional part.
+The third is invalid because it has a space between the negation indicator and the integer part.
 
 ### Variables
 
