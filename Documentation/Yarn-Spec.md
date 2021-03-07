@@ -173,6 +173,13 @@ The tag text must follow the rules of identifiers.
 The behaviour of the program when a title tag's text is not unique across the project is unspecified.
 The program should flag this as an error.
 
+
+#### Duplicate Tags
+
+Duplicate header tags within a node is invalid.
+The implementing program must either throw an error when encountering a duplicate tag or ignore all but the first duplicate tag.
+If the implementing program is ignoring later duplicates then the user should still be informed as the existence of duplicate tags.
+
 ### Body
 
 A body is comprised of multiple statements.
