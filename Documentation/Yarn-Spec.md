@@ -420,10 +420,10 @@ The _keyword_ is the text `elseif`.
 The _expression_ is an expression.
 The expression must resolve to a boolean.
 
-The elseif will run only if the `if` component, and any other `elseif`'s evaluated to false, and if its own expression evaluates to true.
+The elseif will run only if the `if` component, and any other `elseif`'s before it evaluated to false, and if its own expression evaluates to true.
 
 The minimum mumber of required elseif commands must be zero.
-The maximum number of allowed elseif commands is unspecified but should be greater than zero.
+The maximum number of allowed elseif commands in a flow control statement is unspecified but must be greater than zero.
 An elseif command must not exist without an if command and must go after the if command.
 
 #### else
@@ -617,7 +617,7 @@ _Expressions_ are mathematical chains of variables, values, functions, expressio
 
 Expressions are not a statement but are a component of various statements and must only be used as part of a statement, they cannot exist in isolation.
 This means if you do want to show the result of an expression it will have to be wrapped inside an interpolated line.
-For example a line that is just `$numberOfCoins + 1` is and invalid line despite containing a valid expression, but `{$numberOfCoins + 1}` is valid.
+For example a line that is just `$numberOfCoins + 1` while a valid line of dialogue is not going to give the result of the expression, but `{$numberOfCoins + 1}` is a valid line of dialogue that will present the result of that expression.
 
 Expressions are mostly used to control the flow of the if statement, although they are also used as part of set statements, and in interpolated dialogue.
 
@@ -644,6 +644,7 @@ The fractional part is optional and consists of one or more chracters `0` - `9`.
 
 The decimal seperator must not exists without a fractional part also existing.
 The decimal seperator and fractional part must not exist without an integer part.
+There must be no whitespace between any of the three parts of the number.
 
 Negative numbers follow all the same rules as positive numbers but begin with the *negation indicator* `-`.
 The negation indicator must go hard up against the integer part, there must not be whitespace between them.
@@ -652,7 +653,7 @@ The precision, storage, and form of the number internally by the implementing pr
 As an example of this in C# the `Decimal`, `Complex`, and `float` formats are valid (though some make more sense than others) but `int` is not.
 If a number is beyond the precision supported by the implementing program, the program must report this as an error.
 
-Strings must be capable of holding utf-8 values as this is what the yarn language is written in, but the internals of this is unspecified provided all valid utf-8 characters are supported.
+Strings must be capable of holding UTF-8 values as this is what the yarn language is written in, but the internals of this is unspecified provided all valid UTF-8 characters are supported.
 Strings in expressions must be encapsulated between `"` and `"` symbols.
 
 Booleans must be capable of representing the boolean logic values of `true` and `false`, however the specific implementation is undefined.
@@ -679,11 +680,13 @@ The following are examples of invalid numbers in Yarn:
 .5
 1.
 - 1
+1. 414
 ```
 
 The first of these is invalid because it does not have an integer part to the number.
 The second is invalid because it has a decimal seperator but doesn't have a fractional part.
 The third is invalid because it has a space between the negation indicator and the integer part.
+The forth is invalid because it has a space between the decimal seperator and the fractional part.
 
 ### Variables
 
