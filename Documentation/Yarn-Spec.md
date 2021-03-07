@@ -42,7 +42,7 @@ Only the `Title` tag is required, an implementation may choose to make other tag
 There is one large assumption in this document and about the language itself.
 That is it that it is intended to be embedded into a larger game project.
 
-As such details like how lines are viewed, how selections of options are made, how directions get used, or how functions are handled are all assumed to be passed off onto the larger game to handle.
+As such details like how lines are viewed, how selections of options are made, how generic commands get used, or how functions are handled are all assumed to be passed off onto the larger game to handle.
 This is not technically necessary but does explain what would otherwise be gaps in the language.
 If your project does not have a game to offload certain tasks to these elements will have to be handled by the implementing program itself.
 
@@ -179,7 +179,6 @@ The tag text must follow the rules of identifiers.
 The behaviour of the program when a title tag's text is not unique across the project is unspecified.
 The program should flag this as an error.
 
-
 #### Duplicate Tags
 
 Duplicate header tags within a node is invalid.
@@ -251,7 +250,7 @@ Commands are special statements that have no specific output to be shown but are
 
 The possible types of commands are:
 
-- directions
+- generic commands
 - jump
 - stop
 - set
@@ -261,22 +260,24 @@ The possible types of commands are:
 All commands must start with the `<<` symbol and end with the `>>` symbol.
 Additional required command are unspecified.
 
-#### Directions
+#### Generic Commands
 
-_Directions_ are commands for sending messages from the yarn to the rest of the program.
-Implementing programs must not modify the flow of the yarn based on the direction.
+_Generic Commands_ are commands for sending messages from the yarn to the rest of the program.
+Unlike the other commands generic commands don't impact the dialogue.
+They can be thought of as lines of dialogue that aren't to be shown in the game.
+Implementing programs must not modify the flow of the yarn based on the command.
 
-Directions can have any text except for the `#`, `{`, or `}` symbols inside of them.
+Generic commands can have any text except for the `#`, `{`, or `}` symbols inside of them.
 
-Directions can also have expressions inside of them, however as with dialogue these must be encapsulated by using the `{` and `}` symbols.
-Any expressions inside of a directions command without being encapsulated must be ignored and treated instead as regular text.
+Generic commands can also have expressions inside of them, however as with dialogue these must be encapsulated by using the `{` and `}` symbols.
+Any expressions inside of a generic command without being encapsulated must be ignored and treated instead as regular text.
 
 ```yarn
 <<Fred Move Left 2>>
 <<Unlock Achievement MetSteve>>
 <<Log {$playerName} Died>>
 ```
-are examples of directions.
+are examples of generic commands.
 
 #### Jump
 
