@@ -836,6 +836,9 @@ rad2Deg(1.5707963268)
 
 #### Handling
 
-The handling of functions by the implementing program is unspecified, however the output type of a function must not change at runtime between calls.
+The handling of functions by the implementing program is unspecified, however the output type of a function must always return the same type of value between calls at runtime.
+The Yarn language makes no promises as to the order in which, or number of times an implementing program may call functions.
+
 The implementing program should allow external parts of the game to provide the return value of the function.
 If given the same input parameters multiple invocations of the same functions should return the same value each time.
+In general, and while not a specific requirement, implementing programs should err on the side of treating functions in Yarn as if they are [pure functions](https://en.wikipedia.org/wiki/Pure_function).
