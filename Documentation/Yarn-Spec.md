@@ -133,6 +133,12 @@ A common use for file tags is for versioning the file.
 File tags must go at the start of a file before any nodes begin.
 File tags must have the `#` symbol at the start of them and then contain all text up until the end of the line.
 
+#### Duplicate Tags
+
+Duplicate file tags within a file is invalid.
+The implementing program must either throw an error when encountering a duplicate file tag or ignore all but the first duplicate file tag.
+If the implementing program is ignoring later duplicates then the user should still be informed as the existence of duplicate file tags.
+
 ### Nodes
 
 A *node* is the single story element of a yarn file.
