@@ -33,6 +33,7 @@ TD-110: Let me see your identification.
 - It's entirely up to the game to decide what to do with this information. To re-create the behaviour from previous Yarn Spinner versions, simply don't show any options whose `IsAvailable` value is `false`.
 
 - Fixed a crash in `LineParser` if a null input was provided to it.
+- Fixed a crash in `FormatFunctionUpgrader` (which upgrades v1 Yarn scripts to v2) if an invalid format format function was encountered.
 
 ### Removed
 

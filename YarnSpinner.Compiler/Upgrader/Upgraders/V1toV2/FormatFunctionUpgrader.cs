@@ -57,8 +57,16 @@ namespace Yarn.Compiler.Upgrader
                 //  function_name: "select" variable: "$gender" key_value_pair="male="male"..."
                 //
                 // V2: [select value={$gender} male="male" female="female" other="other"/]
-                var formatFunctionType = context.function_name.Text;
-                var variableName = context.variable().GetText();
+                var formatFunctionType = context.function_name?.Text;
+                var variableContext = context.variable();
+
+                if (formatFunctionType == null || variableContext == null) {
+                    // Not actually a format function, but the parser may
+                    // have misinterpreted it? Do nothing here.
+                    return;
+                }
+                
+                var variableName = variableContext.GetText();
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append($"{formatFunctionType} value={{{variableName}}}");
