@@ -133,7 +133,7 @@ namespace Yarn.Compiler.Upgrader
                 declarationsNodeStringBuilder.AppendLine("===");
 
                 var outputDirectory = System.IO.Path.GetDirectoryName(upgradeJob.Files.First().FileName);
-                var outputFileName = System.IO.Path.Combine(outputDirectory, "Program.yarnprogram");
+                var outputFileName = System.IO.Path.Combine(outputDirectory, "Program.yarnproject");
 
                 var declarationsOutputFile = new UpgradeResult.OutputFile(outputFileName, declarationsNodeStringBuilder.ToString());
 
