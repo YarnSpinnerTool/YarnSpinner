@@ -53,8 +53,14 @@ namespace YarnSpinner.Tests
             foreach (var outputFile in upgradeResult.Files) {
                 string extension = Path.GetExtension(outputFile.Path);
                 var expectedOutputFilePath = Path.ChangeExtension(outputFile.Path, ".upgraded" + extension);
-                
-                Assert.True(File.Exists(expectedOutputFilePath));
+
+                if (expectedOutputFiles.Contains(expectedOutputFilePath) == false) {
+                    // This test case doesn't expect this output (perhaps
+                    // it's a test case that isn't expected to succeed.) Ignore it.
+                    continue;
+                }
+
+                Assert.True(File.Exists(expectedOutputFilePath), $"Expected file {expectedOutputFilePath} to exist");
 
                 var expectedOutputFileContents = File.ReadAllText(expectedOutputFilePath);
 
