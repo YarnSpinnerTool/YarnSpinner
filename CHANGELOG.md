@@ -8,6 +8,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+### Changed
+
+- Variable declaration upgrader now generates .yarnproject files, not .yarnprogram files.
+
+### Removed
+
+## [v2.0.0-beta4] 
+
+### Added
+
 - Characters can now be escaped in lines and options.
   - The `\` character can be used to write characters that the parser would otherwise use.
   - The following characters can be escaped: `{` `}` `<` `>` `#` `/` `\`
