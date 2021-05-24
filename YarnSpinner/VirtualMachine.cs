@@ -304,11 +304,6 @@ namespace Yarn
                 throw new DialogueException($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");
             }
 
-            if (nodeCompleteHandler == null)
-            {
-                throw new DialogueException($"Cannot continue running dialogue. {nameof(nodeCompleteHandler)} has not been set.");
-            }
-
             executionState = ExecutionState.Running;
 
             // Execute instructions until something forces us to stop
