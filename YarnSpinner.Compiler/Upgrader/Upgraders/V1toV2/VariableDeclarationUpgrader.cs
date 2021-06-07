@@ -14,15 +14,16 @@ namespace Yarn.Compiler.Upgrader
         
         public UpgradeResult Upgrade(UpgradeJob upgradeJob)
         {
-            var potentialTypeBindings = new OrderedSet<PotentialTypeBinding>();
+            var potentialTypeBindings = new OrderedSet<TypeBinding>();
             var allSeenVariables = new OrderedSet<string>();
 
-            foreach (var file in upgradeJob.Files) {
+            foreach (var file in upgradeJob.Files)
+            {
                 ICharStream input = CharStreams.fromstring(file.Source);
                 YarnSpinnerV1Lexer lexer = new YarnSpinnerV1Lexer(input);
                 CommonTokenStream tokens = new CommonTokenStream(lexer);
                 YarnSpinnerV1Parser parser = new YarnSpinnerV1Parser(tokens);
-                
+
                 YarnSpinnerV1Parser.DialogueContext tree = parser.dialogue();
 
                 var declarationVisitor = new VariableTypeBindingVisitor(potentialTypeBindings, allSeenVariables);
@@ -39,7 +40,7 @@ namespace Yarn.Compiler.Upgrader
                 YarnSpinnerV1Lexer lexer = new YarnSpinnerV1Lexer(input);
                 CommonTokenStream tokens = new CommonTokenStream(lexer);
                 YarnSpinnerV1Parser parser = new YarnSpinnerV1Parser(tokens);
-                
+
                 YarnSpinnerV1Parser.DialogueContext tree = parser.dialogue();
 
                 var replacements = new List<TextReplacement>();
@@ -50,30 +51,10 @@ namespace Yarn.Compiler.Upgrader
                 outputFiles.Add(new UpgradeResult.OutputFile(file.FileName, replacements, file.Source));
             }
 
-            // Unify our type bindings: for each variable, decide whether
-            // we know its type (we have 1 binding that is not
-            // 'undefined'), or we don't (any other case)
-            var variableBindingTypeGroups = potentialTypeBindings.GroupBy(b => b.VariableName, b => b);
-
-            var unifiedVariableBindings = variableBindingTypeGroups.Select(bindingGroup =>
-            {
-                // If there is precisely one type binding, keep it, if it's defined
-                var definedBindings = bindingGroup.Where(b => b.Type != Type.Undefined);
-                if (definedBindings.Count() == 1) {
-                    return definedBindings.First();
-                }
-
-                // Otherwise, this type is undefined, because either it has
-                // too many defined bindings, or only has an undefined
-                // binding
-                return new PotentialTypeBinding { VariableName = bindingGroup.Key, Type = Type.Undefined };
-            }).ToList();
-
-            potentialTypeBindings.Clear();
-            potentialTypeBindings.Add(unifiedVariableBindings);
+            List<TypeBinding> unifiedVariableBindings = TypeBinding.UnifyBindings(potentialTypeBindings);
 
             // We finally have our bindings. Generate declarations for them.
-            var allBindings = potentialTypeBindings.ToDictionary(b => b.VariableName, b => b.Type);
+            var allBindings = unifiedVariableBindings.ToDictionary(b => b.VariableName, b => b.Type);
 
             if (allSeenVariables.Count() > 0)
             {
@@ -116,9 +97,12 @@ namespace Yarn.Compiler.Upgrader
                 {
                     Type type;
 
-                    if (allBindings.ContainsKey(variableName)) {
+                    if (allBindings.ContainsKey(variableName))
+                    {
                         type = allBindings[variableName];
-                    } else {
+                    }
+                    else
+                    {
                         type = Type.Undefined;
                     }
 
@@ -146,32 +130,6 @@ namespace Yarn.Compiler.Upgrader
             };
         }
 
-        private struct PotentialTypeBinding
-        {
-            public string VariableName;
-            public Yarn.Type Type;
-
-            public override bool Equals(object obj)
-            {
-                return obj is PotentialTypeBinding binding &&
-                       this.VariableName == binding.VariableName &&
-                       this.Type == binding.Type;
-            }
-
-            public override int GetHashCode()
-            {
-                int hashCode = 2098139523;
-                hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.VariableName);
-                hashCode = (hashCode * -1521134295) + this.Type.GetHashCode();
-                return hashCode;
-            }
-
-            public override string ToString()
-            {
-                return $"{this.VariableName}: {this.Type}";
-            }
-        }
-
         /// <summary>
         /// A Visitor that walks an expression parse tree and returns its type.
         /// Call the <see cref="Visit"/> method to begin checking. If a single
@@ -180,14 +138,14 @@ namespace Yarn.Compiler.Upgrader
         /// </summary>
         private class VariableTypeBindingVisitor : YarnSpinnerV1ParserBaseVisitor<Yarn.Type>
         {
-            private readonly OrderedSet<PotentialTypeBinding> potentialTypeBindings;
+            private readonly OrderedSet<TypeBinding> potentialTypeBindings;
 
             private readonly OrderedSet<string> allSeenVariables;
 
             private readonly ICollection<TextReplacement> replacements;
 
             public VariableTypeBindingVisitor(
-                [NotNull] OrderedSet<PotentialTypeBinding> potentialTypeBindings,
+                [NotNull] OrderedSet<TypeBinding> potentialTypeBindings,
                 [NotNull] OrderedSet<string> allSeenVariables,
                 ICollection<TextReplacement> replacements = null)
             {
@@ -364,7 +322,7 @@ namespace Yarn.Compiler.Upgrader
                     // Create a type binding for each variable to this
                     // type.
                     foreach (var variableName in variableNames) {
-                        potentialTypeBindings.Add(new PotentialTypeBinding {
+                        potentialTypeBindings.Add(new TypeBinding {
                             Type = type,
                             VariableName = variableName,
                         });
@@ -565,7 +523,7 @@ namespace Yarn.Compiler.Upgrader
                 this.allSeenVariables.Add(context.VAR_ID().GetText());
 
                 // Bind the variable to this value
-                this.potentialTypeBindings.Add(new PotentialTypeBinding
+                this.potentialTypeBindings.Add(new TypeBinding
                 {
                     VariableName = context.VAR_ID().GetText(),
                     Type = valueType,

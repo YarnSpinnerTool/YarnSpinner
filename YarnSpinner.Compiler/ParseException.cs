@@ -87,6 +87,6 @@ namespace Yarn.Compiler
     {
         internal TypeException(string message) : base(message) { }
 
-        internal TypeException(Antlr4.Runtime.ParserRuleContext context, string message, string fileName = "(unknown)") : base(context, message, fileName) { }
+        internal TypeException(Antlr4.Runtime.ParserRuleContext context, string message, string fileName) : base(context, message, fileName) { }
     }
 }

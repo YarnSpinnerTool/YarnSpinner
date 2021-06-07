@@ -294,6 +294,15 @@
         public int SourceNodeLine { get => sourceNodeLine; internal set => sourceNodeLine = value; }
 
         /// <summary>
+        /// Get or sets a value indicating whether this Declaration was implicitly
+        /// inferred from usage.
+        /// </summary>
+        /// <value>If <see langword="true"/>, this Declaration was
+        /// implicitly inferred from usage. If <see langword="false"/>,
+        /// this Declaration appears in the source code.</value>
+        public bool IsImplicit { get; internal set; }
+
+        /// <summary>
         /// The string used for <see cref="SourceFileName"/> if the
         /// Declaration was found outside of a Yarn source file.
         /// </summary>
@@ -309,6 +318,10 @@
         internal string sourceNodeName;
         internal int sourceFileLine;
         internal int sourceNodeLine;
+
+        public Declaration()
+        {
+        }
 
         /// <summary>
         /// Enumerates the different types of <see cref="Declaration"/>
@@ -714,6 +727,14 @@
                 fileTags.Add(parsedFile.name, newFileTags);
             }
 
+            foreach (var parsedFile in compiledTrees) {
+                var checker = new TypeCheckVisitor(parsedFile.name, knownVariableDeclarations);
+
+                checker.Visit(parsedFile.tree);
+                derivedVariableDeclarations.AddRange(checker.NewDeclarations);
+                knownVariableDeclarations.AddRange(checker.NewDeclarations);
+            }
+
             if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
             {
                 // Stop at this point
@@ -784,7 +805,7 @@
             visitor.Visit(tree);
         }
 
-        private static void GetDeclarations(string sourceFileName, IParseTree tree, IEnumerable<Declaration> existingDeclarations, out IEnumerable<Declaration> declarations, out IEnumerable<string> fileTags)
+        private static void GetDeclarations(string sourceFileName, IParseTree tree, IEnumerable<Declaration> existingDeclarations, out IEnumerable<Declaration> newDeclarations, out IEnumerable<string> fileTags)
         {
             var variableDeclarationVisitor = new DeclarationVisitor(sourceFileName, existingDeclarations);
 
@@ -797,9 +818,9 @@
                 throw new TypeException(e.Context, e.InternalMessage, sourceFileName);
             }
 
-            // Upon exit, declarations will now contain every variable
+            // Upon exit, newDeclarations will now contain every variable
             // declaration we found
-            declarations = variableDeclarationVisitor.NewDeclarations;
+            newDeclarations = variableDeclarationVisitor.NewDeclarations;
 
             fileTags = variableDeclarationVisitor.FileTags;
         }

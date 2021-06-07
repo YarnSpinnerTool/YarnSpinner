@@ -2,19 +2,34 @@ namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Antlr4.Runtime;
+    using Antlr4.Runtime.Misc;
 
-    internal class DeclarationVisitor : YarnSpinnerParserBaseVisitor<int>
+    /// <summary>
+    /// A visitor that extracts variable declarations from a parse tree.
+    /// /// After visiting an entire parse tree for a file, the <see
+    /// cref="NewDeclarations"/> property will contain all explicit
+    /// variable declarations that were found.
+    /// </summary>
+    internal class DeclarationVisitor : YarnSpinnerParserBaseVisitor<Yarn.Type>
     {
 
         // The collection of variable declarations we know about before
         // starting our work
-        private IEnumerable<Declaration> existingDeclarations;
+        private IEnumerable<Declaration> ExistingDeclarations;
 
         // The name of the node that we're currently visiting.
         private string currentNodeName = null;
+
+        /// <summary>
+        /// The context of the node we're currently in.
+        /// </summary>
         private YarnSpinnerParser.NodeContext currentNodeContext;
 
+        /// <summary>
+        /// The name of the file we're currently in.
+        /// </summary>
         private string sourceFileName;
 
         /// <summary>
@@ -32,35 +47,27 @@ namespace Yarn.Compiler
         /// </summary>
         public ICollection<string> FileTags { get; private set; }
 
-        private IEnumerable<Declaration> AllDeclarations
-        {
-            get
-            {
-                foreach (var decl in existingDeclarations)
-                {
-                    yield return decl;
-                }
-                foreach (var decl in NewDeclarations)
-                {
-                    yield return decl;
-                }
-            }
-        }
+        /// <summary>
+        /// The collection of all declarations - both the ones we received
+        /// at the start, and the new ones we've derived ourselves.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Declaration> Declarations => ExistingDeclarations.Concat(NewDeclarations);
 
         public DeclarationVisitor(string sourceFileName, IEnumerable<Declaration> existingDeclarations)
         {
-            this.existingDeclarations = existingDeclarations;
+            this.ExistingDeclarations = existingDeclarations;
             this.NewDeclarations = new List<Declaration>();
             this.FileTags = new List<string>();
             this.sourceFileName = sourceFileName;
         }
 
-        public override int VisitFile_hashtag(YarnSpinnerParser.File_hashtagContext context) {
+        public override Yarn.Type VisitFile_hashtag(YarnSpinnerParser.File_hashtagContext context) {
             this.FileTags.Add(context.text.Text);
-            return 0;
+            return Yarn.Type.Undefined;
         }
 
-        public override int VisitNode(YarnSpinnerParser.NodeContext context) {
+        public override Yarn.Type VisitNode(YarnSpinnerParser.NodeContext context) {
             currentNodeContext = context;
 
             foreach (var header in context.header()) {
@@ -69,30 +76,24 @@ namespace Yarn.Compiler
                 }
             }
             Visit(context.body());
-            return 0;
+            return Yarn.Type.Undefined;
         }
 
-        public override int VisitDeclare_statement(YarnSpinnerParser.Declare_statementContext context)
+        public override Yarn.Type VisitDeclare_statement(YarnSpinnerParser.Declare_statementContext context)
         {
 
             // Get the name of the variable we're declaring
             string variableName = context.variable().GetText();
 
             // Does this variable name already exist in our declarations?
-            foreach (var decl in AllDeclarations)
-            {
-                if (decl.Name == variableName)
-                {
-                    throw new TypeException(context, $"{decl.Name} has already been declared in {decl.SourceFileName}, line {decl.SourceFileLine}");
-                }
+            var existingExplicitDeclaration = Declarations.Where(d => d.IsImplicit == false).FirstOrDefault(d => d.Name == variableName);
+            if (existingExplicitDeclaration != null) {
+                // Then this is an error, because you can't have two explicit declarations for the same variable.
+                throw new TypeException(context, $"{existingExplicitDeclaration.Name} has already been declared in {existingExplicitDeclaration.SourceFileName}, line {existingExplicitDeclaration.SourceFileLine}", sourceFileName);
             }
-
-            // Figure out the type of the value
-            var expressionVisitor = new ExpressionTypeVisitor(null, true);
-            var type = expressionVisitor.Visit(context.value());
-
-            // Figure out the value itself
-            var constantValueVisitor = new ConstantValueVisitor();
+            
+            // Figure out the value and its type
+            var constantValueVisitor = new ConstantValueVisitor(sourceFileName);
             var value = constantValueVisitor.Visit(context.value());
 
             // Do we have an explicit type declaration?
@@ -118,9 +119,9 @@ namespace Yarn.Compiler
 
                 // Check that it matches - if it doesn't, that's a type
                 // error
-                if (explicitType != type)
+                if (explicitType != value.type)
                 {
-                    throw new TypeException(context, $"Type {context.type().GetText()} does not match value {context.value().GetText()} ({type})");
+                    throw new TypeException(context, $"Type {context.type().GetText()} does not match value {context.value().GetText()} ({value.type})", sourceFileName);
                 }
             }
 
@@ -142,81 +143,21 @@ namespace Yarn.Compiler
             var declaration = new Declaration
             {
                 Name = variableName,
-                ReturnType = type,
-                DefaultValue = value,
+                ReturnType = value.type,
+                DefaultValue = value.value,
                 Description = description,
                 DeclarationType = Declaration.Type.Variable,
                 SourceFileName = sourceFileName,
                 SourceFileLine = positionInFile,
                 SourceNodeName = currentNodeName,
                 SourceNodeLine = positionInFile - nodePositionInFile,
-
+                IsImplicit = false,
             };
 
             this.NewDeclarations.Add(declaration);
 
-            return 0;
-        }
-
-        public override int VisitFunction(YarnSpinnerParser.FunctionContext context) {
-
-            // We've encountered a function call. We need to check to see
-            // if this is one that's already known, or if we need to create
-            // an implicit declaration for it.
-
-            var functionName = context.FUNC_ID().GetText();
-
-            // Visit this function invocation's parameters in case one of
-            // them is an invocation of a function we don't have a
-            // declaration for.
-            foreach (var param in context.expression()) {
-                Visit(param);
-            }
-
-            foreach (var decl in this.AllDeclarations) {
-                if (decl.DeclarationType == Declaration.Type.Function && decl.Name == functionName) {
-                    // We already have a declaration. Nothing left to do here.
-                    return 0;
-                }
-            }
-
-            // We don't have an existing declaration for this function.
-            // Create an implicit declaration here, and note that we don't
-            // know its return type or its parameters type (the expression
-            // that invokes us will attempt to determine the types from
-            // context, and bind the return and parameter types to those
-            // determinations. If such a determination can't be made, or it
-            // conflicts with a previously bound type, a type error
-            // occurs.)
-            var parameterList = new List<Declaration.Parameter>();
-            foreach (var parameter in context.expression())
-            {
-                parameterList.Add(new Declaration.Parameter
-                {
-                    Type = Yarn.Type.Undefined,
-                });
-            }
-
-            int positionInFile = context.FUNC_ID().Symbol.Line;
-            // The start line of the body is the line after the delimiter
-            int nodePositionInFile = this.currentNodeContext.BODY_START().Symbol.Line + 1;
-
-
-            var declaration = new Declaration
-            {
-                DeclarationType = Declaration.Type.Function,
-                Name = functionName,
-                ReturnType = Yarn.Type.Undefined,
-                Parameters = parameterList.ToArray(),
-                SourceFileName = this.sourceFileName,
-                SourceFileLine = positionInFile,
-                SourceNodeName = this.currentNodeName,
-                SourceNodeLine = positionInFile - nodePositionInFile,
-            };
-
-            this.NewDeclarations.Add(declaration);
-
-            return 0;
+            return value.type;
         }
     }
-}
+
+    }

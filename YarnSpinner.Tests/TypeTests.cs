@@ -172,27 +172,23 @@ namespace YarnSpinner.Tests
         [Theory]
         [InlineData(@"<<set $str = ""hi"">>")] // in commands
         [InlineData(@"{$str}")] // in inline expressions
-        public void TestExpressionsDisallowUsingUndeclaredVariables(string testSource)
+        public void TestExpressionsAllowsUsingUndeclaredVariables(string testSource)
         {
             var source = CreateTestNode($@"
-            {testSource} // error, undeclared
+            {testSource}
             ");
 
-            var ex = Assert.Throws<TypeException>(() =>
-            {
-                Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            });
-
-            Assert.Contains("Undeclared variable $str", ex.Message);
+            Compiler.Compile(CompilationJob.CreateFromString("input", source));            
         }
 
-        [Fact]
-        public void TestExpressionsRequireCompatibleTypes()
+        [Theory]
+        [CombinatorialData]
+        public void TestExpressionsRequireCompatibleTypes(bool declare)
         {
-            var source = CreateTestNode(@"
-            <<declare $int = 0>>
-            <<declare $bool = false>>
-            <<declare $str = """">>
+            var source = CreateTestNode($@"
+            {(declare ? "<<declare $int = 0>>" : "")}
+            {(declare ? "<<declare $bool = false>>" : "")}
+            {(declare ? "<<declare $str = \"\">>" : "")}
 
             <<set $int = 1>>
             <<set $int = 1 + 1>>
@@ -258,7 +254,7 @@ namespace YarnSpinner.Tests
 
             var correctSource = CreateTestNode($@"
                 <<declare $bool = false>>
-                {source}
+                <<set $bool = func_string_string_bool(""1"", ""2"")>>
             ");
 
             // Should compile with no exceptions
@@ -285,19 +281,7 @@ namespace YarnSpinner.Tests
                 <<set $var {operation}>>
             ");
 
-            if (!declared)
-            {
-                var ex = Assert.Throws<TypeException>(() =>
-                {
-                    Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
-                });
-
-                Assert.Contains("Undeclared variable $var", ex.Message);
-            }
-            else
-            {
-                Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
-            }
+            Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
         }
 
         [Fact]

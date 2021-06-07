@@ -24,7 +24,7 @@ namespace Yarn.Compiler
             this.loadOperators();
         }
 
-        private int TypeCheckExpressionsInFormattedText(IList<IParseTree> nodes)
+        private int GenerateCodeForExpressionsInFormattedText(IList<IParseTree> nodes)
         {
             int expressionCount = 0;
 
@@ -47,10 +47,6 @@ namespace Yarn.Compiler
                     // pushes the final value of this expression onto the
                     // stack. running the line will pop these expressions
                     // off the stack.
-
-                    // Validate the type of this expression
-                    new ExpressionTypeVisitor(this.compiler.VariableDeclarations, false)
-                        .Visit(child);
 
                     Visit(child);
                     expressionCount += 1;
@@ -84,7 +80,7 @@ namespace Yarn.Compiler
 
             // Evaluate the inline expressions and push the results onto
             // the stack.
-            var expressionCount = TypeCheckExpressionsInFormattedText(context.line_formatted_text().children);
+            var expressionCount = GenerateCodeForExpressionsInFormattedText(context.line_formatted_text().children);
 
             // Get the lineID for this string from the hashtags 
             string lineID = Compiler.GetLineID(context.hashtag());
@@ -104,16 +100,6 @@ namespace Yarn.Compiler
         {
             // add the expression (whatever it resolves to)
             Visit(context.expression());
-
-            // validate the type of this expression
-            var expressionTypeVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, false);
-            var expressionType = expressionTypeVisitor.Visit(context.expression());
-            var variableType = expressionTypeVisitor.Visit(context.variable());
-
-            if (expressionType != variableType)
-            {
-                throw new TypeException(context, $"{context.variable().GetText()} ({variableType}) cannot be assigned a {expressionType}");
-            }
 
             // now store the variable and clean up the stack
             string variableName = context.variable().GetText();
@@ -145,10 +131,6 @@ namespace Yarn.Compiler
 
         public override int VisitCall_statement(YarnSpinnerParser.Call_statementContext context)
         {
-            // Type-check the function call
-            var expressionTypeVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, false);
-            expressionTypeVisitor.Visit(context.function());
-
             // Visit our function call, which will invoke the function
             Visit(context.function());
 
@@ -170,11 +152,6 @@ namespace Yarn.Compiler
                 if (node is ITerminalNode) {
                     sb.Append(node.GetText());
                 } else if (node is ParserRuleContext) {
-
-                    // Check the type of the expression
-                    var typeCheckVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, false);
-                    typeCheckVisitor.Visit(node);
-
                     // Generate code for evaluating the expression at runtime
                     Visit(node);
 
@@ -234,10 +211,6 @@ namespace Yarn.Compiler
             // label to give us a jump point for when the if finishes
             string endOfIfStatementLabel = compiler.RegisterLabel("endif");
 
-            // Type-check the if-clause
-            var expressionTypeVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, false);
-            expressionTypeVisitor.Visit(context.if_clause());
-
             // handle the if
             var ifClause = context.if_clause();
             generateClause(endOfIfStatementLabel, ifClause.statement(), ifClause.expression());
@@ -245,8 +218,6 @@ namespace Yarn.Compiler
             // all elseifs
             foreach (var elseIfClause in context.else_if_clause())
             {
-                // Type-check the else-if clause
-                expressionTypeVisitor.Visit(context.if_clause());
                 generateClause(endOfIfStatementLabel, elseIfClause.statement(), elseIfClause.expression());
             }
 
@@ -270,9 +241,6 @@ namespace Yarn.Compiler
             // on ifs and elseifs
             if (expression != null)
             {
-                // Validate the expression's type
-                new ExpressionTypeVisitor(compiler.VariableDeclarations, false).Visit(expression);
-
                 // Code-generate the expression
                 Visit(expression);
 
@@ -335,7 +303,7 @@ namespace Yarn.Compiler
 
                 // Start by figuring out the text that we want to add. This
                 // will involve evaluating any inline expressions.
-                var expressionCount = TypeCheckExpressionsInFormattedText(shortcut.line_statement().line_formatted_text().children);
+                var expressionCount = GenerateCodeForExpressionsInFormattedText(shortcut.line_statement().line_formatted_text().children);
 
                 // Get the line ID from the hashtags if it has one
                 string lineID = Compiler.GetLineID(shortcut.line_statement().hashtag());
@@ -504,16 +472,6 @@ namespace Yarn.Compiler
         // generic helper for these types of expressions
         internal void opEquals(YarnSpinnerParser.VariableContext variable, YarnSpinnerParser.ExpressionContext expression, int op)
         {
-
-            // validate the type of this expression
-            var expressionTypeVisitor = new ExpressionTypeVisitor(compiler.VariableDeclarations, false);
-            var expressionType = expressionTypeVisitor.Visit(expression);
-            var variableType = expressionTypeVisitor.Visit(variable);
-
-            if (expressionType != variableType)
-            {
-                throw new TypeException(expression.Parent as ParserRuleContext, $"{variable.GetText()} ({variableType}) cannot be assigned a {expressionType}");
-            }
 
             var varName = variable.GetText();
 

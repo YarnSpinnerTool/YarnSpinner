@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- If a variable is not declared (i.e. it doesn't have a `<<declare>>` statement), the compiler will now attempt to infer its declaration.
+
 ### Changed
 
 - Variable declaration upgrader now generates .yarnproject files, not .yarnprogram files.
