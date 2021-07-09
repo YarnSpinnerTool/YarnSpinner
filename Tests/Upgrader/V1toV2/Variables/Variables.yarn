@@ -1,0 +1,110 @@
+title: Variable
+---
+
+// These are being directly set to a constant value so their type is clear
+<<set $const_string = "foo">>
+<<set $const_number = 2>>
+<<set $const_bool = true>>
+
+// These are being set to an expression that uses a single type
+<<set $const_expr_string = "1" + "2">>
+<<set $const_expr_number = 1 + 2>>
+<<set $const_expr_bool = true && false>>
+
+// These variables are participating in expressions of a single type, so
+// they will be bound to that type
+{$expr_string + "yes"}
+{$expr_number + 2}
+{$expr_bool && false}
+
+// These variables are set to a variable whose type we have inferred. They
+// will take the type of the variable.
+<<set $derived_const_string = $const_string>>
+<<set $derived_const_number = $const_number>>
+<<set $derived_const_bool = $const_bool>>
+
+// These variables are participating in expressions that include variables
+// we've derived the type for earlier in this program, so they will be
+// bound to that type
+{$derived_expr_const_string + $const_string}
+{$derived_expr_const_number + $const_number}
+{$derived_expr_const_bool && $const_bool}
+
+// These variables are participating in expressions that include variables
+// that we define a type for later in this program. They will also be bound
+// to that type.
+{$derived_expr_const_string_late + $const_string_late}
+{$derived_expr_const_number_late + $const_number_late}
+{$derived_expr_const_bool_late && $const_bool_late}
+
+<<set $const_string_late = "yes">>
+<<set $const_number_late = 1>>
+<<set $const_bool_late = true>>
+
+// No type information is available for this, so it will be 'undefined'
+<<set $value_from_function = some_function()>>
+
+// This is set to a return value from a function, but later participates in
+// an expression in which it's compared to a string, so it will also be
+// made a string
+<<set $value_from_function_with_later_constraint = some_function()>>
+{$value_from_function_with_later_constraint + "yes"}
+
+// This is being used as a parameter of a function, but again, we don't
+// know the types involved, and no other constraining information exists.
+// It will be 'undefined'.
+{some_func($parameter_of_function)}
+
+// Comparisons to numbers inside an if statement or else if statement will
+// be converted to comparisons to zero
+<<if 1>>
+<<elseif 2>>
+<<endif>>
+
+// Comparisons to bools won't be modified
+<<if true>>
+<<elseif false>>
+<<endif>>
+
+// This goes for variables whose type is determined to be numbers, both
+// before and after the if statement
+
+// Define some variables whose type is known before the expressions are hit
+<<set $some_num_var_bound_before = 1>>
+<<set $some_bool_var_bound_before = true>>
+
+// These will be converted to bool expressions
+<<if $some_num_var_bound_before>>
+<<elseif $some_num_var_bound_before>>
+<<endif>>
+
+<<if $some_num_var_bound_after>>
+<<elseif $some_num_var_bound_after>>
+<<endif>>
+
+// These will be left as is
+<<if $some_bool_var_bound_before>>
+<<elseif $some_bool_var_bound_before>>
+<<endif>>
+
+<<if $some_bool_var_bound_after>>
+<<elseif $some_bool_var_bound_after>>
+<<endif>>
+
+// More complex expressions will be wrapped in parentheses
+<<if 1 + 1>>
+<<elseif 1 + 2>>
+<<endif>>
+
+<<if 1 + $some_num_var_bound_before>>
+<<elseif 1 + $some_num_var_bound_before>>
+<<endif>>
+
+<<if 1 + $some_num_var_bound_after>>
+<<elseif 1 + $some_num_var_bound_after>>
+<<endif>>
+
+// Define some variables whose type is known AFTER the expressions
+<<set $some_num_var_bound_after = 1>>
+<<set $some_bool_var_bound_after = true>>
+===

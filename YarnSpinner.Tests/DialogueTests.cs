@@ -19,9 +19,12 @@ namespace YarnSpinner.Tests
         {
             var path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
 
-            Compiler.CompileFile(path, out var program, out stringTable);
+            CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
+            compilationJob.Library = dialogue.Library;
 
-            dialogue.SetProgram (program);
+            var result = Compiler.Compile(compilationJob);
+
+            dialogue.SetProgram (result.Program);
 
             Assert.True (dialogue.NodeExists ("Sally"));
 
@@ -30,25 +33,6 @@ namespace YarnSpinner.Tests
 
             Assert.False (dialogue.NodeExists ("Sally"));
 
-        }
-
-        [Fact]
-        public void TestOptionDestinations() {
-            var path = Path.Combine(TestDataPath, "Options.yarn");
-
-            Compiler.CompileFile(path, out var program, out stringTable);
-
-            dialogue.SetProgram (program);
-
-            dialogue.optionsHandler = delegate (OptionSet optionSet) {
-                Assert.Equal(2, optionSet.Options.Length);
-                Assert.Equal("B", optionSet.Options[0].DestinationNode);
-                Assert.Equal("C", optionSet.Options[1].DestinationNode);
-            };
-
-            dialogue.SetNode("A");
-
-            dialogue.Continue();
         }
 
         [Fact]
@@ -61,35 +45,35 @@ namespace YarnSpinner.Tests
             // this script has the following variables:
             // $foo is read from and written to
             // $bar is written to but never read
-            // $bas is read from but never written to
-            // this means that there should be two diagnosis results
+            // this means that there should be one diagnosis result
             context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
 
             var path = Path.Combine(TestDataPath, "AnalysisTest.yarn");
 
-            Compiler.CompileFile(path, out var program, out stringTable);
+            CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
+            compilationJob.Library = dialogue.Library;
+            
+            var result = Compiler.Compile(compilationJob);
 
-            dialogue.SetProgram(program);
+            stringTable = result.StringTable;
+
+            dialogue.SetProgram(result.Program);
             dialogue.Analyse (context);
             diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
 
-            Assert.Equal (2, diagnoses.Count);
+            Assert.Equal (1, diagnoses.Count);
+            Assert.Contains("Variable $bar is assigned, but never read from", diagnoses.First().message);
 
             dialogue.UnloadAll ();
 
             context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
+        
+            result = Compiler.Compile(CompilationJob.CreateFromFiles(new[] {
+                Path.Combine(SpaceDemoScriptsPath, "Ship.yarn"),
+                Path.Combine(SpaceDemoScriptsPath, "Sally.yarn"),
+            }, dialogue.Library));
 
-            string shipPath = Path.Combine(SpaceDemoScriptsPath, "Ship.yarn");
-            Compiler.CompileFile(shipPath, out var shipProgram, out var shipStringTable);
-
-            string sallyPath = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
-            Compiler.CompileFile(sallyPath, out var sallyProgram, out var sallyStringTable);
-
-            stringTable = shipStringTable.Union(sallyStringTable).ToDictionary(k => k.Key, v => v.Value);            
-
-            var combinedProgram = Program.Combine(shipProgram, sallyProgram);
-
-            dialogue.SetProgram (combinedProgram);
+            dialogue.SetProgram (result.Program);
             
             dialogue.Analyse (context);
             diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
@@ -103,10 +87,9 @@ namespace YarnSpinner.Tests
         {
 
             var path = Path.Combine(TestDataPath, "Example.yarn");
+            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Compiler.CompileFile(path, out var program, out stringTable);
-
-            dialogue.SetProgram (program);
+            dialogue.SetProgram (result.Program);
 
             var byteCode = dialogue.GetByteCode ();
             Assert.NotNull (byteCode);
@@ -118,9 +101,9 @@ namespace YarnSpinner.Tests
         {
             var path = Path.Combine (TestDataPath, "TestCases", "Smileys.yarn");
 
-            Compiler.CompileFile(path, out var program, out stringTable);
+            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
             
-            dialogue.SetProgram (program);
+            dialogue.SetProgram (result.Program);
 
             errorsCauseFailures = false;
 
@@ -131,19 +114,23 @@ namespace YarnSpinner.Tests
         public void TestGettingCurrentNodeName()  {
 
             string path = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
-            Compiler.CompileFile(path, out var program, out stringTable);
             
-            dialogue.SetProgram (program);
+            CompilationJob compilationJob = CompilationJob.CreateFromFiles(path);
+            compilationJob.Library = dialogue.Library;
+            
+            var result = Compiler.Compile(compilationJob);
+            
+            dialogue.SetProgram (result.Program);
 
             // dialogue should not be running yet
-            Assert.Null (dialogue.currentNode);
+            Assert.Null (dialogue.CurrentNode);
 
             dialogue.SetNode("Sally");
-            Assert.Equal ("Sally", dialogue.currentNode);
+            Assert.Equal ("Sally", dialogue.CurrentNode);
 
             dialogue.Stop();
             // Current node should now be null
-            Assert.Null (dialogue.currentNode);
+            Assert.Null (dialogue.CurrentNode);
         }
 
         [Fact]
@@ -151,8 +138,11 @@ namespace YarnSpinner.Tests
 
             var path = Path.Combine(TestDataPath, "Example.yarn");
 
-            Compiler.CompileFile(path, out var program, out stringTable);
-            dialogue.SetProgram (program);
+            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+
+            dialogue.SetProgram (result.Program);
+
+            stringTable = result.StringTable;
 
             var sourceID = dialogue.GetStringIDForNode ("LearnMore");
             var source = stringTable[sourceID].text;
@@ -165,8 +155,9 @@ namespace YarnSpinner.Tests
 		public void TestGettingTags() {
 
             var path = Path.Combine(TestDataPath, "Example.yarn");
-            Compiler.CompileFile(path, out var program, out stringTable);
-			dialogue.SetProgram (program);
+
+            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+            dialogue.SetProgram (result.Program);
 
 			var source = dialogue.GetTagsForNode ("LearnMore");
 
@@ -177,7 +168,83 @@ namespace YarnSpinner.Tests
 			Assert.Equal ("rawText", source.First());
 		}
 
-        
+        [Fact]
+        public void TestPrepareForLine() {
+            var path = Path.Combine(TestDataPath, "TaggedLines.yarn");
+            
+            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+
+            stringTable = result.StringTable;
+            
+            bool prepareForLinesWasCalled = false;
+
+            dialogue.PrepareForLinesHandler = (lines) => {
+                // When the Dialogue realises it's about to run the Start
+                // node, it will tell us that it's about to run these two
+                // line IDs
+                Assert.Equal(2, lines.Count());
+                Assert.Contains("line:test1", lines);
+                Assert.Contains("line:test2", lines);
+
+                // Ensure that these asserts were actually called
+                prepareForLinesWasCalled = true;
+            };
+
+			dialogue.SetProgram (result.Program);
+            dialogue.SetNode("Start");
+
+            Assert.True(prepareForLinesWasCalled);
+        }
+
+
+        [Fact]
+        public void TestFunctionArgumentTypeInference() {
+
+            // Register some functions
+            dialogue.Library.RegisterFunction("ConcatString", (string a, string b) => a+b);
+            dialogue.Library.RegisterFunction("AddInt", (int a, int b) => a+b);
+            dialogue.Library.RegisterFunction("AddFloat", (float a, float b) => a+b);
+            dialogue.Library.RegisterFunction("NegateBool", (bool a) => !a);
+
+            // Run some code to exercise these functions
+            var source = CreateTestNode(@"
+            <<declare $str = """">>
+            <<declare $int = 0>>
+            <<declare $float = 0.0>>
+            <<declare $bool = false>>
+
+            <<set $str = ConcatString(""a"", ""b"")>>
+            <<set $int = AddInt(1,2)>>
+            <<set $float = AddFloat(1,2)>>
+            <<set $bool = NegateBool(true)>>
+            ");
+
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+
+            stringTable = result.StringTable;
+
+            dialogue.SetProgram(result.Program);
+            dialogue.SetNode("Start");
+
+            do {
+                dialogue.Continue();
+            } while (dialogue.IsActive);
+
+            // The values should be of the right type and value
+            
+            this.storage.TryGetValue<string>("$str", out var strValue);
+            Assert.Equal("ab", strValue);
+
+            this.storage.TryGetValue<float>("$int", out var intValue);
+            Assert.Equal(3, intValue);
+
+            this.storage.TryGetValue<float>("$float", out var floatValue);
+            Assert.Equal(3, floatValue);
+
+            this.storage.TryGetValue<bool>("$bool", out var boolValue);
+            Assert.Equal(false, boolValue);
+        }
+
     }
 }
 

@@ -8,7 +8,7 @@ dialogue
 
 // File-global hashtags, which precede all nodes
 file_hashtag
-    : HASHTAG HASHTAG_TEXT TEXT_COMMANDHASHTAG_NEWLINE
+    : HASHTAG text=HASHTAG_TEXT
     ;
 
 node
@@ -27,10 +27,11 @@ statement
     : line_statement
     | if_statement
     | set_statement
-    | option_statement
     | shortcut_option_statement
     | call_statement
     | command_statement
+    | declare_statement
+    | jump_statement
     | INDENT statement* DEDENT
     ;
 
@@ -39,32 +40,21 @@ line_statement
         line_formatted_text // text, interspersed with expressions
         line_condition? // a line condition
         hashtag*  // any number of hashtags
-        (TEXT_NEWLINE|TEXT_COMMANDHASHTAG_NEWLINE) // the end of the line
+        TEXT_NEWLINE // the end of the line
     ;
 
 line_formatted_text
-    : ( TEXT // a chunk of text to show to the player
-        | TEXT_EXPRESSION_START expression EXPRESSION_END // an expression to evaluate
-      | (FORMAT_FUNCTION_START|TEXT_FORMAT_FUNCTION_START) format_function FORMAT_FUNCTION_END // a format function
+    : ( TEXT+ // a chunk of text to show to the player
+      | EXPRESSION_START expression EXPRESSION_END // an expression to evaluate
       )* 
     ;
 
-format_function
-    : function_name=FORMAT_FUNCTION_ID FORMAT_FUNCTION_EXPRESSION_START variable EXPRESSION_END key_value_pair*
-    ;
-
-// key="value"
-key_value_pair
-    : pair_key=FORMAT_FUNCTION_ID FORMAT_FUNCTION_EQUALS pair_value=FORMAT_FUNCTION_STRING #KeyValuePairNamed
-    | pair_key=FORMAT_FUNCTION_NUMBER FORMAT_FUNCTION_EQUALS pair_value=FORMAT_FUNCTION_STRING #KeyValuePairNumber
-    ;
-
 hashtag
-    : (TEXT_HASHTAG|TEXT_COMMANDHASHTAG_HASHTAG|HASHTAG_TAG|BODY_HASHTAG|HASHTAG) text=HASHTAG_TEXT
+    : HASHTAG text=HASHTAG_TEXT
     ;
 
 line_condition
-    : (TEXT_COMMANDHASHTAG_COMMAND_START|TEXT_COMMAND_START) COMMAND_IF expression EXPRESSION_COMMAND_END
+    : COMMAND_START COMMAND_IF expression COMMAND_END
     ;
 
 expression
@@ -78,6 +68,7 @@ expression
     | variable op=('*=' | '/=' | '%=') expression #expMultDivModEquals
     | variable op=('+=' | '-=') expression #expPlusMinusEquals
     | expression op=(OPERATOR_LOGICAL_AND | OPERATOR_LOGICAL_OR | OPERATOR_LOGICAL_XOR) expression #expAndOrXor
+    | type '(' expression ')' #expTypeConversion
     | value #expValue
     ;
 
@@ -106,11 +97,11 @@ if_statement
     ;
 
 if_clause
-    : COMMAND_START COMMAND_IF expression EXPRESSION_COMMAND_END statement*
+    : COMMAND_START COMMAND_IF expression COMMAND_END statement*
     ;
 
 else_if_clause
-    : COMMAND_START COMMAND_ELSEIF expression EXPRESSION_COMMAND_END statement*
+    : COMMAND_START COMMAND_ELSEIF expression COMMAND_END statement*
     ;
 
 else_clause
@@ -118,16 +109,16 @@ else_clause
     ;
 
 set_statement
-    : COMMAND_START COMMAND_SET VAR_ID OPERATOR_ASSIGNMENT expression EXPRESSION_COMMAND_END #setVariableToValue
-    | COMMAND_START COMMAND_SET expression EXPRESSION_COMMAND_END #setExpression
+    : COMMAND_START COMMAND_SET variable OPERATOR_ASSIGNMENT expression COMMAND_END #setVariableToValue
+    | COMMAND_START COMMAND_SET expression COMMAND_END #setExpression
     ;
 
 call_statement
-    : COMMAND_START COMMAND_CALL function EXPRESSION_COMMAND_END
+    : COMMAND_START COMMAND_CALL function COMMAND_END
     ;
 
 command_statement
-    : COMMAND_START command_formatted_text COMMAND_TEXT_END (hashtag* TEXT_COMMANDHASHTAG_NEWLINE)?
+    : COMMAND_START command_formatted_text COMMAND_TEXT_END (hashtag* TEXT_NEWLINE)?
     ;
 
 command_formatted_text
@@ -142,15 +133,15 @@ shortcut_option
     : '->' line_statement (INDENT statement* DEDENT)?
     ;
 
-option_statement
-    : '[[' option_formatted_text '|' NodeName=OPTION_ID ']]' (hashtag* TEXT_COMMANDHASHTAG_NEWLINE)? #OptionLink
-    | '[[' NodeName=OPTION_TEXT ']]' #OptionJump
+declare_statement
+    : COMMAND_START COMMAND_DECLARE variable OPERATOR_ASSIGNMENT value ('as' type)? Description=STRING? COMMAND_END ;
+
+jump_statement
+    : COMMAND_START COMMAND_JUMP destination=ID COMMAND_END
     ;
 
-option_formatted_text
-    : (
-        OPTION_TEXT 
-        | OPTION_EXPRESSION_START expression EXPRESSION_END 
-        | OPTION_FORMAT_FUNCTION_START format_function FORMAT_FUNCTION_END
-      )+
+type
+    : typename=TYPE_STRING
+    | typename=TYPE_NUMBER
+    | typename=TYPE_BOOL
     ;

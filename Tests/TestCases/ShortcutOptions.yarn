@@ -2,9 +2,10 @@ title: Start
 ---
 // Testing options
 
-// Expect 2 options (the second one in the following group of three
-// will not be run) and select the first one
+// Expect 3 options (the second one in the following group of three will be
+// marked as disabled) and select the first one
 
+<<declare $selected = 0>>
 
 -> Option 1
 	<<set $selected += 1>>
@@ -42,19 +43,25 @@ Bea: line text
 		option2.3
 		option2.4
 
+// Single-character shortcut options
+-> A
+	B
+
+(Break up the options)
+
 // Shortcut options and line tags should work regardless of whitespace
 
 // No whitespace between condition and line tag
 -> Option A <<if true>>#line:0e8a7ce
 -> Option B #line:0405c66
 
-(Break up the commands)
+(Break up the options)
 
 // Whitespace between condition and line tag
 -> Option A <<if true>> #line:0e8a7cd
 -> Option B #line:0405c67
 
-(Break up the commands)
+(Break up the options)
 
 // Single-line shortcut options inside an indented context
 <<if true>>

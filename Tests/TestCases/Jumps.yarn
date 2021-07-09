@@ -1,0 +1,10 @@
+title: Start
+---
+Start line
+<<jump Destination>>
+This line will never be shown.
+===
+title: Destination
+---
+Destination line
+===

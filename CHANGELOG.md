@@ -8,9 +8,185 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- If a variable is not declared (i.e. it doesn't have a `<<declare>>` statement), the compiler will now attempt to infer its declaration.
+
 ### Changed
 
+- Variable declaration upgrader now generates .yarnproject files, not .yarnprogram files.
+
 ### Removed
+
+## [v2.0.0-beta4] 
+
+### Added
+
+- Characters can now be escaped in lines and options.
+  - The `\` character can be used to write characters that the parser would otherwise use.
+  - The following characters can be escaped: `{` `}` `<` `>` `#` `/` `\`
+    - The `/` and `<` characters don't usually need to be escaped if they're appearing on their own (they're only meaningful when they appear in pairs), but this allows you to escape things like commands and comments. 
+- Identifiers now support a wider range of characters, including most multilingual letters and numbers, as well as symbols and emoji.
+
+### Changed
+
+- Made line conditions control the `IsAvailable` flag on options that are sent to the game. 
+- This change was made in order to allow games to conditionally present, but disallow, options that the player can't choose. For example, consider the following script:
+
+```
+TD-110: Let me see your identification.
+-> Of course... um totally not General Kenobi and the son of Darth Vader.
+    Luke: Wait, what?!
+    TD-110: Promotion Time!
+-> You don't need to see his identification. <<if $learnt_mind_trick is true>>
+    TD-110: We don't need to see his identification.
+```
+
+- If the variable `$learnt_mind_trick` is false, a game may want to show the option but not allow the player to select it (i.e., show that this option could have been chosen if they'd learned how to do a mind trick.)
+- In previous versions of Yarn Spinner, if a line condition failed, the entire option was not delivered to the game. With this change, all options are delivered, and the `OptionSet.Option.IsAvailable` variable contains `false` if the condition was not met, and `true` if it was (or was not present.)
+- It's entirely up to the game to decide what to do with this information. To re-create the behaviour from previous Yarn Spinner versions, simply don't show any options whose `IsAvailable` value is `false`.
+
+- Fixed a crash in `LineParser` if a null input was provided to it.
+- Fixed a crash in `FormatFunctionUpgrader` (which upgrades v1 Yarn scripts to v2) if an invalid format format function was encountered.
+
+### Removed
+
+## [v2.0.0-beta2] 2021-01-14
+
+### Added
+
+- The `[[Destination]]` and `[[Option|Destination]]` syntax has been removed from the language.
+  - This syntax was inherited from the original Yarn language, which itself inherited it from Twine. 
+  - We removed it for four reasons: 
+    - it conflated jumps and options, which are very different operations, with too-similar syntax; 
+    - the Option-destination syntax for declaring options involved the management of non-obvious state (that is, if an option statement was inside an `if` branch that was never executed, it was not presented, and the runtime needed to keep track of that);
+    - it was not obvious that options accumulated and were only presented at the end of the node;
+    - finally, shortcut options provide a cleaner way to present the same behaviour.
+  - We have added a `<<jump Destination>>` command, which replaces the `[[Destination]]` jump syntax.
+  - No change to the bytecode is made here; these changes only affect the compiler.
+  - Instead of using ``[[Option|Destination]]`` syntax, use shortcut options instead. For example:
+
+```
+// Before
+Kim: You want a bagel?
+[[Yes, please!|GiveBagel]]
+[[No, thanks!|DontWantBagel]]
+
+// After
+Kim: You want a bagel?
+-> Yes, please!
+  <<jump GiveBagel>>
+-> No, thanks!
+  <<jump DontWantBagel>>
+```
+
+- An automatic upgrader has been added that attempts to determine the types of variables in Yarn Spinner 1.0, and generates `<<declare>>` statements for variables.
+  - This upgrader infers the type of a variable based on the values that are assigned to it, and the values of expressions that it participates in.
+  - If the upgrader cannot determine the type of a variable, it generates a declaration of the form `<<declare $variable_name as undefined>>`. The word `undefined` is not a valid type in Yarn Spinner, which means that these declarations will cause an error in compilation (which is a signal to the developer that the script needs to be manually updated.)
+
+ - For example: given the following script:
+
+```   
+<<set $const_string = "foo">>
+<<set $const_number = 2>>
+<<set $const_bool = true>>
+```
+    
+- The upgrader will generate the following variable declarations:
+```
+    <<declare $const_string = "" as string>>
+    <<declare $const_number = 0 as number>>
+    <<declare $const_bool = false as bool>>
+```
+    
+The upgrader is able to make use of type even when it appears later in the program, and is
+able to make inferences about type using indirect information.
+    
+```
+// These variables are participating in expressions that include
+// variables we've derived the type for earlier in this program, so they
+// will be bound to that type
+{$derived_expr_const_string + $const_string}
+{$derived_expr_const_number + $const_number}
+{$derived_expr_const_bool && $const_bool}
+
+// These variables are participating in expressions that include
+// variables that we define a type for later in this program. They will
+// also be bound to that type.
+{$derived_expr_const_string_late + $const_string_late}
+{$derived_expr_const_number_late + $const_number_late}
+{$derived_expr_const_bool_late && $const_bool_late}
+
+<<set $const_string_late = "yes">>
+<<set $const_number_late = 1>>
+<<set $const_bool_late = true>>
+```
+
+- The upgrader will also make in-line changes to any if or elseif statements where the expression is determined to use a number rather than a bool will be rewritten so that the expression evaluates to a bool:
+
+``` 
+// Define some variables whose type is known before the expressions are
+// hit
+<<set $some_num_var = 1>>
+<<set $some_other_num_var = 1>>
+
+// This will be converted to a bool expression
+<<if $some_num_var>>
+<<elseif $some_other_num_var>>
+<<endif>>
+```
+
+Will be rewritten to:
+
+```
+<<if $some_num_var != 0>>
+<<elseif $some_other_num_var != 0>>
+<<endif>>
+```
+
+### Changed
+
+- The internal structure of the LanguageUpgrader system has been updated to make it easier to add future upgrade passes.
+
+### Removed
+
+## [v2.0.0-beta1] 2020-10-20
+
+### Added
+- Version 2 of the Yarn language requires variables to be declared in order to use them. It's now an error to set or get a value from a variable that isn't declared.
+  - Variables must always have a defined type, and aren't allowed to change type. This means, for example, that you can't store a string inside a variable that was declared as a number.
+  - Variables also have a default value. As a result, variables are never allowed to be `null`.
+  - Variable declarations can be in any part of a Yarn script. As long as they're somewhere in the file, they'll be used.
+  - Variable declarations don't have to be in the same file as where they're used. If a script has a variable declaration, other scripts compiled with it can use the variable.
+  - To declare a variable in a script, use the following syntax:
+  
+```
+<<declare $variable_name = "hello">> // declares a string
+<<declare $variable_name = 123>> // declares a number
+<<declare $variable_name = true>> // declares a boolean
+```
+
+- Added substitution support to Dialogue (previously, the game client had to do it)
+- Added support for markup.
+- Added an EditorConfig file to assist future contributions in following the .NET coding style (@Schroedingers-Cat)
+- Added Dialogue.prepareForLinesHandler, a delegate that is called when the Dialogue anticipates running certain lines; games can use this to pre-load content or take other actions to prepare to run lines.
+  - Yarn Spinner will check the types of the delegate you provide. At present, parameters must be either ints, floats, doubles, bools, strings, or `Yarn.Value`s.
+- Added a new command, `<<jump>>`, which immediately jumps to a new node. It takes one parameter: the name of the node to jump to.
+
+### Changed
+
+- `Library.RegisterFunction` no longer works with the `Function` and `ReturningFunction` classes, which have been removed. Instead, you provide a `Func` directly, which can take multiple individual parameters, rather than a single `Value[]` parameter.
+- The `LineHandler`, `CommandHandler`, and `NodeCompleteHandler` callbacks, used by the `Dialogue` class, no longer return a value that indicates whether the `Dialogue` should pause execution. Instead, the `Dialogue` will now *always* pause execution, which can be resumed by calling `Dialogue.Continue()`. (This method may be called from inside the line handler or command handler, or at any point after these handlers return.)
+- The `Compiler` class no longer compiles Yarn scripts using the `CompileFile` and `CompileString` methods. Instead, the `Compile` method accepts a `CompilationJob` struct that describes the work to do, and returns a `CompilationResult` struct containing the result. This method allows for the compilation of multiple files into a single program, as well as supplying variable and function declarations.
+- The `Compiler` class also supports doing only a partial compilation, returning only variable declarations or string table entries.
+- Yarn scripts are now all compiled into a single `YarnProgram`. This improves compilation performance, ensures that scripts don't have multiple nodes with the same name, and ensures that scripts are able to make use of variables declared in other scripts.
+- Shortcut options have been renamed to "options".
+
+### Removed
+
+- `[[Option]]` syntax has been removed.
+  - In previous versions of the Yarn language, there were two ways of presenting options to the player: "regular" options (`[[Displayed text|DestinationName]]`), and shortcut options (`-> Displayed Text`), with shortcut options being displayed immediately, and regular options accumulating and being presented at the end of the node.
+  - In Yarn Spinner 2.0, the "regular" option syntax has been removed; when you want to show options to the player, use the "shortcut option" syntax.  
+  - The previous, related syntax for jumping to another node, (`[[DestinationNode]]`), has also been removed, and has been replaced with the `<<jump>>` command.
+- Functions registered with the `Library` class can no longer accept an unlimited number of parametes.
 
 ## [v1.2.0] 2020-05-04
 

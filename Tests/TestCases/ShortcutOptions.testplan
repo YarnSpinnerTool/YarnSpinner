@@ -1,9 +1,11 @@
 option: Option 1
+option: Option 2 [disabled]
 option: Option 3
 select: 1
 line: This line should appear.
 option: Sub Option 1
 option: Sub Option 2
+option: Sub Option 3 [disabled]
 select: 1
 line: This line should also appear.
 
@@ -24,17 +26,23 @@ option: indented option1 following unindented line
 option: indented option2 following unindented line
 select: 1
 
+option: A
+select: 1
+line: B
+
+line: (Break up the options)
+
 option: Option A
 option: Option B
 select: 1
 
-line: (Break up the commands)
+line: (Break up the options)
 
 option: Option A
 option: Option B
 select: 1
 
-line: (Break up the commands)
+line: (Break up the options)
 
 option: Option1
 select: 1

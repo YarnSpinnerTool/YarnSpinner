@@ -1,0 +1,30 @@
+line: Here's a line. It runs before options appear.
+
+option: Option 1
+option: Option 2
+option: Option 3
+option: Option 4 [disabled]
+option: Option 5 [disabled]
+
+select: 1
+
+option: Shortcut option 1
+option: Shortcut option 2
+select: 1
+
+line: A line
+
+line: Here's a line. It runs before anything else.
+
+option: Shortcut Option 1
+option: Shortcut Option 2
+select: 1
+line: Shortcut 1
+
+line: A line after the shortcut options.
+
+option: Option A
+option: Option B
+option: Option C
+option: Option D
+select: 4

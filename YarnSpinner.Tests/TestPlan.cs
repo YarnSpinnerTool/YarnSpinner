@@ -35,6 +35,8 @@ namespace YarnSpinner.Tests
 
             public string stringValue;
             public int intValue;
+
+            public bool expectOptionEnabled = true;
             
             public Step(string s) {
                 intValue = -1;
@@ -63,6 +65,14 @@ namespace YarnSpinner.Tests
                                 // represent this as the null value
                                 stringValue = null; 
                             }
+
+                            // Options whose text ends with " [disabled]"
+                            // are expected to be present, but have their
+                            // 'allowed' flag set to false
+                            if (type == Type.Option && stringValue.EndsWith(" [disabled]")) {
+                                expectOptionEnabled = false;
+                                stringValue = stringValue.Replace(" [disabled]", "");
+                            }
                             break;
                         
                         case Type.Select:
@@ -80,6 +90,20 @@ namespace YarnSpinner.Tests
                 }
                 
 
+
+            }
+
+            internal Step(Type type, string stringValue) {
+                this.type = type;
+                this.stringValue = stringValue;
+            }
+
+            internal Step(Type type, int intValue) {
+                this.type = type;
+                this.intValue = intValue;
+            }
+
+            internal Step(Type type) {
 
             }
 
@@ -129,18 +153,22 @@ namespace YarnSpinner.Tests
             }
         }
 
-        private List<Step> steps = new List<Step>();
+        internal List<Step> Steps = new List<Step>();
 
         private int currentTestPlanStep = 0;
 
         public TestPlan.Step.Type nextExpectedType;
-        public List<string> nextExpectedOptions = new List<string>();
+        public List<(string line, bool enabled)> nextExpectedOptions = new List<(string line, bool enabled)>();
         public int nextOptionToSelect = -1;
         public string nextExpectedValue = null;
 
+        internal TestPlan() {
+            // Start with the empty step
+        }
+
         public TestPlan(string path)
         {
-            steps = File.ReadAllLines(path)
+            Steps = File.ReadAllLines(path)
                 .Where(line => line.TrimStart().StartsWith("#") == false) // skip commented lines
                 .Where(line => line.Trim() != "") // skip empty or blank lines
                 .Select(line => new Step(line)) // convert remaining lines to steps
@@ -161,9 +189,9 @@ namespace YarnSpinner.Tests
                 nextOptionToSelect = 0;
             }
 
-            while (currentTestPlanStep < steps.Count) {
+            while (currentTestPlanStep < Steps.Count) {
                 
-                Step currentStep = steps[currentTestPlanStep];
+                Step currentStep = Steps[currentTestPlanStep];
 
                 currentTestPlanStep += 1;
 
@@ -180,7 +208,7 @@ namespace YarnSpinner.Tests
                         nextOptionToSelect = currentStep.intValue;
                         goto done;
                     case Step.Type.Option:
-                        nextExpectedOptions.Add(currentStep.stringValue);
+                        nextExpectedOptions.Add((currentStep.stringValue, currentStep.expectOptionEnabled));
                         continue;                                           
                 }
             } 
@@ -193,6 +221,48 @@ namespace YarnSpinner.Tests
             return;
         }
 
+
+    }
+
+    public class TestPlanBuilder {
+
+        private TestPlan testPlan;
+
+        public TestPlanBuilder() {
+            testPlan = new TestPlan();
+        }
+
+        public TestPlan GetPlan() {
+            return testPlan;
+        }
+
+        public TestPlanBuilder AddLine(string line) {
+            testPlan.Steps.Add(new TestPlan.Step(TestPlan.Step.Type.Line, line));
+            return this;
+        }
+
+        public TestPlanBuilder AddOption(string text = null) {
+            testPlan.Steps.Add(new TestPlan.Step(TestPlan.Step.Type.Option, text));
+            return this;
+
+        }
+
+        public TestPlanBuilder AddSelect(int value) {
+            testPlan.Steps.Add(new TestPlan.Step(TestPlan.Step.Type.Select, value));
+            return this;
+
+        }
+
+        public TestPlanBuilder AddCommand(string command) {
+            testPlan.Steps.Add(new TestPlan.Step(TestPlan.Step.Type.Command, command));
+            return this;
+
+        }
+
+        public TestPlanBuilder AddStop() {
+            testPlan.Steps.Add(new TestPlan.Step(TestPlan.Step.Type.Stop));
+            return this;
+        }
 
     }
 

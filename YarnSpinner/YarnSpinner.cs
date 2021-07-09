@@ -24,28 +24,31 @@ namespace Yarn {
     static YarnSpinnerReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChJ5YXJuX3NwaW5uZXIucHJvdG8SBFlhcm4iegoHUHJvZ3JhbRIMCgRuYW1l",
-            "GAEgASgJEicKBW5vZGVzGAIgAygLMhguWWFybi5Qcm9ncmFtLk5vZGVzRW50",
-            "cnkaOAoKTm9kZXNFbnRyeRILCgNrZXkYASABKAkSGQoFdmFsdWUYAiABKAsy",
-            "Ci5ZYXJuLk5vZGU6AjgBIr4BCgROb2RlEgwKBG5hbWUYASABKAkSJwoMaW5z",
-            "dHJ1Y3Rpb25zGAIgAygLMhEuWWFybi5JbnN0cnVjdGlvbhImCgZsYWJlbHMY",
-            "AyADKAsyFi5ZYXJuLk5vZGUuTGFiZWxzRW50cnkSDAoEdGFncxgEIAMoCRIa",
-            "ChJzb3VyY2VUZXh0U3RyaW5nSUQYBSABKAkaLQoLTGFiZWxzRW50cnkSCwoD",
-            "a2V5GAEgASgJEg0KBXZhbHVlGAIgASgFOgI4ASLkAgoLSW5zdHJ1Y3Rpb24S",
-            "KAoGb3Bjb2RlGAEgASgOMhguWWFybi5JbnN0cnVjdGlvbi5PcENvZGUSHwoI",
-            "b3BlcmFuZHMYAiADKAsyDS5ZYXJuLk9wZXJhbmQiiQIKBk9wQ29kZRILCgdK",
-            "VU1QX1RPEAASCAoESlVNUBABEgwKCFJVTl9MSU5FEAISDwoLUlVOX0NPTU1B",
-            "TkQQAxIOCgpBRERfT1BUSU9OEAQSEAoMU0hPV19PUFRJT05TEAUSDwoLUFVT",
-            "SF9TVFJJTkcQBhIOCgpQVVNIX0ZMT0FUEAcSDQoJUFVTSF9CT09MEAgSDQoJ",
-            "UFVTSF9OVUxMEAkSEQoNSlVNUF9JRl9GQUxTRRAKEgcKA1BPUBALEg0KCUNB",
-            "TExfRlVOQxAMEhEKDVBVU0hfVkFSSUFCTEUQDRISCg5TVE9SRV9WQVJJQUJM",
-            "RRAOEggKBFNUT1AQDxIMCghSVU5fTk9ERRAQIlcKB09wZXJhbmQSFgoMc3Ry",
-            "aW5nX3ZhbHVlGAEgASgJSAASFAoKYm9vbF92YWx1ZRgCIAEoCEgAEhUKC2Zs",
-            "b2F0X3ZhbHVlGAMgASgCSABCBwoFdmFsdWViBnByb3RvMw=="));
+            "ChJ5YXJuX3NwaW5uZXIucHJvdG8SBFlhcm4i+QEKB1Byb2dyYW0SDAoEbmFt",
+            "ZRgBIAEoCRInCgVub2RlcxgCIAMoCzIYLllhcm4uUHJvZ3JhbS5Ob2Rlc0Vu",
+            "dHJ5EjgKDmluaXRpYWxfdmFsdWVzGAMgAygLMiAuWWFybi5Qcm9ncmFtLklu",
+            "aXRpYWxWYWx1ZXNFbnRyeRo4CgpOb2Rlc0VudHJ5EgsKA2tleRgBIAEoCRIZ",
+            "CgV2YWx1ZRgCIAEoCzIKLllhcm4uTm9kZToCOAEaQwoSSW5pdGlhbFZhbHVl",
+            "c0VudHJ5EgsKA2tleRgBIAEoCRIcCgV2YWx1ZRgCIAEoCzINLllhcm4uT3Bl",
+            "cmFuZDoCOAEivgEKBE5vZGUSDAoEbmFtZRgBIAEoCRInCgxpbnN0cnVjdGlv",
+            "bnMYAiADKAsyES5ZYXJuLkluc3RydWN0aW9uEiYKBmxhYmVscxgDIAMoCzIW",
+            "Lllhcm4uTm9kZS5MYWJlbHNFbnRyeRIMCgR0YWdzGAQgAygJEhoKEnNvdXJj",
+            "ZVRleHRTdHJpbmdJRBgFIAEoCRotCgtMYWJlbHNFbnRyeRILCgNrZXkYASAB",
+            "KAkSDQoFdmFsdWUYAiABKAU6AjgBIuQCCgtJbnN0cnVjdGlvbhIoCgZvcGNv",
+            "ZGUYASABKA4yGC5ZYXJuLkluc3RydWN0aW9uLk9wQ29kZRIfCghvcGVyYW5k",
+            "cxgCIAMoCzINLllhcm4uT3BlcmFuZCKJAgoGT3BDb2RlEgsKB0pVTVBfVE8Q",
+            "ABIICgRKVU1QEAESDAoIUlVOX0xJTkUQAhIPCgtSVU5fQ09NTUFORBADEg4K",
+            "CkFERF9PUFRJT04QBBIQCgxTSE9XX09QVElPTlMQBRIPCgtQVVNIX1NUUklO",
+            "RxAGEg4KClBVU0hfRkxPQVQQBxINCglQVVNIX0JPT0wQCBINCglQVVNIX05V",
+            "TEwQCRIRCg1KVU1QX0lGX0ZBTFNFEAoSBwoDUE9QEAsSDQoJQ0FMTF9GVU5D",
+            "EAwSEQoNUFVTSF9WQVJJQUJMRRANEhIKDlNUT1JFX1ZBUklBQkxFEA4SCAoE",
+            "U1RPUBAPEgwKCFJVTl9OT0RFEBAiVwoHT3BlcmFuZBIWCgxzdHJpbmdfdmFs",
+            "dWUYASABKAlIABIUCgpib29sX3ZhbHVlGAIgASgISAASFQoLZmxvYXRfdmFs",
+            "dWUYAyABKAJIAEIHCgV2YWx1ZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Program), global::Yarn.Program.Parser, new[]{ "Name", "Nodes" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Program), global::Yarn.Program.Parser, new[]{ "Name", "Nodes", "InitialValues" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Node), global::Yarn.Node.Parser, new[]{ "Name", "Instructions", "Labels", "Tags", "SourceTextStringID" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Instruction), global::Yarn.Instruction.Parser, new[]{ "Opcode", "Operands" }, null, new[]{ typeof(global::Yarn.Instruction.Types.OpCode) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Yarn.Operand), global::Yarn.Operand.Parser, new[]{ "StringValue", "BoolValue", "FloatValue" }, new[]{ "Value" }, null, null, null)
@@ -85,6 +88,7 @@ namespace Yarn {
     public Program(Program other) : this() {
       name_ = other.name_;
       nodes_ = other.nodes_.Clone();
+      initialValues_ = other.initialValues_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -120,6 +124,21 @@ namespace Yarn {
       get { return nodes_; }
     }
 
+    /// <summary>Field number for the "initial_values" field.</summary>
+    public const int InitialValuesFieldNumber = 3;
+    private static readonly pbc::MapField<string, global::Yarn.Operand>.Codec _map_initialValues_codec
+        = new pbc::MapField<string, global::Yarn.Operand>.Codec(pb::FieldCodec.ForString(10, ""), pb::FieldCodec.ForMessage(18, global::Yarn.Operand.Parser), 26);
+    private readonly pbc::MapField<string, global::Yarn.Operand> initialValues_ = new pbc::MapField<string, global::Yarn.Operand>();
+    /// <summary>
+    /// The collection of initial values for variables; if a PUSH_VARIABLE
+    /// instruction is run, and the value is not found in the storage, this
+    /// value will be used
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::MapField<string, global::Yarn.Operand> InitialValues {
+      get { return initialValues_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as Program);
@@ -135,6 +154,7 @@ namespace Yarn {
       }
       if (Name != other.Name) return false;
       if (!Nodes.Equals(other.Nodes)) return false;
+      if (!InitialValues.Equals(other.InitialValues)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -143,6 +163,7 @@ namespace Yarn {
       int hash = 1;
       if (Name.Length != 0) hash ^= Name.GetHashCode();
       hash ^= Nodes.GetHashCode();
+      hash ^= InitialValues.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -161,6 +182,7 @@ namespace Yarn {
         output.WriteString(Name);
       }
       nodes_.WriteTo(output, _map_nodes_codec);
+      initialValues_.WriteTo(output, _map_initialValues_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -173,6 +195,7 @@ namespace Yarn {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
       }
       size += nodes_.CalculateSize(_map_nodes_codec);
+      size += initialValues_.CalculateSize(_map_initialValues_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -188,6 +211,7 @@ namespace Yarn {
         Name = other.Name;
       }
       nodes_.Add(other.nodes_);
+      initialValues_.Add(other.initialValues_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -205,6 +229,10 @@ namespace Yarn {
           }
           case 18: {
             nodes_.AddEntriesFrom(input, _map_nodes_codec);
+            break;
+          }
+          case 26: {
+            initialValues_.AddEntriesFrom(input, _map_initialValues_codec);
             break;
           }
         }
@@ -637,7 +665,13 @@ namespace Yarn {
         [pbr::OriginalName("RUN_COMMAND")] RunCommand = 3,
         /// <summary>
         /// Adds an entry to the option list (see ShowOptions).
-        /// opA = string: string ID for option to add
+        /// - opA = string: string ID for option to add
+        /// - opB = string: destination to go to if this option is selected
+        /// - opC = number: number of expressions on the stack to insert
+        ///   into the line
+        /// - opD = bool: whether the option has a condition on it (in which
+        ///   case a value should be popped off the stack and used to signal
+        ///   the game that the option should be not available)
         /// </summary>
         [pbr::OriginalName("ADD_OPTION")] AddOption = 4,
         /// <summary>
@@ -679,6 +713,9 @@ namespace Yarn {
         /// </summary>
         [pbr::OriginalName("POP")] Pop = 11,
         /// <summary>
+        /// Calls a function in the client. Pops as many arguments as the
+        /// client indicates the function receives, and the result (if any)
+        /// is pushed to the stack.		
         /// opA = string: name of the function
         /// </summary>
         [pbr::OriginalName("CALL_FUNC")] CallFunc = 12,
@@ -699,7 +736,8 @@ namespace Yarn {
         /// </summary>
         [pbr::OriginalName("STOP")] Stop = 15,
         /// <summary>
-        /// Run the node whose name is at the top of the stack.
+        /// Pops a string off the top of the stack, and runs the node with
+        /// that name.
         /// No operands.
         /// </summary>
         [pbr::OriginalName("RUN_NODE")] RunNode = 16,

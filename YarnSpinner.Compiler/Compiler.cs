@@ -2,26 +2,84 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.IO;
-    using System.Text;
     using System.Text.RegularExpressions;
     using Antlr4.Runtime;
-    using Antlr4.Runtime.Misc;
     using Antlr4.Runtime.Tree;
     using static Yarn.Instruction.Types;
-    
-    /// <summary>Specifies the result of compiling Yarn code.</summary>
-    /// <remarks>This enum specifies the _type_ of success that resulted.
-    /// Compilation failures will result in a <see cref="ParseException"/>, so they don't get
-    /// a Status.</remarks>
-    public enum Status
-    {
-        /// <summary>The compilation succeeded with no errors.</summary>
-        Succeeded,
 
-        /// <summary>The compilation succeeded, but some strings do not have string tags.</summary>
-        SucceededUntaggedStrings,
+    internal class StringTableManager
+    {
+        internal Dictionary<string, StringInfo> StringTable = new Dictionary<string, StringInfo>();
+
+        internal bool ContainsImplicitStringTags
+        {
+            get
+            {
+                foreach (var item in StringTable)
+                {
+                    if (item.Value.isImplicitTag)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Registers a new string in the string table.
+        /// </summary>
+        /// <param name="text">The text of the string to register.</param>
+        /// <param name="nodeName">The name of the node that this string
+        /// was found in.</param>
+        /// <param name="lineID">The line ID to use for this entry in the
+        /// string table.</param>
+        /// <param name="lineNumber">The line number that this string was
+        /// found in.</param>
+        /// <param name="tags">The tags to associate with this string in
+        /// the string table.</param>
+        /// <returns>The string ID for the newly registered
+        /// string.</returns>
+        /// <remarks>If <paramref name="lineID"/> is <see
+        /// langword="null"/>, a line ID will be generated from <paramref
+        /// name="fileName"/>, <paramref name="nodeName"/>, and the number
+        /// of elements in <see cref="StringTable"/>.</remarks>
+        internal string RegisterString(string text, string fileName, string nodeName, string lineID, int lineNumber, string[] tags)
+        {
+            string lineIDUsed;
+
+            bool isImplicit;
+
+            if (lineID == null)
+            {
+                lineIDUsed = $"line:{fileName}-{nodeName}-{this.StringTable.Count}";
+
+                isImplicit = true;
+            }
+            else
+            {
+                lineIDUsed = lineID;
+
+                isImplicit = false;
+            }
+
+            var theString = new StringInfo(text, fileName, nodeName, lineNumber, isImplicit, tags);
+
+            // Finally, add this to the string table, and return the line
+            // ID.
+            this.StringTable.Add(lineIDUsed, theString);
+
+            return lineIDUsed;
+        }
+
+        internal void Add(IDictionary<string, StringInfo> otherStringTable)
+        {
+            foreach (var entry in otherStringTable)
+            {
+                StringTable.Add(entry.Key, entry.Value);
+            }
+        }
     }
 
     /// <summary>
@@ -34,55 +92,57 @@
     /// </remarks>
     public struct StringInfo
     {
-		/// <summary>
-		/// The original text of the string.
-		/// </summary>
+        /// <summary>
+        /// The original text of the string.
+        /// </summary>
         public string text;
 
-		/// <summary>
-		/// The name of the node that this string was found in.
-		/// </summary>
+        /// <summary>
+        /// The name of the node that this string was found in.
+        /// </summary>
         public string nodeName;
 
-		/// <summary>
-		/// The line number at which this string was found in the file.
-		/// </summary>
+        /// <summary>
+        /// The line number at which this string was found in the file.
+        /// </summary>
         public int lineNumber;
 
-		/// <summary>
-		/// The name of the file this string was found in.
-		/// </summary>
+        /// <summary>
+        /// The name of the file this string was found in.
+        /// </summary>
         public string fileName;
 
-		/// <summary>
-		/// Indicates whether this string's line ID was implicitly
-		/// generated.
-		/// </summary>
-		/// <remarks>
-		/// Implicitly generated line IDs are not guaranteed to remain the
-		/// same across multiple compilations. To ensure that a line ID
-		/// remains the same, you must define it by adding a [line
-		/// tag]({{|ref "/docs/unity/localisation.md"|}}) to the line.
-		/// </remarks>
+        /// <summary>
+        /// Indicates whether this string's line ID was implicitly
+        /// generated.
+        /// </summary>
+        /// <remarks>
+        /// Implicitly generated line IDs are not guaranteed to remain the
+        /// same across multiple compilations. To ensure that a line ID
+        /// remains the same, you must define it by adding a [line
+        /// tag]({{|ref "/docs/unity/localisation.md"|}}) to the line.
+        /// </remarks>
         public bool isImplicitTag;
 
-		/// <summary>
-		/// The metadata (i.e. hashtags) associated with this string.
-		/// </summary>
-		/// <remarks>
-		/// This array will contain any hashtags associated with this string besides the `#line:`
-		/// hashtag.
-		/// </remarks>
+        /// <summary>
+        /// The metadata (i.e. hashtags) associated with this string.
+        /// </summary>
+        /// <remarks>
+        /// This array will contain any hashtags associated with this
+        /// string besides the `#line:` hashtag.
+        /// </remarks>
         public string[] metadata;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StringInfo"/> struct.
+        /// Initializes a new instance of the <see cref="StringInfo"/>
+        /// struct.
         /// </summary>
         /// <param name="text">The text of the string.</param>
         /// <param name="fileName">The file name.</param>
         /// <param name="nodeName">The node name.</param>
         /// <param name="lineNumber">The line number.</param>
-        /// <param name="isImplicitTag">If `true`, this string info is stored with an implicit line ID.</param>
+        /// <param name="isImplicitTag">If `true`, this string info is
+        /// stored with an implicit line ID.</param>
         /// <param name="metadata">The string's metadata.</param>
         internal StringInfo(string text, string fileName, string nodeName, int lineNumber, bool isImplicitTag, string[] metadata)
         {
@@ -104,12 +164,457 @@
         }
     }
 
+    [System.Serializable]
+    public class Declaration
+    {
+        /// <summary>
+        /// Gets the name of this Declaration.
+        /// </summary>
+        public string Name { get => name; internal set => name = value; }
+
+        /// <summary>
+        /// Creates a new instance of the <see cref="Declaration"/> class,
+        /// using the given <paramref name="name"/> and default value. The
+        /// <see cref="ReturnType"/> of the new instance will be configured
+        /// based on the type of <paramref name="defaultValue"/>, and the
+        /// <see cref="DeclarationType"/> will be <see
+        /// cref="Type.Variable"/>. All other properties will be their
+        /// default values.
+        /// </summary>
+        /// <param name="name">The name of the new declaration.</param>
+        /// <param name="defaultValue">The default value of the
+        /// declaration. This must be a string, a number (integer or
+        /// floating-point), or boolean value.</param>
+        /// <param name="description">The description of the new
+        /// declaration.</param>
+        /// <returns>A new instance of the <see cref="Declaration"/>
+        /// class.</returns>
+        public static Declaration CreateVariable(string name, object defaultValue, string description = null)
+        {
+            if (defaultValue is null)
+            {
+                throw new ArgumentNullException(nameof(defaultValue));
+            }
+
+            // What type of default value did we get?
+            System.Type defaultValueType = defaultValue.GetType();
+
+            // Is it something we can handle?
+            if (Value.TypeMappings.ContainsKey(defaultValueType) == false)
+            {
+                throw new ArgumentException($"Default value type cannot be {defaultValueType}");
+            }
+
+            // We're all good to create the new declaration.
+            var decl = new Declaration
+            {
+                Name = name,
+                DefaultValue = defaultValue,
+                ReturnType = Value.TypeMappings[defaultValueType],
+                DeclarationType = Type.Variable,
+                Description = description,
+            };
+
+            return decl;
+        }
+
+        /// <summary>
+        /// Gets the default value of this <see cref="Declaration"/>, if no
+        /// value has been specified in code or is available from a <see
+        /// cref="Dialogue"/>'s <see cref="IVariableStorage"/>.
+        /// </summary>
+        public object DefaultValue { get => defaultValue; internal set => defaultValue = value; }
+
+        /// <summary>
+        /// Gets the type of this declaration.
+        /// </summary>
+        public Declaration.Type DeclarationType { get => declarationType; internal set => declarationType = value; }
+
+        /// <summary>
+        /// Gets the return type of this declaration.
+        /// </summary>
+        /// <remarks>
+        /// For declarations whose <see cref="DeclarationType"/> is <see
+        /// cref="Declaration.Type.Variable"/>, this is the type of the
+        /// variable.
+        /// </remarks>
+        public Yarn.Type ReturnType { get => returnType; internal set => returnType = value; }
+
+        /// <summary>
+        /// Gets a string describing the purpose of this <see
+        /// cref="Declaration"/>.
+        /// </summary>
+        public string Description { get => description; internal set => description = value; }
+
+        /// <summary>
+        /// Gets the <see cref="Parameter"/>s associated with this <see
+        /// cref="Declaration"/>.
+        /// </summary>
+        /// <remarks>
+        /// For declarations whose <see cref="DeclarationType"/> is <see
+        /// cref="Declaration.Type.Variable"/>, this array will be empty.
+        /// </remarks>
+        public Parameter[] Parameters { get => parameters; internal set => parameters = value; }
+        /// <summary>
+        /// Gets the name of the file in which this Declaration was found.
+        /// </summary>
+        /// <remarks>
+        /// If this <see cref="Declaration"/> was not found in a Yarn
+        /// source file, this will be <see cref="ExternalDeclaration"/>.
+        /// </remarks>
+        public string SourceFileName { get => sourceFileName; internal set => sourceFileName = value; }
+
+        /// <summary>
+        /// Gets the name of the node in which this Declaration was found.
+        /// </summary>
+        /// <remarks>
+        /// If this <see cref="Declaration"/> was not found in a Yarn
+        /// source file, this will be <see langword="null"/>.
+        /// </remarks>
+        public string SourceNodeName { get => sourceNodeName; internal set => sourceNodeName = value; }
+
+        /// <summary>
+        /// The line number at which this Declaration was found in the
+        /// source file.
+        /// </summary>
+        /// <remarks>
+        /// If this <see cref="Declaration"/> was not found in a Yarn
+        /// source file, this will be -1.
+        /// </remarks>
+        public int SourceFileLine { get => sourceFileLine; internal set => sourceFileLine = value; }
+
+        /// <summary>
+        /// Gets the line number at which this Declaration was found in the node
+        /// indicated by <see cref="SourceNodeName"/>.
+        /// </summary>
+        /// <remarks>
+        /// If this <see cref="Declaration"/> was not found in a Yarn
+        /// source file, this will be -1.
+        /// </remarks>
+        public int SourceNodeLine { get => sourceNodeLine; internal set => sourceNodeLine = value; }
+
+        /// <summary>
+        /// Get or sets a value indicating whether this Declaration was implicitly
+        /// inferred from usage.
+        /// </summary>
+        /// <value>If <see langword="true"/>, this Declaration was
+        /// implicitly inferred from usage. If <see langword="false"/>,
+        /// this Declaration appears in the source code.</value>
+        public bool IsImplicit { get; internal set; }
+
+        /// <summary>
+        /// The string used for <see cref="SourceFileName"/> if the
+        /// Declaration was found outside of a Yarn source file.
+        /// </summary>
+        public const string ExternalDeclaration = "(External)";
+
+        internal string name;
+        internal object defaultValue;
+        internal Type declarationType = Declaration.Type.Variable;
+        internal Yarn.Type returnType;
+        internal string description;
+        internal Parameter[] parameters = new Parameter[0];
+        internal string sourceFileName;
+        internal string sourceNodeName;
+        internal int sourceFileLine;
+        internal int sourceNodeLine;
+
+        public Declaration()
+        {
+        }
+
+        /// <summary>
+        /// Enumerates the different types of <see cref="Declaration"/>
+        /// structs that may be encountered.
+        /// </summary>
+        public enum Type
+        {
+            /// <summary>
+            /// Variables have a return type, have no parameters, and can be assigned to.
+            /// </summary>
+            Variable,
+
+            /// <summary>
+            /// Functions has a return type, may have parameters, and cannot be assigned to.
+            /// </summary>
+            Function,
+        }
+
+        /// <summary>
+        /// A parameter for a function <see cref="Declaration"/>.
+        /// </summary>
+        [System.Serializable]
+        public class Parameter
+        {
+            private string name;
+            private Yarn.Type type;
+
+            public string Name { get => name; internal set => name = value; }
+
+            public Yarn.Type Type { get => type; internal set => type = value; }
+
+            // override object.Equals
+            public override bool Equals(object obj)
+            {
+                if (obj == null || !(obj is Parameter otherParam))
+                {
+                    return false;
+                }
+
+                return this.Name == otherParam.Name &&
+                    this.Type == otherParam.Type;
+            }
+
+            // override object.GetHashCode
+            public override int GetHashCode()
+            {
+                return Name.GetHashCode() ^ Type.GetHashCode();
+            }
+        }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            string result;
+            switch (this.DeclarationType)
+            {
+                case Type.Variable:
+                    result = $"{Name} : {ReturnType} = {DefaultValue}";
+                    break;
+                case Type.Function:
+                    result = $"{Name} : ({string.Join(", ", (object[])Parameters)}) -> {ReturnType}";
+                    break;
+                default:
+                    throw new InvalidOperationException($"Invalid declaration type {this.DeclarationType}");
+            }
+            if (string.IsNullOrEmpty(Description))
+            {
+                return result;
+            }
+            else
+            {
+                return result + $" (\"{Description}\")";
+            }
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            if (obj == null || !(obj is Declaration otherDecl))
+            {
+                return false;
+            }
+
+            if (Parameters.Length != otherDecl.Parameters.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < Parameters.Length; i++)
+            {
+                Parameter myParam = Parameters[i];
+                Parameter theirParam = otherDecl.Parameters[i];
+
+                if (myParam.Equals(theirParam) == false)
+                {
+                    return false;
+                }
+            }
+
+            return this.Name == otherDecl.Name &&
+                this.ReturnType == otherDecl.ReturnType &&
+                this.DefaultValue == otherDecl.DefaultValue &&
+                this.Description == otherDecl.Description &&
+                this.DeclarationType == otherDecl.DeclarationType;
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            int paramsHash = 0;
+            foreach (var param in Parameters)
+            {
+                if (paramsHash == 0)
+                {
+                    paramsHash = param.GetHashCode();
+                }
+                else
+                {
+                    paramsHash ^= param.GetHashCode();
+                }
+            }
+            return this.Name.GetHashCode()
+                ^ this.ReturnType.GetHashCode()
+                ^ this.DeclarationType.GetHashCode()
+                ^ this.DefaultValue.GetHashCode()
+                ^ paramsHash
+                ^ (this.Description ?? string.Empty).GetHashCode();
+        }
+    }
+
+    public struct CompilationJob
+    {
+
+        /// <summary>
+        /// Represents the contents of a file to compile.
+        /// </summary>
+        public struct File
+        {
+            public string FileName;
+            public string Source;
+        }
+
+        public enum Type
+        {
+            /// <summary>The compiler will do a full compilation, and
+            /// generate a <see cref="Program"/>, function declaration set,
+            /// and string table.</summary>
+            FullCompilation,
+
+            /// <summary>The compiler will derive only the variable and
+            /// function declarations, and file tags, found in the
+            /// script.</summary>
+            DeclarationsOnly,
+
+            /// <summary>The compiler will generate a string table
+            /// only.</summary>
+            StringsOnly,
+        }
+
+        /// <summary>
+        /// The <see cref="File"/> structs that represent the content to
+        /// parse..
+        /// </summary>
+        public IEnumerable<File> Files;
+
+        /// <summary>
+        /// The <see cref="Library"/> that contains declarations for
+        /// functions.
+        /// </summary>
+        public Library Library;
+
+        /// <summary>
+        /// The type of compilation to perform.
+        /// </summary>
+        public Type CompilationType;
+
+        /// <summary>
+        /// The declarations for variables.
+        /// </summary>
+        public IEnumerable<Declaration> VariableDeclarations;
+
+        /// <summary>
+        /// Creates a new <see cref="CompilationJob"/> using the contents
+        /// of a collection of files.
+        /// </summary>
+        /// <param name="paths">The paths to the files.</param>
+        /// <returns>A new <see cref="CompilationJob"/>.</returns>
+        public static CompilationJob CreateFromFiles(IEnumerable<string> paths, Library library = null)
+        {
+            var fileList = new List<File>();
+
+            // Read every file and add it to the file list
+            foreach (var path in paths)
+            {
+                fileList.Add(new File
+                {
+                    FileName = path,
+                    Source = System.IO.File.ReadAllText(path),
+                });
+            }
+
+            return new CompilationJob
+            {
+                Files = fileList.ToArray(),
+                Library = library,
+            };
+        }
+
+        public static CompilationJob CreateFromFiles(params string[] paths)
+        {
+            return CreateFromFiles((IEnumerable<string>)paths);
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="CompilationJob"/> using the contents
+        /// of a string.
+        /// </summary>
+        /// <param name="fileName">The name to assign to the compiled
+        /// file.</param>
+        /// <param name="source">The text to compile.</param>
+        /// <returns>A new <see cref="CompilationJob"/>.</returns>
+        public static CompilationJob CreateFromString(string fileName, string source, Library library = null)
+        {
+            return new CompilationJob
+            {
+                Files = new List<File>
+                {
+                    new File {
+                        Source = source, FileName = fileName
+                    },
+                },
+                Library = library,
+            };
+        }
+    }
+
+    public struct CompilationResult
+    {
+        public Program Program { get; internal set; }
+
+        public IDictionary<string, StringInfo> StringTable { get; internal set; }
+
+        public IEnumerable<Declaration> Declarations { get; internal set; }
+
+        public bool ContainsImplicitStringTags { get; internal set; }
+
+        public Dictionary<string, IEnumerable<string>> FileTags { get; internal set; }
+
+        internal static CompilationResult CombineCompilationResults(IEnumerable<CompilationResult> results, StringTableManager stringTableManager)
+        {
+            CompilationResult finalResult;
+
+            var programs = new List<Program>();
+            var declarations = new List<Declaration>();
+            var tags = new Dictionary<string, IEnumerable<string>>();
+
+            foreach (var result in results)
+            {
+                programs.Add(result.Program);
+
+                if (result.Declarations != null)
+                {
+                    declarations.AddRange(result.Declarations);
+                }
+
+                if (result.FileTags != null)
+                {
+                    foreach (var kvp in result.FileTags)
+                    {
+                        tags.Add(kvp.Key, kvp.Value);
+                    }
+                }
+
+            }
+
+            return new CompilationResult
+            {
+                Program = Program.Combine(programs.ToArray()),
+                StringTable = stringTableManager.StringTable,
+                Declarations = declarations,
+                ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
+                FileTags = tags,
+            };
+        }
+    }
+
     /// <summary>
     /// Compiles Yarn code.
     /// </summary>
     public class Compiler : YarnSpinnerParserBaseListener
     {
-        /// <summary>A regular expression used to detect illegal characters in node titles.</summary>
+        /// <summary>A regular expression used to detect illegal characters
+        /// in node titles.</summary>
         private readonly Regex invalidNodeTitleNameRegex = new Regex(@"[\[<>\]{}\|:\s#\$]");
 
         private int labelCount = 0;
@@ -131,67 +636,317 @@
         /// Gets the program being generated by the compiler.
         /// </summary>
         internal Program Program { get; private set; }
-        
+
         /// <summary>
         /// The name of the file we are currently parsing from.
         /// </summary>
-        private readonly string FileName;
+        private readonly string fileName;
 
         /// <summary>
-        /// Indicates whether the file we are currently parsing contains
-        /// string tags that were implicitly generated.
+        /// The list of variable declarations known to the compiler.
+        /// Supplied as part of a <see cref="CompilationJob"/>, or by <see
+        /// cref="GetDeclarations"/>
         /// </summary>
-        private bool containsImplicitStringTags;
+        internal IEnumerable<Declaration> VariableDeclarations = new List<Declaration>();
+
+        /// <summary>
+        /// The Library, which contains the function declarations known to
+        /// the compiler. Supplied as part of a <see
+        /// cref="CompilationJob"/>.
+        /// </summary>
+        internal Library Library { get; private set; }
 
         internal Compiler(string fileName)
         {
             Program = new Program();
-            this.FileName = fileName;
+            this.fileName = fileName;
         }
 
-        /// <summary>
-        /// Reads the contents of a file at a given path, and generates a program and a
-        /// derived string table from its contents.
-        /// </summary>
-        /// <param name="path">The path to the file containing the
-        /// program.</param>
-        /// <param name="program">On return, contains the compiled
-        /// program.</param>
-        /// <param name="stringTable">On return, contains the string table
-        /// generated from the source code.</param>
-        /// <returns>The status of the compilation.</returns>
-        /// <exception cref="ParseException">Thrown when a parse error
-        /// occurs during compilation.</exception>
-        public static Status CompileFile(string path, out Program program, out IDictionary<string, StringInfo> stringTable) {
-            var source = File.ReadAllText(path);
-
-            var fileName = Path.GetFileNameWithoutExtension(path);
-
-            return CompileString(source, fileName, out program, out stringTable);
-        }
-
-        #if DEBUG
+#if DEBUG
         internal string parseTree;
         internal List<string> tokens;
-        #endif
+#endif
+
+        public static CompilationResult Compile(CompilationJob compilationJob)
+        {
+            var results = new List<CompilationResult>();
+
+            // All variable declarations that we've encountered during this
+            // compilation job
+            var derivedVariableDeclarations = new List<Declaration>();
+
+            // All variable declarations that we've encountered, PLUS the
+            // ones we knew about before
+            var knownVariableDeclarations = new List<Declaration>();
+            if (compilationJob.VariableDeclarations != null)
+            {
+                knownVariableDeclarations.AddRange(compilationJob.VariableDeclarations);
+            }
+
+            // Get function declarations from the library, if provided
+            if (compilationJob.Library != null)
+            {
+                knownVariableDeclarations.AddRange(GetDeclarationsFromLibrary(compilationJob.Library));
+            }
+
+            var compiledTrees = new List<(string name, IParseTree tree)>();
+
+            // First pass: parse all files, generate their syntax trees,
+            // and figure out what variables they've declared
+            var stringTableManager = new StringTableManager();
+
+            foreach (var file in compilationJob.Files)
+            {
+                var tree = ParseSyntaxTree(file);
+                compiledTrees.Add((file.FileName, tree));
+
+                RegisterStrings(file.FileName, stringTableManager, tree);
+            }
+
+            if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
+            {
+                // Stop at this point
+                return new CompilationResult
+                {
+                    Declarations = null,
+                    ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
+                    Program = null,
+                    StringTable = stringTableManager.StringTable,
+                };
+            }
+
+            var fileTags = new Dictionary<string, IEnumerable<string>>();
+
+            foreach (var parsedFile in compiledTrees)
+            {
+                GetDeclarations(parsedFile.name, parsedFile.tree, knownVariableDeclarations, out var newDeclarations, out var newFileTags);
+
+                derivedVariableDeclarations.AddRange(newDeclarations);
+                knownVariableDeclarations.AddRange(newDeclarations);
+
+                fileTags.Add(parsedFile.name, newFileTags);
+            }
+
+            foreach (var parsedFile in compiledTrees) {
+                var checker = new TypeCheckVisitor(parsedFile.name, knownVariableDeclarations);
+
+                checker.Visit(parsedFile.tree);
+                derivedVariableDeclarations.AddRange(checker.NewDeclarations);
+                knownVariableDeclarations.AddRange(checker.NewDeclarations);
+            }
+
+            if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
+            {
+                // Stop at this point
+                return new CompilationResult
+                {
+                    Declarations = derivedVariableDeclarations,
+                    ContainsImplicitStringTags = false,
+                    Program = null,
+                    StringTable = null,
+                    FileTags = fileTags,
+                };
+            }
+
+            foreach (var parsedFile in compiledTrees)
+            {
+                CompilationResult compilationResult = GenerateCode(parsedFile.name, knownVariableDeclarations, compilationJob, parsedFile.tree, stringTableManager);
+                results.Add(compilationResult);
+            }
+
+            var finalResult = CompilationResult.CombineCompilationResults(results, stringTableManager);
+
+            // Last step: take every variable declaration we found in all
+            // of the inputs, and create an initial value registration for
+            // it. 
+            foreach (var declaration in knownVariableDeclarations)
+            {
+                // We only care about variable declarations here
+                if (declaration.DeclarationType != Declaration.Type.Variable)
+                {
+                    continue;
+                }
+
+                Operand value;
+
+                if (declaration.DeclarationType == Declaration.Type.Variable && declaration.defaultValue == null)
+                {
+                    throw new NullReferenceException($"Variable declaration {declaration.name} ({declaration.ReturnType}) has a null default value. This is not allowed.");
+                }
+
+                switch (declaration.ReturnType)
+                {
+                    case Yarn.Type.Number:
+                        value = new Operand(Convert.ToSingle(declaration.DefaultValue));
+                        break;
+                    case Yarn.Type.String:
+                        value = new Operand(Convert.ToString(declaration.DefaultValue));
+                        break;
+                    case Yarn.Type.Bool:
+                        value = new Operand(Convert.ToBoolean(declaration.DefaultValue));
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException($"Cannot create an initial value for type {declaration.ReturnType}");
+                }
+
+                finalResult.Program.InitialValues.Add(declaration.Name, value);
+            }
+
+            finalResult.Declarations = derivedVariableDeclarations;
+
+            finalResult.FileTags = fileTags;
+
+            return finalResult;
+        }
+
+        private static void RegisterStrings(string fileName, StringTableManager stringTableManager, IParseTree tree)
+        {
+            var visitor = new StringTableGeneratorVisitor(fileName, stringTableManager);
+            visitor.Visit(tree);
+        }
+
+        private static void GetDeclarations(string sourceFileName, IParseTree tree, IEnumerable<Declaration> existingDeclarations, out IEnumerable<Declaration> newDeclarations, out IEnumerable<string> fileTags)
+        {
+            var variableDeclarationVisitor = new DeclarationVisitor(sourceFileName, existingDeclarations);
+
+            try
+            {
+                variableDeclarationVisitor.Visit(tree);
+            }
+            catch (TypeException e)
+            {
+                throw new TypeException(e.Context, e.InternalMessage, sourceFileName);
+            }
+
+            // Upon exit, newDeclarations will now contain every variable
+            // declaration we found
+            newDeclarations = variableDeclarationVisitor.NewDeclarations;
+
+            fileTags = variableDeclarationVisitor.FileTags;
+        }
+
+        private static CompilationResult GenerateCode(string fileName, IEnumerable<Declaration> variableDeclarations, CompilationJob job, IParseTree tree, StringTableManager stringTableManager)
+        {
+            Compiler compiler = new Compiler(fileName);
+
+            compiler.Library = job.Library;
+            compiler.VariableDeclarations = variableDeclarations;
+
+            try
+            {
+                compiler.Compile(tree);
+            }
+            catch (TypeException e)
+            {
+                throw new TypeException(e.Context, e.InternalMessage, fileName);
+            }
+
+            return new CompilationResult
+            {
+                Program = compiler.Program,
+                StringTable = stringTableManager.StringTable,
+                ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
+            };
+        }
 
         /// <summary>
-        /// Generates a program and a derived string table from the
-        /// contents of a string.
+        /// Returns a collection of <see cref="Declaration"/> structs that
+        /// describe the functions present in <paramref name="library"/>.
         /// </summary>
-        /// <param name="text">The source code of the program.</param>
-        /// <param name="fileName">The file name to assign to the compiled
-        /// results.</param>
-        /// <param name="program">On return, contains the compiled
-        /// program.</param>
-        /// <param name="stringTable">On return, contains the string table
-        /// generated from the source code.</param>
-        /// <returns>The status of the compilation.</returns>
-        /// <exception cref="ParseException">Thrown when a parse error
-        /// occurs during compilation.</exception>                
-        public static Status CompileString(string text, string fileName, out Program program, out IDictionary<string,StringInfo> stringTable)
+        /// <param name="library">The <see cref="Library"/> to get
+        /// declarations from.</param>
+        /// <returns>The <see cref="Declaration"/> structs found.</returns>
+        /// <throws cref="TypeException">Thrown when a function in
+        /// <paramref name="library"/> has an invalid return type, an
+        /// invalid parameter type, an optional parameter, or an out
+        /// parameter.</throws>
+        internal static IEnumerable<Declaration> GetDeclarationsFromLibrary(Library library)
         {
-            ICharStream input = CharStreams.fromstring(text);
+            var declarations = new List<Declaration>();
+
+            foreach (var function in library.Delegates)
+            {
+                var method = function.Value.Method;
+
+                if (method.ReturnType == typeof(Value))
+                {
+                    // Functions that return the internal type Values are
+                    // operators, and are type checked by
+                    // ExpressionTypeVisitor. (Future work: define each
+                    // polymorph of each operator as a separate function
+                    // that returns a concrete type, rather than the
+                    // current method of having a 'Value' wrapper type).
+                    continue;
+                }
+
+                if (Value.TypeMappings.TryGetValue(method.ReturnType, out var yarnReturnType) == false)
+                {
+                    throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: {method.ReturnType} is not a valid return type.");
+                }
+
+                var parameters = new List<Declaration.Parameter>();
+
+                bool includeMethod = true;
+
+                foreach (var paramInfo in method.GetParameters())
+                {
+                    if (paramInfo.ParameterType == typeof(Value))
+                    {
+                        // Don't type-check this method - it's an operator
+                        includeMethod = false;
+                        break;
+                    }
+
+                    if (paramInfo.IsOptional)
+                    {
+                        throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is optional, which isn't supported.");
+                    }
+
+                    if (paramInfo.IsOut)
+                    {
+                        throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is an out parameter, which isn't supported.");
+                    }
+
+                    if (Value.TypeMappings.TryGetValue(paramInfo.ParameterType, out var yarnParameterType) == false)
+                    {
+                        throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used.");
+                    }
+
+                    var parameter = new Declaration.Parameter
+                    {
+                        Name = paramInfo.Name,
+                        Type = yarnParameterType,
+                    };
+
+                    parameters.Add(parameter);
+                }
+
+                if (includeMethod == false)
+                {
+                    continue;
+                }
+
+                var declaration = new Declaration
+                {
+                    DeclarationType = Declaration.Type.Function,
+                    Name = function.Key,
+                    ReturnType = yarnReturnType,
+                    Parameters = parameters.ToArray(),
+                    SourceFileLine = -1,
+                    SourceNodeLine = -1,
+                    SourceFileName = Declaration.ExternalDeclaration,
+                    SourceNodeName = null,
+                };
+
+                declarations.Add(declaration);
+            }
+
+            return declarations;
+        }
+
+        private static IParseTree ParseSyntaxTree(CompilationJob.File file)
+        {
+            ICharStream input = CharStreams.fromstring(file.Source);
 
             YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -201,7 +956,7 @@
             // turning off the normal error listener and using ours
             parser.RemoveErrorListeners();
             parser.AddErrorListener(ParserErrorListener.Instance);
-            
+
             lexer.RemoveErrorListeners();
             lexer.AddErrorListener(LexerErrorListener.Instance);
 
@@ -209,35 +964,24 @@
             try
             {
                 tree = parser.dialogue();
-            } catch (ParseException e)
+            }
+            catch (ParseException e)
             {
-                #if DEBUG
+#if DEBUG
                 var tokenStringList = new List<string>();
                 tokens.Reset();
-                foreach (var token in tokens.GetTokens()) {
+                foreach (var token in tokens.GetTokens())
+                {
                     tokenStringList.Add($"{token.Line}:{token.Column} {YarnSpinnerLexer.DefaultVocabulary.GetDisplayName(token.Type)} \"{token.Text}\"");
                 }
 
-                throw new ParseException($"{e.Message}\n\nTokens:\n{string.Join("\n", tokenStringList)}");
-                #else
-                throw new ParseException(e.Message);
-                #endif // DEBUG
+                throw new ParseException(e.Context, $"{e.Message}\n\nTokens:\n{string.Join("\n", tokenStringList)}", file.FileName);
+#else
+                throw new ParseException(e.Context, e.Message, file.FileName);
+#endif // DEBUG
             }
 
-            Compiler compiler = new Compiler(fileName);
-            
-            compiler.Compile(tree);
-
-            program = compiler.Program;
-            stringTable = compiler.StringTable;
-
-            if (compiler.containsImplicitStringTags) {
-                return Status.SucceededUntaggedStrings;
-            }
-            else
-            {
-                return Status.Succeeded;
-            }
+            return tree;
         }
 
         /// <summary>
@@ -248,7 +992,8 @@
         /// to extract tokens from.</param>
         /// <returns>The list of tokens extracted from the source
         /// code.</returns>
-        internal static List<string> GetTokensFromFile(string path) {
+        internal static List<string> GetTokensFromFile(string path)
+        {
             var text = File.ReadAllText(path);
             return GetTokensFromString(text);
         }
@@ -261,7 +1006,8 @@
         /// from.</param>
         /// <returns>The list of tokens extracted from the source
         /// code.</returns>
-        internal static List<string> GetTokensFromString(string text) {
+        internal static List<string> GetTokensFromString(string text)
+        {
             ICharStream input = CharStreams.fromstring(text);
 
             YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
@@ -269,69 +1015,13 @@
             var tokenStringList = new List<string>();
 
             var tokens = lexer.GetAllTokens();
-            foreach (var token in tokens) {
+            foreach (var token in tokens)
+            {
                 tokenStringList.Add($"{token.Line}:{token.Column} {YarnSpinnerLexer.DefaultVocabulary.GetDisplayName(token.Type)} \"{token.Text}\"");
             }
 
             return tokenStringList;
         }
-
-        internal Dictionary<string, StringInfo> StringTable = new Dictionary<string, StringInfo>();
-
-        /// <summary>
-        /// The number of strings encountered so far during compilation.
-        /// </summary>
-        private int stringCount = 0;
-
-        /// <summary>
-        /// Registers a new string in the string table.
-        /// </summary>
-        /// <param name="text">The text of the string to register.</param>
-        /// <param name="nodeName">The name of the node that this string
-        /// was found in.</param>
-        /// <param name="lineID">The line ID to use for this entry in the
-        /// string table.</param>
-        /// <param name="lineNumber">The line number that this string was
-        /// found in.</param>
-        /// <param name="tags">The tags to associate with this string in
-        /// the string table.</param>
-        /// <returns>The string ID for the newly registered
-        /// string.</returns>
-        /// <remarks>If `lineID` is `null`, a line ID will be generated
-        /// from <see cref="FileName"/>, the `nodeName`, and <see
-        /// cref="stringCount"/>.
-        internal string RegisterString(string text, string nodeName, string lineID, int lineNumber, string[] tags)
-        {
-            string lineIDUsed;
-
-            bool isImplicit;
-
-            if (lineID == null) {
-                lineIDUsed = $"{this.FileName}-{nodeName}-{this.stringCount}";
-
-                this.stringCount += 1;
-
-                // Note that we had to make up a tag for this string, which
-                // may not be the same on future compilations
-                containsImplicitStringTags = true;
-
-                isImplicit = true;
-            }
-            else 
-            {
-                lineIDUsed = lineID;
-
-                isImplicit = false;
-            }
-
-            var theString = new StringInfo(text, this.FileName, nodeName, lineNumber, isImplicit, tags);
-
-            // Finally, add this to the string table, and return the line ID.
-            this.StringTable.Add(lineIDUsed, theString);
-
-            return lineIDUsed;
-        }
-
 
         /// <summary>
         /// Generates a unique label name to use in the program.
@@ -361,12 +1051,13 @@
 
             instruction.Operands.Add(operands);
 
-            node.Instructions.Add(instruction);            
+            node.Instructions.Add(instruction);
         }
 
         /// <summary>
         /// Creates a new instruction, and appends it to the current node
-        /// in the <see cref="Program"/>.
+        /// in the <see cref="Program"/>. Called by instances of <see
+        /// cref="CodeGenerationVisitor"/> while walking the parse tree.
         /// </summary>
         /// <param name="code">The opcode of the instruction.</param>
         /// <param name="operands">The operands to associate with the
@@ -377,48 +1068,50 @@
         }
 
         /// <summary>
-        /// Extracts a line ID from a <see cref="YarnSpinnerParser.HashtagContext"/>, if one exists.
+        /// Extracts a line ID from a collection of <see
+        /// cref="YarnSpinnerParser.HashtagContext"/>s, if one exists.
         /// </summary>
-        /// <param name="context">The hashtag parsing context.</param>
-        /// <returns>The line ID if one is present in the hashtag context, otherwise `null`.</returns>
-        internal string GetLineID(YarnSpinnerParser.HashtagContext[] context)
+        /// <param name="hashtagContexts">The hashtag parsing contexts.</param>
+        /// <returns>The line ID if one is present in the hashtag contexts,
+        /// otherwise `null`.</returns>
+        internal static string GetLineID(YarnSpinnerParser.HashtagContext[] hashtagContexts)
         {
             // if there are any hashtags
-            if (context != null)
+            if (hashtagContexts != null)
             {
-                foreach (var hashtag in context)
+                foreach (var hashtagContext in hashtagContexts)
                 {
-                    string tagText = hashtag.text.Text;
+                    string tagText = hashtagContext.text.Text;
                     if (tagText.StartsWith("line:", StringComparison.InvariantCulture))
                     {
                         return tagText;
                     }
                 }
             }
+
             return null;
         }
 
-        // this replaces the CompileNode from the old compiler
-        // will start walking the parse tree
-        // emitting byte code as it goes along
-        // this will all get stored into our program var
-        // needs a tree to walk, this comes from the ANTLR Parser/Lexer steps
+        // this replaces the CompileNode from the old compiler will start
+        // walking the parse tree emitting byte code as it goes along this
+        // will all get stored into our program var needs a tree to walk,
+        // this comes from the ANTLR Parser/Lexer steps
         internal void Compile(IParseTree tree)
         {
             ParseTreeWalker walker = new ParseTreeWalker();
             walker.Walk(this, tree);
         }
 
-        // we have found a new node
-        // set up the currentNode var ready to hold it and otherwise continue
+        // we have found a new node set up the currentNode var ready to
+        // hold it and otherwise continue
         public override void EnterNode(YarnSpinnerParser.NodeContext context)
         {
             CurrentNode = new Node();
             RawTextNode = false;
         }
-        // have left the current node
-        // store it into the program
-        // wipe the var and make it ready to go again
+
+        // have left the current node store it into the program wipe the
+        // var and make it ready to go again
         public override void ExitNode(YarnSpinnerParser.NodeContext context)
         {
             Program.Nodes[CurrentNode.Name] = CurrentNode;
@@ -426,11 +1119,9 @@
             RawTextNode = false;
         }
 
-        
-        // have finished with the header
-        // so about to enter the node body and all its statements
-        // do the initial setup required before compiling that body statements
-        // eg emit a new startlabel
+        // have finished with the header so about to enter the node body
+        // and all its statements do the initial setup required before
+        // compiling that body statements eg emit a new startlabel
         public override void ExitHeader(YarnSpinnerParser.HeaderContext context)
         {
             var headerKey = context.header_key.Text;
@@ -442,829 +1133,106 @@
             // it was written as an empty line.
             var headerValue = context.header_value?.Text ?? "";
 
-            if (headerKey.Equals("title", StringComparison.InvariantCulture)) {
+            if (headerKey.Equals("title", StringComparison.InvariantCulture))
+            {
                 // Set the name of the node
                 CurrentNode.Name = headerValue;
 
                 // Throw an exception if this node name contains illegal
                 // characters
-                if (invalidNodeTitleNameRegex.IsMatch(CurrentNode.Name)) {
-                    throw new ParseException($"The node '{CurrentNode.Name}' contains illegal characters in its title.");
+                if (invalidNodeTitleNameRegex.IsMatch(CurrentNode.Name))
+                {
+                    throw new ParseException(context, $"The node '{CurrentNode.Name}' contains illegal characters in its title.");
                 }
             }
 
-            if (headerKey.Equals("tags", StringComparison.InvariantCulture)) {
+            if (headerKey.Equals("tags", StringComparison.InvariantCulture))
+            {
                 // Split the list of tags by spaces, and use that
-
-                var tags = headerValue.Split(new[]{' '}, StringSplitOptions.RemoveEmptyEntries);
+                var tags = headerValue.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
                 CurrentNode.Tags.Add(tags);
 
-                if (CurrentNode.Tags.Contains("rawText")) {
-                    // This is a raw text node. Flag it as such for future compilation.
+                if (CurrentNode.Tags.Contains("rawText"))
+                {
+                    // This is a raw text node. Flag it as such for future
+                    // compilation.
                     RawTextNode = true;
                 }
-                
             }
-            
         }
 
-        // have entered the body
-        // the header should have finished being parsed and currentNode ready
-        // all we do is set up a body visitor and tell it to run through all the statements
-        // it handles everything from that point onwards
+        // have entered the body the header should have finished being
+        // parsed and currentNode ready all we do is set up a body visitor
+        // and tell it to run through all the statements it handles
+        // everything from that point onwards
         public override void EnterBody(YarnSpinnerParser.BodyContext context)
         {
             // if it is a regular node
             if (!RawTextNode)
             {
-                // This is the start of a node that we can jump to. Add a label at this point.
-                CurrentNode.Labels.Add(RegisterLabel(), CurrentNode.Instructions.Count);                
+                // This is the start of a node that we can jump to. Add a
+                // label at this point.
+                CurrentNode.Labels.Add(RegisterLabel(), CurrentNode.Instructions.Count);
 
-                BodyVisitor visitor = new BodyVisitor(this);
+                CodeGenerationVisitor visitor = new CodeGenerationVisitor(this);
 
                 foreach (var statement in context.statement())
                 {
                     visitor.Visit(statement);
                 }
             }
-            // we are a rawText node
-            // turn the body into text
-            // save that into the node
-            // perform no compilation
-            // TODO: oh glob! there has to be a better way
+            // We are a rawText node. Don't compile it; instead, note the string
             else
             {
-                CurrentNode.SourceTextStringID = RegisterString(context.GetText(), CurrentNode.Name, "line:" + CurrentNode.Name, context.Start.Line, null);
+                CurrentNode.SourceTextStringID = Compiler.GetLineIDForNodeName(CurrentNode.Name);
             }
         }
 
-        // exiting the body of the node, time for last minute work
-        // before moving onto the next node
-        // Does this node end after emitting AddOptions codes
-        // without calling ShowOptions?
+        public static string GetLineIDForNodeName(string name)
+        {
+            return "line:" + name;
+        }
+
+        // exiting the body of the node, time for last minute work before
+        // moving onto the next node Does this node end after emitting
+        // AddOptions codes without calling ShowOptions?
         public override void ExitBody(YarnSpinnerParser.BodyContext context)
         {
-            // if it is a regular node
-            if (!RawTextNode)
+            // Note: this only works when we know that we don't have
+            // AddOptions and then Jump up back into the code to run
+            // them. TODO: A better solution would be for the parser to
+            // flag whether a node has Options at the end.
+            var hasRemainingOptions = false;
+            foreach (var instruction in CurrentNode.Instructions)
             {
-                // Note: this only works when we know that we don't have
-                // AddOptions and then Jump up back into the code to run them.
-                // TODO: A better solution would be for the parser to flag
-                // whether a node has Options at the end.
-                var hasRemainingOptions = false;
-                foreach (var instruction in CurrentNode.Instructions)
+                if (instruction.Opcode == OpCode.AddOption)
                 {
-                    if (instruction.Opcode == OpCode.AddOption)
-                    {
-                        hasRemainingOptions = true;
-                    }
-                    if (instruction.Opcode == OpCode.ShowOptions)
-                    {
-                        hasRemainingOptions = false;
-                    }
+                    hasRemainingOptions = true;
                 }
-
-                // If this compiled node has no lingering options to show at the end of the node, then stop at the end
-                if (hasRemainingOptions == false)
+                if (instruction.Opcode == OpCode.ShowOptions)
                 {
-                    Emit(CurrentNode, OpCode.Stop);
-                }
-                else
-                {
-                    // Otherwise, show the accumulated nodes and then jump to the selected node
-                    Emit(CurrentNode, OpCode.ShowOptions);
-
-                    // Showing options will make the execution stop; the
-                    // user will have invoked code that pushes the name of
-                    // a node onto the stack, which RunNode handles
-                    Emit(CurrentNode, OpCode.RunNode);
+                    hasRemainingOptions = false;
                 }
             }
-        }
-    }
 
-    // the visitor for the body of the node
-    // does not really return ints, just has to return something
-    // might be worth later investigating returning Instructions
-    internal class BodyVisitor : YarnSpinnerParserBaseVisitor<int>
-    {
-        internal Compiler compiler;
-
-        public BodyVisitor(Compiler compiler)
-        {
-            this.compiler = compiler;
-            this.loadOperators();
-        }
-
-        private void GenerateFormattedText(IList<IParseTree> nodes, out string outputString, out int expressionCount) {
-            expressionCount = 0;
-            StringBuilder composedString = new StringBuilder();
-
-            // First, visit all of the nodes, which are either terminal
-            // text nodes or expressions. if they're expressions, we
-            // evaluate them, and inject a positional reference into the
-            // final string.
-            foreach (var child in nodes) {
-                if (child is ITerminalNode) {
-                    composedString.Append(child.GetText());
-                } else if (child is YarnSpinnerParser.Format_functionContext) {
-                    // Format functions are composed of:
-                    // 1. The name of the function
-                    // 2. A value
-                    // 3. Zero or more key-value pairs. 
-                    //
-                    // We want to evaluate the value, and ensure that it's
-                    // on the stack; we then want to emit the entire format
-                    // function into the composed line, but with the
-                    // evaluated value replaced with a placeholder, as
-                    // though it had been an inline expression. We do this
-                    // because the format function is localisable -
-                    // different languages will want to have different
-                    // values. 
-                    //
-                    // We therefore evaluate any information we need, and
-                    // then emit the format function into the line, ready
-                    // to be loaded, or dumped into a string table to be
-                    // localised.
-                    //
-                    // As with inline expressions, we don't emit the '['
-                    // and ']', because these have already been captured as
-                    // part of the line text.
-
-                    var formatFunction = child as YarnSpinnerParser.Format_functionContext;
-
-                    Visit(formatFunction.variable());
-
-                    composedString.Append(formatFunction.function_name.Text);
-                    composedString.Append(" ");
-                    composedString.Append("\"{"+ expressionCount + "}\"");
-
-                    foreach (var keyValuePair in formatFunction.key_value_pair()) {
-                        composedString.Append(" " + keyValuePair.GetText());
-                    }
-
-                    expressionCount += 1;
-
-
-                } else if (child is ParserRuleContext) {
-                    // assume that this is an expression (the parser only
-                    // permits them to be expressions, but we can't specify
-                    // that here) - visit it, and we will emit code that
-                    // pushes the final value of this expression onto the
-                    // stack. running the line will pop these expressions
-                    // off the stack.
-                    //
-                    // Expressions in the final string are denoted as the
-                    // index of the expression, surrounded by braces { }.
-                    // However, we don't need to write the braces here
-                    // ourselves, because the text itself that the parser
-                    // captured already has them. So, we just need to write
-                    // the expression count.
-                    Visit(child);
-                    composedString.Append(expressionCount);
-                    expressionCount += 1;
-                }
-            }        
-
-            outputString = composedString.ToString().Trim();
-            
-        } 
-
-        private string[] GetHashtagTexts (YarnSpinnerParser.HashtagContext[] hashtags) {
-            // Add hashtag
-            var hashtagText = new List<string>();
-            foreach (var tag in hashtags) {
-                hashtagText.Add(tag.HASHTAG_TEXT().GetText());
-            }
-            return hashtagText.ToArray();
-        }
-
-        // a regular ol' line of text
-        public override int VisitLine_statement(YarnSpinnerParser.Line_statementContext context)
-        {
-            // TODO: add support for line conditions:
-            //
-            // Mae: here's a line <<if true>>
-            //
-            // is identical to
-            //
-            // <<if true>>
-            // Mae: here's a line
-            // <<endif>>
-
-            // Convert the formatted string into a string with
-            // placeholders, and evaluate the inline expressions and push
-            // the results onto the stack.
-            GenerateFormattedText(context.line_formatted_text().children, out var composedString, out var expressionCount);    
-            
-            // Get the lineID for this string from the hashtags if it has one; otherwise, a new one will be created
-            string lineID = compiler.GetLineID(context.hashtag());
-
-            var hashtagText = GetHashtagTexts(context.hashtag());
-
-            int lineNumber = context.Start.Line;
-
-            string stringID = compiler.RegisterString(
-                composedString.ToString(), 
-                compiler.CurrentNode.Name, 
-                lineID, 
-                lineNumber, 
-                hashtagText);
-
-            compiler.Emit(OpCode.RunLine, new Operand(stringID), new Operand(expressionCount));
-            
-            return 0;
-        }
-
-        // a jump statement
-        // [[ NodeName ]]
-        public override int VisitOptionJump(YarnSpinnerParser.OptionJumpContext context)
-        {
-            string destination = context.NodeName.Text.Trim();
-            compiler.Emit(OpCode.RunNode, new Operand(destination));
-            return 0;
-        }
-
-        public override int VisitOptionLink(YarnSpinnerParser.OptionLinkContext context)
-        {
-
-            // Create the formatted string and evaluate any inline
-            // expressions            
-            GenerateFormattedText(context.option_formatted_text().children, out var composedString, out var expressionCount);
-
-            string destination = context.NodeName.Text.Trim();
-            string label = composedString;
-
-            int lineNumber = context.Start.Line;
-
-            // getting the lineID from the hashtags if it has one
-            string lineID = compiler.GetLineID(context.hashtag());
-            
-            var hashtagText = GetHashtagTexts(context.hashtag());
-
-            string stringID = compiler.RegisterString(label, compiler.CurrentNode.Name, lineID, lineNumber, hashtagText);
-
-            compiler.Emit(OpCode.AddOption, new Operand(stringID), new Operand(destination), new Operand(expressionCount));
-
-            return 0;
-        }
-
-        // A set command: explicitly setting a value to an expression
-        // <<set $foo to 1>>
-        public override int VisitSetVariableToValue(YarnSpinnerParser.SetVariableToValueContext context)
-        {
-            // add the expression (whatever it resolves to)
-            Visit(context.expression());
-
-            // now store the variable and clean up the stack
-            string variableName = context.VAR_ID().GetText();
-            compiler.Emit(OpCode.StoreVariable, new Operand(variableName));
-            compiler.Emit(OpCode.Pop);
-            return 0;
-        }
-
-        // A set command: evaluating an expression where the operator is an assignment-type
-        public override int VisitSetExpression(YarnSpinnerParser.SetExpressionContext context)
-        {
-            // checking the expression is of the correct form
-            var expression = context.expression();
-            // TODO: is there really no more elegant way of doing this?!
-            if (expression is YarnSpinnerParser.ExpMultDivModEqualsContext ||
-                expression is YarnSpinnerParser.ExpPlusMinusEqualsContext)
+            // If this compiled node has no lingering options to show
+            // at the end of the node, then stop at the end
+            if (hasRemainingOptions == false)
             {
-                // run the expression, it handles it from here
-                Visit(expression);
+                Emit(CurrentNode, OpCode.Stop);
             }
             else
             {
-                // throw an error
-                throw ParseException.Make(context,"Invalid expression inside assignment statement");
-            }
-            return 0;
-        }  
+                // Otherwise, show the accumulated nodes and then jump
+                // to the selected node
+                Emit(CurrentNode, OpCode.ShowOptions);
 
-        public override int VisitCall_statement(YarnSpinnerParser.Call_statementContext context)
-        {
-            // Visit our function call, which will invoke the function
-            Visit(context.function());
-
-            // TODO: if this function returns a value, it will be pushed
-            // onto the stack, but there's no way for the compiler to know
-            // that, so the stack will not be tidied up. is there a way for
-            // that to work?
-            return 0;
-        }      
-
-        // semi-free form text that gets passed along to the game
-        // for things like <<turn fred left>> or <<unlockAchievement FacePlant>>
-        public override int VisitCommand_statement(YarnSpinnerParser.Command_statementContext context)
-        {
-            GenerateFormattedText(context.command_formatted_text().children, out var composedString, out var expressionCount);
-
-            // TODO: look into replacing this as it seems a bit odd
-            switch (composedString)
-            {
-                case "stop":
-                    // "stop" is a special command that immediately stops
-                    // execution
-                    compiler.Emit(OpCode.Stop);
-                    break;                
-                default:
-                    compiler.Emit(OpCode.RunCommand, new Operand(composedString), new Operand(expressionCount));
-                    break;
-            }
-
-            return 0;
-        }
-
-        // emits the required bytecode for the function call
-        private void HandleFunction(string functionName, YarnSpinnerParser.ExpressionContext[] parameters)
-        {
-            // generate the instructions for all of the parameters
-            foreach (var parameter in parameters)
-            {
-                Visit(parameter);
-            }
-
-            // push the number of parameters onto the stack
-            compiler.Emit(OpCode.PushFloat, new Operand(parameters.Length));
-            
-            // then call the function itself
-            compiler.Emit(OpCode.CallFunc, new Operand(functionName));            
-        }
-        // handles emiting the correct instructions for the function
-        public override int VisitFunction(YarnSpinnerParser.FunctionContext context)
-        {
-            string functionName = context.FUNC_ID().GetText();
-
-            this.HandleFunction(functionName, context.expression());
-
-            return 0;
-        }
-
-        // if statement
-        // ifclause (elseifclause)* (elseclause)? <<endif>>
-        public override int VisitIf_statement(YarnSpinnerParser.If_statementContext context)
-        {
-            // label to give us a jump point for when the if finishes
-            string endOfIfStatementLabel = compiler.RegisterLabel("endif");
-
-            // handle the if
-            var ifClause = context.if_clause();
-            generateClause(endOfIfStatementLabel, ifClause.statement(), ifClause.expression());
-
-            // all elseifs
-            foreach (var elseIfClause in context.else_if_clause())
-            {
-                generateClause(endOfIfStatementLabel, elseIfClause.statement(), elseIfClause.expression());
-            }
-
-            // the else, if there is one
-            var elseClause = context.else_clause();
-            if (elseClause != null)
-            {
-                generateClause(endOfIfStatementLabel, elseClause.statement(), null);
-            }
-
-            compiler.CurrentNode.Labels.Add(endOfIfStatementLabel, compiler.CurrentNode.Instructions.Count);                
-
-            return 0;
-        }
-        internal void generateClause(string jumpLabel, YarnSpinnerParser.StatementContext[] children, YarnSpinnerParser.ExpressionContext expression)
-        {
-            string endOfClauseLabel = compiler.RegisterLabel("skipclause");
-
-            // handling the expression (if it has one)
-            // will only be called on ifs and elseifs
-            if (expression != null)
-            {
-                Visit(expression);
-                compiler.Emit(OpCode.JumpIfFalse, new Operand(endOfClauseLabel));
-            }
-
-            // running through all of the children statements
-            foreach (var child in children)
-            {
-                Visit(child);
-            }
-
-            compiler.Emit(OpCode.JumpTo, new Operand(jumpLabel));
-
-            if (expression != null)
-            {
-                compiler.CurrentNode.Labels.Add(endOfClauseLabel, compiler.CurrentNode.Instructions.Count);                
-                compiler.Emit(OpCode.Pop);
+                // Showing options will make the execution stop; the
+                // user will have invoked code that pushes the name of
+                // a node onto the stack, which RunNode handles
+                Emit(CurrentNode, OpCode.RunNode);
             }
         }
-
-        // for the shortcut options
-        // (-> line of text <<if expression>> indent statements dedent)+
-        public override int VisitShortcut_option_statement (YarnSpinnerParser.Shortcut_option_statementContext context) {
-            
-            string endOfGroupLabel = compiler.RegisterLabel("group_end");
-
-            var labels = new List<string>();
-
-            int optionCount = 0;
-
-            // For each option, create an internal destination label that,
-            // if the user selects the option, control flow jumps to. Then,
-            // evaluate its associated line_statement, and use that as the
-            // option text. Finally, add this option to the list of
-            // upcoming options.
-            foreach (var shortcut in context.shortcut_option())
-            {
-                // Generate the name of internal label that we'll jump to
-                // if this option is selected. We'll emit the label itself
-                // later.
-                string optionDestinationLabel = compiler.RegisterLabel($"shortcutoption_{compiler.CurrentNode.Name ?? "node"}_{optionCount + 1}");
-                labels.Add(optionDestinationLabel);
-
-                // This line statement may have a condition on it. If it
-                // does, emit code that evaluates the condition, and skips
-                // over the code that prepares and adds the option.
-                string endOfClauseLabel = null;
-                if (shortcut.line_statement().line_condition() != null)
-                {
-                    // Register the label we'll jump to if the condition
-                    // fails. We'll add it later.
-                    endOfClauseLabel = compiler.RegisterLabel("conditional_" + optionCount);
-
-                    // Evaluate the condition, and jump to the end of
-                    // clause if it evaluates to false.
-                    
-                    Visit(shortcut.line_statement().line_condition().expression());
-
-                    compiler.Emit(OpCode.JumpIfFalse, new Operand(endOfClauseLabel));
-                }
-
-                // We can now prepare and add the option.
-
-                // Start by figuring out the text that we want to add. This
-                // will involve evaluating any inline expressions.
-                GenerateFormattedText(shortcut.line_statement().line_formatted_text().children, out var composedString, out var expressionCount);
-
-                // Get the line ID from the hashtags if it has one
-                string lineID = compiler.GetLineID(shortcut.line_statement().hashtag());
-
-                // Get the hashtags for the line
-                var hashtags = GetHashtagTexts(shortcut.line_statement().hashtag());
-
-                // Register this string
-                string labelStringID = compiler.RegisterString(composedString, compiler.CurrentNode.Name, lineID, shortcut.Start.Line, hashtags);
-
-                // And add this option to the list.
-                compiler.Emit(OpCode.AddOption, new Operand(labelStringID), new Operand(optionDestinationLabel), new Operand(expressionCount));
-
-                // If we had a line condition, now's the time to generate
-                // the label that we'd jump to if its condition is false.
-                if (shortcut.line_statement().line_condition() != null)
-                {
-                    compiler.CurrentNode.Labels.Add(endOfClauseLabel, compiler.CurrentNode.Instructions.Count);    
-
-                    // JumpIfFalse doesn't change the stack, so we need to
-                    // tidy up            
-                    compiler.Emit(OpCode.Pop);
-                }
-
-                optionCount++;
-            }
-
-            // All of the options that we intend to show are now ready to
-            // go.
-            compiler.Emit(OpCode.ShowOptions);
-            
-            // The top of the stack now contains the name of the label we
-            // want to jump to. Jump to it now.
-            compiler.Emit(OpCode.Jump);
-
-            // We'll now emit the labels and code associated with each
-            // option.
-            optionCount = 0;
-            foreach (var shortcut in context.shortcut_option())
-            {
-                // Emit the label for this option's code
-                compiler.CurrentNode.Labels.Add(labels[optionCount], compiler.CurrentNode.Instructions.Count);                
-                
-                // Run through all the children statements of the shortcut
-                // option.
-                foreach (var child in shortcut.statement())
-                {
-                    Visit(child);
-                }
-
-                // Jump to the end of this shortcut option group.
-                compiler.Emit(OpCode.JumpTo, new Operand(endOfGroupLabel));
-
-                optionCount++;
-            }
-
-            // We made it to the end! Mark the end of the group, so we can jump to it.
-            compiler.CurrentNode.Labels.Add(endOfGroupLabel, compiler.CurrentNode.Instructions.Count);                
-            compiler.Emit(OpCode.Pop);
-
-            return 0;
-        }
-
-        // the calls for the various operations and expressions
-        // first the special cases (), unary -, !, and if it is just a value by itself
-        #region specialCaseCalls
-        // (expression)
-        public override int VisitExpParens(YarnSpinnerParser.ExpParensContext context)
-        {
-            return Visit(context.expression());
-        }
-        // -expression
-        public override int VisitExpNegative(YarnSpinnerParser.ExpNegativeContext context)
-        {
-            Visit(context.expression());
-
-            // TODO: temp operator call
-
-            // Indicate that we are pushing one parameter
-            compiler.Emit(OpCode.PushFloat, new Operand(1));
-            
-            compiler.Emit(OpCode.CallFunc, new Operand(TokenType.UnaryMinus.ToString()));
-
-            return 0;
-        }
-        // (not NOT !)expression
-        public override int VisitExpNot(YarnSpinnerParser.ExpNotContext context)
-        {
-            Visit(context.expression());
-
-            // TODO: temp operator call
-
-            // Indicate that we are pushing one parameter
-            compiler.Emit(OpCode.PushFloat, new Operand(1));
-
-            compiler.Emit(OpCode.CallFunc, new Operand(TokenType.Not.ToString()));
-
-            return 0;
-        }
-        // variable
-        public override int VisitExpValue(YarnSpinnerParser.ExpValueContext context)
-        {
-            return Visit(context.value());
-        }
-        #endregion
-
-        // left OPERATOR right style expressions
-        // the most common form of expressions
-        // for things like 1 + 3
-        #region lValueOperatorrValueCalls
-        internal void genericExpVisitor(YarnSpinnerParser.ExpressionContext left, YarnSpinnerParser.ExpressionContext right, int op)
-        {
-            Visit(left);
-            Visit(right);
-
-            // TODO: temp operator call
-
-            // Indicate that we are pushing two items for comparison
-            compiler.Emit(OpCode.PushFloat, new Operand(2));
-
-            compiler.Emit(OpCode.CallFunc, new Operand(tokens[op].ToString()));
-        }
-        // * / %
-        public override int VisitExpMultDivMod(YarnSpinnerParser.ExpMultDivModContext context)
-        {
-            genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
-
-            return 0;
-        }
-        // + -
-        public override int VisitExpAddSub(YarnSpinnerParser.ExpAddSubContext context)
-        {
-            genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
-
-            return 0;
-        }
-        // < <= > >=
-        public override int VisitExpComparison(YarnSpinnerParser.ExpComparisonContext context)
-        {
-            genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
-
-            return 0;
-        }
-        // == !=
-        public override int VisitExpEquality(YarnSpinnerParser.ExpEqualityContext context)
-        {
-            genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
-
-            return 0;
-        }
-        // and && or || xor ^
-        public override int VisitExpAndOrXor(YarnSpinnerParser.ExpAndOrXorContext context)
-        {
-            genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
-
-            return 0;
-        }
-        #endregion
-
-        // operatorEquals style operators, eg +=
-        // these two should only be called during a SET operation
-        // eg << set $var += 1 >>
-        // the left expression has to be a variable
-        // the right value can be anything
-        #region operatorEqualsCalls
-        // generic helper for these types of expressions
-        internal void opEquals(string varName, YarnSpinnerParser.ExpressionContext expression, int op)
-        {
-            // Get the current value of the variable
-            compiler.Emit(OpCode.PushVariable, new Operand(varName));
-
-            // run the expression
-            Visit(expression);
-
-            // Stack now contains [currentValue, expressionValue]
-
-            // Indicate that we are pushing two items for comparison
-            compiler.Emit(OpCode.PushFloat, new Operand(2));
-
-            // now we evaluate the operator
-            // op will match to one of + - / * %
-            compiler.Emit(OpCode.CallFunc, new Operand(tokens[op].ToString()));
-
-            // Stack now has the destination value
-            // now store the variable and clean up the stack
-            compiler.Emit(OpCode.StoreVariable, new Operand(varName));
-            compiler.Emit(OpCode.Pop);
-        }
-        // *= /= %=
-        public override int VisitExpMultDivModEquals(YarnSpinnerParser.ExpMultDivModEqualsContext context)
-        {
-            // call the helper to deal with this
-            opEquals(context.variable().GetText(), context.expression(), context.op.Type);
-            return 0;
-        }
-        // += -=
-        public override int VisitExpPlusMinusEquals(YarnSpinnerParser.ExpPlusMinusEqualsContext context)
-        {
-            // call the helper to deal with this
-            opEquals(context.variable().GetText(), context.expression(), context.op.Type);
-
-            return 0;
-        }
-        #endregion
-
-        // the calls for the various value types
-        // this is a wee bit messy but is easy to extend, easy to read
-        // and requires minimal checking as ANTLR has already done all that
-        // does have code duplication though
-        #region valueCalls
-        public override int VisitValueVar(YarnSpinnerParser.ValueVarContext context)
-        {
-            return Visit(context.variable());
-        }
-        public override int VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
-        {
-            float number = float.Parse(context.NUMBER().GetText(), CultureInfo.InvariantCulture);
-            compiler.Emit(OpCode.PushFloat, new Operand(number));
-
-            return 0;
-        }
-        public override int VisitValueTrue(YarnSpinnerParser.ValueTrueContext context)
-        {
-            compiler.Emit(OpCode.PushBool, new Operand(true));
-
-            return 0;
-        }
-        public override int VisitValueFalse(YarnSpinnerParser.ValueFalseContext context)
-        {
-            compiler.Emit(OpCode.PushBool, new Operand(false));
-            return 0;
-        }
-        public override int VisitVariable(YarnSpinnerParser.VariableContext context)
-        {
-            string variableName = context.VAR_ID().GetText();
-            compiler.Emit(OpCode.PushVariable, new Operand(variableName));
-
-            return 0;
-        }
-        public override int VisitValueString(YarnSpinnerParser.ValueStringContext context)
-        {
-            // stripping the " off the front and back
-            // actually is this what we want?
-            string stringVal = context.STRING().GetText().Trim('"');
-
-            compiler.Emit(OpCode.PushString, new Operand(stringVal));
-
-            return 0;
-        }
-        // all we need do is visit the function itself, it will handle everything
-        public override int VisitValueFunc(YarnSpinnerParser.ValueFuncContext context)
-        {
-            Visit(context.function());
-
-            return 0;
-        }
-        // null value
-        public override int VisitValueNull(YarnSpinnerParser.ValueNullContext context)
-        {
-            compiler.Emit(OpCode.PushNull);
-            return 0;
-        }
-        #endregion
-
-        // TODO: figure out a better way to do operators
-        Dictionary<int, TokenType> tokens = new Dictionary<int, TokenType>();
-        private void loadOperators()
-        {
-            // operators for the standard expressions
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_LESS_THAN_EQUALS] = TokenType.LessThanOrEqualTo;
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_GREATER_THAN_EQUALS] = TokenType.GreaterThanOrEqualTo;
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_LESS] = TokenType.LessThan;
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_GREATER] = TokenType.GreaterThan;
-
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_EQUALS] = TokenType.EqualTo;
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_NOT_EQUALS] = TokenType.NotEqualTo;
-
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_AND] = TokenType.And;
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_OR] = TokenType.Or;
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_XOR] = TokenType.Xor;
-
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_ADDITION] = TokenType.Add;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_SUBTRACTION] = TokenType.Minus;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_MULTIPLICATION] = TokenType.Multiply;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_DIVISION] = TokenType.Divide;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_MODULUS] = TokenType.Modulo;
-            // operators for the set expressions
-            // these map directly to the operator if they didn't have the =
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_ADDITION_EQUALS] = TokenType.Add;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_SUBTRACTION_EQUALS] = TokenType.Minus;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_MULTIPLICATION_EQUALS] = TokenType.Multiply;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_DIVISION_EQUALS] = TokenType.Divide;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_MODULUS_EQUALS] = TokenType.Modulo;
-        }
-    }
-
-    public class Graph
-    {
-        public ArrayList<String> nodes = new ArrayList<String>();
-        public MultiMap<String, String> edges = new MultiMap<String, String>();
-        public string graphName = "G";
-
-        public void edge(String source, String target)
-        {
-            edges.Map(source, target);
-        }
-        public String toDot()
-        {
-            StringBuilder buf = new StringBuilder();
-            buf.AppendFormat("digraph {0} ",graphName);
-            buf.Append("{\n");
-            buf.Append("  ");
-            foreach (String node in nodes)
-            { // print all nodes first
-                buf.Append(node);
-                buf.Append("; ");
-            }
-            buf.Append("\n");
-            foreach (String src in edges.Keys)
-            {
-                IList<string> output;
-                if (edges.TryGetValue(src, out output))
-                {
-                    foreach (String trg in output)
-                    {
-                        buf.Append("  ");
-                        buf.Append(src);
-                        buf.Append(" -> ");
-                        buf.Append(trg);
-                        buf.Append(";\n");
-                    }
-                }
-            }
-            buf.Append("}\n");
-            return buf.ToString();
-        }
-    }
-    public class GraphListener:YarnSpinnerParserBaseListener
-    {
-        String currentNode = null;
-        public Graph graph = new Graph();
-
-        public override void EnterHeader(YarnSpinnerParser.HeaderContext context)
-        {
-            if (context.header_key.Text == "title") {
-                currentNode = context.header_value.Text;
-            }
-        }
-
-        public override void ExitNode(YarnSpinnerParser.NodeContext context)
-        {
-            // Add this node to the graph
-            graph.nodes.Add(currentNode);
-        }
-        public override void ExitOptionJump(YarnSpinnerParser.OptionJumpContext context) {
-            graph.edge(currentNode, context.NodeName.Text);
-        }
-
-        public override void ExitOptionLink(YarnSpinnerParser.OptionLinkContext context) {
-            graph.edge(currentNode, context.NodeName.Text);
-        }
-
     }
 }

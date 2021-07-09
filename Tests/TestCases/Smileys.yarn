@@ -3,13 +3,13 @@ title: Start
 // Testing smileys
 
 
-Mae: ¯\_(ツ)_/¯
+Mae: ¯\\_(ツ)_/¯
 Mae: <o>
 Mae: :|
 Mae: :)
 Mae: :(
 Mae: :o
-Mae: :\
+Mae: :\\
 Mae: :<
 Mae: D:
 Mae: -_-
@@ -17,26 +17,26 @@ Mae: =_=
 Mae: U_U
 Mae: O_O
 Mae: o_o
-Mae: \o/
-Mae: /o\
+Mae: \\o/
+Mae: /o\\
 Mae: o/
 Mae: _o_
 Mae: o>
-Mae: / \
-Mae: \ /
+Mae: / \\
+Mae: \\ /
 Mae: ~~
 
 // Testing in an option group
 
 
 
--> Mae: ¯\_(ツ)_/¯
+-> Mae: ¯\\_(ツ)_/¯
 -> Mae: <o>
 -> Mae: :|
 -> Mae: :)
 -> Mae: :(
 -> Mae: :o
--> Mae: :\
+-> Mae: :\\
 -> Mae: :<
 -> Mae: D:
 -> Mae: -_-
@@ -44,13 +44,13 @@ Mae: ~~
 -> Mae: U_U
 -> Mae: O_O
 -> Mae: o_o
--> Mae: \o/
--> Mae: /o\
+-> Mae: \\o/
+-> Mae: /o\\
 -> Mae: o/
 -> Mae: _o_
 -> Mae: o>
--> Mae: / \
--> Mae: \ /
+-> Mae: / \\
+-> Mae: \\ /
 -> Mae: ~~
 
 Separating the option groups here.
@@ -58,13 +58,13 @@ Separating the option groups here.
 // Testing in an option group, with conditionals
 
 
--> Mae: ¯\_(ツ)_/¯ <<if true>>
+-> Mae: ¯\\_(ツ)_/¯ <<if true>>
 -> Mae: <o> <<if true>>
 -> Mae: :| <<if true>>
 -> Mae: :) <<if true>>
 -> Mae: :( <<if true>>
 -> Mae: :o <<if true>>
--> Mae: :\ <<if true>>
+-> Mae: :\\ <<if true>>
 -> Mae: :< <<if true>>
 -> Mae: D: <<if true>>
 -> Mae: -_- <<if true>>
@@ -72,12 +72,12 @@ Separating the option groups here.
 -> Mae: U_U <<if true>>
 -> Mae: O_O <<if true>>
 -> Mae: o_o <<if true>>
--> Mae: \o/ <<if true>>
--> Mae: /o\ <<if true>>
+-> Mae: \\o/ <<if true>>
+-> Mae: /o\\ <<if true>>
 -> Mae: o/ <<if true>>
 -> Mae: _o_ <<if true>>
 -> Mae: o> <<if true>>
--> Mae: / \ <<if true>>
--> Mae: \ / <<if true>>
+-> Mae: / \\ <<if true>>
+-> Mae: \\ / <<if true>>
 -> Mae: ~~ <<if true>>
 ===

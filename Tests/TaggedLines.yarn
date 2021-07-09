@@ -1,0 +1,11 @@
+title: Start
+---
+Test line 1 #line:test1
+Test line 2 #line:test2
+<<jump Destination>>
+===
+title: Destination
+---
+Test line 3 #line:test3
+Test line 4 #line:test4
+===

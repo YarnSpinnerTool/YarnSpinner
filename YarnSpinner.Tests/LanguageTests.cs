@@ -11,23 +11,14 @@ using CLDRPlurals;
 
 namespace YarnSpinner.Tests
 {
-
-
 	public class LanguageTests : TestBase
     {
 		public LanguageTests() : base() {
 
             // Register some additional functions
-            dialogue.library.RegisterFunction("add_three_operands", 3, delegate (Value[] parameters) {
-                return parameters[0] + parameters[1] + parameters[2];
+            dialogue.Library.RegisterFunction("add_three_operands", delegate (int a, int b, int c) {
+                return a + b + c;
             });
-
-            dialogue.library.RegisterFunction("last_value", -1, delegate (Value[] parameters)
-            {
-                return parameters[parameters.Length - 1];
-            });
-
-			
 		}
 
         [Fact]
@@ -38,9 +29,11 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "Example.yarn");
             var testPath = Path.ChangeExtension(path, ".testplan");
             
-            Compiler.CompileFile(path, out var program, out stringTable);
-
-            dialogue.SetProgram(program);
+            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+            
+            dialogue.SetProgram(result.Program);
+            stringTable = result.StringTable;
+            
             this.LoadTestPlan(testPath);
 
             RunStandardTestcase();
@@ -52,16 +45,19 @@ namespace YarnSpinner.Tests
             var sallyPath = Path.Combine(SpaceDemoScriptsPath, "Sally.yarn");
             var shipPath = Path.Combine(SpaceDemoScriptsPath, "Ship.yarn");
 
-            Compiler.CompileFile(sallyPath, out var sally, out var sallyStringTable);
-            Compiler.CompileFile(shipPath, out var ship, out var shipStringTable);
-
-
-            var combinedWorking = Program.Combine(sally, ship);
+            CompilationJob compilationJobSally = CompilationJob.CreateFromFiles(sallyPath);
+            CompilationJob compilationJobSallyAndShip = CompilationJob.CreateFromFiles(sallyPath, shipPath);
             
+            compilationJobSally.Library = dialogue.Library;
+            compilationJobSallyAndShip.Library = dialogue.Library;
+            
+            var resultSally = Compiler.Compile(compilationJobSally);
+            var resultSallyAndShip = Compiler.Compile(compilationJobSallyAndShip);
+
             // Loading code with the same contents should throw
             Assert.Throws<InvalidOperationException>(delegate ()
             {
-                var combinedNotWorking = Program.Combine(sally, ship, ship);
+                var combinedNotWorking = Program.Combine(resultSally.Program, resultSallyAndShip.Program);
             });
         }
 
@@ -71,11 +67,13 @@ namespace YarnSpinner.Tests
         public void TestEndOfNotesWithOptionsNotAdded()
         {
             var path = Path.Combine(TestDataPath, "SkippedOptions.yarn");
-            Compiler.CompileFile(path, out var program, out stringTable);
 
-            dialogue.SetProgram(program);
+            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+            
+            dialogue.SetProgram(result.Program);
+            stringTable = result.StringTable;
 
-            dialogue.optionsHandler = delegate (OptionSet optionSets) {
+            dialogue.OptionsHandler = delegate (OptionSet optionSets) {
                 Assert.False(true, "Options should not be shown to the user in this test.");
             };
 
@@ -88,14 +86,19 @@ namespace YarnSpinner.Tests
         public void TestNodeHeaders()
         {
             var path = Path.Combine(TestDataPath, "Headers.yarn");
-            Compiler.CompileFile(path, out var program, out stringTable);
-
-            Assert.Equal(3, program.Nodes.Count);
+            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+            
+            Assert.Equal(4, result.Program.Nodes.Count);
 
             foreach (var tag in new[] {"one", "two", "three"}) {
-                Assert.Contains(tag, program.Nodes["Tags"].Tags);
+                Assert.Contains(tag, result.Program.Nodes["Tags"].Tags);
             }
-            
+
+            // Assert.Contains("version:2", result.FileTags);
+            Assert.Contains(path, result.FileTags.Keys);
+            Assert.Equal(1, result.FileTags.Count);
+            Assert.Equal(1, result.FileTags[path].Count());
+            Assert.Contains("file_header", result.FileTags[path]);
         }
 
         [Fact]
@@ -104,39 +107,13 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "InvalidNodeTitle.yarn");
 
             Assert.Throws<Yarn.Compiler.ParseException>( () => {
-                Compiler.CompileFile(path, out var program, out stringTable);
+                Compiler.Compile(CompilationJob.CreateFromFiles(path));
             });
             
         }
 
         [Fact]
-        public void TestFormatFunctionParsing() 
-        {
-            var input = @"prefix [plural ""5"" one=""one"" two=""two"" few=""few"" many=""many""] suffix";
-            
-
-            var expectedLineWithReplacements = @"prefix {0} suffix";
-            var expectedFunctionName = "plural";
-            var expectedValue = "5";
-            var expectedParameters = new Dictionary<string,string>() {
-                {"one", "one"},
-                {"two", "two"},
-                {"few", "few"},
-                {"many", "many"},                
-            };
-
-            Dialogue.ParseFormatFunctions(input, out string lineWithReplacements, out ParsedFormatFunction[] parsedFunctions);
-
-            Assert.Equal(expectedLineWithReplacements, lineWithReplacements);
-            Assert.Equal(1, parsedFunctions.Length);
-            Assert.Equal(expectedFunctionName, parsedFunctions[0].functionName);
-            Assert.Equal(expectedValue, parsedFunctions[0].value);
-            Assert.Equal(expectedParameters, parsedFunctions[0].data);
-
-        }
-
-        [Fact]
-        public void TestNumberPlurals() {
+    public void TestNumberPlurals() {
 
             (string, double , PluralCase )[] cardinalTests = new[] {
 
@@ -244,42 +221,19 @@ namespace YarnSpinner.Tests
             {
                 LoadTestPlan(testPlanFilePath);
 
-                Compiler.CompileFile(scriptFilePath, out var program, out stringTable);
-                dialogue.SetProgram(program);
+                CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
+                compilationJob.Library = dialogue.Library;
+
+                var result = Compiler.Compile(compilationJob);
+            
+                dialogue.SetProgram(result.Program);
+                stringTable = result.StringTable;
 
                 // If this file contains a Start node, run the test case
                 // (otherwise, we're just testing its parsability, which
                 // we did in the last line)
                 if (dialogue.NodeExists("Start"))
                     RunStandardTestcase();
-            }
-        }
-
-        // Returns the list of .node and.yarn files in the
-        // Tests/<directory> directory.
-        public static IEnumerable<object[]> FileSources(string directory) {
-
-            var allowedExtensions = new[] { ".node", ".yarn" };
-
-            var path = Path.Combine(TestDataPath, directory);
-
-            var files = GetFilesInDirectory(path);
-
-            return files.Where(p => allowedExtensions.Contains(Path.GetExtension(p)))
-                        .Select(p => new[] {Path.Combine(directory, Path.GetFileName(p))});
-        }
-
-        // Returns the list of files in a directory. If that directory doesn't
-        // exist, returns an empty list.
-        static IEnumerable<string> GetFilesInDirectory(string path)
-        {
-            try
-            {
-                return Directory.EnumerateFiles(path);
-            }
-            catch (DirectoryNotFoundException)
-            {
-                return new string[] { };
             }
         }
     }

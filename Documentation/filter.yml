@@ -7,7 +7,9 @@ apiRules:
     - exclude:
         uidRegex: ^Yarn\.Compiler\.Graph
     - exclude:
-        uidRegex: ^Yarn\.Compiler\.Compiler\.(Enter|Exit)
+        uidRegex: ^Yarn\.Compiler\.YarnSpinner(V1)?(Parser|Lexer)
+    - exclude:
+        uidRegex: ^Yarn\.Compiler\.IYarnSpinner(V1)?(Parser|Lexer)
     - exclude:
         uidRegex: ^CLDRPlurals
     

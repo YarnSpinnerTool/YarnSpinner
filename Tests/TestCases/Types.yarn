@@ -4,25 +4,25 @@ title: Start
 
 // string equality
 <<call assert("test" == "test")>>
-
-// string-number inequality
-<<call assert("test" != 1)>>
+<<call assert("test" eq "test")>>
 
 // string case sensitivity
 <<call assert("hi" != "HI")>>
-
-// multiple-type concatenation
-<<call assert(1+1+"hi" == "2hi")>>
+<<call assert("hi" neq "HI")>>
 
 // gt test
+<<call assert(3 > 2)>>
 <<call assert(3 gt 2)>>
 
 // lt test
+<<call assert(1 < 2)>>
 <<call assert(1 lt 2)>>
 
 // lte test
+<<call assert(2 <= 2)>>
 <<call assert(2 lte 2)>>
 
 // gte test
+<<call assert(2 >= 2)>>
 <<call assert(2 gte 2)>>
 ===

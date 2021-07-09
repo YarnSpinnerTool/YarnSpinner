@@ -16,6 +16,7 @@ This still works!
 <<set $x to 23>>
 <<endif>>
 
+<<declare $x = 0>>
 ===
 
 title: ThirdNode
