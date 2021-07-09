@@ -769,7 +769,7 @@ namespace Yarn
         {
             if (this.Program.Nodes.Count == 0)
             {
-                this.LogErrorMessage("No nodes are loaded!");
+                this.LogErrorMessage?.Invoke("No nodes are loaded!");
                 return null;
             }
             else if (this.Program.Nodes.ContainsKey(nodeName))
@@ -778,7 +778,7 @@ namespace Yarn
             }
             else
             {
-                this.LogErrorMessage("No node named " + nodeName);
+                this.LogErrorMessage?.Invoke("No node named " + nodeName);
                 return null;
             }
         }
@@ -798,7 +798,7 @@ namespace Yarn
         {
             if (this.Program.Nodes.Count == 0)
             {
-                this.LogErrorMessage("No nodes are loaded!");
+                this.LogErrorMessage?.Invoke("No nodes are loaded!");
                 return null;
             }
             else if (this.Program.Nodes.ContainsKey(nodeName))
@@ -807,7 +807,7 @@ namespace Yarn
             }
             else
             {
-                this.LogErrorMessage("No node named " + nodeName);
+                this.LogErrorMessage?.Invoke("No node named " + nodeName);
                 return null;
             }
         }
@@ -837,14 +837,14 @@ namespace Yarn
         {
             if (this.Program == null)
             {
-                this.LogErrorMessage("Tried to call NodeExists, but no nodes " +
+                this.LogErrorMessage?.Invoke("Tried to call NodeExists, but no nodes " +
                                  "have been compiled!");
                 return false;
             }
 
             if (this.Program.Nodes == null || this.Program.Nodes.Count == 0)
             {
-                this.LogDebugMessage("Called NodeExists, but there are zero nodes. " +
+                this.LogDebugMessage?.Invoke("Called NodeExists, but there are zero nodes. " +
                                  "This may be an error.");
                 return false;
             }

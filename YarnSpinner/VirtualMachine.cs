@@ -254,7 +254,7 @@ namespace Yarn
                 throw new DialogueException($"No node named {nodeName} has been loaded.");                
             }
 
-            dialogue.LogDebugMessage ("Running node " + nodeName);
+            dialogue.LogDebugMessage?.Invoke ("Running node " + nodeName);
 
             currentNode = Program.Nodes [nodeName];
             ResetState ();
