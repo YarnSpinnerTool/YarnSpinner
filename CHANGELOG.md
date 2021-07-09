@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Variable declaration upgrader now generates .yarnproject files, not .yarnprogram files.
 - Line tagger now adds line tags before any `//` comment in the line.
+- Dialogue: `LogErrorMessage` and `LogDebugMessage` now perform null-checks before being invoked.
 
 ### Removed
 
