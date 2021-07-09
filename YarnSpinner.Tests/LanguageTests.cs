@@ -192,40 +192,36 @@ namespace YarnSpinner.Tests
                 Assert.Equal(test.Item3, CLDRPlurals.NumberPlurals.GetOrdinalPluralCase(test.Item1, test.Item2));
             }
 
-            
+
         }
 
         // Test every file in Tests/TestCases
         [Theory]
         [MemberData(nameof(FileSources), "TestCases")]
         [MemberData(nameof(FileSources), "Issues")]
-        public void TestSources(string file) {
+        public void TestSources(string file)
+        {
 
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine ($"INFO: Loading file {file}");
+            Console.WriteLine($"INFO: Loading file {file}");
 
             storage.Clear();
-            bool runTest = true;
 
             var scriptFilePath = Path.Combine(TestDataPath, file);
-            var testPlanFilePath = Path.ChangeExtension(scriptFilePath, ".testplan");
-            
-            // skipping the indentation test when using the ANTLR parser
-            // it can never pass
-            if (file == "TestCases/Indentation.yarn")
-            {
-                runTest = false;
-            }
 
-            if (runTest)
+            CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
+            compilationJob.Library = dialogue.Library;
+
+            var result = Compiler.Compile(compilationJob);
+
+            Assert.NotNull(result.Program);
+
+            var testPlanFilePath = Path.ChangeExtension(scriptFilePath, ".testplan");
+
+            if (File.Exists(testPlanFilePath))
             {
                 LoadTestPlan(testPlanFilePath);
 
-                CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
-                compilationJob.Library = dialogue.Library;
-
-                var result = Compiler.Compile(compilationJob);
-            
                 dialogue.SetProgram(result.Program);
                 stringTable = result.StringTable;
 
@@ -233,10 +229,13 @@ namespace YarnSpinner.Tests
                 // (otherwise, we're just testing its parsability, which
                 // we did in the last line)
                 if (dialogue.NodeExists("Start"))
+                {
                     RunStandardTestcase();
+                }
             }
         }
     }
+
 
 }
 
