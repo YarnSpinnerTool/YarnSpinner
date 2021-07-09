@@ -837,15 +837,13 @@ namespace Yarn
         {
             if (this.Program == null)
             {
-                this.LogErrorMessage?.Invoke("Tried to call NodeExists, but no nodes " +
-                                 "have been compiled!");
+                this.LogErrorMessage?.Invoke("Tried to call NodeExists, but no program has been loaded!");
                 return false;
             }
 
             if (this.Program.Nodes == null || this.Program.Nodes.Count == 0)
             {
-                this.LogDebugMessage?.Invoke("Called NodeExists, but there are zero nodes. " +
-                                 "This may be an error.");
+                // No nodes? Then this node doesn't exist.
                 return false;
             }
 
