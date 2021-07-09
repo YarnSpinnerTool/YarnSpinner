@@ -110,7 +110,7 @@ namespace Yarn.Compiler
         /// </summary>
         /// <remarks>This method ensures that it does not generate line
         /// tags that are already present in the file, or present in the
-        /// `existingLineTags` collection.
+        /// <paramref name="existingLineTags"/> collection.
         ///
         /// Line tags are added to any line of source code that contains
         /// user-visible text: lines, options, and shortcut options.
@@ -123,7 +123,7 @@ namespace Yarn.Compiler
         /// collection.</param>
         /// <returns>The modified source code, with line tags
         /// added.</returns>
-        public static string AddTagsToLines(string contents, ICollection<string> existingLineTags)
+        public static string AddTagsToLines(string contents, ICollection<string> existingLineTags = null)
         {
             var compileJob = CompilationJob.CreateFromString("input", contents);
 
@@ -135,14 +135,23 @@ namespace Yarn.Compiler
 
             var allSourceLines = contents.Split(new[] { "\n", "\r\n", "\n" }, StringSplitOptions.None);
 
-            var existingLines = new HashSet<string>(existingLineTags);
+
+            HashSet<string> existingLines;
+            if (existingLineTags != null) {
+                existingLines = new HashSet<string>(existingLineTags);
+            } else {
+                existingLines = new HashSet<string>();
+            }
 
             foreach (var untaggedLine in untaggedLines)
             {
                 var lineNumber = untaggedLine.Value.lineNumber;
                 var tag = "#" + GenerateString(existingLines);
 
-                allSourceLines[lineNumber - 1] += $" {tag}";
+                var sourceLine = allSourceLines[lineNumber - 1];
+                var updatedSourceLine = sourceLine.Replace(untaggedLine.Value.text, $"{untaggedLine.Value.text} {tag}");
+
+                allSourceLines[lineNumber - 1] = updatedSourceLine;
 
                 existingLines.Add(tag);
             }

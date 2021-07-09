@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Yarn;
 using Yarn.Compiler;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace YarnSpinner.Tests
 {
@@ -64,6 +65,83 @@ custom: yes
             var generatedOutput = Utility.GenerateYarnFileWithDeclarations(result.Declarations, "Program", tags, headers);
 
             Assert.Equal(originalText, generatedOutput);
+        }
+
+        [Fact]
+        public void TestLineTagsAreAdded() {
+            // Arrange
+            var originalText = @"title: Program
+---
+// A comment. No line tag is added.
+A single line, with no line tag.
+A single line, with a line tag. #line:expected_abc123
+
+-> An option, with no line tag.
+-> An option, with a line tag. #line:expected_def456
+
+A line with no tag, but a comment at the end. // a comment
+A line with a tag, and a comment. #line:expected_ghi789 // a comment
+
+// A comment with no text:
+//
+// A comment with a single space:
+// 
+
+===";
+
+            // Act
+            var output = Utility.AddTagsToLines(originalText);
+
+            var compilationJob = CompilationJob.CreateFromString("input", output);
+            compilationJob.CompilationType = CompilationJob.Type.StringsOnly;
+
+            var compilationResult = Compiler.Compile(compilationJob);
+
+            // Assert
+            var lineTagRegex = new Regex(@"#line:\w+");
+
+            var lineTagAfterComment = new Regex(@"\/\/.*#line:\w+");
+
+            // Ensure that the right number of tags in total is present
+            var expectedExistingTags = 3;
+            var expectedNewTags = 3;
+            var expectedTotalTags = expectedExistingTags + expectedNewTags;
+
+            Assert.Equal(expectedTotalTags, lineTagRegex.Matches(output).Count);
+
+            // No tags were added after a comment
+            foreach (var line in output.Split('\n')) {
+                Assert.False(lineTagAfterComment.IsMatch(line), $"'{line}' should not contain a tag after a comment");
+            }
+                
+
+            var expectedResults = new (string tag, string line)[] {
+                ("line:expected_abc123", "A single line, with a line tag."),
+                ("line:expected_def456", "An option, with a line tag."),
+                ("line:expected_ghi789", "A line with a tag, and a comment."),
+                (null, "A single line, with no line tag."),
+                (null, "An option, with no line tag."),
+                (null, "A line with no tag, but a comment at the end."),
+            };
+
+            foreach (var result in expectedResults) {
+                if (result.tag != null) {
+                    Assert.Equal(compilationResult.StringTable[result.tag].text, result.line);
+                } else {
+                    // a line exists that has this text
+                    var matchingEntries = compilationResult.StringTable.Where(s => s.Value.text == result.line);
+                    Assert.Equal(1, matchingEntries.Count());
+
+                    // that line has a line tag
+                    var lineTag = matchingEntries.First().Key;
+                    Assert.StartsWith("line:", lineTag);
+
+                    // that line is not a duplicate of any other line tag
+                    var allLineTags = compilationResult.StringTable.Keys;
+                    Assert.Equal(1, allLineTags.Count(t => t == lineTag));
+                }
+            }
+            
         }
     }
 }
