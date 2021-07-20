@@ -16,10 +16,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 <<declare $coins = 0>>
 ```
 
-- These declarations can be before a declaration, or on the same line as a declaration:
+- These documentation comments can be before a declaration, or on the same line as a declaration:
 
 ```
 <<declare $player_likes_dogs = true>> /// Whether the player likes dogs or not
+```
+
+- Multiple-line documentation comments are also supported:
+
+```
+/// Whether these are the droids that the 
+/// guards are looking for.
+<<declare $are_the_droids_we're_looking_for = false>>
 ```
 
 ### Changed
