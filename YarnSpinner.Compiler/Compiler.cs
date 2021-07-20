@@ -689,7 +689,7 @@
                 knownVariableDeclarations.AddRange(GetDeclarationsFromLibrary(compilationJob.Library));
             }
 
-            var compiledTrees = new List<(string name, IParseTree tree)>();
+            var compiledTrees = new List<(string name, IParseTree tree, CommonTokenStream tokens)>();
 
             // First pass: parse all files, generate their syntax trees,
             // and figure out what variables they've declared
@@ -698,9 +698,9 @@
             foreach (var file in compilationJob.Files)
             {
                 var tree = ParseSyntaxTree(file);
-                compiledTrees.Add((file.FileName, tree));
+                compiledTrees.Add((file.FileName, tree.tree, tree.tokens));
 
-                RegisterStrings(file.FileName, stringTableManager, tree);
+                RegisterStrings(file.FileName, stringTableManager, tree.tree);
             }
 
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
@@ -719,7 +719,7 @@
 
             foreach (var parsedFile in compiledTrees)
             {
-                GetDeclarations(parsedFile.name, parsedFile.tree, knownVariableDeclarations, out var newDeclarations, out var newFileTags);
+                GetDeclarations(parsedFile.name, parsedFile.tokens, parsedFile.tree, knownVariableDeclarations, out var newDeclarations, out var newFileTags);
 
                 derivedVariableDeclarations.AddRange(newDeclarations);
                 knownVariableDeclarations.AddRange(newDeclarations);
@@ -805,9 +805,9 @@
             visitor.Visit(tree);
         }
 
-        private static void GetDeclarations(string sourceFileName, IParseTree tree, IEnumerable<Declaration> existingDeclarations, out IEnumerable<Declaration> newDeclarations, out IEnumerable<string> fileTags)
+        private static void GetDeclarations(string sourceFileName, CommonTokenStream tokenStream, IParseTree tree, IEnumerable<Declaration> existingDeclarations, out IEnumerable<Declaration> newDeclarations, out IEnumerable<string> fileTags)
         {
-            var variableDeclarationVisitor = new DeclarationVisitor(sourceFileName, existingDeclarations);
+            var variableDeclarationVisitor = new DeclarationVisitor(sourceFileName, existingDeclarations, tokenStream);
 
             try
             {
@@ -944,9 +944,11 @@
             return declarations;
         }
 
-        private static IParseTree ParseSyntaxTree(CompilationJob.File file)
+        private static (IParseTree tree, CommonTokenStream tokens) ParseSyntaxTree(CompilationJob.File file)
         {
-            ICharStream input = CharStreams.fromstring(file.Source);
+            string source = file.Source;
+            
+            ICharStream input = CharStreams.fromstring(source);
 
             YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -981,7 +983,7 @@
 #endif // DEBUG
             }
 
-            return tree;
+            return (tree, tokens);
         }
 
         /// <summary>

@@ -9,6 +9,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - If a variable is not declared (i.e. it doesn't have a `<<declare>>` statement), the compiler will now attempt to infer its declaration.
+- Declarations can now have their descriptions set using a triple-slash (`///`) comment:
+
+```
+/// The number of coins the player has
+<<declare $coins = 0>>
+```
+
+- These declarations can be before a declaration, or on the same line as a declaration:
+
+```
+<<declare $player_likes_dogs = true>> /// Whether the player likes dogs or not
+```
 
 ### Changed
 
@@ -17,6 +29,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Dialogue: `LogErrorMessage` and `LogDebugMessage` now perform null-checks before being invoked.
 
 ### Removed
+
+- In previous betas, variable descriptions were done by adding a string. This has been removed:
+  
+```
+// This will no longer work:
+<<declare $coins = 0 "The number of coins the player has">>
+```
 
 ## [v2.0.0-beta4] 
 

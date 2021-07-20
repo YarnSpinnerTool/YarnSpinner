@@ -439,36 +439,86 @@ namespace YarnSpinner.Tests
         public void TestVariableDeclarationAnnotations()
         {
             var source = CreateTestNode(@"
-            <<declare $int = 42 ""a number"">>
-            <<declare $str = ""Hello"" ""a string"">>
-            <<declare $bool = true ""a bool"">>
-            ");
+            /// a number
+            <<declare $prefix_int = 42>>
 
+            /// a string
+            <<declare $prefix_str = ""Hello"">>
+
+            /// a bool
+            <<declare $prefix_bool = true>>
+
+            <<declare $suffix_int = 42>> /// a number
+
+            <<declare $suffix_str = ""Hello"">> /// a string
+
+            <<declare $suffix_bool = true>> /// a bool
+            
+            // No declaration before
+            <<declare $none_int = 42>> // No declaration after
+
+            /// Multi-line
+            /// doc comment
+            <<declare $multiline = 42>>
+
+            ");
+            
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
             var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
-                    Name = "$int",
+                    Name = "$prefix_int",
                     ReturnType = Yarn.Type.Number,
                     DefaultValue = 42f,
                     Description = "a number",
                 },
                 new Declaration {
-                    Name = "$str",
+                    Name = "$prefix_str",
                     ReturnType = Yarn.Type.String,
                     DefaultValue = "Hello",
                     Description = "a string",
                 },
                 new Declaration {
-                    Name = "$bool",
+                    Name = "$prefix_bool",
                     ReturnType = Yarn.Type.Bool,
                     DefaultValue = true,
                     Description = "a bool",
-
+                },
+                new Declaration {
+                    Name = "$suffix_int",
+                    ReturnType = Yarn.Type.Number,
+                    DefaultValue = 42f,
+                    Description = "a number",
+                },
+                new Declaration {
+                    Name = "$suffix_str",
+                    ReturnType = Yarn.Type.String,
+                    DefaultValue = "Hello",
+                    Description = "a string",
+                },
+                new Declaration {
+                    Name = "$suffix_bool",
+                    ReturnType = Yarn.Type.Bool,
+                    DefaultValue = true,
+                    Description = "a bool",
+                },
+                new Declaration {
+                    Name = "$none_int",
+                    ReturnType = Yarn.Type.Number,
+                    DefaultValue = 42f,
+                    Description = null,
+                },
+                new Declaration {
+                    Name = "$multiline",
+                    ReturnType = Yarn.Type.Number,
+                    DefaultValue = 42f,
+                    Description = "Multi-line doc comment",
                 },
             };
 
             var actualDeclarations = new List<Declaration>(result.Declarations);
+
+            Assert.Equal(expectedDeclarations.Count(), actualDeclarations.Count());
 
             for (int i = 0; i < expectedDeclarations.Count; i++)
             {

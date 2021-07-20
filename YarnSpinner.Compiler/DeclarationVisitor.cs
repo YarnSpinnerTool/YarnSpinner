@@ -15,6 +15,12 @@ namespace Yarn.Compiler
     internal class DeclarationVisitor : YarnSpinnerParserBaseVisitor<Yarn.Type>
     {
 
+        /// <summary>
+        /// The CommonTokenStream derived from the file we're parsing. This
+        /// is used to find documentation comments for declarations.
+        /// </summary>
+        private readonly CommonTokenStream tokens;
+
         // The collection of variable declarations we know about before
         // starting our work
         private IEnumerable<Declaration> ExistingDeclarations;
@@ -54,12 +60,13 @@ namespace Yarn.Compiler
         /// <returns></returns>
         public IEnumerable<Declaration> Declarations => ExistingDeclarations.Concat(NewDeclarations);
 
-        public DeclarationVisitor(string sourceFileName, IEnumerable<Declaration> existingDeclarations)
+        public DeclarationVisitor(string sourceFileName, IEnumerable<Declaration> existingDeclarations, CommonTokenStream tokens)
         {
             this.ExistingDeclarations = existingDeclarations;
             this.NewDeclarations = new List<Declaration>();
             this.FileTags = new List<string>();
             this.sourceFileName = sourceFileName;
+            this.tokens = tokens;
         }
 
         public override Yarn.Type VisitFile_hashtag(YarnSpinnerParser.File_hashtagContext context) {
@@ -81,6 +88,49 @@ namespace Yarn.Compiler
 
         public override Yarn.Type VisitDeclare_statement(YarnSpinnerParser.Declare_statementContext context)
         {
+
+            string description = null;
+
+            var precedingComments = tokens.GetHiddenTokensToLeft(context.Start.TokenIndex, YarnSpinnerLexer.COMMENTS);
+
+            if (precedingComments != null) {
+                var precedingDocComments = precedingComments
+                    // There are no tokens on the main channel with this
+                    // one on the same line
+                    .Where(t=>tokens.GetTokens()
+                        .Where(ot => ot.Line == t.Line)
+                        .Where(ot => ot.Type != YarnSpinnerLexer.INDENT && ot.Type != YarnSpinnerLexer.DEDENT)
+                        .Where(ot => ot.Channel == YarnSpinnerLexer.DefaultTokenChannel)
+                        .Count() == 0)
+                    // The comment starts with a triple-slash
+                    .Where(t => t.Text.StartsWith("///"))
+                    // Get its text
+                    .Select(t => t.Text.Replace("///", string.Empty).Trim());
+                
+                if (precedingDocComments.Count() > 0)
+                {
+                    description = string.Join(" ", precedingDocComments);
+                }
+            }
+
+            var subsequentComments = tokens.GetHiddenTokensToRight(context.Stop.TokenIndex, YarnSpinnerLexer.COMMENTS);
+
+            if (subsequentComments != null) {
+                var subsequentDocComment = subsequentComments
+                    // This comment is on the same line as the end of the declaration
+                    .Where(t => t.Line == context.Stop.Line)
+                    // The comment starts with a triple-slash
+                    .Where(t => t.Text.StartsWith("///"))
+                    // Get its text
+                    .Select(t => t.Text.Replace("///", string.Empty).Trim())
+                    // Get the first one, or null
+                    .FirstOrDefault();
+
+                if (subsequentDocComment != null)
+                {
+                    description = subsequentDocComment;
+                }
+            }
 
             // Get the name of the variable we're declaring
             string variableName = context.variable().GetText();
@@ -123,14 +173,6 @@ namespace Yarn.Compiler
                 {
                     throw new TypeException(context, $"Type {context.type().GetText()} does not match value {context.value().GetText()} ({value.type})", sourceFileName);
                 }
-            }
-
-            // Get the variable declaration, if we have one
-            string description = null;
-
-            if (context.Description != null)
-            {
-                description = context.Description.Text.Trim('"');
             }
 
             // We're done creating the declaration!

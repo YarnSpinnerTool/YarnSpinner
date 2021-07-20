@@ -1,6 +1,10 @@
 lexer grammar YarnSpinnerLexer;
 
 tokens { INDENT, DEDENT }
+
+channels {
+    COMMENTS
+}
  
 @lexer::header{
 using System.Linq;
@@ -148,7 +152,7 @@ using System.Text.RegularExpressions;
 // tokens
 WS : ([ \t])+ -> skip;
 
-COMMENT: '//' ~('\r'|'\n')* -> skip;
+COMMENT: '//' ~('\r'|'\n')* -> channel(COMMENTS);
 
 fragment SPACES: [ \t]+ ; // used in NEWLINE tokens to calculate the text following a newline
 
@@ -204,7 +208,7 @@ mode BodyMode;
 // Ignore all whitespace and comments
 BODY_WS : WS -> skip;
 BODY_NEWLINE : NEWLINE SPACES? {CreateIndentIfNeeded(-1);} -> skip;
-BODY_COMMENT : COMMENT -> skip ;
+BODY_COMMENT : COMMENT -> channel(COMMENTS) ;
 
 // End of this node; return to global mode (eg node headers)
 // or end of file
@@ -255,7 +259,7 @@ TEXT_EXPRESSION_START: '{' -> type(EXPRESSION_START), pushMode(ExpressionMode);
 TEXT_COMMAND_START: '<<' -> type(COMMAND_START), mode(TextCommandOrHashtagMode), pushMode(CommandMode);
 
 // Comments after free text.
-TEXT_COMMENT: COMMENT -> skip;
+TEXT_COMMENT: COMMENT -> channel(COMMENTS);
 
 // Finally, lex anything up to a newline, a hashtag, the start of an
 // expression as free text, or a command-start marker.
@@ -276,7 +280,7 @@ mode TextCommandOrHashtagMode;
 TEXT_COMMANDHASHTAG_WS: WS -> skip;
 
 // Comments following hashtags and line conditions.
-TEXT_COMMANDHASHTAG_COMMENT: COMMENT -> skip;
+TEXT_COMMANDHASHTAG_COMMENT: COMMENT -> channel(COMMENTS);
 
 TEXT_COMMANDHASHTAG_COMMAND_START: '<<' -> type(COMMAND_START), pushMode(CommandMode);
 
