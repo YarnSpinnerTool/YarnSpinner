@@ -134,7 +134,7 @@ shortcut_option
     ;
 
 declare_statement
-    : COMMAND_START COMMAND_DECLARE variable OPERATOR_ASSIGNMENT value ('as' type)? Description=STRING? COMMAND_END ;
+    : COMMAND_START COMMAND_DECLARE variable OPERATOR_ASSIGNMENT value ('as' type)? COMMAND_END ;
 
 jump_statement
     : COMMAND_START COMMAND_JUMP destination=ID COMMAND_END
