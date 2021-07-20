@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - If a variable is not declared (i.e. it doesn't have a `<<declare>>` statement), the compiler will now attempt to infer its declaration.
-- Declarations can now have their descriptions set using a triple-slash (`///`) comment:
+- Declarations now have their descriptions set using a triple-slash (`///`) comment:
 
 ```
 /// The number of coins the player has
@@ -27,6 +27,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Variable declaration upgrader now generates .yarnproject files, not .yarnprogram files.
 - Line tagger now adds line tags before any `//` comment in the line.
 - Dialogue: `LogErrorMessage` and `LogDebugMessage` now perform null-checks before being invoked.
+- `Utility.GenerateYarnFileWithDeclarations` now generates files that use triple-slash (`///`) comments.
 
 ### Removed
 

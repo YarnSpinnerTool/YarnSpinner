@@ -47,9 +47,14 @@ namespace YarnSpinner.Tests
 tags: one two
 custom: yes
 ---
-<<declare $str = ""str"" ""str desc"">>
-<<declare $num = 2 ""num desc"">>
-<<declare $bool = true ""bool desc"">>
+/// str desc
+<<declare $str = ""str"">>
+
+/// num desc
+<<declare $num = 2>>
+
+/// bool desc
+<<declare $bool = true>>
 ===
 ";
 

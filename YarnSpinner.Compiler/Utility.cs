@@ -67,11 +67,22 @@ namespace Yarn.Compiler
 
             stringBuilder.AppendLine("---");
 
+            int count = 0;
+
             foreach (var decl in declarations)
             {
                 if (decl.DeclarationType != Declaration.Type.Variable)
                 {
                     throw new ArgumentOutOfRangeException($"Declaration {decl.name} is a {decl.DeclarationType}; it must be a {nameof(Declaration.Type.Variable)}.");
+                }
+
+                if (string.IsNullOrEmpty(decl.description) == false)
+                {
+                    if (count > 0) {
+                        // Insert a blank line above this comment, for readibility
+                        stringBuilder.AppendLine();
+                    }
+                    stringBuilder.AppendLine($"/// {decl.description}");
                 }
 
                 stringBuilder.Append($"<<declare {decl.name} = ");
@@ -91,12 +102,9 @@ namespace Yarn.Compiler
                         throw new ArgumentOutOfRangeException($"Declaration {decl.name}'s return type must not be {decl.ReturnType}.");
                 }
 
-                if (string.IsNullOrEmpty(decl.description) == false)
-                {
-                    stringBuilder.Append($" \"{decl.description}\"");
-                }
-
                 stringBuilder.AppendLine(">>");
+
+                count += 1;
             }
 
             stringBuilder.AppendLine("===");
