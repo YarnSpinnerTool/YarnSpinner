@@ -355,6 +355,9 @@ EXPRESSION_COMMAND_END: '>>' -> type(COMMAND_END), popMode, popMode;
 // Variables, which always begin with a '$'
 VAR_ID : '$' ID ;
 
+// Dots ('.')
+DOT : '.' ;
+
 // Integer or decimal numbers.
 NUMBER
     : INT
@@ -390,6 +393,12 @@ COMMAND_CALL: 'call' [\p{White_Space}] -> pushMode(ExpressionMode);
 COMMAND_DECLARE: 'declare' [\p{White_Space}] -> pushMode(ExpressionMode);
 
 COMMAND_JUMP: 'jump' [\p{White_Space}] -> pushMode(CommandIDMode);
+
+COMMAND_ENUM: 'enum' [\p{White_Space}] -> pushMode(CommandIDMode);
+
+COMMAND_CASE: 'case' [\p{White_Space}] -> pushMode(CommandIDMode);
+
+COMMAND_ENDENUM: 'endenum' [\p{White_Space}]?;
 
 // Keywords reserved for future language versions
 COMMAND_LOCAL: 'local' [\p{White_Space}]; 
