@@ -126,7 +126,7 @@ namespace Yarn.Compiler
                         explicitType = BuiltinTypes.Number;
                         break;
                     default:
-                        throw new ParseException(context, $"Unknown type {context.type().GetText()}");
+                        throw new TypeException(context, $"Unknown type {context.type().GetText()}", sourceFileName);
                 }
 
                 // Check that it matches - if it doesn't, that's a type
