@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using Antlr4.Runtime;
     using Antlr4.Runtime.Tree;
@@ -161,294 +162,6 @@
                 this.metadata = new string[] { };
             }
 
-        }
-    }
-
-    [System.Serializable]
-    public class Declaration
-    {
-        /// <summary>
-        /// Gets the name of this Declaration.
-        /// </summary>
-        public string Name { get => name; internal set => name = value; }
-
-        /// <summary>
-        /// Creates a new instance of the <see cref="Declaration"/> class,
-        /// using the given <paramref name="name"/> and default value. The
-        /// <see cref="ReturnType"/> of the new instance will be configured
-        /// based on the type of <paramref name="defaultValue"/>, and the
-        /// <see cref="DeclarationType"/> will be <see
-        /// cref="Type.Variable"/>. All other properties will be their
-        /// default values.
-        /// </summary>
-        /// <param name="name">The name of the new declaration.</param>
-        /// <param name="defaultValue">The default value of the
-        /// declaration. This must be a string, a number (integer or
-        /// floating-point), or boolean value.</param>
-        /// <param name="description">The description of the new
-        /// declaration.</param>
-        /// <returns>A new instance of the <see cref="Declaration"/>
-        /// class.</returns>
-        public static Declaration CreateVariable(string name, object defaultValue, string description = null)
-        {
-            if (defaultValue is null)
-            {
-                throw new ArgumentNullException(nameof(defaultValue));
-            }
-
-            // What type of default value did we get?
-            System.Type defaultValueType = defaultValue.GetType();
-
-            // Is it something we can handle?
-            if (Value.TypeMappings.ContainsKey(defaultValueType) == false)
-            {
-                throw new ArgumentException($"Default value type cannot be {defaultValueType}");
-            }
-
-            // We're all good to create the new declaration.
-            var decl = new Declaration
-            {
-                Name = name,
-                DefaultValue = defaultValue,
-                ReturnType = Value.TypeMappings[defaultValueType],
-                DeclarationType = Type.Variable,
-                Description = description,
-            };
-
-            return decl;
-        }
-
-        /// <summary>
-        /// Gets the default value of this <see cref="Declaration"/>, if no
-        /// value has been specified in code or is available from a <see
-        /// cref="Dialogue"/>'s <see cref="IVariableStorage"/>.
-        /// </summary>
-        public object DefaultValue { get => defaultValue; internal set => defaultValue = value; }
-
-        /// <summary>
-        /// Gets the type of this declaration.
-        /// </summary>
-        public Declaration.Type DeclarationType { get => declarationType; internal set => declarationType = value; }
-
-        /// <summary>
-        /// Gets the return type of this declaration.
-        /// </summary>
-        /// <remarks>
-        /// For declarations whose <see cref="DeclarationType"/> is <see
-        /// cref="Declaration.Type.Variable"/>, this is the type of the
-        /// variable.
-        /// </remarks>
-        public Yarn.Type ReturnType { get => returnType; internal set => returnType = value; }
-
-        /// <summary>
-        /// Gets a string describing the purpose of this <see
-        /// cref="Declaration"/>.
-        /// </summary>
-        public string Description { get => description; internal set => description = value; }
-
-        /// <summary>
-        /// Gets the <see cref="Parameter"/>s associated with this <see
-        /// cref="Declaration"/>.
-        /// </summary>
-        /// <remarks>
-        /// For declarations whose <see cref="DeclarationType"/> is <see
-        /// cref="Declaration.Type.Variable"/>, this array will be empty.
-        /// </remarks>
-        public Parameter[] Parameters { get => parameters; internal set => parameters = value; }
-        /// <summary>
-        /// Gets the name of the file in which this Declaration was found.
-        /// </summary>
-        /// <remarks>
-        /// If this <see cref="Declaration"/> was not found in a Yarn
-        /// source file, this will be <see cref="ExternalDeclaration"/>.
-        /// </remarks>
-        public string SourceFileName { get => sourceFileName; internal set => sourceFileName = value; }
-
-        /// <summary>
-        /// Gets the name of the node in which this Declaration was found.
-        /// </summary>
-        /// <remarks>
-        /// If this <see cref="Declaration"/> was not found in a Yarn
-        /// source file, this will be <see langword="null"/>.
-        /// </remarks>
-        public string SourceNodeName { get => sourceNodeName; internal set => sourceNodeName = value; }
-
-        /// <summary>
-        /// The line number at which this Declaration was found in the
-        /// source file.
-        /// </summary>
-        /// <remarks>
-        /// If this <see cref="Declaration"/> was not found in a Yarn
-        /// source file, this will be -1.
-        /// </remarks>
-        public int SourceFileLine { get => sourceFileLine; internal set => sourceFileLine = value; }
-
-        /// <summary>
-        /// Gets the line number at which this Declaration was found in the node
-        /// indicated by <see cref="SourceNodeName"/>.
-        /// </summary>
-        /// <remarks>
-        /// If this <see cref="Declaration"/> was not found in a Yarn
-        /// source file, this will be -1.
-        /// </remarks>
-        public int SourceNodeLine { get => sourceNodeLine; internal set => sourceNodeLine = value; }
-
-        /// <summary>
-        /// Get or sets a value indicating whether this Declaration was implicitly
-        /// inferred from usage.
-        /// </summary>
-        /// <value>If <see langword="true"/>, this Declaration was
-        /// implicitly inferred from usage. If <see langword="false"/>,
-        /// this Declaration appears in the source code.</value>
-        public bool IsImplicit { get; internal set; }
-
-        /// <summary>
-        /// The string used for <see cref="SourceFileName"/> if the
-        /// Declaration was found outside of a Yarn source file.
-        /// </summary>
-        public const string ExternalDeclaration = "(External)";
-
-        internal string name;
-        internal object defaultValue;
-        internal Type declarationType = Declaration.Type.Variable;
-        internal Yarn.Type returnType;
-        internal string description;
-        internal Parameter[] parameters = new Parameter[0];
-        internal string sourceFileName;
-        internal string sourceNodeName;
-        internal int sourceFileLine;
-        internal int sourceNodeLine;
-
-        public Declaration()
-        {
-        }
-
-        /// <summary>
-        /// Enumerates the different types of <see cref="Declaration"/>
-        /// structs that may be encountered.
-        /// </summary>
-        public enum Type
-        {
-            /// <summary>
-            /// Variables have a return type, have no parameters, and can be assigned to.
-            /// </summary>
-            Variable,
-
-            /// <summary>
-            /// Functions has a return type, may have parameters, and cannot be assigned to.
-            /// </summary>
-            Function,
-        }
-
-        /// <summary>
-        /// A parameter for a function <see cref="Declaration"/>.
-        /// </summary>
-        [System.Serializable]
-        public class Parameter
-        {
-            private string name;
-            private Yarn.Type type;
-
-            public string Name { get => name; internal set => name = value; }
-
-            public Yarn.Type Type { get => type; internal set => type = value; }
-
-            // override object.Equals
-            public override bool Equals(object obj)
-            {
-                if (obj == null || !(obj is Parameter otherParam))
-                {
-                    return false;
-                }
-
-                return this.Name == otherParam.Name &&
-                    this.Type == otherParam.Type;
-            }
-
-            // override object.GetHashCode
-            public override int GetHashCode()
-            {
-                return Name.GetHashCode() ^ Type.GetHashCode();
-            }
-        }
-
-        /// <inheritdoc/>
-        public override string ToString()
-        {
-            string result;
-            switch (this.DeclarationType)
-            {
-                case Type.Variable:
-                    result = $"{Name} : {ReturnType} = {DefaultValue}";
-                    break;
-                case Type.Function:
-                    result = $"{Name} : ({string.Join(", ", (object[])Parameters)}) -> {ReturnType}";
-                    break;
-                default:
-                    throw new InvalidOperationException($"Invalid declaration type {this.DeclarationType}");
-            }
-            if (string.IsNullOrEmpty(Description))
-            {
-                return result;
-            }
-            else
-            {
-                return result + $" (\"{Description}\")";
-            }
-        }
-
-        /// <inheritdoc/>
-        public override bool Equals(object obj)
-        {
-            if (obj == null || !(obj is Declaration otherDecl))
-            {
-                return false;
-            }
-
-            if (Parameters.Length != otherDecl.Parameters.Length)
-            {
-                return false;
-            }
-
-            for (int i = 0; i < Parameters.Length; i++)
-            {
-                Parameter myParam = Parameters[i];
-                Parameter theirParam = otherDecl.Parameters[i];
-
-                if (myParam.Equals(theirParam) == false)
-                {
-                    return false;
-                }
-            }
-
-            return this.Name == otherDecl.Name &&
-                this.ReturnType == otherDecl.ReturnType &&
-                this.DefaultValue == otherDecl.DefaultValue &&
-                this.Description == otherDecl.Description &&
-                this.DeclarationType == otherDecl.DeclarationType;
-        }
-
-        /// <inheritdoc/>
-        public override int GetHashCode()
-        {
-            int paramsHash = 0;
-            foreach (var param in Parameters)
-            {
-                if (paramsHash == 0)
-                {
-                    paramsHash = param.GetHashCode();
-                }
-                else
-                {
-                    paramsHash ^= param.GetHashCode();
-                }
-            }
-            return this.Name.GetHashCode()
-                ^ this.ReturnType.GetHashCode()
-                ^ this.DeclarationType.GetHashCode()
-                ^ this.DefaultValue.GetHashCode()
-                ^ paramsHash
-                ^ (this.Description ?? string.Empty).GetHashCode();
         }
     }
 
@@ -733,6 +446,17 @@
                 checker.Visit(parsedFile.tree);
                 derivedVariableDeclarations.AddRange(checker.NewDeclarations);
                 knownVariableDeclarations.AddRange(checker.NewDeclarations);
+
+                // Validate that the type checker assigned a type to every expression
+                var allExpressions = FlattenParseTree(parsedFile.tree).OfType<YarnSpinnerParser.ExpressionContext>();
+
+                var expressionsWithNoType = allExpressions.Where(e => e.Type == BuiltinTypes.Undefined);
+
+                if (expressionsWithNoType.Count() > 0) {
+                    string report = string.Join(", ", expressionsWithNoType.Select(e => $"{e.GetTextWithWhitespace()} (line {e.Start.Line})"));
+
+                    throw new InvalidOperationException($"Internal error: The following expressions were not assigned a type: {report}");
+                }
             }
 
             if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
@@ -762,31 +486,26 @@
             foreach (var declaration in knownVariableDeclarations)
             {
                 // We only care about variable declarations here
-                if (declaration.DeclarationType != Declaration.Type.Variable)
+                if (declaration.Type is FunctionType)
                 {
                     continue;
                 }
 
                 Operand value;
 
-                if (declaration.DeclarationType == Declaration.Type.Variable && declaration.defaultValue == null)
+                if (declaration.DefaultValue == null)
                 {
-                    throw new NullReferenceException($"Variable declaration {declaration.name} ({declaration.ReturnType}) has a null default value. This is not allowed.");
+                    throw new NullReferenceException($"Variable declaration {declaration.Name} (type {declaration.Type.Name}) has a null default value. This is not allowed.");
                 }
 
-                switch (declaration.ReturnType)
-                {
-                    case Yarn.Type.Number:
-                        value = new Operand(Convert.ToSingle(declaration.DefaultValue));
-                        break;
-                    case Yarn.Type.String:
-                        value = new Operand(Convert.ToString(declaration.DefaultValue));
-                        break;
-                    case Yarn.Type.Bool:
-                        value = new Operand(Convert.ToBoolean(declaration.DefaultValue));
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException($"Cannot create an initial value for type {declaration.ReturnType}");
+                if (declaration.Type == BuiltinTypes.String) {
+                    value = new Operand(Convert.ToString(declaration.DefaultValue));
+                } else if (declaration.Type == BuiltinTypes.Number) {
+                    value = new Operand(Convert.ToSingle(declaration.DefaultValue));
+                } else if (declaration.Type == BuiltinTypes.Boolean) {
+                    value = new Operand(Convert.ToBoolean(declaration.DefaultValue));
+                } else {
+                    throw new ArgumentOutOfRangeException($"Cannot create an initial value for type {declaration.Type.Name}");
                 }
 
                 finalResult.Program.InitialValues.Add(declaration.Name, value);
@@ -879,14 +598,17 @@
                     continue;
                 }
 
-                if (Value.TypeMappings.TryGetValue(method.ReturnType, out var yarnReturnType) == false)
+                // Does the return type of this delegate map to a value
+                // that Yarn Spinner can use?
+                if (BuiltinTypes.TypeMappings.TryGetValue(method.ReturnType, out var yarnReturnType) == false)
                 {
                     throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: {method.ReturnType} is not a valid return type.");
                 }
 
-                var parameters = new List<Declaration.Parameter>();
+                // Define a new type for this function
+                FunctionType functionType = new FunctionType();
 
-                bool includeMethod = true;
+                var includeMethod = true;
 
                 foreach (var paramInfo in method.GetParameters())
                 {
@@ -907,31 +629,24 @@
                         throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is an out parameter, which isn't supported.");
                     }
 
-                    if (Value.TypeMappings.TryGetValue(paramInfo.ParameterType, out var yarnParameterType) == false)
+                    if (BuiltinTypes.TypeMappings.TryGetValue(paramInfo.ParameterType, out var yarnParameterType) == false)
                     {
                         throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used.");
                     }
 
-                    var parameter = new Declaration.Parameter
-                    {
-                        Name = paramInfo.Name,
-                        Type = yarnParameterType,
-                    };
-
-                    parameters.Add(parameter);
+                    functionType.AddParameter(yarnParameterType);
                 }
 
-                if (includeMethod == false)
-                {
+                if (includeMethod == false) {
                     continue;
                 }
 
+                functionType.ReturnType = yarnReturnType;
+
                 var declaration = new Declaration
                 {
-                    DeclarationType = Declaration.Type.Function,
                     Name = function.Key,
-                    ReturnType = yarnReturnType,
-                    Parameters = parameters.ToArray(),
+                    Type = functionType,
                     SourceFileLine = -1,
                     SourceNodeLine = -1,
                     SourceFileName = Declaration.ExternalDeclaration,
@@ -1235,6 +950,29 @@
                 // a node onto the stack, which RunNode handles
                 Emit(CurrentNode, OpCode.RunNode);
             }
+        }
+
+        /// <summary>
+        /// Flattens a tree of <see cref="IParseTree"/> objects by
+        /// recursively visiting their children, and converting them into a
+        /// flat <see cref="IEnumerable{IParseTree}"/>.
+        /// </summary>
+        /// <param name="node">The root node to begin work from.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> that contains a
+        /// flattened version of the hierarchy rooted at <paramref
+        /// name="node"/>.</returns>
+        public static IEnumerable<IParseTree> FlattenParseTree(IParseTree node)
+        {
+            // Get the list of children in this node
+            var children = Enumerable
+                .Range(0, node.ChildCount)
+                .Select(i => node.GetChild(i));
+
+            // Recursively visit each child and append it to a sequence,
+            // and then return that sequence
+            return children
+                .SelectMany(c => FlattenParseTree(c))
+                .Concat(new[] { node });
         }
     }
 }

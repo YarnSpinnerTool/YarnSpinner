@@ -5,9 +5,10 @@ namespace Yarn.Compiler
     using Antlr4.Runtime;
     using Antlr4.Runtime.Misc;
 
-    struct ConstantValue {
-        public Yarn.Type type;
-        public object value;
+    struct ConstantValue
+    {
+        public Yarn.IType type;
+        public IConvertible value;
     }
 
     /// <summary>
@@ -49,7 +50,7 @@ namespace Yarn.Compiler
         {
             if (float.TryParse(context.GetText(), out var result))
             {
-                return new ConstantValue {type = Yarn.Type.Number, value = result};
+                return new ConstantValue { type = BuiltinTypes.Number, value = result };
             }
             throw new FormatException($"Failed to parse {context.GetText()} as a float");
         }
@@ -58,17 +59,17 @@ namespace Yarn.Compiler
         {
             string stringVal = context.STRING().GetText().Trim('"');
 
-            return new ConstantValue {type = Yarn.Type.String, value = stringVal};
+            return new ConstantValue { type = BuiltinTypes.String, value = stringVal };
         }
 
         public override ConstantValue VisitValueFalse(YarnSpinnerParser.ValueFalseContext context)
         {
-            return new ConstantValue {type = Yarn.Type.Bool, value = false};
+            return new ConstantValue { type = BuiltinTypes.Boolean, value = false };
         }
 
         public override ConstantValue VisitValueTrue(YarnSpinnerParser.ValueTrueContext context)
         {
-            return new ConstantValue {type = Yarn.Type.Bool, value = true};
+            return new ConstantValue { type = BuiltinTypes.Boolean, value = true };
         }
     }
 }

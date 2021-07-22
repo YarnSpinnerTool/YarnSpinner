@@ -107,13 +107,6 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitExpMultDivMod([NotNull] YarnSpinnerParser.ExpMultDivModContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>expMultDivModEquals</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitExpMultDivModEquals([NotNull] YarnSpinnerParser.ExpMultDivModEqualsContext context);
-	/// <summary>
 	/// Visit a parse tree produced by the <c>expComparison</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
 	/// </summary>
@@ -141,13 +134,6 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitExpAndOrXor([NotNull] YarnSpinnerParser.ExpAndOrXorContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>expPlusMinusEquals</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitExpPlusMinusEquals([NotNull] YarnSpinnerParser.ExpPlusMinusEqualsContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>expAddSub</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
@@ -262,19 +248,11 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitElse_clause([NotNull] YarnSpinnerParser.Else_clauseContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>setVariableToValue</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.set_statement"/>.
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.set_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitSetVariableToValue([NotNull] YarnSpinnerParser.SetVariableToValueContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>setExpression</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.set_statement"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSetExpression([NotNull] YarnSpinnerParser.SetExpressionContext context);
+	Result VisitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.call_statement"/>.
 	/// </summary>

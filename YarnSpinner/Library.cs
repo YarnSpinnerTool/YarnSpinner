@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -156,6 +156,31 @@ namespace Yarn
             if (FunctionExists(name))
             {
                 Delegates.Remove(name);
+            }
+        }
+
+        /// <summary>
+        /// Registers the methods found inside a type.
+        /// </summary>
+        /// <param name="type">The type to register methods from.</param>
+        protected void RegisterMethods(IType type)
+        {
+            var methods = type.Methods;
+
+            if (methods == null)
+            {
+                // this Type declares no methods; nothing to do
+                return;
+            }
+
+            foreach (var methodDefinition in methods)
+            {
+                var methodName = methodDefinition.Key;
+                var methodImplementation = methodDefinition.Value;
+
+                var canonicalName = TypeUtil.GetCanonicalNameForMethod(type, methodName);
+
+                this.RegisterFunction(canonicalName, methodImplementation);
             }
         }
     }

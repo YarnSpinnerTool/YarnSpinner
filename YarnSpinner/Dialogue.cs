@@ -991,88 +991,7 @@ namespace Yarn
             {
                 #region Operators
 
-                this.RegisterFunction(TokenType.Add.ToString(), delegate(Value a, Value b)
-                {
-                    return a + b;
-                });
-
-                this.RegisterFunction(TokenType.Minus.ToString(), delegate(Value a, Value b)
-                {
-                    return a - b;
-                });
-
-                this.RegisterFunction(TokenType.UnaryMinus.ToString(), delegate(Value a)
-                {
-                    return -a;
-                });
-
-                this.RegisterFunction(TokenType.Divide.ToString(), delegate(Value a, Value b)
-                {
-                    return a / b;
-                });
-
-                this.RegisterFunction(TokenType.Multiply.ToString(), delegate(Value a, Value b)
-                {
-                    return a * b;
-                });
-
-                this.RegisterFunction(TokenType.Modulo.ToString(), delegate(Value a, Value b)
-                {
-                    return a % b;
-                });
-
-                this.RegisterFunction(TokenType.EqualTo.ToString(), delegate(Value a, Value b)
-                {
-                    return a.Equals(b);
-                });
-
-                this.RegisterFunction(TokenType.NotEqualTo.ToString(), delegate(Value a, Value b)
-                {
-                    // Return the logical negative of the == operator's
-                    // result
-                    return !a.Equals(b);
-                });
-
-                this.RegisterFunction(TokenType.GreaterThan.ToString(), delegate(Value a, Value b)
-                {
-                    return a > b;
-                });
-
-                this.RegisterFunction(TokenType.GreaterThanOrEqualTo.ToString(), delegate(Value a, Value b)
-                {
-                    return a >= b;
-                });
-
-                this.RegisterFunction(TokenType.LessThan.ToString(), delegate(Value a, Value b)
-                {
-                    return a < b;
-                });
-
-                this.RegisterFunction(TokenType.LessThanOrEqualTo.ToString(), delegate(Value a, Value b)
-                {
-                    return a <= b;
-                });
-
-                this.RegisterFunction(TokenType.And.ToString(), delegate(Value a, Value b)
-                {
-                    return a.ConvertTo<bool>() && b.ConvertTo<bool>();
-                });
-
-                this.RegisterFunction(TokenType.Or.ToString(), delegate(Value a, Value b)
-                {
-                    return a.ConvertTo<bool>() || b.ConvertTo<bool>();
-                });
-
-                this.RegisterFunction(TokenType.Xor.ToString(), delegate(Value a, Value b)
-                {
-                    return a.ConvertTo<bool>() ^ b.ConvertTo<bool>();
-                });
-
-                this.RegisterFunction(TokenType.Not.ToString(), delegate(Value a)
-                {
-                    return !a.ConvertTo<bool>();
-                });
-
+                // Register the in-built conversion functions
                 this.RegisterFunction("string", delegate(Value v)
                 {
                     return v.ConvertTo<string>();
@@ -1087,6 +1006,12 @@ namespace Yarn
                 {
                     return v.ConvertTo<bool>();
                 });
+
+                // Register the built-in types.
+                this.RegisterMethods(BuiltinTypes.Number);
+                this.RegisterMethods(BuiltinTypes.String);
+                this.RegisterMethods(BuiltinTypes.Boolean);
+
                 #endregion Operators
             }
         }

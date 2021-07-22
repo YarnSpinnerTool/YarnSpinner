@@ -184,20 +184,6 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitExpMultDivMod([NotNull] YarnSpinnerParser.ExpMultDivModContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>expMultDivModEquals</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterExpMultDivModEquals([NotNull] YarnSpinnerParser.ExpMultDivModEqualsContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>expMultDivModEquals</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitExpMultDivModEquals([NotNull] YarnSpinnerParser.ExpMultDivModEqualsContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by the <c>expComparison</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -253,20 +239,6 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitExpAndOrXor([NotNull] YarnSpinnerParser.ExpAndOrXorContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>expPlusMinusEquals</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterExpPlusMinusEquals([NotNull] YarnSpinnerParser.ExpPlusMinusEqualsContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>expPlusMinusEquals</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitExpPlusMinusEquals([NotNull] YarnSpinnerParser.ExpPlusMinusEqualsContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>expAddSub</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
@@ -494,33 +466,17 @@ public partial class YarnSpinnerParserBaseListener : IYarnSpinnerParserListener 
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitElse_clause([NotNull] YarnSpinnerParser.Else_clauseContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>setVariableToValue</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.set_statement"/>.
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.set_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterSetVariableToValue([NotNull] YarnSpinnerParser.SetVariableToValueContext context) { }
+	public virtual void EnterSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>setVariableToValue</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.set_statement"/>.
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.set_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitSetVariableToValue([NotNull] YarnSpinnerParser.SetVariableToValueContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>setExpression</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.set_statement"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterSetExpression([NotNull] YarnSpinnerParser.SetExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>setExpression</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.set_statement"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitSetExpression([NotNull] YarnSpinnerParser.SetExpressionContext context) { }
+	public virtual void ExitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.call_statement"/>.
 	/// <para>The default implementation does nothing.</para>

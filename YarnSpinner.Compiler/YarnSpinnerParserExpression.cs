@@ -7,11 +7,22 @@ namespace Yarn.Compiler
     {
         public partial class ExpressionContext : ParserRuleContext
         {
-            public Yarn.Type Type { get; set; }
+            /// <summary>
+            /// Gets or sets the type that this expression has been
+            /// determined to be by a <see cref="TypeCheckVisitor"/>
+            /// object.
+            /// </summary>
+            public Yarn.IType Type { get; set; }
 
-            public string GetTextWithWhitespace() {
-                // Get the original text of this ExpressionContext. We
-                // can't use "expressionContext.GetText()" here, because
+            /// <summary>
+            /// Returns the original text of this <see cref="ExpressionContext"/>, including all
+            /// whitespace, comments, and other information that the parser
+            /// would otherwise not include.
+            /// </summary>
+            /// <returns>The original text of this expression.</returns>
+            public string GetTextWithWhitespace()
+            {
+                // We can't use "expressionContext.GetText()" here, because
                 // that just concatenates the text of all captured tokens,
                 // and doesn't include text on hidden channels (e.g.
                 // whitespace and comments).

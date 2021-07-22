@@ -943,32 +943,6 @@ public partial class YarnSpinnerParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class ExpMultDivModEqualsContext : ExpressionContext {
-		public IToken op;
-		public VariableContext variable() {
-			return GetRuleContext<VariableContext>(0);
-		}
-		public ExpressionContext expression() {
-			return GetRuleContext<ExpressionContext>(0);
-		}
-		public ITerminalNode OPERATOR_MATHS_MULTIPLICATION_EQUALS() { return GetToken(YarnSpinnerParser.OPERATOR_MATHS_MULTIPLICATION_EQUALS, 0); }
-		public ITerminalNode OPERATOR_MATHS_DIVISION_EQUALS() { return GetToken(YarnSpinnerParser.OPERATOR_MATHS_DIVISION_EQUALS, 0); }
-		public ITerminalNode OPERATOR_MATHS_MODULUS_EQUALS() { return GetToken(YarnSpinnerParser.OPERATOR_MATHS_MODULUS_EQUALS, 0); }
-		public ExpMultDivModEqualsContext(ExpressionContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			IYarnSpinnerParserListener typedListener = listener as IYarnSpinnerParserListener;
-			if (typedListener != null) typedListener.EnterExpMultDivModEquals(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			IYarnSpinnerParserListener typedListener = listener as IYarnSpinnerParserListener;
-			if (typedListener != null) typedListener.ExitExpMultDivModEquals(this);
-		}
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IYarnSpinnerParserVisitor<TResult> typedVisitor = visitor as IYarnSpinnerParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitExpMultDivModEquals(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
 	public partial class ExpComparisonContext : ExpressionContext {
 		public IToken op;
 		public ExpressionContext[] expression() {
@@ -1021,10 +995,11 @@ public partial class YarnSpinnerParser : Parser {
 		}
 	}
 	public partial class ExpNegativeContext : ExpressionContext {
-		public ITerminalNode OPERATOR_MATHS_SUBTRACTION() { return GetToken(YarnSpinnerParser.OPERATOR_MATHS_SUBTRACTION, 0); }
+		public IToken op;
 		public ExpressionContext expression() {
 			return GetRuleContext<ExpressionContext>(0);
 		}
+		public ITerminalNode OPERATOR_MATHS_SUBTRACTION() { return GetToken(YarnSpinnerParser.OPERATOR_MATHS_SUBTRACTION, 0); }
 		public ExpNegativeContext(ExpressionContext context) { CopyFrom(context); }
 		public override void EnterRule(IParseTreeListener listener) {
 			IYarnSpinnerParserListener typedListener = listener as IYarnSpinnerParserListener;
@@ -1066,31 +1041,6 @@ public partial class YarnSpinnerParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class ExpPlusMinusEqualsContext : ExpressionContext {
-		public IToken op;
-		public VariableContext variable() {
-			return GetRuleContext<VariableContext>(0);
-		}
-		public ExpressionContext expression() {
-			return GetRuleContext<ExpressionContext>(0);
-		}
-		public ITerminalNode OPERATOR_MATHS_ADDITION_EQUALS() { return GetToken(YarnSpinnerParser.OPERATOR_MATHS_ADDITION_EQUALS, 0); }
-		public ITerminalNode OPERATOR_MATHS_SUBTRACTION_EQUALS() { return GetToken(YarnSpinnerParser.OPERATOR_MATHS_SUBTRACTION_EQUALS, 0); }
-		public ExpPlusMinusEqualsContext(ExpressionContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			IYarnSpinnerParserListener typedListener = listener as IYarnSpinnerParserListener;
-			if (typedListener != null) typedListener.EnterExpPlusMinusEquals(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			IYarnSpinnerParserListener typedListener = listener as IYarnSpinnerParserListener;
-			if (typedListener != null) typedListener.ExitExpPlusMinusEquals(this);
-		}
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IYarnSpinnerParserVisitor<TResult> typedVisitor = visitor as IYarnSpinnerParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitExpPlusMinusEquals(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
 	public partial class ExpAddSubContext : ExpressionContext {
 		public IToken op;
 		public ExpressionContext[] expression() {
@@ -1117,10 +1067,11 @@ public partial class YarnSpinnerParser : Parser {
 		}
 	}
 	public partial class ExpNotContext : ExpressionContext {
-		public ITerminalNode OPERATOR_LOGICAL_NOT() { return GetToken(YarnSpinnerParser.OPERATOR_LOGICAL_NOT, 0); }
+		public IToken op;
 		public ExpressionContext expression() {
 			return GetRuleContext<ExpressionContext>(0);
 		}
+		public ITerminalNode OPERATOR_LOGICAL_NOT() { return GetToken(YarnSpinnerParser.OPERATOR_LOGICAL_NOT, 0); }
 		public ExpNotContext(ExpressionContext context) { CopyFrom(context); }
 		public override void EnterRule(IParseTreeListener listener) {
 			IYarnSpinnerParserListener typedListener = listener as IYarnSpinnerParserListener;
@@ -1198,10 +1149,10 @@ public partial class YarnSpinnerParser : Parser {
 			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 165;
+			State = 157;
 			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,12,Context) ) {
-			case 1:
+			switch (TokenStream.LA(1)) {
+			case LPAREN:
 				{
 				_localctx = new ExpParensContext(_localctx);
 				Context = _localctx;
@@ -1212,84 +1163,56 @@ public partial class YarnSpinnerParser : Parser {
 				State = 145; Match(RPAREN);
 				}
 				break;
-			case 2:
+			case OPERATOR_MATHS_SUBTRACTION:
 				{
 				_localctx = new ExpNegativeContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 147; Match(OPERATOR_MATHS_SUBTRACTION);
-				State = 148; expression(11);
+				State = 147; ((ExpNegativeContext)_localctx).op = Match(OPERATOR_MATHS_SUBTRACTION);
+				State = 148; expression(9);
 				}
 				break;
-			case 3:
+			case OPERATOR_LOGICAL_NOT:
 				{
 				_localctx = new ExpNotContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 149; Match(OPERATOR_LOGICAL_NOT);
-				State = 150; expression(10);
+				State = 149; ((ExpNotContext)_localctx).op = Match(OPERATOR_LOGICAL_NOT);
+				State = 150; expression(8);
 				}
 				break;
-			case 4:
-				{
-				_localctx = new ExpMultDivModEqualsContext(_localctx);
-				Context = _localctx;
-				_prevctx = _localctx;
-				State = 151; variable();
-				State = 152;
-				((ExpMultDivModEqualsContext)_localctx).op = TokenStream.LT(1);
-				_la = TokenStream.LA(1);
-				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OPERATOR_MATHS_MULTIPLICATION_EQUALS) | (1L << OPERATOR_MATHS_MODULUS_EQUALS) | (1L << OPERATOR_MATHS_DIVISION_EQUALS))) != 0)) ) {
-					((ExpMultDivModEqualsContext)_localctx).op = ErrorHandler.RecoverInline(this);
-				}
-				else {
-					ErrorHandler.ReportMatch(this);
-				    Consume();
-				}
-				State = 153; expression(5);
-				}
-				break;
-			case 5:
-				{
-				_localctx = new ExpPlusMinusEqualsContext(_localctx);
-				Context = _localctx;
-				_prevctx = _localctx;
-				State = 155; variable();
-				State = 156;
-				((ExpPlusMinusEqualsContext)_localctx).op = TokenStream.LT(1);
-				_la = TokenStream.LA(1);
-				if ( !(_la==OPERATOR_MATHS_ADDITION_EQUALS || _la==OPERATOR_MATHS_SUBTRACTION_EQUALS) ) {
-					((ExpPlusMinusEqualsContext)_localctx).op = ErrorHandler.RecoverInline(this);
-				}
-				else {
-					ErrorHandler.ReportMatch(this);
-				    Consume();
-				}
-				State = 157; expression(4);
-				}
-				break;
-			case 6:
+			case TYPE_STRING:
+			case TYPE_NUMBER:
+			case TYPE_BOOL:
 				{
 				_localctx = new ExpTypeConversionContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 159; type();
-				State = 160; Match(LPAREN);
-				State = 161; expression(0);
-				State = 162; Match(RPAREN);
+				State = 151; type();
+				State = 152; Match(LPAREN);
+				State = 153; expression(0);
+				State = 154; Match(RPAREN);
 				}
 				break;
-			case 7:
+			case KEYWORD_TRUE:
+			case KEYWORD_FALSE:
+			case KEYWORD_NULL:
+			case STRING:
+			case FUNC_ID:
+			case VAR_ID:
+			case NUMBER:
 				{
 				_localctx = new ExpValueContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 164; value();
+				State = 156; value();
 				}
 				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 			Context.Stop = TokenStream.LT(-1);
-			State = 184;
+			State = 176;
 			ErrorHandler.Sync(this);
 			_alt = Interpreter.AdaptivePredict(TokenStream,14,Context);
 			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
@@ -1298,16 +1221,16 @@ public partial class YarnSpinnerParser : Parser {
 						TriggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					State = 182;
+					State = 174;
 					ErrorHandler.Sync(this);
 					switch ( Interpreter.AdaptivePredict(TokenStream,13,Context) ) {
 					case 1:
 						{
 						_localctx = new ExpMultDivModContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 167;
-						if (!(Precpred(Context, 9))) throw new FailedPredicateException(this, "Precpred(Context, 9)");
-						State = 168;
+						State = 159;
+						if (!(Precpred(Context, 7))) throw new FailedPredicateException(this, "Precpred(Context, 7)");
+						State = 160;
 						((ExpMultDivModContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OPERATOR_MATHS_MULTIPLICATION) | (1L << OPERATOR_MATHS_DIVISION) | (1L << OPERATOR_MATHS_MODULUS))) != 0)) ) {
@@ -1317,16 +1240,16 @@ public partial class YarnSpinnerParser : Parser {
 							ErrorHandler.ReportMatch(this);
 						    Consume();
 						}
-						State = 169; expression(10);
+						State = 161; expression(8);
 						}
 						break;
 					case 2:
 						{
 						_localctx = new ExpAddSubContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 170;
-						if (!(Precpred(Context, 8))) throw new FailedPredicateException(this, "Precpred(Context, 8)");
-						State = 171;
+						State = 162;
+						if (!(Precpred(Context, 6))) throw new FailedPredicateException(this, "Precpred(Context, 6)");
+						State = 163;
 						((ExpAddSubContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
 						if ( !(_la==OPERATOR_MATHS_ADDITION || _la==OPERATOR_MATHS_SUBTRACTION) ) {
@@ -1336,16 +1259,16 @@ public partial class YarnSpinnerParser : Parser {
 							ErrorHandler.ReportMatch(this);
 						    Consume();
 						}
-						State = 172; expression(9);
+						State = 164; expression(7);
 						}
 						break;
 					case 3:
 						{
 						_localctx = new ExpComparisonContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 173;
-						if (!(Precpred(Context, 7))) throw new FailedPredicateException(this, "Precpred(Context, 7)");
-						State = 174;
+						State = 165;
+						if (!(Precpred(Context, 5))) throw new FailedPredicateException(this, "Precpred(Context, 5)");
+						State = 166;
 						((ExpComparisonContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OPERATOR_LOGICAL_LESS_THAN_EQUALS) | (1L << OPERATOR_LOGICAL_GREATER_THAN_EQUALS) | (1L << OPERATOR_LOGICAL_LESS) | (1L << OPERATOR_LOGICAL_GREATER))) != 0)) ) {
@@ -1355,16 +1278,16 @@ public partial class YarnSpinnerParser : Parser {
 							ErrorHandler.ReportMatch(this);
 						    Consume();
 						}
-						State = 175; expression(8);
+						State = 167; expression(6);
 						}
 						break;
 					case 4:
 						{
 						_localctx = new ExpEqualityContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 176;
-						if (!(Precpred(Context, 6))) throw new FailedPredicateException(this, "Precpred(Context, 6)");
-						State = 177;
+						State = 168;
+						if (!(Precpred(Context, 4))) throw new FailedPredicateException(this, "Precpred(Context, 4)");
+						State = 169;
 						((ExpEqualityContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
 						if ( !(_la==OPERATOR_LOGICAL_EQUALS || _la==OPERATOR_LOGICAL_NOT_EQUALS) ) {
@@ -1374,16 +1297,16 @@ public partial class YarnSpinnerParser : Parser {
 							ErrorHandler.ReportMatch(this);
 						    Consume();
 						}
-						State = 178; expression(7);
+						State = 170; expression(5);
 						}
 						break;
 					case 5:
 						{
 						_localctx = new ExpAndOrXorContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 179;
+						State = 171;
 						if (!(Precpred(Context, 3))) throw new FailedPredicateException(this, "Precpred(Context, 3)");
-						State = 180;
+						State = 172;
 						((ExpAndOrXorContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OPERATOR_LOGICAL_AND) | (1L << OPERATOR_LOGICAL_OR) | (1L << OPERATOR_LOGICAL_XOR))) != 0)) ) {
@@ -1393,13 +1316,13 @@ public partial class YarnSpinnerParser : Parser {
 							ErrorHandler.ReportMatch(this);
 						    Consume();
 						}
-						State = 181; expression(4);
+						State = 173; expression(4);
 						}
 						break;
 					}
 					} 
 				}
-				State = 186;
+				State = 178;
 				ErrorHandler.Sync(this);
 				_alt = Interpreter.AdaptivePredict(TokenStream,14,Context);
 			}
@@ -1557,56 +1480,56 @@ public partial class YarnSpinnerParser : Parser {
 		ValueContext _localctx = new ValueContext(Context, State);
 		EnterRule(_localctx, 22, RULE_value);
 		try {
-			State = 194;
+			State = 186;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case NUMBER:
 				_localctx = new ValueNumberContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 187; Match(NUMBER);
+				State = 179; Match(NUMBER);
 				}
 				break;
 			case KEYWORD_TRUE:
 				_localctx = new ValueTrueContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 188; Match(KEYWORD_TRUE);
+				State = 180; Match(KEYWORD_TRUE);
 				}
 				break;
 			case KEYWORD_FALSE:
 				_localctx = new ValueFalseContext(_localctx);
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 189; Match(KEYWORD_FALSE);
+				State = 181; Match(KEYWORD_FALSE);
 				}
 				break;
 			case VAR_ID:
 				_localctx = new ValueVarContext(_localctx);
 				EnterOuterAlt(_localctx, 4);
 				{
-				State = 190; variable();
+				State = 182; variable();
 				}
 				break;
 			case STRING:
 				_localctx = new ValueStringContext(_localctx);
 				EnterOuterAlt(_localctx, 5);
 				{
-				State = 191; Match(STRING);
+				State = 183; Match(STRING);
 				}
 				break;
 			case KEYWORD_NULL:
 				_localctx = new ValueNullContext(_localctx);
 				EnterOuterAlt(_localctx, 6);
 				{
-				State = 192; Match(KEYWORD_NULL);
+				State = 184; Match(KEYWORD_NULL);
 				}
 				break;
 			case FUNC_ID:
 				_localctx = new ValueFuncContext(_localctx);
 				EnterOuterAlt(_localctx, 7);
 				{
-				State = 193; function();
+				State = 185; function();
 				}
 				break;
 			default:
@@ -1653,7 +1576,7 @@ public partial class YarnSpinnerParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 196; Match(VAR_ID);
+			State = 188; Match(VAR_ID);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1709,32 +1632,32 @@ public partial class YarnSpinnerParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 198; Match(FUNC_ID);
-			State = 199; Match(LPAREN);
-			State = 201;
+			State = 190; Match(FUNC_ID);
+			State = 191; Match(LPAREN);
+			State = 193;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (((((_la - 30)) & ~0x3f) == 0 && ((1L << (_la - 30)) & ((1L << (KEYWORD_TRUE - 30)) | (1L << (KEYWORD_FALSE - 30)) | (1L << (KEYWORD_NULL - 30)) | (1L << (OPERATOR_LOGICAL_NOT - 30)) | (1L << (OPERATOR_MATHS_SUBTRACTION - 30)) | (1L << (LPAREN - 30)) | (1L << (TYPE_STRING - 30)) | (1L << (TYPE_NUMBER - 30)) | (1L << (TYPE_BOOL - 30)) | (1L << (STRING - 30)) | (1L << (FUNC_ID - 30)) | (1L << (VAR_ID - 30)) | (1L << (NUMBER - 30)))) != 0)) {
 				{
-				State = 200; expression(0);
+				State = 192; expression(0);
 				}
 			}
 
-			State = 207;
+			State = 199;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==COMMA) {
 				{
 				{
-				State = 203; Match(COMMA);
-				State = 204; expression(0);
+				State = 195; Match(COMMA);
+				State = 196; expression(0);
 				}
 				}
-				State = 209;
+				State = 201;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
-			State = 210; Match(RPAREN);
+			State = 202; Match(RPAREN);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1792,34 +1715,34 @@ public partial class YarnSpinnerParser : Parser {
 			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 212; if_clause();
-			State = 216;
+			State = 204; if_clause();
+			State = 208;
 			ErrorHandler.Sync(this);
 			_alt = Interpreter.AdaptivePredict(TokenStream,18,Context);
 			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					State = 213; else_if_clause();
+					State = 205; else_if_clause();
 					}
 					} 
 				}
-				State = 218;
+				State = 210;
 				ErrorHandler.Sync(this);
 				_alt = Interpreter.AdaptivePredict(TokenStream,18,Context);
 			}
-			State = 220;
+			State = 212;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,19,Context) ) {
 			case 1:
 				{
-				State = 219; else_clause();
+				State = 211; else_clause();
 				}
 				break;
 			}
-			State = 222; Match(COMMAND_START);
-			State = 223; Match(COMMAND_ENDIF);
-			State = 224; Match(COMMAND_END);
+			State = 214; Match(COMMAND_START);
+			State = 215; Match(COMMAND_ENDIF);
+			State = 216; Match(COMMAND_END);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1874,22 +1797,22 @@ public partial class YarnSpinnerParser : Parser {
 			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 226; Match(COMMAND_START);
-			State = 227; Match(COMMAND_IF);
-			State = 228; expression(0);
-			State = 229; Match(COMMAND_END);
-			State = 233;
+			State = 218; Match(COMMAND_START);
+			State = 219; Match(COMMAND_IF);
+			State = 220; expression(0);
+			State = 221; Match(COMMAND_END);
+			State = 225;
 			ErrorHandler.Sync(this);
 			_alt = Interpreter.AdaptivePredict(TokenStream,20,Context);
 			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					State = 230; statement();
+					State = 222; statement();
 					}
 					} 
 				}
-				State = 235;
+				State = 227;
 				ErrorHandler.Sync(this);
 				_alt = Interpreter.AdaptivePredict(TokenStream,20,Context);
 			}
@@ -1947,22 +1870,22 @@ public partial class YarnSpinnerParser : Parser {
 			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 236; Match(COMMAND_START);
-			State = 237; Match(COMMAND_ELSEIF);
-			State = 238; expression(0);
-			State = 239; Match(COMMAND_END);
-			State = 243;
+			State = 228; Match(COMMAND_START);
+			State = 229; Match(COMMAND_ELSEIF);
+			State = 230; expression(0);
+			State = 231; Match(COMMAND_END);
+			State = 235;
 			ErrorHandler.Sync(this);
 			_alt = Interpreter.AdaptivePredict(TokenStream,21,Context);
 			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					State = 240; statement();
+					State = 232; statement();
 					}
 					} 
 				}
-				State = 245;
+				State = 237;
 				ErrorHandler.Sync(this);
 				_alt = Interpreter.AdaptivePredict(TokenStream,21,Context);
 			}
@@ -2017,21 +1940,21 @@ public partial class YarnSpinnerParser : Parser {
 			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 246; Match(COMMAND_START);
-			State = 247; Match(COMMAND_ELSE);
-			State = 248; Match(COMMAND_END);
-			State = 252;
+			State = 238; Match(COMMAND_START);
+			State = 239; Match(COMMAND_ELSE);
+			State = 240; Match(COMMAND_END);
+			State = 244;
 			ErrorHandler.Sync(this);
 			_alt = Interpreter.AdaptivePredict(TokenStream,22,Context);
 			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					State = 249; statement();
+					State = 241; statement();
 					}
 					} 
 				}
-				State = 254;
+				State = 246;
 				ErrorHandler.Sync(this);
 				_alt = Interpreter.AdaptivePredict(TokenStream,22,Context);
 			}
@@ -2049,62 +1972,38 @@ public partial class YarnSpinnerParser : Parser {
 	}
 
 	public partial class Set_statementContext : ParserRuleContext {
-		public Set_statementContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_set_statement; } }
-	 
-		public Set_statementContext() { }
-		public virtual void CopyFrom(Set_statementContext context) {
-			base.CopyFrom(context);
-		}
-	}
-	public partial class SetExpressionContext : Set_statementContext {
-		public ITerminalNode COMMAND_START() { return GetToken(YarnSpinnerParser.COMMAND_START, 0); }
-		public ITerminalNode COMMAND_SET() { return GetToken(YarnSpinnerParser.COMMAND_SET, 0); }
-		public ExpressionContext expression() {
-			return GetRuleContext<ExpressionContext>(0);
-		}
-		public ITerminalNode COMMAND_END() { return GetToken(YarnSpinnerParser.COMMAND_END, 0); }
-		public SetExpressionContext(Set_statementContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			IYarnSpinnerParserListener typedListener = listener as IYarnSpinnerParserListener;
-			if (typedListener != null) typedListener.EnterSetExpression(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			IYarnSpinnerParserListener typedListener = listener as IYarnSpinnerParserListener;
-			if (typedListener != null) typedListener.ExitSetExpression(this);
-		}
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IYarnSpinnerParserVisitor<TResult> typedVisitor = visitor as IYarnSpinnerParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSetExpression(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class SetVariableToValueContext : Set_statementContext {
+		public IToken op;
 		public ITerminalNode COMMAND_START() { return GetToken(YarnSpinnerParser.COMMAND_START, 0); }
 		public ITerminalNode COMMAND_SET() { return GetToken(YarnSpinnerParser.COMMAND_SET, 0); }
 		public VariableContext variable() {
 			return GetRuleContext<VariableContext>(0);
 		}
-		public ITerminalNode OPERATOR_ASSIGNMENT() { return GetToken(YarnSpinnerParser.OPERATOR_ASSIGNMENT, 0); }
 		public ExpressionContext expression() {
 			return GetRuleContext<ExpressionContext>(0);
 		}
 		public ITerminalNode COMMAND_END() { return GetToken(YarnSpinnerParser.COMMAND_END, 0); }
-		public SetVariableToValueContext(Set_statementContext context) { CopyFrom(context); }
+		public ITerminalNode OPERATOR_ASSIGNMENT() { return GetToken(YarnSpinnerParser.OPERATOR_ASSIGNMENT, 0); }
+		public ITerminalNode OPERATOR_MATHS_MULTIPLICATION_EQUALS() { return GetToken(YarnSpinnerParser.OPERATOR_MATHS_MULTIPLICATION_EQUALS, 0); }
+		public ITerminalNode OPERATOR_MATHS_DIVISION_EQUALS() { return GetToken(YarnSpinnerParser.OPERATOR_MATHS_DIVISION_EQUALS, 0); }
+		public ITerminalNode OPERATOR_MATHS_MODULUS_EQUALS() { return GetToken(YarnSpinnerParser.OPERATOR_MATHS_MODULUS_EQUALS, 0); }
+		public ITerminalNode OPERATOR_MATHS_ADDITION_EQUALS() { return GetToken(YarnSpinnerParser.OPERATOR_MATHS_ADDITION_EQUALS, 0); }
+		public ITerminalNode OPERATOR_MATHS_SUBTRACTION_EQUALS() { return GetToken(YarnSpinnerParser.OPERATOR_MATHS_SUBTRACTION_EQUALS, 0); }
+		public Set_statementContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_set_statement; } }
 		public override void EnterRule(IParseTreeListener listener) {
 			IYarnSpinnerParserListener typedListener = listener as IYarnSpinnerParserListener;
-			if (typedListener != null) typedListener.EnterSetVariableToValue(this);
+			if (typedListener != null) typedListener.EnterSet_statement(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			IYarnSpinnerParserListener typedListener = listener as IYarnSpinnerParserListener;
-			if (typedListener != null) typedListener.ExitSetVariableToValue(this);
+			if (typedListener != null) typedListener.ExitSet_statement(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IYarnSpinnerParserVisitor<TResult> typedVisitor = visitor as IYarnSpinnerParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSetVariableToValue(this);
+			if (typedVisitor != null) return typedVisitor.VisitSet_statement(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -2113,32 +2012,25 @@ public partial class YarnSpinnerParser : Parser {
 	public Set_statementContext set_statement() {
 		Set_statementContext _localctx = new Set_statementContext(Context, State);
 		EnterRule(_localctx, 36, RULE_set_statement);
+		int _la;
 		try {
-			State = 267;
-			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,23,Context) ) {
-			case 1:
-				_localctx = new SetVariableToValueContext(_localctx);
-				EnterOuterAlt(_localctx, 1);
-				{
-				State = 255; Match(COMMAND_START);
-				State = 256; Match(COMMAND_SET);
-				State = 257; variable();
-				State = 258; Match(OPERATOR_ASSIGNMENT);
-				State = 259; expression(0);
-				State = 260; Match(COMMAND_END);
-				}
-				break;
-			case 2:
-				_localctx = new SetExpressionContext(_localctx);
-				EnterOuterAlt(_localctx, 2);
-				{
-				State = 262; Match(COMMAND_START);
-				State = 263; Match(COMMAND_SET);
-				State = 264; expression(0);
-				State = 265; Match(COMMAND_END);
-				}
-				break;
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 247; Match(COMMAND_START);
+			State = 248; Match(COMMAND_SET);
+			State = 249; variable();
+			State = 250;
+			_localctx.op = TokenStream.LT(1);
+			_la = TokenStream.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OPERATOR_ASSIGNMENT) | (1L << OPERATOR_MATHS_ADDITION_EQUALS) | (1L << OPERATOR_MATHS_SUBTRACTION_EQUALS) | (1L << OPERATOR_MATHS_MULTIPLICATION_EQUALS) | (1L << OPERATOR_MATHS_MODULUS_EQUALS) | (1L << OPERATOR_MATHS_DIVISION_EQUALS))) != 0)) ) {
+				_localctx.op = ErrorHandler.RecoverInline(this);
+			}
+			else {
+				ErrorHandler.ReportMatch(this);
+			    Consume();
+			}
+			State = 251; expression(0);
+			State = 252; Match(COMMAND_END);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2186,10 +2078,10 @@ public partial class YarnSpinnerParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 269; Match(COMMAND_START);
-			State = 270; Match(COMMAND_CALL);
-			State = 271; function();
-			State = 272; Match(COMMAND_END);
+			State = 254; Match(COMMAND_START);
+			State = 255; Match(COMMAND_CALL);
+			State = 256; function();
+			State = 257; Match(COMMAND_END);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2244,28 +2136,28 @@ public partial class YarnSpinnerParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 274; Match(COMMAND_START);
-			State = 275; command_formatted_text();
-			State = 276; Match(COMMAND_TEXT_END);
-			State = 284;
+			State = 259; Match(COMMAND_START);
+			State = 260; command_formatted_text();
+			State = 261; Match(COMMAND_TEXT_END);
+			State = 269;
 			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,25,Context) ) {
+			switch ( Interpreter.AdaptivePredict(TokenStream,24,Context) ) {
 			case 1:
 				{
-				State = 280;
+				State = 265;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==HASHTAG) {
 					{
 					{
-					State = 277; hashtag();
+					State = 262; hashtag();
 					}
 					}
-					State = 282;
+					State = 267;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 283; Match(TEXT_NEWLINE);
+				State = 268; Match(TEXT_NEWLINE);
 				}
 				break;
 			}
@@ -2329,31 +2221,31 @@ public partial class YarnSpinnerParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 293;
+			State = 278;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==COMMAND_EXPRESSION_START || _la==COMMAND_TEXT) {
 				{
-				State = 291;
+				State = 276;
 				ErrorHandler.Sync(this);
 				switch (TokenStream.LA(1)) {
 				case COMMAND_TEXT:
 					{
-					State = 286; Match(COMMAND_TEXT);
+					State = 271; Match(COMMAND_TEXT);
 					}
 					break;
 				case COMMAND_EXPRESSION_START:
 					{
-					State = 287; Match(COMMAND_EXPRESSION_START);
-					State = 288; expression(0);
-					State = 289; Match(EXPRESSION_END);
+					State = 272; Match(COMMAND_EXPRESSION_START);
+					State = 273; expression(0);
+					State = 274; Match(EXPRESSION_END);
 					}
 					break;
 				default:
 					throw new NoViableAltException(this);
 				}
 				}
-				State = 295;
+				State = 280;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -2405,7 +2297,7 @@ public partial class YarnSpinnerParser : Parser {
 			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 297;
+			State = 282;
 			ErrorHandler.Sync(this);
 			_alt = 1;
 			do {
@@ -2413,16 +2305,16 @@ public partial class YarnSpinnerParser : Parser {
 				case 1:
 					{
 					{
-					State = 296; shortcut_option();
+					State = 281; shortcut_option();
 					}
 					}
 					break;
 				default:
 					throw new NoViableAltException(this);
 				}
-				State = 299;
+				State = 284;
 				ErrorHandler.Sync(this);
-				_alt = Interpreter.AdaptivePredict(TokenStream,28,Context);
+				_alt = Interpreter.AdaptivePredict(TokenStream,27,Context);
 			} while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER );
 			}
 		}
@@ -2478,28 +2370,28 @@ public partial class YarnSpinnerParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 301; Match(SHORTCUT_ARROW);
-			State = 302; line_statement();
-			State = 311;
+			State = 286; Match(SHORTCUT_ARROW);
+			State = 287; line_statement();
+			State = 296;
 			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,30,Context) ) {
+			switch ( Interpreter.AdaptivePredict(TokenStream,29,Context) ) {
 			case 1:
 				{
-				State = 303; Match(INDENT);
-				State = 307;
+				State = 288; Match(INDENT);
+				State = 292;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INDENT) | (1L << HASHTAG) | (1L << SHORTCUT_ARROW) | (1L << COMMAND_START) | (1L << EXPRESSION_START) | (1L << TEXT_NEWLINE) | (1L << TEXT))) != 0)) {
 					{
 					{
-					State = 304; statement();
+					State = 289; statement();
 					}
 					}
-					State = 309;
+					State = 294;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 310; Match(DEDENT);
+				State = 295; Match(DEDENT);
 				}
 				break;
 			}
@@ -2559,22 +2451,22 @@ public partial class YarnSpinnerParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 313; Match(COMMAND_START);
-			State = 314; Match(COMMAND_DECLARE);
-			State = 315; variable();
-			State = 316; Match(OPERATOR_ASSIGNMENT);
-			State = 317; value();
-			State = 320;
+			State = 298; Match(COMMAND_START);
+			State = 299; Match(COMMAND_DECLARE);
+			State = 300; variable();
+			State = 301; Match(OPERATOR_ASSIGNMENT);
+			State = 302; value();
+			State = 305;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==EXPRESSION_AS) {
 				{
-				State = 318; Match(EXPRESSION_AS);
-				State = 319; type();
+				State = 303; Match(EXPRESSION_AS);
+				State = 304; type();
 				}
 			}
 
-			State = 322; Match(COMMAND_END);
+			State = 307; Match(COMMAND_END);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2621,10 +2513,10 @@ public partial class YarnSpinnerParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 324; Match(COMMAND_START);
-			State = 325; Match(COMMAND_JUMP);
-			State = 326; _localctx.destination = Match(ID);
-			State = 327; Match(COMMAND_END);
+			State = 309; Match(COMMAND_START);
+			State = 310; Match(COMMAND_JUMP);
+			State = 311; _localctx.destination = Match(ID);
+			State = 312; Match(COMMAND_END);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2668,25 +2560,25 @@ public partial class YarnSpinnerParser : Parser {
 		TypeContext _localctx = new TypeContext(Context, State);
 		EnterRule(_localctx, 52, RULE_type);
 		try {
-			State = 332;
+			State = 317;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case TYPE_STRING:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 329; _localctx.typename = Match(TYPE_STRING);
+				State = 314; _localctx.typename = Match(TYPE_STRING);
 				}
 				break;
 			case TYPE_NUMBER:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 330; _localctx.typename = Match(TYPE_NUMBER);
+				State = 315; _localctx.typename = Match(TYPE_NUMBER);
 				}
 				break;
 			case TYPE_BOOL:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 331; _localctx.typename = Match(TYPE_BOOL);
+				State = 316; _localctx.typename = Match(TYPE_BOOL);
 				}
 				break;
 			default:
@@ -2712,10 +2604,10 @@ public partial class YarnSpinnerParser : Parser {
 	}
 	private bool expression_sempred(ExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 0: return Precpred(Context, 9);
-		case 1: return Precpred(Context, 8);
-		case 2: return Precpred(Context, 7);
-		case 3: return Precpred(Context, 6);
+		case 0: return Precpred(Context, 7);
+		case 1: return Precpred(Context, 6);
+		case 2: return Precpred(Context, 5);
+		case 3: return Precpred(Context, 4);
 		case 4: return Precpred(Context, 3);
 		}
 		return true;
@@ -2723,7 +2615,7 @@ public partial class YarnSpinnerParser : Parser {
 
 	private static char[] _serializedATN = {
 		'\x3', '\x608B', '\xA72A', '\x8133', '\xB9ED', '\x417C', '\x3BE7', '\x7786', 
-		'\x5964', '\x3', 'U', '\x151', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
+		'\x5964', '\x3', 'U', '\x142', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
 		'\t', '\x3', '\x4', '\x4', '\t', '\x4', '\x4', '\x5', '\t', '\x5', '\x4', 
 		'\x6', '\t', '\x6', '\x4', '\a', '\t', '\a', '\x4', '\b', '\t', '\b', 
 		'\x4', '\t', '\t', '\t', '\x4', '\n', '\t', '\n', '\x4', '\v', '\t', '\v', 
@@ -2753,104 +2645,101 @@ public partial class YarnSpinnerParser : Parser {
 		'\n', '\x3', '\n', '\x3', '\v', '\x3', '\v', '\x3', '\v', '\x3', '\v', 
 		'\x3', '\v', '\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', 
 		'\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', 
-		'\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', 
+		'\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', '\x5', 
+		'\f', '\xA0', '\n', '\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', 
 		'\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', 
-		'\x3', '\f', '\x3', '\f', '\x5', '\f', '\xA8', '\n', '\f', '\x3', '\f', 
 		'\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', 
-		'\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', '\x3', '\f', 
-		'\x3', '\f', '\x3', '\f', '\x3', '\f', '\a', '\f', '\xB9', '\n', '\f', 
-		'\f', '\f', '\xE', '\f', '\xBC', '\v', '\f', '\x3', '\r', '\x3', '\r', 
-		'\x3', '\r', '\x3', '\r', '\x3', '\r', '\x3', '\r', '\x3', '\r', '\x5', 
-		'\r', '\xC5', '\n', '\r', '\x3', '\xE', '\x3', '\xE', '\x3', '\xF', '\x3', 
-		'\xF', '\x3', '\xF', '\x5', '\xF', '\xCC', '\n', '\xF', '\x3', '\xF', 
-		'\x3', '\xF', '\a', '\xF', '\xD0', '\n', '\xF', '\f', '\xF', '\xE', '\xF', 
-		'\xD3', '\v', '\xF', '\x3', '\xF', '\x3', '\xF', '\x3', '\x10', '\x3', 
-		'\x10', '\a', '\x10', '\xD9', '\n', '\x10', '\f', '\x10', '\xE', '\x10', 
-		'\xDC', '\v', '\x10', '\x3', '\x10', '\x5', '\x10', '\xDF', '\n', '\x10', 
-		'\x3', '\x10', '\x3', '\x10', '\x3', '\x10', '\x3', '\x10', '\x3', '\x11', 
-		'\x3', '\x11', '\x3', '\x11', '\x3', '\x11', '\x3', '\x11', '\a', '\x11', 
-		'\xEA', '\n', '\x11', '\f', '\x11', '\xE', '\x11', '\xED', '\v', '\x11', 
-		'\x3', '\x12', '\x3', '\x12', '\x3', '\x12', '\x3', '\x12', '\x3', '\x12', 
-		'\a', '\x12', '\xF4', '\n', '\x12', '\f', '\x12', '\xE', '\x12', '\xF7', 
-		'\v', '\x12', '\x3', '\x13', '\x3', '\x13', '\x3', '\x13', '\x3', '\x13', 
-		'\a', '\x13', '\xFD', '\n', '\x13', '\f', '\x13', '\xE', '\x13', '\x100', 
-		'\v', '\x13', '\x3', '\x14', '\x3', '\x14', '\x3', '\x14', '\x3', '\x14', 
-		'\x3', '\x14', '\x3', '\x14', '\x3', '\x14', '\x3', '\x14', '\x3', '\x14', 
-		'\x3', '\x14', '\x3', '\x14', '\x3', '\x14', '\x5', '\x14', '\x10E', '\n', 
+		'\f', '\a', '\f', '\xB1', '\n', '\f', '\f', '\f', '\xE', '\f', '\xB4', 
+		'\v', '\f', '\x3', '\r', '\x3', '\r', '\x3', '\r', '\x3', '\r', '\x3', 
+		'\r', '\x3', '\r', '\x3', '\r', '\x5', '\r', '\xBD', '\n', '\r', '\x3', 
+		'\xE', '\x3', '\xE', '\x3', '\xF', '\x3', '\xF', '\x3', '\xF', '\x5', 
+		'\xF', '\xC4', '\n', '\xF', '\x3', '\xF', '\x3', '\xF', '\a', '\xF', '\xC8', 
+		'\n', '\xF', '\f', '\xF', '\xE', '\xF', '\xCB', '\v', '\xF', '\x3', '\xF', 
+		'\x3', '\xF', '\x3', '\x10', '\x3', '\x10', '\a', '\x10', '\xD1', '\n', 
+		'\x10', '\f', '\x10', '\xE', '\x10', '\xD4', '\v', '\x10', '\x3', '\x10', 
+		'\x5', '\x10', '\xD7', '\n', '\x10', '\x3', '\x10', '\x3', '\x10', '\x3', 
+		'\x10', '\x3', '\x10', '\x3', '\x11', '\x3', '\x11', '\x3', '\x11', '\x3', 
+		'\x11', '\x3', '\x11', '\a', '\x11', '\xE2', '\n', '\x11', '\f', '\x11', 
+		'\xE', '\x11', '\xE5', '\v', '\x11', '\x3', '\x12', '\x3', '\x12', '\x3', 
+		'\x12', '\x3', '\x12', '\x3', '\x12', '\a', '\x12', '\xEC', '\n', '\x12', 
+		'\f', '\x12', '\xE', '\x12', '\xEF', '\v', '\x12', '\x3', '\x13', '\x3', 
+		'\x13', '\x3', '\x13', '\x3', '\x13', '\a', '\x13', '\xF5', '\n', '\x13', 
+		'\f', '\x13', '\xE', '\x13', '\xF8', '\v', '\x13', '\x3', '\x14', '\x3', 
+		'\x14', '\x3', '\x14', '\x3', '\x14', '\x3', '\x14', '\x3', '\x14', '\x3', 
 		'\x14', '\x3', '\x15', '\x3', '\x15', '\x3', '\x15', '\x3', '\x15', '\x3', 
 		'\x15', '\x3', '\x16', '\x3', '\x16', '\x3', '\x16', '\x3', '\x16', '\a', 
-		'\x16', '\x119', '\n', '\x16', '\f', '\x16', '\xE', '\x16', '\x11C', '\v', 
-		'\x16', '\x3', '\x16', '\x5', '\x16', '\x11F', '\n', '\x16', '\x3', '\x17', 
+		'\x16', '\x10A', '\n', '\x16', '\f', '\x16', '\xE', '\x16', '\x10D', '\v', 
+		'\x16', '\x3', '\x16', '\x5', '\x16', '\x110', '\n', '\x16', '\x3', '\x17', 
 		'\x3', '\x17', '\x3', '\x17', '\x3', '\x17', '\x3', '\x17', '\a', '\x17', 
-		'\x126', '\n', '\x17', '\f', '\x17', '\xE', '\x17', '\x129', '\v', '\x17', 
-		'\x3', '\x18', '\x6', '\x18', '\x12C', '\n', '\x18', '\r', '\x18', '\xE', 
-		'\x18', '\x12D', '\x3', '\x19', '\x3', '\x19', '\x3', '\x19', '\x3', '\x19', 
-		'\a', '\x19', '\x134', '\n', '\x19', '\f', '\x19', '\xE', '\x19', '\x137', 
-		'\v', '\x19', '\x3', '\x19', '\x5', '\x19', '\x13A', '\n', '\x19', '\x3', 
+		'\x117', '\n', '\x17', '\f', '\x17', '\xE', '\x17', '\x11A', '\v', '\x17', 
+		'\x3', '\x18', '\x6', '\x18', '\x11D', '\n', '\x18', '\r', '\x18', '\xE', 
+		'\x18', '\x11E', '\x3', '\x19', '\x3', '\x19', '\x3', '\x19', '\x3', '\x19', 
+		'\a', '\x19', '\x125', '\n', '\x19', '\f', '\x19', '\xE', '\x19', '\x128', 
+		'\v', '\x19', '\x3', '\x19', '\x5', '\x19', '\x12B', '\n', '\x19', '\x3', 
 		'\x1A', '\x3', '\x1A', '\x3', '\x1A', '\x3', '\x1A', '\x3', '\x1A', '\x3', 
-		'\x1A', '\x3', '\x1A', '\x5', '\x1A', '\x143', '\n', '\x1A', '\x3', '\x1A', 
+		'\x1A', '\x3', '\x1A', '\x5', '\x1A', '\x134', '\n', '\x1A', '\x3', '\x1A', 
 		'\x3', '\x1A', '\x3', '\x1B', '\x3', '\x1B', '\x3', '\x1B', '\x3', '\x1B', 
 		'\x3', '\x1B', '\x3', '\x1C', '\x3', '\x1C', '\x3', '\x1C', '\x5', '\x1C', 
-		'\x14F', '\n', '\x1C', '\x3', '\x1C', '\x2', '\x3', '\x16', '\x1D', '\x2', 
+		'\x140', '\n', '\x1C', '\x3', '\x1C', '\x2', '\x3', '\x16', '\x1D', '\x2', 
 		'\x4', '\x6', '\b', '\n', '\f', '\xE', '\x10', '\x12', '\x14', '\x16', 
 		'\x18', '\x1A', '\x1C', '\x1E', ' ', '\"', '$', '&', '(', '*', ',', '.', 
-		'\x30', '\x32', '\x34', '\x36', '\x2', '\t', '\x3', '\x2', '\x30', '\x32', 
-		'\x3', '\x2', '.', '/', '\x3', '\x2', '\x35', '\x37', '\x3', '\x2', '\x33', 
-		'\x34', '\x4', '\x2', '$', '%', '\'', '(', '\x4', '\x2', '&', '&', ')', 
-		')', '\x3', '\x2', '*', ',', '\x2', '\x16B', '\x2', ';', '\x3', '\x2', 
-		'\x2', '\x2', '\x4', '\x43', '\x3', '\x2', '\x2', '\x2', '\x6', 'G', '\x3', 
-		'\x2', '\x2', '\x2', '\b', 'O', '\x3', '\x2', '\x2', '\x2', '\n', 'Y', 
-		'\x3', '\x2', '\x2', '\x2', '\f', 'l', '\x3', '\x2', '\x2', '\x2', '\xE', 
-		'n', '\x3', '\x2', '\x2', '\x2', '\x10', '\x85', '\x3', '\x2', '\x2', 
-		'\x2', '\x12', '\x88', '\x3', '\x2', '\x2', '\x2', '\x14', '\x8B', '\x3', 
-		'\x2', '\x2', '\x2', '\x16', '\xA7', '\x3', '\x2', '\x2', '\x2', '\x18', 
-		'\xC4', '\x3', '\x2', '\x2', '\x2', '\x1A', '\xC6', '\x3', '\x2', '\x2', 
-		'\x2', '\x1C', '\xC8', '\x3', '\x2', '\x2', '\x2', '\x1E', '\xD6', '\x3', 
-		'\x2', '\x2', '\x2', ' ', '\xE4', '\x3', '\x2', '\x2', '\x2', '\"', '\xEE', 
-		'\x3', '\x2', '\x2', '\x2', '$', '\xF8', '\x3', '\x2', '\x2', '\x2', '&', 
-		'\x10D', '\x3', '\x2', '\x2', '\x2', '(', '\x10F', '\x3', '\x2', '\x2', 
-		'\x2', '*', '\x114', '\x3', '\x2', '\x2', '\x2', ',', '\x127', '\x3', 
-		'\x2', '\x2', '\x2', '.', '\x12B', '\x3', '\x2', '\x2', '\x2', '\x30', 
-		'\x12F', '\x3', '\x2', '\x2', '\x2', '\x32', '\x13B', '\x3', '\x2', '\x2', 
-		'\x2', '\x34', '\x146', '\x3', '\x2', '\x2', '\x2', '\x36', '\x14E', '\x3', 
-		'\x2', '\x2', '\x2', '\x38', ':', '\x5', '\x4', '\x3', '\x2', '\x39', 
-		'\x38', '\x3', '\x2', '\x2', '\x2', ':', '=', '\x3', '\x2', '\x2', '\x2', 
-		';', '\x39', '\x3', '\x2', '\x2', '\x2', ';', '<', '\x3', '\x2', '\x2', 
-		'\x2', '<', '?', '\x3', '\x2', '\x2', '\x2', '=', ';', '\x3', '\x2', '\x2', 
-		'\x2', '>', '@', '\x5', '\x6', '\x4', '\x2', '?', '>', '\x3', '\x2', '\x2', 
-		'\x2', '@', '\x41', '\x3', '\x2', '\x2', '\x2', '\x41', '?', '\x3', '\x2', 
-		'\x2', '\x2', '\x41', '\x42', '\x3', '\x2', '\x2', '\x2', '\x42', '\x3', 
-		'\x3', '\x2', '\x2', '\x2', '\x43', '\x44', '\a', '\v', '\x2', '\x2', 
-		'\x44', '\x45', '\a', '\x1E', '\x2', '\x2', '\x45', '\x5', '\x3', '\x2', 
-		'\x2', '\x2', '\x46', 'H', '\x5', '\b', '\x5', '\x2', 'G', '\x46', '\x3', 
-		'\x2', '\x2', '\x2', 'H', 'I', '\x3', '\x2', '\x2', '\x2', 'I', 'G', '\x3', 
-		'\x2', '\x2', '\x2', 'I', 'J', '\x3', '\x2', '\x2', '\x2', 'J', 'K', '\x3', 
-		'\x2', '\x2', '\x2', 'K', 'L', '\a', '\t', '\x2', '\x2', 'L', 'M', '\x5', 
-		'\n', '\x6', '\x2', 'M', 'N', '\a', '\x11', '\x2', '\x2', 'N', '\a', '\x3', 
-		'\x2', '\x2', '\x2', 'O', 'P', '\a', '\b', '\x2', '\x2', 'P', 'R', '\a', 
-		'\n', '\x2', '\x2', 'Q', 'S', '\a', '\f', '\x2', '\x2', 'R', 'Q', '\x3', 
-		'\x2', '\x2', '\x2', 'R', 'S', '\x3', '\x2', '\x2', '\x2', 'S', 'T', '\x3', 
-		'\x2', '\x2', '\x2', 'T', 'U', '\a', '\r', '\x2', '\x2', 'U', '\t', '\x3', 
-		'\x2', '\x2', '\x2', 'V', 'X', '\x5', '\f', '\a', '\x2', 'W', 'V', '\x3', 
-		'\x2', '\x2', '\x2', 'X', '[', '\x3', '\x2', '\x2', '\x2', 'Y', 'W', '\x3', 
-		'\x2', '\x2', '\x2', 'Y', 'Z', '\x3', '\x2', '\x2', '\x2', 'Z', '\v', 
-		'\x3', '\x2', '\x2', '\x2', '[', 'Y', '\x3', '\x2', '\x2', '\x2', '\\', 
-		'm', '\x5', '\xE', '\b', '\x2', ']', 'm', '\x5', '\x1E', '\x10', '\x2', 
-		'^', 'm', '\x5', '&', '\x14', '\x2', '_', 'm', '\x5', '.', '\x18', '\x2', 
-		'`', 'm', '\x5', '(', '\x15', '\x2', '\x61', 'm', '\x5', '*', '\x16', 
-		'\x2', '\x62', 'm', '\x5', '\x32', '\x1A', '\x2', '\x63', 'm', '\x5', 
-		'\x34', '\x1B', '\x2', '\x64', 'h', '\a', '\x3', '\x2', '\x2', '\x65', 
-		'g', '\x5', '\f', '\a', '\x2', '\x66', '\x65', '\x3', '\x2', '\x2', '\x2', 
-		'g', 'j', '\x3', '\x2', '\x2', '\x2', 'h', '\x66', '\x3', '\x2', '\x2', 
-		'\x2', 'h', 'i', '\x3', '\x2', '\x2', '\x2', 'i', 'k', '\x3', '\x2', '\x2', 
-		'\x2', 'j', 'h', '\x3', '\x2', '\x2', '\x2', 'k', 'm', '\a', '\x4', '\x2', 
-		'\x2', 'l', '\\', '\x3', '\x2', '\x2', '\x2', 'l', ']', '\x3', '\x2', 
-		'\x2', '\x2', 'l', '^', '\x3', '\x2', '\x2', '\x2', 'l', '_', '\x3', '\x2', 
-		'\x2', '\x2', 'l', '`', '\x3', '\x2', '\x2', '\x2', 'l', '\x61', '\x3', 
-		'\x2', '\x2', '\x2', 'l', '\x62', '\x3', '\x2', '\x2', '\x2', 'l', '\x63', 
-		'\x3', '\x2', '\x2', '\x2', 'l', '\x64', '\x3', '\x2', '\x2', '\x2', 'm', 
-		'\r', '\x3', '\x2', '\x2', '\x2', 'n', 'p', '\x5', '\x10', '\t', '\x2', 
-		'o', 'q', '\x5', '\x14', '\v', '\x2', 'p', 'o', '\x3', '\x2', '\x2', '\x2', 
+		'\x30', '\x32', '\x34', '\x36', '\x2', '\b', '\x3', '\x2', '\x35', '\x37', 
+		'\x3', '\x2', '\x33', '\x34', '\x4', '\x2', '$', '%', '\'', '(', '\x4', 
+		'\x2', '&', '&', ')', ')', '\x3', '\x2', '*', ',', '\x4', '\x2', '#', 
+		'#', '.', '\x32', '\x2', '\x159', '\x2', ';', '\x3', '\x2', '\x2', '\x2', 
+		'\x4', '\x43', '\x3', '\x2', '\x2', '\x2', '\x6', 'G', '\x3', '\x2', '\x2', 
+		'\x2', '\b', 'O', '\x3', '\x2', '\x2', '\x2', '\n', 'Y', '\x3', '\x2', 
+		'\x2', '\x2', '\f', 'l', '\x3', '\x2', '\x2', '\x2', '\xE', 'n', '\x3', 
+		'\x2', '\x2', '\x2', '\x10', '\x85', '\x3', '\x2', '\x2', '\x2', '\x12', 
+		'\x88', '\x3', '\x2', '\x2', '\x2', '\x14', '\x8B', '\x3', '\x2', '\x2', 
+		'\x2', '\x16', '\x9F', '\x3', '\x2', '\x2', '\x2', '\x18', '\xBC', '\x3', 
+		'\x2', '\x2', '\x2', '\x1A', '\xBE', '\x3', '\x2', '\x2', '\x2', '\x1C', 
+		'\xC0', '\x3', '\x2', '\x2', '\x2', '\x1E', '\xCE', '\x3', '\x2', '\x2', 
+		'\x2', ' ', '\xDC', '\x3', '\x2', '\x2', '\x2', '\"', '\xE6', '\x3', '\x2', 
+		'\x2', '\x2', '$', '\xF0', '\x3', '\x2', '\x2', '\x2', '&', '\xF9', '\x3', 
+		'\x2', '\x2', '\x2', '(', '\x100', '\x3', '\x2', '\x2', '\x2', '*', '\x105', 
+		'\x3', '\x2', '\x2', '\x2', ',', '\x118', '\x3', '\x2', '\x2', '\x2', 
+		'.', '\x11C', '\x3', '\x2', '\x2', '\x2', '\x30', '\x120', '\x3', '\x2', 
+		'\x2', '\x2', '\x32', '\x12C', '\x3', '\x2', '\x2', '\x2', '\x34', '\x137', 
+		'\x3', '\x2', '\x2', '\x2', '\x36', '\x13F', '\x3', '\x2', '\x2', '\x2', 
+		'\x38', ':', '\x5', '\x4', '\x3', '\x2', '\x39', '\x38', '\x3', '\x2', 
+		'\x2', '\x2', ':', '=', '\x3', '\x2', '\x2', '\x2', ';', '\x39', '\x3', 
+		'\x2', '\x2', '\x2', ';', '<', '\x3', '\x2', '\x2', '\x2', '<', '?', '\x3', 
+		'\x2', '\x2', '\x2', '=', ';', '\x3', '\x2', '\x2', '\x2', '>', '@', '\x5', 
+		'\x6', '\x4', '\x2', '?', '>', '\x3', '\x2', '\x2', '\x2', '@', '\x41', 
+		'\x3', '\x2', '\x2', '\x2', '\x41', '?', '\x3', '\x2', '\x2', '\x2', '\x41', 
+		'\x42', '\x3', '\x2', '\x2', '\x2', '\x42', '\x3', '\x3', '\x2', '\x2', 
+		'\x2', '\x43', '\x44', '\a', '\v', '\x2', '\x2', '\x44', '\x45', '\a', 
+		'\x1E', '\x2', '\x2', '\x45', '\x5', '\x3', '\x2', '\x2', '\x2', '\x46', 
+		'H', '\x5', '\b', '\x5', '\x2', 'G', '\x46', '\x3', '\x2', '\x2', '\x2', 
+		'H', 'I', '\x3', '\x2', '\x2', '\x2', 'I', 'G', '\x3', '\x2', '\x2', '\x2', 
+		'I', 'J', '\x3', '\x2', '\x2', '\x2', 'J', 'K', '\x3', '\x2', '\x2', '\x2', 
+		'K', 'L', '\a', '\t', '\x2', '\x2', 'L', 'M', '\x5', '\n', '\x6', '\x2', 
+		'M', 'N', '\a', '\x11', '\x2', '\x2', 'N', '\a', '\x3', '\x2', '\x2', 
+		'\x2', 'O', 'P', '\a', '\b', '\x2', '\x2', 'P', 'R', '\a', '\n', '\x2', 
+		'\x2', 'Q', 'S', '\a', '\f', '\x2', '\x2', 'R', 'Q', '\x3', '\x2', '\x2', 
+		'\x2', 'R', 'S', '\x3', '\x2', '\x2', '\x2', 'S', 'T', '\x3', '\x2', '\x2', 
+		'\x2', 'T', 'U', '\a', '\r', '\x2', '\x2', 'U', '\t', '\x3', '\x2', '\x2', 
+		'\x2', 'V', 'X', '\x5', '\f', '\a', '\x2', 'W', 'V', '\x3', '\x2', '\x2', 
+		'\x2', 'X', '[', '\x3', '\x2', '\x2', '\x2', 'Y', 'W', '\x3', '\x2', '\x2', 
+		'\x2', 'Y', 'Z', '\x3', '\x2', '\x2', '\x2', 'Z', '\v', '\x3', '\x2', 
+		'\x2', '\x2', '[', 'Y', '\x3', '\x2', '\x2', '\x2', '\\', 'm', '\x5', 
+		'\xE', '\b', '\x2', ']', 'm', '\x5', '\x1E', '\x10', '\x2', '^', 'm', 
+		'\x5', '&', '\x14', '\x2', '_', 'm', '\x5', '.', '\x18', '\x2', '`', 'm', 
+		'\x5', '(', '\x15', '\x2', '\x61', 'm', '\x5', '*', '\x16', '\x2', '\x62', 
+		'm', '\x5', '\x32', '\x1A', '\x2', '\x63', 'm', '\x5', '\x34', '\x1B', 
+		'\x2', '\x64', 'h', '\a', '\x3', '\x2', '\x2', '\x65', 'g', '\x5', '\f', 
+		'\a', '\x2', '\x66', '\x65', '\x3', '\x2', '\x2', '\x2', 'g', 'j', '\x3', 
+		'\x2', '\x2', '\x2', 'h', '\x66', '\x3', '\x2', '\x2', '\x2', 'h', 'i', 
+		'\x3', '\x2', '\x2', '\x2', 'i', 'k', '\x3', '\x2', '\x2', '\x2', 'j', 
+		'h', '\x3', '\x2', '\x2', '\x2', 'k', 'm', '\a', '\x4', '\x2', '\x2', 
+		'l', '\\', '\x3', '\x2', '\x2', '\x2', 'l', ']', '\x3', '\x2', '\x2', 
+		'\x2', 'l', '^', '\x3', '\x2', '\x2', '\x2', 'l', '_', '\x3', '\x2', '\x2', 
+		'\x2', 'l', '`', '\x3', '\x2', '\x2', '\x2', 'l', '\x61', '\x3', '\x2', 
+		'\x2', '\x2', 'l', '\x62', '\x3', '\x2', '\x2', '\x2', 'l', '\x63', '\x3', 
+		'\x2', '\x2', '\x2', 'l', '\x64', '\x3', '\x2', '\x2', '\x2', 'm', '\r', 
+		'\x3', '\x2', '\x2', '\x2', 'n', 'p', '\x5', '\x10', '\t', '\x2', 'o', 
+		'q', '\x5', '\x14', '\v', '\x2', 'p', 'o', '\x3', '\x2', '\x2', '\x2', 
 		'p', 'q', '\x3', '\x2', '\x2', '\x2', 'q', 'u', '\x3', '\x2', '\x2', '\x2', 
 		'r', 't', '\x5', '\x12', '\n', '\x2', 's', 'r', '\x3', '\x2', '\x2', '\x2', 
 		't', 'w', '\x3', '\x2', '\x2', '\x2', 'u', 's', '\x3', '\x2', '\x2', '\x2', 
@@ -2873,145 +2762,134 @@ public partial class YarnSpinnerParser : Parser {
 		'\x8F', '\a', 'R', '\x2', '\x2', '\x8F', '\x15', '\x3', '\x2', '\x2', 
 		'\x2', '\x90', '\x91', '\b', '\f', '\x1', '\x2', '\x91', '\x92', '\a', 
 		'\x38', '\x2', '\x2', '\x92', '\x93', '\x5', '\x16', '\f', '\x2', '\x93', 
-		'\x94', '\a', '\x39', '\x2', '\x2', '\x94', '\xA8', '\x3', '\x2', '\x2', 
-		'\x2', '\x95', '\x96', '\a', '\x34', '\x2', '\x2', '\x96', '\xA8', '\x5', 
-		'\x16', '\f', '\r', '\x97', '\x98', '\a', '-', '\x2', '\x2', '\x98', '\xA8', 
-		'\x5', '\x16', '\f', '\f', '\x99', '\x9A', '\x5', '\x1A', '\xE', '\x2', 
-		'\x9A', '\x9B', '\t', '\x2', '\x2', '\x2', '\x9B', '\x9C', '\x5', '\x16', 
-		'\f', '\a', '\x9C', '\xA8', '\x3', '\x2', '\x2', '\x2', '\x9D', '\x9E', 
-		'\x5', '\x1A', '\xE', '\x2', '\x9E', '\x9F', '\t', '\x3', '\x2', '\x2', 
-		'\x9F', '\xA0', '\x5', '\x16', '\f', '\x6', '\xA0', '\xA8', '\x3', '\x2', 
-		'\x2', '\x2', '\xA1', '\xA2', '\x5', '\x36', '\x1C', '\x2', '\xA2', '\xA3', 
-		'\a', '\x38', '\x2', '\x2', '\xA3', '\xA4', '\x5', '\x16', '\f', '\x2', 
-		'\xA4', '\xA5', '\a', '\x39', '\x2', '\x2', '\xA5', '\xA8', '\x3', '\x2', 
-		'\x2', '\x2', '\xA6', '\xA8', '\x5', '\x18', '\r', '\x2', '\xA7', '\x90', 
-		'\x3', '\x2', '\x2', '\x2', '\xA7', '\x95', '\x3', '\x2', '\x2', '\x2', 
-		'\xA7', '\x97', '\x3', '\x2', '\x2', '\x2', '\xA7', '\x99', '\x3', '\x2', 
-		'\x2', '\x2', '\xA7', '\x9D', '\x3', '\x2', '\x2', '\x2', '\xA7', '\xA1', 
-		'\x3', '\x2', '\x2', '\x2', '\xA7', '\xA6', '\x3', '\x2', '\x2', '\x2', 
-		'\xA8', '\xBA', '\x3', '\x2', '\x2', '\x2', '\xA9', '\xAA', '\f', '\v', 
-		'\x2', '\x2', '\xAA', '\xAB', '\t', '\x4', '\x2', '\x2', '\xAB', '\xB9', 
-		'\x5', '\x16', '\f', '\f', '\xAC', '\xAD', '\f', '\n', '\x2', '\x2', '\xAD', 
-		'\xAE', '\t', '\x5', '\x2', '\x2', '\xAE', '\xB9', '\x5', '\x16', '\f', 
-		'\v', '\xAF', '\xB0', '\f', '\t', '\x2', '\x2', '\xB0', '\xB1', '\t', 
-		'\x6', '\x2', '\x2', '\xB1', '\xB9', '\x5', '\x16', '\f', '\n', '\xB2', 
-		'\xB3', '\f', '\b', '\x2', '\x2', '\xB3', '\xB4', '\t', '\a', '\x2', '\x2', 
-		'\xB4', '\xB9', '\x5', '\x16', '\f', '\t', '\xB5', '\xB6', '\f', '\x5', 
-		'\x2', '\x2', '\xB6', '\xB7', '\t', '\b', '\x2', '\x2', '\xB7', '\xB9', 
-		'\x5', '\x16', '\f', '\x6', '\xB8', '\xA9', '\x3', '\x2', '\x2', '\x2', 
-		'\xB8', '\xAC', '\x3', '\x2', '\x2', '\x2', '\xB8', '\xAF', '\x3', '\x2', 
-		'\x2', '\x2', '\xB8', '\xB2', '\x3', '\x2', '\x2', '\x2', '\xB8', '\xB5', 
-		'\x3', '\x2', '\x2', '\x2', '\xB9', '\xBC', '\x3', '\x2', '\x2', '\x2', 
-		'\xBA', '\xB8', '\x3', '\x2', '\x2', '\x2', '\xBA', '\xBB', '\x3', '\x2', 
-		'\x2', '\x2', '\xBB', '\x17', '\x3', '\x2', '\x2', '\x2', '\xBC', '\xBA', 
-		'\x3', '\x2', '\x2', '\x2', '\xBD', '\xC5', '\a', '\x44', '\x2', '\x2', 
-		'\xBE', '\xC5', '\a', ' ', '\x2', '\x2', '\xBF', '\xC5', '\a', '!', '\x2', 
-		'\x2', '\xC0', '\xC5', '\x5', '\x1A', '\xE', '\x2', '\xC1', '\xC5', '\a', 
-		'?', '\x2', '\x2', '\xC2', '\xC5', '\a', '\"', '\x2', '\x2', '\xC3', '\xC5', 
-		'\x5', '\x1C', '\xF', '\x2', '\xC4', '\xBD', '\x3', '\x2', '\x2', '\x2', 
-		'\xC4', '\xBE', '\x3', '\x2', '\x2', '\x2', '\xC4', '\xBF', '\x3', '\x2', 
-		'\x2', '\x2', '\xC4', '\xC0', '\x3', '\x2', '\x2', '\x2', '\xC4', '\xC1', 
-		'\x3', '\x2', '\x2', '\x2', '\xC4', '\xC2', '\x3', '\x2', '\x2', '\x2', 
-		'\xC4', '\xC3', '\x3', '\x2', '\x2', '\x2', '\xC5', '\x19', '\x3', '\x2', 
-		'\x2', '\x2', '\xC6', '\xC7', '\a', '\x42', '\x2', '\x2', '\xC7', '\x1B', 
-		'\x3', '\x2', '\x2', '\x2', '\xC8', '\xC9', '\a', '@', '\x2', '\x2', '\xC9', 
-		'\xCB', '\a', '\x38', '\x2', '\x2', '\xCA', '\xCC', '\x5', '\x16', '\f', 
-		'\x2', '\xCB', '\xCA', '\x3', '\x2', '\x2', '\x2', '\xCB', '\xCC', '\x3', 
-		'\x2', '\x2', '\x2', '\xCC', '\xD1', '\x3', '\x2', '\x2', '\x2', '\xCD', 
-		'\xCE', '\a', ':', '\x2', '\x2', '\xCE', '\xD0', '\x5', '\x16', '\f', 
-		'\x2', '\xCF', '\xCD', '\x3', '\x2', '\x2', '\x2', '\xD0', '\xD3', '\x3', 
-		'\x2', '\x2', '\x2', '\xD1', '\xCF', '\x3', '\x2', '\x2', '\x2', '\xD1', 
-		'\xD2', '\x3', '\x2', '\x2', '\x2', '\xD2', '\xD4', '\x3', '\x2', '\x2', 
-		'\x2', '\xD3', '\xD1', '\x3', '\x2', '\x2', '\x2', '\xD4', '\xD5', '\a', 
-		'\x39', '\x2', '\x2', '\xD5', '\x1D', '\x3', '\x2', '\x2', '\x2', '\xD6', 
-		'\xDA', '\x5', ' ', '\x11', '\x2', '\xD7', '\xD9', '\x5', '\"', '\x12', 
-		'\x2', '\xD8', '\xD7', '\x3', '\x2', '\x2', '\x2', '\xD9', '\xDC', '\x3', 
-		'\x2', '\x2', '\x2', '\xDA', '\xD8', '\x3', '\x2', '\x2', '\x2', '\xDA', 
-		'\xDB', '\x3', '\x2', '\x2', '\x2', '\xDB', '\xDE', '\x3', '\x2', '\x2', 
-		'\x2', '\xDC', '\xDA', '\x3', '\x2', '\x2', '\x2', '\xDD', '\xDF', '\x5', 
-		'$', '\x13', '\x2', '\xDE', '\xDD', '\x3', '\x2', '\x2', '\x2', '\xDE', 
-		'\xDF', '\x3', '\x2', '\x2', '\x2', '\xDF', '\xE0', '\x3', '\x2', '\x2', 
-		'\x2', '\xE0', '\xE1', '\a', '\x13', '\x2', '\x2', '\xE1', '\xE2', '\a', 
-		'J', '\x2', '\x2', '\xE2', '\xE3', '\a', 'R', '\x2', '\x2', '\xE3', '\x1F', 
-		'\x3', '\x2', '\x2', '\x2', '\xE4', '\xE5', '\a', '\x13', '\x2', '\x2', 
-		'\xE5', '\xE6', '\a', '\x46', '\x2', '\x2', '\xE6', '\xE7', '\x5', '\x16', 
-		'\f', '\x2', '\xE7', '\xEB', '\a', 'R', '\x2', '\x2', '\xE8', '\xEA', 
-		'\x5', '\f', '\a', '\x2', '\xE9', '\xE8', '\x3', '\x2', '\x2', '\x2', 
-		'\xEA', '\xED', '\x3', '\x2', '\x2', '\x2', '\xEB', '\xE9', '\x3', '\x2', 
-		'\x2', '\x2', '\xEB', '\xEC', '\x3', '\x2', '\x2', '\x2', '\xEC', '!', 
-		'\x3', '\x2', '\x2', '\x2', '\xED', '\xEB', '\x3', '\x2', '\x2', '\x2', 
-		'\xEE', '\xEF', '\a', '\x13', '\x2', '\x2', '\xEF', '\xF0', '\a', 'G', 
-		'\x2', '\x2', '\xF0', '\xF1', '\x5', '\x16', '\f', '\x2', '\xF1', '\xF5', 
-		'\a', 'R', '\x2', '\x2', '\xF2', '\xF4', '\x5', '\f', '\a', '\x2', '\xF3', 
-		'\xF2', '\x3', '\x2', '\x2', '\x2', '\xF4', '\xF7', '\x3', '\x2', '\x2', 
-		'\x2', '\xF5', '\xF3', '\x3', '\x2', '\x2', '\x2', '\xF5', '\xF6', '\x3', 
-		'\x2', '\x2', '\x2', '\xF6', '#', '\x3', '\x2', '\x2', '\x2', '\xF7', 
-		'\xF5', '\x3', '\x2', '\x2', '\x2', '\xF8', '\xF9', '\a', '\x13', '\x2', 
-		'\x2', '\xF9', '\xFA', '\a', 'H', '\x2', '\x2', '\xFA', '\xFE', '\a', 
-		'R', '\x2', '\x2', '\xFB', '\xFD', '\x5', '\f', '\a', '\x2', '\xFC', '\xFB', 
-		'\x3', '\x2', '\x2', '\x2', '\xFD', '\x100', '\x3', '\x2', '\x2', '\x2', 
-		'\xFE', '\xFC', '\x3', '\x2', '\x2', '\x2', '\xFE', '\xFF', '\x3', '\x2', 
-		'\x2', '\x2', '\xFF', '%', '\x3', '\x2', '\x2', '\x2', '\x100', '\xFE', 
-		'\x3', '\x2', '\x2', '\x2', '\x101', '\x102', '\a', '\x13', '\x2', '\x2', 
-		'\x102', '\x103', '\a', 'I', '\x2', '\x2', '\x103', '\x104', '\x5', '\x1A', 
-		'\xE', '\x2', '\x104', '\x105', '\a', '#', '\x2', '\x2', '\x105', '\x106', 
-		'\x5', '\x16', '\f', '\x2', '\x106', '\x107', '\a', 'R', '\x2', '\x2', 
-		'\x107', '\x10E', '\x3', '\x2', '\x2', '\x2', '\x108', '\x109', '\a', 
-		'\x13', '\x2', '\x2', '\x109', '\x10A', '\a', 'I', '\x2', '\x2', '\x10A', 
-		'\x10B', '\x5', '\x16', '\f', '\x2', '\x10B', '\x10C', '\a', 'R', '\x2', 
-		'\x2', '\x10C', '\x10E', '\x3', '\x2', '\x2', '\x2', '\x10D', '\x101', 
-		'\x3', '\x2', '\x2', '\x2', '\x10D', '\x108', '\x3', '\x2', '\x2', '\x2', 
-		'\x10E', '\'', '\x3', '\x2', '\x2', '\x2', '\x10F', '\x110', '\a', '\x13', 
-		'\x2', '\x2', '\x110', '\x111', '\a', 'K', '\x2', '\x2', '\x111', '\x112', 
-		'\x5', '\x1C', '\xF', '\x2', '\x112', '\x113', '\a', 'R', '\x2', '\x2', 
-		'\x113', ')', '\x3', '\x2', '\x2', '\x2', '\x114', '\x115', '\a', '\x13', 
-		'\x2', '\x2', '\x115', '\x116', '\x5', ',', '\x17', '\x2', '\x116', '\x11E', 
-		'\a', 'S', '\x2', '\x2', '\x117', '\x119', '\x5', '\x12', '\n', '\x2', 
-		'\x118', '\x117', '\x3', '\x2', '\x2', '\x2', '\x119', '\x11C', '\x3', 
-		'\x2', '\x2', '\x2', '\x11A', '\x118', '\x3', '\x2', '\x2', '\x2', '\x11A', 
-		'\x11B', '\x3', '\x2', '\x2', '\x2', '\x11B', '\x11D', '\x3', '\x2', '\x2', 
-		'\x2', '\x11C', '\x11A', '\x3', '\x2', '\x2', '\x2', '\x11D', '\x11F', 
-		'\a', '\x15', '\x2', '\x2', '\x11E', '\x11A', '\x3', '\x2', '\x2', '\x2', 
-		'\x11E', '\x11F', '\x3', '\x2', '\x2', '\x2', '\x11F', '+', '\x3', '\x2', 
-		'\x2', '\x2', '\x120', '\x126', '\a', 'U', '\x2', '\x2', '\x121', '\x122', 
-		'\a', 'T', '\x2', '\x2', '\x122', '\x123', '\x5', '\x16', '\f', '\x2', 
-		'\x123', '\x124', '\a', '\x41', '\x2', '\x2', '\x124', '\x126', '\x3', 
-		'\x2', '\x2', '\x2', '\x125', '\x120', '\x3', '\x2', '\x2', '\x2', '\x125', 
-		'\x121', '\x3', '\x2', '\x2', '\x2', '\x126', '\x129', '\x3', '\x2', '\x2', 
-		'\x2', '\x127', '\x125', '\x3', '\x2', '\x2', '\x2', '\x127', '\x128', 
-		'\x3', '\x2', '\x2', '\x2', '\x128', '-', '\x3', '\x2', '\x2', '\x2', 
-		'\x129', '\x127', '\x3', '\x2', '\x2', '\x2', '\x12A', '\x12C', '\x5', 
-		'\x30', '\x19', '\x2', '\x12B', '\x12A', '\x3', '\x2', '\x2', '\x2', '\x12C', 
-		'\x12D', '\x3', '\x2', '\x2', '\x2', '\x12D', '\x12B', '\x3', '\x2', '\x2', 
-		'\x2', '\x12D', '\x12E', '\x3', '\x2', '\x2', '\x2', '\x12E', '/', '\x3', 
-		'\x2', '\x2', '\x2', '\x12F', '\x130', '\a', '\x12', '\x2', '\x2', '\x130', 
-		'\x139', '\x5', '\xE', '\b', '\x2', '\x131', '\x135', '\a', '\x3', '\x2', 
-		'\x2', '\x132', '\x134', '\x5', '\f', '\a', '\x2', '\x133', '\x132', '\x3', 
-		'\x2', '\x2', '\x2', '\x134', '\x137', '\x3', '\x2', '\x2', '\x2', '\x135', 
-		'\x133', '\x3', '\x2', '\x2', '\x2', '\x135', '\x136', '\x3', '\x2', '\x2', 
-		'\x2', '\x136', '\x138', '\x3', '\x2', '\x2', '\x2', '\x137', '\x135', 
-		'\x3', '\x2', '\x2', '\x2', '\x138', '\x13A', '\a', '\x4', '\x2', '\x2', 
-		'\x139', '\x131', '\x3', '\x2', '\x2', '\x2', '\x139', '\x13A', '\x3', 
-		'\x2', '\x2', '\x2', '\x13A', '\x31', '\x3', '\x2', '\x2', '\x2', '\x13B', 
-		'\x13C', '\a', '\x13', '\x2', '\x2', '\x13C', '\x13D', '\a', 'L', '\x2', 
-		'\x2', '\x13D', '\x13E', '\x5', '\x1A', '\xE', '\x2', '\x13E', '\x13F', 
-		'\a', '#', '\x2', '\x2', '\x13F', '\x142', '\x5', '\x18', '\r', '\x2', 
-		'\x140', '\x141', '\a', ';', '\x2', '\x2', '\x141', '\x143', '\x5', '\x36', 
-		'\x1C', '\x2', '\x142', '\x140', '\x3', '\x2', '\x2', '\x2', '\x142', 
-		'\x143', '\x3', '\x2', '\x2', '\x2', '\x143', '\x144', '\x3', '\x2', '\x2', 
-		'\x2', '\x144', '\x145', '\a', 'R', '\x2', '\x2', '\x145', '\x33', '\x3', 
-		'\x2', '\x2', '\x2', '\x146', '\x147', '\a', '\x13', '\x2', '\x2', '\x147', 
-		'\x148', '\a', 'M', '\x2', '\x2', '\x148', '\x149', '\a', '\b', '\x2', 
-		'\x2', '\x149', '\x14A', '\a', 'R', '\x2', '\x2', '\x14A', '\x35', '\x3', 
-		'\x2', '\x2', '\x2', '\x14B', '\x14F', '\a', '<', '\x2', '\x2', '\x14C', 
-		'\x14F', '\a', '=', '\x2', '\x2', '\x14D', '\x14F', '\a', '>', '\x2', 
-		'\x2', '\x14E', '\x14B', '\x3', '\x2', '\x2', '\x2', '\x14E', '\x14C', 
-		'\x3', '\x2', '\x2', '\x2', '\x14E', '\x14D', '\x3', '\x2', '\x2', '\x2', 
-		'\x14F', '\x37', '\x3', '\x2', '\x2', '\x2', '#', ';', '\x41', 'I', 'R', 
-		'Y', 'h', 'l', 'p', 'u', '}', '\x83', '\x85', '\xA7', '\xB8', '\xBA', 
-		'\xC4', '\xCB', '\xD1', '\xDA', '\xDE', '\xEB', '\xF5', '\xFE', '\x10D', 
-		'\x11A', '\x11E', '\x125', '\x127', '\x12D', '\x135', '\x139', '\x142', 
-		'\x14E',
+		'\x94', '\a', '\x39', '\x2', '\x2', '\x94', '\xA0', '\x3', '\x2', '\x2', 
+		'\x2', '\x95', '\x96', '\a', '\x34', '\x2', '\x2', '\x96', '\xA0', '\x5', 
+		'\x16', '\f', '\v', '\x97', '\x98', '\a', '-', '\x2', '\x2', '\x98', '\xA0', 
+		'\x5', '\x16', '\f', '\n', '\x99', '\x9A', '\x5', '\x36', '\x1C', '\x2', 
+		'\x9A', '\x9B', '\a', '\x38', '\x2', '\x2', '\x9B', '\x9C', '\x5', '\x16', 
+		'\f', '\x2', '\x9C', '\x9D', '\a', '\x39', '\x2', '\x2', '\x9D', '\xA0', 
+		'\x3', '\x2', '\x2', '\x2', '\x9E', '\xA0', '\x5', '\x18', '\r', '\x2', 
+		'\x9F', '\x90', '\x3', '\x2', '\x2', '\x2', '\x9F', '\x95', '\x3', '\x2', 
+		'\x2', '\x2', '\x9F', '\x97', '\x3', '\x2', '\x2', '\x2', '\x9F', '\x99', 
+		'\x3', '\x2', '\x2', '\x2', '\x9F', '\x9E', '\x3', '\x2', '\x2', '\x2', 
+		'\xA0', '\xB2', '\x3', '\x2', '\x2', '\x2', '\xA1', '\xA2', '\f', '\t', 
+		'\x2', '\x2', '\xA2', '\xA3', '\t', '\x2', '\x2', '\x2', '\xA3', '\xB1', 
+		'\x5', '\x16', '\f', '\n', '\xA4', '\xA5', '\f', '\b', '\x2', '\x2', '\xA5', 
+		'\xA6', '\t', '\x3', '\x2', '\x2', '\xA6', '\xB1', '\x5', '\x16', '\f', 
+		'\t', '\xA7', '\xA8', '\f', '\a', '\x2', '\x2', '\xA8', '\xA9', '\t', 
+		'\x4', '\x2', '\x2', '\xA9', '\xB1', '\x5', '\x16', '\f', '\b', '\xAA', 
+		'\xAB', '\f', '\x6', '\x2', '\x2', '\xAB', '\xAC', '\t', '\x5', '\x2', 
+		'\x2', '\xAC', '\xB1', '\x5', '\x16', '\f', '\a', '\xAD', '\xAE', '\f', 
+		'\x5', '\x2', '\x2', '\xAE', '\xAF', '\t', '\x6', '\x2', '\x2', '\xAF', 
+		'\xB1', '\x5', '\x16', '\f', '\x6', '\xB0', '\xA1', '\x3', '\x2', '\x2', 
+		'\x2', '\xB0', '\xA4', '\x3', '\x2', '\x2', '\x2', '\xB0', '\xA7', '\x3', 
+		'\x2', '\x2', '\x2', '\xB0', '\xAA', '\x3', '\x2', '\x2', '\x2', '\xB0', 
+		'\xAD', '\x3', '\x2', '\x2', '\x2', '\xB1', '\xB4', '\x3', '\x2', '\x2', 
+		'\x2', '\xB2', '\xB0', '\x3', '\x2', '\x2', '\x2', '\xB2', '\xB3', '\x3', 
+		'\x2', '\x2', '\x2', '\xB3', '\x17', '\x3', '\x2', '\x2', '\x2', '\xB4', 
+		'\xB2', '\x3', '\x2', '\x2', '\x2', '\xB5', '\xBD', '\a', '\x44', '\x2', 
+		'\x2', '\xB6', '\xBD', '\a', ' ', '\x2', '\x2', '\xB7', '\xBD', '\a', 
+		'!', '\x2', '\x2', '\xB8', '\xBD', '\x5', '\x1A', '\xE', '\x2', '\xB9', 
+		'\xBD', '\a', '?', '\x2', '\x2', '\xBA', '\xBD', '\a', '\"', '\x2', '\x2', 
+		'\xBB', '\xBD', '\x5', '\x1C', '\xF', '\x2', '\xBC', '\xB5', '\x3', '\x2', 
+		'\x2', '\x2', '\xBC', '\xB6', '\x3', '\x2', '\x2', '\x2', '\xBC', '\xB7', 
+		'\x3', '\x2', '\x2', '\x2', '\xBC', '\xB8', '\x3', '\x2', '\x2', '\x2', 
+		'\xBC', '\xB9', '\x3', '\x2', '\x2', '\x2', '\xBC', '\xBA', '\x3', '\x2', 
+		'\x2', '\x2', '\xBC', '\xBB', '\x3', '\x2', '\x2', '\x2', '\xBD', '\x19', 
+		'\x3', '\x2', '\x2', '\x2', '\xBE', '\xBF', '\a', '\x42', '\x2', '\x2', 
+		'\xBF', '\x1B', '\x3', '\x2', '\x2', '\x2', '\xC0', '\xC1', '\a', '@', 
+		'\x2', '\x2', '\xC1', '\xC3', '\a', '\x38', '\x2', '\x2', '\xC2', '\xC4', 
+		'\x5', '\x16', '\f', '\x2', '\xC3', '\xC2', '\x3', '\x2', '\x2', '\x2', 
+		'\xC3', '\xC4', '\x3', '\x2', '\x2', '\x2', '\xC4', '\xC9', '\x3', '\x2', 
+		'\x2', '\x2', '\xC5', '\xC6', '\a', ':', '\x2', '\x2', '\xC6', '\xC8', 
+		'\x5', '\x16', '\f', '\x2', '\xC7', '\xC5', '\x3', '\x2', '\x2', '\x2', 
+		'\xC8', '\xCB', '\x3', '\x2', '\x2', '\x2', '\xC9', '\xC7', '\x3', '\x2', 
+		'\x2', '\x2', '\xC9', '\xCA', '\x3', '\x2', '\x2', '\x2', '\xCA', '\xCC', 
+		'\x3', '\x2', '\x2', '\x2', '\xCB', '\xC9', '\x3', '\x2', '\x2', '\x2', 
+		'\xCC', '\xCD', '\a', '\x39', '\x2', '\x2', '\xCD', '\x1D', '\x3', '\x2', 
+		'\x2', '\x2', '\xCE', '\xD2', '\x5', ' ', '\x11', '\x2', '\xCF', '\xD1', 
+		'\x5', '\"', '\x12', '\x2', '\xD0', '\xCF', '\x3', '\x2', '\x2', '\x2', 
+		'\xD1', '\xD4', '\x3', '\x2', '\x2', '\x2', '\xD2', '\xD0', '\x3', '\x2', 
+		'\x2', '\x2', '\xD2', '\xD3', '\x3', '\x2', '\x2', '\x2', '\xD3', '\xD6', 
+		'\x3', '\x2', '\x2', '\x2', '\xD4', '\xD2', '\x3', '\x2', '\x2', '\x2', 
+		'\xD5', '\xD7', '\x5', '$', '\x13', '\x2', '\xD6', '\xD5', '\x3', '\x2', 
+		'\x2', '\x2', '\xD6', '\xD7', '\x3', '\x2', '\x2', '\x2', '\xD7', '\xD8', 
+		'\x3', '\x2', '\x2', '\x2', '\xD8', '\xD9', '\a', '\x13', '\x2', '\x2', 
+		'\xD9', '\xDA', '\a', 'J', '\x2', '\x2', '\xDA', '\xDB', '\a', 'R', '\x2', 
+		'\x2', '\xDB', '\x1F', '\x3', '\x2', '\x2', '\x2', '\xDC', '\xDD', '\a', 
+		'\x13', '\x2', '\x2', '\xDD', '\xDE', '\a', '\x46', '\x2', '\x2', '\xDE', 
+		'\xDF', '\x5', '\x16', '\f', '\x2', '\xDF', '\xE3', '\a', 'R', '\x2', 
+		'\x2', '\xE0', '\xE2', '\x5', '\f', '\a', '\x2', '\xE1', '\xE0', '\x3', 
+		'\x2', '\x2', '\x2', '\xE2', '\xE5', '\x3', '\x2', '\x2', '\x2', '\xE3', 
+		'\xE1', '\x3', '\x2', '\x2', '\x2', '\xE3', '\xE4', '\x3', '\x2', '\x2', 
+		'\x2', '\xE4', '!', '\x3', '\x2', '\x2', '\x2', '\xE5', '\xE3', '\x3', 
+		'\x2', '\x2', '\x2', '\xE6', '\xE7', '\a', '\x13', '\x2', '\x2', '\xE7', 
+		'\xE8', '\a', 'G', '\x2', '\x2', '\xE8', '\xE9', '\x5', '\x16', '\f', 
+		'\x2', '\xE9', '\xED', '\a', 'R', '\x2', '\x2', '\xEA', '\xEC', '\x5', 
+		'\f', '\a', '\x2', '\xEB', '\xEA', '\x3', '\x2', '\x2', '\x2', '\xEC', 
+		'\xEF', '\x3', '\x2', '\x2', '\x2', '\xED', '\xEB', '\x3', '\x2', '\x2', 
+		'\x2', '\xED', '\xEE', '\x3', '\x2', '\x2', '\x2', '\xEE', '#', '\x3', 
+		'\x2', '\x2', '\x2', '\xEF', '\xED', '\x3', '\x2', '\x2', '\x2', '\xF0', 
+		'\xF1', '\a', '\x13', '\x2', '\x2', '\xF1', '\xF2', '\a', 'H', '\x2', 
+		'\x2', '\xF2', '\xF6', '\a', 'R', '\x2', '\x2', '\xF3', '\xF5', '\x5', 
+		'\f', '\a', '\x2', '\xF4', '\xF3', '\x3', '\x2', '\x2', '\x2', '\xF5', 
+		'\xF8', '\x3', '\x2', '\x2', '\x2', '\xF6', '\xF4', '\x3', '\x2', '\x2', 
+		'\x2', '\xF6', '\xF7', '\x3', '\x2', '\x2', '\x2', '\xF7', '%', '\x3', 
+		'\x2', '\x2', '\x2', '\xF8', '\xF6', '\x3', '\x2', '\x2', '\x2', '\xF9', 
+		'\xFA', '\a', '\x13', '\x2', '\x2', '\xFA', '\xFB', '\a', 'I', '\x2', 
+		'\x2', '\xFB', '\xFC', '\x5', '\x1A', '\xE', '\x2', '\xFC', '\xFD', '\t', 
+		'\a', '\x2', '\x2', '\xFD', '\xFE', '\x5', '\x16', '\f', '\x2', '\xFE', 
+		'\xFF', '\a', 'R', '\x2', '\x2', '\xFF', '\'', '\x3', '\x2', '\x2', '\x2', 
+		'\x100', '\x101', '\a', '\x13', '\x2', '\x2', '\x101', '\x102', '\a', 
+		'K', '\x2', '\x2', '\x102', '\x103', '\x5', '\x1C', '\xF', '\x2', '\x103', 
+		'\x104', '\a', 'R', '\x2', '\x2', '\x104', ')', '\x3', '\x2', '\x2', '\x2', 
+		'\x105', '\x106', '\a', '\x13', '\x2', '\x2', '\x106', '\x107', '\x5', 
+		',', '\x17', '\x2', '\x107', '\x10F', '\a', 'S', '\x2', '\x2', '\x108', 
+		'\x10A', '\x5', '\x12', '\n', '\x2', '\x109', '\x108', '\x3', '\x2', '\x2', 
+		'\x2', '\x10A', '\x10D', '\x3', '\x2', '\x2', '\x2', '\x10B', '\x109', 
+		'\x3', '\x2', '\x2', '\x2', '\x10B', '\x10C', '\x3', '\x2', '\x2', '\x2', 
+		'\x10C', '\x10E', '\x3', '\x2', '\x2', '\x2', '\x10D', '\x10B', '\x3', 
+		'\x2', '\x2', '\x2', '\x10E', '\x110', '\a', '\x15', '\x2', '\x2', '\x10F', 
+		'\x10B', '\x3', '\x2', '\x2', '\x2', '\x10F', '\x110', '\x3', '\x2', '\x2', 
+		'\x2', '\x110', '+', '\x3', '\x2', '\x2', '\x2', '\x111', '\x117', '\a', 
+		'U', '\x2', '\x2', '\x112', '\x113', '\a', 'T', '\x2', '\x2', '\x113', 
+		'\x114', '\x5', '\x16', '\f', '\x2', '\x114', '\x115', '\a', '\x41', '\x2', 
+		'\x2', '\x115', '\x117', '\x3', '\x2', '\x2', '\x2', '\x116', '\x111', 
+		'\x3', '\x2', '\x2', '\x2', '\x116', '\x112', '\x3', '\x2', '\x2', '\x2', 
+		'\x117', '\x11A', '\x3', '\x2', '\x2', '\x2', '\x118', '\x116', '\x3', 
+		'\x2', '\x2', '\x2', '\x118', '\x119', '\x3', '\x2', '\x2', '\x2', '\x119', 
+		'-', '\x3', '\x2', '\x2', '\x2', '\x11A', '\x118', '\x3', '\x2', '\x2', 
+		'\x2', '\x11B', '\x11D', '\x5', '\x30', '\x19', '\x2', '\x11C', '\x11B', 
+		'\x3', '\x2', '\x2', '\x2', '\x11D', '\x11E', '\x3', '\x2', '\x2', '\x2', 
+		'\x11E', '\x11C', '\x3', '\x2', '\x2', '\x2', '\x11E', '\x11F', '\x3', 
+		'\x2', '\x2', '\x2', '\x11F', '/', '\x3', '\x2', '\x2', '\x2', '\x120', 
+		'\x121', '\a', '\x12', '\x2', '\x2', '\x121', '\x12A', '\x5', '\xE', '\b', 
+		'\x2', '\x122', '\x126', '\a', '\x3', '\x2', '\x2', '\x123', '\x125', 
+		'\x5', '\f', '\a', '\x2', '\x124', '\x123', '\x3', '\x2', '\x2', '\x2', 
+		'\x125', '\x128', '\x3', '\x2', '\x2', '\x2', '\x126', '\x124', '\x3', 
+		'\x2', '\x2', '\x2', '\x126', '\x127', '\x3', '\x2', '\x2', '\x2', '\x127', 
+		'\x129', '\x3', '\x2', '\x2', '\x2', '\x128', '\x126', '\x3', '\x2', '\x2', 
+		'\x2', '\x129', '\x12B', '\a', '\x4', '\x2', '\x2', '\x12A', '\x122', 
+		'\x3', '\x2', '\x2', '\x2', '\x12A', '\x12B', '\x3', '\x2', '\x2', '\x2', 
+		'\x12B', '\x31', '\x3', '\x2', '\x2', '\x2', '\x12C', '\x12D', '\a', '\x13', 
+		'\x2', '\x2', '\x12D', '\x12E', '\a', 'L', '\x2', '\x2', '\x12E', '\x12F', 
+		'\x5', '\x1A', '\xE', '\x2', '\x12F', '\x130', '\a', '#', '\x2', '\x2', 
+		'\x130', '\x133', '\x5', '\x18', '\r', '\x2', '\x131', '\x132', '\a', 
+		';', '\x2', '\x2', '\x132', '\x134', '\x5', '\x36', '\x1C', '\x2', '\x133', 
+		'\x131', '\x3', '\x2', '\x2', '\x2', '\x133', '\x134', '\x3', '\x2', '\x2', 
+		'\x2', '\x134', '\x135', '\x3', '\x2', '\x2', '\x2', '\x135', '\x136', 
+		'\a', 'R', '\x2', '\x2', '\x136', '\x33', '\x3', '\x2', '\x2', '\x2', 
+		'\x137', '\x138', '\a', '\x13', '\x2', '\x2', '\x138', '\x139', '\a', 
+		'M', '\x2', '\x2', '\x139', '\x13A', '\a', '\b', '\x2', '\x2', '\x13A', 
+		'\x13B', '\a', 'R', '\x2', '\x2', '\x13B', '\x35', '\x3', '\x2', '\x2', 
+		'\x2', '\x13C', '\x140', '\a', '<', '\x2', '\x2', '\x13D', '\x140', '\a', 
+		'=', '\x2', '\x2', '\x13E', '\x140', '\a', '>', '\x2', '\x2', '\x13F', 
+		'\x13C', '\x3', '\x2', '\x2', '\x2', '\x13F', '\x13D', '\x3', '\x2', '\x2', 
+		'\x2', '\x13F', '\x13E', '\x3', '\x2', '\x2', '\x2', '\x140', '\x37', 
+		'\x3', '\x2', '\x2', '\x2', '\"', ';', '\x41', 'I', 'R', 'Y', 'h', 'l', 
+		'p', 'u', '}', '\x83', '\x85', '\x9F', '\xB0', '\xB2', '\xBC', '\xC3', 
+		'\xC9', '\xD2', '\xD6', '\xE3', '\xED', '\xF6', '\x10B', '\x10F', '\x116', 
+		'\x118', '\x11E', '\x126', '\x12A', '\x133', '\x13F',
 	};
 
 	public static readonly ATN _ATN =

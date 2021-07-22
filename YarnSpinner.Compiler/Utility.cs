@@ -71,35 +71,30 @@ namespace Yarn.Compiler
 
             foreach (var decl in declarations)
             {
-                if (decl.DeclarationType != Declaration.Type.Variable)
+                if (decl.Type is FunctionType)
                 {
-                    throw new ArgumentOutOfRangeException($"Declaration {decl.name} is a {decl.DeclarationType}; it must be a {nameof(Declaration.Type.Variable)}.");
+                    throw new ArgumentOutOfRangeException($"Declaration {decl.Name} is a {decl.Type.Name}; it must be a variable.");
                 }
 
-                if (string.IsNullOrEmpty(decl.description) == false)
+                if (string.IsNullOrEmpty(decl.Description) == false)
                 {
                     if (count > 0) {
                         // Insert a blank line above this comment, for readibility
                         stringBuilder.AppendLine();
                     }
-                    stringBuilder.AppendLine($"/// {decl.description}");
+                    stringBuilder.AppendLine($"/// {decl.Description}");
                 }
 
-                stringBuilder.Append($"<<declare {decl.name} = ");
+                stringBuilder.Append($"<<declare {decl.Name} = ");
 
-                switch (decl.ReturnType)
-                {
-                    case Yarn.Type.Number:
-                        stringBuilder.Append(decl.defaultValue);
-                        break;
-                    case Yarn.Type.String:
-                        stringBuilder.Append('"' + (string)decl.defaultValue + '"');
-                        break;
-                    case Yarn.Type.Bool:
-                        stringBuilder.Append((bool)decl.defaultValue ? "true" : "false");
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException($"Declaration {decl.name}'s return type must not be {decl.ReturnType}.");
+                if (decl.Type == BuiltinTypes.Number) {
+                    stringBuilder.Append(decl.DefaultValue);
+                } else if (decl.Type == BuiltinTypes.String) {
+                    stringBuilder.Append('"' + (string)decl.DefaultValue + '"');
+                } else if (decl.Type == BuiltinTypes.Boolean) {
+                    stringBuilder.Append((bool)decl.DefaultValue ? "true" : "false");
+                } else {
+                    throw new ArgumentOutOfRangeException($"Declaration {decl.Name}'s type must not be {decl.Type.Name}.");
                 }
 
                 stringBuilder.AppendLine(">>");

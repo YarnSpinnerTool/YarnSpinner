@@ -157,17 +157,6 @@ public partial class YarnSpinnerParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// <return>The visitor result.</return>
 	public virtual Result VisitExpMultDivMod([NotNull] YarnSpinnerParser.ExpMultDivModContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by the <c>expMultDivModEquals</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
-	/// <para>
-	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-	/// on <paramref name="context"/>.
-	/// </para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	public virtual Result VisitExpMultDivModEquals([NotNull] YarnSpinnerParser.ExpMultDivModEqualsContext context) { return VisitChildren(context); }
-	/// <summary>
 	/// Visit a parse tree produced by the <c>expComparison</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
 	/// <para>
@@ -211,17 +200,6 @@ public partial class YarnSpinnerParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	public virtual Result VisitExpAndOrXor([NotNull] YarnSpinnerParser.ExpAndOrXorContext context) { return VisitChildren(context); }
-	/// <summary>
-	/// Visit a parse tree produced by the <c>expPlusMinusEquals</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
-	/// <para>
-	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-	/// on <paramref name="context"/>.
-	/// </para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	public virtual Result VisitExpPlusMinusEquals([NotNull] YarnSpinnerParser.ExpPlusMinusEqualsContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>expAddSub</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
@@ -404,8 +382,7 @@ public partial class YarnSpinnerParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// <return>The visitor result.</return>
 	public virtual Result VisitElse_clause([NotNull] YarnSpinnerParser.Else_clauseContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by the <c>setVariableToValue</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.set_statement"/>.
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.set_statement"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -413,18 +390,7 @@ public partial class YarnSpinnerParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitSetVariableToValue([NotNull] YarnSpinnerParser.SetVariableToValueContext context) { return VisitChildren(context); }
-	/// <summary>
-	/// Visit a parse tree produced by the <c>setExpression</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.set_statement"/>.
-	/// <para>
-	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-	/// on <paramref name="context"/>.
-	/// </para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	public virtual Result VisitSetExpression([NotNull] YarnSpinnerParser.SetExpressionContext context) { return VisitChildren(context); }
+	public virtual Result VisitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.call_statement"/>.
 	/// <para>

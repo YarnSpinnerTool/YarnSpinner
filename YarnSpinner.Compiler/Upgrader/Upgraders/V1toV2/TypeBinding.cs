@@ -20,7 +20,7 @@ namespace Yarn.Compiler.Upgrader
     internal struct TypeBinding
     {
         public string VariableName;
-        public Yarn.Type Type;
+        public Yarn.IType Type;
 
         public override bool Equals(object obj)
         {
@@ -33,7 +33,10 @@ namespace Yarn.Compiler.Upgrader
         {
             int hashCode = 2098139523;
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.VariableName);
-            hashCode = (hashCode * -1521134295) + this.Type.GetHashCode();
+            if (Type != null) {
+                hashCode = (hashCode * -1521134295) + this.Type.GetHashCode();
+
+            }
             return hashCode;
         }
 
@@ -55,7 +58,7 @@ namespace Yarn.Compiler.Upgrader
             {
                 // If there is precisely one type binding, keep it, if it's
                 // defined
-                var definedBindings = bindingGroup.Where(b => b.Type != Type.Undefined);
+                var definedBindings = bindingGroup.Where(b => b.Type != BuiltinTypes.Undefined);
 
                 if (definedBindings.Count() == 1)
                 {
@@ -65,7 +68,7 @@ namespace Yarn.Compiler.Upgrader
                 // Otherwise, this type is undefined, because either it has
                 // too many defined bindings, or only has an undefined
                 // binding
-                return new TypeBinding { VariableName = bindingGroup.Key, Type = Type.Undefined };
+                return new TypeBinding { VariableName = bindingGroup.Key, Type = BuiltinTypes.Undefined };
             }).ToList();
 
             return unifiedVariableBindings;

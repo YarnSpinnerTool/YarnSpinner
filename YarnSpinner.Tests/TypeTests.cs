@@ -41,7 +41,7 @@ namespace YarnSpinner.Tests
             var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
                     Name = "$int",
-                    ReturnType = Yarn.Type.Number,
+                    Type = BuiltinTypes.Number,
                     DefaultValue = 5f,
                     SourceNodeLine = 1,
                     SourceNodeName = "Start",
@@ -49,7 +49,7 @@ namespace YarnSpinner.Tests
                 },
                 new Declaration {
                     Name = "$str",
-                    ReturnType = Yarn.Type.String,
+                    Type = BuiltinTypes.String,
                     DefaultValue = "yes",
                     SourceNodeLine = 2,
                     SourceNodeName = "Start",
@@ -57,7 +57,7 @@ namespace YarnSpinner.Tests
                 },
                 new Declaration {
                     Name = "$bool",
-                    ReturnType = Yarn.Type.Bool,
+                    Type = BuiltinTypes.Boolean,
                     DefaultValue = true,
                     SourceNodeLine = 11,
                     SourceNodeName = "Start",
@@ -73,9 +73,8 @@ namespace YarnSpinner.Tests
                 Declaration actual = actualDeclarations[i];
 
                 Assert.Equal(expected.Name, actual.Name);
-                Assert.Equal(expected.ReturnType, actual.ReturnType);
+                Assert.Equal(expected.Type, actual.Type);
                 Assert.Equal(expected.DefaultValue, actual.DefaultValue);
-                Assert.Equal(expected.DeclarationType, actual.DeclarationType);
                 Assert.Equal(expected.SourceNodeLine, actual.SourceNodeLine);
                 Assert.Equal(expected.SourceNodeName, actual.SourceNodeName);
                 Assert.Equal(expected.SourceFileName, actual.SourceFileName);
@@ -118,7 +117,7 @@ namespace YarnSpinner.Tests
             var declarations = new[] {
                 new Declaration {
                     Name = "$int",
-                    ReturnType = Yarn.Type.Number,
+                    Type = BuiltinTypes.Number,
                     DefaultValue = 0,
                 }
             };
@@ -379,17 +378,17 @@ namespace YarnSpinner.Tests
             compilationJob.VariableDeclarations = new[] {
                 new Declaration {
                     Name = "$external_str",
-                    ReturnType = Yarn.Type.String,
+                    Type = BuiltinTypes.String,
                     DefaultValue = "Hello",
                 },
                 new Declaration {
                     Name = "$external_int",
-                    ReturnType = Yarn.Type.Bool,
+                    Type = BuiltinTypes.Boolean,
                     DefaultValue = true,
                 },
                 new Declaration {
                     Name = "$external_bool",
-                    ReturnType = Yarn.Type.Number,
+                    Type = BuiltinTypes.Number,
                     DefaultValue = 42,
                 },
             };
@@ -468,49 +467,49 @@ namespace YarnSpinner.Tests
             var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
                     Name = "$prefix_int",
-                    ReturnType = Yarn.Type.Number,
+                    Type = BuiltinTypes.Number,
                     DefaultValue = 42f,
                     Description = "a number",
                 },
                 new Declaration {
                     Name = "$prefix_str",
-                    ReturnType = Yarn.Type.String,
+                    Type = BuiltinTypes.String,
                     DefaultValue = "Hello",
                     Description = "a string",
                 },
                 new Declaration {
                     Name = "$prefix_bool",
-                    ReturnType = Yarn.Type.Bool,
+                    Type = BuiltinTypes.Boolean,
                     DefaultValue = true,
                     Description = "a bool",
                 },
                 new Declaration {
                     Name = "$suffix_int",
-                    ReturnType = Yarn.Type.Number,
+                    Type = BuiltinTypes.Number,
                     DefaultValue = 42f,
                     Description = "a number",
                 },
                 new Declaration {
                     Name = "$suffix_str",
-                    ReturnType = Yarn.Type.String,
+                    Type = BuiltinTypes.String,
                     DefaultValue = "Hello",
                     Description = "a string",
                 },
                 new Declaration {
                     Name = "$suffix_bool",
-                    ReturnType = Yarn.Type.Bool,
+                    Type = BuiltinTypes.Boolean,
                     DefaultValue = true,
                     Description = "a bool",
                 },
                 new Declaration {
                     Name = "$none_int",
-                    ReturnType = Yarn.Type.Number,
+                    Type = BuiltinTypes.Number,
                     DefaultValue = 42f,
                     Description = null,
                 },
                 new Declaration {
                     Name = "$multiline",
-                    ReturnType = Yarn.Type.Number,
+                    Type = BuiltinTypes.Number,
                     DefaultValue = 42f,
                     Description = "Multi-line doc comment",
                 },
@@ -526,9 +525,8 @@ namespace YarnSpinner.Tests
                 Declaration actual = actualDeclarations[i];
 
                 Assert.Equal(expected.Name, actual.Name);
-                Assert.Equal(expected.ReturnType, actual.ReturnType);
+                Assert.Equal(expected.Type, actual.Type);
                 Assert.Equal(expected.DefaultValue, actual.DefaultValue);
-                Assert.Equal(expected.DeclarationType, actual.DeclarationType);
                 Assert.Equal(expected.Description, actual.Description);
             }
 
@@ -660,7 +658,7 @@ namespace YarnSpinner.Tests
             // Both declarations that resulted from the compile should be functions found on line 1
             foreach (var decl in result.Declarations) {
                 Assert.Equal(1, decl.SourceNodeLine);
-                Assert.Equal(Declaration.Type.Function, decl.DeclarationType);
+                Assert.IsType<FunctionType>(decl.Type);
             }
 
             dialogue.SetProgram(result.Program);

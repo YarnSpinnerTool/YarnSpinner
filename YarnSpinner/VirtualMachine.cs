@@ -26,98 +26,73 @@ namespace Yarn
         }
     }
 
-    internal enum TokenType {
+    /// <summary>
+    /// Lists the available operators that can be used with Yarn values.
+    /// </summary>
+    internal enum Operator
+    {
+        /// <summary>A unary operator that returns its input.</summary>
+        None,
 
+        /// <summary>A binary operator that represents equality.</summary>
+        EqualTo,
 
-        // Special tokens
-        Whitespace,
-        Indent,
-        Dedent,
-        EndOfLine,
-        EndOfInput,
+        /// <summary>A binary operator that represents a value being
+        /// greater than another.</summary>
+        GreaterThan,
 
-        // Numbers. Everybody loves a number
-        Number,
+        /// <summary>A binary operator that represents a value being
+        /// greater than or equal to another.</summary>
+        GreaterThanOrEqualTo,
 
-        // Strings. Everybody also loves a string
-        String,
+        /// <summary>A binary operator that represents a value being less
+        /// than another.</summary>
+        LessThan,
 
-        // '#'
-        TagMarker,
+        /// <summary>A binary operator that represents a value being less
+        /// than or equal to another.</summary>
+        LessThanOrEqualTo,
 
-        // Command syntax ("<<foo>>")
-        BeginCommand,
-        EndCommand,
+        /// <summary>A binary operator that represents
+        /// inequality.</summary>
+        NotEqualTo,
 
-        // Variables ("$foo")
-        Variable,
+        /// <summary>A binary operator that represents a logical
+        /// or.</summary>
+        Or,
 
-        // Shortcut syntax ("->")
-        ShortcutOption,
+        /// <summary>A binary operator that represents a logical
+        /// and.</summary>
+        And,
 
-        // Option syntax ("[[Let's go here|Destination]]")
-        OptionStart, // [[
-        OptionDelimit, // |
-        OptionEnd, // ]]
+        /// <summary>A binary operator that represents a logical exclusive
+        /// or.</summary>
+        Xor,
 
-        // Command types (specially recognised command word)
-        If,
-        ElseIf,
-        Else,
-        EndIf,
-        Set,
+        /// <summary>A binary operator that represents a logical
+        /// not.</summary>
+        Not,
 
-        // Boolean values
-        True,
-        False,
+        /// <summary>A unary operator that represents negation.</summary>
+        UnaryMinus,
 
-        // The null value
-        Null,
+        /// <summary>A binary operator that represents addition.</summary>
+        Add,
 
-        // Parentheses
-        LeftParen,
-        RightParen,
+        /// <summary>A binary operator that represents
+        /// subtraction.</summary>
+        Minus,
 
-        // Parameter delimiters
-        Comma,
+        /// <summary>A binary operator that represents
+        /// multiplication.</summary>
+        Multiply,
 
-        // Operators
-        EqualTo, // ==, eq, is
-        GreaterThan, // >, gt
-        GreaterThanOrEqualTo, // >=, gte
-        LessThan, // <, lt
-        LessThanOrEqualTo, // <=, lte
-        NotEqualTo, // !=, neq
+        /// <summary>A binary operator that represents division.</summary>
+        Divide,
 
-        // Logical operators
-        Or, // ||, or
-        And, // &&, and
-        Xor, // ^, xor
-        Not, // !, not
-
-        // this guy's special because '=' can mean either 'equal to'
-        // or 'becomes' depending on context
-        EqualToOrAssign, // =, to
-
-        UnaryMinus, // -; this is differentiated from Minus
-                    // when parsing expressions
-
-        Add, // +
-        Minus, // -
-        Multiply, // *
-        Divide, // /
-        Modulo, // %
-
-        AddAssign, // +=
-        MinusAssign, // -=
-        MultiplyAssign, // *=
-        DivideAssign, // /=
-
-        Comment, // a run of text that we ignore
-
-        Identifier, // a single word (used for functions)
-
-        Text // a run of text until we hit other syntax
+        /// <summary>A binary operator that represents the remainder
+        /// operation.</summary>
+        Modulo,
     }
 
     internal class VirtualMachine
@@ -125,55 +100,80 @@ namespace Yarn
 
         internal class State {
 
-            /// <summary>The name of the node that we're currently in.</summary>
+            /// <summary>The name of the node that we're currently
+            /// in.</summary>
             public string currentNodeName;
 
-            /// <summary>The instruction number in the current node.</summary>
+            /// <summary>The instruction number in the current
+            /// node.</summary>
             public int programCounter = 0;
 
-            /// <summary>List of options, where each option = (Line, destination node, enabled flag).</summary>
+            /// <summary>The current list of options that will be delivered
+            /// when the next RunOption instruction is
+            /// encountered.</summary>
             public List<(Line line, string destination, bool enabled)> currentOptions = new List<(Line line, string destination, bool enabled)>();
 
             /// <summary>The value stack.</summary>
             private Stack<Value> stack = new Stack<Value>();
 
-            /// <summary>Pushes a value onto the stack.</summary>
-            public void PushValue(object o) {
-                if( o is Value ) {
-                    stack.Push(o as Value);
-                } else {
-                    stack.Push (new Value(o));
-                }
+            /// <summary>Pushes a <see cref="Value"/> object onto the
+            /// stack.</summary>
+            /// <param name="v">The value to push onto the stack.</param>
+            public void PushValue(Value v)
+            {
+                stack.Push(v);
             }
 
-            /// <summary>Pops a value from the stack.</summary>
-            public Value PopValue() {
-                return stack.Pop ();
+            public void PushValue(string s)
+            {
+                stack.Push(new Value(BuiltinTypes.String, s));
+            }
+
+            public void PushValue(float f)
+            {
+                stack.Push(new Value(BuiltinTypes.Number, f));
+            }
+
+            public void PushValue(bool b)
+            {
+                stack.Push(new Value(BuiltinTypes.Boolean, b));
+            }
+
+            /// <summary>Removes a value from the top of the stack, and
+            /// returns it.</summary>
+            /// <returns>The value that was at the top of the stack when
+            /// this method was called.</returns>
+            public Value PopValue()
+            {
+                return stack.Pop();
             }
 
             /// <summary>Peeks at a value from the stack.</summary>
-            public Value PeekValue() {
-                return stack.Peek ();
+            /// <returns>The value at the top of the stack.</returns>
+            public Value PeekValue()
+            {
+                return stack.Peek();
             }
 
             /// <summary>Clears the stack.</summary>
-            public void ClearStack() {
-                stack.Clear ();
+            public void ClearStack()
+            {
+                stack.Clear();
             }
         }
-        
-        internal VirtualMachine (Dialogue d)
+
+        internal VirtualMachine(Dialogue d)
         {
             dialogue = d;
-            state = new State ();
-        }
-
-        /// Reset the state of the VM
-        internal void ResetState() {
             state = new State();
         }
 
-        
+        /// Reset the state of the VM
+        internal void ResetState()
+        {
+            state = new State();
+        }
+
         public LineHandler LineHandler;
         public OptionsHandler OptionsHandler;
         public CommandHandler CommandHandler;
@@ -638,13 +638,17 @@ namespace Yarn
                         
                         // Invoke the function
                         try {
-                            object returnValue = function.DynamicInvoke(parametersToUse);
+                            IConvertible returnValue = (IConvertible) function.DynamicInvoke(parametersToUse);
                             // If the function returns a value, push it
                             bool functionReturnsValue = function.Method.ReturnType != typeof(void);
 
                             if (functionReturnsValue)
                             {
-                                state.PushValue(new Value(returnValue));
+                                if (BuiltinTypes.TypeMappings.TryGetValue(returnValue.GetType(), out var yarnType)) {
+                                    Value yarnValue = new Value(yarnType, returnValue);
+
+                                    this.state.PushValue(yarnValue);
+                                }
                             }
                         } catch (System.Reflection.TargetInvocationException ex) {
                             // The function threw an exception. Re-throw the exception it threw.
@@ -663,11 +667,23 @@ namespace Yarn
                         
                         Value loadedValue;
                         
-                        var didLoadValue = dialogue.VariableStorage.TryGetValue<object>(variableName, out var loadedObject);
+                        var didLoadValue = dialogue.VariableStorage.TryGetValue<IConvertible>(variableName, out var loadedObject);
 
+                        
                         if (didLoadValue)
                         {
-                            loadedValue = new Value(loadedObject);
+                            System.Type loadedObjectType = loadedObject.GetType();
+
+                            var hasType = BuiltinTypes.TypeMappings.TryGetValue(loadedObjectType, out var yarnType);
+
+                            if (hasType)
+                            {
+                                loadedValue = new Value(yarnType, loadedObject);
+                            }
+                            else
+                            {
+                                throw new InvalidOperationException($"No Yarn type found for {loadedObjectType}");
+                            }
                         }
                         else
                         {
@@ -680,13 +696,13 @@ namespace Yarn
                                 switch (value.ValueCase)
                                 {
                                     case Operand.ValueOneofCase.StringValue:
-                                        loadedValue = new Value(value.StringValue);
+                                        loadedValue = new Value(BuiltinTypes.String, value.StringValue);
                                         break;
                                     case Operand.ValueOneofCase.BoolValue:
-                                        loadedValue = new Value(value.BoolValue);
+                                        loadedValue = new Value(BuiltinTypes.Boolean, value.BoolValue);
                                         break;
                                     case Operand.ValueOneofCase.FloatValue:
-                                        loadedValue = new Value(value.FloatValue);
+                                        loadedValue = new Value(BuiltinTypes.Number, value.FloatValue);
                                         break;
                                     default:
                                         throw new ArgumentOutOfRangeException($"Unknown initial value type {value.ValueCase} for variable {variableName}");
@@ -697,6 +713,7 @@ namespace Yarn
                                 throw new InvalidOperationException($"Variable storage returned a null value for variable {variableName}");
                             }
                         }
+
                         state.PushValue(loadedValue);
 
                         break;
@@ -710,21 +727,15 @@ namespace Yarn
                         var topValue = state.PeekValue();
                         var destinationVariableName = i.Operands[0].StringValue;
 
-                        switch (topValue.type)
-                        {
-                            case Type.Number:
-                                dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<float>());
-                                break;
-                            case Type.String:
-                                dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<string>());
-                                break;
-                            case Type.Bool:
-                                dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<bool>());
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException($"Invalid Yarn value type {topValue.type}");
+                        if (topValue.Type == BuiltinTypes.Number) {
+                            dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<float>());
+                        } else if (topValue.Type == BuiltinTypes.String) {
+                            dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<string>());
+                        } else if (topValue.Type == BuiltinTypes.Boolean) {
+                            dialogue.VariableStorage.SetValue(destinationVariableName, topValue.ConvertTo<bool>());
+                        } else {
+                            throw new ArgumentOutOfRangeException($"Invalid Yarn value type {topValue.Type}");
                         }
-                        
 
                         break;
                     }

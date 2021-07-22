@@ -59,14 +59,12 @@ line_condition
 
 expression
     : '(' expression ')' #expParens
-    | <assoc=right>'-' expression #expNegative
-    | <assoc=right>OPERATOR_LOGICAL_NOT expression #expNot
+    | <assoc=right>op='-' expression #expNegative
+    | <assoc=right>op=OPERATOR_LOGICAL_NOT expression #expNot
     | expression op=('*' | '/' | '%') expression #expMultDivMod
     | expression op=('+' | '-') expression #expAddSub
     | expression op=(OPERATOR_LOGICAL_LESS_THAN_EQUALS | OPERATOR_LOGICAL_GREATER_THAN_EQUALS | OPERATOR_LOGICAL_LESS | OPERATOR_LOGICAL_GREATER ) expression #expComparison
     | expression op=(OPERATOR_LOGICAL_EQUALS | OPERATOR_LOGICAL_NOT_EQUALS) expression #expEquality
-    | variable op=('*=' | '/=' | '%=') expression #expMultDivModEquals
-    | variable op=('+=' | '-=') expression #expPlusMinusEquals
     | expression op=(OPERATOR_LOGICAL_AND | OPERATOR_LOGICAL_OR | OPERATOR_LOGICAL_XOR) expression #expAndOrXor
     | type '(' expression ')' #expTypeConversion
     | value #expValue
@@ -109,8 +107,7 @@ else_clause
     ;
 
 set_statement
-    : COMMAND_START COMMAND_SET variable OPERATOR_ASSIGNMENT expression COMMAND_END #setVariableToValue
-    | COMMAND_START COMMAND_SET expression COMMAND_END #setExpression
+    : COMMAND_START COMMAND_SET variable op=(OPERATOR_ASSIGNMENT | '*=' | '/=' | '%=' | '+=' | '-=') expression COMMAND_END 
     ;
 
 call_statement

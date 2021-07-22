@@ -30,6 +30,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 <<declare $are_the_droids_we're_looking_for = false>>
 ```
 
+- The type-checking system in Yarn Spinner now supports types with supertypes and methods.
+  This change has no significant impact on users writing Yarn scripts, but it enables the
+  development of more advanced language features. 
+  - The main impact on users of this library (such as, for example, Yarn Spinner for
+    Unity) is that the `Yarn.Type` enumeration has been removed, and is now replaced with
+    the `Yarn.IType` interface and the `BuiltinTypes` class.
+
 ### Changed
 
 - Variable declaration upgrader now generates .yarnproject files, not .yarnprogram files.

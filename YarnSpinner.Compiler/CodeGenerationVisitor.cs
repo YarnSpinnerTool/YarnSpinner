@@ -21,7 +21,6 @@ namespace Yarn.Compiler
         public CodeGenerationVisitor(Compiler compiler)
         {
             this.compiler = compiler;
-            this.loadOperators();
         }
 
         private int GenerateCodeForExpressionsInFormattedText(IList<IParseTree> nodes)
@@ -96,36 +95,36 @@ namespace Yarn.Compiler
 
         // A set command: explicitly setting a value to an expression <<set
         // $foo to 1>>
-        public override int VisitSetVariableToValue(YarnSpinnerParser.SetVariableToValueContext context)
+        public override int VisitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context)
         {
-            // add the expression (whatever it resolves to)
-            Visit(context.expression());
-
+            // Ensure that the correct result is on the stack by evaluating
+            // the expression. If this assignment includes an operation
+            // (e.g. +=), do that work here too.
+            switch (context.op.Type) {
+                case YarnSpinnerLexer.OPERATOR_ASSIGNMENT:
+                    Visit(context.expression());
+                    break;
+                case YarnSpinnerLexer.OPERATOR_MATHS_ADDITION_EQUALS:
+                    GenerateCodeForOperation(Operator.Add, context.expression().Type, context.variable(), context.expression());
+                    break;
+                case YarnSpinnerLexer.OPERATOR_MATHS_SUBTRACTION_EQUALS:
+                    GenerateCodeForOperation(Operator.Minus, context.expression().Type, context.variable(), context.expression());
+                    break;
+                case YarnSpinnerLexer.OPERATOR_MATHS_MULTIPLICATION_EQUALS:
+                    GenerateCodeForOperation(Operator.Multiply, context.expression().Type, context.variable(), context.expression());
+                    break;
+                case YarnSpinnerLexer.OPERATOR_MATHS_DIVISION_EQUALS:
+                    GenerateCodeForOperation(Operator.Divide, context.expression().Type, context.variable(), context.expression());
+                    break;
+                case YarnSpinnerLexer.OPERATOR_MATHS_MODULUS_EQUALS:
+                    GenerateCodeForOperation(Operator.Modulo, context.expression().Type, context.variable(), context.expression());
+                    break;
+            }
+            
             // now store the variable and clean up the stack
             string variableName = context.variable().GetText();
             compiler.Emit(OpCode.StoreVariable, new Operand(variableName));
             compiler.Emit(OpCode.Pop);
-            return 0;
-        }
-
-        // A set command: evaluating an expression where the operator is an
-        // assignment-type
-        public override int VisitSetExpression(YarnSpinnerParser.SetExpressionContext context)
-        {
-            // checking the expression is of the correct form
-            var expression = context.expression();
-            // TODO: is there really no more elegant way of doing this?!
-            if (expression is YarnSpinnerParser.ExpMultDivModEqualsContext ||
-                expression is YarnSpinnerParser.ExpPlusMinusEqualsContext)
-            {
-                // run the expression, it handles it from here
-                Visit(expression);
-            }
-            else
-            {
-                // throw an error
-                throw new ParseException(context, "Invalid expression inside assignment statement");
-            }
             return 0;
         }
 
@@ -375,29 +374,15 @@ namespace Yarn.Compiler
         // -expression
         public override int VisitExpNegative(YarnSpinnerParser.ExpNegativeContext context)
         {
-            Visit(context.expression());
-
-            // TODO: temp operator call
-
-            // Indicate that we are pushing one parameter
-            compiler.Emit(OpCode.PushFloat, new Operand(1));
-
-            compiler.Emit(OpCode.CallFunc, new Operand(TokenType.UnaryMinus.ToString()));
-
+            GenerateCodeForOperation(Operator.UnaryMinus, context.Type, context.expression());
+            
             return 0;
         }
 
         // (not NOT !)expression
         public override int VisitExpNot(YarnSpinnerParser.ExpNotContext context)
         {
-            Visit(context.expression());
-
-            // TODO: temp operator call
-
-            // Indicate that we are pushing one parameter
-            compiler.Emit(OpCode.PushFloat, new Operand(1));
-
-            compiler.Emit(OpCode.CallFunc, new Operand(TokenType.Not.ToString()));
+            GenerateCodeForOperation(Operator.Not, context.Type, context.expression());
 
             return 0;
         }
@@ -409,26 +394,51 @@ namespace Yarn.Compiler
         }
         #endregion
 
-        // left OPERATOR right style expressions the most common form of
-        // expressions for things like 1 + 3
         #region lValueOperatorrValueCalls
-        internal void genericExpVisitor(YarnSpinnerParser.ExpressionContext left, YarnSpinnerParser.ExpressionContext right, int op)
+        
+        /// <summary>
+        /// Emits code that calls a method appropriate for the operator
+        /// <paramref name="op"/> on the type <paramref name="type"/>,
+        /// given the operands <paramref name="operands"/>.
+        /// </summary>
+        /// <param name="op">The operation to perform on <paramref
+        /// name="operands"/>.</param>
+        /// <param name="type">The type of the expression.</param>
+        /// <param name="operands">The operands to perform the operation
+        /// <paramref name="op"/> on.</param>
+        private void GenerateCodeForOperation(Operator op, Yarn.IType type, params ParserRuleContext[] operands)
         {
-            Visit(left);
-            Visit(right);
+            // Generate code for each of the operands, so that their value
+            // is now on the stack.
+            foreach (var operand in operands)
+            {
+                this.Visit(operand);
+            }
 
-            // TODO: temp operator call
+            // Indicate that we are pushing this many items for comparison
+            this.compiler.Emit(OpCode.PushFloat, new Operand(operands.Length));
 
-            // Indicate that we are pushing two items for comparison
-            compiler.Emit(OpCode.PushFloat, new Operand(2));
+            // Figure out the canonical name for the method that the VM
+            // should invoke in order to perform this work
+            Yarn.IType implementingType = TypeUtil.FindImplementingTypeForMethod(type, op.ToString());
 
-            compiler.Emit(OpCode.CallFunc, new Operand(tokens[op].ToString()));
+            // Couldn't find an implementation method? That's an error! The
+            // type checker should have caught this.
+            if (implementingType == null)
+            {
+                throw new TypeException($"Internal error: Codegen failed to get implementation type for {op} given input type {type.Name}.");
+            }
+
+            string functionName = TypeUtil.GetCanonicalNameForMethod(implementingType, op.ToString());
+
+            // Call that function.
+            this.compiler.Emit(OpCode.CallFunc, new Operand(functionName));
         }
 
         // * / %
         public override int VisitExpMultDivMod(YarnSpinnerParser.ExpMultDivModContext context)
         {
-            genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
+            GenerateCodeForOperation(TokensToOperators[context.op.Type], context.Type, context.expression(0), context.expression(1));
 
             return 0;
         }
@@ -436,14 +446,14 @@ namespace Yarn.Compiler
         // + -
         public override int VisitExpAddSub(YarnSpinnerParser.ExpAddSubContext context)
         {
-            genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
+            GenerateCodeForOperation(TokensToOperators[context.op.Type], context.Type, context.expression(0), context.expression(1));
 
             return 0;
         }
         // < <= > >=
         public override int VisitExpComparison(YarnSpinnerParser.ExpComparisonContext context)
         {
-            genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
+            GenerateCodeForOperation(TokensToOperators[context.op.Type], context.Type, context.expression(0), context.expression(1));
 
             return 0;
         }
@@ -451,7 +461,7 @@ namespace Yarn.Compiler
         // == !=
         public override int VisitExpEquality(YarnSpinnerParser.ExpEqualityContext context)
         {
-            genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
+            GenerateCodeForOperation(TokensToOperators[context.op.Type], context.Type, context.expression(0), context.expression(1));
 
             return 0;
         }
@@ -459,54 +469,7 @@ namespace Yarn.Compiler
         // and && or || xor ^
         public override int VisitExpAndOrXor(YarnSpinnerParser.ExpAndOrXorContext context)
         {
-            genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
-
-            return 0;
-        }
-        #endregion
-
-        // operatorEquals style operators, eg += these two should only be
-        // called during a SET operation eg << set $var += 1 >> the left
-        // expression has to be a variable the right value can be anything
-        #region operatorEqualsCalls
-        // generic helper for these types of expressions
-        internal void opEquals(YarnSpinnerParser.VariableContext variable, YarnSpinnerParser.ExpressionContext expression, int op)
-        {
-
-            var varName = variable.GetText();
-
-            // Get the current value of the variable
-            compiler.Emit(OpCode.PushVariable, new Operand(varName));
-
-            // run the expression
-            Visit(expression);
-
-            // Stack now contains [currentValue, expressionValue]
-
-            // Indicate that we are pushing two items for comparison
-            compiler.Emit(OpCode.PushFloat, new Operand(2));
-
-            // now we evaluate the operator op will match to one of + - / *
-            // %
-            compiler.Emit(OpCode.CallFunc, new Operand(tokens[op].ToString()));
-
-            // Stack now has the destination value now store the variable
-            // and clean up the stack
-            compiler.Emit(OpCode.StoreVariable, new Operand(varName));
-            compiler.Emit(OpCode.Pop);
-        }
-        // *= /= %=
-        public override int VisitExpMultDivModEquals(YarnSpinnerParser.ExpMultDivModEqualsContext context)
-        {
-            // call the helper to deal with this
-            opEquals(context.variable(), context.expression(), context.op.Type);
-            return 0;
-        }
-        // += -=
-        public override int VisitExpPlusMinusEquals(YarnSpinnerParser.ExpPlusMinusEqualsContext context)
-        {
-            // call the helper to deal with this
-            opEquals(context.variable(), context.expression(), context.op.Type);
+            GenerateCodeForOperation(TokensToOperators[context.op.Type], context.Type, context.expression(0), context.expression(1));
 
             return 0;
         }
@@ -624,34 +587,24 @@ namespace Yarn.Compiler
         }
 
         // TODO: figure out a better way to do operators
-        Dictionary<int, TokenType> tokens = new Dictionary<int, TokenType>();
-        private void loadOperators()
+        internal static readonly Dictionary<int, Operator> TokensToOperators = new Dictionary<int, Operator>
         {
             // operators for the standard expressions
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_LESS_THAN_EQUALS] = TokenType.LessThanOrEqualTo;
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_GREATER_THAN_EQUALS] = TokenType.GreaterThanOrEqualTo;
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_LESS] = TokenType.LessThan;
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_GREATER] = TokenType.GreaterThan;
-
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_EQUALS] = TokenType.EqualTo;
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_NOT_EQUALS] = TokenType.NotEqualTo;
-
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_AND] = TokenType.And;
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_OR] = TokenType.Or;
-            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_XOR] = TokenType.Xor;
-
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_ADDITION] = TokenType.Add;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_SUBTRACTION] = TokenType.Minus;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_MULTIPLICATION] = TokenType.Multiply;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_DIVISION] = TokenType.Divide;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_MODULUS] = TokenType.Modulo;
-            // operators for the set expressions these map directly to the
-            // operator if they didn't have the =
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_ADDITION_EQUALS] = TokenType.Add;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_SUBTRACTION_EQUALS] = TokenType.Minus;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_MULTIPLICATION_EQUALS] = TokenType.Multiply;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_DIVISION_EQUALS] = TokenType.Divide;
-            tokens[YarnSpinnerLexer.OPERATOR_MATHS_MODULUS_EQUALS] = TokenType.Modulo;
-        }
+            { YarnSpinnerLexer.OPERATOR_LOGICAL_LESS_THAN_EQUALS, Operator.LessThanOrEqualTo },
+            { YarnSpinnerLexer.OPERATOR_LOGICAL_GREATER_THAN_EQUALS, Operator.GreaterThanOrEqualTo },
+            { YarnSpinnerLexer.OPERATOR_LOGICAL_LESS, Operator.LessThan },
+            { YarnSpinnerLexer.OPERATOR_LOGICAL_GREATER, Operator.GreaterThan },
+            { YarnSpinnerLexer.OPERATOR_LOGICAL_EQUALS, Operator.EqualTo },
+            { YarnSpinnerLexer.OPERATOR_LOGICAL_NOT_EQUALS, Operator.NotEqualTo },
+            { YarnSpinnerLexer.OPERATOR_LOGICAL_AND, Operator.And },
+            { YarnSpinnerLexer.OPERATOR_LOGICAL_OR, Operator.Or },
+            { YarnSpinnerLexer.OPERATOR_LOGICAL_XOR, Operator.Xor },
+            { YarnSpinnerLexer.OPERATOR_LOGICAL_NOT, Operator.Not },
+            { YarnSpinnerLexer.OPERATOR_MATHS_ADDITION, Operator.Add },
+            { YarnSpinnerLexer.OPERATOR_MATHS_SUBTRACTION, Operator.Minus },
+            { YarnSpinnerLexer.OPERATOR_MATHS_MULTIPLICATION, Operator.Multiply },
+            { YarnSpinnerLexer.OPERATOR_MATHS_DIVISION, Operator.Divide },
+            { YarnSpinnerLexer.OPERATOR_MATHS_MODULUS, Operator.Modulo },
+        };
     }
 }
