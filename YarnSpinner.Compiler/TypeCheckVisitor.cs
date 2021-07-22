@@ -396,6 +396,7 @@ namespace Yarn.Compiler
 
         public override Yarn.Type VisitIf_clause(YarnSpinnerParser.If_clauseContext context)
         {
+            VisitChildren(context);
             // If clauses are required to be boolean
             var expressions = new[] { context.expression() };
             return CheckOperation(context, expressions, "if statement", Yarn.Type.Bool);
@@ -403,6 +404,7 @@ namespace Yarn.Compiler
 
         public override Yarn.Type VisitElse_if_clause(YarnSpinnerParser.Else_if_clauseContext context)
         {
+            VisitChildren(context);
             // Else if clauses are required to be boolean
             var expressions = new[] { context.expression() };
             return CheckOperation(context, expressions, "if statement", Yarn.Type.Bool);

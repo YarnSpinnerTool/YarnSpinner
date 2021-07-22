@@ -36,6 +36,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Line tagger now adds line tags before any `//` comment in the line.
 - Dialogue: `LogErrorMessage` and `LogDebugMessage` now perform null-checks before being invoked.
 - `Utility.GenerateYarnFileWithDeclarations` now generates files that use triple-slash (`///`) comments.
+- Fixed a bug where expressions inside an `if` statement or `elseif` statement would not be type-checked.
 
 ### Removed
 
