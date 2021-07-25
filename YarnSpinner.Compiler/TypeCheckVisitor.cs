@@ -335,7 +335,7 @@ namespace Yarn.Compiler
             {
                 // We still don't know what type of expression this is, and
                 // don't have a reasonable guess.
-                throw new TypeException(context, $"Type of expression {context.GetText()} can't be determined without more context. Use a type cast on at least one of the terms (e.g. the string(), number(), bool() functions)", sourceFileName);
+                throw new TypeException(context, $"Type of expression "{context.GetTextWithWhitespace()}"" can't be determined without more context. Use a type cast on at least one of the terms (e.g. the string(), number(), bool() functions)", sourceFileName);
             }
 
             // Were any of the terms variables for which we don't currently
