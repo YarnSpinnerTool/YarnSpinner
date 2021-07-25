@@ -251,10 +251,7 @@ namespace YarnSpinner.Tests
             dialogue.Library.RegisterFunction("func_int_int_bool", (int i, int j) => true);
             dialogue.Library.RegisterFunction("func_string_string_bool", (string i, string j) => true);
 
-            var correctSource = CreateTestNode($@"
-                <<declare $bool = false>>
-                <<set $bool = func_string_string_bool(""1"", ""2"")>>
-            ");
+            var correctSource = CreateTestNode(source);
 
             // Should compile with no exceptions
             Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, dialogue.Library));
