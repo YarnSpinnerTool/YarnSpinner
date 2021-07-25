@@ -607,15 +607,12 @@ namespace Yarn.Compiler
 
         public override Yarn.IType VisitLine_formatted_text([NotNull] YarnSpinnerParser.Line_formatted_textContext context)
         {
-            VisitChildren(context);
-            // Any expressions in this line that have no defined type will
-            // be forced to be strings
+            // Type-check every expression in this line, using the None
+            // operator and permitting the expression to be of Any type
             foreach (var expression in context.expression())
             {
-                if (expression.Type == BuiltinTypes.Undefined)
-                {
-                    expression.Type = BuiltinTypes.String;
-                }
+                var type = CheckOperation(expression, new[] { expression }, Operator.None, "inline expression", BuiltinTypes.Any );
+                expression.Type = type;
             }
 
             return BuiltinTypes.String;

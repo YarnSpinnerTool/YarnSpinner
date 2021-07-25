@@ -170,7 +170,7 @@ namespace YarnSpinner.Tests
 
         [Theory]
         [InlineData(@"<<set $str = ""hi"">>")] // in commands
-        [InlineData(@"{$str}")] // in inline expressions
+        [InlineData(@"{$str + 1}")] // in inline expressions
         public void TestExpressionsAllowsUsingUndeclaredVariables(string testSource)
         {
             var source = CreateTestNode($@"
