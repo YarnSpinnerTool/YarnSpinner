@@ -339,7 +339,33 @@ namespace Yarn.Compiler
             {
                 // We still don't know what type of expression this is, and
                 // don't have a reasonable guess.
-                throw new TypeException(context, $"Type of expression "{context.GetTextWithWhitespace()}"" can't be determined without more context. Use a type cast on at least one of the terms (e.g. the string(), number(), bool() functions)", sourceFileName);
+
+                // Last-ditch effort: is the operator that we were given
+                // valid in exactly one type? In that case, we'll decide
+                // it's that type.
+                var typesImplementingMethod = types
+                    .Where(t => t.Methods != null)
+                    .Where(t => t.Methods.ContainsKey(operationType.ToString()));
+
+                if (typesImplementingMethod.Count() == 1)
+                {
+                    // Only one type implements the operation we were
+                    // given. Given no other information, we will assume
+                    // that it is this type.
+                    expressionType = typesImplementingMethod.First();
+                }
+                else if (typesImplementingMethod.Count() > 1)
+                {
+                    // Multiple types implement this operation.
+                    IEnumerable<string> typeNames = typesImplementingMethod.Select(t => t.Name);
+
+                    throw new TypeException(context, $"Type of expression \"{context.GetTextWithWhitespace()}\" can't be determined without more context (the compiler thinks it could be {string.Join(", or ", typeNames)}). Use a type cast on at least one of the terms (e.g. the string(), number(), bool() functions)", this.sourceFileName);
+                }
+                else
+                {
+                    // No types implement this operation (??)
+                    throw new TypeException(context, $"Type of expression \"{context.GetTextWithWhitespace()}\" can't be determined without more context. Use a type cast on at least one of the terms (e.g. the string(), number(), bool() functions)", sourceFileName);
+                }
             }
 
             // Were any of the terms variables for which we don't currently
