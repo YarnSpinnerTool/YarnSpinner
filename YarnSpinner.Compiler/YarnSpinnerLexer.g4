@@ -337,9 +337,9 @@ COMMA : ',' ;
 
 EXPRESSION_AS: 'as';
 
-TYPE_STRING: 'string';
-TYPE_NUMBER: 'number';
-TYPE_BOOL: 'bool';
+TYPE_STRING: 'string' -> type(FUNC_ID);
+TYPE_NUMBER: 'number' -> type(FUNC_ID);
+TYPE_BOOL: 'bool' -> type(FUNC_ID);
 
 // A run of text. Escaped quotes and backslashes are allowed.
 STRING : '"' (~('"' | '\\' | '\r' | '\n') | '\\' ('"' | '\\'))* '"';

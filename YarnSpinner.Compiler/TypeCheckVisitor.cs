@@ -41,6 +41,8 @@ namespace Yarn.Compiler
         /// </summary>
         public ICollection<Declaration> NewDeclarations { get; private set; }
 
+        private readonly IEnumerable<IType> types;
+
         /// <summary>
         /// Gets the collection of all declarations - both the ones we received
         /// at the start, and the new ones we've derived ourselves.
@@ -56,10 +58,12 @@ namespace Yarn.Compiler
         /// <param name="existingDeclarations">A collection of <see
         /// cref="Declaration"/> objects that contain type
         /// information.</param>
-        public TypeCheckVisitor(string sourceFileName, IEnumerable<Declaration> existingDeclarations)
+        /// <param name="types">A collection of type definitions.</param>
+        public TypeCheckVisitor(string sourceFileName, IEnumerable<Declaration> existingDeclarations, IEnumerable<IType> types)
         {
             this.existingDeclarations = existingDeclarations;
             this.NewDeclarations = new List<Declaration>();
+            this.types = types;
             this.sourceFileName = sourceFileName;
         }
 
@@ -206,7 +210,7 @@ namespace Yarn.Compiler
                     expectedType = suppliedType;
                 }
 
-                if (suppliedType != expectedType)
+                if (TypeUtil.IsSubType(expectedType, suppliedType) == false)
                 {
                     throw new TypeException(context, $"{functionName} parameter {i + 1} expects a {expectedType.Name}, not a {suppliedType.Name}", sourceFileName);
                 }
@@ -236,7 +240,7 @@ namespace Yarn.Compiler
 
         public override Yarn.IType VisitExpAndOrXor(YarnSpinnerParser.ExpAndOrXorContext context)
         {
-            Yarn.IType type = CheckOperation(context, context.expression(), CodeGenerationVisitor.TokensToOperators[context.op.Type], context.op.Text, BuiltinTypes.Boolean);
+            Yarn.IType type = CheckOperation(context, context.expression(), CodeGenerationVisitor.TokensToOperators[context.op.Type], context.op.Text);
             context.Type = type;
             return type;
         }
@@ -262,30 +266,30 @@ namespace Yarn.Compiler
                         type = CheckOperation(context, terms, Operator.None, context.op.Text, expressionType);
                     } catch (TypeException e) {
                         // Rewrite this TypeException for clarity 
-                        throw new TypeException(context, $"{variableName} ({variableType.Name}) cannot be assigned a {expressionType.Name}", sourceFileName);
+                        throw new TypeException(context, $"{variableName} ({variableType?.Name ?? "undefined"}) cannot be assigned a {expressionType?.Name ?? "undefined"}", sourceFileName);
                     }
                     break;
                 case YarnSpinnerLexer.OPERATOR_MATHS_ADDITION_EQUALS:
                     // += supports strings and numbers
                     @operator = CodeGenerationVisitor.TokensToOperators[YarnSpinnerLexer.OPERATOR_MATHS_ADDITION];
-                    type = CheckOperation(context, terms, @operator, context.op.Text, BuiltinTypes.String, BuiltinTypes.Number);
+                    type = CheckOperation(context, terms, @operator, context.op.Text);
                     break;
                 case YarnSpinnerLexer.OPERATOR_MATHS_SUBTRACTION_EQUALS:
                     // -=, *=, /=, %= supports only numbers
                     @operator = CodeGenerationVisitor.TokensToOperators[YarnSpinnerLexer.OPERATOR_MATHS_SUBTRACTION];
-                    type = CheckOperation(context, terms, @operator, context.op.Text, BuiltinTypes.Number);
+                    type = CheckOperation(context, terms, @operator, context.op.Text);
                     break;
                 case YarnSpinnerLexer.OPERATOR_MATHS_MULTIPLICATION_EQUALS:
                     @operator = CodeGenerationVisitor.TokensToOperators[YarnSpinnerLexer.OPERATOR_MATHS_MULTIPLICATION];
-                    type = CheckOperation(context, terms, @operator, context.op.Text, BuiltinTypes.Number);
+                    type = CheckOperation(context, terms, @operator, context.op.Text);
                     break;
                 case YarnSpinnerLexer.OPERATOR_MATHS_DIVISION_EQUALS:
                     @operator = CodeGenerationVisitor.TokensToOperators[YarnSpinnerLexer.OPERATOR_MATHS_DIVISION];
-                    type = CheckOperation(context, terms, @operator, context.op.Text, BuiltinTypes.Number);
+                    type = CheckOperation(context, terms, @operator, context.op.Text);
                     break;
                 case YarnSpinnerLexer.OPERATOR_MATHS_MODULUS_EQUALS:
                     @operator = CodeGenerationVisitor.TokensToOperators[YarnSpinnerLexer.OPERATOR_MATHS_MODULUS];
-                    type = CheckOperation(context, terms, @operator, context.op.Text, BuiltinTypes.Number);
+                    type = CheckOperation(context, terms, @operator, context.op.Text);
                     break;
                 default:
                     throw new InvalidOperationException($"Internal error: {nameof(VisitSet_statement)} got unexpected operand {context.op.Text}");
@@ -397,10 +401,19 @@ namespace Yarn.Compiler
             // We've now determined that this expression is of
             // expressionType. In case any of the terms had an undefined
             // type, we'll define it now.
-            foreach (var term in terms) {
-                if (term is YarnSpinnerParser.ExpressionContext expression 
-                    && expression.Type == BuiltinTypes.Undefined) {
-                    expression.Type = expressionType;
+            foreach (var term in terms)
+            {
+                if (term is YarnSpinnerParser.ExpressionContext expression)
+                {
+                    if (expression.Type == BuiltinTypes.Undefined)
+                    {
+                        expression.Type = expressionType;
+                    }
+
+                    if (expression.Type is FunctionType functionType && functionType.ReturnType == BuiltinTypes.Undefined)
+                    {
+                        functionType.ReturnType = expressionType;
+                    }
                 }
             }
 
@@ -415,20 +428,38 @@ namespace Yarn.Compiler
                 }
             }
 
-            // The expression type must match one of the permitted types.
-            // If the type we've found is one of these permitted types,
-            // return it - the expression is valid, and we're done.
-            if (permittedTypes.Contains(expressionType))
+            // Is this expression is required to be one of the specified types?
+            if (permittedTypes.Count() > 0)
             {
-                return expressionType;
-            }
-            else
-            {
-                // The expression type wasn't valid!
-                var permittedTypesList = string.Join(" or ", permittedTypes.Select(t => t.Name));
-                var typeList = string.Join(", ", termTypes.Select(t => t.Name));
+                // Does the type that we've arrived at match one of those types?
+                if (permittedTypes.Contains(expressionType)) {
+                    return expressionType;
+                }
+                else
+                {
+                    // The expression type wasn't valid!
+                    var permittedTypesList = string.Join(" or ", permittedTypes.Select(t => t?.Name ?? "undefined"));
+                    var typeList = string.Join(", ", termTypes.Select(t => t.Name));
 
-                throw new TypeException(context, $"Terms of '{operationDescription}' must be {permittedTypesList}, not {typeList}", sourceFileName);
+                    throw new TypeException(context, $"Terms of '{operationDescription}' must be {permittedTypesList}, not {typeList}", sourceFileName);
+                }
+            } else {
+                // We weren't given a specific type. The expression type is
+                // therefore only valid if it can use the provided
+                // operator.
+
+                // Find a type in 'expressionType's hierarchy that
+                // implements this method.
+                var implementingTypeForMethod = TypeUtil.FindImplementingTypeForMethod(expressionType, operationType.ToString());
+
+                if (implementingTypeForMethod == null) {
+                    // The type doesn't have a method for handling this
+                    // operator, and neither do any of its supertypes. This
+                    // expression is therefore invalid.
+                    throw new TypeException(context, $"Operator {operationDescription} cannot be used with {expressionType.Name} values", sourceFileName);
+                } else {
+                    return expressionType;
+                }
             }
         }
 
@@ -470,19 +501,7 @@ namespace Yarn.Compiler
 
             var @operator = CodeGenerationVisitor.TokensToOperators[context.op.Type];
 
-            switch (context.op.Text)
-            {
-                case "+":
-                    // + supports strings and numbers
-                    type = CheckOperation(context, expressions, @operator, context.op.Text, BuiltinTypes.String, BuiltinTypes.Number);
-                    break;
-                case "-":
-                    // - supports only numbers
-                    type = CheckOperation(context, expressions, @operator, context.op.Text, BuiltinTypes.Number);
-                    break;
-                default:
-                    throw new InvalidOperationException($"Internal error: {nameof(VisitExpAddSub)} got unexpected op {context.op.Text}");
-            }
+            type = CheckOperation(context, expressions, @operator, context.op.Text);
 
             context.Type = type;
 
@@ -496,7 +515,7 @@ namespace Yarn.Compiler
             var @operator = CodeGenerationVisitor.TokensToOperators[context.op.Type];
 
             // *, /, % all support numbers only
-            Yarn.IType type = CheckOperation(context, expressions, @operator, context.op.Text, BuiltinTypes.Number);
+            Yarn.IType type = CheckOperation(context, expressions, @operator, context.op.Text);
             context.Type = type;
             return type;
         }
@@ -509,8 +528,7 @@ namespace Yarn.Compiler
 
             var @operator = CodeGenerationVisitor.TokensToOperators[context.op.Type];
 
-            // <, <=, >, >= all support numbers only
-            var type = CheckOperation(context, terms, @operator, context.op.Text, BuiltinTypes.Number);
+            var type = CheckOperation(context, terms, @operator, context.op.Text);
             context.Type = type;
 
             // Comparisons always return bool
@@ -525,7 +543,7 @@ namespace Yarn.Compiler
 
             // == and != support any defined type, as long as terms are the
             // same type
-            var determinedType = CheckOperation(context, terms, @operator, context.op.Text, BuiltinTypes.Number, BuiltinTypes.String, BuiltinTypes.Boolean);
+            var determinedType = CheckOperation(context, terms, @operator, context.op.Text);
 
             context.Type = determinedType;
 
@@ -539,8 +557,7 @@ namespace Yarn.Compiler
 
             var @operator = CodeGenerationVisitor.TokensToOperators[context.op.Type];
 
-            // - supports only number types
-            Yarn.IType type = CheckOperation(context, terms, @operator, context.op.Text, BuiltinTypes.Number);
+            Yarn.IType type = CheckOperation(context, terms, @operator, context.op.Text);
             context.Type = type;
             return type;
 
@@ -553,42 +570,10 @@ namespace Yarn.Compiler
             var @operator = CodeGenerationVisitor.TokensToOperators[context.op.Type];
 
             // ! supports only bool types
-            Yarn.IType type = CheckOperation(context, terms, @operator, context.op.Text, BuiltinTypes.Boolean);
+            Yarn.IType type = CheckOperation(context, terms, @operator, context.op.Text);
             context.Type = type;
 
             return BuiltinTypes.Boolean;
-        }
-
-        public override Yarn.IType VisitExpTypeConversion(YarnSpinnerParser.ExpTypeConversionContext context)
-        {
-            // Validate the type of the expression; the actual conversion
-            // will be done at runtime, and may fail depending on the
-            // actual value
-            var expression = context.expression();
-            var expressionType = Visit(expression);
-
-            if (expressionType == BuiltinTypes.Undefined) {
-                // We don't know the type of this expression, but all
-                // expressions must have a type. Assign it to the Any type.
-                expression.Type = BuiltinTypes.Any;
-            }
-
-            // Return a value whose type depends on which type we're using
-            switch (context.type().typename.Type)
-            {
-                case YarnSpinnerLexer.TYPE_NUMBER:
-                    context.Type = BuiltinTypes.Number;
-                    break;
-                case YarnSpinnerLexer.TYPE_STRING:
-                    context.Type = BuiltinTypes.String;
-                    break;
-                case YarnSpinnerLexer.TYPE_BOOL:
-                    context.Type = BuiltinTypes.Boolean;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException($"Unsupported type {context.type().GetText()}");
-            }
-            return context.Type;
         }
 
         public override Yarn.IType VisitLine_formatted_text([NotNull] YarnSpinnerParser.Line_formatted_textContext context)

@@ -992,19 +992,19 @@ namespace Yarn
                 #region Operators
 
                 // Register the in-built conversion functions
-                this.RegisterFunction("string", delegate(Value v)
+                this.RegisterFunction("string", delegate(object v)
                 {
-                    return v.ConvertTo<string>();
+                    return Convert.ToString(v);
                 });
 
-                this.RegisterFunction("number", delegate(Value v)
+                this.RegisterFunction("number", delegate(object v)
                 {
-                    return v.ConvertTo<float>();
+                    return Convert.ToSingle(v);
                 });
 
-                this.RegisterFunction("bool", delegate(Value v)
+                this.RegisterFunction("bool", delegate(object v)
                 {
-                    return v.ConvertTo<bool>();
+                    return Convert.ToBoolean(v);
                 });
 
                 // Register the built-in types.

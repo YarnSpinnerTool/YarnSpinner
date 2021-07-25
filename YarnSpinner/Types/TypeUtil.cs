@@ -1,3 +1,5 @@
+using System;
+
 namespace Yarn
 {
     /// <summary>
@@ -72,6 +74,43 @@ namespace Yarn
 
             typeName = components[0];
             methodName = components[1];
+        }
+
+        /// <summary>
+        /// Returns <see langword="true"/> if <paramref name="subType"/> is
+        /// equal to <paramref name="parentType"/>, or if <paramref
+        /// name="parentType"/> exists in <paramref name="subType"/>'s type
+        /// hierarchy.
+        /// </summary>
+        /// <param name="parentType"></param>
+        /// <param name="subType"></param>
+        /// <returns></returns>
+        internal static bool IsSubType(IType parentType, IType subType)
+        {
+            if (subType == BuiltinTypes.Undefined && parentType == BuiltinTypes.Any) {
+                // Special case: the undefined type is always a subtype of
+                // the Any type, because ALL types are a subtype of the Any
+                // type.
+                return true;
+            }
+
+            if (subType == BuiltinTypes.Undefined) {
+                // The subtype is undefined. Assume that it is not a
+                // subtype of parentType.
+                return false;
+            }
+
+            var currentType = subType;
+
+            while (currentType != null) {
+                // TODO: this is a strict object comparison; a more
+                // sophisticated type unification might be better
+                if (currentType == parentType) {
+                    return true;
+                }
+                currentType = currentType.Parent;
+            }
+            return false;
         }
     }
 }

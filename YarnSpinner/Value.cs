@@ -12,7 +12,7 @@ namespace Yarn
     {
         public Yarn.IType Type { get; internal set; }
 
-        private IConvertible InternalValue;
+        internal IConvertible InternalValue;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Value"/> class,

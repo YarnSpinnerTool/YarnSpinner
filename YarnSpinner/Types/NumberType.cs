@@ -7,36 +7,37 @@ namespace Yarn
     /// An <see cref="IBridgeableType{T}"/> that bridges to <see
     /// cref="float"/> values.
     /// </summary>
-    internal class NumberType : IBridgeableType<float>
+    internal class NumberType : TypeBase, IBridgeableType<float>
     {
         /// <inheritdoc/>
         public float DefaultValue => default;
 
         /// <inheritdoc/>
-        public string Name => "Number";
+        public override string Name => "Number";
 
         /// <inheritdoc/>
-        public IType Parent => BuiltinTypes.Any;
+        public override IType Parent => BuiltinTypes.Any;
 
         /// <inheritdoc/>
-        public string Description => "Number";
+        public override string Description => "Number";
 
-        /// <inheritdoc/>
-        public MethodCollection Methods => new Dictionary<string, System.Delegate>
+        private static MethodCollection DefaultMethods => new Dictionary<string, System.Delegate>
         {
-            { Operator.EqualTo.ToString(), TypeUtil.GetMethod(this.MethodEqualTo) },
-            { Operator.NotEqualTo.ToString(), TypeUtil.GetMethod((a, b) => !this.MethodEqualTo(a, b)) },
-            { Operator.Add.ToString(), TypeUtil.GetMethod(this.MethodAdd) },
-            { Operator.Minus.ToString(), TypeUtil.GetMethod(this.MethodSubtract) },
-            { Operator.Divide.ToString(), TypeUtil.GetMethod(this.MethodDivide) },
-            { Operator.Multiply.ToString(), TypeUtil.GetMethod(this.MethodMultiply) },
-            { Operator.Modulo.ToString(), TypeUtil.GetMethod(this.MethodModulus) },
-            { Operator.UnaryMinus.ToString(), TypeUtil.GetMethod(this.MethodUnaryMinus) },
-            { Operator.GreaterThan.ToString(), TypeUtil.GetMethod(this.MethodGreaterThan) },
-            { Operator.GreaterThanOrEqualTo.ToString(), TypeUtil.GetMethod(this.MethodGreaterThanOrEqualTo) },
-            { Operator.LessThan.ToString(), TypeUtil.GetMethod(this.MethodLessThan) },
-            { Operator.LessThanOrEqualTo.ToString(), TypeUtil.GetMethod(this.MethodLessThanOrEqualTo) },
+            { Operator.EqualTo.ToString(), TypeUtil.GetMethod(MethodEqualTo) },
+            { Operator.NotEqualTo.ToString(), TypeUtil.GetMethod((a, b) => !MethodEqualTo(a, b)) },
+            { Operator.Add.ToString(), TypeUtil.GetMethod(MethodAdd) },
+            { Operator.Minus.ToString(), TypeUtil.GetMethod(MethodSubtract) },
+            { Operator.Divide.ToString(), TypeUtil.GetMethod(MethodDivide) },
+            { Operator.Multiply.ToString(), TypeUtil.GetMethod(MethodMultiply) },
+            { Operator.Modulo.ToString(), TypeUtil.GetMethod(MethodModulus) },
+            { Operator.UnaryMinus.ToString(), TypeUtil.GetMethod(MethodUnaryMinus) },
+            { Operator.GreaterThan.ToString(), TypeUtil.GetMethod(MethodGreaterThan) },
+            { Operator.GreaterThanOrEqualTo.ToString(), TypeUtil.GetMethod(MethodGreaterThanOrEqualTo) },
+            { Operator.LessThan.ToString(), TypeUtil.GetMethod(MethodLessThan) },
+            { Operator.LessThanOrEqualTo.ToString(), TypeUtil.GetMethod(MethodLessThanOrEqualTo) },
         };
+
+        public NumberType() : base(NumberType.DefaultMethods) {}
 
         /// <inheritdoc/>
         public float ToBridgedType(Value value)
@@ -44,57 +45,57 @@ namespace Yarn
             throw new System.NotImplementedException();
         }
 
-        private bool MethodEqualTo(Value a, Value b)
+        private static bool MethodEqualTo(Value a, Value b)
         {
             return a.ConvertTo<float>() == b.ConvertTo<float>();
         }
 
-        private float MethodAdd(Value a, Value b)
+        private static float MethodAdd(Value a, Value b)
         {
             return a.ConvertTo<float>() + b.ConvertTo<float>();
         }
 
-        private float MethodSubtract(Value a, Value b)
+        private static float MethodSubtract(Value a, Value b)
         {
             return a.ConvertTo<float>() - b.ConvertTo<float>();
         }
 
-        private float MethodDivide(Value a, Value b)
+        private static float MethodDivide(Value a, Value b)
         {
             return a.ConvertTo<float>() / b.ConvertTo<float>();
         }
 
-        private float MethodMultiply(Value a, Value b)
+        private static float MethodMultiply(Value a, Value b)
         {
             return a.ConvertTo<float>() * b.ConvertTo<float>();
         }
 
-        private int MethodModulus(Value a, Value b)
+        private static int MethodModulus(Value a, Value b)
         {
             return a.ConvertTo<int>() % b.ConvertTo<int>();
         }
 
-        private float MethodUnaryMinus(Value a)
+        private static float MethodUnaryMinus(Value a)
         {
             return -a.ConvertTo<float>();
         }
 
-        private bool MethodGreaterThan(Value a, Value b)
+        private static bool MethodGreaterThan(Value a, Value b)
         {
             return a.ConvertTo<float>() > b.ConvertTo<float>();
         }
 
-        private bool MethodGreaterThanOrEqualTo(Value a, Value b)
+        private static bool MethodGreaterThanOrEqualTo(Value a, Value b)
         {
             return a.ConvertTo<float>() >= b.ConvertTo<float>();
         }
 
-        private bool MethodLessThan(Value a, Value b)
+        private static bool MethodLessThan(Value a, Value b)
         {
             return a.ConvertTo<float>() < b.ConvertTo<float>();
         }
 
-        private bool MethodLessThanOrEqualTo(Value a, Value b)
+        private static bool MethodLessThanOrEqualTo(Value a, Value b)
         {
             return a.ConvertTo<float>() <= b.ConvertTo<float>();
         }

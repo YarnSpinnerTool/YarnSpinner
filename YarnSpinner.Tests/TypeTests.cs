@@ -310,14 +310,6 @@ namespace YarnSpinner.Tests
             });
         }
 
-        [Fact]
-        public void TestStandardLibraryDeclarationsContainNoTypeCheckedMethods()
-        {
-            var decls = Compiler.GetDeclarationsFromLibrary(new Dialogue.StandardLibrary());
-            
-            Assert.Empty(decls);
-        }
-
         [Theory]
         [InlineData("<<set $bool = func_void_bool(1)>>", "expects 0 parameters, but received 1")]
         [InlineData("<<set $bool = func_int_bool()>>", "expects 1 parameter, but received 0")]

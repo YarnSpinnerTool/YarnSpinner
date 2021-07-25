@@ -168,18 +168,6 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitExpComparison([NotNull] YarnSpinnerParser.ExpComparisonContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>expTypeConversion</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterExpTypeConversion([NotNull] YarnSpinnerParser.ExpTypeConversionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>expTypeConversion</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitExpTypeConversion([NotNull] YarnSpinnerParser.ExpTypeConversionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>expNegative</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
 	/// </summary>
@@ -475,15 +463,5 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.type"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterType([NotNull] YarnSpinnerParser.TypeContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.type"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitType([NotNull] YarnSpinnerParser.TypeContext context);
 }
 } // namespace Yarn.Compiler

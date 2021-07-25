@@ -114,13 +114,6 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitExpComparison([NotNull] YarnSpinnerParser.ExpComparisonContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>expTypeConversion</c>
-	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitExpTypeConversion([NotNull] YarnSpinnerParser.ExpTypeConversionContext context);
-	/// <summary>
 	/// Visit a parse tree produced by the <c>expNegative</c>
 	/// labeled alternative in <see cref="YarnSpinnerParser.expression"/>.
 	/// </summary>
@@ -295,11 +288,5 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.type"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitType([NotNull] YarnSpinnerParser.TypeContext context);
 }
 } // namespace Yarn.Compiler

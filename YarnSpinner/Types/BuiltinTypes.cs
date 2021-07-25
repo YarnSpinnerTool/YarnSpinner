@@ -44,6 +44,38 @@ namespace Yarn
             { typeof(long), BuiltinTypes.Number },
             { typeof(ulong), BuiltinTypes.Number },
             { typeof(decimal), BuiltinTypes.Number },
+            { typeof(object), BuiltinTypes.Any },
         };
+
+        /// <summary>
+        /// Gets a <see cref="IEnumerable{T}"/> containing all built-in
+        /// properties defined in this class.
+        /// </summary>
+        /// <value>The list of built-in type objects.</value>
+        internal static IEnumerable<IType> AllBuiltinTypes
+        {
+            get
+            {
+                var propertyInfos = typeof(BuiltinTypes).GetProperties(System.Reflection.BindingFlags.Static);
+
+                List<IType> result = new List<IType>();
+
+                foreach (var propertyInfo in propertyInfos)
+                {
+                    var interfacesOfProperty = propertyInfo.PropertyType.GetInterfaces();
+                    foreach (var interfaceType in interfacesOfProperty)
+                    {
+                        if (interfaceType == typeof(IType))
+                        {
+                            // Get the value of this property and add it
+                            result.Add((IType)propertyInfo.GetValue(null));
+                            break;
+                        }
+                    }
+                }
+
+                return result;
+            }
+        }
     }
 }

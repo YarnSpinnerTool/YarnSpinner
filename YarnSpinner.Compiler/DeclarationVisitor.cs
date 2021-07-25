@@ -39,6 +39,12 @@ namespace Yarn.Compiler
         private string sourceFileName;
 
         /// <summary>
+        /// Gets the collection of types known to this <see
+        /// cref="DeclarationVisitor"/>.
+        /// </summary>
+        public IEnumerable<IType> Types { get; private set; }
+
+        /// <summary>
         /// Gets the collection of new variable declarations that were
         /// found as a result of using this <see
         /// cref="DeclarationVisitor"/> to visit a <see
@@ -59,12 +65,19 @@ namespace Yarn.Compiler
         /// </summary>
         public IEnumerable<Declaration> Declarations => ExistingDeclarations.Concat(NewDeclarations);
 
-        public DeclarationVisitor(string sourceFileName, IEnumerable<Declaration> existingDeclarations, CommonTokenStream tokens)
+        private static readonly IReadOnlyDictionary<string, IType> KeywordsToBuiltinTypes = new Dictionary<string, IType> {
+            { "string", BuiltinTypes.String },
+            { "number", BuiltinTypes.Number },
+            { "bool", BuiltinTypes.Boolean },
+        };
+
+        public DeclarationVisitor(string sourceFileName, IEnumerable<Declaration> existingDeclarations, IEnumerable<IType> typeDeclarations, CommonTokenStream tokens)
         {
             this.ExistingDeclarations = existingDeclarations;
             this.NewDeclarations = new List<Declaration>();
             this.FileTags = new List<string>();
             this.sourceFileName = sourceFileName;
+            this.Types = typeDeclarations;
             this.tokens = tokens;
         }
 
@@ -91,7 +104,7 @@ namespace Yarn.Compiler
 
         public override Yarn.IType VisitDeclare_statement(YarnSpinnerParser.Declare_statementContext context)
         {
-            string description = GetDocumentComments(context);
+            string description = Compiler.GetDocumentComments(tokens, context);
 
             // Get the name of the variable we're declaring
             string variableName = context.variable().GetText();
@@ -105,35 +118,33 @@ namespace Yarn.Compiler
             }
 
             // Figure out the value and its type
-            var constantValueVisitor = new ConstantValueVisitor(sourceFileName);
+            var constantValueVisitor = new ConstantValueVisitor(context, sourceFileName, Types);
             var value = constantValueVisitor.Visit(context.value());
 
-            // Do we have an explicit type declaration?
-            if (context.type() != null)
+            // Did the source code name an explicit type? 
+            if (context.type != null)
             {
                 Yarn.IType explicitType;
 
-                // Get its type
-                switch (context.type().typename.Type)
+                if (KeywordsToBuiltinTypes.TryGetValue(context.type.Text, out explicitType) == false)
                 {
-                    case YarnSpinnerLexer.TYPE_STRING:
-                        explicitType = BuiltinTypes.String;
-                        break;
-                    case YarnSpinnerLexer.TYPE_BOOL:
-                        explicitType = BuiltinTypes.Boolean;
-                        break;
-                    case YarnSpinnerLexer.TYPE_NUMBER:
-                        explicitType = BuiltinTypes.Number;
-                        break;
-                    default:
-                        throw new TypeException(context, $"Unknown type {context.type().GetText()}", sourceFileName);
+                    // The type name provided didn't map to a built-in
+                    // type. Look for the type in our Types collection.
+                    explicitType = this.Types.FirstOrDefault(t => t.Name == context.type.Text);
+
+                    if (explicitType == null)
+                    {
+                        // We didn't find a type by this name.
+                        throw new TypeException(context, $"Unknown type {context.type.Text}", this.sourceFileName);
+                    }
                 }
 
-                // Check that it matches - if it doesn't, that's a type
-                // error
-                if (explicitType != value.type)
+                // Check that the type we've found is compatible with the
+                // type of the value that was provided - if it doesn't,
+                // that's a type error
+                if (TypeUtil.IsSubType(explicitType, value.Type) == false)
                 {
-                    throw new TypeException(context, $"Type {context.type().GetText()} does not match value {context.value().GetText()} ({value.type})", sourceFileName);
+                    throw new TypeException(context, $"Type {context.type.Text} does not match value {context.value().GetText()} ({value.Type.Name})", sourceFileName);
                 }
             }
 
@@ -146,8 +157,8 @@ namespace Yarn.Compiler
             var declaration = new Declaration
             {
                 Name = variableName,
-                Type = value.type,
-                DefaultValue = value.value,
+                Type = value.Type,
+                DefaultValue = value.InternalValue,
                 Description = description,
                 SourceFileName = sourceFileName,
                 SourceFileLine = positionInFile,
@@ -158,61 +169,7 @@ namespace Yarn.Compiler
 
             this.NewDeclarations.Add(declaration);
 
-            return value.type;
+            return value.Type;
         }
-
-        private string GetDocumentComments(ParserRuleContext context, bool allowCommentsAfter = true)
-        {
-            string description = null;
-
-            var precedingComments = tokens.GetHiddenTokensToLeft(context.Start.TokenIndex, YarnSpinnerLexer.COMMENTS);
-
-            if (precedingComments != null)
-            {
-                var precedingDocComments = precedingComments
-                    // There are no tokens on the main channel with this
-                    // one on the same line
-                    .Where(t => tokens.GetTokens()
-                        .Where(ot => ot.Line == t.Line)
-                        .Where(ot => ot.Type != YarnSpinnerLexer.INDENT && ot.Type != YarnSpinnerLexer.DEDENT)
-                        .Where(ot => ot.Channel == YarnSpinnerLexer.DefaultTokenChannel)
-                        .Count() == 0)
-                    // The comment starts with a triple-slash
-                    .Where(t => t.Text.StartsWith("///"))
-                    // Get its text
-                    .Select(t => t.Text.Replace("///", string.Empty).Trim());
-
-                if (precedingDocComments.Count() > 0)
-                {
-                    description = string.Join(" ", precedingDocComments);
-                }
-            }
-
-            if (allowCommentsAfter)
-            {
-                var subsequentComments = tokens.GetHiddenTokensToRight(context.Stop.TokenIndex, YarnSpinnerLexer.COMMENTS);
-                if (subsequentComments != null)
-                {
-                    var subsequentDocComment = subsequentComments
-                        // This comment is on the same line as the end of the declaration
-                        .Where(t => t.Line == context.Stop.Line)
-                        // The comment starts with a triple-slash
-                        .Where(t => t.Text.StartsWith("///"))
-                        // Get its text
-                        .Select(t => t.Text.Replace("///", string.Empty).Trim())
-                        // Get the first one, or null
-                        .FirstOrDefault();
-
-                    if (subsequentDocComment != null)
-                    {
-                        description = subsequentDocComment;
-                    }
-                }
-            }
-
-            return description;
-        }
-
     }
-
 }

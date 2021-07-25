@@ -66,7 +66,6 @@ expression
     | expression op=(OPERATOR_LOGICAL_LESS_THAN_EQUALS | OPERATOR_LOGICAL_GREATER_THAN_EQUALS | OPERATOR_LOGICAL_LESS | OPERATOR_LOGICAL_GREATER ) expression #expComparison
     | expression op=(OPERATOR_LOGICAL_EQUALS | OPERATOR_LOGICAL_NOT_EQUALS) expression #expEquality
     | expression op=(OPERATOR_LOGICAL_AND | OPERATOR_LOGICAL_OR | OPERATOR_LOGICAL_XOR) expression #expAndOrXor
-    | type '(' expression ')' #expTypeConversion
     | value #expValue
     ;
 
@@ -131,14 +130,8 @@ shortcut_option
     ;
 
 declare_statement
-    : COMMAND_START COMMAND_DECLARE variable OPERATOR_ASSIGNMENT value ('as' type)? COMMAND_END ;
+    : COMMAND_START COMMAND_DECLARE variable OPERATOR_ASSIGNMENT value ('as' type=FUNC_ID)? COMMAND_END ;
 
 jump_statement
     : COMMAND_START COMMAND_JUMP destination=ID COMMAND_END
-    ;
-
-type
-    : typename=TYPE_STRING
-    | typename=TYPE_NUMBER
-    | typename=TYPE_BOOL
     ;

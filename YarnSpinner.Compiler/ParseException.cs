@@ -85,7 +85,7 @@ namespace Yarn.Compiler
     [Serializable]
     public sealed class TypeException : CompilerException
     {
-        internal TypeException(string message) : base(message) { }
+        internal TypeException(string message) : base(null, message, null) { }
 
         internal TypeException(Antlr4.Runtime.ParserRuleContext context, string message, string fileName) : base(context, message, fileName) { }
     }

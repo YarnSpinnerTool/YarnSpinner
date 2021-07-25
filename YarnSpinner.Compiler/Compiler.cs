@@ -1,4 +1,7 @@
-﻿namespace Yarn.Compiler
+// Uncomment to ensure that all expressions have a known type at compile time
+// #define VALIDATE_ALL_EXPRESSIONS
+
+namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
@@ -391,10 +394,17 @@
             // All variable declarations that we've encountered, PLUS the
             // ones we knew about before
             var knownVariableDeclarations = new List<Declaration>();
+
+            // All type definitions that we've encountered while parsing.
+            var typeDeclarations = new List<IType>(BuiltinTypes.AllBuiltinTypes);
+
             if (compilationJob.VariableDeclarations != null)
             {
                 knownVariableDeclarations.AddRange(compilationJob.VariableDeclarations);
             }
+
+            // Get function declarations from the Standard Library
+            knownVariableDeclarations.AddRange(GetDeclarationsFromLibrary(new Dialogue.StandardLibrary()));
 
             // Get function declarations from the library, if provided
             if (compilationJob.Library != null)
@@ -428,11 +438,20 @@
                 };
             }
 
+            // Find the type definitions in these files.
+            var walker = new ParseTreeWalker();
+            foreach (var parsedFile in compiledTrees) {
+                var typeDeclarationVisitor = new TypeDeclarationListener(parsedFile.name, parsedFile.tokens, parsedFile.tree, ref typeDeclarations);
+
+                walker.Walk(typeDeclarationVisitor, parsedFile.tree);
+            }
+
             var fileTags = new Dictionary<string, IEnumerable<string>>();
 
+            // Find the variable declarations in these files.
             foreach (var parsedFile in compiledTrees)
             {
-                GetDeclarations(parsedFile.name, parsedFile.tokens, parsedFile.tree, knownVariableDeclarations, out var newDeclarations, out var newFileTags);
+                GetDeclarations(parsedFile.name, parsedFile.tokens, parsedFile.tree, knownVariableDeclarations, out var newDeclarations, typeDeclarations, out var newFileTags);
 
                 derivedVariableDeclarations.AddRange(newDeclarations);
                 knownVariableDeclarations.AddRange(newDeclarations);
@@ -441,12 +460,13 @@
             }
 
             foreach (var parsedFile in compiledTrees) {
-                var checker = new TypeCheckVisitor(parsedFile.name, knownVariableDeclarations);
+                var checker = new TypeCheckVisitor(parsedFile.name, knownVariableDeclarations, typeDeclarations);
 
                 checker.Visit(parsedFile.tree);
                 derivedVariableDeclarations.AddRange(checker.NewDeclarations);
                 knownVariableDeclarations.AddRange(checker.NewDeclarations);
 
+#if VALIDATE_ALL_EXPRESSIONS
                 // Validate that the type checker assigned a type to every expression
                 var allExpressions = FlattenParseTree(parsedFile.tree).OfType<YarnSpinnerParser.ExpressionContext>();
 
@@ -457,6 +477,7 @@
 
                     throw new InvalidOperationException($"Internal error: The following expressions were not assigned a type: {report}");
                 }
+#endif
             }
 
             if (compilationJob.CompilationType == CompilationJob.Type.DeclarationsOnly)
@@ -524,9 +545,9 @@
             visitor.Visit(tree);
         }
 
-        private static void GetDeclarations(string sourceFileName, CommonTokenStream tokenStream, IParseTree tree, IEnumerable<Declaration> existingDeclarations, out IEnumerable<Declaration> newDeclarations, out IEnumerable<string> fileTags)
+        private static void GetDeclarations(string sourceFileName, CommonTokenStream tokenStream, IParseTree tree, IEnumerable<Declaration> existingDeclarations, out IEnumerable<Declaration> newDeclarations, IEnumerable<IType> typeDeclarations, out IEnumerable<string> fileTags)
         {
-            var variableDeclarationVisitor = new DeclarationVisitor(sourceFileName, existingDeclarations, tokenStream);
+            var variableDeclarationVisitor = new DeclarationVisitor(sourceFileName, existingDeclarations, typeDeclarations, tokenStream);
 
             try
             {
@@ -973,6 +994,58 @@
             return children
                 .SelectMany(c => FlattenParseTree(c))
                 .Concat(new[] { node });
+        }
+
+        public static string GetDocumentComments(CommonTokenStream tokens, ParserRuleContext context, bool allowCommentsAfter = true)
+        {
+            string description = null;
+
+            var precedingComments = tokens.GetHiddenTokensToLeft(context.Start.TokenIndex, YarnSpinnerLexer.COMMENTS);
+
+            if (precedingComments != null)
+            {
+                var precedingDocComments = precedingComments
+                    // There are no tokens on the main channel with this
+                    // one on the same line
+                    .Where(t => tokens.GetTokens()
+                        .Where(ot => ot.Line == t.Line)
+                        .Where(ot => ot.Type != YarnSpinnerLexer.INDENT && ot.Type != YarnSpinnerLexer.DEDENT)
+                        .Where(ot => ot.Channel == YarnSpinnerLexer.DefaultTokenChannel)
+                        .Count() == 0)
+                    // The comment starts with a triple-slash
+                    .Where(t => t.Text.StartsWith("///"))
+                    // Get its text
+                    .Select(t => t.Text.Replace("///", string.Empty).Trim());
+
+                if (precedingDocComments.Count() > 0)
+                {
+                    description = string.Join(" ", precedingDocComments);
+                }
+            }
+
+            if (allowCommentsAfter)
+            {
+                var subsequentComments = tokens.GetHiddenTokensToRight(context.Stop.TokenIndex, YarnSpinnerLexer.COMMENTS);
+                if (subsequentComments != null)
+                {
+                    var subsequentDocComment = subsequentComments
+                        // This comment is on the same line as the end of the declaration
+                        .Where(t => t.Line == context.Stop.Line)
+                        // The comment starts with a triple-slash
+                        .Where(t => t.Text.StartsWith("///"))
+                        // Get its text
+                        .Select(t => t.Text.Replace("///", string.Empty).Trim())
+                        // Get the first one, or null
+                        .FirstOrDefault();
+
+                    if (subsequentDocComment != null)
+                    {
+                        description = subsequentDocComment;
+                    }
+                }
+            }
+
+            return description;
         }
     }
 }

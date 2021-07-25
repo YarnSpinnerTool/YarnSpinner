@@ -2,74 +2,74 @@ namespace Yarn.Compiler
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Antlr4.Runtime;
     using Antlr4.Runtime.Misc;
-
-    struct ConstantValue
-    {
-        public Yarn.IType type;
-        public IConvertible value;
-    }
 
     /// <summary>
     /// A visitor that visits any valid constant value, and returns a <see
     /// cref="Value"/>. Currently only supports terminals, not expressions,
     /// even if those expressions would be constant.
     /// </summary>
-    internal class ConstantValueVisitor : YarnSpinnerParserBaseVisitor<ConstantValue>
+    internal class ConstantValueVisitor : YarnSpinnerParserBaseVisitor<Value>
     {
-        private string sourceFileName;
+        private readonly ParserRuleContext context;
+        private readonly string sourceFileName;
+        private readonly IEnumerable<IType> types;
 
         /// <summary>
         /// Initializes a new instance of the <see
         /// cref="ConstantValueVisitor"/> class.
         /// </summary>
+        /// <param name="context">The parser context for this value.</param>
         /// <param name="sourceFileName">The name of the file that is being
         /// visited by this instance.</param>
-        public ConstantValueVisitor(string sourceFileName)
+        /// <param name="types">The types of values known to this instance.</param>
+        public ConstantValueVisitor(ParserRuleContext context, string sourceFileName, IEnumerable<IType> types)
         {
+            this.context = context;
             this.sourceFileName = sourceFileName;
+            this.types = types;
         }
 
         // Default result is an exception - only specific parse nodes can
         // be visited by this visitor
-        protected override ConstantValue DefaultResult
+        protected override Value DefaultResult
         {
             get
             {
-                throw new TypeException($"Invalid parse node for {nameof(ConstantValueVisitor)}");
+                throw new TypeException(context, $"Expected a constant type", sourceFileName);
             }
         }
 
-        public override ConstantValue VisitValueNull([NotNull] YarnSpinnerParser.ValueNullContext context)
+        public override Value VisitValueNull([NotNull] YarnSpinnerParser.ValueNullContext context)
         {
             throw new TypeException(context, "Null is not a permitted type in Yarn Spinner 2.0 and later", sourceFileName);
         }
 
-        public override ConstantValue VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
+        public override Value VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
         {
             if (float.TryParse(context.GetText(), out var result))
             {
-                return new ConstantValue { type = BuiltinTypes.Number, value = result };
+                return new Value(BuiltinTypes.Number, result);
             }
+
             throw new FormatException($"Failed to parse {context.GetText()} as a float");
         }
 
-        public override ConstantValue VisitValueString(YarnSpinnerParser.ValueStringContext context)
+        public override Value VisitValueString(YarnSpinnerParser.ValueStringContext context)
         {
-            string stringVal = context.STRING().GetText().Trim('"');
-
-            return new ConstantValue { type = BuiltinTypes.String, value = stringVal };
+            return new Value(BuiltinTypes.String, context.STRING().GetText().Trim('"'));
         }
 
-        public override ConstantValue VisitValueFalse(YarnSpinnerParser.ValueFalseContext context)
+        public override Value VisitValueFalse(YarnSpinnerParser.ValueFalseContext context)
         {
-            return new ConstantValue { type = BuiltinTypes.Boolean, value = false };
+            return new Value(BuiltinTypes.Boolean, false);
         }
 
-        public override ConstantValue VisitValueTrue(YarnSpinnerParser.ValueTrueContext context)
+        public override Value VisitValueTrue(YarnSpinnerParser.ValueTrueContext context)
         {
-            return new ConstantValue { type = BuiltinTypes.Boolean, value = true };
+            return new Value(BuiltinTypes.Boolean, true);
         }
     }
 }

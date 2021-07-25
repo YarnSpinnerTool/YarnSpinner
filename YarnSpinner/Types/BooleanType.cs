@@ -7,59 +7,61 @@ namespace Yarn
     /// An <see cref="IBridgeableType{T}"/> that bridges to <see
     /// cref="bool"/> values.
     /// </summary>
-    internal class BooleanType : IBridgeableType<bool>
+    internal class BooleanType : TypeBase, IBridgeableType<bool>
     {
         /// <inheritdoc/>
         public bool DefaultValue => default;
 
         /// <inheritdoc/>
-        public string Name => "Bool";
+        public override string Name => "Bool";
 
         /// <inheritdoc/>
-        public IType Parent => BuiltinTypes.Any;
+        public override IType Parent => BuiltinTypes.Any;
 
         /// <inheritdoc/>
-        public string Description => "Bool";
+        public override string Description => "Bool";
 
         /// <inheritdoc/>
-        public MethodCollection Methods => new Dictionary<string, System.Delegate>
+        private static MethodCollection DefaultMethods => new Dictionary<string, System.Delegate>
         {
-            { Operator.EqualTo.ToString(), TypeUtil.GetMethod(this.MethodEqualTo) },
-            { Operator.NotEqualTo.ToString(), TypeUtil.GetMethod((a, b) => !this.MethodEqualTo(a, b)) },
-            { Operator.And.ToString(), TypeUtil.GetMethod(this.MethodAnd) },
-            { Operator.Or.ToString(), TypeUtil.GetMethod(this.MethodOr) },
-            { Operator.Xor.ToString(), TypeUtil.GetMethod(this.MethodXor) },
-            { Operator.Not.ToString(), TypeUtil.GetMethod(this.MethodNot) },
+            { Operator.EqualTo.ToString(), TypeUtil.GetMethod(MethodEqualTo) },
+            { Operator.NotEqualTo.ToString(), TypeUtil.GetMethod((a, b) => !MethodEqualTo(a, b)) },
+            { Operator.And.ToString(), TypeUtil.GetMethod(MethodAnd) },
+            { Operator.Or.ToString(), TypeUtil.GetMethod(MethodOr) },
+            { Operator.Xor.ToString(), TypeUtil.GetMethod(MethodXor) },
+            { Operator.Not.ToString(), TypeUtil.GetMethod(MethodNot) },
         };
 
-        private bool MethodEqualTo(Value a, Value b)
+        internal BooleanType() : base(BooleanType.DefaultMethods) {}
+
+        private static bool MethodEqualTo(Value a, Value b)
         {
             return a.ConvertTo<bool>() == b.ConvertTo<bool>();
         }
 
-        private bool MethodAnd(Value a, Value b)
+        private static bool MethodAnd(Value a, Value b)
         {
             return a.ConvertTo<bool>() && b.ConvertTo<bool>();
         }
 
-        private bool MethodOr(Value a, Value b)
+        private static bool MethodOr(Value a, Value b)
         {
             return a.ConvertTo<bool>() || b.ConvertTo<bool>();
         }
 
-        private bool MethodXor(Value a, Value b)
+        private static bool MethodXor(Value a, Value b)
         {
             return a.ConvertTo<bool>() ^ b.ConvertTo<bool>();
         }
 
-        private bool MethodNot(Value a)
+        private static bool MethodNot(Value a)
         {
             return !a.ConvertTo<bool>();
         }
 
         public bool ToBridgedType(Value value)
         {
-            throw new System.NotImplementedException();
+            return value.ConvertTo<bool>();
         }
     }
 }
