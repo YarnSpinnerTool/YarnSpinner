@@ -254,7 +254,14 @@ namespace YarnSpinner.Tests
             var correctSource = CreateTestNode(source);
 
             // Should compile with no exceptions
-            Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, dialogue.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, dialogue.Library));
+
+            // The variable '$bool' should have an implicit declaration.
+            var variableDeclaration = result.Declarations.First(d => d.Name == "$bool");
+
+            // The type of the variable should be Boolean, because that's
+            // the return type of all of the functions we declared.
+            Assert.Same(BuiltinTypes.Boolean, variableDeclaration.Type);
 
         }
 
