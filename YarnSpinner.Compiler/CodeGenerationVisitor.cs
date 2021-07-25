@@ -538,6 +538,22 @@ namespace Yarn.Compiler
             compiler.Emit(OpCode.PushNull);
             return 0;
         }
+
+        // enum member. ConstantValueVisitor will have set the context's
+        // EnumMember property, so we just need to pull it back out, get
+        // its internal representation, and push it
+        public override int VisitValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context)
+        {
+            // The member of the enum that this value represents
+            EnumMember enumMember = context.EnumMember;
+            
+            // The 'real', internal value of this member (a number)
+            int internalRepresentation = enumMember.InternalRepresentation;
+
+            // Push this number onto the stack
+            this.compiler.Emit(OpCode.PushFloat, new Operand(internalRepresentation));
+            return 0;
+        }
         #endregion
 
         public override int VisitDeclare_statement(YarnSpinnerParser.Declare_statementContext context)

@@ -71,5 +71,32 @@ namespace Yarn.Compiler
         {
             return new Value(BuiltinTypes.Boolean, true);
         }
+
+        public override Value VisitValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context)
+        {
+            var enumName = context.enumCase().enumName.Text;
+            var memberName = context.enumCase().memberName.Text;
+
+            // Ensure that a type with this name exists, and that it is an Enum
+            var enumType = types.OfType<EnumType>().FirstOrDefault(t => t.Name == enumName);
+
+            if (enumType == null) {
+                throw new TypeException(context, $"{enumName} is not a valid enum name", sourceFileName);
+            }
+
+            // Ensure that this enum has a member of this name
+            var member = enumType.Members.FirstOrDefault(m => m.Name == memberName);
+
+            if (member == null) {
+                throw new TypeException(context, $"Enum {enumName} does not have a member called {memberName}", sourceFileName);
+            }
+
+            var value = new Value(enumType, member.InternalRepresentation);
+
+            context.EnumType = enumType;
+            context.EnumMember = member;
+
+            return value;
+        }
     }
 }

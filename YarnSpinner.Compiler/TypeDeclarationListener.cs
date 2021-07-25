@@ -28,5 +28,43 @@ namespace Yarn.Compiler
             this.typeDeclarations = typeDeclarations;
         }
 
+        public override void ExitEnum_statement([NotNull] YarnSpinnerParser.Enum_statementContext context)
+        {
+            // We've just finished walking an enum statement! We're almost
+            // ready to add its declaration.
+
+            // First: are there any types with the same name as this?
+            if (this.typeDeclarations.Any(t => t.Name == context.name.Text))
+            {
+                throw new TypeException(context, $"Cannot declare new enum {context.name.Text}: a type with this name already exists", this.sourceFileName);
+            }
+
+            // Get its description, if any
+            var description = Compiler.GetDocumentComments(this.tokens, context, false);
+
+            // Create the new type.
+            var enumType = new EnumType(context.name.Text, description);
+
+            // Now walk through the list of case statements, generating
+            // EnumMembers for each one.
+            for (int i = 0; i < context.enum_case_statement().Length; i++)
+            {
+                var @case = context.enum_case_statement(i);
+
+                // Get the documentation comments for this case, if any
+                var caseDescription = Compiler.GetDocumentComments(this.tokens, @case);
+
+                var member = new EnumMember
+                {
+                    Name = @case.name.Text,
+                    InternalRepresentation = i,
+                    Description = caseDescription,
+                };
+
+                enumType.AddMember(member);
+            }
+
+            this.typeDeclarations.Add(enumType);
+        }
     }
 }

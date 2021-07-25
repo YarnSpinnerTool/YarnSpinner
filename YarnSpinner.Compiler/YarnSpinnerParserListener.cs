@@ -324,6 +324,18 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitValueFunc([NotNull] YarnSpinnerParser.ValueFuncContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>valueEnumCase</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>valueEnumCase</c>
+	/// labeled alternative in <see cref="YarnSpinnerParser.value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.variable"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -343,6 +355,16 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitFunction([NotNull] YarnSpinnerParser.FunctionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.enumCase"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterEnumCase([NotNull] YarnSpinnerParser.EnumCaseContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.enumCase"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitEnumCase([NotNull] YarnSpinnerParser.EnumCaseContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.if_statement"/>.
 	/// </summary>
@@ -453,6 +475,26 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.enum_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterEnum_statement([NotNull] YarnSpinnerParser.Enum_statementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.enum_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitEnum_statement([NotNull] YarnSpinnerParser.Enum_statementContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.enum_case_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterEnum_case_statement([NotNull] YarnSpinnerParser.Enum_case_statementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.enum_case_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitEnum_case_statement([NotNull] YarnSpinnerParser.Enum_case_statementContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.jump_statement"/>.
 	/// </summary>

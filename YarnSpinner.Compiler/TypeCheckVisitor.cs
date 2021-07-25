@@ -112,6 +112,15 @@ namespace Yarn.Compiler
             return VisitVariable(context.variable());
         }
 
+        public override IType VisitValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context)
+        {
+            var constantValueVisitor = new ConstantValueVisitor(context, sourceFileName, types);
+
+            var value = constantValueVisitor.Visit(context);
+
+            return value.Type;
+        }
+
         public override Yarn.IType VisitVariable(YarnSpinnerParser.VariableContext context)
         {
             // The type of the value depends on the declared type of the

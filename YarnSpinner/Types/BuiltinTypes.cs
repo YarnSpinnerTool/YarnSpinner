@@ -25,6 +25,9 @@ namespace Yarn
         /// <summary>Gets the type representing any value.</summary>
         public static IType Any { get; } = new AnyType();
 
+        /// <summary>Gets the type representing all enums.</summary>
+        public static IType Enum { get; } = new EnumType();
+
         /// <summary>
         /// Gets a dictionary that maps CLR types to their corresponding
         /// Yarn types.
@@ -44,6 +47,7 @@ namespace Yarn
             { typeof(long), BuiltinTypes.Number },
             { typeof(ulong), BuiltinTypes.Number },
             { typeof(decimal), BuiltinTypes.Number },
+            { typeof(System.Enum), BuiltinTypes.Enum },
             { typeof(object), BuiltinTypes.Any },
         };
 

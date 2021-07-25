@@ -33,5 +33,22 @@ namespace Yarn.Compiler
             /// </summary>
             public Yarn.IType Type { get; set; }
         }
+
+        public partial class ValueEnumCaseContext : ValueContext
+        {
+            /// <summary>
+            /// Gets or sets the enum type object that this value context
+            /// refers to.
+            /// </summary>
+            /// <value></value>
+            internal Yarn.EnumType EnumType { get; set; }
+
+            /// <summary>
+            /// Gets or sets the enum member that this value context
+            /// represents.
+            /// </summary>
+            /// <value></value>
+            internal Yarn.EnumMember EnumMember { get; set; }
+        }
     }
 }

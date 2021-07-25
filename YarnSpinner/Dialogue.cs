@@ -1011,6 +1011,7 @@ namespace Yarn
                 this.RegisterMethods(BuiltinTypes.Number);
                 this.RegisterMethods(BuiltinTypes.String);
                 this.RegisterMethods(BuiltinTypes.Boolean);
+                this.RegisterMethods(BuiltinTypes.Enum);
 
                 #endregion Operators
             }

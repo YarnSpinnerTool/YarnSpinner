@@ -525,6 +525,8 @@ namespace Yarn.Compiler
                     value = new Operand(Convert.ToSingle(declaration.DefaultValue));
                 } else if (declaration.Type == BuiltinTypes.Boolean) {
                     value = new Operand(Convert.ToBoolean(declaration.DefaultValue));
+                } else if (declaration.Type is EnumType enumType) {
+                    value = new Operand(Convert.ToSingle(declaration.DefaultValue));
                 } else {
                     throw new ArgumentOutOfRangeException($"Cannot create an initial value for type {declaration.Type.Name}");
                 }

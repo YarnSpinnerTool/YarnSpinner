@@ -49,6 +49,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - The main impact on users of this library (such as, for example, Yarn Spinner for Unity) is that the `Yarn.Type` enumeration has been removed, and is now replaced with the `Yarn.IType` interface and the `BuiltinTypes` class.
   - The type checker no longer hard-codes which operations can be run on which types; this decision is now determined by the types themselves.
 
+- Enums have been added to the Yarn language.
+  - Enums are a type of value that are allowed to be one of a specific set of named values. For example:
+
+```
+// Create a new enum called Food
+<<enum Food>>
+  <<case Apple>>
+  <<case Orange>>
+  <<case Pear>>
+<<endenum>>
+
+// Declare a new variable with the default value Food.Apple
+<<declare $favouriteFood = Food.Apple>>
+
+<<if $favouriteFood == Food.Apple>>
+  I love apples!
+<<endif>>
+```
+
+- Enums only support being compared to other values of the same type. 
+  - For example, if you created a new enum called `Food`, and another enum called `Drink`, you can't compare `Food.Apple` to `Drink.Soda`. (You could compare apples to oranges, though, since they're both members of the `Food` type.)
+- The only valid operators that can be used with them are `==` (equal to) and `!=` (not equal to).
+- Enum values are stored in the host variable storage as a number.
+
 ### Changed
 
 - Variable declaration upgrader now generates .yarnproject files, not .yarnprogram files.

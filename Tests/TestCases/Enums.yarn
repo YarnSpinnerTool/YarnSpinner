@@ -1,0 +1,40 @@
+title: Start
+---
+
+// Create a new enum, "Food". Variables of this type can store one of these
+// three cases:
+<<enum Food>>
+    <<case Apple>>
+    <<case Orange>>
+    <<case Pear>>
+<<endenum>>
+
+// Declare a new variable, of this type.
+<<declare $favouriteFood = Food.Apple as Food>>
+
+// The 'as Food' can be left out, because the compiler will figure it out
+<<declare $secondFavouriteFood = Food.Orange>>
+
+// Enum variables can be compared to each other
+<<if $favouriteFood == Food.Apple>>
+    I like apples!
+<<elseif $favouriteFood == Food.Orange>>
+    It's an error if you see this!
+<<else>>
+    It's an error if you see this!
+<<endif>>
+
+// Enum variables can be modified, just like all other variables
+<<set $favouriteFood to Food.Orange>>
+
+// (Just checking that we're not just evaluating all comparisons as true
+// lol)
+<<if $favouriteFood == Food.Apple>>
+    It's an error if you see this!
+<<elseif $favouriteFood != Food.Orange>>
+    It's an error if you see this!
+<<else>>
+    I like oranges now!
+<<endif>>
+
+===
