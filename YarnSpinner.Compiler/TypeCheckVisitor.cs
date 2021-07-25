@@ -457,8 +457,11 @@ namespace Yarn.Compiler
             // Is this expression is required to be one of the specified types?
             if (permittedTypes.Count() > 0)
             {
-                // Does the type that we've arrived at match one of those types?
-                if (permittedTypes.Contains(expressionType)) {
+                // Is the type that we've arrived at compatible with one of
+                // the permitted types?
+                if (permittedTypes.Any(t => TypeUtil.IsSubType(t, expressionType))) {
+                    // It's compatible! Great, return the type we've
+                    // determined.
                     return expressionType;
                 }
                 else
