@@ -56,20 +56,25 @@ namespace Yarn
         {
             get
             {
-                var propertyInfos = typeof(BuiltinTypes).GetProperties(System.Reflection.BindingFlags.Static);
+                // Find all static properties of BuiltinTypes that are
+                // public
+                var propertyInfos = typeof(BuiltinTypes)
+                    .GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
 
                 List<IType> result = new List<IType>();
 
                 foreach (var propertyInfo in propertyInfos)
                 {
-                    var interfacesOfProperty = propertyInfo.PropertyType.GetInterfaces();
-                    foreach (var interfaceType in interfacesOfProperty)
-                    {
-                        if (interfaceType == typeof(IType))
-                        {
-                            // Get the value of this property and add it
-                            result.Add((IType)propertyInfo.GetValue(null));
-                            break;
+                    // If the type of this property is IType, then this is
+                    // a built-in type!
+                    if (propertyInfo.PropertyType == typeof(IType)) {
+                        // Get that value.
+                        var builtinType = (IType)propertyInfo.GetValue(null);
+
+                        // If it's not null (i.e. the undefined type), then
+                        // add it to the type objects we're returning!
+                        if (builtinType != null) {
+                            result.Add(builtinType);
                         }
                     }
                 }

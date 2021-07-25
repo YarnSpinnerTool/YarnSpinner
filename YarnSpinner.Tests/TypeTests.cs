@@ -712,5 +712,13 @@ namespace YarnSpinner.Tests
 
             Assert.Contains("Terms of 'if statement' must be Bool, not String", ex.Message);
         }
+
+        [Fact]
+        public void TestBuiltinTypesAreEnumerated()
+        {
+            var allBuiltinTypes = BuiltinTypes.AllBuiltinTypes;
+
+            Assert.NotEmpty(allBuiltinTypes);
+        }
     }
 }
