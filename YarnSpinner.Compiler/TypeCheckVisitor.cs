@@ -372,11 +372,25 @@ namespace Yarn.Compiler
             // have a declaration for?
 
             // Start by building a list of all terms that are variables.
-            var variableNames = terms
-                .OfType<YarnSpinnerParser.ExpressionContext>()
-                .Select(c => c.GetChild<YarnSpinnerParser.ValueVarContext>(0))
-                .Where(c => c != null)
-                .Select(v => v.variable().VAR_ID().GetText())
+            // These are either variable values, or variable names . (The
+            // difference between these two is that a ValueVarContext
+            // occurs in syntax where the value of the variable is used
+            // (like an expression), while a VariableContext occurs in
+            // syntax where it's just a variable name (like a set
+            // statements)
+
+            // All VariableContexts in the terms of this expression (but
+            // not in the children of those terms)
+            var variableContexts = terms
+                .Select(c => c.GetChild<YarnSpinnerParser.ValueVarContext>(0)?.variable())
+                .Concat(terms.Select(c => c.GetChild<YarnSpinnerParser.VariableContext>(0)))
+                .Concat(terms.OfType<YarnSpinnerParser.VariableContext>())
+                .Concat(terms.OfType<YarnSpinnerParser.ValueVarContext>().Select(v => v.variable()))
+                .Where(c => c != null);
+
+            // Get their names
+            var variableNames = variableContexts
+                .Select(v => v.VAR_ID().GetText())
                 .Distinct();
             
             // Build the list of variable names that we don't have a

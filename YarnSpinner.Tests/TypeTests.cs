@@ -257,7 +257,11 @@ namespace YarnSpinner.Tests
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, dialogue.Library));
 
             // The variable '$bool' should have an implicit declaration.
-            var variableDeclaration = result.Declarations.First(d => d.Name == "$bool");
+            var variableDeclarations = result.Declarations.Where(d => d.Name == "$bool");
+
+            Assert.Equal(1, variableDeclarations.Count());
+
+            var variableDeclaration = variableDeclarations.First();
 
             // The type of the variable should be Boolean, because that's
             // the return type of all of the functions we declared.
