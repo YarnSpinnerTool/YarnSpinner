@@ -495,7 +495,7 @@ namespace Yarn.Compiler
         private static IConvertible DefaultValueForType(Yarn.IType expressionType)
         {
             if (expressionType == BuiltinTypes.String) {
-                return default(string);
+                return string.Empty;
             } else if (expressionType == BuiltinTypes.Number) {
                 return default(float);
             } else if (expressionType == BuiltinTypes.Boolean) {
