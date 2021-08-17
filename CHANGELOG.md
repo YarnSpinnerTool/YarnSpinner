@@ -8,7 +8,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+### Changed
+
+### Removed
+
+## [v2.0.0-beta5] 2021-08-17
+
+### Added
+
+#### Variable declarations are now optional
 - If a variable is not declared (i.e. it doesn't have a `<<declare>>` statement), the compiler will now attempt to infer its declaration.
+- When a variable doesn't have a declaration, the compiler will try to figure out the type based on how the variable is being used. It will always try to figure out the _single_ type that the variable _must_ be; if it's ambiguous, or no information is available at all, it will report an error, and you will have to add a declaration.
+
+
+#### Variable declaration descriptions now use comments
 - Declarations now have their descriptions set using a triple-slash (`///`) comment:
 
 ```
@@ -29,6 +42,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 /// guards are looking for.
 <<declare $are_the_droids_we're_looking_for = false>>
 ```
+
+### A new type system has been added.
 
 - The type-checking system in Yarn Spinner now supports types with supertypes and methods.
   This change has no significant impact on users writing Yarn scripts, but it enables the
