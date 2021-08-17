@@ -43,16 +43,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 <<declare $are_the_droids_we're_looking_for = false>>
 ```
 
-### A new type system has been added.
+#### A new type system has been added.
 
-- The type-checking system in Yarn Spinner now supports types with supertypes and methods.
-  This change has no significant impact on users writing Yarn scripts, but it enables the
-  development of more advanced language features. 
-  - The main impact on users of this library (such as, for example, Yarn Spinner for
-    Unity) is that the `Yarn.Type` enumeration has been removed, and is now replaced with
-    the `Yarn.IType` interface and the `BuiltinTypes` class.
-  - The type checker no longer hard-codes which operations can be run on which types; this
-    decision is now determined by the types themselves.
+- The type-checking system in Yarn Spinner now supports types with supertypes and methods. This change has no significant impact on users writing Yarn scripts, but it enables the development of more advanced language features. 
+  - The main impact on users of this library (such as, for example, Yarn Spinner for Unity) is that the `Yarn.Type` enumeration has been removed, and is now replaced with the `Yarn.IType` interface and the `BuiltinTypes` class.
+  - The type checker no longer hard-codes which operations can be run on which types; this decision is now determined by the types themselves.
 
 ### Changed
 
@@ -62,9 +57,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - `Utility.GenerateYarnFileWithDeclarations` now generates files that use triple-slash (`///`) comments.
 - Fixed a bug where expressions inside an `if` statement or `elseif` statement would not be type-checked.
 - The keywords `enum`, `endenum` and `case` are now reserved.
-- The type-conversion functions, `string`, `number` and `bool`, are no longer built-in
-  special-case functions; they are now regular built-in functions that take a value of
-  `Any` type.
+- The type-conversion functions, `string`, `number` and `bool`, are no longer built-in special-case functions; they are now regular built-in functions that take a value of `Any` type.
 
 ### Removed
 
