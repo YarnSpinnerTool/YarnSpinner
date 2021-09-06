@@ -106,19 +106,24 @@ namespace YarnSpinner.Tests
         public void TestTextReplacement()
         {
             var text = "Keep delete keep\nreplace keep";
-            var expectedReplacement = "Keep keep\nnew keep";
+            var expectedReplacement = "Keep keep\nnew keep add";
 
             var replacements = new[] {
                 new TextReplacement() {
                     Start = 5,
                     OriginalText = "delete ",
-                    ReplacementText = ""
+                    ReplacementText = "",
                 },
                 new TextReplacement() {
                     Start = 17,
                     OriginalText = "replace",
-                    ReplacementText = "new"
-                },                
+                    ReplacementText = "new",
+                },     
+                new TextReplacement() {
+                    Start = 29,
+                    OriginalText = "",
+                    ReplacementText = " add",
+                }           
             };
 
             var replacedText = LanguageUpgrader.ApplyReplacements(text, replacements);
