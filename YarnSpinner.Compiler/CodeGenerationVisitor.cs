@@ -546,12 +546,24 @@ namespace Yarn.Compiler
         {
             // The member of the enum that this value represents
             EnumMember enumMember = context.EnumMember;
-            
-            // The 'real', internal value of this member (a number)
-            int internalRepresentation = enumMember.InternalRepresentation;
 
-            // Push this number onto the stack
-            this.compiler.Emit(OpCode.PushFloat, new Operand(internalRepresentation));
+            // The 'real', internal value of this member (a number)
+            var rawValue = enumMember.RawValue;
+
+            // Raw values are permitted to be a string, or a number
+            if (rawValue.Type == BuiltinTypes.String)
+            {
+                this.compiler.Emit(OpCode.PushString, new Operand(rawValue.ConvertTo<string>()));
+            }
+            else if (rawValue.Type == BuiltinTypes.Number)
+            {
+                this.compiler.Emit(OpCode.PushFloat, new Operand(rawValue.ConvertTo<float>()));
+            }
+            else
+            {
+                throw new TypeException($"Internal error: enum case \"{enumMember.Name}\" has raw value type {rawValue.Type.Name}, which is not allowed.");
+            }
+
             return 0;
         }
         #endregion

@@ -91,12 +91,10 @@ namespace Yarn.Compiler
                 throw new TypeException(context, $"Enum {enumName} does not have a member called {memberName}", sourceFileName);
             }
 
-            var value = new Value(enumType, member.InternalRepresentation);
-
             context.EnumType = enumType;
             context.EnumMember = member;
 
-            return value;
+            return new Value(context.EnumType, member.RawValue.InternalValue);
         }
     }
 }

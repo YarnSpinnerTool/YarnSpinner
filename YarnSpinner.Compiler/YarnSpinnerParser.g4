@@ -143,7 +143,7 @@ enum_statement
     ;
 
 enum_case_statement
-    : INDENT? COMMAND_START COMMAND_CASE name=ID COMMAND_END DEDENT?
+    : INDENT? COMMAND_START COMMAND_CASE name=FUNC_ID (OPERATOR_ASSIGNMENT rawValue=value)? COMMAND_END DEDENT?
     ;
 
 jump_statement

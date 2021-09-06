@@ -37,4 +37,56 @@ title: Start
     I like oranges now!
 <<endif>>
 
+// Declare two new enums that have explicit raw values: one of numbers, and
+// one of strings
+
+<<enum Planets>>
+    <<case Mercury = 1>>
+    <<case Venus>>
+    <<case Earth>>
+    <<case Mars>>
+    <<case Jupiter>>
+    <<case Saturn>>
+    <<case Uranus>>
+    <<case Neptune>>
+<<endenum>>
+
+<<enum ImportantNumbers>>
+    <<case HackerNumber = 1337>>
+    <<case HackerNumberPlusOne>>
+    <<case UltimateAnswer = 42>>
+    <<case UltimateAnswerPlusOne>>
+<<endenum>>
+
+<<enum QuestObjectives>>
+    <<case Objective1 = "DoObjective1">>
+    <<case Objective2 = "DoObjective2">>
+    <<case Objective3 = "DoObjective3">>
+<<endenum>>
+
+<<if string(QuestObjectives.Objective1) == "DoObjective1">>
+    ok 1
+<<endif>>
+
+<<if number(Planets.Earth) == 3>>
+    ok 2
+<<endif>>
+
+<<if number(ImportantNumbers.HackerNumber) == 1337>>
+    ok 3
+<<endif>>
+
+<<if number(ImportantNumbers.HackerNumberPlusOne) == 1338>>
+    ok 4
+<<endif>>
+
+<<if number(ImportantNumbers.UltimateAnswer) == 42>>
+    ok 5
+<<endif>>
+
+<<if number(ImportantNumbers.UltimateAnswerPlusOne) == 43>>
+    ok 6
+<<endif>>
+
+
 ===

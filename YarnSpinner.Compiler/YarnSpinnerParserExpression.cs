@@ -24,6 +24,15 @@ namespace Yarn.Compiler
 
     public partial class YarnSpinnerParser : Parser
     {        
+
+        public partial class Enum_case_statementContext : ParserRuleContext {
+            /// <summary>
+            /// Gets or sets the 'raw value' of this enum case, which is
+            /// the underlying value that this enum represents.
+            /// </summary>
+            internal Yarn.Value RawValue { get; set; }
+        }
+
         public partial class ExpressionContext : ParserRuleContext
         {
             /// <summary>
