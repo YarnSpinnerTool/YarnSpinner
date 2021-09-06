@@ -17,6 +17,7 @@ namespace Yarn
 
         /// <inheritdoc/>
         public IType Parent { get => null; }
+
         /// <inheritdoc/>
         public string Description { get => "Any type."; }
 

@@ -23,6 +23,5 @@ namespace Yarn
         /// <returns>A value of type <typeparamref name="TBridgedType"/>,
         /// derived from <paramref name="value"/>.</returns>
         TBridgedType ToBridgedType(Value value);
-
     }
 }

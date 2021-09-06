@@ -9,12 +9,14 @@ namespace Yarn
     /// </summary>
     internal class StringType : TypeBase, IBridgeableType<string>
     {
-        private static MethodCollection DefaultMethods => new Dictionary<string, System.Delegate>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StringType"/>
+        /// class.
+        /// </summary>
+        public StringType()
+            : base(StringType.DefaultMethods)
         {
-            { Operator.EqualTo.ToString(), TypeUtil.GetMethod(MethodEqualTo) },
-            { Operator.NotEqualTo.ToString(), TypeUtil.GetMethod((a, b) => !MethodEqualTo(a, b)) },
-            { Operator.Add.ToString(), TypeUtil.GetMethod(MethodConcatenate) },
-        };
+        }
 
         /// <inheritdoc/>
         public override string Name => "String";
@@ -28,12 +30,35 @@ namespace Yarn
         /// <inheritdoc/>
         public string DefaultValue => string.Empty;
 
-        public StringType() : base(StringType.DefaultMethods) {}
+        private static MethodCollection DefaultMethods => new Dictionary<string, System.Delegate>
+        {
+            { Operator.EqualTo.ToString(), TypeUtil.GetMethod(MethodEqualTo) },
+            { Operator.NotEqualTo.ToString(), TypeUtil.GetMethod((a, b) => !MethodEqualTo(a, b)) },
+            { Operator.Add.ToString(), TypeUtil.GetMethod(MethodConcatenate) },
+        };
 
         /// <inheritdoc/>
         public string ToBridgedType(Value value)
         {
             return value.ConvertTo<string>();
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return base.ToString();
         }
 
         private static string MethodConcatenate(Value arg1, Value arg2)
@@ -44,21 +69,6 @@ namespace Yarn
         private static bool MethodEqualTo(Value a, Value b)
         {
             return a.ConvertTo<string>().Equals(b.ConvertTo<string>());
-        }
-
-        public override bool Equals(object obj)
-        {
-            return base.Equals(obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
-        public override string ToString()
-        {
-            return base.ToString();
         }
     }
 }

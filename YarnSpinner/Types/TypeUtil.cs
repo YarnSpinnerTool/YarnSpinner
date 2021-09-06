@@ -7,6 +7,12 @@ namespace Yarn
     /// </summary>
     internal static class TypeUtil
     {
+        // Helper functions that allow us to easily cast method groups of
+        // certain types to System.Delegate - i.e. we can say:
+        // ```
+        // int DoCoolThing(Value a, Value b) { ... }
+        // var doCoolThingDelegate = TypeUtil.GetMethod(DoCoolThing);
+        // ```
         internal static System.Delegate GetMethod<TResult>(System.Func<Value, Value, TResult> f) => f;
 
         internal static System.Delegate GetMethod<T>(System.Func<Value, T> f) => f;
@@ -31,7 +37,6 @@ namespace Yarn
             // implements a method by this name
             while (currentType != null)
             {
-
                 if (currentType.Methods != null && currentType.Methods.ContainsKey(methodName))
                 {
                     return currentType;
@@ -77,24 +82,30 @@ namespace Yarn
         }
 
         /// <summary>
-        /// Returns <see langword="true"/> if <paramref name="subType"/> is
-        /// equal to <paramref name="parentType"/>, or if <paramref
+        /// Checks to see if <paramref name="subType"/> is equal to
+        /// <paramref name="parentType"/>, or if <paramref
         /// name="parentType"/> exists in <paramref name="subType"/>'s type
         /// hierarchy.
         /// </summary>
-        /// <param name="parentType"></param>
-        /// <param name="subType"></param>
-        /// <returns></returns>
+        /// <param name="parentType">The parent type to check
+        /// against.</param>
+        /// <param name="subType">The type to check if it's a subtype of
+        /// <paramref name="parentType"/>.</param>
+        /// <returns><see langword="true"/> if <paramref name="subType"/>
+        /// is the same or a subtype of <paramref name="parentType"/>; <see
+        /// langword="false"/> otherwise.</returns>
         internal static bool IsSubType(IType parentType, IType subType)
         {
-            if (subType == BuiltinTypes.Undefined && parentType == BuiltinTypes.Any) {
+            if (subType == BuiltinTypes.Undefined && parentType == BuiltinTypes.Any)
+            {
                 // Special case: the undefined type is always a subtype of
                 // the Any type, because ALL types are a subtype of the Any
                 // type.
                 return true;
             }
 
-            if (subType == BuiltinTypes.Undefined) {
+            if (subType == BuiltinTypes.Undefined)
+            {
                 // The subtype is undefined. Assume that it is not a
                 // subtype of parentType.
                 return false;
@@ -102,14 +113,20 @@ namespace Yarn
 
             var currentType = subType;
 
-            while (currentType != null) {
+            while (currentType != null)
+            {
                 // TODO: this is a strict object comparison; a more
                 // sophisticated type unification might be better
-                if (currentType == parentType) {
+                if (currentType == parentType)
+                {
                     return true;
                 }
+
                 currentType = currentType.Parent;
             }
+
+            // We reached the top of the type hierarchy, and didn't find
+            // parentType. subType is not a subtype of parentType.
             return false;
         }
     }
