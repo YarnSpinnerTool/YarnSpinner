@@ -51,6 +51,11 @@ namespace Yarn.Compiler
             {
                 var @case = context.enum_case_statement(i);
 
+                // Throw an exception if we have a duplicate member
+                if (enumType.Members.Any(existingMember => existingMember.Name == @case.name.Text)) {
+                    throw new TypeException(@case, $"Enum {enumType.Name} already has a case called {@case.name.Text}", this.sourceFileName);
+                }
+
                 // Get the documentation comments for this case, if any
                 var caseDescription = Compiler.GetDocumentComments(this.tokens, @case);
 
@@ -60,6 +65,7 @@ namespace Yarn.Compiler
                     InternalRepresentation = i,
                     Description = caseDescription,
                 };
+
 
                 enumType.AddMember(member);
             }
