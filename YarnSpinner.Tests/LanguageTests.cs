@@ -212,14 +212,24 @@ namespace YarnSpinner.Tests
             CompilationJob compilationJob = CompilationJob.CreateFromFiles(scriptFilePath);
             compilationJob.Library = dialogue.Library;
 
-            var result = Compiler.Compile(compilationJob);
-
-            Assert.NotNull(result.Program);
-
             var testPlanFilePath = Path.ChangeExtension(scriptFilePath, ".testplan");
 
-            if (File.Exists(testPlanFilePath))
+            bool testPlanExists = File.Exists(testPlanFilePath);
+
+            if (testPlanExists == false) {
+                // No test plan for this file exists, which indicates that
+                // the file is not expected to compile. We'll actually make
+                // it a test failure if it _does_ compile.
+
+                Assert.ThrowsAny<CompilerException>(() => Compiler.Compile(compilationJob));
+            }
+            else
             {
+                // Compile the job, and expect it to succeed.
+                var result = Compiler.Compile(compilationJob);
+
+                Assert.NotNull(result.Program);
+            
                 LoadTestPlan(testPlanFilePath);
 
                 dialogue.SetProgram(result.Program);
@@ -235,7 +245,5 @@ namespace YarnSpinner.Tests
             }
         }
     }
-
-
 }
 
