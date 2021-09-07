@@ -261,17 +261,16 @@ TEXT_COMMAND_START: '<<' -> type(COMMAND_START), mode(TextCommandOrHashtagMode),
 // Comments after free text.
 TEXT_COMMENT: COMMENT -> channel(COMMENTS);
 
-// Finally, lex anything up to a newline, a hashtag, the start of an
-// expression as free text, or a command-start marker.
-TEXT: TEXT_FRAG+ ;
-TEXT_FRAG: {
-      !(InputStream.LA(1) == '<' && InputStream.LA(2) == '<') // start-of-command marker
-    &&!(InputStream.LA(1) == '/' && InputStream.LA(2) == '/') // start of a comment
-    }? ~[\r\n#{\\] ;
-
-// TODO: support detecting a comment at the end of a line by looking 
-// ahead and seeing '//', then skipping the rest of the line. 
-// Currently "woo // foo" is parsed as one whole TEXT.
+// Finally, lex text. We'll read either everything up to (but not including) a
+// newline, a hashtag, the start of an expression, the start of an escape, the 
+// start of a command, or the start of a comma. We'll also lex a _single_ 
+// chevron or slash as a text; we know that they won't be a command or a 
+// comment, because the earlier rules for TEXT_COMMAND_START and TEXT_COMMENT 
+// would have caught them. By lexing a single one of these and then stopping,
+// we'll force the lexer to restart scanning after the current character, which
+// means we'll correctly lex things like "<<<" as "TEXT(<) COMMAND_START(<<)".
+TEXT: TEXT_FRAG+ | '<' | '/';
+fragment TEXT_FRAG: ~[\r\n#{\\</];
 
 mode TextEscapedMode;
 TEXT_ESCAPED_CHARACTER: [\\<>{}#/] -> type(TEXT), popMode ; 
