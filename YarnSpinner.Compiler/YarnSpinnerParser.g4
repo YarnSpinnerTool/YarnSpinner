@@ -16,7 +16,7 @@ node
     ;
 
 header 
-    : header_key=ID HEADER_DELIMITER  header_value=REST_OF_LINE? HEADER_NEWLINE
+    : header_key=ID HEADER_DELIMITER  header_value=REST_OF_LINE?
     ;
 
 body
@@ -40,13 +40,13 @@ line_statement
         line_formatted_text // text, interspersed with expressions
         line_condition? // a line condition
         hashtag*  // any number of hashtags
-        TEXT_NEWLINE // the end of the line
+        NEWLINE
     ;
 
 line_formatted_text
     : ( TEXT+ // one or more chunks of text to show to the player
       | EXPRESSION_START expression EXPRESSION_END // an expression to evaluate
-      )* 
+      )+ 
     ;
 
 hashtag
@@ -114,7 +114,7 @@ call_statement
     ;
 
 command_statement
-    : COMMAND_START command_formatted_text COMMAND_TEXT_END (hashtag* TEXT_NEWLINE)?
+    : COMMAND_START command_formatted_text COMMAND_TEXT_END (hashtag*)
     ;
 
 command_formatted_text

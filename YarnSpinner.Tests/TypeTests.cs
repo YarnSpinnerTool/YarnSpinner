@@ -438,20 +438,20 @@ namespace YarnSpinner.Tests
         public void TestVariableDeclarationAnnotations()
         {
             var source = CreateTestNode(@"
-            /// a number
+            /// prefix: a number
             <<declare $prefix_int = 42>>
 
-            /// a string
+            /// prefix: a string
             <<declare $prefix_str = ""Hello"">>
 
-            /// a bool
+            /// prefix: a bool
             <<declare $prefix_bool = true>>
 
-            <<declare $suffix_int = 42>> /// a number
+            <<declare $suffix_int = 42>> /// suffix: a number
 
-            <<declare $suffix_str = ""Hello"">> /// a string
+            <<declare $suffix_str = ""Hello"">> /// suffix: a string
 
-            <<declare $suffix_bool = true>> /// a bool
+            <<declare $suffix_bool = true>> /// suffix: a bool
             
             // No declaration before
             <<declare $none_int = 42>> // No declaration after
@@ -469,37 +469,37 @@ namespace YarnSpinner.Tests
                     Name = "$prefix_int",
                     Type = BuiltinTypes.Number,
                     DefaultValue = 42f,
-                    Description = "a number",
+                    Description = "prefix: a number",
                 },
                 new Declaration {
                     Name = "$prefix_str",
                     Type = BuiltinTypes.String,
                     DefaultValue = "Hello",
-                    Description = "a string",
+                    Description = "prefix: a string",
                 },
                 new Declaration {
                     Name = "$prefix_bool",
                     Type = BuiltinTypes.Boolean,
                     DefaultValue = true,
-                    Description = "a bool",
+                    Description = "prefix: a bool",
                 },
                 new Declaration {
                     Name = "$suffix_int",
                     Type = BuiltinTypes.Number,
                     DefaultValue = 42f,
-                    Description = "a number",
+                    Description = "suffix: a number",
                 },
                 new Declaration {
                     Name = "$suffix_str",
                     Type = BuiltinTypes.String,
                     DefaultValue = "Hello",
-                    Description = "a string",
+                    Description = "suffix: a string",
                 },
                 new Declaration {
                     Name = "$suffix_bool",
                     Type = BuiltinTypes.Boolean,
                     DefaultValue = true,
-                    Description = "a bool",
+                    Description = "suffix: a bool",
                 },
                 new Declaration {
                     Name = "$none_int",
