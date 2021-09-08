@@ -131,7 +131,7 @@ namespace Yarn.Compiler
         public override int VisitCall_statement(YarnSpinnerParser.Call_statementContext context)
         {
             // Visit our function call, which will invoke the function
-            Visit(context.function());
+            Visit(context.function_call());
 
             // TODO: if this function returns a value, it will be pushed
             // onto the stack, but there's no way for the compiler to know
@@ -195,7 +195,7 @@ namespace Yarn.Compiler
             compiler.Emit(OpCode.CallFunc, new Operand(functionName));
         }
         // handles emiting the correct instructions for the function
-        public override int VisitFunction(YarnSpinnerParser.FunctionContext context)
+        public override int VisitFunction_call(YarnSpinnerParser.Function_callContext context)
         {
             string functionName = context.FUNC_ID().GetText();
 
@@ -528,7 +528,7 @@ namespace Yarn.Compiler
         // everything
         public override int VisitValueFunc(YarnSpinnerParser.ValueFuncContext context)
         {
-            Visit(context.function());
+            Visit(context.function_call());
 
             return 0;
         }

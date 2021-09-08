@@ -211,11 +211,11 @@ public interface IYarnSpinnerParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitVariable([NotNull] YarnSpinnerParser.VariableContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.function"/>.
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.function_call"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitFunction([NotNull] YarnSpinnerParser.FunctionContext context);
+	Result VisitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.if_statement"/>.
 	/// </summary>

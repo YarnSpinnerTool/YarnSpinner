@@ -136,7 +136,7 @@ namespace Yarn.Compiler
 
         public override Yarn.IType VisitValueFunc(YarnSpinnerParser.ValueFuncContext context)
         {
-            string functionName = context.function().FUNC_ID().GetText();
+            string functionName = context.function_call().FUNC_ID().GetText();
 
             Declaration functionDeclaration = Declarations
                 .Where(d => d.Type is FunctionType)
@@ -165,7 +165,7 @@ namespace Yarn.Compiler
                 // Create the array of parameters for this function based
                 // on how many we've seen in this call. Set them all to be
                 // undefined; we'll bind their type shortly.
-                var parameterTypes = context.function().expression()
+                var parameterTypes = context.function_call().expression()
                     .Select(e => BuiltinTypes.Undefined)
                     .ToList();
 
@@ -182,7 +182,7 @@ namespace Yarn.Compiler
             }
             
             // Check each parameter of the function
-            var suppliedParameters = context.function().expression();
+            var suppliedParameters = context.function_call().expression();
 
             var expectedParameters = functionType.Parameters;
 

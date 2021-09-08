@@ -61,7 +61,7 @@ public partial class YarnSpinnerParser : Parser {
 		RULE_dialogue = 0, RULE_file_hashtag = 1, RULE_node = 2, RULE_header = 3, 
 		RULE_body = 4, RULE_statement = 5, RULE_line_statement = 6, RULE_line_formatted_text = 7, 
 		RULE_hashtag = 8, RULE_line_condition = 9, RULE_expression = 10, RULE_value = 11, 
-		RULE_variable = 12, RULE_function = 13, RULE_if_statement = 14, RULE_if_clause = 15, 
+		RULE_variable = 12, RULE_function_call = 13, RULE_if_statement = 14, RULE_if_clause = 15, 
 		RULE_else_if_clause = 16, RULE_else_clause = 17, RULE_set_statement = 18, 
 		RULE_call_statement = 19, RULE_command_statement = 20, RULE_command_formatted_text = 21, 
 		RULE_shortcut_option_statement = 22, RULE_shortcut_option = 23, RULE_declare_statement = 24, 
@@ -69,7 +69,7 @@ public partial class YarnSpinnerParser : Parser {
 	public static readonly string[] ruleNames = {
 		"dialogue", "file_hashtag", "node", "header", "body", "statement", "line_statement", 
 		"line_formatted_text", "hashtag", "line_condition", "expression", "value", 
-		"variable", "function", "if_statement", "if_clause", "else_if_clause", 
+		"variable", "function_call", "if_statement", "if_clause", "else_if_clause", 
 		"else_clause", "set_statement", "call_statement", "command_statement", 
 		"command_formatted_text", "shortcut_option_statement", "shortcut_option", 
 		"declare_statement", "jump_statement"
@@ -1380,8 +1380,8 @@ public partial class YarnSpinnerParser : Parser {
 		}
 	}
 	public partial class ValueFuncContext : ValueContext {
-		public FunctionContext function() {
-			return GetRuleContext<FunctionContext>(0);
+		public Function_callContext function_call() {
+			return GetRuleContext<Function_callContext>(0);
 		}
 		public ValueFuncContext(ValueContext context) { CopyFrom(context); }
 		public override void EnterRule(IParseTreeListener listener) {
@@ -1489,7 +1489,7 @@ public partial class YarnSpinnerParser : Parser {
 				_localctx = new ValueFuncContext(_localctx);
 				EnterOuterAlt(_localctx, 7);
 				{
-				State = 175; function();
+				State = 175; function_call();
 				}
 				break;
 			default:
@@ -1550,7 +1550,7 @@ public partial class YarnSpinnerParser : Parser {
 		return _localctx;
 	}
 
-	public partial class FunctionContext : ParserRuleContext {
+	public partial class Function_callContext : ParserRuleContext {
 		public ITerminalNode FUNC_ID() { return GetToken(YarnSpinnerParser.FUNC_ID, 0); }
 		public ITerminalNode LPAREN() { return GetToken(YarnSpinnerParser.LPAREN, 0); }
 		public ITerminalNode RPAREN() { return GetToken(YarnSpinnerParser.RPAREN, 0); }
@@ -1564,30 +1564,30 @@ public partial class YarnSpinnerParser : Parser {
 		public ITerminalNode COMMA(int i) {
 			return GetToken(YarnSpinnerParser.COMMA, i);
 		}
-		public FunctionContext(ParserRuleContext parent, int invokingState)
+		public Function_callContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_function; } }
+		public override int RuleIndex { get { return RULE_function_call; } }
 		public override void EnterRule(IParseTreeListener listener) {
 			IYarnSpinnerParserListener typedListener = listener as IYarnSpinnerParserListener;
-			if (typedListener != null) typedListener.EnterFunction(this);
+			if (typedListener != null) typedListener.EnterFunction_call(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			IYarnSpinnerParserListener typedListener = listener as IYarnSpinnerParserListener;
-			if (typedListener != null) typedListener.ExitFunction(this);
+			if (typedListener != null) typedListener.ExitFunction_call(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IYarnSpinnerParserVisitor<TResult> typedVisitor = visitor as IYarnSpinnerParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFunction(this);
+			if (typedVisitor != null) return typedVisitor.VisitFunction_call(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public FunctionContext function() {
-		FunctionContext _localctx = new FunctionContext(Context, State);
-		EnterRule(_localctx, 26, RULE_function);
+	public Function_callContext function_call() {
+		Function_callContext _localctx = new Function_callContext(Context, State);
+		EnterRule(_localctx, 26, RULE_function_call);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
@@ -2007,8 +2007,8 @@ public partial class YarnSpinnerParser : Parser {
 	public partial class Call_statementContext : ParserRuleContext {
 		public ITerminalNode COMMAND_START() { return GetToken(YarnSpinnerParser.COMMAND_START, 0); }
 		public ITerminalNode COMMAND_CALL() { return GetToken(YarnSpinnerParser.COMMAND_CALL, 0); }
-		public FunctionContext function() {
-			return GetRuleContext<FunctionContext>(0);
+		public Function_callContext function_call() {
+			return GetRuleContext<Function_callContext>(0);
 		}
 		public ITerminalNode COMMAND_END() { return GetToken(YarnSpinnerParser.COMMAND_END, 0); }
 		public Call_statementContext(ParserRuleContext parent, int invokingState)
@@ -2040,7 +2040,7 @@ public partial class YarnSpinnerParser : Parser {
 			{
 			State = 244; Match(COMMAND_START);
 			State = 245; Match(COMMAND_CALL);
-			State = 246; function();
+			State = 246; function_call();
 			State = 247; Match(COMMAND_END);
 			}
 		}

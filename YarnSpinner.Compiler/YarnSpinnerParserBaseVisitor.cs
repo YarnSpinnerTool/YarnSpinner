@@ -321,7 +321,7 @@ public partial class YarnSpinnerParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// <return>The visitor result.</return>
 	public virtual Result VisitVariable([NotNull] YarnSpinnerParser.VariableContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.function"/>.
+	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.function_call"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -329,7 +329,7 @@ public partial class YarnSpinnerParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitFunction([NotNull] YarnSpinnerParser.FunctionContext context) { return VisitChildren(context); }
+	public virtual Result VisitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="YarnSpinnerParser.if_statement"/>.
 	/// <para>

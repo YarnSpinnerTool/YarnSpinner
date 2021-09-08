@@ -76,14 +76,14 @@ value
     | variable       #valueVar
     | STRING #valueString
     | KEYWORD_NULL   #valueNull
-    | function       #valueFunc
+    | function_call       #valueFunc
 
     ;
 variable
     : VAR_ID
     ;
 
-function 
+function_call 
     : FUNC_ID '(' expression? (COMMA expression)* ')' ;
 
 if_statement
@@ -110,7 +110,7 @@ set_statement
     ;
 
 call_statement
-    : COMMAND_START COMMAND_CALL function COMMAND_END
+    : COMMAND_START COMMAND_CALL function_call COMMAND_END
     ;
 
 command_statement
