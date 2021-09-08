@@ -286,6 +286,8 @@ namespace Yarn.Compiler
 
         public Dictionary<string, IEnumerable<string>> FileTags { get; internal set; }
 
+        public IEnumerable<Problem> Problems {get; internal set;}
+
         internal static CompilationResult CombineCompilationResults(IEnumerable<CompilationResult> results, StringTableManager stringTableManager)
         {
             CompilationResult finalResult;
@@ -293,6 +295,7 @@ namespace Yarn.Compiler
             var programs = new List<Program>();
             var declarations = new List<Declaration>();
             var tags = new Dictionary<string, IEnumerable<string>>();
+            var problems = new List<Problem>();
 
             foreach (var result in results)
             {
@@ -311,6 +314,9 @@ namespace Yarn.Compiler
                     }
                 }
 
+                if (result.Problems != null) {
+                    problems.AddRange(result.Problems);
+                }
             }
 
             return new CompilationResult
@@ -320,6 +326,7 @@ namespace Yarn.Compiler
                 Declarations = declarations,
                 ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
                 FileTags = tags,
+                Problems = problems,
             };
         }
     }
@@ -680,7 +687,7 @@ namespace Yarn.Compiler
             return declarations;
         }
 
-        internal static (IParseTree tree, CommonTokenStream tokens) ParseSyntaxTree(CompilationJob.File file)
+        private static (IParseTree tree, CommonTokenStream tokens, IEnumerable<Problem>) ParseSyntaxTree(CompilationJob.File file)
         {
             string source = file.Source;
             string fileName = file.FileName;
@@ -688,7 +695,7 @@ namespace Yarn.Compiler
             return ParseSyntaxTree(fileName, source);
         }
 
-        internal static (IParseTree tree, CommonTokenStream tokens) ParseSyntaxTree(string fileName, string source)
+        internal static (IParseTree tree, CommonTokenStream tokens, IEnumerable<Problem>) ParseSyntaxTree(string fileName, string source)
         {
             ICharStream input = CharStreams.fromstring(source);
 
@@ -698,34 +705,22 @@ namespace Yarn.Compiler
             YarnSpinnerParser parser = new YarnSpinnerParser(tokens);
 
             // turning off the normal error listener and using ours
+            var parserErrorListener = new ParserErrorListener();
+            var lexerErrorListener = new LexerErrorListener();
+
             parser.RemoveErrorListeners();
-            parser.AddErrorListener(ParserErrorListener.Instance);
+            parser.AddErrorListener(parserErrorListener);
 
             lexer.RemoveErrorListeners();
-            lexer.AddErrorListener(LexerErrorListener.Instance);
+            lexer.AddErrorListener(lexerErrorListener);
 
             IParseTree tree;
-            try
-            {
-                tree = parser.dialogue();
-            }
-            catch (ParseException e)
-            {
-#if DEBUG
-                var tokenStringList = new List<string>();
-                tokens.Reset();
-                foreach (var token in tokens.GetTokens())
-                {
-                    tokenStringList.Add($"{token.Line}:{token.Column} {YarnSpinnerLexer.DefaultVocabulary.GetDisplayName(token.Type)} \"{token.Text}\"");
-                }
+            
+            tree = parser.dialogue();
 
-                throw new ParseException(e.Context, $"{e.Message}\n\nTokens:\n{string.Join("\n", tokenStringList)}", fileName);
-#else
-                throw new ParseException(e.Context, e.Message, fileName);
-#endif // DEBUG
-            }
+            var allProblems = lexerErrorListener.Problems.Concat(parserErrorListener.Problems);
 
-            return (tree, tokens);
+            return (tree, tokens, allProblems);
         }
 
         /// <summary>

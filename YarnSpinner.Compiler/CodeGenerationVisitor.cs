@@ -85,7 +85,7 @@ namespace Yarn.Compiler
             string lineID = Compiler.GetLineID(context.hashtag());
 
             if (lineID == null) {
-                throw new ParseException("No line ID specified");
+                throw new ParseException("Internal error: no line ID specified");
             }
 
             compiler.Emit(OpCode.RunLine, new Operand(lineID), new Operand(expressionCount));
@@ -207,6 +207,7 @@ namespace Yarn.Compiler
         // if statement ifclause (elseifclause)* (elseclause)? <<endif>>
         public override int VisitIf_statement(YarnSpinnerParser.If_statementContext context)
         {
+            context.AddErrorNode(null);
             // label to give us a jump point for when the if finishes
             string endOfIfStatementLabel = compiler.RegisterLabel("endif");
 
@@ -308,7 +309,7 @@ namespace Yarn.Compiler
                 string lineID = Compiler.GetLineID(shortcut.line_statement().hashtag());
 
                 if (lineID == null) {
-                    throw new ParseException("No line ID provided");
+                    throw new ParseException("Internal error: no line ID provided");
                 }
 
                 // And add this option to the list.

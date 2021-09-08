@@ -172,7 +172,7 @@ namespace Yarn.Compiler
         /// compilation errors.</exception>
         public static Antlr4.Runtime.Tree.IParseTree GetParseTree(string source)
         {
-            var (tree, _) = Compiler.ParseSyntaxTree("<input>", source);
+            var (tree, _, _) = Compiler.ParseSyntaxTree("<input>", source);
 
             return tree;
         }
@@ -188,7 +188,7 @@ namespace Yarn.Compiler
         /// compilation errors.</exception>
         public static IEnumerable<Antlr4.Runtime.IToken> GetTokens(string source)
         {
-            var (_, tokens) = Compiler.ParseSyntaxTree("<input>", source);
+            var (_, tokens, _) = Compiler.ParseSyntaxTree("<input>", source);
 
             return tokens.Get(0, tokens.Size - 1);
         }
