@@ -282,5 +282,17 @@ namespace YarnSpinner.Tests
             Assert.Equal(4, markup.Attributes[1].Position);
             Assert.Equal(10, markup.Attributes[1].Length);
         }
+
+        [Fact]
+        public void TestMarkupEscaping() {
+            var line = @"[a]hello \[b\]hello\[/b\][/a]";
+            var markup = dialogue.ParseMarkup(line);
+
+            Assert.Equal("hello [b]hello[/b]", markup.Text);
+            Assert.Equal(1, markup.Attributes.Count);
+            Assert.Equal("a", markup.Attributes[0].Name);
+            Assert.Equal(0, markup.Attributes[0].Position);
+            Assert.Equal(18, markup.Attributes[0].Length);
+        }
     }
 }

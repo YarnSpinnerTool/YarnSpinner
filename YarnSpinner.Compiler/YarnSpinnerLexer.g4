@@ -106,6 +106,12 @@ mode TextMode;
 // into the default channel (rather than into WHITESPACE).
 TEXT_NEWLINE: NEWLINE -> type(NEWLINE), popMode;
 
+// An escaped markup bracket. Markup is parsed by a separate phase (see
+// LineParser.cs in the C# code), and we want to pass escaped markers
+// directly through, so we'll match this and report it as TEXT before
+// matching the more general 'escaped character' rule.
+TEXT_ESCAPED_MARKUP_BRACKET: ('\\[' | '\\]') -> type(TEXT);
+
 // An escape marker. Skip this token and enter escaped text mode, which 
 // allows escaping characters that would otherwise be syntactically 
 // meaningful.
@@ -135,7 +141,7 @@ TEXT_COMMENT: COMMENT -> channel(COMMENTS);
 // would have caught them. By lexing a single one of these and then stopping,
 // we'll force the lexer to restart scanning after the current character, which
 // means we'll correctly lex things like "<<<" as "TEXT(<) COMMAND_START(<<)".
-TEXT: TEXT_FRAG+ | '<' | '/';
+TEXT: TEXT_FRAG+ | '<' | '/' ;
 fragment TEXT_FRAG: ~[\r\n#{\\</];
 
 mode TextEscapedMode;

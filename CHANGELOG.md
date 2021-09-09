@@ -11,6 +11,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Made the lexer not use semantic predicates when lexing the TEXT rule, which reduces the amount of C# code present in the grammar file.
+- Markup can now be escaped, using the `\` character:
+
+```
+\[b\]hello\[/b\]
+// will appear to the user as "[b]hello[/b]", and will not 
+// be treated as markup
+```
 
 ### Removed
 
