@@ -18,6 +18,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 // will appear to the user as "[b]hello[/b]", and will not 
 // be treated as markup
 ```
+- `Dialogue.SetSelectedOption` can now be called within the options handler itself. 
+  - If you do this, the `Dialogue` will continue executing after the options handler returns, and you do not need to call `Continue`.
 
 ### Removed
 

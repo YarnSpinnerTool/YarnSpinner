@@ -866,6 +866,14 @@ namespace Yarn
                         // a selection
                         OptionsHandler(new OptionSet(optionChoices.ToArray()));
 
+                        if (executionState == ExecutionState.WaitingForContinue) {
+                            // we are no longer waiting on an option
+                            // selection - the options handler must have
+                            // called SetSelectedOption! Continue running
+                            // immediately.
+                            executionState = ExecutionState.Running;
+                        }
+
                         break;
                     }
 

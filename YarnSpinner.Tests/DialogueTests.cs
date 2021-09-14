@@ -245,6 +245,75 @@ namespace YarnSpinner.Tests
             Assert.Equal(false, boolValue);
         }
 
+        [Fact]
+        public void TestSelectingOptionFromInsideOptionCallback() {
+            var testCase = new TestPlanBuilder()
+                .AddOption("option 1")
+                .AddOption("option 2")
+                .AddSelect(0)
+                .AddLine("final line")
+                .GetPlan();
+            
+            dialogue.LineHandler = (line) => {
+                var lineText = stringTable[line.ID];
+                var parsedText = dialogue.ParseMarkup(lineText.text).Text;
+                testCase.Next();
+
+                Assert.Equal(TestPlan.Step.Type.Line, testCase.nextExpectedType);
+                Assert.Equal(testCase.nextExpectedValue, parsedText);
+
+                dialogue.Continue();
+            };
+
+            dialogue.OptionsHandler = (optionSet) => {
+                testCase.Next();
+
+                int optionCount = optionSet.Options.Count();
+
+                Assert.Equal(TestPlan.Step.Type.Select, testCase.nextExpectedType);
+                
+                // Assert that the list of options we were given is
+                // identical to the list of options we expect
+                var actualOptionList = optionSet.Options
+                    .Select(o => (GetComposedTextForLine(o.Line), o.IsAvailable))
+                    .ToList();
+                Assert.Equal(testCase.nextExpectedOptions, actualOptionList);
+
+                var expectedOptionCount = testCase.nextExpectedOptions.Count();
+
+                Assert.Equal (expectedOptionCount, optionCount);
+
+                dialogue.SetSelectedOption(0);
+            };
+
+            dialogue.CommandHandler = (command) => {
+                testCase.Next();
+                Assert.Equal(TestPlan.Step.Type.Command, testCase.nextExpectedType);
+                dialogue.Continue();
+            };
+
+            dialogue.DialogueCompleteHandler = () => {
+                testCase.Next();
+                Assert.Equal(TestPlan.Step.Type.Stop, testCase.nextExpectedType);
+                dialogue.Continue();
+            };
+
+            var code = CreateTestNode("-> option 1\n->option 2\nfinal line\n");
+
+            var job = CompilationJob.CreateFromString("input", code);
+
+            var result = Compiler.Compile(job);
+
+            this.stringTable = result.StringTable;
+
+            dialogue.SetProgram(result.Program);
+            dialogue.SetNode("Start");
+
+            dialogue.Continue();
+            
+
+        }
+
     }
 }
 
