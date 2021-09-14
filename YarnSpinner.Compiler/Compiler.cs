@@ -1,4 +1,4 @@
-// Uncomment to ensure that all expressions have a known type at compile time
+﻿// Uncomment to ensure that all expressions have a known type at compile time
 // #define VALIDATE_ALL_EXPRESSIONS
 
 namespace Yarn.Compiler
@@ -680,10 +680,16 @@ namespace Yarn.Compiler
             return declarations;
         }
 
-        private static (IParseTree tree, CommonTokenStream tokens) ParseSyntaxTree(CompilationJob.File file)
+        internal static (IParseTree tree, CommonTokenStream tokens) ParseSyntaxTree(CompilationJob.File file)
         {
             string source = file.Source;
-            
+            string fileName = file.FileName;
+
+            return ParseSyntaxTree(fileName, source);
+        }
+
+        internal static (IParseTree tree, CommonTokenStream tokens) ParseSyntaxTree(string fileName, string source)
+        {
             ICharStream input = CharStreams.fromstring(source);
 
             YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
@@ -713,9 +719,9 @@ namespace Yarn.Compiler
                     tokenStringList.Add($"{token.Line}:{token.Column} {YarnSpinnerLexer.DefaultVocabulary.GetDisplayName(token.Type)} \"{token.Text}\"");
                 }
 
-                throw new ParseException(e.Context, $"{e.Message}\n\nTokens:\n{string.Join("\n", tokenStringList)}", file.FileName);
+                throw new ParseException(e.Context, $"{e.Message}\n\nTokens:\n{string.Join("\n", tokenStringList)}", fileName);
 #else
-                throw new ParseException(e.Context, e.Message, file.FileName);
+                throw new ParseException(e.Context, e.Message, fileName);
 #endif // DEBUG
             }
 
