@@ -177,6 +177,7 @@ The program should flag this as an error.
 #### Duplicate Tags
 
 Duplicate header tags within a node is invalid.
+A duplicate tag is a duplicate if it has the same tag name as another.
 The implementing program must either throw an error when encountering a duplicate tag or ignore all but the first instance of a tag.
 If the implementing program is ignoring later duplicates then the user should still be informed as the existence of duplicate tags.
 
@@ -735,7 +736,7 @@ The minimum and maximum length of a variable name is unspecified but must be at 
 Variable names must be unique throughout their scope.
 The _scope_ of the variable is what defines for how long a variable exists.
 Once a variable leaves its scope it is no longer valid and implementing programs must not support accessing variables outside of their scope.
-The scope of variables is undefined, however implementing programs should err on the side of variables being global in scope.
+The scope of a variable must be global across the project.
 
 `$name` is an example of a variable name, `$𐃩` is another example of a variable name.
 
