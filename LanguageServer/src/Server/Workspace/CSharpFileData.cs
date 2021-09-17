@@ -53,8 +53,9 @@ namespace YarnLanguageServer
             // TODO: This doesn't match anonymous functions, fix that at somepoint
             var commandbridges = regMatches
                 .Select(e =>
-                    (e.m.ArgumentList.Arguments[0].ToString().Trim('\"'), e.m.ArgumentList.Arguments[1], e.Item2))
-                .Where(b => b.Item2.Kind() == SyntaxKind.IdentifierName);
+                    (e.m.ArgumentList.Arguments[0].ToString().Trim('\"'), e.m.ArgumentList.Arguments[1].Expression, e.Item2))
+                .Where(b =>
+                    b.Item2.Kind() == SyntaxKind.IdentifierName);
 
             var registeredmatched = root.DescendantNodes()
                 .OfType<MethodDeclarationSyntax>()
