@@ -14,7 +14,7 @@ This project implements the following language server protocol capabilities:
 - Semantic token highlighting
 - Warning and error diagnostics
 - Signature Help for commands and functions
-- Code Completion for variables, comands, functions, and (some) keywords
+- Code Completion for variables, commands, functions, and (some) keywords
 - Code Lenses for nodes indicating reference counts
 - Quickfix code actions (only a few right now, but more to come!)
 
