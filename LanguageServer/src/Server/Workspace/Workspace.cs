@@ -77,6 +77,7 @@ namespace YarnLanguageServer
             catch (Exception) { }
 
             var yarnFiles = System.IO.Directory.EnumerateFiles(Root, "*.yarn", System.IO.SearchOption.AllDirectories);
+            yarnFiles = yarnFiles.Where(f => !f.Contains("PackageCache") && !f.Contains("Library"));
             foreach (var file in yarnFiles)
             {
                 var text = System.IO.File.ReadAllText(file);
