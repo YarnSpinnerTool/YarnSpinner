@@ -27,10 +27,10 @@ This is because despite Yarn and Yarn Spinner being separate elements attempting
 
 ### Coverage
 
-This document covers the elements of a Yarn script that are required to be considered a valid yarn script as well as the rules necessary for an implementing program to be able to conform to this spec.
+This document covers the elements of a Yarn script that are required to be considered a valid Yarn script as well as the rules necessary for an implementing program to be able to conform to this specification.
 
-An *implementing program* is a program that accepts yarn files as inputs and understands them based on the rules in this document.
-This document does not cover how a yarn file is to be transformed or handled internally by an implementing program.
+An *implementing program* is a program that accepts Yarn files as inputs and understands them based on the rules in this document.
+This document does not cover how a Yarn file is to be transformed or handled internally by an implementing program.
 
 This document does note when behaviours are *unspecified*.
 The implementing program may choose how to handle any unspecified behaviour, often unspecified behaviours have no good solution and should result in an error.
@@ -80,13 +80,13 @@ File extension should be `.yarn`.
 
 ### Project
 
-The yarn *project* is all yarn files that are intended to be associated with one another.
+The Yarn *project* is all Yarn files that are intended to be associated with one another.
 While there is nothing stopping a writer from placing all nodes into one big file (or even making one giant node) it is common to break them up over multiple files.
 The project is all of these files collected and processed by the implementing program together.
 
 ### Lines
 
-The *line* is the common unit that comprises all elements in a yarn file.
+The *line* is the common unit that comprises all elements in a Yarn file.
 A line is a series of characters terminated by the *new line* symbol.
 The new line symbol should be the `\n` character.
 The new line must be the same throughout the project regardless of the chosen new line symbol.
@@ -112,7 +112,7 @@ A comment is a line that starts with the `//` symbol.
 All text from the start of the comment to the end of the line must be ignored.
 A comment starting in the middle of another line ends that line at the point the `//` symbol is encountered.
 That line is assumed to have finished at that point as if the comment was not there.
-Comments must not impact the rest of the lines or have any impact on the resulting yarn program.
+Comments must not impact the rest of the lines or have any impact on the resulting Yarn program.
  
 ### Identifiers
 
@@ -125,7 +125,7 @@ The minimum and maximum length of identifiers is unspecified.
 
 ## Yarn Structure
 
-The basic structure of a yarn file is zero or more file tags and one or more yarn nodes.
+The basic structure of a Yarn file is zero or more file tags and one or more Yarn nodes.
 
 ### File Tags
 
@@ -136,8 +136,8 @@ File tags must have the `#` symbol at the start of them and then contain all tex
 
 ### Nodes
 
-A *node* is the single story element of a yarn file.
-Nodes are the story structural building blocks for yarn.
+A *node* is the single story element of a Yarn file.
+Nodes are the story structural building blocks for Yarn.
 Nodes are designed to contain pieces of a story and then have these story pieces linked together.
 This is not a requirement, everything could be done in a single node, this would just be unwieldy.
 A node must be comprised of a single header and a single body in that order.
@@ -212,7 +212,7 @@ Multiple hashtags can exist on a single line.
 
 ## Dialogue Statement
 
-A dialogue statement is a statement that represents a single line of text in the yarn body.
+A dialogue statement is a statement that represents a single line of text in the Yarn body.
 In most cases dialogue will be the bulk of the content of a node's body.
 Dialogue statements can be [interpolated](#interpolated-dialogue) dialogue or [raw](#raw-dialogue) dialogue.
 A dialogue statement can contain any characters except for the `#` character.
@@ -245,10 +245,10 @@ Escaping text must be supported in both normal and interpolated dialogue lines a
 ### Statement Ambiguity
 
 Because the dialogue statement allows a great deal of flexibility in allowed characters every other statement inside the body could be considered to also be a valid dialogue statement.
-This creates an ambiguity when parsing a yarn file, as such the dialogue statement must be considered the lowest priority by the implementing program.
+This creates an ambiguity when parsing a Yarn file, as such the dialogue statement must be considered the lowest priority by the implementing program.
 
 For example `<<Fred Move Left>>` could be read as a [command](#commands) or a dialogue statement, it must be considered a command by the implementing program.
-This does create a potential conflict between writer intent and yarn's requirements, however it is unavoidable.
+This does create a potential conflict between writer intent and Yarn's requirements, however it is unavoidable.
 To continue the earlier example if the writer intended `<<Fred Move Left>>` to be a dialogue statement they would have to escape the reserved characters first, so `\<<Fred Move Left\>>` which would present as `<<Fred Move Left>>` to the game.
 
 ## Commands
@@ -269,10 +269,10 @@ Additional required command are unspecified.
 
 ### Generic Commands
 
-_Generic Commands_ are commands for sending messages from the yarn to the rest of the program.
+_Generic Commands_ are commands for sending messages from the Yarn to the rest of the program.
 Unlike the other commands generic commands don't impact the dialogue.
 They can be thought of as lines of dialogue that aren't to be shown in the game.
-Implementing programs must not modify the flow of the yarn based on the command.
+Implementing programs must not modify the flow of the Yarn based on the command.
 
 Generic commands can have any text except for the `#`, `{`, or `}` symbols inside of them.
 
@@ -288,7 +288,7 @@ are examples of generic commands.
 
 ### Jump
 
-The _jump_ command is how a yarn program can move from one [node](#nodes) to another.
+The _jump_ command is how a Yarn program can move from one [node](#nodes) to another.
 The jump has two components: the keyword and the destination and these are separated by one or more whitespace.
 The _keyword_ is the text `jump` and comes first in the command.
 
@@ -459,7 +459,7 @@ The endif exists to allow the implementing program know when the scope of the ot
 
 #### Scope and Blocks
 
-For the flow control to be useful there needs to be yarn statements which are run only when their appropriate expression evaluates to true.
+For the flow control to be useful there needs to be Yarn statements which are run only when their appropriate expression evaluates to true.
 Flow control allows for blocks of statements to be scoped to their commands.
 A _block_ is a collection of statements that are scoped to a particular part of the flow control.
 The block must be one or more statements.
@@ -475,7 +475,7 @@ While it is common for writers to indent their blocks relative to their scope it
 #### Handling 
 
 The implementing program must process all statements within the active blocks scope.
-The _active block_ is the block of yarn who's command expression evaluates to `true`.
+The _active block_ is the block of Yarn who's command expression evaluates to `true`.
 The block associated with the else command, if present, must only be determined as the active block if all other blocks expressions evaluate to false.
 
 An implementing program must not process any statements inside a block that is not the active block.
@@ -548,7 +548,7 @@ Each option line may optionally have a block of statements associated with that 
 Similar again to the flow control, if an option line is selected its associated block of must be processed by the implementing program.
 If an option isn't chosen the associated block must not be processed.
 
-Unlike the flow control however there is no clear way to tell apart different blocks and options from other parts of the yarn, instead indentation is used to determine blocks and the end of the options.
+Unlike the flow control however there is no clear way to tell apart different blocks and options from other parts of the Yarn, instead indentation is used to determine blocks and the end of the options.
 The rules for this must be followed:
 
 The first option line in the options determines the base indentation for the options statement, this is determined by counting the number of [whitespace](#whitespace) elements before the `->` symbol.
@@ -707,7 +707,7 @@ The forth is invalid because it has a space between the decimal seperator and th
 
 #### Strings
 
-Strings are an ordered collection of characters and must be capable of holding [UTF-8 characters](https://en.wikipedia.org/wiki/UTF-8) as this is what the yarn language is written in, but the internals of this is unspecified provided all valid UTF-8 strings are supported.
+Strings are an ordered collection of characters and must be capable of holding [UTF-8 characters](https://en.wikipedia.org/wiki/UTF-8) as this is what the Yarn language is written in, but the internals of this is unspecified provided all valid UTF-8 strings are supported.
 The minimum and maximum lengths of strings are unspecified but if the implementing program cannot support a string it must present this as an error.
 Strings in expressions must be encapsulated between `"` and `"` symbols.
 
