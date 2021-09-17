@@ -1,0 +1,108 @@
+{
+    "name": "yarn-spinner-language-server",
+    "displayName": "Yarn Spinner Language Server",
+    "description": "Adds support for the Yarn Spinner dialogue language.",
+    "version": "2.0.0-beta.5.1",
+    "homepage": "https://github.com/pappleby/YarnSpinnerLanguageServer",
+    "license": "MIT",
+    "keywords": [
+        "yarn spinner",
+        "yarnspinner",
+        "yarn",
+        "game writing",
+        "narrative",
+        "tree",
+        "branch",
+        "branching",
+        "dialog",
+        "dialogue"
+    ],
+    "qna": false,
+    "publisher": "Peter-Appleby",
+    "repository": {"url": "https://github.com/pappleby/YarnSpinnerLanguageServer"},
+    "galleryBanner": {
+        "color": "#C5E29B",
+        "theme": "light"
+    },
+    "engines": {
+        "vscode": "^1.59.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "activationEvents": [
+        "onLanguage:yarnspinner"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "languages": [
+            {
+                "id": "yarnspinner",
+                "aliases": [
+                    "Yarn Spinner",
+                    "yarnspinner",
+                    "Yarn"
+                ],
+                "extensions": [
+                    ".yarn",
+                    ".yarn.txt"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "yarnspinner",
+                "scopeName": "source.yarnspinner",
+                "path": "./syntaxes/yarnspinner.tmLanguage.json"
+            }
+        ],
+        "configuration": {
+            "title": "Yarn Spinner Language Server",
+            "properties": {
+                "yarnLanguageServer.CSharpLookup": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Parse C# files for Commands and Functions."
+                },
+                "yarnLanguageServer.OnlySuggestDeclaredVariables": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "When false, variable suggestions will also include undeclared variables."
+                },
+                "yarnLanguageServer.DidYouMeanThreshold": {
+                    "type": "number",
+                    "default": 0.3,
+                    "description": "Controls the cut off for fuzzy string matching in quick fix suggestions."
+                },
+                "yarnLanguageServer.trace.server": {
+                    "type": "string",
+                    "enum": [
+                        "off",
+                        "messages",
+                        "verbose"
+                    ],
+                    "default": "messages",
+                    "description": "Traces the communication between VSCode and the Yarn Language Server Instance."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -p ./"
+    },
+    "devDependencies": {
+        "@types/node": "^16.7.1",
+        "@types/vscode": "^1.59.0",
+        "esbuild": "^0.12.24",
+        "typescript": "^4.4.2",
+        "vscode-test": "^1.6.1"
+    },
+    "dependencies": {
+        "vscode-languageclient": "^7.0.0"
+    },
+    "extensionDependencies": [
+        "ms-dotnettools.vscode-dotnet-runtime"
+    ]
+}

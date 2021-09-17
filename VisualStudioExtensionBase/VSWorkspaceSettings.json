@@ -1,0 +1,6 @@
+﻿{
+  "yarnLanguageServer.trace.server": "Verbose",
+  "yarnLanguageServer.CSharpLookup": "True",
+  "yarnLanguageServer.OnlySuggestDeclaredVariables": "false",
+  "yarnLanguageServer.DidYouMeanThreshold": "0.3"
+}

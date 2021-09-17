@@ -1,0 +1,8 @@
+.vscode/**
+.vscode-test/**
+.gitignore
+vsc-extension-quickstart.md
+LanguageServer/src
+LanguageServer/.vs
+LanguageServer/obj
+LanguageServer/Properties

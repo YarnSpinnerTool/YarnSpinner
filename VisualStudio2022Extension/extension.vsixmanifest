@@ -1,0 +1,24 @@
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
+  <Metadata>
+    <Identity Id="YarnSpinnerLanguageServerforVisualStudio2022.8d28015e-4947-4517-a1b6-95a1b4d66b94" Version="0.6" Language="en-US" Publisher="Peter Appleby" />
+    <DisplayName>YarnSpinner Language Server for Visual Studio 2022</DisplayName>
+    <Description xml:space="preserve">Provides language services for Yarn Spinner </Description>
+    <License>LICENSE.txt</License>
+    <Preview>true</Preview>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0, 17.0)" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" Version="[4.5,)" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" Path="VisualStudioExtension.pkgdef" />
+    <Asset Type="Microsoft.VisualStudio.MefComponent" Path="VisualStudioExtension.dll" />
+    <Asset Type="Microsoft.VisualStudio.VsPackage" Path="Settings.pkgdef" />
+    <Asset Type="Microsoft.VisualStudio.Assembly" Path="Server\YarnLanguageServer.dll" AssemblyName="YarnLanguageServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+  </Assets>
+  <Prerequisites>
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[16.0,17.0)" DisplayName="Visual Studio core editor" />
+  </Prerequisites>
+</PackageManifest>

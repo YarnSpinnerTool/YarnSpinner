@@ -1,0 +1,249 @@
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using Antlr4.Runtime;
+using Antlr4.Runtime.Tree;
+using OmniSharp.Extensions.LanguageServer.Protocol.Document;
+using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using Yarn.Compiler;
+
+namespace YarnLanguageServer
+{
+    internal class SemanticTokenVisitor : YarnSpinnerParserBaseVisitor<bool>
+    {
+        public static void BuildSemanticTokens(SemanticTokensBuilder builder, YarnFileData yarnFile)
+        {
+            var visitor = new SemanticTokenVisitor();
+            foreach (var commenttoken in yarnFile.CommentTokens)
+            {
+                visitor.AddTokenType(commenttoken, commenttoken, SemanticTokenType.Comment);
+            }
+
+            visitor.Visit(yarnFile.ParseTree);
+
+            foreach (var (start, stop, tokenType, tokenModifiers) in visitor.tokens.OrderBy(t => t.start.StartIndex))
+            {
+                builder.Push(start.Line - 1, start.Column, stop.StopIndex - start.StartIndex + 1, tokenType as SemanticTokenType?, tokenModifiers);
+            }
+        }
+
+        private List<(IToken start, IToken stop, SemanticTokenType tokenType, SemanticTokenModifier[] tokenModifier)> tokens;
+
+        private SemanticTokenVisitor()
+        {
+            this.tokens = new List<(IToken, IToken, SemanticTokenType, SemanticTokenModifier[])>();
+        }
+
+        #region Utility Functions
+
+        private void AddTokenType(IParseTree start, IParseTree stop, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
+        {
+            // Note only works for terminal nodes
+            AddTokenType(start?.Payload as IToken, stop?.Payload as IToken, tokenType, tokenModifier);
+        }
+
+        private void AddTokenType(IToken start, IToken stop, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
+        {
+            if (start is not null && stop is not null)
+            {
+                tokens.Add((start, stop, tokenType, tokenModifier));
+            }
+        }
+
+        #endregion Utility Functions
+
+        #region Visitor Method Overrides
+
+        public override bool VisitHeader([NotNull] YarnSpinnerParser.HeaderContext context)
+        {
+            AddTokenType(context.header_key, context.header_key, SemanticTokenType.Property);
+
+            if (context.header_value?.Text != null)
+            {
+                if (context.header_key?.Text == "title")
+                {
+                    AddTokenType(context.header_value, context.header_value, SemanticTokenType.Class);
+                }
+                else
+                {
+                    AddTokenType(context.header_value, context.header_value, SemanticTokenType.String);
+                }
+            }
+
+            return base.VisitHeader(context);
+        }
+
+        public override bool VisitShortcut_option([NotNull] YarnSpinnerParser.Shortcut_optionContext context)
+        {
+            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword);
+
+            return base.VisitShortcut_option(context);
+        }
+
+        public override bool VisitFunction_name([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.Function_nameContext context)
+        {
+            AddTokenType(context.Start, context.Start, SemanticTokenType.Function); // function name
+            return base.VisitFunction_name(context);
+        }
+
+        public override bool VisitLine_condition([NotNull] YarnSpinnerParser.Line_conditionContext context)
+        {
+            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
+            AddTokenType(context.children[1], context.children[1], SemanticTokenType.Keyword); // if
+            AddTokenType(context.children[3], context.children[3], SemanticTokenType.Keyword); // >>
+            return base.VisitLine_condition(context);
+        }
+
+        public override bool VisitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context)
+        {
+            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword);
+            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword);
+            AddTokenType(context.children[1], context.children[1], SemanticTokenType.Keyword); // declare
+            AddTokenType(context.children[3], context.children[3], SemanticTokenType.Keyword); // =
+
+            return base.VisitDeclare_statement(context);
+        }
+
+        public override bool VisitValueFalse([NotNull] YarnSpinnerParser.ValueFalseContext context)
+        {
+            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword);
+            return base.VisitValueFalse(context);
+        }
+
+        public override bool VisitValueTrue([NotNull] YarnSpinnerParser.ValueTrueContext context)
+        {
+            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword);
+            return base.VisitValueTrue(context);
+        }
+
+        public override bool VisitValueNumber([NotNull] YarnSpinnerParser.ValueNumberContext context)
+        {
+            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Number);
+            return base.VisitValueNumber(context);
+        }
+
+        public override bool VisitValueVar([NotNull] YarnSpinnerParser.ValueVarContext context)
+        {
+            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Variable);
+            return base.VisitValueVar(context);
+        }
+
+        public override bool VisitIf_statement([NotNull] YarnSpinnerParser.If_statementContext context)
+        {
+            // AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword);
+            // looking for <<endif>>
+            int lastindex = context.ChildCount - 1;
+
+            AddTokenType(context.children[lastindex - 2], context.children[lastindex - 2], SemanticTokenType.Keyword);
+            AddTokenType(context.children[lastindex - 1], context.children[lastindex - 1], SemanticTokenType.Keyword);
+            AddTokenType(context.children[lastindex - 0], context.children[lastindex - 0], SemanticTokenType.Keyword);
+            return base.VisitIf_statement(context);
+        }
+
+        public override bool VisitIf_clause([NotNull] YarnSpinnerParser.If_clauseContext context)
+        {
+            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
+            AddTokenType(context.children[1], context.children[1], SemanticTokenType.Keyword); // if
+            AddTokenType(context.children[3], context.children[3], SemanticTokenType.Keyword); // >>
+            return base.VisitIf_clause(context);
+        }
+
+        public override bool VisitElse_clause([NotNull] YarnSpinnerParser.Else_clauseContext context)
+        {
+            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
+            AddTokenType(context.children[1], context.children[1], SemanticTokenType.Keyword); // else
+            AddTokenType(context.children[2], context.children[2], SemanticTokenType.Keyword); // >>
+            return base.VisitElse_clause(context);
+        }
+
+        public override bool VisitElse_if_clause([NotNull] YarnSpinnerParser.Else_if_clauseContext context)
+        {
+            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
+            AddTokenType(context.children[1], context.children[1], SemanticTokenType.Keyword); // elseif
+            AddTokenType(context.children[3], context.children[3], SemanticTokenType.Keyword); // >>
+            return base.VisitElse_if_clause(context);
+        }
+
+        public override bool VisitValueString([NotNull] YarnSpinnerParser.ValueStringContext context)
+        {
+            AddTokenType(context.Start, context.Stop, SemanticTokenType.String);
+            return base.VisitValueString(context);
+        }
+
+        public override bool VisitSet_statement([NotNull] YarnSpinnerParser.Set_statementContext context)
+        {
+            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword);
+            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword);
+            AddTokenType(context.op, context.op, SemanticTokenType.Keyword); // =
+
+            AddTokenType(context.children[1], context.children[1], SemanticTokenType.Keyword); // set
+
+            AddTokenType(context.children[2], context.children[2], SemanticTokenType.Variable); // $variablename
+
+            return base.VisitSet_statement(context);
+        }
+
+        public override bool VisitCall_statement([NotNull] YarnSpinnerParser.Call_statementContext context)
+        {
+            return base.VisitCall_statement(context);
+        }
+
+        public override bool VisitCommand_name_rule([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.Command_name_ruleContext context)
+        {
+            AddTokenType(context.children[0], context.children[0], SemanticTokenType.Function);
+            return base.VisitCommand_name_rule(context);
+        }
+
+        public override bool VisitCommand_formatted_text([NotNull] YarnSpinnerParser.Command_formatted_textContext context)
+        {
+            for (var i = 0; i < context.ChildCount; i++)
+            {
+                if (i != 0)
+                {
+                    AddTokenType(context.children[i], context.children[i], SemanticTokenType.Parameter);
+                }
+            }
+
+            return base.VisitCommand_formatted_text(context);
+        }
+
+        public override bool VisitCommand_statement([NotNull] YarnSpinnerParser.Command_statementContext context)
+        {
+            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword);
+            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword);
+
+            return base.VisitCommand_statement(context);
+        }
+
+        public override bool VisitJump_statement([NotNull] YarnSpinnerParser.Jump_statementContext context)
+        {
+            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
+            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword); // >>
+
+            AddTokenType(context.children[1], context.children[1], SemanticTokenType.Function); // jump
+            AddTokenType(context.children[2], context.children[2], SemanticTokenType.Class); // node_name
+
+            return base.VisitJump_statement(context);
+        }
+
+        public override bool VisitHashtag([NotNull] YarnSpinnerParser.HashtagContext context)
+        {
+            AddTokenType(context.Start, context.Stop, SemanticTokenType.Comment, SemanticTokenModifier.Declaration);
+            return base.VisitHashtag(context);
+        }
+
+        public override bool VisitFile_hashtag([NotNull] YarnSpinnerParser.File_hashtagContext context)
+        {
+            AddTokenType(context.Start, context.Stop, SemanticTokenType.Label);
+            return base.VisitFile_hashtag(context);
+        }
+
+        public override bool VisitVariable([NotNull] YarnSpinnerParser.VariableContext context)
+        {
+            AddTokenType(context.Start, context.Stop, SemanticTokenType.Variable); // $variablename
+            return base.VisitVariable(context);
+        }
+
+        #endregion Visitor Method Overrides
+    }
+}

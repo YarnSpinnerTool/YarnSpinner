@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "outDir": "out",
+        "lib": ["es2016"],
+        "sourceMap": true,
+        "skipLibCheck": true
+    },
+    "exclude": ["node_modules", "server"]
+}
