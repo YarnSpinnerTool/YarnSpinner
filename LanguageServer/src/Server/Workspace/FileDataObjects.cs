@@ -12,6 +12,8 @@ namespace YarnLanguageServer
         public Range DefinitionRange;
         public string DefinitionName; // Does this need to be qualified? Do we even need this?
         public IEnumerable<ParameterInfo> Parameters;
+        public int? MinParameterCount;
+        public int? MaxParameterCount;
         public bool IsCommand;
         public bool IsBuiltIn;
         public string Documentation; // Do we care about markup style docstrings?

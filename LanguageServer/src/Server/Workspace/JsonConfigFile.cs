@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace YarnLanguageServer
@@ -17,6 +18,16 @@ namespace YarnLanguageServer
                 parsedConfig.Functions.ForEach(f =>
                 {
                     f.DefinitionFile = uri;
+
+                    if (f.Parameters != null && !f.MinParameterCount.HasValue) {
+                        f.MinParameterCount = f.Parameters.Count(p => p.DefaultValue == null && !p.IsParamsArray);
+                    }
+
+                    if (f.Parameters != null && !f.MaxParameterCount.HasValue)
+                    {
+                        f.MaxParameterCount = f.Parameters.Any(p => p.IsParamsArray) ? null : f.Parameters.Count();
+                    }
+
                     FunctionDefinitions[f.DefinitionName] = f;
                     var worked = FunctionDefinitions[f.DefinitionName].DefinitionFile == uri;
                 });

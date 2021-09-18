@@ -53,23 +53,27 @@ namespace YarnLanguageServer.Diagnostics
                     if (!defs.Any()) { return; }
                     var def = defs.First();
 
-                    // TODO: probably cleaner to have min/max ranges on the number of parameters
-                    if (fi.ParameterCount == def.Parameters.Count()) { return; }
-                    if (fi.ParameterCount > def.Parameters.Count() &&
-                        def.Parameters.Any() &&
-                        def.Parameters.Last().IsParamsArray) { return; }
-                    if (fi.ParameterCount < def.Parameters.Count() &&
-                        fi.ParameterCount >=
-                            def.Parameters.Count() - def.Parameters.Where(p => !string.IsNullOrWhiteSpace(p.DefaultValue)).Count()
-                    ) { return; }
-
-                    results.Add(new Diagnostic
+                    if (def.MinParameterCount.HasValue && fi.ParameterCount < def.MinParameterCount)
                     {
-                        Message = $"Incorrect number of parameters",
-                        Severity = DiagnosticSeverity.Error,
-                        Range = fi.ParametersRange,
-                        Code = nameof(YarnDiagnosticCode.YRNCmdParamCnt),
-                    });
+                        results.Add(new Diagnostic
+                        {
+                            Message = $"Too few parameters. Expected at least {def.MinParameterCount}.",
+                            Severity = DiagnosticSeverity.Error,
+                            Range = fi.ParametersRange,
+                            Code = nameof(YarnDiagnosticCode.YRNCmdParamCnt),
+                        });
+                    }
+
+                    if (def.MaxParameterCount.HasValue && fi.ParameterCount > def.MaxParameterCount)
+                    {
+                        results.Add(new Diagnostic
+                        {
+                            Message = $"Too many parameters. Expected at most {def.MaxParameterCount}.",
+                            Severity = DiagnosticSeverity.Error,
+                            Range = fi.ParametersRange,
+                            Code = nameof(YarnDiagnosticCode.YRNCmdParamCnt),
+                        });
+                    }
                 });
             }
 

@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using static MoreLinq.Extensions.PartitionExtension;
 
 namespace YarnLanguageServer
 {
@@ -51,18 +52,39 @@ namespace YarnLanguageServer
             var regMatches = commandRegMatches.Concat(functionRegMatches);
 
             // TODO: This doesn't match anonymous functions, fix that at somepoint
-            var commandbridges = regMatches
+            (var commandBridges, var unmatchableCommandBridges) = regMatches
                 .Select(e =>
                     (e.m.ArgumentList.Arguments[0].ToString().Trim('\"'), e.m.ArgumentList.Arguments[1].Expression, e.Item2))
-                .Where(b =>
+                .Partition(b =>
                     b.Item2.Kind() == SyntaxKind.IdentifierName);
+
+
+
 
             var registeredmatched = root.DescendantNodes()
                 .OfType<MethodDeclarationSyntax>()
-                .Where(m => commandbridges.Select(b => b.Item2.ToString()).Contains(m.Identifier.ToString()));
+                .Where(m => commandBridges.Select(b => b.Item2.ToString()).Contains(m.Identifier.ToString()));
             try
             {
-                var matchedCommandbridges = commandbridges.Select(cb => (cb.Item1, registeredmatched.FirstOrDefault(rm => rm.Identifier.ToString() == cb.Item2.ToString()), cb.Item3))
+                foreach (var unmatchable in unmatchableCommandBridges)
+                {
+                    FunctionDefinitions[unmatchable.Item1] = new RegisteredFunction
+                    {
+                        DefinitionFile = uri,
+                        DefinitionName = unmatchable.Item1,
+                        IsBuiltIn = false,
+                        IsCommand = unmatchable.Item3,
+                        Documentation = string.Empty,
+                        Language = "csharp",
+                        Parameters = null,
+                        Signature = $"{unmatchable.Item1}(?)",
+                        YarnName = unmatchable.Item1,
+                        DefinitionRange =
+                            PositionHelper.GetRange(LineStarts, unmatchable.Item2.GetLocation().SourceSpan.Start, unmatchable.Item2.GetLocation().SourceSpan.End),
+                    };
+                }
+
+                var matchedCommandbridges = commandBridges.Select(cb => (cb.Item1, registeredmatched.FirstOrDefault(rm => rm.Identifier.ToString() == cb.Item2.ToString()), cb.Item3))
                     .Where(cbm => cbm.Item2 != null);
 
                 foreach ((var yarnName, var command, var isCommand) in matchedCommandbridges)
@@ -71,10 +93,12 @@ namespace YarnLanguageServer
                     {
                         FunctionDefinitions[yarnName] = CreateFunctionObject(uri, yarnName, command, isCommand, false);
                     }
-                    catch (Exception) { }
+                    catch (Exception e) { 
+                    }
                 }
             }
-            catch (Exception) { }
+            catch (Exception e) { 
+            }
         }
 
         private RegisteredFunction CreateFunctionObject(Uri uri, string yarnName, MethodDeclarationSyntax methodDeclaration, bool isCommand, bool isAttributeMatch = false)
@@ -191,6 +215,8 @@ namespace YarnLanguageServer
                 IsBuiltIn = false,
                 IsCommand = isCommand,
                 Parameters = parameters,
+                MinParameterCount = parameters.Count(p => p.DefaultValue == null && !p.IsParamsArray),
+                MaxParameterCount = parameters.Any(p => p.IsParamsArray) ? null : parameters.Count(),
                 DefinitionRange = PositionHelper.GetRange(LineStarts, methodDeclaration.GetLocation().SourceSpan.Start, methodDeclaration.GetLocation().SourceSpan.End),
                 Documentation = documentation,
                 Signature = $"{methodDeclaration.Identifier.Text}{methodDeclaration.ParameterList}",

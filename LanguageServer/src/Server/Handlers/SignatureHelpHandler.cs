@@ -28,7 +28,7 @@ namespace YarnLanguageServer.Handlers
                     IEnumerable<SignatureInformation> results;
                     if (functionInfos.Any())
                     {
-                        results = functionInfos.Select(fi => new SignatureInformation
+                        results = functionInfos.Where(fi => fi.Parameters != null).Select(fi => new SignatureInformation
                         {
                             Label = fi.IsCommand ?
                                 $"{fi.YarnName} {string.Join(' ', fi.Parameters.Select(p => $"{p.Type}:{p.Name}"))}" :
@@ -42,7 +42,8 @@ namespace YarnLanguageServer.Handlers
                                         Label = p.Name,
                                         Documentation = p.Documentation,
                                     })),
-                            ActiveParameter = parameterIndex,
+                            ActiveParameter = parameterIndex < fi.Parameters.Count() || !fi.Parameters.Any() || !fi.Parameters.Last().IsParamsArray ?
+                                parameterIndex : fi.Parameters.Count() - 1, // if  last param is a params array, it should be the info for all trailing params input
                         });
                     }
                     else
