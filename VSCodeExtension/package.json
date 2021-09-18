@@ -2,7 +2,7 @@
     "name": "yarn-spinner-language-server",
     "displayName": "Yarn Spinner Language Server",
     "description": "Adds support for the Yarn Spinner dialogue language.",
-    "version": "2.0.0-beta.5.1",
+    "version": "2.0.0-beta.5.2",
     "homepage": "https://github.com/pappleby/YarnSpinnerLanguageServer",
     "license": "MIT",
     "keywords": [
