@@ -57,11 +57,13 @@ namespace YarnLanguageServer.Handlers
                 var vocabulary = yarnFile.Parser.Vocabulary;
                 foreach (var token in candidates.Tokens)
                 {
-                    var label = vocabulary.GetSymbolicName(token.Key);
-                    if (label == null) { continue; } // unrecognized token
+                    var tokenname = vocabulary.GetSymbolicName(token.Key);
 
-                    var text = TokenSnippets.GetValueOrDefault(label, label);
-                    label = UserFriendlyTokenText.GetValueOrDefault(label, label);
+                    if (tokenname == null) { continue; } // unrecognized token
+
+                    var label = UserFriendlyTokenText.GetValueOrDefault(tokenname, tokenname);
+                    var text = TokenSnippets.GetValueOrDefault(tokenname, label);
+
                     results.Add(new CompletionItem
                     {
                         Label = label,
@@ -225,8 +227,8 @@ namespace YarnLanguageServer.Handlers
 
         public static readonly Dictionary<string, string> UserFriendlyTokenText = new Dictionary<string, string>
         {
-            { "COMMAND_IF", "if" }, { "COMMAND_ELSEIF", "elseif" }, { "COMMAND_ELSE", "else" }, { "COMMAND_SET", "set" },
-            { "COMMAND_ENDIF", "endif" }, { "COMMAND_CALL", "call" }, { "COMMAND_DECLARE", "declare" }, { "COMMAND_JUMP", "jump" },
+            { "COMMAND_IF", "if " }, { "COMMAND_ELSEIF", "elseif " }, { "COMMAND_ELSE", "else" }, { "COMMAND_SET", "set " },
+            { "COMMAND_ENDIF", "endif" }, { "COMMAND_CALL", "call " }, { "COMMAND_DECLARE", "declare " }, { "COMMAND_JUMP", "jump " },
             { "KEYWORD_FALSE", "false" }, { "KEYWORD_TRUE", "true" }, { "KEYWORD_NULL", "null" },
         };
 
