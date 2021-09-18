@@ -18,6 +18,12 @@ This project implements the following language server protocol capabilities:
 - Code Lenses for nodes indicating reference counts
 - Quickfix code actions (only a few right now, but more to come!)
 
+## Demo
+<img src="https://user-images.githubusercontent.com/408888/133907128-ab3fe7a3-b2cf-4ce6-98d7-65f048fbae1f.gif" alt="Demonstration of hover tooltip, Go to references, and Go to definition" />
+
+<img src="https://user-images.githubusercontent.com/408888/133907396-9cabe05b-bdf8-44d3-a8df-6e44e55fab98.gif" alt="Demonstration of command suggestions, signature help, and parameter count checking" />
+
+
 ## Project organization
 This project is composed of 5 subprojects:
 - **LanguageServer**: The bulk of the project, consisting of 
