@@ -35,11 +35,19 @@ namespace YarnLanguageServer
         }
 
         #region Utility Functions
+        private void AddTokenType(IParseTree start, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier) {
+            AddTokenType(start, start, tokenType, tokenModifier);
+        }
 
         private void AddTokenType(IParseTree start, IParseTree stop, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
         {
             // Note only works for terminal nodes
             AddTokenType(start?.Payload as IToken, stop?.Payload as IToken, tokenType, tokenModifier);
+        }
+
+        private void AddTokenType(IToken start, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
+        {
+            AddTokenType(start, start, tokenType, tokenModifier);
         }
 
         private void AddTokenType(IToken start, IToken stop, SemanticTokenType tokenType, params SemanticTokenModifier[] tokenModifier)
@@ -75,95 +83,92 @@ namespace YarnLanguageServer
 
         public override bool VisitShortcut_option([NotNull] YarnSpinnerParser.Shortcut_optionContext context)
         {
-            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword);
+            AddTokenType(context.Start, SemanticTokenType.Keyword);
 
             return base.VisitShortcut_option(context);
         }
 
         public override bool VisitFunction_name([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.Function_nameContext context)
         {
-            AddTokenType(context.Start, context.Start, SemanticTokenType.Function); // function name
+            AddTokenType(context.Start, SemanticTokenType.Function); // function name
             return base.VisitFunction_name(context);
         }
 
         public override bool VisitLine_condition([NotNull] YarnSpinnerParser.Line_conditionContext context)
         {
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
-            AddTokenType(context.children[1], context.children[1], SemanticTokenType.Keyword); // if
-            AddTokenType(context.children[3], context.children[3], SemanticTokenType.Keyword); // >>
+            AddTokenType(context.COMMAND_IF(), SemanticTokenType.Keyword); // if
+            AddTokenType(context.COMMAND_END(), SemanticTokenType.Keyword); // >>
             return base.VisitLine_condition(context);
         }
 
         public override bool VisitDeclare_statement([NotNull] YarnSpinnerParser.Declare_statementContext context)
         {
-            AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword);
-            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword);
-            AddTokenType(context.children[1], context.children[1], SemanticTokenType.Keyword); // declare
-            AddTokenType(context.children[3], context.children[3], SemanticTokenType.Keyword); // =
+            AddTokenType(context.Start, SemanticTokenType.Keyword);
+            AddTokenType(context.Stop, SemanticTokenType.Keyword);
+            AddTokenType(context.COMMAND_DECLARE(), SemanticTokenType.Keyword); // declare
+            AddTokenType(context.OPERATOR_ASSIGNMENT(), SemanticTokenType.Keyword); // =
 
             return base.VisitDeclare_statement(context);
         }
 
         public override bool VisitValueFalse([NotNull] YarnSpinnerParser.ValueFalseContext context)
         {
-            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword);
+            AddTokenType(context.Stop, SemanticTokenType.Keyword);
             return base.VisitValueFalse(context);
         }
 
         public override bool VisitValueTrue([NotNull] YarnSpinnerParser.ValueTrueContext context)
         {
-            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword);
+            AddTokenType(context.Stop, SemanticTokenType.Keyword);
             return base.VisitValueTrue(context);
         }
 
         public override bool VisitValueNumber([NotNull] YarnSpinnerParser.ValueNumberContext context)
         {
-            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Number);
+            AddTokenType(context.Stop, SemanticTokenType.Number);
             return base.VisitValueNumber(context);
         }
 
         public override bool VisitValueVar([NotNull] YarnSpinnerParser.ValueVarContext context)
         {
-            AddTokenType(context.Stop, context.Stop, SemanticTokenType.Variable);
+            AddTokenType(context.Stop, SemanticTokenType.Variable);
             return base.VisitValueVar(context);
         }
 
         public override bool VisitIf_statement([NotNull] YarnSpinnerParser.If_statementContext context)
-        {
-            // AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword);
-            // looking for <<endif>>
-            int lastindex = context.ChildCount - 1;
+        {            
+            AddTokenType(context.COMMAND_START(), SemanticTokenType.Keyword);
+            AddTokenType(context.COMMAND_ENDIF(), SemanticTokenType.Keyword);
+            AddTokenType(context.COMMAND_END(), SemanticTokenType.Keyword);
 
-            AddTokenType(context.children[lastindex - 2], context.children[lastindex - 2], SemanticTokenType.Keyword);
-            AddTokenType(context.children[lastindex - 1], context.children[lastindex - 1], SemanticTokenType.Keyword);
-            AddTokenType(context.children[lastindex - 0], context.children[lastindex - 0], SemanticTokenType.Keyword);
             return base.VisitIf_statement(context);
         }
 
         public override bool VisitIf_clause([NotNull] YarnSpinnerParser.If_clauseContext context)
         {
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
-            AddTokenType(context.children[1], context.children[1], SemanticTokenType.Keyword); // if
-            AddTokenType(context.children[3], context.children[3], SemanticTokenType.Keyword); // >>
+            AddTokenType(context.COMMAND_IF(), SemanticTokenType.Keyword); // if
+            AddTokenType(context.COMMAND_END(), SemanticTokenType.Keyword); // >>
             return base.VisitIf_clause(context);
         }
 
         public override bool VisitElse_clause([NotNull] YarnSpinnerParser.Else_clauseContext context)
         {
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
-            AddTokenType(context.children[1], context.children[1], SemanticTokenType.Keyword); // else
-            AddTokenType(context.children[2], context.children[2], SemanticTokenType.Keyword); // >>
+            AddTokenType(context.COMMAND_ELSE(), SemanticTokenType.Keyword); // else
+            AddTokenType(context.COMMAND_END(), SemanticTokenType.Keyword); // >>
             return base.VisitElse_clause(context);
         }
 
         public override bool VisitElse_if_clause([NotNull] YarnSpinnerParser.Else_if_clauseContext context)
         {
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
-            AddTokenType(context.children[1], context.children[1], SemanticTokenType.Keyword); // elseif
-            AddTokenType(context.children[3], context.children[3], SemanticTokenType.Keyword); // >>
+            AddTokenType(context.COMMAND_ELSEIF(), SemanticTokenType.Keyword); // elseif
+            AddTokenType(context.COMMAND_END(), SemanticTokenType.Keyword); // >>
             return base.VisitElse_if_clause(context);
         }
-
+        
         public override bool VisitValueString([NotNull] YarnSpinnerParser.ValueStringContext context)
         {
             AddTokenType(context.Start, context.Stop, SemanticTokenType.String);
@@ -175,10 +180,8 @@ namespace YarnLanguageServer
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword);
             AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword);
             AddTokenType(context.op, context.op, SemanticTokenType.Keyword); // =
-
-            AddTokenType(context.children[1], context.children[1], SemanticTokenType.Keyword); // set
-
-            AddTokenType(context.children[2], context.children[2], SemanticTokenType.Variable); // $variablename
+            AddTokenType(context.COMMAND_SET(), context.COMMAND_SET(),SemanticTokenType.Keyword);
+            // AddTokenType(context.expression(), context.expression(), SemanticTokenType.Variable); // $variablename
 
             return base.VisitSet_statement(context);
         }
@@ -190,7 +193,7 @@ namespace YarnLanguageServer
 
         public override bool VisitCommand_name_rule([Antlr4.Runtime.Misc.NotNull] YarnSpinnerParser.Command_name_ruleContext context)
         {
-            AddTokenType(context.children[0], context.children[0], SemanticTokenType.Function);
+            AddTokenType(context.COMMAND_NAME(), SemanticTokenType.Function);
             return base.VisitCommand_name_rule(context);
         }
 
@@ -220,8 +223,8 @@ namespace YarnLanguageServer
             AddTokenType(context.Start, context.Start, SemanticTokenType.Keyword); // <<
             AddTokenType(context.Stop, context.Stop, SemanticTokenType.Keyword); // >>
 
-            AddTokenType(context.children[1], context.children[1], SemanticTokenType.Function); // jump
-            AddTokenType(context.children[2], context.children[2], SemanticTokenType.Class); // node_name
+            AddTokenType(context.COMMAND_JUMP(), SemanticTokenType.Function); // jump
+            AddTokenType(context.jump_destination(), SemanticTokenType.Class); // node_name
 
             return base.VisitJump_statement(context);
         }
