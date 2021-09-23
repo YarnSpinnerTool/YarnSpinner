@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Ysls",
+  "examples": [],
+  "definitions": {
+    "Ysls": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Commands": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Command"
+          },
+          "description": "List of commands to make available in Yarn scripts"
+        },
+        "Functions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Command"
+          },
+          "description": "List of functions to make available in Yarn scripts"
+        }
+      },
+      "title": "Ysls"
+    },
+    "Command": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "YarnName": {
+          "type": "string",
+          "description": "Name of this method in Yarn Spinner scripts"
+        },
+        "DefinitionName": {
+          "type": "string",
+          "description": "Name of this method in code"
+        },
+        "FileName": {
+          "type": "string",
+          "description": "Name of the file this method is defined in.\nPrimarily used when 'Deep Command Lookup' is disabled."
+        },
+        "Language": {
+          "type": "string",
+          "description": "Language id of the method definition.\nMust be 'csharp' to override/merge with methods found in C# files.",
+          "default": "text",
+          "examples": [ "csharp", "gml", "wren" ]
+        },
+        "Documentation": {
+          "type": "string",
+          "description": "Description that shows up in suggestions and hover tooltips."
+        },
+        "Signature": {
+          "type": "string",
+          "description": "Method signature of the method definition. Good way to show parameters, especially if they have default values or are params[]."
+        },
+        "Parameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Parameter"
+          },
+          "description": "Method parameters.\nNote that if you are overriding information for a method found via parsing code, setting this in json will completely override that parameter information."
+        }
+      },
+      "required": [
+        "Language",
+        "YarnName"
+      ],
+      "title": "Command"
+    },
+    "Parameter": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Type": {
+          "type": "string",
+          "description": "This is just for editor purposes. This extension does not validate types (yet).",
+          "examples": [ "Any", "Number", "String", "float" ]
+        },
+        "Documentation": {
+          "type": "string",
+          "description": "Parameter Documentation, used in method signature hinting."
+        },
+        "DefaultValue": {
+          "type": "string",
+          "description": "Default value if it exists. Also will make this parameter optional for parameter count validation."
+        },
+        "IsParamsArray": {
+          "type": "boolean",
+          "description": "Corresponds to the params keyword in C#. Makes this parameter optional, and further parameters will use the information from this parameter.\nUndefined behavior if true for any parameter except for the last."
+
+        }
+      },
+      "required": [
+        "Name"
+      ],
+      "title": "Parameter"
+    }
+  }
+}

@@ -71,6 +71,13 @@
 
     <ItemGroup>
       <None Remove="src\Server\Documentation\BuiltInFunctionsAndCommands.ysls.json" />
+      <None Remove="src\Server\Documentation\ysls.schema.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="src\Server\Documentation\ysls.schema.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>

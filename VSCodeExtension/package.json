@@ -57,6 +57,13 @@
                 "path": "./syntaxes/yarnspinner.tmLanguage.json"
             }
         ],
+        "jsonValidation": [
+            {
+              "fileMatch": "*.ysls.json",
+              "url" : "./Server/src/Server/Documentation/yslsschema.json"
+              
+            }
+          ],
         "configuration": {
             "title": "Yarn Spinner Language Server",
             "properties": {

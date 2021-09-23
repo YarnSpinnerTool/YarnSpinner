@@ -38,7 +38,7 @@ namespace YarnLanguageServer
             {
                 var uri = new Uri(file);
                 var text = System.IO.File.ReadAllText(file);
-                var docJsonConfig = new JsonConfigFile(text, uri, this);
+                var docJsonConfig = new JsonConfigFile(text, uri, this, false);
                 if (docJsonConfig != null) {
                     JsonConfigFiles[uri] = docJsonConfig;
                 }
@@ -55,7 +55,7 @@ namespace YarnLanguageServer
                 {
                     var uri = new Uri("file:///assembly/" + doc); // a fake uri but we just need it for lookup and uniqueness
                     string text = new System.IO.StreamReader(thisAssembly.GetManifestResourceStream(doc)).ReadToEnd();
-                    var docJsonConfig = new JsonConfigFile(text, uri, this);
+                    var docJsonConfig = new JsonConfigFile(text, uri, this, true);
                     if (docJsonConfig != null) {
                         JsonConfigFiles[uri] = docJsonConfig;
                     }

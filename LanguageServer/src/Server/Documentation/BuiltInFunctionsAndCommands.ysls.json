@@ -3,7 +3,6 @@
     {
       "YarnName": "wait",
       "DefinitionName": "wait",
-      "IsBuiltIn": true,
       "Documentation": "Pauses the dialogue for a specified number of seconds, and then resumes.",
       "Signature": "wait SecondsToWait",
       "Parameters": [
@@ -18,7 +17,6 @@
     {
       "YarnName": "stop",
       "DefinitionName": "stop",
-      "IsBuiltIn": true,
       "Documentation": "Immediately ends the dialogue, as though the game had reached the end of a node. Use this if you need to leave a conversation in the middle of an if statement, or a shortcut option.",
       "Signature": "stop",
       "Parameters": []
@@ -29,7 +27,6 @@
     {
       "YarnName": "string",
       "DefinitionName": "string",
-      "IsBuiltIn": true,
       "Documentation": "Converts value to string type.",
       "Signature": "string(value)",
       "Parameters": [
@@ -44,7 +41,6 @@
     {
       "YarnName": "number",
       "DefinitionName": "number",
-      "IsBuiltIn": true,
       "Documentation": "Converts value to number type.",
       "Signature": "number(value)",
       "Parameters": [
@@ -59,7 +55,6 @@
     {
       "YarnName": "bool",
       "DefinitionName": "bool",
-      "IsBuiltIn": true,
       "Documentation": "Converts value to boolean type.",
       "Signature": "bool(value)",
       "Parameters": [

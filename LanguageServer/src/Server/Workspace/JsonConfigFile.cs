@@ -9,22 +9,23 @@ namespace YarnLanguageServer
     {
         public Dictionary<string, RegisteredDefinition> Definitions { get; set; }
 
-        public JsonConfigFile(string text, Uri uri, Workspace workspace)
+        public JsonConfigFile(string text, Uri uri, Workspace workspace, bool IsBuiltIn)
         {
             Definitions = new Dictionary<string, RegisteredDefinition>();
             try
             {
                 var parsedConfig = JsonConvert.DeserializeObject<JsonConfigFormat>(text);
-                parsedConfig.Functions?.ForEach(f => RegisterDefinition(f, false,uri, workspace));
-                parsedConfig.Commands?.ForEach(f => RegisterDefinition(f, true, uri, workspace));
+                parsedConfig.Functions?.ForEach(f => RegisterDefinition(f, false,uri, workspace, IsBuiltIn));
+                parsedConfig.Commands?.ForEach(f => RegisterDefinition(f, true, uri, workspace, IsBuiltIn));
             }
             catch (Exception) { }
         }
 
-        private void RegisterDefinition(RegisteredDefinition f, bool isCommand, Uri uri, Workspace workspace)
+        private void RegisterDefinition(RegisteredDefinition f, bool isCommand, Uri uri, Workspace workspace, bool IsBuiltIn)
         {
             f.DefinitionFile = uri;
             f.IsCommand = isCommand;
+            f.IsBuiltIn = IsBuiltIn;
 
             if (f.Parameters != null && !f.MinParameterCount.HasValue)
             {
