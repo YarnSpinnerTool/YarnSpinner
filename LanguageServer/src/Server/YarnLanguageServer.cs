@@ -13,7 +13,7 @@ namespace YarnLanguageServer
 
         private static async Task Main(string[] args)
         {
-             // while (!Debugger.IsAttached){ await Task.Delay(100);}
+             // while (!Debugger.IsAttached){ await Task.Delay(100); }
              var workspace = new Workspace();
 
              server = await LanguageServer.From(

@@ -5,30 +5,74 @@ using System.Linq;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using static MoreLinq.Extensions.PartitionExtension;
+using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 
 namespace YarnLanguageServer
 {
-    internal class CSharpFileData : IFunctionDefinitionsProvider
+    internal class CSharpFileData : IDefinitionsProvider
     {
-        public Dictionary<string, RegisteredFunction> FunctionDefinitions { get; set; }
+        public Dictionary<string, RegisteredDefinition> Definitions { get; set; }
+        public IEnumerable<(string yarnName, Range definitionRange, bool isCommand)> UnmatchableBridges { get; protected set; }
         public ImmutableArray<int> LineStarts { get; protected set; }
+        private Uri Uri { get; set; }
+        private Workspace Workspace { get; set; }
 
-        public CSharpFileData(string text, Uri uri)
+        private CompilationUnitSyntax root;
+        public CSharpFileData(string text, Uri uri, Workspace workspace, bool onePass = false)
         {
-            FunctionDefinitions = new Dictionary<string, RegisteredFunction>();
-            Update(text, uri);
-        }
+            Definitions = new Dictionary<string, RegisteredDefinition>();
+            this.Uri = uri;
+            this.Workspace = workspace;
 
-        public void Update(string text, Uri uri)
-        {
             LineStarts = TextCoordinateConverter.GetLineStarts(text);
 
-            FunctionDefinitions.Clear(); // definitely more incremental ways to update but we probably aren't updating super often
+            Definitions.Clear(); // definitely more incremental ways to update but we probably aren't updating super often
 
             var tree = CSharpSyntaxTree.ParseText(text);
 
-            var root = tree.GetCompilationUnitRoot();
+            root = tree.GetCompilationUnitRoot();
 
+            RegisterCommandAttributeMatches();
+            RegisterCommentTaggedCommandsAndFunctions();
+            RegisterCommandAndFunctionBridges(); // Technically this doesn't register them until going through unmatched commands
+
+            // Let's check off any functions we can while we have everything open
+            LookForUnmatchedCommands(onePass);
+        }
+
+        public void LookForUnmatchedCommands(bool isLastTime) {
+            // TODO: This is definitly some late night code. Shuffle around to avoid the double lookup through UnmatchedCommandNames.
+            var methods = root.DescendantNodes()
+                .OfType<MethodDeclarationSyntax>()
+                .Where(m => Workspace.UnmatchedDefinitions.Select(b => b.DefinitionName)
+                    .Contains(m.Identifier.ToString()));
+
+            var matches = methods.Select(m =>
+            {
+                var matchedUcn = Workspace.UnmatchedDefinitions.Find(ucn => ucn.DefinitionName == m.Identifier.ToString());
+                return (matchedUcn, m);
+            });
+
+            foreach ((var matchedUcn, var command) in matches)
+            {
+                try
+                {
+                    Definitions[matchedUcn.YarnName] = CreateFunctionObject(Uri, matchedUcn.YarnName, command, matchedUcn.IsCommand, false);
+                    Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == matchedUcn.YarnName);
+                }
+                catch (Exception e)
+                {
+                }
+            }
+
+            if (isLastTime)
+            {
+                root = null; // we don't need this anymore, so don't want it hogging up memory
+            }
+        }
+
+        private void RegisterCommandAttributeMatches()
+        {
             var commandAttributeMatches = root.DescendantNodes()
                 .OfType<MethodDeclarationSyntax>()
                 .Where(m => m.AttributeLists.Any(a =>
@@ -41,67 +85,62 @@ namespace YarnLanguageServer
                     command.AttributeLists.First().Attributes.First(a => a.Name.ToString().Contains("YarnCommand"))
                     .ArgumentList.Arguments.First().ToString()
                     .Trim('\"');
-                FunctionDefinitions[yarnName] = CreateFunctionObject(uri, yarnName, command, true, true);
+                Definitions[yarnName] = CreateFunctionObject(Uri, yarnName, command, true, true);
+                Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == yarnName); // Matched some comands, can mark them off the list!
             }
+        }
 
+        private void RegisterCommentTaggedCommandsAndFunctions()
+        {
+            var commentMatches = root.DescendantNodes()
+               .OfType<MethodDeclarationSyntax>()
+               .Where(m => m.HasLeadingTrivia && m.GetLeadingTrivia().Any(t => t.HasStructure));
+            foreach (var match in commentMatches)
+            {
+                var triviaStructure = match.GetLeadingTrivia().LastOrDefault(t => t.HasStructure).GetStructure();
+
+                var functionName = ExtractStructuredTrivia("yarnfunction", triviaStructure);
+                var commandName = ExtractStructuredTrivia("yarncommand", triviaStructure);
+                var yarnName = functionName ?? commandName;
+                var isCommand = string.IsNullOrWhiteSpace(functionName);
+                if (!string.IsNullOrWhiteSpace(yarnName))
+                {
+                    Definitions[yarnName] = CreateFunctionObject(Uri, yarnName, match, isCommand, false);
+                    Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == yarnName);
+                }
+            }
+        }
+
+        private void RegisterCommandAndFunctionBridges()
+        {
             var commandRegMatches = root.DescendantNodes().OfType<InvocationExpressionSyntax>().Where(e =>
-                e.Expression.ToString().Contains("AddCommandHandler")).Select(m => (m, true));
+               e.Expression.ToString().Contains("AddCommandHandler")).Select(m => (m, true));
             var functionRegMatches = root.DescendantNodes().OfType<InvocationExpressionSyntax>().Where(e =>
                 e.Expression.ToString().Contains("AddFunction")).Select(m => (m, false));
 
             var regMatches = commandRegMatches.Concat(functionRegMatches);
 
-            // TODO: This doesn't match anonymous functions, fix that at somepoint
-            (var commandBridges, var unmatchableCommandBridges) = regMatches
+            (var commandBridges, var unmatchableBridges) = regMatches
                 .Select(e =>
-                    (e.m.ArgumentList.Arguments[0].ToString().Trim('\"'), e.m.ArgumentList.Arguments[1].Expression, e.Item2))
+                    (YarnName: e.m.ArgumentList.Arguments[0].ToString().Trim('\"'), Expression: e.m.ArgumentList.Arguments[1].Expression, IsCommand: e.Item2))
                 .Partition(b =>
-                    b.Item2.Kind() == SyntaxKind.IdentifierName);
+                    b.Expression.Kind() == SyntaxKind.IdentifierName || b.Expression.Kind() == SyntaxKind.SimpleMemberAccessExpression);
 
+            UnmatchableBridges = unmatchableBridges
+                .Select(b => (
+                    b.YarnName, PositionHelper.GetRange(LineStarts, b.Expression.GetLocation().SourceSpan.Start, b.Expression.GetLocation().SourceSpan.End),
+                    b.IsCommand));
 
-
-
-            var registeredmatched = root.DescendantNodes()
-                .OfType<MethodDeclarationSyntax>()
-                .Where(m => commandBridges.Select(b => b.Item2.ToString()).Contains(m.Identifier.ToString()));
-            try
+            foreach (var cb in commandBridges)
             {
-                foreach (var unmatchable in unmatchableCommandBridges)
-                {
-                    FunctionDefinitions[unmatchable.Item1] = new RegisteredFunction
-                    {
-                        DefinitionFile = uri,
-                        DefinitionName = unmatchable.Item1,
-                        IsBuiltIn = false,
-                        IsCommand = unmatchable.Item3,
-                        Documentation = string.Empty,
-                        Language = "csharp",
-                        Parameters = null,
-                        Signature = $"{unmatchable.Item1}(?)",
-                        YarnName = unmatchable.Item1,
-                        DefinitionRange =
-                            PositionHelper.GetRange(LineStarts, unmatchable.Item2.GetLocation().SourceSpan.Start, unmatchable.Item2.GetLocation().SourceSpan.End),
-                    };
-                }
-
-                var matchedCommandbridges = commandBridges.Select(cb => (cb.Item1, registeredmatched.FirstOrDefault(rm => rm.Identifier.ToString() == cb.Item2.ToString()), cb.Item3))
-                    .Where(cbm => cbm.Item2 != null);
-
-                foreach ((var yarnName, var command, var isCommand) in matchedCommandbridges)
-                {
-                    try
-                    {
-                        FunctionDefinitions[yarnName] = CreateFunctionObject(uri, yarnName, command, isCommand, false);
-                    }
-                    catch (Exception e) { 
-                    }
-                }
+                // we don't know if these will be defined in this file or not,
+                // so let's mark them as unmatched for now, and then mark off what we can in this first pass
+                Workspace.UnmatchedDefinitions.Add((cb.YarnName, cb.Expression.ToString().Split('.').LastOrDefault().Trim(), cb.IsCommand, null));
             }
-            catch (Exception e) { 
-            }
+
         }
 
-        private RegisteredFunction CreateFunctionObject(Uri uri, string yarnName, MethodDeclarationSyntax methodDeclaration, bool isCommand, bool isAttributeMatch = false)
+        private RegisteredDefinition CreateFunctionObject(Uri uri, string yarnName, MethodDeclarationSyntax methodDeclaration, bool isCommand, bool isAttributeMatch = false)
         {
             string documentation = string.Empty;
             Dictionary<string, string> paramsDocumentation = new Dictionary<string, string>();
@@ -113,32 +152,23 @@ namespace YarnLanguageServer
                 if (structuredTrivia.Kind() != SyntaxKind.None)
                 {
                     var triviaStructure = structuredTrivia.GetStructure();
-                    var summaryXml = triviaStructure.ChildNodes().OfType<XmlElementSyntax>().FirstOrDefault(x => x.StartTag.Name.ToString() == "summary");
-                    if (summaryXml != null && summaryXml.Kind() != SyntaxKind.None && summaryXml.Content.Any())
-                    {
-                        var v = summaryXml.Content[0].ChildTokens().Where(ct => ct.Kind() != SyntaxKind.XmlTextLiteralNewLineToken)
-                            .Select(ct => ct.ValueText.Trim())
-                            ;
-                        documentation = string.Join(" ", v).Trim();
-                    }
-                    else
-                    {
-                        // Looks like xml, but doesn't have a summary element
-                        // Will have extraneous // characters if multiline
-                        documentation = triviaStructure.ToString();
-                    }
+                    var summary = ExtractStructuredTrivia("summary", triviaStructure);
+
+                    documentation = summary ?? triviaStructure.ToString();
 
                     var paramsXml = triviaStructure.ChildNodes().OfType<XmlElementSyntax>().Where(x => x.StartTag.Name.ToString() == "param");
                     foreach (var paramXml in paramsXml)
                     {
                         if (paramXml != null && paramXml.Kind() != SyntaxKind.None && paramXml.Content.Any())
                         {
-                            var v = paramXml.Content[0].ChildTokens().Where(ct => ct.Kind() != SyntaxKind.XmlTextLiteralNewLineToken)
+                            var v = paramXml.Content[0].ChildTokens()
+                                .Where(ct => ct.Kind() != SyntaxKind.XmlTextLiteralNewLineToken)
                                 .Select(ct => ct.ValueText.Trim())
                                 ;
+                            var docstring = string.Join(" ", v).Trim();
+
                             var paraname = paramXml.StartTag.Attributes.OfType<XmlNameAttributeSyntax>().FirstOrDefault().ToString();
 
-                            var docstring = string.Join(" ", v).Trim();
                             if (!string.IsNullOrWhiteSpace(paraname) && !string.IsNullOrWhiteSpace(docstring))
                             {
                                 paramsDocumentation[paraname] = docstring;
@@ -207,7 +237,7 @@ namespace YarnLanguageServer
                 });
             }
 
-            return new RegisteredFunction
+            return new RegisteredDefinition
             {
                 YarnName = yarnName,
                 DefinitionFile = uri,
@@ -219,8 +249,23 @@ namespace YarnLanguageServer
                 MaxParameterCount = parameters.Any(p => p.IsParamsArray) ? null : parameters.Count(),
                 DefinitionRange = PositionHelper.GetRange(LineStarts, methodDeclaration.GetLocation().SourceSpan.Start, methodDeclaration.GetLocation().SourceSpan.End),
                 Documentation = documentation,
+                Language = Utils.CSharpLanguageID,
                 Signature = $"{methodDeclaration.Identifier.Text}{methodDeclaration.ParameterList}",
             };
+        }
+
+        private string ExtractStructuredTrivia(string key, Microsoft.CodeAnalysis.SyntaxNode triviaStructure)
+        {
+            var triviaMatch = triviaStructure.ChildNodes().OfType<XmlElementSyntax>().FirstOrDefault(x => x.StartTag.Name.ToString() == key);
+            if (triviaMatch != null && triviaMatch.Kind() != SyntaxKind.None && triviaMatch.Content.Any())
+            {
+                var v = triviaMatch.Content[0].ChildTokens().Where(ct => ct.Kind() != SyntaxKind.XmlTextLiteralNewLineToken)
+                    .Select(ct => ct.ValueText.Trim())
+                    ;
+                return string.Join(" ", v).Trim();
+            }
+
+            return null;
         }
     }
 }

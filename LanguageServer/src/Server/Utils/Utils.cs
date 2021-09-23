@@ -14,6 +14,7 @@ namespace YarnLanguageServer
             });
 
         public static readonly string YarnLanguageID = "yarn";
+        public static readonly string CSharpLanguageID = "csharp";
 
         /// <summary>
         /// Editor command to trigger parameter hinting (useful when using snippets).
@@ -32,6 +33,19 @@ namespace YarnLanguageServer
         public static object OrDefault(this string str, object @default)
         {
             return string.IsNullOrEmpty(str) ? @default : str;
+        }
+
+        public static bool ContainsAny(this string haystack, params string[] needles)
+        {
+            foreach (string needle in needles)
+            {
+                if (haystack.Contains(needle))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

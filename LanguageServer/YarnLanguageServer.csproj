@@ -70,11 +70,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="src\Server\Documentation\BuiltInFunctions.json" />
+      <None Remove="src\Server\Documentation\BuiltInFunctionsAndCommands.ysls.json" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="src\Server\Documentation\BuiltInFunctions.json">
+      <EmbeddedResource Include="src\Server\Documentation\BuiltInFunctionsAndCommands.ysls.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </EmbeddedResource>
     </ItemGroup>

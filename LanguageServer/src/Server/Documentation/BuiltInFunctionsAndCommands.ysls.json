@@ -1,12 +1,10 @@
 {
-  "Functions": [
+  "Commands": [
     {
       "YarnName": "wait",
       "DefinitionName": "wait",
-      "IsCommand": true,
       "IsBuiltIn": true,
       "Documentation": "Pauses the dialogue for a specified number of seconds, and then resumes.",
-      "Language": "text",
       "Signature": "wait SecondsToWait",
       "Parameters": [
         {
@@ -20,20 +18,19 @@
     {
       "YarnName": "stop",
       "DefinitionName": "stop",
-      "IsCommand": true,
       "IsBuiltIn": true,
       "Documentation": "Immediately ends the dialogue, as though the game had reached the end of a node. Use this if you need to leave a conversation in the middle of an if statement, or a shortcut option.",
-      "Language": "text",
       "Signature": "stop",
       "Parameters": []
-    },
+    }
+  ],
+  "Functions": [
+
     {
       "YarnName": "string",
       "DefinitionName": "string",
-      "IsCommand": false,
       "IsBuiltIn": true,
       "Documentation": "Converts value to string type.",
-      "Language": "text",
       "Signature": "string(value)",
       "Parameters": [
         {
@@ -47,10 +44,8 @@
     {
       "YarnName": "number",
       "DefinitionName": "number",
-      "IsCommand": false,
       "IsBuiltIn": true,
       "Documentation": "Converts value to number type.",
-      "Language": "text",
       "Signature": "number(value)",
       "Parameters": [
         {
@@ -64,10 +59,8 @@
     {
       "YarnName": "bool",
       "DefinitionName": "bool",
-      "IsCommand": false,
       "IsBuiltIn": true,
       "Documentation": "Converts value to boolean type.",
-      "Language": "text",
       "Signature": "bool(value)",
       "Parameters": [
         {

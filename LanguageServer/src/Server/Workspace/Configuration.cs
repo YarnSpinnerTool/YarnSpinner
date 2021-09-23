@@ -9,6 +9,7 @@ namespace YarnLanguageServer
     {
         // This whole setup will probably get reworked once I get a days away from staring at Visual Studio configuaration documentation
         private bool csharplookup = false;
+        private bool deepCommandLookup = true;
 
         private bool needReinitialize = false;
 
@@ -21,6 +22,19 @@ namespace YarnLanguageServer
                 {
                     csharplookup = value;
                     needReinitialize = true;
+                }
+            }
+        }
+
+        public bool DeepCommandLookup
+        {
+            get => deepCommandLookup;
+            set
+            {
+                if (deepCommandLookup != value)
+                {
+                    deepCommandLookup = value;
+                    needReinitialize = workspace.UnmatchedDefinitions.Any();
                 }
             }
         }

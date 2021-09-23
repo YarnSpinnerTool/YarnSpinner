@@ -65,6 +65,11 @@
                     "default": true,
                     "description": "Parse C# files for Commands and Functions."
                 },
+                "yarnLanguageServer.DeepCommandLookup": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Deeper search for undefined command names"
+                },
                 "yarnLanguageServer.OnlySuggestDeclaredVariables": {
                     "type": "boolean",
                     "default": true,

@@ -5,7 +5,7 @@ using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 
 namespace YarnLanguageServer
 {
-    public struct RegisteredFunction
+    public struct RegisteredDefinition
     {
         public string YarnName;
         public Uri DefinitionFile;
@@ -18,8 +18,8 @@ namespace YarnLanguageServer
         public bool IsBuiltIn;
         public string Documentation; // Do we care about markup style docstrings?
         public string Language; // = "csharp" or "txt";
-
         public string Signature;
+        public string FileName; // an optional field used exlusively to aid searching for fuller info for things defined in json
     }
 
     public struct ParameterInfo
@@ -61,8 +61,8 @@ namespace YarnLanguageServer
         public bool IsCommand;
     }
 
-    public interface IFunctionDefinitionsProvider
+    public interface IDefinitionsProvider
     {
-        public Dictionary<string, RegisteredFunction> FunctionDefinitions { get; set; }
+        public Dictionary<string, RegisteredDefinition> Definitions { get; set; }
     }
 }
