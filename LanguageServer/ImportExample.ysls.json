@@ -1,0 +1,32 @@
+{
+  "Commands": [
+    {
+      "YarnName": "Smile",
+      "DefinitionName": "RunAnimationSmile",
+      "Language": "gml",
+      "Documentation": "Run a smile animation",
+      "Signature": "Smile(howWide)",
+      "Parameters": [
+        {
+          "Name": "howWide",
+          "DefaultValue": "very wide",
+          "Type": "String",
+          "Documentation": "Text to display in smile animation."
+        }
+      ]
+    },
+    {
+      "YarnName": "Frown",
+      "DefinitionName": "RunFrownAnimation",
+      "Language": "gml"
+    }
+  ],
+  "Functions": [
+    {
+      "YarnName": "AddFive",
+      "DefinitionName": "ComputeAddFive",
+      "Language": "gml",
+      "Parameters": []
+    }
+  ]
+}
