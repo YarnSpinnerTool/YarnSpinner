@@ -60,7 +60,7 @@
         "jsonValidation": [
             {
               "fileMatch": "*.ysls.json",
-              "url" : "./Server/src/Server/Documentation/yslsschema.json"
+              "url" : "./Server/src/Server/Documentation/ysls.schema.json"
               
             }
           ],

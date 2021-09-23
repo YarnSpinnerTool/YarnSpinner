@@ -38,7 +38,7 @@
         },
         "FileName": {
           "type": "string",
-          "description": "Name of the file this method is defined in.\nPrimarily used when 'Deep Command Lookup' is disabled."
+          "description": "Name of the file this method is defined in.\nPrimarily used when 'Deep Command Lookup' is disabled to make sure the source file is still found (doesn't need to be the full path, even 'foo.cs' is helpful)."
         },
         "Language": {
           "type": "string",
