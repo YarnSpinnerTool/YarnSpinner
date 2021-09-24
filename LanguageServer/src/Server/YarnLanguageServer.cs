@@ -30,7 +30,6 @@ namespace YarnLanguageServer
                     .WithHandler<Handlers.ReferencesHandler>()
                     .WithHandler<Handlers.CompletionHandler>()
                     .WithHandler<Handlers.SignatureHelpHandler>()
-                    .WithHandler<Handlers.CompletionHandler>()
                     .WithHandler<Handlers.HoverHandler>()
                     .WithHandler<Handlers.ConfigurationHandler>()
                     .WithHandler<Handlers.CodeActionHandler>()
