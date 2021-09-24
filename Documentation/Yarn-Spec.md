@@ -65,6 +65,28 @@ The precise handling of errors will be specific to the implementing program but 
 
 Dates, spelling, and numbers are to be in Australian English.
 
+#### Railroad Diagrams
+
+At various points [railroad diagrams](https://en.wikipedia.org/wiki/Syntax_diagram) are included with the rules.
+These provide a visual means of understanding the rules presented here to aid in parsing Yarn.
+
+The diagrams are to be read left to right, following the lines until you hit the end of the rule.
+Each time you encounter an element in the path that element must be represented in the raw text of the Yarn file for the rule to be valid.
+White elements are more complex rules, grey elements are literals either by name for convenience or if they are encapsulated inside single quotes `'` they are a string literal as described above.
+Lines may loop back or skip over elements, and every path through the diagram decribes a valid version of the rule.
+
+The diagrams at various stages use ranges to represent all potential values within that range.
+Common uses of this include being able to capture the digits `0, 1, 2, 3, 4, 5, 6, 7, 8, 9`, if you were required to type them out in the diagram each time it would get onerous, so we represent this with a range using square brackets `[` and `]`.
+The character on the left side of the range represents the start and the right side represent the end of the range, so the digits would be represented as `[0-9]`.
+Hardcoded unicode values are also shown in the diagrams, these represent elements that are either difficult to show visually or for easier capture in ranges.
+Unicode values are represented in these diagrams with a `\u` followed by a multiple digit hexadecimal value.
+The value of these digits map directly to a unicode code point, for example `\u00A8` represents the `¨` or DIAERESIS symbol.
+
+It is important to note that railroad diagrams provide the rules for parsing Yarn, and only for parsing.
+The side effect of this is certain rules are not able to be easily captured in parser rules alone.
+As an example of this the railroad diagram for headers shows that there must be one or more header tags, but doesn't capture that one of those tags must be the title.
+Railroad diagrams capture the syntactic but not semantic rules.
+
 ### Modifying This Specification
 
 Once this specification is complete it is set and unchanging.
@@ -123,9 +145,15 @@ After the first character digits, a period (`.`), and combining Unicode characte
 The `$` symbol must not be part of an identifier.
 The minimum and maximum length of identifiers is unspecified.
 
+![](railroads/IDENTIFIER.svg)
+![](railroads/IDENTIFIER_HEAD.svg)
+![](railroads/IDENTIFIER_CHARACTER.svg)
+
 ## Yarn Structure
 
 The basic structure of a Yarn file is zero or more file tags and one or more Yarn nodes.
+
+![](railroads/yarn_file.svg)
 
 ### File Tags
 
@@ -133,6 +161,8 @@ _File tags_ are file level metadata that is relevant for all nodes in the file.
 A common use for file tags is for versioning the file.
 File tags must go at the start of a file before any nodes begin.
 File tags must have the `#` symbol at the start of them and then contain all text up until the end of the line.
+
+![](railroads/file_tag.svg)
 
 ### Nodes
 
@@ -142,11 +172,15 @@ Nodes are designed to contain pieces of a story and then have these story pieces
 This is not a requirement, everything could be done in a single node, this would just be unwieldy.
 A node must be comprised of a single header and a single body in that order.
 
+![](railroads/node.svg)
+
 ### Headers
 
 A *header* is comprised of one or more header tags.
 The header is finished when encountering a line that only contains the *header delimiter* `---`.
 After encountering the header delimiter the body of the node is entered.
+
+![](railroads/header.svg)
 
 #### Header Tags
 
@@ -163,6 +197,8 @@ Every node must have a title tag.
 Required or banned header tags beyond title are unspecified.
 The order of header tags is unspecified.
 
+![](railroads/header_tag.svg)
+
 #### Title Tag
 
 The *title tag* is a specific header tag that uniquely identifies the node.
@@ -173,6 +209,8 @@ The tag text must follow the rules of [identifiers](#identifiers).
 
 The behaviour of the program when a title tag's text is not unique across the project is unspecified.
 The program should flag this as an error.
+
+![](railroads/title_tag.svg)
 
 #### Duplicate Tags
 
@@ -193,9 +231,13 @@ A *statement* is a line that is one of the following:
 A statement may have optional [hashtags](#hashtags).
 A body must have at least one statement.
 
+![](railroads/statement.svg)
+
 The body ends when encountering a line that consists entirely of the *body delimter* `===`.
 The body delimiter ends both the current node and the body of that node.
 The end of file must not be used in place of a body delimiter.
+
+![](railroads/body.svg)
 
 #### Hashtags
 
@@ -209,6 +251,8 @@ A hashtag starts with the `#` symbol and contain any text up to the newline or a
 Multiple hashtags can exist on a single line.
 `#lineID:a10be2 #return` is an example of multiple hashtags on a line.
 `General Kenobi: Why hello there #lineID:a10be2 #return` is an example of a line of dialogue with multiple hashtags.
+
+![](railroads/hashtag.svg)
 
 ## Dialogue Statement
 
@@ -286,6 +330,8 @@ Any expressions inside of a generic command without being encapsulated must be i
 ```
 are examples of generic commands.
 
+![](railroads/generic_command.svg)
+
 ### Jump
 
 The _jump_ command is how a Yarn program can move from one [node](#nodes) to another.
@@ -305,6 +351,8 @@ From that point on the destination nodes contents must instead be run.
 
 `<<jump nodeName>>` is an example of a jump command, `<<jump {$chosenMurderer}>>` is an example of a jump command using an expression to determine the destination node.
 
+![](railroads/jump.svg)
+
 ### Stop
 
 The _stop_ command is for halting all progress on the [project](#project).
@@ -313,6 +361,8 @@ The stop command has only one component, the _keyword_ `stop`.
 The stop command should reset any [variable](#variables) or internal state back to their initial states.
 
 `<<stop>>` is the example of the stop command.
+
+![](railroads/stop.svg)
 
 ### Set
 
@@ -333,6 +383,8 @@ The following is an example of two set commands:
 
 The set command must follow all the rules for [variable naming](#naming-and-scope) and expressions.
 The set command must not allow setting a variable to an expression whose value is different from the [type](#supported-types) of that variable.
+
+![](railroads/set.svg)
 
 ### Declare
 
@@ -360,6 +412,8 @@ The value of the expression is used determine what type the value is to be decla
 The implementing program must not allow the variable declared to ever have a value set which is not of the declared type.
 If this does occur the implementing program must flag this as an error.
 The handling of encountering variables which have not been declared is unspecified but should generate an error.
+
+![](railroads/declare.svg)
 
 #### Explicit Typing
 
@@ -413,6 +467,8 @@ If neither of those are the case then the `else-scope` line will be shown.
 <<endif>>
 ```
 
+![](railroads/flow_control.svg)
+
 #### if
 
 The _if_ command is the opening command of flow control and is broken up into two parts, the keyword and the expression and must be in that order.
@@ -421,6 +477,8 @@ The _expression_ is an [expression](#expressions).
 The expression must resolve to a boolean.
 
 `<<if $boldness > 1>>` is an example of an if command, `<<if 1>>` is an example of an invalid if, it is invalid because the expression does not resolve to a boolean.
+
+![](railroads/if.svg)
 
 #### elseif
 
@@ -437,6 +495,8 @@ The minimum mumber of required elseif commands must be zero.
 The maximum number of allowed elseif commands in a flow control statement is unspecified but must be greater than zero.
 An elseif command must not exist without an if command and must go after the if command.
 
+![](railroads/elseif.svg)
+
 #### else
 
 The _else_ command is an optional component of flow control and allows for additional flow to be expressed.
@@ -450,12 +510,16 @@ The else's block will run only if the `if` and any `elseif` components all evalu
 
 The example of the else command is `<<else>>`.
 
+![](railroads/else.svg)
+
 #### endif
 
 The _endif_ command is the final element of flow control and is comprised solely of the keyword `endif`.
 The endif must be present whenever there is flow control and must go after the if and any elseif or else commands.
 The endif exists to allow the implementing program know when the scope of the other elements in the flow control has ended.
 `<<endif>>` is the example of the endif command.
+
+![](railroads/endif.svg)
 
 #### Scope and Blocks
 
@@ -520,6 +584,8 @@ _Options_ are the means by which Yarn can present dialogue choices to the game a
 Options are comprised of one or more option lines.
 An _option line_ represents a single choice in an option, and are comprised of three parts: the keyword, the dialogue, the [conditional](#conditional) in that order.
 
+![](railroads/option.svg)
+
 The _keyword_ is how the implementing program can tell a line is part of an option instead of dialogue and is the symbol `->`.
 There must be at least one whitespace between the keyword and the next element, the dialogue.
 The _dialogue_ is a normal line of [dialogue](#dialogue-statement) following all rules associated with that.
@@ -528,6 +594,8 @@ As the intention of options is to provide choice to the player when options are 
 Each option must be provided in the order they are written in the node.
 The mechanism by which an option line is chosen is unspecified.
 Only a single option line must be chosen.
+
+![](railroads/options.svg)
 
 ### Conditional
 
@@ -560,6 +628,8 @@ These rules are repeated for each option line until a non-option line with the s
 Options can be nested inside option blocks.
 Not every option line needs to have blocks.
 The maximum number of supported indentation of options inside a block is unspecified.
+
+![](railroads/option_block.svg)
 
 #### Tabs vs Space
 
@@ -644,6 +714,8 @@ This means if you do want to show the result of an expression it will have to be
 For example a line that is just `$numberOfCoins + 1` while a valid line of [dialogue](#dialogue-statement) is not going to give the result of the expression, but `{$numberOfCoins + 1}` is a valid line of dialogue that will present the result of that expression.
 
 Expressions are mostly used to control the flow of the [if statement](#if), although they are also used as part of [set](#set) and [declare](#declare) statements, and in [interpolated dialogue](#interpolated-dialogue).
+
+![](railroads/expression.svg)
 
 ### Values
 
@@ -847,6 +919,8 @@ If there are any equal priority operations in an expression they are resolved le
 _Functions_ are an alternate way of getting values into expressions.
 Functions are intended to be used to allow more complex code be bundled and called in a different environment, such as in the game itself.
 Functions must return a value.
+
+![](railroads/function.svg)
 
 #### Structure 
 
