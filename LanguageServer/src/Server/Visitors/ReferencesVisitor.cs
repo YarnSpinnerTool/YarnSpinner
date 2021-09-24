@@ -38,7 +38,13 @@ namespace YarnLanguageServer
             };
             if (yarnFileData.ParseTree != null)
             {
-                visitor.Visit(yarnFileData.ParseTree);
+                try
+                {
+                    visitor.Visit(yarnFileData.ParseTree);
+                }
+                catch (Exception e) {
+                    // Don't want an exception while parsing to take out the entire language server
+                }
             }
 
             return (visitor.titles, visitor.jumps, visitor.commands, visitor.commandInfos,
@@ -82,46 +88,50 @@ namespace YarnLanguageServer
 
         public override bool VisitFunction_call([NotNull] YarnSpinnerParser.Function_callContext context)
         {
-            Range parametersRange;
-            if (context.lparens == null)
+            try
             {
-                parametersRange = PositionHelper.GetRange(yarnFileData.LineStarts, context.function_name().Stop).CollapseToEnd();
+                Range parametersRange;
+                if (context.lparens == null)
+                {
+                    parametersRange = PositionHelper.GetRange(yarnFileData.LineStarts, context.function_name().Stop).CollapseToEnd();
+                }
+                else if (context.rparens == null)
+                {
+                    parametersRange = PositionHelper.GetRange(yarnFileData.LineStarts, context.lparens, context.Stop);
+                    parametersRange = new Range(parametersRange.Start.Delta(0, 1), parametersRange.End.Delta(0, -1));
+                }
+                else
+                {
+                    parametersRange = PositionHelper.GetRange(yarnFileData.LineStarts, context.lparens, context.rparens);
+                    parametersRange = new Range(parametersRange.Start.Delta(0, 1), parametersRange.End.Delta(0, -1));
+                }
+
+                var parameterCount = context.function_parameter().Count();
+                var commas = context.COMMA();
+                var left = parametersRange.Start;
+                var parameterRanges = new List<Range>(commas.Count() + 1);
+                foreach (var right in commas.Select(c => PositionHelper.GetRange(yarnFileData.LineStarts, c.Symbol).End))
+                {
+                    parameterRanges.Add(new Range(left, right.Delta(0, -1)));
+                    left = right;
+                }
+
+                parameterRanges.Add(new Range(left, parametersRange.End));
+
+
+
+                functionInfos.Add(new YarnFunctionCall
+                {
+                    NameToken = context.function_name().Start,
+                    Name = context.function_name().Start.Text,
+                    ExpressionRange = PositionHelper.GetRange(yarnFileData.LineStarts, context.Start, context.Stop),
+                    ParameterRanges = parameterRanges,
+                    ParameterCount = parameterCount,
+                    IsCommand = false,
+                    ParametersRange = parametersRange,
+                });
+            } catch (Exception e) {
             }
-            else if (context.rparens == null)
-            {
-                parametersRange = PositionHelper.GetRange(yarnFileData.LineStarts, context.lparens, context.Stop);
-                parametersRange = new Range(parametersRange.Start.Delta(0, 1), parametersRange.End.Delta(0, -1));
-            }
-            else
-            {
-                parametersRange = PositionHelper.GetRange(yarnFileData.LineStarts, context.lparens, context.rparens);
-                parametersRange = new Range(parametersRange.Start.Delta(0, 1), parametersRange.End.Delta(0, -1));
-            }
-
-            var parameterCount = context.function_parameter().Count();
-            var commas = context.COMMA();
-            var left = parametersRange.Start;
-            var parameterRanges = new List<Range>(commas.Count() + 1);
-            foreach (var right in commas.Select(c => PositionHelper.GetRange(yarnFileData.LineStarts, c.Symbol).End))
-            {
-                parameterRanges.Add(new Range(left, right.Delta(0, -1)));
-                left = right;
-            }
-
-            parameterRanges.Add(new Range(left, parametersRange.End));
-
-
-
-            functionInfos.Add(new YarnFunctionCall
-            {
-                NameToken = context.function_name().Start,
-                Name = context.function_name().Start.Text,
-                ExpressionRange = PositionHelper.GetRange(yarnFileData.LineStarts, context.Start, context.Stop),
-                ParameterRanges = parameterRanges,
-                ParameterCount = parameterCount,
-                IsCommand = false,
-                ParametersRange = parametersRange,
-            });
 
             return base.VisitFunction_call(context);
         }
@@ -146,45 +156,50 @@ namespace YarnLanguageServer
 
         public override bool VisitCommand_statement([NotNull] YarnSpinnerParser.Command_statementContext context)
         {
-            var commandtext = context.command_formatted_text();
-            if (commandtext != null)
+            try
             {
-                var parameterRangeStart = PositionHelper.GetRange(yarnFileData.LineStarts, commandtext.Start).End
-                    .Delta(0, 1); // need at least one white space character after the command name before any parameters
-                var parameterRangeEnd = PositionHelper.GetRange(yarnFileData.LineStarts, context.COMMAND_TEXT_END().Symbol).Start;
+                var commandtext = context.command_formatted_text();
+                if (commandtext != null)
+                {
+                    var parameterRangeStart = PositionHelper.GetRange(yarnFileData.LineStarts, commandtext.Start).End
+                        .Delta(0, 1); // need at least one white space character after the command name before any parameters
+                    var parameterRangeEnd = PositionHelper.GetRange(yarnFileData.LineStarts, context.COMMAND_TEXT_END().Symbol).Start;
 
-                var parameters = commandtext.command_parameter();
-                var parameterCount = parameters.Count();
-                var parameterRanges = new List<Range>(Math.Max(1, parameterCount));
-                if (parameterCount == 0)
-                {
-                    parameterRanges.Add(new Range(parameterRangeStart, parameterRangeEnd));
-                } else
-                {
-                    var left = parameterRangeStart;
-                    foreach (var right in parameters.Select(p => PositionHelper.GetRange(yarnFileData.LineStarts, p.Stop).End))
+                    var parameters = commandtext.command_parameter();
+                    var parameterCount = parameters.Count();
+                    var parameterRanges = new List<Range>(Math.Max(1, parameterCount));
+                    if (parameterCount == 0)
                     {
-                        parameterRanges.Add(new Range(left, right));
-                        left = right;
+                        parameterRanges.Add(new Range(parameterRangeStart, parameterRangeEnd));
+                    }
+                    else
+                    {
+                        var left = parameterRangeStart;
+                        foreach (var right in parameters.Select(p => PositionHelper.GetRange(yarnFileData.LineStarts, p.Stop).End))
+                        {
+                            parameterRanges.Add(new Range(left, right));
+                            left = right;
+                        }
+
+                        parameterRanges[parameterCount - 1] = new Range(parameterRanges[parameterCount - 1].Start, parameterRangeEnd);
                     }
 
-                    parameterRanges[parameterCount - 1] = new Range(parameterRanges[parameterCount - 1].Start, parameterRangeEnd);
+                    var result = new YarnFunctionCall
+                    {
+                        NameToken = commandtext.command_name_rule().Start,
+                        Name = commandtext.command_name_rule().Start.Text,
+                        ExpressionRange = PositionHelper.GetRange(yarnFileData.LineStarts, commandtext.Start, context.COMMAND_TEXT_END().Symbol),
+                        ParametersRange = new Range(parameterRangeStart, parameterRangeEnd),
+                        ParameterRanges = parameterRanges,
+                        ParameterCount = parameterCount,
+                        IsCommand = true,
+                    };
+
+                    result.ExpressionRange = new Range(result.ExpressionRange.Start, result.ExpressionRange.End.Delta(0, -2)); // should get right up to the left of >>
+
+                    commandInfos.Add(result);
                 }
-
-                var result = new YarnFunctionCall
-                {
-                    NameToken = commandtext.command_name_rule().Start,
-                    Name = commandtext.command_name_rule().Start.Text,
-                    ExpressionRange = PositionHelper.GetRange(yarnFileData.LineStarts, commandtext.Start, context.COMMAND_TEXT_END().Symbol),
-                    ParametersRange = new Range(parameterRangeStart, parameterRangeEnd),
-                    ParameterRanges = parameterRanges,
-                    ParameterCount = parameterCount,
-                    IsCommand = true,
-                };
-
-                result.ExpressionRange = new Range(result.ExpressionRange.Start, result.ExpressionRange.End.Delta(0, -2)); // should get right up to the left of >>
-
-                commandInfos.Add(result);
+            } catch (Exception e) { 
             }
 
             return base.VisitCommand_statement(context);

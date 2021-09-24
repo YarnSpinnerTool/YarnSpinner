@@ -59,7 +59,7 @@ namespace YarnLanguageServer.Diagnostics
                         {
                             Message = $"Too few parameters. Expected at least {def.MinParameterCount}.",
                             Severity = DiagnosticSeverity.Error,
-                            Range = fi.ParametersRange,
+                            Range = fi.ExpressionRange,
                             Code = nameof(YarnDiagnosticCode.YRNCmdParamCnt),
                         });
                     }
@@ -70,7 +70,7 @@ namespace YarnLanguageServer.Diagnostics
                         {
                             Message = $"Too many parameters. Expected at most {def.MaxParameterCount}.",
                             Severity = DiagnosticSeverity.Error,
-                            Range = fi.ParametersRange,
+                            Range = fi.ExpressionRange,
                             Code = nameof(YarnDiagnosticCode.YRNCmdParamCnt),
                         });
                     }

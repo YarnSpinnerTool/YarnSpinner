@@ -107,7 +107,14 @@ namespace YarnLanguageServer
 
         public int? GetRawToken(Position position)
         {
-            return TokenPositionVisitor.Visit(this, position);
+            // TODO: Not sure if it's even worth using a visitor vs just iterating through the token list.
+            var result = TokenPositionVisitor.Visit(this, position);
+            if (result != null) { return result; }
+
+            // The parse tree doesn't have whitespace tokens so need to manually search sometimes
+            var match = this.Tokens.FirstOrDefault(t => PositionHelper.DoesPositionContainToken(position, t));
+            result = match?.TokenIndex;
+            return result;
         }
 
         public (YarnSymbolType yarnSymbolType, IToken token) GetTokenAndType(Position position)

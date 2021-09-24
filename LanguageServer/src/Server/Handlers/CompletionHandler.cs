@@ -30,8 +30,8 @@ namespace YarnLanguageServer.Handlers
 
                 var indexToken = yarnFile.Tokens[index.Value];
 
-                // things fall apart with << for some reason
-                if (indexToken.Type == YarnSpinnerLexer.COMMAND_START)
+                // things fall apart with opening braces for some reason
+                if (indexToken.Type == YarnSpinnerLexer.COMMAND_START || indexToken.Type == YarnSpinnerLexer.LPAREN || indexToken.Type == YarnSpinnerLexer.EXPRESSION_START)
                 {
                     // if we are at the right edge of <<, then use what ever the next token is to get completions
                     if (PositionHelper.GetRange(yarnFile.LineStarts, indexToken).End == request.Position)
@@ -47,9 +47,9 @@ namespace YarnLanguageServer.Handlers
                 }
 
                 var indexTokenRange = PositionHelper.GetRange(yarnFile.LineStarts, indexToken);
-                if (indexToken.Type == YarnSpinnerLexer.COMMAND_END)
+                if (indexToken.Type == YarnSpinnerLexer.COMMAND_END || indexToken.Type == YarnSpinnerLexer.RPAREN || indexToken.Type == YarnSpinnerLexer.EXPRESSION_END)
                 {
-                    indexTokenRange = indexTokenRange.CollapseToStart(); // don't replace >>
+                    indexTokenRange = indexTokenRange.CollapseToStart(); // don't replace closing braces
                 }
 
                 var candidates = yarnFile.CodeCompletionCore.CollectCandidates(index.Value, null);

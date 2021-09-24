@@ -37,8 +37,8 @@ namespace YarnLanguageServer.Handlers
                                 Contents = new MarkedStringsOrMarkupContent(
                                     new MarkedString[]
                                     {
-                                        new MarkedString(definition.Language, definition.Signature),
-                                        new MarkedString("text", definition.Documentation),
+                                        new MarkedString(definition.Language, definition.Signature ?? definition.DefinitionName ?? definition.YarnName),
+                                        new MarkedString("text", definition.Documentation ?? string.Empty ),
                                     }),
                                 Range = PositionHelper.GetRange(yarnFile.LineStarts, token),
                             };
