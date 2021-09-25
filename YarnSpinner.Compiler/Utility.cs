@@ -163,6 +163,37 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
+        /// Gets an <see cref="Antlr4.Runtime.Tree.IParseTree"/> generated
+        /// from parsing the specified text in <paramref name="source"/>.
+        /// </summary>
+        /// <param name="source">The source code to parse.</param>
+        /// <returns>A source tree.</returns>
+        /// <exception cref="ParseException">Thrown when source contains
+        /// compilation errors.</exception>
+        public static Antlr4.Runtime.Tree.IParseTree GetParseTree(string source)
+        {
+            var (tree, _) = Compiler.ParseSyntaxTree("<input>", source);
+
+            return tree;
+        }
+
+        /// <summary>
+        /// Gets an enumeration containing the <see
+        /// cref="Antlr4.Runtime.IToken"/> objects generated from parsing
+        /// the specified text in <paramref name="source"/>.
+        /// </summary>
+        /// <param name="source">The source code to parse.</param>
+        /// <returns>An enumeration containing tokens.</returns>
+        /// <exception cref="ParseException">Thrown when source contains
+        /// compilation errors.</exception>
+        public static IEnumerable<Antlr4.Runtime.IToken> GetTokens(string source)
+        {
+            var (_, tokens) = Compiler.ParseSyntaxTree("<input>", source);
+
+            return tokens.Get(0, tokens.Size - 1);
+        }
+
+        /// <summary>
         /// Generates a new unique line tag that is not present in
         /// `existingKeys`.
         /// </summary>
