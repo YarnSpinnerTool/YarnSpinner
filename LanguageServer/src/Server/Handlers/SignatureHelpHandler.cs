@@ -31,8 +31,8 @@ namespace YarnLanguageServer.Handlers
                         results = functionInfos.Where(fi => fi.Parameters != null).Select(fi => new SignatureInformation
                         {
                             Label = fi.IsCommand ?
-                                $"{fi.YarnName} {string.Join(' ', fi.Parameters.Select(p => $"{p.Type}:{p.Name}"))}" :
-                                $"{fi.YarnName}( {string.Join(", ", fi.Parameters.Select(p => $"{p.Type}:{p.Name}"))})",
+                                $"{fi.YarnName} {string.Join(' ', fi.Parameters.Select(p => $"{(p.DefaultValue.Any()?"[":"")}{p.Type}:{p.Name}{(p.DefaultValue.Any() ? "]" : "")}"))}" :
+                                $"{fi.YarnName}( {string.Join(", ", fi.Parameters.Select(p => $"{(p.DefaultValue.Any() ? "[" : "")}{p.Type}:{p.Name}{(p.DefaultValue.Any() ? "]" : "")}"))})",
                             Documentation = fi.Documentation,
                             Parameters =
                                 parameterIndex == null ? null : // only list parameters if position is inside a parameter range
@@ -40,7 +40,7 @@ namespace YarnLanguageServer.Handlers
                                     new ParameterInformation
                                     {
                                         Label = p.Name,
-                                        Documentation = p.Documentation,
+                                        Documentation = $"{(p.DefaultValue.Any() ? $"Default: {p.DefaultValue}\n" : string.Empty)}{p.Documentation}",
                                     })),
                             ActiveParameter = parameterIndex < fi.Parameters.Count() || !fi.Parameters.Any() || !fi.Parameters.Last().IsParamsArray ?
                                 parameterIndex : fi.Parameters.Count() - 1, // if  last param is a params array, it should be the info for all trailing params input
