@@ -7,7 +7,7 @@
     using System.Text;
     using Antlr4.Runtime;
     
-    public sealed class Problem
+    public sealed class Diagnostic
     {
         public string FileName = "(not set)";
         public int Line;
@@ -15,21 +15,21 @@
         public string Message = "(internal error: no message provided)";
 
         public string Context = null;
-        public ProblemSeverity Severity = ProblemSeverity.Error;
+        public DiagnosticSeverity Severity = DiagnosticSeverity.Error;
 
-        public Problem(string fileName, string message, ProblemSeverity severity = ProblemSeverity.Error)
+        public Diagnostic(string fileName, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
             this.Message = message;
             this.Severity = severity;
         }
         
-        public Problem(string message, ProblemSeverity severity = ProblemSeverity.Error)
+        public Diagnostic(string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         : this(null, message, severity)
         {
         }
 
-        public Problem(string fileName, ParserRuleContext context, string message, ProblemSeverity severity = ProblemSeverity.Error)
+        public Diagnostic(string fileName, ParserRuleContext context, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error)
         {
             this.FileName = fileName;
             this.Column = context?.Start.Column ?? 0;
@@ -39,7 +39,7 @@
             this.Severity = severity;
         }
 
-        public Problem(string fileName, int line, int column, string message, ProblemSeverity severity = ProblemSeverity.Error) {
+        public Diagnostic(string fileName, int line, int column, string message, DiagnosticSeverity severity = DiagnosticSeverity.Error) {
             this.FileName = fileName;
             this.Column = column;
             this.Line = line;
@@ -47,7 +47,7 @@
             this.Severity = severity;
         }
 
-        public enum ProblemSeverity
+        public enum DiagnosticSeverity
         {
             Error,
             Warning,
@@ -70,13 +70,13 @@
 
         public override bool Equals(object obj)
         {
-            return obj is Problem problem &&
-                   this.FileName == problem.FileName &&
-                   this.Line == problem.Line &&
-                   this.Column == problem.Column &&
-                   this.Message == problem.Message &&
-                   this.Context == problem.Context &&
-                   this.Severity == problem.Severity;
+            return obj is Diagnostic diagnostics &&
+                   this.FileName == diagnostics.FileName &&
+                   this.Line == diagnostics.Line &&
+                   this.Column == diagnostics.Column &&
+                   this.Message == diagnostics.Message &&
+                   this.Context == diagnostics.Context &&
+                   this.Severity == diagnostics.Severity;
         }
 
         public override int GetHashCode()
@@ -94,25 +94,25 @@
 
     internal sealed class LexerErrorListener : IAntlrErrorListener<int>
     {
-        private readonly List<Problem> problems = new List<Problem>();
+        private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
 
-        public IEnumerable<Problem> Problems => this.problems;
+        public IEnumerable<Diagnostic> Diagnostics => this.diagnostics;
 
         public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
-            this.problems.Add(new Problem(null, line, charPositionInLine, msg));
+            this.diagnostics.Add(new Diagnostic(null, line, charPositionInLine, msg));
         }
     }
 
     internal sealed class ParserErrorListener : BaseErrorListener
     {
-        private readonly List<Problem> problems = new List<Problem>();
+        private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
 
-        public IEnumerable<Problem> Problems => this.problems;
+        public IEnumerable<Diagnostic> Diagnostics => this.diagnostics;
 
         public override void SyntaxError(System.IO.TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
-            var problem = new Problem(null, line, charPositionInLine, msg);
+            var diagnostic = new Diagnostic(null, line, charPositionInLine, msg);
             
             if (offendingSymbol.TokenSource != null)
             {
@@ -147,10 +147,10 @@
                     }
                 }
 
-                problem.Context = builder.ToString();
+                diagnostic.Context = builder.ToString();
             }
 
-            this.problems.Add(problem);
+            this.diagnostics.Add(diagnostic);
         }
     }
 }

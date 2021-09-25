@@ -22,7 +22,7 @@ namespace YarnSpinner.Tests
             
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
             
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -64,7 +64,7 @@ custom: yes
 
             var result = Compiler.Compile(job);
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
 
             var headers = new Dictionary<string,string> {
                 { "custom", "yes"}
@@ -106,7 +106,7 @@ A line with a tag, and a comment. #line:expected_ghi789 // a comment
 
             var compilationResult = Compiler.Compile(compilationJob);
 
-            Assert.Empty(compilationResult.Problems);
+            Assert.Empty(compilationResult.Diagnostics);
 
             // Assert
             var lineTagRegex = new Regex(@"#line:\w+");

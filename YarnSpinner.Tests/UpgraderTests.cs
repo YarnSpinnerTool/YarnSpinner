@@ -84,7 +84,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(expectedOutputFiles) );
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
             
             stringTable = result.StringTable;
 

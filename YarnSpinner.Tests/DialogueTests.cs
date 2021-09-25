@@ -24,7 +24,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(compilationJob);
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
 
             dialogue.SetProgram (result.Program);
 
@@ -57,7 +57,7 @@ namespace YarnSpinner.Tests
             
             var result = Compiler.Compile(compilationJob);
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
 
             stringTable = result.StringTable;
 
@@ -77,7 +77,7 @@ namespace YarnSpinner.Tests
                 Path.Combine(SpaceDemoScriptsPath, "Sally.yarn"),
             }, dialogue.Library));
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
 
             dialogue.SetProgram (result.Program);
             
@@ -95,7 +95,7 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "Example.yarn");
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
 
             dialogue.SetProgram (result.Program);
 
@@ -111,7 +111,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
             
             dialogue.SetProgram (result.Program);
 
@@ -130,7 +130,7 @@ namespace YarnSpinner.Tests
             
             var result = Compiler.Compile(compilationJob);
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
             
             dialogue.SetProgram (result.Program);
 
@@ -152,7 +152,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
 
             dialogue.SetProgram (result.Program);
 
@@ -172,7 +172,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
 
             dialogue.SetProgram (result.Program);
 
@@ -191,7 +191,7 @@ namespace YarnSpinner.Tests
             
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
 
             stringTable = result.StringTable;
             
@@ -240,7 +240,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
 
             stringTable = result.StringTable;
 
@@ -325,7 +325,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(job);
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
 
             this.stringTable = result.StringTable;
 

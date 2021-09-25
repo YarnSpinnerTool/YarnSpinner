@@ -31,7 +31,7 @@ namespace YarnSpinner.Tests
             
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
             
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -57,8 +57,8 @@ namespace YarnSpinner.Tests
             var resultSallyAndShip = Compiler.Compile(compilationJobSallyAndShip);
 
 
-            Assert.Empty(resultSally.Problems);
-            Assert.Empty(resultSallyAndShip.Problems);
+            Assert.Empty(resultSally.Diagnostics);
+            Assert.Empty(resultSallyAndShip.Diagnostics);
 
             // Loading code with the same contents should throw
             Assert.Throws<InvalidOperationException>(delegate ()
@@ -76,7 +76,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
             
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -96,7 +96,7 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "Headers.yarn");
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.Empty(result.Problems);
+            Assert.Empty(result.Diagnostics);
             
             Assert.Equal(4, result.Program.Nodes.Count);
 
@@ -118,7 +118,7 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
-            Assert.NotEmpty(result.Problems);
+            Assert.NotEmpty(result.Diagnostics);
 
         }
 
@@ -232,14 +232,14 @@ namespace YarnSpinner.Tests
                 // it a test failure if it _does_ compile.
 
                 var result = Compiler.Compile(compilationJob);
-                Assert.NotEmpty(result.Problems);
+                Assert.NotEmpty(result.Diagnostics);
             }
             else
             {
                 // Compile the job, and expect it to succeed.
                 var result = Compiler.Compile(compilationJob);
 
-                Assert.Empty(result.Problems);
+                Assert.Empty(result.Diagnostics);
 
                 Assert.NotNull(result.Program);
             

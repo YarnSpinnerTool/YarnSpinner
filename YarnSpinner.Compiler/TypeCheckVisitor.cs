@@ -43,7 +43,7 @@ namespace Yarn.Compiler
 
         private readonly IEnumerable<IType> types;
 
-        private readonly List<Problem> problems = new List<Problem>();
+        private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
 
         /// <summary>
         /// Gets the collection of all declarations - both the ones we received
@@ -71,7 +71,7 @@ namespace Yarn.Compiler
 
         protected override Yarn.IType DefaultResult => null;
 
-        public IEnumerable<Problem> Problems => problems;
+        public IEnumerable<Diagnostic> Diagnostics => diagnostics;
 
         public override Yarn.IType VisitNode(YarnSpinnerParser.NodeContext context)
         {
@@ -90,7 +90,7 @@ namespace Yarn.Compiler
 
         public override Yarn.IType VisitValueNull([NotNull] YarnSpinnerParser.ValueNullContext context)
         {
-            this.problems.Add(new Problem(this.sourceFileName, context, "Null is not a permitted type in Yarn Spinner 2.0 and later"));
+            this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, "Null is not a permitted type in Yarn Spinner 2.0 and later"));
 
             return BuiltinTypes.Undefined;
         }
@@ -206,7 +206,7 @@ namespace Yarn.Compiler
                 // Wrong number of parameters supplied
                 var parameters = expectedParameters.Count() == 1 ? "parameter" : "parameters";
 
-                this.problems.Add(new Problem(this.sourceFileName, context,  $"Function {functionName} expects {expectedParameters.Count()} {parameters}, but received {suppliedParameters.Length}"));
+                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context,  $"Function {functionName} expects {expectedParameters.Count()} {parameters}, but received {suppliedParameters.Length}"));
 
                 return functionType.ReturnType;
             }
@@ -230,7 +230,7 @@ namespace Yarn.Compiler
 
                 if (TypeUtil.IsSubType(expectedType, suppliedType) == false)
                 {
-                    this.problems.Add(new Problem(this.sourceFileName, context, $"{functionName} parameter {i + 1} expects a {expectedType.Name}, not a {suppliedType.Name}"));
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"{functionName} parameter {i + 1} expects a {expectedType.Name}, not a {suppliedType.Name}"));
                     return functionType.ReturnType;
                 }
             }
@@ -287,7 +287,7 @@ namespace Yarn.Compiler
                     if (variableType != BuiltinTypes.Undefined && TypeUtil.IsSubType(variableType, expressionType) == false)
                     {
                         string message = $"{variableName} ({variableType?.Name ?? "undefined"}) cannot be assigned a {expressionType?.Name ?? "undefined"}";
-                        this.problems.Add(new Problem(this.sourceFileName, context, message));
+                        this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
                     }
                     else if (variableType == BuiltinTypes.Undefined && expressionType != BuiltinTypes.Undefined)
                     {
@@ -409,14 +409,14 @@ namespace Yarn.Compiler
 
                     string message = $"Type of expression \"{context.GetTextWithWhitespace()}\" can't be determined without more context (the compiler thinks it could be {string.Join(", or ", typeNames)}). Use a type cast on at least one of the terms (e.g. the string(), number(), bool() functions)";
 
-                    this.problems.Add(new Problem(this.sourceFileName, context, message));
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
                     return BuiltinTypes.Undefined;
                 }
                 else
                 {
                     // No types implement this operation (??)
                     string message = $"Type of expression \"{context.GetTextWithWhitespace()}\" can't be determined without more context. Use a type cast on at least one of the terms (e.g. the string(), number(), bool() functions)";
-                    this.problems.Add(new Problem(this.sourceFileName, context, message));
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
                     return BuiltinTypes.Undefined;
                 }
             }
@@ -491,7 +491,7 @@ namespace Yarn.Compiler
                 // type.
                 var typeList = string.Join(", ", termTypes.Select(t => t.Name));
                 string message = $"All terms of {operationDescription} must be the same, not {typeList}";
-                this.problems.Add(new Problem(this.sourceFileName, context, message));
+                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
                 return BuiltinTypes.Undefined;
             }
 
@@ -523,7 +523,7 @@ namespace Yarn.Compiler
                 if (implementingType == null)
                 {
                     string message = $"{expressionType.Name} has no implementation defined for {operationDescription}";
-                    this.problems.Add(new Problem(this.sourceFileName, context, message));
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
                     return BuiltinTypes.Undefined;
                 }
             }
@@ -546,7 +546,7 @@ namespace Yarn.Compiler
                     var typeList = string.Join(", ", termTypes.Select(t => t.Name));
 
                     string message = $"Terms of '{operationDescription}' must be {permittedTypesList}, not {typeList}";
-                    this.problems.Add(new Problem(this.sourceFileName, context, message));
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
                     return BuiltinTypes.Undefined;
                 }
             }
@@ -567,7 +567,7 @@ namespace Yarn.Compiler
                     // expression is therefore invalid.
                     
                     string message = $"Operator {operationDescription} cannot be used with {expressionType.Name} values";
-                    this.problems.Add(new Problem(this.sourceFileName, context, message));
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
                     
                     return BuiltinTypes.Undefined;
                 }

@@ -16,7 +16,7 @@ namespace Yarn.Compiler
         private readonly ParserRuleContext context;
         private readonly string sourceFileName;
         private readonly IEnumerable<IType> types;
-        private List<Problem> problems;
+        private List<Diagnostic> diagnostics;
 
         /// <summary>
         /// Initializes a new instance of the <see
@@ -26,12 +26,12 @@ namespace Yarn.Compiler
         /// <param name="sourceFileName">The name of the file that is being
         /// visited by this instance.</param>
         /// <param name="types">The types of values known to this instance.</param>
-        public ConstantValueVisitor(ParserRuleContext context, string sourceFileName, IEnumerable<IType> types, ref List<Problem> problems)
+        public ConstantValueVisitor(ParserRuleContext context, string sourceFileName, IEnumerable<IType> types, ref List<Diagnostic> diagnostics)
         {
             this.context = context;
             this.sourceFileName = sourceFileName;
             this.types = types;
-            this.problems = problems;
+            this.diagnostics = diagnostics;
         }
 
         // Default result is an exception - only specific parse nodes can
@@ -41,7 +41,7 @@ namespace Yarn.Compiler
             get
             {
                 string message = $"Expected a constant type";
-                this.problems.Add(new Problem(this.sourceFileName, context, message));
+                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
                 return new Value(BuiltinTypes.Undefined, null);
             }
         }
@@ -49,7 +49,7 @@ namespace Yarn.Compiler
         public override Value VisitValueNull([NotNull] YarnSpinnerParser.ValueNullContext context)
         {
             const string message = "Null is not a permitted type in Yarn Spinner 2.0 and later";
-            this.problems.Add(new Problem(this.sourceFileName, context, message));
+            this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
             return new Value(BuiltinTypes.Undefined, null);
         }
 
@@ -62,7 +62,7 @@ namespace Yarn.Compiler
             else
             {
                 string message = $"Failed to parse {context.GetText()} as a float";
-                this.problems.Add(new Problem(this.sourceFileName, context, message));
+                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, message));
                 return new Value(BuiltinTypes.Number, 0f);
             }
         }
