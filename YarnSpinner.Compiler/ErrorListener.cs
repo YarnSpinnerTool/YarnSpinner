@@ -70,13 +70,13 @@
 
         public override bool Equals(object obj)
         {
-            return obj is Diagnostic diagnostics &&
-                   this.FileName == diagnostics.FileName &&
-                   this.Line == diagnostics.Line &&
-                   this.Column == diagnostics.Column &&
-                   this.Message == diagnostics.Message &&
-                   this.Context == diagnostics.Context &&
-                   this.Severity == diagnostics.Severity;
+            return obj is Diagnostic problem &&
+                   this.FileName == problem.FileName &&
+                   this.Line == problem.Line &&
+                   this.Column == problem.Column &&
+                   this.Message == problem.Message &&
+                   this.Context == problem.Context &&
+                   this.Severity == problem.Severity;
         }
 
         public override int GetHashCode()

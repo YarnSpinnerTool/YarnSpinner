@@ -747,6 +747,8 @@ namespace Yarn.Compiler
             var parserErrorListener = new ParserErrorListener();
             var lexerErrorListener = new LexerErrorListener();
 
+            parser.ErrorHandler = new ErrorStrategy();
+
             parser.RemoveErrorListeners();
             parser.AddErrorListener(parserErrorListener);
 

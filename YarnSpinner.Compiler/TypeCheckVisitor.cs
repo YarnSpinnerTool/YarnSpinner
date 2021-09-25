@@ -126,7 +126,15 @@ namespace Yarn.Compiler
             // The type of the value depends on the declared type of the
             // variable
 
-            var name = context.VAR_ID().GetText();
+            var name = context.VAR_ID()?.GetText();
+
+            if (name == null)
+            {
+                // We don't have a variable name for this Variable context.
+                // The parser will have generated an error for us in an
+                // earlier stage; here, we'll bail out.
+                return BuiltinTypes.Undefined;
+            }
 
             foreach (var declaration in Declarations)
             {
@@ -139,7 +147,7 @@ namespace Yarn.Compiler
             // We don't have a declaration for this variable. Return
             // Undefined. Hopefully, other context will allow us to infer a
             // type.
-            return null;
+            return BuiltinTypes.Undefined;
 
         }
 
