@@ -6,8 +6,7 @@
     using System.IO;
     using System.Text;
     using Antlr4.Runtime;
-    using Antlr4.Runtime.Misc;
-
+    
     public sealed class Problem
     {
         public string FileName = "(not set)";
@@ -17,6 +16,36 @@
 
         public string Context = null;
         public ProblemSeverity Severity = ProblemSeverity.Error;
+
+        public Problem(string fileName, string message, ProblemSeverity severity = ProblemSeverity.Error)
+        {
+            this.FileName = fileName;
+            this.Message = message;
+            this.Severity = severity;
+        }
+        
+        public Problem(string message, ProblemSeverity severity = ProblemSeverity.Error)
+        : this(null, message, severity)
+        {
+        }
+
+        public Problem(string fileName, ParserRuleContext context, string message, ProblemSeverity severity = ProblemSeverity.Error)
+        {
+            this.FileName = fileName;
+            this.Column = context?.Start.Column ?? 0;
+            this.Line = context?.Start.Line ?? 0;
+            this.Message = message;
+            this.Context = context.GetTextWithWhitespace();
+            this.Severity = severity;
+        }
+
+        public Problem(string fileName, int line, int column, string message, ProblemSeverity severity = ProblemSeverity.Error) {
+            this.FileName = fileName;
+            this.Column = column;
+            this.Line = line;
+            this.Message = message;
+            this.Severity = severity;
+        }
 
         public enum ProblemSeverity
         {
@@ -38,6 +67,29 @@
 
             return sb.ToString();
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Problem problem &&
+                   this.FileName == problem.FileName &&
+                   this.Line == problem.Line &&
+                   this.Column == problem.Column &&
+                   this.Message == problem.Message &&
+                   this.Context == problem.Context &&
+                   this.Severity == problem.Severity;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -1856104752;
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.FileName);
+            hashCode = (hashCode * -1521134295) + this.Line.GetHashCode();
+            hashCode = (hashCode * -1521134295) + this.Column.GetHashCode();
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Message);
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Context);
+            hashCode = (hashCode * -1521134295) + this.Severity.GetHashCode();
+            return hashCode;
+        }
     }
 
     internal sealed class LexerErrorListener : IAntlrErrorListener<int>
@@ -48,12 +100,7 @@
 
         public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
-            this.problems.Add(new Problem
-            {
-                Line = line,
-                Column = charPositionInLine,
-                Message = msg,
-            });
+            this.problems.Add(new Problem(null, line, charPositionInLine, msg));
         }
     }
 
@@ -65,13 +112,8 @@
 
         public override void SyntaxError(System.IO.TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
-            var problem = new Problem
-            {
-                Line = line,
-                Column = charPositionInLine,
-                Message = msg,
-            };
-
+            var problem = new Problem(null, line, charPositionInLine, msg);
+            
             if (offendingSymbol.TokenSource != null)
             {
                 StringBuilder builder = new StringBuilder();

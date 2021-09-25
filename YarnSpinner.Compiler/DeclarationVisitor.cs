@@ -65,6 +65,10 @@ namespace Yarn.Compiler
         /// </summary>
         public IEnumerable<Declaration> Declarations => ExistingDeclarations.Concat(NewDeclarations);
 
+        public IEnumerable<Problem> Problems => this.problems;
+
+        private List<Problem> problems = new List<Problem>();
+
         private static readonly IReadOnlyDictionary<string, IType> KeywordsToBuiltinTypes = new Dictionary<string, IType> {
             { "string", BuiltinTypes.String },
             { "number", BuiltinTypes.Number },
@@ -114,11 +118,14 @@ namespace Yarn.Compiler
             if (existingExplicitDeclaration != null)
             {
                 // Then this is an error, because you can't have two explicit declarations for the same variable.
-                throw new TypeException(context, $"{existingExplicitDeclaration.Name} has already been declared in {existingExplicitDeclaration.SourceFileName}, line {existingExplicitDeclaration.SourceFileLine}", sourceFileName);
+                string v = $"{existingExplicitDeclaration.Name} has already been declared in {existingExplicitDeclaration.SourceFileName}, line {existingExplicitDeclaration.SourceFileLine}";
+                this.problems.Add(new Problem(this.sourceFileName, context, v));
+                return BuiltinTypes.Undefined;
+                
             }
 
             // Figure out the value and its type
-            var constantValueVisitor = new ConstantValueVisitor(context, sourceFileName, Types);
+            var constantValueVisitor = new ConstantValueVisitor(context, sourceFileName, Types, ref this.problems);
             var value = constantValueVisitor.Visit(context.value());
 
             // Did the source code name an explicit type? 
@@ -135,7 +142,9 @@ namespace Yarn.Compiler
                     if (explicitType == null)
                     {
                         // We didn't find a type by this name.
-                        throw new TypeException(context, $"Unknown type {context.type.Text}", this.sourceFileName);
+                        string v = $"Unknown type {context.type.Text}";
+                        this.problems.Add(new Problem(this.sourceFileName, context, v));
+                        return BuiltinTypes.Undefined;
                     }
                 }
 
@@ -144,7 +153,9 @@ namespace Yarn.Compiler
                 // that's a type error
                 if (TypeUtil.IsSubType(explicitType, value.Type) == false)
                 {
-                    throw new TypeException(context, $"Type {context.type.Text} does not match value {context.value().GetText()} ({value.Type.Name})", sourceFileName);
+                    string v = $"Type {context.type.Text} does not match value {context.value().GetText()} ({value.Type.Name})";
+                    this.problems.Add(new Problem(this.sourceFileName, context, v));
+                    return BuiltinTypes.Undefined;
                 }
             }
 

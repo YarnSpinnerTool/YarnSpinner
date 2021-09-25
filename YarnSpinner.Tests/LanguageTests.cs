@@ -25,11 +25,13 @@ namespace YarnSpinner.Tests
         public void TestExampleScript()
         {
 
-            errorsCauseFailures = false;
+            runtimeErrorsCauseFailures = false;
             var path = Path.Combine(TestDataPath, "Example.yarn");
             var testPath = Path.ChangeExtension(path, ".testplan");
             
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+
+            Assert.Empty(result.Problems);
             
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -54,6 +56,10 @@ namespace YarnSpinner.Tests
             var resultSally = Compiler.Compile(compilationJobSally);
             var resultSallyAndShip = Compiler.Compile(compilationJobSallyAndShip);
 
+
+            Assert.Empty(resultSally.Problems);
+            Assert.Empty(resultSallyAndShip.Problems);
+
             // Loading code with the same contents should throw
             Assert.Throws<InvalidOperationException>(delegate ()
             {
@@ -69,6 +75,8 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "SkippedOptions.yarn");
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+
+            Assert.Empty(result.Problems);
             
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
@@ -87,6 +95,8 @@ namespace YarnSpinner.Tests
         {
             var path = Path.Combine(TestDataPath, "Headers.yarn");
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+
+            Assert.Empty(result.Problems);
             
             Assert.Equal(4, result.Program.Nodes.Count);
 
@@ -106,10 +116,10 @@ namespace YarnSpinner.Tests
         {
             var path = Path.Combine(TestDataPath, "InvalidNodeTitle.yarn");
 
-            Assert.Throws<Yarn.Compiler.ParseException>( () => {
-                Compiler.Compile(CompilationJob.CreateFromFiles(path));
-            });
-            
+            var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+
+            Assert.NotEmpty(result.Problems);
+
         }
 
         [Fact]
@@ -221,12 +231,15 @@ namespace YarnSpinner.Tests
                 // the file is not expected to compile. We'll actually make
                 // it a test failure if it _does_ compile.
 
-                Assert.ThrowsAny<CompilerException>(() => Compiler.Compile(compilationJob));
+                var result = Compiler.Compile(compilationJob);
+                Assert.NotEmpty(result.Problems);
             }
             else
             {
                 // Compile the job, and expect it to succeed.
                 var result = Compiler.Compile(compilationJob);
+
+                Assert.Empty(result.Problems);
 
                 Assert.NotNull(result.Program);
             

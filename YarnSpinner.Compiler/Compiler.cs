@@ -360,10 +360,7 @@ namespace Yarn.Compiler
         /// </summary>
         internal Program Program { get; private set; }
 
-        /// <summary>
-        /// The name of the file we are currently parsing from.
-        /// </summary>
-        private readonly string fileName;
+        internal FileParseResult fileParseResult { get; private set; }
 
         /// <summary>
         /// The list of variable declarations known to the compiler.
@@ -379,10 +376,20 @@ namespace Yarn.Compiler
         /// </summary>
         internal Library Library { get; private set; }
 
-        internal Compiler(string fileName)
+        /// <summary>
+        /// Gets the list of new Problem objects created during code
+        /// generation. This does not include any existing problems, such
+        /// as parse errors.
+        /// </summary>
+        internal IEnumerable<Problem> Problems { get => this.problems; }
+
+        private List<Problem> problems = new List<Problem>();
+
+
+        internal Compiler(FileParseResult fileParseResult)
         {
             Program = new Program();
-            this.fileName = fileName;
+            this.fileParseResult = fileParseResult;
         }
 
 #if DEBUG
@@ -410,16 +417,25 @@ namespace Yarn.Compiler
                 knownVariableDeclarations.AddRange(compilationJob.VariableDeclarations);
             }
 
-            // Get function declarations from the Standard Library
-            knownVariableDeclarations.AddRange(GetDeclarationsFromLibrary(new Dialogue.StandardLibrary()));
+            var problems = new List<Problem>();
+            {
+                // Get function declarations from the Standard Library
+                (IEnumerable<Declaration> declarations, IEnumerable<Problem> declarationProblems) = GetDeclarationsFromLibrary(new Dialogue.StandardLibrary());
+
+                problems.AddRange(declarationProblems);
+
+                knownVariableDeclarations.AddRange(declarations);
+            }
 
             // Get function declarations from the library, if provided
             if (compilationJob.Library != null)
             {
-                knownVariableDeclarations.AddRange(GetDeclarationsFromLibrary(compilationJob.Library));
+                (IEnumerable<Declaration> declarations, IEnumerable<Problem> declarationProblems) = GetDeclarationsFromLibrary(compilationJob.Library);
+                knownVariableDeclarations.AddRange(declarations);
+                problems.AddRange(declarationProblems);
             }
 
-            var compiledTrees = new List<(string name, IParseTree tree, CommonTokenStream tokens)>();
+            var parsedFiles = new List<FileParseResult>();
 
             // First pass: parse all files, generate their syntax trees,
             // and figure out what variables they've declared
@@ -427,10 +443,10 @@ namespace Yarn.Compiler
 
             foreach (var file in compilationJob.Files)
             {
-                var tree = ParseSyntaxTree(file);
-                compiledTrees.Add((file.FileName, tree.tree, tree.tokens));
+                var parseResult = ParseSyntaxTree(file);
+                parsedFiles.Add(parseResult);
 
-                RegisterStrings(file.FileName, stringTableManager, tree.tree);
+                RegisterStrings(file.FileName, stringTableManager, parseResult.Tree);
             }
 
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
@@ -442,36 +458,41 @@ namespace Yarn.Compiler
                     ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
                     Program = null,
                     StringTable = stringTableManager.StringTable,
+                    Problems = problems,
                 };
             }
 
             // Find the type definitions in these files.
             var walker = new ParseTreeWalker();
-            foreach (var parsedFile in compiledTrees) {
-                var typeDeclarationVisitor = new TypeDeclarationListener(parsedFile.name, parsedFile.tokens, parsedFile.tree, ref typeDeclarations);
+            foreach (var parsedFile in parsedFiles) {
+                var typeDeclarationVisitor = new TypeDeclarationListener(parsedFile.Name, parsedFile.Tokens, parsedFile.Tree, ref typeDeclarations);
 
-                walker.Walk(typeDeclarationVisitor, parsedFile.tree);
+                walker.Walk(typeDeclarationVisitor, parsedFile.Tree);
+
+                problems.AddRange(typeDeclarationVisitor.Problems);
             }
 
             var fileTags = new Dictionary<string, IEnumerable<string>>();
 
             // Find the variable declarations in these files.
-            foreach (var parsedFile in compiledTrees)
+            foreach (var parsedFile in parsedFiles)
             {
-                GetDeclarations(parsedFile.name, parsedFile.tokens, parsedFile.tree, knownVariableDeclarations, out var newDeclarations, typeDeclarations, out var newFileTags);
+                GetDeclarations(parsedFile, knownVariableDeclarations, out var newDeclarations, typeDeclarations, out var newFileTags, out var declarationProblems);
 
                 derivedVariableDeclarations.AddRange(newDeclarations);
                 knownVariableDeclarations.AddRange(newDeclarations);
+                problems.AddRange(declarationProblems);
 
-                fileTags.Add(parsedFile.name, newFileTags);
+                fileTags.Add(parsedFile.Name, newFileTags);
             }
 
-            foreach (var parsedFile in compiledTrees) {
-                var checker = new TypeCheckVisitor(parsedFile.name, knownVariableDeclarations, typeDeclarations);
+            foreach (var parsedFile in parsedFiles) {
+                var checker = new TypeCheckVisitor(parsedFile.Name, knownVariableDeclarations, typeDeclarations);
 
-                checker.Visit(parsedFile.tree);
+                checker.Visit(parsedFile.Tree);
                 derivedVariableDeclarations.AddRange(checker.NewDeclarations);
                 knownVariableDeclarations.AddRange(checker.NewDeclarations);
+                problems.AddRange(checker.Problems);
 
 #if VALIDATE_ALL_EXPRESSIONS
                 // Validate that the type checker assigned a type to every expression
@@ -497,12 +518,13 @@ namespace Yarn.Compiler
                     Program = null,
                     StringTable = null,
                     FileTags = fileTags,
-                };
+                    Problems = problems,
+            };
             }
 
-            foreach (var parsedFile in compiledTrees)
+            foreach (var parsedFile in parsedFiles)
             {
-                CompilationResult compilationResult = GenerateCode(parsedFile.name, knownVariableDeclarations, compilationJob, parsedFile.tree, stringTableManager);
+                CompilationResult compilationResult = GenerateCode(parsedFile, knownVariableDeclarations, compilationJob, stringTableManager);
                 results.Add(compilationResult);
             }
 
@@ -519,11 +541,20 @@ namespace Yarn.Compiler
                     continue;
                 }
 
+                if (declaration.Type == BuiltinTypes.Undefined)
+                {
+                    // This declaration has an undefined type; we will
+                    // already have created an error message for this, so
+                    // skip this one.
+                    continue;
+                }
+
                 Operand value;
 
                 if (declaration.DefaultValue == null)
                 {
-                    throw new NullReferenceException($"Variable declaration {declaration.Name} (type {declaration.Type.Name}) has a null default value. This is not allowed.");
+                    problems.Add(new Problem($"Variable declaration {declaration.Name} (type {declaration.Type?.Name ?? "undefined"}) has a null default value. This is not allowed."));
+                    continue;
                 }
 
                 if (declaration.Type == BuiltinTypes.String) {
@@ -543,6 +574,16 @@ namespace Yarn.Compiler
 
             finalResult.FileTags = fileTags;
 
+            finalResult.Problems = finalResult.Problems.Concat(problems).Distinct();
+
+            // Do not return a program if any Errors were generated (even
+            // if bytecode happened to be produced; it is not guaranteed to
+            // work correctly.)
+            if (finalResult.Problems.Any(p => p.Severity == Problem.ProblemSeverity.Error))
+            {
+                finalResult.Program = null;
+            }
+
             return finalResult;
         }
 
@@ -552,47 +593,39 @@ namespace Yarn.Compiler
             visitor.Visit(tree);
         }
 
-        private static void GetDeclarations(string sourceFileName, CommonTokenStream tokenStream, IParseTree tree, IEnumerable<Declaration> existingDeclarations, out IEnumerable<Declaration> newDeclarations, IEnumerable<IType> typeDeclarations, out IEnumerable<string> fileTags)
+        private static void GetDeclarations(FileParseResult parsedFile, IEnumerable<Declaration> existingDeclarations, out IEnumerable<Declaration> newDeclarations, IEnumerable<IType> typeDeclarations, out IEnumerable<string> fileTags, out IEnumerable<Problem> problems)
         {
-            var variableDeclarationVisitor = new DeclarationVisitor(sourceFileName, existingDeclarations, typeDeclarations, tokenStream);
+            var variableDeclarationVisitor = new DeclarationVisitor(parsedFile.Name, existingDeclarations, typeDeclarations, parsedFile.Tokens);
 
-            try
-            {
-                variableDeclarationVisitor.Visit(tree);
-            }
-            catch (TypeException e)
-            {
-                throw new TypeException(e.Context, e.InternalMessage, sourceFileName);
-            }
+            var problemList = new List<Problem>();
 
+            variableDeclarationVisitor.Visit(parsedFile.Tree);
+
+            problemList.AddRange(variableDeclarationVisitor.Problems);
+            
             // Upon exit, newDeclarations will now contain every variable
             // declaration we found
             newDeclarations = variableDeclarationVisitor.NewDeclarations;
 
             fileTags = variableDeclarationVisitor.FileTags;
+
+            problems = problemList;
         }
 
-        private static CompilationResult GenerateCode(string fileName, IEnumerable<Declaration> variableDeclarations, CompilationJob job, IParseTree tree, StringTableManager stringTableManager)
+        private static CompilationResult GenerateCode(FileParseResult fileParseResult, IEnumerable<Declaration> variableDeclarations, CompilationJob job, StringTableManager stringTableManager)
         {
-            Compiler compiler = new Compiler(fileName);
+            Compiler compiler = new Compiler(fileParseResult);
 
             compiler.Library = job.Library;
             compiler.VariableDeclarations = variableDeclarations;
-
-            try
-            {
-                compiler.Compile(tree);
-            }
-            catch (TypeException e)
-            {
-                throw new TypeException(e.Context, e.InternalMessage, fileName);
-            }
+            compiler.Compile();
 
             return new CompilationResult
             {
                 Program = compiler.Program,
                 StringTable = stringTableManager.StringTable,
                 ContainsImplicitStringTags = stringTableManager.ContainsImplicitStringTags,
+                Problems = compiler.Problems,
             };
         }
 
@@ -607,9 +640,11 @@ namespace Yarn.Compiler
         /// <paramref name="library"/> has an invalid return type, an
         /// invalid parameter type, an optional parameter, or an out
         /// parameter.</throws>
-        internal static IEnumerable<Declaration> GetDeclarationsFromLibrary(Library library)
+        internal static (IEnumerable<Declaration>, IEnumerable<Problem>) GetDeclarationsFromLibrary(Library library)
         {
             var declarations = new List<Declaration>();
+
+            var problems = new List<Problem>();
 
             foreach (var function in library.Delegates)
             {
@@ -630,7 +665,8 @@ namespace Yarn.Compiler
                 // that Yarn Spinner can use?
                 if (BuiltinTypes.TypeMappings.TryGetValue(method.ReturnType, out var yarnReturnType) == false)
                 {
-                    throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: {method.ReturnType} is not a valid return type.");
+                    problems.Add(new Problem($"Function {function.Key} cannot be used in Yarn Spinner scripts: {method.ReturnType} is not a valid return type."));
+                    continue;
                 }
 
                 // Define a new type for this function
@@ -649,17 +685,20 @@ namespace Yarn.Compiler
 
                     if (paramInfo.IsOptional)
                     {
-                        throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is optional, which isn't supported.");
+                        problems.Add(new Problem($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is optional, which isn't supported."));
+                        continue;
                     }
 
                     if (paramInfo.IsOut)
                     {
-                        throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is an out parameter, which isn't supported.");
+                        problems.Add(new Problem($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name} is an out parameter, which isn't supported."));
+                        continue;
                     }
 
                     if (BuiltinTypes.TypeMappings.TryGetValue(paramInfo.ParameterType, out var yarnParameterType) == false)
                     {
-                        throw new TypeException($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used.");
+                        problems.Add(new Problem($"Function {function.Key} cannot be used in Yarn Spinner scripts: parameter {paramInfo.Name}'s type ({paramInfo.ParameterType}) cannot be used in Yarn functions"));
+                        continue;
                     }
 
                     functionType.AddParameter(yarnParameterType);
@@ -684,10 +723,10 @@ namespace Yarn.Compiler
                 declarations.Add(declaration);
             }
 
-            return declarations;
+            return (declarations, problems);
         }
 
-        private static (IParseTree tree, CommonTokenStream tokens, IEnumerable<Problem>) ParseSyntaxTree(CompilationJob.File file)
+        private static FileParseResult ParseSyntaxTree(CompilationJob.File file)
         {
             string source = file.Source;
             string fileName = file.FileName;
@@ -695,7 +734,7 @@ namespace Yarn.Compiler
             return ParseSyntaxTree(fileName, source);
         }
 
-        internal static (IParseTree tree, CommonTokenStream tokens, IEnumerable<Problem>) ParseSyntaxTree(string fileName, string source)
+        internal static FileParseResult ParseSyntaxTree(string fileName, string source)
         {
             ICharStream input = CharStreams.fromstring(source);
 
@@ -720,7 +759,7 @@ namespace Yarn.Compiler
 
             var allProblems = lexerErrorListener.Problems.Concat(parserErrorListener.Problems);
 
-            return (tree, tokens, allProblems);
+            return new FileParseResult(fileName, tree, tokens, allProblems);
         }
 
         /// <summary>
@@ -835,10 +874,10 @@ namespace Yarn.Compiler
         // walking the parse tree emitting byte code as it goes along this
         // will all get stored into our program var needs a tree to walk,
         // this comes from the ANTLR Parser/Lexer steps
-        internal void Compile(IParseTree tree)
+        internal void Compile()
         {
             ParseTreeWalker walker = new ParseTreeWalker();
-            walker.Walk(this, tree);
+            walker.Walk(this, this.fileParseResult.Tree);
         }
 
         // we have found a new node set up the currentNode var ready to
@@ -881,7 +920,7 @@ namespace Yarn.Compiler
                 // characters
                 if (invalidNodeTitleNameRegex.IsMatch(CurrentNode.Name))
                 {
-                    throw new ParseException(context, $"The node '{CurrentNode.Name}' contains illegal characters in its title.");
+                    problems.Add(new Problem(fileParseResult.Name, context, $"The node '{CurrentNode.Name}' contains illegal characters in its title."));
                 }
             }
 
@@ -1047,6 +1086,37 @@ namespace Yarn.Compiler
             }
 
             return description;
+        }
+    }
+
+    internal struct FileParseResult
+    {
+        public string Name { get; }
+        public IParseTree Tree { get; }
+        public CommonTokenStream Tokens { get; }
+
+        public FileParseResult(string name, IParseTree tree, CommonTokenStream tokens, IEnumerable<Problem> problems = null)
+        {
+            this.Name = name;
+            this.Tree = tree;
+            this.Tokens = tokens;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is FileParseResult other &&
+                   this.Name == other.Name &&
+                   EqualityComparer<IParseTree>.Default.Equals(this.Tree, other.Tree) &&
+                   EqualityComparer<CommonTokenStream>.Default.Equals(this.Tokens, other.Tokens);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -1713343069;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.Name);
+            hashCode = hashCode * -1521134295 + EqualityComparer<IParseTree>.Default.GetHashCode(this.Tree);
+            hashCode = hashCode * -1521134295 + EqualityComparer<CommonTokenStream>.Default.GetHashCode(this.Tokens);
+            return hashCode;
         }
     }
 }

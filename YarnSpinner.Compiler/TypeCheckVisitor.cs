@@ -43,6 +43,8 @@ namespace Yarn.Compiler
 
         private readonly IEnumerable<IType> types;
 
+        private readonly List<Problem> problems = new List<Problem>();
+
         /// <summary>
         /// Gets the collection of all declarations - both the ones we received
         /// at the start, and the new ones we've derived ourselves.
@@ -69,10 +71,15 @@ namespace Yarn.Compiler
 
         protected override Yarn.IType DefaultResult => null;
 
-        public override Yarn.IType VisitNode(YarnSpinnerParser.NodeContext context) {
+        public IEnumerable<Problem> Problems => problems;
+
+        public override Yarn.IType VisitNode(YarnSpinnerParser.NodeContext context)
+        {
             currentNodeContext = context;
-            foreach (var header in context.header()) {
-                if (header.header_key.Text == "title") {
+            foreach (var header in context.header())
+            {
+                if (header.header_key.Text == "title")
+                {
                     currentNodeName = header.header_value.Text;
                 }
             }
@@ -83,7 +90,9 @@ namespace Yarn.Compiler
 
         public override Yarn.IType VisitValueNull([NotNull] YarnSpinnerParser.ValueNullContext context)
         {
-            throw new TypeException(context, "Null is not a permitted type in Yarn Spinner 2.0 and later", sourceFileName);
+            this.problems.Add(new Problem(this.sourceFileName, context, "Null is not a permitted type in Yarn Spinner 2.0 and later"));
+
+            return BuiltinTypes.Undefined;
         }
 
         public override Yarn.IType VisitValueString(YarnSpinnerParser.ValueStringContext context)
@@ -144,14 +153,16 @@ namespace Yarn.Compiler
 
             FunctionType functionType;
 
-            if (functionDeclaration == null) {
+            if (functionDeclaration == null)
+            {
                 // We don't have a declaration for this function. Create an
                 // implicit one.
 
                 functionType = new FunctionType();
                 functionType.ReturnType = BuiltinTypes.Undefined;
-                
-                functionDeclaration = new Declaration {
+
+                functionDeclaration = new Declaration
+                {
                     Name = functionName,
                     Type = functionType,
                     IsImplicit = true,
@@ -169,18 +180,22 @@ namespace Yarn.Compiler
                     .Select(e => BuiltinTypes.Undefined)
                     .ToList();
 
-                foreach (var parameterType in parameterTypes) {
+                foreach (var parameterType in parameterTypes)
+                {
                     functionType.AddParameter(parameterType);
                 }
 
                 NewDeclarations.Add(functionDeclaration);
-            } else {
+            }
+            else
+            {
                 functionType = functionDeclaration.Type as FunctionType;
-                if (functionType == null) {
+                if (functionType == null)
+                {
                     throw new InvalidOperationException($"Internal error: decl's type is not a {nameof(FunctionType)}");
                 }
             }
-            
+
             // Check each parameter of the function
             var suppliedParameters = context.function_call().expression();
 
@@ -190,7 +205,10 @@ namespace Yarn.Compiler
             {
                 // Wrong number of parameters supplied
                 var parameters = expectedParameters.Count() == 1 ? "parameter" : "parameters";
-                throw new TypeException(context, $"Function {functionName} expects {expectedParameters.Count()} {parameters}, but received {suppliedParameters.Length}", sourceFileName);
+
+                this.problems.Add(new Problem(this.sourceFileName, context,  $"Function {functionName} expects {expectedParameters.Count()} {parameters}, but received {suppliedParameters.Length}"));
+
+                return functionType.ReturnType;
             }
 
             for (int i = 0; i < expectedParameters.Count(); i++)
@@ -212,7 +230,8 @@ namespace Yarn.Compiler
 
                 if (TypeUtil.IsSubType(expectedType, suppliedType) == false)
                 {
-                    throw new TypeException(context, $"{functionName} parameter {i + 1} expects a {expectedType.Name}, not a {suppliedType.Name}", sourceFileName);
+                    this.problems.Add(new Problem(this.sourceFileName, context, $"{functionName} parameter {i + 1} expects a {expectedType.Name}, not a {suppliedType.Name}"));
+                    return functionType.ReturnType;
                 }
             }
 
@@ -261,12 +280,38 @@ namespace Yarn.Compiler
             switch (context.op.Type)
             {
                 case YarnSpinnerLexer.OPERATOR_ASSIGNMENT:
-                    // Straight assignment supports any assignment, as long as it's consistent
-                    try {
-                        type = CheckOperation(context, terms, Operator.None, context.op.Text, expressionType);
-                    } catch (TypeException e) {
-                        // Rewrite this TypeException for clarity 
-                        throw new TypeException(context, $"{variableName} ({variableType?.Name ?? "undefined"}) cannot be assigned a {expressionType?.Name ?? "undefined"}", sourceFileName);
+                    // Straight assignment supports any assignment, as long
+                    // as it's consistent; we already know the type of the
+                    // expression, so let's check to see if it's assignable
+                    // to the type of the variable
+                    if (variableType != BuiltinTypes.Undefined && TypeUtil.IsSubType(variableType, expressionType) == false)
+                    {
+                        string message = $"{variableName} ({variableType?.Name ?? "undefined"}) cannot be assigned a {expressionType?.Name ?? "undefined"}";
+                        this.problems.Add(new Problem(this.sourceFileName, context, message));
+                    }
+                    else if (variableType == BuiltinTypes.Undefined && expressionType != BuiltinTypes.Undefined)
+                    {
+                        // This variable was undefined, but we have a
+                        // defined type for the value it was set to. Create
+                        // an implicit declaration for the variable!
+
+                        // The start line of the body is the line after the delimiter
+                        int nodePositionInFile = this.currentNodeContext.BODY_START().Symbol.Line + 1;
+
+                        // Generate a declaration for this variable here.
+                        var decl = new Declaration
+                        {
+                            Name = variableName,
+                            Description = $"{System.IO.Path.GetFileName(sourceFileName)}, node {currentNodeName}, line {context.Start.Line - nodePositionInFile}",
+                            Type = expressionType,
+                            DefaultValue = DefaultValueForType(expressionType),
+                            SourceFileName = sourceFileName,
+                            SourceFileLine = context.Start.Line,
+                            SourceNodeName = currentNodeName,
+                            SourceNodeLine = context.Start.Line - nodePositionInFile,
+                            IsImplicit = true,
+                        };
+                        NewDeclarations.Add(decl);
                     }
                     break;
                 case YarnSpinnerLexer.OPERATOR_MATHS_ADDITION_EQUALS:
@@ -295,7 +340,8 @@ namespace Yarn.Compiler
                     throw new InvalidOperationException($"Internal error: {nameof(VisitSet_statement)} got unexpected operand {context.op.Text}");
             }
 
-            if (expressionType == BuiltinTypes.Undefined) {
+            if (expressionType == BuiltinTypes.Undefined)
+            {
                 // We don't know what this is set to, so we'll have to
                 // assume it's ok. Return the variable type, if known.
                 return variableType;
@@ -319,7 +365,8 @@ namespace Yarn.Compiler
                 if (type != BuiltinTypes.Undefined)
                 {
                     termTypes.Add(type);
-                    if (expressionType == BuiltinTypes.Undefined) {
+                    if (expressionType == BuiltinTypes.Undefined)
+                    {
                         // This is the first concrete type we've seen. This
                         // will be our expression type.
                         expressionType = type;
@@ -327,7 +374,8 @@ namespace Yarn.Compiler
                 }
             }
 
-            if (permittedTypes.Length == 1 && expressionType == BuiltinTypes.Undefined) {
+            if (permittedTypes.Length == 1 && expressionType == BuiltinTypes.Undefined)
+            {
                 // If we aren't sure of the expression type from
                 // parameters, but we only have one permitted one, then
                 // assume that the expression type is the single permitted
@@ -359,12 +407,17 @@ namespace Yarn.Compiler
                     // Multiple types implement this operation.
                     IEnumerable<string> typeNames = typesImplementingMethod.Select(t => t.Name);
 
-                    throw new TypeException(context, $"Type of expression \"{context.GetTextWithWhitespace()}\" can't be determined without more context (the compiler thinks it could be {string.Join(", or ", typeNames)}). Use a type cast on at least one of the terms (e.g. the string(), number(), bool() functions)", this.sourceFileName);
+                    string message = $"Type of expression \"{context.GetTextWithWhitespace()}\" can't be determined without more context (the compiler thinks it could be {string.Join(", or ", typeNames)}). Use a type cast on at least one of the terms (e.g. the string(), number(), bool() functions)";
+
+                    this.problems.Add(new Problem(this.sourceFileName, context, message));
+                    return BuiltinTypes.Undefined;
                 }
                 else
                 {
                     // No types implement this operation (??)
-                    throw new TypeException(context, $"Type of expression \"{context.GetTextWithWhitespace()}\" can't be determined without more context. Use a type cast on at least one of the terms (e.g. the string(), number(), bool() functions)", sourceFileName);
+                    string message = $"Type of expression \"{context.GetTextWithWhitespace()}\" can't be determined without more context. Use a type cast on at least one of the terms (e.g. the string(), number(), bool() functions)";
+                    this.problems.Add(new Problem(this.sourceFileName, context, message));
+                    return BuiltinTypes.Undefined;
                 }
             }
 
@@ -392,7 +445,7 @@ namespace Yarn.Compiler
             var variableNames = variableContexts
                 .Select(v => v.VAR_ID().GetText())
                 .Distinct();
-            
+
             // Build the list of variable names that we don't have a
             // declaration for. We'll check for explicit declarations first.
             var undefinedVariableNames = variableNames
@@ -406,13 +459,15 @@ namespace Yarn.Compiler
 
                 // Get the position of this reference in the file
                 int positionInFile = context.Start.Line;
-            
+
                 // The start line of the body is the line after the delimiter
                 int nodePositionInFile = this.currentNodeContext.BODY_START().Symbol.Line + 1;
 
-                foreach (var undefinedVariableName in undefinedVariableNames) {
+                foreach (var undefinedVariableName in undefinedVariableNames)
+                {
                     // Generate a declaration for this variable here.
-                    var decl = new Declaration {
+                    var decl = new Declaration
+                    {
                         Name = undefinedVariableName,
                         Description = $"{System.IO.Path.GetFileName(sourceFileName)}, node {currentNodeName}, line {positionInFile - nodePositionInFile}",
                         Type = expressionType,
@@ -435,7 +490,9 @@ namespace Yarn.Compiler
                 // Not all the term types we found were the expression
                 // type.
                 var typeList = string.Join(", ", termTypes.Select(t => t.Name));
-                throw new TypeException(context, $"All terms of {operationDescription} must be the same, not {typeList}", sourceFileName);
+                string message = $"All terms of {operationDescription} must be the same, not {typeList}";
+                this.problems.Add(new Problem(this.sourceFileName, context, message));
+                return BuiltinTypes.Undefined;
             }
 
             // We've now determined that this expression is of
@@ -463,8 +520,11 @@ namespace Yarn.Compiler
                 // implements this operation.
                 var implementingType = TypeUtil.FindImplementingTypeForMethod(expressionType, operationType.ToString());
 
-                if (implementingType == null) {
-                    throw new TypeException(context, $"{expressionType.Name} has no implementation defined for {operationDescription}", sourceFileName);
+                if (implementingType == null)
+                {
+                    string message = $"{expressionType.Name} has no implementation defined for {operationDescription}";
+                    this.problems.Add(new Problem(this.sourceFileName, context, message));
+                    return BuiltinTypes.Undefined;
                 }
             }
 
@@ -473,7 +533,8 @@ namespace Yarn.Compiler
             {
                 // Is the type that we've arrived at compatible with one of
                 // the permitted types?
-                if (permittedTypes.Any(t => TypeUtil.IsSubType(t, expressionType))) {
+                if (permittedTypes.Any(t => TypeUtil.IsSubType(t, expressionType)))
+                {
                     // It's compatible! Great, return the type we've
                     // determined.
                     return expressionType;
@@ -484,9 +545,13 @@ namespace Yarn.Compiler
                     var permittedTypesList = string.Join(" or ", permittedTypes.Select(t => t?.Name ?? "undefined"));
                     var typeList = string.Join(", ", termTypes.Select(t => t.Name));
 
-                    throw new TypeException(context, $"Terms of '{operationDescription}' must be {permittedTypesList}, not {typeList}", sourceFileName);
+                    string message = $"Terms of '{operationDescription}' must be {permittedTypesList}, not {typeList}";
+                    this.problems.Add(new Problem(this.sourceFileName, context, message));
+                    return BuiltinTypes.Undefined;
                 }
-            } else {
+            }
+            else
+            {
                 // We weren't given a specific type. The expression type is
                 // therefore only valid if it can use the provided
                 // operator.
@@ -495,12 +560,19 @@ namespace Yarn.Compiler
                 // implements this method.
                 var implementingTypeForMethod = TypeUtil.FindImplementingTypeForMethod(expressionType, operationType.ToString());
 
-                if (implementingTypeForMethod == null) {
+                if (implementingTypeForMethod == null)
+                {
                     // The type doesn't have a method for handling this
                     // operator, and neither do any of its supertypes. This
                     // expression is therefore invalid.
-                    throw new TypeException(context, $"Operator {operationDescription} cannot be used with {expressionType.Name} values", sourceFileName);
-                } else {
+                    
+                    string message = $"Operator {operationDescription} cannot be used with {expressionType.Name} values";
+                    this.problems.Add(new Problem(this.sourceFileName, context, message));
+                    
+                    return BuiltinTypes.Undefined;
+                }
+                else
+                {
                     return expressionType;
                 }
             }
@@ -508,13 +580,20 @@ namespace Yarn.Compiler
 
         private static IConvertible DefaultValueForType(Yarn.IType expressionType)
         {
-            if (expressionType == BuiltinTypes.String) {
+            if (expressionType == BuiltinTypes.String)
+            {
                 return string.Empty;
-            } else if (expressionType == BuiltinTypes.Number) {
+            }
+            else if (expressionType == BuiltinTypes.Number)
+            {
                 return default(float);
-            } else if (expressionType == BuiltinTypes.Boolean) {
+            }
+            else if (expressionType == BuiltinTypes.Boolean)
+            {
                 return default(bool);
-            } else {
+            }
+            else
+            {
                 throw new ArgumentOutOfRangeException($"No default value for type {expressionType.Name} exists.");
             }
         }
@@ -563,7 +642,7 @@ namespace Yarn.Compiler
             return type;
         }
 
-        
+
 
         public override Yarn.IType VisitExpComparison(YarnSpinnerParser.ExpComparisonContext context)
         {
@@ -625,7 +704,7 @@ namespace Yarn.Compiler
             // operator and permitting the expression to be of Any type
             foreach (var expression in context.expression())
             {
-                var type = CheckOperation(expression, new[] { expression }, Operator.None, "inline expression", BuiltinTypes.Any );
+                var type = CheckOperation(expression, new[] { expression }, Operator.None, "inline expression", BuiltinTypes.Any);
                 expression.Type = type;
             }
 

@@ -24,6 +24,8 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(compilationJob);
 
+            Assert.Empty(result.Problems);
+
             dialogue.SetProgram (result.Program);
 
             Assert.True (dialogue.NodeExists ("Sally"));
@@ -55,6 +57,8 @@ namespace YarnSpinner.Tests
             
             var result = Compiler.Compile(compilationJob);
 
+            Assert.Empty(result.Problems);
+
             stringTable = result.StringTable;
 
             dialogue.SetProgram(result.Program);
@@ -73,6 +77,8 @@ namespace YarnSpinner.Tests
                 Path.Combine(SpaceDemoScriptsPath, "Sally.yarn"),
             }, dialogue.Library));
 
+            Assert.Empty(result.Problems);
+
             dialogue.SetProgram (result.Program);
             
             dialogue.Analyse (context);
@@ -89,6 +95,8 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "Example.yarn");
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
+            Assert.Empty(result.Problems);
+
             dialogue.SetProgram (result.Program);
 
             var byteCode = dialogue.GetByteCode ();
@@ -102,10 +110,12 @@ namespace YarnSpinner.Tests
             var path = Path.Combine (TestDataPath, "TestCases", "Smileys.yarn");
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+
+            Assert.Empty(result.Problems);
             
             dialogue.SetProgram (result.Program);
 
-            errorsCauseFailures = false;
+            runtimeErrorsCauseFailures = false;
 
             Assert.Throws<DialogueException>( () => dialogue.SetNode("THIS NODE DOES NOT EXIST"));            
         }
@@ -119,6 +129,8 @@ namespace YarnSpinner.Tests
             compilationJob.Library = dialogue.Library;
             
             var result = Compiler.Compile(compilationJob);
+
+            Assert.Empty(result.Problems);
             
             dialogue.SetProgram (result.Program);
 
@@ -140,6 +152,8 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
 
+            Assert.Empty(result.Problems);
+
             dialogue.SetProgram (result.Program);
 
             stringTable = result.StringTable;
@@ -157,6 +171,9 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "Example.yarn");
 
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+
+            Assert.Empty(result.Problems);
+
             dialogue.SetProgram (result.Program);
 
 			var source = dialogue.GetTagsForNode ("LearnMore");
@@ -173,6 +190,8 @@ namespace YarnSpinner.Tests
             var path = Path.Combine(TestDataPath, "TaggedLines.yarn");
             
             var result = Compiler.Compile(CompilationJob.CreateFromFiles(path));
+
+            Assert.Empty(result.Problems);
 
             stringTable = result.StringTable;
             
@@ -220,6 +239,8 @@ namespace YarnSpinner.Tests
             ");
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+
+            Assert.Empty(result.Problems);
 
             stringTable = result.StringTable;
 
@@ -303,6 +324,8 @@ namespace YarnSpinner.Tests
             var job = CompilationJob.CreateFromString("input", code);
 
             var result = Compiler.Compile(job);
+
+            Assert.Empty(result.Problems);
 
             this.stringTable = result.StringTable;
 

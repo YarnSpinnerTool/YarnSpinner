@@ -28,5 +28,7 @@ namespace Yarn.Compiler
             this.typeDeclarations = typeDeclarations;
         }
 
+        public IEnumerable<Problem> Problems { get => this.problems; }
+        private List<Problem> problems = new List<Problem>();
     }
 }

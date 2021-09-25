@@ -85,7 +85,7 @@ namespace Yarn.Compiler
             string lineID = Compiler.GetLineID(context.hashtag());
 
             if (lineID == null) {
-                throw new ParseException("Internal error: no line ID specified");
+                throw new InvalidOperationException("Internal error: no line ID specified");
             }
 
             compiler.Emit(OpCode.RunLine, new Operand(lineID), new Operand(expressionCount));
@@ -309,7 +309,7 @@ namespace Yarn.Compiler
                 string lineID = Compiler.GetLineID(shortcut.line_statement().hashtag());
 
                 if (lineID == null) {
-                    throw new ParseException("Internal error: no line ID provided");
+                    throw new InvalidOperationException("Internal error: no line ID provided");
                 }
 
                 // And add this option to the list.
@@ -427,7 +427,7 @@ namespace Yarn.Compiler
             // type checker should have caught this.
             if (implementingType == null)
             {
-                throw new TypeException($"Internal error: Codegen failed to get implementation type for {op} given input type {type.Name}.");
+                throw new InvalidOperationException($"Internal error: Codegen failed to get implementation type for {op} given input type {type.Name}.");
             }
 
             string functionName = TypeUtil.GetCanonicalNameForMethod(implementingType, op.ToString());

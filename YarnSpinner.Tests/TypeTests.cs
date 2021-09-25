@@ -38,6 +38,8 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
+            Assert.Empty(result.Problems);
+
             var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
                     Name = "$int",
@@ -104,7 +106,9 @@ namespace YarnSpinner.Tests
                 },
             };
 
-            Compiler.Compile(compilationJob);
+            var result = Compiler.Compile(compilationJob);
+
+            Assert.Empty(result.Problems);
         }
 
         [Fact]
@@ -130,6 +134,8 @@ namespace YarnSpinner.Tests
             // Should compile with no errors because $int was declared
             var result = Compiler.Compile(compilationJob);
 
+            Assert.Empty(result.Problems);
+
             // No variables are declared in the source code, so we should
             // expect an empty collection of variable declarations
             Assert.Empty(result.Declarations);
@@ -140,15 +146,12 @@ namespace YarnSpinner.Tests
         {
             var source = CreateTestNode(@"
             <<declare $int = 5>>
-            <<declare $int = 6>> // redeclaration            
+            <<declare $int = 6>> // error! redeclaration of $int        
             ");
 
-            var ex = Assert.Throws<TypeException>(() =>
-            {
-                Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            });
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            Assert.Contains("$int has already been declared", ex.Message);
+            Assert.Collection(result.Problems, p => Assert.Contains("$int has already been declared", p.Message));
         }
 
         [Fact]
@@ -159,13 +162,9 @@ namespace YarnSpinner.Tests
             <<set $int = ""5"">> // error, can't assign string to a variable declared int
             ");
 
-            var ex = Assert.Throws<TypeException>(() =>
-            {
-                Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            });
-
-            Assert.Contains("$int (Number) cannot be assigned a String", ex.Message);
-
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            
+            Assert.Collection(result.Problems, p => Assert.Contains("$int (Number) cannot be assigned a String", p.Message));
         }
 
         [Theory]
@@ -177,7 +176,9 @@ namespace YarnSpinner.Tests
             {testSource}
             ");
 
-            Compiler.Compile(CompilationJob.CreateFromString("input", source));            
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            
+            Assert.Empty(result.Problems);         
         }
 
         [Theory]
@@ -221,7 +222,9 @@ namespace YarnSpinner.Tests
             ");
 
             // Should compile with no exceptions
-            Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+
+            Assert.Empty(result.Problems);
         }
 
         [Fact]
@@ -231,12 +234,9 @@ namespace YarnSpinner.Tests
             <<declare $err = null>> // error, null not allowed
             ");
 
-            var ex = Assert.Throws<TypeException>(() =>
-            {
-                Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            });
-
-            Assert.Contains("Null is not a permitted type", ex.Message);
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            
+            Assert.Collection(result.Problems, p => Assert.Contains("Null is not a permitted type", p.Message));
         }
 
         [Theory]
@@ -255,6 +255,8 @@ namespace YarnSpinner.Tests
 
             // Should compile with no exceptions
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", correctSource, dialogue.Library));
+
+            Assert.Empty(result.Problems);
 
             // The variable '$bool' should have an implicit declaration.
             var variableDeclarations = result.Declarations.Where(d => d.Name == "$bool");
@@ -288,7 +290,9 @@ namespace YarnSpinner.Tests
                 <<set $var {operation}>>
             ");
 
-            Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+
+            Assert.Empty(result.Problems);
         }
 
         [Fact]
@@ -298,24 +302,23 @@ namespace YarnSpinner.Tests
             
             var source = CreateTestNode(@"Hello");
 
-            Assert.Throws<TypeException>(() =>
-            {
-                Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
-            });
-        
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+
+            Assert.Collection(result.Problems, p => Assert.Contains("not a valid return type", p.Message));
+
         }
 
         [Fact]
         public void TestFailingFunctionDeclarationParameterType()
         {
-            dialogue.Library.RegisterFunction("func_invalid_param", (List<int> i) => true);
+            dialogue.Library.RegisterFunction("func_invalid_param", (List<int> listOfInts) => true);
 
             var source = CreateTestNode(@"Hello");
 
-            Assert.Throws<TypeException>(() =>
-            {
-                Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
-            });
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+
+            Assert.Collection(result.Problems, p => Assert.Contains("parameter listOfInts's type (System.Collections.Generic.List`1[System.Int32]) cannot be used in Yarn functions", p.Message));
+
         }
 
         [Theory]
@@ -337,12 +340,9 @@ namespace YarnSpinner.Tests
                 {source}
             ");
 
-            var ex = Assert.Throws<TypeException>(() =>
-            {
-                Compiler.Compile(CompilationJob.CreateFromString("input", failingSource, dialogue.Library));
-            });
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", failingSource, dialogue.Library));
 
-            Assert.Matches(expectedExceptionMessage, ex.Message);
+            Assert.Collection(result.Problems, p => Assert.Matches(expectedExceptionMessage, p.Message));
         }
 
         [Fact]
@@ -395,6 +395,8 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(compilationJob);
 
+            Assert.Empty(result.Problems);
+
             this.storage.SetValue("$external_str", "Hello");
             this.storage.SetValue("$external_int", 42);
             this.storage.SetValue("$external_bool", true);
@@ -415,8 +417,20 @@ namespace YarnSpinner.Tests
             <<declare $bool = false as bool>>
             ");
 
-            Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+
+            Assert.Empty(result.Problems);
+
+            Assert.Collection(
+                result.Declarations.Where(d => d.Name.StartsWith("$")),
+                d => { Assert.Equal(d.Name, "$str");  Assert.Equal(d.Type.Name, "String"); },
+                d => { Assert.Equal(d.Name, "$int");  Assert.Equal(d.Type.Name, "Number"); },
+                d => { Assert.Equal(d.Name, "$bool"); Assert.Equal(d.Type.Name, "Bool"); }
+            );
         }
+
+        
+
 
         [Theory]
         [InlineData(@"<<declare $str = ""hello"" as number>>")]
@@ -426,12 +440,9 @@ namespace YarnSpinner.Tests
         {
             var source = CreateTestNode(test);
 
-            var ex = Assert.Throws<TypeException>(() =>
-            {
-                var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
-            });
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
-            Assert.Matches(@"Type \w+ does not match", ex.Message);
+            Assert.Collection(result.Problems, p => Assert.Matches(@"Type \w+ does not match", p.Message));
         }
 
         [Fact]
@@ -463,6 +474,8 @@ namespace YarnSpinner.Tests
             ");
             
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
+
+            Assert.Empty(result.Problems);
 
             var expectedDeclarations = new List<Declaration>() {
                 new Declaration {
@@ -557,6 +570,8 @@ namespace YarnSpinner.Tests
 
             var result = Compiler.Compile(CompilationJob.CreateFromString("input", source, dialogue.Library));
 
+            Assert.Empty(result.Problems);
+
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
             RunStandardTestcase();
@@ -575,6 +590,8 @@ namespace YarnSpinner.Tests
             Assert.Throws<FormatException>( () => {
                 var compilationJob = CompilationJob.CreateFromString("input", source, dialogue.Library);
                 var result = Compiler.Compile(compilationJob);
+
+                Assert.Empty(result.Problems);
 
                 dialogue.SetProgram(result.Program);
                 stringTable = result.StringTable;
@@ -628,10 +645,30 @@ namespace YarnSpinner.Tests
             var compilationJob = CompilationJob.CreateFromString("input", source);
             var result = Compiler.Compile(compilationJob);
 
+            Assert.Empty(result.Problems);
+
             dialogue.SetProgram(result.Program);
             stringTable = result.StringTable;
             
             RunStandardTestcase();
+        }
+
+        [Theory]
+        [InlineData("1", "Number")]
+        [InlineData("\"hello\"", "String")]
+        [InlineData("true", "Bool")]
+        public void TestImplicitVariableDeclarations(string value, string typeName) {
+            var source = CreateTestNode($@"
+            <<set $v = {value}>>
+            ");
+
+            var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
+
+            Assert.Empty(result.Problems);
+
+            var declarations = result.Declarations.Where(d => d.Name == "$v");
+
+            Assert.Collection(declarations, d => Assert.Equal(d.Type.Name, typeName));
         }
 
         [Fact]
@@ -652,6 +689,8 @@ namespace YarnSpinner.Tests
             // functions will be implicitly declared
             var compilationJob = CompilationJob.CreateFromString("input", source);
             var result = Compiler.Compile(compilationJob);
+
+            Assert.Empty(result.Problems);
 
             Assert.Equal(2, result.Declarations.Count());
 
@@ -676,11 +715,9 @@ namespace YarnSpinner.Tests
             {func(2, 2)} // wrong number of parameters (previous decl had 1)
             ");
 
-            var ex = Assert.Throws<TypeException>( () => {
-                Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            });
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
 
-            Assert.Contains("expects 1 parameter, but received 2", ex.Message);
+            Assert.Collection(result.Problems, p => Assert.Contains("expects 1 parameter, but received 2", p.Message));
         }
 
         [Fact]
@@ -691,11 +728,9 @@ namespace YarnSpinner.Tests
             {func(true)} // wrong type of parameter (previous decl had number)
             ");
 
-            var ex = Assert.Throws<TypeException>( () => {
-                Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            });
-
-            Assert.Contains("expects a Number, not a Bool", ex.Message);
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            
+            Assert.Collection(result.Problems, p => Assert.Contains("expects a Number, not a Bool", p.Message));   
         }
 
         [Fact]
@@ -714,11 +749,9 @@ namespace YarnSpinner.Tests
             <<endif>>
             ");
 
-            var ex = Assert.Throws<TypeException>( () => {
-                Compiler.Compile(CompilationJob.CreateFromString("input", source));
-            });
-
-            Assert.Contains("Terms of 'if statement' must be Bool, not String", ex.Message);
+            var result = Compiler.Compile(CompilationJob.CreateFromString("input", source));
+            
+            Assert.Collection(result.Problems, p => Assert.Contains("Terms of 'if statement' must be Bool, not String", p.Message));
         }
 
         [Fact]
