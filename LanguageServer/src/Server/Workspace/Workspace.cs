@@ -94,8 +94,12 @@ namespace YarnLanguageServer
                     fileEntry.Value.LookForUnmatchedCommands(isLastTime: true);
                 }
 
+
                 if (Configuration.DeepCommandLookup)
                 {
+                    // If we don't have a definition name, we'll never find it by yarn name (already found everything by yarn name before deep command lookup.)
+                    UnmatchedDefinitions = UnmatchedDefinitions.Where(d => d.DefinitionName.Any()).ToList();
+
                     foreach (var file in unusedCSharpFiles)
                     {
                         if (!UnmatchedDefinitions.Any())
