@@ -3,6 +3,32 @@ using Yarn.Compiler;
 
 class ErrorStrategy : DefaultErrorStrategy
 {
+    private string GetFriendlyNameForRuleContext(RuleContext context, bool withArticle = false)
+    {
+        string ruleName = YarnSpinnerParser.ruleNames[context.RuleIndex];
+
+        string friendlyName = ruleName.Replace("_", " ");
+
+        if (withArticle)
+        {
+            // If the friendly name's first character is a vowel, the
+            // article is 'an'; otherwise, 'a'.
+            char firstLetter = System.Linq.Enumerable.First(friendlyName);
+
+            string article;
+
+            char[] englishVowels = new[] { 'a', 'e', 'i', 'o', 'u' };
+
+            article = System.Linq.Enumerable.Contains(englishVowels, firstLetter) ? "an" : "a";
+
+            return $"{article} {friendlyName}";
+        }
+        else
+        {
+            return friendlyName;
+        }
+    }
+
     /// <inheritdoc/>
     protected override void ReportNoViableAlternative(Parser recognizer, NoViableAltException e)
     {
@@ -26,7 +52,7 @@ class ErrorStrategy : DefaultErrorStrategy
 
         if (msg == null)
         {
-            msg = $"Unexpected \"{e.OffendingToken.Text}\" while reading a {recognizer.RuleNames[recognizer.RuleContext.RuleIndex]}";
+            msg = $"Unexpected \"{e.OffendingToken.Text}\" while reading {this.GetFriendlyNameForRuleContext(recognizer.RuleContext, true)}";
         }
 
         recognizer.NotifyErrorListeners(e.OffendingToken, msg, e);
@@ -67,14 +93,12 @@ class ErrorStrategy : DefaultErrorStrategy
                 break;
         }
 
-        if (msg != null)
+        if (msg == null)
         {
-            this.NotifyErrorListeners(recognizer, msg, e);
+            msg = $"Unexpected \"{e.OffendingToken.Text}\" while reading {this.GetFriendlyNameForRuleContext(recognizer.RuleContext, true)}";
         }
-        else
-        {
-            base.ReportInputMismatch(recognizer, e);
-        }
+
+        this.NotifyErrorListeners(recognizer, msg, e);
     }
 
     private bool IsInsideRule<TRuleType>(Parser recognizer)
