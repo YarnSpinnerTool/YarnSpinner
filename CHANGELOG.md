@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- The Compiler will no longer throw a `ParseException`, `TypeException` or `CompilerException` when an error is encountered during compilation. Instead, `CompilationResult.Diagnostics` contains a collection of `Diagnostic` objects, which represent errors, warnings, or other diagnostic information related to the compiled program.
+  - This change was implemented so that if multiple problems can be detected in a program, they can all be reported at once, rather than the compiler stopping at the first one.
+  - This also allows the compiler to issue non-fatal diagnostic messages, like warnings, that do not prevent the script from being compiled, but might indicate a problem with the code.
+  - Exceptions will continue to be thrown if the compiler encounters an internal error (in other words, if Yarn Spinner itself has a bug.)
+- If an error is encountered during compilation, `CompilationResult.Program` will be `null`.
+- This change means that compilation failures will not cause  `Compiler.Compile()` to throw an exception; code that was previously using a `try...catch` to detect problems will need to be rewritten to check the `CompilationResult.Diagnostics` property to find the actual problem.
+
 ### Changed
 
 - Made the lexer not use semantic predicates when lexing the TEXT rule, which reduces the amount of C# code present in the grammar file.
@@ -21,9 +28,38 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - `Dialogue.SetSelectedOption` can now be called within the options handler itself. 
   - If you do this, the `Dialogue` will continue executing after the options handler returns, and you do not need to call `Continue`.
 
+- The compiler now generates better error messages for syntax errors. For example, given the following code (note the lack of an `<<endif>>` at the end):
+
+```yarn
+<<if $has_key>>
+  Guard: You found the key! Let me unlock the door.
+```
+
+The compiler will produce the following error message:
+
+```
+Expected an <<endif>> to match the <<if>> statement on line 1
+```
+
+- The compiler's new error messages now also report additional information about the context of a syntax error. For example, given the following code:
+
+```yarn
+<<if hasCompletedObjective("find_key" >>
+  // error! we forgot to add an ')'!
+<<endif>>
+```
+
+The compiler will produce the following error message:
+
+```
+Unexpected ">>" while reading a function call
+```
+
 - `VirtualMachine.executionState` has been renamed to `VirtualMachine.CurrentExecutionState`.
 
 ### Removed
+
+- The ParseException, TypeException and CompilerException classes have been removed.
 
 ## [v2.0.0-beta5] 2021-08-17
 
