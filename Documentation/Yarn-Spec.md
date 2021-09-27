@@ -140,14 +140,14 @@ Comments must not impact the rest of the lines or have any impact on the resulti
 
 Throughout various points in this document identifiers are mentioned, the rules for these are shared across all stages of the Yarn project.
 
-An *identifier* is any of the following symbols: an upper or lowercase letter A to Z, an underscore (`_`), a noncombining alphanumeric Unicode character in the Basic Multilingual Plane, or a character outside the Basic Multilingual Plane that isn't in the Private Use Area.
-After the first character digits, a period (`.`), and combining Unicode characters are also allowed.
+An *identifier* is built up of two main parts, first the *identifier head* which is any of the following symbols: an upper or lowercase letter A to Z, an underscore (`_`), a noncombining alphanumeric Unicode character in the Basic Multilingual Plane, or a character outside the Basic Multilingual Plane that isn't in the Private Use Area.
+After the identifier head any number of *identifier characters* are allowed, which are all of the identifier head symbols in addition to digits, a period (`.`), and combining Unicode characters.
 The `$` symbol must not be part of an identifier.
 The minimum and maximum length of identifiers is unspecified.
 
 ![](railroads/IDENTIFIER.svg)
-![](railroads/IDENTIFIER_HEAD.svg)
-![](railroads/IDENTIFIER_CHARACTER.svg)
+![The first allowed symbol in the identifier](railroads/IDENTIFIER_HEAD.svg)
+![All subsequent allowed symbols](railroads/IDENTIFIER_CHARACTER.svg)
 
 ## Yarn Structure
 
