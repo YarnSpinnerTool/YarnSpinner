@@ -1,7 +1,7 @@
 using Antlr4.Runtime;
 using Yarn.Compiler;
 
-class ErrorStrategy : DefaultErrorStrategy
+internal class ErrorStrategy : DefaultErrorStrategy
 {
     private string GetFriendlyNameForRuleContext(RuleContext context, bool withArticle = false)
     {
@@ -34,16 +34,20 @@ class ErrorStrategy : DefaultErrorStrategy
     {
         string msg = null;
 
-        if (this.IsInsideRule<YarnSpinnerParser.If_statementContext>(recognizer) && recognizer.RuleContext is YarnSpinnerParser.StatementContext && e.OffendingToken.Type == YarnSpinnerLexer.COMMAND_ELSE)
+        if (this.IsInsideRule<YarnSpinnerParser.If_statementContext>(recognizer)
+            && recognizer.RuleContext is YarnSpinnerParser.StatementContext
+            && e.StartToken.Type == YarnSpinnerLexer.COMMAND_START
+            && e.OffendingToken.Type == YarnSpinnerLexer.COMMAND_ELSE)
         {
             // We are inside an if statement, we're attempting to parse a
             // statement, and we got an '<<', 'else', and we weren't able
             // to match that. The programmer included an extra '<<else>>'.
-            var enclosingIfStatement = this.GetEnclosingRule<YarnSpinnerParser.If_statementContext>(recognizer);
+            _ = this.GetEnclosingRule<YarnSpinnerParser.If_statementContext>(recognizer);
 
             msg = $"More than one <<else>> statement in an <<if>> statement isn't allowed";
         }
-        else if (e.StartToken.Type == YarnSpinnerLexer.COMMAND_START && e.OffendingToken.Type == YarnSpinnerLexer.COMMAND_END)
+        else if (e.StartToken.Type == YarnSpinnerLexer.COMMAND_START 
+            && e.OffendingToken.Type == YarnSpinnerLexer.COMMAND_END)
         {
             // We saw a << immediately followed by a >>. The programmer
             // forgot to include command text.
@@ -81,7 +85,7 @@ class ErrorStrategy : DefaultErrorStrategy
                 }
 
                 break;
-            case YarnSpinnerParser.VariableContext variable:
+            case YarnSpinnerParser.VariableContext _:
                 if (e.OffendingToken.Type == YarnSpinnerLexer.FUNC_ID)
                 {
                     // We're parsing a variable (which starts with a '$'),
@@ -129,23 +133,6 @@ class ErrorStrategy : DefaultErrorStrategy
             if (currentContext.GetType() == typeof(TRuleType))
             {
                 return currentContext as TRuleType;
-            }
-
-            currentContext = currentContext.Parent;
-        }
-
-        return null;
-    }
-
-    private ParserRuleContext GetParserRuleParent(RuleContext context)
-    {
-        RuleContext currentContext = context;
-
-        while (currentContext != null)
-        {
-            if (currentContext is ParserRuleContext parserRuleContext)
-            {
-                return currentContext as ParserRuleContext;
             }
 
             currentContext = currentContext.Parent;
