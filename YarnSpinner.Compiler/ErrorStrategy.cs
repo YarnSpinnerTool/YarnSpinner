@@ -3,32 +3,6 @@ using Yarn.Compiler;
 
 internal class ErrorStrategy : DefaultErrorStrategy
 {
-    private string GetFriendlyNameForRuleContext(RuleContext context, bool withArticle = false)
-    {
-        string ruleName = YarnSpinnerParser.ruleNames[context.RuleIndex];
-
-        string friendlyName = ruleName.Replace("_", " ");
-
-        if (withArticle)
-        {
-            // If the friendly name's first character is a vowel, the
-            // article is 'an'; otherwise, 'a'.
-            char firstLetter = System.Linq.Enumerable.First(friendlyName);
-
-            string article;
-
-            char[] englishVowels = new[] { 'a', 'e', 'i', 'o', 'u' };
-
-            article = System.Linq.Enumerable.Contains(englishVowels, firstLetter) ? "an" : "a";
-
-            return $"{article} {friendlyName}";
-        }
-        else
-        {
-            return friendlyName;
-        }
-    }
-
     /// <inheritdoc/>
     protected override void ReportNoViableAlternative(Parser recognizer, NoViableAltException e)
     {
@@ -140,4 +114,31 @@ internal class ErrorStrategy : DefaultErrorStrategy
 
         return null;
     }
+
+    private string GetFriendlyNameForRuleContext(RuleContext context, bool withArticle = false)
+    {
+        string ruleName = YarnSpinnerParser.ruleNames[context.RuleIndex];
+
+        string friendlyName = ruleName.Replace("_", " ");
+
+        if (withArticle)
+        {
+            // If the friendly name's first character is a vowel, the
+            // article is 'an'; otherwise, 'a'.
+            char firstLetter = System.Linq.Enumerable.First(friendlyName);
+
+            string article;
+
+            char[] englishVowels = new[] { 'a', 'e', 'i', 'o', 'u' };
+
+            article = System.Linq.Enumerable.Contains(englishVowels, firstLetter) ? "an" : "a";
+
+            return $"{article} {friendlyName}";
+        }
+        else
+        {
+            return friendlyName;
+        }
+    }
+
 }
