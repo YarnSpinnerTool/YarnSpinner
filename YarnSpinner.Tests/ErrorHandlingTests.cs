@@ -78,5 +78,15 @@ namespace YarnSpinner.Tests
                 );            
             }
         }
+
+        [Fact]
+        public void TestInvalidFunctionCall()
+        {
+            var source = CreateTestNode("<<if someFunction(>><<endif>>");
+
+            var result = Compiler.Compile(CompilationJob.CreateFromString("<input>", source));
+
+            Assert.Collection(result.Diagnostics, d => Assert.Contains(@"Unexpected "">>"" while reading a function call", d.Message));
+        }
     }
 }
