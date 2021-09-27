@@ -33,6 +33,8 @@ namespace YarnLanguageServer
                     .WithHandler<Handlers.HoverHandler>()
                     .WithHandler<Handlers.ConfigurationHandler>()
                     .WithHandler<Handlers.CodeActionHandler>()
+                    .WithHandler<Handlers.RenameHandler>()
+                    .WithHandler<Handlers.FileOperationsHandler>()
                     .OnInitialize(async (server, request, token) =>
                     {
                         workspace.Root = request.RootPath;

@@ -74,7 +74,7 @@ namespace YarnLanguageServer
             if (needReinitialize)
             {
                 needReinitialize = false;
-                workspace.Initialize();
+                workspace.LoadExternalInfo();
             }
         }
     }

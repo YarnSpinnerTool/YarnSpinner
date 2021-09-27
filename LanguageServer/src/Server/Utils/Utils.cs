@@ -4,13 +4,17 @@ namespace YarnLanguageServer
 {
     internal static class Utils
     {
+        public static readonly string YarnSelectorPattern = "**/*.yarn";
+        public static readonly string YslsJsonSelectorPattern = "**/*.ysls.json";
+        public static readonly string CSharpSelectorPattern = "**/*.cs";
+
         /// <summary>
         /// Selector for any .yarn file in the workspace.
         /// </summary>
         public static readonly DocumentSelector YarnDocumentSelector = new DocumentSelector(
             new DocumentFilter
             {
-                Pattern = "**/*.yarn",
+                Pattern = YarnSelectorPattern,
             });
 
         public static readonly string YarnLanguageID = "yarn";

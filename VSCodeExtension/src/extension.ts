@@ -50,7 +50,7 @@ export async function activate(context: ExtensionContext) {
         synchronize: {
             // configurationSection is deprecated but means we can use the same code for vscode and visual studio (which doesn't support the newer workspace/configuration endpoint)
             configurationSection: 'yarnLanguageServer',
-            fileEvents: workspace.createFileSystemWatcher("**/*.yarn"),
+            fileEvents: [workspace.createFileSystemWatcher("**/*.yarn"),workspace.createFileSystemWatcher("**/*.cs"), workspace.createFileSystemWatcher("**/*.ysls.json")]
 
         },
     };

@@ -25,7 +25,8 @@ namespace YarnLanguageServer
         public IList<IToken> NodeTitles { get; protected set; }
         public IList<IToken> NodeJumps { get; protected set; }
         public IList<IToken> Variables { get; protected set; }
-        public IEnumerable<Diagnostic> Diagnostics { get; protected set; }
+        public IEnumerable<Diagnostic> CompilerDiagnostics { get; protected set; }
+        public bool HasSemanticDiagnostics { get; protected set;  }
         public ImmutableArray<int> LineStarts { get; protected set; }
         public List<IToken> Commands { get; protected set; }
         public List<YarnFunctionCall> CommandInfos { get; protected set; }
@@ -34,10 +35,12 @@ namespace YarnLanguageServer
         public CodeCompletionCore CodeCompletionCore { get; protected set; }
 
         public Uri Uri { get; set; }
+        public Workspace Workspace { get; protected set; }
 
         public YarnFileData(string text, Uri uri, Workspace workspace)
         {
-            this.Uri = uri;
+            Uri = uri;
+            Workspace = workspace;
             Update(text, workspace);
 
             // maybe we do the initial parsing, but don't do diagnostics / symbolic tokens until it's actually opened?
@@ -98,13 +101,28 @@ namespace YarnLanguageServer
 
             CodeCompletionCore = new CodeCompletionCore(Parser, Handlers.CompletionHandler.PreferedRules, Handlers.CompletionHandler.IgnoredTokens);
 
-            // Should probably get lexer errors too, but not sure how to handle duplicates
-            Diagnostics = parserDiagnosticErrorListener.Errors.Concat(lexerDiagnosticErrorListener.Errors);
-            Diagnostics = Diagnostics.Concat(Warnings.GetWarnings(this, workspace));
-            Diagnostics = Diagnostics.Concat(SemanticErrors.GetErrors(this, workspace));
-            PublishDiagnostics(Uri, null, Diagnostics, workspace);
+            // Can save parsing/lexing errors here, becuase they should only change when the file needs to be reparsed
+            CompilerDiagnostics = parserDiagnosticErrorListener.Errors.Concat(lexerDiagnosticErrorListener.Errors);
+            PublishDiagnostics();
         }
 
+        public void PublishDiagnostics()
+        {
+            // Here are the diagnostics that might change depending on other things in the workspace
+            var diagnostics = Warnings.GetWarnings(this, Workspace);
+            diagnostics = diagnostics.Concat(SemanticErrors.GetErrors(this, Workspace));
+            this.HasSemanticDiagnostics = diagnostics.Any();
+
+            diagnostics = diagnostics.Concat(CompilerDiagnostics);
+
+            Workspace.LanguageServer.TextDocument.PublishDiagnostics(
+                new PublishDiagnosticsParams
+                {
+                    Uri = Uri,
+                    Version = null,
+                    Diagnostics = new Container<Diagnostic>(diagnostics),
+                });
+        }
         public int? GetRawToken(Position position)
         {
             // TODO: Not sure if it's even worth using a visitor vs just iterating through the token list.
@@ -180,6 +198,11 @@ namespace YarnLanguageServer
             return (info, null);
         }
 
+        public void ClearDiagnostics(Workspace workspace)
+        {
+            workspace.LanguageServer.TextDocument.PublishDiagnostics(new PublishDiagnosticsParams { Uri = this.Uri });
+        }
+
         private YarnFunctionCall? GetFunctionInfo(Position position)
         {
             // Strategy is to look for rightmost start function parameter, and if there are none, check command parameters
@@ -196,17 +219,6 @@ namespace YarnLanguageServer
             }
 
             return null;
-        }
-
-        private void PublishDiagnostics(DocumentUri uri, int? version, IEnumerable<Diagnostic> diagnostics, Workspace workspace)
-        {
-            workspace.LanguageServer.TextDocument.PublishDiagnostics(
-                new PublishDiagnosticsParams
-                {
-                    Uri = uri,
-                    Version = version,
-                    Diagnostics = new Container<Diagnostic>(diagnostics),
-                });
         }
     }
 

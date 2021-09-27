@@ -25,6 +25,8 @@ namespace YarnLanguageServer.Handlers
         {
             var uri = request.TextDocument.Uri.ToUri();
             var text = request.TextDocument.Text;
+            if (!uri.IsFile) { return Unit.Task; }
+
             if (!workspace.YarnFiles.TryGetValue(uri, out var yarnDocument))
             {
                 yarnDocument = new YarnFileData(text, uri, workspace);
@@ -41,6 +43,9 @@ namespace YarnLanguageServer.Handlers
         {
             var uri = request.TextDocument.Uri.ToUri();
             var text = request.ContentChanges.First().Text;
+
+            if (!uri.IsFile) { return Unit.Task; }
+
             if (!workspace.YarnFiles.TryGetValue(uri, out var yarnDocument))
             {
                 yarnDocument = new YarnFileData(text, uri, workspace);

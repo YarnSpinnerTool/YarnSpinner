@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MoreLinq;
 using OmniSharp.Extensions.LanguageServer.Protocol.Server;
 using Range = OmniSharp.Extensions.LanguageServer.Protocol.Models.Range;
 
@@ -26,20 +27,32 @@ namespace YarnLanguageServer
             Configuration = new Configuration(this);
         }
 
-        public void Initialize(ILanguageServer languageServer = null)
+        public void Initialize(ILanguageServer languageServer)
         {
-            if (languageServer != null)
-            {
-                this.LanguageServer = languageServer;
-            }
+            this.LanguageServer = languageServer;
 
+            LoadExternalInfo();
+
+            var yarnFiles = System.IO.Directory.EnumerateFiles(Root, "*.yarn", System.IO.SearchOption.AllDirectories);
+            yarnFiles = yarnFiles.Where(f => !f.Contains("PackageCache") && !f.Contains("Library"));
+            foreach (var file in yarnFiles)
+            {
+                var text = System.IO.File.ReadAllText(file);
+                var uri = new Uri(file);
+                YarnFiles[uri] = new YarnFileData(text, uri, this);
+            }
+        }
+
+        public void LoadExternalInfo()
+        {
             var jsonWorkspaceFiles = System.IO.Directory.EnumerateFiles(Root, "*.ysls.json", System.IO.SearchOption.AllDirectories);
             foreach (var file in jsonWorkspaceFiles)
             {
                 var uri = new Uri(file);
                 var text = System.IO.File.ReadAllText(file);
                 var docJsonConfig = new JsonConfigFile(text, uri, this, false);
-                if (docJsonConfig != null) {
+                if (docJsonConfig != null)
+                {
                     JsonConfigFiles[uri] = docJsonConfig;
                 }
             }
@@ -56,7 +69,8 @@ namespace YarnLanguageServer
                     var uri = new Uri("file:///assembly/" + doc); // a fake uri but we just need it for lookup and uniqueness
                     string text = new System.IO.StreamReader(thisAssembly.GetManifestResourceStream(doc)).ReadToEnd();
                     var docJsonConfig = new JsonConfigFile(text, uri, this, true);
-                    if (docJsonConfig != null) {
+                    if (docJsonConfig != null)
+                    {
                         JsonConfigFiles[uri] = docJsonConfig;
                     }
                 }
@@ -128,14 +142,8 @@ namespace YarnLanguageServer
 
             FillFunctionDefinitionCache();
 
-            var yarnFiles = System.IO.Directory.EnumerateFiles(Root, "*.yarn", System.IO.SearchOption.AllDirectories);
-            yarnFiles = yarnFiles.Where(f => !f.Contains("PackageCache") && !f.Contains("Library"));
-            foreach (var file in yarnFiles)
-            {
-                var text = System.IO.File.ReadAllText(file);
-                var uri = new Uri(file);
-                YarnFiles[uri] = new YarnFileData(text, uri, this);
-            }
+            // Might be faster to only republish yarn files that already have semantic errors (ie errors that depend on the entire workspace)
+            YarnFiles.ForEach(yf => yf.Value.PublishDiagnostics());
         }
 
         public IEnumerable<(Uri uri, string title, Range range)> GetNodeTitles()
