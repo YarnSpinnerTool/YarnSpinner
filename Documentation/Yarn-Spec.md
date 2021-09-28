@@ -265,7 +265,7 @@ Multiple hashtags can exist on a single line.
 A dialogue statement is a statement that represents a single line of text in the Yarn body.
 In most cases dialogue will be the bulk of a node's body.
 Dialogue statements can be [interpolated](#interpolated-dialogue) dialogue or [raw](#raw-dialogue) dialogue.
-A dialogue statement can contain any characters except for the `#` character, but is subject to a variety of stop conditions including a newline or the start of a control flow.
+A dialogue statement can contain any characters except for the `#` character.
 
 `{$name}, you are a bold one.` is an example of an interpolated dialogue statement.
 `General Kenobi, you are a bold one.` is an example of a raw dialogue statement.
@@ -276,13 +276,6 @@ An *interpolated dialogue* is dialogue where there are [expressions](#expression
 Expressions are encapsulated within the `{` and `}` symbols and it is the presence of these symbols that determine if a line is an interpolated one or not.
 The expression inside the `{}` symbols must be a valid expression.
 The result of the expression must be resolved as a [string value](#supported-types) to be inserted into the dialogue.
-The string representation behaviour of each variable type in Yarn is unspecified, but should follow common conventions such as those shown below.
-
-| Type | Example Value | String Representation |
-|:--|:--|:--|
-| String | "Hello" | Hello |
-| Number | 1e-4 | 0.0001 |
-| Boolean | TRUE | True |
 
 Other than replacing expressions, dialogue statements must not be modified by the implementing program, and provided to the game as written.
 The encapsulated expression can go anywhere inside the statement, or even be the entire dialogue statement.
@@ -298,7 +291,7 @@ To use reserved symbols in dialogue preface any reserved symbol with the escape 
 Any character following the escape must be presented in the dialogue as-is and must not be parsed as a special character.
 As an example `\{$name\}, you are a bold one.` would be presented as `{$name}, you are a bold one.` to the game.
 
-Escaping text must be supported in both normal and interpolated dialogue lines as well as in the dialogue component of [Options](#options).
+Escaping text must be supported in both normal and interpolated dialogue lines as well as in the dialogue component of [options](#options).
 
 ### Statement Ambiguity
 
@@ -451,27 +444,20 @@ If additional types are in use by the implementing program, the keywords for the
 _Flow control_ is a collection of commands that allow the writer to control the flow of the story.
 The purpose of these commands is to limit and select which pieces of a story are presented.
 Flow control in combination with [options](#options) and [jumps](#jump) are what make Yarn a non-linear narrative language.
-There are four commands which work in conjunction to support flow control:
+There are four commands which work in conjunction to support flow control.
+These are ordered, and the order of these commands must be followed:
 
-- if
-- else
-- elseif
-- endif
-
-The order of these commands is always the same and must be followed:
-
-1. if
-1. elseif
-1. else
-1. endif
+- `if`
+- `elseif`
+- `else`
+- `endif`
 
 The if and endif must be present, the elseif and else must be optional.
-While each of these commands are their own statement they should be considered to be part of a larger flow control statement which spans multiple lines.
+While each of these commands are their own statement, they should be considered to be part of a larger flow control statement which spans multiple lines.
 Each of these, except the `endif`, have an attached [block](#scope-and-blocks).
 
-The following is an example of flow control, the dialogue line to be shown will depend on the value of `$var`.
-If `$var` is `1`, the line `if-scope` will be presented, if it is `2` then the `elseif-scope` line will be shown.
-If neither of those are the case then the `else-scope` line will be shown.
+The following is an example of flow control:
+
 ```yarn
 <<if $var == 1>>
     if-scope
@@ -482,11 +468,15 @@ If neither of those are the case then the `else-scope` line will be shown.
 <<endif>>
 ```
 
+The dialogue line shown will depend on the value of `$var`.
+If `$var` is `1`, the line `if-scope` will be presented, if it is `2` then the `elseif-scope` line will be shown.
+If neither of those are the case then the `else-scope` line will be shown.
+
 ![](railroads/flow_control.svg)
 
 #### if
 
-The _if_ command is the opening command of flow control and is broken up into two parts, the keyword and the expression and must be in that order.
+The _if_ command is the opening command of flow control and is broken up into two parts, the keyword and the expression, that must be in that order.
 The _keyword_ is the text `if`.
 The _expression_ is an [expression](#expressions).
 The expression must resolve to a boolean.
@@ -502,12 +492,12 @@ The command works in a fashion very similar to the if command.
 The command is broken up into two parts, the keyword and the expression and must be presented in that order.
 The _keyword_ is the text `elseif`.
 The _expression_ is an [expression](#expressions).
-The expression must resolve to a boolean.
+The expression must resolve to a [boolean value](#supported-types).
 
-The elseif will run only if the `if` component, and any other `elseif`'s before it evaluated to false, and if its own expression evaluates to true.
+The `elseif` will run only if the `if` component and any other `elseif`s before it evaluated to false, and if its own expression evaluates to true.
 
 The minimum mumber of required elseif commands must be zero.
-The maximum number of allowed elseif commands in a flow control statement is unspecified but must be greater than zero.
+The maximum number of allowed elseif commands in a flow control statement is unspecified but must be greater than one.
 An elseif command must not exist without an if command and must go after the if command.
 
 ![](railroads/elseif.svg)
@@ -538,7 +528,7 @@ The endif exists to allow the implementing program know when the scope of the ot
 
 #### Scope and Blocks
 
-For the flow control to be useful there needs to be Yarn statements which are run only when their appropriate expression evaluates to true.
+For flow control to be useful there needs to be Yarn statements which are run only when their appropriate expression evaluates to true.
 Flow control allows for blocks of statements to be scoped to their commands.
 A _block_ is a collection of statements that are scoped to a particular part of the flow control.
 The block must be one or more statements.
