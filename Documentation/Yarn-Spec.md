@@ -51,8 +51,6 @@ If your project does not have a game to offload certain tasks to, these elements
 ### Reading This Specification
 
 `monofont` terms are to be taken as literals.
-As an example the `title` tag would be written as a string literal `"title"` in C#, or just the text `title` in a Yarn script.
-
 *italics* terms are terms which are reused throughout the document.
 They are presented in italics the first time they are defined.
 
@@ -543,13 +541,13 @@ While it is common for writers to indent their blocks relative to their scope it
 
 #### Handling 
 
-The implementing program must process all statements within the active blocks scope.
+The implementing program must process all statements within the active block's scope.
 The _active block_ is the block of Yarn who's command expression evaluates to `true`.
 The block associated with the else command, if present, must only be determined as the active block if all other blocks expressions evaluate to false.
 
 An implementing program must not process any statements inside a block that is not the active block.
 An implementing program must only have, at most, one active block.
-If no blocks expression evaluates to true then no block must be processed.
+If no block's expression evaluates to true then no block must be processed.
 
 #### Ambiguity
 
@@ -570,11 +568,11 @@ For example take the following flow control:
 
 Both of the elseif commands expressions evaluate to true, so either ones attached block could be run and seen to be correct.
 However because one is above the other the block with `elseif-1-scope` dialogue inside would be the selected one.
-The implementing program should attempt to identify these scenarios however and alert the writer.
+If multiple commands evaluate the result of the same variable or expression, the implementing program should attempt to identify this and alert the writer.
 
 ### Command Ambiguity
 
-Generic commands support all the same characters as the other commands, as such this creates an ambiguity between commands, with every more specialised command also being a valid [generic command](#generic-commands).
+Generic commands support all the same characters as the other commands and this creates an ambiguity between commands, with each more specialised command also being a valid [generic command](#generic-commands).
 To resolve this ambiguity all other commands take priority over the generic command.
 As an example `<<jump start>>` is a valid generic command but also a valid [jump](#jump) command, it must be assumed to be a jump command.
 
@@ -587,15 +585,15 @@ In the above `<<set up>>` example the implementing program must consider this is
 
 _Options_ are the means by which Yarn can present dialogue choices to the game and much as with flow control are an element that spans multiple lines.
 Options are comprised of one or more option lines.
-An _option line_ represents a single choice in an option, and are comprised of three parts: the keyword, the dialogue, the [conditional](#conditional) in that order.
+An _option line_ represents a single choice in an option, and are comprised of three parts: the keyword, the dialogue, and an optional [conditional](#conditional), in that order.
 
 ![](railroads/option.svg)
 
 The _keyword_ is how the implementing program can tell a line is part of an option instead of dialogue and is the symbol `->`.
-There must be at least one whitespace between the keyword and the next element, the dialogue.
 The _dialogue_ is a normal line of [dialogue](#dialogue-statement) following all rules associated with that.
+The maximum amount of whitespace allowed between the keyword and the dialogue is unspecified. The minimum amount is zero characters.
 
-As the intention of options is to provide choice to the player when options are encountered the implementing program must halt further progress through the node until an option has been selected.
+As the intention of options is to provide choice to the player, when options are encountered the implementing program must halt further progress through the node until an option has been selected.
 Each option must be provided in the order they are written in the node.
 The mechanism by which an option line is chosen is unspecified.
 Only a single option line must be chosen.
@@ -604,9 +602,9 @@ Only a single option line must be chosen.
 
 ### Conditional
 
-The _conditional_ is a command which provides addtional data about the validity of the option.
-The intent of the conditional is to allow the writer to give the game more information about the option.
+The _conditional_ is a command that provides additional information about how to treat, or whether to present, particular option lines.
 The conditional's syntax is identical to the [if command](#if) and follows all rules there, but as it is not part of flow control must not have an accompanying [endif](#endif) or attached block.
+
 The conditional must be an optional component of the line.
 As the conditional is optional any option line without a conditional must be assumed to be `true`.
 
@@ -616,22 +614,21 @@ It is the responsibility of the other components of the game to control how inva
 
 ### Blocks
 
-Much like with flow control options may have [blocks of statements](#scope-and-blocks) which are triggered should that option line be chosen.
-Each option line may optionally have a block of statements associated with that option line.
-Similar again to the flow control, if an option line is selected its associated block of must be processed by the implementing program.
-If an option isn't chosen the associated block must not be processed.
+Much like with flow control options may have [blocks of statements](#scope-and-blocks) which are triggered--should that option line be chosen--each option line may optionally have a block of statements associated with that option line.
+Similar again to the flow control; if an option line is selected, its associated block must be processed by the implementing program.
+If an option isn't chosen, the associated block must not be processed.
 
-Unlike the flow control however there is no clear way to tell apart different blocks and options from other parts of the Yarn, instead indentation is used to determine blocks and the end of the options.
+Unlike the flow control, however, there is no clear way to tell apart different blocks and options from other parts of the Yarn, instead indentation is used to determine blocks and the end of a set of options.
 The rules for this must be followed:
 
 The first option line in the options determines the base indentation for the options statement, this is determined by counting the number of [whitespace](#whitespace) elements before the `->` symbol.
 Any statements following the option line at a greater level of indentation counts as part of the block for that option line.
 Any other options lines with the same indentation is considered a new option line and closes the block for the preceeding option.
 
-These rules are repeated for each option line until a non-option line with the same, or less indentation than the base indentation is encountered which closes the block and the option statement entirely.
+These rules are repeated for each option line until a non-option line with the same, or less indentation than the base indentation is encountered, which closes the block and the option statement entirely.
 
 Options can be nested inside option blocks.
-Not every option line needs to have blocks.
+Not every option line needs to have a block.
 The maximum number of supported indentation of options inside a block is unspecified.
 
 ![](railroads/option_block.svg)
@@ -646,15 +643,19 @@ If there is a need to choose one, tabs should be preferred due to their improved
 
 ### Examples
 
-```
+Basic dialogue options:
+
+```yarn
 -> Hi
 -> Hi {$name}
 ```
 
 The above is an example of an option with two choices for the player to make.
-The first is a regular lines of dialogue, the second is an interpolated line of dialogue.
+The first is a line of raw dialogue, the second is a line of interpolated dialogue.
 
-```
+Options with conditionals:
+
+```yarn
 -> Hi
 -> Hi Fred <<if 5 > 3>>
 ```
@@ -663,7 +664,9 @@ The above is an example of an option with two choices for the player to make.
 Both have regular lines of dialogue.
 The second has a conditional component, the validity of the second option line will be `true`.
 
-```
+Options with blocks:
+
+```yarn
 -> Hi
     So, are we doing this?
     Yes, lets.
@@ -673,16 +676,19 @@ The second has a conditional component, the validity of the second option line w
 Alright!
 ```
 
-The above is an example of an option with two choices and another line of dialogue after the option.
+The above is an example of an option with two choices, and another line of dialogue after the option.
 Both are a regular lines of dialogue and both have an attached block.
 If the first option was selected then the lines to be presented would be as follows:
-```
+
+```yarn
 So, are we doing this?
 Yes, lets.
 Alright!
 ```
 
-```
+Options with nested options:
+
+```yarn
 -> Hi Fred
     What's the plan?
     We're doing it.
@@ -696,7 +702,9 @@ The above is an example of an option with nested options in its block.
 The `Alright` and `Ok` option lines are inside the `Hi Fred` option line's block.
 The `Yep` line would only ever be presented if the `Hi Fred` option was selected and then the `Alright` option was selected after that.
 
-```
+Putting it all together:
+
+```yarn
 -> Hi
 -> Hi Fred <<if 5 > 3>>
     what's the plan?
@@ -716,7 +724,7 @@ _Expressions_ are mathematical chains of values, variables, functions, expressio
 
 Expressions are not a statement but are a component of various statements and must only be used as part of a statement, they cannot exist in isolation.
 This means if you do want to show the result of an expression it will have to be wrapped inside an interpolated dialogue statement.
-For example a line that is just `$numberOfCoins + 1` while a valid line of [dialogue](#dialogue-statement) is not going to give the result of the expression, but `{$numberOfCoins + 1}` is a valid line of dialogue that will present the result of that expression.
+For example, a line that is just `$numberOfCoins + 1`, while a valid line of [dialogue](#dialogue-statement), is not going to give the result of the expression, but `{$numberOfCoins + 1}` will present the result as a line of dialogue.
 
 Expressions are mostly used to control the flow of the [if statement](#if), although they are also used as part of [set](#set) and [declare](#declare) statements, and in [interpolated dialogue](#interpolated-dialogue).
 
@@ -725,7 +733,7 @@ Expressions are mostly used to control the flow of the [if statement](#if), alth
 ### Values
 
 A _Value_ is a single concrete form of one of the supported types.
-All expressions, subexpressions, variables and functions, must resolve down into a value before it can be used.
+All expressions, subexpressions, variables and functions, must resolve to a value before they can be used.
 Examples of values include `1`, `true`, `"General Kenobi"`.
 
 ### Supported Types
@@ -760,7 +768,7 @@ If a number is beyond the precision supported by the implementing program, the p
 
 The following are examples of valid numbers in Yarn:
 
-```
+```yarn
 1
 0.5
 -1
@@ -770,7 +778,7 @@ The following are examples of valid numbers in Yarn:
 
 The following are examples of invalid numbers in Yarn:
 
-```
+```yarn
 .5
 1.
 - 1
