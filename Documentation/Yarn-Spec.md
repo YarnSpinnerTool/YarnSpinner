@@ -275,9 +275,17 @@ A dialogue statement can contain any characters except for the `#` character, bu
 An *interpolated dialogue* is dialogue where there are [expressions](#expressions) in the line.
 Expressions are encapsulated within the `{` and `}` symbols and it is the presence of these symbols that determine if a line is an interpolated one or not.
 The expression inside the `{}` symbols must be a valid expression.
-The result of the expression must be inserted into the dialogue.
+The result of the expression must be resolved as a [string value](#supported-types) to be inserted into the dialogue.
+The string representation behaviour of each variable type in Yarn is unspecified, but should follow common conventions such as those shown below.
+
+| Type | Example Value | String Representation |
+|:--|:--|:--|
+| String | "Hello" | Hello |
+| Number | 1e-4 | 0.0001 |
+| Boolean | TRUE | True |
+
 Other than replacing expressions, dialogue statements must not be modified by the implementing program, and provided to the game as written.
-The encapsulated expression can go anywhere inside the statement or even be the entire dialogue statement by itself.
+The encapsulated expression can go anywhere inside the statement, or even be the entire dialogue statement.
 
 ### Raw Dialogue
 
@@ -298,8 +306,8 @@ Because the dialogue statement allows a great deal of flexibility in allowed cha
 This creates an ambiguity when parsing a Yarn file, as such the dialogue statement must be considered the lowest priority by the implementing program.
 
 For example `<<Fred Move Left>>` could be read as a [command](#commands) or a dialogue statement, it must be considered a command by the implementing program.
-This does create a potential conflict between writer intent and Yarn's requirements, however it is unavoidable.
-To continue the earlier example if the writer intended `<<Fred Move Left>>` to be a dialogue statement they would have to escape the reserved characters first, so `\<<Fred Move Left\>>` which would present as `<<Fred Move Left>>` to the game.
+This does create a potential conflict between writer intent and Yarn's requirements, but this is unavoidable.
+To continue the earlier example: if the writer intended `<<Fred Move Left>>` to be a dialogue statement, they would have to escape the reserved characters first, so `\<<Fred Move Left\>>` which would present as `<<Fred Move Left>>` to the game.
 
 ## Commands
 
@@ -315,14 +323,14 @@ The possible types of commands are:
 - [flow control](#flow-control)
 
 All commands must start with the `<<` symbol and end with the `>>` symbol.
-Additional required command are unspecified.
+Additional required commands are unspecified.
 
 ### Generic Commands
 
 _Generic Commands_ are commands for sending messages from the Yarn to the rest of the program.
-Unlike the other commands generic commands don't impact the dialogue.
+Unlike the other commands, generic commands don't impact the dialogue.
 They can be thought of as lines of dialogue that aren't to be shown in the game.
-Implementing programs must not modify the flow of the Yarn based on the command.
+Implementing programs must not modify the flow of the Yarn script based on the command.
 
 Generic commands can have any text except for the `#`, `{`, or `}` symbols inside of them.
 
@@ -341,7 +349,7 @@ are examples of generic commands.
 ### Jump
 
 The _jump_ command is how a Yarn program can move from one [node](#nodes) to another.
-The jump has two components: the keyword and the destination and these are separated by one or more whitespace.
+The jump has two components: the keyword and the destination and these are separated by one or more whitespace characters.
 The _keyword_ is the text `jump` and comes first in the command.
 
 The _destination_ is the name of the node to move to.
@@ -352,10 +360,10 @@ The expression must resolve to a [string value](#supported-types) and must be a 
 The behaviour of an implementing program is unspecified when asked to jump to a destination that doesn't match a title in the project.
 The implementing program should flag this as an error.
 
-Once the jump command has been completed the current node must be exited immediately, this means any dialogue, options or commands below the jump are to be ignored.
-From that point on the destination nodes contents must instead be run.
+Once the jump command has been completed the current node must be exited immediately. This means any dialogue, options, or commands below the jump are to be ignored.
+From that point on, the destination node's contents must instead be run.
 
-`<<jump nodeName>>` is an example of a jump command, `<<jump {$chosenMurderer}>>` is an example of a jump command using an expression to determine the destination node.
+`<<jump nodeName>>` is an example of a jump command, `<<jump {$chosenEnding}>>` is an example of a jump command using an expression to determine the destination node.
 
 ![](railroads/jump.svg)
 
@@ -364,7 +372,7 @@ From that point on the destination nodes contents must instead be run.
 The _stop_ command is for halting all progress on the [project](#project).
 Once the stop command is reached all processing on the project must halt, no additional [nodes](#nodes) are to be loaded and run, no additional [dialogue](#dialogue-statement) or [commands](#commands) are to processed.
 The stop command has only one component, the _keyword_ `stop`.
-The stop command should reset any [variable](#variables) or internal state back to their initial states.
+The stop command should reset any [variable](#variables) or internal state back to their initial states as if the script had not been run.
 
 `<<stop>>` is the example of the stop command.
 
@@ -373,7 +381,7 @@ The stop command should reset any [variable](#variables) or internal state back 
 ### Set
 
 The _set_ command allows [variables](#variables) to be given [values](#values).
-The set command has four components: the keyword, the variable, the operator and the value and must be presented in that order.
+The set command has four components: the keyword, the variable, the operator and the value, and these must be presented in that order.
 Each component must be separated by one or more whitespace characters.
 
 The _keyword_ is the text `set`.
@@ -387,15 +395,15 @@ The following is an example of two set commands:
 <<set $boldness to $boldness + 1>>
 ```
 
-The set command must follow all the rules for [variable naming](#naming-and-scope) and expressions.
+Components in the set command must follow the rules for [variable naming](#naming-and-scope) and expressions.
 The set command must not allow setting a variable to an expression whose value is different from the [type](#supported-types) of that variable.
 
 ![](railroads/set.svg)
 
 ### Declare
 
-[Variables](#variables) in Yarn should be declared to let the implementing program know the [type](#supported-types) of values they hold.
-The intent of this is to allow the implementing program to set up memory and to provide guidance as to the usage of a variable directly from the writer.
+[Variables](#variables) in Yarn must be declared before they are used, to let the implementing program know the [type](#supported-types) of values they hold.
+The intent of this is to allow the implementing program to set up memory, and to provide guidance as to the usage of a variable directly from the writer.
 The declare command has four components: the keyword, the variable, the operator and the value, and must be presented in that order.
 Each component must be separated by one or more whitespace characters.
 
@@ -417,7 +425,8 @@ The value of the expression is used determine what type the value is to be decla
 
 The implementing program must not allow the variable declared to ever have a value set which is not of the declared type.
 If this does occur the implementing program must flag this as an error.
-The handling of encountering variables which have not been declared is unspecified but should generate an error.
+An interpreter may elect to statically analyse a Yarn script an insert the necessary declare commands as part of a build or compile process but once the script is run, encountering variables which have not been declared by some means should generate an error.
+The delcare command should only be used to set the initial value of a variable; encountering a declare command for a variable that has already been declared should generate an error, even if the resulting [type](#supported-types) is the same as that declared previously.
 
 ![](railroads/declare.svg)
 
@@ -427,15 +436,15 @@ It is assumed that most of the time a variable's type will be determined implici
 Syntactically this works identically to the implicit type declaration with two additional elements at the end of the command, the `as` keyword and a type.
 The type of the expression must match one of the [suported types](#supported-types) keywords:
 
+- `String` for Strings
 - `Number` for Numbers
 - `Bool` for Booleans
-- `String` for Strings
 
 `<<declare $name = "General Kenobi" as String>>` is an example of an explicitly typed declaration.
 Explicitly typed declarations will most likely be used when getting intial values from [functions](#functions) who's type is undefined.
-The default value's type given in a an explictly typed declaration must match the type, for example `<<declare $name = "General Kenobi" as Number>>` is an invalid declaration because `General Kenobi` isn't a `Number`.
+The default value's type given in an explictly typed declaration must match the type, for example `<<declare $name = "General Kenobi" as Number>>` is an invalid declaration because `"General Kenobi"` isn't a `Number`.
 
-If additional types are in use by the implementing program the keywords for their explicit definition are unspecified, but they must be consistent across all declarations.
+If additional types are in use by the implementing program, the keywords for their explicit definition are unspecified, but they must be consistent across all declarations.
 
 ### Flow control
 
