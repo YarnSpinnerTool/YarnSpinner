@@ -29,7 +29,7 @@ This is to avoid confusion that would arise should the Yarn languge specificatio
 
 ### Coverage
 
-This document covers the elements of a Yarn script that are required to be considered a valid Yarn script as well as the rules necessary for an implementing program to be able to conform to this specification.
+This document covers the elements of a Yarn script that are required to be considered valid, as well as the rules necessary for an implementing program to conform to this specification.
 
 An *implementing program* is a program that accepts Yarn files as inputs and understands them based on the rules in this document.
 This document does not cover how a Yarn file is to be transformed or handled internally by an implementing program.
@@ -41,17 +41,17 @@ Only the `title` tag is required, an implementation may choose to make other tag
 
 ### Assumptions
 
-There is one large assumption in this document and about the language itself.
-That is it that it is intended to be embedded into a larger game project.
+There is one large assumption in this document and about the language itself:
+that it is intended to be employed as part of a larger game project.
 
-As such details like how lines are viewed, how selections of options are made, how generic commands get used, or how functions are handled are all assumed to be passed off onto the larger game to handle.
-This is not technically necessary but does explain what would otherwise be gaps in the language.
-If your project does not have a game to offload certain tasks to these elements will have to be handled by the implementing program itself.
+As such, details like how lines are viewed, how selections of options are made, how generic commands get used, or how functions are handled are all assumed to be passed off onto the larger game to handle.
+This is not technically necessary, but does explain what would otherwise be gaps in the language.
+If your project does not have a game to offload certain tasks to, these elements will have to be handled by the implementing program itself.
 
 ### Reading This Specification
 
 `monofont` terms are to be taken as literals.
-As an example the `title` tag would be written as a string literal `"title"` in C#.
+As an example the `title` tag would be written as a string literal `"title"` in C#, or just the text `title` in a Yarn script.
 
 *italics* terms are terms which are reused throughout the document.
 They are presented in italics the first time they are defined.
@@ -59,11 +59,12 @@ They are presented in italics the first time they are defined.
 _Must_ is a hard requirement.
 _Should_ is a recommendation, albeit a strong one.
 
-_Errors_ are mentioned multiple times and represent situations that are unrecoverable.
+_Errors_ are mentioned multiple times and represent situations that are **unrecoverable**.
 A goal of Yarn is to have all errors known and handled at creation time instead of runtime but this isn't always possible.
-Errors are intended to allow the implementing program to let the user or other parts of the game know that an unrecoverable situation has occured.
-The implementing program must abort progress on the Yarn after creating an error.
-The precise handling of errors will be specific to the implementing program but should use whatever error mechanisms exist already, for example Yarn Spinner throws normal C# exceptions for its errors.
+Errors are intended to allow the implementing program to let the user, or other parts of the game, know that an unrecoverable situation has occured.
+This means the implementing program **must abort** after creating an error.
+The precise handling of errors will be specific to the implementing program, but should use whatever error mechanisms exist already. 
+For example, Yarn Spinner throws normal C# exceptions for its errors.
 
 Dates, spelling, and numbers are to be in Australian English.
 
@@ -78,8 +79,8 @@ White elements are more complex rules, grey elements are literals either by name
 Lines may loop back or skip over elements, and every path through the diagram decribes a valid version of the rule.
 
 The diagrams at various stages use ranges to represent all potential values within that range.
-Common uses of this include being able to capture the digits `0, 1, 2, 3, 4, 5, 6, 7, 8, 9`, if you were required to type them out in the diagram each time it would get onerous, so we represent this with a range using square brackets `[` and `]`.
-The character on the left side of the range represents the start and the right side represent the end of the range, so the digits would be represented as `[0-9]`.
+Common uses of this include being able to capture the digits `0, 1, 2, 3, 4, 5, 6, 7, 8, 9`, as `[0-9]`.
+For ranges enclosed in `[]` notation, the character on the left side of the range represents the start and the right side represent the end of the range (inclusive).
 Hardcoded unicode values are also shown in the diagrams, these represent elements that are either difficult to show visually or for easier capture in ranges.
 Unicode values are represented in these diagrams with a `\u` followed by a multiple digit hexadecimal value.
 The value of these digits map directly to a unicode code point, for example `\u00A8` represents the `¨` or DIAERESIS symbol.
@@ -105,19 +106,19 @@ File extension should be `.yarn`.
 ### Project
 
 The Yarn *project* is all Yarn files that are intended to be associated with one another.
-While there is nothing stopping a writer from placing all nodes into one big file (or even making one giant node) it is common to break them up over multiple files.
+While there is nothing stopping a writer from placing all nodes into one big file (or even one giant node), it is common to break them up over multiple files.
 The project is all of these files collected and processed by the implementing program together.
 
 ### Lines
 
 The *line* is the common unit that comprises all elements in a Yarn file.
 A line is a series of characters terminated by the *new line* symbol.
-The new line symbol should be the `\n` character.
-The new line must be the same throughout the project regardless of the chosen new line symbol.
+The new line symbol should contain at least the `\n` character, but different operating system conventions may result in compound characters such as `\r\n`.
+Once chosen, the new line symbol must remain the same throughout the project.
 
 The following Yarn file contains four lines (in order); one header tag line, one header delimiter line, one body dialogue line, one body delimiter line.
 ```yarn
-title:Start
+title: Start
 ---
 This is some text
 ===
@@ -137,15 +138,19 @@ All text from the start of the comment to the end of the line must be ignored.
 A comment starting in the middle of another line ends that line at the point the `//` symbol is encountered.
 That line is assumed to have finished at that point as if the comment was not there.
 Comments must not impact the rest of the lines or have any impact on the resulting Yarn program.
+Comments may occur in any part of a Yarn file: in headers, delimiter lines, or node bodies.
  
 ### Identifiers
 
-Throughout various points in this document identifiers are mentioned, the rules for these are shared across all stages of the Yarn project.
+Identifiers are mentioned at various points in this document, and the rules for these are shared across all stages of the Yarn project.
 
-An *identifier* is built up of two main parts, first the *identifier head* which is any of the following symbols: an upper or lowercase letter A to Z, an underscore (`_`), a noncombining alphanumeric Unicode character in the Basic Multilingual Plane, or a character outside the Basic Multilingual Plane that isn't in the Private Use Area.
-After the identifier head any number of *identifier characters* are allowed, which are all of the identifier head symbols in addition to digits, a period (`.`), and combining Unicode characters.
+An *identifier* is built up of two main parts: 
+
+1. the *identifier head* which is any of the following symbols: an upper or lowercase letter A to Z, an underscore (`_`), a noncombining alphanumeric Unicode character in the Basic Multilingual Plane, or a character outside the Basic Multilingual Plane that isn't in the Private Use Area.
+2. (after the identifier head) any number of *identifier characters* are allowed, which may be any of the identifier head symbols, as well as digits, the period (`.`), and combining Unicode characters.
+
 The `$` symbol must not be part of an identifier.
-The minimum and maximum length of identifiers is unspecified.
+The minimum length of an identifier is 1 character (the identifier head with no further identifier characters), but the maximum length of an identifier is **unspecified**.
 
 ![](railroads/IDENTIFIER.svg)
 ![The first allowed symbol in the identifier](railroads/IDENTIFIER_HEAD.svg)
