@@ -36,7 +36,7 @@ This document does not cover how a Yarn file is to be transformed or handled int
 
 This document does note when behaviours are *unspecified*.
 The implementing program may choose how to handle any unspecified behaviour, often unspecified behaviours have no good solution and should result in an error.
-An example of unspecified behaviour are required tags on Nodes.
+An example of unspecified behaviour are required tags on nodes.
 Only the `title` tag is required, an implementation may choose to make other tags required or banned.
 
 ### Assumptions
@@ -113,10 +113,11 @@ The project is all of these files collected and processed by the implementing pr
 
 The *line* is the common unit that comprises all elements in a Yarn file.
 A line is a series of characters terminated by the *new line* symbol.
-The new line symbol should contain at least the `\n` character, but different operating system conventions may result in compound characters such as `\r\n`.
+The new line symbol should be either the `\n` character or `\r\n`.
 Once chosen, the new line symbol must remain the same throughout the project.
 
 The following Yarn file contains four lines (in order); one header tag line, one header delimiter line, one body dialogue line, one body delimiter line.
+
 ```yarn
 title: Start
 ---
@@ -129,7 +130,7 @@ This is some text
 *Whitespace* is any non-visible character with a width greater than 0.
 Common whitespace encountered include the space and the tab.
 
-Whitespace for the most part plays no role for the majority of Yarn, but has significant syntactic impact for [Options](#options).
+Whitespace for the most part plays no role for the majority of Yarn, but has significant syntactic impact for [options](#options).
 
 ### Comments
 
@@ -138,7 +139,7 @@ All text from the start of the comment to the end of the line must be ignored.
 A comment starting in the middle of another line ends that line at the point the `//` symbol is encountered.
 That line is assumed to have finished at that point as if the comment was not there.
 Comments must not impact the rest of the lines or have any impact on the resulting Yarn program.
-Comments may occur in any part of a Yarn file: in headers, delimiter lines, or node bodies.
+Comments may occur in any line of a Yarn file and take precedence over any other parsing rules such as [hashtags](#hashtags), but may still be affected by [escaping text](#escaping-text).
  
 ### Identifiers
 
@@ -174,9 +175,8 @@ File tags must have the `#` symbol at the start of them and then contain all tex
 ### Nodes
 
 A *node* is the single story element of a Yarn file.
-Nodes are the story structural building blocks for Yarn.
-Nodes are designed to contain pieces of a story and then have these story pieces linked together.
-This is not a requirement, everything could be done in a single node, this would just be unwieldy.
+Nodes are the story structural building blocks of Yarn; they are designed to contain pieces of a story and then have these story pieces linked together.
+This is not a requirement--everything could be done in a single node--but avoidance of the node structure quickly becomes unwieldy for the author.
 A node must be comprised of a single header and a single body in that order.
 
 ![](railroads/node.svg)
@@ -197,8 +197,8 @@ The *tag separator* is the character `:`.
 The *tag text* is all text up until the end of line.
 Header tags are commonly used as node specific metadata but using them in this manner is not required, beyond the [title tag](#title-tag).
 
-The amount of allowed whitespace between the tag name, the separator, and the tag text is unspecified.
-An example of a header tag is the title tag: `title:start`.
+The maximum amount of whitespace allowed between the tag separator and the tag text is unspecified. The minimum amount is zero characters.
+An example of a header tag is the title tag: `title: start`.
 
 Every node must have a title tag.
 Required or banned header tags beyond title are unspecified.
@@ -214,7 +214,7 @@ The tag text for the title tag must be unique within the file.
 The tag text for the title tag should be unique within the project.
 The tag text must follow the rules of [identifiers](#identifiers).
 
-The behaviour of the program when a title tag's text is not unique across the project is unspecified.
+The behaviour of the program when a title tag's text is not unique across the file or project is unspecified.
 The program should flag this as an error.
 
 ![](railroads/title_tag.svg)
@@ -238,13 +238,12 @@ A *statement* is a line that is one of the following:
 A statement may have optional [hashtags](#hashtags).
 A body must have at least one statement.
 
+![](railroads/body.svg)
 ![](railroads/statement.svg)
 
 The body ends when encountering a line that consists entirely of the *body delimter* `===`.
 The body delimiter ends both the current node and the body of that node.
 The end of file must not be used in place of a body delimiter.
-
-![](railroads/body.svg)
 
 #### Hashtags
 
@@ -252,7 +251,7 @@ The end of file must not be used in place of a body delimiter.
 Hashtags must go at the end of the statement.
 The other components of the statement must end at the hashtag, the hashtag operates effectively as the newline terminator for the statement.
 
-A hashtag starts with the `#` symbol and contain any text up to the newline or another hashtag.
+A hashtag starts with the `#` symbol and contain any text up to the newline, a whitespace character, or another hashtag.
 `#lineID:a10be2` is an example of a hashtag.
 
 Multiple hashtags can exist on a single line.
@@ -264,9 +263,9 @@ Multiple hashtags can exist on a single line.
 ## Dialogue Statement
 
 A dialogue statement is a statement that represents a single line of text in the Yarn body.
-In most cases dialogue will be the bulk of the content of a node's body.
+In most cases dialogue will be the bulk of a node's body.
 Dialogue statements can be [interpolated](#interpolated-dialogue) dialogue or [raw](#raw-dialogue) dialogue.
-A dialogue statement can contain any characters except for the `#` character.
+A dialogue statement can contain any characters except for the `#` character, but is subject to a variety of stop conditions including a newline or the start of a control flow.
 
 `{$name}, you are a bold one.` is an example of an interpolated dialogue statement.
 `General Kenobi, you are a bold one.` is an example of a raw dialogue statement.
@@ -277,7 +276,7 @@ An *interpolated dialogue* is dialogue where there are [expressions](#expression
 Expressions are encapsulated within the `{` and `}` symbols and it is the presence of these symbols that determine if a line is an interpolated one or not.
 The expression inside the `{}` symbols must be a valid expression.
 The result of the expression must be inserted into the dialogue.
-Other than replacing expressions dialogue statments must not be modified by the implementing program, and provided to the game as written.
+Other than replacing expressions, dialogue statements must not be modified by the implementing program, and provided to the game as written.
 The encapsulated expression can go anywhere inside the statement or even be the entire dialogue statement by itself.
 
 ### Raw Dialogue
