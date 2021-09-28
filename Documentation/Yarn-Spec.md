@@ -779,32 +779,27 @@ The following are examples of valid numbers in Yarn:
 The following are examples of invalid numbers in Yarn:
 
 ```yarn
-.5
-1.
-- 1
-1. 414
+.5     // no integer part to the number
+1.     // a decimal separator but no fractional part
+- 1    // space between the negation indicator and the integer part
+1. 414 // space between the decimal separator and the fractional part
 ```
-
-The first of these is invalid because it does not have an integer part to the number.
-The second is invalid because it has a decimal seperator but doesn't have a fractional part.
-The third is invalid because it has a space between the negation indicator and the integer part.
-The forth is invalid because it has a space between the decimal seperator and the fractional part.
 
 #### Strings
 
-Strings are an ordered collection of characters and must be capable of holding [UTF-8 characters](https://en.wikipedia.org/wiki/UTF-8) as this is what the Yarn language is written in, but the internals of this is unspecified provided all valid UTF-8 strings are supported.
+Strings are an ordered collection of characters and must be capable of holding [UTF-8 characters](https://en.wikipedia.org/wiki/UTF-8), as this is what the Yarn language is written in, but the internals of this is unspecified--provided all valid UTF-8 strings are supported.
 The minimum and maximum lengths of strings are unspecified but if the implementing program cannot support a string it must present this as an error.
 Strings in expressions must be encapsulated between `"` and `"` symbols.
 
 #### Booleans
 
 Booleans must be capable of representing the boolean logic values of `true` and `false`, however the specific implementation is undefined.
-Booleans must not be exposed as `1` and `0` to expressions even if they are represented this way internally by the implementing program.
+Booleans must not be exposed to expressions as `1` and `0`--or similar intermediate representations--even if they are represented this way internally by the implementing program.
 Booleans in expressions must be written as `true` for true and `false` for false.
 
 #### Additional Types
 
-Additional types supported by an implementing program are unspecified but should not be used.
+Additional types supported by an implementing program should not be used.
 
 ### Variables
 
@@ -816,7 +811,7 @@ A variable encountered outside of an expression must not be considered by the im
 
 All variables are a variant on [identifiers](#identifiers).
 Variables are an identifier that start with a `$` symbol and otherwise follow all other identifier rules.
-The minimum and maximum length of a variable name is unspecified but must be at least one character after the `$` symbol.
+The maximum length of a variable name is unspecified, but the minimum is one character after the `$` symbol.
 
 Variable names must be unique throughout their scope.
 The _scope_ of the variable is what defines for how long a variable exists.
@@ -828,11 +823,13 @@ The scope of a variable must be global across the project.
 #### Types
 
 Yarn is a statically typed language, in the context of Yarn this means variables have a type which represents which of the supported type's values it can hold.
-Once a variable has its type determined either by declaration or inference it cannot change.
-The implementing program must not allow variables to hold values of types different from its own.
+Once a variable has its type determined--whether by explicit declaration or inference--it cannot change.
+The implementing program must not allow variables to hold values of a type different from what the type specified or the value provided when the variable was declared.
 
-Due to the nature of elements of Yarn being outside of the control of Yarn, notably functions, its possible for this requirement to be breached due to no fault of the implementing program or the Yarn as written by the author.
-However in these circumstances the implementing program must generate an error.
+Due to some elements being outside of the control of Yarn--notably functions--it is also possible for this requirement to be breached due to no fault of the implementing program or the Yarn as written by the author. 
+For example, a variable may be assigned the return value of a function whose specifics are not known to Yarn--causing an issue that may not be identified until runtime.
+
+No matter the cause, if a variable is assigned a value that does not match its declared type, the implementing program must generate an error.
 
 ### Operations
 
@@ -870,15 +867,14 @@ The unary operations are:
 - minus: `-`
 - boolean NOT: `!`
 
-Parentheses are a special form of operation.
-They are for bundling up elements of an expression into a subexpression.
-Parentheses must be treated as if they are a single operand in other operations.
-Parentheses start with the open bracket symbol `(` and can have any expression inside of them before being closed with the closing bracket symbol `)`.
-`2 * (3 + $coins)` is an example of an expression with a parentheses operation, in this case the `3 + $coins` component must be resolved into a value before being able to be multiplied by two.
+Parentheses are used to bundle up some elements of an expression into a subexpression.
+Parentheses start with the open parenthesis symbol `(` and can have any expression inside of them before being closed with the closing parenthesis symbol `)`.
+Parenthetical subexpressions must be evaluated to a single value before being treated as a single operand in the enclosing expression.
+For example, in the expression `2 * (3 + $coins)`, the `3 + $coins` component must be resolved into a value before being able to be multiplied by two.
 
-The `+` operator when operating on strings represesnt concatenation, the merging of two strings by appending the r-value string to the end of the l-value string.
+The `+` operator, when operating on strings, represesnt concatenation: the merging of two strings by appending the r-value string to the end of the l-value string.
 When operating on numbers the `+` operator is the normal addition operator.
-All other operators act according to their already existing arithmetic or logical operations.
+All other operators act according to their existing arithmetic or logical operations.
 
 #### Supported types in operations
 
@@ -898,9 +894,9 @@ The following table shows the compatible types for each unary operation and must
 | strings  | ❌ | ❌ |
 | booleans | ✅ | ❌ |
 
-Operations between different or incompatible types is unspecified but should not be supported due to the potential confusion.
-If however they are supported existing behaviour around transitivity, commutativity, and symmetry of operations should be respected.
-For example if `"hello" < 5` is `true` then `5 > "hello"` should also be `true`.
+Operations between different or incompatible types is unspecified but should not be supported, due to the potential for confusion.
+If they are supported (against recommendation), existing behaviour around transitivity, commutativity, and symmetry of operations should be respected.
+For example if `"hello" < 5` is `true` then `5 > "hello"` should also be `true` and `"hello" >= 5` should be `false`.
 Likewise `("hello" + 2) < 5` resulted in `true` then `(2 + "hello") < 5` should also be `true`.
 This taken to the extreme should mean that `1 + "hello" == "hello + 1` should evaluate to `true` which is confusing to most people, hence the recommendation against supporting operations between disparate types.
 
@@ -930,7 +926,7 @@ If there are any equal priority operations in an expression they are resolved le
 ### Functions
 
 _Functions_ are an alternate way of getting values into expressions.
-Functions are intended to be used to allow more complex code be bundled and called in a different environment, such as in the game itself.
+Functions are intended to be used to allow more complex code to be bundled and called in a different environment, such as in the game itself.
 Functions must return a value.
 
 ![](railroads/function.svg)
@@ -940,7 +936,7 @@ Functions must return a value.
 Functions are comprised of a name, parentheses, and parameters.
 
 The function _name_ is an [identifier](#identifiers).
-The minimum and maximum length of function names is unspecified.
+Thus, the minimum length is one character and the maximum length of a function name is unspecified.
 
 The parentheses go after the function name and there must be no whitespace between the opening parentheses `(` and the function name.
 The closing parethensis `)` finishes the function.
@@ -949,8 +945,8 @@ _Parameters_ go in between the opening `(` and closing `)` parentheses.
 Parameters must be expressions, functions, values, or variables.
 Functions can have multiple parameters, these must be separated by the comma `,` symbol.
 
-Whitespace between parameters and the separator is undefined but newlines characters are must not be allowed.
-The maximum and minimum number of allowed parameters a function can have is undefined.
+Whitespace between parameters and the separator is undefined, but newline characters must not be allowed.
+The minimum number of allowed parameters a function can have is zero (empty parentheses), and the maximum is undefined.
 
 Examples of functions include the following;
 
@@ -964,10 +960,10 @@ rad2Deg(1.5707963268)
 
 The handling of functions by the implementing program is unspecified, however the output type of a function must always return the same type of value between calls at runtime.
 Yarn functions are assumed to be non-blocking and effectively instantly returning, the implementing program should adhere to this.
-If given the same input parameters multiple invocations of the same functions should return the same value each time.
+If given the same input parameters, multiple invocations of the same functions should return the same value each time.
 
 The implementing program should allow external parts of the game to provide the return value of the function.
-The implementing program must present and process the parameters to whatever handles the function in the same order as they are presented in the Yarn.
+The implementing program must pass function parameters to these delegate systems in the same order as they are presented in the Yarn at the function call site.
+However, Yarn makes no promises as to the order in which, or number of times an implementing program may call functions; the results of function calls may be cached or called ahead of time.
 
-Yarn makes no promises as to the order in which, or number of times an implementing program may call functions, the results of function calls may be cached or called ahead of time.
 In general, and while not a specific requirement, implementing programs and writers should err on the side of treating functions in Yarn as if they are [pure functions](https://en.wikipedia.org/wiki/Pure_function).
