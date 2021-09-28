@@ -25,7 +25,7 @@ A component of this is the creation of this specification guide, so implementati
 We hope this will empower others to make their mark on the broader Yarn Spinner ecosystem, by supporting the creation of new tools or bridging frameworks to bring Yarn Spinner to a broader range of game engines and workflows.
 
 Despite this being the first time a Yarn language specification has existed, it is version 2 of the Yarn language and will begin versioning at 2.0.
-This is to avoid confusion that would arise should the Yarn languge specification and the Yarn Spinner framework be versioned separately.
+This is to avoid confusion that would arise should the Yarn language specification and the Yarn Spinner framework be versioned separately.
 
 ### Coverage
 
@@ -59,7 +59,7 @@ _Should_ is a recommendation, albeit a strong one.
 
 _Errors_ are mentioned multiple times and represent situations that are **unrecoverable**.
 A goal of Yarn is to have all errors known and handled at creation time instead of runtime but this isn't always possible.
-Errors are intended to allow the implementing program to let the user, or other parts of the game, know that an unrecoverable situation has occured.
+Errors are intended to allow the implementing program to let the user, or other parts of the game, know that an unrecoverable situation has occurred.
 This means the implementing program **must abort** after creating an error.
 The precise handling of errors will be specific to the implementing program, but should use whatever error mechanisms exist already. 
 For example, Yarn Spinner throws normal C# exceptions for its errors.
@@ -74,7 +74,7 @@ These provide a visual means of understanding the rules presented here to aid in
 The diagrams are to be read left to right, following the lines until you hit the end of the rule.
 Each time you encounter an element in the path that element must be represented in the raw text of the Yarn file for the rule to be valid.
 White elements are more complex rules, grey elements are literals either by name for convenience or if they are encapsulated inside single quotes `'` they are a string literal as described above.
-Lines may loop back or skip over elements, and every path through the diagram decribes a valid version of the rule.
+Lines may loop back or skip over elements, and every path through the diagram describes a valid version of the rule.
 
 The diagrams at various stages use ranges to represent all potential values within that range.
 Common uses of this include being able to capture the digits `0, 1, 2, 3, 4, 5, 6, 7, 8, 9`, as `[0-9]`.
@@ -145,7 +145,7 @@ Identifiers are mentioned at various points in this document, and the rules for 
 
 An *identifier* is built up of two main parts: 
 
-1. the *identifier head* which is any of the following symbols: an upper or lowercase letter A to Z, an underscore (`_`), a noncombining alphanumeric Unicode character in the Basic Multilingual Plane, or a character outside the Basic Multilingual Plane that isn't in the Private Use Area.
+1. the *identifier head* which is any of the following symbols: an upper or lowercase letter A to Z, an underscore (`_`), a non-combining alphanumeric Unicode character in the Basic Multilingual Plane, or a character outside the Basic Multilingual Plane that isn't in the Private Use Area.
 2. (after the identifier head) any number of *identifier characters* are allowed, which may be any of the identifier head symbols, as well as digits, the period (`.`), and combining Unicode characters.
 
 The `$` symbol must not be part of an identifier.
@@ -222,7 +222,7 @@ The program should flag this as an error.
 Duplicate header tags within a node is invalid.
 A duplicate tag is a duplicate if it has the same tag name as another.
 The implementing program must either throw an error when encountering a duplicate tag or ignore all but the first instance of a tag.
-If the implementing program is ignoring later duplicates then the user should still be informed as the existence of duplicate tags.
+If the implementing program is ignoring later duplicates, the user should still be informed of the existence of duplicate tags.
 
 ### Body
 
@@ -239,7 +239,7 @@ A body must have at least one statement.
 ![](railroads/body.svg)
 ![](railroads/statement.svg)
 
-The body ends when encountering a line that consists entirely of the *body delimter* `===`.
+The body ends when encountering a line that consists entirely of the *body delimiter* `===`.
 The body delimiter ends both the current node and the body of that node.
 The end of file must not be used in place of a body delimiter.
 
@@ -417,7 +417,7 @@ The value of the expression is used determine what type the value is to be decla
 The implementing program must not allow the variable declared to ever have a value set which is not of the declared type.
 If this does occur the implementing program must flag this as an error.
 An interpreter may elect to statically analyse a Yarn script an insert the necessary declare commands as part of a build or compile process but once the script is run, encountering variables which have not been declared by some means should generate an error.
-The delcare command should only be used to set the initial value of a variable; encountering a declare command for a variable that has already been declared should generate an error, even if the resulting [type](#supported-types) is the same as that declared previously.
+The declare command should only be used to set the initial value of a variable; encountering a declare command for a variable that has already been declared should generate an error, even if the resulting [type](#supported-types) is the same as that declared previously.
 
 ![](railroads/declare.svg)
 
@@ -425,15 +425,15 @@ The delcare command should only be used to set the initial value of a variable; 
 
 It is assumed that most of the time a variable's type will be determined implicitly via the initial expression, however the type can also be explicitly set.
 Syntactically this works identically to the implicit type declaration with two additional elements at the end of the command, the `as` keyword and a type.
-The type of the expression must match one of the [suported types](#supported-types) keywords:
+The type of the expression must match one of the [supported types](#supported-types) keywords:
 
 - `String` for Strings
 - `Number` for Numbers
 - `Bool` for Booleans
 
 `<<declare $name = "General Kenobi" as String>>` is an example of an explicitly typed declaration.
-Explicitly typed declarations will most likely be used when getting intial values from [functions](#functions) who's type is undefined.
-The default value's type given in an explictly typed declaration must match the type, for example `<<declare $name = "General Kenobi" as Number>>` is an invalid declaration because `"General Kenobi"` isn't a `Number`.
+Explicitly typed declarations will most likely be used when getting initial values from [functions](#functions) whose type is undefined.
+The type of the default value given in an explicitly typed declaration must match the stated type, for example `<<declare $name = "General Kenobi" as Number>>` is an invalid declaration because `"General Kenobi"` isn't a `Number`.
 
 If additional types are in use by the implementing program, the keywords for their explicit definition are unspecified, but they must be consistent across all declarations.
 
@@ -494,7 +494,7 @@ The expression must resolve to a [boolean value](#supported-types).
 
 The `elseif` will run only if the `if` component and any other `elseif`s before it evaluated to false, and if its own expression evaluates to true.
 
-The minimum mumber of required elseif commands must be zero.
+The minimum number of required elseif commands must be zero.
 The maximum number of allowed elseif commands in a flow control statement is unspecified but must be greater than one.
 An elseif command must not exist without an if command and must go after the if command.
 
@@ -543,7 +543,7 @@ While it is common for writers to indent their blocks relative to their scope it
 
 The implementing program must process all statements within the active block's scope.
 The _active block_ is the block of Yarn who's command expression evaluates to `true`.
-The block associated with the else command, if present, must only be determined as the active block if all other blocks expressions evaluate to false.
+The block associated with the else command, if present, must only be determined as the active block if all other blocks' expressions evaluate to false.
 
 An implementing program must not process any statements inside a block that is not the active block.
 An implementing program must only have, at most, one active block.
@@ -551,7 +551,7 @@ If no block's expression evaluates to true then no block must be processed.
 
 #### Ambiguity
 
-Because the flow control commands allow for potentially multiple commands and their blocks to be the true one, the implementing program must select them in a top down approach when there is conflicting flow.
+Because the flow control commands allow for potentially multiple commands and their blocks to be true simultaneously, the implementing program must select them in a top down approach wherever there is ambiguity.
 For example take the following flow control:
 
 ```yarn
@@ -566,7 +566,7 @@ For example take the following flow control:
 <<endif>>
 ```
 
-Both of the elseif commands expressions evaluate to true, so either ones attached block could be run and seen to be correct.
+Both of the elseif commands' expressions evaluate to true, so either one's attached block could be run and seen to be correct.
 However because one is above the other the block with `elseif-1-scope` dialogue inside would be the selected one.
 If multiple commands evaluate the result of the same variable or expression, the implementing program should attempt to identify this and alert the writer.
 
@@ -872,7 +872,7 @@ Parentheses start with the open parenthesis symbol `(` and can have any expressi
 Parenthetical subexpressions must be evaluated to a single value before being treated as a single operand in the enclosing expression.
 For example, in the expression `2 * (3 + $coins)`, the `3 + $coins` component must be resolved into a value before being able to be multiplied by two.
 
-The `+` operator, when operating on strings, represesnt concatenation: the merging of two strings by appending the r-value string to the end of the l-value string.
+The `+` operator, when operating on strings, represents concatenation: the merging of two strings by appending the r-value string to the end of the l-value string.
 When operating on numbers the `+` operator is the normal addition operator.
 All other operators act according to their existing arithmetic or logical operations.
 
@@ -898,7 +898,7 @@ Operations between different or incompatible types is unspecified but should not
 If they are supported (against recommendation), existing behaviour around transitivity, commutativity, and symmetry of operations should be respected.
 For example if `"hello" < 5` is `true` then `5 > "hello"` should also be `true` and `"hello" >= 5` should be `false`.
 Likewise `("hello" + 2) < 5` resulted in `true` then `(2 + "hello") < 5` should also be `true`.
-This taken to the extreme should mean that `1 + "hello" == "hello + 1` should evaluate to `true` which is confusing to most people, hence the recommendation against supporting operations between disparate types.
+This taken to the extreme should mean that `1 + "hello" == "hello + 1` should evaluate to `true`. This is confusing, hence the recommendation against supporting operations between disparate types.
 
 #### Operation Output
 
@@ -938,8 +938,8 @@ Functions are comprised of a name, parentheses, and parameters.
 The function _name_ is an [identifier](#identifiers).
 Thus, the minimum length is one character and the maximum length of a function name is unspecified.
 
-The parentheses go after the function name and there must be no whitespace between the opening parentheses `(` and the function name.
-The closing parethensis `)` finishes the function.
+The parentheses go after the function name and there must be no whitespace between the opening parenthesis `(` and the function name.
+The closing parethesis `)` finishes the function.
 
 _Parameters_ go in between the opening `(` and closing `)` parentheses.
 Parameters must be expressions, functions, values, or variables.
