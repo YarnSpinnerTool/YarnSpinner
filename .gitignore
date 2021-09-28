@@ -149,3 +149,6 @@ export.log
 
 # Auto-generated API documentation metadata
 /_api/
+
+# Test coverage data
+YarnSpinner.Tests/coverage/

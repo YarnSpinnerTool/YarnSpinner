@@ -14,5 +14,8 @@
         "visitors": true,
         "outputDir": ".",
         "package": "Yarn.Compiler"
-    }
+    },
+    "coverage-gutters.coverageFileNames": [
+        "coverage*.info",
+    ]
 }
