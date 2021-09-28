@@ -1,29 +1,31 @@
 # Yarn Spec
+*Language version 2.0 | Last updated: 28th September 2021*
 
-This document describes the specification of the Yarn Script format version 2 and guidance and rules for implementing programs who wish to process Yarn scripts.
+This document defines the Yarn Script version 2 language format, and contains guidance and rules for implementing programs to process Yarn 2.x scripts.
 
 ## Introduction
 
 Yarn is a language for representing branching and linear interactive fiction in games.
 Yarn was created for the game Night in the Woods and was inspired by the Twine language.
-Its focus is on flexibility and writer ease, the goal of the language is to have clear syntax when necessary but to otherwise be as close to just writing text as possible.
-For writers there should be minimal friction in creating the language and for programmers minimal annoyance when interfacing with it.
+Its focus is on flexibility and writer ease; the primary goal of the language is to have clear, minimal syntax and to remain as close to just writing dialogue text as possible.
+For writers there should be minimal friction in authoring in Yarn and, for programmers, there should be minimal annoyance when interfacing with it.
 
-During development of Night in the Woods Yarn Spinner was created as an open source side project and had no affiliation to Night in the Woods at the time.
-Yarn Spinner could read and understand Yarn files but had several advantages over the Yarn interpreter in Night in the Woods so the decision was made to use Yarn Spinner for the game.
+During development of Night in the Woods, Yarn Spinner was created as an open source framework to better integrate Yarn with the Unity Game Engine--a side project and had no affiliation to Night in the Woods at the time.
+But Yarn Spinner could read and understand Yarn files, and had several advantages over the Yarn interpreter in Night in the Woods, so the decision was made to use Yarn Spinner for the game.
 This made Yarn Spinner the de facto Yarn interpreter and had the side effect of giving it control over the specification of the language.
-Yarn essentially became and was always defined in terms of what Yarn Spinner could understand.
+Yarn essentially became and was henceforth defined by what Yarn Spinner could understand.
 
-As Night in the Woods was developed additional features and work was done on Yarn Spinner for the game the set of features and syntax exploded and became difficult to understand or reimplement.
-Post Night in the Woods Yarn Spinner continued as its own thing with version 0.9 being released which was mostly a polish of the version used in Night in the Woods.
-Later version 1.0 of Yarn Spinner, and as such the language, came out with improved syntax and was the first significant release that wasn't tied to Night in the Woods.
+As Night in the Woods was developed additional features, and work was done on Yarn Spinner for the game, the set of features and syntax exploded and became difficult to understand or reimplement.
+Post-Night in the Woods, Yarn Spinner continued as an independent project. 
+Yarn Spinner version 0.9 was mostly a polished form of the framework as was used in Night in the Woods, but 1.0 came with improved syntax and was the first significant release that wasn't tied to Night in the Woods.
+
 Neither Yarn Spinner 0.9 or 1.0 however came with complete specifications of the Yarn language and had a great deal of legacy elements.
-
 A concerted effort was made to clean up the Yarn language for Yarn Spinner 2.0 into something hopefully more understandable but also more flexible.
-A component of this is the creation of this specification guide so implementations beyond Yarn Spinner can have something to base decisions on that isn't "do what Yarn Spinner does".
+A component of this is the creation of this specification guide, so implementations of alternative interpreters or other Yarn- or Yarn Spinner-related tools can have a clear source of truth (that isn't "just copy what Yarn Spinner does").
+We hope this will empower others to make their mark on the broader Yarn Spinner ecosystem, by supporting the creation of new tools or bridging frameworks to bring Yarn Spinner to a broader range of game engines and workflows.
 
-Despite this being the first version of the Yarn language to ever exist it is version 2 of the Yarn language.
-This is because despite Yarn and Yarn Spinner being separate elements attempting to not stay, at least initially, in version lock with the de facto implementation is just asking for trouble, hence version 2 of Yarn.
+Despite this being the first time a Yarn language specification has existed, it is version 2 of the Yarn language and will begin versioning at 2.0.
+This is to avoid confusion that would arise should the Yarn languge specification and the Yarn Spinner framework be versioned separately.
 
 ### Coverage
 
