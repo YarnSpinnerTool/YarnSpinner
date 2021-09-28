@@ -140,6 +140,7 @@ namespace YarnSpinner.Tests
             });            
         }
 
+        [Fact]
         public void TestMarkupShortcutPropertyParsing() {
             var line = "[a=1]s[/a]";
             var markup = dialogue.ParseMarkup(line);
