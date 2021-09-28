@@ -135,7 +135,7 @@ A line with a tag, and a comment. #line:expected_ghi789 // a comment
                 } else {
                     // a line exists that has this text
                     var matchingEntries = compilationResult.StringTable.Where(s => s.Value.text == result.line);
-                    Assert.Equal(1, matchingEntries.Count());
+                    Assert.Single(matchingEntries);
 
                     // that line has a line tag
                     var lineTag = matchingEntries.First().Key;

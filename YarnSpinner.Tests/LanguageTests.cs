@@ -96,8 +96,8 @@ namespace YarnSpinner.Tests
 
             // Assert.Contains("version:2", result.FileTags);
             Assert.Contains(path, result.FileTags.Keys);
-            Assert.Equal(1, result.FileTags.Count);
-            Assert.Equal(1, result.FileTags[path].Count());
+            Assert.Single(result.FileTags);
+            Assert.Single(result.FileTags[path]);
             Assert.Contains("file_header", result.FileTags[path]);
         }
 

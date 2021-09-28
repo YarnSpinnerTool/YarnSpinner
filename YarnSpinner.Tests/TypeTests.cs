@@ -259,7 +259,7 @@ namespace YarnSpinner.Tests
             // The variable '$bool' should have an implicit declaration.
             var variableDeclarations = result.Declarations.Where(d => d.Name == "$bool");
 
-            Assert.Equal(1, variableDeclarations.Count());
+            Assert.Single(variableDeclarations);
 
             var variableDeclaration = variableDeclarations.First();
 

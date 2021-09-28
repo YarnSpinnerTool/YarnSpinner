@@ -20,7 +20,7 @@ namespace YarnSpinner.Tests
             var markup = dialogue.ParseMarkup(line);
             
             Assert.Equal("A B", markup.Text);
-            Assert.Equal(1, markup.Attributes.Count);
+            Assert.Single(markup.Attributes);
             Assert.Equal("b", markup.Attributes[0].Name);
             Assert.Equal(2, markup.Attributes[0].Position);
             Assert.Equal(1, markup.Attributes[0].Length);
@@ -61,7 +61,7 @@ namespace YarnSpinner.Tests
             var originalMarkup = dialogue.ParseMarkup(line);
 
             // Remove the "X" attribute
-            Assert.Equal(originalMarkup.Attributes[3].Name, "X");
+            Assert.Equal("X", originalMarkup.Attributes[3].Name);
             var trimmedMarkup = originalMarkup.DeleteRange(originalMarkup.Attributes[3]);
             
             Assert.Equal("A x x B C", originalMarkup.Text);
@@ -125,7 +125,7 @@ namespace YarnSpinner.Tests
             // All versions of this string should have the same position
             // and length of the attribute, despite the presence of
             // multibyte characters
-            Assert.Equal(1, markup.Attributes.Count);
+            Assert.Single(markup.Attributes);
             Assert.Equal(2, markup.Attributes[0].Position);
             Assert.Equal(1, markup.Attributes[0].Length);
         }
@@ -226,7 +226,7 @@ namespace YarnSpinner.Tests
 
             Assert.Equal("A B", markup.Text);
 
-            Assert.Equal(1, markup.Attributes.Count);
+            Assert.Single(markup.Attributes);
 
             Assert.Equal("a", markup.Attributes[0].Name);
             Assert.Equal(0, markup.Attributes[0].Properties.Count);
@@ -256,7 +256,7 @@ namespace YarnSpinner.Tests
             var markup = dialogue.ParseMarkup(input);
 
             Assert.Equal("Mae: Wow!", markup.Text);
-            Assert.Equal(1, markup.Attributes.Count);
+            Assert.Single(markup.Attributes);
 
             Assert.Equal("character", markup.Attributes[0].Name);
             Assert.Equal(0, markup.Attributes[0].Position);
@@ -290,7 +290,7 @@ namespace YarnSpinner.Tests
             var markup = dialogue.ParseMarkup(line);
 
             Assert.Equal("hello [b]hello[/b]", markup.Text);
-            Assert.Equal(1, markup.Attributes.Count);
+            Assert.Single(markup.Attributes);
             Assert.Equal("a", markup.Attributes[0].Name);
             Assert.Equal(0, markup.Attributes[0].Position);
             Assert.Equal(18, markup.Attributes[0].Length);

@@ -242,7 +242,7 @@ namespace YarnSpinner.Tests
             Assert.Equal(3, floatValue);
 
             this.storage.TryGetValue<bool>("$bool", out var boolValue);
-            Assert.Equal(false, boolValue);
+            Assert.False(boolValue);
         }
 
         [Fact]
