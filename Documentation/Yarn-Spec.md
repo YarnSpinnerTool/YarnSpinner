@@ -495,8 +495,8 @@ The expression must resolve to a [boolean value](#supported-types).
 
 The `elseif` will run only if the `if` component and any other `elseif`s before it evaluated to false, and if its own expression evaluates to true.
 
-The minimum number of required elseif commands must be zero.
-The maximum number of allowed elseif commands in a flow control statement is unspecified but must be greater than one.
+Each flow control can have zero or more elseif commands.
+The maximum number of allowed elseifs as a part of flow control is unspecified but must be greater than zero.
 An elseif command must not exist without an if command and must go after the if command.
 
 ![](railroads/elseif.svg)
