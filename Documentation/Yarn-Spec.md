@@ -137,7 +137,7 @@ All text from the start of the comment to the end of the line must be ignored.
 A comment starting in the middle of another line ends that line at the point the `//` symbol is encountered.
 That line is assumed to have finished at that point as if the comment was not there.
 Comments must not impact the rest of the lines or have any impact on the resulting Yarn program.
-Comments may occur in any line of a Yarn file and take precedence over any other parsing rules such as [hashtags](#hashtags), but may still be affected by [escaping text](#escaping-text).
+Comments may occur in any line of a Yarn file and take precedence over any other parsing rules such as [hashtags](#hashtags), but may still be [escaped](#escaping-text).
  
 ### Identifiers
 
