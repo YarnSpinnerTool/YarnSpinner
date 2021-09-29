@@ -209,10 +209,11 @@ The order of header tags is unspecified.
 The *title tag* is a specific header tag that uniquely identifies the node.
 The tag name for the title tag must be `title`.
 The tag text for the title tag must be unique within the file.
+It is an error for a title text to be repeated within a file.
 The tag text for the title tag should be unique within the project.
 The tag text must follow the rules of [identifiers](#identifiers).
 
-The behaviour of the program when a title tag's text is not unique across the file or project is unspecified.
+The behaviour of the program when a title tag's text is not unique across the project is unspecified.
 The program should flag this as an error.
 
 ![](railroads/title_tag.svg)
