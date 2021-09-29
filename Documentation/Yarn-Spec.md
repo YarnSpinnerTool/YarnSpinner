@@ -1,7 +1,7 @@
 # Yarn Spec
-*Language version 2.0 | Last updated: 28th September 2021*
+*Language version 2 | Last updated: 29th September 2021*
 
-This document defines the Yarn Script version 2 language format, and contains guidance and rules for implementing programs to process Yarn 2.x scripts.
+This document defines the Yarn Script version 2 language format, and contains guidance and rules for implementing programs to process Yarn 2 scripts.
 
 ## Introduction
 
@@ -24,7 +24,7 @@ A concerted effort was made to clean up the Yarn language for Yarn Spinner 2.0 i
 A component of this is the creation of this specification guide, so implementations of alternative interpreters or other Yarn- or Yarn Spinner-related tools can have a clear source of truth (that isn't "just copy what Yarn Spinner does").
 We hope this will empower others to make their mark on the broader Yarn Spinner ecosystem, by supporting the creation of new tools or bridging frameworks to bring Yarn Spinner to a broader range of game engines and workflows.
 
-Despite this being the first time a Yarn language specification has existed, it is version 2 of the Yarn language and will begin versioning at 2.0.
+Despite this being the first time a Yarn language specification has existed, it is version 2 of the Yarn language.
 This is to avoid confusion that would arise should the Yarn language specification and the Yarn Spinner framework be versioned separately.
 
 ### Coverage
