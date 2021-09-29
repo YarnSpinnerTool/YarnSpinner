@@ -274,7 +274,7 @@ A dialogue statement can contain any characters except for the `#` character.
 An *interpolated dialogue* is dialogue where there are [expressions](#expressions) in the line.
 Expressions are encapsulated within the `{` and `}` symbols and it is the presence of these symbols that determine if a line is an interpolated one or not.
 The expression inside the `{}` symbols must be a valid expression.
-The result of the expression must be resolved as a [string value](#supported-types) to be inserted into the dialogue.
+The result of the expression must be [coerced](#string-coercion) into a [string value](#supported-types) to be inserted into the dialogue.
 
 Other than replacing expressions, dialogue statements must not be modified by the implementing program, and provided to the game as written.
 The encapsulated expression can go anywhere inside the statement, or even be the entire dialogue statement.
@@ -797,6 +797,12 @@ Strings in expressions must be encapsulated between `"` and `"` symbols.
 Booleans must be capable of representing the boolean logic values of `true` and `false`, however the specific implementation is undefined.
 Booleans must not be exposed to expressions as `1` and `0`--or similar intermediate representations--even if they are represented this way internally by the implementing program.
 Booleans in expressions must be written as `true` for true and `false` for false.
+
+#### String Coercion
+
+When used as part of [interpolated](#interpolated-dialogue) dialogue the value must be coerced into a string before they can be shown as a piece of the dialogue.
+The process for coercising one type into a string is unspecified.
+The only requirement is each value being coerced must appear the same every time it is presented regardless of the expression that creates the value.
 
 #### Additional Types
 
