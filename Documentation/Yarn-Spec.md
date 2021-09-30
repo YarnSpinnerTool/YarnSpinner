@@ -394,8 +394,10 @@ The set command must not allow setting a variable to an expression whose value i
 
 ### Declare
 
-[Variables](#variables) in Yarn must be declared before they are used, to let the implementing program know the [type](#supported-types) of values they hold.
-The intent of this is to allow the implementing program to set up memory, and to provide guidance as to the usage of a variable directly from the writer.
+Declare is a command that works on [variable](#variables) to provide guidance as to the usage of the variable, both for the writer and the implementing program.
+Yarn is a [statically typed](#static-types) language so every variable has a type associated with it which determines what [type](#supported-types) of values it is allowed to hold.
+This means variables need have this determined before they can be used, the declare command is one means of doing this.
+
 The declare command has four components: the keyword, the variable, the operator and the value, and must be presented in that order.
 Each component must be separated by one or more whitespace characters.
 
@@ -417,8 +419,11 @@ The value of the expression is used determine what type the value is to be decla
 
 The implementing program must not allow the variable declared to ever have a value set which is not of the declared type.
 If this does occur the implementing program must flag this as an error.
-An interpreter may elect to statically analyse a Yarn script an insert the necessary declare commands as part of a build or compile process but once the script is run, encountering variables which have not been declared by some means should generate an error.
-The declare command should only be used to set the initial value of a variable; encountering a declare command for a variable that has already been declared should generate an error, even if the resulting [type](#supported-types) is the same as that declared previously.
+
+A variable may only be declared once in a program, duplicate declarations are not allowed.
+A duplicate declaration is where the variable component of the declaration is idential to another declarations.
+The implementing program must flag any duplicate variable declarations as an error.
+This is true even if the declaration is identical or not in conflict with the use of the variable.
 
 ![](railroads/declare.svg)
 
@@ -831,16 +836,24 @@ The scope of a variable must be global across the project.
 
 `$name` is an example of a variable name, `$𐃩` is another example of a variable name.
 
-#### Types
+#### Static Types
 
 Yarn is a statically typed language, in the context of Yarn this means variables have a type which represents which of the supported type's values it can hold.
+Implementing programs have two means at their disposal to determine a variables type, inference and declaration.
+
+Declaration is an explicit action by the writer and is the result of the [declare](#declare) command.
+Inference is when the implementing program observes the use of a variable and infers its type based on this.
+The majority of the time it is expected that inference will be the preferred means of determining the type of a variable.
+Declaration takes precedence over inference, even in cases where the inference correctly determines the variable type and the declaration is in conflict with this.
+Declaration is allowed even if it is only formalising the same result the inference would provide.
+
 Once a variable has its type determined--whether by explicit declaration or inference--it cannot change.
-The implementing program must not allow variables to hold values of a type different from what the type specified or the value provided when the variable was declared.
+The implementing program must not allow variables to hold values of a type different from what the type specified or the value provided when the variable type was determined.
 
 Due to some elements being outside of the control of Yarn--notably functions--it is also possible for this requirement to be breached due to no fault of the implementing program or the Yarn as written by the author. 
 For example, a variable may be assigned the return value of a function whose specifics are not known to Yarn--causing an issue that may not be identified until runtime.
 
-No matter the cause, if a variable is assigned a value that does not match its declared type, the implementing program must generate an error.
+No matter the cause, if a variable is assigned a value that does not match its associated type, the implementing program must generate an error.
 
 ### Operations
 
