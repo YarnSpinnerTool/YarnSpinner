@@ -1,5 +1,5 @@
 # Yarn Spec
-*Language version 2 | Last updated: 29th September 2021*
+*Language version 2 | Last updated: 30th September 2021*
 
 This document defines the Yarn Script version 2 language format, and contains guidance and rules for implementing programs to process Yarn 2 scripts.
 
@@ -801,7 +801,11 @@ Booleans in expressions must be written as `true` for true and `false` for false
 #### String Coercion
 
 When used as part of [interpolated](#interpolated-dialogue) dialogue the value must be coerced into a string before they can be shown as a piece of the dialogue.
-The process for coercising one type into a string is unspecified.
+
+Strings do not require coercion and must be injected into the dialogue as is.
+The only requirement for strings being added into dialogue is that it must not include the encapsulating `"` symbols.
+
+The process for coercising numbers and booleans into a string is unspecified.
 The only requirement is each value being coerced must appear the same every time it is presented regardless of the expression that creates the value.
 
 #### Additional Types
