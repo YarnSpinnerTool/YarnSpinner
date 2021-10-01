@@ -427,7 +427,7 @@ namespace Yarn
         /// Gets a value indicating whether the Dialogue is currently
         /// executing Yarn instructions.
         /// </summary>
-        public bool IsActive => vm.executionState != VirtualMachine.ExecutionState.Stopped;
+        public bool IsActive => vm.CurrentExecutionState != VirtualMachine.ExecutionState.Stopped;
 
         /// <summary>
         /// Gets or sets the <see cref="Yarn.LineHandler"/> that is called
@@ -694,7 +694,7 @@ namespace Yarn
         /// <seealso cref="Yarn.DialogueCompleteHandler"/>
         public void Continue()
         {
-            if (this.vm.executionState == VirtualMachine.ExecutionState.Running)
+            if (this.vm.CurrentExecutionState == VirtualMachine.ExecutionState.Running)
             {
                 // Cannot 'continue' an already running VM.
                 return;
