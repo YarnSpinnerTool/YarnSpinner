@@ -18,9 +18,34 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
+
+    - uses: gittools/actions/gitversion/setup@v0.9.7
+      name: Install GitVersion
+      with:
+          versionSpec: '5.x'
+
+    - uses: gittools/actions/gitversion/execute@v0.9.7
+      name: Execute GitVersion
+      id: gitversion # step id used as reference for output values
+      with:
+        updateAssemblyInfo: true
+      
+    - name: Print version information
+      run: |
+        echo "Major: ${{ steps.gitversion.outputs.major }}"
+        echo "Minor: ${{ steps.gitversion.outputs.minor }}"
+        echo "Patch: ${{ steps.gitversion.outputs.patch }}"
+        echo "MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}"
+        echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
+
     - name: Restore dependencies
       run: dotnet restore
+
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore --configuration Release
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    
+    # If we are on the develop or main branch, do a nuget pack and push if this was a tagged version
+    # /p:PackageVersion=${{ steps.gitversion.outputs.semVer }}
+    # 
