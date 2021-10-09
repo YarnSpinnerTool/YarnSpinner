@@ -21,6 +21,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - `Dialogue.SetSelectedOption` can now be called within the options handler itself. 
   - If you do this, the `Dialogue` will continue executing after the options handler returns, and you do not need to call `Continue`.
 
+- `VirtualMachine.executionState` has been renamed to `VirtualMachine.CurrentExecutionState`.
+
 ### Removed
 
 ## [v2.0.0-beta5] 2021-08-17
