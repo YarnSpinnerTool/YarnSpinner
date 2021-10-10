@@ -1093,7 +1093,7 @@ namespace Yarn.Compiler
         }
     }
 
-    internal struct FileParseResult
+    public struct FileParseResult
     {
         public string Name { get; }
         public IParseTree Tree { get; }
