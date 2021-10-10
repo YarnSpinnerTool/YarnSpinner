@@ -163,38 +163,15 @@ namespace Yarn.Compiler
         }
 
         /// <summary>
-        /// Gets an <see cref="Antlr4.Runtime.Tree.IParseTree"/> generated
-        /// from parsing the specified text in <paramref name="source"/>.
         /// </summary>
         /// <param name="source">The source code to parse.</param>
-        /// <returns>A source tree.</returns>
-        /// <exception cref="ParseException">Thrown when source contains
-        /// compilation errors.</exception>
-        public static Antlr4.Runtime.Tree.IParseTree GetParseTree(string source)
+        /// <returns></returns>
+        public static (FileParseResult, IEnumerable<Diagnostic>) ParseSource(string source)
         {
             var diagnostics = new List<Diagnostic>();
             var result = Compiler.ParseSyntaxTree("<input>", source, ref diagnostics);
 
-            return result.Tree;
-        }
-
-        /// <summary>
-        /// Gets an enumeration containing the <see
-        /// cref="Antlr4.Runtime.IToken"/> objects generated from parsing
-        /// the specified text in <paramref name="source"/>.
-        /// </summary>
-        /// <param name="source">The source code to parse.</param>
-        /// <returns>An enumeration containing tokens.</returns>
-        /// <exception cref="ParseException">Thrown when source contains
-        /// compilation errors.</exception>
-        public static IEnumerable<Antlr4.Runtime.IToken> GetTokens(string source)
-        {
-            var diagnostics = new List<Diagnostic>();
-            var result = Compiler.ParseSyntaxTree("<input>", source, ref diagnostics);
-
-            Antlr4.Runtime.CommonTokenStream tokens = result.Tokens;
-
-            return tokens.Get(0, tokens.Size - 1);
+            return (result, diagnostics);
         }
 
         /// <summary>
