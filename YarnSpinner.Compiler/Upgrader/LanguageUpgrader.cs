@@ -25,6 +25,12 @@ namespace Yarn.Compiler.Upgrader
     {
         public List<OutputFile> Files;
 
+        /// <summary>
+        /// Gets a collection containing all <see cref="Diagnostic"/>
+        /// objects across all of the files in <see cref="Files"/>.
+        /// </summary>
+        public IEnumerable<Diagnostic> Diagnostics => Files.SelectMany(f => f.Diagnostics);
+
         internal static UpgradeResult Merge(UpgradeResult a, UpgradeResult b)
         {
             var filePairs = a.Files
@@ -53,7 +59,7 @@ namespace Yarn.Compiler.Upgrader
             public IEnumerable<TextReplacement> Replacements;
             public string OriginalSource;
             public string UpgradedSource;
-            public IEnumerable<Annotation> Annotations;
+            public IEnumerable<Diagnostic> Diagnostics;
 
             /// <summary>
             /// Indicates whether this <see cref="OutputFile"/> represents
@@ -63,52 +69,31 @@ namespace Yarn.Compiler.Upgrader
             /// </summary>
             public bool IsNewFile;
 
-            public struct Annotation
-            {
-                public Type AnnotationType;
-
-                public string Description;
-
-                public Annotation(Type annotationType, string description)
-                : this()
-                {
-                    this.AnnotationType = annotationType;
-                    this.Description = description;
-                }
-
-                public enum Type
-                {
-                    Information,
-                    Warning,
-                    Error
-                }
-            }
-
             internal OutputFile(
                 string path,
                 IEnumerable<TextReplacement> replacements,
                 string originalSource,
-                IEnumerable<Annotation> annotations = null)
+                IEnumerable<Diagnostic> diagnostics = null)
             {
                 this.Path = path;
                 this.Replacements = replacements;
                 this.OriginalSource = originalSource;
                 this.UpgradedSource = LanguageUpgrader.ApplyReplacements(originalSource, replacements);
                 this.IsNewFile = false;
-                this.Annotations = annotations ?? new List<Annotation>();
+                this.Diagnostics = diagnostics ?? new List<Diagnostic>();
             }
 
             internal OutputFile(
                 string path,
                 string newContent,
-                IEnumerable<Annotation> annotations = null)
+                IEnumerable<Diagnostic> diagnostics = null)
             {
                 this.Path = path;
                 this.UpgradedSource = newContent;
                 this.OriginalSource = string.Empty;
                 this.Replacements = new List<TextReplacement>();
                 this.IsNewFile = true;
-                this.Annotations = annotations ?? new List<Annotation>();
+                this.Diagnostics = diagnostics ?? new List<Diagnostic>();
             }
 
             /// <summary>
