@@ -19,12 +19,12 @@ jobs:
       with:
         dotnet-version: 5.0.x
 
-    - uses: gittools/actions/gitversion/setup@v0.9.7
+    - uses: gittools/actions/gitversion/setup@v0.9.10
       name: Install GitVersion
       with:
           versionSpec: '5.x'
 
-    - uses: gittools/actions/gitversion/execute@v0.9.7
+    - uses: gittools/actions/gitversion/execute@v0.9.10
       name: Execute GitVersion
       id: gitversion # step id used as reference for output values
       with:
