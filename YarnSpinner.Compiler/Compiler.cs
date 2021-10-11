@@ -1,4 +1,4 @@
-// Uncomment to ensure that all expressions have a known type at compile time
+﻿// Uncomment to ensure that all expressions have a known type at compile time
 // #define VALIDATE_ALL_EXPRESSIONS
 
 namespace Yarn.Compiler
@@ -83,6 +83,19 @@ namespace Yarn.Compiler
             {
                 StringTable.Add(entry.Key, entry.Value);
             }
+        }
+
+        /// <summary>
+        /// Checks to see if this string table already contains a line with
+        /// the line ID <paramref name="lineID"/>.
+        /// </summary>
+        /// <param name="lineID">The line ID to check for.</param>
+        /// <returns><see langword="true"/> if the string table already
+        /// contains a line with this ID, <see langword="false"/>
+        /// otherwise.</returns>
+        internal bool ContainsKey(string lineID)
+        {
+            return this.StringTable.ContainsKey(lineID);
         }
     }
 
@@ -446,7 +459,7 @@ namespace Yarn.Compiler
                 var parseResult = ParseSyntaxTree(file, ref diagnostics);
                 parsedFiles.Add(parseResult);
 
-                RegisterStrings(file.FileName, stringTableManager, parseResult.Tree);
+                RegisterStrings(file.FileName, stringTableManager, parseResult.Tree, ref diagnostics);
             }
 
             if (compilationJob.CompilationType == CompilationJob.Type.StringsOnly)
@@ -587,10 +600,11 @@ namespace Yarn.Compiler
             return finalResult;
         }
 
-        private static void RegisterStrings(string fileName, StringTableManager stringTableManager, IParseTree tree)
+        private static void RegisterStrings(string fileName, StringTableManager stringTableManager, IParseTree tree, ref List<Diagnostic> diagnostics)
         {
             var visitor = new StringTableGeneratorVisitor(fileName, stringTableManager);
             visitor.Visit(tree);
+            diagnostics.AddRange(visitor.Diagnostics);
         }
 
         private static void GetDeclarations(FileParseResult parsedFile, IEnumerable<Declaration> existingDeclarations, out IEnumerable<Declaration> newDeclarations, IEnumerable<IType> typeDeclarations, out IEnumerable<string> fileTags, out IEnumerable<Diagnostic> diagnostics)

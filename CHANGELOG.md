@@ -57,6 +57,8 @@ Unexpected ">>" while reading a function call
 
 - `VirtualMachine.executionState` has been renamed to `VirtualMachine.CurrentExecutionState`.
 
+- It is now a compiler error if the same line ID is used on more than one line.
+
 ### Removed
 
 - The ParseException, TypeException and CompilerException classes have been removed.
