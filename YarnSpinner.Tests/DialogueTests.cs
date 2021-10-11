@@ -337,6 +337,22 @@ namespace YarnSpinner.Tests
 
         }
 
+        [Theory]
+        [InlineData(@"one two three four", new[] {"one", "two", "three", "four"})]
+        [InlineData(@"one ""two three"" four", new[] {"one", "two three", "four"})]
+        [InlineData(@"one ""two three four", new[] {"one", "two three four"})]
+        [InlineData(@"one ""two \""three"" four", new[] {"one", "two \"three", "four"})]
+        [InlineData(@"one \two three four", new[] {"one", "\\two", "three", "four"})]
+        [InlineData(@"one ""two \\ three"" four", new[] {"one", "two \\ three", "four"})]
+        [InlineData(@"one ""two \\1 three"" four", new[] {"one", "two \\ three", "four"})]
+        [InlineData(@"one      two", new[] {"one", "two"})]
+        public void TestCommandQuotesAreParsedCorrectly(string input, IEnumerable<string> expectedComponents) 
+        {
+            IEnumerable<string> parsedComponents = Dialogue.SplitCommandText(input);
+
+            Assert.Equal(expectedComponents, parsedComponents);
+        }
+
     }
 }
 

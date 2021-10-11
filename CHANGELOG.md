@@ -15,6 +15,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - If an error is encountered during compilation, `CompilationResult.Program` will be `null`.
 - This change means that compilation failures will not cause  `Compiler.Compile()` to throw an exception; code that was previously using a `try...catch` to detect problems will need to be rewritten to check the `CompilationResult.Diagnostics` property to find the actual problem.
 
+- Added a method for splitting the text that appears inside a command in a way that respects double-quotes. This allows games to run the text they receive from a command through the `Dialogue.SplitCommandText` method, and receive split text in a way that's consistent across all implementations.
+
+
 ### Changed
 
 - Made the lexer not use semantic predicates when lexing the TEXT rule, which reduces the amount of C# code present in the grammar file.
