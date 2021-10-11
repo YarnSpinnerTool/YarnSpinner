@@ -47,7 +47,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --configuration Release
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --configuration Release --verbosity normal
     
     # If we are on the develop or main branch, do a nuget pack and push if this was a tagged version
     # /p:PackageVersion=${{ steps.gitversion.outputs.semVer }}
