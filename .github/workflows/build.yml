@@ -19,6 +19,9 @@ jobs:
       with:
         dotnet-version: 5.0.x
 
+    - name: Fetch all commits
+      run: git fetch --unshallow
+
     - uses: gittools/actions/gitversion/setup@v0.9.10
       name: Install GitVersion
       with:
