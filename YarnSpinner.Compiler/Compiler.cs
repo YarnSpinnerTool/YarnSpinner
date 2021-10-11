@@ -299,7 +299,7 @@ namespace Yarn.Compiler
 
         public Dictionary<string, IEnumerable<string>> FileTags { get; internal set; }
 
-        public IEnumerable<Diagnostic> Diagnostics {get; internal set;}
+        public IEnumerable<Diagnostic> Diagnostics { get; internal set; }
 
         internal static CompilationResult CombineCompilationResults(IEnumerable<CompilationResult> results, StringTableManager stringTableManager)
         {
@@ -327,7 +327,8 @@ namespace Yarn.Compiler
                     }
                 }
 
-                if (result.Diagnostics != null) {
+                if (result.Diagnostics != null)
+                {
                     diagnostics.AddRange(result.Diagnostics);
                 }
             }
@@ -477,7 +478,8 @@ namespace Yarn.Compiler
 
             // Find the type definitions in these files.
             var walker = new ParseTreeWalker();
-            foreach (var parsedFile in parsedFiles) {
+            foreach (var parsedFile in parsedFiles)
+            {
                 var typeDeclarationVisitor = new TypeDeclarationListener(parsedFile.Name, parsedFile.Tokens, parsedFile.Tree, ref typeDeclarations);
 
                 walker.Walk(typeDeclarationVisitor, parsedFile.Tree);
@@ -499,7 +501,8 @@ namespace Yarn.Compiler
                 fileTags.Add(parsedFile.Name, newFileTags);
             }
 
-            foreach (var parsedFile in parsedFiles) {
+            foreach (var parsedFile in parsedFiles)
+            {
                 var checker = new TypeCheckVisitor(parsedFile.Name, knownVariableDeclarations, typeDeclarations);
 
                 checker.Visit(parsedFile.Tree);
@@ -508,7 +511,8 @@ namespace Yarn.Compiler
                 diagnostics.AddRange(checker.Diagnostics);
 
 #if VALIDATE_ALL_EXPRESSIONS
-                // Validate that the type checker assigned a type to every expression
+                // Validate that the type checker assigned a type to every
+                // expression
                 var allExpressions = FlattenParseTree(parsedFile.tree).OfType<YarnSpinnerParser.ExpressionContext>();
 
                 var expressionsWithNoType = allExpressions.Where(e => e.Type == BuiltinTypes.Undefined);
@@ -532,7 +536,7 @@ namespace Yarn.Compiler
                     StringTable = null,
                     FileTags = fileTags,
                     Diagnostics = diagnostics,
-            };
+                };
             }
 
             foreach (var parsedFile in parsedFiles)
@@ -570,13 +574,20 @@ namespace Yarn.Compiler
                     continue;
                 }
 
-                if (declaration.Type == BuiltinTypes.String) {
+                if (declaration.Type == BuiltinTypes.String)
+                {
                     value = new Operand(Convert.ToString(declaration.DefaultValue));
-                } else if (declaration.Type == BuiltinTypes.Number) {
+                }
+                else if (declaration.Type == BuiltinTypes.Number)
+                {
                     value = new Operand(Convert.ToSingle(declaration.DefaultValue));
-                } else if (declaration.Type == BuiltinTypes.Boolean) {
+                }
+                else if (declaration.Type == BuiltinTypes.Boolean)
+                {
                     value = new Operand(Convert.ToBoolean(declaration.DefaultValue));
-                } else {
+                }
+                else
+                {
                     throw new ArgumentOutOfRangeException($"Cannot create an initial value for type {declaration.Type.Name}");
                 }
 
@@ -616,7 +627,7 @@ namespace Yarn.Compiler
             variableDeclarationVisitor.Visit(parsedFile.Tree);
 
             newDiagnosticList.AddRange(variableDeclarationVisitor.Diagnostics);
-            
+
             // Upon exit, newDeclarations will now contain every variable
             // declaration we found
             newDeclarations = variableDeclarationVisitor.NewDeclarations;
@@ -718,7 +729,8 @@ namespace Yarn.Compiler
                     functionType.AddParameter(yarnParameterType);
                 }
 
-                if (includeMethod == false) {
+                if (includeMethod == false)
+                {
                     continue;
                 }
 
@@ -770,7 +782,7 @@ namespace Yarn.Compiler
             lexer.AddErrorListener(lexerErrorListener);
 
             IParseTree tree;
-            
+
             tree = parser.dialogue();
 
             var newDiagnostics = lexerErrorListener.Diagnostics.Concat(parserErrorListener.Diagnostics);
@@ -867,7 +879,8 @@ namespace Yarn.Compiler
         /// Extracts a line ID from a collection of <see
         /// cref="YarnSpinnerParser.HashtagContext"/>s, if one exists.
         /// </summary>
-        /// <param name="hashtagContexts">The hashtag parsing contexts.</param>
+        /// <param name="hashtagContexts">The hashtag parsing
+        /// contexts.</param>
         /// <returns>The line ID if one is present in the hashtag contexts,
         /// otherwise `null`.</returns>
         internal static YarnSpinnerParser.HashtagContext GetLineIDTag(YarnSpinnerParser.HashtagContext[] hashtagContexts)
@@ -978,7 +991,8 @@ namespace Yarn.Compiler
                     visitor.Visit(statement);
                 }
             }
-            // We are a rawText node. Don't compile it; instead, note the string
+            // We are a rawText node. Don't compile it; instead, note the
+            // string
             else
             {
                 CurrentNode.SourceTextStringID = Compiler.GetLineIDForNodeName(CurrentNode.Name);
@@ -1052,7 +1066,8 @@ namespace Yarn.Compiler
                 if (subsequentComments != null)
                 {
                     var subsequentDocComment = subsequentComments
-                        // This comment is on the same line as the end of the declaration
+                        // This comment is on the same line as the end of
+                        // the declaration
                         .Where(t => t.Line == context.Stop.Line)
                         // The comment starts with a triple-slash
                         .Where(t => t.Text.StartsWith("///"))
