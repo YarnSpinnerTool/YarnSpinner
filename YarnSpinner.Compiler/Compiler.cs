@@ -1,4 +1,4 @@
-﻿// Uncomment to ensure that all expressions have a known type at compile time
+// Uncomment to ensure that all expressions have a known type at compile time
 // #define VALIDATE_ALL_EXPRESSIONS
 
 namespace Yarn.Compiler
@@ -856,7 +856,7 @@ namespace Yarn.Compiler
         /// <param name="hashtagContexts">The hashtag parsing contexts.</param>
         /// <returns>The line ID if one is present in the hashtag contexts,
         /// otherwise `null`.</returns>
-        internal static string GetLineID(YarnSpinnerParser.HashtagContext[] hashtagContexts)
+        internal static YarnSpinnerParser.HashtagContext GetLineIDTag(YarnSpinnerParser.HashtagContext[] hashtagContexts)
         {
             // if there are any hashtags
             if (hashtagContexts != null)
@@ -866,7 +866,7 @@ namespace Yarn.Compiler
                     string tagText = hashtagContext.text.Text;
                     if (tagText.StartsWith("line:", StringComparison.InvariantCulture))
                     {
-                        return tagText;
+                        return hashtagContext;
                     }
                 }
             }

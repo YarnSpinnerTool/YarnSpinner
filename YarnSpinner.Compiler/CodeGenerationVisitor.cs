@@ -82,11 +82,13 @@ namespace Yarn.Compiler
             var expressionCount = GenerateCodeForExpressionsInFormattedText(context.line_formatted_text().children);
 
             // Get the lineID for this string from the hashtags 
-            string lineID = Compiler.GetLineID(context.hashtag());
+            var lineIDTag = Compiler.GetLineIDTag(context.hashtag());
 
-            if (lineID == null) {
-                throw new InvalidOperationException("Internal error: no line ID specified");
+            if (lineIDTag == null) {
+                throw new InvalidOperationException("Internal error: line should have an implicit or explicit line ID tag, but none was found");
             }
+
+            var lineID = lineIDTag.text.Text;
 
             compiler.Emit(OpCode.RunLine, new Operand(lineID), new Operand(expressionCount));
 
@@ -306,9 +308,10 @@ namespace Yarn.Compiler
                 var expressionCount = GenerateCodeForExpressionsInFormattedText(shortcut.line_statement().line_formatted_text().children);
 
                 // Get the line ID from the hashtags if it has one
-                string lineID = Compiler.GetLineID(shortcut.line_statement().hashtag());
+                var lineIDTag = Compiler.GetLineIDTag(shortcut.line_statement().hashtag());
+                string lineID = lineIDTag.text.Text;
 
-                if (lineID == null) {
+                if (lineIDTag == null) {
                     throw new InvalidOperationException("Internal error: no line ID provided");
                 }
 

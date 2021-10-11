@@ -72,9 +72,11 @@ namespace Yarn.Compiler
         {
             int lineNumber = context.Start.Line;
 
-            string lineID = Compiler.GetLineID(context.hashtag());
+            YarnSpinnerParser.HashtagContext[] hashtags = context.hashtag();
+            var lineIDTag = Compiler.GetLineIDTag(hashtags);
+            var lineID = lineIDTag?.text.Text ?? null;
 
-            var hashtagText = GetHashtagTexts(context.hashtag());
+            var hashtagText = this.GetHashtagTexts(hashtags);
 
             GenerateFormattedText(context.line_formatted_text().children, out var composedString, out var expressionCount);
 
