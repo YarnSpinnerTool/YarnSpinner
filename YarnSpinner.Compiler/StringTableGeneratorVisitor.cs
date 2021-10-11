@@ -71,7 +71,13 @@ namespace Yarn.Compiler
             else
             {
                 // This is a regular node
-                this.Visit(context.body());
+                // this.Visit(context.body());
+
+                var body = context.body();
+                if (body != null) {
+                    this.Visit(body);
+                }
+                // String table generator: don't crash if a node has no body
             }
 
             return 0;

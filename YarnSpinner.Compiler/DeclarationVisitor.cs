@@ -102,7 +102,13 @@ namespace Yarn.Compiler
                     currentNodeName = header.header_value.Text;
                 }
             }
-            Visit(context.body());
+
+            var body = context.body();
+
+            if (body != null) {
+                base.Visit(body);
+            }
+
             return null;
         }
 
