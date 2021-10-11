@@ -990,45 +990,10 @@ namespace Yarn.Compiler
             return "line:" + name;
         }
 
-        // exiting the body of the node, time for last minute work before
-        // moving onto the next node Does this node end after emitting
-        // AddOptions codes without calling ShowOptions?
         public override void ExitBody(YarnSpinnerParser.BodyContext context)
         {
-            // Note: this only works when we know that we don't have
-            // AddOptions and then Jump up back into the code to run
-            // them. TODO: A better solution would be for the parser to
-            // flag whether a node has Options at the end.
-            var hasRemainingOptions = false;
-            foreach (var instruction in CurrentNode.Instructions)
-            {
-                if (instruction.Opcode == OpCode.AddOption)
-                {
-                    hasRemainingOptions = true;
-                }
-                if (instruction.Opcode == OpCode.ShowOptions)
-                {
-                    hasRemainingOptions = false;
-                }
-            }
-
-            // If this compiled node has no lingering options to show
-            // at the end of the node, then stop at the end
-            if (hasRemainingOptions == false)
-            {
-                Emit(CurrentNode, OpCode.Stop);
-            }
-            else
-            {
-                // Otherwise, show the accumulated nodes and then jump
-                // to the selected node
-                Emit(CurrentNode, OpCode.ShowOptions);
-
-                // Showing options will make the execution stop; the
-                // user will have invoked code that pushes the name of
-                // a node onto the stack, which RunNode handles
-                Emit(CurrentNode, OpCode.RunNode);
-            }
+            // We have exited the body; emit a 'stop' opcode here.
+            Emit(CurrentNode, OpCode.Stop);
         }
 
         /// <summary>
