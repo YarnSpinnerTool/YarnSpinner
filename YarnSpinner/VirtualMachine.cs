@@ -423,11 +423,6 @@ namespace Yarn
             {
                 throw new DialogueException($"Cannot continue running dialogue. {nameof(NodeCompleteHandler)} has not been set.");
             }
-
-            if (NodeCompleteHandler == null)
-            {
-                throw new DialogueException($"Cannot continue running dialogue. {nameof(NodeCompleteHandler)} has not been set.");
-            }
         }
 
         /// Looks up the instruction number for a named label in the current node.

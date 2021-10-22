@@ -25,7 +25,7 @@ Once you've downloaded it, head over to the [tutorial](https://yarnspinner.dev/d
 There are several places to get help with Yarn Spinner, and stay up to date with what's happening.
 
 * [Follow us on Twitter](https://twitter.com/YarnSpinnerTool)!
-* Join our [narrative game development](http://lab.to/narrativegamedev) Slack!
+* Join the official [Yarn Spinner Discord](https://discord.gg/9CvsQfS)!
 
 ## License
 
