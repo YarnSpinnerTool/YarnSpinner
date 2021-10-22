@@ -12,6 +12,10 @@
         "language": "CSharp",
         "listeners": true,
         "visitors": true,
-        "outputDir": "."
-    }
+        "outputDir": ".",
+        "package": "Yarn.Compiler"
+    },
+    "coverage-gutters.coverageFileNames": [
+        "coverage*.info",
+    ]
 }

@@ -1,7 +1,9 @@
 title: A
 ---
-[[Go to B|B]]
-[[Go to C|C]]
+-> Go to B
+    <<jump B>>
+-> Go to C
+    <<jump C>>
 ===
 title: B
 ---

@@ -13,16 +13,14 @@ namespace YarnSpinner.Tests
 
     public class TestBase
     {
-
-        
-
-        protected VariableStorage storage = new MemoryVariableStore();
+        protected IVariableStorage storage = new MemoryVariableStore();
         protected Dialogue dialogue;
         protected IDictionary<string, Yarn.Compiler.StringInfo> stringTable;
+        protected IEnumerable<Yarn.Compiler.Declaration> declarations;
 
         public string locale = "en";
         
-        protected bool errorsCauseFailures = true;
+        protected bool runtimeErrorsCauseFailures = true;
 
         // Returns the path that contains the test case files.
 
@@ -62,26 +60,21 @@ namespace YarnSpinner.Tests
             }
         }
 
-        private TestPlan testPlan;
+        protected TestPlan testPlan;
 
         public string GetComposedTextForLine(Line line) {
 
-            var baseText = stringTable[line.ID].text;
+            var substitutedText = Dialogue.ExpandSubstitutions(stringTable[line.ID].text, line.Substitutions);
 
-            for (int i = 0; i < line.Substitutions.Length; i++) {
-                string substitution = line.Substitutions[i];
-                baseText = baseText.Replace("{" + i + "}", substitution);
-            }
-
-
-
-            return Dialogue.ExpandFormatFunctions(baseText, locale);
+            return dialogue.ParseMarkup(substitutedText).Text;
         }
         
         public TestBase()
         {
 
             dialogue = new Dialogue (storage);
+
+            dialogue.LanguageCode = "en";
 
             dialogue.LogDebugMessage = delegate(string message) {
                 Console.ResetColor();
@@ -94,16 +87,18 @@ namespace YarnSpinner.Tests
                 Console.WriteLine ("ERROR: " + message);
                 Console.ResetColor ();
 
-                if (errorsCauseFailures == true) {
+                if (runtimeErrorsCauseFailures == true) {
                     Assert.NotNull(message);
                 }
                     
             };
 
-            dialogue.lineHandler = delegate (Line line) {
+            dialogue.LineHandler = delegate (Line line) {
                 var id = line.ID;
 
                 Assert.Contains(id, stringTable.Keys);
+
+                var lineNumber = stringTable[id].lineNumber;
 
                 var text = GetComposedTextForLine(line);
 
@@ -113,16 +108,14 @@ namespace YarnSpinner.Tests
                     testPlan.Next();
 
                     if (testPlan.nextExpectedType == TestPlan.Step.Type.Line) {
-                        Assert.Equal(testPlan.nextExpectedValue, text);
+                        Assert.Equal($"Line {lineNumber}: {testPlan.nextExpectedValue}", $"Line {lineNumber}: {text}");
                     } else {
                         throw new Xunit.Sdk.XunitException($"Received line {text}, but was expecting a {testPlan.nextExpectedType.ToString()}");
                     }
                 }
-                            
-                return Dialogue.HandlerExecutionType.ContinueExecution;
             };
 
-            dialogue.optionsHandler = delegate (OptionSet optionSet) {
+            dialogue.OptionsHandler = delegate (OptionSet optionSet) {
                 var optionCount = optionSet.Options.Length;
 
                 Console.WriteLine("Options:");
@@ -140,7 +133,9 @@ namespace YarnSpinner.Tests
 
                     // Assert that the list of options we were given is
                     // identical to the list of options we expect
-                    var actualOptionList = optionSet.Options.Select(o => GetComposedTextForLine(o.Line)).ToList();
+                    var actualOptionList = optionSet.Options
+                        .Select(o => (GetComposedTextForLine(o.Line), o.IsAvailable))
+                        .ToList();
                     Assert.Equal(testPlan.nextExpectedOptions, actualOptionList);
 
                     var expectedOptionCount = testPlan.nextExpectedOptions.Count();
@@ -157,7 +152,7 @@ namespace YarnSpinner.Tests
                 
             };
 
-            dialogue.commandHandler = delegate (Command command) {
+            dialogue.CommandHandler = delegate (Command command) {
                 Console.WriteLine("Command: " + command.Text);
                 
                 if (testPlan != null) {
@@ -176,22 +171,21 @@ namespace YarnSpinner.Tests
                         Assert.Equal(testPlan.nextExpectedValue, command.Text);
                     }
                 }
-                
-                return Dialogue.HandlerExecutionType.ContinueExecution;
             };
 
-            dialogue.library.RegisterFunction ("assert", 1, delegate(Yarn.Value[] parameters) {
-                if (parameters[0].AsBool == false) {
+            dialogue.Library.RegisterFunction ("assert", delegate(Yarn.Value value) {
+                if (value.ConvertTo<bool>() == false) {
                         Assert.NotNull ("Assertion failed");
                 }
+                return true;
             });
 
             
-            // When a node is complete, just indicate that we want to continue execution
-            dialogue.nodeCompleteHandler = (string nodeName) => Dialogue.HandlerExecutionType.ContinueExecution;
+            // When a node is complete, do nothing
+            dialogue.NodeCompleteHandler = (string nodeName) => {};
 
             // When dialogue is complete, check that we expected a stop
-            dialogue.dialogueCompleteHandler = () => {
+            dialogue.DialogueCompleteHandler = () => {
                 if (testPlan != null) {
                     testPlan.Next();
 
@@ -201,10 +195,21 @@ namespace YarnSpinner.Tests
                 }
             };
 
+            // The Space test scripts call a function called "visited",
+            // which is defined in the Unity runtime and returns true if a
+            // node with the given name has been run before. For type
+            // correctness, we stub it out here with an implementation that
+            // just returns false
+            dialogue.Library.RegisterFunction("visited", (string nodeName) => false );
+
         }
 
-        // Executes the named node, and checks any assertions made during
-        // execution. Fails the test if an assertion made in Yarn fails.
+        /// <summary>
+        /// Executes the named node, and checks any assertions made during
+        /// execution. Fails the test if an assertion made in Yarn fails.
+        /// </summary>
+        /// <param name="nodeName">The name of the node to start the test
+        /// from. Defaults to "Start".</param>
         protected void RunStandardTestcase(string nodeName = "Start") {
 
             if (testPlan == null) {
@@ -219,13 +224,63 @@ namespace YarnSpinner.Tests
             
         }
 
-        protected string CreateTestNode(string source) {
-            return $"title: Start\n---\n{source}\n===";
+        protected string CreateTestNode(string source, string name="Start") {
+            return $"title: {name}\n---\n{source}\n===";
             
         }
 
+        /// <summary>
+        /// Sets the current test plan to one loaded from a given path.
+        /// </summary>
+        /// <param name="path">The path of the file containing the test
+        /// plan.</param>
         public void LoadTestPlan(string path) {
             this.testPlan = new TestPlan(path);
+        }
+
+        // Returns the list of .node and.yarn files in the
+        // Tests/<directory> directory.
+        public static IEnumerable<object[]> FileSources(string directoryComponents) {
+
+            var allowedExtensions = new[] { ".node", ".yarn" };
+
+            var directory = Path.Combine(directoryComponents.Split('/'));
+
+            var path = Path.Combine(TestDataPath, directory);
+
+            var files = GetFilesInDirectory(path);
+
+            return files.Where(p => allowedExtensions.Contains(Path.GetExtension(p)))
+                        .Where(p => p.EndsWith(".upgraded.yarn") == false) // don't include ".upgraded.yarn" (used in UpgraderTests)
+                        .Select(p => new[] {Path.Combine(directory, Path.GetFileName(p))});
+        }
+
+        public static IEnumerable<object[]> DirectorySources(string directoryComponents) {
+            var directory = Path.Combine(directoryComponents.Split('/'));
+
+            var path = Path.Combine(TestDataPath, directory);
+
+            try {
+                return Directory.GetDirectories(path)
+                    .Select(d => d.Replace(TestDataPath + Path.DirectorySeparatorChar, ""))
+                    .Select(d => new[] {d});
+            } catch (DirectoryNotFoundException) {
+                return new string[] { }.Select(d => new[] {d});
+            }
+        }
+
+        // Returns the list of files in a directory. If that directory doesn't
+        // exist, returns an empty list.
+        static IEnumerable<string> GetFilesInDirectory(string path)
+        {
+            try
+            {
+                return Directory.EnumerateFiles(path);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                return new string[] { };
+            }
         }
     }
 }

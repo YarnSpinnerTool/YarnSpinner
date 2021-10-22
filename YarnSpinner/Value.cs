@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace Yarn
@@ -7,199 +8,11 @@ namespace Yarn
     /// <summary>
     /// A value from inside Yarn.
     /// </summary>
-    public class Value : IComparable, IComparable<Value> {
+    internal partial class Value
+    {
+        public Yarn.IType Type { get; internal set; }
 
-        /// <summary>
-        /// The shared Null value.
-        /// </summary>
-        public static readonly Value NULL = new Value();
-
-        /// <summary>
-        /// The type of a <see cref="Value"/>.
-        /// </summary>
-        public enum Type
-        {
-            /// <summary>A number.</summary>
-            Number,
-
-#pragma warning disable CA1720 // Identifier contains type name
-            /// <summary>A string.</summary>
-            String,
-#pragma warning restore CA1720 // Identifier contains type name
-
-            /// <summary>A boolean value.</summary>
-            Bool,
-
-            /// <summary>The name of a variable; will be expanded at runtime.</summary>
-            Variable,
-
-            /// <summary>The null value.</summary>
-            Null,
-        }
-
-        /// <summary>
-        /// Gets the underlying type of this value.
-        /// </summary>
-        /// <remarks>
-        /// Yarn values of one underlying type can always been converted to
-        /// other types. This property allows you to access the actual type of value
-        /// that this value contains.
-        /// </remarks>
-        public Value.Type type { get; internal set; }
-
-        // The underlying values for this object
-        private float NumberValue { get; set; }
-
-        private string VariableName { get; set; }
-
-        private string StringValue { get; set; }
-
-        private bool BoolValue { get; set; }
-
-        private object BackingValue
-        {
-            get
-            {
-                switch (this.type)
-                {
-                    case Type.Null: return null;
-                    case Type.String: return this.StringValue;
-                    case Type.Number: return this.NumberValue;
-                    case Type.Bool: return this.BoolValue;
-                    case Type.Variable:
-                        break;
-                }
-                throw new InvalidOperationException(
-                    string.Format(CultureInfo.CurrentCulture, "Can't get good backing type for {0}", this.type)
-                );
-            }
-        }
-
-        /// <summary>
-        /// Gets the numeric representation of this value.
-        /// </summary>
-        /// <remarks>
-        /// This method will attempt to convert the value to a number, if
-        /// it isn't already. The conversion is done in the following ways:
-        ///
-        /// * If the value is a string, the value attempts to parse it as a
-        /// number and returns that; if this fails, 0 is returned.
-        ///
-        /// * If the value is a boolean, it will return 1 if `true`, and 0 if `false`.
-        ///
-        /// * If the value is `null`, it will return `0`.
-        ///
-        /// </remarks>
-        /// <exception cref="InvalidOperationException">Thrown when the
-        /// underlying value cannot be converted to a <see
-        /// cref="float"/>.</exception>
-        public float AsNumber
-        {
-            get
-            {
-                switch (this.type)
-                {
-                    case Type.Number:
-                        return this.NumberValue;
-                    case Type.String:
-                        try
-                        {
-                            return float.Parse(this.StringValue, CultureInfo.InvariantCulture);
-                        }
-                        catch (FormatException)
-                        {
-                            return 0.0f;
-                        }
-                    case Type.Bool:
-                        return this.BoolValue ? 1.0f : 0.0f;
-                    case Type.Null:
-                        return 0.0f;
-                    default:
-                        throw new InvalidOperationException ("Cannot cast to number from " + type.ToString());
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the boolean representation of this value.
-        /// </summary>
-        /// <remarks>
-        /// This method will attempt to convert the value to a number, if
-        /// it isn't already. The conversion is done in the following ways:
-        ///
-        /// * If the value is a string, it will return `true` if the string
-        /// is not empty.
-        ///
-        /// * If the value is a number, it will return `true` if the value
-        /// is non-zero, and `false` otherwise.
-        ///
-        /// * If the value is `null`, it will return `false`.
-        /// </remarks>
-        /// <exception cref="InvalidOperationException">Thrown when the
-        /// underlying value cannot be converted to a <see
-        /// cref="bool"/>.</exception>
-        public bool AsBool
-        {
-            get
-            {
-                switch (type)
-                {
-                    case Type.Number:
-                        return !float.IsNaN(this.NumberValue) && this.NumberValue != 0.0f;
-                    case Type.String:
-                        return !String.IsNullOrEmpty(this.StringValue);
-                    case Type.Bool:
-                        return this.BoolValue;
-                    case Type.Null:
-                        return false;
-                    default:
-                        throw new InvalidOperationException("Cannot cast to bool from " + type.ToString());
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the string representation of this value.
-        /// </summary>
-        /// <remarks>
-        /// This method will attempt to convert the value to a string, if
-        /// it isn't already. Conversions are done using the <see
-        /// cref="CultureInfo"/> class's <see
-        /// cref="CultureInfo.InvariantCulture"/>.
-        /// </remarks>
-        /// <exception cref="InvalidOperationException">Thrown when the
-        /// underlying value cannot be converted to a <see
-        /// cref="string"/>.</exception>
-        public string AsString
-        {
-            get
-            {
-                switch (type)
-                {
-                    case Type.Number:
-                        if (float.IsNaN(this.NumberValue))
-                        {
-                            return "NaN";
-                        }
-                        return this.NumberValue.ToString(CultureInfo.InvariantCulture);
-                    case Type.String:
-                        return this.StringValue;
-                    case Type.Bool:
-                        return this.BoolValue.ToString(CultureInfo.InvariantCulture);
-                    case Type.Null:
-                        return "null";
-                    default:
-                        throw new InvalidOperationException("Cannot cast to string from " + type.ToString());
-                }
-            }
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Value"/> class.
-        /// The value will be `null`.
-        /// </summary>
-        /// <returns>A <see cref="Value"/>, containing `null`.</returns>
-        public Value () : this(null) { }
+        internal IConvertible InternalValue;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Value"/> class,
@@ -215,57 +28,21 @@ namespace Yarn
         /// </throws>
         /// <param name="value">The value that this <see cref="Value"/>
         /// should contain.</param>
-        public Value (object value)
+        public Value(Value value)
         {
-            // Copy an existing value
-            if (typeof(Value).IsInstanceOfType(value)) {
-                var otherValue = value as Value;
-                type = otherValue.type;
-                switch (type) {
-                case Type.Number:
-                    NumberValue = otherValue.NumberValue;
-                    break;
-                case Type.String:
-                    StringValue = otherValue.StringValue;
-                    break;
-                case Type.Bool:
-                    BoolValue = otherValue.BoolValue;
-                    break;
-                case Type.Variable:
-                    VariableName = otherValue.VariableName;
-                    break;
-                case Type.Null:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException ();
-                }
-                return;
-            }
-            if (value == null) {
-                type = Type.Null;
-                return;
-            }
-            if (value.GetType() == typeof(string) ) {
-                type = Type.String;
-                StringValue = System.Convert.ToString(value, CultureInfo.InvariantCulture);
-                return;
-            }
-            if (value.GetType() == typeof(int) ||
-                value.GetType() == typeof(float) ||
-                value.GetType() == typeof(double)) {
-                type = Type.Number;
-                NumberValue = System.Convert.ToSingle(value, CultureInfo.InvariantCulture);
+            this.Type = value.Type;
+            this.InternalValue = value.InternalValue;
+        }
 
-                return;
-            }
-            if (value.GetType() == typeof(bool) ) {
-                type = Type.Bool;
-                BoolValue = System.Convert.ToBoolean(value, CultureInfo.InvariantCulture);
-                return;
-            }
-            var error = string.Format(CultureInfo.CurrentCulture, "Attempted to create a Value using a {0}; currently, " +
-                "Values can only be numbers, strings, bools or null.", value.GetType().Name);
-            throw new ArgumentException(error);
+        public Value(IBridgeableType<IConvertible> type) {
+            this.Type = type;
+            this.InternalValue = type.DefaultValue;
+        }
+
+        public Value(IType type, IConvertible internalValue)
+        {
+            this.Type = type;
+            this.InternalValue = internalValue;
         }
 
         /// <summary>
@@ -274,12 +51,8 @@ namespace Yarn
         /// <param name="obj">The object to compare to.</param>
         /// <returns>Returns the same results as <see cref="CompareTo(Value)"/>.</returns>
         /// <exception cref="ArgumentException">Thrown when `obj` is not a <see cref="Value"/>.</exception>
-        public int CompareTo(object obj) {
-            if (obj == null)
-            {
-                return 1;
-            }
-
+        public int CompareTo(object obj)
+        {
             // not a value
             if (!(obj is Value other))
             {
@@ -290,333 +63,33 @@ namespace Yarn
             return ((IComparable<Value>)this).CompareTo(other);
         }
 
-        /// <summary>
-        /// Compares this <see cref="Value"/> to another <see cref="Value"/>.
-        /// </summary>
-        /// <param name="other">The other  <see cref="Value"/> to compare to.</param>
-        /// <remarks>The method of comparison depends upon the value's <see cref="BackingValue"/>. 
-        ///
-        /// * If this value is <see cref="Type.String"/>, then the String class's <see cref="string.Compare(string, string, StringComparison)"/> method is used.
-        ///
-        /// * If this value is <see cref="Type.Number"/>, then the float type's <see cref="float.CompareTo(float)"/> method is used.
-        ///
-        /// * If this value is <see cref="Type.Bool"/>, then the bool type's <see cref="bool.CompareTo(bool)"/> method is used.
-        ///
-        /// * If this value is `null`, the result will be the value 0.
-        ///
-        /// * If `other` is `null`, the result will be the value 1.
-        /// </remarks>
-        /// <returns>Returns the result of comparing this <see cref="Value"/> against `other`.</returns>
-        public int CompareTo(Value other)
+        public T ConvertTo<T>()
+            where T : IConvertible
         {
-            if (other == null)
-            {
-                return 1;
-            }
+            System.Type targetType = typeof(T);
 
-            if (other.type == this.type)
-            {
-                switch (this.type)
-                {
-                    case Type.Null:
-                        return 0;
-                    case Type.String:
-                        return string.Compare(this.StringValue, other.StringValue, StringComparison.InvariantCulture);
-                    case Type.Number:
-                        return this.NumberValue.CompareTo(other.NumberValue);
-                    case Type.Bool:
-                        return this.BoolValue.CompareTo(other.BoolValue);
-                }
-            }
-
-            // try to do a string test at that point!
-            return string.Compare(this.AsString, other.AsString, StringComparison.InvariantCulture);
+            return (T)this.ConvertTo(targetType);
         }
 
-        /// <summary>
-        /// Compares to see if this <see cref="Value"/> is the same as another.
-        /// </summary>
-        /// <remarks>
-        /// `obj` is converted to the same type as this value, using <see cref="AsNumber"/>, <see cref="AsString"/>, and <see cref="AsBool"/>.
-        ///
-        /// If this value is `null`, this method returns `true` if any of the following are true:
-        ///
-        /// * `obj` is null
-        ///
-        /// * `obj.AsNumber` is 0
-        ///
-        /// * `obj.AsBool` is `false`.
-        /// </remarks>
-        /// <param name="obj">The other <see cref="Value"/> to compare against.</param>
-        /// <returns>`true` if the objects represent the same value, `false` otherwise.</returns>
-        public override bool Equals(object obj)
+        public object ConvertTo(System.Type targetType)
         {
-            if (obj == null || this.GetType() != obj.GetType()) {
-                return false;
+            if (targetType == typeof(Yarn.Value)) {
+                return this;
             }
 
-            var other = (Value)obj;
-
-            switch (this.type) {
-            case Type.Number:
-                return this.AsNumber == other.AsNumber;
-            case Type.String:
-                return this.AsString == other.AsString;
-            case Type.Bool:
-                return this.AsBool == other.AsBool;
-            case Type.Null:
-                return other.type == Type.Null || other.AsNumber == 0 || other.AsBool == false;
-            default:
-                throw new ArgumentOutOfRangeException ();
-            }
-
-        }
-
-        // override object.GetHashCode
-        /// <summary>
-        /// Returns the hash code for this value.
-        /// </summary>
-        /// <returns>A 32-bit signed integer hash code.</returns>
-        public override int GetHashCode()
-        {
-            var backing = this.BackingValue;
-
-            // TODO: yeah hay maybe fix this
-            if (backing != null)
-            {
-                return backing.GetHashCode();
-            }
-
-            return 0;
+            return Convert.ChangeType(this.InternalValue, targetType);
         }
 
         /// <summary>
         /// Converts this value to a string.
         /// </summary>
         /// <returns>The string representation of this value</returns>
-        public override string ToString ()
+        public override string ToString()
         {
-            return string.Format (CultureInfo.CurrentCulture,
-                "[Value: type={0}, AsNumber={1}, AsBool={2}, AsString={3}]",
-                type,
-                AsNumber,
-                AsBool,
-                AsString);
-        }
-
-        /// <summary>
-        /// Adds two values together.
-        /// </summary>
-        /// <remarks>
-        /// The specific method by which two values of different types are
-        /// added together depends upon the type of each of the values.
-        /// </remarks>
-        /// <param name="a">The first value.</param>
-        /// <param name="b">The second value.</param>
-        /// <returns>A new <see cref="Value"/>, containing the result of
-        /// adding the two values together.</returns>
-        /// <throws cref="ArgumentException">Thrown when the two values
-        /// cannot be added together.</throws>
-        public static Value operator+ (Value a, Value b) {
-            // catches:
-            // undefined + string
-            // number + string
-            // string + string
-            // bool + string
-            // null + string
-            if (a.type == Type.String || b.type == Type.String ) {
-                // we're headed for string town!
-                return new Value( a.AsString + b.AsString );
-            }
-
-            // catches:
-            // number + number
-            // bool (=> 0 or 1) + number
-            // null (=> 0) + number
-            // bool (=> 0 or 1) + bool (=> 0 or 1)
-            // null (=> 0) + null (=> 0)
-            if ((a.type == Type.Number || b.type == Type.Number) ||
-                (a.type == Type.Bool && b.type == Type.Bool) ||
-                (a.type == Type.Null && b.type == Type.Null)
-            ) {
-                return new Value( a.AsNumber + b.AsNumber );
-            }
-
-            throw new System.ArgumentException(
-                string.Format(CultureInfo.CurrentCulture, "Cannot add types {0} and {1}.", a.type, b.type )
-            );
-        }
-
-        /// <summary>
-        /// Subtracts two values from each other.
-        /// </summary>
-        /// <remarks>
-        /// Both values must be either a number or `null`.
-        /// </remarks>
-        /// <param name="a">The first value.</param>
-        /// <param name="b">The second value.</param>
-        /// <returns>A new <see cref="Value"/>, containing the result of
-        /// subtracting the two values from each other.</returns>
-        /// <throws cref="ArgumentException">Thrown when the two values
-        /// cannot be subtracted from each other together.</throws>
-        public static Value operator- (Value a, Value b) {
-            if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Null) ||
-                b.type == Type.Number && (a.type == Type.Number || a.type == Type.Null)
-            ) {
-                return new Value( a.AsNumber - b.AsNumber );
-            }
-
-            throw new System.ArgumentException(
-                string.Format(CultureInfo.CurrentCulture, "Cannot subtract types {0} and {1}.", a.type, b.type )
-            );
-        }
-
-        /// <summary>
-        /// Multiplies two values together.
-        /// </summary>
-        /// <remarks>
-        /// Both values must be either a number or `null`.
-        /// </remarks>
-        /// <param name="a">The first value.</param>
-        /// <param name="b">The second value.</param>
-        /// <returns>A new <see cref="Value"/>, containing the result of
-        /// multiplying the two values together.</returns>
-        /// <throws cref="ArgumentException">Thrown when the two values
-        /// cannot be multiplied together.</throws>
-        public static Value operator* (Value a, Value b) {
-            if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Null) ||
-                b.type == Type.Number && (a.type == Type.Number || a.type == Type.Null)
-            ) {
-                return new Value( a.AsNumber * b.AsNumber );
-            }
-
-            throw new System.ArgumentException(
-                string.Format(CultureInfo.CurrentCulture, "Cannot multiply types {0} and {1}.", a.type, b.type )
-            );
-        }
-
-        /// <summary>
-        /// Divides two values.
-        /// </summary>
-        /// <remarks>
-        /// Both values must be either a number or `null`.
-        /// </remarks>
-        /// <param name="a">The first value.</param>
-        /// <param name="b">The second value.</param>
-        /// <returns>A new <see cref="Value"/>, containing the result of
-        /// dividing two values.</returns>
-        /// <throws cref="ArgumentException">Thrown when the two values
-        /// cannot be divided.</throws>
-        public static Value operator/ (Value a, Value b) {
-            if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Null) ||
-                b.type == Type.Number && (a.type == Type.Number || a.type == Type.Null)
-            ) {
-                return new Value( a.AsNumber / b.AsNumber );
-            }
-
-            throw new System.ArgumentException(
-                string.Format(CultureInfo.CurrentCulture, "Cannot divide types {0} and {1}.", a.type, b.type )
-            );
-        }
-
-        /// <summary>
-        /// Calculates the remainder when dividing two values.
-        /// </summary>
-        /// <remarks>
-        /// Both values must be either a number or `null`.
-        /// </remarks>        
-        /// <param name="a">The first value.</param>
-        /// <param name="b">The second value.</param>
-        /// <returns>A new <see cref="Value"/>, containing the remainder of
-        /// dividing two values .</returns>
-        /// <throws cref="ArgumentException">Thrown when the two values
-        /// cannot be divided.</throws>
-        public static Value operator %(Value a, Value b) {
-            if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Null) ||
-                b.type == Type.Number && (a.type == Type.Number || a.type == Type.Null)) {
-                return new Value (a.AsNumber % b.AsNumber);
-            }
-            throw new System.ArgumentException(
-                string.Format(CultureInfo.CurrentCulture, "Cannot modulo types {0} and {1}.", a.type, b.type )
-            );
-        }
-
-        /// <summary>
-        /// Computes the negative of a value.
-        /// </summary>
-        /// <remarks>
-        /// If the value is a number, the negative of that number is
-        /// returned.
-        ///
-        /// If the value is `null` or a string, the number `-0` (negative
-        /// zero) is returned.
-        /// 
-        /// Otherwise, a number containing the floating point value `NaN` (not a number) is returned.
-        /// </remarks>        
-        /// <param name="a">The first value.</param>
-        /// <param name="b">The second value.</param>
-        /// <returns>A new <see cref="Value"/>, containing the remainder of
-        /// dividing two values .</returns>
-        /// <throws cref="ArgumentException">Thrown when the two values
-        /// cannot be divided.</throws>
-        public static Value operator - (Value a) {
-            if (a.type == Type.Number)
-            {
-                return new Value(-a.AsNumber);
-            }
-            if (a.type == Type.Null &&
-                a.type == Type.String &&
-               (a.AsString == null || a.AsString.Trim() == string.Empty)
-            )
-            {
-                return new Value(-0);
-            }
-            return new Value(float.NaN);
-        }
-
-        /// <summary>
-        /// Compares two values, and returns `true` if the first is greater than the second.
-        /// </summary>
-        /// <param name="operand1">The first value.</param>
-        /// <param name="operand2">The second value.</param>
-        /// <returns>`true` if `operand1` is greater than `operand2`, false otherwise.</returns>
-        public static bool operator >(Value operand1, Value operand2)
-        {
-            return ((IComparable<Value>)operand1).CompareTo(operand2) == 1;
-        }
-
-        /// <summary>
-        /// Compares two values, and returns `true` if the first is less than the second.
-        /// </summary>
-        /// <param name="operand1">The first value.</param>
-        /// <param name="operand2">The second value.</param>
-        /// <returns>`true` if `operand1` is less than `operand2`, false otherwise.</returns>
-        public static bool operator <(Value operand1, Value operand2)
-        {
-            return ((IComparable<Value>)operand1).CompareTo(operand2) == -1;
-        }
-
-        /// <summary>
-        /// Compares two values, and returns `true` if the first is greater than or equal to the second.
-        /// </summary>
-        /// <param name="operand1">The first value.</param>
-        /// <param name="operand2">The second value.</param>
-        /// <returns>`true` if `operand1` is greater than or equal to `operand2`, false otherwise.</returns>
-        public static bool operator >=(Value operand1, Value operand2)
-        {
-            return ((IComparable<Value>)operand1).CompareTo(operand2) >= 0;
-        }
-
-        /// <summary>
-        /// Compares two values, and returns `true` if the first is less than or equal to the second.
-        /// </summary>
-        /// <param name="operand1">The first value.</param>
-        /// <param name="operand2">The second value.</param>
-        /// <returns>`true` if `operand1` is less than or equal to `operand2`, false otherwise.</returns>
-        // Define the is less than or equal to operator.
-        public static bool operator <=(Value operand1, Value operand2)
-        {
-            return ((IComparable<Value>)operand1).CompareTo(operand2) <= 0;
+            return string.Format(CultureInfo.CurrentCulture,
+                "[Value: type={0}, value={1}]",
+                this.Type.Name,
+                this.ConvertTo<string>());
         }
     }
 }

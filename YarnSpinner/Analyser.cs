@@ -91,13 +91,13 @@ namespace Yarn.Analysis
 
     public class Context {
 
-        IEnumerable<Type> _defaultAnalyserClasses;
-        internal IEnumerable<Type> defaultAnalyserClasses {
+        IEnumerable<System.Type> _defaultAnalyserClasses;
+        internal IEnumerable<System.Type> defaultAnalyserClasses {
             get {
-                var classes = new List<Type> ();
+                var classes = new List<System.Type> ();
 
                 if (_defaultAnalyserClasses == null) {
-                    classes = new List<Type> ();
+                    classes = new List<System.Type> ();
 
                     var assembly = this.GetType().Assembly;
 
@@ -128,7 +128,7 @@ namespace Yarn.Analysis
 
         }
 
-        public Context(params Type[] types) {
+        public Context(params System.Type[] types) {
             analysers = new List<CompiledProgramAnalyser> ();
 
             foreach (var analyserType in types) {
@@ -240,11 +240,6 @@ namespace Yarn.Analysis
 
             // Generate diagnoses
             var diagnoses = new List<Diagnosis>();
-
-            foreach (var readOnlyVariable in readOnlyVariables) {
-                var message = string.Format (CultureInfo.CurrentCulture, "Variable {0} is read from, but never assigned", readOnlyVariable);
-                diagnoses.Add(new Diagnosis (message, Diagnosis.Severity.Warning));
-            }
 
             foreach (var writeOnlyVariable in writeOnlyVariables) {
                 var message = string.Format (CultureInfo.CurrentCulture, "Variable {0} is assigned, but never read from", writeOnlyVariable);

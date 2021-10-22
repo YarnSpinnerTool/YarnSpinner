@@ -11,8 +11,10 @@ B: And I am too! You are talking to me!
 -> Um ok
 A: How delightful!
 B: What would you prefer to do next?
-[[Leave|Leave]]
-[[Learn more|LearnMore]]
+-> Leave
+    <<jump Leave>>
+-> Learn more
+    <<jump LearnMore>>
 ===
 title: Leave
 tags: 

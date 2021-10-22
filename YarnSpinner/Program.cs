@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Globalization;
@@ -92,6 +92,8 @@ namespace Yarn
 
                     output.Nodes[otherNodeName.Key] = otherNodeName.Value.Clone();
                 }
+
+                output.InitialValues.Add(otherProgram.InitialValues);
             }
             return output;
         }
@@ -129,9 +131,11 @@ namespace Yarn
                 case OpCode.CallFunc:
                     var function = l.GetFunction(Operands[0].StringValue);
 
-                    pops = function.paramCount;
+                    pops = function.Method.GetParameters().Length;
 
-                    if (function.returnsValue)
+                    var returnsValue = function.Method.ReturnType != typeof(void);
+
+                    if (returnsValue)
                     {
                         pushes = 1;
                     }

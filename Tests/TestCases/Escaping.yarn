@@ -1,0 +1,54 @@
+title: Start
+---
+Here's a line with a hashtag #hashtag
+Here's a line with an escaped hashtag \#hashtag
+
+Here's a line with an expression {0}
+Here's a line with an escaped expression \{0\}
+
+// Commented out because this isn't actually allowed, but we're just
+// maintaining the pattern here:
+// Here's a line with a command <<foo>
+Here's a line with an escaped command \<\<foo\>\>
+
+Here's a line with a comment // wow
+Here's a line with an escaped comment \/\/ wow
+
+Here's a line with an escaped backslash \\
+
+Here's some TMP-style styling with a color code: <color=\#fff>wow</color>
+
+Here's a url: http:\/\/github.com\/YarnSpinnerTool
+
+// Escaped markup is handled by the LineParser class, not the main grammar
+// itself
+Here's some markup: [a]hello[/a]
+Here's some escaped markup: \[a\]hello\[/a\]
+
+-> Here's an option with a hashtag #hashtag
+-> Here's an option with an escaped hashtag \#hashtag
+
+-> Here's an option with an expression {0}
+-> Here's an option with an escaped expression \{0\}
+
+// Commented out because this isn't actually allowed, but we're just
+// maintaining the pattern here:
+-> Here's an option with a condition <<if true>>
+-> Here's an option with an escaped condition \<\<if true\>\>
+
+-> Here's an option with a comment // wow
+-> Here's an option with an escaped comment \/\/ wow
+
+-> Here's an option with an escaped backslash \\
+
+-> Here's some TMP-style styling with a color code: <color=\#fff>wow</color>
+
+
+-> Here's a url: http:\/\/github.com\/YarnSpinnerTool
+
+// Escaped markup is handled by the LineParser class, not the main grammar
+// itself
+-> Here's some markup: [a]hello[/a]
+-> Here's some escaped markup: \[a\]hello\[/a\]
+
+===

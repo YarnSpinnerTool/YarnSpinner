@@ -1,3 +1,8 @@
+title: Declarations
+---
+<<declare $should_see_ship = false>>
+<<declare $sally_warning = false>>
+===
 title: Sally
 tags: 
 colorID: 0

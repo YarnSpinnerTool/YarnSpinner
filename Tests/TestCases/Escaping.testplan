@@ -1,0 +1,42 @@
+line: Here's a line with a hashtag
+line: Here's a line with an escaped hashtag #hashtag
+
+line: Here's a line with an expression 0
+line: Here's a line with an escaped expression {0}
+
+line: Here's a line with an escaped command <<foo>>
+
+line: Here's a line with a comment
+line: Here's a line with an escaped comment // wow
+
+line: Here's a line with an escaped backslash \
+
+line: Here's some TMP-style styling with a color code: <color=#fff>wow</color>
+
+line: Here's a url: http://github.com/YarnSpinnerTool
+
+line: Here's some markup: hello
+line: Here's some escaped markup: [a]hello[/a]
+
+option: Here's an option with a hashtag
+option: Here's an option with an escaped hashtag #hashtag
+
+option: Here's an option with an expression 0
+option: Here's an option with an escaped expression {0}
+
+option: Here's an option with a condition
+option: Here's an option with an escaped condition <<if true>>
+
+option: Here's an option with a comment
+option: Here's an option with an escaped comment // wow
+
+option: Here's an option with an escaped backslash \
+
+option: Here's some TMP-style styling with a color code: <color=#fff>wow</color>
+
+option: Here's a url: http://github.com/YarnSpinnerTool
+
+option: Here's some markup: hello
+option: Here's some escaped markup: [a]hello[/a]
+
+select: 1

@@ -9,6 +9,11 @@ message Program {
 	
 	// The collection of nodes in this program.
     map<string, Node> nodes = 2;   	
+	
+	// The collection of initial values for variables; if a PUSH_VARIABLE
+	// instruction is run, and the value is not found in the storage, this
+	// value will be used
+	map<string, Operand> initial_values = 3;
 }
 
 // A collection of instructions
@@ -61,7 +66,13 @@ message Instruction {
 		RUN_COMMAND = 3; 
 		
 		// Adds an entry to the option list (see ShowOptions).
-		// opA = string: string ID for option to add
+		// - opA = string: string ID for option to add
+		// - opB = string: destination to go to if this option is selected
+		// - opC = number: number of expressions on the stack to insert
+		//   into the line
+		// - opD = bool: whether the option has a condition on it (in which
+		//   case a value should be popped off the stack and used to signal
+		//   the game that the option should be not available)
 		ADD_OPTION = 4; 
 		
 		// Presents the current list of options to the client, then clears
@@ -97,8 +108,7 @@ message Instruction {
 		
 		// Calls a function in the client. Pops as many arguments as the
 		// client indicates the function receives, and the result (if any)
-		// is pushed to the stack.
-		
+		// is pushed to the stack.		
 		// opA = string: name of the function
 		CALL_FUNC = 12; 
 		
@@ -115,7 +125,8 @@ message Instruction {
 		// No operands.
 		STOP = 15; 
 		
-		// Run the node whose name is at the top of the stack.
+		// Pops a string off the top of the stack, and runs the node with
+		// that name.
 		// No operands.
 		RUN_NODE = 16; 
     }

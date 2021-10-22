@@ -24,16 +24,13 @@ SOFTWARE.
 
 */
 
-using System;
-using System.IO;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Runtime.Serialization;
-using YarnSpinner;
-using System.Text;
-
-namespace Yarn {
+namespace Yarn
+{
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text.RegularExpressions;
+    using Yarn.Markup;
 
     /// <summary>
     /// A line of dialogue, sent from the <see cref="Dialogue"/> to the
@@ -46,36 +43,28 @@ namespace Yarn {
     /// 1. Use the value in the <see cref="ID"/> field to look up the
     /// appropriate user-facing text in the string table. 
     ///
-    /// 2. For each of the entries in the <see cref="Substitutions"/>
-    /// field, replace the corresponding placeholder with the entry. That
-    /// is, the text "`{0}`" should be replaced with the value of
-    /// `Substitutions[0]`, "`{1}`" with `Substitutions[1]`, and so on. 
+    /// 2. Use <see cref="Dialogue.ExpandSubstitutions"/> to replace all
+    /// substitutions in the user-facing text.
     ///
-    /// 3. Use <see cref="Dialogue.ExpandFormatFunctions(string, string)"/>
-    /// to expand all [format functions]({{|ref
-    /// "/docs/syntax.md#format-functions"|}}) in the line.
+    /// 3. Use <see cref="Dialogue.ParseMarkup"/> to parse all markup in
+    /// the line.
     ///
     /// You do not create instances of this struct yourself. They are
     /// created by the <see cref="Dialogue"/> during program execution.
     /// </remarks>
     /// <seealso cref="Dialogue.LineHandler"/>
-    public struct Line {
+    public struct Line
+    {
         internal Line(string stringID) : this()
         {
             this.ID = stringID;
-            this.Substitutions = new string[] {};
+            this.Substitutions = new string[] { };
         }
 
         /// <summary>
         /// The string ID for this line.
         /// </summary>
         public string ID;
-
-        /// <summary>
-        /// The text of the line.
-        /// </summary>
-        [Obsolete("This field will always be empty; lines do not contain their own text. Instead, use the ID field to look up the text in the string table.")]
-        public string Text;
 
         /// <summary>
         /// The values that should be inserted into the user-facing text
@@ -93,7 +82,8 @@ namespace Yarn {
     /// created by the <see cref="Dialogue"/> during program execution.
     /// </remarks>
     /// <seealso cref="Dialogue.OptionsHandler"/>
-    public struct OptionSet {
+    public struct OptionSet
+    {
         internal OptionSet(Option[] options)
         {
             Options = options;
@@ -102,12 +92,14 @@ namespace Yarn {
         /// <summary>
         /// An option to be presented to the user.
         /// </summary>
-        public struct Option {
-            internal Option(Line line, int id, string destinationNode)
+        public struct Option
+        {
+            internal Option(Line line, int id, string destinationNode, bool isAvailable)
             {
                 Line = line;
                 ID = id;
                 DestinationNode = destinationNode;
+                IsAvailable = isAvailable;
             }
 
             /// <summary>
@@ -119,7 +111,7 @@ namespace Yarn {
             /// for information on how to prepare a line before presenting
             /// it to the user. 
             /// </remarks>
-            public Line Line {get; private set;}
+            public Line Line { get; private set; }
 
             /// <summary>
             /// Gets the identifying number for this option.
@@ -129,7 +121,7 @@ namespace Yarn {
             /// used as the parameter for <see
             /// cref="Dialogue.SetSelectedOption(int)"/>.
             /// </remarks>
-            public int ID {get; private set;}
+            public int ID { get; private set; }
 
             /// <summary>
             /// Gets the name of the node that will be run if this option
@@ -140,14 +132,32 @@ namespace Yarn {
             /// shortcut option.
             /// </remarks>
             public string DestinationNode { get; private set; }
+
+            /// <summary>
+            /// Gets a value indicating whether the player should be
+            /// permitted to select this option.
+            /// </summary>
+            /// <remarks>
+            /// If this value is <see langword="false"/>, this option had a
+            /// line condition on it that failed. The option will still be
+            /// delivered to the game, but, depending on the needs of the
+            /// game, the game may decide to not allow the player to select
+            /// it, or not offer it to the player at all.
+            ///
+            /// This is intended for situations where games wish to show
+            /// options that the player _could_ have taken, if some other
+            /// condition had been met (e.g. having enough "charisma"
+            /// points).
+            /// </remarks>
+            public bool IsAvailable { get; private set; }
         }
-        
+
         /// <summary>
         /// Gets the <see cref="Option"/>s that should be presented to the
         /// user.
         /// </summary>
         /// <seealso cref="Option"/>
-        public Option[] Options {get; private set;}
+        public Option[] Options { get; private set; }
     }
 
     /// <summary>
@@ -158,7 +168,8 @@ namespace Yarn {
     /// created by the <see cref="Dialogue"/> during program execution.
     /// </remarks>
     /// <seealso cref="Dialogue.CommandHandler"/>    
-    public struct Command {
+    public struct Command
+    {
         internal Command(string text)
         {
             Text = text;
@@ -167,7 +178,7 @@ namespace Yarn {
         /// <summary>
         /// Gets the text of the command.
         /// </summary>
-        public string Text {get; private set;}
+        public string Text { get; private set; }
     }
 
     /// <summary>
@@ -183,20 +194,10 @@ namespace Yarn {
 
     /// <summary>Provides a mechanism for storing and retrieving instances
     /// of the <see cref="Value"/> class.</summary>
-    public interface VariableStorage {
-
+    public interface IVariableStorage
+    {
         /// <summary>
-        /// Stores a <see cref="Value"/>.
-        /// </summary>
-        /// <param name="variableName">The name to associate with this
-        /// variable.</param>
-        /// <param name="value">The value to store.</param>
-        void SetValue(string variableName, Value value);
-
-        // some convenience setters
-
-        /// <summary>
-        /// Stores a <see cref="string"/> as a <see cref="Value"/>.
+        /// Stores a <see cref="string"/> in this VariableStorage.
         /// </summary>
         /// <param name="variableName">The name to associate with this
         /// variable.</param>
@@ -204,7 +205,7 @@ namespace Yarn {
         void SetValue(string variableName, string stringValue);
 
         /// <summary>
-        /// Stores a <see cref="float"/> as a <see cref="Value"/>.
+        /// Stores a <see cref="float"/> in this VariableStorage.
         /// </summary>
         /// <param name="variableName">The name to associate with this
         /// variable.</param>
@@ -212,7 +213,7 @@ namespace Yarn {
         void SetValue(string variableName, float floatValue);
 
         /// <summary>
-        /// Stores a <see cref="bool"/> as a <see cref="Value"/>.
+        /// Stores a <see cref="bool"/> in this VariableStorage.
         /// </summary>
         /// <param name="variableName">The name to associate with this
         /// variable.</param>
@@ -227,7 +228,7 @@ namespace Yarn {
         /// <returns>The <see cref="Value"/>. If a variable by the name of
         /// `variableName` is not present, returns a value representing
         /// `null`.</returns>
-        Value GetValue(string variableName);
+        bool TryGetValue<T>(string variableName, out T result);
 
         /// <summary>
         /// Removes all variables from storage.
@@ -236,117 +237,186 @@ namespace Yarn {
     }
 
     /// <summary>
-    /// An abstract class that implements convenience methods for
-    /// converting values to instances of <see cref="Value"/>. 
+    /// A simple concrete implementation of <see cref="IVariableStorage"/>
+    /// that keeps all variables in memory.
     /// </summary>
-    /// <remarks>
-    /// If you subclass this, you only have to implement <see
-    /// cref="BaseVariableStorage.SetValue(string, Value)"/>, <see
-    /// cref="BaseVariableStorage.GetValue(string)"/> and <see
-    /// cref="BaseVariableStorage.Clear"/>.
-    /// </remarks>
-    /// <inheritdoc cref="VariableStorage"/>
-    public abstract class BaseVariableStorage : VariableStorage {
+    public class MemoryVariableStore : IVariableStorage
+    {
+        private Dictionary<string, object> variables = new Dictionary<string, object>();
 
         /// <inheritdoc/>
-        public virtual void SetValue(string variableName, string stringValue)
+        public bool TryGetValue<T>(string variableName, out T result)
         {
-            Value val = new Yarn.Value(stringValue);
-            SetValue(variableName, val);
+            if (this.variables.TryGetValue(variableName, out var foundValue))
+            {
+                if (typeof(T).IsAssignableFrom(foundValue.GetType()))
+                {
+                    result = (T)foundValue;
+                    return true;
+                }
+                else
+                {
+                    throw new ArgumentException($"Variable {variableName} is present, but is of type {foundValue.GetType()}, not {typeof(T)}");
+                }
+            }
+
+            result = default;
+            return false;
         }
 
         /// <inheritdoc/>
-        public virtual void SetValue(string variableName, float floatValue)
+        public void Clear()
         {
-            Value val = new Yarn.Value(floatValue);
-            SetValue(variableName, val);
+            this.variables.Clear();
         }
 
-        /// <inheritdoc/>
-        public virtual void SetValue(string variableName, bool boolValue)
+        public void SetValue(string variableName, string stringValue)
         {
-            Value val = new Yarn.Value(boolValue);
-            SetValue(variableName, val);
+            this.variables[variableName] = stringValue;
         }
 
-        /// <inheritdoc/>
-        public abstract void SetValue(string variableName, Value value);
+        public void SetValue(string variableName, float floatValue)
+        {
+            this.variables[variableName] = floatValue;
+        }
 
-        /// <inheritdoc/>
-        public abstract Value GetValue(string variableName);
-
-        /// <inheritdoc/>
-        public abstract void Clear();
+        public void SetValue(string variableName, bool boolValue)
+        {
+            this.variables[variableName] = boolValue;
+        }
     }
 
     /// <summary>
-    /// A simple concrete subclass of <see cref="BaseVariableStorage"/> that
-    /// keeps all variables in memory.
+    /// Represents the method that is called when the Dialogue delivers a
+    /// <see cref="Line"/>.
     /// </summary>
-    public class MemoryVariableStore : Yarn.BaseVariableStorage
-    {
+    /// <param name="line">The <see cref="Line"/> that has been
+    /// delivered.</param>
+    /// <seealso cref="OptionsHandler"/>
+    /// <seealso cref="CommandHandler"/>
+    /// <seealso cref="NodeStartHandler"/>
+    /// <seealso cref="NodeCompleteHandler"/>
+    /// <seealso cref="DialogueCompleteHandler"/>
+    public delegate void LineHandler(Line line);
 
-        private Dictionary<string, Value> variables = new Dictionary<string, Value>();
+    /// <summary>
+    /// Represents the method that is called when the Dialogue delivers an
+    /// <see cref="OptionSet"/>.
+    /// </summary>
+    /// <param name="options">The <see cref="OptionSet"/> that has been
+    /// delivered.</param>
+    /// <seealso cref="LineHandler"/>
+    /// <seealso cref="CommandHandler"/>
+    /// <seealso cref="NodeStartHandler"/>
+    /// <seealso cref="NodeCompleteHandler"/>
+    /// <seealso cref="DialogueCompleteHandler"/>
+    public delegate void OptionsHandler(OptionSet options);
 
-        /// <inheritdoc/>
-        public override void SetValue(string variableName, Value value)
-        {
-            variables[variableName] = value;
-        }
+    /// <summary>
+    /// Represents the method that is called when the Dialogue delivers a
+    /// <see cref="Command"/>.
+    /// </summary>
+    /// <param name="command">The <see cref="Command"/> that has been
+    /// delivered.</param>
+    /// <seealso cref="LineHandler"/>
+    /// <seealso cref="OptionsHandler"/>
+    /// <seealso cref="NodeStartHandler"/>
+    /// <seealso cref="NodeCompleteHandler"/>
+    /// <seealso cref="DialogueCompleteHandler"/>
+    public delegate void CommandHandler(Command command);
 
-        /// <inheritdoc/>
-        public override Value GetValue(string variableName)
-        {
-            Value value = Value.NULL;
-            if (variables.ContainsKey(variableName))
-            {
-                value = variables[variableName];
-            }
-            return value;
-        }
+    /// <summary>
+    /// Represents the method that is called when the Dialogue reaches the
+    /// end of a node.
+    /// </summary>
+    /// <param name="completedNodeName">The name of the node.</param>
+    /// <remarks>
+    /// This method may be called multiple times over the course of code
+    /// execution. A node being complete does not necessarily represent the
+    /// end of the conversation.
+    /// </remarks>
+    /// <seealso cref="LineHandler"/>
+    /// <seealso cref="OptionsHandler"/>
+    /// <seealso cref="CommandHandler"/>
+    /// <seealso cref="NodeStartHandler"/>
+    /// <seealso cref="DialogueCompleteHandler"/>
+    public delegate void NodeCompleteHandler(string completedNodeName);
 
-        /// <inheritdoc/>
-        public override void Clear()
-        {
-            variables.Clear();
-        }
-    }
+    /// <summary>
+    /// Represents the method that is called when the Dialogue begins
+    /// executing a node.
+    /// </summary>
+    /// <param name="startedNodeName">The name of the node.</param>
+    /// <seealso cref="LineHandler"/>
+    /// <seealso cref="OptionsHandler"/>
+    /// <seealso cref="CommandHandler"/>
+    /// <seealso cref="NodeCompleteHandler"/>
+    /// <seealso cref="DialogueCompleteHandler"/>
+    public delegate void NodeStartHandler(string startedNodeName);
+
+    /// <summary>
+    /// Represents the method that is called when the dialogue has reached
+    /// its end, and no more code remains to be run.
+    /// </summary>
+    /// <seealso cref="LineHandler"/>
+    /// <seealso cref="OptionsHandler"/>
+    /// <seealso cref="CommandHandler"/>
+    /// <seealso cref="NodeStartHandler"/>
+    /// <seealso cref="NodeCompleteHandler"/>
+    public delegate void DialogueCompleteHandler();
+
+    /// <summary>
+    /// Represents the method that is called when the dialogue anticipates
+    /// that it will deliver lines.
+    /// </summary>
+    /// <remarks>
+    /// This method should begin preparing to run the lines. For example,
+    /// if a game delivers dialogue via voice-over, the appropriate audio
+    /// files should be loaded.
+    ///
+    /// This method serves to provide a hint to the game that a line _may_
+    /// be run. Not every line indicated in <paramref ref="lineIDs"/> may
+    /// end up actually running.
+    ///
+    /// This method may be called any number of times during a dialogue
+    /// session.
+    /// </remarks>
+    /// <param name="lineIDs">The collection of line IDs that may be
+    /// delivered at some point soon.</param>
+    public delegate void PrepareForLinesHandler(IEnumerable<string> lineIDs);
 
     /// <summary>
     /// Co-ordinates the execution of Yarn programs.
     /// </summary>
-    public class Dialogue {
+    public class Dialogue : IAttributeMarkerProcessor
+    {
 
         /// We'll ask this object for the state of variables
-        internal VariableStorage variableStorage {get;set;}
-		
+        internal IVariableStorage VariableStorage { get; set; }
+
         /// <summary>
-        /// Invoked when the Dialogue needs to report debugging information.
+        /// Invoked when the Dialogue needs to report debugging
+        /// information.
         /// </summary>
-        public Logger LogDebugMessage {get;set;}
+        public Logger LogDebugMessage { get; set; }
 
         /// <summary>
         /// Invoked when the Dialogue needs to report an error.
         /// </summary>
-        public Logger LogErrorMessage {get;set;}
+        public Logger LogErrorMessage { get; set; }
 
         /// <summary>The node that execution will start from.</summary>
-        public const string DEFAULT_START = "Start";
+        public const string DefaultStartNodeName = "Start";
 
-        // A string used to mark where a value should be injected in a
-        // format function. Generated during format function parsing; not
-        // typed by a human.
-        private const string FormatFunctionValuePlaceholder = "<VALUE PLACEHOLDER>";
-
-        private Program _program;
+        private Program program;
 
         /// <summary>Gets or sets the compiled Yarn program.</summary>
         internal Program Program
         {
-            get => _program;
+            get => program;
             set
             {
-                _program = value;
+                program = value;
 
                 vm.Program = value;
                 vm.ResetState();
@@ -354,225 +424,135 @@ namespace Yarn {
         }
 
         /// <summary>
-        /// Gets a value indicating whether the Dialogue is currently executing Yarn instructions.
+        /// Gets a value indicating whether the Dialogue is currently
+        /// executing Yarn instructions.
         /// </summary>
-        public bool IsActive => vm.executionState != VirtualMachine.ExecutionState.Stopped;
+        public bool IsActive => vm.CurrentExecutionState != VirtualMachine.ExecutionState.Stopped;
 
         /// <summary>
-        /// Used as a return type by handlers (such as the <see
-        /// cref="LineHandler"/>) to indicate whether a <see
-        /// cref="Dialogue"/> should suspend execution, or continue
-        /// executing, after it has called the handler.
+        /// Gets or sets the <see cref="Yarn.LineHandler"/> that is called
+        /// when a line is ready to be shown to the user.
         /// </summary>
-        /// <seealso cref="LineHandler"/>
-        /// <seealso cref="CommandHandler"/>
-        /// <seealso cref="NodeCompleteHandler"/>
-        public enum HandlerExecutionType {
-
-            /// <summary>
-            /// Indicates that the <see cref="Dialogue"/> should suspend
-            /// execution.
-            /// </summary>
-            PauseExecution,
-
-            /// <summary>
-            /// Indicates that the <see cref="Dialogue"/> should continue
-            /// execution.
-            /// </summary>
-            ContinueExecution,
-        }
-
-        /// <summary>
-        /// Represents the method that is called when the Dialogue delivers
-        /// a <see cref="Line"/>.
-        /// </summary>
-        /// <param name="line">The <see cref="Line"/> that has been
-        /// delivered.</param>
-        /// <returns>Whether the <see cref="Dialogue"/> should suspend
-        /// execution after delivering this line.</returns>
-        /// <seealso cref="HandlerExecutionType"/>
-        /// <seealso cref="OptionsHandler"/>
-        /// <seealso cref="CommandHandler"/>
-        /// <seealso cref="NodeStartHandler"/>
-        /// <seealso cref="NodeCompleteHandler"/>
-        /// <seealso cref="DialogueCompleteHandler"/>
-        public delegate HandlerExecutionType LineHandler(Line line);
-
-        /// <summary>
-        /// Represents the method that is called when the Dialogue delivers
-        /// an <see cref="OptionSet"/>.
-        /// </summary>
-        /// <param name="options">The <see cref="OptionSet"/> that has been
-        /// delivered.</param>
-        /// <remarks>
-        /// Unlike <see cref="LineHandler"/>, <see cref="OptionsHandler"/>
-        /// does not return a <see cref="HandlerExecutionType"/> to signal
-        /// that the Dialogue should suspend execution. This is because the
-        /// Dialogue will _always_ need to wait for the user to make a
-        /// selection before execution can resume.
-        /// </remarks>
-        /// <seealso cref="LineHandler"/>
-        /// <seealso cref="CommandHandler"/>
-        /// <seealso cref="NodeStartHandler"/>
-        /// <seealso cref="NodeCompleteHandler"/>
-        /// <seealso cref="DialogueCompleteHandler"/>
-        public delegate void OptionsHandler(OptionSet options);
-
-        /// <summary>
-        /// Represents the method that is called when the Dialogue delivers
-        /// a <see cref="Command"/>.
-        /// </summary>
-        /// <param name="command">The <see cref="Command"/> that has been
-        /// delivered.</param>
-        /// <returns>Whether the <see cref="Dialogue"/> should suspend
-        /// execution after delivering this command.</returns>
-        /// <seealso cref="HandlerExecutionType"/>
-        /// <seealso cref="LineHandler"/>
-        /// <seealso cref="OptionsHandler"/>
-        /// <seealso cref="NodeStartHandler"/>
-        /// <seealso cref="NodeCompleteHandler"/>
-        /// <seealso cref="DialogueCompleteHandler"/>
-        public delegate HandlerExecutionType CommandHandler(Command command);
-
-        /// <summary>
-        /// Represents the method that is called when the Dialogue reaches
-        /// the end of a node.
-        /// </summary>
-        /// <param name="completedNodeName">The name of the node.</param>
-        /// <returns>Whether the <see cref="Dialogue"/> should suspend
-        /// execution after this method has been called.</returns>
-        /// <remarks>
-        /// This method may be called multiple times over the course of
-        /// code execution. A node being complete does not necessarily
-        /// represent the end of the conversation.
-        /// </remarks>
-        /// <seealso cref="HandlerExecutionType"/>
-        /// <seealso cref="LineHandler"/>
-        /// <seealso cref="OptionsHandler"/>
-        /// <seealso cref="CommandHandler"/>
-        /// <seealso cref="NodeStartHandler"/>
-        /// <seealso cref="DialogueCompleteHandler"/>
-        public delegate HandlerExecutionType NodeCompleteHandler(string completedNodeName);
-
-        /// <summary>
-        /// Represents the method that is called when the Dialogue begins
-        /// executing a node.
-        /// </summary>
-        /// <param name="startedNodeName">The name of the node.</param>
-        /// <returns>Whether the <see cref="Dialogue"/> should suspend
-        /// execution after this method has been called.</returns>
-        /// <seealso cref="HandlerExecutionType"/>
-        /// <seealso cref="LineHandler"/>
-        /// <seealso cref="OptionsHandler"/>
-        /// <seealso cref="CommandHandler"/>
-        /// <seealso cref="NodeCompleteHandler"/>
-        /// <seealso cref="DialogueCompleteHandler"/>
-        public delegate HandlerExecutionType NodeStartHandler(string startedNodeName);
-
-        /// <summary>
-        /// Represents the method that is called when the dialogue has
-        /// reached its end, and no more code remains to be run.
-        /// </summary>
-        /// <seealso cref="LineHandler"/>
-        /// <seealso cref="OptionsHandler"/>
-        /// <seealso cref="CommandHandler"/>
-        /// <seealso cref="NodeStartHandler"/>
-        /// <seealso cref="NodeCompleteHandler"/>
-        public delegate void DialogueCompleteHandler();
-
-        /// <summary>
-        /// Gets or sets the <see cref="LineHandler"/> that is called when
-        /// a line is ready to be shown to the user.
-        /// </summary>
-        public LineHandler lineHandler
+        public LineHandler LineHandler
         {
-            get => vm.lineHandler;
-            set => vm.lineHandler = value;
+            get => vm.LineHandler;
+            set => vm.LineHandler = value;
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="OptionsHandler"/> that is called
-        /// when a set of options are ready to be shown to the user.
+        /// Gets or sets the <see cref="Dialogue"/>'s locale, as an IETF
+        /// BCP 47 code.
+        /// </summary>
+        /// <remarks>
+        /// This code is used to determine how the `plural` and `ordinal`
+        /// markers determine the plural class of numbers.
+        ///
+        /// For example, the code "en-US" represents the English language
+        /// as used in the United States.
+        /// </remarks>
+        public string LanguageCode { get; set; }
+
+        /// <summary>
+        /// Gets or sets the <see cref="Yarn.OptionsHandler"/> that is
+        /// called when a set of options are ready to be shown to the user.
         /// </summary>
         /// <remarks>
         /// The Options Handler delivers an <see cref="OptionSet"/> to the
         /// game. Before <see cref="Continue"/> can be called to resume
         /// execution, <see cref="SetSelectedOption"/> must be called to
-        /// indicate which <see cref="OptionSet.Option"/> was selected by the user.
-        /// If <see cref="SetSelectedOption"/> is not called, an exception
-        /// is thrown.
+        /// indicate which <see cref="OptionSet.Option"/> was selected by
+        /// the user. If <see cref="SetSelectedOption"/> is not called, an
+        /// exception is thrown.
         /// </remarks>
-        public OptionsHandler optionsHandler
+        public OptionsHandler OptionsHandler
         {
-            get => vm.optionsHandler;
-            set => vm.optionsHandler = value;
+            get => vm.OptionsHandler;
+            set => vm.OptionsHandler = value;
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="CommandHandler"/> that is called
-        /// when a command is to be delivered to the game.
+        /// Gets or sets the <see cref="Yarn.CommandHandler"/> that is
+        /// called when a command is to be delivered to the game.
         /// </summary>
-        public CommandHandler commandHandler
+        public CommandHandler CommandHandler
         {
-            get => vm.commandHandler;
-            set => vm.commandHandler = value;
+            get => vm.CommandHandler;
+            set => vm.CommandHandler = value;
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="NodeStartHandler"/> that is called
-        /// when a node is started.
+        /// Gets or sets the <see cref="Yarn.NodeStartHandler"/> that is
+        /// called when a node is started.
         /// </summary>
-        public NodeStartHandler nodeStartHandler
+        public NodeStartHandler NodeStartHandler
         {
-            get => vm.nodeStartHandler;
-            set => vm.nodeStartHandler = value;
+            get => vm.NodeStartHandler;
+            set => vm.NodeStartHandler = value;
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="NodeCompleteHandler"/> that is called
-        /// when a node is complete.
+        /// Gets or sets the <see cref="Yarn.NodeCompleteHandler"/> that is
+        /// called when a node is complete.
         /// </summary>
-        public NodeCompleteHandler nodeCompleteHandler
+        public NodeCompleteHandler NodeCompleteHandler
         {
-            get => vm.nodeCompleteHandler;
-            set => vm.nodeCompleteHandler = value;
+            get => vm.NodeCompleteHandler;
+            set => vm.NodeCompleteHandler = value;
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="DialogueCompleteHandler"/> that is called
-        /// when the dialogue reaches its end.
+        /// Gets or sets the <see cref="Yarn.DialogueCompleteHandler"/>
+        /// that is called when the dialogue reaches its end.
         /// </summary>
-        public DialogueCompleteHandler dialogueCompleteHandler
+        public DialogueCompleteHandler DialogueCompleteHandler
         {
-            get => vm.dialogueCompleteHandler;
-            set => vm.dialogueCompleteHandler = value;
+            get => vm.DialogueCompleteHandler;
+            set => vm.DialogueCompleteHandler = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the <see cref="PrepareForLinesHandler"/> that is
+        /// called when the dialogue anticipates delivering some lines.
+        /// </summary>
+        /// <value></value>
+        public PrepareForLinesHandler PrepareForLinesHandler
+        {
+            get => vm.PrepareForLinesHandler;
+            set => vm.PrepareForLinesHandler = value;
         }
 
         private VirtualMachine vm;
 
         /// <summary>
-        /// Gets the <see cref="Library"/> that this Dialogue uses to
+        /// Gets the <see cref="Yarn.Library"/> that this Dialogue uses to
         /// locate functions.
         /// </summary>
         /// <remarks>
         /// When the Dialogue is constructed, the Library is initialized
         /// with the built-in operators like `+`, `-`, and so on.
         /// </remarks>
-        public Library library { get; internal set; }
+        public Library Library { get; internal set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Dialogue"/> class.
         /// </summary>
-        /// <param name="variableStorage">The <see cref="VariableStorage"/>
-        /// that this Dialogue should use.</param>
-        public Dialogue(Yarn.VariableStorage variableStorage)
+        /// <param name="variableStorage">The <see
+        /// cref="Yarn.IVariableStorage"/> that this Dialogue should
+        /// use.</param>
+        public Dialogue(Yarn.IVariableStorage variableStorage)
         {
-            this.variableStorage = variableStorage ?? throw new ArgumentNullException(nameof(variableStorage));
-            library = new Library();
+            this.VariableStorage = variableStorage ?? throw new ArgumentNullException(nameof(variableStorage));
+            Library = new Library();
 
             this.vm = new VirtualMachine(this);
 
-            library.ImportLibrary(new StandardLibrary());
+            Library.ImportLibrary(new StandardLibrary());
+
+            lineParser = new LineParser();
+
+            lineParser.RegisterMarkerProcessor("select", this);
+            lineParser.RegisterMarkerProcessor("plural", this);
+            lineParser.RegisterMarkerProcessor("ordinal", this);
         }
 
         /// <summary>
@@ -585,7 +565,8 @@ namespace Yarn {
         /// </remarks>
         /// <param name="program">The <see cref="Yarn.Program"/> to
         /// use.</param>
-        public void SetProgram(Program program) {
+        public void SetProgram(Program program)
+        {
             this.Program = program;
         }
 
@@ -596,17 +577,19 @@ namespace Yarn {
         /// <param name="program">The additional program to load.</param>
         /// <remarks>
         /// If <see cref="Program"/> is `null`, this method has the effect
-        /// as calling
-        /// <see cref="SetProgram(Program)"/>.
+        /// as calling <see cref="SetProgram(Program)"/>.
         /// </remarks>
-        public void AddProgram(Program program) {
-            if (this.Program == null) {
-                SetProgram(program);
+        public void AddProgram(Program program)
+        {
+            if (this.Program == null)
+            {
+                this.SetProgram(program);
                 return;
-            } else {
+            }
+            else
+            {
                 this.Program = Program.Combine(this.Program, program);
             }
-            
         }
 
         /// <summary>
@@ -639,12 +622,17 @@ namespace Yarn {
         /// <remarks>
         /// After this method is called, you call <see cref="Continue"/> to
         /// start executing it.
+        ///
+        /// If <see cref="PrepareForLinesHandler"/> has been set, it may be
+        /// called when this method is invoked, as the Dialogue determines
+        /// which lines may be delivered during the <paramref
+        /// name="startNode"/> node's execution.
         /// </remarks>
         /// <throws cref="DialogueException">Thrown when no node named
         /// `startNode` has been loaded.</throws>
-        public void SetNode(string startNode = DEFAULT_START)
+        public void SetNode(string startNode = DefaultStartNodeName)
         {
-            vm.SetNode(startNode);
+            this.vm.SetNode(startNode);
         }
 
         /// <summary>
@@ -663,72 +651,81 @@ namespace Yarn {
         /// <param name="selectedOptionID">The ID number of the Option that
         /// the user selected.</param>
         /// <throws cref="DialogueException">Thrown when the Dialogue is
-        /// not expecting an option to be selected.</throws>
-        /// <throws cref="ArgumentOutOfRangeException">Thrown when
+        /// not expecting an option to be selected.</throws> <throws
+        /// cref="ArgumentOutOfRangeException">Thrown when
         /// `selectedOptionID` is not a valid option ID.</throws>
-        /// <seealso cref="OptionsHandler"/>
+        /// <seealso cref="Yarn.OptionsHandler"/>
         /// <seealso cref="OptionSet"/>
         /// <seealso cref="Continue"/>
-        public void SetSelectedOption(int selectedOptionID) {
-            vm.SetSelectedOption(selectedOptionID);
+        public void SetSelectedOption(int selectedOptionID)
+        {
+            this.vm.SetSelectedOption(selectedOptionID);
         }
-        
+
         /// <summary>
         /// Starts, or continues, execution of the current Program.
         /// </summary>
         /// <remarks>
         /// This method repeatedly executes instructions until one of the
         /// following conditions is encountered:
-        /// 
-        /// * The <see cref="lineHandler"/>, <see cref="commandHandler"/>,
-        /// or <see cref="nodeCompleteHandler"/> return <see
-        /// cref="HandlerExecutionType.PauseExecution"/>.
-        /// * The <see cref="optionsHandler"/> is called. When this occurs,
+        ///
+        /// * The <see cref="LineHandler"/> or <see cref="CommandHandler"/>
+        /// is called. After calling either of these handlers, the Dialogue
+        /// will wait until <see cref="Continue"/> is called. Continue may
+        /// be called from inside the <see cref="LineHandler"/> or <see
+        /// cref="CommandHandler"/>, or may be called at any future time. *
+        /// The <see cref="OptionsHandler"/> is called. When this occurs,
         /// the Dialogue is waiting for the user to specify which of the
         /// options has been selected, and <see
         /// cref="SetSelectedOption(int)"/> must be called before <see
-        /// cref="Continue"/> is called again.)
-        /// * The Program reaches its end. When this occurs, <see
-        /// cref="SetNode(string)"/> must be called before <see
-        /// cref="Continue"/> is called again.
-        /// * An error occurs while executing the Program.
+        /// cref="Continue"/> is called again.) * The Program reaches its
+        /// end. When this occurs, <see cref="SetNode(string)"/> must be
+        /// called before <see cref="Continue"/> is called again. * An
+        /// error occurs while executing the Program.
         ///
         /// This method has no effect if it is called while the <see
         /// cref="Dialogue"/> is currently in the process of executing
         /// instructions.
         /// </remarks>
-        /// <seealso cref="LineHandler"/>
-        /// <seealso cref="OptionsHandler"/>
-        /// <seealso cref="CommandHandler"/>
-        /// <seealso cref="NodeCompleteHandler"/>
-        /// <seealso cref="DialogueCompleteHandler"/>
-        /// <seealso cref="HandlerExecutionType"/>
-        public void Continue() {
-            if (vm.executionState == VirtualMachine.ExecutionState.Running) {
+        /// <seealso cref="Yarn.LineHandler"/>
+        /// <seealso cref="Yarn.OptionsHandler"/>
+        /// <seealso cref="Yarn.CommandHandler"/>
+        /// <seealso cref="Yarn.NodeCompleteHandler"/>
+        /// <seealso cref="Yarn.DialogueCompleteHandler"/>
+        public void Continue()
+        {
+            if (this.vm.CurrentExecutionState == VirtualMachine.ExecutionState.Running)
+            {
                 // Cannot 'continue' an already running VM.
                 return;
             }
-            vm.Continue();
+
+            this.vm.Continue();
         }
 
         /// <summary>
         /// Immediately stops the <see cref="Dialogue"/>.
         /// </summary>
         /// <remarks>
-        /// The <see cref="dialogueCompleteHandler"/> will not be called if
+        /// The <see cref="DialogueCompleteHandler"/> will not be called if
         /// the dialogue is ended by calling <see cref="Stop"/>.
         /// </remarks>
-        public void Stop() {
-            if (vm != null)
-                vm.Stop();
+        public void Stop()
+        {
+            if (this.vm != null)
+            {
+                this.vm.Stop();
+            }
         }
 
         /// <summary>
-        /// Gets the names of the nodes in the Program.
+        /// Gets the names of the nodes in the currently loaded Program.
         /// </summary>
-        public IEnumerable<string> allNodes {
-            get {
-                return Program.Nodes.Keys;
+        public IEnumerable<string> NodeNames
+        {
+            get
+            {
+                return this.Program.Nodes.Keys;
             }
         }
 
@@ -738,19 +735,18 @@ namespace Yarn {
         /// </summary>
         /// <remarks>If <see cref="Continue"/> has never been called, this
         /// value will be `null`.</remarks>
-        public string currentNode
+        public string CurrentNode
         {
             get
             {
-                if (vm == null)
+                if (this.vm == null)
                 {
                     return null;
                 }
                 else
                 {
-                    return vm.currentNodeName;
+                    return this.vm.currentNodeName;
                 }
-
             }
         }
 
@@ -771,18 +767,18 @@ namespace Yarn {
         /// </remarks>
         public string GetStringIDForNode(string nodeName)
         {
-            if (Program.Nodes.Count == 0)
+            if (this.Program.Nodes.Count == 0)
             {
-                LogErrorMessage("No nodes are loaded!");
+                this.LogErrorMessage?.Invoke("No nodes are loaded!");
                 return null;
             }
-            else if (Program.Nodes.ContainsKey(nodeName))
+            else if (this.Program.Nodes.ContainsKey(nodeName))
             {
                 return "line:" + nodeName;
             }
             else
             {
-                LogErrorMessage("No node named " + nodeName);
+                this.LogErrorMessage?.Invoke("No node named " + nodeName);
                 return null;
             }
         }
@@ -792,26 +788,26 @@ namespace Yarn {
         /// </summary>
         /// <remarks>
         /// The tags for a node are defined by setting the `tags`
-        /// [header]({{|ref "/docs/syntax.md#header"|}}) in the node's source
-        /// code. This header must be a space-separated list.
-        /// </remarks>      
+        /// [header]({{|ref "/docs/syntax.md#header"|}}) in the node's
+        /// source code. This header must be a space-separated list.
+        /// </remarks>
         /// <param name="nodeName">The name of the node.</param>
         /// <returns>The node's tags, or `null` if the node is not present
         /// in the Program.</returns>
         public IEnumerable<string> GetTagsForNode(string nodeName)
         {
-            if (Program.Nodes.Count == 0)
+            if (this.Program.Nodes.Count == 0)
             {
-                LogErrorMessage("No nodes are loaded!");
+                this.LogErrorMessage?.Invoke("No nodes are loaded!");
                 return null;
             }
-            else if (Program.Nodes.ContainsKey(nodeName))
+            else if (this.Program.Nodes.ContainsKey(nodeName))
             {
-                return Program.GetTagsForNode(nodeName);
+                return this.Program.GetTagsForNode(nodeName);
             }
             else
             {
-                LogErrorMessage("No node named " + nodeName);
+                this.LogErrorMessage?.Invoke("No node named " + nodeName);
                 return null;
             }
         }
@@ -819,12 +815,14 @@ namespace Yarn {
         /// <summary>
         /// Unloads all nodes from the Dialogue.
         /// </summary>
-        public void UnloadAll() {
+        public void UnloadAll()
+        {
             Program = null;
         }
 
-        internal String GetByteCode() {
-            return Program.DumpCode (library);
+        internal String GetByteCode()
+        {
+            return Program.DumpCode(Library);
         }
 
         /// <summary>
@@ -832,415 +830,308 @@ namespace Yarn {
         /// Program.
         /// </summary>
         /// <param name="nodeName">The name of the node.</param>
-        /// <returns>`true` if a node named `nodeName` exists in the Program, `false` otherwise.</returns>
-        public bool NodeExists(string nodeName) {
-            if (Program == null) {
-                LogErrorMessage ("Tried to call NodeExists, but no nodes " +
-                                 "have been compiled!");
+        /// <returns><see langword="true"/> if a node named `nodeName`
+        /// exists in the Program, <see langword="false"/>
+        /// otherwise.</returns>
+        public bool NodeExists(string nodeName)
+        {
+            if (this.Program == null)
+            {
+                this.LogErrorMessage?.Invoke("Tried to call NodeExists, but no program has been loaded!");
                 return false;
             }
-            if (Program.Nodes == null || Program.Nodes.Count == 0) {
-                LogDebugMessage ("Called NodeExists, but there are zero nodes. " +
-                                 "This may be an error.");
+
+            if (this.Program.Nodes == null || this.Program.Nodes.Count == 0)
+            {
+                // No nodes? Then this node doesn't exist.
                 return false;
             }
-            return Program.Nodes.ContainsKey(nodeName);
+
+            return this.Program.Nodes.ContainsKey(nodeName);
         }
 
+        public void Analyse(Analysis.Context context)
+        {
+            context.AddProgramToAnalysis(this.Program);
+        }
 
-        public void Analyse(Analysis.Context context) {
-            context.AddProgramToAnalysis (this.Program);
+        private readonly LineParser lineParser;
+
+        /// <summary>
+        /// Parses a line of text, and produces a <see
+        /// cref="MarkupParseResult"/> containing the results.
+        /// </summary>
+        /// <remarks>
+        /// The <see cref="MarkupParseResult"/>'s <see
+        /// cref="MarkupParseResult.Text"/> will have any `select`,
+        /// `plural` or `ordinal` markers replaced with the appropriate
+        /// text, following this <see cref="Dialogue"/>'s <see
+        /// cref="LanguageCode"/>.
+        /// </remarks>
+        /// <param name="line">The line of text to parse.</param>
+        /// <returns>The results of parsing the markup.</returns>
+        public MarkupParseResult ParseMarkup(string line)
+        {
+            return this.lineParser.ParseMarkup(line);
         }
 
         /// <summary>
-        /// Expands all [format functions]({{|ref
-        /// "syntax.md#format-functions"|}}) in a given string, using
-        /// pluralisation rules specified by the given locale. 
+        /// Replaces all substitution markers in a text with the given
+        /// substitution list.
         /// </summary>
-        /// <param name="input">The string to process.</param>
-        /// <param name="localeCode">The locale code, as an IETF BCP-47
-        /// language tag, to use when determining the plural categories of
-        /// numbers.</param>
-        /// <returns>The original string, with any format functions
-        /// replaced with their evaluated versions.</returns>
-        /// <throws cref="ArgumentException">Thrown when the string
-        /// contains a `plural` or `ordinal` format function, but the
-        /// specified value cannot be parsed as a number.</throws>
-        public static string ExpandFormatFunctions(string input, string localeCode)
+        /// <remarks>
+        /// This method replaces substitution markers - for example, `{0}`
+        /// - with the corresponding entry in <paramref
+        /// name="substitutions"/>. If <paramref name="text"/> contains a
+        /// substitution marker whose index is not present in <paramref
+        /// name="substitutions"/>, it is ignored.
+        /// </remarks>
+        /// <param name="text">The text containing substitution
+        /// markers.</param>
+        /// <param name="substitutions">The list of substitutions.</param>
+        /// <returns><paramref name="text"/>, with the content from
+        /// <paramref name="substitutions"/> inserted.</returns>
+        public static string ExpandSubstitutions(string text, IList<string> substitutions)
         {
-            ParseFormatFunctions(input, out var lineWithReplacements, out var formatFunctions);
-
-            for (int i = 0; i < formatFunctions.Length; i++)
+            for (int i = 0; i < substitutions.Count; i++)
             {
-                ParsedFormatFunction function = formatFunctions[i];
-
-                // Apply the "select" format function
-                if (function.functionName == "select")
-                {
-                    if (function.data.TryGetValue(function.value, out string replacement) == false)
-                    {
-                        replacement = $"<no replacement for {function.value}>";
-                    }
-
-                    // Insert the value if needed
-                    replacement = replacement.Replace(FormatFunctionValuePlaceholder, function.value);
-
-                    lineWithReplacements = lineWithReplacements.Replace("{" + i + "}", replacement);
-                }
-                else
-                {
-                    // Apply the "plural" or "ordinal" format function
-
-                    if (double.TryParse(function.value, out var value) == false)
-                    {
-                        throw new ArgumentException($"Error while pluralising line '{input}': '{function.value}' is not a number");
-                    }
-
-                    CLDRPlurals.PluralCase pluralCase;
-
-                    switch (function.functionName)
-                    {
-                        case "plural":
-                            pluralCase = CLDRPlurals.NumberPlurals.GetCardinalPluralCase(localeCode, value);
-                            break;
-                        case "ordinal":
-                            pluralCase = CLDRPlurals.NumberPlurals.GetOrdinalPluralCase(localeCode, value);
-                            break;
-                        default:
-                            throw new ArgumentException($"Unknown formatting function '{function.functionName}' in line '{input}'");
-                    }
-
-                    if (function.data.TryGetValue(pluralCase.ToString().ToLowerInvariant(), out string replacement) == false)
-                    {
-                        replacement = $"<no replacement for {function.value}>";
-                    }
-
-                    // Insert the value if needed
-                    replacement = replacement.Replace(FormatFunctionValuePlaceholder, function.value);
-
-                    lineWithReplacements = lineWithReplacements.Replace("{" + i + "}", replacement);
-
-                }
+                string substitution = substitutions[i];
+                text = text.Replace("{" + i + "}", substitution);
             }
-            return lineWithReplacements;
+
+            return text;
         }
 
-        internal static void ParseFormatFunctions(string input, out string lineWithReplacements, out ParsedFormatFunction[] parsedFunctions)
+        /// <summary>
+        /// A regex that matches any `%` as long as it's not preceded by a
+        /// `\`.
+        /// </summary>
+        private static readonly Regex ValuePlaceholderRegex = new Regex(@"(?<!\\)%");
+
+        /// <summary>Returns the text that should be used to replace the
+        /// contents of <paramref name="marker"/>.</summary>
+        /// <param name="marker">The marker to generate replacement text
+        /// for.</param>
+        /// <returns>The replacement text for the marker.</returns>
+        /// <throws cref="InvalidOperationException"></throws> <throws
+        /// cref="KeyNotFoundException"></throws> <throws
+        /// cref="ArgumentException">Thrown when the string contains a
+        /// `plural` or `ordinal` marker, but the specified value cannot be
+        /// parsed as a number.</throws>
+        string IAttributeMarkerProcessor.ReplacementTextForMarker(MarkupAttributeMarker marker)
         {
-            var stringReader = new StringReader(input);
 
-            var stringBuilder = new System.Text.StringBuilder();
-
-            var returnedFunctions = new List<ParsedFormatFunction>();
-
-            int next;
-
-            // Read the entirety of the line
-            while ((next = stringReader.Read()) != -1)
+            if (marker.TryGetProperty("value", out var valueProp) == false)
             {
-                char c = (char)next;
+                throw new KeyNotFoundException("Expected a property \"value\"");
+            }
 
-                if (c != '[')
+            var value = valueProp.ToString();
+
+            // Apply the "select" marker
+            if (marker.Name == "select")
+            {
+                if (!marker.TryGetProperty(value, out var replacementProp))
                 {
-                    // plain text!
-                    stringBuilder.Append(c);
+                    throw new KeyNotFoundException($"error: no replacement for {value}");
                 }
-                else
+
+                string replacement = replacementProp.ToString();
+                replacement = ValuePlaceholderRegex.Replace(replacement, value);
+                return replacement;
+            }
+
+            // If it's not "select", then it's "plural" or "ordinal"
+
+            // First, ensure that we have a locale code set
+            if (this.LanguageCode == null)
+            {
+                throw new InvalidOperationException("Dialogue locale code is not set. 'plural' and 'ordinal' markers cannot be called unless one is set.");
+            }
+
+            // Attempt to parse the value as a double, so we can determine
+            // its plural class
+            if (double.TryParse(value, out var doubleValue) == false)
+            {
+                throw new ArgumentException($"Error while pluralising line: '{value}' is not a number");
+            }
+
+            CLDRPlurals.PluralCase pluralCase;
+
+            switch (marker.Name)
+            {
+                case "plural":
+                    pluralCase = CLDRPlurals.NumberPlurals.GetCardinalPluralCase(this.LanguageCode, doubleValue);
+                    break;
+                case "ordinal":
+                    pluralCase = CLDRPlurals.NumberPlurals.GetOrdinalPluralCase(this.LanguageCode, doubleValue);
+                    break;
+                default:
+                    throw new InvalidOperationException($"Invalid marker name {marker.Name}");
+            }
+
+            string pluralCaseName = pluralCase.ToString().ToLowerInvariant();
+
+            // Now that we know the plural case, we can select the
+            // appropriate replacement text for it
+            if (!marker.TryGetProperty(pluralCaseName, out var replacementValue))
+            {
+                throw new KeyNotFoundException($"error: no replacement for {value}'s plural case of {pluralCaseName}");
+            }
+
+            string input = replacementValue.ToString();
+            return ValuePlaceholderRegex.Replace(input, value);
+
+        }
+
+        /// <summary>
+        /// Splits input into a number of non-empty sub-strings, separated
+        /// by whitespace, and grouping double-quoted strings into a single
+        /// sub-string.
+        /// </summary>
+        /// <param name="input">The string to split.</param>
+        /// <returns>A collection of sub-strings.</returns>
+        /// <remarks>
+        /// This method behaves similarly to the <see
+        /// cref="string.Split(char[], StringSplitOptions)"/> method with
+        /// the <see cref="StringSplitOptions"/> parameter set to <see
+        /// cref="StringSplitOptions.RemoveEmptyEntries"/>, with the
+        /// following differences:
+        ///
+        /// <list type="bullet">
+        /// <item>Text that appears inside a pair of double-quote
+        /// characters will not be split.</item>
+        ///
+        /// <item>Text that appears after a double-quote character and
+        /// before the end of the input will not be split (that is, an
+        /// unterminated double-quoted string will be treated as though it
+        /// had been terminated at the end of the input.)</item>
+        ///
+        /// <item>When inside a pair of double-quote characters, the string
+        /// <c>\\</c> will be converted to <c>\</c>, and the string
+        /// <c>\"</c> will be converted to <c>"</c>.</item>
+        /// </list>
+        /// </remarks>
+        public static IEnumerable<string> SplitCommandText(string input)
+        {
+            var reader = new StringReader(input.Normalize());
+
+            int c;
+
+            var results = new List<string>();
+            var currentComponent = new System.Text.StringBuilder();
+
+            while ((c = reader.Read()) != -1)
+            {
+                if (char.IsWhiteSpace((char)c))
                 {
-                    // the start of a format function!
-
-                    ParsedFormatFunction function = new ParsedFormatFunction();
-
-
-                    // Structure of a format function:
-                    // [ name "value" key1="value1" key2="value2" ]
-
-                    // Read the name
-                    function.functionName = ExpectID();
-
-                    // Ensure that only valid function names are used
-                    switch (function.functionName) {
-                        case "select":
-                        break;
-                        case "plural":
-                        break;
-                        case "ordinal":
-                        break;
-                        default:
-                        throw new ArgumentException($"Invalid formatting function {function.functionName} in line \"{input}\"");
+                    if (currentComponent.Length > 0)
+                    {
+                        // We've reached the end of a run of visible
+                        // characters. Add this run to the result list and
+                        // prepare for the next one.
+                        results.Add(currentComponent.ToString());
+                        currentComponent.Clear();
+                    }
+                    else
+                    {
+                        // We encountered a whitespace character, but
+                        // didn't have any characters queued up. Skip this
+                        // character.
                     }
 
-                    function.value = ExpectString();
-
-                    function.data = new Dictionary<string, string>();
-
-                    // parse and read the data for this format function
+                    continue;
+                }
+                else if (c == '\"')
+                {
+                    // We've entered a quoted string!
                     while (true)
                     {
-                        ConsumeWhitespace();
-
-                        var peek = stringReader.Peek();
-                        if ((char)peek == ']')
+                        c = reader.Read();
+                        if (c == -1)
                         {
-                            // we're done adding parameters
+                            // Oops, we ended the input while parsing a
+                            // quoted string! Dump our current word
+                            // immediately and return.
+                            results.Add(currentComponent.ToString());
+                            return results;
+                        }
+                        else if (c == '\\')
+                        {
+                            // Possibly an escaped character!
+                            var next = reader.Peek();
+                            if (next == '\\' || next == '\"')
+                            {
+                                // It is! Skip the \ and use the character after it.
+                                reader.Read();
+                                currentComponent.Append((char)next);
+                            }
+                            else
+                            {
+                                // Oops, an invalid escape. Add the \ and
+                                // whatever is after it.
+                                currentComponent.Append((char)c);
+                            }
+                        }
+                        else if (c == '\"')
+                        {
+                            // The end of a string!
                             break;
-                        }
-
-                        // this is a key-value pair
-                        var key = ExpectID();
-                        ExpectCharacter('=');
-                        var value = ExpectString();
-
-                        if (function.data.ContainsKey(key))
-                        {
-                            throw new ArgumentException($"Duplicate value '{key}' in format function inside line \"{input}\"");
-                        }
-
-                        function.data.Add(key, value);
-
-                    }
-
-                    // We now expect the end of this format function
-                    ExpectCharacter(']');
-
-                    // reached the end of this function; add it to the
-                    // list
-                    returnedFunctions.Add(function);
-
-                    // and add a placeholder for this function's value
-                    stringBuilder.Append("{" + (returnedFunctions.Count - 1) + "}");                    
-
-                    // Local functions used in parsing
-
-                    // id = [_\w][\w0-9_]*
-                    string ExpectID()
-                    {
-                        ConsumeWhitespace();
-                        var idStringBuilder = new StringBuilder();
-
-                        // Read the first character, which must be a letter
-                        int tempNext = stringReader.Read();
-                        AssertNotEndOfInput(tempNext);
-                        char nextChar = (char)tempNext;
-
-                        if (char.IsLetter(nextChar) || nextChar == '_')
-                        {
-                            idStringBuilder.Append((char)tempNext);
                         }
                         else
                         {
-                            throw new ArgumentException($"Expected an identifier inside a format function in line \"{input}\"");
-                        }
-
-                        // Read zero or more letters, numbers, or underscores
-                        while (true)
-                        {
-                            tempNext = stringReader.Peek();
-                            if (tempNext == -1)
-                            {
-                                break;
-                            }
-                            nextChar = (char)tempNext;
-                            if (char.IsLetterOrDigit(nextChar) || (char)tempNext == '_')
-                            {
-                                idStringBuilder.Append((char)tempNext);
-                                stringReader.Read(); // consume it
-                            }
-                            else
-                            {
-                                // no more
-                                break;
-                            }
-                        }
-                        return idStringBuilder.ToString();
-                    }
-
-                    // string = " (\"|\\|^["])* "
-                    string ExpectString()
-                    {
-                        ConsumeWhitespace();
-
-                        var stringStringBuilder = new StringBuilder();
-
-                        int tempNext = stringReader.Read();
-                        AssertNotEndOfInput(tempNext);
-
-                        char nextChar = (char)tempNext;
-                        if (nextChar != '"')
-                        {
-                            throw new ArgumentException($"Expected a string inside a format function in line {input}");
-                        }
-
-                        while (true)
-                        {
-                            tempNext = stringReader.Read();
-                            AssertNotEndOfInput(tempNext);
-                            nextChar = (char)tempNext;                            
-
-                            if (nextChar == '"')
-                            {
-                                // end of string - consume it but don't
-                                // append to the final collection
-                                break;
-                            }
-                            else if (nextChar == '\\')
-                            {
-                                // an escaped quote or backslash
-                                int nextNext = stringReader.Read();
-                                AssertNotEndOfInput(nextNext);
-                                int nextNextChar = (char)nextNext;
-                                if (nextNextChar == '\\' || nextNextChar == '"' || nextNextChar == '%')
-                                {
-                                    stringStringBuilder.Append(nextNextChar);
-                                } 
-                            } else if (nextChar == '%') {
-                                stringStringBuilder.Append(FormatFunctionValuePlaceholder);
-                            }
-                            else
-                            {
-                                stringStringBuilder.Append(nextChar);
-                            }
-
-                        }
-
-                        return stringStringBuilder.ToString();
-                    }
-
-                    // Consume a character, and throw an exception if it
-                    // isn't the one we expect.
-                    void ExpectCharacter(char character)
-                    {
-                        ConsumeWhitespace();
-
-                        int tempNext = stringReader.Read();
-                        AssertNotEndOfInput(tempNext);
-                        if ((char)tempNext != character)
-                        {
-                            throw new ArgumentException($"Expected a {character} inside a format function in line \"{input}\"");
+                            // Any other character. Add it to the buffer.
+                            currentComponent.Append((char)c);
                         }
                     }
 
-                    // Throw an exception if value represents the end of
-                    // input.
-                    void AssertNotEndOfInput(int value)
-                    {
-                        if (value == -1)
-                        {
-                            throw new ArgumentException($"Unexpected end of line inside a format function in line \"{input}");
-                        }
-                    }
-
-                    // Read and discard all whitespace until we hit
-                    // something that isn't whitespace.
-                    void ConsumeWhitespace(bool allowEndOfLine = false)
-                    {
-                        while (true)
-                        {
-                            var tempNext = stringReader.Peek();
-                            if (tempNext == -1 && allowEndOfLine == false)
-                            {
-                                throw new ArgumentException($"Unexpected end of line inside a format function in line \"{input}");
-                            }
-
-                            if (char.IsWhiteSpace((char)tempNext) == true)
-                            {
-                                // consume it and continue
-                                stringReader.Read();
-                            }
-                            else
-                            {
-                                // no more whitespace ahead; don't
-                                // consume it, but instead stop eating
-                                // whitespace
-                                return;
-                            }
-                        }
-                    }
+                    results.Add(currentComponent.ToString());
+                    currentComponent.Clear();
+                }
+                else
+                {
+                    currentComponent.Append((char)c);
                 }
             }
 
-            lineWithReplacements = stringBuilder.ToString();
-            parsedFunctions = returnedFunctions.ToArray();
+            if (currentComponent.Length > 0)
+            {
+                results.Add(currentComponent.ToString());
+            }
+
+            return results;
         }
 
-        /// The standard, built-in library of functions and operators.
-        private class StandardLibrary : Library {
-
-            public StandardLibrary() {
-
+        // The standard, built-in library of functions and operators.
+        internal class StandardLibrary : Library
+        {
+            public StandardLibrary()
+            {
                 #region Operators
 
-                this.RegisterFunction(TokenType.Add.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] + parameters[1];
+                // Register the in-built conversion functions
+                this.RegisterFunction("string", delegate(object v)
+                {
+                    return Convert.ToString(v);
                 });
 
-                this.RegisterFunction(TokenType.Minus.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] - parameters[1];
+                this.RegisterFunction("number", delegate(object v)
+                {
+                    return Convert.ToSingle(v);
                 });
 
-                this.RegisterFunction(TokenType.UnaryMinus.ToString(), 1, delegate(Value[] parameters) {
-                    return -parameters[0];
+                this.RegisterFunction("bool", delegate(object v)
+                {
+                    return Convert.ToBoolean(v);
                 });
 
-                this.RegisterFunction(TokenType.Divide.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] / parameters[1];
-                });
-
-                this.RegisterFunction(TokenType.Multiply.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] * parameters[1];
-                });
-
-                this.RegisterFunction(TokenType.Modulo.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] % parameters[1];
-                });
-
-                this.RegisterFunction(TokenType.EqualTo.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0].Equals( parameters[1] );
-                });
-
-                this.RegisterFunction(TokenType.NotEqualTo.ToString(), 2, delegate(Value[] parameters) {
-
-                    // Return the logical negative of the == operator's result
-                    var equalTo = this.GetFunction(TokenType.EqualTo.ToString());
-
-                    return !equalTo.Invoke(parameters).AsBool;
-                });
-
-                this.RegisterFunction(TokenType.GreaterThan.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] > parameters[1];
-                });
-
-                this.RegisterFunction(TokenType.GreaterThanOrEqualTo.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] >= parameters[1];
-                });
-
-                this.RegisterFunction(TokenType.LessThan.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] < parameters[1];
-                });
-
-                this.RegisterFunction(TokenType.LessThanOrEqualTo.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0] <= parameters[1];
-                });
-
-                this.RegisterFunction(TokenType.And.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0].AsBool && parameters[1].AsBool;
-                });
-
-                this.RegisterFunction(TokenType.Or.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0].AsBool || parameters[1].AsBool;
-                });
-
-                this.RegisterFunction(TokenType.Xor.ToString(), 2, delegate(Value[] parameters) {
-                    return parameters[0].AsBool ^ parameters[1].AsBool;
-                });
-
-                this.RegisterFunction(TokenType.Not.ToString(), 1, delegate(Value[] parameters) {
-                    return !parameters[0].AsBool;
-                });
+                // Register the built-in types.
+                this.RegisterMethods(BuiltinTypes.Number);
+                this.RegisterMethods(BuiltinTypes.String);
+                this.RegisterMethods(BuiltinTypes.Boolean);
 
                 #endregion Operators
-			}
-		}
-
+            }
+        }
     }
 }
