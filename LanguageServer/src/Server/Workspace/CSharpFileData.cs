@@ -32,15 +32,19 @@ namespace YarnLanguageServer
 
             root = tree.GetCompilationUnitRoot();
 
+            RegisterCommandAndFunctionBridges(); // Technically this doesn't register them until going through unmatched commands
+
+            // TODO: Making these come later to remove any corresponding entries in Workspace.UnmatchedDefinitions is definitly some code smell.
+            // Might be cleaner to build the functionDefinitionCache as we go instead of storing things up in c# file datas.
             RegisterCommandAttributeMatches();
             RegisterCommentTaggedCommandsAndFunctions();
-            RegisterCommandAndFunctionBridges(); // Technically this doesn't register them until going through unmatched commands
 
             // Let's check off any functions we can while we have everything open
             LookForUnmatchedCommands(onePass);
         }
 
         public void LookForUnmatchedCommands(bool isLastTime) {
+
             // TODO: This is definitly some late night code. Shuffle around to avoid the double lookup through UnmatchedCommandNames.
             var methods = root.DescendantNodes()
                 .OfType<MethodDeclarationSyntax>()
@@ -57,7 +61,12 @@ namespace YarnLanguageServer
             {
                 try
                 {
-                    Definitions[matchedUcn.YarnName] = CreateFunctionObject(Uri, matchedUcn.YarnName, command, matchedUcn.IsCommand, 3, false);
+                    // We don't want to override a function that has already matched in this file
+                    if (!Definitions.ContainsKey(matchedUcn.YarnName))
+                    {
+                        Definitions[matchedUcn.YarnName] = CreateFunctionObject(Uri, matchedUcn.YarnName, command, matchedUcn.IsCommand, 3, false);
+                    }
+
                     Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == matchedUcn.YarnName);
                 }
                 catch (Exception e)
