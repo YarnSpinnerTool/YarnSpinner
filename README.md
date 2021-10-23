@@ -23,8 +23,6 @@ If you want to import command and function definitions for a language other than
 
 For examples, take a look at this [import example](/LanguageServer/ImportExample.ysls.json) or the [yarn spinner built in Commands and Functions file](/LanguageServer/src/Server/Documentation/BuiltInFunctionsAndCommands.ysls.json). 
 
-One caveat to note; the language server does not automatically reload ysls.json files (nor .cs files). To force the server to reload function and command definitions, go to the extension settings and toggle the "CSharp Lookup" property. (This will be fixed in an upcoming release!)
-
 
 ## Demo
 <img src="https://user-images.githubusercontent.com/408888/133907128-ab3fe7a3-b2cf-4ce6-98d7-65f048fbae1f.gif" alt="Demonstration of hover tooltip, Go to references, and Go to definition" />
