@@ -4,7 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v2.0.0-beta6] 2021-10-23
+## [Unreleased]
+
+### Added
+
+### Changed
+
+### Removed
+
+## [2.0.0-beta6] 2021-10-23
 
 ### Added
 
@@ -65,7 +73,7 @@ Unexpected ">>" while reading a function call
 
 - The ParseException, TypeException and CompilerException classes have been removed.
 
-## [v2.0.0-beta5] 2021-08-17
+## [2.0.0-beta5] 2021-08-17
 
 ### Added
 
@@ -121,7 +129,7 @@ Unexpected ">>" while reading a function call
 <<declare $coins = 0 "The number of coins the player has">>
 ```
 
-## [v2.0.0-beta4] 
+## [2.0.0-beta4] 
 
 ### Added
 
@@ -154,7 +162,7 @@ TD-110: Let me see your identification.
 
 ### Removed
 
-## [v2.0.0-beta2] 2021-01-14
+## [2.0.0-beta2] 2021-01-14
 
 ### Added
 
@@ -253,7 +261,7 @@ Will be rewritten to:
 
 ### Removed
 
-## [v2.0.0-beta1] 2020-10-20
+## [2.0.0-beta1] 2020-10-20
 
 ### Added
 - Version 2 of the Yarn language requires variables to be declared in order to use them. It's now an error to set or get a value from a variable that isn't declared.
@@ -293,7 +301,7 @@ Will be rewritten to:
   - The previous, related syntax for jumping to another node, (`[[DestinationNode]]`), has also been removed, and has been replaced with the `<<jump>>` command.
 - Functions registered with the `Library` class can no longer accept an unlimited number of parametes.
 
-## [v1.2.0] 2020-05-04
+## [1.2.0] 2020-05-04
 
 ### Added
 
@@ -305,7 +313,7 @@ Will be rewritten to:
 
 ### Removed
 
-## [v1.2.0-beta1] 2020-05-28
+## [1.2.0-beta1] 2020-05-28
 
 ### Added
 
@@ -323,11 +331,11 @@ Will be rewritten to:
 
 ### Removed
 
-## [v1.1.0] - 2020-04-01
+## [1.1.0] - 2020-04-01
 
 Final release of v1.1.0.
 
-## [v1.1.0-beta3]
+## [1.1.0-beta3]
 
 ### Added
 
@@ -335,7 +343,7 @@ Final release of v1.1.0.
 
 - Fixed a bug that caused `<<else>>` to be incorrectly parsed as a command, not an `else` statement, which meant that flow control didn't work correctly.
 
-## [v1.0.0-beta2]
+## [1.0.0-beta2]
 
 ### Added
 
