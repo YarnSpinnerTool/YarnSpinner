@@ -48,6 +48,12 @@ jobs:
       run: dotnet build --no-restore --configuration Release
     - name: Test
       run: dotnet test --no-build --configuration Release --verbosity normal
+    - name: Deploy to NuGet
+      if: ${{ startsWith(github.ref, "refs/tags/v") }}
+      run: |
+        dotnet pack -c Release /p:Version=${{ steps.gitversion.outputs.nuGetVersionV2}} -o "nuget"
+        dotnet push nuget/*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
+
     
     # If we are on the develop or main branch, do a nuget pack and push if this was a tagged version
     # /p:PackageVersion=${{ steps.gitversion.outputs.semVer }}
