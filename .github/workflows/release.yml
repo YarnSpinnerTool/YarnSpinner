@@ -15,9 +15,11 @@ jobs:
       - name: Extract release notes
         id: extract-release-notes
         uses: ffurrer2/extract-release-notes@v1
-      - name: Get release notes preface
+      - name: Read release notes preface
         id: release_preface
-        run: echo ::set-output name=contents::$(cat .github/RELEASE_TEMPLATE.md)
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: .github/RELEASE_TEMPLATE.md
       - name: Create release
         uses: actions/create-release@v1
         env:
@@ -28,6 +30,6 @@ jobs:
           draft: true
           prerelease: true
           body: |
-            ${{ steps.release_preface.outputs.contents }}
+            ${{ steps.release_preface.outputs.content }}
             ${{ steps.extract-release-notes.outputs.release_notes }}
 
