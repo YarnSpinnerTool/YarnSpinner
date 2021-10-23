@@ -57,7 +57,7 @@ namespace YarnLanguageServer
             {
                 try
                 {
-                    Definitions[matchedUcn.YarnName] = CreateFunctionObject(Uri, matchedUcn.YarnName, command, matchedUcn.IsCommand, false);
+                    Definitions[matchedUcn.YarnName] = CreateFunctionObject(Uri, matchedUcn.YarnName, command, matchedUcn.IsCommand, 3, false);
                     Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == matchedUcn.YarnName);
                 }
                 catch (Exception e)
@@ -85,7 +85,7 @@ namespace YarnLanguageServer
                     command.AttributeLists.First().Attributes.First(a => a.Name.ToString().Contains("YarnCommand"))
                     .ArgumentList.Arguments.First().ToString()
                     .Trim('\"');
-                Definitions[yarnName] = CreateFunctionObject(Uri, yarnName, command, true, true);
+                Definitions[yarnName] = CreateFunctionObject(Uri, yarnName, command, true, 2, true);
                 Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == yarnName); // Matched some comands, can mark them off the list!
             }
         }
@@ -105,7 +105,7 @@ namespace YarnLanguageServer
                 var isCommand = string.IsNullOrWhiteSpace(functionName);
                 if (!string.IsNullOrWhiteSpace(yarnName))
                 {
-                    Definitions[yarnName] = CreateFunctionObject(Uri, yarnName, match, isCommand, false);
+                    Definitions[yarnName] = CreateFunctionObject(Uri, yarnName, match, isCommand, 1, false);
                     Workspace.UnmatchedDefinitions.RemoveAll(ucn => ucn.YarnName == yarnName);
                 }
             }
@@ -140,7 +140,7 @@ namespace YarnLanguageServer
 
         }
 
-        private RegisteredDefinition CreateFunctionObject(Uri uri, string yarnName, MethodDeclarationSyntax methodDeclaration, bool isCommand, bool isAttributeMatch = false)
+        private RegisteredDefinition CreateFunctionObject(Uri uri, string yarnName, MethodDeclarationSyntax methodDeclaration, bool isCommand, int priority, bool isAttributeMatch = false)
         {
             string documentation = string.Empty;
             Dictionary<string, string> paramsDocumentation = new Dictionary<string, string>();
@@ -245,6 +245,7 @@ namespace YarnLanguageServer
                 IsBuiltIn = false,
                 IsCommand = isCommand,
                 Parameters = parameters,
+                Priority = priority,
                 MinParameterCount = parameters.Count(p => p.DefaultValue == null && !p.IsParamsArray),
                 MaxParameterCount = parameters.Any(p => p.IsParamsArray) ? null : parameters.Count(),
                 DefinitionRange = PositionHelper.GetRange(LineStarts, methodDeclaration.GetLocation().SourceSpan.Start, methodDeclaration.GetLocation().SourceSpan.End),

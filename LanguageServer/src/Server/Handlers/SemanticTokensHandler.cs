@@ -37,8 +37,8 @@ namespace YarnLanguageServer.Handlers
                 DocumentSelector = Utils.YarnDocumentSelector,
                 Legend = new SemanticTokensLegend()
                 {
-                    TokenModifiers = capability.TokenModifiers,
-                    TokenTypes = capability.TokenTypes,
+                    TokenModifiers = capability?.TokenModifiers,
+                    TokenTypes = capability?.TokenTypes,
                 },
                 Full = new SemanticTokensCapabilityRequestFull
                 {

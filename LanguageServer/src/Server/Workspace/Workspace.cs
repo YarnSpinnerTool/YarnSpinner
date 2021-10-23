@@ -268,9 +268,9 @@ namespace YarnLanguageServer
             results = results
                 .GroupBy(f => f.YarnName).Select(g => {
                     if (g.Count() == 1) { return g.First(); }
-
+                    if (g.All(f => f.DefinitionFile.ToString().EndsWith(".cs"))) { return g.OrderBy(f => f.Priority).First(); }
                     var jsonDef = g.FirstOrDefault(f => f.DefinitionFile.ToString().EndsWith(".json"));
-                    var csharpDef = g.FirstOrDefault(f => f.DefinitionFile.ToString().EndsWith(".cs") && !f.Signature.EndsWith("(?)"));
+                    var csharpDef = g.OrderBy(f => f.Priority).FirstOrDefault(f => f.DefinitionFile.ToString().EndsWith(".cs") && !f.Signature.EndsWith("(?)"));
                     if (string.IsNullOrWhiteSpace(csharpDef.YarnName)) { csharpDef = g.FirstOrDefault(f => f.DefinitionFile.ToString().EndsWith(".cs")); }
 
                     jsonDef.DefinitionFile = csharpDef.DefinitionFile;
@@ -311,6 +311,7 @@ namespace YarnLanguageServer
                                 Language = Utils.CSharpLanguageID,
                                 YarnName = bridge.yarnName,
                                 Documentation = string.Empty,
+                                Priority = 10,
                                 Signature = $"{bridge.yarnName}(?)",
                             };
                         }

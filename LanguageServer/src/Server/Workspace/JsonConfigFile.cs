@@ -26,7 +26,7 @@ namespace YarnLanguageServer
             f.DefinitionFile = uri;
             f.IsCommand = isCommand;
             f.IsBuiltIn = IsBuiltIn;
-
+            f.Priority = 0;
             if (f.Parameters != null && !f.MinParameterCount.HasValue)
             {
                 f.MinParameterCount = f.Parameters.Count(p => p.DefaultValue == null && !p.IsParamsArray);

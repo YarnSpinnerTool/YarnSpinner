@@ -16,6 +16,7 @@ namespace YarnLanguageServer
         public int? MaxParameterCount;
         public bool IsCommand;
         public bool IsBuiltIn;
+        public int Priority; // If multiple defined using the same filetype, lower priority wins.
         public string Documentation; // Do we care about markup style docstrings?
         public string Language; // = "csharp" or "txt";
         public string Signature;
