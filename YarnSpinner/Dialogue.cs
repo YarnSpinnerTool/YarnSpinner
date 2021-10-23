@@ -391,8 +391,11 @@ namespace Yarn
     public class Dialogue : IAttributeMarkerProcessor
     {
 
-        /// We'll ask this object for the state of variables
-        internal IVariableStorage VariableStorage { get; set; }
+        /// <summary>
+        /// Gets or sets the object that provides access to storing and
+        /// retrieving the values of variables.
+        /// </summary>
+        public IVariableStorage VariableStorage { get; set; }
 
         /// <summary>
         /// Invoked when the Dialogue needs to report debugging

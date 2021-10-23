@@ -59,6 +59,8 @@ Unexpected ">>" while reading a function call
 
 - It is now a compiler error if the same line ID is used on more than one line.
 
+- Dialogue.VariableStorage is now public.
+
 ### Removed
 
 - The ParseException, TypeException and CompilerException classes have been removed.
