@@ -21,7 +21,7 @@ export async function activate(context: ExtensionContext) {
     const languageServerExe = dotnetPath;
     const languageServerPath =
         isDebugMode() ?
-            path.resolve(context.asAbsolutePath("../LanguageServer/bin/Debug/net5.0/win7-x64/YarnLanguageServer.dll")) :
+            path.resolve(context.asAbsolutePath("../LanguageServer/bin/Debug/net5.0/YarnLanguageServer.dll")) :
             path.resolve(context.asAbsolutePath("/Server/YarnLanguageServer.dll"));
 
     let languageServerOptions: ServerOptions = {
