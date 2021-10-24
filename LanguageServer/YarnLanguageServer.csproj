@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -51,6 +51,7 @@
 		<PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
 		<PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
 		<PackageReference Include="Nerdbank.Streams" Version="2.8.46" />
+    <PackageReference Include="YarnSpinner.Compiler" Version="2.0.0-beta0006" />
     </ItemGroup>
 
     <ItemGroup>
