@@ -10,6 +10,11 @@ using OmniSharp.Extensions.LanguageServer.Protocol.Models;
 using Yarn.Compiler;
 using YarnLanguageServer.Diagnostics;
 
+// Disambiguate between
+// OmniSharp.Extensions.LanguageServer.Protocol.Models.Diagnostic and
+// Yarn.Compiler.Diagnostic
+using Diagnostic = OmniSharp.Extensions.LanguageServer.Protocol.Models.Diagnostic;
+
 namespace YarnLanguageServer
 {
     internal class YarnFileData
@@ -85,14 +90,7 @@ namespace YarnLanguageServer
             Parser.AddErrorListener(parserDiagnosticErrorListener);
 
             // Attempt actual parse
-            try
-            {
-                ParseTree = Parser.dialogue(); // Dialogue is the root node of the syntax tree
-            }
-            catch (ParseException)
-            {
-                ParseTree = null;
-            }
+            ParseTree = Parser.dialogue(); // Dialogue is the root node of the syntax tree
 
             // should probably just set these directly inside the visit function, or refactor all these into a references object
             (NodeTitles, NodeJumps, Commands, CommandInfos, Functions, FunctionInfos,

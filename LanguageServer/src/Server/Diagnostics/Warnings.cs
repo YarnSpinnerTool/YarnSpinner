@@ -29,7 +29,7 @@ namespace YarnLanguageServer.Diagnostics
 
                 var warnings = undefinedFunctions.Select(f => new Diagnostic
                 {
-                    Message = $"Could not find {(f.IsCommand ? "command" : "function")} definition",
+                    Message = $"Could not find {(f.IsCommand ? "command" : "function")} definition for {f.Name}",
                     Severity = DiagnosticSeverity.Warning,
                     Range = new Range(f.ExpressionRange.Start, f.ParametersRange.Start.Delta(0, -1)),
                     Code = nameof(YarnDiagnosticCode.YRNMsngCmdDef),
