@@ -17,5 +17,6 @@
     },
     "coverage-gutters.coverageFileNames": [
         "coverage*.info",
-    ]
+    ],
+    "omnisharp.useGlobalMono": "never"
 }
