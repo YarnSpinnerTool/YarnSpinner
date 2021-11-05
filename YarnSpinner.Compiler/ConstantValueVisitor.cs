@@ -91,14 +91,22 @@ namespace Yarn.Compiler
             var enumType = types.OfType<EnumType>().FirstOrDefault(t => t.Name == enumName);
 
             if (enumType == null) {
-                throw new TypeException(context, $"{enumName} is not a valid enum name", sourceFileName);
+                this.diagnostics.Add(new Diagnostic(
+                    sourceFileName,
+                    context,
+                    $"{enumName} is not a valid enum name"));
+                return new Value(BuiltinTypes.Undefined, null);
             }
 
             // Ensure that this enum has a member of this name
             var member = enumType.Members.FirstOrDefault(m => m.Name == memberName);
 
             if (member == null) {
-                throw new TypeException(context, $"Enum {enumName} does not have a member called {memberName}", sourceFileName);
+                this.diagnostics.Add(new Diagnostic(
+                    sourceFileName,
+                    context,
+                    $"Enum {enumName} does not have a member called {memberName}"));
+                return new Value(BuiltinTypes.Undefined, null);
             }
 
             context.EnumType = enumType;

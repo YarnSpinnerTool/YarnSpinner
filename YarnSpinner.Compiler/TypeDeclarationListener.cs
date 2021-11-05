@@ -15,10 +15,13 @@ namespace Yarn.Compiler
     /// </summary>
     internal class TypeDeclarationListener : YarnSpinnerParserBaseListener
     {
+        public IEnumerable<Diagnostic> Diagnostics { get => this.diagnostics; }
+
         private readonly string sourceFileName;
         private readonly CommonTokenStream tokens;
         private readonly IParseTree tree;
         private readonly List<IType> typeDeclarations;
+        private List<Diagnostic> diagnostics = new List<Diagnostic>();
 
         public TypeDeclarationListener(string sourceFileName, CommonTokenStream tokens, IParseTree tree, ref List<IType> typeDeclarations)
         {
@@ -36,7 +39,8 @@ namespace Yarn.Compiler
             // First: are there any types with the same name as this?
             if (this.typeDeclarations.Any(t => t.Name == context.name.Text))
             {
-                throw new TypeException(context, $"Cannot declare new enum {context.name.Text}: a type with this name already exists", this.sourceFileName);
+                this.diagnostics.Add(new Diagnostic(this.sourceFileName, context, $"Cannot declare new enum {context.name.Text}: a type with this name already exists"));
+                return;
             }
 
             // Get its description, if any
@@ -65,7 +69,7 @@ namespace Yarn.Compiler
                 else
                 {
                     // This case statement has a raw value. Parse it.
-                    Value value = new ConstantValueVisitor(context, this.sourceFileName, this.typeDeclarations).Visit(caseStatement.rawValue);
+                    Value value = new ConstantValueVisitor(context, this.sourceFileName, this.typeDeclarations, ref this.diagnostics).Visit(caseStatement.rawValue);
 
                     caseStatement.RawValue = value;
 
@@ -78,17 +82,20 @@ namespace Yarn.Compiler
                     else if (TypeUtil.IsSubType(typeOfRawValues, value.Type) == false)
                     {
                         // We already had a raw type, and this case
-                        // statement uses an incompatible type. Throw an exception.
-                        throw new TypeException(caseStatement, $"Enum member raw values may only be of a single type (they can't be {typeOfRawValues.Name} and {value.Type.Name})", this.sourceFileName);
+                        // statement uses an incompatible type. Report an error.
+                        this.diagnostics.Add(new Diagnostic(this.sourceFileName, caseStatement, $"Enum member raw values may only be of a single type (they can't be {typeOfRawValues.Name} and {value.Type.Name})"));
+                        return;
                     }
 
-                    // Throw an error if this value isn't an allowable type.
+                    // Report an error if this value isn't an allowable type.
                     if (permittedRawValueTypes.Contains(value.Type) == false)
                     {
-                        throw new TypeException(
+                        this.diagnostics.Add(new Diagnostic(
+                            this.sourceFileName,
                             caseStatement,
-                            $"Invalid type: enum raw values cannot be {value.Type.Name} (they must be of type {string.Join(" or ", permittedRawValueTypes.Select(t => t.Name))})",
-                            this.sourceFileName);
+                            $"Invalid type: enum raw values cannot be {value.Type?.Name ?? "undefined"} (they must be of type {string.Join(" or ", permittedRawValueTypes.Select(t => t.Name))})"));
+
+                        return;
                     }
                 }
             }
@@ -113,10 +120,11 @@ namespace Yarn.Compiler
             {
                 var @case = context.enum_case_statement(i);
 
-                // Throw an exception if we have a duplicate member
+                // Report an error if we have a duplicate member
                 if (enumType.Members.Any(existingMember => existingMember.Name == @case.name.Text))
                 {
-                    throw new TypeException(@case, $"Enum {enumType.Name} already has a case called {@case.name.Text}", this.sourceFileName);
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, @case, $"Enum {enumType.Name} already has a case called {@case.name.Text}"));
+                    return;
                 }
 
                 // Get the documentation comments for this case, if any
@@ -150,12 +158,14 @@ namespace Yarn.Compiler
                     else
                     {
                         // We don't have a default we can use!
-                        throw new TypeException(@case, "All enum cases must have a value, if strings are used", this.sourceFileName);
+                        this.diagnostics.Add(new Diagnostic(this.sourceFileName, @case, "All enum cases must have a value, if strings are used"));
+                        return;
                     }
                 }
                 else
                 {
-                    throw new TypeException(@case, $"Internal error: invalid enum case raw value type {typeOfRawValues.Name}", this.sourceFileName);
+                    this.diagnostics.Add(new Diagnostic(this.sourceFileName, @case, $"Internal error: invalid enum case raw value type {typeOfRawValues.Name}"));
+                    return;
                 }
 
                 // Check to see if we've assigned this raw value already
@@ -164,10 +174,12 @@ namespace Yarn.Compiler
                 if (rawValueHashes.Contains(hash))
                 {
                     // They're not allowed to be the same!
-                    throw new TypeException(
+                    this.diagnostics.Add(new Diagnostic(
+                        this.sourceFileName,
                         @case,
-                        $"Enum member raw values must be unique",
-                        this.sourceFileName);
+                        $"Enum member raw values must be unique"
+                    ));
+                    return;
                 }
 
                 rawValueHashes.Add(hash);
@@ -184,8 +196,5 @@ namespace Yarn.Compiler
 
             this.typeDeclarations.Add(enumType);
         }
-        public IEnumerable<Diagnostic> Diagnostics { get => this.diagnostics; }
-        
-        private List<Diagnostic> diagnostics = new List<Diagnostic>();
     }
 }

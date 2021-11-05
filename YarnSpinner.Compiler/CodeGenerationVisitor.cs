@@ -565,7 +565,7 @@ namespace Yarn.Compiler
             }
             else
             {
-                throw new TypeException($"Internal error: enum case \"{enumMember.Name}\" has raw value type {rawValue.Type.Name}, which is not allowed.");
+                throw new InvalidOperationException($"Internal error: enum case \"{enumMember.Name}\" has raw value type {rawValue.Type.Name}, which is not allowed.");
             }
 
             return 0;

@@ -43,7 +43,7 @@ namespace Yarn.Compiler
 
         private readonly IEnumerable<IType> types;
 
-        private readonly List<Diagnostic> diagnostics = new List<Diagnostic>();
+        private List<Diagnostic> diagnostics = new List<Diagnostic>();
 
         /// <summary>
         /// Gets the collection of all declarations - both the ones we received
@@ -128,7 +128,7 @@ namespace Yarn.Compiler
 
         public override IType VisitValueEnumCase([NotNull] YarnSpinnerParser.ValueEnumCaseContext context)
         {
-            var constantValueVisitor = new ConstantValueVisitor(context, sourceFileName, types);
+            var constantValueVisitor = new ConstantValueVisitor(context, sourceFileName, types, ref this.diagnostics);
 
             var value = constantValueVisitor.Visit(context);
 
